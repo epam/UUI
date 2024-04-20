@@ -366,27 +366,6 @@
         &:is(.uui-color-secondary, .uui-color-neutral, .uui-color-gray, .uui-color-night600):is(.uui-fill-outline, .uui-fill-none, .uui-fill-ghost) {
             --uui-btn-caption: var(--uui-neutral-70);
         }
-
-        &.uui-color-white {
-            &.uui-fill-none, &.uui-fill-ghost {
-                --uui-btn-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 20%, transparent);
-                --uui-btn-bg-active: color-mix(in srgb, var(--uui-neutral-0) 30%, transparent);
-            }
-
-            &.uui-fill-ghost {
-                --uui-btn-border: transparent;
-                --uui-btn-border-hover: transparent;
-                --uui-btn-border-active: transparent;
-            }
-
-            &.uui-fill-outline, &.uui-fill-solid {
-                --uui-btn-caption: var(--uui-neutral-70);
-                --uui-btn-bg-hover: var(--uui-neutral-20);
-                --uui-btn-border-hover: var(--uui-neutral-20);
-                --uui-btn-bg-active: var(--uui-neutral-30);
-                --uui-btn-border-active: var(--uui-neutral-30);
-            }
-        }
     }
 
     /* IconButton */
