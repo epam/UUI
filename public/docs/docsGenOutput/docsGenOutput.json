@@ -66573,7 +66573,7 @@
        }
       },
       "typeValue": {
-       "raw": "'critical' | 'neutral' | 'accent' | 'primary' | 'secondary'"
+       "raw": "'critical' | 'neutral' | 'accent' | 'primary' | 'secondary' | 'white'"
       },
       "editor": {
        "type": "oneOf",
@@ -66582,7 +66582,8 @@
         "neutral",
         "accent",
         "primary",
-        "secondary"
+        "secondary",
+        "white"
        ]
       },
       "from": "@epam/uui:ButtonMods",
@@ -95981,7 +95982,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'red' | 'critical' | 'neutral' | 'gray50' | 'gray' | 'accent' | 'primary' | 'secondary'"
+       "raw": "'blue' | 'green' | 'red' | 'white' | 'critical' | 'neutral' | 'gray50' | 'gray' | 'accent' | 'primary' | 'secondary'"
       },
       "typeValueRef": "@epam/promo:ButtonColor",
       "editor": {
@@ -95990,6 +95991,7 @@
         "blue",
         "green",
         "red",
+        "white",
         "critical",
         "neutral",
         "gray50",
