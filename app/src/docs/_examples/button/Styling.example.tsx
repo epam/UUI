@@ -30,10 +30,10 @@ export default function StyledButtonsExample() {
                 <Button fill="ghost" color="secondary" caption="Caption" onClick={ () => null } />
             </div>
             <div className={ css.whiteColumn }>
-                <Button isDisabled={ true } color="white" caption="Caption" onClick={ () => null } />
-                <Button isDisabled={ true } fill="outline" color="white" caption="Caption" onClick={ () => null } />
-                <Button isDisabled={ true } fill="none" color="white" caption="Caption" onClick={ () => null } />
-                <Button isDisabled={ true } fill="ghost" color="white" caption="Caption" onClick={ () => null } />
+                <Button color="white" caption="Caption" onClick={ () => null } />
+                <Button fill="outline" color="white" caption="Caption" onClick={ () => null } />
+                <Button fill="none" color="white" caption="Caption" onClick={ () => null } />
+                <Button fill="ghost" color="white" caption="Caption" onClick={ () => null } />
             </div>
         </FlexRow>
     );
