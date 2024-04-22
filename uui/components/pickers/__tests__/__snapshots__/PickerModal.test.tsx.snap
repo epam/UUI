@@ -352,15 +352,17 @@ exports[`PickerModal should be rendered correctly 1`] = `
           </div>
         </div>
         <div
+          aria-busy="false"
+          aria-label=""
+          aria-live="polite"
           className="container uui-blocker-container root"
+          role="status"
           style={
             Object {
               "minHeight": undefined,
             }
           }
-        >
-          <div />
-        </div>
+        />
         <div
           className="uui-track-horizontal"
           style={
@@ -1721,15 +1723,17 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           </div>
         </div>
         <div
+          aria-busy="false"
+          aria-label=""
+          aria-live="polite"
           className="container uui-blocker-container root"
+          role="status"
           style={
             Object {
               "minHeight": undefined,
             }
           }
-        >
-          <div />
-        </div>
+        />
         <div
           className="uui-track-horizontal"
           style={
@@ -2009,30 +2013,30 @@ exports[`PickerModal should open body 1`] = `
               </div>
             </div>
             <div
+              aria-busy="false"
+              aria-label=""
+              aria-live="polite"
               class="container uui-blocker-container root"
+              role="status"
             >
-              <div>
+              <div
+                class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+              >
                 <div
-                  aria-label="Loading"
-                  class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
-                  role="alert"
+                  class="container uui-spinner-container root uui-spinner"
                 >
                   <div
-                    class="container uui-spinner-container root uui-spinner"
+                    class="uui-spinner-animation"
                   >
                     <div
-                      class="uui-spinner-animation"
-                    >
-                      <div
-                        class="uui-spinner-dot uui-spinner-dot-1"
-                      />
-                      <div
-                        class="uui-spinner-dot uui-spinner-dot-2"
-                      />
-                      <div
-                        class="uui-spinner-dot uui-spinner-dot-3"
-                      />
-                    </div>
+                      class="uui-spinner-dot uui-spinner-dot-1"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-2"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-3"
+                    />
                   </div>
                 </div>
               </div>

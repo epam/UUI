@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import updateLocale from 'dayjs/plugin/updateLocale.js';
+import React, { forwardRef, useEffect, useState } from 'react';
 import {
     IControlled,
     cx,
@@ -13,6 +11,7 @@ import { CommonDatePickerBodyProps, ViewType } from './types';
 import {
     getNewMonth, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
+import { Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
     /**
@@ -21,14 +20,14 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
     isHoliday?: (day: Dayjs) => boolean;
 }
 
-dayjs.extend(updateLocale);
-
 export const uuiDatePickerBody = {
     wrapper: 'uui-datepickerBody-wrapper',
     separator: 'uui-datepickerBody-separator',
 } as const;
 
-export function DatePickerBody(props: DatePickerBodyProps) {
+export const DatePickerBody = forwardRef(DatePickerBodyComp);
+
+function DatePickerBodyComp(props: DatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
     const { value, onValueChange } = props;
     const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
@@ -41,6 +40,7 @@ export function DatePickerBody(props: DatePickerBodyProps) {
 
     return (
         <StatelessDatePickerBody
+            ref={ ref }
             { ...props }
             month={ month }
             view={ view }
@@ -64,12 +64,13 @@ export interface StatelessDatePickerBodyProps extends CommonDatePickerBodyProps,
     isHoliday?: (day: Dayjs) => boolean;
 }
 
-export function StatelessDatePickerBody({
+export const StatelessDatePickerBody = forwardRef(StatelessDatePickerBodyComp);
+
+function StatelessDatePickerBodyComp({
     renderDay,
     isHoliday,
     cx: classes,
     filter,
-    forwardedRef,
     rawProps,
     value,
     month,
@@ -77,8 +78,8 @@ export function StatelessDatePickerBody({
     onValueChange,
     onMonthChange,
     onViewChange,
-}: StatelessDatePickerBodyProps) {
-    const selectedDate = dayjs(value);
+}: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
+    const selectedDate = dayJsHelper.dayjs(value);
 
     const onMonthClick = (newDate: Dayjs) => {
         onMonthChange(newDate);
@@ -130,7 +131,7 @@ export function StatelessDatePickerBody({
 
     return (
         <div
-            ref={ forwardedRef }
+            ref={ ref }
             className={ cx(uuiDatePickerBodyBase.container, classes) }
             { ...rawProps }
         >

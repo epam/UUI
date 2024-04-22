@@ -28,6 +28,7 @@ export function PortalRoot() {
     const ref = React.useRef(null);
     const id = uuiLayout.getPortalRootId();
 
+    // TODO: immprove on server side
     React.useLayoutEffect(() => {
         if (isClientSide) {
             return makePortalRootDiscoverable(ref.current, id);

@@ -1,8 +1,8 @@
 import {
-    Range, Editor, Node,
+    Range, Editor,
 } from 'slate';
 import {
-    PlatePlugin, TElement, createPlateEditor, createPlugins, getPlugins, useEditorState,
+    PlatePlugin, createPlateEditor, createPlugins, getPlugins, useEditorState,
 } from '@udecode/plate-common';
 import { EditorValue } from './types';
 import { createPlateUI } from './components';
@@ -46,7 +46,7 @@ export function isImageSelected(editor: any) {
     return selection && node === 'image';
 }
 
-export function isPluginActive(key: string): boolean {
+export function useIsPluginActive(key: string): boolean {
     const editor = useEditorState();
     const plugins = getPlugins(editor);
     return plugins.some((plugin) => plugin.key === key);
@@ -92,4 +92,3 @@ export const createTempEditor = (plugins: PlatePlugin[]) => {
         }),
     });
 };
-

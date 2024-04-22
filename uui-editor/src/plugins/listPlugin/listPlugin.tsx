@@ -2,11 +2,11 @@ import {
     PlateEditor, PlateElementProps, focusEditor,
 } from '@udecode/plate-common';
 import {
-    ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, onKeyDownList, toggleList, withList,
+    ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList,
 } from '@udecode/plate-list';
 import React, { Fragment } from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as UnorderedList } from '../../icons/bullet-list.svg';
 import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -53,7 +53,7 @@ interface IToolbarButton {
 }
 
 export function ListButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(ELEMENT_OL) && !isPluginActive(ELEMENT_LI)) return null;
+    if (!useIsPluginActive(ELEMENT_OL) && !useIsPluginActive(ELEMENT_LI)) return null;
 
     const res = !!editor?.selection && getListItemEntry(editor);
 

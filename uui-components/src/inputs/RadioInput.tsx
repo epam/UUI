@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
     IHasRawProps, cx, IHasCX, IDisableable, IEditable, IHasLabel, Icon, uuiMod, uuiElement, ICanBeReadonly,
-    IAnalyticableOnChange, uuiMarkers, IHasForwardedRef, ICanFocus, IHasTabIndex, useUuiContext,
+    IAnalyticableOnChange, uuiMarkers, ICanFocus, IHasTabIndex, useUuiContext,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout/IconContainer';
 import css from './RadioInput.module.scss';
 
 export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean>
-& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & IHasForwardedRef<HTMLLabelElement> & ICanFocus<HTMLInputElement> & IHasTabIndex & {
+& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & ICanFocus<HTMLInputElement> & IHasTabIndex & {
     /** Icon for radio input selected state.
      * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
      */

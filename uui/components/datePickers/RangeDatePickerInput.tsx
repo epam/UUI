@@ -1,7 +1,7 @@
 import React, {
     forwardRef, useEffect, useState,
 } from 'react';
-import dayjs from 'dayjs';
+import { dayJsHelper } from '../../helpers/dayJsHelper';
 import {
     IEditable, devLogger, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
 } from '@epam/uui-core';
@@ -114,7 +114,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onBlurInput?.(event, inputType);
 
         const selectedDate = toValueDateRangeFormat(inputValue, format);
-        if (isValidRange(selectedDate) && (!filter || filter(dayjs(selectedDate[inputType])))) {
+        if (isValidRange(selectedDate) && (!filter || filter(dayJsHelper.dayjs(selectedDate[inputType])))) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
@@ -130,7 +130,6 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     };
 
     const clearAllowed = !disableClear && inputValue.from && inputValue.to;
-
     return (
         <div
             ref={ ref }
@@ -171,11 +170,9 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                 size={ size || '36' }
                 value={ inputValue.to || undefined }
-                onCancel={ () => {
-                    if (clearAllowed) {
-                        onValueChange(defaultRangeValue);
-                    }
-                } }
+                onCancel={ clearAllowed ? () => {
+                    onValueChange(defaultRangeValue);
+                } : undefined }
                 onValueChange={ (v) => onInputChange(v || '', 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
                 onBlur={ (e) => handleBlur(e, 'to') }
