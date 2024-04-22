@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, getOrderBetween, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -13,7 +13,7 @@ import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
-import { deleteTaskWithChildren } from './helpers';
+import { deleteTaskWithChildren, setTaskInsertPosition } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
 
@@ -36,6 +36,7 @@ const metadata: Metadata<FormState> = {
 let lastId = -1;
 
 let savedValue: FormState = { items: ItemsMap.blank<number, Task>({ getId: (item) => item.id }) };
+
 const items = Object.values(getDemoTasks());
 export function ProjectTableDemo() {
     const {
@@ -94,41 +95,14 @@ export function ProjectTableDemo() {
     }, [tree]);
 
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        let currentPosition: DropPosition = position;
-        let currentRelativeTask: Task | null = relativeTask;
-        const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-        if (currentPosition === 'inside') {
-            task.parentId = currentRelativeTask.id;
-            currentPosition = 'top' as DropPosition;
-            currentRelativeTask = null;
-        } else if (currentRelativeTask) {
-            task.parentId = currentRelativeTask.parentId;
-        }
+        const taskToInsert = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
+        const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, tree);
 
-        const { ids: currentListIds } = tree.getItems(task.parentId);
-        const getOrderByIndex = (index: number) => {
-            const id = currentListIds[index];
-            const item = tree.getById(id) as Task;
-
-            return item.order;
-        };
-
-        let relativeToIndex: number = currentPosition === 'top' ? 0 : currentListIds.length - 1;
-        if (currentRelativeTask) {
-            relativeToIndex = currentListIds.indexOf(currentRelativeTask.id);
-        }
-
-        const indexAbove = currentPosition === 'top' ? relativeToIndex - 1 : relativeToIndex;
-        const indexBelow = currentPosition === 'bottom' ? relativeToIndex + 1 : relativeToIndex;
-        const orderAbove = indexAbove >= 0 ? getOrderByIndex(indexAbove) : null;
-        const orderBelow = indexBelow < currentListIds.length ? getOrderByIndex(indexBelow) : null;
-
-        task.order = getOrderBetween(orderAbove, orderBelow);
         setValue((currentValue) => ({ ...currentValue, items: currentValue.items.set(task.id, task) }));
 
         setTableState((currentTableState) => ({
             ...currentTableState,
-            folded: currentPosition === 'inside'
+            folded: position === 'inside'
                 ? { ...currentTableState.folded, [`${task.parentId}`]: false }
                 : currentTableState.folded,
             selectedId: task.id,
