@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, Metadata, Tree, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -13,12 +13,12 @@ import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { getColumns } from './columns';
-import { deleteTaskWithChildren, getInsertionOrder } from './helpers';
+import { deleteTaskWithChildren, setTaskInsertPosition } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
 
 interface FormState {
-    items: Record<number, Task>;
+    items: IImmutableMap<number, Task>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -35,8 +35,9 @@ const metadata: Metadata<FormState> = {
 
 let lastId = -1;
 
-let savedValue: FormState = { items: getDemoTasks() };
+let savedValue: FormState = { items: ItemsMap.blank<number, Task>({ getId: (item) => item.id }) };
 
+const items = Object.values(getDemoTasks());
 export function ProjectTableDemo() {
     const {
         value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
@@ -52,49 +53,6 @@ export function ProjectTableDemo() {
     const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
-    const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        let tempRelativeTask = relativeTask;
-        const task: Task = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-        if (position === 'inside') {
-            task.parentId = relativeTask.id;
-            tempRelativeTask = null; // just insert as the first child
-        }
-
-        if (tempRelativeTask) {
-            task.parentId = tempRelativeTask.parentId;
-        }
-
-        setValue((currentValue) => {
-            task.order = getInsertionOrder(
-                Object.values(currentValue.items)
-                    .filter((i) => i.parentId === task.parentId)
-                    .map((i) => i.order),
-                position === 'bottom' || position === 'inside' ? 'after' : 'before', // 'inside' drop should also insert at the top of the list, so it's ok to default to 'before'
-                tempRelativeTask?.order,
-            );
-
-            return { ...currentValue, items: { ...currentValue.items, [task.id]: task } };
-        });
-
-        setTableState((currentTableState) => {
-            return {
-                ...currentTableState,
-                folded: position === 'inside'
-                    ? { ...currentTableState.folded, [`${task.parentId}`]: false }
-                    : currentTableState.folded,
-                selectedId: task.id,
-            };
-        });
-        
-        dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, setTableState, dataTableFocusManager]);
-
-    const deleteTask = useCallback((task: Task) => {
-        setValue((currentValue) => ({
-            ...currentValue, items: deleteTaskWithChildren(currentValue.items, task),
-        }));
-    }, [setValue]);
-
     const searchHandler = useCallback(
         (val: string | undefined) => setTableState((currentTableState) => ({
             ...currentTableState,
@@ -107,12 +65,22 @@ export function ProjectTableDemo() {
         type: 'sync',
         dataSourceState: tableState, 
         setDataSourceState: setTableState,
-        items: Object.values(value.items),
+        items,
+
+        patch: value.items,
         getSearchFields: (item) => [item.name],
         getId: (i) => i.id,
         getParentId: (i) => i.parentId,
         fixItemBetweenSortings: false,
+        isDeleted: ({ isDeleted }) => isDeleted,
     }, []);
+
+    const deleteTask = useCallback((task: Task) => {
+        setValue((currentValue) => ({
+            ...currentValue,
+            items: deleteTaskWithChildren(task, currentValue.items, tree),
+        }));
+    }, [setValue, tree]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
@@ -126,6 +94,23 @@ export function ProjectTableDemo() {
         return { bottom: true, top: true, inside: true };
     }, [tree]);
 
+    const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
+        const taskToInsert = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
+        const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, tree);
+
+        setValue((currentValue) => ({ ...currentValue, items: currentValue.items.set(task.id, task) }));
+
+        setTableState((currentTableState) => ({
+            ...currentTableState,
+            folded: position === 'inside'
+                ? { ...currentTableState.folded, [`${task.parentId}`]: false }
+                : currentTableState.folded,
+            selectedId: task.id,
+        }));
+
+        dataTableFocusManager?.focusRow(task.id);
+    }, [setValue, dataTableFocusManager, tree]);
+
     const handleDrop = useCallback(
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
         [insertTask],
@@ -135,7 +120,7 @@ export function ProjectTableDemo() {
         tree,
         ...restProps,
         getRowOptions: (task) => ({
-            ...lens.prop('items').prop(task.id).toProps(), // pass IEditable to each row to allow editing
+            ...lens.prop('items').key(task.id).toProps(), // pass IEditable to each row to allow editing
             isSelectable: true,
             dnd: {
                 srcData: { ...task, isTask: true },
@@ -153,10 +138,14 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            return value.items[tableState.selectedId];
+            const item = tree.getById(tableState.selectedId);
+            if (item === NOT_FOUND_RECORD) {
+                return undefined;
+            }
+            return item;
         }
         return undefined;
-    }, [tableState.selectedId, value.items]);
+    }, [tableState.selectedId, tree]);
 
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;

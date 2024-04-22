@@ -11,6 +11,7 @@ export interface Task {
     status?: string;
     description?: string;
     order?: string;
+    isDeleted?: boolean;
 }
 
 export interface Resource {

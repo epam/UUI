@@ -43,8 +43,9 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             getSortingComparator,
             sorting,
             isDeleted,
+            fixItemBetweenSortings,
         ),
-        [patch, sorting],
+        [patch, sorting, fixItemBetweenSortings],
     );
 
     return useMemo(() => {
