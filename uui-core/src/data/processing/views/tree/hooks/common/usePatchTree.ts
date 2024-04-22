@@ -22,6 +22,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         isDeleted,
         sorting,
         sortBy,
+        getSortingComparator,
     }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
     const prevPatch = usePrevious(patch);
@@ -39,6 +40,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             getNewItemPosition,
             getItemTemporaryOrder,
             sortBy,
+            getSortingComparator,
             sorting,
             isDeleted,
         ),
@@ -53,6 +55,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             isDeleted,
             sorting,
             sortBy,
+            getSortingComparator,
             ...tree.visible.getParams(),
         });
     }, [tree, patch]);

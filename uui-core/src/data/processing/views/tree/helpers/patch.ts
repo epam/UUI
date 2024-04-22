@@ -131,11 +131,12 @@ const sortPatchByParentId = <TItem, TId, TFilter>(
     getItemTemporaryOrder: PatchOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
     patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
     sortBy: SortConfig<TItem>['sortBy'],
+    getSortingComparator: SortConfig<TItem>['getSortingComparator'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
     isDeleted: undefined | ((item: TItem) => boolean),
 ) => {
     const { complexIds } = tree.getParams();
-    const comparators = buildComparators({ sorting, sortBy, getId: tree.getParams().getId });
+    const comparators = buildComparators({ sorting, sortBy, getSortingComparator, getId: tree.getParams().getId });
     const composedComparator = composeComparators(comparators, tree.getParams().getId);
 
     const sorted: SortedPatchByParentId<TItem, TId> = newMap({ complexIds });
@@ -172,10 +173,21 @@ export const getSortedPatchByParentId = <TItem, TId, TFilter>(
     getNewItemPosition: PatchOptions<TItem, TId>['getNewItemPosition'],
     getItemTemporaryOrder: PatchOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
     sortBy: SortConfig<TItem>['sortBy'],
+    getSortingComparator: SortConfig<TItem>['getSortingComparator'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
     isDeleted?: (item: TItem) => boolean,
 ) => {
     const params = tree.getParams();
     const grouped = groupByParentId(patch, params.getParentId, params.complexIds);
-    return sortPatchByParentId(tree, grouped, getNewItemPosition, getItemTemporaryOrder, patchAtLastSort, sortBy, sorting, isDeleted);
+    return sortPatchByParentId(
+        tree,
+        grouped,
+        getNewItemPosition,
+        getItemTemporaryOrder,
+        patchAtLastSort,
+        sortBy,
+        getSortingComparator,
+        sorting,
+        isDeleted,
+    );
 };

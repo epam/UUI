@@ -20,6 +20,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         getFilter,
         getSearchFields,
         sortBy,
+        getSortingComparator,
         sortSearchByRelevance = true,
         rowOptions,
         getRowOptions,
@@ -96,7 +97,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     );
 
     const sortTree = useSortTree(
-        { tree: filteredTree, sortBy, dataSourceState, isLoading: isTreeLoading },
+        { tree: filteredTree, sortBy, getSortingComparator, dataSourceState, isLoading: isTreeLoading },
         [filteredTree, isTreeLoading],
     );
 
@@ -126,6 +127,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
+        getSortingComparator,
     });
 
     const totalCount = useMemo(() => {

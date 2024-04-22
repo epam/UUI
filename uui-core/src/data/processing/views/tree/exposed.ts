@@ -15,7 +15,7 @@ export {
 
     PatchOrdering,
 } from './constants';
-export { CompositeKeysMap, newMap, cloneMap } from './helpers';
+export { CompositeKeysMap, newMap, cloneMap, simpleComparator, intlComparator } from './helpers';
 
 export type { PatchOrderingType, RecordStatus } from './types';
 export type { ItemsMapParams } from './ItemsMap';

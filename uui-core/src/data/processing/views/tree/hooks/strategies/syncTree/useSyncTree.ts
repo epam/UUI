@@ -25,6 +25,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         getFilter,
         getSearchFields,
         sortBy,
+        getSortingComparator,
         rowOptions,
         getRowOptions,
         setDataSourceState,
@@ -56,7 +57,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
     );
 
     const sortTree = useSortTree(
-        { tree: filteredTree, sortBy, dataSourceState },
+        { tree: filteredTree, sortBy, getSortingComparator, dataSourceState },
         [filteredTree],
     );
 
@@ -78,6 +79,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
+        getSortingComparator,
     });
 
     const reload = useCallback(() => {
