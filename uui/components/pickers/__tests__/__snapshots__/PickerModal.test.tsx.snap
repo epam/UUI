@@ -97,7 +97,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
-          className="container uui-input-box -clickable root size-36 mode-form"
+          className="container uui-input-box -clickable root uui-size-36 mode-form"
           onFocus={[Function]}
           tabIndex={-1}
         >
@@ -529,7 +529,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         }
       >
         <div
-          className="container uui-input-box -clickable root size-36 mode-form"
+          className="container uui-input-box -clickable root uui-size-36 mode-form"
           onFocus={[Function]}
           tabIndex={-1}
         >
@@ -1878,7 +1878,7 @@ exports[`PickerModal should open body 1`] = `
             class="uui-flex-row root size-36 vPadding-24 container align-items-center"
           >
             <div
-              class="container uui-input-box -clickable uui-focus root size-36 mode-form"
+              class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
               tabindex="-1"
             >
               <div
