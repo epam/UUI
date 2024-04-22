@@ -1,8 +1,7 @@
 import { TOneOfItemType, TPropEditorType } from '../../docsGen/sharedTypes';
-import { getColorDocBySkin } from '../../commonDocs';
+import { COLOR_MAP, getColorDocBySkin } from '../../commonDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 import { getCallbackExample, getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
-import { COLOR_MAP } from '../../commonDocs';
 
 const COLOR_PROP_NAMES = ['color'];
 const SIMPLE_STRING_EDITOR_PROP_NAMES = ['key', 'id', 'settingsKey', 'htmlFor'];
@@ -72,7 +71,18 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
                     }) as TOneOfItemType[]).concat(editor.options.filter((example) => !COLOR_MAP[`${example}`])),
                 };
             } else {
-                return { examples: editor.options };
+                const res = { examples: editor.options };
+                switch (editor.scalarTypeOption) {
+                    case TPropEditorType.string: {
+                        return { ...res, editorType: 'StringWithExamplesEditor' };
+                    }
+                    case TPropEditorType.number: {
+                        return { ...res, editorType: 'NumEditor' };
+                    }
+                    default: {
+                        return res;
+                    }
+                }
             }
         }
     },
