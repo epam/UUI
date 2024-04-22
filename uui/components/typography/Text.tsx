@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import { getTextClasses, TextSettings } from '../../helpers';
 import * as uuiComponents from '@epam/uui-components';
 import css from './Text.module.scss';
@@ -15,6 +15,8 @@ interface TextMods {
      */
     color?: TextColor;
 }
+
+export interface TextModsOverride {}
 
 export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
     /**
@@ -34,7 +36,7 @@ export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
     size?: TextSize;
 }
 
-export interface TextProps extends TextCoreProps, TextMods {}
+export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}
 
 function applyTextMods(mods: TextProps) {
     const textClasses = getTextClasses(

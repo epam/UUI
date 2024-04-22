@@ -1,12 +1,12 @@
 import * as uuiComponents from '@epam/uui-components';
-import { devLogger, withMods } from '@epam/uui-core';
+import { devLogger, withMods, Overwrite } from '@epam/uui-core';
 import { ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './Button.module.scss';
 
 const DEFAULT_SIZE = '36';
 
-type ButtonMods = {
+interface ButtonMods {
     /**
      * Defines component size.
      * @default '36'
@@ -22,13 +22,14 @@ type ButtonMods = {
      * @default 'primary'
      */
     color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
-};
+}
+export interface ButtonModsOverride {}
 
 /** Represents the 'Core properties' for the Button component. */
 export type ButtonCoreProps = uuiComponents.ButtonProps;
 
 /** Represents the props for a Button component. */
-export type ButtonProps = ButtonMods & ButtonCoreProps;
+export type ButtonProps = ButtonCoreProps & Overwrite<ButtonMods, ButtonModsOverride>;
 
 function applyButtonMods(mods: ButtonProps) {
     return [
@@ -40,7 +41,7 @@ function applyButtonMods(mods: ButtonProps) {
     ];
 }
 
-export const Button = withMods<uuiComponents.ButtonProps, ButtonMods>(
+export const Button = withMods<uuiComponents.ButtonProps, ButtonProps>(
     uuiComponents.Button,
     applyButtonMods,
     (props) => {
