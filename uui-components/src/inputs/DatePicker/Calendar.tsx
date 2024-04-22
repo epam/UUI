@@ -1,5 +1,5 @@
 import React, {
-    HTMLAttributes, ReactElement, useMemo,
+    HTMLAttributes, ReactElement,
 } from 'react';
 import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 
@@ -8,7 +8,6 @@ import {
 } from '@epam/uui-core';
 import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
-import { i18n } from '../../i18n';
 import css from './Calendar.module.scss';
 
 /**
