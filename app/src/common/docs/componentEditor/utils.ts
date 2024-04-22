@@ -1,9 +1,9 @@
-import { IDocBuilderGenCtx, TSkin } from '@epam/uui-docs';
+import { IDocBuilderGenCtx, TPropEditorTypeOverride, TSkin, TTypeRef } from '@epam/uui-docs';
 import { useUuiContext } from '@epam/uui-core';
 import { useMemo } from 'react';
 import { loadDocsGenType } from '../../apiReference/dataHooks';
 import { getAllIcons } from '../../../documents/iconListHelpers';
-import { BuiltInTheme } from '../../../data';
+import { AppContext, BuiltInTheme, CustomTheme } from '../../../data';
 
 export function getSkin(theme: string, isSkin: boolean): TSkin {
     if (!isSkin) return TSkin.UUI;
@@ -21,8 +21,8 @@ export function getSkin(theme: string, isSkin: boolean): TSkin {
     }
 }
 
-export function useDocBuilderGenCtx(): IDocBuilderGenCtx {
-    const uuiCtx = useUuiContext();
+export function useDocBuilderGenCtx(propsOverride: TPropEditorTypeOverride[TTypeRef] | undefined): IDocBuilderGenCtx {
+    const uuiCtx = useUuiContext<any, AppContext>();
     return useMemo(() => {
         const result: IDocBuilderGenCtx = {
             loadDocsGenType,
@@ -31,7 +31,17 @@ export function useDocBuilderGenCtx(): IDocBuilderGenCtx {
             },
             demoApi: uuiCtx.api.demo,
             getIconList: getAllIcons,
+            propsOverride,
         };
         return result;
-    }, [uuiCtx.api.demo, uuiCtx.uuiNotifications]);
+    }, [propsOverride, uuiCtx.api.demo, uuiCtx.uuiNotifications]);
+}
+
+export function usePropEditorTypeOverride(themeId: string, typeRef: TTypeRef): TPropEditorTypeOverride[TTypeRef] | undefined {
+    const uuiCtx = useUuiContext();
+    const themesById = uuiCtx.uuiApp.themesById;
+    if (themesById) {
+        const themeDetails = (themesById[themeId] as CustomTheme);
+        return themeDetails?.propsOverride[typeRef];
+    }
 }

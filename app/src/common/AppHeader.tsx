@@ -61,7 +61,7 @@ export function AppHeader() {
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
-                        { svc.uuiApp.themes.map(({ id, name }) => (
+                        { Object.values(svc.uuiApp.themesById).map(({ id, name }) => (
                             <DropdownMenuButton
                                 caption={ name }
                                 icon={ theme === id && DoneIcon }
