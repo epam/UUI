@@ -1,5 +1,5 @@
 import React from 'react';
-import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers } from '@epam/uui-core';
+import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
 import { CountIndicator } from '../widgets';
@@ -16,8 +16,10 @@ type TabButtonMods = {
     withNotify?: boolean;
 };
 
+export interface TabButtonModsOverride {}
+
 /** Represents the properties of a TabButton component. */
-export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export type TabButtonProps = Overwrite<TabButtonMods, TabButtonModsOverride> & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
