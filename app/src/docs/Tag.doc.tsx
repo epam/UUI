@@ -28,6 +28,7 @@ export class TagDoc extends BaseDocsBlock {
                 }),
             });
             doc.setDefaultPropExample('onClick', () => true);
+            doc.merge('count', { examples: [{ value: '9' }, { value: '+99' }, { value: '+999' }] });
         },
     };
 
