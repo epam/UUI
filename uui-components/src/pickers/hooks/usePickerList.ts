@@ -139,8 +139,10 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         const sign = sorting.direction === 'desc' ? -1 : 1;
         const stringComparer = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparer = (a: DataRowProps<TItem, TId>, b: DataRowProps<TItem, TId>) => {
-            const loadingComparison = (b.isLoading ? 0 : 1) - (a.isLoading ? 0 : 1);
-            if ((loadingComparison && loadingComparison !== 0) || (a.isLoading && b.isLoading)) {
+            const aIsLoading = (a.isLoading || a.isUnknown);
+            const bIsLoading = (b.isLoading || b.isUnknown);
+            const loadingComparison = (bIsLoading ? 0 : 1) - (aIsLoading ? 0 : 1);
+            if ((loadingComparison && loadingComparison !== 0) || (aIsLoading && bIsLoading)) {
                 return loadingComparison;
             } else {
                 return sign * stringComparer(sortBy(a.value, sorting), sortBy(b.value, sorting));

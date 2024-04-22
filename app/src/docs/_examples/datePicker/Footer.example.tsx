@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DatePicker, FlexRow, LinkButton } from '@epam/uui';
 import css from './FormatDateExample.module.scss';
-import dayjs from 'dayjs';
+import { dayJsHelper } from '../../../helpers';
 
 export default function DatePickerFooterExample() {
     const [value, onValueChange] = useState('');
@@ -13,7 +13,7 @@ export default function DatePickerFooterExample() {
                 onValueChange={ onValueChange }
                 renderFooter={ () => (
                     <FlexRow cx={ css.footer } size="48">
-                        <LinkButton size="36" caption="Today" onClick={ () => onValueChange(dayjs().format('YYYY-MM-DD')) } />
+                        <LinkButton size="36" caption="Today" onClick={ () => onValueChange(dayJsHelper.dayjs().format('YYYY-MM-DD')) } />
                     </FlexRow>
                 ) }
             />

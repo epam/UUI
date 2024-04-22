@@ -13,7 +13,7 @@ class ModuleBuildProgressLogger {
 
     start() {
         this.initTimer();
-        const notes = this.params.isRollup ? '(Rollup)' : '(No index.tsx exists; will be published as-is)';
+        const notes = this.params.isRollup ? '(rollup)' : '(no index.tsx; will be published as-is)';
         logger.info(`${this.getMsgHeader()} ${notes}`);
     }
 

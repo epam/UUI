@@ -18,7 +18,6 @@ import { defaultPlugins } from './defaultPlugins';
 
 import css from './SlateEditor.module.scss';
 import { isEditorValueEmpty } from './helpers';
-import { RenderPlaceholderProps } from 'slate-react';
 
 const basePlugins: PlatePlugin[] = [
     ...baseMarksPlugin(),

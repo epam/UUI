@@ -14,6 +14,19 @@
         border-width: 3px;
         border-radius: 50%;
     }
+
+    .color-item-selected {
+        border-width: 2px;
+        width: 14px;
+        height: 14px;
+        border-color: white;
+    }
+
+    .color-item-unknown {
+        word-break: break-word;
+        min-width: 15px;
+        margin: 0 2px 0 0;
+    }
 }
 
 .tooltip {

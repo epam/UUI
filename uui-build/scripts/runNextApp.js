@@ -3,7 +3,7 @@ process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
 const fs = require('fs-extra');
-const chalk = require('chalk');
+const logger = require('../utils/loggerUtils');
 
 const modulesNameMap = {
     'epam-assets': 'assets',
@@ -17,11 +17,11 @@ const modulesNameMap = {
 };
 
 async function isModuleBuildExist(module) {
-    const isExists = await fs.exists(`../${module}/build`);
+    const isExists = await fs.exists(`../../${module}/build`);
     let isEmpty = false;
-    fs.readdir(`../${module}/build`, function (err, files) {
+    fs.readdir(`../../${module}/build`, function (err, files) {
         if (err) {
-            console.log(err);
+            logger.error(err);
         } else {
             if (!files.length) {
                 isEmpty = true;
@@ -32,14 +32,14 @@ async function isModuleBuildExist(module) {
 }
 
 async function main() {
-    console.log('run NextApp script');
+    logger.info('run NextApp script');
     let isAllModulesIsBuilt = false;
     const modulesPath = Object.keys(modulesNameMap);
     for (let i = 0; i < modulesPath.length; i += 1) {
         const module = modulesPath[i];
         const isExist = await isModuleBuildExist(module);
         if (!isExist) {
-            console.log(`Build folder is not existed or empty in module: ${module} `);
+            logger.error(`Build folder is not existed or empty in module: ${module} `);
             process.exit(1);
             break;
         }
@@ -48,17 +48,17 @@ async function main() {
 
     if (isAllModulesIsBuilt) {
         try {
-            console.log('Start coping current version of modules');
+            logger.info('Start coping current version of modules');
             for await (const mPath of modulesPath) {
-                await fs.copySync(`../${mPath}/build/`, `./node_modules/@epam/${modulesNameMap[mPath]}/`);
+                await fs.copySync(`../../${mPath}/build/`, `./node_modules/@epam/${modulesNameMap[mPath]}/`);
             }
-            console.log(chalk.green('All modules are copied to next app'));
+            logger.success('All modules are copied to next app');
             const DOT_NEXT_DIR = './.next';
             if (fs.existsSync(DOT_NEXT_DIR)) {
                 fs.rmdirSync(DOT_NEXT_DIR, { recursive: true, force: true });
             }
         } catch (err) {
-            console.log(err);
+            logger.error(err);
         }
     }
 }
