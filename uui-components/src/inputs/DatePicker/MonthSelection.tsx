@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
+import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
 import css from './MonthSelection.module.scss';
@@ -36,7 +36,7 @@ export function MonthSelection(props: MonthSelectionProps): JSX.Element {
             </div>
         );
     };
-    const MONTHS_SHORT_ARRAY = dayJsHelper.dayjs.monthsShort();
+    const MONTHS_SHORT_ARRAY = uuiDayjs.dayjs.monthsShort();
     return (
         <div
             ref={ props.forwardedRef }
