@@ -54,15 +54,6 @@ function isSelected <T>(day: Dayjs, value: T): boolean {
     return false;
 }
 
-function getWeekdaysShortStartingMonday() {
-    const instance = uuiDayjs.dayjs().locale(i18n.datePicker.locale);
-    const weekdaysShort = instance.localeData().weekdaysShort();
-
-    const mondayIndex = weekdaysShort.findIndex((day) => day.toLowerCase().startsWith('mo'));
-
-    return [...weekdaysShort.slice(mondayIndex), ...weekdaysShort.slice(0, mondayIndex)];
-}
-
 export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
     const getDaysToRender = (days: Dayjs[]) =>
         days.map((day: Dayjs, index: number) => {
@@ -124,12 +115,8 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
         return <div key={ key }>{week.map((day) => day)}</div>;
     });
 
-    const weekdaysShort = useMemo(() => {
-        return getWeekdaysShortStartingMonday();
-    }, []);
-
     const renderWeekdays = () => {
-        return weekdaysShort.map((weekday, index) => (
+        return uuiDayjs.dayjs.weekdaysShort(true).map((weekday, index) => (
             <div
                 key={ `${weekday}-${index}` }
                 className={ uuiDaySelection.weekday }
