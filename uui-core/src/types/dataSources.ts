@@ -34,6 +34,26 @@ export interface SortConfig<TItem> {
      * A pure function that gets sorting value for current sorting value
      */
     sortBy?(item: TItem, sorting: SortingOption): any;
+
+    /**
+     * Get comparator function, used to compare two values during sorting.
+     *
+     * By default, we use standard Intl.Collator.
+     *
+     * You can override this with this prop, in certain cases, e.g.:
+     * - to compare Date objects (e.g. getSortingComparator: () => (a, b) => a.getTime() - b.getTime())
+     * - to tweak collator options, e.g.
+     *     new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare.
+     *     see more [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters)
+     * - to use plain-stings collator, e.g. getSortingComparator: () => stringComparator
+     * -
+     *
+     * You can override comparators on per-field basis, e.g.
+     * const intlComparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare
+     * getSortingComparator: (field) => field === 'order' ? stringComparator : intlComparator;
+     * @param field sorting field name.
+     */
+    getSortingComparator?(field: SortingOption['field']): null | ((a: any, b: any) => number);
 }
 
 export interface FilterConfig<TItem, TFilter> {

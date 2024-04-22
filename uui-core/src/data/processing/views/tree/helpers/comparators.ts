@@ -1,5 +1,14 @@
 import { ApplySortOptions } from '../treeState/types';
 
+/**
+ * Simple comparator for comparing strings and numbers.
+ * @param a - The first element for comparison.
+ * @param b - The second element for comparison.
+ * @returns It should return a number where:
+ * - A negative value indicates that a should come before b.
+ * - A positive value indicates that a should come after b.
+ * - Zero indicates that a and b are considered equal.
+ */
 export const simpleComparator = <T extends string | number>(a: T, b: T) => {
     if (a < b) {
         return -1;
@@ -8,15 +17,20 @@ export const simpleComparator = <T extends string | number>(a: T, b: T) => {
     return a === b ? 0 : 1;
 };
 
+/**
+ * The comparator of Intl.Collator object, which enables language-sensitive string comparison.
+ */
+export const intlComparator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+
 export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => {
-    const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
     const comparators: ((a: TItem, b: TItem) => number)[] = [];
 
     if (options.sorting) {
         options.sorting.forEach((sortingOption) => {
             const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] ?? '');
             const sign = sortingOption.direction === 'desc' ? -1 : 1;
-            comparators.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
+            const comparator = options.getSortingComparator?.(sortingOption.field) ?? intlComparator;
+            comparators.push((a, b) => sign * comparator(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
         });
     }
 

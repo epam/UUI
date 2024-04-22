@@ -99,13 +99,14 @@ export class PatchHelper {
         isDeleted,
         sorting,
         sortBy,
+        getSortingComparator,
     }: PatchIntoTreeStructureOptions<TItem, TId>) {
         if (!sortedPatch || !sortedPatch.size) return { treeStructure, itemsMap: originalItemsMap, newItems: [] };
 
         const newByParentId = cloneMap(treeStructure.byParentId); // shallow clone, still need to copy arrays inside!
         let patchedItemsMap = originalItemsMap;
         let newItems: TItem[] = [];
-        const comparators = buildComparators({ sorting, sortBy, getId: treeStructure.getParams().getId });
+        const comparators = buildComparators({ sorting, sortBy, getSortingComparator, getId: treeStructure.getParams().getId });
         const composedComparator = composeComparators(comparators, treeStructure.getParams().getId);
 
         const complexIds = treeStructure.getParams().complexIds;
