@@ -2,7 +2,7 @@
 
 exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
 <div
-  className="container uui-input-box -clickable root root size-36 size-36 mode-inline"
+  className="container uui-input-box -clickable root root uui-size-36 mode-inline"
   onFocus={[Function]}
   onKeyDown={[Function]}
   tabIndex={-1}
@@ -49,7 +49,7 @@ exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
 
 exports[`NumericInput snapshots should be rendered with minimum props 1`] = `
 <div
-  className="container uui-input-box -clickable root root size-36 size-36 mode-form"
+  className="container uui-input-box -clickable root root uui-size-36 mode-form"
   onFocus={[Function]}
   onKeyDown={[Function]}
   tabIndex={-1}
