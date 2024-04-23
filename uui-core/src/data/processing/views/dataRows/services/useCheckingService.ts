@@ -154,20 +154,18 @@ export function useCheckingService<TItem, TId>(
 
     const handleCheck = useCallback(async (isChecked: boolean, checkedId?: TId, isRoot?: boolean) => {
         const completeTree = await getCompleteTreeForCascadeSelection(checkedId, isChecked, isRoot);
-        setDataSourceState((dsState) => {
-            return {
-                ...dsState,
-                checked: CheckingHelper.cascadeSelection({
-                    tree: completeTree,
-                    currentCheckedIds: dsState.checked ?? [],
-                    checkedId,
-                    isChecked,
-                    isCheckable: isItemCheckable,
-                    isUnknown: isItemUnknown,
-                    cascadeSelectionType: cascadeSelection,
-                }),
-            };
-        });
+        setDataSourceState((dsState) => ({
+            ...dsState,
+            checked: CheckingHelper.cascadeSelection({
+                tree: completeTree,
+                currentCheckedIds: dsState.checked ?? [],
+                checkedId,
+                isChecked,
+                isCheckable: isItemCheckable,
+                isUnknown: isItemUnknown,
+                cascadeSelectionType: cascadeSelection,
+            }),
+        }));
     }, [getCompleteTreeForCascadeSelection, setDataSourceState, isItemCheckable, isItemUnknown, cascadeSelection]);
 
     const handleSelectAll = useCallback((isChecked: boolean) => {

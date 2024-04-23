@@ -38,7 +38,7 @@ export function useCascadeSelectionService<TItem, TId>({
 }: UseCascadeSelectionServiceProps<TItem, TId>): CascadeSelectionService<TItem, TId> {
     const getCompleteTreeForCascadeSelection = useCallback(async (checkedId: TId, isChecked: boolean, isRoot?: boolean) => {
         return await loadMissingRecordsOnCheck(checkedId, isChecked, isRoot);
-    }, [tree]);
+    }, [tree, loadMissingRecordsOnCheck]);
 
     return { getCompleteTreeForCascadeSelection };
 }
