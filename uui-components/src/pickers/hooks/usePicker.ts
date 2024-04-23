@@ -52,9 +52,6 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
                 newDsState.focusedIndex = 0;
             }
 
-            console.log('currentState', st);
-            console.log('newState', newDsState);
-
             return newDsState;
         });
     }, [setDataSourceState]);
