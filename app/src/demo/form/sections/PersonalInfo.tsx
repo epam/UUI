@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { dayJsHelper, Dayjs } from '../../../helpers';
+import { uuiDayjs, Dayjs } from '../../../helpers';
 import { ILens } from '@epam/uui-core';
 import { DatePicker, FlexCell, FlexRow, LabeledInput, RichTextView, TextInput } from '@epam/uui';
 import { PersonalInfo } from '../types';
@@ -23,7 +23,7 @@ export function PersonalInfoSection({ lens }: { lens: ILens<PersonalInfo> }) {
                 <FlexCell width="auto">
                     <LabeledInput htmlFor="birthDate" label="Date of Birth" { ...lens.prop('birthdayDate').toProps() }>
                         <DatePicker
-                            filter={ (day: Dayjs) => day.valueOf() <= dayJsHelper.dayjs().subtract(0, 'day').valueOf() }
+                            filter={ (day: Dayjs) => day.valueOf() <= uuiDayjs.dayjs().subtract(0, 'day').valueOf() }
                             id="birthDate"
                             format="MMM D, YYYY"
                             { ...lens.prop('birthdayDate').toProps() }

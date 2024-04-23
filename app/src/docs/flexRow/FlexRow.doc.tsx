@@ -33,8 +33,6 @@ export class FlexRowDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.FlexRowProps | loveship.FlexRowProps | promo.FlexRowProps>) => {
             doc.merge('children', { examples: flexRowChildren });
-            doc.merge('columnGap', { editorType: 'NumEditor', examples: [6, 12, 18, 24, 36] });
-            doc.merge('rowGap', { editorType: 'NumEditor', examples: [6, 12, 18, 24, 36] });
         },
     };
 

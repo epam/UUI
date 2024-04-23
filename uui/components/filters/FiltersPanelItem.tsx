@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { dayJsHelper } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import cx from 'classnames';
 import { Modifier } from 'react-popper';
 import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate } from '@epam/uui-core';
@@ -223,17 +223,17 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 return { selection: [selection] };
             }
             case 'datePicker': {
-                return { selection: currentValue ? [dayJsHelper.dayjs(currentValue).format(props.format || defaultFormat)] : currentValue };
+                return { selection: currentValue ? [uuiDayjs.dayjs(currentValue).format(props.format || defaultFormat)] : currentValue };
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
                     return { selection: undefined };
                 }
                 const currentValueFrom = currentValue?.from
-                    ? dayJsHelper.dayjs(currentValue?.from).format(props.format || defaultFormat)
+                    ? uuiDayjs.dayjs(currentValue?.from).format(props.format || defaultFormat)
                     : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderFrom;
                 const currentValueTo = currentValue?.to
-                    ? dayJsHelper.dayjs(currentValue?.to).format(props.format || defaultFormat)
+                    ? uuiDayjs.dayjs(currentValue?.to).format(props.format || defaultFormat)
                     : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderTo;
                 const selection = `${currentValueFrom} - ${currentValueTo}`;
                 return { selection: [selection] };
