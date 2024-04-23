@@ -53,7 +53,7 @@ export interface SortConfig<TItem> {
      * getSortingComparator: (field) => field === 'order' ? stringComparator : intlComparator;
      * @param field sorting field name.
      */
-    getSortingComparator?(field: SortingOption['field']): null | ((a: any, b: any) => number);
+    getSortingComparator?(field: SortingOption['field'], order: SortDirection): null | ((a: any, b: any) => number);
 }
 
 export interface FilterConfig<TItem, TFilter> {
