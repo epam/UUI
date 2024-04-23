@@ -19,7 +19,7 @@ import { isInProgress } from '../helpers';
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
     CommonTreeConfig<TItem, TId, TFilter>,
     ITreeLoadingState,
-    Partial<CascadeSelectionService<TId>>,
+    Partial<CascadeSelectionService<TItem, TId>>,
     GetItemStatus<TId> {
 
     /**
@@ -50,7 +50,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         isFetching,
         setDataSourceState,
         isFoldedByDefault,
-        handleCascadeSelection,
+        getCompleteTreeForCascadeSelection = async () => tree,
     } = props;
 
     const maxVisibleRowIndex = useMemo(
@@ -115,7 +115,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
         getParentId,
         rowOptions,
         getRowOptions,
-        handleCascadeSelection,
+        getCompleteTreeForCascadeSelection,
         getItemStatus,
     });
 

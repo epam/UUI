@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
@@ -35,7 +35,7 @@ interface IToolbarButton {
 }
 
 export function ToDoListButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(TODO_ELEMENT_KEY)) return null;
+    if (!useIsPluginActive(TODO_ELEMENT_KEY)) return null;
 
     const block = getBlockAbove(editor);
 

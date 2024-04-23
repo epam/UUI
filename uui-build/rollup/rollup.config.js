@@ -11,6 +11,7 @@ const postCssDynamicImport = import('rollup-plugin-postcss-modules');
 const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils');
 const { getTsConfigFile } = require('./utils/moduleTsConfigUtils');
 const cssSourcemapPathTransformPlugin = require('./plugins/cssSourceMapTransform');
+const annotatePureFunctionCallsPlugin = require('./plugins/annotatePureFunctionCallsPlugin');
 const { onwarn } = require('./utils/rollupLoggerUtils');
 const { getSourceMapTransform } = require('./utils/moduleSourceMapsUtils');
 const { beforeRollupBuild } = require('./utils/beforeRollupBuild');
@@ -133,6 +134,27 @@ async function createRollupConfigForModule(options) {
                 autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),
                 to: `${outDir}/${EXTRACTED_CSS_FILE_NAME}`,
+            }),
+            annotatePureFunctionCallsPlugin({
+                sourcemap: true,
+                pureFunctions: [
+                    /* React.forwardRef */
+                    'forwardRef',
+                    'React.forwardRef',
+
+                    /* React.memo */
+                    'React.memo',
+
+                    /* React.createContext */
+                    'React.createContext',
+                    'createContext',
+
+                    /* UUI-specific */
+                    'withMods',
+                    'uuiCore.withMods',
+                    'createSkinComponent',
+                    'TREE_SHAKEABLE_INIT',
+                ],
             }),
             cssSourcemapPathTransformPlugin({ outDir, extractedCssFileName: EXTRACTED_CSS_FILE_NAME, transform: cssSourceMapTransform }),
             visualizer({

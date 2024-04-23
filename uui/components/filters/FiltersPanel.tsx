@@ -1,11 +1,12 @@
 import React, {
-    useCallback, useEffect, useMemo, useState,
+    useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
 import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
 import {
     DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource, orderBy,
+    PickerInputElement,
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
@@ -65,6 +66,8 @@ const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
 function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFilter>) {
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
+
+    const pickerInputRef = useRef<PickerInputElement>(null);
 
     const dataSource = useArrayDataSource(
         {
@@ -196,7 +199,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     onValueChange={ onFiltersChange }
                     selectionMode="multi"
                     valueType="entity"
-                    key={ newFilterId }
+                    // key={ newFilterId }
                     renderRow={ (props) => (
                         <DataPickerRow
                             { ...props }
@@ -204,6 +207,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                             key={ props.key }
                             onCheck={ (row) => {
                                 props.onCheck && props.onCheck(row);
+                                pickerInputRef.current?.closePickerBody?.();
                                 !row.isChecked && setNewFilterId(row.value.field);
                             } }
                             renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
@@ -216,6 +220,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     fixedBodyPosition={ true }
                     size={ props.size }
                     bodyCx={ UUI_FILTERS_PANEL_ADD_BUTTON_BODY }
+                    ref={ pickerInputRef }
                 />
             )}
         </>

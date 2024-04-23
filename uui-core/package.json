@@ -7,6 +7,7 @@
   "main": "index.js",
   "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts",
     "prepublish": "yarn build"

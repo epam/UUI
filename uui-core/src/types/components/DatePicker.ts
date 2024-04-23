@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-import { Dayjs } from 'dayjs';
 import { Placement } from '@popperjs/core';
 import {
     ICanBeReadonly, IDisableable, IDropdownToggler,
 } from '../props';
 import { CX } from '../objects';
+import { Dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents CommonDatePickerProps

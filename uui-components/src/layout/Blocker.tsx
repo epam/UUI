@@ -1,8 +1,6 @@
-import React, { forwardRef, useEffect, useState } from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import {
-    IHasCX, cx, IHasRawProps,
-} from '@epam/uui-core';
+import React, { forwardRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './Blocker.module.scss';
 
 export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -16,9 +14,12 @@ export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<
     renderSpinner?(props: any): React.ReactNode;
 }
 
-const uuiBlocker = {
+const classNames = {
     container: 'uui-blocker-container',
     blocker: 'uui-blocker',
+};
+
+const uuiBlocker = {
     enter: 'uui-blocker-enter',
     enterActive: 'uui-blocker-enter-active',
     exit: 'uui-blocker-exit',
@@ -26,29 +27,30 @@ const uuiBlocker = {
 } as const;
 
 export const Blocker = forwardRef<HTMLDivElement, BlockerProps>((props, ref) => {
-    const [isEnter, setIsEnter] = useState(false);
     const transitionRef = React.createRef<HTMLDivElement>();
-
-    useEffect(() => {
-        setIsEnter(props.isEnabled);
-    }, [props.isEnabled]);
-
     return (
         <div
-            className={ cx(css.container, uuiBlocker.container, props.cx) }
+            className={ cx(css.container, classNames.container, props.cx) }
             style={ { minHeight: props.isEnabled && props.spacerHeight ? `${props.spacerHeight}px` : undefined } }
             ref={ ref }
+            role="status"
+            aria-live="polite"
+            aria-busy={ props.isEnabled ? 'true' : 'false' }
+            aria-label={ props.isEnabled ? 'Loading' : '' }
             { ...props.rawProps }
         >
-            <TransitionGroup>
-                {isEnter && (
-                    <CSSTransition in={ isEnter } nodeRef={ transitionRef } classNames={ uuiBlocker } timeout={ { enter: 2000, exit: 1000 } }>
-                        <div ref={ transitionRef } className={ uuiBlocker.blocker } role="alert" aria-label="Loading">
-                            {!props.hideSpinner && props.renderSpinner && props.renderSpinner(props)}
-                        </div>
-                    </CSSTransition>
-                )}
-            </TransitionGroup>
+            <CSSTransition
+                in={ props.isEnabled }
+                nodeRef={ transitionRef }
+                classNames={ uuiBlocker }
+                timeout={ { enter: 2000, exit: 1000 } }
+                mountOnEnter
+                unmountOnExit
+            >
+                <div ref={ transitionRef } className={ classNames.blocker }>
+                    {!props.hideSpinner && props.renderSpinner && props.renderSpinner(props)}
+                </div>
+            </CSSTransition>
         </div>
     );
 });

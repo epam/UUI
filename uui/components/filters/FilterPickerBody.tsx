@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, PickerFilterConfig } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
 
@@ -23,13 +23,24 @@ export function FilterPickerBody<TItem, TId>(props: FilterPickerBodyProps<TItem,
         handleDataSourceValueChange,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, shouldShowBody });
 
+    const prevValue = usePrevious(props.value);
+    const prevOpened = usePrevious(props.isOpen);
+
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
         return <PickerItem title={ getName(item) } size="36" { ...rowProps } />;
     };
 
+    React.useLayoutEffect(() => {
+        if (prevOpened === props.isOpen && props.isOpen 
+            && prevValue !== props.value && props.value !== props.emptyValue
+            && props.selectionMode === 'single'
+        ) {
+            props.onClose();
+        }
+    }, [props.value]);
+
     const onSelect = (row: DataRowProps<TItem, TId>) => {
-        props.onClose();
-        handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
+        handleDataSourceValueChange((currentDataSourceState) => ({ ...currentDataSourceState, search: '', selectedId: row.id }));
     };
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {

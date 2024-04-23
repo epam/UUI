@@ -8,5 +8,3 @@ export interface FlexSpacerProps extends IAdaptiveItem {}
 export function FlexSpacer(props: FlexSpacerProps) {
     return <div className={ css.flexSpacer } />;
 }
-
-FlexSpacer.displayName = 'FlexSpacer';

@@ -1,7 +1,7 @@
 import { Dropdown } from '@epam/uui-components';
 import React, { useCallback } from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ColorBar } from '../../implementation/ColorBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -34,7 +34,7 @@ interface IToolbarButton {
 }
 
 export function ColorButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_COLOR)) return null;
+    if (!useIsPluginActive(MARK_COLOR)) return null;
 
     const type = getPluginType(editor, MARK_COLOR);
     const markValue: any = getMark(editor, type);

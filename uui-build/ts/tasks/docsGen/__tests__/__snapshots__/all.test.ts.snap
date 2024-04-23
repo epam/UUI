@@ -1362,6 +1362,54 @@ exports[`docsGen:all docsGen:propEditor should convert prop editor for optional 
 }
 `;
 
+exports[`docsGen:all docsGen:propEditor:oneOf should convert union of literals and single scalar type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TTest",
+     "print": [
+      "interface TTest {",
+      "    size: '12' | '18' | number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "number | '12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
 exports[`docsGen:all docsGen:union should convert union of simple types 1`] = `
 {
  "docsGenTypes": {

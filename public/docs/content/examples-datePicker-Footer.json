@@ -7,8 +7,7 @@
         "text": "A DatePicker example with renderFooter callback"
       },
       {
-        "text": " to add a custom footer.",
-        "color": "rgb(48, 50, 64)"
+        "text": " to add a custom footer."
       }
     ]
   }
