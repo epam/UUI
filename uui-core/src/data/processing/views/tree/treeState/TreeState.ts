@@ -281,6 +281,20 @@ export class TreeState<TItem, TId> {
         );
     }
 
+    public updateItemsMap(itemsMap: ItemsMap<TId, TItem>) {
+        if (itemsMap === this.itemsMap) {
+            return this;
+        }
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
+        return new TreeState(
+            TreeStructure.withNewItemsAccessor(itemsAccessor, this.full),
+            TreeStructure.withNewItemsAccessor(itemsAccessor, this.visible),
+            TreeStructure.withNewItemsAccessor(itemsAccessor, this.selectedOnly),
+            itemsMap,
+            this.setItems,
+        );
+    }
+
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
