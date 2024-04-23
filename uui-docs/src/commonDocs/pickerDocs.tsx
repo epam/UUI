@@ -41,6 +41,7 @@ const getDataSourceExamples = (ctx: IDocBuilderGenCtx) => {
                 const filter = { parentId: context?.parentId };
                 return ctx.demoApi.locations({ ...request, filter });
             },
+            flattenSearchResults: false,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
