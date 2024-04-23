@@ -1,9 +1,9 @@
 .root {
     display: flex;
+    height: calc(100vh - 206px);
 
     &:not(.preview) {
-        margin: 24px;
-        padding: 12px;
+        padding: 24px;
     }
 }
 
