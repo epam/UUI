@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, SortDirection, Tree, intlComparator, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -61,6 +61,23 @@ export function ProjectTableDemo() {
         [],
     );
 
+    const alwaysToBottom = (chars: any[], order: SortDirection) => (a: any, b: any) => {
+        const sign = order === 'desc' ? 1 : -1; 
+        if (chars.includes(a)) {
+            if (chars.includes(b)) {
+                return 0;
+            }
+            
+            return sign;
+        }
+        
+        if (chars.includes(b)) {
+            return sign * -1;
+        }
+        
+        return null;
+    };
+
     const { tree, ...restProps } = useTree({
         type: 'sync',
         dataSourceState: tableState, 
@@ -73,6 +90,12 @@ export function ProjectTableDemo() {
         getParentId: (i) => i.parentId,
         fixItemBetweenSortings: false,
         isDeleted: ({ isDeleted }) => isDeleted,
+        getSortingComparator: (_, order) => {
+            const comparator = alwaysToBottom([null, ''], order);
+            return (a, b) => {
+                return comparator(a, b) ?? intlComparator(a, b);
+            };
+        },
     }, []);
 
     const deleteTask = useCallback((task: Task) => {

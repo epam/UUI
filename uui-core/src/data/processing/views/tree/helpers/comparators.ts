@@ -29,7 +29,7 @@ export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<
         options.sorting.forEach((sortingOption) => {
             const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] ?? '');
             const sign = sortingOption.direction === 'desc' ? -1 : 1;
-            const comparator = options.getSortingComparator?.(sortingOption.field) ?? intlComparator;
+            const comparator = options.getSortingComparator?.(sortingOption.field, sortingOption.direction) ?? intlComparator;
             comparators.push((a, b) => sign * comparator(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
         });
     }
