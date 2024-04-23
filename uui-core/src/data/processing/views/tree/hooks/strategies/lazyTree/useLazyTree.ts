@@ -160,8 +160,13 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isLoading: isLoading || isFetching,
     }, [treeWithData]);
 
-    const patchedTree = usePatchTree({
+    const treeWithNewItemsMap = useActualItemsMap({
         tree: treeWithSelectedOnly,
+        itemsMap,
+    });
+
+    const tree = usePatchTree({
+        tree: treeWithNewItemsMap,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
         getNewItemPosition,
@@ -169,11 +174,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
-    });
-
-    const tree = useActualItemsMap({
-        tree: patchedTree,
-        itemsMap,
     });
 
     const reload = useCallback(() => {
