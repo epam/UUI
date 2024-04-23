@@ -28,9 +28,9 @@ app.use((req, res, next) => {
     res.set(
         'Content-Security-Policy',
         "default-src 'self' https://*.epam.com;"
-        + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; "
-        + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
-        + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/*' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
+        + "style-src 'self' http://localhost:* 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; "
+        + "font-src 'self' http://localhost:* https://*.epam.com https://fonts.gstatic.com/; "
+        + "connect-src 'self' http://localhost:* https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/*' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
         + 'frame-src *; '
         + 'img-src * data: ; '
         + `script-src 'self' ${isDevServer() ? "'unsafe-eval' 'unsafe-inline'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,

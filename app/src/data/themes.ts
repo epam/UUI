@@ -1,5 +1,3 @@
-import { TPropEditorTypeOverride } from '@epam/uui-docs';
-
 export enum BuiltInTheme {
     electric = 'electric',
     loveship = 'loveship',
@@ -11,10 +9,6 @@ export enum BuiltInTheme {
 export interface Theme {
     id: string;
     name: string;
-}
-export interface CustomTheme extends Theme {
-    css: string[];
-    propsOverride?: TPropEditorTypeOverride;
 }
 
 export const builtInThemes: Theme[] = [
