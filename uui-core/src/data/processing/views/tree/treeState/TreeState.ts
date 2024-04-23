@@ -282,7 +282,8 @@ export class TreeState<TItem, TId> {
     }
 
     public updateItemsMap(itemsMap: ItemsMap<TId, TItem>) {
-        if (itemsMap === this.itemsMap) {
+        // if clear cache was executed, itemsMap should not be rewritten.
+        if (itemsMap === this.itemsMap || !itemsMap.size) {
             return this;
         }
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
