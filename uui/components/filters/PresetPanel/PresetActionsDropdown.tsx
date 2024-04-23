@@ -126,7 +126,6 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                 color={ props.preset.id === props.activePresetId ? 'info' : 'neutral' }
                 { ...dropdownProps }
                 icon={ MenuIcon }
-                isDropdown={ false }
                 size="18"
             />
         );
