@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { rangeDatePickerPresets, RangeDatePickerValue, RangeDatePicker, FlexRow, Text } from '@epam/uui';
-import { dayJsHelper } from '../../../helpers';
+import { uuiDayjs } from '../../../helpers';
 import css from './PresetsAndFooter.module.scss';
 
 export default function DatePickerBaseExample() {
@@ -17,13 +17,13 @@ export default function DatePickerBaseExample() {
                     last3Days: {
                         name: 'Last 3 days',
                         getRange: () => {
-                            return { from: dayJsHelper.dayjs().subtract(2, 'day').toString(), to: dayJsHelper.dayjs().toString(), order: 11 };
+                            return { from: uuiDayjs.dayjs().subtract(2, 'day').toString(), to: uuiDayjs.dayjs().toString(), order: 11 };
                         },
                     },
                     last7Days: {
                         name: 'Last 7 days',
                         getRange: () => {
-                            return { from: dayJsHelper.dayjs().subtract(6, 'day').toString(), to: dayJsHelper.dayjs().toString(), order: 12 };
+                            return { from: uuiDayjs.dayjs().subtract(6, 'day').toString(), to: uuiDayjs.dayjs().toString(), order: 12 };
                         },
                     },
                 } }
@@ -31,9 +31,9 @@ export default function DatePickerBaseExample() {
                     <div className={ css.container }>
                         <Text color="primary" size="30">
                             { (!value?.from || !value?.to) && 'Please select range' }
-                            { value?.from && value?.to && dayJsHelper.dayjs(value?.from).format('MMMM DD, YYYY') }
+                            { value?.from && value?.to && uuiDayjs.dayjs(value?.from).format('MMMM DD, YYYY') }
                             { (value?.from && value?.to) && ' - ' }
-                            { value?.from && value?.to && dayJsHelper.dayjs(value?.to).format('MMMM DD, YYYY') }
+                            { value?.from && value?.to && uuiDayjs.dayjs(value?.to).format('MMMM DD, YYYY') }
                             { getRangeLength(value) !== 0 && (getRangeLength(value) === 1 ? ` (${getRangeLength(value)} day)` : ` (${getRangeLength(value)} days)`) }
                         </Text>
                     </div>
@@ -44,13 +44,13 @@ export default function DatePickerBaseExample() {
 }
 
 const getRangeLength = (value: RangeDatePickerValue) => {
-    const isOneOrZero = dayJsHelper.dayjs(value.from).valueOf() === dayJsHelper.dayjs(value.to).valueOf() ? 1 : 0;
+    const isOneOrZero = uuiDayjs.dayjs(value.from).valueOf() === uuiDayjs.dayjs(value.to).valueOf() ? 1 : 0;
 
     return (
-        dayJsHelper.dayjs(value.to).isValid()
-        && dayJsHelper.dayjs(value.from).isValid()
-        && dayJsHelper.dayjs(value.from).valueOf() < dayJsHelper.dayjs(value.to).valueOf()
+        uuiDayjs.dayjs(value.to).isValid()
+        && uuiDayjs.dayjs(value.from).isValid()
+        && uuiDayjs.dayjs(value.from).valueOf() < uuiDayjs.dayjs(value.to).valueOf()
     )
-        ? dayJsHelper.dayjs(value.to).diff(dayJsHelper.dayjs(value.from), 'day') + 1
+        ? uuiDayjs.dayjs(value.to).diff(uuiDayjs.dayjs(value.from), 'day') + 1
         : isOneOrZero;
 };

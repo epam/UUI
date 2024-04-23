@@ -1,5 +1,5 @@
 import { DataQueryFilter, DataQueryFilterCondition } from '../../types/dataQuery';
-import { dayJsHelper } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 
 export function simplifyPredicates<T>(filter: DataQueryFilter<T>) {
     if (!filter) {
@@ -39,7 +39,7 @@ export function simplifyPredicates<T>(filter: DataQueryFilter<T>) {
 }
 
 function isDate(val: string): boolean {
-    return dayJsHelper.dayjs(val).isValid();
+    return uuiDayjs.dayjs(val).isValid();
 }
 
 const truePredicate = () => true;
@@ -82,7 +82,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 predicates.push((item: T) => {
                     const value = item[key];
                     if (typeof value === 'string' && isDate(conditionValue)) {
-                        return dayJsHelper.dayjs(value).isSameOrAfter(conditionValue);
+                        return uuiDayjs.dayjs(value).isSameOrAfter(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value >= conditionValue;
                 });
@@ -93,7 +93,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 predicates.push((item: T) => {
                     const value = item[key];
                     if (typeof value === 'string' && isDate(conditionValue)) {
-                        return dayJsHelper.dayjs(value).isSameOrBefore(conditionValue);
+                        return uuiDayjs.dayjs(value).isSameOrBefore(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value <= conditionValue;
                 });
@@ -104,7 +104,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 predicates.push((item: T) => {
                     const value = item[key];
                     if (typeof value === 'string' && isDate(conditionValue)) {
-                        return dayJsHelper.dayjs(value).isAfter(conditionValue);
+                        return uuiDayjs.dayjs(value).isAfter(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value > conditionValue;
                 });
@@ -115,7 +115,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
                 predicates.push((item: T) => {
                     const value = item[key];
                     if (typeof value === 'string' && isDate(conditionValue)) {
-                        return dayJsHelper.dayjs(value).isBefore(conditionValue);
+                        return uuiDayjs.dayjs(value).isBefore(conditionValue);
                     }
                     return !(value !== null && value !== undefined) || value < conditionValue;
                 });
@@ -138,7 +138,7 @@ export function getFilterPredicate<T>(filter: DataQueryFilter<T>): (e: T) => boo
         } else {
             predicates.push((item: T) => {
                 if (typeof condition === 'string' && isDate(condition)) {
-                    return dayJsHelper.dayjs(item[key] as any).isSame(condition);
+                    return uuiDayjs.dayjs(item[key] as any).isSame(condition);
                 } else {
                     return item[key] === condition;
                 }

@@ -6176,6 +6176,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -6189,6 +6200,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -8850,6 +8872,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -8863,6 +8896,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -11771,6 +11815,14 @@
       "typeValue": {
        "raw": "number | 'auto' | '100%'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto",
+        "100%"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -12036,6 +12088,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -12048,6 +12111,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      }
@@ -23408,6 +23482,13 @@
       },
       "typeValue": {
        "raw": "number | 'forever'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "forever"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      },
@@ -37458,6 +37539,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -37981,6 +38073,25 @@
       },
       "typeValue": {
        "raw": "number | '12' | '18' | '24' | '36' | '30' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "54",
+        "60",
+        "72",
+        "78",
+        "90",
+        "144"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": true
      },
@@ -41197,6 +41308,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -41209,6 +41327,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      },
@@ -41238,6 +41363,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      },
@@ -68588,6 +68720,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -68601,6 +68744,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -70935,6 +71089,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
      },
@@ -70948,6 +71109,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -70979,6 +71147,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -72485,6 +72660,14 @@
       "typeValue": {
        "raw": "number | 'auto' | '100%'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto",
+        "100%"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexCellProps",
       "required": false
      },
@@ -72755,6 +72938,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -72768,6 +72962,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -77419,6 +77624,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -77432,6 +77648,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -81164,6 +81391,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -81177,6 +81415,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -81962,6 +82211,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -81975,6 +82235,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -95965,6 +96236,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
      },
@@ -95978,6 +96256,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -96009,6 +96294,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -96633,6 +96925,17 @@
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -96646,6 +96949,17 @@
       },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -97911,6 +98225,16 @@
       "typeValue": {
        "raw": "number | '300' | '420' | '600' | '900'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "420",
+        "600",
+        "900"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/promo:ModalWindowMods",
       "required": false
      },
@@ -97924,6 +98248,15 @@
       },
       "typeValue": {
        "raw": "number | 'auto' | '300' | '700'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "700",
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/promo:ModalWindowMods",
       "required": false
@@ -103250,6 +103583,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
      },
@@ -103263,6 +103603,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -103294,6 +103641,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -103891,6 +104245,17 @@
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -103904,6 +104269,17 @@
       },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -105235,6 +105611,17 @@
       "typeValue": {
        "raw": "number | '300' | '420' | '480' | '600' | '900'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "420",
+        "480",
+        "600",
+        "900"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/loveship:ModalWindowMods",
       "required": false
      },
@@ -105248,6 +105635,15 @@
       },
       "typeValue": {
        "raw": "number | 'auto' | '300' | '700'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "700",
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/loveship:ModalWindowMods",
       "required": false
