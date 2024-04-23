@@ -10,5 +10,12 @@ interface UseActualItemsMapProps<TItem, TId> {
 export function useActualItemsMap<TItem, TId>({
     tree, itemsMap,
 }: UseActualItemsMapProps<TItem, TId>) {
-    return useMemo(() => tree.updateItemsMap(itemsMap), [tree, itemsMap]);
+    return useMemo(() => {
+        // if clear cache was executed, itemsMap should not be rewritten.
+        if (!itemsMap.size) {
+            return tree;
+        }
+
+        return tree.updateItemsMap(itemsMap);
+    }, [tree, itemsMap]);
 }
