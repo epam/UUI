@@ -128,6 +128,7 @@ export function getColumns(columnsProps: ColumnsProps) {
                             valueType="id"
                             selectionMode="multi"
                             dataSource={ resourceDataSource }
+                            emptyValue={ undefined }
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }

@@ -2,14 +2,10 @@ import React from 'react';
 import {
     PlateElement,
     PlateElementProps,
-    getPluginOptions,
 } from '@udecode/plate-common';
 import {
-    ELEMENT_TABLE,
     TTableElement,
-    TablePlugin,
     getTableColumnCount,
-    getTableOverriddenColSizes,
     useTableElement,
     useTableElementState,
     useTableStore,

@@ -1,7 +1,7 @@
 import { Dropdown } from '@epam/uui-components';
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 
 import { NoteBar } from '../../implementation/NoteBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -73,7 +73,7 @@ interface IToolbarNote {
 }
 
 export function NoteButton({ editor }: IToolbarNote) {
-    if (!isPluginActive('note')) return null;
+    if (!useIsPluginActive('note')) return null;
 
     const block = getBlockAbove(editor, { block: true });
     const type: any = block?.length && block[0].type;
@@ -89,7 +89,8 @@ export function NoteButton({ editor }: IToolbarNote) {
             ) }
             renderBody={ (props) => (
                 <NoteBar
-                    editor={ editor } type={ type }
+                    editor={ editor }
+                    type={ type }
                     { ...props }
                 />
             ) }

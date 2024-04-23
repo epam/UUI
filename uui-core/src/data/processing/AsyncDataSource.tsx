@@ -87,10 +87,6 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const cascadeSelectionService = useCascadeSelectionService({
             tree: selectionTree,
-            cascadeSelection: restProps.cascadeSelection,
-            getRowOptions: restProps.getRowOptions,
-            rowOptions: restProps.rowOptions,
-            getItemStatus: restProps.getItemStatus,
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks

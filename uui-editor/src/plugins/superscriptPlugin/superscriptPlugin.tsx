@@ -1,7 +1,7 @@
 import { createSuperscriptPlugin, MARK_SUPERSCRIPT } from '@udecode/plate-basic-marks';
 import { isMarkActive, PlateEditor } from '@udecode/plate-common';
 import React from 'react';
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as SuperScriptIcon } from '../../icons/super-script.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
@@ -21,7 +21,7 @@ interface IToolbarButton {
 }
 
 export function SuperscriptButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_SUPERSCRIPT)) return null;
+    if (!useIsPluginActive(MARK_SUPERSCRIPT)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, SUPERSCRIPT_TYPE) }

@@ -177,7 +177,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const totalCount = useMemo(() => {
         const { totalCount: rootTotalCount } = tree.visible.getItems(undefined);
 
-        return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
+        return rootTotalCount ?? tree.visible.getTotalCount?.();
     }, [tree.visible]);
 
     return {

@@ -1,5 +1,5 @@
 import { FunctionComponent, SVGProps } from 'react';
-import dayjs from 'dayjs';
+import { uuiDayjs } from '../../helpers';
 
 export type ISkillLevel = 1 | 2 | 3 | 4 | 'NA' | 'NoSkill' | 'Rank';
 
@@ -31,7 +31,7 @@ export interface ISkill {
     lastUpdated: Date;
 }
 
-export const getDateInFormat = (date: Date) => dayjs(date).format('MMM DD, YYYY');
+export const getDateInFormat = (date: Date) => uuiDayjs.dayjs(date).format('MMM DD, YYYY');
 
 export const getLevel = (level: ISkillLevel): string => {
     switch (level) {

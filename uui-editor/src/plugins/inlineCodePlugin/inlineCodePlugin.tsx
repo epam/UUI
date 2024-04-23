@@ -4,7 +4,7 @@ import {
 } from '@udecode/plate-common';
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as CodeIcon } from '../../icons/editor-code.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
@@ -33,7 +33,7 @@ interface IToolbarButton {
 }
 
 export function CodeButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(INLINE_CODE_KEY)) return null;
+    if (!useIsPluginActive(INLINE_CODE_KEY)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, INLINE_CODE_KEY) }

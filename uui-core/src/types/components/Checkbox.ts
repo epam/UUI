@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    ICanBeInvalid, ICanBeReadonly, ICheckable, IHasCX, IHasLabel, IAnalyticableOnChange, IHasRawProps, IHasForwardedRef, ICanFocus,
+    ICanBeInvalid, ICanBeReadonly, ICheckable, IHasCX, IHasLabel, IAnalyticableOnChange, IHasRawProps, ICanFocus,
 } from '../props';
 
 export interface CheckboxCoreProps
@@ -11,5 +11,4 @@ export interface CheckboxCoreProps
     IHasLabel,
     ICanBeReadonly,
     IAnalyticableOnChange<boolean>,
-    IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
-    IHasForwardedRef<HTMLLabelElement> {}
+    IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> {}
