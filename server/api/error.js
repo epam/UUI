@@ -41,7 +41,7 @@ router.get(['/auth/ping', '/error/mock'], function (req, res) {
 });
 
 router.get('/auth/login', function (req, res) {
-    res.send('<html><script>window.opener && window.opener.postMessage("authSuccess", "*")</script></html>');
+    res.send('<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>');
 });
 
 module.exports = router;

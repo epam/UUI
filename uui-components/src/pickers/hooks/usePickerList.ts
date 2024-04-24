@@ -168,7 +168,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
             }
         };
         addRows(getSelectedRows(maxTotalItems), maxTotalItems);
-        if (visibleIds && result.length < maxTotalItems) {
+        if (visibleIds?.length && result.length < maxTotalItems) {
             const rows = visibleIds.map((id, n) => view.getById(id, n));
             addRows(rows, maxTotalItems);
         }

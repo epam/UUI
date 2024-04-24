@@ -4,7 +4,7 @@ import { Clickable, ClickableComponentProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './IconButton.module.scss';
 
-export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
+export type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, 'isDropdown'> & {
     /** Icon can be a React element (usually an SVG element) */
     icon?: Icon;
     /** Icon for drop-down toggler */
@@ -13,6 +13,10 @@ export type IconButtonProps = ClickableComponentProps & IDropdownToggler & {
      * Defines component size.
      */
     size?: number;
+    /**
+     * Pass true to enable dropdown icon.
+     */
+    showDropdownIcon?: boolean;
 };
 
 export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
@@ -25,7 +29,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             ref={ ref }
         >
             <IconContainer icon={ props.icon } size={ size } />
-            { props.isDropdown && (
+            { props.showDropdownIcon && (
                 <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } size={ size } />
             ) }
         </Clickable>
