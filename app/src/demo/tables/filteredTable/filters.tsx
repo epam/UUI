@@ -31,13 +31,20 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: 'Country',
             type: 'multiPicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.countries }),
-            renderRow: (props) => (
+            renderRow: (props, dataSourceState) => (
                 <DataPickerRow
                     { ...props }
                     size="36"
                     padding="12"
                     key={ props.rowKey }
-                    renderItem={ (item: Country, rowProps) => <PickerItem { ...rowProps } title={ item.name } subtitle={ item.capital } /> }
+                    renderItem={ (item: Country, rowProps) => (
+                        <PickerItem
+                            { ...rowProps }
+                            title={ item.name }
+                            subtitle={ item.capital }
+                            dataSourceState={ dataSourceState }
+                        />
+                    ) }
                 />
             ),
         }, {

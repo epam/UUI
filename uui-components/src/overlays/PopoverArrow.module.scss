@@ -1,3 +1,6 @@
+/* stylelint-disable-next-line */
+.root {}
+
 [data-placement^='right'] {
     :global(.uui-popover-arrow) {
         right: 100%;
