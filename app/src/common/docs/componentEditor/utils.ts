@@ -43,6 +43,6 @@ export function usePropEditorTypeOverride(themeId: string, typeRef: TTypeRef): T
     const themesById = uuiCtx.uuiApp.themesById;
     if (themesById) {
         const themeDetails = (themesById[themeId] as CustomThemeManifest);
-        return themeDetails?.propsOverride[typeRef];
+        return themeDetails?.propsOverride?.[typeRef];
     }
 }
