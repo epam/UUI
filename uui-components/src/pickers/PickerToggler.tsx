@@ -126,11 +126,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             if (!isPickerDisabled && !row.isDisabled) {
                 areAllDisabled = false;
             }
-            console.log(row);
+
             const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
-                caption: props.getName(row.value),
+                caption: row.isLoading ? null : props.getName(row.value),
                 isCollapsed: false,
                 isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
