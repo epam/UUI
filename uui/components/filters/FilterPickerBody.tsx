@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig } from '@epam/uui-core';
+import * as React from 'react'; 
+import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
 
@@ -10,10 +10,10 @@ type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProp
 };
 
 export function FilterPickerBody<TItem, TId>({ 
-    highlightSearchMatches = true,
+    // highlightSearchMatches = true,
     ...restProps
 }: FilterPickerBodyProps<TItem, TId>) {
-    const props = { ...restProps, highlightSearchMatches };
+    const props = { ...restProps };
 
     const shouldShowBody = () => props.isOpen;
 
@@ -29,6 +29,18 @@ export function FilterPickerBody<TItem, TId>({
         handleDataSourceValueChange,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, shouldShowBody });
 
+    const prevValue = usePrevious(props.value);
+    const prevOpened = usePrevious(props.isOpen);
+
+    React.useLayoutEffect(() => {
+        if (prevOpened === props.isOpen && props.isOpen 
+            && prevValue !== props.value && props.value !== props.emptyValue
+            && props.selectionMode === 'single'
+        ) {
+            props.onClose();
+        }
+    }, [props.value]);
+    
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
         if (!search) return;
 
@@ -38,15 +50,15 @@ export function FilterPickerBody<TItem, TId>({
             .join(' / ');
     };
 
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
+    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState?: DataSourceState) => {
         const { flattenSearchResults } = view.getConfig();
 
         return (
             <PickerItem
                 title={ getName(item) }
-                highlightSearchMatches={ highlightSearchMatches }
-                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
-                dataSourceState={ dsState }
+                // highlightSearchMatches={ highlightSearchMatches }
+                // { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
+                // dataSourceState={ dsState }
                 size="36" 
                 { ...rowProps }
             />
@@ -55,7 +67,7 @@ export function FilterPickerBody<TItem, TId>({
 
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         props.onClose();
-        handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
+        handleDataSourceValueChange((currentDataSourceState) => ({ ...currentDataSourceState, search: '', selectedId: row.id }));
     };
 
     const renderRow = (rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
@@ -70,7 +82,7 @@ export function FilterPickerBody<TItem, TId>({
                 key={ rowProps.rowKey }
                 size="36"
                 padding="12"
-                renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
+                renderItem={ (item, itemProps) => renderItem(item, itemProps) }
             />
         );
     };
