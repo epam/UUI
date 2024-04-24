@@ -45,7 +45,7 @@ async function loadCustomThemesInternal() {
                         ctManifestArr.push(manifest);
                     })
                     .catch((err) => {
-                        console.error(`Unable to load custom theme from "${themeUrl}"`, err);
+                        console.error(`Unable to load custom theme from "${themeManifestUrl}"`, err);
                     });
             }),
         );
