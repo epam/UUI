@@ -15,7 +15,7 @@ exports[`Preset renders correctly when not in rename mode and active 1`] = `
   }
 >
   <span
-    className="uui-button-box uui-enabled uui-active root uui-tab-button size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
+    className="uui-button-box uui-enabled uui-active root uui-tab-button uui-size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
     role="tab"
     tabIndex={-1}
   >
@@ -65,7 +65,7 @@ exports[`Preset renders correctly when not in rename mode and not active 1`] = `
   }
 >
   <span
-    className="uui-button-box uui-enabled uui-active root uui-tab-button size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
+    className="uui-button-box uui-enabled uui-active root uui-tab-button uui-size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
     role="tab"
     tabIndex={-1}
   >
