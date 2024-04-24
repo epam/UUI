@@ -48,7 +48,12 @@ apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { services } = useUuiServices<TApi, TAppContext>({ apiDefinition, router });
+    const { services } = useUuiServices<TApi, TAppContext>({
+        apiDefinition,
+        router,
+        apiReloginPath: 'api/auth/login',
+        apiPingPath: 'api/auth/ping',
+    });
 
     useEffect(() => {
         Object.assign(svc, services);
