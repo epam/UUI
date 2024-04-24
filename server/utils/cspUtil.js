@@ -2,7 +2,6 @@ module.exports = { getCspHeaderValue };
 
 const EXTRA_ASSETS_FOR_DEV = [
     'http://localhost:*',
-    'https://*.pages.dev',
 ].join(' ');
 
 /**
@@ -15,16 +14,19 @@ function getCspHeaderValue(isDevServer) {
         dir(
             "style-src 'self' 'unsafe-inline'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
+            'https://*.pages.dev',
             'https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/',
         ),
         dir(
             "font-src 'self'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
+            'https://*.pages.dev',
             'https://*.epam.com https://fonts.gstatic.com/',
         ),
         dir(
             "connect-src 'self'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
+            'https://*.pages.dev',
             'https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/* https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
         ),
         'frame-src *; ',
