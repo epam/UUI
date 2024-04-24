@@ -263,6 +263,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const selectedRows = useMemo(() => getSelectedRows(view.getSelectedRowsCount()), [view, dataSourceState.checked]);
 
+    console.log('selectedRows', selectedRows);
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
         const {

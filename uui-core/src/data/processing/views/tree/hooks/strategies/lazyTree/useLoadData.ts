@@ -126,6 +126,10 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     return isChecked && isRoot;
                 }
 
+                if (!isChecked && isRoot) {
+                    return false;
+                }
+
                 if (isImplicitMode) {
                     return itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId));
                 }
