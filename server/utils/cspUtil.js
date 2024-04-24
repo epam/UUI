@@ -27,7 +27,7 @@ function getCspHeaderValue(isDevServer) {
             "connect-src 'self'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
             'https://*.pages.dev',
-            'https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/* https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
+            'https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
         ),
         'frame-src *; ',
         'img-src * data: ; ',
