@@ -121,9 +121,7 @@
         --uui-btn-caption-disabled: var(--uui-text-disabled);
 
         &:global(.uui-color-white) {
-            --uui-btn-bg: color-mix(in srgb, var(--uui-neutral-0) 15%, transparent);
-            --uui-btn-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 22%, transparent);
-            --uui-btn-bg-active: color-mix(in srgb, var(--uui-neutral-0) 29%, transparent);
+            --uui-btn-bg: var(--uui-color-5);
 
             &:global(.uui-disabled) {
                 @include button-white-disables-styles(10%, color-mix(in srgb, var(--uui-neutral-0) 20%, transparent));
@@ -143,9 +141,6 @@
         --uui-btn-caption-disabled: var(--uui-text-disabled);
 
         &:global(.uui-color-white) {
-            --uui-btn-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 22%, transparent);
-            --uui-btn-bg-active: color-mix(in srgb, var(--uui-neutral-0) 29%, transparent);
-
             &:global(.uui-disabled) {
                 @include button-white-disables-styles(0%, color-mix(in srgb, var(--uui-neutral-0) 30%, transparent));
             }
@@ -165,9 +160,7 @@
         --uui-btn-caption-disabled: var(--uui-text-disabled);
 
         &:global(.uui-color-white) {
-            --uui-btn-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 22%, transparent);
             --uui-btn-border-hover: transparent;
-            --uui-btn-bg-active: color-mix(in srgb, var(--uui-neutral-0) 29%, transparent);
             --uui-btn-border-active: transparent;
 
             &:global(.uui-disabled) {
