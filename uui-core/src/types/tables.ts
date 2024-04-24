@@ -338,6 +338,10 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Picke
     showSearch?: boolean;
     /** Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates) */
     maxBodyHeight?: number;
+    /**
+     * Enables highlighting of the items' text with search-matching results.
+     */
+    highlightSearchMatches?: boolean;
 };
 
 type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
