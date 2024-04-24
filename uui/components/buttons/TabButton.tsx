@@ -16,6 +16,8 @@ type TabButtonMods = {
     withNotify?: boolean;
 };
 
+const DEFAULT_SIZE = '48';
+
 /** Represents the properties of a TabButton component. */
 export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Call to clear toggler value */
@@ -37,7 +39,7 @@ function applyTabButtonMods(mods: TabButtonProps) {
     return [
         css.root,
         'uui-tab-button',
-        css['size-' + (mods.size || '48')],
+        `uui-size-${mods.size || DEFAULT_SIZE}`,
         mods.withNotify && css.withNotify,
         ...getIconClass(mods),
     ];

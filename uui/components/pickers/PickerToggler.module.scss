@@ -48,10 +48,20 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     --uui-picker_toggler-icon-clickable: var(--uui-icon);
     --uui-picker_toggler-icon-clickable-hover: var(--uui-icon-hover);
 
-    --uui-picker_toggler-border-radius: var(--uui-border-radius);
-
+    // font
     --uui-picker_toggler-font: var(--uui-font);
     --uui-picker_toggler-font-weight: 400;
+
+    // size
+    --uui-picker_toggler-border-radius: var(--uui-border-radius);
+    --uui-picker_toggler-min-height: var(--uui-size);
+    --uui-picker_toggler-min-width: var(--uui-size);
+    --uui-picker_toggler-border-width: var(--uui-border-width);
+    --uui-picker_toggler-outer-padding: var(--uui-x-outer-padding);
+    --uui-picker_toggler-inner-padding: var(--uui-x-inner-padding);
+    --uui-picker_toggler-icon-height: var(--uui-icon-size);
+    --uui-picker_toggler-line-height: var(--uui-line-height);
+    --uui-picker_toggler-font-size: var(--uui-font-size);
     //
     padding-top: 2px;
     padding-left: 5px;
@@ -59,6 +69,10 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     width: 100%;
     box-sizing: border-box;
     border-style: solid;
+
+    :global(.root) & {
+        color: red;
+    }
 
     &.mode-form {
         background-color: var(--uui-picker_toggler-bg);

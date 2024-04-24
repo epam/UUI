@@ -332,10 +332,11 @@ export class FetchingHelper {
 
         let newNodesCount;
 
+        const loadedItemsCount = (response.items?.length ?? 0);
         if (response.count !== null && response.count !== undefined) {
             newNodesCount = response.count;
-        } else if (response.items?.length < missingCount) {
-            newNodesCount = from + response.items.length;
+        } else if (loadedItemsCount < missingCount) {
+            newNodesCount = from + loadedItemsCount;
         }
 
         let assumedCount = undefined;

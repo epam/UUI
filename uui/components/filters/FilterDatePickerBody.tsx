@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { dayJsHelper } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import { i18n } from '../../i18n';
 import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
@@ -54,7 +54,7 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
                     padding="24"
                     vPadding="12"
                 >
-                    <Text>{value ? dayJsHelper.dayjs(value).format('MMM DD, YYYY') : ''}</Text>
+                    <Text>{value ? uuiDayjs.dayjs(value).format('MMM DD, YYYY') : ''}</Text>
                     <FlexSpacer />
                     <LinkButton
                         isDisabled={ !value }

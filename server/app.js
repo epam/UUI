@@ -27,6 +27,7 @@ app.use((req, res, next) => {
     res.set('x-frame-options', 'SAMEORIGIN');
     res.set('X-Content-Type-Options', 'nosniff');
     res.set('Content-Security-Policy', getCspHeaderValue(isDevServer()));
+    res.removeHeader('X-Powered-By');
 
     next();
 });

@@ -30,7 +30,7 @@
     --uui-btn-min-width: var(--uui-size);
     --uui-btn-border-width: var(--uui-border-width);
     --uui-btn-outer-padding: var(--uui-x-outer-padding);
-    --uui-btn-caption-padding: var(--uui-x-inner-padding);
+    --uui-btn-caption-padding: calc((var(--uui-btn-min-height) - var(--uui-btn-line-height) - (var(--uui-btn-border-width) * 2)) / 2) var(--uui-x-inner-padding);
     --uui-btn-icon-height: var(--uui-icon-size);
     --uui-btn-line-height: var(--uui-line-height);
     --uui-btn-font-size: var(--uui-font-size);
@@ -76,7 +76,7 @@
         font-family: var(--uui-btn-font);
         font-weight: var(--uui-btn-font-weight, normal);
         user-select: none;
-        padding: calc((var(--uui-btn-min-height) - var(--uui-btn-line-height) - (var(--uui-btn-border-width) * 2)) / 2) var(--uui-btn-caption-padding);
+        padding: var(--uui-btn-caption-padding);
         line-height: var(--uui-btn-line-height);
         font-size: var(--uui-btn-font-size);
     }
