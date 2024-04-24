@@ -11,7 +11,7 @@ import { CommonDatePickerBodyProps, ViewType } from './types';
 import {
     getNewMonth, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
-import { Dayjs, dayJsHelper } from '../../helpers/dayJsHelper';
+import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
     /**
@@ -79,7 +79,7 @@ function StatelessDatePickerBodyComp({
     onMonthChange,
     onViewChange,
 }: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
-    const selectedDate = dayJsHelper.dayjs(value);
+    const selectedDate = uuiDayjs.dayjs(value);
 
     const onMonthClick = (newDate: Dayjs) => {
         onMonthChange(newDate);

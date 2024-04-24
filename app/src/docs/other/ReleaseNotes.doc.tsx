@@ -5,7 +5,7 @@ import {
     FlexCell, FlexRow, RichTextView, Spinner, Text,
 } from '@epam/uui';
 import { UuiReactMarkdown } from '../../documents/uuiReactMarkdown';
-import { dayJsHelper } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import { ContentSection } from '../../common';
 
 interface ReleaseInfo {
@@ -64,7 +64,7 @@ export class ReleaseNotesDoc extends React.Component {
                         {header}
                     </Text>
                     <Text color="secondary" fontSize="16" lineHeight="24" cx={ css.releaseDate }>
-                        {dayJsHelper.dayjs(date, 'DD.MM.YYYY').isValid() && dayJsHelper.dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}
+                        {uuiDayjs.dayjs(date, 'DD.MM.YYYY').isValid() && uuiDayjs.dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}
                     </Text>
                 </FlexCell>
                 <div className={ css.releaseContent }>

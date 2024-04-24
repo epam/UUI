@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dayJsHelper, Dayjs } from '../../../helpers';
+import { uuiDayjs, Dayjs } from '../../../helpers';
 import { DatePicker, FlexRow } from '@epam/uui';
 
 export default function DatePickerFilterExample() {
@@ -11,7 +11,7 @@ export default function DatePickerFilterExample() {
                 value={ value }
                 onValueChange={ onValueChange }
                 format="MMM D, YYYY"
-                filter={ (day: Dayjs) => day.valueOf() >= dayJsHelper.dayjs().subtract(1, 'day').valueOf() }
+                filter={ (day: Dayjs) => day.valueOf() >= uuiDayjs.dayjs().subtract(1, 'day').valueOf() }
             />
         </FlexRow>
     );

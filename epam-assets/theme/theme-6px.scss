@@ -1,5 +1,11 @@
 .uui-6px-grid {
+    --uui-focus-outline-width: 2px;
+    --uui-focus-outline-offset: 2px;
+    --uui-focus-radius: 2px;
     --uui-border-radius: 3px;
+    --uui-y-inner-padding: calc((var(--uui-size) - var(--uui-line-height) - (var(--uui-border-width) * 2)) / 2);
+    --uui-tab-line-width: 3px;
+    --uui-notify-size: 6px;
 
     .uui-size-18 {
         --uui-size: 18px;
@@ -9,6 +15,7 @@
         --uui-icon-size: 12px;
         --uui-line-height: 12px;
         --uui-font-size: 10px;
+
     }
 
     .uui-size-24 {
@@ -39,6 +46,7 @@
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
+        --uui-y-inner-padding: calc((var(--uui-size) - var(--uui-line-height) - (var(--uui-border-width) * 2)) / 2);
     }
 
     .uui-size-42 {
@@ -61,6 +69,16 @@
         --uui-font-size: 16px;
     }
 
+    .uui-size-60 {
+        --uui-size: 60px;
+        --uui-border-width: 1px;
+        --uui-x-outer-padding: 12px;
+        --uui-x-inner-padding: 6px;
+        --uui-icon-size: 24px;
+        --uui-line-height: 24px;
+        --uui-font-size: 16px;
+    }
+
     .uui-input-box {
         &.uui-size-42 {
             --uui-x-outer-padding: 6px;
@@ -68,6 +86,16 @@
 
         &.uui-size-48 {
             --uui-x-outer-padding: 6px;
+        }
+    }
+
+    .uui-tab-button {
+        &.uui-size-36, &.uui-size-48, &.uui-size-60 {
+            --uui-x-outer-padding: 9px;
+            --uui-x-inner-padding: 3px;
+            --uui-icon-size: 18px;
+            --uui-line-height: 18px;
+            --uui-font-size: 14px;
         }
     }
 }

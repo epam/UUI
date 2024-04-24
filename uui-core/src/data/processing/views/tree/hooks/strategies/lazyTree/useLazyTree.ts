@@ -9,6 +9,7 @@ import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { isSelectedOrCheckedChanged } from '../checked';
+import { useActualItemsMap } from '../../common';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -159,8 +160,13 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isLoading: isLoading || isFetching,
     }, [treeWithData]);
 
-    const tree = usePatchTree({
+    const treeWithNewItemsMap = useActualItemsMap({
         tree: treeWithSelectedOnly,
+        itemsMap,
+    });
+
+    const tree = usePatchTree({
+        tree: treeWithNewItemsMap,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
         getNewItemPosition,

@@ -118,7 +118,6 @@ export function LocationsTable() {
     const cascadeSelectionService = useCascadeSelection({
         api,
         dataSourceState: tableState,
-        rowOptions,
         isFolded,
         cascadeSelection,
         itemsMap,
