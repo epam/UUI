@@ -38,10 +38,10 @@ export function useDocBuilderGenCtx(propsOverride: TPropEditorTypeOverride[TType
     }, [propsOverride, uuiCtx.api.demo, uuiCtx.uuiNotifications]);
 }
 
-export function usePropEditorTypeOverride(themeId: string, typeRef: TTypeRef): TPropEditorTypeOverride[TTypeRef] | undefined {
+export function usePropEditorTypeOverride(themeId: string, typeRef: TTypeRef | undefined): TPropEditorTypeOverride[TTypeRef] | undefined {
     const uuiCtx = useUuiContext();
     const themesById = uuiCtx.uuiApp.themesById;
-    if (themesById) {
+    if (typeRef && themesById) {
         const themeDetails = (themesById[themeId] as CustomThemeManifest);
         return themeDetails?.propsOverride?.[typeRef];
     }
