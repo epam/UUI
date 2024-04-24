@@ -25,6 +25,12 @@ jobs:
                   cache-dependency-path: |
                       **/yarn.lock
 
+            # https://github.com/actions/runner-images/issues/9733
+            - name: 'Fix'
+              run: |
+                  sudo rm /etc/apt/sources.list.d/microsoft-prod.list
+                  sudo apt-get update
+
             - name: 'Build'
               run: |
                   yarn
@@ -32,11 +38,6 @@ jobs:
                   yarn build
                   cd server && yarn
 
-            # https://github.com/actions/runner-images/issues/9733
-            - name: 'Fix'
-              run: |
-                    sudo rm /etc/apt/sources.list.d/microsoft-prod.list
-                    sudo apt-get update
             - name: 'Run e2e tests'
               run: yarn --cwd uui-e2e-tests local-test-e2e
 
