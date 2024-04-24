@@ -38,7 +38,7 @@ export function ComponentEditorWrapper(props: {
     const componentId = useQuery('id');
     const skin = getSkin(theme, isSkin);
     const docBuilderGenCtx = useDocBuilderGenCtx(
-        usePropEditorTypeOverride(theme, config.bySkin[skin]?.type),
+        usePropEditorTypeOverride(theme, config?.bySkin[skin]?.type),
     );
     const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
 
