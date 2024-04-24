@@ -10,10 +10,10 @@ type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProp
 };
 
 export function FilterPickerBody<TItem, TId>({ 
-    // highlightSearchMatches = true,
+    highlightSearchMatches = true,
     ...restProps
 }: FilterPickerBodyProps<TItem, TId>) {
-    const props = { ...restProps };
+    const props = { ...restProps, highlightSearchMatches };
 
     const shouldShowBody = () => props.isOpen;
 
@@ -56,9 +56,9 @@ export function FilterPickerBody<TItem, TId>({
         return (
             <PickerItem
                 title={ getName(item) }
-                // highlightSearchMatches={ highlightSearchMatches }
-                // { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
-                // dataSourceState={ dsState }
+                highlightSearchMatches={ highlightSearchMatches }
+                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
+                dataSourceState={ dsState }
                 size="36" 
                 { ...rowProps }
             />
@@ -66,7 +66,6 @@ export function FilterPickerBody<TItem, TId>({
     };
 
     const onSelect = (row: DataRowProps<TItem, TId>) => {
-        props.onClose();
         handleDataSourceValueChange((currentDataSourceState) => ({ ...currentDataSourceState, search: '', selectedId: row.id }));
     };
 
@@ -82,7 +81,7 @@ export function FilterPickerBody<TItem, TId>({
                 key={ rowProps.rowKey }
                 size="36"
                 padding="12"
-                renderItem={ (item, itemProps) => renderItem(item, itemProps) }
+                renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
             />
         );
     };
