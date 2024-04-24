@@ -52,6 +52,12 @@ export interface SelectionOptions<TItem, TId> {
     isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
 
+export interface ClearAllOptions<TItem, TId> {
+    tree: ITree<TItem, TId>;
+    checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
+    isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
+}
+
 export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'> {}
 
 export interface LoadAllOptions<TItem, TId, TFilter = any> {
