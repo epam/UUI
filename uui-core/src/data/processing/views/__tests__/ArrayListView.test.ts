@@ -1032,9 +1032,10 @@ describe('ArrayListView', () => {
                     checkbox: { isVisible: true },
                 }),
             };
+            currentValue = { ...initialValue, checked: [7, 8] };
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
             );
 
             const view = hookResult.result.current;
@@ -1101,9 +1102,10 @@ describe('ArrayListView', () => {
                     }),
                 };
 
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
 
                 const view = hookResult.result.current;
@@ -1131,9 +1133,10 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
 
                 const view = hookResult.result.current;
@@ -1326,9 +1329,11 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 const view = hookResult.result.current;
 
@@ -1352,9 +1357,11 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+                currentValue = { ...initialValue, checked: [7, 8] };
+
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 const view = hookResult.result.current;
                 await act(() => {

@@ -1,4 +1,4 @@
-import { dayJsHelper, Dayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs, Dayjs } from '../../helpers/dayJsHelper';
 import { RangeDatePickerInputType, RangeDatePickerValue } from './types';
 
 export const defaultFormat = 'MMM D, YYYY';
@@ -15,7 +15,7 @@ export const uuiDatePickerBodyBase = {
 } as const;
 
 export const getNewMonth = (value: string | Dayjs | null) => {
-    return dayJsHelper.dayjs(value, valueFormat).isValid() ? dayJsHelper.dayjs(value, valueFormat) : dayJsHelper.dayjs().startOf('day');
+    return uuiDayjs.dayjs(value, valueFormat).isValid() ? uuiDayjs.dayjs(value, valueFormat) : uuiDayjs.dayjs().startOf('day');
 };
 
 export const defaultRangeValue: RangeDatePickerValue = {
@@ -31,40 +31,40 @@ export const getValidMonth = (i: RangeDatePickerValue, focus: RangeDatePickerInp
     const fromValid = isValidDate(i.from, format, filter);
     const toValid = isValidDate(i.to, format, filter);
     if (fromValid && toValid && focus) {
-        return dayJsHelper.dayjs(i[focus]);
+        return uuiDayjs.dayjs(i[focus]);
     } else if (fromValid) {
-        return dayJsHelper.dayjs(i.from);
+        return uuiDayjs.dayjs(i.from);
     } else if (toValid) {
-        return dayJsHelper.dayjs(i.to);
+        return uuiDayjs.dayjs(i.to);
     }
 };
 
 export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
     if (selectedDate.from && selectedDate.to && focus) {
-        return dayJsHelper.dayjs(selectedDate[focus]);
+        return uuiDayjs.dayjs(selectedDate[focus]);
     } else if (selectedDate.from) {
-        return dayJsHelper.dayjs(selectedDate?.from);
+        return uuiDayjs.dayjs(selectedDate?.from);
     } else if (selectedDate.to) {
-        return dayJsHelper.dayjs(selectedDate?.to);
+        return uuiDayjs.dayjs(selectedDate?.to);
     }
-    return dayJsHelper.dayjs();
+    return uuiDayjs.dayjs();
 };
 
 export const isValidDate = (input: string | null, format: string, filter?:(day: Dayjs) => boolean): boolean | undefined => {
-    const parsedDate = dayJsHelper.dayjs(input, supportedDateFormats(format), true);
+    const parsedDate = uuiDayjs.dayjs(input, supportedDateFormats(format), true);
     return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
 };
 
 export const isValidRange = (range: RangeDatePickerValue) => {
-    const from = dayJsHelper.dayjs(range.from);
-    const to = dayJsHelper.dayjs(range.to);
+    const from = uuiDayjs.dayjs(range.from);
+    const to = uuiDayjs.dayjs(range.to);
     return from.isValid() && to.isValid()
         ? from.valueOf() <= to.valueOf() && to.valueOf() >= from.valueOf()
         : true;
 };
 
 export const getWithFrom = (selectedDate: RangeDatePickerValue, newValue: string | null) => {
-    if (dayJsHelper.dayjs(newValue).valueOf() <= dayJsHelper.dayjs(selectedDate.to).valueOf()) {
+    if (uuiDayjs.dayjs(newValue).valueOf() <= uuiDayjs.dayjs(selectedDate.to).valueOf()) {
         // update range
         return {
             from: newValue,
@@ -86,7 +86,7 @@ export const getWithTo = (selectedDate:RangeDatePickerValue, newValue: string | 
             from: null,
             to: newValue,
         };
-    } else if (dayJsHelper.dayjs(newValue).valueOf() >= dayJsHelper.dayjs(selectedDate.from).valueOf()) {
+    } else if (uuiDayjs.dayjs(newValue).valueOf() >= uuiDayjs.dayjs(selectedDate.from).valueOf()) {
         // range is valid
         return {
             from: selectedDate.from,
@@ -105,12 +105,12 @@ export const toValueDateRangeFormat = (value: RangeDatePickerValue, format?: str
     const from = value.from;
     const to = value.to;
 
-    const fromObj = dayJsHelper.dayjs(from, supportedDateFormats(format), true);
-    const toObj = dayJsHelper.dayjs(to, supportedDateFormats(format), true);
+    const fromObj = uuiDayjs.dayjs(from, supportedDateFormats(format), true);
+    const toObj = uuiDayjs.dayjs(to, supportedDateFormats(format), true);
 
     return {
-        from: from && fromObj.isValid() ? dayJsHelper.dayjs(from, supportedDateFormats(format), true).format(valueFormat) : null,
-        to: to && toObj.isValid() ? dayJsHelper.dayjs(to, supportedDateFormats(format), true).format(valueFormat) : null,
+        from: from && fromObj.isValid() ? uuiDayjs.dayjs(from, supportedDateFormats(format), true).format(valueFormat) : null,
+        to: to && toObj.isValid() ? uuiDayjs.dayjs(to, supportedDateFormats(format), true).format(valueFormat) : null,
     };
 };
 
@@ -119,22 +119,22 @@ export const toCustomDateRangeFormat = (value: RangeDatePickerValue, format?: st
     const to = value.to;
     const customFormat = format || defaultFormat;
 
-    const fromObj = dayJsHelper.dayjs(from, supportedDateFormats(format), true);
-    const toObj = dayJsHelper.dayjs(to, supportedDateFormats(format), true);
+    const fromObj = uuiDayjs.dayjs(from, supportedDateFormats(format), true);
+    const toObj = uuiDayjs.dayjs(to, supportedDateFormats(format), true);
 
     return {
-        from: from && fromObj.isValid() ? dayJsHelper.dayjs(from, supportedDateFormats(format), true).format(customFormat) : null,
-        to: to && toObj.isValid() ? dayJsHelper.dayjs(to, supportedDateFormats(format), true).format(customFormat) : null,
+        from: from && fromObj.isValid() ? uuiDayjs.dayjs(from, supportedDateFormats(format), true).format(customFormat) : null,
+        to: to && toObj.isValid() ? uuiDayjs.dayjs(to, supportedDateFormats(format), true).format(customFormat) : null,
     };
 };
 
 export const toValueDateFormat = (value: string | null, format?: string): string | null => {
-    return value ? dayJsHelper.dayjs(value, supportedDateFormats(format), true).format(valueFormat) : null;
+    return value ? uuiDayjs.dayjs(value, supportedDateFormats(format), true).format(valueFormat) : null;
 };
 
 export const toCustomDateFormat = (value: string | null, format?: string): string | null => {
     const customFormat = format || defaultFormat;
-    const dayjsObj = dayJsHelper.dayjs(value, supportedDateFormats(format), true);
+    const dayjsObj = uuiDayjs.dayjs(value, supportedDateFormats(format), true);
     return dayjsObj.isValid() ? dayjsObj.format(customFormat) : null;
 };
 

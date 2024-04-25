@@ -6176,6 +6176,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -6189,6 +6200,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -8850,6 +8872,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -8863,6 +8896,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -11771,6 +11815,14 @@
       "typeValue": {
        "raw": "number | 'auto' | '100%'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto",
+        "100%"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -12036,6 +12088,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -12048,6 +12111,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      }
@@ -23408,6 +23482,13 @@
       },
       "typeValue": {
        "raw": "number | 'forever'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "forever"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      },
@@ -37458,6 +37539,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '24' | '36'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -37981,6 +38073,25 @@
       },
       "typeValue": {
        "raw": "number | '12' | '18' | '24' | '36' | '30' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "54",
+        "60",
+        "72",
+        "78",
+        "90",
+        "144"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": true
      },
@@ -41197,6 +41308,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "required": false
      },
      {
@@ -41209,6 +41327,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      },
@@ -41238,6 +41363,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "required": false
      },
@@ -42063,7 +42195,7 @@
     "typeValue": {
      "raw": "IconButtonProps",
      "print": [
-      "type IconButtonProps = ClickableComponentProps & IDropdownToggler & {",
+      "type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, 'isDropdown'> & {",
       "    /** Icon can be a React element (usually an SVG element) */",
       "    icon?: Icon;",
       "    /** Icon for drop-down toggler */",
@@ -42072,6 +42204,10 @@
       "     * Defines component size.",
       "     */",
       "    size?: number;",
+      "    /**",
+      "     * Pass true to enable dropdown icon.",
+      "     */",
+      "    showDropdownIcon?: boolean;",
       "};"
      ]
     },
@@ -42257,23 +42393,6 @@
       "required": false
      },
      {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -42318,6 +42437,22 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -68587,6 +68722,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -68600,6 +68746,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -70934,6 +71091,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
      },
@@ -70947,6 +71111,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -70978,6 +71149,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -72484,6 +72662,14 @@
       "typeValue": {
        "raw": "number | 'auto' | '100%'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto",
+        "100%"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexCellProps",
       "required": false
      },
@@ -72754,6 +72940,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -72767,6 +72964,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -73159,6 +73367,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -73273,40 +73498,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -73336,6 +73527,23 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -73440,6 +73648,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -73554,40 +73779,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -73617,6 +73808,23 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -77418,6 +77626,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -77431,6 +77650,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -81163,6 +81393,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -81176,6 +81417,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -81961,6 +82213,17 @@
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -81974,6 +82237,17 @@
       },
       "typeValue": {
        "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -95963,6 +96237,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
      },
@@ -95976,6 +96257,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -96007,6 +96295,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -96631,6 +96926,17 @@
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -96644,6 +96950,17 @@
       },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -96907,6 +97224,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "clickAnalyticsEvent",
       "name": "clickAnalyticsEvent",
       "comment": {
@@ -97007,40 +97341,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -97070,6 +97370,23 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -97909,6 +98226,16 @@
       "typeValue": {
        "raw": "number | '300' | '420' | '600' | '900'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "420",
+        "600",
+        "900"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/promo:ModalWindowMods",
       "required": false
      },
@@ -97922,6 +98249,15 @@
       },
       "typeValue": {
        "raw": "number | 'auto' | '300' | '700'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "700",
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/promo:ModalWindowMods",
       "required": false
@@ -103248,6 +103584,13 @@
       "typeValue": {
        "raw": "number | 'auto'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
      },
@@ -103261,6 +103604,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -103292,6 +103642,13 @@
       },
       "typeValue": {
        "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -103889,6 +104246,17 @@
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
      },
@@ -103902,6 +104270,17 @@
       },
       "typeValue": {
        "raw": "number | '36' | '18' | '24' | '12' | '6'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-core:FlexRowProps",
       "required": false
@@ -104165,6 +104544,23 @@
       "required": false
      },
      {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -104310,40 +104706,6 @@
       "required": false
      },
      {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -104373,6 +104735,23 @@
       },
       "editor": {
        "type": "component"
+      },
+      "from": "@epam/uui-components:IconButtonProps",
+      "required": false
+     },
+     {
+      "uid": "showDropdownIcon",
+      "name": "showDropdownIcon",
+      "comment": {
+       "raw": [
+        "Pass true to enable dropdown icon."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
       "required": false
@@ -105233,6 +105612,17 @@
       "typeValue": {
        "raw": "number | '300' | '420' | '480' | '600' | '900'"
       },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "420",
+        "480",
+        "600",
+        "900"
+       ],
+       "scalarTypeOption": "number"
+      },
       "from": "@epam/loveship:ModalWindowMods",
       "required": false
      },
@@ -105246,6 +105636,15 @@
       },
       "typeValue": {
        "raw": "number | 'auto' | '300' | '700'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "300",
+        "700",
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/loveship:ModalWindowMods",
       "required": false

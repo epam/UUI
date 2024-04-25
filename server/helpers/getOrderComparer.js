@@ -15,7 +15,7 @@ function compareScalars(a, b, order) {
     return order;
 }
 function getOrderComparer(sorting) {
-    if (!sorting || sorting.length === 0) {
+    if (!sorting || sorting.length === 0 || !Array.isArray(sorting)) {
         return eqPredicate;
     }
     const sortingOrders = sorting.map(function (s) { return s.direction === 'desc' ? -1 : 1; });
