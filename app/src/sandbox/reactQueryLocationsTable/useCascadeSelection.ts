@@ -1,15 +1,13 @@
-import { CascadeSelection, DataRowOptions, DataSourceState, IMap, ITree, LazyDataSourceApi, ITreeLoadResult,
+import { CascadeSelection, DataSourceState, IMap, ITree, LazyDataSourceApi, ITreeLoadResult,
     ITreeParams, useCascadeSelectionService, Tree as UUITree } from '@epam/uui-core';
 import { useQueryClient } from '@tanstack/react-query';
 import { Location } from '@epam/uui-docs';
 import { Tree } from './Tree';
 import { useCallback, useMemo } from 'react';
 
-export interface UseCascadeSelectionProps<TItem, TId> extends ITreeParams<Location, string> {
+export interface UseCascadeSelectionProps<TId> extends ITreeParams<Location, string> {
     api: LazyDataSourceApi<Location, string, unknown>,
     cascadeSelection?: CascadeSelection;
-    getRowOptions?: (item: TItem, index?: number) => DataRowOptions<TItem, TId>;
-    rowOptions?: DataRowOptions<TItem, TId>;
     dataSourceState: DataSourceState<any, string>;
     isFolded: (item: Location) => boolean;
     itemsMap?: IMap<TId, Location>;
@@ -28,12 +26,10 @@ export function useCascadeSelection({
     getParentId,
     complexIds,
     cascadeSelection = false,
-    getRowOptions,
-    rowOptions,
     dataSourceState,
     isFolded,
     itemsMap,
-}: UseCascadeSelectionProps<Location, string>) {
+}: UseCascadeSelectionProps<string>) {
     const queryClient = useQueryClient();
     const blankTree = useMemo(() => Tree.blank({ getId, getParentId, complexIds }, itemsMap), []);
 
@@ -71,9 +67,6 @@ export function useCascadeSelection({
 
     const cascadeSelectionService = useCascadeSelectionService({
         tree: blankTree,
-        cascadeSelection,
-        getRowOptions,
-        rowOptions,
         loadMissingRecordsOnCheck,
     });
 

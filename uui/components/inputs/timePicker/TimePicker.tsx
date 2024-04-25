@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { dayJsHelper } from '../../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../../helpers/dayJsHelper';
 import {
     CX, devLogger, DropdownBodyProps, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable,
     IHasForwardedRef, IHasPlaceholder, IHasRawProps, isFocusReceiverInsideFocusLock,
@@ -64,7 +64,7 @@ export interface TimePickerValue {
 
 const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['format']) => {
     if (value === null) return null;
-    return dayJsHelper.dayjs()
+    return uuiDayjs.dayjs()
         .set(value)
         .format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
@@ -91,11 +91,11 @@ export function TimePicker(props: TimePickerProps) {
 
     const getFormat = () => props.format === 24 ? 'HH:mm' : 'hh:mm A';
 
-    const isTimeValid = (newValue: string) => dayJsHelper.dayjs(newValue, getFormat(), true).isValid();
+    const isTimeValid = (newValue: string) => uuiDayjs.dayjs(newValue, getFormat(), true).isValid();
 
     const formatStringTimeToObject = (stringTime: string | null) => {
         if (stringTime) {
-            const value = dayJsHelper.dayjs(stringTime, getFormat(), true);
+            const value = uuiDayjs.dayjs(stringTime, getFormat(), true);
             return { hours: value.hour(), minutes: value.minute() };
         }
         return { hours: null, minutes: null };

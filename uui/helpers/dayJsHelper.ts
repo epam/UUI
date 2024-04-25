@@ -11,7 +11,7 @@ import isoWeek from 'dayjs/plugin/isoWeek.js';
 
 export type { Dayjs } from 'dayjs';
 
-export const dayJsHelper = TREE_SHAKEABLE_INIT();
+export const uuiDayjs = TREE_SHAKEABLE_INIT();
 
 function TREE_SHAKEABLE_INIT() {
     let extended = false;

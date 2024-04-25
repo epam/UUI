@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type Dayjs, dayJsHelper } from '../../../helpers/dayJsHelper';
+import { type Dayjs, uuiDayjs } from '../../../helpers/dayJsHelper';
 import { cx, Icon, IEditable, IHasCX, IHasForwardedRef, IHasRawProps } from '@epam/uui-core';
 import { IconContainer, NumericInput, TextInput } from '@epam/uui-components';
 import { TimePickerProps, TimePickerValue } from './TimePicker';
@@ -39,27 +39,27 @@ export function TimePickerBody(props: TimePickerBodyProps) {
     };
 
     const onHoursChange = (newHours: number) => {
-        setValue(dayJsHelper.dayjs().set(props.value).hour(newHours));
+        setValue(uuiDayjs.dayjs().set(props.value).hour(newHours));
     };
 
     const onMinutesChange = (newMinutes: number) => {
-        setValue(dayJsHelper.dayjs().set(props.value).minute(newMinutes));
+        setValue(uuiDayjs.dayjs().set(props.value).minute(newMinutes));
     };
 
     const onTimeTypeChange = () => {
-        setValue(dayJsHelper.dayjs().set(props.value).add(12, 'h'));
+        setValue(uuiDayjs.dayjs().set(props.value).add(12, 'h'));
     };
 
     const handleMinutesUpClick = () => {
         const minutesStep: number = props.minutesStep || 5;
-        const value: Dayjs = dayJsHelper.dayjs().set(props.value);
+        const value: Dayjs = uuiDayjs.dayjs().set(props.value);
         const minutesToAdd: number = minutesStep - (value.minute() % minutesStep);
         onMinutesChange(value.add(minutesToAdd, 'm').minute());
     };
 
     const handleMinutesDownClick = () => {
         const minutesStep: number = props.minutesStep || 5;
-        const value: Dayjs = dayJsHelper.dayjs().set(props.value);
+        const value: Dayjs = uuiDayjs.dayjs().set(props.value);
         const minutesToSubtract: number = value.minute() % minutesStep === 0 ? minutesStep : value.minute() % minutesStep;
         onMinutesChange(value.subtract(minutesToSubtract, 'm').minute());
     };
@@ -72,13 +72,13 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                     rawProps={ { 'aria-label': 'Increment hours' } }
                     cx={ uuiTimePicker.iconUp }
                     icon={ ArrowIcon }
-                    onClick={ () => onHoursChange(dayJsHelper.dayjs().set(props.value).add(1, 'h').hour()) }
+                    onClick={ () => onHoursChange(uuiDayjs.dayjs().set(props.value).add(1, 'h').hour()) }
                 />
                 <NumericInput
                     cx={ uuiTimePicker.input }
                     onValueChange={ onHoursChange }
                     value={
-                        +(dayJsHelper.dayjs()
+                        +(uuiDayjs.dayjs()
                             .set(props.value)
                             .format(MAX_HOURS === FORMAT_12H ? 'hh' : 'HH'))
                     }
@@ -90,7 +90,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                     rawProps={ { 'aria-label': 'Decrement hours' } }
                     cx={ uuiTimePicker.iconDown }
                     icon={ ArrowIcon }
-                    onClick={ () => onHoursChange(dayJsHelper.dayjs().set(props.value).subtract(1, 'h').hour()) }
+                    onClick={ () => onHoursChange(uuiDayjs.dayjs().set(props.value).subtract(1, 'h').hour()) }
                 />
             </div>
             <div className={ uuiTimePicker.elementContainer }>
@@ -104,7 +104,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                 <NumericInput
                     cx={ uuiTimePicker.input }
                     onValueChange={ onMinutesChange }
-                    value={ +dayJsHelper.dayjs().set(props.value).format('m') }
+                    value={ +uuiDayjs.dayjs().set(props.value).format('m') }
                     min={ MIN_MINUTES }
                     max={ MAX_MINUTES }
                 />
@@ -124,7 +124,7 @@ export function TimePickerBody(props: TimePickerBodyProps) {
                         onValueChange={ () => {
                         } }
                         isReadonly={ true }
-                        value={ dayJsHelper.dayjs().set(props.value).format('A') }
+                        value={ uuiDayjs.dayjs().set(props.value).format('A') }
                     />
                     <IconContainer size={ 18 } cx={ uuiTimePicker.iconDown } icon={ ArrowIcon } onClick={ onTimeTypeChange } />
                 </div>

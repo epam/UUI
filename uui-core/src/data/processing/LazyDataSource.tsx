@@ -95,10 +95,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const cascadeSelectionService = useCascadeSelectionService({
             tree: selectionTree,
-            cascadeSelection: restProps.cascadeSelection,
-            getRowOptions: restProps.getRowOptions,
-            rowOptions: restProps.rowOptions,
-            getItemStatus: restProps.getItemStatus,
             loadMissingRecordsOnCheck,
         });
 
