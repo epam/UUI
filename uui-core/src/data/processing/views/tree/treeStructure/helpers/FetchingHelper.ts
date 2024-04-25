@@ -79,7 +79,7 @@ export class FetchingHelper {
 
         const newItemsMap = newMap<TId, TItem>(tree.getParams());
         const flatten = dataSourceState.search && options.flattenSearchResults;
-        const loadAllChildren: (id: TId, parentId?: TId) => LoadAllConfig = options.loadAllChildren ?? (() => ({ nestedChildren: true, children: false }));
+        const loadAllChildren: (id: TId) => LoadAllConfig = options.loadAllChildren ?? (() => ({ nestedChildren: true, children: false }));
 
         let newItems: TItem[] = [];
         const loadRecursive = async (
