@@ -24,10 +24,10 @@ import {
     italicPlugin,
     PARAGRAPH_TYPE,
 } from './plugins';
-import { remarkNodeTypesMap, serialize } from './md-serializer';
-import { createTempEditor, isEditorValueEmpty } from './helpers';
+import { createTempEditor } from './helpers';
 import { BaseEditor, Editor } from 'slate';
 import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin/deserializeMdPlugin';
+import { serializeMd } from '@udecode/plate-serializer-md';
 
 type SerializerType = 'html' | 'md';
 
@@ -80,7 +80,7 @@ export const createDeserializer = (type: SerializerType = 'html') => {
 
             // escape from invalid empty state
             return !!editor.children.length
-                ? editor.children as EditorValue
+                ? (editor.children as EditorValue)
                 : [createNode(PARAGRAPH_TYPE)];
         };
     }
@@ -95,14 +95,9 @@ export const createSerializer = (type: SerializerType = 'html') => {
             });
         };
     } else {
+        const editor = createTempEditor(mdSerializationsWorkingPlugins);
         return (value: EditorValue) => {
-            if (isEditorValueEmpty(value)) {
-                return '';
-            }
-
-            return value
-                ?.map((v) => serialize(v, { nodeTypes: remarkNodeTypesMap }))
-                .join('');
+            return serializeMd(editor, { nodes: value });
         };
     }
 };
