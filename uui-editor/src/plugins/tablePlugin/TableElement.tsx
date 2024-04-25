@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     PlateElement,
-    PlateElementProps,
     withHOC,
     withRef,
 } from '@udecode/plate-common';
