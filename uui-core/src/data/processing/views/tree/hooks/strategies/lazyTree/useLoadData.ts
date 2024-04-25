@@ -30,7 +30,7 @@ interface LoadMissingOptions<TItem, TId, TFilter> {
     using?: TreeStructureId;
     tree: TreeState<TItem, TId>;
     abortInProgress?: boolean;
-    loadAllChildren?(id: TId, parentId?: TId): LoadAllConfig;
+    loadAllChildren?(id: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     dataSourceState?: DataSourceState<TFilter, TId>;
 }

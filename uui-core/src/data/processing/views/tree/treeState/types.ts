@@ -10,7 +10,7 @@ export interface LoadAllConfig {
 
 export interface LoadTreeOptions<TItem, TId, TFilter>
     extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
-    loadAllChildren?(id: TId, parentId?: TId): LoadAllConfig;
+    loadAllChildren?(id: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     isFolded?: (item: TItem) => boolean;
 }
