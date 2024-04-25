@@ -31,7 +31,12 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         params: { getId, complexIds },
     });
 
-    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, []);
+    const itemsStatusCollector = useItemsStatusCollector({
+        itemsStatusCollector: props.itemsStatusCollector,
+        itemsStatusMap,
+        complexIds,
+        getId,
+    }, [itemsStatusMap, props.itemsStatusCollector]);
 
     const api = useMemo(
         () => itemsStatusCollector.watch(props.api),

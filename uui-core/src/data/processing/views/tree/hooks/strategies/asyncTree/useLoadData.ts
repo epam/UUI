@@ -3,11 +3,11 @@ import { DataSourceState, IImmutableMap, IMap, LazyDataSourceApi } from '../../.
 import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
-import { RecordStatus } from '../../../types';
 import { useItemsStatusCollector } from '../../common';
 import { useDepsChanged } from '../../common/useDepsChanged';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
+import { ItemsStatuses } from '../types';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -16,13 +16,12 @@ export interface LoadResult<TItem, TId> {
     error?: Error;
 }
 
-export interface UseLoadDataProps<TItem, TId, TFilter = any> {
+export interface UseLoadDataProps<TItem, TId, TFilter = any> extends ItemsStatuses<TItem, TId, TFilter> {
     tree: TreeState<TItem, TId>;
     api: LazyDataSourceApi<TItem, TId, TFilter>;
     dataSourceState?: DataSourceState<TFilter, TId>;
     forceReload?: boolean;
     showSelectedOnly?: boolean;
-    itemsStatusMap?: IMap<TId, RecordStatus>;
     complexIds?: boolean;
     getId: (item: TItem) => TId;
     isLoaded?: boolean;
@@ -32,8 +31,9 @@ export interface UseLoadDataProps<TItem, TId, TFilter = any> {
 
 export function useLoadData<TItem, TId, TFilter = any>(
     {
-        tree, api, dataSourceState, showSelectedOnly, itemsStatusMap, isLoaded: isPrevouslyLoaded,
+        tree, api, dataSourceState, showSelectedOnly, isLoaded: isPrevouslyLoaded,
         complexIds, getId, onForceReloadComplete, forceReload, patch,
+        itemsStatusCollector: externalItemsStatusCollector, itemsStatusMap,
     }: UseLoadDataProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
@@ -46,8 +46,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const [isFetching, setIsFetching] = useState(false);
 
     const itemsStatusCollector = useItemsStatusCollector(
-        { itemsStatusMap, complexIds, getId },
-        [itemsStatusMap],
+        { itemsStatusMap, complexIds, getId, itemsStatusCollector: externalItemsStatusCollector },
+        [itemsStatusMap, externalItemsStatusCollector],
     );
 
     const watchedApi = useMemo(
@@ -95,10 +95,12 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const selectedAndChecked = getSelectedAndChecked(dataSourceState, patch);
     const shouldLoad = (!isFetching && !isLoaded && ((showSelectedOnly && selectedAndChecked.length) || !showSelectedOnly)) || forceReload;
 
-    if (!isLoaded) {
-        const checked = getSelectedAndChecked(dataSourceState, patch);
-        itemsStatusCollector.setPending(checked);
-    }
+    useEffect(() => {
+        if (!isLoaded) {
+            const checked = getSelectedAndChecked(dataSourceState, patch);
+            itemsStatusCollector.setPending(checked);
+        }
+    }, [isLoaded]);
 
     useEffect(() => {
         if (shouldForceReload) {
