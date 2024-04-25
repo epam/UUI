@@ -1,20 +1,26 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
+import { useForceUpdate } from '../../hooks';
 import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
 import { useCascadeSelectionService, useDataRows, useTree, newMap } from './views';
 import { ItemsStorage } from './views/tree/ItemsStorage';
 import { AsyncListViewProps } from './views/types';
+import { ItemsStatusCollector } from './views/tree/ItemsStatusCollector';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
     api: () => Promise<TItem[]> = null;
+    itemsStatusCollector: ItemsStatusCollector<TItem, TId, TFilter>;
+
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
         super({
             ...props,
             items: [],
         });
+        const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.api = props.api;
+        this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
     }
 
     public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
@@ -33,7 +39,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.setProps({ ...this.props, items: [] });
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.itemsStorage = new ItemsStorage({ items: [], params });
-        this.itemsStatusMap = newMap(params);
+        this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
         super.reload();
     }
 
@@ -43,6 +49,8 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const forceUpdate = useForceUpdate();
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
         
@@ -55,7 +63,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             ...props,
             itemsMap,
             setItems: this.itemsStorage.setItems,
-            itemsStatusMap: this.itemsStatusMap,
+            itemsStatusCollector: this.itemsStatusCollector,
             isLoaded: this.props.items.length > 0,
             getId: this.getId,
             getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
@@ -75,6 +83,17 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
                 unsubscribe();
             };
         }, [this.itemsStorage]);
+                
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.itemsStatusCollector.subscribe(() => {
+                forceUpdate();
+            });
+            
+            return () => {
+                unsubscribe();
+            };
+        }, [this.itemsStatusCollector]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
