@@ -145,8 +145,9 @@ export class FetchingHelper {
                         }
                     }
 
-                    const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id);
+                    const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id, parentId);
                     const loadAll = withNestedChildren ? parentLoadAll || loadAllChildren : loadAllChildren;
+
                     remainingRowsCount--;
 
                     if (hasChildren && ((!isFolded && remainingRowsCount > 0) || loadAll)) {

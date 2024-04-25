@@ -10,7 +10,7 @@ const groupByParentId = <TItem, TId>(
     getParentId?: (item: TItem) => TId,
     complexIds?: boolean,
 ): IMap<TId, TItem[]> => {
-    const patchByParentId = newMap<TId, TItem[]>({ getParentId, complexIds });
+    const patchByParentId = newMap<TId, TItem[]>({ complexIds });
     if (!patch) {
         return patchByParentId;
     }
