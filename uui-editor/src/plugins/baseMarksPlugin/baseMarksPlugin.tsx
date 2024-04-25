@@ -1,5 +1,5 @@
 import {
-    PlateEditor, PlatePluginComponent, isMarkActive,
+    PlateEditor, PlatePluginComponent, isMarkActive, PlatePlugin,
 } from '@udecode/plate-common';
 import React from 'react';
 
@@ -105,7 +105,7 @@ export function UnderlineButton({ editor }: IToolbarButton) {
     );
 }
 
-export const baseMarksPlugin = () => ([
+export const baseMarksPlugin = (): PlatePlugin[] => ([
     boldPlugin(),
     underlinePlugin(),
     italicPlugin(),
