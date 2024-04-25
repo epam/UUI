@@ -143,7 +143,12 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     || isEqual(itemId, id)
                     || shouldLoadChildrenAfterSearch;
 
-                return { children: shouldLoadAllChildren, nestedChildren: !shouldLoadChildrenAfterSearch };
+                return {
+                    children: shouldLoadAllChildren,
+                    // If checking is run after the search, it is required to load only
+                    // children of the checked item parents, without nestings.
+                    nestedChildren: !shouldLoadChildrenAfterSearch,
+                };
             },
             isLoadStrict: true,
             dataSourceState: { search: null },
