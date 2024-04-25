@@ -89,7 +89,6 @@ export interface LoadOptionsMissing<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
-    withNestedChildren: boolean;
 }
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
@@ -97,7 +96,6 @@ export interface LoadOptions<TItem, TId, TFilter = any> {
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
     patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
-    withNestedChildren: boolean;
 }
 
 export interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, TFilter> {

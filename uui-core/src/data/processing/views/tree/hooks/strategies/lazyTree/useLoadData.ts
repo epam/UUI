@@ -6,7 +6,7 @@ import { Tree } from '../../../Tree';
 import { LazyTreeProps } from './types';
 import { CommonTreeConfig } from '../types';
 import { ROOT_ID } from '../../../constants';
-import { TreeStructureId } from '../../../treeState/types';
+import { LoadAllConfig, TreeStructureId } from '../../../treeState/types';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<LazyTreeProps<TItem, TId, TFilter>, 'getChildCount'>,
@@ -30,10 +30,9 @@ interface LoadMissingOptions<TItem, TId, TFilter> {
     using?: TreeStructureId;
     tree: TreeState<TItem, TId>;
     abortInProgress?: boolean;
-    loadAllChildren?(id: TId, parentId?: TId): boolean;
+    loadAllChildren?(id: TId, parentId?: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     dataSourceState?: DataSourceState<TFilter, TId>;
-    withNestedChildren?: boolean;
 }
 
 export function useLoadData<TItem, TId, TFilter = any>(
@@ -46,10 +45,9 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const loadMissingImpl = useCallback(async ({
         using,
         tree,
-        loadAllChildren,
+        loadAllChildren = () => ({ nestedChildren: true, children: false }),
         isLoadStrict,
         dataSourceState,
-        withNestedChildren,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         const loadingTree = tree;
         const completeDsState = { ...props.dataSourceState, ...dataSourceState };
@@ -69,7 +67,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     },
                 },
                 dataSourceState: completeDsState,
-                withNestedChildren,
             });
 
             const newTree = await newTreePromise;
@@ -94,7 +91,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
         loadAllChildren,
         isLoadStrict,
         dataSourceState,
-        withNestedChildren,
     }: LoadMissingOptions<TItem, TId, TFilter>): Promise<LoadResult<TItem, TId>> => {
         // Make tree updates sequential, by executing all consequent calls after previous promise completed
         if (!promiseInProgressRef.current || abortInProgress) {
@@ -102,7 +98,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
 
         promiseInProgressRef.current = promiseInProgressRef.current.then(() =>
-            loadMissingImpl({ tree, using, loadAllChildren, isLoadStrict, dataSourceState, withNestedChildren }));
+            loadMissingImpl({ tree, using, loadAllChildren, isLoadStrict, dataSourceState }));
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);
@@ -121,33 +117,36 @@ export function useLoadData<TItem, TId, TFilter = any>(
             // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
             // Otherwise, should be loaded only checked element and all its nested children.
             loadAllChildren: (itemId) => {
+                const loadAllConfig = { nestedChildren: !isImplicitMode, children: false };
                 if (!cascadeSelection) {
-                    return isChecked && isRoot;
+                    return { ...loadAllConfig, children: isChecked && isRoot };
                 }
 
                 if (!isChecked && isRoot) {
-                    return false;
+                    return { ...loadAllConfig, children: false };
                 }
 
                 if (isImplicitMode) {
-                    return itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId));
+                    return { ...loadAllConfig, children: itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId)) };
                 }
+
                 const { ids } = currentTree.full.getItems(undefined);
                 const rootIsNotLoaded = ids.length === 0;
+
+                const shouldLoadChildrenAfterSearch = (!!props.dataSourceState.search?.length
+                    && (parents.some((parent) => isEqual(parent, itemId))
+                    || (itemId === ROOT_ID && rootIsNotLoaded)));
 
                 // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                 // So, they should be compared not by reference, but by value.
                 const shouldLoadAllChildren = isRoot
                     || isEqual(itemId, id)
-                    || (!!props.dataSourceState.search?.length
-                        && (parents.some((parent) => isEqual(parent, itemId))
-                        || (itemId === ROOT_ID && rootIsNotLoaded)));
+                    || shouldLoadChildrenAfterSearch;
 
-                return shouldLoadAllChildren;
+                return { children: shouldLoadAllChildren, nestedChildren: !shouldLoadChildrenAfterSearch };
             },
             isLoadStrict: true,
             dataSourceState: { search: null },
-            withNestedChildren: !isImplicitMode,
             using: 'full',
         });
 
