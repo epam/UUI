@@ -1,7 +1,10 @@
 import { IThemeVar } from '../types/sharedTypes';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function sortSupportedTokens(tokens: IThemeVar[]) {}
+export function sortSupportedTokens(tokens: IThemeVar[]) {
+    tokens.sort((t1, t2) => {
+        return figmaVarComparator(t1.id, t2.id);
+    });
+}
 
 export function figmaVarComparator(path1: string, path2: string) {
     const s1 = splitByTrailingNumber(path1);
