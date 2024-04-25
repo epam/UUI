@@ -6,7 +6,7 @@ import { Location } from '@epam/uui-docs';
 export default function LazyTreeSearch() {
     const svc = useUuiContext();
     const [value1, onValueChange1] = useState<string[]>();
-    const [value2, onValueChange2] = useState<string[]>(['UA', 'GB']);
+    const [value2, onValueChange2] = useState<string[]>();
 
     const dataSource1 = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
