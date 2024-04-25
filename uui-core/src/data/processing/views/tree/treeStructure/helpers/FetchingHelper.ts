@@ -208,7 +208,7 @@ export class FetchingHelper {
             if (tree.getParams().getParentId) {
                 for (const [, item] of updatedItemsMap) {
                     const parentId = tree.getParams().getParentId(item);
-                    if (parentId != null && !updatedItemsMap.has(parentId)) {
+                    if (parentId != null && tree.getById(parentId) === NOT_FOUND_RECORD && !updatedItemsMap.has(parentId)) {
                         missingIds.add(parentId);
                     }
                 }
