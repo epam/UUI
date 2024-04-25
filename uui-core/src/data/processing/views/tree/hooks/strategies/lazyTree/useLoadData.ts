@@ -7,6 +7,7 @@ import { LazyTreeProps } from './types';
 import { CommonTreeConfig } from '../types';
 import { ROOT_ID } from '../../../constants';
 import { TreeStructureId } from '../../../treeState/types';
+import { newMap } from '../../../helpers';
 
 export interface UseLoadDataProps<TItem, TId, TFilter = any> extends
     Pick<LazyTreeProps<TItem, TId, TFilter>, 'getChildCount'>,
@@ -30,7 +31,7 @@ interface LoadMissingOptions<TItem, TId, TFilter> {
     using?: TreeStructureId;
     tree: TreeState<TItem, TId>;
     abortInProgress?: boolean;
-    loadAllChildren?(id: TId): boolean;
+    loadAllChildren?(id: TId, parentId?: TId): boolean;
     isLoadStrict?: boolean;
     dataSourceState?: DataSourceState<TFilter, TId>;
     withNestedChildren?: boolean;
@@ -114,14 +115,14 @@ export function useLoadData<TItem, TId, TFilter = any>(
             return currentTree;
         }
 
-        const loadNestedLayersChildren = !isImplicitMode;
+        const parentShouldLoadAll = newMap<TId, boolean>({ complexIds: currentTree.full.getParams().complexIds });
         const parents = Tree.getParents(id, currentTree.full);
         const { tree: treeWithMissingRecords } = await loadMissing({
             tree: currentTree,
             // If cascadeSelection is implicit and the element is unchecked, it is necessary to load all children
             // of all parents of the unchecked element to be checked explicitly. Only one layer of each parent should be loaded.
             // Otherwise, should be loaded only checked element and all its nested children.
-            loadAllChildren: (itemId) => {
+            loadAllChildren: (itemId, parentId) => {
                 if (!cascadeSelection) {
                     return isChecked && isRoot;
                 }
@@ -138,15 +139,23 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
                 // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                 // So, they should be compared not by reference, but by value.
-                return isRoot
+                // If parent is checked, all children should be loaded and checked in explicit mode.
+                if (isEqual(itemId, id) || isEqual(parentId, id) || parentShouldLoadAll.get(parentId)) {
+                    parentShouldLoadAll.set(itemId, true);
+                }
+
+                const shouldLoadAllChildren = isRoot
                     || isEqual(itemId, id)
-                    || (props.dataSourceState.search
+                    || parentShouldLoadAll.get(parentId)
+                    || (!!props.dataSourceState.search?.length
                         && (parents.some((parent) => isEqual(parent, itemId))
-                            || (itemId === ROOT_ID && rootIsNotLoaded)));
+                        || (itemId === ROOT_ID && rootIsNotLoaded)));
+
+                return shouldLoadAllChildren;
             },
             isLoadStrict: true,
             dataSourceState: { search: null },
-            withNestedChildren: loadNestedLayersChildren,
+            withNestedChildren: false,
             using: 'full',
         });
 

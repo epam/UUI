@@ -5,7 +5,7 @@ import { TreeStructure } from '../treeStructure/TreeStructure';
 
 export interface LoadTreeOptions<TItem, TId, TFilter>
     extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
-    loadAllChildren?(id: TId): boolean;
+    loadAllChildren?(id: TId, parentId?: TId): boolean;
     isLoadStrict?: boolean;
     isFolded?: (item: TItem) => boolean;
 }
