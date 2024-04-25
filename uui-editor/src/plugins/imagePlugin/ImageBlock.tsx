@@ -4,6 +4,7 @@ import React, {
 import cx from 'classnames';
 import {
     PlateEditor, PlateRenderElementProps, Value, findNodePath, getBlockAbove, setElements,
+    withHOC,
 } from '@udecode/plate-common';
 import { useFocused, useSelected } from 'slate-react';
 import {
@@ -19,6 +20,7 @@ import { ImgToolbar } from './Toolbar';
 import {
     IImageElement, PlateImgAlign, SlateImgAlign,
 } from './types';
+import { ResizableProvider } from '@udecode/plate-resizable';
 
 interface UpdatingProps { width?: number | string, align?: SlateImgAlign }
 
@@ -86,7 +88,7 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
         }), [element.width]);
 };
 
-export function Image(props: PlateRenderElementProps<Value, IImageElement>): JSX.Element {
+export const Image = withHOC(ResizableProvider, (props : PlateRenderElementProps<Value, IImageElement>): JSX.Element => {
     const {
         editor, element, children,
     } = props;
@@ -176,4 +178,4 @@ export function Image(props: PlateRenderElementProps<Value, IImageElement>): JSX
             placement="top"
         />
     );
-}
+});
