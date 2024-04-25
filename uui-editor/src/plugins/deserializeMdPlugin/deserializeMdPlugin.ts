@@ -17,9 +17,7 @@ import {
     createDeserializeMdPlugin as createDeserializeMdRootPlugin,
     remarkDefaultElementRules,
 } from '@udecode/plate-serializer-md';
-import {
-    TDescendant, TElement, Value,
-} from '@udecode/slate';
+import { TDescendant, TElement, Value } from '@udecode/slate';
 import unified from 'unified';
 import markdown from 'remark-parse';
 import { isUrl } from '@udecode/plate-common';

@@ -411,7 +411,7 @@ exports[`serialization should serialize markdown 1`] = `
 
 Unlikely to most Rich-Text editors, Slate uses JSON data model instead of HTML, which allows it to embed any entities, like arbitrary React components. For example, this checkbox, is a custom react component (check [source here](https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx)):
  An item
-\`We include HTML to Slate JSON converter, which is also used to convert pasted HTML.\`
+We include HTML to Slate JSON converter, which is also used to convert pasted HTML.
 ## Out of the box components
 ### Basic layout
 
