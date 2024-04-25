@@ -230,7 +230,7 @@
         --uui-color-50: var(--uui-neutral-0);
         --uui-color-60: var(--uui-neutral-10);
         --uui-color-70: var(--uui-neutral-20);
-        --uui-color-contrast: var(--uui-neutral-80);
+        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     /* override variables */
@@ -368,15 +368,6 @@
     }
 
     .uui-badge.uui-color-white {
-        &.uui-fill-solid {
-            --uui-badge-bg: var(--uui-neutral-0);
-            --uui-badge-border: var(--uui-neutral-0);
-            --uui-badge-bg-hover: var(--uui-neutral-10);
-            --uui-badge-border-hover: var(--uui-neutral-10);
-            --uui-badge-caption: var(--uui-neutral-80);
-            --uui-badge-caption-hover: var(--uui-neutral-80);
-        }
-
         &.uui-fill-outline {
             --uui-badge-bg: var(--uui-neutral-0);
             --uui-badge-border: var(--uui-neutral-30);
@@ -448,7 +439,6 @@
     }
 
     .uui-icon_button.uui-color-white {
-        --uui-icon_btn: var(--uui-neutral-0);
         --uui-icon_btn-hover: var(--uui-neutral-20);
         --uui-icon_btn-active: var(--uui-neutral-30);
     }
@@ -540,8 +530,6 @@
 
     .uui-tooltip-container.uui-color-white {
         --uui-tooltip-bg: var(--uui-neutral-10);
-        --uui-tooltip-text: var(--uui-neutral-70);
-        --uui-tooltip-border: var(--uui-neutral-10);
     }
 
     .uui-tooltip-container.uui-color-critical {
@@ -562,11 +550,6 @@
         &.uui-color-neutral, &.uui-color-gray {
             --uui-count_indicator-caption: var(--uui-neutral-10);
         }
-    }
-
-    .uui-count_indicator.uui-color-white {
-        --uui-count_indicator-bg: var(--uui-neutral-0);
-        --uui-count_indicator-caption: var(--uui-neutral-80);
     }
 
     /* Status Indicator */
@@ -667,11 +650,8 @@
 
         &.uui-color-white {
             &.uui-fill-solid {
-                --uui-tag-bg: var(--uui-neutral-0);
-                --uui-tag-border: var(--uui-neutral-0);
                 --uui-tag-bg-hover: var(--uui-neutral-5);
                 --uui-tag-border-hover: var(--uui-neutral-5);
-                --uui-tag-caption: var(--uui-neutral-80);
 
                 .uui-count_indicator {
                     --uui-count_indicator-bg: var(--uui-neutral-40);
