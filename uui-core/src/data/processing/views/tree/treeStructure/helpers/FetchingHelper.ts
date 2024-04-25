@@ -7,6 +7,7 @@ import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParen
 import { ITreeNodeInfo } from '../types';
 import { NOT_FOUND_RECORD } from '../../constants';
 import { getSelectedAndChecked } from './checked';
+import { LoadAllConfig } from '../../treeState/types';
 
 export class FetchingHelper {
     public static async loadAll<TItem, TId, TFilter>({
@@ -43,13 +44,11 @@ export class FetchingHelper {
         options,
         dataSourceState,
         patch,
-        withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>) {
         const { loadedItems: loadedMissingItems, loadedItemsMap, byParentId, nodeInfoById } = await this.loadMissing<TItem, TId, TFilter>({
             tree,
             options,
             dataSourceState,
-            withNestedChildren,
         });
 
         const missing = getSelectedAndChecked(dataSourceState, patch);
@@ -72,7 +71,6 @@ export class FetchingHelper {
         tree,
         options,
         dataSourceState,
-        withNestedChildren = true,
     }: LoadOptionsMissing<TItem, TId, TFilter>) {
         const requiredRowsCount = dataSourceState.topIndex + dataSourceState.visibleCount;
 
@@ -81,9 +79,15 @@ export class FetchingHelper {
 
         const newItemsMap = newMap<TId, TItem>(tree.getParams());
         const flatten = dataSourceState.search && options.flattenSearchResults;
+        const loadAllChildren: (id: TId, parentId?: TId) => LoadAllConfig = options.loadAllChildren ?? (() => ({ nestedChildren: true, children: false }));
 
         let newItems: TItem[] = [];
-        const loadRecursive = async (parentId: TId, parent: TItem, parentLoadAll: boolean, remainingRowsCount: number) => {
+        const loadRecursive = async (
+            parentId: TId,
+            parent: TItem,
+            { children: parentLoadAllChildren, nestedChildren: parentLoadAllNestedChildren }: LoadAllConfig,
+            remainingRowsCount: number,
+        ) => {
             let recursiveLoadedCount = 0;
 
             const { ids, nodeInfo, loadedItems } = await this.loadItems<TItem, TId, TFilter>({
@@ -94,7 +98,7 @@ export class FetchingHelper {
                 parent,
                 dataSourceState,
                 remainingRowsCount,
-                loadAll: parentLoadAll,
+                loadAll: parentLoadAllChildren,
             });
 
             const { ids: originalIds, ...originalNodeInfo } = tree.getItems(parentId);
@@ -145,13 +149,15 @@ export class FetchingHelper {
                         }
                     }
 
-                    const loadAllChildren = hasChildren && options.loadAllChildren && options.loadAllChildren(id, parentId);
-                    const loadAll = withNestedChildren ? parentLoadAll || loadAllChildren : loadAllChildren;
+                    const { nestedChildren, children } = loadAllChildren(id);
+
+                    const shouldLoadAllChildren = hasChildren && children;
+                    const loadAll = parentLoadAllNestedChildren ? parentLoadAllChildren || shouldLoadAllChildren : shouldLoadAllChildren;
 
                     remainingRowsCount--;
 
                     if (hasChildren && ((!isFolded && remainingRowsCount > 0) || loadAll)) {
-                        const childPromise = loadRecursive(id, item, loadAll, remainingRowsCount);
+                        const childPromise = loadRecursive(id, item, { children: loadAll, nestedChildren }, remainingRowsCount);
 
                         childrenPromises.push(childPromise);
 
@@ -174,14 +180,14 @@ export class FetchingHelper {
             return recursiveLoadedCount;
         };
 
-        await loadRecursive(undefined, undefined, options?.loadAllChildren?.(undefined), requiredRowsCount);
+        await loadRecursive(undefined, undefined, loadAllChildren(undefined), requiredRowsCount);
 
         return {
             tree,
             loadedItemsMap: newItemsMap,
             loadedItems: newItems,
-            byParentId, // ?
-            nodeInfoById, // ?
+            byParentId,
+            nodeInfoById,
         };
     }
 
@@ -195,12 +201,13 @@ export class FetchingHelper {
         let iteration = 0;
         let prevMissingIds = new Set<TId>();
         let loadedItems: TItem[] = [];
+        const isItemNotLoaded = (id: TId) => tree.getById(id) === NOT_FOUND_RECORD && !updatedItemsMap.has(id);
 
         while (true) {
             const missingIds = new Set<TId>();
             if (itemsToLoad && itemsToLoad.length > 0) {
                 itemsToLoad.forEach((id) => {
-                    if (tree.getById(id) === NOT_FOUND_RECORD && !updatedItemsMap.has(id)) {
+                    if (isItemNotLoaded(id)) {
                         missingIds.add(id);
                     }
                 });
@@ -208,7 +215,7 @@ export class FetchingHelper {
             if (tree.getParams().getParentId) {
                 for (const [, item] of updatedItemsMap) {
                     const parentId = tree.getParams().getParentId(item);
-                    if (parentId != null && tree.getById(parentId) === NOT_FOUND_RECORD && !updatedItemsMap.has(parentId)) {
+                    if (parentId != null && isItemNotLoaded(parentId)) {
                         missingIds.add(parentId);
                     }
                 }
