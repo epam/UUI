@@ -58,6 +58,10 @@
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
   * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
+* [useForm]: 
+  * fixed `beforeLeave` callback invocation in case of redirect at onSuccess callback
+  * fixed `isInvalid`, `validationMessage` and `validationProps` value returned from hook in case of server validation. Before was returned only client validation value, now it's merged with server validation.
+  * added `setServerValidationState` callback to externally change server validation state.
 * [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile.
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 * [DatePicker] renderDay prop callback signature updated
