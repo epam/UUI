@@ -14,6 +14,7 @@ const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['
     36: '18',
     42: '24',
     48: '24',
+    inherit: 'inherit',
 };
 
 interface TagMods {
@@ -30,7 +31,7 @@ export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon
      * Defines component size.
      * @default '36'
      */
-    size?: '18' | '24' | '30' | '36' | '42' | '48';
+    size?: '18' | '24' | '30' | '36' | '42' | '48' | 'inherit';
     /**
      * Defines component fill style.
      * @default 'solid'
@@ -56,8 +57,8 @@ export type TagProps = TagCoreProps & TagMods;
 
 function applyTagMods(props: TagProps) {
     return [
-        css['size-' + (props.size || DEFAULT_SIZE)],
         css.root,
+        `uui-size-${props.size || DEFAULT_SIZE}`,
         `uui-color-${props.color || 'neutral'}`,
         `uui-fill-${props.fill || 'solid'}`,
         'uui-tag',

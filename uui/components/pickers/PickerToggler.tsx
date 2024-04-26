@@ -13,13 +13,14 @@ export interface PickerTogglerMods extends types.IHasEditMode {
      * Defines component size
      * @default 36
      */
-    size?: '24' | '30' | '36' | '42' | '48';
+    size?: '24' | '30' | '36' | '42' | '48' | 'inherit';
 }
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
+        'uui-picker-toggler',
         css.root,
-        css['size-' + (mods.size || defaultSize)],
+        `uui-size-${mods.size || defaultSize}`,
         css['mode-' + (mods.mode || defaultMode)],
     ];
 }
@@ -30,7 +31,7 @@ function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerP
         if (!!props.renderItem) {
             return props.renderItem(itemPropsWithSize);
         }
-        return <PickerTogglerTag { ...itemPropsWithSize } />;
+        return <PickerTogglerTag { ...itemProps } />;
     };
 
     return (

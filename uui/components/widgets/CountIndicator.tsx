@@ -15,7 +15,7 @@ export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
      * Defines component size.
      * @default '24'
      */
-    size?: '24' | '18' | '12';
+    size?: '24' | '18' | '12' | 'inherit';
 };
 
 export type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;
@@ -27,7 +27,7 @@ export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((p
             className={ cx([
                 css.root,
                 'uui-count_indicator',
-                css[`size-${props.size || 24}`],
+                `uui-size-${props.size || 24}`,
                 props.color && `uui-color-${props.color}`,
                 props.cx,
             ]) }

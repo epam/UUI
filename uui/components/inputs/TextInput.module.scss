@@ -71,9 +71,11 @@
         }
     }
 
-    svg {
-        height: var(--uui-text_input-icon-height);
-        width: inherit;
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-text_input-icon-height);
+            width: inherit;
+        }
     }
 
     &.mode-form {
