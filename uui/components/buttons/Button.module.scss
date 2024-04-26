@@ -100,9 +100,6 @@
         --uui-btn-caption-disabled: var(--uui-text-disabled);
 
         &:global(.uui-color-white) {
-            --uui-btn-caption: var(--uui-neutral-70);
-            --uui-btn-bg-active: var(--uui-neutral-30);
-
             &:global(.uui-disabled) {
                 @include button-white-disables-styles(10%, transparent);
             }
