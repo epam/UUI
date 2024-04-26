@@ -173,7 +173,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               Displayed in table
             </div>
             <div
-              className="root uui-count_indicator size-18 uui-color-neutral"
+              className="root uui-count_indicator uui-size-18 uui-color-neutral"
             >
               2
             </div>
