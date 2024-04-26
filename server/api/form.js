@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.post('/success/validate-form', (req, res) => {
+router.post('/form/validate-form', (req, res) => {
     const existingName = 'Ivan_Ivanov@epam.com';
 
     if (req.body.email === existingName) {
