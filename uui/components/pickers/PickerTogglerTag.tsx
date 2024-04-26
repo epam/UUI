@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { PickerTogglerRenderItemParams } from '@epam/uui-components';
 import { Tag, TagProps } from '../widgets';
 import { Tooltip } from '../overlays';
-import { PickerTogglerRenderItemParams } from '@epam/uui-components';
+import { TextPlaceholder } from '../typography';
 import css from './PickerTogglerTag.module.scss';
 
 export interface PickerTogglerTagProps<TItem, TId> extends PickerTogglerRenderItemParams<TItem, TId>, TagProps {}
@@ -10,6 +11,7 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
     const tagProps = {
         ...props,
         tabIndex: -1,
+        caption: props.rowProps?.isLoading ? <TextPlaceholder /> : props.caption,
     };
 
     if (props.isCollapsed) {

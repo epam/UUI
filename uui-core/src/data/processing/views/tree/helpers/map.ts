@@ -8,7 +8,7 @@ export function cloneMap<T extends IMap<any, any> | IImmutableMap<any, any>>(map
     return new (map.constructor as any)(map);
 }
 
-export function newMap<TKey, TValue>(params: Partial<ITreeParams<any, any>>) {
+export function newMap<TKey, TValue>(params: Pick<ITreeParams<any, any>, 'complexIds'>) {
     if (params.complexIds) {
         return new CompositeKeysMap<TKey, TValue>();
     } else {

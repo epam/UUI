@@ -50,7 +50,6 @@ export class TreeState<TItem, TId> {
         using,
         options,
         dataSourceState,
-        withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
@@ -58,7 +57,6 @@ export class TreeState<TItem, TId> {
             tree: treeStructure,
             options,
             dataSourceState,
-            withNestedChildren,
         });
 
         if (!loadedItems.length && !byParentId.size && !nodeInfoById.size) {

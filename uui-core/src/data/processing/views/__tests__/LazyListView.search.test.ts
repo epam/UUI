@@ -28,14 +28,14 @@ describe('LazyListView - search', () => {
             i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
         });
 
-        const testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)));
+        let testApi;
         const api = (rq, ctx) => {
             const search = ctx?.parentId ? undefined : rq.search;
             const filter = search ? { ...rq.filter } : { ...rq.filter, parentId: ctx?.parentId };
             return testApi({ ...rq, filter, search });
         };
 
-        const ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount ?? 0 });
+        let ds: LazyDataSource<TestItem, number, DataQueryFilter<TestItem>>;
         const viewProps = {
             flattenSearchResults: true,
             getRowOptions: () => ({ checkbox: { isVisible: true } }),
@@ -55,60 +55,9 @@ describe('LazyListView - search', () => {
         };
 
         beforeEach(() => {
+            ds = new LazyDataSource({ api, getChildCount: (i) => i.childrenCount ?? 0 });
             currentValue = { visibleCount: 5 };
-        });
-
-        it('should search for nested children and build correct path, indent, depth, isLastChild', async () => {
-            const hookResult = renderHook(
-                ({ value, onValueChange, props }) => ds.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
-            );
-
-            hookResult.rerender({ value: { search: 'ABC5', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged, props: viewProps });
-
-            await waitFor(() => {
-                const view = hookResult.result.current;
-                const rows = view.getVisibleRows();
-                expect(rows).toEqual([
-                    expect.objectContaining({
-                        id: 125,
-                        depth: 2,
-                        indent: 0,
-                        index: 0,
-                        parentId: 120,
-                        path: [
-                            { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
-                                id: 120,
-                                isLastChild: false,
-                                value: {
-                                    childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
-                                },
-                            },
-                        ],
-                        isLastChild: true,
-                        value: {
-                            childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
-                        },
-                    }),
-                ]);
-            });
-            const view = hookResult.result.current;
-            const rows = view.getVisibleRows();
-            expect(rows).toHaveLength(1);
-
-            expect(view.getConfig()).toEqual(expect.objectContaining({
-                cascadeSelection: undefined,
-                dataSourceState: {
-                    search: 'ABC5',
-                    topIndex: 0,
-                    visibleCount: 20,
-                },
-                flattenSearchResults: true,
-                isFetching: false,
-                isLoading: false,
-                selectAll: undefined,
-                showSelectedOnly: undefined,
-            }));
+            testApi = jest.fn((rq: LazyDataSourceApiRequest<TestItem, number, DataQueryFilter<TestItem>>) => Promise.resolve(runDataQuery(testData, rq)));
         });
 
         it('should detect if found item is last child in parent', async () => {
@@ -196,6 +145,59 @@ describe('LazyListView - search', () => {
             const rows = view.getVisibleRows();
 
             expect(rows).toHaveLength(5);
+        });
+
+        it('should search for nested children and build correct path, indent, depth, isLastChild', async () => {
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => ds.useView(value, onValueChange, props),
+                { initialProps: { value: currentValue, onValueChange: onValueChanged, props: viewProps } },
+            );
+
+            hookResult.rerender({ value: { search: 'ABC5', topIndex: 0, visibleCount: 20 }, onValueChange: onValueChanged, props: viewProps });
+
+            await waitFor(() => {
+                const view = hookResult.result.current;
+                const rows = view.getVisibleRows();
+                expect(rows).toEqual([
+                    expect.objectContaining({
+                        id: 125,
+                        depth: 2,
+                        indent: 0,
+                        index: 0,
+                        parentId: 120,
+                        path: [
+                            { id: 100, isLastChild: false, value: { childrenCount: 2, id: 100, name: 'A1' } }, {
+                                id: 120,
+                                isLastChild: false,
+                                value: {
+                                    childrenCount: 5, id: 120, name: 'AB9', parentId: 100,
+                                },
+                            },
+                        ],
+                        isLastChild: true,
+                        value: {
+                            childrenCount: 0, id: 125, name: 'ABC5', parentId: 120,
+                        },
+                    }),
+                ]);
+            });
+            const view = hookResult.result.current;
+            const rows = view.getVisibleRows();
+            expect(rows).toHaveLength(1);
+
+            expect(view.getConfig()).toEqual(expect.objectContaining({
+                cascadeSelection: undefined,
+                dataSourceState: {
+                    search: 'ABC5',
+                    topIndex: 0,
+                    visibleCount: 20,
+                },
+                flattenSearchResults: true,
+                isFetching: false,
+                isLoading: false,
+                selectAll: undefined,
+                showSelectedOnly: undefined,
+            }));
         });
 
         it.each<CascadeSelection>([true, 'explicit'])('should work correctly with cascadeSelection = %s', async (cascadeSelection) => {
