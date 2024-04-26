@@ -20,9 +20,9 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
         },
         location: {
             props: {
-                country: { isRequired: true },
+                country: { isRequired: false },
                 city: {
-                    isRequired: true,
+                    isRequired: false,
                     isDisabled: !value.location?.country,
                 },
             },

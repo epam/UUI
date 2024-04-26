@@ -17,7 +17,7 @@ export const validate = <T>(value: T, meta: Metadata<T>, initValue: T, validateO
             let childResult;
             switch (validateOn) {
                 case 'change': {
-                    childResult = isChildChanged ? validateRec(childValue, newPath, validationMeta, initChildValue) : {};
+                    childResult = isChildChanged ? validateRec(childValue, newPath, validationMeta, initChildValue) : { isInvalid: false };
                     break;
                 }
                 case 'save': {
