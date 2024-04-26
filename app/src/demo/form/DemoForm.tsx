@@ -18,7 +18,8 @@ export function DemoForm() {
         value: defaultData,
         getMetadata: personDetailsSchema,
         onSave: (person) => Promise.resolve({ form: person }),
-        onSuccess: () =>
+        onSuccess: () =>{
+            // svc.uuiRouter.redirect({ pathname: '/' });
             svc.uuiNotifications.show(
                 (props) => (
                     <SuccessNotification { ...props }>
@@ -28,7 +29,8 @@ export function DemoForm() {
                     </SuccessNotification>
                 ),
                 { duration: 2 },
-            ).catch(() => null),
+            ).catch(() => null);
+        },
     });
 
     return (

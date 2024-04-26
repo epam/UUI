@@ -13,16 +13,16 @@ export const personDetailsSchema = (value: PersonDetails): Metadata<PersonDetail
                     validators: [(fullName: string) => [!fullNameRegExp.exec(fullName)?.length && 'Full Name should contain only Latin alphabet characters and numbers!']],
                 },
                 birthdayDate: {
-                    isRequired: true,
+                    isRequired: false,
                     validators: [(birthdayDate: string) => [!(uuiDayjs.dayjs(birthdayDate).valueOf() <= uuiDayjs.dayjs().subtract(16, 'year').valueOf()) && 'User cannot be under 16 years old!']],
                 },
             },
         },
         location: {
             props: {
-                country: { isRequired: true },
+                country: { isRequired: false },
                 city: {
-                    isRequired: true,
+                    isRequired: false,
                     isDisabled: !value.location?.country,
                 },
             },
