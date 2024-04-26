@@ -41,6 +41,14 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
         this.setStatus(ids, NOT_FOUND_RECORD);
     }
 
+    public withPending(ids: TId[]) {
+        ids.forEach((id) => {
+            this.itemsStatusMap.set(id, PENDING_RECORD);
+        });
+
+        return this;
+    }
+
     public getItemStatus = (itemsMap: ItemsMap<TId, TItem>) => (id: TId) => {
         if (itemsMap.has(id)) {
             return LOADED_RECORD;
