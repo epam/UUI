@@ -10,7 +10,7 @@ export function Snackbar(props: SnackbarProps) {
     const uuiCtx = useUuiContext();
     const forceUpdate = useReliableForceUpdate();
 
-    useEffect(() => forceUpdate(), []);
+    useEffect(() => uuiCtx.uuiNotifications.subscribe(() => forceUpdate()), []);
 
     let items: NotificationOperation[] = uuiCtx.uuiNotifications.getNotifications().slice().reverse();
 

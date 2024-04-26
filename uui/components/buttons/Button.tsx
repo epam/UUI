@@ -21,7 +21,7 @@ type ButtonMods = {
      * Defines component color.
      * @default 'primary'
      */
-    color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral';
+    color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral' | 'white';
 };
 
 /** Represents the 'Core properties' for the Button component. */
