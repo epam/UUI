@@ -130,7 +130,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
-                caption: props.getName(row.value),
+                caption: row.isLoading ? null : props.getName(row.value),
                 isCollapsed: false,
                 isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
