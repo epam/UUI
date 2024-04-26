@@ -7,7 +7,6 @@ import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector } from '../../common';
 import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
-import { getSelectedAndChecked } from '../../../treeStructure';
 import { isSelectedOrCheckedChanged } from '../checked';
 import { useActualItemsMap } from '../../common';
 
@@ -36,6 +35,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         itemsStatusMap,
         complexIds,
         getId,
+        dataSourceState,
+        patch,
     }, [itemsStatusMap, props.itemsStatusCollector]);
 
     const api = useMemo(
@@ -97,8 +98,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     useEffect(() => {
         if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
-            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState, patch));
-
             loadMissing({
                 tree: treeWithData,
                 using: 'full',

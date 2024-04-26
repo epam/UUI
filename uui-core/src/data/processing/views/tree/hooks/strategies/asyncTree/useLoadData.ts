@@ -46,7 +46,14 @@ export function useLoadData<TItem, TId, TFilter = any>(
     const [isFetching, setIsFetching] = useState(false);
 
     const itemsStatusCollector = useItemsStatusCollector(
-        { itemsStatusMap, complexIds, getId, itemsStatusCollector: externalItemsStatusCollector },
+        {
+            itemsStatusMap,
+            complexIds,
+            getId,
+            itemsStatusCollector: externalItemsStatusCollector,
+            dataSourceState,
+            patch,
+        },
         [itemsStatusMap, externalItemsStatusCollector],
     );
 
@@ -92,15 +99,11 @@ export function useLoadData<TItem, TId, TFilter = any>(
 
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
-    const selectedAndChecked = getSelectedAndChecked(dataSourceState, patch);
-    const shouldLoad = (!isFetching && !isLoaded && ((showSelectedOnly && selectedAndChecked.length) || !showSelectedOnly)) || forceReload;
-
-    useEffect(() => {
-        if (!isLoaded) {
-            const checked = getSelectedAndChecked(dataSourceState, patch);
-            itemsStatusCollector.setPending(checked);
-        }
-    }, [isLoaded]);
+    const shouldLoad = (
+        !isFetching
+        && !isLoaded
+        && (!showSelectedOnly || (showSelectedOnly && getSelectedAndChecked(dataSourceState, patch).length))
+    ) || forceReload;
 
     useEffect(() => {
         if (shouldForceReload) {
