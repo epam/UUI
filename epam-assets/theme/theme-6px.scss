@@ -7,7 +7,7 @@
     --uui-tab-line-width: 3px;
     --uui-notify-size: 6px;
 
-    .uui-size-18 {
+    .uui-size-18, .uui-size-24.uui-picker-toggler .uui-tag.uui-size-inherit {
         --uui-size: 18px;
         --uui-border-width: 1px;
         --uui-x-outer-padding: 3px;
@@ -18,42 +18,45 @@
 
     }
 
-    .uui-size-24 {
+    .uui-size-24, .uui-size-30.uui-picker-toggler .uui-tag.uui-size-inherit {
         --uui-size: 24px;
         --uui-border-width: 1px;
         --uui-x-outer-padding: 6px;
         --uui-x-inner-padding: 6px;
+        --uui-y-outer-padding: 3px;
         --uui-icon-size: 12px;
         --uui-line-height: 18px;
         --uui-font-size: 12px;
     }
 
-    .uui-size-30 {
+    .uui-size-30, .uui-size-36.uui-picker-toggler .uui-tag.uui-size-inherit {
         --uui-size: 30px;
         --uui-border-width: 1px;
         --uui-x-outer-padding: 6px;
         --uui-x-inner-padding: 6px;
+        --uui-y-outer-padding: 3px;
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
     }
 
-    .uui-size-36 {
+    .uui-size-36, .uui-size-42.uui-picker-toggler .uui-tag.uui-size-inherit {
         --uui-size: 36px;
         --uui-border-width: 1px;
         --uui-x-outer-padding: 6px;
         --uui-x-inner-padding: 6px;
+        --uui-y-outer-padding: 3px;
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
-        --uui-y-inner-padding: calc((var(--uui-size) - var(--uui-line-height) - (var(--uui-border-width) * 2)) / 2);
     }
 
-    .uui-size-42 {
+    .uui-size-42, .uui-size-48.uui-picker-toggler .uui-tag.uui-size-inherit {
         --uui-size: 42px;
         --uui-border-width: 1px;
         --uui-x-outer-padding: 12px;
         --uui-x-inner-padding: 6px;
+        --uui-y-outer-padding: 3px;
         --uui-icon-size: 18px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
@@ -64,6 +67,7 @@
         --uui-border-width: 1px;
         --uui-x-outer-padding: 12px;
         --uui-x-inner-padding: 6px;
+        --uui-y-outer-padding: 3px;
         --uui-icon-size: 24px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
@@ -74,6 +78,7 @@
         --uui-border-width: 1px;
         --uui-x-outer-padding: 12px;
         --uui-x-inner-padding: 6px;
+        --uui-y-outer-padding: 3px;
         --uui-icon-size: 24px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
@@ -96,6 +101,44 @@
             --uui-icon-size: 18px;
             --uui-line-height: 18px;
             --uui-font-size: 14px;
+        }
+    }
+
+    .uui-tag {
+        &.uui-size-18,
+        &.uui-size-24,
+        &.uui-size-30,
+        &.uui-size-36 {
+            --uui-x-inner-padding: 3px;
+        }
+
+        &.uui-size-18,
+        &.uui-size-24,
+        &.uui-size-30 {
+            --uui-x-outer-padding: 3px;
+        }
+    }
+
+    .uui-size-24.uui-picker-toggler,
+    .uui-size-30.uui-picker-toggler,
+    .uui-size-36.uui-picker-toggler,
+    .uui-size-42.uui-picker-toggler {
+        .uui-tag.uui-size-inherit {
+            --uui-x-inner-padding: 3px;
+        }
+    }
+
+    .uui-size-24.uui-picker-toggler,
+    .uui-size-30.uui-picker-toggler,
+    .uui-size-36.uui-picker-toggler {
+        .uui-tag.uui-size-inherit {
+            --uui-x-outer-padding: 3px;
+        }
+    }
+
+    .uui-size-48.uui-picker-toggler {
+        .uui-tag.uui-size-inherit {
+            --uui-x-outer-padding: 6px;
         }
     }
 }

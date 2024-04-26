@@ -8,18 +8,49 @@
     --uui-tag-caption: var(--uui-color-contrast);
     --uui-tag-fill: var(--uui-color-contrast);
 
-    --uui-tag-border-radius: var(--uui-border-radius);
-
+    // fonts
     --uui-tag-font: var(--uui-font);
     --uui-tag-font-weight: 400;
 
+    // sizes
+    --uui-tag-border-radius: var(--uui-border-radius);
+    --uui-tag-min-height: var(--uui-size);
+    --uui-tag-min-width: var(--uui-size);
+    --uui-tag-border-width: var(--uui-border-width);
+    --uui-tag-outer-padding: var(--uui-x-outer-padding);
+    --uui-tag-inner-padding: var(--uui-x-inner-padding);
+    --uui-tag-caption-padding: 0 var(--uui-x-inner-padding);
+    --uui-tag-icon-height: var(--uui-icon-size);
+    --uui-tag-line-height: var(--uui-line-height);
+    --uui-tag-font-size: var(--uui-font-size);
+
     @include clickable-styles();
+    min-height: var(--uui-tag-min-height);
+    min-width: var(--uui-tag-min-width);
+    padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - (var(--uui-tag-border-width) * 2)) / 2) calc(var(--uui-tag-outer-padding) - var(--uui-tag-border-width)); // y
+
+    :global(.uui-count_indicator):not(:last-child) {
+        margin-right: var(--uui-tag-inner-padding);
+    }
+
+    :global(.uui-caption) {
+        font-size: var(--uui-tag-font-size);
+        line-height: var(--uui-tag-line-height);
+        padding: var(--uui-tag-caption-padding);
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-tag-icon-height);
+            width: inherit;
+        }
+    }
 
     &:global(.uui-button-box) {
         border-radius: var(--uui-tag-border-radius);
         background-color: var(--uui-tag-bg);
         fill: var(--uui-tag-fill);
-        border: 1px solid var(--uui-tag-border);
+        border: var(--uui-tag-border-width) solid var(--uui-tag-border);
 
         :global(.uui-count_indicator):not(:last-child) {
             margin-right: 6px;
@@ -33,7 +64,7 @@
             }
 
             &:focus-visible {
-                @include focus-visible-effect(2px, null);
+                @include focus-visible-effect();
             }
         }
 
@@ -64,93 +95,5 @@
             --uui-count_indicator-border: var(--uui-neutral-40);
             --uui-count_indicator-caption: var(--uui-neutral-70);
         }
-    }
-
-    &.size-18 {
-        min-height: 18px;
-        min-width: 18px;
-        padding: 1px 2px;
-
-        :global(.uui-count_indicator):not(:last-child) {
-            margin-right: 3px;
-        }
-
-        :global(.uui-caption) {
-            padding: 0 3px;
-            line-height: 14px;
-            font-size: 12px;
-        }
-
-        @include scalable-icon-size(18);
-    }
-
-    &.size-24 {
-        min-width: 24px;
-        min-height: 24px;
-        padding: 2px;
-
-        :global(.uui-caption) {
-            padding: 0 3px;
-            line-height: 18px;
-            font-size: 12px;
-        }
-        @include scalable-icon-size(24);
-
-    }
-
-    &.size-30 {
-        min-width: 30px;
-        min-height: 30px;
-        padding: 5px 2px;
-
-        :global(.uui-caption) {
-            padding: 0 3px;
-            line-height: 18px;
-            font-size: 14px;
-        }
-
-        @include scalable-icon-size(30);
-    }
-
-    &.size-36 {
-        min-width: 36px;
-        min-height: 36px;
-        padding: 8px 5px;
-
-        :global(.uui-caption) {
-            padding: 0 3px;
-            line-height: 18px;
-            font-size: 14px;
-        }
-
-        @include scalable-icon-size(36);
-    }
-
-    &.size-42 {
-        min-width: 42px;
-        min-height: 42px;
-        padding: 8px 5px;
-
-        :global(.uui-caption) {
-            padding: 0 6px;
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        @include scalable-icon-size(42);
-    }
-
-    &.size-48 {
-        min-width: 48px;
-        min-height: 48px;
-        padding: 11px 5px;
-
-        :global(.uui-caption) {
-            padding: 0 6px;
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        @include scalable-icon-size(48);
     }
 }
