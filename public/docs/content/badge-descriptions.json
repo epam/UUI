@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Use badges to label, categorize, make selections, filter content, or trigger actions.",
-            "marks": []
-          }
-        ]
+        "text": "Use to label, categorize, make selections, filter content, or trigger actions."
       }
     ]
   }
-}
+]
