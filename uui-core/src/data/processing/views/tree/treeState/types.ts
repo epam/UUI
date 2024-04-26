@@ -3,9 +3,14 @@ import { LazyListViewProps } from '../../types';
 import { ItemsMap } from '../ItemsMap';
 import { TreeStructure } from '../treeStructure/TreeStructure';
 
+export interface LoadAllConfig {
+    nestedChildren?: boolean;
+    children?: boolean;
+}
+
 export interface LoadTreeOptions<TItem, TId, TFilter>
     extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'getChildCount' | 'filter' | 'fetchStrategy' | 'flattenSearchResults'> {
-    loadAllChildren?(id: TId): boolean;
+    loadAllChildren?(id: TId): LoadAllConfig;
     isLoadStrict?: boolean;
     isFolded?: (item: TItem) => boolean;
 }
@@ -15,7 +20,6 @@ export interface LoadOptions<TItem, TId, TFilter> {
     using?: TreeStructureId;
     options: LoadTreeOptions<TItem, TId, TFilter>,
     dataSourceState: Readonly<DataSourceState<TFilter, TId>>,
-    withNestedChildren: boolean,
 }
 
 export interface LoadAllOptions<TItem, TId, TFilter> {
