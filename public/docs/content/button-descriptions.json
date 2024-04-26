@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Use buttons to trigger actions and links. Buttons can combine a clear label and an icon, while links are always text.",
-            "marks": []
-          }
-        ]
+        "text": "Sells in different sizes, colors, icons, and behaviors."
       }
     ]
   }
-}
+]

@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Switch is a UI element that permits the user to make a simple binary choice between two options.",
-            "marks": []
-          }
-        ]
+        "text": "A simple binary choice between two options."
       }
     ]
   }
-}
+]
