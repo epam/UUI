@@ -16,6 +16,7 @@ import { PeTable } from './peTable/PeTable';
 import { buildNormalizedInputValuesMap } from '../propDocUtils';
 import { TPreviewRef } from '../../../../preview/types';
 import { FullscreenBtn } from './fullscreenBtn/fullscreenBtn';
+import { QueryHelpers } from '../../baseDocBlock/utils/queryHelpers';
 
 type TInputData<TProps> = {
     [name in keyof TProps]: {
@@ -61,6 +62,8 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
         return map;
     }, [props.inputData, props.componentKey]);
 
+    const theme = QueryHelpers.getTheme();
+
     if (props.isDocUnsupportedForSkin) {
         return <NotSupportedForSkin onRedirectBackToDocs={ props.onRedirectBackToDocs } />;
     }
@@ -101,7 +104,7 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
                 <div className={ css.demoContainer }>
                     <ScrollBars>
                         <DemoErrorBoundary>
-                            <SelectedDemoContext DemoComponent={ props.DemoComponent } props={ demoComponentProps } />
+                            <SelectedDemoContext DemoComponent={ props.DemoComponent } props={ { ...demoComponentProps, theme } } />
                         </DemoErrorBoundary>
                     </ScrollBars>
                 </div>
