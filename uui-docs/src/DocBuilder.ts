@@ -19,7 +19,7 @@ export class DocPreviewBuilder<TProps> {
      * Most recently added preview will replace another one with same ID
      * @param previewItem
      */
-    add(previewItem: TComponentPreview<TProps>) {
+    add(previewItem: TComponentPreview<TProps, keyof TProps>) {
         this.listOfPreviews = this.listOfPreviews.filter(({ id }) => id !== previewItem.id);
         this.listOfPreviews.push({
             id: previewItem.id,
@@ -27,10 +27,10 @@ export class DocPreviewBuilder<TProps> {
         });
     }
 
-    update(id: string, updateFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
+    update(id: string, updateMatrixFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
         const prev = this.listOfPreviews.find((i) => i.id === id);
         if (prev) {
-            prev.matrix = { ...updateFn(prev.matrix) };
+            prev.matrix = { ...updateMatrixFn(prev.matrix) };
         } else {
             throw new Error(`Unable to find preview by id = ${id}`);
         }
@@ -122,7 +122,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
 
     getPreviewRenderCaseGroups() {
         return this.docPreview?.listOfPreviews.map((ppi) => {
-            return DocBuilder.convertPreviewPropsItemToRenderCases(ppi, this as DocBuilder<PropDocPropsUnknown>);
+            return DocBuilder.convertPreviewPropsItemToRenderCases(ppi as TComponentPreview<unknown>, this as DocBuilder<PropDocPropsUnknown>);
         });
     }
 
@@ -140,10 +140,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             cellSize: ppi.cellSize,
         };
         const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
-        const testMatrix = TestMatrixUtils.createTestMatrix(matrixConfig);
-        testMatrix.forEach((props) => {
-            result.props.push(props);
-        });
+        result.props = TestMatrixUtils.createTestMatrix({ matrixNorm: matrixConfig });
         return result;
     };
 
