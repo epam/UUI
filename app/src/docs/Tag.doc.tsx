@@ -3,9 +3,24 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    COLOR_MAP,
+    DocBuilder,
+    DocPreviewBuilder,
+    getColorPickerComponent,
+    TDocConfig,
+    TDocContext,
+    TSkin,
+} from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { getCurrentTheme } from '../helpers';
+
+enum TTagPreview {
+    'One-line caption' = 'One-line caption',
+    'Two-line caption' = 'Two-line caption',
+    'No caption' = 'No caption',
+    Colors = 'Colors'
+}
 
 export class TagDoc extends BaseDocsBlock {
     title = 'Tag';
@@ -19,7 +34,7 @@ export class TagDoc extends BaseDocsBlock {
             [TSkin.Loveship]: { type: '@epam/loveship:TagProps', component: loveship.Tag },
             [TSkin.Electric]: { type: '@epam/electric:TagProps', component: electric.Tag },
         },
-        doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps >) => {
+        doc: (doc: DocBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
             doc.merge('color', {
                 editorType: getColorPickerComponent({
@@ -29,6 +44,66 @@ export class TagDoc extends BaseDocsBlock {
             });
             doc.setDefaultPropExample('onClick', () => true);
             doc.merge('count', { examples: [{ value: '9' }, { value: '+99' }, { value: '+999' }] });
+        },
+
+        preview: (docPreview: DocPreviewBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps>) => {
+            const TEST_DATA = {
+                caption1Line: 'Test',
+                // eslint-disable-next-line
+                caption2Lines: (<>{'Test'}<br/>{'Test'}</>),
+                icon: 'action-account-fill.svg',
+            };
+            docPreview.add({
+                id: TTagPreview['One-line caption'],
+                matrix: {
+                    caption: { values: [TEST_DATA.caption1Line] },
+                    size: { examples: '*' },
+                    count: { values: [undefined, '+999'] },
+                    icon: { examples: [TEST_DATA.icon, undefined] },
+                    iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
+                    isDropdown: { examples: '*' },
+                    onClear: { examples: ['callback', undefined] },
+                },
+                cellSize: '180-60',
+            });
+            docPreview.add({
+                id: TTagPreview['Two-line caption'],
+                matrix: {
+                    caption: { values: [TEST_DATA.caption2Lines] },
+                    size: { examples: '*' },
+                    count: { values: [undefined, '+999'] },
+                    isDropdown: { examples: '*' },
+                    onClear: { examples: ['callback', undefined] },
+                    icon: { examples: [TEST_DATA.icon, undefined] },
+                    iconPosition: { examples: '*' },
+                },
+                cellSize: '180-80',
+            });
+            docPreview.add({
+                id: TTagPreview['No caption'],
+                matrix: {
+                    caption: { values: [undefined] },
+                    size: { examples: '*' },
+                    count: { values: [undefined, '+999'] },
+                    icon: { examples: [TEST_DATA.icon, undefined] },
+                    isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
+                    onClear: { examples: ['callback', undefined] },
+                },
+                cellSize: '110-60',
+            });
+            docPreview.add({
+                id: TTagPreview.Colors,
+                matrix: {
+                    caption: { values: [TEST_DATA.caption1Line] },
+                    icon: { examples: [TEST_DATA.icon] },
+                    count: { values: ['+999'] },
+                    isDropdown: { values: [true] },
+                    color: { examples: '*' },
+                    fill: { examples: '*' },
+                    isDisabled: { examples: '*' },
+                },
+                cellSize: '130-60',
+            });
         },
     };
 
