@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "This component is a placeholder for text blocks to show while particular data is loading.",
-            "marks": []
-          }
-        ]
+        "text": "This component is a placeholder for text blocks to show while particular data is loading."
       }
     ]
   }
-}
+]
