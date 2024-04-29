@@ -75,8 +75,67 @@ export enum TComponentId {
 }
 
 /**
+ * Copy these enums from the respective *.doc.tsx files
+ */
+
+export enum TBadgePreview {
+    'Colors' = 'Colors',
+    'Sizes with icon' = 'Sizes with icon',
+    'Sizes without icon' = 'Sizes without icon'
+}
+export enum TButtonPreview {
+    'One-line caption' = 'One-line caption',
+    'Two-line caption' = 'Two-line caption',
+    'No caption' = 'No caption',
+    Colors = 'Colors'
+}
+export enum TLinkButtonPreview {
+    'One-line caption' = 'One-line caption',
+    'Two-line caption' = 'Two-line caption',
+    'No caption' = 'No caption',
+    Colors = 'Colors'
+}
+enum TAvatarStackPreview {
+    'Smaller size' = 'Smaller size',
+    'Bigger size' = 'Bigger size'
+}
+enum TTagPreview {
+    'One-line caption' = 'One-line caption',
+    'Two-line caption' = 'Two-line caption',
+    'No caption' = 'No caption',
+    Colors = 'Colors'
+}
+enum TSwitchPreview {
+    Basic = 'Basic'
+}
+enum TCheckboxPreview {
+    Basic = 'Basic'
+}
+enum TTextInputPreview {
+    'Form'= 'Form',
+    'Form (invalid)'= 'Form (invalid)',
+    'Form (disabled)'= 'Form (disabled)',
+    'Form (read only)'= 'Form (read only)',
+    'Inline'= 'Inline',
+    'Inline (disabled)'= 'Inline (disabled)',
+    'Inline (read only)'= 'Inline (read only)'
+}
+enum TCountIndicatorPreview {
+    Colors = 'Colors',
+    Sizes = 'Sizes'
+}
+
+/**
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.badge]: ('Colors' | 'Sizes with icon' | 'Sizes without icon')[],
+    [TComponentId.badge]: TBadgePreview[],
+    [TComponentId.button]: TButtonPreview[],
+    [TComponentId.linkButton]: TLinkButtonPreview[],
+    [TComponentId.textInput]: TTextInputPreview[],
+    [TComponentId.avatarStack]: TAvatarStackPreview[],
+    [TComponentId.tag]: TTagPreview[],
+    [TComponentId.switch]: TSwitchPreview[],
+    [TComponentId.checkbox]: TCheckboxPreview[],
+    [TComponentId.countIndicator]: TCountIndicatorPreview[],
 };
