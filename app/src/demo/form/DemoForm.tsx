@@ -19,7 +19,6 @@ export function DemoForm() {
         getMetadata: personDetailsSchema,
         onSave: (person) => Promise.resolve({ form: person }),
         onSuccess: () =>{
-            // svc.uuiRouter.redirect({ pathname: '/' });
             svc.uuiNotifications.show(
                 (props) => (
                     <SuccessNotification { ...props }>

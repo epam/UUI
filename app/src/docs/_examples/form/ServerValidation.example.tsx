@@ -20,7 +20,7 @@ export default function ServerValidationExample() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     async function onSave(formState: Login): Promise<FormSaveResponse<Login>> {
-        const response: ServerResponseExample<Login> = await svc.api.success.validateForm(formState);
+        const response: ServerResponseExample<Login> = await svc.api.form.validateForm(formState);
         if (!response.error) return response;
 
         // Prefer to return the ICanBeInvalid structure from the server directly, and pass it to the Form as is. Here, we demonstrate how to handle the case when it's not possible. In such cases, you can convert your server-specific errors to the ICanBeInvalid interface on client.

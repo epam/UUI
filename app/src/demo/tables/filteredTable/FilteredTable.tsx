@@ -109,7 +109,7 @@ export function FilteredTable() {
                 columns={ personColumns }
                 value={ tableStateApi.tableState }
                 onValueChange={ tableStateApi.setTableState }
-                showColumnsConfig={ false }
+                showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
                 { ...listProps }
