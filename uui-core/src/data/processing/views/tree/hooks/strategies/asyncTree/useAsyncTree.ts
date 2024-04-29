@@ -68,6 +68,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
             checked: dataSourceState.checked,
             selectedId: dataSourceState.selectedId,
         },
+        itemsStatusCollector: props.itemsStatusCollector,
         forceReload: isForceReload,
         onForceReloadComplete: () => setIsForceReload(false),
         showSelectedOnly,

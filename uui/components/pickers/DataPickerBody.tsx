@@ -48,6 +48,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                                 onKeyDown={ this.searchKeyDown }
                                 size={ searchSize }
                                 debounceDelay={ this.props.searchDebounceDelay }
+                                autoFocus={ this.showSearch() && !isMobile() }
                             />
                         </FlexCell>
                     </div>

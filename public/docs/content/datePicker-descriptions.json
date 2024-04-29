@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "DatePicker used to select or input a date. ",
-            "marks": []
-          }
-        ]
+        "text": "Allows user to select or input a date. "
       }
     ]
   }
-}
+]
