@@ -37,7 +37,7 @@ export function useLock({ handleLeave }: UseLockProps) {
         return () => {
             unblockRouter?.();
         };
-    }, [isLocked]);
+    }, [isLocked, handleLeave]);
 
     return {
         block,
