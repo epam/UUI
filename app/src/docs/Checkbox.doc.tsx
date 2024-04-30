@@ -3,8 +3,12 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+
+enum TCheckboxPreview {
+    Basic = 'Basic'
+}
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';
@@ -17,6 +21,26 @@ export class CheckboxDoc extends BaseDocsBlock {
             [TSkin.Loveship]: { type: '@epam/uui:CheckboxProps', component: loveship.Checkbox },
             [TSkin.Promo]: { type: '@epam/uui:CheckboxProps', component: promo.Checkbox },
             [TSkin.Electric]: { type: '@epam/uui:CheckboxProps', component: electric.Checkbox },
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.CheckboxProps>) => {
+            const TEST_DATA = {
+                label: 'Test',
+                // eslint-disable-next-line
+                label2Lines: (<>{'Test'}<br/>{'Test'}</>),
+            };
+            docPreview.add({
+                id: TCheckboxPreview.Basic,
+                matrix: {
+                    isInvalid: { values: [false, true] },
+                    value: { values: [true, false, undefined] },
+                    indeterminate: { values: [true], condition: (props) => props.value === undefined },
+                    size: { examples: '*' },
+                    label: { values: [undefined, TEST_DATA.label, TEST_DATA.label2Lines] },
+                    isDisabled: { values: [true, false] },
+                    isReadonly: { values: [true, false] },
+                },
+                cellSize: '100-60',
+            });
         },
     };
 

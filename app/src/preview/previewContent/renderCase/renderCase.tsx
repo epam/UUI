@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DocBuilder, PropDocPropsUnknown, TDocContext } from '@epam/uui-docs';
+import { DocBuilder, PropDocPropsUnknown, TDocContext, uuiDocContextsMap } from '@epam/uui-docs';
 import { formatPropsForNativeTooltip } from './renderCaseUtils';
 import { buildNormalizedInputValuesMap, buildPropInputDataAll, TPropInputDataAll } from '../../../common/docs/componentEditor/propDocUtils';
 import { PropSamplesCreationContext } from '../../../common/docs/componentEditor/view/PropSamplesCreationContext';
@@ -73,7 +73,13 @@ export class RenderCase extends React.PureComponent<ISingleRenderCaseView, ISing
             return null;
         }
 
-        const SelectedDemoContext = docs.contexts.find(({ name }) => name === context).context;
+        let SelectedDemoContext;
+        if (context === TDocContext.Default) {
+            // Assumption: all components support Default context, so we never report error when Default context is selected.
+            SelectedDemoContext = uuiDocContextsMap[TDocContext.Default];
+        } else {
+            SelectedDemoContext = docs.contexts.find(({ name }) => name === context).context;
+        }
         const inputValues = this.getInputValues();
         const { propsForTooltip, propsForDataAttr } = formatPropsForNativeTooltip(inputValues);
         const DemoComponent = docs.component;
