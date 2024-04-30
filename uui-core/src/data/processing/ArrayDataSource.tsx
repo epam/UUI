@@ -1,10 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { IDataSourceView, DataSourceState, SetDataSourceState } from '../../types/dataSources';
 import { BaseDataSource } from './BaseDataSource';
-import { ArrayListViewProps, useCascadeSelectionService, useDataRows, newMap, ITree, useTree } from './views';
+import { ArrayListViewProps, useCascadeSelectionService, useDataRows, ITree, useTree } from './views';
 import { ItemsStorage } from './views/tree/ItemsStorage';
-import { IMap } from '../../types';
-import { RecordStatus } from './views/tree/types';
 
 export interface ArrayDataSourceProps<TItem, TId, TFilter> extends ArrayListViewProps<TItem, TId, TFilter> {}
 
@@ -13,13 +11,11 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     tree: ITree<TItem, TId>;
 
     itemsStorage: ItemsStorage<TItem, TId>;
-    itemsStatusMap: IMap<TId, RecordStatus>;
     
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.setProps(props);
         const params = { getId: this.getId, complexIds: props.complexIds };
-        this.itemsStatusMap = newMap(params);
         this.itemsStorage = new ItemsStorage({ items: [], params: params });
     }
 

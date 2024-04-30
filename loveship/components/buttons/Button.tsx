@@ -6,7 +6,7 @@ import css from './Button.module.scss';
 const defaultSize = '36';
 
 /** Defines component color. */
-type ButtonColor = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray' | uui.ButtonProps['color'];
+type ButtonColor = EpamPrimaryColor | 'night500' | 'night600' | 'gray' | uui.ButtonProps['color'];
 
 type ButtonMods = {
     /**

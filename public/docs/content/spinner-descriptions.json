@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Spinner is an element for displaying a loading state of a page or a section.",
-            "marks": []
-          }
-        ]
+        "text": "Displays a loading state of a page or a section."
       }
     ]
   }
-}
+]

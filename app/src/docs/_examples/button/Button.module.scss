@@ -1,0 +1,14 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    padding: 6px;
+}
+
+.white-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    padding: 6px;
+    background-color: var(--uui-info-60);
+}

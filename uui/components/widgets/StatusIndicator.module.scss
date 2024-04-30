@@ -23,6 +23,12 @@
         line-height: 18px;
     }
 
+    &:global(.uui-color-white) {
+        :global(.uui-status_indicator_dot) {
+            background-color: var(--uui-neutral-0);
+        }
+    }
+
     &:global(.uui-color-neutral) {
         :global(.uui-status_indicator_dot) {
             background-color: var(--uui-neutral-60);
