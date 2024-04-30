@@ -3,10 +3,16 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { AvatarStackProps } from '@epam/uui-components';
 import { uuiMarkers } from '@epam/uui-core';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { ALL_AVATARS } from './avatarsExamples';
+
+enum TAvatarStackPreview {
+    'Smaller size' = 'Smaller size',
+    'Bigger size' = 'Bigger size'
+}
 
 export class AvatarStackDoc extends BaseDocsBlock {
     title = 'AvatarStack';
@@ -25,7 +31,7 @@ export class AvatarStackDoc extends BaseDocsBlock {
                 examples: [
                     {
                         name: 'Olivia',
-                        value: new Array(3).fill('https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4'),
+                        value: ALL_AVATARS,
                         isDefault: true,
                     },
                 ],
@@ -48,6 +54,26 @@ export class AvatarStackDoc extends BaseDocsBlock {
                         isDefault: false,
                     },
                 ],
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<AvatarStackProps>) => {
+            docPreview.add({
+                id: TAvatarStackPreview['Smaller size'],
+                matrix: {
+                    avatarSize: { examples: '*', condition: (_, v) => Number(v) < 144 },
+                    avatarsCount: { values: [undefined, 2] },
+                    direction: { examples: '*' },
+                },
+                cellSize: '140-60',
+            });
+            docPreview.add({
+                id: TAvatarStackPreview['Bigger size'],
+                matrix: {
+                    avatarSize: { examples: '*', condition: (_, v) => Number(v) >= 144 },
+                    avatarsCount: { values: [undefined, 2] },
+                    direction: { examples: '*' },
+                },
+                cellSize: '400-160',
             });
         },
     };

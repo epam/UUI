@@ -102,21 +102,31 @@ export type IconBase<TIcon> = {
     path: string;
 };
 
-type TPreviewPropsItemMatrixValues<TProps = any, TProp extends keyof TProps = any> = {
+/**
+ * Include prop in current "iteration" only when condition is met.
+ * It is based on the values of parent props and current prop value which is going to be iterated.
+ */
+export type TPreviewPropsItemMatrixCondition<TProps, TProp extends keyof TProps> =
+    (parentProps: { [prop in keyof TProps]?: TProps[TProp] }, thisPropValue?: unknown) => boolean;
+
+type TPreviewPropsItemMatrixValues<TProps, TProp extends keyof TProps> = {
     /** Array of values to be directly passed to the component */
     values: TProps[TProp][];
+    condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
     examples?: never;
 };
-type TPreviewPropsItemMatrixExamples = {
+type TPreviewPropsItemMatrixExamples<TProps, TProp extends keyof TProps> = {
     /**
      * Array of example names or just a "*" which means all examples.
      * NOTE: it is NOT array of example ids, because ids are numeric and thus difficult to maintain.
      */
     examples: string[] | '*';
+    condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
     values?: never;
 };
 
-type TCellSize = 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110 | 120 | 130 | 140 | 150 | 160 | 180 | 200 | 240 | 280 | 320 | 360 | 400 | 460 | 520 | 580 | 640 | 1280;
+type TCellSize = 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110 | 120 | 130 | 140 | 150 | 160 | 170 |
+180 | 200 | 240 | 280 | 320 | 360 | 400 | 460 | 520 | 580 | 640 | 1280;
 /**
  * Cell 'width-height'. E.g.: `100-200` (means 100px width and 200px height)
  *
@@ -146,7 +156,7 @@ export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps>
         /**
          * Property name
          */
-        [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples;
+        [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop>;
     },
     /**
      * 'width-height'
