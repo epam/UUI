@@ -65,21 +65,9 @@ const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 
     /**
      * Handles editor focus
      */
-    useFocusEvents({
-        editorId: id,
-        onFocus: useCallback(() => {
-            const allowFocus = editorWrapperRef.current && !isReadonly;
-            if (allowFocus) {
-                editorWrapperRef.current.classList.add(uuiMod.focus);
-            }
-        }, [isReadonly]),
-        onBlur: useCallback(() => {
-            if (editorWrapperRef.current) {
-                editorWrapperRef.current.classList.remove(uuiMod.focus);
-            }
-        }, []),
-    });
+    useFocusEvents({ editorId: id, editorWrapperRef, isReadonly });
 
+    // TODO: move to plate
     const autoFocusRef = useCallback((node: HTMLDivElement) => {
         if (!editorWrapperRef.current && node) {
             editorWrapperRef.current = node;
