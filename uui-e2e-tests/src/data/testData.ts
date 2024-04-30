@@ -128,6 +128,11 @@ export enum TAccordionPreview {
     Expanded = 'Expanded',
     Collapsed = 'Collapsed'
 }
+export enum TAlertPreview {
+    Colors = 'Colors',
+    'Layout with icon' = 'Layout with icon',
+    'Layout without icon' = 'Layout without icon'
+}
 
 /**
  * Keep list of previews in sync with corresponding *.doc.tsx files
@@ -143,4 +148,5 @@ export type TPreviewIdByComponentId = {
     [TComponentId.checkbox]: TCheckboxPreview[],
     [TComponentId.countIndicator]: TCountIndicatorPreview[],
     [TComponentId.accordion]: TAccordionPreview[],
+    [TComponentId.alert]: TAlertPreview[],
 };
