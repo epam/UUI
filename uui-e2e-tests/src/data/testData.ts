@@ -95,23 +95,23 @@ export enum TLinkButtonPreview {
     'No caption' = 'No caption',
     Colors = 'Colors'
 }
-enum TAvatarStackPreview {
+export enum TAvatarStackPreview {
     'Smaller size' = 'Smaller size',
     'Bigger size' = 'Bigger size'
 }
-enum TTagPreview {
+export enum TTagPreview {
     'One-line caption' = 'One-line caption',
     'Two-line caption' = 'Two-line caption',
     'No caption' = 'No caption',
     Colors = 'Colors'
 }
-enum TSwitchPreview {
+export enum TSwitchPreview {
     Basic = 'Basic'
 }
-enum TCheckboxPreview {
+export enum TCheckboxPreview {
     Basic = 'Basic'
 }
-enum TTextInputPreview {
+export enum TTextInputPreview {
     'Form'= 'Form',
     'Form (invalid)'= 'Form (invalid)',
     'Form (disabled)'= 'Form (disabled)',
@@ -120,7 +120,7 @@ enum TTextInputPreview {
     'Inline (disabled)'= 'Inline (disabled)',
     'Inline (read only)'= 'Inline (read only)'
 }
-enum TCountIndicatorPreview {
+export enum TCountIndicatorPreview {
     Colors = 'Colors',
     Sizes = 'Sizes'
 }
