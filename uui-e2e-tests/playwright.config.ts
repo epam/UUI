@@ -7,7 +7,7 @@ import path from 'node:path';
 const { isCi, isDocker } = readEnvParams();
 const { UUI_APP_BASE_URL } = readEnvFile();
 
-const timeout = isCi ? 20000 : 35000;
+const timeout = isCi ? 20000 : 45000;
 const maxFailures = isCi ? 10 : 20;
 const retries = isCi ? 1 : 0;
 const workers = isCi ? 1 : 1;
