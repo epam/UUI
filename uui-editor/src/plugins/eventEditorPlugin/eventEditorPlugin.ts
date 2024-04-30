@@ -27,7 +27,8 @@ export const createEventEditorPlugin = createPluginFactory({
 
             document.dispatchEvent(
                 new CustomEvent(BLUR_EDITOR_EVENT, {
-                    detail: { id: editor.id } }),
+                    detail: { id: editor.id },
+                }),
             );
         },
     },
