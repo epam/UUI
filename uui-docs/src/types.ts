@@ -126,7 +126,7 @@ type TPreviewPropsItemMatrixExamples<TProps, TProp extends keyof TProps> = {
 };
 
 type TCellSize = 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110 | 120 | 130 | 140 | 150 | 160 | 170 |
-180 | 200 | 240 | 280 | 320 | 360 | 400 | 460 | 520 | 580 | 640 | 1280;
+180 | 200 | 220 | 240 | 250 | 260 | 280 | 320 | 360 | 400 | 460 | 520 | 580 | 640 | 1280;
 /**
  * Cell 'width-height'. E.g.: `100-200` (means 100px width and 200px height)
  *
