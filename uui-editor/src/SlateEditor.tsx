@@ -43,21 +43,36 @@ interface PlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     toolbarPosition?: 'floating' | 'fixed';
 }
 
-const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 'onValueChange'>>((props, ref) => {
-    const editor = useEditorRef(props.id);
+const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 'onValueChange' | 'plugins'>>(({
+    id,
+    isReadonly,
+    autoFocus,
+    fontSize,
+    cx: classes,
+    scrollbars,
+    placeholder,
+    toolbarPosition,
+    onKeyDown,
+    onBlur,
+    onFocus,
+    rawProps,
+    minHeight,
+    mode = 'form',
+}, ref) => {
+    const editor = useEditorRef(id);
     const editorWrapperRef = useRef<HTMLDivElement>();
 
     /**
      * Handles editor focus
      */
     useFocusEvents({
-        editorId: props.id,
+        editorId: id,
         onFocus: useCallback(() => {
-            const allowFocus = editorWrapperRef.current && !props.isReadonly;
+            const allowFocus = editorWrapperRef.current && !isReadonly;
             if (allowFocus) {
                 editorWrapperRef.current.classList.add(uuiMod.focus);
             }
-        }, [props.isReadonly]),
+        }, [isReadonly]),
         onBlur: useCallback(() => {
             if (editorWrapperRef.current) {
                 editorWrapperRef.current.classList.remove(uuiMod.focus);
@@ -69,27 +84,29 @@ const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 
         if (!editorWrapperRef.current && node) {
             editorWrapperRef.current = node;
 
-            if (!props.isReadonly && props.autoFocus) {
+            if (!isReadonly && autoFocus) {
                 editorWrapperRef.current.classList.add(uuiMod.focus);
             }
         }
         return editorWrapperRef;
-    }, [props.autoFocus, props.isReadonly]);
+    }, [autoFocus, isReadonly]);
+
+    const contentStyle = useMemo(() => ({ minHeight }), [minHeight]);
 
     const renderEditor = () => (
         <Fragment>
             <PlateContent
-                id={ props.id }
-                autoFocus={ props.autoFocus }
-                readOnly={ props.isReadonly }
+                id={ id }
+                autoFocus={ autoFocus }
+                readOnly={ isReadonly }
                 className={ css.editor }
-                onKeyDown={ props.onKeyDown }
-                onBlur={ props.onBlur }
-                onFocus={ props.onFocus }
-                placeholder={ isEditorValueEmpty(editor.children) ? props.placeholder : undefined }
-                style={ { minHeight: props.minHeight } }
+                onKeyDown={ onKeyDown }
+                onBlur={ onBlur }
+                onFocus={ onFocus }
+                placeholder={ isEditorValueEmpty(editor.children) ? placeholder : undefined }
+                style={ contentStyle }
             />
-            <Toolbars toolbarPosition={ props.toolbarPosition } />
+            <Toolbars toolbarPosition={ toolbarPosition } />
         </Fragment>
     );
     return (
@@ -97,16 +114,16 @@ const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 
             ref={ useComposedRef(autoFocusRef, ref) }
             className={ cx(
                 'uui-typography',
-                props.cx,
+                classes,
                 css.container,
-                css['mode-' + (props.mode || 'form')],
-                props.isReadonly && uuiMod.readonly,
-                props.scrollbars && css.withScrollbars,
-                props.fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',
+                css['mode-' + mode],
+                isReadonly && uuiMod.readonly,
+                scrollbars && css.withScrollbars,
+                fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',
             ) }
-            { ...props.rawProps }
+            { ...rawProps }
         >
-            { props.scrollbars
+            { scrollbars
                 ? (
                     <ScrollBars cx={ css.scrollbars }>
                         { renderEditor() }
@@ -117,27 +134,41 @@ const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 
     );
 }));
 
-const SlateEditor = forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>((props, ref) => {
+const SlateEditor = forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>(({
+    plugins: _plugins = [paragraphPlugin()],
+    isReadonly,
+    onValueChange,
+    value: _value,
+    autoFocus,
+    fontSize,
+    cx: classes,
+    scrollbars,
+    placeholder,
+    toolbarPosition,
+    rawProps,
+    mode,
+    onKeyDown,
+    onBlur,
+    onFocus,
+}, ref) => {
     const currentId = useRef(String(Date.now()));
     const editor = useRef<PlateEditor | null>(null);
 
     const plugins = useMemo(
-        () => {
-            return createPlugins((props.plugins || [paragraphPlugin()]).flat(), { components: createPlateUI() });
-        },
-        [props.plugins],
+        () => createPlugins((_plugins).flat(), { components: createPlateUI() }),
+        [_plugins],
     );
 
-    const onChange = useCallback((value: Value) => {
-        if (props.isReadonly) {
+    const onChange = useCallback((v: Value) => {
+        if (isReadonly) {
             return;
         }
-        props.onValueChange(value);
-    }, [props.isReadonly]);// onValueChange should be in deps ideally
+        onValueChange(v);
+    }, [isReadonly, onValueChange]); // onValueChange should be in deps ideally
 
     const value = useMemo(() => {
-        return migrateSchema(props.value);
-    }, [props.value]);
+        return migrateSchema(_value);
+    }, [_value]);
 
     const forceUpdate = useForceUpdate();
     if (value && editor.current?.children && editor.current.children !== value) {
@@ -157,18 +188,20 @@ const SlateEditor = forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>((pr
             disableCorePlugins={ disabledPlugins }
         >
             <Editor
-                ref={ ref }
-                autoFocus={ props.autoFocus }
-                cx={ props.cx }
-                fontSize={ props.fontSize }
                 id={ currentId.current }
-                scrollbars={ props.scrollbars }
-                isReadonly={ props.isReadonly }
-                placeholder={ props.placeholder }
-                toolbarPosition={ props.toolbarPosition }
-                onKeyDown={ props.onKeyDown }
-                onBlur={ props.onBlur }
-                onFocus={ props.onFocus }
+                ref={ ref }
+                cx={ classes }
+                autoFocus={ autoFocus }
+                fontSize={ fontSize }
+                scrollbars={ scrollbars }
+                isReadonly={ isReadonly }
+                placeholder={ placeholder }
+                toolbarPosition={ toolbarPosition }
+                onKeyDown={ onKeyDown }
+                onBlur={ onBlur }
+                onFocus={ onFocus }
+                rawProps={ rawProps }
+                mode={ mode }
             />
         </Plate>
     );
