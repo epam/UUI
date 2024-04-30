@@ -122,7 +122,7 @@ const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 
     );
 }));
 
-const SlateEditor = forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>(({
+const SlateEditor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>(({
     plugins: _plugins = [paragraphPlugin()],
     isReadonly,
     onValueChange,
@@ -193,6 +193,6 @@ const SlateEditor = forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>(({
             />
         </Plate>
     );
-});
+}));
 
 export { SlateEditor, basePlugins };
