@@ -138,6 +138,12 @@ export interface IFormApi<T> extends IEditable<T>, ValidationState {
 
     /** True if save is in progress */
     isInProgress: boolean;
+
+    /** Validation state which was returned from `onSave` callback  */
+    serverValidationState: ValidationState;
+
+    /** Sets new server validation state from client side */
+    setServerValidationState: (s: React.SetStateAction<ValidationState>) => void
 }
 
 export function Form<T>({ renderForm, ...props }: FormProps<T>) {
