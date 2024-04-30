@@ -19,7 +19,7 @@ function StyledRemoveTable() {
 }
 
 export function TableToolbarContent({ canUnmerge }:{ canUnmerge:boolean }) {
-    const editor = useEditorState();
+    const editor = useEditorState(); // TODO: use useEditorRef
 
     const { cell, row } = getTableEntries(editor) || {};
     const cellPath = useMemo(() => cell && cell[1], [cell]);
