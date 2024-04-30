@@ -2,7 +2,7 @@ import * as React from 'react';
 import isEqual from 'react-fast-compare';
 
 import {
-    DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile,
+    DataSourceListProps, DataSourceState, IEditable, IHasRawProps,
 } from '@epam/uui-core';
 
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -20,11 +20,6 @@ export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends
     needFocusSearch = this.showSearch();
     searchRef = React.createRef<HTMLInputElement>();
     componentDidUpdate(prevProps: PickerBodyBaseProps) {
-        if (this.needFocusSearch && !isMobile()) {
-            this.searchRef.current?.focus({ preventScroll: true });
-            this.needFocusSearch = false;
-        }
-
         if (prevProps.rows.length !== this.props.rows.length || (!isEqual(prevProps.value.checked, this.props.value.checked) && !this.props.fixedBodyPosition)) {
             this.props.scheduleUpdate?.();
         }

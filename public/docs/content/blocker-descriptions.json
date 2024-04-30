@@ -4,7 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "The blocker notifies the user to wait for the completion of any action (download, calculation, etc.)."
+        "text": "Notifies the user to wait for the completion of any action (download, calculation, etc.)."
       }
     ]
   },

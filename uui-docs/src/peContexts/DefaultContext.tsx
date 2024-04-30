@@ -8,9 +8,11 @@ export class DefaultContext extends React.Component<DemoComponentProps, any> {
     public static displayName = 'Default';
     render() {
         const { DemoComponent, props, isPreview } = this.props;
+        const whiteElementBackground = 'var(--uui-info-60)';
+        const bg = props?.color === 'white' && whiteElementBackground;
 
         return (
-            <div className={ cx([css.root, isPreview && css.preview]) } style={ { background: props.theme === 'dark' && '#2c2f3c' } }>
+            <div className={ cx([css.root, isPreview && css.preview]) } style={ { background: bg } }>
                 <FlexCell width="auto">
                     <DemoComponent { ...props } />
                 </FlexCell>
