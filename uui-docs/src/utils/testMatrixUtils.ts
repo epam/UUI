@@ -65,10 +65,32 @@ export class TestMatrixUtils {
                         condition,
                     };
                 } else {
+                    const unknownExampleNames: string[] = [];
                     res[name] = {
-                        values: examples.map((exampleName) => allExamplesMap[exampleName]?.value),
+                        values: examples.reduce<unknown[]>((acc, exampleName) => {
+                            if (exampleName === undefined) {
+                                // special case, it means prop value is not defined
+                                acc.push(undefined);
+                            } else {
+                                const ex = allExamplesMap[exampleName];
+                                if (!ex) {
+                                    unknownExampleNames.push(exampleName);
+                                } else {
+                                    acc.push(ex?.value);
+                                }
+                            }
+                            return acc;
+                        }, []),
                         condition,
                     };
+                    if (unknownExampleNames.length > 0) {
+                        const notFound = unknownExampleNames.map((e) => `"${e}"`).join(',');
+                        const available = Object.keys(allExamplesMap).map((e) => `"${e}"`).join(',');
+                        const component = docs.name;
+                        const err = `Unable to find examples with names: ${notFound}. Component="${component}". Available examples: ${available}`;
+                        console.error(err);
+                        throw new Error(err);
+                    }
                 }
             } else {
                 res[name] = { values, condition };
