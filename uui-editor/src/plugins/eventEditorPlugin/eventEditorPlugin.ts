@@ -1,5 +1,6 @@
 import { createPluginFactory, eventEditorActions, eventEditorSelectors, KEY_EVENT_EDITOR } from '@udecode/plate-core';
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect } from 'react';
+import { uuiMod } from '@epam/uui-core';
 
 export const FOCUS_EDITOR_EVENT = 'uui-focus-editor';
 export const BLUR_EDITOR_EVENT = 'uui-blur-editor';
@@ -33,25 +34,26 @@ export const createEventEditorPlugin = createPluginFactory({
 });
 
 export const useFocusEvents = ({
+    editorWrapperRef,
     editorId,
-    onFocus,
-    onBlur,
+    isReadonly,
 }: {
+    editorWrapperRef: MutableRefObject<HTMLDivElement>
     editorId: string,
-    onFocus: () => void,
-    onBlur: () => void
+    isReadonly?: boolean,
 }) => {
     useEffect(() => {
         const onFocusEditor = (event: Event) => {
             const id = (event as any).detail.id;
-            if (editorId === id) {
-                onFocus();
+            const allowFocus = editorWrapperRef.current && !isReadonly && editorId === id;
+            if (allowFocus) {
+                editorWrapperRef.current.classList.add(uuiMod.focus);
             }
         };
         const onBlurEditor = (event: Event) => {
             const id = (event as any).detail.id;
-            if (editorId === id) {
-                onBlur();
+            if (editorWrapperRef.current && editorId === id) {
+                editorWrapperRef.current.classList.remove(uuiMod.focus);
             }
         };
 
@@ -62,5 +64,5 @@ export const useFocusEvents = ({
             document.removeEventListener(FOCUS_EDITOR_EVENT, onFocusEditor);
             document.removeEventListener(BLUR_EDITOR_EVENT, onBlurEditor);
         };
-    }, [editorId, onFocus, onBlur]);
+    }, [editorId, editorWrapperRef, isReadonly]);
 };
