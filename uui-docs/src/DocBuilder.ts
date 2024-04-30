@@ -128,7 +128,8 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
 
     static convertPreviewPropsItemToRenderCases = (ppi: TComponentPreview<unknown>, docs: DocBuilder<PropDocPropsUnknown>): TPreviewPropsItemRenderCases => {
         let ctxToSet = ppi.context || TDocContext.Default;
-        const ctxToSetSupported = !!docs.contexts.find((ctx) => ctx.name === ctxToSet);
+        // Assumption: all components support Default context, so we never report error when Default context is selected.
+        const ctxToSetSupported = ctxToSet === TDocContext.Default || !!docs.contexts.find((ctx) => ctx.name === ctxToSet);
         if (!ctxToSetSupported) {
             ctxToSet = undefined;
             console.error(`The context="${ctxToSet}" is not supported by the component`);
