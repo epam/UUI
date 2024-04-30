@@ -133,6 +133,10 @@ export enum TAlertPreview {
     'Layout with icon' = 'Layout with icon',
     'Layout without icon' = 'Layout without icon'
 }
+export enum TIconButtonPreview {
+    Colors = 'Colors',
+    Layout = 'Layout'
+}
 
 /**
  * Keep list of previews in sync with corresponding *.doc.tsx files
@@ -149,4 +153,5 @@ export type TPreviewIdByComponentId = {
     [TComponentId.countIndicator]: TCountIndicatorPreview[],
     [TComponentId.accordion]: TAccordionPreview[],
     [TComponentId.alert]: TAlertPreview[],
+    [TComponentId.iconButton]: TIconButtonPreview[],
 };

@@ -11,11 +11,12 @@ import {
     TCountIndicatorPreview,
     TAccordionPreview,
     TAlertPreview,
+    TIconButtonPreview,
 } from '../src/data/testData';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
-    accordion, alert,
+    accordion, alert, iconButton,
 } = TComponentId;
 
 const builder = new TestBuilder();
@@ -30,5 +31,6 @@ builder.add(textInput, { previewId: Object.values(TTextInputPreview) });
 builder.add(countIndicator, { previewId: Object.values(TCountIndicatorPreview) });
 builder.add(accordion, { previewId: Object.values(TAccordionPreview) });
 builder.add(alert, { previewId: Object.values(TAlertPreview) });
+builder.add(iconButton, { previewId: Object.values(TIconButtonPreview) });
 
 builder.buildTests();
