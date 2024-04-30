@@ -15,7 +15,7 @@ interface SidebarProps {
 
 // eslint-disable-next-line react/function-component-definition
 export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) => {
-    const editor = useEditorState();
+    const editor = useEditorState(); // TODO: use useEditorRef
     const isBlockSelected = isBlock(editor, editor.value);
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
