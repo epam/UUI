@@ -124,6 +124,10 @@ export enum TCountIndicatorPreview {
     Colors = 'Colors',
     Sizes = 'Sizes'
 }
+export enum TAccordionPreview {
+    Expanded = 'Expanded',
+    Collapsed = 'Collapsed'
+}
 
 /**
  * Keep list of previews in sync with corresponding *.doc.tsx files
@@ -138,4 +142,5 @@ export type TPreviewIdByComponentId = {
     [TComponentId.switch]: TSwitchPreview[],
     [TComponentId.checkbox]: TCheckboxPreview[],
     [TComponentId.countIndicator]: TCountIndicatorPreview[],
+    [TComponentId.accordion]: TAccordionPreview[],
 };
