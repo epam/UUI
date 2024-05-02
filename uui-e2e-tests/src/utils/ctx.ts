@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileNameToTestName } from './testNameUtils';
 import { Logger } from './logger';
 import { hasCliArg, readEnvParams } from '../../scripts/cliUtils';
 import { CLI_ARGS } from '../../scripts/constants';
@@ -34,8 +33,8 @@ export class Ctx {
         engines.forEach((name) => {
             const enginePath = path.resolve(rootDir, name);
             fs.readdirSync(enginePath).forEach((fileName) => {
-                const fileNameNoExt = path.basename(fileName, '.png');
-                if (!this.seenTestNames.has(fileNameToTestName(fileNameNoExt))) {
+                const testName = path.basename(fileName, '.png');
+                if (!this.seenTestNames.has(testName)) {
                     obsoleteScreenshots.push(path.resolve(enginePath, fileName));
                 }
             });

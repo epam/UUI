@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures';
 import { PreviewPageParams, ScreenshotTestParamsSingle, TMatrix, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
-import { testNameToFileName, createUniqueTestName } from './testNameUtils';
+import { createUniqueTestName } from './testNameUtils';
 import { Ctx } from './ctx';
 import { screenshotsDirAbsPath } from '../../playwright.config';
 import { PreviewPage } from '../pages/previewPage';
@@ -57,9 +57,8 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
             matrix.previewId.forEach((previewId) => {
                 const pageParams = { theme, isSkin, previewId, componentId };
                 const testName = createUniqueTestName({ runId, pageParams });
-                const screenshotName = testNameToFileName(testName);
                 ctx.seen(testName);
-                testScreenshot({ pageParams, testName, screenshotName: `${screenshotName}.png`, onBeforeExpect: matrix.onBeforeExpect });
+                testScreenshot({ pageParams, testName, screenshotName: `${testName}.png`, onBeforeExpect: matrix.onBeforeExpect });
             });
         });
     });
