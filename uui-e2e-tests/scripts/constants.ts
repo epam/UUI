@@ -1,6 +1,7 @@
 export const CLI_ARGS = {
     PW_DOCKER_UPDATE_SNAPSHOTS: '--updateSnapshots',
     PW_DOCKER_PROJECT_CHROMIUM: '--projectChromium',
+    DRY_RUN_INDICATOR: '--list',
 };
 export const YARN_TASKS = {
     DOCKER_TEST_E2E: 'docker-test-e2e',
