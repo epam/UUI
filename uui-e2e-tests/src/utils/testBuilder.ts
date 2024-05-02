@@ -3,7 +3,7 @@ import { test } from '../fixtures';
 import { ScreenshotTestParamsSingle, TMatrix, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
 import { createUniqueTestName } from './testNameUtils';
-import { Ctx } from './ctx';
+import { TestBuilderContext } from './testBuilderContext';
 import { screenshotsDirAbsPath } from '../../playwright.config';
 
 export class TestBuilder {
@@ -36,7 +36,7 @@ export class TestBuilder {
     }
 
     buildTests(params?: { runId?: string }) {
-        const ctx: Ctx = new Ctx(screenshotsDirAbsPath);
+        const ctx: TestBuilderContext = new TestBuilderContext(screenshotsDirAbsPath);
         const runId = params?.runId;
         this.cfgByComponent.forEach((matrixArr, componentId) => {
             matrixArr.forEach((matrix) => {
@@ -47,7 +47,7 @@ export class TestBuilder {
     }
 }
 
-function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: Ctx) {
+function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: TestBuilderContext) {
     const { componentId, matrix, runId } = builderParams;
     matrix.theme.forEach((theme) => {
         matrix.isSkin.forEach((isSkin) => {

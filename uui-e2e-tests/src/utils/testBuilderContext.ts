@@ -7,7 +7,7 @@ import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
 
 const { isCi, UUI_TEST_PARAM_ONLY_FAILED, UUI_TEST_PARAM_CHECK_ISSUES } = readUuiSpecificEnvVariables();
 
-export class Ctx {
+export class TestBuilderContext {
     private seenTestNames: Set<string> = new Set();
     private failedTestNames: Set<string>;
 
