@@ -7,14 +7,14 @@
   "private": true,
   "scripts": {
     "typecheck": "tsc --project ./tsconfig.json --skipLibCheck true --noEmit true",
-    "docker-test-e2e": "yarn typecheck && npx playwright test",
-    "docker-test-e2e-chromium": "yarn typecheck && npx playwright test --project=chromium",
+    "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests",
     "docker-test-e2e-update": "yarn docker-test-e2e --update-snapshots",
     "local-test-e2e-deps-install": "npx ../node_modules/playwright install --with-deps chromium webkit",
     "local-test-e2e": "yarn typecheck && npx ../node_modules/playwright test",
+    "local-check-issues": "cross-env UUI_TEST_PARAM_CHECK_ISSUES=true yarn local-test-e2e --list",
     "test-e2e": "ts-node scripts/cmd/cmdRunPwDocker.ts",
-    "test-e2e-chromium": "yarn test-e2e --projectChromium",
-    "test-e2e-update": "yarn test-e2e --updateSnapshots",
+    "test-e2e-chromium": "cross-env UUI_TEST_PARAM_PROJECT=chromium UUI_TEST_PARAM_ONLY_FAILED=false yarn test-e2e",
+    "test-e2e-update": "cross-env UUI_TEST_PARAM_UPDATE_SNAPSHOTS=true yarn test-e2e",
     "test-e2e-report": "npx ../node_modules/playwright show-report ./tests/.report/report",
     "start-server": "yarn --cwd ../app server"
   },
