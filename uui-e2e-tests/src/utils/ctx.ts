@@ -3,7 +3,9 @@ import path from 'node:path';
 import { fileNameToTestName } from './testNameUtils';
 import { Logger } from './logger';
 import { readEnvFile } from '../../scripts/envFileUtils';
+import { readEnvParams } from '../../scripts/cliUtils';
 
+const { isCi } = readEnvParams();
 const { UUI_REPORT_OBSOLETE_SCREENSHOTS } = readEnvFile();
 
 export class Ctx {
@@ -39,8 +41,10 @@ export class Ctx {
             });
         });
         if (obsoleteScreenshots.length > 0) {
-            Logger.error(`Next screenshots are not used by any test:\n${obsoleteScreenshots.join('\n\t')}`);
-            process.exit(1);
+            Logger.warn(`Next screenshots are not used by any test:\n${obsoleteScreenshots.join('\n\t')}`);
+            if (isCi) {
+                process.exit(1);
+            }
         }
     }
 }

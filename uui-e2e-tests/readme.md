@@ -75,10 +75,14 @@ Please make sure that this tool is compatible with Docker's CLI.
 ## NPM tasks to use
 Note: If the tasks are run for the very first time, it might take some time to download necessary docker images (up to 10 min, depends on network speed).
 ```shell
-# Run tests in docker container
+# Run only "chromium" tests in docker container
+# NOTE: It is preferable for local dev environment
+yarn test-e2e-chromium
+
+# Run all tests in docker container
 yarn test-e2e
 
-# Run tests in docker container and update all screenshots
+# Run all tests in docker container and update all screenshots
 yarn test-e2e-update
 
 # Show report located in "uui-e2e-tests/tests/.report/report" folder
