@@ -23,6 +23,7 @@ export const screenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/__screen
 const testMatch = `${parentDir}tests/*.e2e.ts`;
 const outputDir = `${parentDir}tests/.report/results`;
 const outputFolder = `${parentDir}tests/.report/report`;
+const outputJsonFile = `${parentDir}tests/.report/report.json`;
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}';
 export const stylePath = `${parentDir}src/fixtures/screenshot.css`;
 
@@ -36,7 +37,10 @@ export default defineConfig({
     workers,
     outputDir,
     snapshotPathTemplate,
-    reporter: [['html', { outputFolder, open: (isDocker || isCi) ? 'never' : 'on-failure' }]],
+    reporter: [
+        ['html', { outputFolder, open: (isDocker || isCi) ? 'never' : 'on-failure' }],
+        ['json', { outputFile: outputJsonFile }],
+    ],
     use: {
         baseURL: server.baseUrl,
         trace,
