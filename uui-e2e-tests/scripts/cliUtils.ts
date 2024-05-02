@@ -1,18 +1,8 @@
-import { CLI_ARGS } from './constants';
 // @ts-ignore
 import spawn from 'cross-spawn';
 import { Logger } from '../src/utils/logger';
 
-export function readEnvParams() {
-    const { UUI_IS_DOCKER, CI, UUI_DOCKER_HOST_MACHINE_IP } = process.env;
-    return {
-        isDocker: UUI_IS_DOCKER === 'true',
-        isCi: !!CI,
-        UUI_DOCKER_HOST_MACHINE_IP,
-    };
-}
-
-export function hasCliArg(arg: typeof CLI_ARGS[keyof typeof CLI_ARGS]) {
+export function hasCliArg(arg: string) {
     const args = getAllCliArgs();
     return args.indexOf(arg) !== -1;
 }
