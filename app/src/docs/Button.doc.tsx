@@ -106,7 +106,7 @@ export class ButtonDoc extends BaseDocsBlock {
                     fill: { examples: '*' },
                     isDisabled: { examples: '*' },
                 },
-                cellSize: '100-70',
+                cellSize: '100-50',
             });
         },
     };
