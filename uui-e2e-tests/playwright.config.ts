@@ -1,10 +1,10 @@
+import path from 'node:path';
 import { defineConfig, devices, type TraceMode } from '@playwright/test';
 import { SHARED_DEVICE_CFG } from './src/constants';
-import { readEnvParams } from './scripts/cliUtils';
 import { readEnvFile } from './scripts/envFileUtils';
-import path from 'node:path';
+import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 
-const { isCi, isDocker } = readEnvParams();
+const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables();
 const { UUI_APP_BASE_URL } = readEnvFile();
 
 const timeout = isCi ? 20000 : 50000;
@@ -23,7 +23,7 @@ export const screenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/__screen
 const testMatch = `${parentDir}tests/*.e2e.ts`;
 const outputDir = `${parentDir}tests/.report/results`;
 const outputFolder = `${parentDir}tests/.report/report`;
-const outputJsonFile = `${parentDir}tests/.report/report.json`;
+export const outputJsonFile = `${parentDir}tests/.report/report.json`;
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}';
 export const stylePath = `${parentDir}src/fixtures/screenshot.css`;
 
@@ -59,7 +59,12 @@ export default defineConfig({
                 ...devices['Desktop Safari'],
             },
         },
-    ],
+    ].filter(({ name }) => {
+        if (UUI_TEST_PARAM_PROJECT) {
+            return name === UUI_TEST_PARAM_PROJECT;
+        }
+        return true;
+    }),
     webServer: server.startCmd ? {
         command: server.startCmd,
         url: server.baseUrl,
