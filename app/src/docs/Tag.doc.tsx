@@ -89,7 +89,7 @@ export class TagDoc extends BaseDocsBlock {
                     isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
                     onClear: { examples: ['callback', undefined] },
                 },
-                cellSize: '110-60',
+                cellSize: '150-60',
             });
             docPreview.add({
                 id: TTagPreview.Colors,
