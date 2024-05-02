@@ -34,7 +34,8 @@ function main() {
         ],
         exitOnErr: false,
     });
-    const updateSnapshots = hasCliArg(CLI_ARGS.PW_DOCKER_UPDATE_SNAPSHOTS);
+
+    const npmTaskName = resolvePwInDockerTaskName();
     spawnProcessSync({
         cmd: CONTAINER_ENGINE_CMD,
         args: [
@@ -52,10 +53,19 @@ function main() {
             '-e',
             `UUI_DOCKER_HOST_MACHINE_IP=${currentMachineIpv4}`,
             DOCKER_IMAGE_TAGS.TEST,
-            updateSnapshots ? YARN_TASKS.DOCKER_TEST_E2E_UPDATE : YARN_TASKS.DOCKER_TEST_E2E,
+            npmTaskName,
         ],
         exitOnErr: true,
     });
+}
+
+function resolvePwInDockerTaskName() {
+    if (hasCliArg(CLI_ARGS.PW_DOCKER_UPDATE_SNAPSHOTS)) {
+        return YARN_TASKS.DOCKER_TEST_E2E_UPDATE;
+    } else if (hasCliArg(CLI_ARGS.PW_DOCKER_PROJECT_CHROMIUM)) {
+        return YARN_TASKS.DOCKER_TEST_E2E_CHROMIUM;
+    }
+    return YARN_TASKS.DOCKER_TEST_E2E;
 }
 
 function getVolumesMapArgs() {

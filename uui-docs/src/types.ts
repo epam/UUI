@@ -112,6 +112,9 @@ export type TPreviewPropsItemMatrixCondition<TProps, TProp extends keyof TProps>
 type TPreviewPropsItemMatrixValues<TProps, TProp extends keyof TProps> = {
     /** Array of values to be directly passed to the component */
     values: TProps[TProp][];
+    /**
+     * exclude prop from current iteration based on the values of other props which are part of the same iteration
+     */
     condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
     examples?: never;
 };
@@ -121,12 +124,25 @@ type TPreviewPropsItemMatrixExamples<TProps, TProp extends keyof TProps> = {
      * NOTE: it is NOT array of example ids, because ids are numeric and thus difficult to maintain.
      */
     examples: string[] | '*';
+    /**
+     * exclude prop from current iteration based on the values of other props which are part of the same iteration
+     */
     condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
     values?: never;
 };
 
-type TCellSize = 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110 | 120 | 130 | 140 | 150 | 160 | 170 |
-180 | 200 | 220 | 240 | 250 | 260 | 280 | 320 | 360 | 400 | 460 | 520 | 580 | 640 | 1280;
+type TCellSize =
+    // step=5 (until 200)
+    | 20 | 25 | 30 | 35 | 40 | 45 | 50
+    | 55 | 60 | 65 | 70 | 75 | 80 | 85 | 90 | 95 | 100
+    | 105 | 110 | 115 | 120 | 125 | 130 | 135 | 140 | 145 | 150
+    | 155 | 160 | 165 | 170 | 175 | 180 | 185 | 190 | 195 | 200
+    // step=10 (until 500)
+    | 210 | 220 | 230 | 240 | 250 | 260 | 270 | 280 | 290 | 300
+    | 310 | 320 | 330 | 340 | 350 | 360 | 370 | 380 | 390 | 400
+    | 410 | 420 | 430 | 440 | 450 | 460 | 470 | 480 | 490 | 500
+    // etc.
+    | 640 | 1280;
 /**
  * Cell 'width-height'. E.g.: `100-200` (means 100px width and 200px height)
  *
