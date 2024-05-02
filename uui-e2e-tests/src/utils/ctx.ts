@@ -2,11 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileNameToTestName } from './testNameUtils';
 import { Logger } from './logger';
-import { readEnvFile } from '../../scripts/envFileUtils';
-import { readEnvParams } from '../../scripts/cliUtils';
+import { hasCliArg, readEnvParams } from '../../scripts/cliUtils';
+import { CLI_ARGS } from '../../scripts/constants';
+import { PLATFORM } from '../constants';
 
 const { isCi } = readEnvParams();
-const { UUI_REPORT_OBSOLETE_SCREENSHOTS } = readEnvFile();
 
 export class Ctx {
     private seenTestNames: Set<string> = new Set();
@@ -21,10 +21,10 @@ export class Ctx {
     }
 
     reportUnusedScreenshots() {
-        if (UUI_REPORT_OBSOLETE_SCREENSHOTS !== 'true') {
+        if (!hasCliArg(CLI_ARGS.DRY_RUN_INDICATOR)) {
             return;
         }
-        const rootDir = path.resolve(this.screenshotsDir, process.platform);
+        const rootDir = path.resolve(this.screenshotsDir, PLATFORM);
         if (!fs.existsSync(rootDir)) {
             // The directory does not exist. Obsolete screenshots check is skipped.
             return;

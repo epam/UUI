@@ -12,6 +12,7 @@
     "docker-test-e2e-update": "yarn docker-test-e2e --update-snapshots",
     "local-test-e2e-deps-install": "npx ../node_modules/playwright install --with-deps chromium webkit",
     "local-test-e2e": "yarn typecheck && npx ../node_modules/playwright test",
+    "local-check-issues": "yarn typecheck && npx ../node_modules/playwright test --list",
     "test-e2e": "ts-node scripts/cmd/cmdRunPwDocker.ts",
     "test-e2e-chromium": "yarn test-e2e --projectChromium",
     "test-e2e-update": "yarn test-e2e --updateSnapshots",
