@@ -123,10 +123,10 @@ const Editor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'value' | 
 }));
 
 const SlateEditor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>>(({
-    plugins: _plugins = [paragraphPlugin()],
-    isReadonly,
+    value: propsValue,
     onValueChange,
-    value: _value,
+    plugins: propsPlugins = [paragraphPlugin()],
+    isReadonly,
     autoFocus,
     fontSize,
     cx: classes,
@@ -143,8 +143,8 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>
     const editor = useRef<PlateEditor | null>(null);
 
     const plugins = useMemo(
-        () => createPlugins((_plugins).flat(), { components: createPlateUI() }),
-        [_plugins],
+        () => createPlugins((propsPlugins).flat(), { components: createPlateUI() }),
+        [propsPlugins],
     );
 
     const onChange = useCallback((v: Value) => {
@@ -155,8 +155,8 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, Omit<PlateEditorProps, 'id'>
     }, [isReadonly, onValueChange]); // onValueChange should be in deps ideally
 
     const value = useMemo(() => {
-        return migrateSchema(_value);
-    }, [_value]);
+        return migrateSchema(propsValue);
+    }, [propsValue]);
 
     const forceUpdate = useForceUpdate();
     if (value && editor.current?.children && editor.current.children !== value) {
