@@ -112,6 +112,9 @@ export type TPreviewPropsItemMatrixCondition<TProps, TProp extends keyof TProps>
 type TPreviewPropsItemMatrixValues<TProps, TProp extends keyof TProps> = {
     /** Array of values to be directly passed to the component */
     values: TProps[TProp][];
+    /**
+     * exclude prop from current iteration based on the values of other props which are part of the same iteration
+     */
     condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
     examples?: never;
 };
@@ -121,6 +124,9 @@ type TPreviewPropsItemMatrixExamples<TProps, TProp extends keyof TProps> = {
      * NOTE: it is NOT array of example ids, because ids are numeric and thus difficult to maintain.
      */
     examples: string[] | '*';
+    /**
+     * exclude prop from current iteration based on the values of other props which are part of the same iteration
+     */
     condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
     values?: never;
 };
