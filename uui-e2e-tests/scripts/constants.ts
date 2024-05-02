@@ -10,7 +10,6 @@ export enum ENV_UUI_PARAMS {
 }
 export const YARN_TASKS = {
     DOCKER_TEST_E2E: 'docker-test-e2e',
-    DOCKER_TEST_E2E_CHROMIUM: 'docker-test-e2e-chromium',
     DOCKER_TEST_E2E_UPDATE: 'docker-test-e2e-update',
 };
 export const DOCKER_IMAGE_TAGS = {
