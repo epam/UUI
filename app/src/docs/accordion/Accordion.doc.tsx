@@ -7,11 +7,7 @@ import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { accordionExamples } from './accordionExamples';
 import { IControlled } from '@epam/uui-core';
-
-enum TAccordionPreview {
-    Expanded = 'Expanded',
-    Collapsed = 'Collapsed'
-}
+import { TAccordionPreview } from '../_types/previewIds';
 
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
