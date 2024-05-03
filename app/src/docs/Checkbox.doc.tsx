@@ -5,10 +5,7 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
-
-enum TCheckboxPreview {
-    Basic = 'Basic'
-}
+import { TCheckboxPreview } from './_types/previewIds';
 
 export class CheckboxDoc extends BaseDocsBlock {
     title = 'Checkbox';

@@ -5,16 +5,7 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { DocBuilder, DocPreviewBuilder, TComponentPreview, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
-
-enum TTextInputPreview {
-    'Form'= 'Form',
-    'Form (invalid)'= 'Form (invalid)',
-    'Form (disabled)'= 'Form (disabled)',
-    'Form (read only)'= 'Form (read only)',
-    'Inline'= 'Inline',
-    'Inline (disabled)'= 'Inline (disabled)',
-    'Inline (read only)'= 'Inline (read only)'
-}
+import { TTextInputPreview } from './_types/previewIds';
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';

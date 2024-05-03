@@ -21,13 +21,14 @@ export const typeRefRTEPlugin = () => {
         },
         handlers: {
             onKeyDown: (editor) => (event) => {
-                const imageEntry = getBlockAbove(editor, { match: { type: TYPE_REF_TABLE_KEY } });
-                if (!imageEntry) return;
+                const typeRefEntry = getBlockAbove(editor, { match: { type: TYPE_REF_TABLE_KEY } });
+                if (!typeRefEntry) return;
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
                 }
             },
+            onCopy: () => (e) => e.stopPropagation(), // fix crash when copy table text in edit mode
         },
     });
 
@@ -86,6 +87,7 @@ export function AddTypeRefTableModal({ editor, success, abort, ...props }: AddTy
         setElements(editor, {
             type: TYPE_REF_TABLE_KEY,
             data: { typePath: typePath },
+            children: [{ text: '' }],
         });
 
         success(true);

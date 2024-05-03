@@ -1,5 +1,5 @@
 import { TComponentId, TPreviewIdByComponentId } from './data/testData';
-import { PreviewPage } from './pages/previewPage';
+import type { PreviewPage } from './pages/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
 
