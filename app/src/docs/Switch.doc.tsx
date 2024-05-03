@@ -5,10 +5,7 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
-
-enum TSwitchPreview {
-    Basic = 'Basic'
-}
+import { TSwitchPreview } from './_types/previewIds';
 
 export class SwitchDoc extends BaseDocsBlock {
     title = 'Switch';

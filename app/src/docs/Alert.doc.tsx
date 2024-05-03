@@ -5,12 +5,7 @@ import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
-
-enum TAlertPreview {
-    Colors = 'Colors',
-    'Layout with icon' = 'Layout with icon',
-    'Layout without icon' = 'Layout without icon'
-}
+import { TAlertPreview } from './_types/previewIds';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';

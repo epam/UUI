@@ -12,7 +12,7 @@ import {
     TAccordionPreview,
     TAlertPreview,
     TIconButtonPreview,
-} from '../src/data/testData';
+} from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
