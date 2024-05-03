@@ -42,7 +42,7 @@ interface PlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     toolbarPosition?: 'floating' | 'fixed';
 }
 
-const SlateEditor = forwardRef<HTMLDivElement, PlateEditorProps>(({
+const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>(({
     value: propsValue,
     onValueChange,
     plugins: propsPlugins = [paragraphPlugin()],
@@ -157,6 +157,6 @@ const SlateEditor = forwardRef<HTMLDivElement, PlateEditorProps>(({
             </div>
         </Plate>
     );
-});
+}));
 
 export { SlateEditor, basePlugins };
