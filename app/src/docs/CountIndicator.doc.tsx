@@ -5,11 +5,7 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { DocBuilder, DocPreviewBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, EditableDocContent, DocExample } from '../common';
-
-enum TCountIndicatorPreview {
-    Colors = 'Colors',
-    Sizes = 'Sizes'
-}
+import { TCountIndicatorPreview } from './_types/previewIds';
 
 export class CountIndicatorDoc extends BaseDocsBlock {
     title = 'CountIndicator';

@@ -23,8 +23,7 @@ export const DOCKER_CONTAINER_NAME = 'container-uui-e2e-tests';
 export const HOST_IP_PH = '{{HOST_NAME}}';
 
 export const ENV_FILES = {
-    LOCAL: '.env.local',
-    DOCKER: '.env.docker',
+    ENV: '.env',
 };
 
 export const CONTAINER_ENGINES = {

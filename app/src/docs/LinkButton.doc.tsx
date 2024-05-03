@@ -14,13 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { getCurrentTheme } from '../helpers';
-
-enum TLinkButtonPreview {
-    'One-line caption' = 'One-line caption',
-    'Two-line caption' = 'Two-line caption',
-    'No caption' = 'No caption',
-    Colors = 'Colors'
-}
+import { TLinkButtonPreview } from './_types/previewIds';
 
 export class LinkButtonDoc extends BaseDocsBlock {
     title = 'Link Button';

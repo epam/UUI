@@ -8,11 +8,7 @@ import { AvatarStackProps } from '@epam/uui-components';
 import { uuiMarkers } from '@epam/uui-core';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { ALL_AVATARS } from './avatarsExamples';
-
-enum TAvatarStackPreview {
-    'Smaller size' = 'Smaller size',
-    'Bigger size' = 'Bigger size'
-}
+import { TAvatarStackPreview } from '../_types/previewIds';
 
 export class AvatarStackDoc extends BaseDocsBlock {
     title = 'AvatarStack';

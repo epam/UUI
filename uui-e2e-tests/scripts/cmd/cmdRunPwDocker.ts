@@ -88,7 +88,7 @@ function getVolumesMapArgs() {
         './src',
         './tests',
         './playwright.config.ts',
-        './.env.docker',
+        './.env',
         './tsconfig.json',
     ].reduce<string[]>((acc, from) => {
         const to = `/app/${from.replace('./', '')}`;

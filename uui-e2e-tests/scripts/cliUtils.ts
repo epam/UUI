@@ -2,11 +2,6 @@
 import spawn from 'cross-spawn';
 import { Logger } from '../src/utils/logger';
 
-export function hasCliArg(arg: string) {
-    const args = getAllCliArgs();
-    return args.indexOf(arg) !== -1;
-}
-
 export function isCmdSuccessful(params: { cmd: string, args: string[], cwd?: string }) {
     const { cwd = process.cwd(), cmd, args } = params;
     const result = spawn.sync(
@@ -37,8 +32,4 @@ export function spawnProcessSync(params: { cmd: string, args: string[], cwd?: st
             process.exit(1);
         }
     }
-}
-
-export function getAllCliArgs() {
-    return [...process.argv.slice(2)];
 }

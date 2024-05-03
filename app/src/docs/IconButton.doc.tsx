@@ -14,11 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
-
-enum TIconButtonPreview {
-    Colors = 'Colors',
-    Layout = 'Layout'
-}
+import { TIconButtonPreview } from './_types/previewIds';
 
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
