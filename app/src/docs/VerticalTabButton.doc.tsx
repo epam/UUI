@@ -94,29 +94,6 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
                 cellSize,
             });
             docPreview.add({
-                id: TVerticalTabButtonPreview['Active Dropdown Open'],
-                matrix: {
-                    isLinkActive: { values: [true] },
-                    isDisabled: { values: [false] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [true] },
-                    ...baseMatrix,
-                    onClear: { examples: [undefined, TEST_DATA.callback] },
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Active Dropdown Open Disabled'],
-                matrix: {
-                    isLinkActive: { values: [true] },
-                    isDisabled: { values: [true] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [true] },
-                    ...baseMatrix,
-                },
-                cellSize,
-            });
-            docPreview.add({
                 id: TVerticalTabButtonPreview['Inactive'],
                 matrix: {
                     isLinkActive: { values: [false] },
@@ -156,29 +133,6 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
                     isDisabled: { values: [true] },
                     isDropdown: { values: [true] },
                     isOpen: { values: [false] },
-                    ...baseMatrix,
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Inactive Dropdown Open'],
-                matrix: {
-                    isLinkActive: { values: [false] },
-                    isDisabled: { values: [false] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [true] },
-                    ...baseMatrix,
-                    onClear: { examples: [undefined, TEST_DATA.callback] },
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Inactive Dropdown Open Disabled'],
-                matrix: {
-                    isLinkActive: { values: [false] },
-                    isDisabled: { values: [true] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [true] },
                     ...baseMatrix,
                 },
                 cellSize,
