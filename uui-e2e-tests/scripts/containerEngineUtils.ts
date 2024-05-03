@@ -7,7 +7,7 @@ export function getContainerEngineCmd(): string {
     const envFile = readEnvFile();
     let cmdEffective: string = envFile.UUI_DOCKER_CONTAINER_ENGINE;
     if (cmdEffective) {
-        Logger.info(`The "${cmdEffective}" container engine is explicitly specified in "${ENV_FILES.DOCKER}"; It will be used.`);
+        Logger.info(`The "${cmdEffective}" container engine is explicitly specified in "${ENV_FILES.ENV}"; It will be used.`);
         return cmdEffective;
     } else {
         const isPodmanInstalled = isCmdSuccessful({ cmd: CONTAINER_ENGINES.podman, args: ['-v'] });
@@ -18,7 +18,7 @@ export function getContainerEngineCmd(): string {
             // fallback
             cmdEffective = CONTAINER_ENGINES.docker;
         }
-        Logger.info(`No container engine is explicitly specified in "${ENV_FILES.DOCKER}"; "${cmdEffective}" will be used.`);
+        Logger.info(`No container engine is explicitly specified in "${ENV_FILES.ENV}"; "${cmdEffective}" will be used.`);
     }
     return cmdEffective;
 }

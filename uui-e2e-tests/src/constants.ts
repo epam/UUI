@@ -1,5 +1,6 @@
 import { PlaywrightTestOptions } from '@playwright/test';
 
+export const PLATFORM = 'linux';
 export const PREVIEW_URL = '/preview';
 export const PlayWrightInterfaceName = '_uui_playwright_interface';
 

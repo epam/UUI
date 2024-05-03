@@ -14,13 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
-
-enum TButtonPreview {
-    'One-line caption' = 'One-line caption',
-    'Two-line caption' = 'Two-line caption',
-    'No caption' = 'No caption',
-    Colors = 'Colors'
-}
+import { TButtonPreview } from './_types/previewIds';
 
 export class ButtonDoc extends BaseDocsBlock {
     title = 'Button';
@@ -106,7 +100,7 @@ export class ButtonDoc extends BaseDocsBlock {
                     fill: { examples: '*' },
                     isDisabled: { examples: '*' },
                 },
-                cellSize: '100-70',
+                cellSize: '100-50',
             });
         },
     };

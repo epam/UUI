@@ -58,6 +58,10 @@
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
   * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
+* [useForm]: 
+  * fixed `beforeLeave` callback invocation in case of redirect at onSuccess callback
+  * fixed `isInvalid`, `validationMessage` and `validationProps` value returned from hook in case of server validation. Before was returned only client validation value, now it's merged with server validation.
+  * added `setServerValidationState` callback to externally change server validation state.
 * [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile.
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 * [DatePicker] renderDay prop callback signature updated
@@ -121,41 +125,6 @@
 * [RTE]: fixed editor focusable area and appearing cursor on first click
 * [RTE]: disable image resizing in readonly mode
 * [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: prevent sorting change on column resize;
-* [Blocker]: changed the exit animation duration from 1000ms to 200ms
-* [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
-* [ApiContext]: add link to the login page in 'auth lost' modal
-* [IconButton]: fixed property `isDropdown`;
-* [Switch]: fixed property `isReadonly`;
-* [TextArea]: fixed ability to scroll when `readonly` or `disable`;
-* [Modals]: change 'accent' buttons to 'primary' in UUI built in modals
-* [Badge]: small style tweaks according to the design
-
-# 5.6.2 - 15.03.2024
-
-**What's Fixed**
-* [PickerInput]: fixed toggler blur in case searchPosition = 'none' i18n
-* [ColumnsConfigurationModal]: small visual tweaks
-* [Avatar]: changed default avatar img
-
-
-**What's Fixed**
-* [PickerInput]: fixed loading of selectedId with parents.
-    * Fixed partially selected with predefined selected value.
-    * Fixed fetching missing parents for selected element in PickerInput.
-* [PickerInput]: fixed 'unknown records' removing
-* [PickerInput]: Fixed focus reset after clicking outside
-* [PickerInput]: fixed unnecessary PickerInput `onValueChange` calls on `dataSourceState` change(search, focusedIndex change) in single select with `valueType=entity`.
-* [PickerList]: aligned caption by the left side in the footer.
-* [DropdownContainer]: disable scroll to the focused element after dropdown close
-* [DropdownContainer]: fixed warning about incorrect ref in React strict mode
-* [Avatar]: change type of 'img' prop to also accept null value
-* [RTE]: fixed table border rendering issues in Firefox
-* [RTE]: fixed placeholder position in Safari
-* [RTE]: fixed editor focusable area and appearing cursor on first click
-* [RTE]: disable image resizing in readonly mode
-* [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: changed default column `minWidth` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself

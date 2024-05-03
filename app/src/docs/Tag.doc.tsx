@@ -14,13 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { getCurrentTheme } from '../helpers';
-
-enum TTagPreview {
-    'One-line caption' = 'One-line caption',
-    'Two-line caption' = 'Two-line caption',
-    'No caption' = 'No caption',
-    Colors = 'Colors'
-}
+import { TTagPreview } from './_types/previewIds';
 
 export class TagDoc extends BaseDocsBlock {
     title = 'Tag';
@@ -89,7 +83,7 @@ export class TagDoc extends BaseDocsBlock {
                     isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
                     onClear: { examples: ['callback', undefined] },
                 },
-                cellSize: '110-60',
+                cellSize: '150-60',
             });
             docPreview.add({
                 id: TTagPreview.Colors,
