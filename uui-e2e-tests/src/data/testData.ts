@@ -4,7 +4,7 @@ import {
     TBadgePreview,
     TButtonPreview, TCheckboxPreview, TCountIndicatorPreview, TIconButtonPreview,
     TLinkButtonPreview, TSwitchPreview, TTagPreview,
-    TTextInputPreview,
+    TTextInputPreview, TVerticalTabButtonPreview, TTabButtonPreview,
 } from './previewIds';
 
 /**
@@ -99,4 +99,6 @@ export type TPreviewIdByComponentId = {
     [TComponentId.accordion]: TAccordionPreview[],
     [TComponentId.alert]: TAlertPreview[],
     [TComponentId.iconButton]: TIconButtonPreview[],
+    [TComponentId.tabButton]: TTabButtonPreview[],
+    [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
 };

@@ -64,3 +64,31 @@ export enum TIconButtonPreview {
     Colors = 'Colors',
     Layout = 'Layout'
 }
+export enum TTabButtonPreview {
+    'Active' = 'Active',
+    'Active Disabled' = 'Active Disabled',
+    'Active Dropdown' = 'Active Dropdown',
+    'Active Dropdown Disabled' = 'Active Dropdown Disabled',
+    'Active Dropdown Open' = 'Active Dropdown Open',
+    'Active Dropdown Open Disabled' = 'Active Dropdown Open Disabled',
+    'Inactive' = 'Inactive',
+    'Inactive Disabled' = 'Inactive Disabled',
+    'Inactive Dropdown' = 'Inactive Dropdown',
+    'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled',
+    'Inactive Dropdown Open' = 'Inactive Dropdown Open',
+    'Inactive Dropdown Open Disabled' = 'Inactive Dropdown Open Disabled'
+}
+export enum TVerticalTabButtonPreview {
+    'Active' = 'Active',
+    'Active Disabled' = 'Active Disabled',
+    'Active Dropdown' = 'Active Dropdown',
+    'Active Dropdown Disabled' = 'Active Dropdown Disabled',
+    'Active Dropdown Open' = 'Active Dropdown Open',
+    'Active Dropdown Open Disabled' = 'Active Dropdown Open Disabled',
+    'Inactive' = 'Inactive',
+    'Inactive Disabled' = 'Inactive Disabled',
+    'Inactive Dropdown' = 'Inactive Dropdown',
+    'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled',
+    'Inactive Dropdown Open' = 'Inactive Dropdown Open',
+    'Inactive Dropdown Open Disabled' = 'Inactive Dropdown Open Disabled'
+}
