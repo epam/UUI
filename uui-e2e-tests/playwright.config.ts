@@ -5,7 +5,7 @@ import { readEnvFile } from './scripts/envFileUtils';
 import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 
 const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables();
-const { UUI_APP_BASE_URL } = readEnvFile();
+const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
 const timeout = isCi ? 20000 : 50000;
 const maxFailures = isCi ? 10 : 20;
@@ -15,7 +15,7 @@ const forbidOnly = isCi;
 const trace = (isCi ? 'retry-with-trace' : 'retain-on-failure') as TraceMode;
 const server = {
     startCmd: isCi ? 'yarn start-server' : undefined,
-    baseUrl: UUI_APP_BASE_URL,
+    baseUrl: isCi ? UUI_APP_BASE_URL_CI : UUI_APP_BASE_URL,
 };
 //
 const parentDir = '';
