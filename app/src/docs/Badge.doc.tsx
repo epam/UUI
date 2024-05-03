@@ -14,12 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
-
-enum TBadgePreview {
-    'Colors' = 'Colors',
-    'Sizes with icon' = 'Sizes with icon',
-    'Sizes without icon' = 'Sizes without icon'
-}
+import { TBadgePreview } from './_types/previewIds';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
