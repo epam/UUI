@@ -89,7 +89,6 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
     }, [props.autoFocus, props.isReadonly]);
 
     /** render related */
-    /** could not be memoized, since slate is uncontrolled component */
     const renderEditable = useCallback(() => {
         return (
             <Fragment>
@@ -111,6 +110,7 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
         );
     }, [props.autoFocus, contentStyle, props.isReadonly, props.onBlur, props.onFocus, props.onKeyDown, props.placeholder, props.toolbarPosition]);
 
+    /** could not be memoized, since slate is uncontrolled component */
     const editorContent = props.scrollbars
         ? <ScrollBars cx={ css.scrollbars }>{ renderEditable() }</ScrollBars>
         : renderEditable();
