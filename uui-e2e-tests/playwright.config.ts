@@ -8,7 +8,7 @@ const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables()
 const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
 const timeout = isCi ? 20000 : 50000;
-const maxFailures = isCi ? 10 : 20;
+const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
 const workers = isCi ? 1 : undefined;
 const forbidOnly = isCi;

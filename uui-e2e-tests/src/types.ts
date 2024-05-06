@@ -22,7 +22,9 @@ export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByC
     theme: TTheme[];
     isSkin: boolean[];
     previewId: Previews;
-    onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>
+    onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>;
+    waitFor?: number;
+    blurActiveElement?: boolean;
 };
 export type TMatrixMinimal<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = Partial<TMatrix<Previews>> & { previewId: Previews };
 export type ScreenshotTestParamsSingle = {
