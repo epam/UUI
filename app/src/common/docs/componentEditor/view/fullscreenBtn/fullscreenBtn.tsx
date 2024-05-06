@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {
     Button, ControlGroup,
-    Dropdown, DropdownMenuButton, Panel, Text, Tooltip,
+    Dropdown, DropdownMenuBody, DropdownMenuButton, ScrollBars, Text, Tooltip,
 } from '@epam/uui';
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { TPreviewRef } from '../../../../../preview/types';
+import { DropdownBodyProps } from '@epam/uui-core';
 
 const LABELS = {
     Fullscreen: 'Fullscreen',
@@ -27,18 +28,20 @@ export function FullscreenBtn(props: { previewRef: TPreviewRef }) {
 
     const hasPredefinedPreviews = previewRef.predefinedPreviewRefs.length > 0;
 
-    const renderPredefinedPreviewList = () => {
+    const renderPredefinedPreviewList = (props: DropdownBodyProps) => {
         if (hasPredefinedPreviews) {
+            const allItems = previewRef.predefinedPreviewRefs.map(
+                ({ link, id }) => <DropdownMenuButton caption={ id } href={ link } target="_blank" key={ id } />,
+            );
             return (
-                <Panel background="surface-main" shadow={ true }>
-                    {
-                        previewRef.predefinedPreviewRefs.map(({ link, id }) => {
-                            return (
-                                <DropdownMenuButton caption={ id } href={ link } target="_blank" />
-                            );
-                        })
-                    }
-                </Panel>
+                <DropdownMenuBody
+                    { ...props }
+                    rawProps={ { style: { maxWidth: '250px', padding: '6px 0' } } }
+                >
+                    <ScrollBars style={ { maxHeight: '50vh' } }>
+                        { allItems }
+                    </ScrollBars>
+                </DropdownMenuBody>
             );
         }
         return null;

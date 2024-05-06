@@ -62,6 +62,18 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
                 test(testName, async ({ previewPage }) => {
                     await previewPage.editPreview(pageParams);
                     await matrix.onBeforeExpect({ previewPage });
+                    if (matrix.waitFor) {
+                        await previewPage.page.waitForTimeout(matrix.waitFor);
+                    }
+                    if (matrix.blurActiveElement) {
+                        await previewPage.page.evaluate(() => {
+                            // @ts-ignore
+                            const elem = document.activeElement;
+                            if (elem) {
+                                elem.blur();
+                            }
+                        });
+                    }
                     const opts = await previewPage.getScreenshotOptions();
                     await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
                 });
