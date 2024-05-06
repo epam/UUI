@@ -3,7 +3,14 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, DocPreviewBuilder, TComponentPreview, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize, TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { TTextInputPreview } from './_types/previewIds';
 
@@ -31,8 +38,8 @@ export class TextInputDoc extends BaseDocsBlock {
                 icon: 'action-account-fill.svg',
                 placeholder: 'Test placeholder',
             };
-
-            const baseMatrix: TComponentPreview<uui.TextInputProps>['matrix'] = {
+            type TMatrixLocal = TPreviewMatrix<uui.TextInputProps>;
+            const baseMatrix: TMatrixLocal = {
                 size: { examples: '*' },
                 icon: { examples: [undefined, TEST_DATA.icon] },
                 iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
@@ -41,70 +48,16 @@ export class TextInputDoc extends BaseDocsBlock {
                 onCancel: { examples: ['callback'] },
                 value: { values: [undefined, TEST_DATA.value] },
             };
-            docPreview.add({
-                id: TTextInputPreview['Form'],
-                matrix: {
-                    mode: { examples: ['form'] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
-            docPreview.add({
-                id: TTextInputPreview['Form (invalid)'],
-                matrix: {
-                    mode: { examples: ['form'] },
-                    isInvalid: { values: [true] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
-            docPreview.add({
-                id: TTextInputPreview['Form (disabled)'],
-                matrix: {
-                    mode: { examples: ['form'] },
-                    isDisabled: { values: [true] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
-            docPreview.add({
-                id: TTextInputPreview['Form (read only)'],
-                matrix: {
-                    mode: { examples: ['form'] },
-                    isReadonly: { values: [true] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
-            //
-            //
-            //
-            docPreview.add({
-                id: TTextInputPreview['Inline'],
-                matrix: {
-                    mode: { examples: ['inline'] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
-            docPreview.add({
-                id: TTextInputPreview['Inline (disabled)'],
-                matrix: {
-                    mode: { examples: ['inline'] },
-                    isDisabled: { values: [true] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
-            docPreview.add({
-                id: TTextInputPreview['Inline (read only)'],
-                matrix: {
-                    mode: { examples: ['inline'] },
-                    isReadonly: { values: [true] },
-                    ...baseMatrix,
-                },
-                cellSize: '180-80',
-            });
+            const cellSize: TPreviewCellSize = '180-80';
+            const formBaseMatrix: TMatrixLocal = { mode: { examples: ['form'] }, ...baseMatrix };
+            docPreview.add(TTextInputPreview['Form'], formBaseMatrix, cellSize);
+            docPreview.add(TTextInputPreview['Form (invalid)'], { ...formBaseMatrix, isInvalid: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Form (disabled)'], { ...formBaseMatrix, isDisabled: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Form (read only)'], { ...formBaseMatrix, isReadonly: { values: [true] } }, cellSize);
+            const inlineBaseMatrix: TMatrixLocal = { mode: { examples: ['inline'] }, ...baseMatrix };
+            docPreview.add(TTextInputPreview['Inline'], inlineBaseMatrix, cellSize);
+            docPreview.add(TTextInputPreview['Inline (disabled)'], { ...inlineBaseMatrix, isDisabled: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Inline (read only)'], { ...inlineBaseMatrix, isReadonly: { values: [true] } }, cellSize);
         },
     };
 
