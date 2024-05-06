@@ -38,21 +38,60 @@ export class TestBuilderContext {
         if (fs.existsSync(rootDir)) {
             const engines = fs.readdirSync(rootDir);
             const obsoleteScreenshots: string[] = [];
-            engines.forEach((name) => {
+            const screenshotSizeMap: {
+                [component: string]: {
+                    [preview: string]: {
+                        notSkin?: number;
+                        skin?: number;
+                    }
+                }
+            } = {};
+            engines.forEach((name, i) => {
                 const enginePath = path.resolve(rootDir, name);
                 fs.readdirSync(enginePath).forEach((fileName) => {
                     const testName = path.basename(fileName, '.png');
                     if (!this.seenTestNames.has(testName)) {
                         obsoleteScreenshots.push(path.resolve(enginePath, fileName));
                     }
+                    if (i === 0) {
+                        // Always use first engine. It does not matter which engine to use for this check.
+                        const [componentId, ...rest] = testName.split('-');
+                        const previewId = rest.slice(0, rest.length - 2).join('-');
+                        if (!screenshotSizeMap[componentId]) {
+                            screenshotSizeMap[componentId] = {};
+                        }
+                        if (!screenshotSizeMap[componentId][previewId]) {
+                            screenshotSizeMap[componentId][previewId] = {};
+                        }
+                        const key = testName.endsWith('-Skin') ? 'skin' : 'notSkin';
+                        screenshotSizeMap[componentId][previewId][key] = fs.statSync(path.resolve(enginePath, fileName)).size;
+                    }
                 });
             });
+            const skinEqualsNotSkinComponents = new Set<string>();
+            Object.keys(screenshotSizeMap).forEach((cId) => {
+                const pMap = screenshotSizeMap[cId];
+                const skinEqualsNotSkin = Object.keys(pMap).every((pId) => {
+                    const { notSkin, skin } = pMap[pId];
+                    return notSkin === skin;
+                });
+                if (skinEqualsNotSkin) {
+                    skinEqualsNotSkinComponents.add(cId);
+                }
+            });
+            let issuesFound = false;
+            if (skinEqualsNotSkinComponents.size > 0) {
+                issuesFound = true;
+                Logger.warn(`Next components have the same screenshot for both 'skin' and 'notSkin' mode:\n${[...skinEqualsNotSkinComponents].join('\n\t')}`);
+            }
             if (obsoleteScreenshots.length > 0) {
+                issuesFound = true;
                 Logger.warn(`Next screenshots are not used by any test:\n${obsoleteScreenshots.join('\n\t')}`);
                 if (isCi) {
                     process.exit(1);
                 }
-            } else {
+            }
+            if (!issuesFound) {
                 Logger.info('No issues found');
             }
         } else {

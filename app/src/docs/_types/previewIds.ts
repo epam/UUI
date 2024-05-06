@@ -84,3 +84,67 @@ export enum TVerticalTabButtonPreview {
     'Inactive Dropdown' = 'Inactive Dropdown',
     'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled'
 }
+
+export enum TPickerInputPreview {
+    /** FORM */
+    // Form > Single
+    'Form Single'= 'Form Single',
+    'Form Single Invalid'= 'Form Single Invalid',
+    'Form Single Disabled'= 'Form Single Disabled',
+    'Form Single ReadOnly'= 'Form Single ReadOnly',
+    // Form > Single > HasValue
+    'Form Single HasValue'= 'Form Single HasValue',
+    'Form Single HasValue Invalid'= 'Form Single HasValue Invalid',
+    'Form Single HasValue Disabled'= 'Form Single HasValue Disabled',
+    'Form Single HasValue ReadOnly'= 'Form Single HasValue ReadOnly',
+    // Form > Multi
+    'Form Multi'= 'Form Multi',
+    'Form Multi Invalid'= 'Form Multi Invalid',
+    'Form Multi Disabled'= 'Form Multi Disabled',
+    'Form Multi ReadOnly'= 'Form Multi ReadOnly',
+    // Form > Multi > HasValue
+    'Form Multi HasValue'= 'Form Multi HasValue',
+    'Form Multi HasValue Invalid'= 'Form Multi HasValue Invalid',
+    'Form Multi HasValue Disabled'= 'Form Multi HasValue Disabled',
+    'Form Multi HasValue ReadOnly'= 'Form Multi HasValue ReadOnly',
+    // Form > Multi > HasValue > MultiLine
+    'Form Multi HasValue Multiline'= 'Form Multi HasValue Multiline',
+    'Form Multi HasValue Multiline Invalid'= 'Form Multi HasValue Multiline Invalid',
+    'Form Multi HasValue Multiline Disabled'= 'Form Multi HasValue Multiline Disabled',
+    'Form Multi HasValue Multiline ReadOnly'= 'Form Multi HasValue Multiline ReadOnly',
+    // Form > Multi > HasValue > Overflow
+    'Form Multi HasValue Overflow'= 'Form Multi HasValue Overflow',
+    'Form Multi HasValue Overflow Invalid'= 'Form Multi HasValue Overflow Invalid',
+    'Form Multi HasValue Overflow Disabled'= 'Form Multi HasValue Overflow Disabled',
+    'Form Multi HasValue Overflow ReadOnly'= 'Form Multi HasValue Overflow ReadOnly',
+    /** INLINE */
+    // Inline > Single
+    'Inline Single'= 'Inline Single',
+    'Inline Single Disabled'= 'Inline Single Disabled',
+    'Inline Single ReadOnly'= 'Inline Single ReadOnly',
+    // Inline > Single > HasValue
+    'Inline Single HasValue'= 'Inline Single HasValue',
+    'Inline Single HasValue Disabled'= 'Inline Single HasValue Disabled',
+    'Inline Single HasValue ReadOnly'= 'Inline Single HasValue ReadOnly',
+    // Inline > Multi
+    'Inline Multi'= 'Inline Multi',
+    'Inline Multi Disabled'= 'Inline Multi Disabled',
+    'Inline Multi ReadOnly'= 'Inline Multi ReadOnly',
+    // Inline > Multi > HasValue
+    'Inline Multi HasValue'= 'Inline Multi HasValue',
+    'Inline Multi HasValue Disabled'= 'Inline Multi HasValue Disabled',
+    'Inline Multi HasValue ReadOnly'= 'Inline Multi HasValue ReadOnly',
+    // Inline > Multi > HasValue > MultiLine
+    'Inline Multi HasValue MultiLine'= 'Inline Multi HasValue MultiLine',
+    'Inline Multi HasValue MultiLine Disabled'= 'Inline Multi HasValue MultiLine Disabled ',
+    'Inline Multi HasValue MultiLine ReadOnly'= 'Inline Multi HasValue MultiLine ReadOnly',
+    // Inline > Multi > HasValue > Overflow
+    'Inline Multi HasValue Overflow'= 'Inline Multi HasValue Overflow',
+    'Inline Multi HasValue Overflow Disabled'= 'Inline Multi HasValue Overflow Disabled',
+    'Inline Multi HasValue Overflow ReadOnly'= 'Inline Multi HasValue Overflow ReadOnly',
+    // Opened > Dropdown
+    'Opened Dropdown Form List' = 'Opened Dropdown Form List',
+    'Opened Dropdown Form Multi List' = 'Opened Dropdown Form Multi List',
+    'Opened Dropdown Form Tree' = 'Opened Dropdown Form Tree',
+    'Opened Dropdown Form Multi Tree' = 'Opened Dropdown Form Multi Tree'
+}
