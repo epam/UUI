@@ -30,73 +30,82 @@ export class TestBuilderContext {
     }
 
     reportIssues() {
-        if (!UUI_TEST_PARAM_CHECK_ISSUES) {
+        const rootDir = path.resolve(this.screenshotsDir, PLATFORM);
+        if (!UUI_TEST_PARAM_CHECK_ISSUES || !fs.existsSync(rootDir)) {
             return;
         }
 
-        const rootDir = path.resolve(this.screenshotsDir, PLATFORM);
-        if (fs.existsSync(rootDir)) {
-            const engines = fs.readdirSync(rootDir);
-            const obsoleteScreenshots: string[] = [];
-            const screenshotSizeMap: {
-                [component: string]: {
-                    [preview: string]: {
-                        notSkin?: number;
-                        skin?: number;
+        const engines = fs.readdirSync(rootDir);
+        const obsoleteScreenshots: string[] = [];
+        const screenshotSizeMap: {
+            [component: string]: {
+                [previewId: string]: {
+                    [themeId: string]: {
+                        NotSkin?: number;
+                        Skin?: number;
                     }
-                }
-            } = {};
-            engines.forEach((name, i) => {
-                const enginePath = path.resolve(rootDir, name);
-                fs.readdirSync(enginePath).forEach((fileName) => {
-                    const testName = path.basename(fileName, '.png');
-                    if (!this.seenTestNames.has(testName)) {
-                        obsoleteScreenshots.push(path.resolve(enginePath, fileName));
-                    }
-                    if (i === 0) {
-                        // Always use first engine. It does not matter which engine to use for this check.
-                        const [componentId, ...rest] = testName.split('-');
-                        const previewId = rest.slice(0, rest.length - 2).join('-');
-                        if (!screenshotSizeMap[componentId]) {
-                            screenshotSizeMap[componentId] = {};
-                        }
-                        if (!screenshotSizeMap[componentId][previewId]) {
-                            screenshotSizeMap[componentId][previewId] = {};
-                        }
-                        const key = testName.endsWith('-Skin') ? 'skin' : 'notSkin';
-                        screenshotSizeMap[componentId][previewId][key] = fs.statSync(path.resolve(enginePath, fileName)).size;
-                    }
-                });
-            });
-            const skinEqualsNotSkinComponents = new Set<string>();
-            Object.keys(screenshotSizeMap).forEach((cId) => {
-                const pMap = screenshotSizeMap[cId];
-                const skinEqualsNotSkin = Object.keys(pMap).every((pId) => {
-                    const { notSkin, skin } = pMap[pId];
-                    return notSkin === skin;
-                });
-                if (skinEqualsNotSkin) {
-                    skinEqualsNotSkinComponents.add(cId);
-                }
-            });
-            let issuesFound = false;
-            if (skinEqualsNotSkinComponents.size > 0) {
-                issuesFound = true;
-                Logger.warn(`Next components have the same screenshot for both 'skin' and 'notSkin' mode:\n${[...skinEqualsNotSkinComponents].join('\n\t')}`);
-            }
-            if (obsoleteScreenshots.length > 0) {
-                issuesFound = true;
-                Logger.warn(`Next screenshots are not used by any test:\n${obsoleteScreenshots.join('\n\t')}`);
-                if (isCi) {
-                    process.exit(1);
                 }
             }
-            if (!issuesFound) {
-                Logger.info('No issues found');
+        } = {};
+        engines.forEach((name, i) => {
+            const enginePath = path.resolve(rootDir, name);
+            fs.readdirSync(enginePath).forEach((fileName) => {
+                const testName = path.basename(fileName, '.png');
+                const screenshotFileFullPath = path.resolve(enginePath, fileName);
+                if (!this.seenTestNames.has(testName)) {
+                    obsoleteScreenshots.push(screenshotFileFullPath);
+                }
+                if (i === 0) {
+                    // Always use first engine. It does not matter which engine to use for this check.
+                    const [componentId, ...rest] = testName.split('-');
+                    const previewId = rest.slice(0, rest.length - 2).join('-');
+                    const [themeId, skinKey] = rest.slice(rest.length - 2);
+                    if (!screenshotSizeMap[componentId]) {
+                        screenshotSizeMap[componentId] = {};
+                    }
+                    if (!screenshotSizeMap[componentId][previewId]) {
+                        screenshotSizeMap[componentId][previewId] = {};
+                    }
+                    if (!screenshotSizeMap[componentId][previewId][themeId]) {
+                        screenshotSizeMap[componentId][previewId][themeId] = {};
+                    }
+                    screenshotSizeMap[componentId][previewId][themeId][skinKey as ('Skin' | 'NotSkin')] = fs.statSync(screenshotFileFullPath).size;
+                }
+            });
+        });
+        const skinEqualsNotSkinComponents = new Set<string>();
+        Object.keys(screenshotSizeMap).forEach((cId) => {
+            const pMap = screenshotSizeMap[cId];
+            const skinEqualsNotSkin = Object.keys(pMap).every((pId) => {
+                return Object.keys(pMap[pId]).every((themeId) => {
+                    const { NotSkin, Skin } = pMap[pId][themeId];
+                    return NotSkin === Skin;
+                });
+            });
+            if (skinEqualsNotSkin) {
+                skinEqualsNotSkinComponents.add(cId);
+            }
+        });
+        const issuesArr: { msg: string; exit: boolean }[] = [];
+        if (skinEqualsNotSkinComponents.size > 0) {
+            const msg = `Next components have no difference between Skin/NotSkin:\n${[...skinEqualsNotSkinComponents].join('\n\t')}`;
+            issuesArr.push({ msg, exit: false });
+        }
+        if (obsoleteScreenshots.length > 0) {
+            const msg = `Next screenshots are not used by any test:\n${obsoleteScreenshots.join('\n\t')}`;
+            Logger.warn({ msg, exit: true });
+        }
+        if (issuesArr.length) {
+            let shouldExit = false;
+            issuesArr.forEach(({ msg, exit }) => {
+                Logger.warn(msg);
+                shouldExit = shouldExit || exit;
+            });
+            if (shouldExit && isCi) {
+                process.exit(1);
             }
         } else {
-            // The directory does not exist. Obsolete screenshots check is skipped.
-            return;
+            Logger.info('No issues found');
         }
     }
 }
