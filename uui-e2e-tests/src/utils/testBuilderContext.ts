@@ -19,6 +19,8 @@ type TScrSizeMap = {
 };
 type TIssues = { msg: string; exit: boolean }[];
 
+const REMOVE_OBSOLETE_SCR = false;
+
 export class TestBuilderContext {
     private seenTestNames: Set<string> = new Set();
     private failedTestNames: Set<string>;
@@ -50,16 +52,19 @@ export class TestBuilderContext {
         const engines = fs.readdirSync(rootDir);
         const obsoleteScr: string[] = [];
         const scrSizeMap: TScrSizeMap = {};
-        engines.forEach((name, i) => {
-            const enginePath = path.resolve(rootDir, name);
+        engines.forEach((engineName) => {
+            const enginePath = path.resolve(rootDir, engineName);
             fs.readdirSync(enginePath).forEach((fileName) => {
                 const testName = path.basename(fileName, '.png');
-                const screenshotFileFullPath = path.resolve(enginePath, fileName);
-                if (!this.seenTestNames.has(testName)) {
-                    obsoleteScr.push(screenshotFileFullPath);
+                const scrFileFullPath = path.resolve(enginePath, fileName);
+                const scrSize = fs.statSync(scrFileFullPath).size;
+                const isObsoleteScr = !this.seenTestNames.has(testName);
+                if (isObsoleteScr) {
+                    obsoleteScr.push(scrFileFullPath);
+                    REMOVE_OBSOLETE_SCR && fs.rmSync(scrFileFullPath);
                 }
-                if (i === 0) {
-                    // Always use first engine. It does not matter which engine to use for this check.
+                if (engineName === 'chromium' && !isObsoleteScr) {
+                    // Always use chromium engine. It does not matter which engine to use for this check.
                     const [componentId, ...rest] = testName.split('-');
                     const previewId = rest.slice(0, rest.length - 2).join('-');
                     const [themeId, skinKey] = rest.slice(rest.length - 2);
@@ -72,7 +77,7 @@ export class TestBuilderContext {
                     if (!scrSizeMap[componentId][previewId][themeId]) {
                         scrSizeMap[componentId][previewId][themeId] = {};
                     }
-                    scrSizeMap[componentId][previewId][themeId][skinKey as ('Skin' | 'NotSkin')] = fs.statSync(screenshotFileFullPath).size;
+                    scrSizeMap[componentId][previewId][themeId][skinKey as ('Skin' | 'NotSkin')] = scrSize;
                 }
             });
         });

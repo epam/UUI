@@ -6,7 +6,7 @@ import { stylePath } from '../../playwright.config';
 const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
     previewPage: [
         async ({ browser }, use) => {
-            const context = await browser.newContext({ bypassCSP: true });
+            const context = await browser.newContext();
             const page = await context.newPage();
             try {
                 await mockApi(page);
