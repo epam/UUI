@@ -93,10 +93,16 @@ export class PickerInputDoc extends BaseDocsBlock {
                 formMulti: 'Form Multi',
                 formMultiHasValue: 'Form Multi HasValue',
                 formOpened: 'Form Opened',
+                //
                 inlineSingle: 'Inline Single',
                 inlineSingleHasValue: 'Inline Single HasValue',
                 inlineMulti: 'Inline Multi',
                 inlineMultiHasValue: 'Inline Multi HasValue',
+                //
+                cellSingle: 'Cell Single',
+                cellSingleHasValue: 'Cell Single HasValue',
+                cellMulti: 'Cell Multi',
+                cellMultiHasValue: 'Cell Multi HasValue',
             };
 
             type TMatrixLocal = TPreviewMatrix<uui.PickerInputProps<any, any>>;
@@ -190,6 +196,66 @@ export class PickerInputDoc extends BaseDocsBlock {
             docPreview.add(GROUPS.formMultiHasValue, TPickerInputPreview['Form Multi HasValue Overflow ReadOnly'], { ...formMultiHasValueOverflowBaseMatrix, isReadonly: { values: [true] } }, w210_h65);
 
             /**
+             * Form Opened Dropdown
+             */
+            const openedBaseMatrix: TMatrixLocal = {
+                mode: { values: ['form'] },
+                valueType: { values: ['id'] },
+            };
+            docPreview.add({
+                groupId: GROUPS.formOpened,
+                id: TPickerInputPreview['Form Opened Dropdown List'],
+                context: TDocContext.OpenedPickerInput,
+                cellSize: w400_h480,
+                matrix: {
+                    ...openedBaseMatrix,
+                    getName: { values: [(i) => i.level] },
+                    dataSource: { examples: [TEST_DATA.dsLanguageLevels] },
+                    selectionMode: { values: ['single'] },
+                    value: { values: [undefined, 1] },
+                },
+            });
+            docPreview.add({
+                groupId: GROUPS.formOpened,
+                id: TPickerInputPreview['Form Opened Dropdown Multi List'],
+                context: TDocContext.OpenedPickerInput,
+                cellSize: w400_h480,
+                matrix: {
+                    ...openedBaseMatrix,
+                    getName: { values: [(i) => i.level] },
+                    dataSource: { examples: [TEST_DATA.dsLanguageLevels] },
+                    selectionMode: { values: ['multi'] },
+                    value: { values: [undefined, [1]] },
+                },
+            });
+            docPreview.add({
+                groupId: GROUPS.formOpened,
+                id: TPickerInputPreview['Form Opened Dropdown Tree'],
+                context: TDocContext.OpenedPickerInput,
+                cellSize: w400_h480,
+                matrix: {
+                    ...openedBaseMatrix,
+                    getName: { values: [(i) => i.name] },
+                    dataSource: { values: [TEST_DATA.euLocationsDs] },
+                    selectionMode: { values: ['single'] },
+                    value: { values: [undefined, TEST_DATA.euLocationsLyon] },
+                },
+            });
+            docPreview.add({
+                groupId: GROUPS.formOpened,
+                id: TPickerInputPreview['Form Opened Dropdown Multi Tree'],
+                context: TDocContext.OpenedPickerInput,
+                cellSize: w400_h480,
+                matrix: {
+                    ...openedBaseMatrix,
+                    getName: { values: [(i) => i.name] },
+                    dataSource: { values: [TEST_DATA.euLocationsDs] },
+                    selectionMode: { values: ['multi'] },
+                    value: { values: [undefined, [TEST_DATA.euLocationsLyon]] },
+                },
+            });
+
+            /**
              * 2.1 Inline Single
              */
             const inlineSingleBaseMatrix: TMatrixLocal = {
@@ -261,64 +327,75 @@ export class PickerInputDoc extends BaseDocsBlock {
             docPreview.add(GROUPS.inlineMultiHasValue, TPickerInputPreview['Inline Multi HasValue Overflow ReadOnly'], { ...inlineMultiHasValueOverflowBaseMatrix, isReadonly: { values: [true] } }, w210_h65);
 
             /**
-             * Opened Dropdown
+             * 3.1 Cell Single
              */
-            const openedBaseMatrix: TMatrixLocal = {
-                mode: { values: ['form'] },
-                valueType: { values: ['id'] },
+            const cellSingleBaseMatrix: TMatrixLocal = {
+                mode: { values: ['cell'] },
+                selectionMode: { values: ['single'] },
+                value: { values: [undefined] },
+                isInvalid: { values: [false] },
+                isDisabled: { values: [false] },
+                isReadonly: { values: [false] },
+                ...baseMatrix,
             };
-            docPreview.add({
-                groupId: GROUPS.formOpened,
-                id: TPickerInputPreview['Opened Dropdown Form List'],
-                context: TDocContext.OpenedPickerInput,
-                cellSize: w400_h480,
-                matrix: {
-                    ...openedBaseMatrix,
-                    getName: { values: [(i) => i.level] },
-                    dataSource: { examples: [TEST_DATA.dsLanguageLevels] },
-                    selectionMode: { values: ['single'] },
-                    value: { values: [undefined, 1] },
-                },
-            });
-            docPreview.add({
-                groupId: GROUPS.formOpened,
-                id: TPickerInputPreview['Opened Dropdown Form Multi List'],
-                context: TDocContext.OpenedPickerInput,
-                cellSize: w400_h480,
-                matrix: {
-                    ...openedBaseMatrix,
-                    getName: { values: [(i) => i.level] },
-                    dataSource: { examples: [TEST_DATA.dsLanguageLevels] },
-                    selectionMode: { values: ['multi'] },
-                    value: { values: [undefined, [1]] },
-                },
-            });
-            docPreview.add({
-                groupId: GROUPS.formOpened,
-                id: TPickerInputPreview['Opened Dropdown Form Tree'],
-                context: TDocContext.OpenedPickerInput,
-                cellSize: w400_h480,
-                matrix: {
-                    ...openedBaseMatrix,
-                    getName: { values: [(i) => i.name] },
-                    dataSource: { values: [TEST_DATA.euLocationsDs] },
-                    selectionMode: { values: ['single'] },
-                    value: { values: [undefined, TEST_DATA.euLocationsLyon] },
-                },
-            });
-            docPreview.add({
-                groupId: GROUPS.formOpened,
-                id: TPickerInputPreview['Opened Dropdown Form Multi Tree'],
-                context: TDocContext.OpenedPickerInput,
-                cellSize: w400_h480,
-                matrix: {
-                    ...openedBaseMatrix,
-                    getName: { values: [(i) => i.name] },
-                    dataSource: { values: [TEST_DATA.euLocationsDs] },
-                    selectionMode: { values: ['multi'] },
-                    value: { values: [undefined, [TEST_DATA.euLocationsLyon]] },
-                },
-            });
+            docPreview.add(GROUPS.cellSingle, TPickerInputPreview['Cell Single'], cellSingleBaseMatrix, w130_h65);
+            docPreview.add(GROUPS.cellSingle, TPickerInputPreview['Cell Single Disabled'], { ...cellSingleBaseMatrix, isDisabled: { values: [true] } }, w130_h65);
+            docPreview.add(GROUPS.cellSingle, TPickerInputPreview['Cell Single ReadOnly'], { ...cellSingleBaseMatrix, isReadonly: { values: [true] } }, w130_h65);
+            /**
+             * 3.2 Cell Single HasValue
+             */
+            const cellSingleHasValueBaseMatrix: TMatrixLocal = { ...cellSingleBaseMatrix, value: { values: [TEST_DATA.value] } };
+            docPreview.add(GROUPS.cellSingleHasValue, TPickerInputPreview['Cell Single HasValue'], cellSingleHasValueBaseMatrix, w130_h65);
+            docPreview.add(GROUPS.cellSingleHasValue, TPickerInputPreview['Cell Single HasValue Disabled'], { ...cellSingleHasValueBaseMatrix, isDisabled: { values: [true] } }, w130_h65);
+            docPreview.add(GROUPS.cellSingleHasValue, TPickerInputPreview['Cell Single HasValue ReadOnly'], { ...cellSingleHasValueBaseMatrix, isReadonly: { values: [true] } }, w130_h65);
+            /**
+             * 3.3 Cell Multi
+             */
+            const cellMultiBaseMatrix: TMatrixLocal = {
+                mode: { values: ['cell'] },
+                selectionMode: { values: ['multi'] },
+                value: { values: [undefined] },
+                maxItems: { values: [10] },
+                isSingleLine: { values: [false, true] },
+                ...baseMatrix,
+            };
+            docPreview.add(GROUPS.cellMulti, TPickerInputPreview['Cell Multi'], cellMultiBaseMatrix, w130_h100);
+            docPreview.add(GROUPS.cellMulti, TPickerInputPreview['Cell Multi Disabled'], { ...cellMultiBaseMatrix, isDisabled: { values: [true] } }, w130_h100);
+            docPreview.add(GROUPS.cellMulti, TPickerInputPreview['Cell Multi ReadOnly'], { ...cellMultiBaseMatrix, isReadonly: { values: [true] } }, w130_h100);
+            /**
+             * 3.4 Cell Multi HasValue
+             */
+            const cellMultiHasValueBaseMatrix: TMatrixLocal = {
+                ...cellMultiBaseMatrix,
+                isSingleLine: { values: [true] },
+                value: { values: [TEST_DATA.valueMulti2] },
+            };
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue'], cellMultiHasValueBaseMatrix, w210_h65);
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue Disabled'], { ...cellMultiHasValueBaseMatrix, isDisabled: { values: [true] } }, w210_h65);
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue ReadOnly'], { ...cellMultiHasValueBaseMatrix, isReadonly: { values: [true] } }, w210_h65);
+            /**
+             * 3.5 Cell Multi HasValue MultiLine
+             */
+            const cellMultiHasValueMultiLineBaseMatrix: TMatrixLocal = {
+                ...cellMultiHasValueBaseMatrix,
+                isSingleLine: { values: [false] },
+                value: { values: [TEST_DATA.valueMulti5] },
+            };
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue MultiLine'], cellMultiHasValueMultiLineBaseMatrix, w210_h240);
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue MultiLine Disabled'], { ...cellMultiHasValueMultiLineBaseMatrix, isDisabled: { values: [true] }, value: { values: [TEST_DATA.valueMulti8] } }, w210_h160);
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue MultiLine ReadOnly'], { ...cellMultiHasValueMultiLineBaseMatrix, isReadonly: { values: [true] }, value: { values: [TEST_DATA.valueMulti8] } }, w210_h160);
+            /**
+             * 3.6 Cell Multi HasValue Overflow
+             */
+            const cellMultiHasValueOverflowBaseMatrix: TMatrixLocal = {
+                ...cellMultiHasValueBaseMatrix,
+                isSingleLine: { values: [true] },
+                maxItems: { values: [1] },
+                value: { values: [TEST_DATA.valueMulti2] },
+            };
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue Overflow'], cellMultiHasValueOverflowBaseMatrix, w210_h65);
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue Overflow Disabled'], { ...cellMultiHasValueOverflowBaseMatrix, isDisabled: { values: [true] } }, w210_h65);
+            docPreview.add(GROUPS.cellMultiHasValue, TPickerInputPreview['Cell Multi HasValue Overflow ReadOnly'], { ...cellMultiHasValueOverflowBaseMatrix, isReadonly: { values: [true] } }, w210_h65);
         },
     };
 

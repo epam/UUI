@@ -40,12 +40,12 @@ export enum TCheckboxPreview {
 }
 export enum TTextInputPreview {
     'Form'= 'Form',
-    'Form (invalid)'= 'Form (invalid)',
-    'Form (disabled)'= 'Form (disabled)',
-    'Form (read only)'= 'Form (read only)',
+    'Form Invalid'= 'Form Invalid',
+    'Form Disabled'= 'Form Disabled',
+    'Form ReadOnly'= 'Form ReadOnly',
     'Inline'= 'Inline',
-    'Inline (disabled)'= 'Inline (disabled)',
-    'Inline (read only)'= 'Inline (read only)'
+    'Inline Disabled'= 'Inline Disabled',
+    'Inline ReadOnly'= 'Inline ReadOnly'
 }
 export enum TCountIndicatorPreview {
     Colors = 'Colors',
@@ -117,6 +117,11 @@ export enum TPickerInputPreview {
     'Form Multi HasValue Overflow Invalid'= 'Form Multi HasValue Overflow Invalid',
     'Form Multi HasValue Overflow Disabled'= 'Form Multi HasValue Overflow Disabled',
     'Form Multi HasValue Overflow ReadOnly'= 'Form Multi HasValue Overflow ReadOnly',
+    // Form > Opened > Dropdown
+    'Form Opened Dropdown List' = 'Form Opened Dropdown List',
+    'Form Opened Dropdown Multi List' = 'Form Opened Dropdown Multi List',
+    'Form Opened Dropdown Tree' = 'Form Opened Dropdown Tree',
+    'Form Opened Dropdown Multi Tree' = 'Form Opened Dropdown Multi Tree',
     /** INLINE */
     // Inline > Single
     'Inline Single'= 'Inline Single',
@@ -142,9 +147,29 @@ export enum TPickerInputPreview {
     'Inline Multi HasValue Overflow'= 'Inline Multi HasValue Overflow',
     'Inline Multi HasValue Overflow Disabled'= 'Inline Multi HasValue Overflow Disabled',
     'Inline Multi HasValue Overflow ReadOnly'= 'Inline Multi HasValue Overflow ReadOnly',
-    // Opened > Dropdown
-    'Opened Dropdown Form List' = 'Opened Dropdown Form List',
-    'Opened Dropdown Form Multi List' = 'Opened Dropdown Form Multi List',
-    'Opened Dropdown Form Tree' = 'Opened Dropdown Form Tree',
-    'Opened Dropdown Form Multi Tree' = 'Opened Dropdown Form Multi Tree'
+    /** CELL */
+    // Cell > Single
+    'Cell Single'= 'Cell Single',
+    'Cell Single Disabled'= 'Cell Single Disabled',
+    'Cell Single ReadOnly'= 'Cell Single ReadOnly',
+    // Cell > Single > HasValue
+    'Cell Single HasValue'= 'Cell Single HasValue',
+    'Cell Single HasValue Disabled'= 'Cell Single HasValue Disabled',
+    'Cell Single HasValue ReadOnly'= 'Cell Single HasValue ReadOnly',
+    // Cell > Multi
+    'Cell Multi'= 'Cell Multi',
+    'Cell Multi Disabled'= 'Cell Multi Disabled',
+    'Cell Multi ReadOnly'= 'Cell Multi ReadOnly',
+    // Cell > Multi > HasValue
+    'Cell Multi HasValue'= 'Cell Multi HasValue',
+    'Cell Multi HasValue Disabled'= 'Cell Multi HasValue Disabled',
+    'Cell Multi HasValue ReadOnly'= 'Cell Multi HasValue ReadOnly',
+    // Cell > Multi > HasValue > MultiLine
+    'Cell Multi HasValue MultiLine'= 'Cell Multi HasValue MultiLine',
+    'Cell Multi HasValue MultiLine Disabled'= 'Cell Multi HasValue MultiLine Disabled ',
+    'Cell Multi HasValue MultiLine ReadOnly'= 'Cell Multi HasValue MultiLine ReadOnly',
+    // Cell > Multi > HasValue > Overflow
+    'Cell Multi HasValue Overflow'= 'Cell Multi HasValue Overflow',
+    'Cell Multi HasValue Overflow Disabled'= 'Cell Multi HasValue Overflow Disabled',
+    'Cell Multi HasValue Overflow ReadOnly'= 'Cell Multi HasValue Overflow ReadOnly'
 }

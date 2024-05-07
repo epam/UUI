@@ -51,13 +51,13 @@ export class TextInputDoc extends BaseDocsBlock {
             const cellSize: TPreviewCellSize = '180-80';
             const formBaseMatrix: TMatrixLocal = { mode: { examples: ['form'] }, ...baseMatrix };
             docPreview.add(TTextInputPreview['Form'], formBaseMatrix, cellSize);
-            docPreview.add(TTextInputPreview['Form (invalid)'], { ...formBaseMatrix, isInvalid: { values: [true] } }, cellSize);
-            docPreview.add(TTextInputPreview['Form (disabled)'], { ...formBaseMatrix, isDisabled: { values: [true] } }, cellSize);
-            docPreview.add(TTextInputPreview['Form (read only)'], { ...formBaseMatrix, isReadonly: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Form Invalid'], { ...formBaseMatrix, isInvalid: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Form Disabled'], { ...formBaseMatrix, isDisabled: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Form ReadOnly'], { ...formBaseMatrix, isReadonly: { values: [true] } }, cellSize);
             const inlineBaseMatrix: TMatrixLocal = { mode: { examples: ['inline'] }, ...baseMatrix };
             docPreview.add(TTextInputPreview['Inline'], inlineBaseMatrix, cellSize);
-            docPreview.add(TTextInputPreview['Inline (disabled)'], { ...inlineBaseMatrix, isDisabled: { values: [true] } }, cellSize);
-            docPreview.add(TTextInputPreview['Inline (read only)'], { ...inlineBaseMatrix, isReadonly: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Inline Disabled'], { ...inlineBaseMatrix, isDisabled: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Inline ReadOnly'], { ...inlineBaseMatrix, isReadonly: { values: [true] } }, cellSize);
         },
     };
 
