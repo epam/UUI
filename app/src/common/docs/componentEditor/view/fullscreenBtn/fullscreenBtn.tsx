@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
     Button, ControlGroup,
-    Dropdown, DropdownMenuBody, DropdownMenuButton, ScrollBars, Text, Tooltip,
+    Dropdown, DropdownMenuBody, DropdownMenuButton, DropdownSubMenu, Text, Tooltip,
 } from '@epam/uui';
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { TPreviewRef } from '../../../../../preview/types';
+import { TPredefinedPreviewRefItem, TPreviewRef } from '../../../../../preview/types';
 import { DropdownBodyProps } from '@epam/uui-core';
 
 const LABELS = {
@@ -30,17 +30,40 @@ export function FullscreenBtn(props: { previewRef: TPreviewRef }) {
 
     const renderPredefinedPreviewList = (props: DropdownBodyProps) => {
         if (hasPredefinedPreviews) {
-            const allItems = previewRef.predefinedPreviewRefs.map(
-                ({ link, id }) => <DropdownMenuButton caption={ id } href={ link } target="_blank" key={ id } />,
-            );
+            const grouped: Record<string | undefined, TPredefinedPreviewRefItem[]> = {};
+            previewRef.predefinedPreviewRefs.forEach((item) => {
+                if (!grouped[item.groupId]) {
+                    grouped[item.groupId] = [];
+                }
+                grouped[item.groupId].push(item);
+            });
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const renderPlainList = (list: TPredefinedPreviewRefItem[], groupId: string | undefined) => {
+                return list.map(
+                    ({ link, id }) => {
+                        return <DropdownMenuButton key={ id } caption={ id } href={ link } target="_blank" />;
+                    },
+                );
+            };
+            const menuContent = Object.keys(grouped).map((groupId) => {
+                const list = grouped[groupId];
+                if (groupId === 'undefined') {
+                    return (
+                        <React.Fragment key={ groupId }>
+                            {renderPlainList(list, undefined)}
+                        </React.Fragment>
+                    );
+                } else {
+                    return (
+                        <DropdownSubMenu caption={ groupId } key={ groupId }>
+                            {renderPlainList(list, groupId)}
+                        </DropdownSubMenu>
+                    );
+                }
+            });
             return (
-                <DropdownMenuBody
-                    { ...props }
-                    rawProps={ { style: { maxWidth: '250px', padding: '6px 0' } } }
-                >
-                    <ScrollBars style={ { maxHeight: '50vh' } }>
-                        { allItems }
-                    </ScrollBars>
+                <DropdownMenuBody { ...props } rawProps={ { style: { padding: '6px 0' } } }>
+                    {menuContent}
                 </DropdownMenuBody>
             );
         }

@@ -162,6 +162,8 @@ export type TPreviewPropsItemRenderCases = {
 };
 export type TPreviewMatrix<T> = TComponentPreview<T>['matrix'];
 export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps> = {
+    /** Optional group ID. It will visually group list of previews in the Property Explorer. */
+    groupId?: string;
     /** A unique ID of the preview props which can be referenced by test automation */
     id: string;
     /**  TDocContext.Default will be used is nothing is passed */
