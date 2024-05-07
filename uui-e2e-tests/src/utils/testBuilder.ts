@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
-import { ScreenshotTestParamsSingle, TMatrix, TMatrixMinimal, TTheme } from '../types';
+import { TMatrix, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
 import { createUniqueTestName } from './testNameUtils';
 import { TestBuilderContext } from './testBuilderContext';
@@ -9,11 +9,16 @@ import { screenshotsDirAbsPath } from '../../playwright.config';
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrix[]> = new Map();
 
+    only<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>) {
+        return this.add(cid, matrix, true);
+    }
+
     /**
      * @param cid
      * @param matrix
+     * @param only
      */
-    add<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>) {
+    add<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>, only?: boolean) {
         type TPreviewsArr = TPreviewIdByComponentId[typeof cid];
         let prev = this.cfgByComponent.get(cid);
         if (!prev) {
@@ -30,6 +35,7 @@ export class TestBuilder {
             isSkin,
             theme,
             onBeforeExpect,
+            only,
         };
         prev!.push(matrixFull);
         return this;
@@ -47,6 +53,12 @@ export class TestBuilder {
     }
 }
 
+type ScreenshotTestParamsSingle = {
+    runId?: string;
+    componentId: TComponentId;
+    matrix: TMatrix;
+};
+
 function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: TestBuilderContext) {
     const { componentId, matrix, runId } = builderParams;
     matrix.theme.forEach((theme) => {
@@ -59,7 +71,8 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
                 if (ctx.shouldSkipTest(testName)) {
                     return;
                 }
-                test(testName, async ({ previewPage }) => {
+                const testFn = matrix.only ? test.only : test;
+                testFn(testName, async ({ previewPage }) => {
                     await previewPage.editPreview(pageParams);
                     await matrix.onBeforeExpect({ previewPage });
                     if (matrix.waitFor) {
