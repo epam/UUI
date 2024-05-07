@@ -21,11 +21,17 @@ export class DocPreviewBuilder<TProps> {
      */
     add(previewItem: TComponentPreview<TProps, keyof TProps>): void;
     add(id: string, matrix: TPreviewMatrix<TProps>, cellSize?: TPreviewCellSize): void;
+    add(groupId: string, id: string, matrix: TPreviewMatrix<TProps>, cellSize?: TPreviewCellSize): void;
     add(...args: any[]) {
         let previewItem: TComponentPreview<TProps, keyof TProps>;
         if (typeof args[0] === 'string') {
-            const [id, matrix, cellSize] = args;
-            previewItem = { id, matrix, cellSize };
+            if (typeof args[1] === 'string') {
+                const [groupId, id, matrix, cellSize] = args;
+                previewItem = { groupId, id, matrix, cellSize };
+            } else {
+                const [id, matrix, cellSize] = args;
+                previewItem = { id, matrix, cellSize };
+            }
         } else {
             previewItem = args[0];
         }
