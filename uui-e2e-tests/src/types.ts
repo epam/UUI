@@ -25,10 +25,6 @@ export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByC
     onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>;
     waitFor?: number;
     blurActiveElement?: boolean;
+    only?: boolean;
 };
 export type TMatrixMinimal<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = Partial<TMatrix<Previews>> & { previewId: Previews };
-export type ScreenshotTestParamsSingle = {
-    runId?: string;
-    componentId: TComponentId;
-    matrix: TMatrix;
-};
