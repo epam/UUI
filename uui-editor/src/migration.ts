@@ -8,10 +8,9 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
+import { PlateImgAlign, SlateImgAlign } from './plugins/imagePlugin/types';
 import { ExtendedTTableCellElement } from './plugins/tablePlugin/types';
 import { TTableCellElement } from '@udecode/plate-table';
-
-const mediaTypes = ['image', 'iframe'];
 
 const migrateTextNode = (oldNode: any) => {
     return {
@@ -51,44 +50,57 @@ const migrateTable = (oldTable: any) => {
         });
 
         if (!newRowCells.length) {
-            newRowCells.push({ object: 'text', text: '' });
+            newRowCells.push({
+                object: 'text',
+                text: '',
+            });
         }
         row.nodes = newRowCells;
     });
     return oldTable;
 };
 
+// image
+const SLATE_TO_PLATE_IMG_ALIGN = {
+    'align-left': 'left',
+    'align-right': 'right',
+    'align-center': 'center',
+};
+export const toPlateAlign = (slateAlign: SlateImgAlign) => SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as PlateImgAlign;
+
 const migrateElementNode = (node: any) => {
+    if (node.object === 'text') {
+        return migrateTextNode(node);
+    }
+
+    const omitData = node.type === 'table_cell' || node.type === 'table_header_cell' || node.type === 'image';
+    let newNode: any = {};
     if (node.type === 'paragraph' && node.nodes?.[0]?.type === 'table') {
         const tableNode = node.nodes[0];
-        node = migrateTable(tableNode);
+        // modifyes table structure the old format still. than, each row and cell will be migrated
+        newNode = migrateTable(tableNode);
     }
 
-    const omitData = node.type === 'table_cell' || node.type === 'table_header_cell';
     const dataProps = omitData ? {} : { data: node.data ?? {} };
     return {
+        // default setup
         ...dataProps,
         type: node.type,
-        ...(mediaTypes.includes(node.type) ? { url: node.data?.src } : {}),
-        ...(node?.data?.url ? { url: node.data.url } : {}),
+        children: node.nodes?.map(migrateElementNode).flat() ?? [],
+
+        // additional stuff
+        ...(node?.data?.url ? { url: node.data?.src } : {}),
+        ...(node.data?.path ? { url: node.data?.path } : {}),
+        ...(node?.data?.align ? { align: toPlateAlign(node.data?.align) } : {}),
         ...(node?.data?.colSpan ? { colSpan: node.data.colSpan } : {}),
         ...(node?.data?.rowSpan ? { rowSpan: node.data.rowSpan } : {}),
-        children: node.nodes?.map(migrateNode).flat() ?? [],
     };
-};
-
-export const migrateNode = (oldNode: any) => {
-    if (oldNode.object === 'text') {
-        return migrateTextNode(oldNode);
-    } else {
-        return migrateElementNode(oldNode);
-    }
 };
 
 export const migrateSchema = (oldSchema: any) => {
     let migratedSchema;
     try {
-        migratedSchema = oldSchema?.document?.nodes.map(migrateNode);
+        migratedSchema = oldSchema?.document?.nodes.map(migrateElementNode);
     } catch (e) {
         console.error("Can't migrate schema", e);
     }

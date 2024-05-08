@@ -21,72 +21,78 @@ Array [
               Object {
                 "children": Array [
                   Object {
-                    "text": "Country",
+                    "children": Array [
+                      Object {
+                        "text": "Country",
+                      },
+                    ],
+                    "data": Object {},
+                    "type": "paragraph",
                   },
                 ],
-                "data": Object {},
-                "type": "paragraph",
+                "type": "table_header_cell",
+              },
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "text": "Name and address of supervisory authority",
+                      },
+                    ],
+                    "data": Object {},
+                    "type": "paragraph",
+                  },
+                ],
+                "type": "table_header_cell",
               },
             ],
-            "type": "table_header_cell",
+            "data": Object {},
+            "type": "table_row",
           },
           Object {
             "children": Array [
               Object {
                 "children": Array [
                   Object {
-                    "text": "Name and address of supervisory authority",
+                    "children": Array [
+                      Object {
+                        "text": "Belgium",
+                      },
+                    ],
+                    "data": Object {},
+                    "type": "paragraph",
                   },
-                ],
-                "data": Object {},
-                "type": "paragraph",
-              },
-            ],
-            "type": "table_header_cell",
-          },
-        ],
-        "data": Object {},
-        "type": "table_row",
-      },
-      Object {
-        "children": Array [
-          Object {
-            "children": Array [
-              Object {
-                "children": Array [
                   Object {
-                    "text": "Belgium",
-                  },
-                ],
-                "data": Object {},
-                "type": "paragraph",
-              },
-              Object {
-                "children": Array [
-                  Object {
-                    "text": "Data Protection Authority
+                    "children": Array [
+                      Object {
+                        "text": "Data Protection Authority
 ",
+                      },
+                    ],
+                    "data": Object {},
+                    "type": "paragraph",
                   },
                 ],
-                "data": Object {},
-                "type": "paragraph",
+                "colSpan": 2,
+                "type": "table_cell",
               },
             ],
-            "colSpan": 2,
-            "type": "table_cell",
+            "data": Object {},
+            "type": "table_row",
           },
         ],
-        "data": Object {},
-        "type": "table_row",
+        "data": Object {
+          "cellSizes": Array [
+            112,
+            288,
+          ],
+        },
+        "type": "table",
       },
     ],
-    "data": Object {
-      "cellSizes": Array [
-        112,
-        288,
-      ],
-    },
-    "type": "table",
+    "data": Object {},
+    "type": "paragraph",
   },
 ]
 `;

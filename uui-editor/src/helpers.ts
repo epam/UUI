@@ -46,6 +46,7 @@ export function isImageSelected(editor: any) {
     return selection && node === 'image';
 }
 
+// TODO: get rid of that
 export function useIsPluginActive(key: string): boolean {
     const editor = useEditorState();
     const plugins = getPlugins(editor);

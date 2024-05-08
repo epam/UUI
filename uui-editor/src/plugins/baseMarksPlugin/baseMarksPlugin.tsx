@@ -20,6 +20,7 @@ export const BOLD_KEY = 'uui-richTextEditor-bold';
 export const ITALIC_KEY = 'uui-richTextEditor-italic';
 export const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
 
+// eslint-disable-next-line react/function-component-definition
 const Bold: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -28,6 +29,7 @@ const Bold: PlatePluginComponent = (props) => {
     );
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Italic: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -36,6 +38,7 @@ const Italic: PlatePluginComponent = (props) => {
     );
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Underline: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 

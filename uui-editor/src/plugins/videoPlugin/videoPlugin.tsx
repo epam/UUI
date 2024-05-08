@@ -1,15 +1,9 @@
-import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
-
+import { useUuiContext } from '@epam/uui-core';
 import { useIsPluginActive, isTextSelected } from '../../helpers';
-
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-
 import { ReactComponent as VideoIcon } from '../../icons/video.svg';
-
-import {
-    PlateEditor, createPluginFactory, getBlockAbove,
-} from '@udecode/plate-common';
+import { PlateEditor, createPluginFactory, getBlockAbove } from '@udecode/plate-common';
 import { AddVideoModal } from './AddVideoModal';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 

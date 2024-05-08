@@ -10,12 +10,10 @@ import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-
-export const IFRAME_PLUGIN_KEY = 'iframe';
-export const IFRAME_PLUGIN_TYPE = 'iframe';
+import { IFRAME_PLUGIN_KEY, IFRAME_PLUGIN_TYPE } from './constants';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 export const iframePlugin = () => {
     const createIframePlugin = createPluginFactory<WithToolbarButton>({

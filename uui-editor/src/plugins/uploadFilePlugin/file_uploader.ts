@@ -1,6 +1,3 @@
-import { ATTACHMENT_PLUGIN_TYPE } from '../attachmentPlugin/attachmentPlugin';
-import { IMAGE_PLUGIN_TYPE } from '../imagePlugin/imagePlugin';
-import { IFRAME_PLUGIN_TYPE } from '../iframePlugin/iframePlugin';
 import { useCallback } from 'react';
 import type { FileUploadResponse } from '@epam/uui-core';
 import {
@@ -9,7 +6,12 @@ import {
     KEY_INSERT_DATA,
     deleteBackward,
     insertEmptyElement,
+    insertNodes,
 } from '@udecode/plate-common';
+import { Selection } from 'slate';
+import { ATTACHMENT_PLUGIN_TYPE } from '../attachmentPlugin/constants';
+import { IMAGE_PLUGIN_TYPE } from '../imagePlugin/constants';
+import { IFRAME_PLUGIN_TYPE } from '../iframePlugin/constants';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
@@ -93,8 +95,8 @@ export const createFileUploader = (options?: UploadFileOptions) =>
 
         // show loader
         insertEmptyElement(editor, 'loader');
-        const currentSelection = { ...editor.selection };
-        const prevSelection = { ...editor.prevSelection };
+        const currentSelection = { ...editor.selection } as Selection;
+        const prevSelection = { ...editor.prevSelection } as Selection;
 
         // upload files
         const responses = await upload(files, uploadFile);
@@ -108,7 +110,7 @@ export const createFileUploader = (options?: UploadFileOptions) =>
         deleteBackward(editor, { unit: 'block' });
 
         // insert blocks
-        editor.insertFragment(fileFragments);
+        insertNodes(editor, fileFragments);
     };
 
 export const useFilesUploader = (editor: PlateEditor) => {

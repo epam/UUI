@@ -53,10 +53,16 @@ interface IToolbarButton {
 }
 
 export function ListButton({ editor }: IToolbarButton) {
-    if (!useIsPluginActive(ELEMENT_OL) && !useIsPluginActive(ELEMENT_LI)) return null;
+    const isActiveOL = useIsPluginActive(ELEMENT_OL);
+    const isActiveLI = useIsPluginActive(ELEMENT_LI);
 
-    const res = !!editor?.selection && getListItemEntry(editor);
+    if (!isActiveOL && !isActiveLI) {
+        return null;
+    }
 
+
+    // TODO: rewrite it
+    const res = !!editor?.selection ? getListItemEntry(editor) : undefined;
     const isUnorderedActive = res?.list && res?.list[0]?.type === ELEMENT_UL_CUSTOM;
     const isOrderedActive = res?.list && res?.list[0]?.type === ELEMENT_OL_CUSTOM;
 
