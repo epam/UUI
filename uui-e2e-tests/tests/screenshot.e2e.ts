@@ -12,32 +12,37 @@ import {
     TAccordionPreview,
     TAlertPreview,
     TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-    TPickerInputPreview,
+    TPickerInputPreview, TDatePickerPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
-    accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput,
+    accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
 } = TComponentId;
+
+const { values } = Object;
 
 const builder = new TestBuilder();
 // Skin is tested
-builder.add(alert, { previewId: Object.values(TAlertPreview) });
-builder.add(badge, { previewId: Object.values(TBadgePreview) });
-builder.add(button, { previewId: Object.values(TButtonPreview) });
-builder.add(countIndicator, { previewId: Object.values(TCountIndicatorPreview) });
-builder.add(iconButton, { previewId: Object.values(TIconButtonPreview) });
-builder.add(linkButton, { previewId: Object.values(TLinkButtonPreview) });
-builder.add(tag, { previewId: Object.values(TTagPreview) });
+builder
+    .add(alert, { previewId: values(TAlertPreview) })
+    .add(badge, { previewId: values(TBadgePreview) })
+    .add(button, { previewId: values(TButtonPreview) })
+    .add(countIndicator, { previewId: values(TCountIndicatorPreview) })
+    .add(iconButton, { previewId: values(TIconButtonPreview) })
+    .add(linkButton, { previewId: values(TLinkButtonPreview) })
+    .add(tag, { previewId: values(TTagPreview) });
 
 // Skin is not tested
-builder.add(accordion, { previewId: Object.values(TAccordionPreview), isSkin: [false] });
-builder.add(avatarStack, { previewId: Object.values(TAvatarStackPreview), isSkin: [false] });
-builder.add(checkbox, { previewId: Object.values(TCheckboxPreview), isSkin: [false] });
-builder.add(pickerInput, { previewId: Object.values(TPickerInputPreview), isSkin: [false] });
-builder.add(tabButton, { previewId: Object.values(TTabButtonPreview), isSkin: [false] });
-builder.add(TComponentId.switch, { previewId: Object.values(TSwitchPreview), isSkin: [false] });
-builder.add(textInput, { previewId: Object.values(TTextInputPreview), isSkin: [false] });
-builder.add(verticalTabButton, { previewId: Object.values(TVerticalTabButtonPreview), isSkin: [false] });
+builder
+    .add(accordion, { previewId: values(TAccordionPreview), isSkin: [false] })
+    .add(avatarStack, { previewId: values(TAvatarStackPreview), isSkin: [false] })
+    .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Open'] && 'input' })
+    .add(checkbox, { previewId: values(TCheckboxPreview), isSkin: [false] })
+    .add(pickerInput, { previewId: values(TPickerInputPreview), isSkin: [false] })
+    .add(tabButton, { previewId: values(TTabButtonPreview), isSkin: [false] })
+    .add(TComponentId.switch, { previewId: values(TSwitchPreview), isSkin: [false] })
+    .add(textInput, { previewId: values(TTextInputPreview), isSkin: [false] })
+    .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview), isSkin: [false] });
 
 builder.buildTests();

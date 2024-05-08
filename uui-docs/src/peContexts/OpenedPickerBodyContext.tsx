@@ -3,18 +3,18 @@ import { DemoComponentProps } from '../types';
 import { DefaultContext } from './DefaultContext';
 import { useEffect, useMemo } from 'react';
 
-OpenedPickerInputContext.displayName = 'OpenedPickerInput';
-export function OpenedPickerInputContext(props: DemoComponentProps) {
+OpenedPickerBodyContext.displayName = 'OpenedPickerBody';
+export function OpenedPickerBodyContext(props: DemoComponentProps) {
     const { DemoComponent, isPreview } = props;
-    const _pickerInputRef = React.useRef<any>();
+    const ref = React.useRef<any>();
     const adjustedProps = useMemo(() => ({
         ...props.props,
-        ref: _pickerInputRef,
-    }), [props, _pickerInputRef]);
+        ref: ref,
+    }), [props, ref]);
 
     useEffect(() => {
-        if (_pickerInputRef.current) {
-            _pickerInputRef.current.openPickerBody();
+        if (ref.current) {
+            ref.current.openPickerBody();
         }
     }, []);
 

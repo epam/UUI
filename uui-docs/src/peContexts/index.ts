@@ -9,7 +9,7 @@ import { ResizableContext } from './ResizableContext';
 import { RelativePanelContext } from './RelativePanelContext';
 import { TableContext } from './TableContext';
 import { PagePanelContext } from './PagePanelContext';
-import { OpenedPickerInputContext } from './OpenedPickerInputContext';
+import { OpenedPickerBodyContext } from './OpenedPickerBodyContext';
 
 /**
  * This map contains contexts for the "Property Explorer"
@@ -24,5 +24,5 @@ export const uuiDocContextsMap: Record<TDocContext, React.ComponentType<DemoComp
     [TDocContext.TabButton]: TabButtonContext,
     [TDocContext.Table]: TableContext,
     [TDocContext.VerticalTabButton]: VerticalTabButtonContext,
-    [TDocContext.OpenedPickerInput]: OpenedPickerInputContext,
+    [TDocContext.OpenedPickerBody]: OpenedPickerBodyContext,
 };
