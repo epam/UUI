@@ -9,17 +9,23 @@ import { screenshotsDirAbsPath } from '../../playwright.config';
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrix[]> = new Map();
 
-    only<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>) {
-        return this.add(cid, matrix, true);
+    only<PComp extends keyof TPreviewIdByComponentId, PMatrix extends TMatrixMinimal<TPreviewIdByComponentId[PComp]>>(cid: PComp, matrix: PMatrix): TestBuilder {
+        return this._add(cid, matrix, true);
     }
 
     /**
      * @param cid
      * @param matrix
-     * @param only
      */
-    add<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>, only?: boolean) {
-        type TPreviewsArr = TPreviewIdByComponentId[typeof cid];
+    add<PComp extends keyof TPreviewIdByComponentId, PMatrix extends TMatrixMinimal<TPreviewIdByComponentId[PComp]>>(cid: PComp, matrix: PMatrix): TestBuilder {
+        return this._add(cid, matrix);
+    }
+
+    private _add<
+        PComp extends keyof TPreviewIdByComponentId,
+        PMatrix extends TMatrixMinimal<TPreviewIdByComponentId[PComp]>
+    >(cid: PComp, matrix: PMatrix, only?: boolean) {
+        type TPreviewsArr = TPreviewIdByComponentId[PComp];
         let prev = this.cfgByComponent.get(cid);
         if (!prev) {
             prev = [];
@@ -74,7 +80,11 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
                 const testFn = matrix.only ? test.only : test;
                 testFn(testName, async ({ previewPage }) => {
                     await previewPage.editPreview(pageParams);
-                    await matrix.onBeforeExpect({ previewPage });
+                    await matrix.onBeforeExpect({ previewPage, previewId });
+                    if (matrix.focusFirstElement) {
+                        const sel = matrix.focusFirstElement({ previewId });
+                        typeof sel === 'string' && await previewPage.focusElement(sel);
+                    }
                     if (matrix.waitFor) {
                         await previewPage.page.waitForTimeout(matrix.waitFor);
                     }

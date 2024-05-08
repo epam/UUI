@@ -4,7 +4,7 @@ import {
     TBadgePreview,
     TButtonPreview, TCheckboxPreview, TCountIndicatorPreview, TIconButtonPreview,
     TLinkButtonPreview, TSwitchPreview, TTagPreview,
-    TTextInputPreview, TVerticalTabButtonPreview, TTabButtonPreview, TPickerInputPreview,
+    TTextInputPreview, TVerticalTabButtonPreview, TTabButtonPreview, TPickerInputPreview, TDatePickerPreview,
 } from './previewIds';
 
 /**
@@ -87,19 +87,20 @@ export enum TComponentId {
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.badge]: TBadgePreview[],
-    [TComponentId.button]: TButtonPreview[],
-    [TComponentId.linkButton]: TLinkButtonPreview[],
-    [TComponentId.textInput]: TTextInputPreview[],
-    [TComponentId.avatarStack]: TAvatarStackPreview[],
-    [TComponentId.tag]: TTagPreview[],
-    [TComponentId.switch]: TSwitchPreview[],
-    [TComponentId.checkbox]: TCheckboxPreview[],
-    [TComponentId.countIndicator]: TCountIndicatorPreview[],
     [TComponentId.accordion]: TAccordionPreview[],
     [TComponentId.alert]: TAlertPreview[],
+    [TComponentId.avatarStack]: TAvatarStackPreview[],
+    [TComponentId.badge]: TBadgePreview[],
+    [TComponentId.button]: TButtonPreview[],
+    [TComponentId.checkbox]: TCheckboxPreview[],
+    [TComponentId.countIndicator]: TCountIndicatorPreview[],
+    [TComponentId.datePicker]: TDatePickerPreview[],
     [TComponentId.iconButton]: TIconButtonPreview[],
-    [TComponentId.tabButton]: TTabButtonPreview[],
-    [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
+    [TComponentId.linkButton]: TLinkButtonPreview[],
     [TComponentId.pickerInput]: TPickerInputPreview[],
+    [TComponentId.switch]: TSwitchPreview[],
+    [TComponentId.tabButton]: TTabButtonPreview[],
+    [TComponentId.tag]: TTagPreview[],
+    [TComponentId.textInput]: TTextInputPreview[],
+    [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
 };

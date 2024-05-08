@@ -173,3 +173,16 @@ export enum TPickerInputPreview {
     'Cell Multi HasValue Overflow Disabled'= 'Cell Multi HasValue Overflow Disabled',
     'Cell Multi HasValue Overflow ReadOnly'= 'Cell Multi HasValue Overflow ReadOnly'
 }
+
+export enum TDatePickerPreview {
+    Form = 'Form',
+    'Form Open' = 'Form Open',
+    'Form Disabled' = 'Form Disabled',
+    'Form ReadOnly' = 'Form ReadOnly',
+    Cell = 'Cell',
+    'Cell Disabled' = 'Cell Disabled',
+    'Cell ReadOnly' = 'Cell ReadOnly',
+    Inline = 'Inline',
+    'Inline Disabled' = 'Inline Disabled',
+    'Inline ReadOnly' = 'Inline ReadOnly'
+}
