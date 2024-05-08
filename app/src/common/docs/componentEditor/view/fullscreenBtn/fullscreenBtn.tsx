@@ -25,8 +25,10 @@ export function FullscreenBtn(props: { previewRef: TPreviewRef }) {
             </>
         );
     };
+    const renderDropdownTooltipContent = () => <Text size="30">{ `${totalAmountOfPreviews} preview(s)` }</Text>;
 
-    const hasPredefinedPreviews = previewRef.predefinedPreviewRefs.length > 0;
+    const totalAmountOfPreviews = previewRef.predefinedPreviewRefs.length;
+    const hasPredefinedPreviews = totalAmountOfPreviews > 0;
 
     const renderPredefinedPreviewList = (props: DropdownBodyProps) => {
         if (hasPredefinedPreviews) {
@@ -83,11 +85,13 @@ export function FullscreenBtn(props: { previewRef: TPreviewRef }) {
                 />
             </Tooltip>
             { hasPredefinedPreviews && (
-                <Dropdown
-                    renderBody={ renderPredefinedPreviewList }
-                    renderTarget={ (props) => <Button { ...props } size="24" fill="none" icon={ MenuIcon } isDropdown={ false } /> }
-                    placement="bottom-end"
-                />
+                <Tooltip placement="top" color="neutral" content={ renderDropdownTooltipContent() }>
+                    <Dropdown
+                        renderBody={ renderPredefinedPreviewList }
+                        renderTarget={ (props) => <Button { ...props } size="24" fill="none" icon={ MenuIcon } isDropdown={ false } /> }
+                        placement="bottom-end"
+                    />
+                </Tooltip>
             )}
         </ControlGroup>
     );

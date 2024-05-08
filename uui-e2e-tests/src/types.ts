@@ -22,8 +22,9 @@ export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByC
     theme: TTheme[];
     isSkin: boolean[];
     previewId: Previews;
-    onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>;
+    onBeforeExpect: (params: { previewPage: PreviewPage, previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => Promise<void>;
     waitFor?: number;
+    focusFirstElement?: (params: { previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => string | boolean | undefined;
     blurActiveElement?: boolean;
     only?: boolean;
 };

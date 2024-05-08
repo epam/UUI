@@ -75,7 +75,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         }
 
         return dropdownRef.current;
-    }, [closePickerBody]);
+    }, [closePickerBody, openPickerBody]);
 
     const getTogglerMods = (): PickerTogglerMods => {
         return {
