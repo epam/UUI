@@ -12,12 +12,12 @@ import {
     TAccordionPreview,
     TAlertPreview,
     TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-    TPickerInputPreview,
+    TPickerInputPreview, TDatePickerPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
-    accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput,
+    accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
 } = TComponentId;
 
 const builder = new TestBuilder();
@@ -33,6 +33,7 @@ builder.add(tag, { previewId: Object.values(TTagPreview) });
 // Skin is not tested
 builder.add(accordion, { previewId: Object.values(TAccordionPreview), isSkin: [false] });
 builder.add(avatarStack, { previewId: Object.values(TAvatarStackPreview), isSkin: [false] });
+builder.only(datePicker, { previewId: Object.values(TDatePickerPreview), isSkin: [false] });
 builder.add(checkbox, { previewId: Object.values(TCheckboxPreview), isSkin: [false] });
 builder.add(pickerInput, { previewId: Object.values(TPickerInputPreview), isSkin: [false] });
 builder.add(tabButton, { previewId: Object.values(TTabButtonPreview), isSkin: [false] });

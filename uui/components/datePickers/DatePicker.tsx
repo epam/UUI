@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
     DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
@@ -24,6 +24,17 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    const openPickerBody = useCallback(() => {
+        setBodyIsOpen(true);
+    }, []);
+    useImperativeHandle(ref, () => {
+        if (dropdownRef.current) {
+            dropdownRef.current.openPickerBody = openPickerBody;
+        }
+        return dropdownRef.current;
+    }, [dropdownRef, openPickerBody]);
 
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
@@ -135,7 +146,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
             value={ isBodyOpen }
             modifiers={ modifiers }
             placement={ props.placement }
-            forwardedRef={ ref }
+            forwardedRef={ dropdownRef }
             onValueChange={ (v) => {
                 setBodyIsOpen(v);
             } }
