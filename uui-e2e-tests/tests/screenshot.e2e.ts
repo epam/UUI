@@ -12,12 +12,13 @@ import {
     TAccordionPreview,
     TAlertPreview,
     TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-    TPickerInputPreview, TDatePickerPreview,
+    TPickerInputPreview, TDatePickerPreview, TRangeDatePickerPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
+    rangeDatePicker,
 } = TComponentId;
 
 const { values } = Object;
@@ -40,6 +41,7 @@ builder
     .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Open'] && 'input' })
     .add(checkbox, { previewId: values(TCheckboxPreview), isSkin: [false] })
     .add(pickerInput, { previewId: values(TPickerInputPreview), isSkin: [false] })
+    .add(rangeDatePicker, { previewId: values(TRangeDatePickerPreview), isSkin: [false], focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId) && 'input' })
     .add(tabButton, { previewId: values(TTabButtonPreview), isSkin: [false] })
     .add(TComponentId.switch, { previewId: values(TSwitchPreview), isSkin: [false] })
     .add(textInput, { previewId: values(TTextInputPreview), isSkin: [false] })

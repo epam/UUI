@@ -1,10 +1,21 @@
 import {
-    TAccordionPreview, TAlertPreview,
+    TAccordionPreview,
+    TAlertPreview,
     TAvatarStackPreview,
     TBadgePreview,
-    TButtonPreview, TCheckboxPreview, TCountIndicatorPreview, TIconButtonPreview,
-    TLinkButtonPreview, TSwitchPreview, TTagPreview,
-    TTextInputPreview, TVerticalTabButtonPreview, TTabButtonPreview, TPickerInputPreview, TDatePickerPreview,
+    TButtonPreview,
+    TCheckboxPreview,
+    TCountIndicatorPreview,
+    TIconButtonPreview,
+    TLinkButtonPreview,
+    TSwitchPreview,
+    TTagPreview,
+    TTextInputPreview,
+    TVerticalTabButtonPreview,
+    TTabButtonPreview,
+    TPickerInputPreview,
+    TDatePickerPreview,
+    TRangeDatePickerPreview,
 } from './previewIds';
 
 /**
@@ -98,6 +109,7 @@ export type TPreviewIdByComponentId = {
     [TComponentId.iconButton]: TIconButtonPreview[],
     [TComponentId.linkButton]: TLinkButtonPreview[],
     [TComponentId.pickerInput]: TPickerInputPreview[],
+    [TComponentId.rangeDatePicker]: TRangeDatePickerPreview[],
     [TComponentId.switch]: TSwitchPreview[],
     [TComponentId.tabButton]: TTabButtonPreview[],
     [TComponentId.tag]: TTagPreview[],
