@@ -39,15 +39,15 @@ export const useFocusEvents = ({
     editorId,
     isReadonly,
 }: {
-    editorWrapperRef: MutableRefObject<HTMLDivElement>
     editorId: string,
     isReadonly?: boolean,
+    editorWrapperRef: MutableRefObject<HTMLDivElement | undefined>
 }) => {
     useEffect(() => {
         const onFocusEditor = (event: Event) => {
             const id = (event as any).detail.id;
             const allowFocus = editorWrapperRef.current && !isReadonly && editorId === id;
-            if (allowFocus) {
+            if (allowFocus && editorWrapperRef.current) {
                 editorWrapperRef.current.classList.add(uuiMod.focus);
             }
         };

@@ -32,14 +32,17 @@ const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ clas
     const element: OldTableElement = props.element;
     const tableStore = useTableStore().get;
 
-    if (!element.colSizes) {
-        element.colSizes = (element as OldTableElement).data?.cellSizes
-            || getDefaultColWidths(getTableColumnCount(element));
-    }
+    const getDefalutColSizes = () => {
+        return (element as OldTableElement).data?.cellSizes || getDefaultColWidths(getTableColumnCount(element));
+    };
 
     const colSizeOverrides = tableStore.colSizeOverrides();
-    const currentColSizes = element.colSizes.map(
-        (size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH,
+    const currentColSizes = (
+        !element.colSizes
+            ? getDefalutColSizes()
+            : [...element.colSizes]
+    ).map(
+        (size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH,
     );
 
     const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);

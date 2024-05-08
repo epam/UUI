@@ -6,7 +6,7 @@ import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import { ATTACHMENT_PLUGIN_KEY } from './attachmentPlugin';
+import { ATTACHMENT_PLUGIN_KEY } from './constants';
 
 interface IUploadFileButton {
     editor: PlateEditor;

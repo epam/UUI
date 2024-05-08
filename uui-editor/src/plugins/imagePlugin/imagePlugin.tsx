@@ -1,25 +1,23 @@
-import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
-
+import { prependHttp, useUuiContext } from '@epam/uui-core';
 import { useIsPluginActive, isTextSelected } from '../../helpers';
 
 import { AddImageModal } from './AddImageModal';
-import { Image, toPlateAlign } from './ImageBlock';
+import { Image } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import {
-    PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes,
+    PlateEditor, createPluginFactory, getBlockAbove, insertEmptyElement, focusEditor, insertNodes,
 } from '@udecode/plate-common';
-import { TImageElement } from '@udecode/plate-media';
+import { insertImage, TImageElement } from '@udecode/plate-media';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
-import { IImageElement } from './types';
+import { IImageElement, ModalPayload } from './types';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-
-export const IMAGE_PLUGIN_KEY = 'image';
-export const IMAGE_PLUGIN_TYPE = 'image';
+import { IMAGE_PLUGIN_KEY, IMAGE_PLUGIN_TYPE } from './constants';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory<WithToolbarButton>({
@@ -30,7 +28,7 @@ export const imagePlugin = () => {
         component: Image,
         serializeHtml: ({ element }) => {
             const imageElement = element as IImageElement;
-            const align = toPlateAlign(imageElement.data?.align);
+            const align = imageElement.align;
             return (
                 <div style={ { textAlign: align || 'center' } }>
                     <img
@@ -87,41 +85,57 @@ interface IImageButton {
 export function ImageButton({ editor }: IImageButton) {
     const context = useUuiContext();
 
-    const handleImageInsert = (url: string) => {
-        const text = { text: '' };
+    // TODO: make image file upload independent form uploadFilePlugin
+    const onFilesAdded = useFilesUploader(editor);
 
-        const image: TImageElement = {
-            align: 'left',
-            type: IMAGE_PLUGIN_KEY,
-            url: url,
-            children: [text],
-        };
-
-        insertNodes<TImageElement>(editor, image);
+    const returnSelection = (path?: number[]) => {
+        if (path && !!path.length) {
+            editor.select(editor.start(path));
+            focusEditor(editor);
+        }
     };
 
+    const onInsertImage = () => {
+        const handleInsert = (payload: ModalPayload) => {
+            const path = editor.selection?.anchor.path;
+            if (typeof payload === 'string') {
+                const link = prependHttp(payload, { https: true });
+                const text = { text: '' };
+                const image: TImageElement = {
+                    align: 'left',
+                    type: IMAGE_PLUGIN_KEY,
+                    url: link,
+                    children: [text],
+                };
+                insertNodes<TImageElement>(editor, image);
+                return path;
+            } else {
+                return onFilesAdded(payload).then(() => path);
+            }
+        };
+
+        context.uuiModals.show<ModalPayload>((modalProps) => (
+            <AddImageModal
+                editor={ editor }
+                { ...modalProps }
+            />
+        ))
+            .then(handleInsert)
+            .then(returnSelection)
+            .catch(console.error);
+    };
+
+    // TODO: get rid of that
     if (!useIsPluginActive(IMAGE_PLUGIN_KEY)) return null;
     const block = getBlockAbove(editor);
 
     return (
         <ToolbarButton
             isDisabled={ isTextSelected(editor, true) }
-            onClick={ async (event) => {
-                if (!editor) return;
+            onClick={ (event) => {
                 event.preventDefault();
                 event.stopPropagation();
-
-                context.uuiModals.show<string>((modalProps) => (
-                    <AddImageModal
-                        editor={ editor }
-                        insertImage={ handleImageInsert }
-                        { ...modalProps }
-                    />
-                )).then(() => {
-                    focusEditor(editor); // focusing right after insert leads to bugs
-                }).catch((error) => {
-                    console.error(error);
-                });
+                onInsertImage();
             } }
             icon={ ImageIcon }
             isActive={ block?.length && block[0].type === 'image' }

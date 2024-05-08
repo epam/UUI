@@ -76,7 +76,11 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
 
     /** focus management */
     /** TODO: move to plate */
-    useFocusEvents({ editorId: currentId.current, editorWrapperRef: editableWrapperRef, isReadonly: props.isReadonly });
+    useFocusEvents({
+        editorId: currentId.current,
+        editorWrapperRef: editableWrapperRef,
+        isReadonly: props.isReadonly,
+    });
     const autoFocusRef = useCallback((node: HTMLDivElement) => {
         if (!editableWrapperRef.current && node) {
             editableWrapperRef.current = node;

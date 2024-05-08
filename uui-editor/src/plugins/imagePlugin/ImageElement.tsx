@@ -4,10 +4,7 @@ import {
     PlateElementProps,
     Value,
 } from '@udecode/plate-common';
-import {
-    Image,
-    useMediaState,
-} from '@udecode/plate-media';
+import { Image } from '@udecode/plate-media';
 import {
     useFocused, useReadOnly, useSelected,
 } from 'slate-react';
@@ -35,14 +32,12 @@ export function ImageElement({
     const selected = useSelected();
     const readOnly = useReadOnly();
 
-    useMediaState();
-
-    const imageRef = useRef<HTMLImageElement>(null);
+    const imageRef = useRef<HTMLImageElement>();
 
     const isCaptionEnabled = useMemo(() => {
         const imageWidth = imageRef.current?.width;
         return typeof imageWidth === 'number' && imageWidth >= MIN_CAPTION_WIDTH;
-    }, [imageRef.current?.width]);
+    }, []);
 
     const aligns = [
         align === 'center' && css.alignCenter,

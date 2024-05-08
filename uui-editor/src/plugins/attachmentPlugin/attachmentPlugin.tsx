@@ -4,9 +4,7 @@ import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { createPluginFactory, insertEmptyElement } from '@udecode/plate-common';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { AttachFileButton } from './AttachFileButton';
-
-export const ATTACHMENT_PLUGIN_KEY = 'attachment';
-export const ATTACHMENT_PLUGIN_TYPE = 'attachment';
+import { ATTACHMENT_PLUGIN_KEY, ATTACHMENT_PLUGIN_TYPE } from './constants';
 
 export const attachmentPlugin = () => {
     const createAttachmentPlugin = createPluginFactory<WithToolbarButton>({

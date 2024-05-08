@@ -97,7 +97,7 @@ export const createSerializer = (type: SerializerType = 'html') => {
     } else {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
         return (value: EditorValue) => {
-            return serializeMd(editor, { nodes: value });
+            return serializeMd(editor, { nodes: value! }); // TODO: improve typing
         };
     }
 };
