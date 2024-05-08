@@ -22,7 +22,7 @@ export class PickerInputDoc extends BaseDocsBlock {
 
     static override config: TDocConfig = {
         name: 'PickerInput',
-        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form, TDocContext.OpenedPickerInput],
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form, TDocContext.OpenedPickerBody],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:PickerInputProps', component: uui.PickerInput },
             [TSkin.Electric]: { type: '@epam/uui:PickerInputProps', component: electric.PickerInput },
@@ -205,7 +205,7 @@ export class PickerInputDoc extends BaseDocsBlock {
             docPreview.add({
                 groupId: GROUPS.formOpened,
                 id: TPickerInputPreview['Form Opened Dropdown List'],
-                context: TDocContext.OpenedPickerInput,
+                context: TDocContext.OpenedPickerBody,
                 cellSize: w400_h480,
                 matrix: {
                     ...openedBaseMatrix,
@@ -218,7 +218,7 @@ export class PickerInputDoc extends BaseDocsBlock {
             docPreview.add({
                 groupId: GROUPS.formOpened,
                 id: TPickerInputPreview['Form Opened Dropdown Multi List'],
-                context: TDocContext.OpenedPickerInput,
+                context: TDocContext.OpenedPickerBody,
                 cellSize: w400_h480,
                 matrix: {
                     ...openedBaseMatrix,
@@ -231,7 +231,7 @@ export class PickerInputDoc extends BaseDocsBlock {
             docPreview.add({
                 groupId: GROUPS.formOpened,
                 id: TPickerInputPreview['Form Opened Dropdown Tree'],
-                context: TDocContext.OpenedPickerInput,
+                context: TDocContext.OpenedPickerBody,
                 cellSize: w400_h480,
                 matrix: {
                     ...openedBaseMatrix,
@@ -244,7 +244,7 @@ export class PickerInputDoc extends BaseDocsBlock {
             docPreview.add({
                 groupId: GROUPS.formOpened,
                 id: TPickerInputPreview['Form Opened Dropdown Multi Tree'],
-                context: TDocContext.OpenedPickerInput,
+                context: TDocContext.OpenedPickerBody,
                 cellSize: w400_h480,
                 matrix: {
                     ...openedBaseMatrix,
