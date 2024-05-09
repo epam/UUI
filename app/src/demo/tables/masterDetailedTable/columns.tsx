@@ -53,7 +53,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
     }, {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } href="#" />,
         width: 150,
         isSortable: true,
         isFilterActive: (f) => !!f.managerId,
