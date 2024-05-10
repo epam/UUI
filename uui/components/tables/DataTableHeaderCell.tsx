@@ -108,7 +108,10 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
                         icon={ this.props.areAllFolded ? UnfoldIcon : FoldIcon }
                         onClick={ this.props.onFoldAll }
-                        rawProps={ { 'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All' } }
+                        rawProps={ {
+                            'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All',
+                            'aria-expanded': !!this.props.areAllFolded,
+                        } }
                     />
                 </Tooltip>
             );
