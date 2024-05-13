@@ -1,7 +1,7 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
 import { IImmutableMap, IMap } from './objects';
-import { PatchOrderingType } from '../data';
+import { PatchOrderingType, SortingSettingsModifiers } from '../data';
 
 export interface SearchConfig<TItem> {
     /**
@@ -29,11 +29,28 @@ export interface SearchConfig<TItem> {
     sortSearchByRelevance?: boolean;
 }
 
+export interface FieldSortingSettings<TItem> {
+    sortBy?: (item: TItem) => any;
+    comparator?: (a: any, b: any) => number;
+    direction?: 'asc' | 'desc' | null; // null/undefined means 'don't change'
+}
+
+export type GetFieldSortingSettings<TItem> = ((sorting: SortingOption<TItem>) => FieldSortingSettings<TItem> | FieldSortingSettings<TItem>[]);
+
+export type SortingSettingsModifier<TItem> = (sortings: FieldSortingSettings<TItem>[]) => FieldSortingSettings<TItem>[];
+
+export type SortingSettings<TItem> = {
+    [SortingSettingsModifiers.ALWAYS]?: SortingSettingsModifier<TItem>;
+    [key: string]: FieldSortingSettings<TItem> | GetFieldSortingSettings<TItem>;
+};
+
 export interface SortConfig<TItem> {
     /**
      * A pure function that gets sorting value for current sorting value
      */
     sortBy?(item: TItem, sorting: SortingOption): any;
+
+    sortingSettings?: SortingSettings<TItem>;
 }
 
 export interface FilterConfig<TItem, TFilter> {

@@ -1,6 +1,6 @@
 import {
     CX, DataSourceState, ICanBeReadonly, ICanFocus, IDisableable, IEditable, IHasCaption, IHasIcon, IHasPlaceholder,
-    IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps, PickerFooterProps, SortingOption,
+    IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps, PickerFooterProps, SortConfig,
 } from '@epam/uui-core';
 import { Placement } from '@popperjs/core';
 import { PickerTogglerProps } from '../PickerToggler';
@@ -126,7 +126,7 @@ export interface PickerState {
     setShowSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {
+export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & SortConfig<TItem> & {
     /**
      * Number of default items to show initially, when nothing is selected.
      * @default 10
@@ -147,8 +147,6 @@ export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId
 
     /** If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key */
     settingsKey?: string;
-
-    sortBy?(item: TItem, sorting: SortingOption): string;
 };
 
 export type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};
