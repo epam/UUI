@@ -22,6 +22,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         isDeleted,
         sorting,
         sortBy,
+        sortingSettings,
     }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
     const prevPatch = usePrevious(patch);
@@ -32,17 +33,18 @@ export function usePatchTree<TItem, TId, TFilter = any>(
     }, [sorting]);
 
     const sortedPatch = useMemo(
-        () => getSortedPatchByParentId(
-            tree.visible,
+        () => getSortedPatchByParentId({
+            tree: tree.visible,
             patch,
-            fixItemBetweenSortings ? patchAtLastSort : patch,
+            patchAtLastSort: fixItemBetweenSortings ? patchAtLastSort : patch,
             getNewItemPosition,
             getItemTemporaryOrder,
             sortBy,
+            sortingSettings,
             sorting,
             isDeleted,
             fixItemBetweenSortings,
-        ),
+        }),
         [patch, sorting, fixItemBetweenSortings],
     );
 
@@ -53,6 +55,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             getItemTemporaryOrder,
             isDeleted,
             sorting,
+            sortingSettings,
             sortBy,
             ...tree.visible.getParams(),
         });

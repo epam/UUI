@@ -35,6 +35,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isLoaded,
         getItemTemporaryOrder,
         fixItemBetweenSortings,
+        sortingSettings,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -97,7 +98,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     );
 
     const sortTree = useSortTree(
-        { tree: filteredTree, sortBy, dataSourceState, isLoading: isTreeLoading },
+        { tree: filteredTree, sortBy, sortingSettings, dataSourceState, isLoading: isTreeLoading },
         [filteredTree, isTreeLoading],
     );
 
@@ -127,6 +128,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
+        sortingSettings,
     });
 
     const totalCount = useMemo(() => {

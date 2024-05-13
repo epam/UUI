@@ -174,7 +174,17 @@ export class TreeState<TItem, TId> {
     }
 
     private patchTreeStructure(
-        { treeStructure, itemsMap, sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: PatchIntoTreeStructureOptions<TItem, TId>,
+        {
+            treeStructure,
+            itemsMap,
+            sortedPatch,
+            patchAtLastSort,
+            getItemTemporaryOrder,
+            isDeleted,
+            sorting,
+            sortBy,
+            sortingSettings,
+        }: PatchIntoTreeStructureOptions<TItem, TId>,
     ) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
             treeStructure,
@@ -185,6 +195,7 @@ export class TreeState<TItem, TId> {
             isDeleted,
             sorting,
             sortBy,
+            sortingSettings,
         });
 
         if (newTreeStructure === treeStructure && newItemsMap === itemsMap && !newItems.length) {
@@ -195,7 +206,7 @@ export class TreeState<TItem, TId> {
     }
 
     public patch(
-        { sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy }: ExtendedPatchOptions<TItem, TId>,
+        { sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy, sortingSettings }: ExtendedPatchOptions<TItem, TId>,
     ): TreeState<TItem, TId> {
         const { treeStructure: newFull } = this.patchTreeStructure({
             treeStructure: this.getTreeStructure('full'),
@@ -206,6 +217,7 @@ export class TreeState<TItem, TId> {
             isDeleted,
             sorting,
             sortBy,
+            sortingSettings,
         });
 
         const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchTreeStructure({
@@ -217,6 +229,7 @@ export class TreeState<TItem, TId> {
             isDeleted,
             sorting,
             sortBy,
+            sortingSettings,
         });
 
         if (this.getTreeStructure('full') === newFull && this.getTreeStructure('visible') === newVisible) {

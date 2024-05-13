@@ -1,6 +1,6 @@
 import { NOT_FOUND_RECORD } from '../constants';
 import { newMap } from './map';
-import { DataSourceState, IImmutableMap, IMap, PatchOptions, SortConfig, SortedPatchByParentId } from '../../../../../types';
+import { DataSourceState, IImmutableMap, IMap, PatchOptions, SortedPatchByParentId } from '../../../../../types';
 import { buildComparators, composeComparators } from '../helpers';
 import { PatchOrdering } from '../constants';
 import { ITree } from '../ITree';
@@ -133,19 +133,27 @@ const sortByTemporaryOrder = <TItem, TId>(
     });
 };
 
-const sortPatchByParentId = <TItem, TId, TFilter>(
+type SortPatchByParentIdOptions<TItem, TId, TFilter> = Omit<PatchOptions<TItem, TId>, 'patch'> & {
     tree: ITree<TItem, TId>,
-    groupedByParentId: IMap<TId, TItem[]>,
-    getNewItemPosition: PatchOptions<TItem, TId>['getNewItemPosition'],
-    getItemTemporaryOrder: PatchOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
-    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
-    sortBy: SortConfig<TItem>['sortBy'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
-    isDeleted: undefined | ((item: TItem) => boolean),
-    fixItemBetweenSortings?: boolean,
-) => {
+    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+    groupedByParentId: IMap<TId, TItem[]>,
+};
+
+const sortPatchByParentId = <TItem, TId, TFilter>({
+    tree,
+    groupedByParentId,
+    getNewItemPosition,
+    getItemTemporaryOrder,
+    patchAtLastSort,
+    sortBy,
+    sortingSettings,
+    sorting,
+    isDeleted,
+    fixItemBetweenSortings,
+}: SortPatchByParentIdOptions<TItem, TId, TFilter>) => {
     const { complexIds } = tree.getParams();
-    const comparators = buildComparators({ sorting, sortBy, getId: tree.getParams().getId });
+    const comparators = buildComparators({ sorting, sortBy, sortingSettings, getId: tree.getParams().getId });
     const composedComparator = composeComparators(comparators, tree.getParams().getId);
 
     const sorted: SortedPatchByParentId<TItem, TId> = newMap({ complexIds });
@@ -176,18 +184,18 @@ const sortPatchByParentId = <TItem, TId, TFilter>(
     return sorted;
 };
 
-export const getSortedPatchByParentId = <TItem, TId, TFilter>(
+type GetSortedPatchByParentIdOptions<TItem, TId, TFilter> = PatchOptions<TItem, TId> & {
     tree: ITree<TItem, TId>,
-    patch: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
-    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
-    getNewItemPosition: PatchOptions<TItem, TId>['getNewItemPosition'],
-    getItemTemporaryOrder: PatchOptions<TItem, TId>['getItemTemporaryOrder'] | undefined,
-    sortBy: SortConfig<TItem>['sortBy'],
     sorting: DataSourceState<TFilter, TId>['sorting'],
-    isDeleted?: (item: TItem) => boolean,
-    fixItemBetweenSortings?: boolean,
-) => {
+    patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
+};
+
+export const getSortedPatchByParentId = <TItem, TId, TFilter>({
+    tree,
+    patch,
+    ...restProps
+}: GetSortedPatchByParentIdOptions<TItem, TId, TFilter>) => {
     const params = tree.getParams();
-    const grouped = groupByParentId(patch, params.getParentId, params.complexIds);
-    return sortPatchByParentId(tree, grouped, getNewItemPosition, getItemTemporaryOrder, patchAtLastSort, sortBy, sorting, isDeleted, fixItemBetweenSortings);
+    const groupedByParentId = groupByParentId(patch, params.getParentId, params.complexIds);
+    return sortPatchByParentId({ tree, groupedByParentId, ...restProps });
 };

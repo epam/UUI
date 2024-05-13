@@ -20,7 +20,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isFoldedByDefault, getId, getParentId, setDataSourceState,
         cascadeSelection, getRowOptions, rowOptions, selectAll, fetchStrategy,
         getChildCount, itemsStatusMap, complexIds, patch, isDeleted, getNewItemPosition, sortBy,
-        fixItemBetweenSortings, getItemTemporaryOrder,
+        fixItemBetweenSortings, getItemTemporaryOrder, sortingSettings,
     } = props;
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
@@ -178,6 +178,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
+        sortingSettings,
     });
 
     const reload = useCallback(() => {
