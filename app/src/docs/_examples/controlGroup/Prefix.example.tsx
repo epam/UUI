@@ -43,9 +43,7 @@ export default function PrefixExample() {
             </ControlGroup>
 
             <ControlGroup>
-                <div style={ { width: '50px' } }>
-                    <TextInput value={ valueTI } onValueChange={ onValueTIChange } placeholder="05" />
-                </div>
+                <TextInput rawProps={ { style: { width: '50px' } } } value={ valueTI } onValueChange={ onValueTIChange } placeholder="05" />
                 <InputAddon content="h" />
             </ControlGroup>
 
