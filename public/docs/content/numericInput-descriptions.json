@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "NumericInput is used to let the user enter a number. It includes built-in validation to a reject non-numerical input.",
-            "marks": []
-          }
-        ]
+        "text": "Lets the user enter a number. Includes built-in validation to a reject non-numerical input."
       }
     ]
   }
-}
+]

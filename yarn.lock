@@ -4461,10 +4461,10 @@
     "@udecode/plate-table" "31.4.1"
     validator "^13.11.0"
 
-"@udecode/plate-serializer-html@31.1.0":
-  version "31.1.0"
-  resolved "https://registry.yarnpkg.com/@udecode/plate-serializer-html/-/plate-serializer-html-31.1.0.tgz#0de99beb121e0a795220cf5cd88ab98b9b9f8bd5"
-  integrity sha512-UsCdNQiGWeJzr81Nssqvv9ykIdbn1KTl+zBHMESZJ6GLtM2/E0I6I9+hTl0JxcVPUYfJk8bEuN49ewc2pnnpwQ==
+"@udecode/plate-serializer-html@31.4.4":
+  version "31.4.4"
+  resolved "https://registry.yarnpkg.com/@udecode/plate-serializer-html/-/plate-serializer-html-31.4.4.tgz#2deed14da06c5720c303ffa02af70a742350e516"
+  integrity sha512-6pwyHJuhQIXFPHrxaezlFr0RNNQGxBtEXJmkriLMYyMtg86yf7d1euHzsypqN9QIrk0I2KRFib/kH1o1E8YyYw==
   dependencies:
     html-entities "^2.5.2"
 

@@ -4,6 +4,7 @@ import {
     SetDataSourceState,
 } from '../../../../../../../types';
 import { ItemsMap } from '../../../ItemsMap';
+import { ItemsStatusCollector } from '../../../ItemsStatusCollector';
 import { ItemsStorage } from '../../../ItemsStorage';
 import { RecordStatus } from '../../../types';
 
@@ -63,11 +64,13 @@ export interface SharedItemsState<TItem, TId> {
     setItems?: ItemsStorage<TItem, TId>['setItems'];
 }
 
-export interface ItemsStatuses<TId> {
+export interface ItemsStatuses<TItem, TId, TFilter = any> {
     /**
      * Map of items statuses.
      */
     itemsStatusMap?: IMap<TId, RecordStatus>;
+
+    itemsStatusCollector?: ItemsStatusCollector<TItem, TId, TFilter>;
 }
 
 export interface LazyDataSourceConfig<TItem, TId, TFilter> extends FlattenSearchResultsConfig {

@@ -1,11 +1,12 @@
 import { PlaywrightTestOptions } from '@playwright/test';
 
+export const PLATFORM = 'linux';
 export const PREVIEW_URL = '/preview';
 export const PlayWrightInterfaceName = '_uui_playwright_interface';
 
 /*
  */
-export const SHARED_DEVICE_CFG: Record<string, Partial<PlaywrightTestOptions>> = {
+export const SHARED_DEVICE_CFG: Record<'DEFAULT', Partial<PlaywrightTestOptions>> = {
     DEFAULT: {
         locale: 'en-US',
         timezoneId: 'EET',

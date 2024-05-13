@@ -32,8 +32,8 @@ export function getApi(params: { processRequest: IProcessRequest, origin?: strin
 
     return {
         demo: getDemoApi(processRequest, origin),
-        success: {
-            validateForm: <T>(formState: T) => processRequest(origin.concat('api/success/validate-form'), 'POST', formState),
+        form: {
+            validateForm: <T>(formState: T) => processRequest(origin.concat('api/form/validate-form'), 'POST', formState),
         },
         errors: {
             status: (status: number) => processRequest(origin.concat(`api/error/status/${status}`), 'POST'),

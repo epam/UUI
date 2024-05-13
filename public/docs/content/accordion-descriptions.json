@@ -4,7 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Accordion is a UI element represented by a vertically stacked list of items (labels/titles/thumbnails). Each item is associated with a data container that can be expanded or collapsed."
+        "text": "A vertically stacked list of items (labels/titles/thumbnails). Each item can be expanded or collapsed."
       }
     ]
   }

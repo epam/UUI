@@ -1,21 +1,31 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
-import { PreviewPageParams, ScreenshotTestParamsSingle, TMatrix, TMatrixMinimal, TTheme } from '../types';
+import { TMatrix, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
-import { testNameToFileName, createUniqueTestName } from './testNameUtils';
-import { Ctx } from './ctx';
+import { createUniqueTestName } from './testNameUtils';
+import { TestBuilderContext } from './testBuilderContext';
 import { screenshotsDirAbsPath } from '../../playwright.config';
-import { PreviewPage } from '../pages/previewPage';
 
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrix[]> = new Map();
+
+    only<PComp extends keyof TPreviewIdByComponentId, PMatrix extends TMatrixMinimal<TPreviewIdByComponentId[PComp]>>(cid: PComp, matrix: PMatrix): TestBuilder {
+        return this._add(cid, matrix, true);
+    }
 
     /**
      * @param cid
      * @param matrix
      */
-    add<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>) {
-        type TPreviewsArr = TPreviewIdByComponentId[typeof cid];
+    add<PComp extends keyof TPreviewIdByComponentId, PMatrix extends TMatrixMinimal<TPreviewIdByComponentId[PComp]>>(cid: PComp, matrix: PMatrix): TestBuilder {
+        return this._add(cid, matrix);
+    }
+
+    private _add<
+        PComp extends keyof TPreviewIdByComponentId,
+        PMatrix extends TMatrixMinimal<TPreviewIdByComponentId[PComp]>
+    >(cid: PComp, matrix: PMatrix, only?: boolean) {
+        type TPreviewsArr = TPreviewIdByComponentId[PComp];
         let prev = this.cfgByComponent.get(cid);
         if (!prev) {
             prev = [];
@@ -31,48 +41,66 @@ export class TestBuilder {
             isSkin,
             theme,
             onBeforeExpect,
+            only,
         };
         prev!.push(matrixFull);
         return this;
     }
 
     buildTests(params?: { runId?: string }) {
-        const ctx: Ctx = new Ctx(screenshotsDirAbsPath);
-
+        const ctx: TestBuilderContext = new TestBuilderContext(screenshotsDirAbsPath);
         const runId = params?.runId;
         this.cfgByComponent.forEach((matrixArr, componentId) => {
             matrixArr.forEach((matrix) => {
                 createTestsForSingleComponentId({ runId, componentId, matrix }, ctx);
             });
         });
-
-        ctx.reportUnusedScreenshots();
+        ctx.reportIssues();
     }
 }
 
-function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: Ctx) {
+type ScreenshotTestParamsSingle = {
+    runId?: string;
+    componentId: TComponentId;
+    matrix: TMatrix;
+};
+
+function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: TestBuilderContext) {
     const { componentId, matrix, runId } = builderParams;
     matrix.theme.forEach((theme) => {
         matrix.isSkin.forEach((isSkin) => {
             matrix.previewId.forEach((previewId) => {
                 const pageParams = { theme, isSkin, previewId, componentId };
                 const testName = createUniqueTestName({ runId, pageParams });
-                const screenshotName = testNameToFileName(testName);
                 ctx.seen(testName);
-                testScreenshot({ pageParams, testName, screenshotName: `${screenshotName}.png`, onBeforeExpect: matrix.onBeforeExpect });
+                const screenshotName = `${testName}.png`;
+                if (ctx.shouldSkipTest(testName)) {
+                    return;
+                }
+                const testFn = matrix.only ? test.only : test;
+                testFn(testName, async ({ previewPage }) => {
+                    await previewPage.editPreview(pageParams);
+                    await matrix.onBeforeExpect({ previewPage, previewId });
+                    if (matrix.focusFirstElement) {
+                        const sel = matrix.focusFirstElement({ previewId });
+                        typeof sel === 'string' && await previewPage.focusElement(sel);
+                    }
+                    if (matrix.waitFor) {
+                        await previewPage.page.waitForTimeout(matrix.waitFor);
+                    }
+                    if (matrix.blurActiveElement) {
+                        await previewPage.page.evaluate(() => {
+                            // @ts-ignore
+                            const elem = document.activeElement;
+                            if (elem) {
+                                elem.blur();
+                            }
+                        });
+                    }
+                    const opts = await previewPage.getScreenshotOptions();
+                    await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
+                });
             });
         });
-    });
-}
-
-function testScreenshot(
-    params: { pageParams: PreviewPageParams, testName: string, screenshotName: string, onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void> },
-) {
-    const { pageParams, testName, screenshotName, onBeforeExpect } = params;
-    test(testName, async ({ previewPage }) => {
-        await previewPage.editPreview(pageParams);
-        await onBeforeExpect({ previewPage });
-        const opts = await previewPage.getScreenshotOptions();
-        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
     });
 }

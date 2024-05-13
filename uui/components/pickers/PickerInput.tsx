@@ -62,6 +62,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         shouldShowBody,
         getSearchPosition,
         closePickerBody,
+        openPickerBody,
         handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
@@ -70,10 +71,11 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     useImperativeHandle(ref, () => {
         if (dropdownRef.current) {
             dropdownRef.current.closePickerBody = closePickerBody;
+            dropdownRef.current.openPickerBody = openPickerBody;
         }
 
         return dropdownRef.current;
-    }, [closePickerBody]);
+    }, [closePickerBody, openPickerBody]);
 
     const getTogglerMods = (): PickerTogglerMods => {
         return {

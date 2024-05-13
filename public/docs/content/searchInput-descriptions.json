@@ -1,40 +1,26 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
+        "text": "A text field designed for the user to enter search queries. It extends all behavior from the "
+      },
+      {
+        "data": {
+          "url": "/documents?category=components&id=textInput&mode=doc&skin=UUI4_promo"
+        },
+        "type": "link",
+        "url": "/documents?category=components&id=textInput&mode=doc&skin=UUI4_promo",
+        "children": [
           {
-            "object": "text",
-            "text": "SearchInput is a text field designed for the user to enter search queries. It extends all behavior from the ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?category=components&id=textInput&mode=doc&skin=UUI4_promo"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "TextInput",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " component, except some styling configurations.",
-            "marks": []
+            "text": "TextInput"
           }
         ]
+      },
+      {
+        "text": " component, while adding some styles and input-throttling."
       }
     ]
   }
-}
+]
