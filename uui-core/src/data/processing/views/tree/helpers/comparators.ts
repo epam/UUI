@@ -13,10 +13,9 @@ export const simpleComparator = <T extends string | number>(a: T, b: T) => {
 export const buildComparators = <TItem, TId, TFilter>(
     options: ApplySortOptions<TItem, TId, TFilter>,
 ): ((a: TItem, b: TItem) => number)[] => {
-    const { sorting } = options;
-    if (sorting) {
+    if (options.sorting) {
         const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
-        const sortingSettings = sorting.map<FieldSortingSettings<TItem> | FieldSortingSettings<TItem>[]>((sortingOption) => {
+        const sortingSettings = options.sorting.map<FieldSortingSettings<TItem> | FieldSortingSettings<TItem>[]>((sortingOption) => {
             const { field, direction } = sortingOption;
             const fieldSettings = options.sortingSettings?.[field as string];
             const customSettings = typeof fieldSettings === 'function' ? fieldSettings(sortingOption) : fieldSettings;
@@ -39,7 +38,7 @@ export const buildComparators = <TItem, TId, TFilter>(
             ?? ((s: FieldSortingSettings<TItem>[]) => s)
         )(sortingSettings);
 
-        return sortingSettingsWithAlways.map(({ direction, comparator, sortBy }) => {
+        return sortingSettingsWithAlways.map(({ direction, comparator = compareScalars, sortBy }) => {
             const sign = direction === 'desc' ? -1 : 1;
             return (a, b) => sign * comparator(sortBy(a) + '', sortBy(b) + '');
         });
