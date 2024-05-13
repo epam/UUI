@@ -12,7 +12,7 @@ type LinkButtonMods = {
      */
     color?: LinkButtonColor;
 };
-// TODO: leave 3 colors white, blue, gray - more specific colors will be determined later.
+
 /** Represents the properties of a LinkButton component. */
 export type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;
 

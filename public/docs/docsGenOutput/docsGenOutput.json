@@ -1,5 +1,5 @@
 {
- "version": "5.7.1",
+ "version": "5.7.2",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -3793,7 +3793,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "CascadeSelectionService",
-     "nameFull": "CascadeSelectionService<TId>"
+     "nameFull": "CascadeSelectionService<TItem, TId>"
     },
     "src": "uui-core/src/data/processing/views/dataRows/services/useCascadeSelectionService.ts",
     "comment": {
@@ -3806,12 +3806,12 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "CascadeSelectionService<TId>",
+     "raw": "CascadeSelectionService<TItem, TId>",
      "print": [
       "/**",
       " * A service which provides cascade selection functionality with loading missing records.",
       " */",
-      "interface CascadeSelectionService<TId> {",
+      "interface CascadeSelectionService<TItem, TId> {",
       "    /**",
       "     * Provides a cascade selection functionality.",
       "     * @param isChecked - checking state of the item.",
@@ -3820,14 +3820,14 @@
       "     * @param checked - current state of checked items.",
       "     * @returns new checked items.",
       "     */",
-      "    handleCascadeSelection: (isChecked: boolean, checkedId?: TId, isRoot?: boolean, checked?: TId[]) => Promise<TId[]>;",
+      "    getCompleteTreeForCascadeSelection: (id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>;",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "handleCascadeSelection",
-      "name": "handleCascadeSelection",
+      "uid": "getCompleteTreeForCascadeSelection",
+      "name": "getCompleteTreeForCascadeSelection",
       "comment": {
        "raw": [
         "Provides a cascade selection functionality.",
@@ -3839,7 +3839,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(isChecked: boolean, checkedId?: TId | undefined, isRoot?: boolean | undefined, checked?: TId[] | undefined) => Promise<TId[]>"
+       "raw": "(id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>"
       },
       "editor": {
        "type": "func"
@@ -15601,7 +15601,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -15825,6 +15825,23 @@
       },
       "editor": {
        "type": "number"
+      },
+      "from": "@epam/uui-core:PickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerFilterConfig",
       "required": false
@@ -16383,6 +16400,10 @@
       "    isChanged: boolean;",
       "    /** True if save is in progress */",
       "    isInProgress: boolean;",
+      "    /** Validation state which was returned from `onSave` callback  */",
+      "    serverValidationState: ValidationState;",
+      "    /** Sets new server validation state from client side */",
+      "    setServerValidationState: (s: React.SetStateAction<ValidationState>) => void;",
       "}"
      ]
     },
@@ -16609,6 +16630,35 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "serverValidationState",
+      "name": "serverValidationState",
+      "comment": {
+       "raw": [
+        "Validation state which was returned from `onSave` callback"
+       ]
+      },
+      "typeValue": {
+       "raw": "ValidationState"
+      },
+      "required": true
+     },
+     {
+      "uid": "setServerValidationState",
+      "name": "setServerValidationState",
+      "comment": {
+       "raw": [
+        "Sets new server validation state from client side"
+       ]
+      },
+      "typeValue": {
+       "raw": "(s: React.SetStateAction<ValidationState>) => void"
+      },
+      "editor": {
+       "type": "func"
       },
       "required": true
      },
@@ -25055,6 +25105,10 @@
       "    showSearch?: boolean;",
       "    /** Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates) */",
       "    maxBodyHeight?: number;",
+      "    /**",
+      "     * Enables highlighting of the items' text with search-matching results.",
+      "     */",
+      "    highlightSearchMatches?: boolean;",
       "};"
      ]
     },
@@ -25272,6 +25326,22 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -32059,6 +32129,23 @@
       "required": false
      },
      {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "filter",
       "name": "filter",
       "comment": {
@@ -33108,7 +33195,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "UseCascadeSelectionServiceProps",
-     "nameFull": "UseCascadeSelectionServiceProps<TItem, TId, TFilter>"
+     "nameFull": "UseCascadeSelectionServiceProps<TItem, TId>"
     },
     "src": "uui-core/src/data/processing/views/dataRows/services/useCascadeSelectionService.ts",
     "comment": {
@@ -33121,12 +33208,12 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "UseCascadeSelectionServiceProps<TItem, TId, TFilter>",
+     "raw": "UseCascadeSelectionServiceProps<TItem, TId>",
      "print": [
       "/**",
       " * Cascade selection service configuration.",
       " */",
-      "interface UseCascadeSelectionServiceProps<TItem, TId, TFilter = any> extends Pick<CommonTreeConfig<TItem, TId, TFilter>, 'rowOptions' | 'getRowOptions' | 'cascadeSelection'>, LoadMissingRecords<TItem, TId>, GetItemStatus<TId> {",
+      "interface UseCascadeSelectionServiceProps<TItem, TId> extends LoadMissingRecords<TItem, TId> {",
       "    /**",
       "     * Tree-like data, cascade selection should be performed on.",
       "     */",
@@ -33149,78 +33236,6 @@
       "required": true
      },
      {
-      "uid": "rowOptions",
-      "name": "rowOptions",
-      "comment": {
-       "raw": [
-        "Specifies if rows are selectable, checkable, draggable, clickable, and more.",
-        " See DataRowOptions for more details.",
-        " If options depends on the item itself, use getRowOptions.",
-        " Specifying both rowOptions and getRowOptions might help to render better loading skeletons: we use only rowOptions in this case, as we haven't loaded an item yet.",
-        " Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance",
-        " @param item An item to get options for"
-       ]
-      },
-      "typeValue": {
-       "raw": "DataRowOptions<TItem, TId>"
-      },
-      "from": "@epam/uui-core:BaseDataSourceConfig",
-      "required": false
-     },
-     {
-      "uid": "getRowOptions",
-      "name": "getRowOptions",
-      "comment": {
-       "raw": [
-        "For each row, specify if row is selectable, editable, checkable, draggable, clickable, have its own set of columns, and more.",
-        " To make rows editable, pass IEditable interface to each row. This works the same way as for other editable components.",
-        " See DataRowOptions for more details.",
-        " If both getRowOptions and rowOptions specified, we'll use getRowOptions for loaded rows, and rowOptions only for loading rows.",
-        " Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance",
-        " @param item - record, configuration should be returned for.",
-        " @param index - index of a row. It is optional and should not be expected, that it is provided on every call."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, index?: number | undefined) => DataRowOptions<TItem, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseDataSourceConfig",
-      "required": false
-     },
-     {
-      "uid": "cascadeSelection",
-      "name": "cascadeSelection",
-      "comment": {
-       "raw": [
-        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
-        " - false: All nodes are selected independently (default).",
-        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-        " - 'implicit': Selecting a parent node means that all children are considered checked.",
-        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
-        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
-        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
-        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean | 'implicit' | 'explicit'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        false,
-        true,
-        "implicit",
-        "explicit"
-       ]
-      },
-      "from": "@epam/uui-core:BaseDataSourceConfig",
-      "required": false
-     },
-     {
       "uid": "loadMissingRecordsOnCheck",
       "name": "loadMissingRecordsOnCheck",
       "comment": {
@@ -33239,25 +33254,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:LoadMissingRecords",
-      "required": false
-     },
-     {
-      "uid": "getItemStatus",
-      "name": "getItemStatus",
-      "comment": {
-       "raw": [
-        "Provides a status of the given item.",
-        " @param id - id of an item, status to be provided for.",
-        " @returns status of the item."
-       ]
-      },
-      "typeValue": {
-       "raw": "(id: TId) => RecordStatus"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:GetItemStatus",
       "required": false
      }
     ],
@@ -33287,7 +33283,7 @@
       "/**",
       " * `useDataRows` configuration.",
       " */",
-      "interface UseDataRowsProps<TItem, TId, TFilter = any> extends CommonTreeConfig<TItem, TId, TFilter>, ITreeLoadingState, Partial<CascadeSelectionService<TId>>, GetItemStatus<TId> {",
+      "interface UseDataRowsProps<TItem, TId, TFilter = any> extends CommonTreeConfig<TItem, TId, TFilter>, ITreeLoadingState, Partial<CascadeSelectionService<TItem, TId>>, GetItemStatus<TId> {",
       "    /**",
       "     * Tree-like data, rows to be built from.",
       "     */",
@@ -33682,8 +33678,8 @@
       "required": false
      },
      {
-      "uid": "handleCascadeSelection",
-      "name": "handleCascadeSelection",
+      "uid": "getCompleteTreeForCascadeSelection",
+      "name": "getCompleteTreeForCascadeSelection",
       "comment": {
        "raw": [
         "Provides a cascade selection functionality.",
@@ -33695,7 +33691,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(isChecked: boolean, checkedId?: TId | undefined, isRoot?: boolean | undefined, checked?: TId[] | undefined) => Promise<TId[]>"
+       "raw": "(id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>"
       },
       "editor": {
        "type": "func"
@@ -34919,6 +34915,15 @@
       },
       "typeValue": {
        "raw": "IMap<TId, RecordStatus>"
+      },
+      "from": "@epam/uui-core:ItemsStatuses",
+      "required": false
+     },
+     {
+      "uid": "itemsStatusCollector",
+      "name": "itemsStatusCollector",
+      "typeValue": {
+       "raw": "ItemsStatusCollector<TItem, TId, TFilter>"
       },
       "from": "@epam/uui-core:ItemsStatuses",
       "required": false
@@ -37060,7 +37065,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "ItemsStatuses",
-     "nameFull": "ItemsStatuses<TId>"
+     "nameFull": "ItemsStatuses<TItem, TId, TFilter>"
     },
     "src": "uui-core/src/data/processing/views/tree/hooks/strategies/types/common.ts",
     "exported": false
@@ -75455,11 +75460,13 @@
        }
       },
       "typeValue": {
-       "raw": "'primary' | 'secondary' | 'contrast'"
+       "raw": "'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "critical",
+        "accent",
         "primary",
         "secondary",
         "contrast"
@@ -98064,7 +98071,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray10' | 'gray60' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray10' | 'gray60' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
@@ -98075,6 +98082,8 @@
         "red",
         "gray10",
         "gray60",
+        "critical",
+        "accent",
         "primary",
         "secondary",
         "contrast"
@@ -105090,7 +105099,6 @@
     "typeValue": {
      "raw": "LinkButtonProps",
      "print": [
-      "// TODO: leave 3 colors white, blue, gray - more specific colors will be determined later.",
       "/** Represents the properties of a LinkButton component. */",
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
@@ -105437,7 +105445,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night200' | 'night400' | 'night800' | 'night900' | 'contrast'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'critical' | 'night500' | 'accent' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night200' | 'night400' | 'night800' | 'night900' | 'contrast'"
       },
       "typeValueRef": "@epam/loveship:LinkButtonColor",
       "editor": {
@@ -105454,7 +105462,9 @@
         "night100",
         "night300",
         "night600",
+        "critical",
         "night500",
+        "accent",
         "primary",
         "secondary",
         "night700",
