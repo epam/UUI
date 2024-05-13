@@ -20,11 +20,13 @@ export const buildComparators = <TItem, TId, TFilter>(
             const { field, direction } = sortingOption;
             const fieldSettings = options.sortingSettings?.[field as string];
             const settings = typeof fieldSettings === 'function' ? fieldSettings(sortingOption) : fieldSettings;
+            const defaultSortBy = ((i: TItem) => i[sortingOption.field as keyof TItem] ?? '');
             const getSortingSettings = (s: FieldSortingSettings<TItem>) => ({
-                sortBy: s.sortBy ?? ((item) => options.sortBy(item, sortingOption)) ?? ((i: TItem) => i[sortingOption.field as keyof TItem] ?? ''),
-                direction: s.direction ?? direction ?? 'asc',
-                comparator: s.comparator ?? compareScalars,
+                sortBy: s?.sortBy ?? (options.sortBy ? ((item) => options.sortBy?.(item, sortingOption)) : defaultSortBy),
+                direction: s?.direction ?? direction ?? 'asc',
+                comparator: s?.comparator ?? compareScalars,
             });
+
             if (Array.isArray(settings)) {
                 return settings.map(getSortingSettings);
             }
