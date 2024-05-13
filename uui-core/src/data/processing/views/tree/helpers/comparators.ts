@@ -32,7 +32,7 @@ export const buildComparators = <TItem, TId, TFilter>(
             }
 
             return getSortingSettings(customSettings);
-        }).flatMap<FieldSortingSettings<TItem>>((i) => i);
+        }).flat();
 
         const sortingSettingsWithAlways = (
             options.sortingSettings?.[SortingSettingsModifiers.ALWAYS]
