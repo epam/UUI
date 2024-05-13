@@ -140,9 +140,16 @@ export class TreeState<TItem, TId> {
         getId,
         sorting,
         sortBy,
+        sortingSettings,
     }: SortOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ treeStructure, sorting, sortBy, getId });
+        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({
+            treeStructure,
+            sorting,
+            sortBy,
+            sortingSettings,
+            getId,
+        });
 
         if (treeStructure === newTreeStructure) {
             return this;

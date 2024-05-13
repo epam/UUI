@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IHasPlaceholder, IHasCX, IDropdownTogglerProps } from './props';
-import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
+import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption, SortConfig } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
 
 /**
@@ -49,7 +49,7 @@ export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | Arr
 
 export type PickerBindingValueType = 'scalar' | 'array';
 
-export type PickerBaseOptions<TItem, TId> = {
+export type PickerBaseOptions<TItem, TId> = SortConfig<TItem> & {
     /** Name of the entity being selected. Affects wording like "Please select [entity]" */
     entityName?: string;
 
@@ -76,9 +76,6 @@ export type PickerBaseOptions<TItem, TId> = {
 
     /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */
     emptyValue?: undefined | null | [];
-
-    /** Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource */
-    sortBy?(item: TItem, sorting: SortingOption): any;
 
     /** Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario. */
     filter?: any;

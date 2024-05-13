@@ -1,3 +1,5 @@
+import { FieldSortingSettings } from '../../../../../types';
+import { SortingSettingsModifiers } from '../constants';
 import { ApplySortOptions } from '../treeState/types';
 
 export const simpleComparator = <T extends string | number>(a: T, b: T) => {
@@ -8,19 +10,40 @@ export const simpleComparator = <T extends string | number>(a: T, b: T) => {
     return a === b ? 0 : 1;
 };
 
-export const buildComparators = <TItem, TId, TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) => {
-    const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
-    const comparators: ((a: TItem, b: TItem) => number)[] = [];
+export const buildComparators = <TItem, TId, TFilter>(
+    options: ApplySortOptions<TItem, TId, TFilter>,
+): ((a: TItem, b: TItem) => number)[] => {
+    const { sorting } = options;
+    if (sorting) {
+        const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
+        const sortingSettings = sorting.map<FieldSortingSettings<TItem> | FieldSortingSettings<TItem>[]>((sortingOption) => {
+            const { field, direction } = sortingOption;
+            const fieldSettings = options.sortingSettings?.[field as string];
+            const settings = typeof fieldSettings === 'function' ? fieldSettings(sortingOption) : fieldSettings;
+            const getSortingSettings = (s: FieldSortingSettings<TItem>) => ({
+                sortBy: s.sortBy ?? ((item) => options.sortBy(item, sortingOption)) ?? ((i: TItem) => i[sortingOption.field as keyof TItem] ?? ''),
+                direction: s.direction ?? direction ?? 'asc',
+                comparator: s.comparator ?? compareScalars,
+            });
+            if (Array.isArray(settings)) {
+                return settings.map(getSortingSettings);
+            }
 
-    if (options.sorting) {
-        options.sorting.forEach((sortingOption) => {
-            const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] ?? '');
-            const sign = sortingOption.direction === 'desc' ? -1 : 1;
-            comparators.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
+            return getSortingSettings(settings);
+        }).flatMap<FieldSortingSettings<TItem>>((i) => i);
+
+        const sortingSettingsWithAlways = (
+            options.sortingSettings?.[SortingSettingsModifiers.ALWAYS]
+            ?? ((s: FieldSortingSettings<TItem>[]) => s)
+        )(sortingSettings);
+
+        return sortingSettingsWithAlways.map(({ direction, comparator, sortBy }) => {
+            const sign = direction === 'desc' ? -1 : 1;
+            return (a, b) => sign * comparator(sortBy(a) + '', sortBy(b) + '');
         });
     }
 
-    return comparators;
+    return [];
 };
 
 export const composeComparators = <TItem, TId>(comparators: ((a: TItem, b: TItem) => number)[], getId: (item: TItem) => TId) => {
