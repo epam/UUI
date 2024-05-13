@@ -19,7 +19,7 @@ export const buildComparators = <TItem, TId, TFilter>(
         const sortingSettings = sorting.map<FieldSortingSettings<TItem> | FieldSortingSettings<TItem>[]>((sortingOption) => {
             const { field, direction } = sortingOption;
             const fieldSettings = options.sortingSettings?.[field as string];
-            const settings = typeof fieldSettings === 'function' ? fieldSettings(sortingOption) : fieldSettings;
+            const customSettings = typeof fieldSettings === 'function' ? fieldSettings(sortingOption) : fieldSettings;
             const defaultSortBy = ((i: TItem) => i[sortingOption.field as keyof TItem] ?? '');
             const getSortingSettings = (s: FieldSortingSettings<TItem>) => ({
                 sortBy: s?.sortBy ?? (options.sortBy ? ((item) => options.sortBy?.(item, sortingOption)) : defaultSortBy),
@@ -27,11 +27,11 @@ export const buildComparators = <TItem, TId, TFilter>(
                 comparator: s?.comparator ?? compareScalars,
             });
 
-            if (Array.isArray(settings)) {
-                return settings.map(getSortingSettings);
+            if (Array.isArray(customSettings)) {
+                return customSettings.map(getSortingSettings);
             }
 
-            return getSortingSettings(settings);
+            return getSortingSettings(customSettings);
         }).flatMap<FieldSortingSettings<TItem>>((i) => i);
 
         const sortingSettingsWithAlways = (
