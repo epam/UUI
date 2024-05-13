@@ -14,7 +14,7 @@ interface LinkButtonMods {
      * Defines component color.
      * @default 'primary'
      */
-    color?: 'primary' | 'secondary' | 'contrast';
+    color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'contrast';
 }
 
 /** Represents the Core properties of the LinkButton component. */
@@ -49,6 +49,14 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
 export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
     if (__DEV__ && props.captionCX) {
         devLogger.warn('LinkButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
+    }
+    if (__DEV__ && props.color === 'contrast') {
+        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+            component: 'LinkButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => props.color === 'contrast',
+        });
     }
 
     const styles = [applyLinkButtonMods(props), props.cx];
