@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
+import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, SortingSettingsModifiers, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
 import { TodoTask } from '@epam/uui-docs';
@@ -229,6 +229,10 @@ export default function EditableTableExample() {
                 })
                 .toProps(),
         }),
+        sortingSettings: {
+            [SortingSettingsModifiers.ALWAYS]: (sortings) => [{ sortBy: (item) => !item.name, direction: 'asc' }, ...sortings],
+        },
+
         // Changed/added/removed items are stored in value.items and applied to the dataSource via patch.
         patch: value.items.set(lastId - 1, { ...blankItem, id: lastId - 1 }), 
         // Position, new items from the patch should be placed.
