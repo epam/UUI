@@ -1,6 +1,29 @@
 @use '../../assets/styles/index' as *;
 @use 'sass:math';
 
+@mixin scalable-icon-size($size, $additionalClass: '') {
+    $striped-size: strip-unit($size);
+
+    #{$additionalClass}:global(.uui-icon) {
+        svg {
+            @if ($striped-size == 18) {
+                height: 12px;
+            } @else if ($striped-size == 24) {
+                height: 18px;
+            } @else if ($striped-size == 30) {
+                height: 18px;
+            } @else if ($striped-size == 36) {
+                height: 18px;
+            } @else if ($striped-size == 42) {
+                height: 24px;
+            } @else if ($striped-size == 48) {
+                height: 24px;
+            }
+            width: inherit;
+        }
+    }
+}
+
 @mixin badge-layout($size, $borderWidth) {
     min-height: $size;
     min-width: $size;
