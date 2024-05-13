@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Tag shows any information (selected user, item, quantity, etc.) can have actions",
-            "marks": []
-          }
-        ]
+        "text": "A multi-purpose component. Use when a button doesn't feel right, but you need something alike. Examples: to highlight an entity status, or for chosen filters."
       }
     ]
   }
-}
+]

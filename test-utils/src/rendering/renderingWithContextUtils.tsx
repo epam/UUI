@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react';
 import { render, renderHook } from '../extensions/testingLibraryReactExt';
 import renderer from 'react-test-renderer';
-import { StubAdaptedRouter, useUuiServices, UuiContext, UuiContexts } from '@epam/uui-core';
+import { useUuiServices, UuiContext, UuiContexts } from '@epam/uui-core';
 import { delayAct } from './timerUtils';
+import { TestStubAdaptedRouter } from '../mocks/TestStubAdaptedRouter';
 
 export { renderer };
 
@@ -13,7 +14,8 @@ export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) =
  */
 export const getDefaultUUiContextWrapper = () => {
     const testUuiCtx = {} as UuiContexts;
-    const router = new StubAdaptedRouter();
+    const router = new TestStubAdaptedRouter();
+
     const wrapper: CustomWrapperType = function UuiContextDefaultWrapper({ children }) {
         const { services } = useUuiServices({ router });
         Object.assign(testUuiCtx, services);

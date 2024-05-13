@@ -6,7 +6,7 @@ import { collapseSelection, useEditorState } from '@udecode/plate-common';
 import { mergeTableCells } from '@udecode/plate-table';
 
 export function MergeToolbarContent() {
-    const editor = useEditorState();
+    const editor = useEditorState(); // TODO: use useEditorRef
 
     return (
         <ToolbarButton

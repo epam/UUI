@@ -3,7 +3,15 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize,
+    TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import {
     filterExamples,
@@ -12,6 +20,7 @@ import {
     renderDayExamples,
     renderFooterExamples,
 } from './rangeDatePickerExamples';
+import { TRangeDatePickerPreview } from '../_types/previewIds';
 
 export class RangeDatePickerDoc extends BaseDocsBlock {
     title = 'RangeDatePicker';
@@ -36,7 +45,7 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
             });
             doc.merge('renderDay', { examples: renderDayExamples });
             doc.merge('renderFooter', { examples: renderFooterExamples });
-            doc.merge('presets', { examples: presetsExamples });
+            doc.merge('presets', { examples: presetsExamples() });
             doc.merge('getPlaceholder', { examples: getPlaceholderExamples });
             doc.merge('filter', { examples: filterExamples });
             doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });
@@ -53,6 +62,26 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
                     },
                 ],
             });
+        },
+
+        preview: (docPreview: DocPreviewBuilder<uui.RangeDatePickerProps>) => {
+            const TEST_DATA = {
+                value: { from: '2345-10-15', to: '2345-11-25' },
+            };
+            const cellSize: TPreviewCellSize = '320-60';
+            const openedCellSize: TPreviewCellSize = '768-500';
+            type TMatrixLocal = TPreviewMatrix<uui.RangeDatePickerProps>;
+            const baseMatrix: TMatrixLocal = {
+                isInvalid: { values: [false, true] },
+                size: { examples: '*' },
+                value: { values: [undefined, TEST_DATA.value] },
+                disableClear: { values: [true, false], condition: (props) => !!props.value },
+            };
+            docPreview.add(TRangeDatePickerPreview.Basic, { ...baseMatrix }, cellSize);
+            docPreview.add(TRangeDatePickerPreview.Disabled, { ...baseMatrix, isDisabled: { values: [true] } }, cellSize);
+            docPreview.add(TRangeDatePickerPreview.ReadOnly, { ...baseMatrix, isReadonly: { values: [true] } }, cellSize);
+            docPreview.add(TRangeDatePickerPreview.Opened, { value: { values: [TEST_DATA.value] } }, openedCellSize);
+            docPreview.add(TRangeDatePickerPreview['Opened With Presets'], { value: { values: [TEST_DATA.value] }, presets: { examples: ['default'] } }, openedCellSize);
         },
     };
 

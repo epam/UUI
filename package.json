@@ -37,6 +37,7 @@
     "test-typecheck": "tsc --project ./tsconfig.test.json",
     "test-update": "yarn test --updateSnapshot",
     "test-e2e": "yarn --cwd uui-e2e-tests test-e2e",
+    "test-e2e-chromium": "yarn --cwd uui-e2e-tests test-e2e-chromium",
     "test-e2e-update": "yarn --cwd uui-e2e-tests test-e2e-update",
     "test-e2e-report": "yarn --cwd uui-e2e-tests test-e2e-report",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",

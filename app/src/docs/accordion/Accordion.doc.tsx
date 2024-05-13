@@ -3,10 +3,11 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { accordionExamples } from './accordionExamples';
 import { IControlled } from '@epam/uui-core';
+import { TAccordionPreview } from '../_types/previewIds';
 
 export class AccordionDoc extends BaseDocsBlock {
     title = 'Accordion';
@@ -25,6 +26,41 @@ export class AccordionDoc extends BaseDocsBlock {
             doc.merge('title', { examples: [{ value: 'Accordion title', isDefault: true }, 'Additional info'] });
             doc.merge('value', { isRequired: false });
             doc.merge('onValueChange', { isRequired: false });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.AccordionProps & IControlled<boolean>>) => {
+            const TEST_DATA = {
+                childrenExampleName: 'Simple text 12px - medium length',
+                title: 'Title',
+                // eslint-disable-next-line
+                title2lines: (<>{'Title'}<br/>{'Title'}</>),
+                componentWithShortText: () => (<i style={ { margin: '0 6px 0 6px' } }>Test</i>),
+            };
+            docPreview.add({
+                id: TAccordionPreview.Collapsed,
+                matrix: {
+                    value: { values: [false] },
+                    mode: { examples: '*' },
+                    renderAdditionalItems: {
+                        values: [undefined, TEST_DATA.componentWithShortText],
+                    },
+                    children: { examples: [TEST_DATA.childrenExampleName] },
+                    title: { values: [TEST_DATA.title, TEST_DATA.title2lines] },
+                    isDisabled: { examples: '*' },
+                },
+                cellSize: '160-70',
+            });
+            docPreview.add({
+                id: TAccordionPreview.Expanded,
+                matrix: {
+                    value: { values: [true] },
+                    mode: { examples: '*' },
+                    children: { examples: [TEST_DATA.childrenExampleName] },
+                    title: { values: [TEST_DATA.title] },
+                    isDisabled: { examples: '*' },
+                    padding: { examples: '*' },
+                },
+                cellSize: '280-280',
+            });
         },
     };
 
