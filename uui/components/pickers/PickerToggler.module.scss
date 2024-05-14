@@ -93,6 +93,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
+        border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
