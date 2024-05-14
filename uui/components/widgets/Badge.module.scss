@@ -194,6 +194,24 @@
         }
     }
 
+    &.size-48 {
+        @include badge-layout(48px, 1px);
+
+        &:global(.uui-indicator) {
+            &::before {
+                top: 17px;
+                left: 17px;
+            }
+        }
+
+        :global(.uui-caption) {
+            padding-top: 11px;
+            padding-bottom: 11px;
+            line-height: 24px;
+            font-size: 16px;
+        }
+    }
+
     &:global(.uui-fill-solid) {
         --uui-badge-bg: var(--uui-color-50);
         --uui-badge-bg-hover: var(--uui-color-60);

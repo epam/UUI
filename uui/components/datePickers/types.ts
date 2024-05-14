@@ -34,7 +34,7 @@ interface DatePickerProps extends
     /**
      * Defines component size.
      */
-    size?: '24' | '30' | '36' | '42';
+    size?: '24' | '30' | '36' | '42' | '48';
 
     /**
      * Defines where to place calendar icon

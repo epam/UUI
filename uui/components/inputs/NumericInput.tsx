@@ -13,7 +13,7 @@ type NumericInputMods = IHasEditMode & {
      * Defines component size
      * @default '36'
      */
-    size?: '24' | '30' | '36' | '42';
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 function applyNumericInputMods(mods: NumericInputMods) {
