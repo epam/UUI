@@ -5,7 +5,7 @@ import * as loveship from '@epam/loveship';
 import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
-import { childrenLoveshipOrPromo, childrenUui } from './dropdownContainerExamples';
+import { childrenUui } from './dropdownContainerExamples';
 
 export class DropdownContainerDoc extends BaseDocsBlock {
     title = 'Dropdown Container';
@@ -14,35 +14,24 @@ export class DropdownContainerDoc extends BaseDocsBlock {
         name: 'DropdownContainer',
         bySkin: {
             [TSkin.Loveship]: {
-                type: '@epam/loveship:DropdownContainerProps',
+                type: '@epam/uui:DropdownContainerProps',
                 component: loveship.DropdownContainer,
-                doc: (doc: DocBuilder<loveship.DropdownContainerProps>) => {
-                    doc.merge('children', { examples: childrenLoveshipOrPromo });
-                },
             },
             [TSkin.Promo]: {
-                type: '@epam/promo:DropdownContainerProps',
+                type: '@epam/uui:DropdownContainerProps',
                 component: promo.DropdownContainer,
-                doc: (doc: DocBuilder<promo.DropdownContainerProps>) => {
-                    doc.merge('children', { examples: childrenLoveshipOrPromo });
-                },
             },
             [TSkin.UUI]: {
                 type: '@epam/uui:DropdownContainerProps',
                 component: uui.DropdownContainer,
-                doc: (doc: DocBuilder<uui.DropdownContainerProps>) => {
-                    doc.merge('children', { examples: childrenUui });
-                },
             },
             [TSkin.Electric]: {
                 type: '@epam/uui:DropdownContainerProps',
                 component: electric.DropdownContainer,
-                doc: (doc: DocBuilder<uui.DropdownContainerProps>) => {
-                    doc.merge('children', { examples: childrenUui });
-                },
             },
         },
-        doc: (doc: DocBuilder<loveship.DropdownContainerProps | promo.DropdownContainerProps | uui.DropdownContainerProps>) => {
+        doc: (doc: DocBuilder<uui.DropdownContainerProps>) => {
+            doc.merge('children', { examples: childrenUui });
             doc.merge('as', { editorType: 'MultiUnknownEditor', examples: ['span', 'b', 'i', 'p'] });
             doc.merge('shards', { editorType: 'JsonEditor' });
             doc.merge('focusLock', { examples: [{ value: false, isDefault: true }, true] });

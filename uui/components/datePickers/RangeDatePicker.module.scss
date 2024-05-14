@@ -31,11 +31,6 @@
         @include control-box-layout(40px, 0);
         @include scalable-icon-size(42);
     }
-
-    &.size-48 {
-        @include control-box-layout(46px, 0);
-        @include scalable-icon-size(48);
-    }
 }
 
 .date-input-group {

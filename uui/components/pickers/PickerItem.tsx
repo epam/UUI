@@ -4,13 +4,17 @@ import { AvatarProps, IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { Text, TextPlaceholder } from '../typography';
 import { Avatar } from '../widgets';
-import { SizeMod } from '../types';
 import css from './PickerItem.module.scss';
 import { getHighlightedSearchMatches } from './highlight';
 
 const defaultSize = '36';
 
-export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {
+export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId> {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+
     /** Path to the user avatar.
      * If omitted, no avatar will be rendered.
      * * */
