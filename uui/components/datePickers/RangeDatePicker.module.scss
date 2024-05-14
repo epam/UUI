@@ -45,6 +45,16 @@
     border: 1px solid var(--uui-control-border);
     border-radius: var(--uui-border-radius);
 
+    > :first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    > :last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
     .separator {
         display: flex;
         flex-shrink: 0;

@@ -54,6 +54,8 @@
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 * [DatePicker] renderDay prop callback signature updated
 * [RangeDatePicker] renderDay prop callback signature updated
+* [RangeDatePicker] shared border is made flat
+* [ControlGroup] shared border is made flat
 * [DatePickerBody] props breaking changes
 * [RangeDatePickerBody] props breaking changes
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
