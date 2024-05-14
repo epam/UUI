@@ -138,16 +138,6 @@
         --uui-color-contrast: var(--uui-neutral-70);
     }
 
-    .uui-color-gray5 {
-        --uui-color-5: var(--white);
-        --uui-color-10: var(--white);
-        --uui-color-20: var(--white);
-        --uui-color-50: var(--gray5);
-        --uui-color-60: var(--gray10);
-        --uui-color-70: var(--gray20);
-        --uui-color-contrast: var(--gray80);
-    }
-
     .uui-link_button.uui-color-contrast,
     .uui-color-gray10 {
         --uui-color-5: var(--white);
@@ -179,7 +169,6 @@
         --uui-color-contrast: var(--gray80);
     }
 
-    .uui-button.uui-color-gray50,
     .uui-color-gray60 {
         --uui-color-5: var(--gray20);
         --uui-color-10: var(--gray60);
@@ -187,26 +176,6 @@
         --uui-color-50: var(--gray60);
         --uui-color-60: var(--gray70);
         --uui-color-70: var(--gray80);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-gray80 {
-        --uui-color-5: var(--white);
-        --uui-color-10: var(--gray10);
-        --uui-color-20: var(--gray20);
-        --uui-color-50: var(--gray80);
-        --uui-color-60: var(--gray80);
-        --uui-color-70: var(--gray80);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-gray90 {
-        --uui-color-5: var(--gray60);
-        --uui-color-10: var(--gray70);
-        --uui-color-20: var(--gray80);
-        --uui-color-50: var(--gray90);
-        --uui-color-60: var(--gray90);
-        --uui-color-70: var(--gray90);
         --uui-color-contrast: var(--white);
     }
 
@@ -442,6 +411,21 @@
     .uui-panel.uui-color-gray90 {
         --uui-panel-bg: var(--gray90);
     }
+
+    /* Text */
+
+    .uui-text.uui-color-gray5 {
+        --uui-text: var(--gray5);
+    }
+
+    .uui-text.uui-color-gray80 {
+        --uui-text: var(--gray80);
+    }
+
+    .uui-text.uui-color-gray90 {
+        --uui-text: var(--gray90);
+    }
+
 
     /* Tag */
 

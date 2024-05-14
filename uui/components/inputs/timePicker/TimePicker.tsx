@@ -1,34 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { uuiDayjs } from '../../../helpers/dayJsHelper';
 import {
-    CX, devLogger, DropdownBodyProps, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable,
+    CX, DropdownBodyProps, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable,
     IHasForwardedRef, IHasPlaceholder, IHasRawProps, isFocusReceiverInsideFocusLock,
 } from '@epam/uui-core';
 import { Dropdown, DropdownContainer } from '../../overlays';
 import { TextInput } from '../TextInput';
 import { TimePickerBody } from '../timePicker';
-import { EditMode, IHasEditMode, SizeMod } from '../../types';
+import { EditMode, IHasEditMode } from '../../types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
 
 const DEFAULT_MODE = EditMode.FORM;
 
-export interface TimePickerProps extends SizeMod, IHasEditMode, IEditable<TimePickerValue | null>,
+export interface TimePickerProps extends IHasEditMode, IEditable<TimePickerValue | null>,
     IDisableable,
     ICanBeReadonly,
     IHasPlaceholder,
     ICanFocus<HTMLElement>,
     IHasForwardedRef<HTMLElement> {
+
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42';
+
     /**
      * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys
      * @default 5
      */
     minutesStep?: number;
+
     /**
      * Time format, 12 hours with AM/PM or 24 hours
      * @default 12
      */
     format?: 12 | 24;
+
     /** ID to put on time picker toggler 'input' node */
     id?: string;
 
@@ -157,17 +165,6 @@ export function TimePicker(props: TimePickerProps) {
     };
 
     const renderInput = (inputProps: IDropdownToggler) => {
-        if (__DEV__) {
-            if (props.size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<TimePickerProps, 'size'>({
-                    component: 'TimePicker',
-                    propName: 'size',
-                    propValue: props.size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(props.size) !== -1,
-                });
-            }
-        }
         return (
             <TextInput
                 { ...inputProps }

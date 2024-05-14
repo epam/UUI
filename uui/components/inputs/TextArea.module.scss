@@ -196,13 +196,4 @@
             @include text-size(42px, 1px);
         }
     }
-
-    &.size-48 {
-        min-width: 48px;
-        min-height: 48px;
-
-        :global(.uui-input) {
-            @include text-size(48px, 1px);
-        }
-    }
 }

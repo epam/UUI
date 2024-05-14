@@ -72,14 +72,6 @@
                 }
             }
         }
-
-        &.size-48 {
-            :global(.uui-numeric-input-button-group) {
-                > * {
-                    height: 23px;
-                }
-            }
-        }
     }
 
     &:global(.uui-disabled) {

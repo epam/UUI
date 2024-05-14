@@ -1,4 +1,3 @@
-import * as types from '../types';
 import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { Tooltip } from '../overlays/Tooltip';
@@ -8,7 +7,12 @@ import css from './LabeledInput.module.scss';
 
 const DEFAULT_SIZE = '36';
 
-interface LabeledInputMods extends types.SizeMod {}
+interface LabeledInputMods {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+}
 
 /** Represents the properties of the LabeledInput component. */
 export type LabeledInputProps = uuiComponents.LabeledInputProps & LabeledInputMods;
