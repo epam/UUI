@@ -10,7 +10,6 @@
     * [TabButton][Tag][Badge][LinkButton][Button][MainMenuButton]: removed 'captionCx' prop. Please use 'cx' prop with cascading to 'uui-caption' global class;
     * [Text]: removed 'font' prop;
     * [IconContainer]: removed color prop. Define icon color by yourself, e.g. via cx or style prop;
-    * [TextArea][NumericInput][DatePicker][RangeDatePicker][Badge][TimePicker]: removed '48' size;
     * [Avatar]: removed 'onClick' prop;
   * [Loveship]:
     * [LinkButton]: removed 'sun', 'cobalt', 'violet',  'fuchsia', 'white', 'night50', 'night100', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900' colors;
