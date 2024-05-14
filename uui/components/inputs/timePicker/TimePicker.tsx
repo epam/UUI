@@ -23,7 +23,7 @@ export interface TimePickerProps extends IHasEditMode, IEditable<TimePickerValue
     /**
      * Defines component size.
      */
-    size?: '24' | '30' | '36' | '42';
+    size?: '24' | '30' | '36' | '42' | '48';
 
     /**
      * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys

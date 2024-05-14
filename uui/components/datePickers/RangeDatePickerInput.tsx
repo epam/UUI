@@ -27,7 +27,7 @@ export interface RangeDatePickerInputProps
     /**
      * Defines component size.
      */
-    size?: '24' | '30' | '36' | '42';
+    size?: '24' | '30' | '36' | '42' | '48';
 
     /**
      * rawProps as HTML attributes
