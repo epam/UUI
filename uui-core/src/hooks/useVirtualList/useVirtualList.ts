@@ -67,7 +67,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         const focusedIndexOffset = rowOffsets.current[value.focusedIndex] || 0;
         const focusedIndexHeight = rowHeights.current[value.focusedIndex] || 0;
         const scrollBottom = scrollTop + clientHeight - listOffset;
-        if (focusedIndexOffset < scrollTop - focusedIndexHeight || scrollBottom < focusedIndexOffset) {
+        if (focusedIndexOffset < (scrollTop - focusedIndexHeight / 2) || scrollBottom < (focusedIndexOffset + focusedIndexHeight)) {
             const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
             const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
             scrollToIndex({ index: indexToScroll, behavior: 'smooth' });
