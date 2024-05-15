@@ -38,10 +38,10 @@ builder
 builder
     .add(accordion, { previewId: values(TAccordionPreview), isSkin: [false] })
     .add(avatarStack, { previewId: values(TAvatarStackPreview), isSkin: [false] })
-    .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Open'] && 'input' })
+    .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], waitFor: 500, focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Open'] && 'input' })
     .add(checkbox, { previewId: values(TCheckboxPreview), isSkin: [false] })
     .add(pickerInput, { previewId: values(TPickerInputPreview), isSkin: [false] })
-    .add(rangeDatePicker, { previewId: values(TRangeDatePickerPreview), isSkin: [false], focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId) && 'input' })
+    .add(rangeDatePicker, { previewId: values(TRangeDatePickerPreview), isSkin: [false], waitFor: 500, focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId) && 'input' })
     .add(tabButton, { previewId: values(TTabButtonPreview), isSkin: [false] })
     .add(TComponentId.switch, { previewId: values(TSwitchPreview), isSkin: [false] })
     .add(textInput, { previewId: values(TTextInputPreview), isSkin: [false] })

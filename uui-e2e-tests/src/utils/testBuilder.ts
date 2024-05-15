@@ -73,6 +73,9 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
                 const pageParams = { theme, isSkin, previewId, componentId };
                 const testName = createUniqueTestName({ runId, pageParams });
                 ctx.seen(testName);
+                if (ctx.isDryRun()) {
+                    return;
+                }
                 const screenshotName = `${testName}.png`;
                 if (ctx.shouldSkipTest(testName)) {
                     return;
