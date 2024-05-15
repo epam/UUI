@@ -61,19 +61,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         setListOffset(newListOffset);
     }, [scrollContainer.current, listContainer.current]);
 
-    const handleScrollToFocus = () => {
-        if (!scrollContainer.current || !value) return;
-        const { scrollTop, clientHeight } = scrollContainer.current;
-        const focusedIndexOffset = rowOffsets.current[value.focusedIndex] || 0;
-        const focusedIndexHeight = rowHeights.current[value.focusedIndex] || 0;
-        const scrollBottom = scrollTop + clientHeight - listOffset;
-        if (focusedIndexOffset < (scrollTop - focusedIndexHeight / 2) || scrollBottom < (focusedIndexOffset + focusedIndexHeight)) {
-            const middleOffset = focusedIndexOffset - clientHeight / 2 + focusedIndexHeight / 2;
-            const indexToScroll = rowOffsets.current.findIndex((rowOffset) => middleOffset <= rowOffset);
-            scrollToIndex({ index: indexToScroll, behavior: 'smooth' });
-        }
-    };
-
     const getTopIndexAndVisibleCountOnScroll = React.useCallback(() => {
         if (!virtualListInfo.scrollContainer || !virtualListInfo.value) {
             return {
@@ -185,10 +172,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             virtualListInfo,
         ],
     );
-
-    useLayoutEffectSafeForSsr(() => {
-        handleScrollToFocus();
-    }, [value?.focusedIndex]);
 
     const offsetY = React.useMemo(
         () => getOffsetYForIndex(value?.topIndex, rowOffsets.current, listOffset),
