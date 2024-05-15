@@ -26,10 +26,14 @@ interface PickerBindingHelper<TItem, TId> {
 class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> {
     emptyValueArray: any[] = [];
     dataSourceStateToValue(dsState: DataSourceState<any, TId>, props: PickerBaseProps<TId, TItem>, dataSource: IDataSource<TItem, TId, any>) {
-        if (props.valueType === 'entity') {
-            return dsState.checked?.map((id) => dataSource && dataSource.getById(id));
+        if (dsState && Array.isArray(dsState.checked) && dsState.checked && dsState.checked.length > 0) {
+            if (props.valueType === 'entity') {
+                return dsState.checked.map((id) => dataSource && dataSource.getById(id));
+            }
+            return dsState.checked;
+        } else {
+            return props.emptyValue;
         }
-        return dsState.checked;
     }
 
     applyValueToDataSourceState(
@@ -48,7 +52,6 @@ class ArrayBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId> 
 
         return {
             ...dsState,
-            selectedId: null,
             checked: checked,
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,
@@ -81,7 +84,6 @@ class ScalarBindingHelper<TItem, TId> implements PickerBindingHelper<TItem, TId>
         return {
             ...dsState,
             selectedId: selectedId,
-            checked: null,
             filter: props.filter || dsState.filter,
             sorting: props.sorting ? [props.sorting] : dsState.sorting,
         };
