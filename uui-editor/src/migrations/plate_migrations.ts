@@ -75,5 +75,11 @@ const migrate = <N extends TDescendant>(version: string, descendants: N[]) => {
 };
 
 export const migratePlateContent = (version: string, initialValue: Value): Value => {
-    return migrate(version, initialValue);
+    const usedVerion = version;
+
+    if (usedVerion < CONTENT_VERSION) {
+        return migrate(version, initialValue);
+    }
+
+    return initialValue;
 };
