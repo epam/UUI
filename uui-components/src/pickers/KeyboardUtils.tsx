@@ -57,6 +57,7 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
         params.onValueChange({
             ...value,
             focusedIndex,
+            scrollTo: { index: focusedIndex, behavior: 'smooth', align: 'nearest' },
             search,
         });
     }
