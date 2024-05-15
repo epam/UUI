@@ -36,6 +36,10 @@ export class TestBuilderContext {
         return false;
     }
 
+    isDryRun() {
+        return !!UUI_TEST_PARAM_CHECK_ISSUES;
+    }
+
     seen(testName: string) {
         if (this.seenTestNames.has(testName)) {
             throw new Error(`Duplicated test found: "${testName}"`);
@@ -136,7 +140,7 @@ function reportEqualPreview(scrSizeMap: TScrSizeMap, issuesArr: TIssues) {
 function reportObsoleteScr(obsoleteScreenshots: string[], issuesArr: TIssues) {
     if (obsoleteScreenshots.length > 0) {
         const msg = `Next screenshots are not used by any test:\n\t${obsoleteScreenshots.join('\n\t')}`;
-        issuesArr.push({ msg, exit: true });
+        issuesArr.push({ msg, exit: false });
     }
 }
 
