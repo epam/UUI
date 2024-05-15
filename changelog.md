@@ -31,27 +31,15 @@
     * [NotificationCard]: removed 'gray60' color, use 'primary' instead;
     * [Tooltip]: removed 'gray90' prop, use 'neutral' instead;
 
-* [uui-core]: helpers cleanup
-  * Deprecated:
-    * `LazyLoadedMap` and related:
-      * `LazyLoadedMapLoadCallback`
-      * `UNKNOWN`
-      * `LOADING`
-      * `LOADED`
-      * `PENDING`
-      * `FAILED`
-      * `LoadingStatus`
-    * `browser` helper:
-      * `Browser`
-      * `getBrowser`
+* [uui-core]: helpers cleanup, removed following helpers:
+    * `LazyLoadedMap`
+    * `browser'
     * `Debouncer`
     * `parseIconViewbox`
     * `parseStringToCSSProperties`
     * `getScreenSize`
     * `urlParser`
-    * `batch` and related:
-      * `batch`
-      * `BatchPromiseOptions`
+    * `batch`
 
 * [useTree]: useTree hook is added.
   * [Features]:
@@ -95,10 +83,15 @@
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 * [DatePicker] renderDay prop callback signature updated
 * [RangeDatePicker] renderDay prop callback signature updated
+* [RangeDatePicker] shared border is made flat
+* [ControlGroup] shared border is made flat
 * [DatePickerBody] props breaking changes
 * [RangeDatePickerBody] props breaking changes
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput.
+
+**What's Fixed**
+[PickerInput]: fixed setting emptyValue in case of unselecting all picker items
 
 # 5.7.2 - 12.04.2024
 
