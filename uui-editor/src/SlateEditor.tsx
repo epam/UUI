@@ -23,6 +23,7 @@ import css from './SlateEditor.module.scss';
 import { getEditorValue, isEditorValueEmpty } from './helpers';
 import { useFocusEvents } from './plugins/eventEditorPlugin/eventEditorPlugin';
 import { createMigrationPlugin } from './plugins/migrationPlugin/migrationPlugin';
+import { CONTENT_VERSION } from './migrations/plate_migrations';
 
 export const basePlugins: PlatePlugin[] = [
     ...baseMarksPlugin(),
@@ -82,10 +83,10 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
 
         // emit versioned content
         onValueChange({
-            version: contentVersion,
+            version: CONTENT_VERSION,
             content: v,
         });
-    }, [contentVersion, isReadonly, onValueChange]);
+    }, [isReadonly, onValueChange]);
 
     /** config */
     const plugins = useMemo(
