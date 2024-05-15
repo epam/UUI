@@ -1,7 +1,6 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
-
 * [uui-core]: helpers cleanup
   * Deprecated:
     * `LazyLoadedMap` and related:
@@ -23,7 +22,6 @@
     * `batch` and related:
       * `batch`
       * `BatchPromiseOptions`
-
 * [useTree]: useTree hook is added.
   * [Features]:
     * [BaseListViewProps.showSelectedOnly]: The flow of rendering selected rows was changed. Previously, there was a separate flow of rendering selected rows, with using the `IDataSourceView.getSelectedRows` method. Currently, a new property, `showSelectedOnly`, was added. If this feature is turned on, selected rows are returned from `IDataSourceView.getVisibleRows`.
@@ -58,7 +56,7 @@
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
   * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
-* [useForm]: 
+* [useForm]:
   * fixed `beforeLeave` callback invocation in case of redirect at onSuccess callback
   * fixed `isInvalid`, `validationMessage` and `validationProps` value returned from hook in case of server validation. Before was returned only client validation value, now it's merged with server validation.
   * added `setServerValidationState` callback to externally change server validation state.
@@ -77,6 +75,8 @@
 * [IconButton]: Replace the `isDropdown` prop with `showDropdownIcon` to prevent the automatic appearance of the dropdown icon when using `IconButton` as the `Dropdown` target.
 * [ApiContext]: Added possibility to send signal about success relogin via `localStorage`, due to old mechanism with `window.opener.postMessage` was broken on SSO side by security reasons .
   - To switch to the handling via `localStorage` replace code of `/auth/login` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
+* [VirtualList]: fixed scrolling on focus to the partially visible row.
+  * [Breaking change]: scroll to the focused item is not managed by VirtualList anymore. To execute scroll to focused row, it is required to handle the change of focusIndex in key down handler and pass scrollTo with align = 'nearest' along with focusIndex as part of dataSourceState.
 
 # 5.7.1 - 29.03.2024
 
