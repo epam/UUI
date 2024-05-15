@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Text, Badge, FlexRow, LinkButton, BadgeProps } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
-import css from './FilteredTable.module.scss';
 
 export const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -72,7 +71,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
     {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } href="#" />,
         grow: 0,
         width: 150,
         isSortable: true,

@@ -63,7 +63,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
         if ((!prevDataSourceState && (dataSourceState.checked?.length || dataSourceState.selectedId != null))
             || (prevDataSourceState && (
-                prevDataSourceState.checked !== dataSourceState.checked
+                !isEqual(prevDataSourceState.checked, dataSourceState.checked)
                 || dataSourceState.selectedId !== prevDataSourceState.selectedId
             ))
         ) {
