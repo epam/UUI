@@ -1,7 +1,7 @@
 import { createJuicePlugin } from '@udecode/plate-juice';
 import { createDeserializeDocxPlugin } from '@udecode/plate-serializer-docx';
-import { isBlockAboveEmpty, isSelectionAtBlockStart } from '@udecode/plate-common';
-import { ResetNodePlugin, createResetNodePlugin } from '@udecode/plate-reset-node';
+import { isBlockAboveEmpty, isSelectionAtBlockStart, PlatePlugin } from '@udecode/plate-common';
+import { type ResetNodePlugin, createResetNodePlugin } from '@udecode/plate-reset-node';
 import { createSoftBreakPlugin } from '@udecode/plate-break';
 import {
     paragraphPlugin,
@@ -22,7 +22,7 @@ const resetBlockTypesCommonRule = {
     defaultType: PARAGRAPH_TYPE,
 };
 
-const resetBlockTypePlugin: { options: Partial<ResetNodePlugin> } = {
+const resetBlockTypePlugin: Partial<PlatePlugin<ResetNodePlugin>> = {
     options: {
         rules: [
             {
@@ -44,12 +44,12 @@ const resetBlockTypePlugin: { options: Partial<ResetNodePlugin> } = {
  * with the following list when disableCorePlugins prop hasn't been set
  * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
  */
-export const defaultPlugins = [
+export const defaultPlugins: PlatePlugin[] = [
     createDeserializeDocxPlugin(), // depends on juice plugin
     createJuicePlugin(),
     paragraphPlugin(),
     createResetNodePlugin(resetBlockTypePlugin),
     createSoftBreakPlugin(),
-    createAutoformatPlugin(),
+    createAutoformatPlugin(), // TODO: should only be enabled if lists plugin listed
     createEventEditorPlugin(),
 ];

@@ -2,11 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "./build"
+    "outDir": "./build",
+    "strictNullChecks": true
   },
-  "exclude": [
-    "**/__tests__",
-    "build",
-    "node_modules"
-  ]
+  "exclude": ["**/__tests__", "build", "node_modules"]
 }

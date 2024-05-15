@@ -8,9 +8,8 @@ import { Image } from './ImageBlock';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, insertEmptyElement, focusEditor, insertNodes,
+    PlateEditor, createPluginFactory, getBlockAbove, insertEmptyElement, focusEditor,
 } from '@udecode/plate-common';
-import { insertImage, TImageElement } from '@udecode/plate-media';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
@@ -18,6 +17,7 @@ import { IImageElement, ModalPayload } from './types';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { IMAGE_PLUGIN_KEY, IMAGE_PLUGIN_TYPE } from './constants';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { insertImage } from '@udecode/plate-media';
 
 export const imagePlugin = () => {
     const createImagePlugin = createPluginFactory<WithToolbarButton>({
@@ -88,26 +88,25 @@ export function ImageButton({ editor }: IImageButton) {
     // TODO: make image file upload independent form uploadFilePlugin
     const onFilesAdded = useFilesUploader(editor);
 
-    const returnSelection = (path?: number[]) => {
-        if (path && !!path.length) {
-            editor.select(editor.start(path));
-            focusEditor(editor);
-        }
-    };
-
     const onInsertImage = () => {
+        const returnSelection = (path?: number[]) => {
+            if (path && !!path.length) {
+                editor.select(editor.start(path));
+                focusEditor(editor);
+            }
+        };
+
         const handleInsert = (payload: ModalPayload) => {
             const path = editor.selection?.anchor.path;
             if (typeof payload === 'string') {
                 const link = prependHttp(payload, { https: true });
-                const text = { text: '' };
-                const image: TImageElement = {
-                    align: 'left',
-                    type: IMAGE_PLUGIN_KEY,
-                    url: link,
-                    children: [text],
-                };
-                insertNodes<TImageElement>(editor, image);
+                insertImage(editor, link);
+                // insertNodes(editor, {
+                //     align: 'left',
+                //     url: link,
+                //     type: IMAGE_PLUGIN_TYPE,
+                //     children: [{ text: '' }],
+                // });
                 return path;
             } else {
                 return onFilesAdded(payload).then(() => path);

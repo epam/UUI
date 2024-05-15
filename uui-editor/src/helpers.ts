@@ -2,10 +2,12 @@ import {
     Range, Editor,
 } from 'slate';
 import {
-    PlatePlugin, createPlateEditor, createPlugins, getPlugins, useEditorState,
+    PlatePlugin, Value, createPlateEditor, createPlugins, getPlugins, useEditorState,
 } from '@udecode/plate-common';
-import { EditorValue } from './types';
 import { createPlateUI } from './components';
+import { EditorContent, EditorValue, VersionedEditorValue } from './types';
+import { migrateSlateSchema } from './migrations/slate_migrations';
+import { DEFAULT_CONTENT_VERSION } from './migrations/plate_migrations';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -53,7 +55,7 @@ export function useIsPluginActive(key: string): boolean {
     return plugins.some((plugin) => plugin.key === key);
 }
 
-export const isEditorValueEmpty = (value: EditorValue) => {
+export const isEditorValueEmpty = (value: Value) => {
     return (
         !value
         || (value.length === 0
@@ -92,4 +94,16 @@ export const createTempEditor = (plugins: PlatePlugin[]) => {
             components: createPlateUI(),
         }),
     });
+};
+
+const isVersionedValue = (v: EditorValue): v is VersionedEditorValue => {
+    return !!v && v !== null && !Array.isArray(v) && typeof v.version === 'string';
+};
+
+export const getEditorValue = (value: EditorValue): [EditorContent, string] => {
+    if (isVersionedValue(value)) {
+        return [value.content, value.version]; // versioned content
+    } else {
+        return [migrateSlateSchema(value), DEFAULT_CONTENT_VERSION];
+    }
 };
