@@ -9,7 +9,7 @@ import {
 
 import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
-import { migrateTableCell } from '../../migration';
+import { migrateTableCell } from '../../migrations/slate_migrations';
 
 export interface TableCellElementProps
     extends PlateElementProps<Value, TTableCellElement> {

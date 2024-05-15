@@ -3,6 +3,7 @@ import {
     PlateElement,
     PlateElementProps,
     Value,
+    withHOC,
 } from '@udecode/plate-common';
 import { Image } from '@udecode/plate-media';
 import {
@@ -13,6 +14,7 @@ import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
 import { IImageElement, PlateImgAlign } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
+import { ResizableProvider } from '@udecode/plate-resizable';
 
 interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
     align: PlateImgAlign;
@@ -21,11 +23,11 @@ interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
 const MIN_IMG_WIDTH = 12;
 const MIN_CAPTION_WIDTH = 92;
 
-export function ImageElement({
+export const ImageElement = withHOC(ResizableProvider, ({
     className,
     align,
     ...props
-}: ImageElementProps) {
+}: ImageElementProps) => {
     const { children, nodeProps } = props;
 
     const focused = useFocused();
@@ -100,4 +102,4 @@ export function ImageElement({
             {children}
         </PlateElement>
     );
-}
+});

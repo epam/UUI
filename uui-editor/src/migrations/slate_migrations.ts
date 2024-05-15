@@ -8,8 +8,9 @@
  * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
  */
 
-import { PlateImgAlign, SlateImgAlign } from './plugins/imagePlugin/types';
-import { ExtendedTTableCellElement } from './plugins/tablePlugin/types';
+import { Value } from '@udecode/plate-common';
+import { PlateImgAlign, SlateImgAlign } from '../plugins/imagePlugin/types';
+import { ExtendedTTableCellElement } from '../plugins/tablePlugin/types';
 import { TTableCellElement } from '@udecode/plate-table';
 
 const migrateTextNode = (oldNode: any) => {
@@ -26,7 +27,9 @@ const migrateTextNode = (oldNode: any) => {
     };
 };
 
-export const migrateTableCell = (element: TTableCellElement): TTableCellElement => {
+export const migrateTableCell = (
+    element: TTableCellElement,
+): TTableCellElement => {
     const oldElem = element as ExtendedTTableCellElement;
     if (oldElem.data) {
         if (oldElem.data.colSpan) {
@@ -66,14 +69,17 @@ const SLATE_TO_PLATE_IMG_ALIGN = {
     'align-right': 'right',
     'align-center': 'center',
 };
-export const toPlateAlign = (slateAlign: SlateImgAlign) => SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as PlateImgAlign;
+export const toPlateAlign = (slateAlign: SlateImgAlign) =>
+    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as PlateImgAlign;
 
 const migrateElementNode = (node: any) => {
     if (node.object === 'text') {
         return migrateTextNode(node);
     }
 
-    const omitData = node.type === 'table_cell' || node.type === 'table_header_cell' || node.type === 'image';
+    const omitData = node.type === 'table_cell'
+        || node.type === 'table_header_cell'
+        || node.type === 'image';
     let newNode: any = {};
     if (node.type === 'paragraph' && node.nodes?.[0]?.type === 'table') {
         const tableNode = node.nodes[0];
@@ -97,7 +103,7 @@ const migrateElementNode = (node: any) => {
     };
 };
 
-export const migrateSchema = (oldSchema: any) => {
+export const migrateSlateSchema = (oldSchema: any): Value => {
     let migratedSchema;
     try {
         migratedSchema = oldSchema?.document?.nodes.map(migrateElementNode);

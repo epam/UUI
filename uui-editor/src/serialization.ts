@@ -7,7 +7,6 @@ import {
 } from '@udecode/plate-common';
 import { serializeHtml } from '@udecode/plate-serializer-html';
 import { EditorValue } from './types';
-import { migrateSchema } from './migration';
 import {
     baseMarksPlugin,
     headerPlugin,
@@ -24,7 +23,7 @@ import {
     italicPlugin,
     PARAGRAPH_TYPE,
 } from './plugins';
-import { createTempEditor } from './helpers';
+import { createTempEditor, getEditorValue } from './helpers';
 import { BaseEditor, Editor } from 'slate';
 import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin/deserializeMdPlugin';
 import { serializeMd } from '@udecode/plate-serializer-md';
@@ -90,14 +89,14 @@ export const createSerializer = (type: SerializerType = 'html') => {
     if (type === 'html') {
         const editor = createTempEditor(htmlSerializationsWorkingPlugins);
         return (value: EditorValue) => {
-            return serializeHtml(editor, {
-                nodes: migrateSchema(value),
-            });
+            const [v] = getEditorValue(value);
+            return serializeHtml(editor, { nodes: v! }); // TODO: improve typing
         };
     } else {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
         return (value: EditorValue) => {
-            return serializeMd(editor, { nodes: value! }); // TODO: improve typing
+            const [v] = getEditorValue(value);
+            return serializeMd(editor, { nodes: v! }); // TODO: improve typing
         };
     }
 };

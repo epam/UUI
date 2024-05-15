@@ -30,7 +30,7 @@
     "@epam/uui-docs": "5.7.2",
     "@epam/uui-editor": "5.7.2",
     "@epam/uui-timeline": "5.7.2",
-    "@udecode/plate-common": "25.0.1",
+    "@udecode/plate-common": "31.0.0",
     "amplitude-js": "8.9.1",
     "@tanstack/react-query": "^5.17.19",
     "classnames": "2.2.6",
@@ -51,7 +51,7 @@
     "react-router": "6.14.0",
     "react-router-dom": "6.14.0",
     "remark-gfm": "3.0.1",
-    "slate": "0.94.1"
+    "slate": "0.103.0"
   },
   "browserslist": {
     "production": [

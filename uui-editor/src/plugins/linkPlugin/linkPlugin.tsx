@@ -9,11 +9,10 @@ import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-
-export const LINK_ELEMENT = 'link';
+import { LINK_ELEMENT_TYPE } from './constants';
 
 export const linkPlugin = () => createLinkPlugin<WithToolbarButton & LinkPlugin>({
-    type: LINK_ELEMENT,
+    type: LINK_ELEMENT_TYPE,
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (
@@ -44,7 +43,7 @@ export function LinkButton({ editor }: ToolbarLinkButtonProps) {
 
     if (!useIsPluginActive(ELEMENT_LINK)) return null;
 
-    const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT } });
+    const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT_TYPE } });
 
     return (
         <ToolbarButton
