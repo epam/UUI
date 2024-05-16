@@ -29,7 +29,6 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                     searchPosition: 'input',
                     getName: (item: TestItemType) => item.level,
                     value: params.value as TId,
-                    emptyValue: [],
                     searchDebounceDelay: 0,
                 }, params) as PickerInputComponentProps<TItem, TId>;
             }
