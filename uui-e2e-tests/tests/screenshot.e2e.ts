@@ -12,13 +12,13 @@ import {
     TAccordionPreview,
     TAlertPreview,
     TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-    TPickerInputPreview, TDatePickerPreview, TRangeDatePickerPreview, TTextAreaPreview,
+    TPickerInputPreview, TDatePickerPreview, TRangeDatePickerPreview, TTextAreaPreview, TTextPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
-    rangeDatePicker, textArea,
+    rangeDatePicker, textArea, text,
 } = TComponentId;
 
 const { values } = Object;
@@ -32,13 +32,18 @@ builder
     .add(countIndicator, { previewId: values(TCountIndicatorPreview) })
     .add(iconButton, { previewId: values(TIconButtonPreview) })
     .add(linkButton, { previewId: values(TLinkButtonPreview) })
-    .add(tag, { previewId: values(TTagPreview) });
+    .add(tag, { previewId: values(TTagPreview) })
+    .add(text, { previewId: values(TTextPreview) });
 
 // Skin is not tested
 builder
     .add(accordion, { previewId: values(TAccordionPreview), isSkin: [false] })
     .add(avatarStack, { previewId: values(TAvatarStackPreview), isSkin: [false] })
-    .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input' })
+    .add(datePicker, {
+        previewId: values(TDatePickerPreview),
+        isSkin: [false],
+        focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input',
+    })
     .add(checkbox, { previewId: values(TCheckboxPreview), isSkin: [false] })
     .add(pickerInput, { previewId: values(TPickerInputPreview), isSkin: [false] })
     .add(rangeDatePicker, {

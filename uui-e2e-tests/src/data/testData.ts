@@ -15,7 +15,7 @@ import {
     TTabButtonPreview,
     TPickerInputPreview,
     TDatePickerPreview,
-    TRangeDatePickerPreview, TTextAreaPreview,
+    TRangeDatePickerPreview, TTextAreaPreview, TTextPreview,
 } from './previewIds';
 
 /**
@@ -113,6 +113,7 @@ export type TPreviewIdByComponentId = {
     [TComponentId.switch]: TSwitchPreview[],
     [TComponentId.tabButton]: TTabButtonPreview[],
     [TComponentId.tag]: TTagPreview[],
+    [TComponentId.text]: TTextPreview[],
     [TComponentId.textArea]: TTextAreaPreview[],
     [TComponentId.textInput]: TTextInputPreview[],
     [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
