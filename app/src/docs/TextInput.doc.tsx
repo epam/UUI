@@ -39,6 +39,12 @@ export class TextInputDoc extends BaseDocsBlock {
                 placeholder: 'Test placeholder',
             };
             type TMatrixLocal = TPreviewMatrix<uui.TextInputProps>;
+            const statesBaseMatrix: TMatrixLocal = {
+                size: { values: ['30'] },
+                isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
             const baseMatrix: TMatrixLocal = {
                 size: { examples: '*' },
                 icon: { examples: [undefined, TEST_DATA.icon] },
@@ -48,16 +54,14 @@ export class TextInputDoc extends BaseDocsBlock {
                 onCancel: { examples: ['callback'] },
                 value: { values: [undefined, TEST_DATA.value] },
             };
-            const cellSize: TPreviewCellSize = '180-80';
+            const w180_h80: TPreviewCellSize = '180-80';
+            const w180_h50: TPreviewCellSize = '180-50';
             const formBaseMatrix: TMatrixLocal = { mode: { examples: ['form'] }, ...baseMatrix };
-            docPreview.add(TTextInputPreview['Form'], formBaseMatrix, cellSize);
-            docPreview.add(TTextInputPreview['Form Invalid'], { ...formBaseMatrix, isInvalid: { values: [true] } }, cellSize);
-            docPreview.add(TTextInputPreview['Form Disabled'], { ...formBaseMatrix, isDisabled: { values: [true] } }, cellSize);
-            docPreview.add(TTextInputPreview['Form ReadOnly'], { ...formBaseMatrix, isReadonly: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Form'], formBaseMatrix, w180_h80);
+            docPreview.add(TTextInputPreview['Form States'], { ...formBaseMatrix, ...statesBaseMatrix }, w180_h50);
             const inlineBaseMatrix: TMatrixLocal = { mode: { examples: ['inline'] }, ...baseMatrix };
-            docPreview.add(TTextInputPreview['Inline'], inlineBaseMatrix, cellSize);
-            docPreview.add(TTextInputPreview['Inline Disabled'], { ...inlineBaseMatrix, isDisabled: { values: [true] } }, cellSize);
-            docPreview.add(TTextInputPreview['Inline ReadOnly'], { ...inlineBaseMatrix, isReadonly: { values: [true] } }, cellSize);
+            docPreview.add(TTextInputPreview['Inline'], inlineBaseMatrix, w180_h80);
+            docPreview.add(TTextInputPreview['Inline States'], { ...inlineBaseMatrix, ...statesBaseMatrix }, w180_h50);
         },
     };
 
