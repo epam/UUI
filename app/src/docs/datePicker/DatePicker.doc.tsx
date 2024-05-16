@@ -44,40 +44,39 @@ export class DatePickerDoc extends BaseDocsBlock {
             };
             type TMatrixLocal = TPreviewMatrix<uui.DatePickerProps>;
             const baseMatrix: TMatrixLocal = {
-                isInvalid: { values: [false, true] },
                 value: { values: [undefined, TEST_DATA.value] },
                 size: { examples: '*' },
                 iconPosition: { examples: '*' },
                 disableClear: { values: [true, false] },
             };
-            const cellSize: TPreviewCellSize = '180-60';
-            const openedCellSize: TPreviewCellSize = '320-400';
+            const statesBaseMatrix: TMatrixLocal = {
+                size: { values: ['30'] },
+                isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
+            const w180_h60: TPreviewCellSize = '180-60';
+            const w320_h400: TPreviewCellSize = '320-400';
             /**
              * Form
              */
-            const baseFormMatrix: TMatrixLocal = { ...baseMatrix, mode: { values: ['form'] } };
-            docPreview.add(TDatePickerPreview.Form, baseFormMatrix, cellSize);
+            docPreview.add(TDatePickerPreview.Form, { mode: { values: ['form'] }, ...baseMatrix }, w180_h60);
+            docPreview.add(TDatePickerPreview['Form States'], { mode: { values: ['form'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
             docPreview.add({
-                id: TDatePickerPreview['Form Open'],
+                id: TDatePickerPreview['Form Opened'],
                 matrix: { value: { values: [TEST_DATA.value] } },
-                cellSize: openedCellSize,
+                cellSize: w320_h400,
             });
-            docPreview.add(TDatePickerPreview['Form Disabled'], { ...baseFormMatrix, isDisabled: { values: [true] }, isInvalid: { values: [false] } }, cellSize);
-            docPreview.add(TDatePickerPreview['Form ReadOnly'], { ...baseFormMatrix, isReadonly: { values: [true] }, isInvalid: { values: [false] } }, cellSize);
             /**
              * Inline
              */
-            const baseInlineMatrix: TMatrixLocal = { ...baseMatrix, mode: { values: ['inline'] } };
-            docPreview.add(TDatePickerPreview.Inline, baseInlineMatrix, cellSize);
-            docPreview.add(TDatePickerPreview['Inline Disabled'], { ...baseInlineMatrix, isDisabled: { values: [true] }, isInvalid: { values: [false] } }, cellSize);
-            docPreview.add(TDatePickerPreview['Inline ReadOnly'], { ...baseInlineMatrix, isReadonly: { values: [true] }, isInvalid: { values: [false] } }, cellSize);
+            docPreview.add(TDatePickerPreview.Inline, { mode: { values: ['inline'] }, ...baseMatrix }, w180_h60);
+            docPreview.add(TDatePickerPreview['Inline States'], { mode: { values: ['inline'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
             /**
              * Cell
              */
-            const baseCellMatrix: TMatrixLocal = { ...baseMatrix, mode: { values: ['cell'] } };
-            docPreview.add(TDatePickerPreview.Cell, baseCellMatrix, cellSize);
-            docPreview.add(TDatePickerPreview['Cell Disabled'], { ...baseCellMatrix, isDisabled: { values: [true] }, isInvalid: { values: [false] } }, cellSize);
-            docPreview.add(TDatePickerPreview['Cell ReadOnly'], { ...baseCellMatrix, isReadonly: { values: [true] }, isInvalid: { values: [false] } }, cellSize);
+            docPreview.add(TDatePickerPreview.Cell, { mode: { values: ['cell'] }, ...baseMatrix }, w180_h60);
+            docPreview.add(TDatePickerPreview['Cell States'], { mode: { values: ['cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
         },
     };
 

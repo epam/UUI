@@ -40,12 +40,9 @@ export enum TCheckboxPreview {
 }
 export enum TTextInputPreview {
     'Form'= 'Form',
-    'Form Invalid'= 'Form Invalid',
-    'Form Disabled'= 'Form Disabled',
-    'Form ReadOnly'= 'Form ReadOnly',
+    'Form States'= 'Form States',
     'Inline'= 'Inline',
-    'Inline Disabled'= 'Inline Disabled',
-    'Inline ReadOnly'= 'Inline ReadOnly'
+    'Inline States'= 'Inline States'
 }
 export enum TCountIndicatorPreview {
     Colors = 'Colors',
@@ -119,15 +116,12 @@ export enum TPickerInputPreview {
 
 export enum TDatePickerPreview {
     Form = 'Form',
-    'Form Open' = 'Form Open',
-    'Form Disabled' = 'Form Disabled',
-    'Form ReadOnly' = 'Form ReadOnly',
+    'Form Opened' = 'Form Opened',
+    'Form States' = 'Form States',
     Cell = 'Cell',
-    'Cell Disabled' = 'Cell Disabled',
-    'Cell ReadOnly' = 'Cell ReadOnly',
+    'Cell States' = 'Cell States',
     Inline = 'Inline',
-    'Inline Disabled' = 'Inline Disabled',
-    'Inline ReadOnly' = 'Inline ReadOnly'
+    'Inline States' = 'Inline States'
 }
 
 export enum TRangeDatePickerPreview {
