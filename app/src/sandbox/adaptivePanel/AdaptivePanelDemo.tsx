@@ -31,7 +31,7 @@ export function AdaptivePanelDemo() {
     return (
         <FlexCell grow={ 1 }>
             <FlexRow vPadding="24" padding="6">
-                <Text font="sans-semibold" size="48">
+                <Text size="48">
                     Adaptive Panel MVP
                 </Text>
             </FlexRow>

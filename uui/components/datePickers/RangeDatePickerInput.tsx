@@ -3,10 +3,9 @@ import React, {
 } from 'react';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
-    IEditable, devLogger, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
+    IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
 } from '@epam/uui-core';
 import { TextInput } from '../inputs';
-import { SizeMod } from '../types';
 import {
     RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
 } from './types';
@@ -23,9 +22,13 @@ import {
 export interface RangeDatePickerInputProps
     extends IEditable<RangeDatePickerValue>,
     IHasCX,
-    SizeMod,
     IClickable,
     Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+
     /**
      * rawProps as HTML attributes
      */
@@ -84,20 +87,6 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     useEffect(() => {
         setInputValue(toCustomDateRangeFormat(value, format));
     }, [format, value, setInputValue]);
-
-    useEffect(() => {
-        if (__DEV__) {
-            if (size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<RangeDatePickerProps, 'size'>({
-                    component: 'RangeDatePicker',
-                    propName: 'size',
-                    propValue: size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(size) !== -1,
-                });
-            }
-        }
-    }, [size]);
 
     const onInputChange = (newValue: string, inputType: 'from' | 'to') => {
         setInputValue({

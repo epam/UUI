@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
+    DropdownBodyProps, IDropdownToggler, cx, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
 } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 import { EditMode } from '../types';
@@ -61,18 +61,6 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     };
 
     const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
-        if (__DEV__) {
-            if (props.size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<DatePickerProps, 'size'>({
-                    component: 'DatePicker',
-                    propName: 'size',
-                    propValue: props.size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(props.size || '') !== -1,
-                });
-            }
-        }
-
         const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
