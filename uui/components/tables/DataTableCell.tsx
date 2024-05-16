@@ -34,15 +34,21 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     const isEditable = !!props.onValueChange;
 
+    const defaultPadding = props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12';
+    const padding = props.columnsGap === '12' ? '6' : defaultPadding;
+
+    const sideDefaultPadding = props.padding || (isEditable && !props.rowProps.isLoading && '12') || '24';
+    const sidePadding = props.columnsGap === '12' ? '12' : sideDefaultPadding;
+
     props.cx = [
         'uui-dt-vars',
         'data-table-cell',
         props.cx,
         css.cell,
         css['size-' + (props.size || '36')],
-        css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`],
-        props.isFirstColumn && css[`padding-left-${props.padding || (isEditable && !props.rowProps.isLoading && '12') || '24'}`],
-        props.isLastColumn && css['padding-right-24'],
+        css[`padding-${padding}`],
+        props.isFirstColumn && css[`padding-left-${sidePadding}`],
+        props.isLastColumn && css[`padding-right-${sidePadding}`],
         css[`align-widgets-${props.alignActions || 'top'}`],
         (props.border || isEditable) && 'uui-dt-vertical-cell-border',
     ];

@@ -1,4 +1,4 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
 @mixin cell-size($size) {
     &.size-#{$size} {
@@ -28,11 +28,23 @@
     margin-left: -1px;
     background-clip: padding-box;
 
-    &.first-column {
+    &.column-gap-12 {
+        padding: 0;
+    }
+
+    &.first-column-12 {
+        padding-left: 6px;
+    }
+
+    &.last-column-12 {
+        padding-right: 6px;
+    }
+
+    &.first-column-24 {
         padding-left: 18px;
     }
 
-    &.last-column {
+    &.last-column-24 {
         padding-right: 18px;
     }
 
@@ -63,9 +75,13 @@
     @include cell-size(42);
     @include cell-size(48);
 
-    &.padding-left-24 { padding-left: 24px; }
+    &.padding-left-24 {
+        padding-left: 24px;
+    }
 
-    &.padding-right-24 { padding-right: 24px; }
+    &.padding-right-24 {
+        padding-right: 24px;
+    }
 
     .caption-wrapper {
         display: flex;
