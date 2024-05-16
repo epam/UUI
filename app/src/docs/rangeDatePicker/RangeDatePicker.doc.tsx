@@ -68,20 +68,24 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
             const TEST_DATA = {
                 value: { from: '2345-10-15', to: '2345-11-25' },
             };
-            const cellSize: TPreviewCellSize = '320-60';
-            const openedCellSize: TPreviewCellSize = '768-500';
+            const w320_h60: TPreviewCellSize = '320-60';
+            const w768_h500: TPreviewCellSize = '768-500';
             type TMatrixLocal = TPreviewMatrix<uui.RangeDatePickerProps>;
-            const baseMatrix: TMatrixLocal = {
+            const statesBaseMatrix: TMatrixLocal = {
+                size: { values: ['30'] },
                 isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
+            const baseMatrix: TMatrixLocal = {
                 size: { examples: '*' },
                 value: { values: [undefined, TEST_DATA.value] },
                 disableClear: { values: [true, false], condition: (props) => !!props.value },
             };
-            docPreview.add(TRangeDatePickerPreview.Basic, { ...baseMatrix }, cellSize);
-            docPreview.add(TRangeDatePickerPreview.Disabled, { ...baseMatrix, isDisabled: { values: [true] } }, cellSize);
-            docPreview.add(TRangeDatePickerPreview.ReadOnly, { ...baseMatrix, isReadonly: { values: [true] } }, cellSize);
-            docPreview.add(TRangeDatePickerPreview.Opened, { value: { values: [TEST_DATA.value] } }, openedCellSize);
-            docPreview.add(TRangeDatePickerPreview['Opened With Presets'], { value: { values: [TEST_DATA.value] }, presets: { examples: ['default'] } }, openedCellSize);
+            docPreview.add(TRangeDatePickerPreview.Basic, { ...baseMatrix }, w320_h60);
+            docPreview.add(TRangeDatePickerPreview['Basic States'], { ...baseMatrix, ...statesBaseMatrix }, w320_h60);
+            docPreview.add(TRangeDatePickerPreview.Opened, { value: { values: [TEST_DATA.value] } }, w768_h500);
+            docPreview.add(TRangeDatePickerPreview['Opened With Presets'], { value: { values: [TEST_DATA.value] }, presets: { examples: ['default'] } }, w768_h500);
         },
     };
 

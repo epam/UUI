@@ -62,24 +62,16 @@ export enum TIconButtonPreview {
     Layout = 'Layout'
 }
 export enum TTabButtonPreview {
-    'Active' = 'Active',
-    'Active Disabled' = 'Active Disabled',
-    'Active Dropdown' = 'Active Dropdown',
-    'Active Dropdown Disabled' = 'Active Dropdown Disabled',
-    'Inactive' = 'Inactive',
-    'Inactive Disabled' = 'Inactive Disabled',
-    'Inactive Dropdown' = 'Inactive Dropdown',
-    'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled'
+    Basic = 'Basic',
+    'Basic States' = 'Basic States',
+    'Basic Dropdown' = 'Basic Dropdown',
+    'Basic Dropdown States' = 'Basic Dropdown States'
 }
 export enum TVerticalTabButtonPreview {
-    'Active' = 'Active',
-    'Active Disabled' = 'Active Disabled',
-    'Active Dropdown' = 'Active Dropdown',
-    'Active Dropdown Disabled' = 'Active Dropdown Disabled',
-    'Inactive' = 'Inactive',
-    'Inactive Disabled' = 'Inactive Disabled',
-    'Inactive Dropdown' = 'Inactive Dropdown',
-    'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled'
+    Basic = 'Basic',
+    'Basic States' = 'Basic States',
+    'Basic Dropdown' = 'Basic Dropdown',
+    'Basic Dropdown States' = 'Basic Dropdown States'
 }
 
 export enum TPickerInputPreview {
@@ -126,8 +118,7 @@ export enum TDatePickerPreview {
 
 export enum TRangeDatePickerPreview {
     'Basic' = 'Basic',
+    'Basic States' = 'Basic States',
     'Opened' = 'Opened',
-    'Opened With Presets' = 'Opened With Presets',
-    'ReadOnly' = 'ReadOnly',
-    'Disabled' = 'Disabled'
+    'Opened With Presets' = 'Opened With Presets'
 }

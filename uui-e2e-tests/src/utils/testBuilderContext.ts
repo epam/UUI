@@ -143,7 +143,7 @@ function reportEqualPreview(scrSizeMap: TScrSizeMap, issuesArr: TIssues) {
 
 function reportObsoleteScr(obsoleteScreenshots: string[], issuesArr: TIssues) {
     if (obsoleteScreenshots.length > 0) {
-        const msg = `Next screenshots are not used by any test:\n\t${obsoleteScreenshots.join('\n\t')}`;
+        const msg = `Next screenshots are not used by any test (${obsoleteScreenshots.length}):\n\t${obsoleteScreenshots.join('\n\t')}`;
         issuesArr.push({ msg, exit: false });
     }
 }
