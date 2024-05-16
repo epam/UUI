@@ -147,6 +147,8 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     onSort(dir: SortDirection): void;
     onDrop?(params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>): void;
     renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
+    /** Defines table columns gap size */
+    columnsGap?: '12' | '24';
 }
 
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
@@ -164,6 +166,8 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
     renderConfigButton?: () => React.ReactNode;
+    /** Defines table columns gap size */
+    columnsGap?: '12' | '24';
 }
 
 export interface DataTableColumnsConfigOptions {
@@ -251,6 +255,9 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+
+    /** Defines columns gap size */
+    columnsGap?: '12' | '24';
 }
 
 export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOptions<TItem, TId> {

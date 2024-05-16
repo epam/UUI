@@ -1,0 +1,28 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI DataTableHeader has property "
+      },
+      {
+        "text": "headerSize?: '36' | '48'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " , 36 is the default size. If size 48 the table header can have 2 lines, when text wrapping. \nUUI DataTable column has property "
+      },
+      {
+        "text": "columnsGap?: '12' | '24'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " , 24 is the default gap size. This property will configure space between columns. "
+      },
+      {
+        "text": "But keep in mind that '12' value, will not work with editable tables.",
+        "uui-richTextEditor-underlined": true
+      }
+    ]
+  }
+]

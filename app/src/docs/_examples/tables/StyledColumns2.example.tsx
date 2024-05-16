@@ -26,54 +26,56 @@ export default function StyledColumnsExample() {
         () => [
             {
                 key: 'name',
-                caption: 'Name',
+                caption: 'Employee name',
                 render: (p) => <Text>{p.name}</Text>,
-                width: 200,
+                width: 160,
                 fix: 'left',
                 isSortable: true,
                 info: 'Person full name',
+                allowResizing: true,
             },
             {
                 key: 'profileStatus',
-                caption: 'Profile status',
+                caption: 'Uninterrupted employment worker status',
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
                             <StatusIndicator color={ p.profileStatus.toLowerCase() as StatusIndicatorProps['color'] } size="18" caption={ p.profileStatus } />
                         </FlexRow>
                     ),
-                width: 140,
+                width: 180,
                 minWidth: 80,
                 isSortable: true,
                 alignSelf: 'center',
                 info: 'Person Status according his work profile',
+                allowResizing: true,
+            },
+            {
+                key: 'primarySkill',
+                caption: 'Primary skill',
+                render: (r) => <Text>{r.primarySkill}</Text>,
+                width: 200,
+                isSortable: true,
+                info: 'Primary skill',
             },
             {
                 key: 'salary',
                 caption: 'Salary',
-                render: (p) => <Text>{p.salary}</Text>,
+                render: (p) => <Text>{ `$ ${p.salary}`}</Text>,
                 isSortable: true,
                 width: 100,
                 textAlign: 'right',
                 info: 'Salary sum for the last year',
+                allowResizing: true,
             },
             {
                 key: 'jobTitle',
-                caption: 'Title',
+                caption: 'Specialization',
                 render: (r) => <Text>{r.jobTitle}</Text>,
                 width: 200,
                 grow: 1,
-                allowResizing: false, // Columns with grow can't be resizable
                 isSortable: true,
                 info: 'Job full description',
-            },
-            {
-                key: 'detailed',
-                render: () => {},
-                width: 54,
-                alignSelf: 'center',
-                fix: 'right',
-                info: 'detailed description',
                 allowResizing: false,
             },
         ],
@@ -91,6 +93,8 @@ export default function StyledColumnsExample() {
                 showColumnsConfig={ true }
                 allowColumnsResizing={ true }
                 allowColumnsReordering={ true }
+                columnsGap="12"
+                headerSize="48"
             />
         </Panel>
     );

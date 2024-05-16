@@ -107,6 +107,9 @@ DataRowOptions<TItem, TId> & {
 
     /** True if row pinned, it means that it will be sticky inside his nesting level */
     isPinned?: boolean;
+
+    /** Defines columns gap size */
+    columnsGap?: '12' | '24';
 };
 
 /** Holds parent info for data rows */
