@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
-import { TMatrix, TMatrixMinimal, TTheme } from '../types';
+import { TEngine, TMatrix, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
 import { createUniqueTestName } from './testNameUtils';
 import { TestBuilderContext } from './testBuilderContext';
@@ -72,7 +72,7 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
             matrix.previewId.forEach((previewId) => {
                 const pageParams = { theme, isSkin, previewId, componentId };
                 const testName = createUniqueTestName({ runId, pageParams });
-                ctx.seen(testName);
+                ctx.seen(testName, matrix.onlyChromium);
                 if (ctx.isDryRun()) {
                     return;
                 }
@@ -81,7 +81,10 @@ function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSing
                     return;
                 }
                 const testFn = matrix.only ? test.only : test;
-                testFn(testName, async ({ previewPage }) => {
+                testFn(testName, async ({ previewPage, browserName }) => {
+                    if (matrix.onlyChromium) {
+                        test.skip(browserName !== TEngine.chromium, `This test is "${TEngine.chromium}"-only`);
+                    }
                     await previewPage.editPreview(pageParams);
                     await matrix.onBeforeExpect({ previewPage, previewId });
                     if (matrix.focusFirstElement) {
