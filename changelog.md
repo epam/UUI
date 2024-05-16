@@ -2,27 +2,15 @@
 
 **What's New**
 
-* [uui-core]: helpers cleanup
-  * Deprecated:
-    * `LazyLoadedMap` and related:
-      * `LazyLoadedMapLoadCallback`
-      * `UNKNOWN`
-      * `LOADING`
-      * `LOADED`
-      * `PENDING`
-      * `FAILED`
-      * `LoadingStatus`
-    * `browser` helper:
-      * `Browser`
-      * `getBrowser`
-    * `Debouncer`
-    * `parseIconViewbox`
-    * `parseStringToCSSProperties`
-    * `getScreenSize`
-    * `urlParser`
-    * `batch` and related:
-      * `batch`
-      * `BatchPromiseOptions`
+* [uui-core]: helpers cleanup, removed following helpers:
+  * `LazyLoadedMap`
+  * `browser'
+  * `Debouncer`
+  * `parseIconViewbox`
+  * `parseStringToCSSProperties`
+  * `getScreenSize`
+  * `urlParser`
+  * `batch`
 
 * [useTree]: useTree hook is added.
   * [Features]:
@@ -58,7 +46,7 @@
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
   * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
-* [useForm]: 
+* [useForm]:
   * fixed `beforeLeave` callback invocation in case of redirect at onSuccess callback
   * fixed `isInvalid`, `validationMessage` and `validationProps` value returned from hook in case of server validation. Before was returned only client validation value, now it's merged with server validation.
   * added `setServerValidationState` callback to externally change server validation state.
@@ -66,10 +54,15 @@
 * [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
 * [DatePicker] renderDay prop callback signature updated
 * [RangeDatePicker] renderDay prop callback signature updated
+* [RangeDatePicker] shared border is made flat
+* [ControlGroup] shared border is made flat
 * [DatePickerBody] props breaking changes
 * [RangeDatePickerBody] props breaking changes
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput.
+
+**What's Fixed**
+[PickerInput]: fixed setting emptyValue in case of unselecting all picker items
 
 # 5.7.2 - 12.04.2024
 
@@ -77,6 +70,8 @@
 * [IconButton]: Replace the `isDropdown` prop with `showDropdownIcon` to prevent the automatic appearance of the dropdown icon when using `IconButton` as the `Dropdown` target.
 * [ApiContext]: Added possibility to send signal about success relogin via `localStorage`, due to old mechanism with `window.opener.postMessage` was broken on SSO side by security reasons .
   - To switch to the handling via `localStorage` replace code of `/auth/login` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
+* [VirtualList]: fixed scrolling on focus to the partially visible row.
+  * [Breaking change]: scroll to the focused item is not managed by VirtualList anymore. To execute scroll to focused row, it is required to handle the change of focusIndex in key down handler and pass scrollTo with align = 'nearest' along with focusIndex as part of dataSourceState.
 
 # 5.7.1 - 29.03.2024
 

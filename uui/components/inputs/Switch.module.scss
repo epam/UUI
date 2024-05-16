@@ -14,10 +14,8 @@
     :global(.uui-input-label) {
         @if ($size == 12px) {
             font-size: 12px;
-            letter-spacing: 0.2px;
         } @else if ($size == 18px or $size == 24px) {
             font-size: 14px;
-            letter-spacing: 0.1px;
         }
     }
 
