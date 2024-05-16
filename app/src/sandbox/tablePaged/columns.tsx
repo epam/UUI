@@ -59,7 +59,7 @@ export const personColumns = [
     }, {
         key: 'managerName',
         caption: 'Manager',
-        render: (p) => <LinkButton caption={ p.managerName } captionCX={ css.managerCell } href="#" />,
+        render: (p) => <LinkButton caption={ p.managerName } href="#" />,
         grow: 0,
         shrink: 0,
         width: 150,

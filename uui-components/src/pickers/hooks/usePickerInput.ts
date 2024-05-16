@@ -23,7 +23,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     ], []);
 
     const pickerInputState = usePickerInputState({
-        dataSourceState: { visibleCount: initialRowsVisible },
+        dataSourceState: { visibleCount: initialRowsVisible, checked: [] },
     });
 
     const {
