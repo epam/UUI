@@ -69,6 +69,21 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
 }
 
 describe('PickerInput', () => {
+    beforeEach(() => {
+        jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(() => {
+            return {
+                width: 0,
+                height: 1,
+                top: 0,
+                left: 0,
+            } as DOMRect;
+        });
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerInput value={ null } onValueChange={ jest.fn } selectionMode="single" dataSource={ mockDataSource } disableClear searchPosition="input" />,
