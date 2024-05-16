@@ -91,8 +91,11 @@ export class TestBuilderContext {
                 }
             });
         });
-        const totalNumOfTests = this.seenTestNames.size;
-        console.log(`Total number of tests (per 1 engine): ${totalNumOfTests}`);
+        const numOfEngines = 2;
+        const numOfChromiumOnlyTests = this.onlyChromiumTests.size;
+        const numOfAllEnginesTests = (this.seenTestNames.size - numOfChromiumOnlyTests);
+
+        console.log(`Total number of tests: ${numOfAllEnginesTests * 2 + numOfChromiumOnlyTests} = ${numOfAllEnginesTests} * ${numOfEngines}(engines) + ${numOfChromiumOnlyTests}(only chromium)`);
 
         const issuesArr: TIssues = [];
         reportObsoleteScr(obsoleteScr, issuesArr);
