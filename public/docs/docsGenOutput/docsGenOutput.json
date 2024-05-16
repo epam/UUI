@@ -36733,11 +36733,6 @@
       "     * It would attempt to put scroll so this item will be at the top of the list.",
       "     */",
       "    scrollTo?: ScrollToConfig;",
-      "    /**",
-      "     * Virtual List manually scroll to this Index when it appears not within the visible area.",
-      "     * It would attempt to put scroll so this item will be in the middle of the list.",
-      "     */",
-      "    focusedIndex?: number;",
       "}"
      ]
     },
@@ -36755,23 +36750,6 @@
       },
       "typeValue": {
        "raw": "ScrollToConfig"
-      },
-      "required": false
-     },
-     {
-      "uid": "focusedIndex",
-      "name": "focusedIndex",
-      "comment": {
-       "raw": [
-        "Virtual List manually scroll to this Index when it appears not within the visible area.",
-        " It would attempt to put scroll so this item will be in the middle of the list."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
       },
       "required": false
      },
@@ -38028,10 +38006,6 @@
       "    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144' | number;",
       "    /** True to show placeholder */",
       "    isLoading?: boolean;",
-      "    /** Avatar onClick.",
-      "     *  @deprecated Property onClick is deprecated and will be removed in future release.",
-      "     * */",
-      "    onClick?: () => void;",
       "}"
      ]
     },
@@ -38113,26 +38087,6 @@
       },
       "editor": {
        "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Avatar onClick.",
-        "  @deprecated Property onClick is deprecated and will be removed in future release."
-       ],
-       "tags": {
-        "@deprecated": "Property onClick is deprecated and will be removed in future release."
-       }
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
       },
       "required": false
      },
@@ -70494,7 +70448,7 @@
       "    /**",
       "     * Defines component size.",
       "     */",
-      "    size?: '24' | '30' | '36' | '42';",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * Defines where to place calendar icon",
       "     */",
@@ -70533,7 +70487,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -70541,7 +70495,8 @@
         "24",
         "30",
         "36",
-        "42"
+        "42",
+        "48"
        ]
       },
       "required": false
@@ -79606,7 +79561,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -79614,7 +79569,8 @@
         "24",
         "30",
         "36",
-        "42"
+        "42",
+        "48"
        ]
       },
       "from": "@epam/uui:NumericInputMods",
@@ -86259,7 +86215,7 @@
       "    /**",
       "     * Defines component size.",
       "     */",
-      "    size?: '24' | '30' | '36' | '42';",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * rawProps as HTML attributes",
       "     */",
@@ -86302,7 +86258,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -86310,7 +86266,8 @@
         "24",
         "30",
         "36",
-        "42"
+        "42",
+        "48"
        ]
       },
       "required": false
@@ -86645,7 +86602,7 @@
       "    /**",
       "     * Defines component size.",
       "     */",
-      "    size?: '24' | '30' | '36' | '42';",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
       "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
@@ -86705,7 +86662,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -86713,7 +86670,8 @@
         "24",
         "30",
         "36",
-        "42"
+        "42",
+        "48"
        ]
       },
       "required": false
@@ -90814,7 +90772,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -90822,7 +90780,8 @@
         "24",
         "30",
         "36",
-        "42"
+        "42",
+        "48"
        ]
       },
       "from": "@epam/uui:TextAreaMods",
@@ -92478,7 +92437,7 @@
       "    /**",
       "     * Defines component size.",
       "     */",
-      "    size?: '24' | '30' | '36' | '42';",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys",
       "     * @default 5",
@@ -92524,7 +92483,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'36' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
@@ -92532,7 +92491,8 @@
         "24",
         "30",
         "36",
-        "42"
+        "42",
+        "48"
        ]
       },
       "required": false

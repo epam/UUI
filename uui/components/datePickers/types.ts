@@ -76,7 +76,7 @@ interface RangeDatePickerProps extends
     /**
      * Defines component size.
      */
-    size?: '24' | '30' | '36' | '42';
+    size?: '24' | '30' | '36' | '42' | '48';
 
     /**
      * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.
