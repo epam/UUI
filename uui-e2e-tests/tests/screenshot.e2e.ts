@@ -38,7 +38,7 @@ builder
 builder
     .add(accordion, { previewId: values(TAccordionPreview), isSkin: [false] })
     .add(avatarStack, { previewId: values(TAvatarStackPreview), isSkin: [false] })
-    .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], waitFor: 500, focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Open'] && 'input' })
+    .add(datePicker, { previewId: values(TDatePickerPreview), isSkin: [false], waitFor: 500, focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input' })
     .add(checkbox, { previewId: values(TCheckboxPreview), isSkin: [false] })
     .add(pickerInput, { previewId: values(TPickerInputPreview), isSkin: [false] })
     .add(rangeDatePicker, { previewId: values(TRangeDatePickerPreview), isSkin: [false], waitFor: 500, focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId) && 'input' })
