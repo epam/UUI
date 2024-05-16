@@ -27,14 +27,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 type: '@epam/uui:BadgeProps',
                 component: uui.Badge,
             },
-            [TSkin.Loveship]: {
-                type: '@epam/loveship:BadgeProps',
-                component: loveship.Badge,
-                preview: (docPreview: DocPreviewBuilder<loveship.BadgeProps>) => {
-                    docPreview.update(TBadgePreview['Sizes with icon'], (prev) => ({ shape: { examples: '*' }, ...prev }));
-                    docPreview.update(TBadgePreview['Sizes without icon'], (prev) => ({ shape: { examples: '*' }, ...prev }));
-                },
-            },
+            [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
             [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
             [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
