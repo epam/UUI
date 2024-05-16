@@ -122,3 +122,8 @@ export enum TRangeDatePickerPreview {
     'Opened' = 'Opened',
     'Opened With Presets' = 'Opened With Presets'
 }
+
+export enum TTextAreaPreview {
+    Sizes = 'Sizes',
+    States = 'States'
+}

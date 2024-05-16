@@ -12,13 +12,13 @@ import {
     TAccordionPreview,
     TAlertPreview,
     TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-    TPickerInputPreview, TDatePickerPreview, TRangeDatePickerPreview,
+    TPickerInputPreview, TDatePickerPreview, TRangeDatePickerPreview, TTextAreaPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
-    rangeDatePicker,
+    rangeDatePicker, textArea,
 } = TComponentId;
 
 const { values } = Object;
@@ -49,6 +49,7 @@ builder
     })
     .add(tabButton, { previewId: values(TTabButtonPreview), isSkin: [false] })
     .add(TComponentId.switch, { previewId: values(TSwitchPreview), isSkin: [false] })
+    .add(textArea, { previewId: values(TTextAreaPreview), isSkin: [false] })
     .add(textInput, { previewId: values(TTextInputPreview), isSkin: [false] })
     .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview), isSkin: [false] });
 
