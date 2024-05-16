@@ -4,6 +4,7 @@ import { Logger } from './logger';
 import { PLATFORM } from '../constants';
 import { getFailedTestNamesFromLastRun } from './failedTestsUtils';
 import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
+import * as console from 'console';
 
 const { isCi, UUI_TEST_PARAM_ONLY_FAILED, UUI_TEST_PARAM_CHECK_ISSUES } = readUuiSpecificEnvVariables();
 
@@ -85,6 +86,9 @@ export class TestBuilderContext {
                 }
             });
         });
+        const totalNumOfTests = this.seenTestNames.size;
+        console.log(`Total number of tests (per 1 engine): ${totalNumOfTests}`);
+
         const issuesArr: TIssues = [];
         reportObsoleteScr(obsoleteScr, issuesArr);
         reportEqualPreview(scrSizeMap, issuesArr);
