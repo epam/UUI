@@ -22,7 +22,7 @@ export function DbDemoImpl() {
                 svc.uuiNotifications.show(
                     (props) => (
                         <SuccessNotification { ...props }>
-                            <Text size="24" font="sans" fontSize="14">
+                            <Text size="24" fontSize="14">
                                 Data has been saved! See console for details.
                             </Text>
                         </SuccessNotification>
@@ -34,7 +34,7 @@ export function DbDemoImpl() {
                 svc.uuiNotifications.show(
                     (props) => (
                         <ErrorNotification { ...props }>
-                            <Text size="24" font="sans" fontSize="14">
+                            <Text size="24" fontSize="14">
                                 Error saving data
                             </Text>
                         </ErrorNotification>

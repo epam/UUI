@@ -1,5 +1,5 @@
 import * as uuiComponents from '@epam/uui-components';
-import { devLogger, withMods } from '@epam/uui-core';
+import { withMods } from '@epam/uui-core';
 import { ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
 import css from './Button.module.scss';
@@ -43,11 +43,7 @@ function applyButtonMods(mods: ButtonProps) {
 export const Button = withMods<uuiComponents.ButtonProps, ButtonMods>(
     uuiComponents.Button,
     applyButtonMods,
-    (props) => {
-        if (__DEV__ && props.captionCX) {
-            devLogger.warn('Button: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
-        }
-
+    () => {
         return {
             dropdownIcon: systemIcons.foldingArrow,
             clearIcon: systemIcons.clear,

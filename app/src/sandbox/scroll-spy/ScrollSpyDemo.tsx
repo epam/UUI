@@ -30,7 +30,7 @@ export function ScrollSpyDemo() {
     return (
         <Panel cx={ [css.panel, css.uuiThemePromo] } background="white" margin="24">
             <FlexRow size="48" padding="24">
-                <Text size="48" font="sans-semibold">
+                <Text size="48">
                     Scroll Spy
                 </Text>
                 <FlexSpacer />
