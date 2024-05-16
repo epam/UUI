@@ -7,10 +7,9 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import {
     DocBuilder,
     DocPreviewBuilder,
-    TComponentPreview,
     TDocConfig,
     TDocContext,
-    TPreviewCellSize,
+    TPreviewCellSize, TPreviewMatrix,
     TSkin,
 } from '@epam/uui-docs';
 import { TVerticalTabButtonPreview } from './_types/previewIds';
@@ -38,105 +37,31 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
                 href: 'https://google.com',
                 icon: 'action-account-fill.svg',
             };
-            const cellSize: TPreviewCellSize = '190-70';
-            const baseMatrix: TComponentPreview<uui.TabButtonProps>['matrix'] = {
+            const w190_h70: TPreviewCellSize = '190-70';
+            const w165_h55: TPreviewCellSize = '165-55';
+            type TMatrixLocal = TPreviewMatrix<uui.TabButtonProps>;
+            const statesMatrix: TMatrixLocal = {
+                size: { values: ['36'] },
+                isLinkActive: { values: [false, true] },
+                isDisabled: { values: [false, true] },
+            };
+            const baseMatrix: TMatrixLocal = {
                 href: { values: [TEST_DATA.href] },
                 caption: { values: [TEST_DATA.caption] },
+                isLinkActive: { values: [true] },
                 count: { values: [undefined, TEST_DATA.count] },
                 withNotify: { values: [true, false] },
                 icon: { examples: [undefined, TEST_DATA.icon] },
                 iconPosition: { examples: '*', condition: (props) => !!props.icon },
                 size: { examples: '*' },
+                onClear: { examples: [undefined, TEST_DATA.callback] },
+                isDisabled: { values: [false] },
             };
 
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Active'],
-                matrix: {
-                    isLinkActive: { values: [true] },
-                    isDisabled: { values: [false] },
-                    isDropdown: { values: [false] },
-                    ...baseMatrix,
-                    onClear: { examples: [undefined, TEST_DATA.callback] },
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Active Disabled'],
-                matrix: {
-                    isLinkActive: { values: [true] },
-                    isDisabled: { values: [true] },
-                    isDropdown: { values: [false] },
-                    ...baseMatrix,
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Active Dropdown'],
-                matrix: {
-                    isLinkActive: { values: [true] },
-                    isDisabled: { values: [false] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [false] },
-                    ...baseMatrix,
-                    onClear: { examples: [undefined, TEST_DATA.callback] },
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Active Dropdown Disabled'],
-                matrix: {
-                    isLinkActive: { values: [true] },
-                    isDisabled: { values: [true] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [false] },
-                    ...baseMatrix,
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Inactive'],
-                matrix: {
-                    isLinkActive: { values: [false] },
-                    isDisabled: { values: [false] },
-                    isDropdown: { values: [false] },
-                    ...baseMatrix,
-                    onClear: { examples: [undefined, TEST_DATA.callback] },
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Inactive Disabled'],
-                matrix: {
-                    isLinkActive: { values: [false] },
-                    isDisabled: { values: [true] },
-                    isDropdown: { values: [false] },
-                    ...baseMatrix,
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Inactive Dropdown'],
-                matrix: {
-                    isLinkActive: { values: [false] },
-                    isDisabled: { values: [false] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [false] },
-                    ...baseMatrix,
-                    onClear: { examples: [undefined, TEST_DATA.callback] },
-                },
-                cellSize,
-            });
-            docPreview.add({
-                id: TVerticalTabButtonPreview['Inactive Dropdown Disabled'],
-                matrix: {
-                    isLinkActive: { values: [false] },
-                    isDisabled: { values: [true] },
-                    isDropdown: { values: [true] },
-                    isOpen: { values: [false] },
-                    ...baseMatrix,
-                },
-                cellSize,
-            });
+            docPreview.add(TVerticalTabButtonPreview['Basic'], { ...baseMatrix }, w190_h70);
+            docPreview.add(TVerticalTabButtonPreview['Basic States'], { ...baseMatrix, ...statesMatrix }, w165_h55);
+            docPreview.add(TVerticalTabButtonPreview['Basic Dropdown'], { ...baseMatrix, isDropdown: { values: [true] } }, w190_h70);
+            docPreview.add(TVerticalTabButtonPreview['Basic Dropdown States'], { ...baseMatrix, isDropdown: { values: [true] }, ...statesMatrix }, w165_h55);
         },
     };
 
