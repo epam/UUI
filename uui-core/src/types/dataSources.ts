@@ -118,11 +118,6 @@ export interface VirtualListState extends VirtualListRange {
      * It would attempt to put scroll so this item will be at the top of the list.
      */
     scrollTo?: ScrollToConfig;
-    /**
-     * Virtual List manually scroll to this Index when it appears not within the visible area.
-     * It would attempt to put scroll so this item will be in the middle of the list.
-     */
-    focusedIndex?: number;
 }
 
 export interface IDataSource<TItem, TId, TFilter> {

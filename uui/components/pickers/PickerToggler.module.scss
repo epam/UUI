@@ -59,12 +59,12 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     width: 100%;
     box-sizing: border-box;
     border-style: solid;
+    border-radius: var(--uui-picker_toggler-border-radius);
 
     &.mode-form {
         background-color: var(--uui-picker_toggler-bg);
         border-color: var(--uui-picker_toggler-border);
         fill: var(--uui-picker_toggler-icon);
-        border-radius: var(--uui-picker_toggler-border-radius);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             &:global(.uui-enabled) {
@@ -93,6 +93,7 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
+        border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
@@ -131,7 +132,6 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     &.mode-inline {
         background-color: initial;
         border-color: transparent;
-        border-radius: var(--uui-picker_toggler-border-radius);
         fill: var(--uui-picker_toggler-icon-clickable);
 
         &:hover {
