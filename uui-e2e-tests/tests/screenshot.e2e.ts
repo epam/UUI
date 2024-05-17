@@ -1,4 +1,4 @@
-import { TestBuilder, TComponentId } from '../src';
+import { TestBuilder, TComponentId, SKINS } from '../src';
 import {
     TBadgePreview,
     TButtonPreview,
@@ -24,38 +24,39 @@ const {
 const { values } = Object;
 
 const builder = new TestBuilder();
-// Skin is tested
+// Skins tested: all
 builder
-    .add(alert, { previewId: values(TAlertPreview) })
-    .add(badge, { previewId: values(TBadgePreview) })
-    .add(button, { previewId: values(TButtonPreview) })
-    .add(countIndicator, { previewId: values(TCountIndicatorPreview) })
-    .add(iconButton, { previewId: values(TIconButtonPreview) })
-    .add(linkButton, { previewId: values(TLinkButtonPreview) })
-    .add(tag, { previewId: values(TTagPreview) })
-    .add(text, { previewId: values(TTextPreview) });
+    .add(tag, { previewId: values(TTagPreview), skins: SKINS.all });
 
-// Skin is not tested
+// Skins tested: all except "Electric"
 builder
-    .add(accordion, { previewId: values(TAccordionPreview), isSkin: [false] })
-    .add(avatarStack, { previewId: values(TAvatarStackPreview), isSkin: [false] })
+    .add(alert, { previewId: values(TAlertPreview), skins: SKINS.allExceptElectric })
+    .add(badge, { previewId: values(TBadgePreview), skins: SKINS.allExceptElectric })
+    .add(button, { previewId: values(TButtonPreview), skins: SKINS.allExceptElectric })
+    .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.allExceptElectric })
+    .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.allExceptElectric })
+    .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.allExceptElectric })
+    .add(text, { previewId: values(TTextPreview), skins: SKINS.allExceptElectric });
+
+// Skins not tested
+builder
+    .add(accordion, { previewId: values(TAccordionPreview) })
+    .add(avatarStack, { previewId: values(TAvatarStackPreview) })
     .add(datePicker, {
         previewId: values(TDatePickerPreview),
-        isSkin: [false],
         focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input',
     })
-    .add(checkbox, { previewId: values(TCheckboxPreview), isSkin: [false] })
-    .add(pickerInput, { previewId: values(TPickerInputPreview), isSkin: [false] })
+    .add(checkbox, { previewId: values(TCheckboxPreview) })
+    .add(pickerInput, { previewId: values(TPickerInputPreview) })
     .add(rangeDatePicker, {
         previewId: values(TRangeDatePickerPreview),
         onlyChromium: true, // reason: https://github.com/microsoft/playwright/issues/20203
-        isSkin: [false],
         focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId) && 'input',
     })
-    .add(tabButton, { previewId: values(TTabButtonPreview), isSkin: [false] })
-    .add(TComponentId.switch, { previewId: values(TSwitchPreview), isSkin: [false] })
-    .add(textArea, { previewId: values(TTextAreaPreview), isSkin: [false] })
-    .add(textInput, { previewId: values(TTextInputPreview), isSkin: [false] })
-    .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview), isSkin: [false] });
+    .add(tabButton, { previewId: values(TTabButtonPreview) })
+    .add(TComponentId.switch, { previewId: values(TSwitchPreview) })
+    .add(textArea, { previewId: values(TTextAreaPreview) })
+    .add(textInput, { previewId: values(TTextInputPreview) })
+    .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview) });
 
 builder.buildTests();

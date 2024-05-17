@@ -6,17 +6,20 @@ import {
     TButtonPreview,
     TCheckboxPreview,
     TCountIndicatorPreview,
+    TDatePickerPreview,
     TIconButtonPreview,
     TLinkButtonPreview,
-    TSwitchPreview,
-    TTagPreview,
-    TTextInputPreview,
-    TVerticalTabButtonPreview,
-    TTabButtonPreview,
     TPickerInputPreview,
-    TDatePickerPreview,
-    TRangeDatePickerPreview, TTextAreaPreview, TTextPreview,
+    TRangeDatePickerPreview,
+    TSwitchPreview,
+    TTabButtonPreview,
+    TTagPreview,
+    TTextAreaPreview,
+    TTextInputPreview,
+    TTextPreview,
+    TVerticalTabButtonPreview,
 } from './previewIds';
+import { TPreviewSkin, TPreviewTheme } from '../types';
 
 /**
  * Keep in sync with app/src/documents/structureComponents.ts
@@ -118,3 +121,19 @@ export type TPreviewIdByComponentId = {
     [TComponentId.textInput]: TTextInputPreview[],
     [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
 };
+
+export const THEMES = {
+    allExceptVanillaThunder: Object.values(TPreviewTheme).filter((t) => t !== TPreviewTheme.vanilla_thunder),
+};
+
+export const SKINS = {
+    all: Object.values(TPreviewSkin),
+    allExceptElectric: Object.values(TPreviewSkin).filter((t) => t !== TPreviewSkin.electric),
+};
+
+export function isSkinCompatibleWithTheme(skin: TPreviewSkin, theme: TPreviewTheme) {
+    if (skin === TPreviewSkin.loveship) {
+        return [TPreviewTheme.loveship_dark, TPreviewTheme.loveship].includes(theme);
+    }
+    return skin.toString() === theme.toString();
+}
