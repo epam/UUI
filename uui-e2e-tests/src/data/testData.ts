@@ -8,7 +8,7 @@ import {
     TCountIndicatorPreview,
     TDatePickerPreview,
     TIconButtonPreview,
-    TLinkButtonPreview,
+    TLinkButtonPreview, TNumericInputPreview,
     TPickerInputPreview,
     TRangeDatePickerPreview,
     TSwitchPreview,
@@ -120,6 +120,7 @@ export type TPreviewIdByComponentId = {
     [TComponentId.textArea]: TTextAreaPreview[],
     [TComponentId.textInput]: TTextInputPreview[],
     [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
+    [TComponentId.numericInput]: TNumericInputPreview[],
 };
 
 export const THEMES = {
