@@ -140,14 +140,18 @@ export class TreeState<TItem, TId> {
         getId,
         sorting,
         sortBy,
+        comparator,
         sortingSettings,
+        overrideSortingSettings,
     }: SortOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
         const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({
             treeStructure,
             sorting,
             sortBy,
+            comparator,
             sortingSettings,
+            overrideSortingSettings,
             getId,
         });
 
@@ -184,6 +188,8 @@ export class TreeState<TItem, TId> {
             sorting,
             sortBy,
             sortingSettings,
+            overrideSortingSettings,
+            comparator,
         }: PatchIntoTreeStructureOptions<TItem, TId>,
     ) {
         const { treeStructure: newTreeStructure, itemsMap: newItemsMap, newItems } = PatchHelper.patch<TItem, TId>({
@@ -195,6 +201,8 @@ export class TreeState<TItem, TId> {
             isDeleted,
             sorting,
             sortBy,
+            overrideSortingSettings,
+            comparator,
             sortingSettings,
         });
 
@@ -206,7 +214,17 @@ export class TreeState<TItem, TId> {
     }
 
     public patch(
-        { sortedPatch, patchAtLastSort, getItemTemporaryOrder, isDeleted, sorting, sortBy, sortingSettings }: ExtendedPatchOptions<TItem, TId>,
+        {
+            sortedPatch,
+            patchAtLastSort,
+            getItemTemporaryOrder,
+            isDeleted,
+            sorting,
+            sortBy,
+            sortingSettings,
+            overrideSortingSettings,
+            comparator,
+        }: ExtendedPatchOptions<TItem, TId>,
     ): TreeState<TItem, TId> {
         const { treeStructure: newFull } = this.patchTreeStructure({
             treeStructure: this.getTreeStructure('full'),
@@ -218,6 +236,8 @@ export class TreeState<TItem, TId> {
             sorting,
             sortBy,
             sortingSettings,
+            overrideSortingSettings,
+            comparator,
         });
 
         const { treeStructure: newVisible, itemsMap: updatedItemsMap } = this.patchTreeStructure({
@@ -230,6 +250,8 @@ export class TreeState<TItem, TId> {
             sorting,
             sortBy,
             sortingSettings,
+            overrideSortingSettings,
+            comparator,
         });
 
         if (this.getTreeStructure('full') === newFull && this.getTreeStructure('visible') === newVisible) {

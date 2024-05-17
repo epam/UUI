@@ -1,7 +1,7 @@
 import { NOT_FOUND_RECORD } from '../constants';
 import { newMap } from './map';
 import { DataSourceState, IImmutableMap, IMap, PatchOptions, SortedPatchByParentId } from '../../../../../types';
-import { buildComparators, composeComparators } from '../helpers';
+import { getComparator } from '../helpers';
 import { PatchOrdering } from '../constants';
 import { ITree } from '../ITree';
 
@@ -108,10 +108,14 @@ const getPatchByCategories = <TItem, TId>(
 
 const sortUpdatedItems = <TItem, TId>(
     updated: TId[],
-    composedComparator: (a: TItem, b: TItem) => number,
+    composedComparator: null | ((a: TItem, b: TItem) => number),
     tree: ITree<TItem, TId>,
     patchAtLastSort: IMap<TId, TItem> | IImmutableMap<TId, TItem>,
 ) => {
+    if (composedComparator === null) {
+        return updated;
+    }
+
     return updated.sort((aId, bId) => {
         const bItem = patchAtLastSort.get(bId) ?? tree.getById(bId) as TItem;
         const aItem = patchAtLastSort.get(aId) ?? tree.getById(aId) as TItem;
@@ -149,12 +153,15 @@ const sortPatchByParentId = <TItem, TId, TFilter>({
     sortBy,
     sortingSettings,
     sorting,
+    comparator,
     isDeleted,
     fixItemBetweenSortings,
+    overrideSortingSettings,
 }: SortPatchByParentIdOptions<TItem, TId, TFilter>) => {
     const { complexIds } = tree.getParams();
-    const comparators = buildComparators({ sorting, sortBy, sortingSettings, getId: tree.getParams().getId });
-    const composedComparator = composeComparators(comparators, tree.getParams().getId);
+    const composedComparator = getComparator({
+        sorting, sortBy, sortingSettings, comparator, overrideSortingSettings, getId: tree.getParams().getId,
+    });
 
     const sorted: SortedPatchByParentId<TItem, TId> = newMap({ complexIds });
     for (const [parentId, items] of groupedByParentId) {

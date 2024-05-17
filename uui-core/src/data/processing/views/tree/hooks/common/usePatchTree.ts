@@ -22,7 +22,9 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         isDeleted,
         sorting,
         sortBy,
+        comparator,
         sortingSettings,
+        overrideSortingSettings,
     }: UsePatchTreeProps<TItem, TId, TFilter>,
 ) {
     const prevPatch = usePrevious(patch);
@@ -44,6 +46,8 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             sorting,
             isDeleted,
             fixItemBetweenSortings,
+            comparator,
+            overrideSortingSettings,
         }),
         [patch, sorting, fixItemBetweenSortings],
     );
@@ -57,6 +61,8 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             sorting,
             sortingSettings,
             sortBy,
+            comparator,
+            overrideSortingSettings,
             ...tree.visible.getParams(),
         });
     }, [tree, patch]);

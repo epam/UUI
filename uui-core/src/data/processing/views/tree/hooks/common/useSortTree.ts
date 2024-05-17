@@ -15,6 +15,8 @@ export function useSortTree<TItem, TId, TFilter = any>(
         dataSourceState: { sorting },
         sortBy,
         sortingSettings,
+        comparator,
+        overrideSortingSettings,
         isLoading,
     }: UseSortTreeProps<TItem, TId, TFilter>,
     deps: any[],
@@ -26,7 +28,7 @@ export function useSortTree<TItem, TId, TFilter = any>(
         tree,
         shouldUpdate: () => sorting !== prevSorting,
         update: (currentTree) => currentTree
-            .sort({ sorting, sortBy, sortingSettings, getId }),
+            .sort({ sorting, sortBy, sortingSettings, comparator, overrideSortingSettings, getId }),
     }, [sorting, ...deps]);
 
     if (isLoading || sortTree === null) {

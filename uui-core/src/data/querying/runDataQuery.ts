@@ -26,7 +26,7 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
     }
 
     if (request.sorting) {
-        const comparer = getOrderComparer(request.sorting);
+        const comparer = getOrderComparer<TItem, any>({ sorting: request.sorting, getId: (item) => item.id });
         items.sort(comparer);
     } else {
         items = orderBy(items, ({ name }: any) => name);

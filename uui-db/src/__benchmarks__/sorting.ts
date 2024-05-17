@@ -21,7 +21,7 @@ b.suite(
 
     b.add('array.sort, getOrderComparer', () => {
         const arr = [...testPersons];
-        const comparer = getOrderComparer<Person>([{ field: 'name' }]);
+        const comparer = getOrderComparer<Person, number>({ sorting: [{ field: 'name' }], getId: ({ id }) => id });
         return () => arr.sort(comparer);
     }),
 

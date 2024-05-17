@@ -18,9 +18,3 @@ export const PatchOrdering = {
     TOP: Symbol('ORDERING_TOP'),
     BOTTOM: Symbol('ORDERING_BOTTOM'),
 };
-
-const ALWAYS = Symbol('ALWAYS');
-
-export const SortingSettingsModifiers = {
-    ALWAYS,
-} as const;

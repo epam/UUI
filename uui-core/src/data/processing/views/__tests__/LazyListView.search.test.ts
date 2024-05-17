@@ -1,8 +1,9 @@
+import { act, renderHook, waitFor } from '@epam/uui-test-utils';
+import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
 import { CascadeSelection, DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView, LazyDataSourceApiRequest } from '../../../../types';
 import { runDataQuery } from '../../../querying';
 import { LazyDataSource } from '../../LazyDataSource';
-import { act, renderHook, waitFor } from '@epam/uui-test-utils';
-import { LocationItem, getLazyLocationsDS, getLazyTreeSearchLocationsDS } from '../../__tests__/mocks';
+import { getLazyTreeSearchLocationsDS } from '../../__tests__/mocks';
 
 interface TestItem {
     name: string;

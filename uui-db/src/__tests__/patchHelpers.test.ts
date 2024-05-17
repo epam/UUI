@@ -6,7 +6,7 @@ import {
 } from './TaskDb';
 import { DbPatch } from '../types';
 import { IClientIdsMap } from '..';
-import { getOrderComparer, orderBy } from '@epam/uui-core';
+import { orderBy } from '@epam/uui-core';
 
 const task: Partial<Task> = {
     id: 100500,
