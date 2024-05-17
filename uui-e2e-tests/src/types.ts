@@ -1,4 +1,4 @@
-import { TComponentId, TPreviewIdByComponentId } from './data/testData';
+import type { TComponentId, TPreviewIdByComponentId } from './data/testData';
 import type { PreviewPage } from './pages/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
@@ -8,7 +8,7 @@ export enum TEngine {
     webkit = 'webkit'
 }
 
-export enum TTheme {
+export enum TPreviewTheme {
     electric = 'electric',
     loveship = 'loveship',
     loveship_dark = 'loveship_dark',
@@ -16,22 +16,33 @@ export enum TTheme {
     vanilla_thunder = 'vanilla_thunder'
 }
 
+export enum TPreviewSkin {
+    electric = 'electric',
+    loveship = 'loveship',
+    promo = 'promo'
+}
+
 export interface PreviewPageParams {
     componentId: TComponentId;
-    theme: TTheme;
+    theme: TPreviewTheme;
     isSkin: boolean;
     previewId: string;
 }
 
-export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId] = TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = {
-    theme: TTheme[];
-    isSkin: boolean[];
+type TObjValues<T> = T[keyof T];
+type TArrItem<T> = T extends (infer TItem)[] ? TItem : never;
+
+export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = {
+    previewId: PreviewIdArr;
+    theme?: TPreviewTheme[];
+    skins?: TPreviewSkin[];
     onlyChromium?: boolean,
-    previewId: Previews;
-    onBeforeExpect: (params: { previewPage: PreviewPage, previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => Promise<void>;
-    waitFor?: number;
-    focusFirstElement?: (params: { previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => string | boolean | undefined;
-    blurActiveElement?: boolean;
+    onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
+    focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
+};
+
+export type TMatrixFull<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = TMatrixMinimal<PreviewIdArr> & {
     only?: boolean;
 };
-export type TMatrixMinimal<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = Partial<TMatrix<Previews>> & { previewId: Previews };
+
+export type TKnownCompId = keyof TPreviewIdByComponentId;
