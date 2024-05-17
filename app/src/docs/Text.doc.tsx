@@ -27,16 +27,10 @@ export class TextDoc extends BaseDocsBlock {
             [TSkin.Loveship]: {
                 type: '@epam/loveship:TextProps',
                 component: loveship.Text,
-                preview: (docPreview: DocPreviewBuilder<loveship.TextProps>) => {
-                    docPreview.update(TTextPreview.Font, (prev) => ({ font: { examples: '*' }, ...prev }));
-                },
             },
             [TSkin.Promo]: {
                 type: '@epam/promo:TextProps',
                 component: promo.Text,
-                preview: (docPreview: DocPreviewBuilder<promo.TextProps>) => {
-                    docPreview.update(TTextPreview.Font, (prev) => ({ font: { examples: '*' }, ...prev }));
-                },
             },
         },
         doc: (doc: DocBuilder<promo.TextProps | loveship.TextProps | uui.TextProps>) => {
@@ -59,35 +53,37 @@ export class TextDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<promo.TextProps | loveship.TextProps | uui.TextProps>) => {
             const TEST_DATA = {
-                value1line: 'Test',
+                value1line: 'Abc',
                 // eslint-disable-next-line
-                value2lines: (<>{'Test 1'}<br/>{'Test 2'}</>),
+                value2lines: (<>{'Abc'}<br/>{'Abc'}</>),
             };
-            const w100_h85: TPreviewCellSize = '100-85';
-            const w70_h55: TPreviewCellSize = '70-55';
+            const w70_h85: TPreviewCellSize = '70-85';
+            const w60_h55: TPreviewCellSize = '60-55';
+            const w60_h45: TPreviewCellSize = '60-45';
 
             docPreview.add(TTextPreview.Sizes, {
                 size: { examples: '*' },
                 children: { values: [TEST_DATA.value1line] },
-            }, w70_h55);
+            }, w60_h55);
             docPreview.add(TTextPreview['Font'], {
                 children: { values: [TEST_DATA.value1line] },
                 fontSize: { examples: '*' },
                 fontWeight: { examples: '*' },
                 fontStyle: { examples: '*' },
-            }, w70_h55);
+            }, w60_h45);
             docPreview.add(TTextPreview['Line Height'], {
                 size: { examples: '*' },
                 children: { values: [TEST_DATA.value2lines] },
                 lineHeight: { examples: '*' },
-            }, w100_h85);
+            }, w70_h85);
             docPreview.add(
                 TTextPreview.Colors,
                 {
                     children: { values: [TEST_DATA.value1line] },
+                    fontWeight: { values: ['900'] },
                     color: { examples: '*' },
                 },
-                w70_h55,
+                w60_h55,
             );
         },
     };
