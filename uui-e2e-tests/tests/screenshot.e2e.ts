@@ -11,14 +11,21 @@ import {
     TCountIndicatorPreview,
     TAccordionPreview,
     TAlertPreview,
-    TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-    TPickerInputPreview, TDatePickerPreview, TRangeDatePickerPreview, TTextAreaPreview, TTextPreview,
+    TIconButtonPreview,
+    TTabButtonPreview,
+    TVerticalTabButtonPreview,
+    TPickerInputPreview,
+    TDatePickerPreview,
+    TRangeDatePickerPreview,
+    TTextAreaPreview,
+    TTextPreview,
+    TNumericInputPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
-    rangeDatePicker, textArea, text,
+    rangeDatePicker, textArea, text, numericInput,
 } = TComponentId;
 
 const { values } = Object;
@@ -47,6 +54,7 @@ builder
         focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input',
     })
     .add(checkbox, { previewId: values(TCheckboxPreview) })
+    .add(numericInput, { previewId: values(TNumericInputPreview) })
     .add(pickerInput, { previewId: values(TPickerInputPreview) })
     .add(rangeDatePicker, {
         previewId: values(TRangeDatePickerPreview),

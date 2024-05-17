@@ -131,3 +131,8 @@ export enum TTextPreview {
     'Line Height' = 'Line Height',
     Colors = 'Colors'
 }
+
+export enum TNumericInputPreview {
+    Sizes = 'Sizes',
+    States = 'States'
+}
