@@ -59,6 +59,7 @@ export class TextDoc extends BaseDocsBlock {
             };
             const w70_h85: TPreviewCellSize = '70-85';
             const w60_h55: TPreviewCellSize = '60-55';
+            const w70_h55: TPreviewCellSize = '70-55';
             const w60_h45: TPreviewCellSize = '60-45';
 
             docPreview.add(TTextPreview.Sizes, {
@@ -83,7 +84,7 @@ export class TextDoc extends BaseDocsBlock {
                     fontWeight: { values: ['900'] },
                     color: { examples: '*' },
                 },
-                w60_h55,
+                w70_h55,
             );
         },
     };
