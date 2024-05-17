@@ -1,7 +1,7 @@
 import { ICheckable } from './props';
 import { DataRowOptions, DataRowProps } from './dataRows';
 import { IImmutableMap, IMap } from './objects';
-import { PatchOrderingType, SortingSettingsModifiers } from '../data';
+import { PatchOrderingType } from '../data';
 
 export interface SearchConfig<TItem> {
     /**
@@ -29,19 +29,24 @@ export interface SearchConfig<TItem> {
     sortSearchByRelevance?: boolean;
 }
 
-export interface FieldSortingSettings<TItem> {
+export type Comparator = (a: any, b: any) => number;
+
+export interface SortingSetting<TItem> {
     sortBy?: (item: TItem) => any;
-    comparator?: (a: any, b: any) => number;
+    comparator?: Comparator;
     direction?: 'asc' | 'desc' | null; // null/undefined means 'don't change'
 }
 
-export type GetFieldSortingSettings<TItem> = ((sorting: SortingOption<TItem>) => FieldSortingSettings<TItem> | FieldSortingSettings<TItem>[]);
+export interface FieldSortingSetting<TItem> extends SortingSetting<TItem> {
+    field: string;
+}
 
-export type SortingSettingsModifier<TItem> = (sortings: FieldSortingSettings<TItem>[]) => FieldSortingSettings<TItem>[];
+export type GetFieldSortingSettings<TItem> = ((sorting: SortingSetting<TItem>) => SortingSetting<TItem> | SortingSetting<TItem>[]);
+
+export type OverrideSortingSettings<TItem> = (sortings: FieldSortingSetting<TItem>[]) => SortingSetting<TItem>[];
 
 export type SortingSettings<TItem> = {
-    [SortingSettingsModifiers.ALWAYS]?: SortingSettingsModifier<TItem>;
-    [key: string]: FieldSortingSettings<TItem> | GetFieldSortingSettings<TItem>;
+    [key: string]: SortingSetting<TItem> | GetFieldSortingSettings<TItem>;
 };
 
 export interface SortConfig<TItem> {
@@ -50,6 +55,9 @@ export interface SortConfig<TItem> {
      */
     sortBy?(item: TItem, sorting: SortingOption): any;
 
+    comparator?: Comparator;
+
+    overrideSortingSettings?: OverrideSortingSettings<TItem>;
     sortingSettings?: SortingSettings<TItem>;
 }
 

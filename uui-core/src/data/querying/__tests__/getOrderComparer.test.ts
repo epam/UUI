@@ -2,8 +2,9 @@ import { SortingOption } from '../../../types';
 import { getOrderComparer } from '../getOrderComparer';
 
 interface Person {
+    id: number;
     name: string;
-    departmentId?: number;
+    departmentId?: number | null;
     birthday?: Date;
 }
 
@@ -32,7 +33,7 @@ const persons = [
 ];
 
 const run = (sorting: SortingOption<Person>[]) => {
-    const comparer = getOrderComparer(sorting);
+    const comparer = getOrderComparer<Person, number>({ sorting, getId: ({ id }) => id });
     const sorted = [...persons].sort(comparer);
     return sorted;
 };

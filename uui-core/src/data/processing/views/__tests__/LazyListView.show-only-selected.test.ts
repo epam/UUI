@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@epam/uui-test-utils';
-import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
+import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 
 describe('LazyListView - show only selected', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;

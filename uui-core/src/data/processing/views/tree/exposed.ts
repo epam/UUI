@@ -14,7 +14,6 @@ export {
     LOADED_RECORD,
 
     PatchOrdering,
-    SortingSettingsModifiers,
 } from './constants';
 export { CompositeKeysMap, newMap, cloneMap } from './helpers';
 

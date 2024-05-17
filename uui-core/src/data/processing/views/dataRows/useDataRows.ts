@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { DataSourceListProps } from '../../../../types';
+import { DataSourceListProps, PatchOptions } from '../../../../types';
 import { useCheckingService, useFoldingService, useFocusService, useSelectingService } from './services';
 import { useDataRowProps } from './useDataRowProps';
 import { useBuildRows } from './useBuildRows';
@@ -17,7 +17,7 @@ import { isInProgress } from '../helpers';
  * `useDataRows` configuration.
  */
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
-    CommonTreeConfig<TItem, TId, TFilter>,
+    Omit<CommonTreeConfig<TItem, TId, TFilter>, keyof PatchOptions<TItem, TId>>,
     ITreeLoadingState,
     Partial<CascadeSelectionService<TItem, TId>>,
     GetItemStatus<TId> {

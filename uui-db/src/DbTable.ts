@@ -251,7 +251,7 @@ export class DbTable<TEntity, TId extends DbPkFieldType, TTables extends DbTable
         }
 
         if (q.sorting) {
-            const comparer = getOrderComparer(q.sorting);
+            const comparer = getOrderComparer({ sorting: q.sorting, getId: this.getId });
             result = result.sort(comparer);
         }
 
