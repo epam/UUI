@@ -9,7 +9,7 @@ const docsApi = require('./docs');
 const tsDocsApi = require('./docsGen');
 const themeTokensApi = require('./themeTokens');
 const errorApi = require('./error');
-const successApi = require('./success');
+const formApi = require('./form');
 const RTEDemoApi = require('./RTEDemoApi');
 
 const bodyParser = require('body-parser');
@@ -25,7 +25,7 @@ router.use(docsApi);
 router.use(tsDocsApi);
 router.use(themeTokensApi);
 router.use(errorApi);
-router.use(successApi);
+router.use(formApi);
 router.use(RTEDemoApi);
 
 module.exports = router;

@@ -1,16 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { LazyListViewProps, useCascadeSelectionService, useDataRows, useTree, newMap } from './views';
+import { useForceUpdate } from '../../hooks';
 import { BaseDataSource } from './BaseDataSource';
-import { DataSourceState, IDataSourceView, IMap, SetDataSourceState } from '../../types';
+import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
 import { ItemsStorage } from './views/tree/ItemsStorage';
-import { RecordStatus } from './views/tree/types';
+import { ItemsStatusCollector } from './views/tree/ItemsStatusCollector';
 
 export interface LazyDataSourceProps<TItem, TId, TFilter> extends LazyListViewProps<TItem, TId, TFilter> {}
 
 export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseDataSource<TItem, TId, TFilter> {
     props: LazyDataSourceProps<TItem, TId, TFilter>;
-    itemsStatusMap: IMap<TId, RecordStatus> = null;
     itemsStorage: ItemsStorage<TItem, TId>;
+    itemsStatusCollector: ItemsStatusCollector<TItem, TId, TFilter>;
 
     constructor(props: LazyDataSourceProps<TItem, TId, TFilter>) {
         super(props);
@@ -20,7 +21,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         };
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.itemsStorage = new ItemsStorage({ items: [], params });
-        this.itemsStatusMap = newMap(params);
+        this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
     }
 
     public setProps(props: LazyDataSourceProps<TItem, TId, TFilter>) {
@@ -43,7 +44,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
     public clearCache() {
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.itemsStorage = new ItemsStorage({ items: [], params });
-        this.itemsStatusMap = newMap(params);
+        this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
         super.reload();
     }
 
@@ -54,6 +55,8 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
         // eslint-disable-next-line react-hooks/rules-of-hooks
+        const forceUpdate = useForceUpdate();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -61,8 +64,8 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             type: 'lazy',
             ...this.props,
             itemsMap,
-            itemsStatusMap: this.itemsStatusMap,
             setItems: this.itemsStorage.setItems,
+            itemsStatusCollector: this.itemsStatusCollector,
             dataSourceState: value,
             setDataSourceState: onValueChange as React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>,
             // These defaults are added for compatibility reasons.
@@ -83,7 +86,18 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
                 unsubscribe();
             };
         }, [this.itemsStorage]);
-        
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.itemsStatusCollector.subscribe(() => {
+                forceUpdate();
+            });
+            
+            return () => {
+                unsubscribe();
+            };
+        }, [this.itemsStatusCollector]);
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.trees.set(tree, reload);
@@ -95,10 +109,6 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const cascadeSelectionService = useCascadeSelectionService({
             tree: selectionTree,
-            cascadeSelection: restProps.cascadeSelection,
-            getRowOptions: restProps.getRowOptions,
-            rowOptions: restProps.rowOptions,
-            getItemStatus: restProps.getItemStatus,
             loadMissingRecordsOnCheck,
         });
 

@@ -386,9 +386,7 @@ describe('LazyListView - show only selected', () => {
         );
 
         let view = hookResult.result.current;
-        await act(() => {
-            view.clearAllChecked();
-        });
+        view.clearAllChecked();
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
 

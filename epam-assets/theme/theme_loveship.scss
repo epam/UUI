@@ -95,13 +95,13 @@
     }
 
     .uui-color-white {
-        --uui-color-5: var(--white);
-        --uui-color-10: var(--white);
-        --uui-color-20: var(--white);
-        --uui-color-50: var(--white);
-        --uui-color-60: var(--night100);
-        --uui-color-70: var(--night200);
-        --uui-color-contrast: var(--uui-neutral-80);
+        --uui-color-5: color-mix(in srgb, #FFFFFF 15%, transparent);
+        --uui-color-10: color-mix(in srgb, #FFFFFF 22%, transparent);
+        --uui-color-20: color-mix(in srgb, #FFFFFF 29%, transparent);
+        --uui-color-50: var(--uui-neutral-0);
+        --uui-color-60: var(--uui-neutral-10);
+        --uui-color-70: var(--uui-neutral-20);
+        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-color-night50 {
@@ -121,7 +121,7 @@
         --uui-color-50: var(--night100);
         --uui-color-60: var(--uui-color-night100-800);
         --uui-color-70: var(--uui-color-night100-900);
-        --uui-color-contrast: var(--uui-neutral-80);
+        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-color-night200 {
@@ -303,12 +303,28 @@
     /* Badge */
 
     .uui-badge.uui-color-white {
-        &.uui-fill-outline {
-            --uui-badge-bg-hover: var(--uui-neutral-10);
-            --uui-badge-border: var(--uui-neutral-30);
+        &.uui-fill-solid {
+            --uui-badge-bg-hover: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
+
+            .uui-count_indicator {
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
+        }
+
+        &.uui-fill-outline {
+            --uui-badge-bg: var(--uui-neutral-0);
+            --uui-badge-bg-hover: var(--uui-neutral-30);
+            --uui-badge-border: var(--uui-neutral-60);
+            --uui-badge-border-hover: var(--uui-neutral-60);
             --uui-badge-caption: var(--uui-neutral-80);
             --uui-badge-caption-hover: var(--uui-neutral-80);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
         }
     }
 
@@ -320,6 +336,11 @@
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-40);
             --uui-color-contrast: var(--uui-neutral-80);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-0);
+                --uui-count_indicator-border: var(--uui-neutral-0);
+            }
         }
 
         &.uui-fill-outline {
@@ -335,6 +356,10 @@
         &.uui-fill-solid {
             --uui-badge-bg-hover: var(--uui-neutral-20);
             --uui-badge-border-hover: var(--uui-neutral-20);
+
+            .uui-count_indicator {
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
         }
 
         &.uui-fill-outline {
@@ -342,8 +367,14 @@
             --uui-badge-bg-hover: var(--uui-neutral-20);
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
-            --uui-badge-caption: var(--uui-neutral-80);
-            --uui-badge-caption-hover: var(--uui-neutral-80);
+            --uui-badge-caption: var(--uui-neutral-70);
+            --uui-badge-caption-hover: var(--uui-neutral-70);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
         }
     }
 
@@ -365,27 +396,6 @@
     .uui-button {
         &:is(.uui-color-secondary, .uui-color-neutral, .uui-color-gray, .uui-color-night600):is(.uui-fill-outline, .uui-fill-none, .uui-fill-ghost) {
             --uui-btn-caption: var(--uui-neutral-70);
-        }
-
-        &.uui-color-white {
-            &.uui-fill-none, &.uui-fill-ghost {
-                --uui-btn-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 20%, transparent);
-                --uui-btn-bg-active: color-mix(in srgb, var(--uui-neutral-0) 30%, transparent);
-            }
-
-            &.uui-fill-ghost {
-                --uui-btn-border: transparent;
-                --uui-btn-border-hover: transparent;
-                --uui-btn-border-active: transparent;
-            }
-
-            &.uui-fill-outline, &.uui-fill-solid {
-                --uui-btn-caption: var(--uui-neutral-70);
-                --uui-btn-bg-hover: var(--uui-neutral-20);
-                --uui-btn-border-hover: var(--uui-neutral-20);
-                --uui-btn-bg-active: var(--uui-neutral-30);
-                --uui-btn-border-active: var(--uui-neutral-30);
-            }
         }
     }
 
@@ -490,8 +500,9 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-bg-hover: var(--uui-neutral-10);
+                --uui-tag-bg: var(--uui-neutral-0);
                 --uui-tag-border: var(--uui-neutral-30);
+                --uui-tag-bg-hover: var(--uui-neutral-10);
                 --uui-tag-border-hover: var(--uui-neutral-30);
 
                 .uui-count_indicator {

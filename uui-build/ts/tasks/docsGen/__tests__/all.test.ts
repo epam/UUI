@@ -231,6 +231,16 @@ describe('docsGen:all', () => {
             expect(generateDocs(input)).toMatchSnapshot();
         });
     });
+    describe('docsGen:propEditor:oneOf', () => {
+        test('should convert union of literals and single scalar type', () => {
+            const input = `
+            export interface TTest {
+                size: '12' | '18' | number
+            };
+        `;
+            expect(generateDocs(input)).toMatchSnapshot();
+        });
+    });
     describe('docsGen:union', () => {
         test('should convert union of simple types', () => {
             const input = `

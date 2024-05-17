@@ -20,7 +20,7 @@ interface ToolbarProps {
 
 export function FloatingToolbar(props: ToolbarProps): any {
     const ref = useRef<HTMLElement | null>();
-    const editor = useEditorState();
+    const editor = useEditorState(); // TODO: use useEditorRef
     const inFocus = useEventEditorSelectors.focus() === editor.id;
     const zIndex = useLayer()?.zIndex;
 

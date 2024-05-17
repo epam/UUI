@@ -4,7 +4,16 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "The Text component displays a single-line text with various configurations. Due to its standard set of sizes are aligned to other components (e.g., TextInput, Button), it can be used it to place text next to other components, and get it aligned correctly."
+        "text": "Displays a single-line text with various configurations."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Sizes are aligned to other components (e.g., TextInput, Button), so it can be used it to align text to other components."
       }
     ]
   },

@@ -50,7 +50,6 @@ export class TreeState<TItem, TId> {
         using,
         options,
         dataSourceState,
-        withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>): Promise<TreeState<TItem, TId>> {
         const treeStructure = this.getTreeStructure(using);
 
@@ -58,7 +57,6 @@ export class TreeState<TItem, TId> {
             tree: treeStructure,
             options,
             dataSourceState,
-            withNestedChildren,
         });
 
         if (!loadedItems.length && !byParentId.size && !nodeInfoById.size) {
@@ -277,6 +275,17 @@ export class TreeState<TItem, TId> {
             this.visible,
             newSelectedOnly,
             this.itemsMap,
+            this.setItems,
+        );
+    }
+
+    public updateItemsMap(itemsMap: ItemsMap<TId, TItem>) {
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
+        return new TreeState(
+            TreeStructure.withNewItemsAccessor(itemsAccessor, this.full),
+            TreeStructure.withNewItemsAccessor(itemsAccessor, this.visible),
+            TreeStructure.withNewItemsAccessor(itemsAccessor, this.selectedOnly),
+            itemsMap,
             this.setItems,
         );
     }

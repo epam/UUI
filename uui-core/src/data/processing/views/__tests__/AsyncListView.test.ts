@@ -1243,9 +1243,10 @@ describe('AsyncListView', () => {
                     checkbox: { isVisible: true },
                 }),
             };
+            currentValue = { ...initialValue, checked: [7, 8] };
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
             );
             await waitFor(() => {
                 const view = hookResult.result.current;
@@ -1330,9 +1331,10 @@ describe('AsyncListView', () => {
                     }),
                 };
 
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 await waitFor(() => {
                     const view = hookResult.result.current;
@@ -1369,9 +1371,11 @@ describe('AsyncListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 await waitFor(() => {
                     const view = hookResult.result.current;
@@ -1585,9 +1589,11 @@ describe('AsyncListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 await waitFor(() => {
                     const view = hookResult.result.current;
@@ -1621,9 +1627,11 @@ describe('AsyncListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 await waitFor(() => {
                     const view = hookResult.result.current;

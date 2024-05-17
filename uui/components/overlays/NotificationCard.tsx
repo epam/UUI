@@ -1,7 +1,14 @@
 import React from 'react';
 import cx from 'classnames';
 import { IconContainer } from '@epam/uui-components';
-import { INotification, Icon, IHasChildren, IHasCX, UuiContext, UuiContexts, IHasRawProps } from '@epam/uui-core';
+import {
+    INotification,
+    Icon,
+    IHasChildren,
+    IHasCX,
+    IHasRawProps,
+    useUuiContext,
+} from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
@@ -90,14 +97,14 @@ export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCa
     <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
-export class ClearNotification extends React.Component<{}> {
-    public static contextType = UuiContext;
-    public context: UuiContexts;
-    render() {
-        return (
-            <div className={ cx(css.notificationWrapper, css.clearButton) }>
-                <LinkButton caption={ i18n.notificationCard.closeAllNotificationsButton } onClick={ () => this.context.uuiNotifications.clearAll() } />
-            </div>
-        );
-    }
+export function ClearNotification() {
+    const uuiCtx = useUuiContext();
+    return (
+        <div className={ cx(css.notificationWrapper, css.clearButton) }>
+            <LinkButton
+                caption={ i18n.notificationCard.closeAllNotificationsButton }
+                onClick={ () => uuiCtx.uuiNotifications.clearAll() }
+            />
+        </div>
+    );
 }

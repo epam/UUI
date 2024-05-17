@@ -130,7 +130,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
-                caption: props.getName(row.value),
+                caption: row.isLoading ? null : props.getName(row.value),
                 isCollapsed: false,
                 isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
@@ -199,11 +199,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e)) return;
-        e.preventDefault();
-        if (inFocus && props.value && props.minCharsToSearch) return;
+    const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
+        const isInteractionDisabled = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
+        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && props.minCharsToSearch);
+        const isPickerOpenWithSearchInInput = (props.isOpen && props.searchPosition === 'input' && (e.target as HTMLInputElement).tagName === 'INPUT');
+        return !(isInteractionDisabled || shouldOpenWithMinCharsToSearch || isPickerOpenWithSearchInInput);
+    };
 
+    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        if (!shouldToggleBody(e)) return;
         toggleContainer.current.focus();
         props.onClick?.();
     };

@@ -36,7 +36,7 @@
                 "uui-richTextEditor-code": true
               },
               {
-                "text": " — core business logic,  services, helpers, basic types"
+                "text": " — core interfaces,  services, helpers, basic types"
               }
             ]
           }
@@ -74,7 +74,7 @@
                 "uui-richTextEditor-code": true
               },
               {
-                "text": "— a set of themable  components that can be used with both the default set of themes and custom themes"
+                "text": "— a set of themable components that can be used with both the default set of themes and custom themes"
               }
             ]
           }
@@ -270,7 +270,14 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "We use TypeScript interfaces a lot."
+        "text": "Component's API are usually composed from many interfaces, which are re-used across many other components. For example, every component that can be clicked would get the same "
+      },
+      {
+        "text": "IClickable",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " interface."
       }
     ]
   },
@@ -279,14 +286,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "For example, every component that can be clicked would get the same "
-      },
-      {
-        "text": "IClickable",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " interface. This is done to:"
+        "text": "This is done to:"
       }
     ]
   },
@@ -663,6 +663,125 @@
     "type": "uui-richTextEditor-header-2",
     "children": [
       {
+        "text": "Customization"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Components are customizable in many ways:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "we provide a standard set of CSS Custom Properties (ara Tokens or CSS variables), to change components' appearance. You can change them at root node to set the whole Theme, or change them for a particular component to change its look"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "data": {},
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "there are many 'render props' - a props which looks like "
+              },
+              {
+                "text": "renderSomething",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": ".  With them, you can render parts of components yourself. In these cases, we provide default implementations, so you can just tweak our component's properties, or wrap it for your needs."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "every component provides the "
+              },
+              {
+                "text": "cx",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " prop, allowing you to put your CSS classes on it. We also put a nandy set of CSS selectors, so you can build your CSS on top."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "most inputs provides the "
+              },
+              {
+                "text": "rawProps",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " prop, which are passed-thru the underlying input. You can use it to pass certain DOM properties directly."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "complex components' parts are exposed, to simplify compose your own components if standard ones doesn't suffice. For example, the DataTable, is a relatively simple component for DataTableHeader, and DataTableRow. You can use these components directly to mix-in data table into your layout."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We try to keep our features set manageable, and we are trying to find UX to fit all. To do this, we care a lot of extensibility, as it allow us to focus more on turn-key solution-like approach, while letting users to tweak our components for their needs."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "uui-richTextEditor-header-2",
+    "children": [
+      {
         "text": "Services"
       }
     ]
@@ -999,7 +1118,7 @@
   },
   {
     "data": {},
-    "type": "paragraph",
+    "type": "uui-richTextEditor-header-2",
     "children": [
       {
         "text": "UUI contains several tools to cover common state management and data manipulation patterns. They include: "

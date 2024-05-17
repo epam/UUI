@@ -56,7 +56,6 @@ describe('useLazyTree', () => {
         expect(tree).toEqual(expect.objectContaining({
             dataSourceState,
             setDataSourceState,
-            totalCount: 0,
             getId,
             getParentId: undefined,
             rowOptions: undefined,
@@ -111,7 +110,6 @@ describe('useLazyTree', () => {
         expect(tree).toEqual(expect.objectContaining({
             dataSourceState,
             setDataSourceState,
-            totalCount: 0,
             getId,
             getParentId,
             rowOptions,

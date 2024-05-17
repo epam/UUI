@@ -8,7 +8,7 @@ import {
     TDocContext,
     TComponentPreviewList,
     TComponentPreview,
-    TPreviewPropsItemRenderCases,
+    TPreviewPropsItemRenderCases, TPreviewCellSize, TPreviewMatrix,
 } from './types';
 import { TestMatrixUtils } from './utils/testMatrixUtils';
 
@@ -19,7 +19,22 @@ export class DocPreviewBuilder<TProps> {
      * Most recently added preview will replace another one with same ID
      * @param previewItem
      */
-    add(previewItem: TComponentPreview<TProps>) {
+    add(previewItem: TComponentPreview<TProps, keyof TProps>): void;
+    add(id: string, matrix: TPreviewMatrix<TProps>, cellSize?: TPreviewCellSize): void;
+    add(groupId: string, id: string, matrix: TPreviewMatrix<TProps>, cellSize?: TPreviewCellSize): void;
+    add(...args: any[]) {
+        let previewItem: TComponentPreview<TProps, keyof TProps>;
+        if (typeof args[0] === 'string') {
+            if (typeof args[1] === 'string') {
+                const [groupId, id, matrix, cellSize] = args;
+                previewItem = { groupId, id, matrix, cellSize };
+            } else {
+                const [id, matrix, cellSize] = args;
+                previewItem = { id, matrix, cellSize };
+            }
+        } else {
+            previewItem = args[0];
+        }
         this.listOfPreviews = this.listOfPreviews.filter(({ id }) => id !== previewItem.id);
         this.listOfPreviews.push({
             id: previewItem.id,
@@ -27,10 +42,10 @@ export class DocPreviewBuilder<TProps> {
         });
     }
 
-    update(id: string, updateFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
+    update(id: string, updateMatrixFn: (prevMatrix: TPreviewMatrix<TProps>) => TPreviewMatrix<TProps>) {
         const prev = this.listOfPreviews.find((i) => i.id === id);
         if (prev) {
-            prev.matrix = { ...updateFn(prev.matrix) };
+            prev.matrix = { ...updateMatrixFn(prev.matrix) };
         } else {
             throw new Error(`Unable to find preview by id = ${id}`);
         }
@@ -122,13 +137,14 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
 
     getPreviewRenderCaseGroups() {
         return this.docPreview?.listOfPreviews.map((ppi) => {
-            return DocBuilder.convertPreviewPropsItemToRenderCases(ppi, this as DocBuilder<PropDocPropsUnknown>);
+            return DocBuilder.convertPreviewPropsItemToRenderCases(ppi as TComponentPreview<unknown>, this as DocBuilder<PropDocPropsUnknown>);
         });
     }
 
     static convertPreviewPropsItemToRenderCases = (ppi: TComponentPreview<unknown>, docs: DocBuilder<PropDocPropsUnknown>): TPreviewPropsItemRenderCases => {
         let ctxToSet = ppi.context || TDocContext.Default;
-        const ctxToSetSupported = !!docs.contexts.find((ctx) => ctx.name === ctxToSet);
+        // Assumption: all components support Default context, so we never report error when Default context is selected.
+        const ctxToSetSupported = ctxToSet === TDocContext.Default || !!docs.contexts.find((ctx) => ctx.name === ctxToSet);
         if (!ctxToSetSupported) {
             ctxToSet = undefined;
             console.error(`The context="${ctxToSet}" is not supported by the component`);
@@ -140,10 +156,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             cellSize: ppi.cellSize,
         };
         const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
-        const testMatrix = TestMatrixUtils.createTestMatrix(matrixConfig);
-        testMatrix.forEach((props) => {
-            result.props.push(props);
-        });
+        result.props = TestMatrixUtils.createTestMatrix({ matrixNorm: matrixConfig });
         return result;
     };
 

@@ -11,12 +11,8 @@ import css from './RangeDatePicker.module.scss';
 import {
     RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
 } from './types';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
-
-dayjs.extend(customParseFormat);
 
 const modifiers = [{
     name: 'offset',

@@ -15,7 +15,7 @@ interface SidebarProps {
 
 // eslint-disable-next-line react/function-component-definition
 export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) => {
-    const editor = useEditorState();
+    const editor = useEditorState(); // TODO: use useEditorRef
     const isBlockSelected = isBlock(editor, editor.value);
     const [isVisible, setIsVisible] = useState(false);
     const sidebarRef = useRef<HTMLDivElement>(null);
@@ -56,7 +56,8 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ isReadonly, children }) 
         } }
         >
             <div
-                onMouseDown={ onMouseDown } className={ cx('slate-prevent-blur', css.sidebar) }
+                onMouseDown={ onMouseDown }
+                className={ cx('slate-prevent-blur', css.sidebar) }
                 ref={ sidebarRef }
             >
                 { children }

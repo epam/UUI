@@ -49,15 +49,17 @@ exports[`VirtualList should be rendered correctly 1`] = `
     </div>
   </div>
   <div
+    aria-busy="false"
+    aria-label=""
+    aria-live="polite"
     className="container uui-blocker-container root"
+    role="status"
     style={
       Object {
         "minHeight": undefined,
       }
     }
-  >
-    <div />
-  </div>
+  />
   <div
     className="uui-track-horizontal"
     style={

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
-    ControlGroup, TextInput, PickerInput, TimePicker,
-} from '@epam/promo';
+    ControlGroup, TextInput, PickerInput, TimePicker, NumericInput,
+} from '@epam/uui';
 import { useArrayDataSource } from '@epam/uui-core';
 import { InputAddon } from '@epam/uui';
 
@@ -12,6 +12,7 @@ const vendorsList = [
 export default function PrefixExample() {
     const [valueTI, onValueTIChange] = useState(null);
     const [valueTP, onValueTPChange] = useState(null);
+    const [valueUSD, onValueUSDChange] = useState(0);
     const [multiPickerValue, multiOnValueChange] = useState(null);
     const dataSource = useArrayDataSource(
         {
@@ -43,9 +44,12 @@ export default function PrefixExample() {
             </ControlGroup>
 
             <ControlGroup>
-                <div style={ { width: '50px' } }>
-                    <TextInput value={ valueTI } onValueChange={ onValueTIChange } placeholder="05" />
-                </div>
+                <InputAddon content="$" />
+                <NumericInput value={ valueUSD } onValueChange={ onValueUSDChange } rawProps={ { style: { width: '70px' } } } />
+            </ControlGroup>
+
+            <ControlGroup>
+                <TextInput rawProps={ { style: { width: '50px' } } } value={ valueTI } onValueChange={ onValueTIChange } placeholder="05" />
                 <InputAddon content="h" />
             </ControlGroup>
 

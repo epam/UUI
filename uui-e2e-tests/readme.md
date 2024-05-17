@@ -56,7 +56,7 @@ You might need to restart computer after that.
 
 ## Usage of alternative tools not mentioned in this guide
 By default, if "podman" is detected, then it is used to build/run containers; otherwise "docker" is used as fallback;
-To override the default behavior, you might explicitly specify any tool via ```.env.docker``` file using ```UUI_DOCKER_CONTAINER_ENGINE=<cmd>``` option.
+To override the default behavior, you might explicitly specify any tool via ```.env``` file using ```UUI_DOCKER_CONTAINER_ENGINE=<cmd>``` option.
 Please make sure that this tool is compatible with Docker's CLI.
 
 # Run tests locally (via Docker)
@@ -70,19 +70,23 @@ Please make sure that this tool is compatible with Docker's CLI.
      * Cons: Requires full build. Port ```5000``` might be occupied on macOS by some system utilities.
    * Any external UUI server
      * Pros: Good performance (though it depends on network speed).
-2. [Optional step] Change ```.env.docker``` file to set non-standard ```UUI_APP_BASE_URL```
+2. [Optional step] Change ```.env``` file to set non-standard ```UUI_APP_BASE_URL```
 
 ## NPM tasks to use
 Note: If the tasks are run for the very first time, it might take some time to download necessary docker images (up to 10 min, depends on network speed).
 ```shell
-# Run tests in docker container
+# Run only "chromium" tests in docker container
+# NOTE: It is preferable for local dev environment
+yarn test-e2e-chromium
+
+# Run all tests in docker container
 yarn test-e2e
 
-# Run tests in docker container and update all screenshots
+# Run all tests in docker container and update all screenshots
 yarn test-e2e-update
 
 # Show report located in "uui-e2e-tests/tests/.report/report" folder
-yarn test-e2e-report
+yarn test-e2e-open-report
 ```
 
 # Run tests locally (without Docker)
