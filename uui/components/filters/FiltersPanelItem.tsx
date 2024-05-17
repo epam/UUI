@@ -1,8 +1,8 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import dayjs from 'dayjs';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import cx from 'classnames';
 import { Modifier } from 'react-popper';
-import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate } from '@epam/uui-core';
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate, IDataSource, DataSourceState } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
@@ -23,15 +23,23 @@ IEditable<any> & {
     size?: '24' | '30' | '36' | '42' | '48';
 };
 
-function useView(props: FiltersToolbarItemProps) {
+function useView(props: FiltersToolbarItemProps, value: any) {
     const forceUpdate = useForceUpdate();
 
-    let useViewFn;
+    let useViewFn: IDataSource<any, any, any>['useView'];
+    const dataSourceState: DataSourceState = {};
     if (props.type === 'singlePicker' || props.type === 'multiPicker') {
         useViewFn = props.dataSource.useView.bind(props.dataSource);
+        if (props.type === 'singlePicker') {
+            dataSourceState.selectedId = value;
+        }
+        
+        if (props.type === 'multiPicker') {
+            dataSourceState.checked = value;
+        }
     }
-    
-    return useViewFn?.({}, forceUpdate);
+
+    return useViewFn?.(dataSourceState, forceUpdate, { showSelectedOnly: true });
 }
 
 function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
@@ -168,18 +176,18 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     };
 
     const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
-        if (item.isUnknown) {
-            return 'Unknown';
-        }
-
         if (item.isLoading) {
             return <TextPlaceholder />;
+        }
+
+        if (item.isUnknown) {
+            return 'Unknown';
         }
 
         return config.getName ? config.getName(item.value) : item.value.name;
     };
 
-    const view = useView(props);
+    const view = useView(props, getValue());
 
     const getTogglerValue = () => {
         const currentValue = getValue();
@@ -223,17 +231,17 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 return { selection: [selection] };
             }
             case 'datePicker': {
-                return { selection: currentValue ? [dayjs(currentValue).format(props.format || defaultFormat)] : currentValue };
+                return { selection: currentValue ? [uuiDayjs.dayjs(currentValue).format(props.format || defaultFormat)] : currentValue };
             }
             case 'rangeDatePicker': {
                 if (!currentValue || (!currentValue.from && !currentValue.to)) {
                     return { selection: undefined };
                 }
                 const currentValueFrom = currentValue?.from
-                    ? dayjs(currentValue?.from).format(props.format || defaultFormat)
+                    ? uuiDayjs.dayjs(currentValue?.from).format(props.format || defaultFormat)
                     : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderFrom;
                 const currentValueTo = currentValue?.to
-                    ? dayjs(currentValue?.to).format(props.format || defaultFormat)
+                    ? uuiDayjs.dayjs(currentValue?.to).format(props.format || defaultFormat)
                     : i18n.filterToolbar.rangeDatePicker.emptyPlaceholderTo;
                 const selection = `${currentValueFrom} - ${currentValueTo}`;
                 return { selection: [selection] };

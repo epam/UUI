@@ -33,7 +33,9 @@ jobs:
                   cd server && yarn
 
             - name: 'Run e2e tests'
-              run: yarn --cwd uui-e2e-tests local-test-e2e
+              run: |
+                  yarn --cwd uui-e2e-tests local-check-issues
+                  yarn --cwd uui-e2e-tests local-test-e2e
 
             - name: 'Upload e2e HTML report'
               if: always()

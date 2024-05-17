@@ -1,12 +1,13 @@
 {
   "name": "@epam/uui-core",
-  "version": "5.7.1",
+  "version": "5.7.2",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
   "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts",
     "prepublish": "yarn build"

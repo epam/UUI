@@ -1,21 +1,24 @@
+import path from 'node:path';
 import { defineConfig, devices, type TraceMode } from '@playwright/test';
 import { SHARED_DEVICE_CFG } from './src/constants';
-import { readEnvParams } from './scripts/cliUtils';
 import { readEnvFile } from './scripts/envFileUtils';
-import path from 'node:path';
+import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 
-const { isCi, isDocker } = readEnvParams();
-const { UUI_APP_BASE_URL } = readEnvFile();
+const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables();
+const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
-const timeout = isCi ? 20000 : 35000;
-const maxFailures = isCi ? 10 : 20;
+const timeout = isCi ? 20000 : 50000;
+const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
-const workers = isCi ? 1 : 1;
+/**
+ * The fastest option (for both CI and Local) is to use default (undefined) amount of workers (which is 50% of CPU cores).
+ */
+const workers = isCi ? undefined : undefined;
 const forbidOnly = isCi;
 const trace = (isCi ? 'retry-with-trace' : 'retain-on-failure') as TraceMode;
 const server = {
     startCmd: isCi ? 'yarn start-server' : undefined,
-    baseUrl: UUI_APP_BASE_URL,
+    baseUrl: isCi ? UUI_APP_BASE_URL_CI : UUI_APP_BASE_URL,
 };
 //
 const parentDir = '';
@@ -23,6 +26,7 @@ export const screenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/__screen
 const testMatch = `${parentDir}tests/*.e2e.ts`;
 const outputDir = `${parentDir}tests/.report/results`;
 const outputFolder = `${parentDir}tests/.report/report`;
+export const outputJsonFile = `${parentDir}tests/.report/report.json`;
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}';
 export const stylePath = `${parentDir}src/fixtures/screenshot.css`;
 
@@ -36,8 +40,12 @@ export default defineConfig({
     workers,
     outputDir,
     snapshotPathTemplate,
-    reporter: [['html', { outputFolder, open: (isDocker || isCi) ? 'never' : 'on-failure' }]],
+    reporter: [
+        ['html', { outputFolder, open: (isDocker || isCi) ? 'never' : 'on-failure' }],
+        ['json', { outputFile: outputJsonFile }],
+    ],
     use: {
+        bypassCSP: true,
         baseURL: server.baseUrl,
         trace,
         ...SHARED_DEVICE_CFG.DEFAULT,
@@ -55,7 +63,12 @@ export default defineConfig({
                 ...devices['Desktop Safari'],
             },
         },
-    ],
+    ].filter(({ name }) => {
+        if (UUI_TEST_PARAM_PROJECT) {
+            return name === UUI_TEST_PARAM_PROJECT;
+        }
+        return true;
+    }),
     webServer: server.startCmd ? {
         command: server.startCmd,
         url: server.baseUrl,

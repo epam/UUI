@@ -6,3 +6,4 @@ export * from './useForceUpdate';
 export * from './useUuiServices';
 export * from './useTableState/useTableState';
 export * from './useLayer';
+export * from './usePrevious';

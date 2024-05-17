@@ -1,15 +1,13 @@
 import React, {
-    HTMLAttributes, ReactElement, useState,
+    HTMLAttributes, ReactElement,
 } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import localeData from 'dayjs/plugin/localeData.js';
-import updateLocale from 'dayjs/plugin/updateLocale.js';
+import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+
 import {
     arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
 import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
-import { i18n } from '../../i18n';
 import css from './Calendar.module.scss';
 
 /**
@@ -27,9 +25,6 @@ export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttr
      */
     month: Dayjs;
 }
-
-dayjs.extend(localeData);
-dayjs.extend(updateLocale);
 
 const DAYS_COUNT_IN_WEEK = 7;
 
@@ -50,7 +45,7 @@ const isHoliday = (day: Dayjs) => {
 };
 
 function isSelected <T>(day: Dayjs, value: T): boolean {
-    if (dayjs.isDayjs(value)) {
+    if (uuiDayjs.dayjs.isDayjs(value)) {
         return day.isSame(value);
     } else if (Array.isArray(value)) {
         return value.find((selectedDay) => day.isSame(selectedDay));
@@ -59,11 +54,6 @@ function isSelected <T>(day: Dayjs, value: T): boolean {
 }
 
 export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
-    useState(() => {
-        dayjs.locale(i18n.datePicker.locale);
-        dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
-    });
-
     const getDaysToRender = (days: Dayjs[]) =>
         days.map((day: Dayjs, index: number) => {
             return (
@@ -124,8 +114,8 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
         return <div key={ key }>{week.map((day) => day)}</div>;
     });
 
-    const renderWeekdays = () =>
-        dayjs.weekdaysShort(true).map((weekday, index) => (
+    const renderWeekdays = () => {
+        return uuiDayjs.dayjs.weekdaysShort(true).map((weekday, index) => (
             <div
                 key={ `${weekday}-${index}` }
                 className={ uuiDaySelection.weekday }
@@ -133,6 +123,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                 {weekday}
             </div>
         ));
+    };
 
     return (
         <div

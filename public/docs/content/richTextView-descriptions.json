@@ -4,7 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "RichTextView is used to display HTML markup according to a design typography specification. "
+        "text": "Renders HTML markup according to a design typography specification. "
       }
     ]
   }

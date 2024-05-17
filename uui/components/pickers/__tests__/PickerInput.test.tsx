@@ -29,7 +29,6 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
                     searchPosition: 'input',
                     getName: (item: TestItemType) => item.level,
                     value: params.value as TId,
-                    selectionMode: 'single',
                     searchDebounceDelay: 0,
                 }, params) as PickerInputComponentProps<TItem, TId>;
             }
@@ -70,6 +69,21 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
 }
 
 describe('PickerInput', () => {
+    beforeEach(() => {
+        jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(() => {
+            return {
+                width: 0,
+                height: 1,
+                top: 0,
+                left: 0,
+            } as DOMRect;
+        });
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerInput value={ null } onValueChange={ jest.fn } selectionMode="single" dataSource={ mockDataSource } disableClear searchPosition="input" />,
@@ -1362,7 +1376,33 @@ describe('PickerInput', () => {
             });
         });
 
-        it.each<[undefined | null | []]>([[[]]])
+        it.each<[undefined | null | []]>([[[]], [undefined], [null]])
+        ('should not call onValueChange on edit search with emptyValue = %s; and return emptyValue = %s on check -> uncheck', async (emptyValue) => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                emptyValue: emptyValue,
+                value: emptyValue,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            const bodyInput = await within(dialog).findByPlaceholderText('Search');
+            fireEvent.change(bodyInput, { target: { value: 'A' } });
+
+            expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
+
+            // Test value after check -> uncheck
+            await PickerInputTestObject.clickOptionCheckbox('A1'); // check
+            await PickerInputTestObject.clickOptionCheckbox('A1'); // uncheck
+
+            await waitFor(async () => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(emptyValue);
+            });
+        });
+
+        it.each<[undefined | null | []]>([[[]], [undefined], [null]])
         ('should not call onValueChange on edit search if emptyValue = %s does not equal to the initial value', async (emptyValue) => {
             const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
                 emptyValue: emptyValue,
@@ -1378,6 +1418,25 @@ describe('PickerInput', () => {
             fireEvent.change(bodyInput, { target: { value: 'A' } });
 
             expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
+        });
+
+        it('should not call onValueChange on edit search if emptyValue on clear button', async () => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                emptyValue: [],
+                value: undefined,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            fireEvent.click(dom.input);
+
+            await PickerInputTestObject.clickOptionCheckbox('A1'); // check
+
+            await PickerInputTestObject.clickClearAllOptions();
+
+            await waitFor(async () => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([]);
+            });
         });
     });
 });

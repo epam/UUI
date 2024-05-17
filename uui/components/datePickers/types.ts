@@ -1,10 +1,10 @@
 import {
-    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasForwardedRef, IHasPlaceholder, IHasRawProps,
+    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasPlaceholder, IHasRawProps,
 } from '@epam/uui-core';
 import { IHasEditMode, SizeMod } from '../types';
 import { ReactElement, ReactNode } from 'react';
 import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
-import { Dayjs } from 'dayjs';
+import { type Dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents RangeDatePicker value
@@ -131,7 +131,7 @@ interface RangeDatePickerProps extends
  */
 type RangeDatePickerInputType = 'from' | 'to' | null;
 
-interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     filter?(day: Dayjs): boolean;
     presets?: RangeDatePickerPresets;
     renderDay?: (renderProps: DayProps) => React.ReactElement<Element>;

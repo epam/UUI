@@ -1,7 +1,12 @@
 import { TComponentId, TPreviewIdByComponentId } from './data/testData';
-import { PreviewPage } from './pages/previewPage';
+import type { PreviewPage } from './pages/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
+
+export enum TEngine {
+    chromium = 'chromium',
+    webkit = 'webkit'
+}
 
 export enum TTheme {
     electric = 'electric',
@@ -21,12 +26,12 @@ export interface PreviewPageParams {
 export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId] = TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = {
     theme: TTheme[];
     isSkin: boolean[];
+    onlyChromium?: boolean,
     previewId: Previews;
-    onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>
+    onBeforeExpect: (params: { previewPage: PreviewPage, previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => Promise<void>;
+    waitFor?: number;
+    focusFirstElement?: (params: { previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => string | boolean | undefined;
+    blurActiveElement?: boolean;
+    only?: boolean;
 };
 export type TMatrixMinimal<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = Partial<TMatrix<Previews>> & { previewId: Previews };
-export type ScreenshotTestParamsSingle = {
-    runId?: string;
-    componentId: TComponentId;
-    matrix: TMatrix;
-};

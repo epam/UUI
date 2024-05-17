@@ -16,9 +16,8 @@ interface IPinIconButton {
     onTogglePin: (pinPosition: TPinPosition) => void;
 }
 
-const i18nLocal = i18n.tables.columnsConfigurationModal;
-
 export function PinIconButton(props: IPinIconButton) {
+    const i18nLocal = i18n.tables.columnsConfigurationModal;
     const {
         onTogglePin, pinPosition, canUnpin,
     } = props;

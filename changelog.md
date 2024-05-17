@@ -2,27 +2,15 @@
 
 **What's New**
 
-* [uui-core]: helpers cleanup
-  * Deprecated:
-    * `LazyLoadedMap` and related:
-      * `LazyLoadedMapLoadCallback`
-      * `UNKNOWN`
-      * `LOADING`
-      * `LOADED`
-      * `PENDING`
-      * `FAILED`
-      * `LoadingStatus`
-    * `browser` helper:
-      * `Browser`
-      * `getBrowser`
-    * `Debouncer`
-    * `parseIconViewbox`
-    * `parseStringToCSSProperties`
-    * `getScreenSize`
-    * `urlParser`
-    * `batch` and related:
-      * `batch`
-      * `BatchPromiseOptions`
+* [uui-core]: helpers cleanup, removed following helpers:
+  * `LazyLoadedMap`
+  * `browser'
+  * `Debouncer`
+  * `parseIconViewbox`
+  * `parseStringToCSSProperties`
+  * `getScreenSize`
+  * `urlParser`
+  * `batch`
 
 * [useTree]: useTree hook is added.
   * [Features]:
@@ -58,13 +46,34 @@
     * `IDataSourceView._forceUpdate` is deprecated.
     * `LazyListViewProps.legacyLoadDataBehavior` is deprecated.
   * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
-
-# 5.7.1 - 29.03.2024
-
-**What's New**
+* [useForm]:
+  * fixed `beforeLeave` callback invocation in case of redirect at onSuccess callback
+  * fixed `isInvalid`, `validationMessage` and `validationProps` value returned from hook in case of server validation. Before was returned only client validation value, now it's merged with server validation.
+  * added `setServerValidationState` callback to externally change server validation state.
+* [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile.
+* [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
+* [DatePicker] renderDay prop callback signature updated
+* [RangeDatePicker] renderDay prop callback signature updated
+* [RangeDatePicker] shared border is made flat
+* [ControlGroup] shared border is made flat
+* [DatePickerBody] props breaking changes
+* [RangeDatePickerBody] props breaking changes
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput.
 
+**What's Fixed**
+[PickerInput]: fixed setting emptyValue in case of unselecting all picker items
+
+# 5.7.2 - 12.04.2024
+
+**What's Fixed**
+* [IconButton]: Replace the `isDropdown` prop with `showDropdownIcon` to prevent the automatic appearance of the dropdown icon when using `IconButton` as the `Dropdown` target.
+* [ApiContext]: Added possibility to send signal about success relogin via `localStorage`, due to old mechanism with `window.opener.postMessage` was broken on SSO side by security reasons .
+  - To switch to the handling via `localStorage` replace code of `/auth/login` endpoint to `<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>`
+* [VirtualList]: fixed scrolling on focus to the partially visible row.
+  * [Breaking change]: scroll to the focused item is not managed by VirtualList anymore. To execute scroll to focused row, it is required to handle the change of focusIndex in key down handler and pass scrollTo with align = 'nearest' along with focusIndex as part of dataSourceState.
+
+# 5.7.1 - 29.03.2024
 
 **What's Fixed**
 
@@ -91,12 +100,6 @@
 * [FlexRow]: deprecated property `spacing`, it will be removed in future releases. Please use `columnGap` instead. `spacing` prop now works via `columnGap`.
 * [FlexRow]: added property `topBorder` to add border on the top of the FlexRow
 * [FileUpload]: move wordings to the i18n
-* [Modals]: added property `maxHeight` it equals `80dvh` in desktop mode and `100dvh` in mobile.
-* [ColumnsConfigurationModal]: set `height` and `maxHeight` equals to `95dvh` and `mobile breakpoint` changed from 640px to `720px` as in all other modals.
-* [DatePicker] renderDay prop callback signature updated
-* [RangeDatePicker] renderDay prop callback signature updated
-* [DatePickerBody] props breaking changes
-* [RangeDatePickerBody] props breaking changes
 * [ColumnsConfigurationModal]: small visual tweaks
 * [Avatar]: changed default avatar img
 
@@ -117,40 +120,6 @@
 * [RTE]: fixed editor focusable area and appearing cursor on first click
 * [RTE]: disable image resizing in readonly mode
 * [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: prevent sorting change on column resize;
-* [Blocker]: changed the exit animation duration from 1000ms to 200ms
-* [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself
-* [ApiContext]: add link to the login page in 'auth lost' modal
-* [IconButton]: fixed property `isDropdown`;
-* [Switch]: fixed property `isReadonly`;
-* [TextArea]: fixed ability to scroll when `readonly` or `disable`;
-* [Modals]: change 'accent' buttons to 'primary' in UUI built in modals
-* [Badge]: small style tweaks according to the design
-
-# 5.6.2 - 15.03.2024
-**What's Fixed**
-* [PickerInput]: fixed toggler blur in case searchPosition = 'none' i18n
-* [ColumnsConfigurationModal]: small visual tweaks
-* [Avatar]: changed default avatar img
-
-
-**What's Fixed**
-* [PickerInput]: fixed loading of selectedId with parents.
-    * Fixed partially selected with predefined selected value.
-    * Fixed fetching missing parents for selected element in PickerInput.
-* [PickerInput]: fixed 'unknown records' removing
-* [PickerInput]: Fixed focus reset after clicking outside
-* [PickerInput]: fixed unnecessary PickerInput `onValueChange` calls on `dataSourceState` change(search, focusedIndex change) in single select with `valueType=entity`.
-* [PickerList]: aligned caption by the left side in the footer.
-* [DropdownContainer]: disable scroll to the focused element after dropdown close
-* [DropdownContainer]: fixed warning about incorrect ref in React strict mode
-* [Avatar]: change type of 'img' prop to also accept null value
-* [RTE]: fixed table border rendering issues in Firefox
-* [RTE]: fixed placeholder position in Safari
-* [RTE]: fixed editor focusable area and appearing cursor on first click
-* [RTE]: disable image resizing in readonly mode
-* [RTE]: Fixed the position of the selected text toolbar within ShadowRoot for Chromium browsers.
-* [DataTable]: changed default column `minWidth` value for resizing. For first columns now it's `78px`, for others `54px`.
 * [DataTable]: prevent sorting change on column resize;
 * [Blocker]: changed the exit animation duration from 1000ms to 200ms
 * [ApiContext]: 'auth-lost' and 'connection-lost' errors in 'manual' error handling mode now handled by ApiContext itself

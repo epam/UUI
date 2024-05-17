@@ -5,13 +5,20 @@ import { ITreeParams } from './exposed';
 import { newMap } from './helpers';
 import { RecordStatus } from './types';
 
+interface OnStatusUpdateSubscribe<TId> {
+    (itemsStatusMap: IMap<TId, RecordStatus>): void;
+}
+
 export class ItemsStatusCollector<TItem, TId, TFilter = any> {
     private itemsStatusMap: IMap<TId, RecordStatus>;
+    private subscriptions: IMap<OnStatusUpdateSubscribe<TId>, undefined>;
+
     constructor(
         itemsStatusMap: IMap<TId, RecordStatus>,
         private params: ITreeParams<TItem, TId>,
     ) {
         this.itemsStatusMap = itemsStatusMap ?? newMap(params);
+        this.subscriptions = newMap(params);
     }
 
     public setPending(ids: TId[]) {
@@ -32,6 +39,14 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
 
     public setNotFound(ids: TId[]) {
         this.setStatus(ids, NOT_FOUND_RECORD);
+    }
+
+    public withPending(ids: TId[]) {
+        ids.forEach((id) => {
+            this.itemsStatusMap.set(id, PENDING_RECORD);
+        });
+
+        return this;
     }
 
     public getItemStatus = (itemsMap: ItemsMap<TId, TItem>) => (id: TId) => {
@@ -80,5 +95,18 @@ export class ItemsStatusCollector<TItem, TId, TFilter = any> {
         ids.forEach((id) => {
             this.itemsStatusMap.set(id, status);
         });
+
+        this.onUpdate();
+    }
+
+    private onUpdate() {
+        for (const [onSubscribe] of this.subscriptions) {
+            onSubscribe?.(this.itemsStatusMap);
+        }
+    }
+
+    public subscribe(onSubscribe: OnStatusUpdateSubscribe<TId>): (() => void) {
+        this.subscriptions = this.subscriptions.set(onSubscribe);
+        return () => this.subscriptions.delete(onSubscribe);
     }
 }

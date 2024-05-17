@@ -1,3 +1,23 @@
+import {
+    TAccordionPreview,
+    TAlertPreview,
+    TAvatarStackPreview,
+    TBadgePreview,
+    TButtonPreview,
+    TCheckboxPreview,
+    TCountIndicatorPreview,
+    TIconButtonPreview,
+    TLinkButtonPreview,
+    TSwitchPreview,
+    TTagPreview,
+    TTextInputPreview,
+    TVerticalTabButtonPreview,
+    TTabButtonPreview,
+    TPickerInputPreview,
+    TDatePickerPreview,
+    TRangeDatePickerPreview,
+} from './previewIds';
+
 /**
  * Keep in sync with app/src/documents/structureComponents.ts
  */
@@ -78,5 +98,21 @@ export enum TComponentId {
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.badge]: ('Colors' | 'Sizes with icon' | 'Sizes without icon')[],
+    [TComponentId.accordion]: TAccordionPreview[],
+    [TComponentId.alert]: TAlertPreview[],
+    [TComponentId.avatarStack]: TAvatarStackPreview[],
+    [TComponentId.badge]: TBadgePreview[],
+    [TComponentId.button]: TButtonPreview[],
+    [TComponentId.checkbox]: TCheckboxPreview[],
+    [TComponentId.countIndicator]: TCountIndicatorPreview[],
+    [TComponentId.datePicker]: TDatePickerPreview[],
+    [TComponentId.iconButton]: TIconButtonPreview[],
+    [TComponentId.linkButton]: TLinkButtonPreview[],
+    [TComponentId.pickerInput]: TPickerInputPreview[],
+    [TComponentId.rangeDatePicker]: TRangeDatePickerPreview[],
+    [TComponentId.switch]: TSwitchPreview[],
+    [TComponentId.tabButton]: TTabButtonPreview[],
+    [TComponentId.tag]: TTagPreview[],
+    [TComponentId.textInput]: TTextInputPreview[],
+    [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
 };

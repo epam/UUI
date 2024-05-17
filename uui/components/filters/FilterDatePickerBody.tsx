@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import dayjs from 'dayjs';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import { i18n } from '../../i18n';
 import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
@@ -54,13 +54,13 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
                     padding="24"
                     vPadding="12"
                 >
-                    <Text>{value ? dayjs(value).format('MMM DD, YYYY') : ''}</Text>
+                    <Text>{value ? uuiDayjs.dayjs(value).format('MMM DD, YYYY') : ''}</Text>
                     <FlexSpacer />
                     <LinkButton
                         isDisabled={ !value }
                         caption={ i18n.filterToolbar.datePicker.clearCaption }
                         onClick={ () => {
-                            handleValueChange(null);
+                            handleValueChange(undefined); // null is not working with setTableData filters
                         } }
                     />
                 </FlexRow>

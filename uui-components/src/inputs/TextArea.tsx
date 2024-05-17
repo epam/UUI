@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import {
     IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps,
-    CX, cx, ICanFocus, IHasForwardedRef,
+    CX, cx, ICanFocus,
 } from '@epam/uui-core';
 import css from './TextArea.module.scss';
 
@@ -12,8 +12,7 @@ export interface TextAreaProps
     IHasPlaceholder,
     IDisableable,
     ICanBeReadonly,
-    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, 
-    IHasForwardedRef<HTMLDivElement>,
+    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
     ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;

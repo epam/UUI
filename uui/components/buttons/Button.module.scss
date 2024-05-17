@@ -7,6 +7,15 @@
     border-color: $border-color;
 }
 
+// $bg-opacity we set here because a background and caption with opacity and they sum up, so we subtract one from other to get needed result
+@mixin button-white-disables-styles($bg-opacity, $border-color) {
+    background-color: color-mix(in srgb, var(--uui-neutral-0) $bg-opacity, transparent);
+    border-color: $border-color;
+    color: color-mix(in srgb, var(--uui-neutral-0) 40% - $bg-opacity, transparent);
+    fill: color-mix(in srgb, var(--uui-neutral-0) 40% - $bg-opacity, transparent);
+
+}
+
 .root {
     --uui-btn-bg: var(--uui-color-50);
     --uui-btn-bg-hover: var(--uui-color-60);
@@ -89,6 +98,12 @@
         --uui-btn-border-active: var(--uui-color-70);
         --uui-btn-caption: var(--uui-color-contrast);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
+
+        &:global(.uui-color-white) {
+            &:global(.uui-disabled) {
+                @include button-white-disables-styles(10%, transparent);
+            }
+        }
     }
 
     &:global(.uui-fill-outline) {
@@ -101,6 +116,14 @@
         --uui-btn-border-active: var(--uui-color-50);
         --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
+
+        &:global(.uui-color-white) {
+            --uui-btn-bg: var(--uui-color-5);
+
+            &:global(.uui-disabled) {
+                @include button-white-disables-styles(10%, color-mix(in srgb, var(--uui-neutral-0) 20%, transparent));
+            }
+        }
     }
 
     &:global(.uui-fill-none) {
@@ -113,6 +136,12 @@
         --uui-btn-border-active: var(--uui-color-50);
         --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
+
+        &:global(.uui-color-white) {
+            &:global(.uui-disabled) {
+                @include button-white-disables-styles(0%, color-mix(in srgb, var(--uui-neutral-0) 30%, transparent));
+            }
+        }
     }
 
     &:global(.uui-fill-ghost) {
@@ -126,6 +155,15 @@
         --uui-btn-border-disabled: transparent;
         --uui-btn-caption: var(--uui-color-50);
         --uui-btn-caption-disabled: var(--uui-text-disabled);
+
+        &:global(.uui-color-white) {
+            --uui-btn-border-hover: transparent;
+            --uui-btn-border-active: transparent;
+
+            &:global(.uui-disabled) {
+                @include button-white-disables-styles(0%, transparent);
+            }
+        }
     }
 
     &:global {

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo, useCallback } from 'react';
+import React, { useRef, useEffect, useMemo, useCallback } from 'react';
 import {
     mergeValidation,
     validate as uuiValidate,
@@ -37,7 +37,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         isInProgress: false,
         form: props.value,
         validationState: { isInvalid: false },
-        serverValidationState: { isInvalid: false },
+        serverValidationState: undefined,
         formHistory: [props.value],
         historyIndex: 0,
         isInSaveMode: false,
@@ -109,11 +109,18 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         removeUnsavedChanges,
     ]);
 
-    const isLockEnabled = formState.current.isChanged;
-    useLock({
-        isEnabled: isLockEnabled,
-        handleLeave,
-    });
+    const { isLocked, block, unblock } = useLock({ handleLeave });
+
+    const getMergedValidationState = () => {
+        const {
+            form, lastSentForm, serverValidationState, validationState,
+        } = formState.current;
+        if (serverValidationState) {
+            const serverValidation = validateServerErrorState(form, lastSentForm, serverValidationState);
+            return mergeValidation(validationState, serverValidation);
+        }
+        return validationState;
+    };
 
     const lens = useMemo(
         () =>
@@ -123,13 +130,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                     handleFormUpdate(() => small);
                     return small;
                 },
-                getValidationState: () => {
-                    const {
-                        form, lastSentForm, serverValidationState, validationState,
-                    } = formState.current;
-                    const serverValidation = validateServerErrorState(form, lastSentForm, serverValidationState);
-                    return mergeValidation(validationState, serverValidation);
-                },
+                getValidationState: getMergedValidationState,
                 getMetadata: () => getMetadata(formState.current.form),
             }),
         [],
@@ -158,25 +159,6 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     const getUnsavedChanges = (): T => {
         return context.uuiUserSettings.get<T>(props.settingsKey);
     };
-    //
-    // const getChangedState = (newVal: T, initialVal: T): ICanBeChanged => {
-    //     const getValueChangedState = (value: any, initialVal: any): ICanBeChanged => {
-    //         const result: any = {};
-    //         Object.keys(value).map(key => {
-    //             const itemValue = value[key];
-    //             const initialItemValue = initialVal && initialVal[key];
-    //             const isChanged = itemValue !== initialItemValue;
-    //             result[key] = {
-    //                 isChanged,
-    //             };
-    //             if (itemValue && typeof itemValue === 'object') {
-    //                 result[key].changedProps = getValueChangedState(value[key], initialItemValue);
-    //             }
-    //         });
-    //         return result;
-    //     };
-    //     return getValueChangedState(newVal, initialVal);
-    // };
 
     const handleFormUpdate = (update: (current: T) => T, options?: { addCheckpoint?: boolean }) =>
         updateFormState((currentState) => {
@@ -201,6 +183,12 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             }
 
             const isChanged = !isEqual(initialForm.current.form, newForm);
+
+            if (isChanged === true) {
+                block();
+            } else {
+                unblock();
+            }
 
             let newState = {
                 ...currentState,
@@ -273,6 +261,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             resetForm(newState);
         });
         removeUnsavedChanges();
+        unblock();
 
         if (propsRef.current.onSuccess && response) {
             propsRef.current.onSuccess(response.form, isSavedBeforeLeave);
@@ -363,8 +352,20 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
     }, [handleSave]);
 
     const handleClose = useCallback(() => {
-        return isLockEnabled ? handleLeave() : Promise.resolve();
-    }, [isLockEnabled]);
+        return isLocked ? handleLeave() : Promise.resolve();
+    }, [isLocked]);
+
+    const setServerValidationState = useCallback((value: React.SetStateAction<ValidationState>) => {
+        updateFormState((currentValue) => {
+            const newValue = value instanceof Function ? value(currentValue.serverValidationState) : value;
+            return {
+                ...currentValue,
+                serverValidationState: newValue,
+            };
+        });
+    }, []);
+
+    const mergedValidationState = getMergedValidationState();
 
     return {
         setValue: handleSetValue,
@@ -382,9 +383,11 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         canRevert: formState.current.form !== props.value,
         value: formState.current.form,
         onValueChange: handleValueChange,
-        isInvalid: formState.current.validationState.isInvalid,
-        validationMessage: formState.current.validationState.validationMessage,
-        validationProps: formState.current.validationState.validationProps,
+        isInvalid: mergedValidationState.isInvalid,
+        validationMessage: mergedValidationState.validationMessage,
+        validationProps: mergedValidationState.validationProps,
+        serverValidationState: formState.current.serverValidationState,
+        setServerValidationState,
         isInProgress: formState.current.isInProgress,
     };
 }

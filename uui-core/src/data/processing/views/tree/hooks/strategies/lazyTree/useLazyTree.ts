@@ -7,8 +7,8 @@ import { UseTreeResult } from '../../types';
 import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector } from '../../common';
 import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
-import { getSelectedAndChecked } from '../../../treeStructure';
 import { isSelectedOrCheckedChanged } from '../checked';
+import { useActualItemsMap } from '../../common';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -30,7 +30,14 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         params: { getId, complexIds },
     });
 
-    const itemsStatusCollector = useItemsStatusCollector({ itemsStatusMap, complexIds, getId }, []);
+    const itemsStatusCollector = useItemsStatusCollector({
+        itemsStatusCollector: props.itemsStatusCollector,
+        itemsStatusMap,
+        complexIds,
+        getId,
+        dataSourceState,
+        patch,
+    }, [itemsStatusMap, props.itemsStatusCollector]);
 
     const api = useMemo(
         () => itemsStatusCollector.watch(props.api),
@@ -91,8 +98,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
 
     useEffect(() => {
         if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
-            itemsStatusCollector.setPending(getSelectedAndChecked(dataSourceState, patch));
-
             loadMissing({
                 tree: treeWithData,
                 using: 'full',
@@ -159,8 +164,13 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isLoading: isLoading || isFetching,
     }, [treeWithData]);
 
-    const tree = usePatchTree({
+    const treeWithNewItemsMap = useActualItemsMap({
         tree: treeWithSelectedOnly,
+        itemsMap,
+    });
+
+    const tree = usePatchTree({
+        tree: treeWithNewItemsMap,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
         getNewItemPosition,
@@ -177,7 +187,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     const totalCount = useMemo(() => {
         const { totalCount: rootTotalCount } = tree.visible.getItems(undefined);
 
-        return rootTotalCount ?? tree.visible.getTotalCount?.() ?? 0;
+        return rootTotalCount ?? tree.visible.getTotalCount?.();
     }, [tree.visible]);
 
     return {

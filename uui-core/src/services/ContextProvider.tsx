@@ -1,5 +1,5 @@
 import React, {
-    createContext, useContext, useEffect, useState,
+    useContext, useEffect, useState,
 } from 'react';
 import { IHasChildren } from '../types/props';
 import { CommonContexts } from '../types/contexts';
@@ -7,6 +7,7 @@ import { HistoryAdaptedRouter, IHistory4, StubAdaptedRouter } from './routing';
 import { DragGhost } from './dnd/DragGhost';
 import { GAListener } from './analytics';
 import { UuiServicesProps, useUuiServices } from '../hooks/useUuiServices';
+import { UuiContext } from './UuiContext';
 
 export interface ContextProviderProps<TApi, TAppContext> extends UuiServicesProps<TApi>, IHasChildren {
     /** Callback to load the AppContext data. AppContext is used to load global data, before application mount */
@@ -22,8 +23,6 @@ export interface ContextProviderProps<TApi, TAppContext> extends UuiServicesProp
      * */
     gaCode?: string;
 }
-
-export const UuiContext = createContext({} as CommonContexts<any, any>);
 
 export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<TApi, TAppContext>) {
     const [isLoaded, setIsLoaded] = useState(false);

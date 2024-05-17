@@ -3,9 +3,18 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    COLOR_MAP,
+    DocBuilder,
+    DocPreviewBuilder,
+    getColorPickerComponent,
+    TDocConfig,
+    TDocContext,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
+import { TIconButtonPreview } from './_types/previewIds';
 
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
@@ -25,6 +34,40 @@ export class IconButtonDoc extends BaseDocsBlock {
                     ...COLOR_MAP,
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-10' : 'neutral-60'})`,
                 }),
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+            const TEST_DATA = {
+                icon: 'action-account-fill.svg',
+                dropdownIcon: 'navigation-chevron_down-outline.svg',
+            };
+            docPreview.add({
+                id: TIconButtonPreview.Colors,
+                matrix: {
+                    size: { values: ['24'] },
+                    color: { examples: '*' },
+                    dropdownIcon: { examples: [TEST_DATA.dropdownIcon] },
+                    showDropdownIcon: { values: [true] },
+                    isOpen: { values: [false] },
+                    icon: { examples: [TEST_DATA.icon] },
+                    isDisabled: { values: [false] },
+                    href: { values: ['https://www.epam.com'] },
+                },
+                cellSize: '60-40',
+            });
+            docPreview.add({
+                id: TIconButtonPreview.Layout,
+                matrix: {
+                    dropdownIcon: { examples: [undefined, TEST_DATA.dropdownIcon] },
+                    showDropdownIcon: { values: [true], condition: (props) => !!props.dropdownIcon },
+                    isOpen: { values: [false, true], condition: (props) => !!props.dropdownIcon },
+                    isDisabled: { values: [false, true] },
+                    icon: { examples: [undefined, TEST_DATA.icon], condition: (props, v) => (v === undefined ? !!props.dropdownIcon : true) },
+                    size: { examples: '*' },
+                    color: { examples: ['info'] },
+                    href: { values: ['https://www.epam.com'] },
+                },
+                cellSize: '80-50',
             });
         },
     };

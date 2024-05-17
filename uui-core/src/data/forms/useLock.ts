@@ -1,42 +1,63 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useUuiContext } from '../../services';
 import { Link } from '../../types';
 
 export interface UseLockProps {
     /** Callback which will be called on router change */
     handleLeave?: (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>;
-    /** Pass true, to enable lock */
-    isEnabled?: boolean;
 }
 
-export function useLock({ handleLeave, isEnabled }: UseLockProps) {
+type LockStatus = 'blocked' | 'unblocked' | 'remain';
+
+export function useLock({ handleLeave }: UseLockProps) {
     const context = useUuiContext();
+    const [status, setStatus] = useState<LockStatus>();
 
-    useEffect(() => {
-        if (!handleLeave || !isEnabled) return;
+    const block = () => {
+        setStatus('blocked');
+    };
 
-        let unblock: () => void;
+    const unblock = () => {
+        setStatus('unblocked');
+    };
 
+    const blockRouter = () => {
+        let unblockRouter: () => void;
         const routerWillLeave = (nextLocation: Link) => {
             const currentLocation = context.uuiRouter.getCurrentLink();
 
             return handleLeave(nextLocation, currentLocation)
                 .then((res) => {
-                    if (res === 'remain') {
-                    // what's here?
-                    }
-                    unblock();
+                    unblockRouter();
                     context.uuiRouter.redirect(nextLocation);
+                    if (res === 'remain') {
+                        setStatus('remain');
+                    }
                 })
                 .catch(() => {});
         };
-
-        unblock = context.uuiRouter.block((location) => {
+        unblockRouter = context.uuiRouter.block((location) => {
             routerWillLeave(location);
         });
+        return unblockRouter;
+    };
+
+    useEffect(() => {
+        if (!handleLeave || status === 'blocked') return;
+        if (status === 'remain') {
+            setStatus('blocked');
+        }
+
+        const unblockRouter = blockRouter();
 
         return () => {
-            unblock();
+            unblockRouter?.();
         };
-    }, [isEnabled]);
+    }, [handleLeave, status]);
+
+    return {
+        block,
+        unblock,
+        isLocked: status !== 'unblocked',
+    };
 }

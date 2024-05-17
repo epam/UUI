@@ -1,7 +1,7 @@
 import isEqual from 'react-fast-compare';
 import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../types';
 import { ITree } from './ITree';
-import { FULLY_LOADED, NOT_FOUND_RECORD } from './constants';
+import { FULLY_LOADED, NOT_FOUND_RECORD, ROOT_ID } from './constants';
 import { FetchingHelper } from './treeStructure/helpers/FetchingHelper';
 import { ITreeNodeInfo } from './treeStructure/types';
 
@@ -12,7 +12,6 @@ export interface LoadOptions<TItem, TId, TFilter = any> {
     isFolded?: (item: TItem) => boolean;
     dataSourceState: DataSourceState<TFilter, TId>;
     filter?: TFilter;
-    withNestedChildren?: boolean;
 }
 
 export interface LoadMissingOnCheckOptions<TItem, TId, TFilter = any> extends Omit<LoadOptions<TItem, TId, TFilter>, 'withNestedChildren'> {
@@ -163,7 +162,6 @@ export class Tree {
         getChildCount,
         isFolded,
         filter,
-        withNestedChildren = true,
     }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeLoadResult<TItem, TId>> {
         return await FetchingHelper.load<TItem, TId, TFilter>({
             tree,
@@ -174,7 +172,6 @@ export class Tree {
                 filter: { ...dataSourceState?.filter, ...filter },
             },
             dataSourceState,
-            withNestedChildren,
         });
     }
 
@@ -196,7 +193,6 @@ export class Tree {
             return tree;
         }
 
-        const loadNestedLayersChildren = !isImplicitMode;
         const parents = this.getParents(checkedId, tree);
         return await FetchingHelper.load<TItem, TId, TFilter>({
             tree,
@@ -206,22 +202,37 @@ export class Tree {
                 isFolded,
                 filter: { ...dataSourceState?.filter, ...filter },
                 loadAllChildren: (itemId) => {
+                    const loadAllConfig = { nestedChildren: !isImplicitMode, children: false };
                     if (!cascadeSelection) {
-                        return isChecked && isRoot;
+                        return { ...loadAllConfig, children: isChecked && isRoot };
+                    }
+
+                    if (!isChecked && isRoot) {
+                        return { ...loadAllConfig, children: false };
                     }
 
                     if (isImplicitMode) {
-                        return itemId === undefined || parents.some((parent) => isEqual(parent, itemId));
+                        return { ...loadAllConfig, children: itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId)) };
                     }
+
+                    const { ids } = tree.getItems(undefined);
+                    const rootIsNotLoaded = ids.length === 0;
+
+                    const shouldLoadChildrenAfterSearch = (!!dataSourceState.search?.length
+                        && (parents.some((parent) => isEqual(parent, itemId))
+                        || (itemId === ROOT_ID && rootIsNotLoaded)));
 
                     // `isEqual` is used, because complex ids can be recreated after fetching of parents.
                     // So, they should be compared not by reference, but by value.
-                    return isRoot || isEqual(itemId, checkedId) || (dataSourceState.search && parents.some((parent) => isEqual(parent, itemId)));
+                    const shouldLoadAllChildren = isRoot
+                        || isEqual(itemId, checkedId)
+                        || shouldLoadChildrenAfterSearch;
+
+                    return { children: shouldLoadAllChildren, nestedChildren: !shouldLoadChildrenAfterSearch };
                 },
                 isLoadStrict: true,
             },
             dataSourceState: { ...dataSourceState, search: null },
-            withNestedChildren: loadNestedLayersChildren,
         });
     }
 }

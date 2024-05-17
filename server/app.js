@@ -35,6 +35,7 @@ app.use((req, res, next) => {
         + 'img-src * data: ; '
         + `script-src 'self' ${isDevServer() ? "'unsafe-eval' 'unsafe-inline'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,
     );
+    res.removeHeader('X-Powered-By');
 
     next();
 });

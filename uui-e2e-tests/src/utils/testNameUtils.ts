@@ -19,15 +19,7 @@ export function createUniqueTestName(
         previewId,
         theme,
         (isSkin ? 'skin' : 'notSkin'),
-    ].filter((i) => !!i).map((i) => normalizeNameToken(i)).join(' | ');
-}
-
-export function testNameToFileName(testName: string) {
-    return testName.replaceAll(' | ', '-');
-}
-
-export function fileNameToTestName(fileNameNoExt: string) {
-    return fileNameNoExt.replaceAll('-', ' | ');
+    ].filter((i) => !!i).map((i) => normalizeNameToken(i)).join('-');
 }
 
 function normalizeNameToken(s: string) {
