@@ -118,13 +118,16 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         }
     };
 
-    renderResizeMark = (props: HeaderCellContentProps) => (
-        <div
-            role="separator"
-            onMouseDown={ props.onResizeStart }
-            className={ cx(css.resizeMark, uuiMarkers.draggable, uuiMarkers.clickable) }
-        />
-    );
+    renderResizeMark = (props: HeaderCellContentProps) => {
+        const resizeMarkSize = this.props.columnsGap === '12' ? '6' : '12';
+        return (
+            <div
+                role="separator"
+                onMouseDown={ props.onResizeStart }
+                className={ cx(css.resizeMark, css[`resize-mark-${resizeMarkSize}`], uuiMarkers.draggable, uuiMarkers.clickable) }
+            />
+        );
+    };
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
@@ -144,7 +147,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.cell,
                     css['size-' + (this.props.size || '36')],
-                    this.props.columnsGap === '12' && css.columnGap12,
+                    this.props.columnsGap && css[`column-gap-${this.props.columnsGap}`],
                     this.props.isFirstColumn && css[`first-column-${sideColumnPadding}`],
                     this.props.isLastColumn && css[`last-column-${sideColumnPadding}`],
                     this.props.column.cx,
