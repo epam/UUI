@@ -1,85 +1,113 @@
-import { TDescendant, Value, isElement } from '@udecode/plate-common';
-import { IMAGE_PLUGIN_TYPE } from '../plugins/imagePlugin/constants';
+import { Value, setNodes, PlateEditor, TNodeEntry, TNode } from '@udecode/plate-common';
+import { TImageElement } from '@udecode/plate-media';
+import { IImageElement, SlateImgAlign } from '../plugins/imagePlugin/types';
+import { ExtendedTTableCellElement, ExtendedTTableElement } from '../plugins/tablePlugin/types';
 
 export const CONTENT_VERSION = '1.0.1';
 export const DEFAULT_CONTENT_VERSION = '1.0.0';
 
-// const isInline = (element: TElement) => [
-//     LINK_ELEMENT_TYPE,
-//     // 'button',
-//     // 'badge',
-// ].includes(element.type);
+/** 1.0.1 content properties migrations */
+export const MIGRATIONS_1_0_1 = '1.0.1';
 
-// const isInlineNode = <V extends Value>(node: EDescendant<V>) =>
-//     isText(node) || (isElement(node) && isInline(node));
+const migrateTableCellElementTo_1_0_1 = (editor: PlateEditor<Value>, tableCellNode: ExtendedTTableCellElement, path: number[]) => {
+    if (!tableCellNode.data?.colSpan && !tableCellNode.data?.rowSpan) {
+        return;
+    }
 
-const migrateImageElementTo_1_0_1 = <N extends TDescendant>(element: N) => {
-    // console.log('migrate image element');
+    const colSpan = tableCellNode.data?.colSpan;
+    const colSpanPayload = colSpan ? { colSpan } : {};
 
-    return {
-        ...element,
-        // migrations
+    const rowSpan = tableCellNode.data?.rowSpan;
+    const rowSpanPayload = rowSpan ? { rowSpan } : {};
+
+    const payload = {
+        ...tableCellNode,
+        ...rowSpanPayload,
+        ...colSpanPayload,
+        data: { version: CONTENT_VERSION },
     };
+
+    setNodes(
+        editor,
+        payload,
+        { at: path },
+    );
 };
 
-const MIGRATIONS_1_0_1 = '1.0.1';
-const migrateElementTo_1_0_1 = <N extends TDescendant>(node: N) => {
-    if (node.type === IMAGE_PLUGIN_TYPE) {
-        return migrateImageElementTo_1_0_1(node);
+const migarteTableElementTo_1_0_1 = (editor: PlateEditor<Value>, tableNode: ExtendedTTableElement, path: number[]) => {
+    const colSizesPayload = !!tableNode.data?.cellSizes
+        ? { colSizes: [...tableNode.data.cellSizes] }
+        : {};
+    const payload = {
+        ...tableNode,
+        ...colSizesPayload,
+        data: {
+            version: CONTENT_VERSION,
+        },
+    };
+
+    setNodes(
+        editor,
+        payload,
+        { at: path },
+    );
+};
+
+const SLATE_TO_PLATE_IMG_ALIGN = {
+    'align-left': 'left',
+    'align-right': 'right',
+    'align-center': 'center',
+};
+const toPlateAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
+    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as TImageElement['align'];
+
+const migarteImageElementTo_1_0_1 = (editor: PlateEditor<Value>, imageNode: IImageElement, path: number[]) => {
+    const alignPayload = imageNode.data?.align ? {
+        align: toPlateAlign(imageNode.data.align),
+    } : {};
+
+    const payload = {
+        ...imageNode,
+        ...alignPayload,
+        data: {
+            ...(imageNode.data || {}),
+            version: CONTENT_VERSION,
+        },
+    };
+
+    setNodes<TImageElement>(
+        editor,
+        payload,
+        { at: path },
+    );
+};
+
+export const migrateTableCellElement = (editor: PlateEditor<Value>, entry: TNodeEntry<TNode>) => {
+    const [node, path] = entry;
+    const tableCellNode = node as ExtendedTTableCellElement;
+    const usedVerion = tableCellNode.data?.version || DEFAULT_CONTENT_VERSION;
+
+    if (usedVerion < MIGRATIONS_1_0_1) {
+        migrateTableCellElementTo_1_0_1(editor, tableCellNode, path);
     }
-
-    // add more 1.0.1 migrations here
-    return node;
 };
 
-const migrateNodes = <N extends TDescendant>(version: string, descendants: N[]) => {
-    const usedVerion = version;
+export const migrateTableElement = (editor: PlateEditor<Value>, entry: TNodeEntry<TNode>) => {
+    const [node, path] = entry;
+    const tableNode = node as ExtendedTTableElement;
+    const usedVerion = tableNode.data?.version || DEFAULT_CONTENT_VERSION;
 
-    // TODO: make use of cloneDeep
-    // eslint-disable-next-line no-param-reassign
-    descendants = descendants.map((node) => {
-        if (usedVerion < CONTENT_VERSION) {
-            // console.log('used verison < CONTENT_VERSION', usedVerion, node);
-
-            if (usedVerion < MIGRATIONS_1_0_1) {
-                // console.log('used verison < MIGRATIONS_1_0_1', node);
-                return migrateElementTo_1_0_1(node);
-            }
-
-            // add other version migrations here
-        }
-
-        return node;
-    });
-
-    return descendants;
-};
-
-const migrate = <N extends TDescendant>(version: string, descendants: N[]) => {
-    // eslint-disable-next-line no-param-reassign
-    descendants = migrateNodes(version, descendants);
-
-    // eslint-disable-next-line no-param-reassign
-    descendants = descendants.map((node) => {
-        if (isElement(node)) {
-            return {
-                ...node,
-                children: migrate(version, node.children),
-            };
-        }
-
-        return node;
-    });
-
-    return descendants;
-};
-
-export const migratePlateContent = (version: string, initialValue: Value): Value => {
-    const usedVerion = version;
-
-    if (usedVerion < CONTENT_VERSION) {
-        return migrate(version, initialValue);
+    if (usedVerion < MIGRATIONS_1_0_1) {
+        migarteTableElementTo_1_0_1(editor, tableNode, path);
     }
+};
 
-    return initialValue;
+export const migrateImageElement = (editor: PlateEditor<Value>, entry: TNodeEntry<TNode>) => {
+    const [node, path] = entry;
+    const imageNode = node as IImageElement;
+    const usedVerion = imageNode.data?.version || DEFAULT_CONTENT_VERSION;
+
+    if (usedVerion < MIGRATIONS_1_0_1) {
+        migarteImageElementTo_1_0_1(editor, imageNode, path);
+    }
 };

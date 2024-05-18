@@ -4291,19 +4291,6 @@
   dependencies:
     prismjs "^1.29.0"
 
-"@udecode/plate-common@31.0.0":
-  version "31.0.0"
-  resolved "https://registry.yarnpkg.com/@udecode/plate-common/-/plate-common-31.0.0.tgz#967289e82a64604305e6a078c81b5acb064b3d47"
-  integrity sha512-A0dy1A9lpTavP015W+Dwpa5Ogl2XOqEA3ScHQDxM4NG0P0omtkfumEWIpgEJm4XLWhpd2685XIfY0ywsMxdVxw==
-  dependencies:
-    "@udecode/plate-core" "31.0.0"
-    "@udecode/plate-utils" "31.0.0"
-    "@udecode/react-utils" "31.0.0"
-    "@udecode/slate" "31.0.0"
-    "@udecode/slate-react" "31.0.0"
-    "@udecode/slate-utils" "31.0.0"
-    "@udecode/utils" "31.0.0"
-
 "@udecode/plate-common@31.3.2":
   version "31.3.2"
   resolved "https://registry.yarnpkg.com/@udecode/plate-common/-/plate-common-31.3.2.tgz#cd2c35599850e7e7404aa6c4716d6ad8bb5900cc"
@@ -4316,28 +4303,6 @@
     "@udecode/slate-react" "31.0.0"
     "@udecode/slate-utils" "31.3.2"
     "@udecode/utils" "31.0.0"
-
-"@udecode/plate-core@31.0.0":
-  version "31.0.0"
-  resolved "https://registry.yarnpkg.com/@udecode/plate-core/-/plate-core-31.0.0.tgz#823987da00f166a785dd0cb271d0c8f0d519968e"
-  integrity sha512-pGojKZ4bWVBQH2KUQG+keWQkLzq/qkGp64ERhzqpSGVPTT6IFzJlC9GYMKc13m+Yolr6kMqGVsy5INGpf/CD9Q==
-  dependencies:
-    "@udecode/slate" "31.0.0"
-    "@udecode/slate-react" "31.0.0"
-    "@udecode/slate-utils" "31.0.0"
-    "@udecode/utils" "31.0.0"
-    clsx "^1.2.1"
-    is-hotkey "^0.2.0"
-    jotai "^2.7.1"
-    jotai-optics "0.3.2"
-    jotai-x "^1.2.2"
-    lodash "^4.17.21"
-    nanoid "^3.3.7"
-    optics-ts "2.4.1"
-    react-hotkeys-hook "^4.5.0"
-    use-deep-compare "^1.2.1"
-    zustand "^4.5.2"
-    zustand-x "^3.0.2"
 
 "@udecode/plate-core@31.3.2":
   version "31.3.2"
@@ -4497,20 +4462,6 @@
     "@udecode/plate-resizable" "31.0.0"
     lodash "^4.17.21"
 
-"@udecode/plate-utils@31.0.0":
-  version "31.0.0"
-  resolved "https://registry.yarnpkg.com/@udecode/plate-utils/-/plate-utils-31.0.0.tgz#f041e07623225becfbb81ee344f02869619f81ac"
-  integrity sha512-7KlE3l5m4dreBlzVb6JqFqTd5wvwo42YMDMO/f+H9qQt3PL69hADen8KhA7M7M+Qj2ARclKLX8JyBEhrML+mlA==
-  dependencies:
-    "@udecode/plate-core" "31.0.0"
-    "@udecode/react-utils" "31.0.0"
-    "@udecode/slate" "31.0.0"
-    "@udecode/slate-react" "31.0.0"
-    "@udecode/slate-utils" "31.0.0"
-    "@udecode/utils" "31.0.0"
-    clsx "^1.2.1"
-    lodash "^4.17.21"
-
 "@udecode/plate-utils@31.3.2":
   version "31.3.2"
   resolved "https://registry.yarnpkg.com/@udecode/plate-utils/-/plate-utils-31.3.2.tgz#8652cf1342613a250d652271e83dc55cb589ccf7"
@@ -4542,15 +4493,6 @@
     "@udecode/react-utils" "31.0.0"
     "@udecode/slate" "31.0.0"
     "@udecode/utils" "31.0.0"
-
-"@udecode/slate-utils@31.0.0":
-  version "31.0.0"
-  resolved "https://registry.yarnpkg.com/@udecode/slate-utils/-/slate-utils-31.0.0.tgz#4d7af0454e445511079fc4f096a2330b7f5be64e"
-  integrity sha512-dtLtSj799J4jxkSCdzcH1sQUgQr6DrBnmt8BfFZ8dcXQ8UntXTgB8voCkp2N4EoyEW15Og6PGv9lndEqiIfgXA==
-  dependencies:
-    "@udecode/slate" "31.0.0"
-    "@udecode/utils" "31.0.0"
-    lodash "^4.17.21"
 
 "@udecode/slate-utils@31.3.2":
   version "31.3.2"

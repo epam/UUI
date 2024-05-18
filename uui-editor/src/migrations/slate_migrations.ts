@@ -1,119 +1,173 @@
-/**
- * Slate's schema has changed vastly under 2 years. The text editor is still
- * a better candidate than the other OSS editors out there, so we must live
- * with the major changes.
- *
- * Migrate a schema from the old version 0.33 to current version 0.6x
- * Inspiration taken wholly from
- * https://github.com/react-page/react-page/blob/b6c83a8650cfe9089e0c3eaf471ab58a0f7db761/packages/plugins/content/slate/src/migrations/v004.ts
- */
+import { TDescendant, Value } from '@udecode/slate';
+import { PARAGRAPH_TYPE } from '../plugins';
+import { IFRAME_TYPE } from '../plugins/iframePlugin/constants';
+import { IMAGE_TYPE } from '../plugins/imagePlugin/constants';
+import { LINK_TYPE } from '../plugins/linkPlugin/constants';
+import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_ROW_TYPE, TABLE_TYPE } from '../plugins/tablePlugin/constants';
 
-import { Value } from '@udecode/plate-common';
-import { PlateImgAlign, SlateImgAlign } from '../plugins/imagePlugin/types';
-import { ExtendedTTableCellElement } from '../plugins/tablePlugin/types';
-import { TTableCellElement } from '@udecode/plate-table';
+/** deprecated Slate content structure types */
 
-const migrateTextNode = (oldNode: any) => {
+export type SlateSchema = {
+    object: 'value',
+    document: {
+        object: 'document',
+        nodes: SlateElement[];
+        data?: {
+            [key: string]: unknown;
+        }
+    }
+};
+
+type SlateElement = SlateBlockElement | SlateInlineElement | SlateTextElement;
+
+type ObjectType = 'text' | 'inline' | 'block' | 'mark' | 'value' | 'document';
+
+interface SlateBaseElement {
+    object: ObjectType,
+    type?: string,
+    nodes?: SlateElement[],
+    data?: {
+        url?: string; // links
+        src?: string; // media types: images, iframes
+
+        // table cells
+        colSpan?: number;
+        rowSpan?: number;
+        [key: string]: unknown;
+    },
+    [key: string]: unknown;
+}
+
+interface SlateBlockElement extends SlateBaseElement {
+    object: 'block',
+    type: string;
+}
+
+interface SlateInlineElement extends SlateBaseElement {
+    object: 'inline',
+    type: string;
+}
+
+interface SlateTextElement extends SlateBaseElement {
+    object: 'text',
+    type?: never,
+    text: string,
+    marks?: SlateMark[],
+}
+interface SlateMark {
+    object: 'mark',
+    type: string,
+    data?: {
+        style?: {
+            [key: string]: unknown;
+        },
+    },
+}
+
+const mediaTypes = [IMAGE_TYPE, IFRAME_TYPE];
+const cellTypes = [TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE];
+const createPlateEmptyTextNode = () => ({ text: '' });
+
+/** migration functions */
+
+const migrateTextNode = (oldNode: SlateTextElement) => {
+    const marksPayload = (oldNode.marks || []).reduce<SlateMark>((acc, mark) => {
+        return {
+            ...acc,
+
+            /** for historical reasons */
+            /** some projects may still use that properties, but we don't */
+            ...(mark.data?.style || {}),
+            [mark.type]: true,
+        };
+    }, {} as SlateMark);
+
+    return { text: oldNode.text, ...marksPayload };
+};
+
+const getTableRowPayload = (node: SlateElement): { children: TDescendant[] } => {
+    const cellNodes = (node.nodes || []).reduce((acc: SlateElement[], cell: SlateElement) => {
+        /** skip merged cells with new approach */
+        if (cell.data?.style !== 'none') {
+            acc.push(cell);
+        }
+        return acc;
+    }, []);
+
+    if (!!cellNodes.length) {
+        return { children: migrate(cellNodes) };
+    }
+
+    /** element should contain at least one text node in case of all cells merged */
+    return { children: [createPlateEmptyTextNode()] };
+};
+
+const getCellPayload = (node: SlateElement) => {
+    if (!cellTypes.includes(node.type || '')) return {};
+
+    const colSpanPayload = node.data?.colSpan ? { colSpan: node.data.colSpan } : {};
+    const rowSpanPayload = node.data?.rowSpan ? { rowSpan: node.data.rowSpan } : {};
+    return { ...colSpanPayload, ...rowSpanPayload };
+};
+
+const getLinkPayload = (node: SlateElement) => {
+    if (node.type !== LINK_TYPE) return {};
+
+    return node.data?.url ? { url: node.data.url } : {};
+};
+
+/** iframes and images */
+const getMediaTypesPayload = (node: SlateElement) => {
+    if (!mediaTypes.includes(node.type || '')) return {};
+
+    return node.data?.src ? { url: node.data.src } : {};
+};
+
+const isTable = (node: SlateElement): boolean => {
+    return node.type === PARAGRAPH_TYPE && node.nodes?.[0]?.type === TABLE_TYPE;
+};
+
+const migrateDeeper = (_node: SlateBlockElement | SlateInlineElement): TDescendant => {
+    /** table was nested inside paragraph node historically */
+    const node = isTable(_node) ? _node.nodes![0] as SlateBlockElement : _node;
+
+    let childrenPayload;
+    if (node.type === TABLE_ROW_TYPE) {
+        childrenPayload = getTableRowPayload(node);
+    } else {
+        childrenPayload = { children: node.nodes ? migrate(node.nodes) : [createPlateEmptyTextNode()] };
+    }
+    const dataPayload = node.data ? { data: node.data } : {};
+
+    /** omits deprecated properties and leaves data anyway */
+    /** there might be duplications with data, but we could also omit them with versioned apprach via plate normalizeNode */
     return {
-        text: oldNode.text,
-        ...oldNode.marks?.reduce(
-            (acc: any, mark: any) => ({
-                ...acc,
-                ...(mark?.data?.style ? mark.data.style : {}),
-                [mark.type || mark]: true,
-            }),
-            {},
-        ),
-    };
-};
-
-export const migrateTableCell = (
-    element: TTableCellElement,
-): TTableCellElement => {
-    const oldElem = element as ExtendedTTableCellElement;
-    if (oldElem.data) {
-        if (oldElem.data.colSpan) {
-            element.colSpan = oldElem.data.colSpan;
-        }
-        if (oldElem.data.rowSpan) {
-            element.rowSpan = oldElem.data.rowSpan;
-        }
-        delete element.data;
-    }
-    return element;
-};
-
-const migrateTable = (oldTable: any) => {
-    oldTable.nodes.forEach((row: any) => {
-        const newRowCells: any[] = [];
-        row.nodes.forEach((cell: any) => {
-            if (cell.data?.style !== 'none') {
-                newRowCells.push(cell);
-            }
-        });
-
-        if (!newRowCells.length) {
-            newRowCells.push({
-                object: 'text',
-                text: '',
-            });
-        }
-        row.nodes = newRowCells;
-    });
-    return oldTable;
-};
-
-// image
-const SLATE_TO_PLATE_IMG_ALIGN = {
-    'align-left': 'left',
-    'align-right': 'right',
-    'align-center': 'center',
-};
-export const toPlateAlign = (slateAlign: SlateImgAlign) =>
-    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as PlateImgAlign;
-
-const migrateElementNode = (node: any) => {
-    if (node.object === 'text') {
-        return migrateTextNode(node);
-    }
-
-    const omitData = node.type === 'table_cell'
-        || node.type === 'table_header_cell'
-        || node.type === 'image';
-    let newNode: any = {};
-    if (node.type === 'paragraph' && node.nodes?.[0]?.type === 'table') {
-        const tableNode = node.nodes[0];
-        // modifyes table structure the old format still. than, each row and cell will be migrated
-        newNode = migrateTable(tableNode);
-    }
-
-    const dataProps = omitData ? {} : { data: node.data ?? {} };
-    return {
-        // default setup
-        ...dataProps,
         type: node.type,
-        children: node.nodes?.map(migrateElementNode).flat() ?? [],
-
-        // additional stuff
-        ...(node?.data?.url ? { url: node.data?.src } : {}),
-        ...(node.data?.path ? { url: node.data?.path } : {}),
-        ...(node?.data?.align ? { align: toPlateAlign(node.data?.align) } : {}),
-        ...(node?.data?.colSpan ? { colSpan: node.data.colSpan } : {}),
-        ...(node?.data?.rowSpan ? { rowSpan: node.data.rowSpan } : {}),
+        ...getCellPayload(node),
+        ...getLinkPayload(node),
+        ...getMediaTypesPayload(node),
+        ...dataPayload,
+        ...childrenPayload,
     };
 };
 
-export const migrateSlateSchema = (oldSchema: any): Value => {
-    let migratedSchema;
+const migrate = (descendants: SlateElement[]): TDescendant[] =>
+    descendants.map((node) => {
+        if (node.object !== 'text') {
+            /** 'inline' and 'block' nodes passed here, other considered and skipped */
+            return migrateDeeper(node);
+        }
+
+        return migrateTextNode(node);
+    });
+
+export const migrateSlateSchema = (schema: SlateSchema): Value => {
     try {
-        migratedSchema = oldSchema?.document?.nodes.map(migrateElementNode);
+        return migrate(schema.document.nodes) as Value;
     } catch (e) {
         console.error("Can't migrate schema", e);
     }
 
-    if (migratedSchema) {
-        return migratedSchema;
-    }
-
-    return oldSchema;
+    // in case of error
+    return schema as unknown as Value;
 };
