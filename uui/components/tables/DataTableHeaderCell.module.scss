@@ -29,23 +29,37 @@
     background-clip: padding-box;
 
     &.column-gap-12 {
-        padding: 0;
+        padding: 0 6px;
+        column-gap: 6px;
+
+        .caption-wrapper {
+            column-gap: 6px;
+        }
+    }
+
+    &.column-gap-24 {
+        padding: 0 12px;
+        column-gap: 6px;
+
+        .caption-wrapper {
+            column-gap: 6px;
+        }
     }
 
     &.first-column-12 {
-        padding-left: 6px;
+        padding-left: 12px;
     }
 
     &.last-column-12 {
-        padding-right: 6px;
+        padding-right: 12px;
     }
 
     &.first-column-24 {
-        padding-left: 18px;
+        padding-left: 24px;
     }
 
     &.last-column-24 {
-        padding-right: 18px;
+        padding-right: 24px;
     }
 
     &:global(.-clickable) {
@@ -104,12 +118,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin: 0 6px;
+        margin: 0;
     }
 
     .checkbox {
         align-self: stretch;
-        padding: 0 6px;
+        padding: 0 6px 0 0;
     }
 
     .icon {
@@ -120,7 +134,7 @@
 
     .fold-all-icon {
         display: flex;
-        padding: 0 6px;
+        padding: 0 6px 0 0;
         align-self: stretch;
 
         &:hover {
@@ -144,13 +158,20 @@
     .resize-mark {
         position: absolute;
         right: 0;
-        width: 12px;
         height: 100%;
         cursor: col-resize;
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
         }
+    }
+
+    .resize-mark-6 {
+        width: 6px;
+    }
+
+    .resize-mark-12 {
+        width: 12px;
     }
 
     &.pinned-right .resize-mark {
