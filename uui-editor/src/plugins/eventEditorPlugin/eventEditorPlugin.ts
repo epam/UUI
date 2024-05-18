@@ -1,38 +1,39 @@
-import { createPluginFactory, eventEditorActions, eventEditorSelectors, KEY_EVENT_EDITOR } from '@udecode/plate-core';
 import { MutableRefObject, useEffect } from 'react';
+import { createPluginFactory, eventEditorActions, eventEditorSelectors, KEY_EVENT_EDITOR, PlatePlugin } from '@udecode/plate-common';
 import { uuiMod } from '@epam/uui-core';
-
-export const FOCUS_EDITOR_EVENT = 'uui-focus-editor';
-export const BLUR_EDITOR_EVENT = 'uui-blur-editor';
+import { FOCUS_EDITOR_EVENT, BLUR_EDITOR_EVENT } from './constants';
 
 // TODO: move to plate
-export const createEventEditorPlugin = createPluginFactory({
-    key: KEY_EVENT_EDITOR,
-    handlers: {
-        onFocus: (editor) => () => {
-            eventEditorActions.focus(editor.id);
+export const createEventEditorPlugin = (): PlatePlugin => {
+    const createPlugin = createPluginFactory({
+        key: KEY_EVENT_EDITOR,
+        handlers: {
+            onFocus: (editor) => () => {
+                eventEditorActions.focus(editor.id);
 
-            document.dispatchEvent(
-                new CustomEvent(FOCUS_EDITOR_EVENT, {
-                    detail: { id: editor.id },
-                }),
-            );
-        },
-        onBlur: (editor) => () => {
-            const focus = eventEditorSelectors.focus();
-            if (focus === editor.id) {
-                eventEditorActions.focus(null);
-            }
-            eventEditorActions.blur(editor.id);
+                document.dispatchEvent(
+                    new CustomEvent(FOCUS_EDITOR_EVENT, {
+                        detail: { id: editor.id },
+                    }),
+                );
+            },
+            onBlur: (editor) => () => {
+                const focus = eventEditorSelectors.focus();
+                if (focus === editor.id) {
+                    eventEditorActions.focus(null);
+                }
+                eventEditorActions.blur(editor.id);
 
-            document.dispatchEvent(
-                new CustomEvent(BLUR_EDITOR_EVENT, {
-                    detail: { id: editor.id },
-                }),
-            );
+                document.dispatchEvent(
+                    new CustomEvent(BLUR_EDITOR_EVENT, {
+                        detail: { id: editor.id },
+                    }),
+                );
+            },
         },
-    },
-});
+    });
+    return createPlugin();
+};
 
 export const useFocusEvents = ({
     editorWrapperRef,

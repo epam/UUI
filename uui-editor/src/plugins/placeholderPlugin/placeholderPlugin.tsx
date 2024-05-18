@@ -6,12 +6,11 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
 
 import {
-    PlateEditor, createPluginFactory, getPluginOptions, insertElements,
+    PlateEditor, createPluginFactory, getPluginOptions, insertElements, PlatePlugin,
 } from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
+import { PLACEHOLDER_PLUGIN_KEY } from './constants';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-
-const KEY = 'placeholder';
 
 export interface PlaceholderPluginParams {
     /** Placeholder items */
@@ -21,9 +20,11 @@ export interface PlaceholderPluginParams {
     }[];
 }
 
-export const placeholderPlugin = (params: PlaceholderPluginParams) => {
-    const createPlaceholderPlugin = createPluginFactory<WithToolbarButton & { params: PlaceholderPluginParams }>({
-        key: KEY,
+type PlaceholderPluginOptins = WithToolbarButton & { params: PlaceholderPluginParams };
+
+export const placeholderPlugin = (params: PlaceholderPluginParams): PlatePlugin<PlaceholderPluginOptins> => {
+    const createPlaceholderPlugin = createPluginFactory<PlaceholderPluginOptins>({
+        key: PLACEHOLDER_PLUGIN_KEY,
         isElement: true,
         isInline: true,
         isVoid: true,
@@ -42,8 +43,8 @@ interface IPlaceholderButton {
 }
 
 export function PlaceholderButton({ editor }: IPlaceholderButton): any {
-    if (!useIsPluginActive(KEY)) return null;
-    const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, KEY);
+    if (!useIsPluginActive(PLACEHOLDER_PLUGIN_KEY)) return null;
+    const { params }: { params: PlaceholderPluginParams } = getPluginOptions(editor, PLACEHOLDER_PLUGIN_KEY);
 
     const renderDropdownBody = () => {
         return (

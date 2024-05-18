@@ -3,16 +3,16 @@ import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, someNode } from '@udecode/plate-common';
+import { PlateEditor, PlatePlugin, someNode } from '@udecode/plate-common';
 import { ELEMENT_LINK, LinkPlugin, createLinkPlugin } from '@udecode/plate-link';
 import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-import { LINK_ELEMENT_TYPE } from './constants';
+import { LINK_TYPE } from './constants';
 
-export const linkPlugin = () => createLinkPlugin<WithToolbarButton & LinkPlugin>({
-    type: LINK_ELEMENT_TYPE,
+export const linkPlugin = (): PlatePlugin => createLinkPlugin<WithToolbarButton & LinkPlugin>({
+    type: LINK_TYPE,
     overrideByKey: {
         [ELEMENT_LINK]: {
             component: (props) => (
@@ -43,7 +43,7 @@ export function LinkButton({ editor }: ToolbarLinkButtonProps) {
 
     if (!useIsPluginActive(ELEMENT_LINK)) return null;
 
-    const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_ELEMENT_TYPE } });
+    const isLink = !!editor?.selection && someNode(editor, { match: { type: LINK_TYPE } });
 
     return (
         <ToolbarButton

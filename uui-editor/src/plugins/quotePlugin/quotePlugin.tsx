@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ELEMENT_BLOCKQUOTE, createBlockquotePlugin } from '@udecode/plate-block-quote';
 import {
-    PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType,
+    PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType, PlatePlugin,
 } from '@udecode/plate-common';
 
 import { useIsPluginActive } from '../../helpers';
@@ -10,8 +10,7 @@ import { ReactComponent as QuoteIcon } from '../../icons/quote.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import css from './quote.module.scss';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-
-export const QUOTE_PLUGIN_KEY = 'uui-richTextEditor-quote';
+import { QUOTE_PLUGIN_KEY, QUOTE_TYPE } from './constants';
 
 const Quote: PlatePluginComponent = function QuoteComponent(props) {
     return (
@@ -24,11 +23,11 @@ const Quote: PlatePluginComponent = function QuoteComponent(props) {
     );
 };
 
-export const quotePlugin = () => createBlockquotePlugin<WithToolbarButton>({
+export const quotePlugin = (): PlatePlugin<WithToolbarButton> => createBlockquotePlugin<WithToolbarButton>({
     overrideByKey: {
         [ELEMENT_BLOCKQUOTE]: {
             key: QUOTE_PLUGIN_KEY,
-            type: QUOTE_PLUGIN_KEY,
+            type: QUOTE_TYPE,
             component: Quote,
             options: {
                 hotkey: 'ctrl+q',

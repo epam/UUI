@@ -19,6 +19,7 @@ import css from './ImageBlock.module.scss';
 import { ImgToolbar } from './Toolbar';
 import { IImageElement, PlateImgAlign } from './types';
 import { useMediaState } from '@udecode/plate-media';
+import { IMAGE_TYPE } from './constants';
 
 const IMAGE_STYLES = {
     paddingTop: 0,
@@ -43,7 +44,7 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, IImageEl
             isSelected
             && isFocused
             && !!block?.length
-            && block[0].type === 'image',
+            && block[0].type === IMAGE_TYPE,
         );
     }, [isSelected, isFocused, editor]);
 

@@ -6,17 +6,17 @@ import { createSoftBreakPlugin } from '@udecode/plate-break';
 import {
     paragraphPlugin,
     PARAGRAPH_TYPE,
-    QUOTE_PLUGIN_KEY,
-    TODO_ELEMENT_KEY,
     noteTypes,
+    QUOTE_TYPE,
+    TODO_TYPE,
 } from './plugins';
-import { createAutoformatPlugin } from './plugins/autoformatPlugin/autoformatPlugin';
-import { createEventEditorPlugin } from './plugins/eventEditorPlugin/eventEditorPlugin';
+import { createAutoformatPlugin } from './plugins/autoformatPlugin';
+import { createEventEditorPlugin } from './plugins/eventEditorPlugin';
 
 const resetBlockTypesCommonRule = {
     types: [
-        QUOTE_PLUGIN_KEY,
-        TODO_ELEMENT_KEY,
+        QUOTE_TYPE,
+        TODO_TYPE,
         ...noteTypes,
     ],
     defaultType: PARAGRAPH_TYPE,

@@ -1,15 +1,14 @@
-import { createSuperscriptPlugin, MARK_SUPERSCRIPT } from '@udecode/plate-basic-marks';
-import { isMarkActive, PlateEditor } from '@udecode/plate-common';
+import { createSuperscriptPlugin } from '@udecode/plate-basic-marks';
+import { isMarkActive, PlateEditor, PlatePlugin } from '@udecode/plate-common';
 import React from 'react';
 import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as SuperScriptIcon } from '../../icons/super-script.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { SUPERSCRIPT_PLUGIN_KEY, SUPERSCRIPT_TYPE } from './constants';
 
-export const SUPERSCRIPT_TYPE = 'uui-richTextEditor-superscript';
-
-export const superscriptPlugin = () => createSuperscriptPlugin<WithToolbarButton>({
+export const superscriptPlugin = (): PlatePlugin<WithToolbarButton> => createSuperscriptPlugin<WithToolbarButton>({
     type: SUPERSCRIPT_TYPE,
     options: {
         floatingBarButton: SuperscriptButton,
@@ -21,7 +20,8 @@ interface IToolbarButton {
 }
 
 export function SuperscriptButton({ editor }: IToolbarButton) {
-    if (!useIsPluginActive(MARK_SUPERSCRIPT)) return null;
+    if (!useIsPluginActive(SUPERSCRIPT_PLUGIN_KEY)) return null;
+
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, SUPERSCRIPT_TYPE) }

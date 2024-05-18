@@ -17,7 +17,7 @@ import { Caption, CaptionTextarea } from '@udecode/plate-caption';
 import { ResizableProvider } from '@udecode/plate-resizable';
 
 interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
-    align: PlateImgAlign;
+    align?: PlateImgAlign;
 }
 
 const MIN_IMG_WIDTH = 12;

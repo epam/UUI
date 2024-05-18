@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment } from 'react';
 
 import { ReactComponent as UnmergeCellsIcon } from '../../icons/table-un-merge.svg';
 import { ReactComponent as InsertColumnBefore } from '../../icons/table-add-column-left.svg';
@@ -11,25 +11,26 @@ import { ReactComponent as RemoveTable } from '../../icons/table-table_remove-24
 
 import css from './ToolbarContent.module.scss';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
-import { useEditorState } from '@udecode/plate-common';
+import { useEditorRef } from '@udecode/plate-common';
 import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable, unmergeTableCells, deleteColumn } from '@udecode/plate-table';
+import { TABLE_HEADER_CELL_TYPE } from './constants';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;
 }
 
 export function TableToolbarContent({ canUnmerge }:{ canUnmerge:boolean }) {
-    const editor = useEditorState(); // TODO: use useEditorRef
-
-    const { cell, row } = getTableEntries(editor) || {};
-    const cellPath = useMemo(() => cell && cell[1], [cell]);
-    const rowPath = useMemo(() => row && row[1][2] !== 0 && row[1], [row]);
+    const editor = useEditorRef();
 
     return (
         <Fragment>
             <ToolbarButton
                 key="insert-column-before"
-                onClick={ () => insertTableColumn(editor, { at: cellPath }) }
+                onClick={ () => {
+                    const { cell } = getTableEntries(editor) || {};
+                    const cellPath = cell?.[1];
+                    insertTableColumn(editor, { at: cellPath });
+                } }
                 icon={ InsertColumnBefore }
             />
             <ToolbarButton
@@ -44,18 +45,29 @@ export function TableToolbarContent({ canUnmerge }:{ canUnmerge:boolean }) {
             />
             <ToolbarButton
                 key="insert-row-before"
-                onClick={ () => insertTableRow(editor, {
-                    header: cell[0].type === 'table_header_cell',
-                    at: rowPath,
-                    disableSelect: true,
-                }) }
+                onClick={ () => {
+                    const { cell, row } = getTableEntries(editor) || {};
+                    const cellNode = cell?.[0];
+                    const rowPath = row?.[1];
+
+                    insertTableRow(editor, {
+                        header: cellNode?.type === TABLE_HEADER_CELL_TYPE,
+                        at: rowPath,
+                        disableSelect: true,
+                    });
+                } }
                 icon={ InsertRowBefore }
             />
             <ToolbarButton
                 key="insert-row-after"
-                onClick={ () => insertTableRow(editor, {
-                    header: cell[0].type === 'table_header_cell',
-                }) }
+                onClick={ () => {
+                    const { cell } = getTableEntries(editor) || {};
+                    const cellNode = cell?.[0];
+
+                    insertTableRow(editor, {
+                        header: cellNode?.type === TABLE_HEADER_CELL_TYPE,
+                    });
+                } }
                 icon={ InsertRowAfter }
             />
             <ToolbarButton

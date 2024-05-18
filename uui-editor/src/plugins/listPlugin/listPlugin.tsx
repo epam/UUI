@@ -1,5 +1,5 @@
 import {
-    PlateEditor, PlateElementProps, focusEditor,
+    PlateEditor, PlateElementProps, focusEditor, PlatePlugin,
 } from '@udecode/plate-common';
 import {
     ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList,
@@ -11,27 +11,25 @@ import { ReactComponent as UnorderedList } from '../../icons/bullet-list.svg';
 import { ReactComponent as NumberedList } from '../../icons/numbered-list.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ListElement } from './ListElement';
-import {
-    ELEMENT_OL_CUSTOM, ELEMENT_UL_CUSTOM, ELEMENT_LI_CUSTOM, ELEMENT_LI_TEXT_CUSTOM,
-} from './constants';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { OL_TYPE, UL_TYPE, LI_TYPE, LI_CHILD_TYPE } from './constants';
 
-export const listPlugin = () => createListPlugin<WithToolbarButton>({
+export const listPlugin = (): PlatePlugin => createListPlugin<WithToolbarButton>({
     overrideByKey: {
         [ELEMENT_OL]: {
-            type: ELEMENT_OL_CUSTOM,
+            type: OL_TYPE,
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'OL' }] },
             component: ListElement,
         },
         [ELEMENT_UL]: {
-            type: ELEMENT_UL_CUSTOM,
+            type: UL_TYPE,
             isElement: true,
             deserializeHtml: { rules: [{ validNodeName: 'UL' }] },
             component: ListElement,
         },
         [ELEMENT_LI]: {
-            type: ELEMENT_LI_CUSTOM,
+            type: LI_TYPE,
             isElement: true,
             component: ({ children, attributes }: PlateElementProps) => {
                 return <li { ...attributes }>{children}</li>;
@@ -39,7 +37,7 @@ export const listPlugin = () => createListPlugin<WithToolbarButton>({
             deserializeHtml: { rules: [{ validNodeName: 'LI' }] },
         },
         [ELEMENT_LIC]: {
-            type: ELEMENT_LI_TEXT_CUSTOM,
+            type: LI_CHILD_TYPE,
             isElement: true,
         },
     },
@@ -60,11 +58,10 @@ export function ListButton({ editor }: IToolbarButton) {
         return null;
     }
 
-
     // TODO: rewrite it
     const res = !!editor?.selection ? getListItemEntry(editor) : undefined;
-    const isUnorderedActive = res?.list && res?.list[0]?.type === ELEMENT_UL_CUSTOM;
-    const isOrderedActive = res?.list && res?.list[0]?.type === ELEMENT_OL_CUSTOM;
+    const isUnorderedActive = res?.list && res?.list[0]?.type === UL_TYPE;
+    const isOrderedActive = res?.list && res?.list[0]?.type === OL_TYPE;
 
     const onListButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
         e.preventDefault();
@@ -77,12 +74,12 @@ export function ListButton({ editor }: IToolbarButton) {
     return (
         <Fragment>
             <ToolbarButton
-                onClick={ (e) => onListButtonClick(e, ELEMENT_OL_CUSTOM) }
+                onClick={ (e) => onListButtonClick(e, OL_TYPE) }
                 icon={ NumberedList }
                 isActive={ !!editor?.selection && isOrderedActive }
             />
             <ToolbarButton
-                onClick={ (e) => onListButtonClick(e, ELEMENT_UL_CUSTOM) }
+                onClick={ (e) => onListButtonClick(e, UL_TYPE) }
                 icon={ UnorderedList }
                 isActive={ !!editor?.selection && isUnorderedActive }
             />
