@@ -9,7 +9,6 @@ import {
 
 import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
-import { migrateTableCell } from '../../migrations/slate_migrations';
 
 export interface TableCellElementProps
     extends PlateElementProps<Value, TTableCellElement> {
@@ -22,7 +21,6 @@ React.ElementRef<typeof PlateElement>,
 TableCellElementProps
 >(({ children, className, style, hideBorder, ...props }, ref) => {
     const editor = useEditorRef();
-    props.element = migrateTableCell(props.element);
 
     const {
         colIndex,

@@ -1,1 +1,1 @@
-export const LINK_ELEMENT_TYPE = 'link';
+export const LINK_TYPE = 'link';

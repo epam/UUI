@@ -16,12 +16,6 @@ import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 
-interface OldTableElement extends TTableElement {
-    data?: {
-        cellSizes?: number[];
-    };
-}
-
 const getDefaultColWidths = (columnsNumber: number) =>
     Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
@@ -29,11 +23,11 @@ const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ clas
     const { isSelectingCell, minColumnWidth, marginLeft } = useTableElementState();
     const { props: tableProps, colGroupProps } = useTableElement();
 
-    const element: OldTableElement = props.element;
+    const element: TTableElement = props.element;
     const tableStore = useTableStore().get;
 
     const getDefalutColSizes = () => {
-        return (element as OldTableElement).data?.cellSizes || getDefaultColWidths(getTableColumnCount(element));
+        return element.colSizes || getDefaultColWidths(getTableColumnCount(element));
     };
 
     const colSizeOverrides = tableStore.colSizeOverrides();

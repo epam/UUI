@@ -1,9 +1,7 @@
+import { getPluginType, PlateEditor, getPluginOptions, isUrl, PlatePlugin } from '@udecode/plate-common';
 import {
     MARK_ITALIC, MARK_BOLD, MARK_CODE,
 } from '@udecode/plate-basic-marks';
-import {
-    getPluginType, PlateEditor, getPluginOptions,
-} from '@udecode/plate-core';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
 import {
     RemarkTextRules,
@@ -20,7 +18,6 @@ import {
 import { TDescendant, TElement, Value } from '@udecode/slate';
 import unified from 'unified';
 import markdown from 'remark-parse';
-import { isUrl } from '@udecode/plate-common';
 
 const remarkDefaultTextRules: RemarkTextRules<Value> = {
     text: {},
@@ -109,7 +106,7 @@ const htmlRule: RemarkElementRule<Value> = {
     },
 };
 
-export const createDeserializeMdPlugin = () => createDeserializeMdRootPlugin({
+export const createDeserializeMdPlugin = (): PlatePlugin => createDeserializeMdRootPlugin({
     then: (editor) => ({
         editor: {
             insertData: {

@@ -5,11 +5,11 @@ import { useIsPluginActive } from '../../helpers';
 import { ColorBar } from '../../implementation/ColorBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, getMark, getPluginType, removeMark, setMarks } from '@udecode/plate-common';
+import { PlateEditor, getMark, getPluginType, removeMark, setMarks, PlatePlugin } from '@udecode/plate-common';
 import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
 
-export const colorPlugin = () => createFontColorPlugin({
+export const colorPlugin = (): PlatePlugin => createFontColorPlugin({
     inject: {
         props: {
             nodeKey: MARK_COLOR,
@@ -21,7 +21,6 @@ export const colorPlugin = () => createFontColorPlugin({
                     return `uui-${options.nodeValue}`;
                 }
             },
-
         },
     },
     options: {
@@ -33,8 +32,10 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
+const modifiers = [{ name: 'offset', options: { offset: [0, 3] } }];
+
 export function ColorButton({ editor }: IToolbarButton) {
-    if (!useIsPluginActive(MARK_COLOR)) return null;
+    const pluginActive = useIsPluginActive(MARK_COLOR);
 
     const type = getPluginType(editor, MARK_COLOR);
     const markValue: any = getMark(editor, type);
@@ -50,6 +51,8 @@ export function ColorButton({ editor }: IToolbarButton) {
     const clearColor = useCallback(() => {
         removeMark(editor, { key: type });
     }, [editor, type]);
+
+    if (!pluginActive) return null;
 
     return (
         <Dropdown
@@ -67,7 +70,7 @@ export function ColorButton({ editor }: IToolbarButton) {
                 />
             ) }
             placement="top-start"
-            modifiers={ [{ name: 'offset', options: { offset: [0, 3] } }] }
+            modifiers={ modifiers }
         />
     );
 }

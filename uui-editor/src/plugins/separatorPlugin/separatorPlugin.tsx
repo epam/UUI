@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    PlateEditor, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType,
+    PlateEditor, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType, PlatePlugin,
 } from '@udecode/plate-common';
 
 import { useIsPluginActive, isTextSelected } from '../../helpers';
@@ -8,20 +8,19 @@ import { ReactComponent as SeparateIcon } from '../../icons/breakline.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { Separator } from './Separator';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { createHorizontalRulePlugin } from '@udecode/plate-horizontal-rule';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
+import { SEPARATOR_PLUGIN_KEY, SEPARATOR_TYPE } from './constants';
 
-export const SEPARATOR_KEY = 'separatorBLock';
-
-export const separatorPlugin = () => {
+export const separatorPlugin = (): PlatePlugin<WithToolbarButton> => {
     return createHorizontalRulePlugin<WithToolbarButton>({
-        key: SEPARATOR_KEY,
-        type: SEPARATOR_KEY,
+        key: SEPARATOR_PLUGIN_KEY,
+        type: SEPARATOR_TYPE,
         component: Separator,
         handlers: {
             onKeyDown: (editor) => (event) => {
-                if (!getBlockAboveByType(editor, [SEPARATOR_KEY])) return;
+                if (!getBlockAboveByType(editor, [SEPARATOR_TYPE])) return;
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
@@ -39,7 +38,7 @@ interface ToolbarButtonProps {
 }
 
 export function SeparatorButton({ editor }: ToolbarButtonProps) {
-    if (!useIsPluginActive(SEPARATOR_KEY)) return null;
+    if (!useIsPluginActive(SEPARATOR_PLUGIN_KEY)) return null;
 
     const onSeparatorButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
         e.preventDefault();
@@ -52,9 +51,9 @@ export function SeparatorButton({ editor }: ToolbarButtonProps) {
     return (
         <ToolbarButton
             isDisabled={ isTextSelected(editor, true) }
-            onClick={ (e) => onSeparatorButtonClick(e, SEPARATOR_KEY) }
+            onClick={ (e) => onSeparatorButtonClick(e, SEPARATOR_TYPE) }
             icon={ SeparateIcon }
-            isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_KEY) }
+            isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE) }
         />
     );
 }

@@ -9,9 +9,9 @@ import {
     insertNodes,
 } from '@udecode/plate-common';
 import { Selection } from 'slate';
-import { ATTACHMENT_PLUGIN_TYPE } from '../attachmentPlugin/constants';
-import { IMAGE_PLUGIN_TYPE } from '../imagePlugin/constants';
-import { IFRAME_PLUGIN_TYPE } from '../iframePlugin/constants';
+import { ATTACHMENT_TYPE } from '../attachmentPlugin/constants';
+import { IMAGE_TYPE } from '../imagePlugin/constants';
+import { IFRAME_TYPE } from '../iframePlugin/constants';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
@@ -26,7 +26,7 @@ type UploadFile = (
 
 const UPLOAD_BLOCKS = {
     attachment: (file: FileUploadResponse) => ({
-        type: ATTACHMENT_PLUGIN_TYPE,
+        type: ATTACHMENT_TYPE,
         data: {
             ...file,
             fileName: file.name,
@@ -34,13 +34,13 @@ const UPLOAD_BLOCKS = {
         children: [{ text: '' }],
     }),
     image: (file: FileUploadResponse) => ({
-        type: IMAGE_PLUGIN_TYPE,
+        type: IMAGE_TYPE,
         data: file,
         url: file.path,
         children: [{ text: '' }],
     }),
     iframe: (file: FileUploadResponse) => ({
-        type: IFRAME_PLUGIN_TYPE,
+        type: IFRAME_TYPE,
         data: file,
         src: file.path,
         children: [{ text: '' }],
@@ -77,7 +77,7 @@ const buildFragments = (
     return files.map((file: FileUploadResponse) => {
         const fileType = file.type;
         const uploadType = (
-            isValidFileType(fileType) ? fileType : 'attachment'
+            isValidFileType(fileType) ? fileType : ATTACHMENT_TYPE
         ) as UploadType;
 
         return UPLOAD_BLOCKS[overriddenAction || uploadType](file);
