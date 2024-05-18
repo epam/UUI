@@ -1,14 +1,6 @@
 import { Value } from '@udecode/plate-common';
+import { SlateSchema } from './migrations/slate_migrations';
 
-export type EditorContent = Value | undefined;
-
-export interface VersionedEditorValue {
-    /** content version: for migrations */
-    version: string;
-    /** content value */
-    content: EditorContent;
-}
-
-export type DeprecatedEditorValue = EditorContent;
-
-export type EditorValue = VersionedEditorValue | DeprecatedEditorValue;
+/** Slate schema needed to support legacy format which should be deprecated */
+/** null historically added and should also be deprecated to in favor of undefined */
+export type EditorValue = Value | SlateSchema | undefined | null;

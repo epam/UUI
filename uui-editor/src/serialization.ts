@@ -23,9 +23,8 @@ import {
     italicPlugin,
     PARAGRAPH_TYPE,
 } from './plugins';
-import { createTempEditor, getEditorValue } from './helpers';
-import { BaseEditor, Editor } from 'slate';
-import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin/deserializeMdPlugin';
+import { createTempEditor, initializeEditor } from './helpers';
+import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin';
 import { serializeMd } from '@udecode/plate-serializer-md';
 
 type SerializerType = 'html' | 'md';
@@ -75,7 +74,7 @@ export const createDeserializer = (type: SerializerType = 'html') => {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
         return (data: string) => {
             editor.children = deserializeMd<Value>(editor, data);
-            Editor.normalize(editor as BaseEditor, { force: true });
+            editor.normalize({ force: true });
 
             // escape from invalid empty state
             return !!editor.children.length
@@ -88,15 +87,16 @@ export const createDeserializer = (type: SerializerType = 'html') => {
 export const createSerializer = (type: SerializerType = 'html') => {
     if (type === 'html') {
         const editor = createTempEditor(htmlSerializationsWorkingPlugins);
-        return (value: EditorValue) => {
-            const [v] = getEditorValue(value);
-            return serializeHtml(editor, { nodes: v! }); // TODO: improve typing
+        return (v: EditorValue) => {
+            const value = initializeEditor(editor, v);
+            return serializeHtml(editor, { nodes: value });
         };
     } else {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
-        return (value: EditorValue) => {
-            const [v] = getEditorValue(value);
-            return serializeMd(editor, { nodes: v! }); // TODO: improve typing
+        return (v: EditorValue) => {
+            const value = initializeEditor(editor, v);
+
+            return serializeMd(editor, { nodes: value });
         };
     }
 };

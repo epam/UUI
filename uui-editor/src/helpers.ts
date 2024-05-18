@@ -2,12 +2,12 @@ import {
     Range, Editor,
 } from 'slate';
 import {
-    PlatePlugin, Value, createPlateEditor, createPlugins, getPlugins, useEditorState,
+    PlatePlugin, Value, createPlateEditor, getPlugins, useEditorState, createNode, PlateEditor, createPlugins,
 } from '@udecode/plate-common';
 import { createPlateUI } from './components';
-import { EditorContent, EditorValue, VersionedEditorValue } from './types';
-import { migrateSlateSchema } from './migrations/slate_migrations';
-import { DEFAULT_CONTENT_VERSION } from './migrations/plate_migrations';
+import { PARAGRAPH_TYPE } from './plugins/paragraphPlugin';
+import { migrateSlateSchema, SlateSchema } from './migrations/slate_migrations';
+import { EditorValue } from './types';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -59,7 +59,7 @@ export const isEditorValueEmpty = (value: Value) => {
     return (
         !value
         || (value.length === 0
-        || (value.length === 1 && value[0].type === 'paragraph' && value[0].children[0].text === ''))
+        || (value.length === 1 && value[0].type === PARAGRAPH_TYPE && value[0].children[0].text === ''))
     );
 };
 
@@ -88,7 +88,7 @@ export class SelectionUtils {
     }
 }
 
-export const createTempEditor = (plugins: PlatePlugin[]) => {
+export const createTempEditor = (plugins: PlatePlugin[]): PlateEditor => {
     return createPlateEditor({
         plugins: createPlugins((plugins).flat(), {
             components: createPlateUI(),
@@ -96,14 +96,30 @@ export const createTempEditor = (plugins: PlatePlugin[]) => {
     });
 };
 
-const isVersionedValue = (v: EditorValue): v is VersionedEditorValue => {
-    return !!v && v !== null && !Array.isArray(v) && typeof v.version === 'string';
+/** Consider slate and plate migarions */
+export const initializeEditor = (editor: PlateEditor<Value>, v: EditorValue): Value => {
+    let value: Value;
+    if (!v) {
+        value = [createNode(PARAGRAPH_TYPE)];
+    } else {
+        if (!Array.isArray(v)) {
+            value = migrateSlateSchema(v); // slate migraitons
+        } else {
+            value = v;
+        }
+    }
+
+    editor.children = value;
+    editor.normalize({ force: true }); // plate migratoins
+
+    return editor.children;
 };
 
-export const getEditorValue = (value: EditorValue): [EditorContent, string] => {
-    if (isVersionedValue(value)) {
-        return [value.content, value.version]; // versioned content
-    } else {
-        return [migrateSlateSchema(value), DEFAULT_CONTENT_VERSION];
-    }
+/** type guard to support two modes: with strictNullCheck and without, try toggle editor tsconfig setting */
+export const isSlateSchema = (value: EditorValue): value is SlateSchema => {
+    return !!value && !Array.isArray(value);
+};
+
+export const isPlateValue = (value: EditorValue): value is Value => {
+    return Array.isArray(value);
 };
