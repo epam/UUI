@@ -1,4 +1,4 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
 .footer-wrapper {
     border-top: 1px solid var(--uui-divider);
@@ -34,6 +34,20 @@
 
         :global(.uui-caption) {
             font-size: 16px;
+        }
+
+        &.mode-inline {
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        &.mode-cell {
+
+            display: grid;
+            place-items: center;
+            text-align: center;
         }
     }
 }
