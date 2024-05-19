@@ -8,7 +8,7 @@ import { Image } from './ImageBlock';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, insertEmptyElement, focusEditor, isElement, PlatePlugin,
+    PlateEditor, createPluginFactory, getBlockAbove, insertEmptyElement, focusEditor, isElement, PlatePlugin, insertNodes,
 } from '@udecode/plate-common';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 
@@ -16,7 +16,6 @@ import { IImageElement, ModalPayload } from './types';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { IMAGE_PLUGIN_KEY, IMAGE_TYPE } from './constants';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import { insertImage } from '@udecode/plate-media';
 import { migrateImageElement } from '../../migrations/plate_migrations';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
 
@@ -118,13 +117,12 @@ export function ImageButton({ editor }: IImageButton) {
             const path = editor.selection?.anchor.path;
             if (typeof payload === 'string') {
                 const link = prependHttp(payload, { https: true });
-                insertImage(editor, link);
-                // insertNodes(editor, {
-                //     align: 'left',
-                //     url: link,
-                //     type: IMAGE_PLUGIN_TYPE,
-                //     children: [{ text: '' }],
-                // });
+                insertNodes(editor, {
+                    align: 'left',
+                    url: link,
+                    type: IMAGE_TYPE,
+                    children: [{ text: '' }],
+                });
                 return path;
             } else {
                 return onFilesAdded(payload).then(() => path);
