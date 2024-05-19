@@ -5,10 +5,11 @@ import { LINK_TYPE } from '../plugins/linkPlugin/constants';
 import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin';
 import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_ROW_TYPE, TABLE_TYPE } from '../plugins/tablePlugin/constants';
 
-/** deprecated Slate content structure types */
-
+/** Deprecated Slate content structure */
 export type SlateSchema = {
+    /** object type */
     object: 'value',
+    /** document object */
     document: {
         object: 'document',
         nodes: SlateElement[];
