@@ -33,7 +33,7 @@ const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ clas
     const colSizeOverrides = tableStore.colSizeOverrides();
     const currentColSizes = (
         !element.colSizes
-            ? getDefalutColSizes()
+            ? getDefalutColSizes() // TODO: move that to mormalizeNode
             : [...element.colSizes]
     ).map(
         (size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH,
