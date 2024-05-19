@@ -1,4 +1,4 @@
-import { migrateSlateSchema as migrateSlateSchemaNew } from '../migrations/slate_migrations1';
+import { migrateSlateSchema as migrateSlateSchemaNew } from '../migrations/slate_migrations';
 import { slateInitialValue, slateInitialValueFull } from './data/slate-migration';
 
 describe('migrate', () => {
