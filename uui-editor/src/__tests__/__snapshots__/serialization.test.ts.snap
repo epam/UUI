@@ -85,6 +85,9 @@ Array [
         "type": "table_row",
       },
     ],
+    "data": Object {
+      "version": "1.0.1",
+    },
     "type": "table",
   },
   Object {
@@ -398,6 +401,9 @@ Array [
         "type": "table_row",
       },
     ],
+    "data": Object {
+      "version": "1.0.1",
+    },
     "type": "table",
   },
 ]
