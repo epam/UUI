@@ -115,11 +115,12 @@ export const initializeEditor = (editor: PlateEditor<Value>, v: EditorValue): Va
     return editor.children;
 };
 
-/** type guard to support two modes: with strictNullCheck and without, try toggle editor tsconfig setting */
+/** type guard to distinct slate format */
 export const isSlateSchema = (value: EditorValue): value is SlateSchema => {
     return !!value && !Array.isArray(value);
 };
 
+/** type guard to distinct plate format */
 export const isPlateValue = (value: EditorValue): value is Value => {
     return Array.isArray(value);
 };

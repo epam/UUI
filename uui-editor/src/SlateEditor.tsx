@@ -1,5 +1,5 @@
 import React, {
-    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState, useTransition,
+    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useMemo, useRef, useState,
 } from 'react';
 import {
     IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
@@ -156,7 +156,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
     /** force update of uncontrolled component */
     const forceUpdate = useForceUpdate();
     if (isPlateValue(plateValue) && editorRef.current && editorRef.current.children !== plateValue) {
-        editorRef.current.children = getMigratedPlateValue(plateValue)!;
+        editorRef.current.children = plateValue;
         forceUpdate();
     }
 
