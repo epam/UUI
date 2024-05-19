@@ -113,9 +113,9 @@ export function RichTextEditorDemo() {
             </FlexRow>
             <FlexCell grow={ 1 } style={ { marginTop: '12px' } }>
                 <SlateEditor
+                    // key={ contentName }
                     value={ value }
                     onValueChange={ onChange }
-                    key={ contentName }
                     autoFocus={ true }
                     plugins={ getPlugins() }
                     isReadonly={ isReadonly }

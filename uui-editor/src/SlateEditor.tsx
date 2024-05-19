@@ -130,7 +130,6 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
         const editor = editorRef.current;
         const displayPlaceholder = !editor || (!!editor.children && isEditorValueEmpty(editor.children));
         const placeholder = displayPlaceholder ? props.placeholder : undefined;
-        console.log('render editable', currentId, editor?.children);
         return (
             <Fragment>
                 <PlateContent
