@@ -1,7 +1,6 @@
 import {
     ContextProviderDoc, ApiContextDoc, ModalContextDoc,
     NotificationContextDoc, IconsDoc, DownloadsDoc, ProjectsDoc, ReleaseNotesDoc,
-    GettingStartedForDesignersDoc,
     LockContextDoc, InternationalizationDoc, TeamDoc, AnalyticsContextDoc, DragAndDropDoc,
     EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc, GettingStartedDoc, UtGuideBasicsDoc, UtGuideToolsDoc,
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
@@ -26,7 +25,7 @@ export const items: DocItem[] = [
     { id: 'gettingStarted', name: 'Getting Started', component: GettingStartedDoc },
     { id: 'coreConcepts', name: 'Core Concepts', component: CoreConceptsDoc },
     { id: 'forDesigners', name: 'For Designers' },
-    { id: 'gettingStartedForDesigners', name: 'Getting Started', component: GettingStartedForDesignersDoc, parentId: 'forDesigners' },
+    { id: 'gettingStartedForDesigners', name: 'Getting Started', component: DownloadsDoc, parentId: 'forDesigners' },
     { id: 'guidelines', name: 'Guidelines', parentId: 'forDesigners' },
     { id: 'emptyStates', name: 'Empty States', component: EmptyStatesDoc, parentId: 'guidelines' },
     { id: 'layouts', name: 'Layouts', component: LayoutsDoc, parentId: 'guidelines' },

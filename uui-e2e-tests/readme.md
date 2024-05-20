@@ -86,7 +86,7 @@ yarn test-e2e
 yarn test-e2e-update
 
 # Show report located in "uui-e2e-tests/tests/.report/report" folder
-yarn test-e2e-report
+yarn test-e2e-open-report
 ```
 
 # Run tests locally (without Docker)

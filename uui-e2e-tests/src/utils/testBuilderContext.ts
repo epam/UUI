@@ -4,6 +4,8 @@ import { Logger } from './logger';
 import { PLATFORM } from '../constants';
 import { getFailedTestNamesFromLastRun } from './failedTestsUtils';
 import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
+import * as console from 'console';
+import { TEngine } from '../types';
 
 const { isCi, UUI_TEST_PARAM_ONLY_FAILED, UUI_TEST_PARAM_CHECK_ISSUES } = readUuiSpecificEnvVariables();
 
@@ -23,6 +25,7 @@ const REMOVE_OBSOLETE_SCR = false;
 
 export class TestBuilderContext {
     private seenTestNames: Set<string> = new Set();
+    private onlyChromiumTests: Set<string> = new Set();
     private failedTestNames: Set<string>;
 
     constructor(private screenshotsDir: string) {
@@ -36,11 +39,18 @@ export class TestBuilderContext {
         return false;
     }
 
-    seen(testName: string) {
+    isDryRun() {
+        return !!UUI_TEST_PARAM_CHECK_ISSUES;
+    }
+
+    seen(testName: string, onlyChromium?: boolean) {
         if (this.seenTestNames.has(testName)) {
             throw new Error(`Duplicated test found: "${testName}"`);
         }
         this.seenTestNames.add(testName);
+        if (onlyChromium) {
+            this.onlyChromiumTests.add(testName);
+        }
     }
 
     reportIssues() {
@@ -58,12 +68,12 @@ export class TestBuilderContext {
                 const testName = path.basename(fileName, '.png');
                 const scrFileFullPath = path.resolve(enginePath, fileName);
                 const scrSize = fs.statSync(scrFileFullPath).size;
-                const isObsoleteScr = !this.seenTestNames.has(testName);
+                const isObsoleteScr = !this.seenTestNames.has(testName) || (this.onlyChromiumTests.has(testName) && engineName !== TEngine.chromium);
                 if (isObsoleteScr) {
                     obsoleteScr.push(scrFileFullPath);
                     REMOVE_OBSOLETE_SCR && fs.rmSync(scrFileFullPath);
                 }
-                if (engineName === 'chromium' && !isObsoleteScr) {
+                if (engineName === TEngine.chromium && !isObsoleteScr) {
                     // Always use chromium engine. It does not matter which engine to use for this check.
                     const [componentId, ...rest] = testName.split('-');
                     const previewId = rest.slice(0, rest.length - 2).join('-');
@@ -81,6 +91,12 @@ export class TestBuilderContext {
                 }
             });
         });
+        const numOfEngines = 2;
+        const numOfChromiumOnlyTests = this.onlyChromiumTests.size;
+        const numOfAllEnginesTests = (this.seenTestNames.size - numOfChromiumOnlyTests);
+
+        console.log(`Total number of tests: ${numOfAllEnginesTests * 2 + numOfChromiumOnlyTests} = ${numOfAllEnginesTests} * ${numOfEngines}(engines) + ${numOfChromiumOnlyTests}(only chromium)`);
+
         const issuesArr: TIssues = [];
         reportObsoleteScr(obsoleteScr, issuesArr);
         reportEqualPreview(scrSizeMap, issuesArr);
@@ -135,8 +151,8 @@ function reportEqualPreview(scrSizeMap: TScrSizeMap, issuesArr: TIssues) {
 
 function reportObsoleteScr(obsoleteScreenshots: string[], issuesArr: TIssues) {
     if (obsoleteScreenshots.length > 0) {
-        const msg = `Next screenshots are not used by any test:\n\t${obsoleteScreenshots.join('\n\t')}`;
-        issuesArr.push({ msg, exit: true });
+        const msg = `Next screenshots are not used by any test (${obsoleteScreenshots.length}):\n\t${obsoleteScreenshots.join('\n\t')}`;
+        issuesArr.push({ msg, exit: false });
     }
 }
 
