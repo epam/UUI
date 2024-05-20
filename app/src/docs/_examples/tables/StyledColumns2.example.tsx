@@ -26,7 +26,7 @@ export default function StyledColumnsExample() {
         () => [
             {
                 key: 'name',
-                caption: 'Employee name',
+                caption: 'Employee name and surname',
                 render: (p) => <Text>{p.name}</Text>,
                 width: 160,
                 fix: 'left',
@@ -36,14 +36,14 @@ export default function StyledColumnsExample() {
             },
             {
                 key: 'profileStatus',
-                caption: 'Uninterrupted employment worker status',
+                caption: 'Worker profile status',
                 render: (p) =>
                     p.profileStatus && (
                         <FlexRow>
                             <StatusIndicator color={ p.profileStatus.toLowerCase() as StatusIndicatorProps['color'] } size="18" caption={ p.profileStatus } />
                         </FlexRow>
                     ),
-                width: 180,
+                width: 160,
                 minWidth: 80,
                 isSortable: true,
                 alignSelf: 'center',

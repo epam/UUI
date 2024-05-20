@@ -31,6 +31,11 @@
         overflow: hidden;
         white-space: normal;
         line-height: 18px;
+        // it's a temporary solution until will appear in CSS multiline overflow: ellipsis
+        &:after {
+            content: ' .';
+            opacity: 0;
+        }
     }
     /* stylelint-enable */
 }
