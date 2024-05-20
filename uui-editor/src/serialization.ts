@@ -22,6 +22,7 @@ import {
     boldPlugin,
     italicPlugin,
     PARAGRAPH_TYPE,
+    separatorPlugin,
 } from './plugins';
 import { createTempEditor, initializeEditor } from './helpers';
 import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin';
@@ -41,6 +42,7 @@ export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
     videoPlugin(),
     iframePlugin(),
     codeBlockPlugin(),
+    separatorPlugin(),
 ];
 
 export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
