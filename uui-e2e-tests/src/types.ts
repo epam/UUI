@@ -8,7 +8,7 @@ export enum TEngine {
     webkit = 'webkit'
 }
 
-export enum TPreviewTheme {
+export enum TTheme {
     electric = 'electric',
     loveship = 'loveship',
     loveship_dark = 'loveship_dark',
@@ -16,15 +16,9 @@ export enum TPreviewTheme {
     vanilla_thunder = 'vanilla_thunder'
 }
 
-export enum TPreviewSkin {
-    electric = 'electric',
-    loveship = 'loveship',
-    promo = 'promo'
-}
-
 export interface PreviewPageParams {
     componentId: TComponentId;
-    theme: TPreviewTheme;
+    theme: TTheme;
     isSkin: boolean;
     previewId: string;
 }
@@ -34,8 +28,8 @@ type TArrItem<T> = T extends (infer TItem)[] ? TItem : never;
 
 export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = {
     previewId: PreviewIdArr;
-    theme?: TPreviewTheme[];
-    skins?: TPreviewSkin[];
+    theme?: TTheme[];
+    skins?: TTheme[];
     onlyChromium?: boolean,
     onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
     focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;

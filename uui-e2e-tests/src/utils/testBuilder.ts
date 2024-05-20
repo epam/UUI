@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
-import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TPreviewTheme } from '../types';
-import { isSkinCompatibleWithTheme, TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
+import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TTheme } from '../types';
+import { TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
 import { createUniqueTestName } from './testNameUtils';
 import { TestBuilderContext } from './testBuilderContext';
 import { screenshotsDirAbsPath } from '../../playwright.config';
@@ -43,9 +43,9 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
     const { componentId, matrix } = builderParams;
     const themeArr = matrix.theme || THEMES.allExceptVanillaThunder;
     const supportedSkins = matrix.skins || [];
-    themeArr.forEach((theme: TPreviewTheme) => {
+    themeArr.forEach((theme: TTheme) => {
         testAllPreviews({ isSkin: false });
-        const shouldTestSkin = supportedSkins.some((skin) =>isSkinCompatibleWithTheme(skin, theme));
+        const shouldTestSkin = supportedSkins.some((skin) => skin === theme);
         if (shouldTestSkin) {
             testAllPreviews({ isSkin: true });
         }
