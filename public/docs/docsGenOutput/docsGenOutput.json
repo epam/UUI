@@ -75293,11 +75293,13 @@
        }
       },
       "typeValue": {
-       "raw": "'primary' | 'secondary' | 'contrast'"
+       "raw": "'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "critical",
+        "accent",
         "primary",
         "secondary",
         "contrast"
@@ -96965,7 +96967,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'red' | 'gray10' | 'gray60' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'blue' | 'green' | 'red' | 'gray10' | 'gray60' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
@@ -96975,6 +96977,8 @@
         "red",
         "gray10",
         "gray60",
+        "critical",
+        "accent",
         "primary",
         "secondary",
         "contrast"
@@ -103021,7 +103025,6 @@
     "typeValue": {
      "raw": "LinkButtonProps",
      "print": [
-      "// TODO: leave 3 colors white, blue, gray - more specific colors will be determined later.",
       "/** Represents the properties of a LinkButton component. */",
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
@@ -103352,7 +103355,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'fire' | 'night100' | 'night600' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'sky' | 'grass' | 'fire' | 'night100' | 'night600' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "typeValueRef": "@epam/loveship:LinkButtonColor",
       "editor": {
@@ -103363,6 +103366,8 @@
         "fire",
         "night100",
         "night600",
+        "critical",
+        "accent",
         "primary",
         "secondary",
         "contrast"
