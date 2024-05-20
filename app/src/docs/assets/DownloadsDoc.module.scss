@@ -25,7 +25,7 @@
         margin-bottom: 24px;
     }
 
-    .library-link-title:global(.uui-caption) {
+    .library-link-title :global(.uui-caption) {
         font-size: 14px;
     }
 }
@@ -57,7 +57,7 @@
         background-color: #14CCCC33;
     }
 
-    .assets-link-caption:global(.uui-caption) {
+    .assets-link-caption :global(.uui-caption) {
         font-size: 14px;
     }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
@@ -19,11 +19,6 @@ interface LinkButtonMods {
 
 /** Represents the Core properties of the LinkButton component. */
 export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
-    /**
-     * CSS classes to put on the caption
-     * @deprecated
-     * */
-    captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /**
@@ -47,9 +42,6 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
 }
 
 export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
-    if (__DEV__ && props.captionCX) {
-        devLogger.warn('LinkButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
-    }
     if (__DEV__ && props.color === 'contrast') {
         devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
             component: 'LinkButton',
@@ -77,7 +69,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
                 />
             ) }
             { props.caption && (
-                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ uuiElement.caption }>
                     { props.caption }
                 </div>
             ) }
