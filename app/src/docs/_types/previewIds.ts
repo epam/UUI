@@ -136,3 +136,13 @@ export enum TNumericInputPreview {
     Sizes = 'Sizes',
     States = 'States'
 }
+
+export enum TRadioInputPreview {
+    'Size Variants' = 'Size Variants',
+    'Color Variants' = 'Color Variants'
+}
+
+export enum TRadioGroupPreview {
+    'Size Variants' = 'Size Variants',
+    'Color Variants' = 'Color Variants'
+}
