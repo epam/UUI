@@ -14,7 +14,7 @@ interface LinkButtonMods {
      * Defines component color.
      * @default 'primary'
      */
-    color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'contrast';
+    color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'white' | 'contrast';
 }
 
 /** Represents the Core properties of the LinkButton component. */
