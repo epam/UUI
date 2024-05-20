@@ -72,14 +72,14 @@ export class DownloadsDoc extends BaseDocsBlock {
                     <FlexCell width="auto">
                         { title === 'UUI Illustrations' ? (
                             <Tooltip content="For internal use only" offset={ [0, 10] }>
-                                <LinkButton href={ link } size="24" target="_blank" captionCX={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
+                                <LinkButton href={ link } size="24" target="_blank" cx={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
                             </Tooltip>
                         ) : (
                             <LinkButton
                                 href={ link }
                                 size="24"
                                 target="_blank"
-                                captionCX={ css.libraryLinkTitle }
+                                cx={ css.libraryLinkTitle }
                                 caption={ title }
                                 iconPosition="right"
                                 icon={ ContentLinkIcon }
@@ -130,7 +130,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                             caption="Download"
                                             size="24"
                                             href={ assets.fonts }
-                                            captionCX={ css.assetsLinkCaption }
+                                            cx={ css.assetsLinkCaption }
                                         />
                                     </Tooltip>
                                 </FlexCell>
@@ -149,7 +149,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                         caption="Download"
                                         size="24"
                                         href={ assets.logos }
-                                        captionCX={ css.assetsLinkCaption }
+                                        cx={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
                             </FlexRow>
@@ -167,7 +167,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                         caption="Download"
                                         size="24"
                                         href={ assets.icons }
-                                        captionCX={ css.assetsLinkCaption }
+                                        cx={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
                             </FlexRow>
@@ -191,7 +191,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                                 caption="Download"
                                                 size="24"
                                                 href={ assets.illustrations }
-                                                captionCX={ css.assetsLinkCaption }
+                                                cx={ css.assetsLinkCaption }
                                             />
                                         </Tooltip>
                                     </FlexRow>

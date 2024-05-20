@@ -39,7 +39,7 @@
     "test-e2e": "yarn --cwd uui-e2e-tests test-e2e",
     "test-e2e-chromium": "yarn --cwd uui-e2e-tests test-e2e-chromium",
     "test-e2e-update": "yarn --cwd uui-e2e-tests test-e2e-update",
-    "test-e2e-report": "yarn --cwd uui-e2e-tests test-e2e-report",
+    "test-e2e-open-report": "yarn --cwd uui-e2e-tests test-e2e-open-report",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
     "track-bundle-size-override": "yarn track-bundle-size --override-baseline"
   },
