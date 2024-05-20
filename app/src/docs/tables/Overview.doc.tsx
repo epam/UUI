@@ -20,7 +20,7 @@ export class TablesOverviewDoc extends BaseDocsBlock {
 
                 <DocExample cx={ css.appBg } title="Column size and content align configuration" path="./_examples/tables/StyledColumns.example.tsx" />
 
-                <DocExample cx={ css.appBg } title="Example of the headerSize and columnsGap configuration" path="./_examples/tables/StyledColumns2.example.tsx" />
+                <DocExample cx={ css.appBg } title="Condenced view" path="./_examples/tables/StyledColumns2.example.tsx" />
             </>
         );
     }
