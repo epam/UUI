@@ -1,5 +1,5 @@
 import React from 'react';
-import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
@@ -31,11 +31,6 @@ export type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIc
      * @default 'left'
      */
     iconPosition?: 'left' | 'right';
-    /**
-     * CSS classes to put on the caption
-     * @deprecated
-     * */
-    captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
@@ -57,7 +52,6 @@ function applyBadgeMods(mods: BadgeProps) {
 }
 
 const mapCountIndicatorSizes = {
-    12: '12',
     18: '12',
     24: '18',
     30: '18',
@@ -67,20 +61,6 @@ const mapCountIndicatorSizes = {
 } as const;
 
 export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, BadgeProps>((props, ref) => {
-    if (__DEV__) {
-        devLogger.warnAboutDeprecatedPropValue<BadgeProps, 'size'>({
-            component: 'Badge',
-            propName: 'size',
-            propValue: props.size,
-            propValueUseInstead: '42',
-            condition: () => ['48'].indexOf(props.size) !== -1,
-        });
-    }
-
-    if (__DEV__ && props.captionCX) {
-        devLogger.warn('Badge: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
-    }
-
     const styles = [applyBadgeMods(props), props.cx];
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
@@ -103,7 +83,7 @@ export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HT
                 />
             ) }
             { props.caption && (
-                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ uuiElement.caption }>
                     { props.caption }
                 </div>
             ) }

@@ -40,12 +40,9 @@ export enum TCheckboxPreview {
 }
 export enum TTextInputPreview {
     'Form'= 'Form',
-    'Form Invalid'= 'Form Invalid',
-    'Form Disabled'= 'Form Disabled',
-    'Form ReadOnly'= 'Form ReadOnly',
+    'Form States'= 'Form States',
     'Inline'= 'Inline',
-    'Inline Disabled'= 'Inline Disabled',
-    'Inline ReadOnly'= 'Inline ReadOnly'
+    'Inline States'= 'Inline States'
 }
 export enum TCountIndicatorPreview {
     Colors = 'Colors',
@@ -65,113 +62,63 @@ export enum TIconButtonPreview {
     Layout = 'Layout'
 }
 export enum TTabButtonPreview {
-    'Active' = 'Active',
-    'Active Disabled' = 'Active Disabled',
-    'Active Dropdown' = 'Active Dropdown',
-    'Active Dropdown Disabled' = 'Active Dropdown Disabled',
-    'Inactive' = 'Inactive',
-    'Inactive Disabled' = 'Inactive Disabled',
-    'Inactive Dropdown' = 'Inactive Dropdown',
-    'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled'
+    Basic = 'Basic',
+    'Basic States' = 'Basic States',
+    'Basic Dropdown' = 'Basic Dropdown',
+    'Basic Dropdown States' = 'Basic Dropdown States'
 }
 export enum TVerticalTabButtonPreview {
-    'Active' = 'Active',
-    'Active Disabled' = 'Active Disabled',
-    'Active Dropdown' = 'Active Dropdown',
-    'Active Dropdown Disabled' = 'Active Dropdown Disabled',
-    'Inactive' = 'Inactive',
-    'Inactive Disabled' = 'Inactive Disabled',
-    'Inactive Dropdown' = 'Inactive Dropdown',
-    'Inactive Dropdown Disabled' = 'Inactive Dropdown Disabled'
+    Basic = 'Basic',
+    'Basic States' = 'Basic States',
+    'Basic Dropdown' = 'Basic Dropdown',
+    'Basic Dropdown States' = 'Basic Dropdown States'
 }
 
 export enum TPickerInputPreview {
     /* FORM */
-    'Form Single'= 'Form Single',
-    'Form Single Invalid'= 'Form Single Invalid',
-    'Form Single Disabled'= 'Form Single Disabled',
-    'Form Single ReadOnly'= 'Form Single ReadOnly',
-    'Form Single HasValue'= 'Form Single HasValue',
-    'Form Single HasValue Invalid'= 'Form Single HasValue Invalid',
-    'Form Single HasValue Disabled'= 'Form Single HasValue Disabled',
-    'Form Single HasValue ReadOnly'= 'Form Single HasValue ReadOnly',
-    'Form Multi'= 'Form Multi',
-    'Form Multi Invalid'= 'Form Multi Invalid',
-    'Form Multi Disabled'= 'Form Multi Disabled',
-    'Form Multi ReadOnly'= 'Form Multi ReadOnly',
-    'Form Multi HasValue'= 'Form Multi HasValue',
-    'Form Multi HasValue Invalid'= 'Form Multi HasValue Invalid',
-    'Form Multi HasValue Disabled'= 'Form Multi HasValue Disabled',
-    'Form Multi HasValue ReadOnly'= 'Form Multi HasValue ReadOnly',
-    'Form Multi HasValue Multiline'= 'Form Multi HasValue Multiline',
-    'Form Multi HasValue Multiline Invalid'= 'Form Multi HasValue Multiline Invalid',
-    'Form Multi HasValue Multiline Disabled'= 'Form Multi HasValue Multiline Disabled',
-    'Form Multi HasValue Multiline ReadOnly'= 'Form Multi HasValue Multiline ReadOnly',
-    'Form Multi HasValue Overflow'= 'Form Multi HasValue Overflow',
-    'Form Multi HasValue Overflow Invalid'= 'Form Multi HasValue Overflow Invalid',
-    'Form Multi HasValue Overflow Disabled'= 'Form Multi HasValue Overflow Disabled',
-    'Form Multi HasValue Overflow ReadOnly'= 'Form Multi HasValue Overflow ReadOnly',
-    'Form Opened Dropdown List' = 'Form Opened Dropdown List',
-    'Form Opened Dropdown Multi List' = 'Form Opened Dropdown Multi List',
-    'Form Opened Dropdown Tree' = 'Form Opened Dropdown Tree',
-    'Form Opened Dropdown Multi Tree' = 'Form Opened Dropdown Multi Tree',
+    'Form SingleSelect'= 'Form SingleSelect',
+    'Form SingleSelect States'= 'Form SingleSelect States',
+    'Form MultiSelect'= 'Form MultiSelect',
+    'Form MultiSelect States'= 'Form MultiSelect States',
+    'Form MultiSelect Multiline'= 'Form MultiSelect Multiline',
+    'Form MultiSelect Multiline States'= 'Form MultiSelect Multiline States',
+    /* FORM OPENED */
+    'Form Opened SingleSelect' = 'Form Opened SingleSelect',
+    'Form Opened MultiSelect' = 'Form Opened MultiSelect',
+    'Form Opened SingleSelect Tree' = 'Form Opened SingleSelect Tree',
+    'Form Opened MultiSelect Tree' = 'Form Opened MultiSelect Tree',
+
     /* INLINE */
-    'Inline Single'= 'Inline Single',
-    'Inline Single Disabled'= 'Inline Single Disabled',
-    'Inline Single ReadOnly'= 'Inline Single ReadOnly',
-    'Inline Single HasValue'= 'Inline Single HasValue',
-    'Inline Single HasValue Disabled'= 'Inline Single HasValue Disabled',
-    'Inline Single HasValue ReadOnly'= 'Inline Single HasValue ReadOnly',
-    'Inline Multi'= 'Inline Multi',
-    'Inline Multi Disabled'= 'Inline Multi Disabled',
-    'Inline Multi ReadOnly'= 'Inline Multi ReadOnly',
-    'Inline Multi HasValue'= 'Inline Multi HasValue',
-    'Inline Multi HasValue Disabled'= 'Inline Multi HasValue Disabled',
-    'Inline Multi HasValue ReadOnly'= 'Inline Multi HasValue ReadOnly',
-    'Inline Multi HasValue MultiLine'= 'Inline Multi HasValue MultiLine',
-    'Inline Multi HasValue MultiLine Disabled'= 'Inline Multi HasValue MultiLine Disabled ',
-    'Inline Multi HasValue MultiLine ReadOnly'= 'Inline Multi HasValue MultiLine ReadOnly',
-    'Inline Multi HasValue Overflow'= 'Inline Multi HasValue Overflow',
-    'Inline Multi HasValue Overflow Disabled'= 'Inline Multi HasValue Overflow Disabled',
-    'Inline Multi HasValue Overflow ReadOnly'= 'Inline Multi HasValue Overflow ReadOnly',
+    'Inline SingleSelect'= 'Inline SingleSelect',
+    'Inline SingleSelect States'= 'Inline SingleSelect States',
+    'Inline MultiSelect'= 'Inline MultiSelect',
+    'Inline MultiSelect States'= 'Inline MultiSelect States',
+    'Inline MultiSelect Multiline'= 'Inline MultiSelect Multiline',
+    'Inline MultiSelect Multiline States'= 'Inline MultiSelect Multiline States',
+
     /* CELL */
-    'Cell Single'= 'Cell Single',
-    'Cell Single Disabled'= 'Cell Single Disabled',
-    'Cell Single ReadOnly'= 'Cell Single ReadOnly',
-    'Cell Single HasValue'= 'Cell Single HasValue',
-    'Cell Single HasValue Disabled'= 'Cell Single HasValue Disabled',
-    'Cell Single HasValue ReadOnly'= 'Cell Single HasValue ReadOnly',
-    'Cell Multi'= 'Cell Multi',
-    'Cell Multi Disabled'= 'Cell Multi Disabled',
-    'Cell Multi ReadOnly'= 'Cell Multi ReadOnly',
-    'Cell Multi HasValue'= 'Cell Multi HasValue',
-    'Cell Multi HasValue Disabled'= 'Cell Multi HasValue Disabled',
-    'Cell Multi HasValue ReadOnly'= 'Cell Multi HasValue ReadOnly',
-    'Cell Multi HasValue MultiLine'= 'Cell Multi HasValue MultiLine',
-    'Cell Multi HasValue MultiLine Disabled'= 'Cell Multi HasValue MultiLine Disabled ',
-    'Cell Multi HasValue MultiLine ReadOnly'= 'Cell Multi HasValue MultiLine ReadOnly',
-    'Cell Multi HasValue Overflow'= 'Cell Multi HasValue Overflow',
-    'Cell Multi HasValue Overflow Disabled'= 'Cell Multi HasValue Overflow Disabled',
-    'Cell Multi HasValue Overflow ReadOnly'= 'Cell Multi HasValue Overflow ReadOnly'
+    'Cell SingleSelect'= 'Cell SingleSelect',
+    'Cell SingleSelect States'= 'Cell SingleSelect States',
+    'Cell MultiSelect'= 'Cell MultiSelect',
+    'Cell MultiSelect States'= 'Cell MultiSelect States',
+    'Cell MultiSelect Multiline'= 'Cell MultiSelect Multiline',
+    'Cell MultiSelect Multiline States'= 'Cell MultiSelect Multiline States'
+
 }
 
 export enum TDatePickerPreview {
     Form = 'Form',
-    'Form Open' = 'Form Open',
-    'Form Disabled' = 'Form Disabled',
-    'Form ReadOnly' = 'Form ReadOnly',
+    'Form Opened' = 'Form Opened',
+    'Form States' = 'Form States',
     Cell = 'Cell',
-    'Cell Disabled' = 'Cell Disabled',
-    'Cell ReadOnly' = 'Cell ReadOnly',
+    'Cell States' = 'Cell States',
     Inline = 'Inline',
-    'Inline Disabled' = 'Inline Disabled',
-    'Inline ReadOnly' = 'Inline ReadOnly'
+    'Inline States' = 'Inline States'
 }
 
 export enum TRangeDatePickerPreview {
     'Basic' = 'Basic',
+    'Basic States' = 'Basic States',
     'Opened' = 'Opened',
-    'Opened With Presets' = 'Opened With Presets',
-    'ReadOnly' = 'ReadOnly',
-    'Disabled' = 'Disabled'
+    'Opened With Presets' = 'Opened With Presets'
 }

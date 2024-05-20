@@ -42,7 +42,7 @@ export class DocPreviewBuilder<TProps> {
         });
     }
 
-    update(id: string, updateMatrixFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
+    update(id: string, updateMatrixFn: (prevMatrix: TPreviewMatrix<TProps>) => TPreviewMatrix<TProps>) {
         const prev = this.listOfPreviews.find((i) => i.id === id);
         if (prev) {
             prev.matrix = { ...updateMatrixFn(prev.matrix) };

@@ -3,6 +3,11 @@ import type { PreviewPage } from './pages/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
 
+export enum TEngine {
+    chromium = 'chromium',
+    webkit = 'webkit'
+}
+
 export enum TTheme {
     electric = 'electric',
     loveship = 'loveship',
@@ -21,6 +26,7 @@ export interface PreviewPageParams {
 export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId] = TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = {
     theme: TTheme[];
     isSkin: boolean[];
+    onlyChromium?: boolean,
     previewId: Previews;
     onBeforeExpect: (params: { previewPage: PreviewPage, previewId: (Previews extends (infer ArrItem)[] ? ArrItem : never) }) => Promise<void>;
     waitFor?: number;
