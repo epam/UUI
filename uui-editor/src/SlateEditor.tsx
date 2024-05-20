@@ -17,9 +17,8 @@ import { EditorValue } from './types';
 import { defaultPlugins } from './defaultPlugins';
 
 import css from './SlateEditor.module.scss';
-import { isEditorValueEmpty, isPlateValue, isSlateSchema } from './helpers';
+import { getMigratedPlateValue, isEditorValueEmpty, isPlateValue } from './helpers';
 import { useFocusEvents } from './plugins/eventEditorPlugin';
-import { migrateSlateSchema } from './migrations/slate_migrations';
 
 export const basePlugins: PlatePlugin[] = [
     ...baseMarksPlugin(),
@@ -45,14 +44,6 @@ interface PlateEditorProps
     scrollbars?: boolean;
     toolbarPosition?: 'floating' | 'fixed';
 }
-
-const getMigratedPlateValue = (value: EditorValue): Value | undefined => {
-    if (!value) return undefined; // get rid of nulls
-    if (isSlateSchema(value)) {
-        return migrateSlateSchema(value);
-    }
-    return value;
-};
 
 export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, ref) => {
     const [currentId] = useState(String(Date.now()));

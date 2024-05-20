@@ -87,11 +87,10 @@
 * [ControlGroup] shared border is made flat
 * [DatePickerBody] props breaking changes
 * [RangeDatePickerBody] props breaking changes
-* [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
-* [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput.
-
+* [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`
+* [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput
 * [uui-editor]:
-  * `migrateSlateSchema` now typed. There are type guards to distinct slate or plate content types: `isSlateSchema`, `isPlateValue`;
+  * `migrateSlateSchema` now typed. There are type guards to distinct slate or plate content types: `isSlateSchema`, `isPlateValue` or `getMigratedPlateValue` which will do migration if needed
   * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance.
 
 **What's Fixed**
