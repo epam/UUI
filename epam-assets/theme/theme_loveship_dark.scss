@@ -478,6 +478,11 @@
         --uui-link_btn-text-active: var(--uui-neutral-10);
     }
 
+    .uui-link_button.uui-color-white {
+        --uui-link_btn-text: var(--uui-neutral-5);
+        --uui-link_btn-text-disabled: color-mix(in srgb, var(--white) 40%, transparent);
+    }
+
     /*  TubButton */
 
     .uui-tab-button {

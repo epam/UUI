@@ -75293,7 +75293,7 @@
        }
       },
       "typeValue": {
-       "raw": "'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'critical' | 'accent' | 'primary' | 'secondary' | 'white' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
@@ -75302,6 +75302,7 @@
         "accent",
         "primary",
         "secondary",
+        "white",
         "contrast"
        ]
       },
@@ -96967,7 +96968,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'red' | 'gray10' | 'gray60' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'blue' | 'green' | 'red' | 'white' | 'gray10' | 'gray60' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
@@ -96975,6 +96976,7 @@
         "blue",
         "green",
         "red",
+        "white",
         "gray10",
         "gray60",
         "critical",
@@ -103355,7 +103357,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'fire' | 'night100' | 'night600' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'sky' | 'grass' | 'fire' | 'white' | 'night100' | 'night600' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "typeValueRef": "@epam/loveship:LinkButtonColor",
       "editor": {
@@ -103364,6 +103366,7 @@
         "sky",
         "grass",
         "fire",
+        "white",
         "night100",
         "night600",
         "critical",
