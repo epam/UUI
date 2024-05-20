@@ -19,7 +19,7 @@ import {
     TTextPreview,
     TVerticalTabButtonPreview,
 } from './previewIds';
-import { TPreviewSkin, TPreviewTheme } from '../types';
+import { TTheme } from '../types';
 
 /**
  * Keep in sync with app/src/documents/structureComponents.ts
@@ -124,17 +124,13 @@ export type TPreviewIdByComponentId = {
 };
 
 export const THEMES = {
-    allExceptVanillaThunder: Object.values(TPreviewTheme).filter((t) => t !== TPreviewTheme.vanilla_thunder),
+    allExceptVanillaThunder: Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder),
 };
 
+/**
+ * Terminology is not perfect, but it's basically list of themes which support "isSkin=true" parameter
+ */
 export const SKINS = {
-    all: Object.values(TPreviewSkin),
-    allExceptElectric: Object.values(TPreviewSkin).filter((t) => t !== TPreviewSkin.electric),
+    promo_loveship_electric: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark, TTheme.electric],
+    promo_loveship: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark],
 };
-
-export function isSkinCompatibleWithTheme(skin: TPreviewSkin, theme: TPreviewTheme) {
-    if (skin === TPreviewSkin.loveship) {
-        return [TPreviewTheme.loveship_dark, TPreviewTheme.loveship].includes(theme);
-    }
-    return skin.toString() === theme.toString();
-}

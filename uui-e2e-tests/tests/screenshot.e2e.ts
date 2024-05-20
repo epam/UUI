@@ -33,17 +33,17 @@ const { values } = Object;
 const builder = new TestBuilder();
 // Skins tested: all
 builder
-    .add(tag, { previewId: values(TTagPreview), skins: SKINS.all });
+    .add(tag, { previewId: values(TTagPreview), skins: SKINS.promo_loveship_electric });
 
 // Skins tested: all except "Electric"
 builder
-    .add(alert, { previewId: values(TAlertPreview), skins: SKINS.allExceptElectric })
-    .add(badge, { previewId: values(TBadgePreview), skins: SKINS.allExceptElectric })
-    .add(button, { previewId: values(TButtonPreview), skins: SKINS.allExceptElectric })
-    .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.allExceptElectric })
-    .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.allExceptElectric })
-    .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.allExceptElectric })
-    .add(text, { previewId: values(TTextPreview), skins: SKINS.allExceptElectric });
+    .add(alert, { previewId: values(TAlertPreview), skins: SKINS.promo_loveship })
+    .add(badge, { previewId: values(TBadgePreview), skins: SKINS.promo_loveship })
+    .add(button, { previewId: values(TButtonPreview), skins: SKINS.promo_loveship })
+    .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
+    .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
+    .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.promo_loveship })
+    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship });
 
 // Skins not tested
 builder
