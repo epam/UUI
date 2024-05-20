@@ -18,6 +18,9 @@ export const separatorPlugin = (): PlatePlugin<WithToolbarButton> => {
         key: SEPARATOR_PLUGIN_KEY,
         type: SEPARATOR_TYPE,
         component: Separator,
+        serializeHtml: () => {
+            return <hr />;
+        },
         handlers: {
             onKeyDown: (editor) => (event) => {
                 if (!getBlockAboveByType(editor, [SEPARATOR_TYPE])) return;
