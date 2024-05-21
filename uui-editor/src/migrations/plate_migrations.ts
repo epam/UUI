@@ -56,9 +56,8 @@ const migarteImageElementTo_5_7_3 = (editor: PlateEditor<Value>, imageNode: IIma
         align: toPlateAlign(imageNode.data.align),
     } : {};
 
-    // TODO: think to omit path and src from data
-    // delete imageNode.data.src;
-    // delete imageNode.data.align;
+    /** deprecate slate property */
+    delete imageNode.data?.align;
 
     const payload = {
         ...imageNode,

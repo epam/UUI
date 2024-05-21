@@ -396,6 +396,7 @@ Array [
       "name": "blue-orange.jpg",
       "path": "/static/uploads/blue-orange.jpg",
       "size": 77236,
+      "src": "/static/uploads/blue-orange.jpg",
       "type": "image",
       "version": "5.7.3",
     },
