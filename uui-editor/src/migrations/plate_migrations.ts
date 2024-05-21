@@ -14,10 +14,10 @@ const migrateTableCellElementTo_5_7_3 = (editor: PlateEditor<Value>, tableCellNo
         return;
     }
 
-    const colSpan = tableCellNode.data?.colSpan;
+    const colSpan = tableCellNode.colSpan || tableCellNode.data?.colSpan;
     const colSpanPayload = colSpan ? { colSpan } : {};
 
-    const rowSpan = tableCellNode.data?.rowSpan;
+    const rowSpan = tableCellNode.rowSpan || tableCellNode.data?.rowSpan;
     const rowSpanPayload = rowSpan ? { rowSpan } : {};
 
     const payload = {
