@@ -85,6 +85,10 @@ Array [
         "type": "table_row",
       },
     ],
+    "colSizes": Array [
+      112,
+      288,
+    ],
     "data": Object {
       "cellSizes": Array [
         112,
@@ -475,6 +479,7 @@ Array [
     "type": "paragraph",
   },
   Object {
+    "align": "center",
     "children": Array [
       Object {
         "text": "",
@@ -889,6 +894,13 @@ Array [
         "data": Object {},
         "type": "table_row",
       },
+    ],
+    "colSizes": Array [
+      130,
+      200,
+      200,
+      183,
+      161,
     ],
     "data": Object {
       "cellSizes": Array [

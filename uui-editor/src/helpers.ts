@@ -2,12 +2,14 @@ import {
     Range, Editor,
 } from 'slate';
 import {
-    PlatePlugin, Value, createPlateEditor, getPlugins, useEditorState, createNode, PlateEditor, createPlugins,
+    PlatePlugin, Value, createPlateEditor, getPlugins, useEditorState, PlateEditor, createPlugins,
 } from '@udecode/plate-common';
 import { createPlateUI } from './components';
 import { PARAGRAPH_TYPE } from './plugins/paragraphPlugin';
-import { migrateSlateSchema, SlateSchema } from './migrations/slate_migrations';
 import { EditorValue } from './types';
+import { SlateImgAlign } from './plugins/imagePlugin/types';
+import { TImageElement } from '@udecode/plate-media';
+import { isSlateSchema, migrateSlateSchema } from './migrations';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -96,34 +98,20 @@ export const createTempEditor = (plugins: PlatePlugin[]): PlateEditor => {
     });
 };
 
-/** Consider slate and plate migarions */
-export const initializeEditor = (editor: PlateEditor<Value>, v: EditorValue): Value => {
-    let value: Value;
-    if (!v) {
-        value = [createNode(PARAGRAPH_TYPE)];
-    } else {
-        if (!Array.isArray(v)) {
-            value = migrateSlateSchema(v); // slate migraitons
-        } else {
-            value = v;
-        }
-    }
-
-    editor.children = value;
-    editor.normalize({ force: true }); // plate migratoins
-
-    return editor.children;
-};
-
-/** type guard to distinct slate format */
-export const isSlateSchema = (value: EditorValue): value is SlateSchema => {
-    return !!value && !Array.isArray(value);
-};
-
 /** type guard to distinct plate format */
 export const isPlateValue = (value: EditorValue): value is Value => {
     return Array.isArray(value);
 };
+
+const SLATE_TO_PLATE_IMG_ALIGN = {
+    'align-left': 'left',
+    'align-right': 'right',
+    'align-center': 'center',
+};
+
+/** converts align property */
+export const toPlateAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
+    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as TImageElement['align'];
 
 /** migrate deprecated slate format if needed */
 export const getMigratedPlateValue = (value: EditorValue): Value | undefined => {

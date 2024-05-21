@@ -91,7 +91,9 @@
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput
 * [uui-editor]:
   * `migrateSlateSchema` now typed. There are type guards to distinct slate or plate content types: `isSlateSchema`, `isPlateValue` or `getMigratedPlateValue` which will do migration if needed
-  * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance.
+  * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance
+  * `el.data.colSpan` and `el.data.rowSpan` removed from table cell node as it has duplicates: `el.colSpan` and `el.rowSpan`
+  * `data.cellSizes` removed from table element as it has duplicate: `el.colSizes`
 
 **What's Fixed**
 [PickerInput]: fixed setting emptyValue in case of unselecting all picker items

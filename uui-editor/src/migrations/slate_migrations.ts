@@ -1,69 +1,12 @@
 import { TDescendant, Value } from '@udecode/plate-common';
+import { toPlateAlign } from '../helpers';
 import { IFRAME_TYPE } from '../plugins/iframePlugin/constants';
 import { IMAGE_TYPE } from '../plugins/imagePlugin/constants';
 import { LINK_TYPE } from '../plugins/linkPlugin/constants';
 import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin';
 import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_ROW_TYPE, TABLE_TYPE } from '../plugins/tablePlugin/constants';
-
-/** Deprecated Slate content structure */
-export type SlateSchema = {
-    /** object type */
-    object: 'value',
-    /** document object */
-    document: {
-        object: 'document',
-        nodes: SlateElement[];
-        data?: {
-            [key: string]: unknown;
-        }
-    }
-};
-
-type SlateElement = SlateBlockElement | SlateInlineElement | SlateTextElement;
-
-type ObjectType = 'text' | 'inline' | 'block' | 'mark' | 'value' | 'document';
-
-interface SlateBaseElement {
-    object: ObjectType,
-    type?: string,
-    nodes?: SlateElement[],
-    data?: {
-        url?: string; // links
-        src?: string; // media types: images, iframes
-
-        // table cells
-        colSpan?: number;
-        rowSpan?: number;
-        [key: string]: unknown;
-    },
-    [key: string]: unknown;
-}
-
-interface SlateBlockElement extends SlateBaseElement {
-    object: 'block',
-    type: string;
-}
-
-interface SlateInlineElement extends SlateBaseElement {
-    object: 'inline',
-    type: string;
-}
-
-interface SlateTextElement extends SlateBaseElement {
-    object: 'text',
-    type?: never,
-    text: string,
-    marks?: SlateMark[],
-}
-interface SlateMark {
-    object: 'mark',
-    type: string,
-    data?: {
-        style?: {
-            [key: string]: unknown;
-        },
-    },
-}
+import { EditorValue } from '../types';
+import { SlateBlockElement, SlateElement, SlateInlineElement, SlateMark, SlateSchema, SlateTextElement } from './types';
 
 const mediaTypes = [IMAGE_TYPE, IFRAME_TYPE];
 const cellTypes = [TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE];
@@ -86,6 +29,16 @@ const migrateTextNode = (oldNode: SlateTextElement) => {
     return { text: oldNode.text, ...marksPayload };
 };
 
+const getTablePayload = (node: SlateElement) => {
+    if (node.type !== TABLE_TYPE) return {};
+
+    if (node.data.cellSizes) {
+        return { colSizes: [...node.data.cellSizes] };
+    }
+
+    return {};
+};
+
 const getTableRowPayload = (node: SlateElement): { children: TDescendant[] } => {
     const cellNodes = (node.nodes || []).reduce((acc: SlateElement[], cell: SlateElement) => {
         /** skip merged cells with new approach */
@@ -103,11 +56,12 @@ const getTableRowPayload = (node: SlateElement): { children: TDescendant[] } => 
     return { children: [createPlateEmptyTextNode()] };
 };
 
-const getCellPayload = (node: SlateElement) => {
+const getTableCellElementPayload = (node: SlateElement) => {
     if (!cellTypes.includes(node.type || '')) return {};
 
     const colSpanPayload = node.data?.colSpan ? { colSpan: node.data.colSpan } : {};
     const rowSpanPayload = node.data?.rowSpan ? { rowSpan: node.data.rowSpan } : {};
+
     return { ...colSpanPayload, ...rowSpanPayload };
 };
 
@@ -121,7 +75,10 @@ const getLinkPayload = (node: SlateElement) => {
 const getMediaTypesPayload = (node: SlateElement) => {
     if (!mediaTypes.includes(node.type || '')) return {};
 
-    return node.data?.src ? { url: node.data.src } : {};
+    const urlPayload = node.data?.src ? { url: node.data.src } : {};
+    const alignPayload = node.data?.align ? { align: toPlateAlign(node.data.align) } : {};
+
+    return { ...urlPayload, ...alignPayload };
 };
 
 const isTable = (node: SlateElement): boolean => {
@@ -144,7 +101,8 @@ const migrateDeeper = (_node: SlateBlockElement | SlateInlineElement): TDescenda
     /** there might be duplications with data, but we could also omit them with versioned apprach via plate normalizeNode */
     return {
         type: node.type,
-        ...getCellPayload(node),
+        ...getTablePayload(node),
+        ...getTableCellElementPayload(node),
         ...getLinkPayload(node),
         ...getMediaTypesPayload(node),
         ...dataPayload,
@@ -171,4 +129,9 @@ export const migrateSlateSchema = (schema: SlateSchema): Value => {
 
     // in case of error
     return schema as unknown as Value;
+};
+
+/** type guard to distinct slate format */
+export const isSlateSchema = (value: EditorValue): value is SlateSchema => {
+    return !!value && !Array.isArray(value);
 };
