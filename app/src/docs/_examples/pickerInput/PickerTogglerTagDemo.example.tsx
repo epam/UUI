@@ -18,6 +18,7 @@ export default function PickerTogglerTagDemoExample() {
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
+            selectAll: false,
         },
         [],
     );
