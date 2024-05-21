@@ -1,21 +1,20 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
     "data": {},
-    "nodes": [
+    "type": "paragraph",
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "TextArea is a UI element intended to give users an ability to input text information in a multi-line manner.",
-            "marks": []
-          }
-        ]
+        "text": "Allows users to input a multi-line text."
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI adds styles and auto-sizing on top."
       }
     ]
   }
-}
+]

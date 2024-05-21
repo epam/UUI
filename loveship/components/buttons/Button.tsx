@@ -1,12 +1,14 @@
-import { FillStyle, ControlShape, EpamPrimaryColor } from '../types';
+import { ControlShape, EpamPrimaryColor } from '../types';
 import * as uui from '@epam/uui';
-import { createSkinComponent, devLogger } from '@epam/uui-core';
+import { createSkinComponent } from '@epam/uui-core';
 import css from './Button.module.scss';
 
 const defaultSize = '36';
 
+type FillStyle = 'solid' | 'white' | 'light' | 'none';
+
 /** Defines component color. */
-type ButtonColor = EpamPrimaryColor | 'white' | 'night500' | 'night600' | 'gray' | uui.ButtonProps['color'];
+type ButtonColor = EpamPrimaryColor | 'gray' | uui.ButtonProps['color'];
 
 type ButtonMods = {
     /**
@@ -49,17 +51,8 @@ function applyButtonMods(mods: ButtonProps) {
 }
 
 export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
-    uui.Button as any, // TODO: remove it when BaseButton inheritance will be reworked
+    uui.Button,
     (props) => {
-        if (__DEV__) {
-            devLogger.warnAboutDeprecatedPropValue<ButtonProps, 'color'>({
-                component: 'Button',
-                propName: 'color',
-                propValue: props.color,
-                propValueUseInstead: 'gray',
-                condition: () => ['night500', 'night600'].indexOf(props.color) !== -1,
-            });
-        }
         return {
             fill: mapFill[props.fill] || mapFill.solid as any,
         };

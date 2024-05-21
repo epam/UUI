@@ -1,3 +1,26 @@
+import {
+    TAccordionPreview,
+    TAlertPreview,
+    TAvatarStackPreview,
+    TBadgePreview,
+    TButtonPreview,
+    TCheckboxPreview,
+    TCountIndicatorPreview,
+    TDatePickerPreview,
+    TIconButtonPreview,
+    TLinkButtonPreview, TNumericInputPreview,
+    TPickerInputPreview, TRadioGroupPreview, TRadioInputPreview,
+    TRangeDatePickerPreview,
+    TSwitchPreview,
+    TTabButtonPreview,
+    TTagPreview,
+    TTextAreaPreview,
+    TTextInputPreview,
+    TTextPreview,
+    TVerticalTabButtonPreview,
+} from './previewIds';
+import { TTheme } from '../types';
+
 /**
  * Keep in sync with app/src/documents/structureComponents.ts
  */
@@ -78,5 +101,38 @@ export enum TComponentId {
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.badge]: ('Colors' | 'Sizes with icon' | 'Sizes without icon')[],
+    [TComponentId.accordion]: TAccordionPreview[],
+    [TComponentId.alert]: TAlertPreview[],
+    [TComponentId.avatarStack]: TAvatarStackPreview[],
+    [TComponentId.badge]: TBadgePreview[],
+    [TComponentId.button]: TButtonPreview[],
+    [TComponentId.checkbox]: TCheckboxPreview[],
+    [TComponentId.countIndicator]: TCountIndicatorPreview[],
+    [TComponentId.datePicker]: TDatePickerPreview[],
+    [TComponentId.iconButton]: TIconButtonPreview[],
+    [TComponentId.linkButton]: TLinkButtonPreview[],
+    [TComponentId.pickerInput]: TPickerInputPreview[],
+    [TComponentId.rangeDatePicker]: TRangeDatePickerPreview[],
+    [TComponentId.switch]: TSwitchPreview[],
+    [TComponentId.tabButton]: TTabButtonPreview[],
+    [TComponentId.tag]: TTagPreview[],
+    [TComponentId.text]: TTextPreview[],
+    [TComponentId.textArea]: TTextAreaPreview[],
+    [TComponentId.textInput]: TTextInputPreview[],
+    [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
+    [TComponentId.numericInput]: TNumericInputPreview[],
+    [TComponentId.radioInput]: TRadioInputPreview[],
+    [TComponentId.radioGroup]: TRadioGroupPreview[],
+};
+
+export const THEMES = {
+    allExceptVanillaThunder: Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder),
+};
+
+/**
+ * Terminology is not perfect, but it's basically list of themes which support "isSkin=true" parameter
+ */
+export const SKINS = {
+    promo_loveship_electric: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark, TTheme.electric],
+    promo_loveship: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark],
 };

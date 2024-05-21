@@ -11,6 +11,7 @@ import {
     noteTypes,
 } from './plugins';
 import { createAutoformatPlugin } from './plugins/autoformatPlugin/autoformatPlugin';
+import { createEventEditorPlugin } from './plugins/eventEditorPlugin/eventEditorPlugin';
 
 const resetBlockTypesCommonRule = {
     types: [
@@ -50,4 +51,5 @@ export const defaultPlugins = [
     createResetNodePlugin(resetBlockTypePlugin),
     createSoftBreakPlugin(),
     createAutoformatPlugin(),
+    createEventEditorPlugin(),
 ];

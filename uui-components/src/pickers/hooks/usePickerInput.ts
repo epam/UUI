@@ -8,7 +8,6 @@ import { PickerBodyBaseProps } from '../PickerBodyBase';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { handleDataSourceKeyboard } from '../KeyboardUtils';
 import { i18n } from '../../i18n';
-import { getMaxItems } from '../helpers';
 import { usePicker } from './usePicker';
 import { usePickerInputState } from './usePickerInputState';
 import { UsePickerInputProps } from './types';
@@ -24,7 +23,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     ], []);
 
     const pickerInputState = usePickerInputState({
-        dataSourceState: { visibleCount: initialRowsVisible },
+        dataSourceState: { visibleCount: initialRowsVisible, checked: [] },
     });
 
     const {
@@ -122,7 +121,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         toggleDropdownOpening(false);
-        handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
+        handleDataSourceValueChange((currentState) => ({ ...currentState, search: '', selectedId: row.id }));
     };
 
     const getSearchPosition = () => {
@@ -239,6 +238,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         toggleBodyOpening(false);
     };
 
+    const openPickerBody = () => toggleBodyOpening(true);
+
     const getFooterProps = (): PickerFooterProps<TItem, TId> & { onClose: () => void } => {
         const footerProps = picker.getFooterProps();
         return {
@@ -262,12 +263,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
-    const selectedRows = useMemo(() => {
-        const selectedRowsCount = view.getSelectedRowsCount();
-        const allowedMaxItems = getMaxItems(props.maxItems);
-        const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        return getSelectedRows(itemsToTake);
-    }, [view, dataSourceState.checked, dataSourceState.selectedId, props.maxItems]);
+    const selectedRows = useMemo(() => getSelectedRows(view.getSelectedRowsCount()), [view, dataSourceState.checked]);
 
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
@@ -318,7 +314,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening,
-            closePickerBody: closePickerBody,
+            closePickerBody,
             rawProps: props.rawProps?.input,
             value: searchValue,
             cx: inputCx,
@@ -345,6 +341,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         handleDataSourceValueChange,
         handleSelectionValueChange,
         getSearchPosition,
+        closePickerBody,
+        openPickerBody,
         handlePickerInputKeyboard,
     };
 }

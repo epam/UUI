@@ -15,7 +15,9 @@ describe('IconButton', () => {
                 color="info"
                 onClick={ jest.fn }
                 icon={ CalendarIcon }
-                isDisabled={ false }
+                isDisabled={ true }
+                isOpen={ true }
+                showDropdownIcon={ true }
             />,
         );
         expect(tree).toMatchSnapshot();

@@ -18,20 +18,24 @@ export default function PickerTogglerTagDemoExample() {
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
+            selectAll: false,
         },
         [],
     );
 
     const renderTag = (props: PickerTogglerTagProps<Location, string>) => {
-        if (props.isCollapsed) {
-            // rendering '+ N items selected' Tag
-            return (
-                <PickerTogglerTag { ...props } key="selected" />
-            );
+        const { isCollapsed, rowProps } = props;
+
+        if (isCollapsed) {
+            // rendering '+ N items selected' Tag, tooltip is present here by default
+            return <PickerTogglerTag { ...props } key="collapsed" />;
         } else {
             // rendering all other Tags with Tooltip
+            const continent = rowProps?.value?.tz ? rowProps?.value?.tz.split('/')[0].concat('/') : '';
+            const country = rowProps?.value?.countryName ? rowProps?.value?.countryName.concat('/') : '';
+            const tooltipContent = `${continent}${country}${props.caption}`;
             return (
-                <Tooltip key={ props.rowProps?.id } content={ `${props.rowProps?.value?.tz}/${props.caption}` }>
+                <Tooltip key={ props.rowProps?.id } content={ tooltipContent }>
                     <PickerTogglerTag { ...props } />
                 </Tooltip>
             );

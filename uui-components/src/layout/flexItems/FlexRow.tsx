@@ -26,5 +26,3 @@ export const FlexRow = React.forwardRef<HTMLDivElement, FlexRowProps>((props, re
         {props.children}
     </div>
 ));
-
-FlexRow.displayName = 'FlexRow';

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import dayjs from 'dayjs';
+import { uuiDayjs } from '../../../../helpers';
 import { DataColumnProps, getSeparatedValue, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, BadgeProps } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
@@ -46,13 +46,13 @@ const personColumns: DataColumnProps<Person, number>[] = [
     }, {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.birthDate && <Text>{uuiDayjs.dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     }, {
         key: 'hireDate',
         caption: 'Hire date',
-        render: (p) => p?.hireDate && <Text>{dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.hireDate && <Text>{uuiDayjs.dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     },

@@ -1,8 +1,7 @@
-import * as types from '../../types';
 import * as uuiCore from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export interface RowMods extends Omit<uui.RowMods, 'spacing' | 'background'>, types.RowSizeMod {
+export interface RowMods extends Omit<uui.RowMods, 'spacing' | 'background'> {
     /**
      * @default 'none'
      */

@@ -17,7 +17,7 @@ export interface UseCheckingServiceProps<TItem, TId, TFilter = any> extends
     'getParentId' | 'dataSourceState' | 'setDataSourceState'
     | 'rowOptions' | 'getRowOptions' | 'cascadeSelection'
     >,
-    CascadeSelectionService<TId>,
+    CascadeSelectionService<TItem, TId>,
     GetItemStatus<TId> {
     /**
      * Tree-like data, selection should be performed on.
@@ -82,7 +82,7 @@ export function useCheckingService<TItem, TId>(
         cascadeSelection,
         getRowOptions,
         rowOptions,
-        handleCascadeSelection,
+        getCompleteTreeForCascadeSelection,
         getItemStatus,
     }: UseCheckingServiceProps<TItem, TId>,
 ): CheckingService<TItem, TId> {
@@ -153,23 +153,20 @@ export function useCheckingService<TItem, TId>(
     }, [tree, getItemStatus]);
 
     const handleCheck = useCallback(async (isChecked: boolean, checkedId?: TId, isRoot?: boolean) => {
-        let updatedChecked: TId[] = [];
-        if (handleCascadeSelection) {
-            updatedChecked = await handleCascadeSelection?.(isChecked, checkedId, isRoot, checked);
-        } else {
-            updatedChecked = CheckingHelper.cascadeSelection({
-                tree,
-                currentCheckedIds: checked,
+        const completeTree = await getCompleteTreeForCascadeSelection(checkedId, isChecked, isRoot);
+        setDataSourceState((dsState) => ({
+            ...dsState,
+            checked: CheckingHelper.cascadeSelection({
+                tree: completeTree,
+                currentCheckedIds: dsState.checked ?? [],
                 checkedId,
                 isChecked,
                 isCheckable: isItemCheckable,
                 isUnknown: isItemUnknown,
                 cascadeSelectionType: cascadeSelection,
-            });
-        }
-
-        setDataSourceState((dsState) => ({ ...dsState, checked: updatedChecked }));
-    }, [tree, checked, setDataSourceState, isItemCheckable, isItemUnknown, cascadeSelection]);
+            }),
+        }));
+    }, [getCompleteTreeForCascadeSelection, setDataSourceState, isItemCheckable, isItemUnknown, cascadeSelection]);
 
     const handleSelectAll = useCallback((isChecked: boolean) => {
         handleCheck(isChecked, undefined, true);

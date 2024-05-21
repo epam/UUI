@@ -52,6 +52,12 @@ export interface SelectionOptions<TItem, TId> {
     isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
 }
 
+export interface ClearAllOptions<TItem, TId> {
+    tree: ITree<TItem, TId>;
+    checkedIdsMap: CompositeKeysMap<TId, boolean> | Map<TId, boolean>;
+    isCheckable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean;
+}
+
 export interface LoadAllTreeOptions<TItem, TId, TFilter> extends Pick<LazyListViewProps<TItem, TId, TFilter>, 'api' | 'filter'> {}
 
 export interface LoadAllOptions<TItem, TId, TFilter = any> {
@@ -83,7 +89,6 @@ export interface LoadOptionsMissing<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
-    withNestedChildren: boolean;
 }
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
@@ -91,7 +96,6 @@ export interface LoadOptions<TItem, TId, TFilter = any> {
     options: LoadTreeOptions<TItem, TId, TFilter>;
     dataSourceState: Readonly<DataSourceState>;
     patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
-    withNestedChildren: boolean;
 }
 
 export interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, TFilter> {

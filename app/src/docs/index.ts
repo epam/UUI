@@ -56,7 +56,7 @@ export * from './RichTextEditor.doc';
 export * from './Form.doc';
 export * from './FileUpload.doc';
 export * from './Avatar.doc';
-export * from './AvatarStack.doc';
+export * from './avatarStack/AvatarStack.doc';
 export * from './PickerList.doc';
 export * from './VirtualList.doc';
 export * from './ProgressBar.doc';

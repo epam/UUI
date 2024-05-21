@@ -84,13 +84,13 @@
     }
 
     .uui-color-white {
-        --uui-color-5: var(--white);
-        --uui-color-10: var(--white);
-        --uui-color-20: var(--white);
-        --uui-color-50: var(--white);
-        --uui-color-60: var(--night100);
-        --uui-color-70: var(--night200);
-        --uui-color-contrast: var(--night800);
+        --uui-color-5: color-mix(in srgb, #FFFFFF 15%, transparent);
+        --uui-color-10: color-mix(in srgb, #FFFFFF 22%, transparent);
+        --uui-color-20: color-mix(in srgb, #FFFFFF 29%, transparent);
+        --uui-color-50: var(--uui-neutral-0);
+        --uui-color-60: var(--uui-neutral-10);
+        --uui-color-70: var(--uui-neutral-20);
+        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-color-night100 {
@@ -100,7 +100,7 @@
         --uui-color-50: var(--night100);
         --uui-color-60: var(--night200);
         --uui-color-70: var(--night300);
-        --uui-color-contrast: var(--uui-neutral-80);
+        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-color-night300 {
@@ -251,12 +251,28 @@
     /* Badge */
 
     .uui-badge.uui-color-white {
-        &.uui-fill-outline {
-            --uui-badge-bg-hover: var(--uui-neutral-10);
-            --uui-badge-border: var(--uui-neutral-30);
+        &.uui-fill-solid {
+            --uui-badge-bg-hover: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-30);
-            --uui-badge-caption: var(--uui-neutral-95);
+
+            .uui-count_indicator {
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
+        }
+
+        &.uui-fill-outline {
+            --uui-badge-bg: var(--uui-neutral-0);
+            --uui-badge-border: var(--uui-neutral-30);
+            --uui-badge-bg-hover: var(--uui-neutral-10);
+            --uui-badge-border-hover: var(--uui-neutral-30);
+            --uui-badge-caption: var(--uui-neutral-80);
             --uui-badge-caption-hover: var(--uui-neutral-80);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
         }
     }
 
@@ -269,6 +285,11 @@
             --uui-badge-border: var(--uui-neutral-30);
             --uui-badge-border-hover: var(--uui-neutral-40);
             --uui-color-contrast: var(--uui-neutral-80);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: var(--uui-neutral-0);
+                --uui-count_indicator-border: var(--uui-neutral-0);
+            }
         }
 
         &.uui-fill-outline {
@@ -283,6 +304,10 @@
         &.uui-fill-solid {
             --uui-badge-bg-hover: var(--uui-neutral-20);
             --uui-badge-border-hover: var(--uui-neutral-20);
+
+            .uui-count_indicator {
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
         }
 
         &.uui-fill-outline {
@@ -292,6 +317,12 @@
             --uui-badge-border-hover: var(--uui-neutral-30);
             --uui-badge-caption: var(--uui-neutral-95);
             --uui-badge-caption-hover: var(--uui-neutral-80);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-badge-caption) 8%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--uui-badge-caption) 40%, transparent);
+                --uui-count_indicator-caption: var(--uui-neutral-80);
+            }
         }
     }
 
@@ -332,6 +363,13 @@
         --uui-link_btn-text: var(--uui-neutral-5);
         --uui-link_btn-text-hover: var(--uui-neutral-10);
         --uui-link_btn-text-active: var(--uui-neutral-20);
+    }
+
+    .uui-link_button.uui-color-white {
+        --uui-link_btn-text: var(--uui-neutral-5);
+        --uui-link_btn-text-hover: var(--uui-neutral-30);
+        --uui-link_btn-text-active: var(--uui-neutral-40);
+        --uui-link_btn-text-disabled: color-mix(in srgb, var(--white) 40%, transparent);
     }
 
     /* CountIndicator */
@@ -393,9 +431,10 @@
             }
 
             &.uui-fill-outline {
+                --uui-tag-bg: var(--uui-neutral-0);
                 --uui-tag-border: var(--uui-neutral-30);
-                --uui-tag-border-hover: var(--uui-neutral-30);
                 --uui-tag-bg-hover: var(--uui-neutral-10);
+                --uui-tag-border-hover: var(--uui-neutral-30);
 
                 .uui-count_indicator {
                     --uui-count_indicator-bg: var(--uui-neutral-30);

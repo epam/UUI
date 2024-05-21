@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, devLogger, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
+    DropdownBodyProps, IDropdownToggler, cx, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
 } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 import { DatePickerProps } from './types';
 import {
     defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
 import { DatePickerBody } from './DatePickerBody';
-
-dayjs.extend(customParseFormat);
 
 const defaultMode = EditMode.FORM;
 const modifiers = [{
@@ -65,17 +61,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     };
 
     const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
-        if (__DEV__) {
-            if (props.size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<DatePickerProps, 'size'>({
-                    component: 'DatePicker',
-                    propName: 'size',
-                    propValue: props.size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(props.size || '') !== -1,
-                });
-            }
-        }
+        const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
                 { ...renderProps }
@@ -91,11 +77,11 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 onValueChange={ (v) => {
                     setInputValue(v || '');
                 } }
-                onCancel={ () => {
+                onCancel={ allowClear ? () => {
                     if (!props.disableClear && !!inputValue) {
                         onValueChange(null);
                     }
-                } }
+                } : undefined }
                 isInvalid={ props.isInvalid }
                 isDisabled={ props.isDisabled }
                 isReadonly={ props.isReadonly }

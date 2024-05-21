@@ -14,6 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
+import { TBadgePreview } from './_types/previewIds';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
@@ -26,17 +27,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 type: '@epam/uui:BadgeProps',
                 component: uui.Badge,
             },
-            [TSkin.Loveship]: {
-                type: '@epam/loveship:BadgeProps',
-                component: loveship.Badge,
-                doc: (doc: DocBuilder<loveship.BadgeProps>) => {
-                    doc.setDefaultPropExample('shape', ({ value }) => value === 'round');
-                },
-                preview: (docPreview: DocPreviewBuilder<loveship.BadgeProps>) => {
-                    docPreview.update('Sizes with icon', (prev) => ({ shape: { examples: '*' }, ...prev }));
-                    docPreview.update('Sizes without icon', (prev) => ({ shape: { examples: '*' }, ...prev }));
-                },
-            },
+            [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
             [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
             [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
@@ -58,7 +49,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 count: 123,
             };
             docPreview.add({
-                id: 'Colors',
+                id: TBadgePreview.Colors,
                 matrix: {
                     caption: { values: [TEST_DATA.caption] },
                     isDropdown: { values: [true] },
@@ -70,7 +61,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 cellSize: '150-50',
             });
             docPreview.add({
-                id: 'Sizes without icon',
+                id: TBadgePreview['Sizes without icon'],
                 matrix: {
                     icon: { examples: [undefined] },
                     caption: { values: [TEST_DATA.caption] },
@@ -80,10 +71,10 @@ export class BadgeDoc extends BaseDocsBlock {
                     isDropdown: { examples: '*' },
 
                 },
-                cellSize: '150-60',
+                cellSize: '140-60',
             });
             docPreview.add({
-                id: 'Sizes with icon',
+                id: TBadgePreview['Sizes with icon'],
                 matrix: {
                     icon: { examples: [TEST_DATA.icon] },
                     caption: { values: [TEST_DATA.caption] },
@@ -93,7 +84,7 @@ export class BadgeDoc extends BaseDocsBlock {
                     isDropdown: { examples: '*' },
                     iconPosition: { examples: '*' },
                 },
-                cellSize: '180-60',
+                cellSize: '170-60',
             });
         },
     };
