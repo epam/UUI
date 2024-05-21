@@ -462,11 +462,25 @@
         --uui-link_btn-text-active: var(--uui-neutral-10);
     }
 
+    .uui-link_button:is(.uui-color-primary, .uui-color-sky, .uui-color-secondary, .uui-color-accent, .uui-color-grass, .uui-color-critical, .uui-color-fire) {
+        --uui-link_btn-text-disabled: var(--uui-neutral-40);
+    }
+
     .uui-link_button.uui-color-primary,
     .uui-link_button.uui-color-sky {
         --uui-link_btn-text: var(--uui-color-60);
         --uui-link_btn-text-hover: var(--uui-color-70);
-        --uui-link_btn-text-disabled: var(--uui-text-disabled);
+    }
+
+    .uui-link_button.uui-color-secondary {
+        --uui-link_btn-text: var(--uui-neutral-30);
+        --uui-link_btn-text-hover: var(--uui-neutral-20);
+        --uui-link_btn-text-active: var(--uui-neutral-10);
+    }
+
+    .uui-link_button.uui-color-white {
+        --uui-link_btn-text: var(--uui-neutral-5);
+        --uui-link_btn-text-disabled: color-mix(in srgb, var(--white) 40%, transparent);
     }
 
     /*  TubButton */
