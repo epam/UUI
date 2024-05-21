@@ -75,35 +75,32 @@ export enum TVerticalTabButtonPreview {
 }
 
 export enum TPickerInputPreview {
-    /* FORM */
+    // FORM
     'Form SingleSelect'= 'Form SingleSelect',
     'Form SingleSelect States'= 'Form SingleSelect States',
     'Form MultiSelect'= 'Form MultiSelect',
     'Form MultiSelect States'= 'Form MultiSelect States',
     'Form MultiSelect Multiline'= 'Form MultiSelect Multiline',
     'Form MultiSelect Multiline States'= 'Form MultiSelect Multiline States',
-    /* FORM OPENED */
+    // FORM OPENED
     'Form Opened SingleSelect' = 'Form Opened SingleSelect',
     'Form Opened MultiSelect' = 'Form Opened MultiSelect',
     'Form Opened SingleSelect Tree' = 'Form Opened SingleSelect Tree',
     'Form Opened MultiSelect Tree' = 'Form Opened MultiSelect Tree',
-
-    /* INLINE */
+    // INLINE
     'Inline SingleSelect'= 'Inline SingleSelect',
     'Inline SingleSelect States'= 'Inline SingleSelect States',
     'Inline MultiSelect'= 'Inline MultiSelect',
     'Inline MultiSelect States'= 'Inline MultiSelect States',
     'Inline MultiSelect Multiline'= 'Inline MultiSelect Multiline',
     'Inline MultiSelect Multiline States'= 'Inline MultiSelect Multiline States',
-
-    /* CELL */
+    // CELL
     'Cell SingleSelect'= 'Cell SingleSelect',
     'Cell SingleSelect States'= 'Cell SingleSelect States',
     'Cell MultiSelect'= 'Cell MultiSelect',
     'Cell MultiSelect States'= 'Cell MultiSelect States',
     'Cell MultiSelect Multiline'= 'Cell MultiSelect Multiline',
     'Cell MultiSelect Multiline States'= 'Cell MultiSelect Multiline States'
-
 }
 
 export enum TDatePickerPreview {
@@ -121,4 +118,31 @@ export enum TRangeDatePickerPreview {
     'Basic States' = 'Basic States',
     'Opened' = 'Opened',
     'Opened With Presets' = 'Opened With Presets'
+}
+
+export enum TTextAreaPreview {
+    Sizes = 'Sizes',
+    States = 'States'
+}
+
+export enum TTextPreview {
+    'Sizes'= 'Sizes',
+    'Font'= 'Font',
+    'Line Height' = 'Line Height',
+    Colors = 'Colors'
+}
+
+export enum TNumericInputPreview {
+    Sizes = 'Sizes',
+    States = 'States'
+}
+
+export enum TRadioInputPreview {
+    'Size Variants' = 'Size Variants',
+    'Color Variants' = 'Color Variants'
+}
+
+export enum TRadioGroupPreview {
+    'Size Variants' = 'Size Variants',
+    'Color Variants' = 'Color Variants'
 }

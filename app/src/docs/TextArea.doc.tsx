@@ -3,8 +3,17 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize,
+    TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { TTextAreaPreview } from './_types/previewIds';
 
 export class TextAreaDoc extends BaseDocsBlock {
     title = 'TextArea';
@@ -22,6 +31,40 @@ export class TextAreaDoc extends BaseDocsBlock {
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('rows', { examples: [1, 10, 20, 30] });
             doc.merge('maxLength', { examples: [5, 30, 50, 120] });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.TextAreaProps>) => {
+            const TEST_DATA = {
+                value: 'Test 1\nTest 2',
+                placeholder: 'Test placeholder',
+            };
+            type TMatrixLocal = TPreviewMatrix<uui.TextAreaProps>;
+            const w210_h90: TPreviewCellSize = '210-90';
+            const w210_h70: TPreviewCellSize = '210-70';
+
+            const baseMatrix: TMatrixLocal = {
+                value: { values: [TEST_DATA.value, undefined] },
+                placeholder: { values: [undefined, TEST_DATA.placeholder], condition: (props) => !props.value },
+                mode: { values: ['form', 'inline', 'cell'] },
+                maxLength: { values: [undefined] },
+                autoSize: { values: [false, true] },
+            };
+            const statesBaseMatrix: TMatrixLocal = {
+                isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
+
+            docPreview.add(TTextAreaPreview.Sizes, { ...baseMatrix, size: { examples: '*' } }, w210_h90);
+            docPreview.add(
+                TTextAreaPreview.States,
+                {
+                    ...baseMatrix,
+                    size: { values: ['36'] },
+                    autoSize: { values: [false] },
+                    ...statesBaseMatrix,
+                },
+                w210_h70,
+            );
         },
     };
 
