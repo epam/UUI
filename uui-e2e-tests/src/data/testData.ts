@@ -7,7 +7,7 @@ import {
     TCheckboxPreview,
     TCountIndicatorPreview,
     TDatePickerPreview,
-    TIconButtonPreview,
+    TIconButtonPreview, TLabeledInputPreview,
     TLinkButtonPreview, TNumericInputPreview,
     TPickerInputPreview, TRadioGroupPreview, TRadioInputPreview,
     TRangeDatePickerPreview,
@@ -123,6 +123,7 @@ export type TPreviewIdByComponentId = {
     [TComponentId.numericInput]: TNumericInputPreview[],
     [TComponentId.radioInput]: TRadioInputPreview[],
     [TComponentId.radioGroup]: TRadioGroupPreview[],
+    [TComponentId.labeledInput]: TLabeledInputPreview[],
 };
 
 export const THEMES = {

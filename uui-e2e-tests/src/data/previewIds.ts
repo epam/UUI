@@ -146,3 +146,9 @@ export enum TRadioGroupPreview {
     'Size Variants' = 'Size Variants',
     'Color Variants' = 'Color Variants'
 }
+
+export enum TLabeledInputPreview {
+    'State Variants Label Top'= 'State Variants Label Top',
+    'State Variants Label Left'= 'State Variants Label Left',
+    'Size Variants'= 'Size Variants'
+}
