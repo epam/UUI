@@ -11,6 +11,7 @@ export interface IImageElement extends TElement {
     width?: number;
     align?: PlateImgAlign;
     data?: {
+        src?: string;
         size?: SlateImageSize;
         align?: SlateImgAlign;
         version?: string;
