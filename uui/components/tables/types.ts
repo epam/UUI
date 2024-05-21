@@ -23,16 +23,36 @@ interface TableSizesAndPositionMods {
 
 export interface DataTableRowMods extends TableSizesAndPositionMods {
     borderBottom?: any;
+    /**
+     * Defines columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
 
 export interface DataTableCellMods extends TableSizesAndPositionMods {
     border?: boolean;
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
 
 export interface DataTableHeaderCellMods extends BaseRowMods {
     textCase?: 'upper' | 'normal';
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
 
 export interface DataTableHeaderRowMods extends BaseRowMods {
     textCase?: 'upper' | 'normal';
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
