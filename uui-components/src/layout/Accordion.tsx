@@ -5,7 +5,7 @@ import {
 import { IconContainer } from './IconContainer';
 import css from './Accordion.module.scss';
 
-export interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Accordion title */
     title?: string | React.ReactElement;
     /** Overrides default title rendering. */

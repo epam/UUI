@@ -41861,160 +41861,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:GeneralAccordionProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "GeneralAccordionProps",
-     "nameFull": "GeneralAccordionProps"
-    },
-    "src": "uui-components/src/layout/Accordion.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "GeneralAccordionProps",
-     "print": [
-      "interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    /** Accordion title */",
-      "    title?: string | React.ReactElement;",
-      "    /** Overrides default title rendering. */",
-      "    renderTitle?: (isOpen: boolean) => React.ReactElement;",
-      "    /** Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely */",
-      "    dropdownIcon?: Icon | null;",
-      "    /** Renders additional items to component's header (after the title, and before the folding icon) */",
-      "    renderAdditionalItems?: (isOpen: boolean) => React.ReactNode;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "title",
-      "name": "title",
-      "comment": {
-       "raw": [
-        "Accordion title"
-       ]
-      },
-      "typeValue": {
-       "raw": "string | React.ReactElement<any, string | React.JSXElementConstructor<any>>"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderTitle",
-      "name": "renderTitle",
-      "comment": {
-       "raw": [
-        "Overrides default title rendering."
-       ]
-      },
-      "typeValue": {
-       "raw": "(isOpen: boolean) => React.ReactElement<any, string | React.JSXElementConstructor<any>>"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderAdditionalItems",
-      "name": "renderAdditionalItems",
-      "comment": {
-       "raw": [
-        "Renders additional items to component's header (after the title, and before the folding icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(isOpen: boolean) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:HeaderCellContentProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -64829,6 +64675,17 @@
      "nameFull": "DropSpotState"
     },
     "src": "uui-components/src/widgets/DropSpot.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui-components:GeneralAccordionProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "GeneralAccordionProps",
+     "nameFull": "GeneralAccordionProps"
+    },
+    "src": "uui-components/src/layout/Accordion.tsx",
     "exported": false
    }
   },
