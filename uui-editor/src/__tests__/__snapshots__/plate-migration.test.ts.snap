@@ -399,7 +399,7 @@ Array [
       "size": 77236,
       "src": "/static/uploads/blue-orange.jpg",
       "type": "image",
-      "version": "1.0.1",
+      "version": "5.7.3",
     },
     "type": "image",
     "url": "/static/uploads/blue-orange.jpg",
@@ -768,7 +768,7 @@ Array [
       161,
     ],
     "data": Object {
-      "version": "1.0.1",
+      "version": "5.7.3",
     },
     "type": "table",
   },

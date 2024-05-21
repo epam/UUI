@@ -1,4 +1,4 @@
-export * from './SlateEditor';
+export { basePlugins, SlateEditor } from './SlateEditor';
 export * from './defaultPlugins';
 export * from './plugins';
 export * from './types';
