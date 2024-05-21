@@ -21,7 +21,7 @@ import {
     codeBlockPlugin,
 } from '../plugins';
 import { defaultPlugins } from '../defaultPlugins';
-import { createPlateEditor } from '@udecode/plate-core';
+import { createPlateEditor, PlatePlugin } from '@udecode/plate-core';
 import { createTempEditor } from '../helpers';
 import { expectedSlateValue, inputMarkdowValue, editorValueMock } from './data/md-serialization';
 
@@ -35,9 +35,9 @@ export const createClipboardData = (html: string, rtf?: string): DataTransfer =>
         getData: (format: string) => (format === 'text/html' ? html : rtf),
     } as any);
 
-const plugins = [
+const plugins: PlatePlugin[] = [
+    ...baseMarksPlugin(),
     ...defaultPlugins,
-    baseMarksPlugin(),
     headerPlugin(),
     colorPlugin(),
     superscriptPlugin(),

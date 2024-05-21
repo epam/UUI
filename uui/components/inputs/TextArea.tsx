@@ -1,4 +1,4 @@
-import { devLogger, Overwrite, withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps as uuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
 import css from './TextArea.module.scss';
@@ -10,9 +10,8 @@ type TextAreaMods = types.IHasEditMode & {
     /**
      * Defines component size.
      * @default '36'
-     * Size '48' is deprecated, and will be removed in future release
      */
-    size?: types.ControlSize;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 export interface TextAreaModsOverride {}
@@ -32,15 +31,6 @@ export const TextArea = withMods<uuiTextAreaProps, TextAreaProps>(
     uuiTextArea,
     applyTextAreaMods,
     (props) => {
-        if (__DEV__) {
-            devLogger.warnAboutDeprecatedPropValue<TextAreaProps, 'size'>({
-                component: 'TextArea',
-                propName: 'size',
-                propValue: '48',
-                propValueUseInstead: '42',
-                condition: () => props.size === '48',
-            });
-        }
         return {
             autoSize: props.mode === types.EditMode.CELL ? true : props.autoSize,
             maxLength: props.mode === types.EditMode.CELL ? undefined : props.maxLength,

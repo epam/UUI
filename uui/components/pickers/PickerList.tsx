@@ -53,7 +53,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
             })
             .catch(() => {});
     };
-    
+
     const defaultRenderToggler = (props: IClickable) => <LinkButton caption="Show all" { ...props } />;
 
     const viewProps = view.getListProps();

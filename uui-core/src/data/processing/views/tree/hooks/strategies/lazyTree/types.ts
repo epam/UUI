@@ -6,7 +6,7 @@ export type LazyTreeProps<TItem, TId, TFilter> =
     CommonTreeConfig<TItem, TId, TFilter>
     & PatchOptions<TItem, TId>
     & SharedItemsState<TItem, TId>
-    & ItemsStatuses<TId>
+    & ItemsStatuses<TItem, TId, TFilter>
     & LazyDataSourceConfig<TItem, TId, TFilter>
     & {
 

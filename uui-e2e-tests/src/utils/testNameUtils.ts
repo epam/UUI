@@ -1,33 +1,19 @@
 import { PreviewPageParams } from '../types';
 
-export function createUniqueTestName(
-    params: { runId?: string, pageParams: PreviewPageParams },
-) {
+export function createUniqueTestName(pageParams: PreviewPageParams) {
     const {
-        runId = '',
-        pageParams: {
-            isSkin,
-            theme,
-            componentId,
-            previewId,
-        },
-    } = params;
+        isSkin,
+        theme,
+        componentId,
+        previewId,
+    } = pageParams;
 
     return [
-        runId,
         componentId,
         previewId,
         theme,
         (isSkin ? 'skin' : 'notSkin'),
-    ].filter((i) => !!i).map((i) => normalizeNameToken(i)).join(' | ');
-}
-
-export function testNameToFileName(testName: string) {
-    return testName.replaceAll(' | ', '-');
-}
-
-export function fileNameToTestName(fileNameNoExt: string) {
-    return fileNameNoExt.replaceAll('-', ' | ');
+    ].filter((i) => !!i).map((i) => normalizeNameToken(i)).join('-');
 }
 
 function normalizeNameToken(s: string) {

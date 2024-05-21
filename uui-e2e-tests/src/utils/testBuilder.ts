@@ -1,78 +1,83 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
-import { PreviewPageParams, ScreenshotTestParamsSingle, TMatrix, TMatrixMinimal, TTheme } from '../types';
-import { TComponentId, TPreviewIdByComponentId } from '../data/testData';
-import { testNameToFileName, createUniqueTestName } from './testNameUtils';
-import { Ctx } from './ctx';
+import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TTheme } from '../types';
+import { TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
+import { createUniqueTestName } from './testNameUtils';
+import { TestBuilderContext } from './testBuilderContext';
 import { screenshotsDirAbsPath } from '../../playwright.config';
-import { PreviewPage } from '../pages/previewPage';
 
 export class TestBuilder {
-    private cfgByComponent: Map<TComponentId, TMatrix[]> = new Map();
+    private cfgByComponent: Map<TComponentId, TMatrixFull[]> = new Map();
+
+    only<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>): TestBuilder {
+        return this._add(cid, matrix, true);
+    }
 
     /**
      * @param cid
      * @param matrix
      */
-    add<PComp extends keyof TPreviewIdByComponentId>(cid: PComp, matrix: TMatrixMinimal<TPreviewIdByComponentId[typeof cid]>) {
-        type TPreviewsArr = TPreviewIdByComponentId[typeof cid];
-        let prev = this.cfgByComponent.get(cid);
-        if (!prev) {
-            prev = [];
-            this.cfgByComponent.set(cid, prev);
-        }
-        const theme = matrix.theme === undefined
-            ? Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder)
-            : matrix.theme;
-        const isSkin = matrix.isSkin === undefined ? [true, false] : matrix.isSkin;
-        const onBeforeExpect = matrix.onBeforeExpect === undefined ? async () => {} : matrix.onBeforeExpect;
-        const matrixFull: TMatrix<TPreviewsArr> = {
-            ...matrix,
-            isSkin,
-            theme,
-            onBeforeExpect,
-        };
-        prev!.push(matrixFull);
+    add<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>): TestBuilder {
+        return this._add(cid, matrix, false);
+    }
+
+    private _add<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>, only: boolean) {
+        const prev = this.cfgByComponent.get(cid) || [];
+        prev.push({ ...(matrix as TMatrixMinimal), only });
+        this.cfgByComponent.set(cid, prev);
         return this;
     }
 
-    buildTests(params?: { runId?: string }) {
-        const ctx: Ctx = new Ctx(screenshotsDirAbsPath);
-
-        const runId = params?.runId;
+    buildTests() {
+        const ctx: TestBuilderContext = new TestBuilderContext(screenshotsDirAbsPath);
         this.cfgByComponent.forEach((matrixArr, componentId) => {
             matrixArr.forEach((matrix) => {
-                createTestsForSingleComponentId({ runId, componentId, matrix }, ctx);
+                createTestsForSingleComponentId({ componentId, matrix }, ctx);
             });
         });
-
-        ctx.reportUnusedScreenshots();
+        ctx.reportIssues();
     }
 }
 
-function createTestsForSingleComponentId(builderParams: ScreenshotTestParamsSingle, ctx: Ctx) {
-    const { componentId, matrix, runId } = builderParams;
-    matrix.theme.forEach((theme) => {
-        matrix.isSkin.forEach((isSkin) => {
+function createTestsForSingleComponentId(builderParams: { componentId: TComponentId; matrix: TMatrixFull }, ctx: TestBuilderContext) {
+    const { componentId, matrix } = builderParams;
+    const themeArr = matrix.theme || THEMES.allExceptVanillaThunder;
+    const supportedSkins = matrix.skins || [];
+    themeArr.forEach((theme: TTheme) => {
+        testAllPreviews({ isSkin: false });
+        const shouldTestSkin = supportedSkins.some((skin) => skin === theme);
+        if (shouldTestSkin) {
+            testAllPreviews({ isSkin: true });
+        }
+        function testAllPreviews(params: { isSkin: boolean }) {
             matrix.previewId.forEach((previewId) => {
-                const pageParams = { theme, isSkin, previewId, componentId };
-                const testName = createUniqueTestName({ runId, pageParams });
-                const screenshotName = testNameToFileName(testName);
-                ctx.seen(testName);
-                testScreenshot({ pageParams, testName, screenshotName: `${screenshotName}.png`, onBeforeExpect: matrix.onBeforeExpect });
+                const pageParams = { theme, isSkin: params.isSkin, previewId, componentId };
+                const testName = createUniqueTestName(pageParams);
+                ctx.seen(testName, matrix.onlyChromium);
+                if (ctx.isDryRun()) {
+                    return;
+                }
+                const screenshotName = `${testName}.png`;
+                if (ctx.shouldSkipTest(testName)) {
+                    return;
+                }
+                const testFn = matrix.only ? test.only : test;
+                testFn(testName, async ({ previewPage, browserName }) => {
+                    if (matrix.onlyChromium) {
+                        test.skip(browserName !== TEngine.chromium, `This test is "${TEngine.chromium}"-only`);
+                    }
+                    await previewPage.editPreview(pageParams);
+                    if (matrix.onBeforeExpect) {
+                        await matrix.onBeforeExpect({ previewPage, previewId });
+                    }
+                    if (matrix.focusFirstElement) {
+                        const sel = matrix.focusFirstElement({ previewId });
+                        typeof sel === 'string' && await previewPage.focusElement(sel);
+                    }
+                    const opts = await previewPage.getScreenshotOptions();
+                    await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
+                });
             });
-        });
-    });
-}
-
-function testScreenshot(
-    params: { pageParams: PreviewPageParams, testName: string, screenshotName: string, onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void> },
-) {
-    const { pageParams, testName, screenshotName, onBeforeExpect } = params;
-    test(testName, async ({ previewPage }) => {
-        await previewPage.editPreview(pageParams);
-        await onBeforeExpect({ previewPage });
-        const opts = await previewPage.getScreenshotOptions();
-        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
+        }
     });
 }

@@ -19,7 +19,8 @@
     "generate-theme-tokens": "yarn --cwd uui-build generate-theme-tokens",
     "generate-theme-mixins": "yarn --cwd uui-build generate-theme-mixins",
     "lint-staged": "cross-env LINT_STAGED=true npx lint-staged",
-    "next:dev": "cd ./next-app && yarn && node ../uui-build/scripts/runNextApp.js && yarn dev",
+    "next-app:dev": "cd ./next-demo/next-app && yarn && node ../../uui-build/scripts/runNextApp.js && yarn dev",
+    "next-pages:dev": "cd ./next-demo/next-pages && yarn && node ../../uui-build/scripts/runNextApp.js && yarn dev",
     "postinstall": "cd server && yarn",
     "prepare": "husky install",
     "process-icons": "node uui-build/scripts/processIcons.js icons",
@@ -36,8 +37,9 @@
     "test-typecheck": "tsc --project ./tsconfig.test.json",
     "test-update": "yarn test --updateSnapshot",
     "test-e2e": "yarn --cwd uui-e2e-tests test-e2e",
+    "test-e2e-chromium": "yarn --cwd uui-e2e-tests test-e2e-chromium",
     "test-e2e-update": "yarn --cwd uui-e2e-tests test-e2e-update",
-    "test-e2e-report": "yarn --cwd uui-e2e-tests test-e2e-report",
+    "test-e2e-open-report": "yarn --cwd uui-e2e-tests test-e2e-open-report",
     "track-bundle-size": "yarn --cwd uui-build track-bundle-size",
     "track-bundle-size-override": "yarn track-bundle-size --override-baseline"
   },
@@ -72,7 +74,8 @@
   "resolutions": {
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
-    "@types/history": "4.7.11"
+    "@types/history": "4.7.11",
+    "@types/node": "18.19.31"
   },
   "devDependencies": {
     "@types/node": "18.19.31",
@@ -80,8 +83,8 @@
     "husky": "8.0.3",
     "lerna": "5.6.2",
     "lint-staged": "12.5.0",
+    "postcss-scss": "^4.0.6",
     "tslib": "^2.6.2",
-    "typedoc": "0.17.4",
-    "postcss-scss": "^4.0.6"
+    "typedoc": "0.17.4"
   }
 }

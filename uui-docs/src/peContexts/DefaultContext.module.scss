@@ -1,5 +1,6 @@
 .root {
     display: flex;
+    padding: 4px;
 
     &:not(.preview) {
         margin: 24px;

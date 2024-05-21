@@ -1,15 +1,20 @@
-import { spawnProcessSync, hasCliArg } from '../cliUtils';
+import { spawnProcessSync } from '../cliUtils';
 import {
-    CLI_ARGS,
     DOCKER_CONTAINER_NAME,
     DOCKER_FILES,
-    DOCKER_IMAGE_TAGS,
+    DOCKER_IMAGE_TAGS, ENV_UUI_PARAMS,
     YARN_TASKS,
 } from '../constants';
 import { currentMachineIpv4 } from '../ipUtils';
 import { getContainerEngineCmd } from '../containerEngineUtils';
+import { readUuiSpecificEnvVariables } from '../envParamUtils';
 
 const CONTAINER_ENGINE_CMD = getContainerEngineCmd();
+const {
+    UUI_TEST_PARAM_ONLY_FAILED,
+    UUI_TEST_PARAM_PROJECT,
+    UUI_TEST_PARAM_UPDATE_SNAPSHOTS,
+} = readUuiSpecificEnvVariables();
 
 main();
 
@@ -34,7 +39,8 @@ function main() {
         ],
         exitOnErr: false,
     });
-    const updateSnapshots = hasCliArg(CLI_ARGS.PW_DOCKER_UPDATE_SNAPSHOTS);
+
+    const npmTaskName = resolvePwInDockerTaskName();
     spawnProcessSync({
         cmd: CONTAINER_ENGINE_CMD,
         args: [
@@ -49,13 +55,30 @@ function main() {
             '--ipc',
             'host',
             ...getVolumesMapArgs(),
-            '-e',
-            `UUI_DOCKER_HOST_MACHINE_IP=${currentMachineIpv4}`,
+            ...getEnvParamsForDocker(),
             DOCKER_IMAGE_TAGS.TEST,
-            updateSnapshots ? YARN_TASKS.DOCKER_TEST_E2E_UPDATE : YARN_TASKS.DOCKER_TEST_E2E,
+            npmTaskName,
         ],
         exitOnErr: true,
     });
+}
+
+function resolvePwInDockerTaskName() {
+    if (UUI_TEST_PARAM_UPDATE_SNAPSHOTS) {
+        return YARN_TASKS.DOCKER_TEST_E2E_UPDATE;
+    }
+    return YARN_TASKS.DOCKER_TEST_E2E;
+}
+
+function getEnvParamsForDocker(): string[] {
+    const env = ['-e', `${ENV_UUI_PARAMS.UUI_DOCKER_HOST_MACHINE_IP}=${currentMachineIpv4}`];
+    if (UUI_TEST_PARAM_PROJECT) {
+        env.push('-e', `${ENV_UUI_PARAMS.UUI_TEST_PARAM_PROJECT}=${UUI_TEST_PARAM_PROJECT}`);
+    }
+    if (UUI_TEST_PARAM_ONLY_FAILED) {
+        env.push('-e', `${ENV_UUI_PARAMS.UUI_TEST_PARAM_ONLY_FAILED}=true`);
+    }
+    return env;
 }
 
 function getVolumesMapArgs() {
@@ -65,7 +88,7 @@ function getVolumesMapArgs() {
         './src',
         './tests',
         './playwright.config.ts',
-        './.env.docker',
+        './.env',
         './tsconfig.json',
     ].reduce<string[]>((acc, from) => {
         const to = `/app/${from.replace('./', '')}`;

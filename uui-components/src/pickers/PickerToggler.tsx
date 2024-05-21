@@ -14,6 +14,11 @@ export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, 
     isCollapsed?: boolean;
     /** Call to clear a value */
     onClear?(e?: any): void;
+    /**
+     * The array of rows that are folded in the 'collapsed button'
+     * (only in selectionMode='multi' with maxItems property, in other ways it's an empty array)
+     */
+    collapsedRows?: DataRowProps<TItem, TId>[];
 }
 
 export interface PickerTogglerProps<TItem = any, TId = any>
@@ -114,8 +119,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         const maxItems = getMaxItems(props.maxItems);
         const isPickerDisabled = props.isDisabled || props.isReadonly;
         let areAllDisabled = isPickerDisabled;
+        const displayedRows = props.selectedRowsCount > maxItems ? props.selection.slice(0, maxItems) : props.selection;
+        const collapsedRows = props.selection?.slice(maxItems);
 
-        const tags = props.selection?.map((row) => {
+        const tags = displayedRows?.map((row) => {
             if (!isPickerDisabled && !row.isDisabled) {
                 areAllDisabled = false;
             }
@@ -123,7 +130,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             const tagProps = {
                 key: row?.id as string,
                 rowProps: row,
-                caption: props.getName(row.value),
+                caption: row.isLoading ? null : props.getName(row.value),
                 isCollapsed: false,
                 isDisabled: isPickerDisabled || row.isDisabled,
                 onClear: () => {
@@ -139,10 +146,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.selectedRowsCount > maxItems) {
             const collapsedTagProps = props.renderItem?.({
                 key: 'collapsed',
-                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, props.entityName || ''),
+                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, ''),
                 isCollapsed: true,
                 isDisabled: areAllDisabled,
                 onClear: null,
+                collapsedRows,
             } as any);
             tags.push(collapsedTagProps);
         }
@@ -191,11 +199,16 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e)) return;
-        e.preventDefault();
-        if (inFocus && props.value && props.minCharsToSearch) return;
+    const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
+        const isInteractionDisabled = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
+        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && props.minCharsToSearch);
+        const isPickerOpenWithSearchInInput = (props.isOpen && props.searchPosition === 'input' && (e.target as HTMLInputElement).tagName === 'INPUT');
+        return !(isInteractionDisabled || shouldOpenWithMinCharsToSearch || isPickerOpenWithSearchInInput);
+    };
 
+    const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        if (!shouldToggleBody(e)) return;
         toggleContainer.current.focus();
         props.onClick?.();
     };

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement, uuiMarkers,
+    Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement, uuiMarkers,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
@@ -44,11 +44,6 @@ export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
     clearIcon?: Icon;
-    /**
-     * CSS classes to put on the caption
-     * @deprecated
-     * */
-    captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
@@ -69,10 +64,6 @@ function applyTagMods(props: TagProps) {
 }
 
 export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TagProps>((props, ref) => {
-    if (__DEV__ && props.captionCX) {
-        devLogger.warn('Tag: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
-    }
-
     const styles = [applyTagMods(props), props.cx];
 
     const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
@@ -96,7 +87,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
                 />
             ) }
             { props.caption && (
-                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ uuiElement.caption }>
                     { props.caption }
                 </div>
             ) }

@@ -21,7 +21,6 @@
         "text": " "
       },
       {
-        "text": "progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known.",
         "font-size": "12pt",
         "font-family": null,
         "background-color": null,
@@ -32,7 +31,8 @@
         "vertical-align": "baseline",
         "white-space": "pre-wrap",
         "": null,
-        "uui-richTextEditor-span-mark": true
+        "uui-richTextEditor-span-mark": true,
+        "text": "progress by animating an indicator along the length of a fixed, visible track. The behavior of the indicator is dependent on whether the progress of a process is known."
       }
     ]
   },

@@ -1,22 +1,22 @@
 import {
-    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasForwardedRef, IHasPlaceholder, IHasRawProps,
+    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasPlaceholder, IHasRawProps,
 } from '@epam/uui-core';
-import { IHasEditMode, SizeMod } from '../types';
+import { IHasEditMode } from '../types';
 import { ReactElement, ReactNode } from 'react';
 import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
-import { Dayjs } from 'dayjs';
+import { type Dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents RangeDatePicker value
 */
 type RangeDatePickerValue = {
-    /*
-    * Defines DatePicker value 'from'.
-    */
+    /**
+     * Defines DatePicker value 'from'.
+     */
     from: string | null;
-    /*
-   * Defines DatePicker value 'to'.
-   */
+    /**
+     * Defines DatePicker value 'to'.
+     */
     to: string | null;
 };
 
@@ -25,12 +25,16 @@ type RangeDatePickerValue = {
  */
 interface DatePickerProps extends
     CommonDatePickerProps,
-    SizeMod,
     IHasEditMode,
     ICanFocus<HTMLInputElement>,
     IEditable<string | null>,
     IAnalyticableOnChange<string>,
     IHasPlaceholder {
+
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
 
     /**
      * Defines where to place calendar icon
@@ -66,10 +70,13 @@ interface DatePickerProps extends
  * Represents the properties of the RangeDatePicker component
  */
 interface RangeDatePickerProps extends
-    SizeMod,
     IEditable<RangeDatePickerValue | null>,
     IAnalyticableOnChange<RangeDatePickerValue | null>,
     CommonDatePickerProps {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
 
     /**
      * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.
@@ -131,7 +138,7 @@ interface RangeDatePickerProps extends
  */
 type RangeDatePickerInputType = 'from' | 'to' | null;
 
-interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     filter?(day: Dayjs): boolean;
     presets?: RangeDatePickerPresets;
     renderDay?: (renderProps: DayProps) => React.ReactElement<Element>;

@@ -3,7 +3,7 @@ import { getTextClasses, TextSettings } from '../../helpers';
 import * as uuiComponents from '@epam/uui-components';
 import css from './Text.module.scss';
 
-type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'brand' | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'white';
+type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'white';
 type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
 type TextFontStyle = 'normal' | 'italic';
 type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';

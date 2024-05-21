@@ -42,6 +42,10 @@
             font-weight: var(--uui-tag-font-weight);
             color: var(--uui-tag-caption);
         }
+
+        :global(.uui-count_indicator):not(:last-child) {
+            margin-right: 3px;
+        }
     }
 
     &:global(.uui-fill-solid) {
@@ -70,10 +74,6 @@
         min-height: 18px;
         min-width: 18px;
         padding: 1px 2px;
-
-        :global(.uui-count_indicator):not(:last-child) {
-            margin-right: 3px;
-        }
 
         :global(.uui-caption) {
             padding: 0 3px;

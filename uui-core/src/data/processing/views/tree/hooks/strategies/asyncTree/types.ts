@@ -12,7 +12,7 @@ export interface AsyncTreeProps<TItem, TId, TFilter> extends
     SearchConfig<TItem>,
     SortConfig<TItem>,
     FilterConfig<TItem, TFilter>,
-    ItemsStatuses<TId>,
+    ItemsStatuses<TItem, TId, TFilter>,
     AsyncDataSourceConfig<TItem> {
 
     /**

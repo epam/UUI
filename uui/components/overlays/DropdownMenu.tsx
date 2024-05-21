@@ -157,8 +157,6 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
     );
 });
 
-DropdownMenuButton.displayName = 'DropdownMenuButton';
-
 export function DropdownMenuSplitter(props: IHasCX) {
     return (
         <div className={ cx(css.root, props.cx, css.splitterRoot) }>

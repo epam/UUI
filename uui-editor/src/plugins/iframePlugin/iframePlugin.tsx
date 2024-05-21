@@ -5,7 +5,7 @@ import React from 'react';
 
 import { UploadFileToggler } from '@epam/uui-components';
 
-import { isPluginActive, isTextSelected } from '../../helpers';
+import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
@@ -80,7 +80,7 @@ interface IIframeButton {
 export function IframeButton({ editor }: IIframeButton) {
     const onFilesAdded = useFilesUploader(editor);
 
-    if (!isPluginActive(IFRAME_PLUGIN_KEY)) return null;
+    if (!useIsPluginActive(IFRAME_PLUGIN_KEY)) return null;
 
     return (
         <UploadFileToggler
