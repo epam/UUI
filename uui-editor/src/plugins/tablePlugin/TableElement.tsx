@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
     PlateElement,
     withHOC,
@@ -23,23 +23,16 @@ const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ clas
     const { isSelectingCell, minColumnWidth, marginLeft } = useTableElementState();
     const { props: tableProps, colGroupProps } = useTableElement();
 
-    const element: TTableElement = props.element;
+    const element = props.element as TTableElement;
     const tableStore = useTableStore().get;
 
-    const getDefalutColSizes = () => {
-        return element.colSizes || getDefaultColWidths(getTableColumnCount(element));
-    };
-
     const colSizeOverrides = tableStore.colSizeOverrides();
-    const currentColSizes = (
-        !element.colSizes
-            ? getDefalutColSizes() // TODO: move that to mormalizeNode, may be part of migration
-            : [...element.colSizes]
-    ).map(
-        (size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH,
-    );
 
-    const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
+    const currentColSizes = useMemo(() => {
+        const sizes = !element.colSizes ? getDefaultColWidths(getTableColumnCount(element)) : element.colSizes;
+        return sizes.map((size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH);
+    }, [colSizeOverrides, element]);
+    const tableWidth = useMemo(() => currentColSizes.reduce((acc, cur) => acc + cur, 0), [currentColSizes]);
 
     return (
         <div className={ css.tableWrapper } style={ { paddingLeft: marginLeft } }>

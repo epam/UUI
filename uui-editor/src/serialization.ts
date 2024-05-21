@@ -4,6 +4,7 @@ import {
     createNode,
     deserializeHtml,
     parseHtmlDocument,
+    PlateEditor,
 } from '@udecode/plate-common';
 import { serializeHtml } from '@udecode/plate-serializer-html';
 import { EditorValue } from './types';
@@ -24,9 +25,10 @@ import {
     PARAGRAPH_TYPE,
     separatorPlugin,
 } from './plugins';
-import { createTempEditor, initializeEditor } from './helpers';
+import { createTempEditor } from './helpers';
 import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin';
 import { serializeMd } from '@udecode/plate-serializer-md';
+import { migrateSlateSchema } from './migrations/slate_migrations';
 
 type SerializerType = 'html' | 'md';
 
@@ -101,4 +103,23 @@ export const createSerializer = (type: SerializerType = 'html') => {
             return serializeMd(editor, { nodes: value });
         };
     }
+};
+
+/** Consider slate and plate migarions */
+const initializeEditor = (editor: PlateEditor<Value>, v: EditorValue): Value => {
+    let value: Value;
+    if (!v) {
+        value = [createNode(PARAGRAPH_TYPE)];
+    } else {
+        if (!Array.isArray(v)) {
+            value = migrateSlateSchema(v); // slate migraitons
+        } else {
+            value = v;
+        }
+    }
+
+    editor.children = value;
+    editor.normalize({ force: true }); // plate migratoins
+
+    return editor.children;
 };

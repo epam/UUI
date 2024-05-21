@@ -12,6 +12,7 @@ import { Selection } from 'slate';
 import { ATTACHMENT_TYPE } from '../attachmentPlugin/constants';
 import { IMAGE_TYPE } from '../imagePlugin/constants';
 import { IFRAME_TYPE } from '../iframePlugin/constants';
+import { TImageElement } from '@udecode/plate-media';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
@@ -33,10 +34,10 @@ const UPLOAD_BLOCKS = {
         },
         children: [{ text: '' }],
     }),
-    image: (file: FileUploadResponse) => ({
+    image: (file: FileUploadResponse): TImageElement => ({
         type: IMAGE_TYPE,
         data: file,
-        url: file.path,
+        url: file.path, // plate property
         children: [{ text: '' }],
     }),
     iframe: (file: FileUploadResponse) => ({

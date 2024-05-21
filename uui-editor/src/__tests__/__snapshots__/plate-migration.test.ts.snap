@@ -758,13 +758,6 @@ Array [
         "type": "table_row",
       },
     ],
-    "colSizes": Array [
-      130,
-      200,
-      200,
-      183,
-      161,
-    ],
     "data": Object {
       "version": "5.7.3",
     },

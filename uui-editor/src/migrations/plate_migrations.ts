@@ -1,6 +1,8 @@
 import { Value, setNodes, PlateEditor, TNodeEntry, TNode } from '@udecode/plate-common';
 import { TImageElement } from '@udecode/plate-media';
-import { IImageElement, SlateImgAlign } from '../plugins/imagePlugin/types';
+import { TTableCellElement, TTableElement } from '@udecode/plate-table';
+import { toPlateAlign } from '../helpers';
+import { IImageElement } from '../plugins/imagePlugin/types';
 import { ExtendedTTableCellElement, ExtendedTTableElement } from '../plugins/tablePlugin/types';
 
 export const CONTENT_VERSION = '5.7.3';
@@ -9,66 +11,54 @@ export const DEFAULT_CONTENT_VERSION = '5.7.2';
 /** 5.7.3 content properties migrations */
 export const MIGRATIONS_5_7_3 = '5.7.3';
 
+/** deprecate data properties */
 const migrateTableCellElementTo_5_7_3 = (editor: PlateEditor<Value>, tableCellNode: ExtendedTTableCellElement, path: number[]) => {
     if (!tableCellNode.data?.colSpan && !tableCellNode.data?.rowSpan) {
         return;
     }
 
-    const colSpan = tableCellNode.colSpan || tableCellNode.data?.colSpan;
-    const colSpanPayload = colSpan ? { colSpan } : {};
-
-    const rowSpan = tableCellNode.rowSpan || tableCellNode.data?.rowSpan;
-    const rowSpanPayload = rowSpan ? { rowSpan } : {};
-
     const payload = {
         ...tableCellNode,
-        ...rowSpanPayload,
-        ...colSpanPayload,
         data: { version: CONTENT_VERSION },
     };
 
-    setNodes(
+    setNodes<TTableCellElement>(
         editor,
         payload,
         { at: path },
     );
 };
 
+/** deprecate data properties */
 const migarteTableElementTo_5_7_3 = (editor: PlateEditor<Value>, tableNode: ExtendedTTableElement, path: number[]) => {
-    const colSizesPayload = !!tableNode.data?.cellSizes
-        ? { colSizes: [...tableNode.data.cellSizes] }
-        : {};
+    if (!tableNode.data?.cellSizes) {
+        return;
+    }
+
     const payload = {
         ...tableNode,
-        ...colSizesPayload,
         data: {
             version: CONTENT_VERSION,
         },
     };
 
-    setNodes(
+    setNodes<TTableElement>(
         editor,
         payload,
         { at: path },
     );
 };
 
-const SLATE_TO_PLATE_IMG_ALIGN = {
-    'align-left': 'left',
-    'align-right': 'right',
-    'align-center': 'center',
-};
-const toPlateAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
-    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as TImageElement['align'];
-
+/** deprecate plate intercepting properties */
 const migarteImageElementTo_5_7_3 = (editor: PlateEditor<Value>, imageNode: IImageElement, path: number[]) => {
+    // align where setted to data after update to plate, so we need to fix that historical mistake
     const alignPayload = imageNode.data?.align ? {
         align: toPlateAlign(imageNode.data.align),
     } : {};
 
-    /** safe delete deprecated properties, since they are literals */
-    delete imageNode.data.src;
-    delete imageNode.data.align;
+    // TODO: think to omit path and src from data
+    // delete imageNode.data.src;
+    // delete imageNode.data.align;
 
     const payload = {
         ...imageNode,
