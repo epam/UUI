@@ -94,6 +94,7 @@
   * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance
   * `el.data.colSpan` and `el.data.rowSpan` removed from table cell node as it has duplicates: `el.colSpan` and `el.rowSpan`
   * `data.cellSizes` removed from table element as it has duplicate: `el.colSizes`
+  * `data.align` removed from image element as it has duplicate: `el.align`
 
 **What's Fixed**
 [PickerInput]: fixed setting emptyValue in case of unselecting all picker items
