@@ -1,5 +1,5 @@
 import React, {
-    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useMemo, useRef, useState,
+    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
     IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
@@ -27,7 +27,7 @@ export const basePlugins: PlatePlugin[] = [
 
 const disabledPlugins = { insertData: true };
 
-interface PlateEditorProps
+export interface PlateEditorProps
     extends IEditable<EditorValue>,
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -78,7 +78,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
     /** config */
     const plugins = useMemo(
         () => {
-            const _plugins: PlatePlugin[] = props.plugins || defaultPlugins;
+            const _plugins: PlatePlugin[] = !props.plugins || !props.plugins.length ? defaultPlugins : props.plugins;
             return createPlugins(_plugins.flat(), { components: createPlateUI() });
         },
         [props.plugins],
@@ -146,10 +146,12 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
 
     /** force update of uncontrolled component */
     const forceUpdate = useForceUpdate();
-    if (isPlateValue(plateValue) && editorRef.current && editorRef.current.children !== plateValue) {
-        editorRef.current.children = plateValue;
-        forceUpdate();
-    }
+    useEffect(() => {
+        if (isPlateValue(plateValue) && editorRef.current && editorRef.current.children !== plateValue) {
+            editorRef.current.children = plateValue;
+            forceUpdate();
+        }
+    }, [forceUpdate, plateValue]);
 
     return (
         <Plate

@@ -3,13 +3,13 @@ import { TImageElement } from '@udecode/plate-media';
 import { IImageElement, SlateImgAlign } from '../plugins/imagePlugin/types';
 import { ExtendedTTableCellElement, ExtendedTTableElement } from '../plugins/tablePlugin/types';
 
-export const CONTENT_VERSION = '1.0.1';
-export const DEFAULT_CONTENT_VERSION = '1.0.0';
+export const CONTENT_VERSION = '5.7.3';
+export const DEFAULT_CONTENT_VERSION = '5.7.2';
 
-/** 1.0.1 content properties migrations */
-export const MIGRATIONS_1_0_1 = '1.0.1';
+/** 5.7.3 content properties migrations */
+export const MIGRATIONS_5_7_3 = '5.7.3';
 
-const migrateTableCellElementTo_1_0_1 = (editor: PlateEditor<Value>, tableCellNode: ExtendedTTableCellElement, path: number[]) => {
+const migrateTableCellElementTo_5_7_3 = (editor: PlateEditor<Value>, tableCellNode: ExtendedTTableCellElement, path: number[]) => {
     if (!tableCellNode.data?.colSpan && !tableCellNode.data?.rowSpan) {
         return;
     }
@@ -34,7 +34,7 @@ const migrateTableCellElementTo_1_0_1 = (editor: PlateEditor<Value>, tableCellNo
     );
 };
 
-const migarteTableElementTo_1_0_1 = (editor: PlateEditor<Value>, tableNode: ExtendedTTableElement, path: number[]) => {
+const migarteTableElementTo_5_7_3 = (editor: PlateEditor<Value>, tableNode: ExtendedTTableElement, path: number[]) => {
     const colSizesPayload = !!tableNode.data?.cellSizes
         ? { colSizes: [...tableNode.data.cellSizes] }
         : {};
@@ -61,7 +61,7 @@ const SLATE_TO_PLATE_IMG_ALIGN = {
 const toPlateAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
     SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as TImageElement['align'];
 
-const migarteImageElementTo_1_0_1 = (editor: PlateEditor<Value>, imageNode: IImageElement, path: number[]) => {
+const migarteImageElementTo_5_7_3 = (editor: PlateEditor<Value>, imageNode: IImageElement, path: number[]) => {
     const alignPayload = imageNode.data?.align ? {
         align: toPlateAlign(imageNode.data.align),
     } : {};
@@ -87,8 +87,8 @@ export const migrateTableCellElement = (editor: PlateEditor<Value>, entry: TNode
     const tableCellNode = node as ExtendedTTableCellElement;
     const usedVerion = tableCellNode.data?.version || DEFAULT_CONTENT_VERSION;
 
-    if (usedVerion < MIGRATIONS_1_0_1) {
-        migrateTableCellElementTo_1_0_1(editor, tableCellNode, path);
+    if (usedVerion < MIGRATIONS_5_7_3) {
+        migrateTableCellElementTo_5_7_3(editor, tableCellNode, path);
     }
 };
 
@@ -97,8 +97,8 @@ export const migrateTableElement = (editor: PlateEditor<Value>, entry: TNodeEntr
     const tableNode = node as ExtendedTTableElement;
     const usedVerion = tableNode.data?.version || DEFAULT_CONTENT_VERSION;
 
-    if (usedVerion < MIGRATIONS_1_0_1) {
-        migarteTableElementTo_1_0_1(editor, tableNode, path);
+    if (usedVerion < MIGRATIONS_5_7_3) {
+        migarteTableElementTo_5_7_3(editor, tableNode, path);
     }
 };
 
@@ -107,7 +107,7 @@ export const migrateImageElement = (editor: PlateEditor<Value>, entry: TNodeEntr
     const imageNode = node as IImageElement;
     const usedVerion = imageNode.data?.version || DEFAULT_CONTENT_VERSION;
 
-    if (usedVerion < MIGRATIONS_1_0_1) {
-        migarteImageElementTo_1_0_1(editor, imageNode, path);
+    if (usedVerion < MIGRATIONS_5_7_3) {
+        migarteImageElementTo_5_7_3(editor, imageNode, path);
     }
 };
