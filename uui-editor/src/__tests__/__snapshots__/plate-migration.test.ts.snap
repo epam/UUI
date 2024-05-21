@@ -387,7 +387,6 @@ Array [
       },
     ],
     "data": Object {
-      "align": "align-center",
       "fileName": "blue-orange.jpg",
       "id": "100500",
       "imageSize": Object {
@@ -397,7 +396,6 @@ Array [
       "name": "blue-orange.jpg",
       "path": "/static/uploads/blue-orange.jpg",
       "size": 77236,
-      "src": "/static/uploads/blue-orange.jpg",
       "type": "image",
       "version": "5.7.3",
     },

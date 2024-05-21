@@ -66,6 +66,10 @@ const migarteImageElementTo_5_7_3 = (editor: PlateEditor<Value>, imageNode: IIma
         align: toPlateAlign(imageNode.data.align),
     } : {};
 
+    /** safe delete deprecated properties, since they are literals */
+    delete imageNode.data.src;
+    delete imageNode.data.align;
+
     const payload = {
         ...imageNode,
         ...alignPayload,
