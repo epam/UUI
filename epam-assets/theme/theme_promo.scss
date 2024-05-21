@@ -380,6 +380,14 @@
         --uui-icon_btn-active: var(--uui-neutral-70);
     }
 
+    /* LinkButton */
+
+    .uui-link_button.uui-color-white {
+        --uui-link_btn-text-hover: var(--uui-neutral-30);
+        --uui-link_btn-text-active: var(--uui-neutral-40);
+        --uui-link_btn-text-disabled: color-mix(in srgb, var(--white) 40%, transparent);
+    }
+
     /* Tooltip */
 
     .uui-tooltip-container.uui-color-white {
