@@ -19,13 +19,19 @@ import {
     TRangeDatePickerPreview,
     TTextAreaPreview,
     TTextPreview,
-    TNumericInputPreview, TRadioInputPreview, TRadioGroupPreview,
+    TNumericInputPreview,
+    TRadioInputPreview,
+    TRadioGroupPreview,
+    TLabeledInputPreview,
+    TMultiSwitchPreview,
+    TPaginatorPreview, TMainMenuPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
-    rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup,
+    rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup, labeledInput,
+    multiSwitch, paginator, mainMenu,
 } = TComponentId;
 
 const { values } = Object;
@@ -43,7 +49,8 @@ builder
     .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
     .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
     .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.promo_loveship })
-    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship });
+    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship })
+    .add(multiSwitch, { previewId: values(TMultiSwitchPreview), skins: SKINS.promo_loveship });
 
 // Skins not tested
 builder
@@ -67,6 +74,9 @@ builder
     .add(textInput, { previewId: values(TTextInputPreview) })
     .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview) })
     .add(radioInput, { previewId: values(TRadioInputPreview) })
-    .add(radioGroup, { previewId: values(TRadioGroupPreview) });
+    .add(radioGroup, { previewId: values(TRadioGroupPreview) })
+    .add(labeledInput, { previewId: values(TLabeledInputPreview) })
+    .add(mainMenu, { previewId: values(TMainMenuPreview) })
+    .add(paginator, { previewId: values(TPaginatorPreview) });
 
 builder.buildTests();
