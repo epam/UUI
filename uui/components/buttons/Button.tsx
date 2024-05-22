@@ -6,7 +6,7 @@ import css from './Button.module.scss';
 
 const DEFAULT_SIZE = '36';
 
-interface ButtonMods {
+type ButtonMods = {
     /**
      * Defines component size.
      * @default '36'
@@ -22,7 +22,7 @@ interface ButtonMods {
      * @default 'primary'
      */
     color?: 'accent' | 'primary' | 'critical' | 'secondary' | 'neutral' | 'white';
-}
+};
 export interface ButtonModsOverride {}
 
 /** Represents the 'Core properties' for the Button component. */
