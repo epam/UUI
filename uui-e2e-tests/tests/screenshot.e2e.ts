@@ -19,13 +19,14 @@ import {
     TRangeDatePickerPreview,
     TTextAreaPreview,
     TTextPreview,
-    TNumericInputPreview, TRadioInputPreview, TRadioGroupPreview, TLabeledInputPreview,
+    TNumericInputPreview, TRadioInputPreview, TRadioGroupPreview, TLabeledInputPreview, TMultiSwitchPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
     rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup, labeledInput,
+    multiSwitch,
 } = TComponentId;
 
 const { values } = Object;
@@ -43,7 +44,8 @@ builder
     .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
     .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
     .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.promo_loveship })
-    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship });
+    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship })
+    .add(multiSwitch, { previewId: values(TMultiSwitchPreview), skins: SKINS.promo_loveship });
 
 // Skins not tested
 builder
