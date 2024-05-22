@@ -11,6 +11,7 @@ import {
 } from '@epam/uui';
 import { AdaptiveItemProps, Dropdown, MainMenuCustomElement, MainMenuLogo } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
+import { ALL_AVATARS } from '../avatarStack/avatarsExamples';
 
 export const renderBurgerExamples = [
     {
@@ -214,7 +215,7 @@ export const itemsExamples = [
                     <MainMenuAvatar
                         isDropdown
                         key={ p.id }
-                        avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+                        avatarUrl={ ALL_AVATARS[0] }
                         estimatedWidth={ 84 }
                     />
                 ),
