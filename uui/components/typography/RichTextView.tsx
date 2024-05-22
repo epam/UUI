@@ -1,5 +1,5 @@
 import * as uuiComponents from '@epam/uui-components';
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 
 interface RichTextViewMods {
     /**
@@ -9,9 +9,11 @@ interface RichTextViewMods {
     size?: '12' | '14' | '16';
 }
 
-export type RichTextViewProps = uuiComponents.RichTextViewProps & RichTextViewMods;
+export interface RichTextViewModsOverride {}
 
-export const RichTextView = withMods<uuiComponents.RichTextViewProps, RichTextViewMods>(
+export type RichTextViewProps = uuiComponents.RichTextViewProps & Overwrite<RichTextViewMods, RichTextViewModsOverride>;
+
+export const RichTextView = withMods<uuiComponents.RichTextViewProps, RichTextViewProps>(
     uuiComponents.RichTextView,
     (mods: RichTextViewMods) => ['uui-typography', `uui-typography-size-${mods.size || '14'}`],
 );

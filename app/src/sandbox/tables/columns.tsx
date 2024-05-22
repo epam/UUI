@@ -75,10 +75,10 @@ export function getColumns() {
             grow: 1,
             render: (p) => (
                 <FlexRow background="night50">
-                    <Text fontSize="14" font="sans-semibold">
+                    <Text fontSize="14">
                         Total
                     </Text>
-                    <Text fontSize="14" font="sans-semibold" color="night500">
+                    <Text fontSize="14" color="night500">
                         {p.totalCount || 0}
                         {' '}
                         records
@@ -95,7 +95,7 @@ export function getColumns() {
             width: 200,
             grow: 1,
             render: () => (
-                <Text fontSize="14" font="sans-semibold">
+                <Text fontSize="14">
                     -
                 </Text>
             ),
@@ -116,7 +116,7 @@ export function getColumns() {
             key: 'salary',
             caption: 'Total Salary',
             render: (p) => (
-                <Text font="sans-semibold" fontSize="14">
+                <Text fontSize="14">
                     {p.totalSalary}
                 </Text>
             ),

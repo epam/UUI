@@ -1,6 +1,35 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
+* [Breaking change]: removed previously deprecated components:
+  * removed `SnackbarCard` component in Loveship, use `NotificationCard` instead;
+  * removed `ControlWrapper` component in Loveship and Promo;
+* [Breaking change][Loveship]: removed previously deprecated props:
+  * [All skins]: 
+    * [DropdownContainer]: removed 'color' prop;  
+    * [TabButton][Tag][Badge][LinkButton][Button][MainMenuButton]: removed 'captionCx' prop. Please use 'cx' prop with cascading to 'uui-caption' global class;
+    * [Text]: removed 'font' prop;
+    * [IconContainer]: removed color prop. Define icon color by yourself, e.g. via cx or style prop;
+    * [Avatar]: removed 'onClick' prop;
+  * [Loveship]:
+    * [LinkButton]: removed 'sun', 'cobalt', 'violet',  'fuchsia', 'white', 'night50', 'night100', 'night200', 'night300', 'night400', 'night500', 'night700', 'night800', 'night900' colors;
+    * [Button]: removed 'night500', 'night600' colors, use 'neutral' instead;
+    * [IconButton]: removed 'night200', 'night300', 'night400' colors;
+    * [NotificationCard]: removed 'night600' color, use 'primary' instead;
+    * [Tooltip]: removed 'night900' prop, use 'neutral' instead;
+    * [Badge]: 
+      * removed 'semitransparent' fill value, use 'outline' instead;
+      * removed shape prop, 'round' value will be used by default. If you use 'square' value, use `Tag` component instead;
+      * removed '12' size;
+    * [MultiSwitch]: removed 'night600' color value. Use 'gray' instead.
+    * [RangeSlider]: removed 'color' prop;
+  * [Promo]:
+    * [LinkButton]: removed 'amber' color;
+    * [Button]: removed 'gray50' color, use 'gray' instead;
+    * [Badge]: removed 'semitransparent' fill value, use 'outline' instead;
+    * [MultiSwitch]: removed 'gray60' color value. Use 'gray' instead.
+    * [NotificationCard]: removed 'gray60' color, use 'primary' instead;
+    * [Tooltip]: removed 'gray90' prop, use 'neutral' instead;
 
 * [uui-core]: helpers cleanup, removed following helpers:
   * `LazyLoadedMap`
@@ -60,6 +89,8 @@
 * [RangeDatePickerBody] props breaking changes
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput.
+* [DataTable]: added property columnsGap?: '12' | '24'. When you want to see more data you can set the property columnsGap: '12' and the gaps between table columns will be smaller.
+* [DataTable]: added property headerSize?: '36' | '48'. You can set the property headerSize: '48' and the captions will be split into two lines. It's not works with editable tables.
 
 **What's Fixed**
 [PickerInput]: fixed setting emptyValue in case of unselecting all picker items

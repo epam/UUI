@@ -1,5 +1,5 @@
 import React from 'react';
-import { withMods, IEditableDebouncer, IEditableDebouncerOptions } from '@epam/uui-core';
+import { withMods, IEditableDebouncer, IEditableDebouncerOptions, Overwrite } from '@epam/uui-core';
 import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
@@ -16,6 +16,8 @@ type TextInputMods = IHasEditMode & {
     size?: ControlSize | '60';
 };
 
+export interface TextInputModsOverride {}
+
 function applyTextInputMods(mods: TextInputMods) {
     return [
         css.root,
@@ -25,12 +27,12 @@ function applyTextInputMods(mods: TextInputMods) {
 }
 
 /** Represents the properties for a TextInput component. */
-export interface TextInputProps extends CoreTextInputProps, TextInputMods {}
+export interface TextInputProps extends CoreTextInputProps, Overwrite<TextInputMods, TextInputModsOverride> {}
 
 /** Represents the properties for a SearchInput component. */
 export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
-export const TextInput = withMods<CoreTextInputProps, TextInputMods>(uuiTextInput, applyTextInputMods, () => ({
+export const TextInput = withMods<CoreTextInputProps, TextInputProps>(uuiTextInput, applyTextInputMods, () => ({
     acceptIcon: systemIcons.accept,
     cancelIcon: systemIcons.clear,
     dropdownIcon: systemIcons.foldingArrow,

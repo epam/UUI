@@ -365,6 +365,13 @@
         --uui-link_btn-text-active: var(--uui-neutral-20);
     }
 
+    .uui-link_button.uui-color-white {
+        --uui-link_btn-text: var(--uui-neutral-5);
+        --uui-link_btn-text-hover: var(--uui-neutral-30);
+        --uui-link_btn-text-active: var(--uui-neutral-40);
+        --uui-link_btn-text-disabled: color-mix(in srgb, var(--white) 40%, transparent);
+    }
+
     /* CountIndicator */
 
     .uui-count_indicator.uui-color-neutral {

@@ -24,4 +24,4 @@ function applyDropdownContainerMods(mods: DropdownContainerMods) {
     ];
 }
 
-export const DropdownContainer = withMods<uuiComponents.DropdownContainerProps, DropdownContainerMods>(uuiComponents.DropdownContainer, applyDropdownContainerMods);
+export const DropdownContainer = withMods<uuiComponents.DropdownContainerProps, DropdownContainerProps>(uuiComponents.DropdownContainer, applyDropdownContainerMods);
