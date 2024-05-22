@@ -8,7 +8,7 @@ import {
     TCountIndicatorPreview,
     TDatePickerPreview,
     TIconButtonPreview, TLabeledInputPreview,
-    TLinkButtonPreview, TMultiSwitchPreview, TNumericInputPreview, TPaginatorPreview,
+    TLinkButtonPreview, TMainMenuPreview, TMultiSwitchPreview, TNumericInputPreview, TPaginatorPreview,
     TPickerInputPreview, TRadioGroupPreview, TRadioInputPreview,
     TRangeDatePickerPreview,
     TSwitchPreview,
@@ -126,6 +126,7 @@ export type TPreviewIdByComponentId = {
     [TComponentId.labeledInput]: TLabeledInputPreview[],
     [TComponentId.multiSwitch]: TMultiSwitchPreview[],
     [TComponentId.paginator]: TPaginatorPreview[],
+    [TComponentId.mainMenu]: TMainMenuPreview[],
 };
 
 export const THEMES = {

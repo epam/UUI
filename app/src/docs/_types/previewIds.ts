@@ -162,3 +162,7 @@ export enum TPaginatorPreview {
     'Size Variants' = 'Size Variants',
     'Color Variants' = 'Color Variants'
 }
+
+export enum TMainMenuPreview {
+    'Common Variants' = 'Common Variants'
+}

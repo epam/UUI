@@ -24,14 +24,14 @@ import {
     TRadioGroupPreview,
     TLabeledInputPreview,
     TMultiSwitchPreview,
-    TPaginatorPreview,
+    TPaginatorPreview, TMainMenuPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
     rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup, labeledInput,
-    multiSwitch, paginator,
+    multiSwitch, paginator, mainMenu,
 } = TComponentId;
 
 const { values } = Object;
@@ -76,6 +76,7 @@ builder
     .add(radioInput, { previewId: values(TRadioInputPreview) })
     .add(radioGroup, { previewId: values(TRadioGroupPreview) })
     .add(labeledInput, { previewId: values(TLabeledInputPreview) })
+    .add(mainMenu, { previewId: values(TMainMenuPreview) })
     .add(paginator, { previewId: values(TPaginatorPreview) });
 
 builder.buildTests();

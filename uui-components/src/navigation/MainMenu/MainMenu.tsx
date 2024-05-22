@@ -148,7 +148,7 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
     getMenuItems(): AdaptiveItemProps[] {
         const Burger = this.props.Burger;
 
-        const items: AdaptiveItemProps[] = this.convertReactChildrenToItems(this.props.children);
+        const items: AdaptiveItemProps[] = this.convertReactChildrenToItems(this.props.children) || [];
 
         if (this.props.appLogoUrl) {
             items.unshift({
