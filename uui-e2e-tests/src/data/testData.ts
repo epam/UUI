@@ -24,7 +24,7 @@ import {
     TTagPreview,
     TTextAreaPreview,
     TTextInputPreview,
-    TTextPreview,
+    TTextPreview, TTooltipPreview,
     TVerticalTabButtonPreview,
 } from './previewIds';
 import { TTheme } from '../types';
@@ -136,6 +136,7 @@ export type TPreviewIdByComponentId = {
     [TComponentId.paginator]: TPaginatorPreview[],
     [TComponentId.mainMenu]: TMainMenuPreview[],
     [TComponentId.notificationCard]: TNotificationCardPreview[],
+    [TComponentId.tooltip]: TTooltipPreview[],
 };
 
 export const THEMES = {

@@ -3,9 +3,11 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { COLOR_MAP, DocBuilder, getColorPickerComponent, TDocConfig, TSkin } from '@epam/uui-docs';
+import { COLOR_MAP, DocBuilder, DocPreviewBuilder, getColorPickerComponent, TDocConfig, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { getCurrentTheme } from '../helpers';
+import { TTooltipPreview } from './_types/previewIds';
+import { ReactComponent as ActionAccountFillIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class TooltipDoc extends BaseDocsBlock {
     title = 'Tooltip';
@@ -50,6 +52,26 @@ export class TooltipDoc extends BaseDocsBlock {
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-70' : 'neutral-0'})`,
                     inverted: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-10' : 'neutral-80'})`,
                 }),
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.TooltipProps | loveship.TooltipProps | promo.TooltipProps>) => {
+            const TEST_DATA = {
+                content: 'Test',
+                children: (
+                    <uui.IconContainer icon={ ActionAccountFillIcon } />
+                ),
+            };
+            docPreview.add({
+                id: TTooltipPreview['Common Variants'],
+                matrix: {
+                    closeOnMouseLeave: { values: [false] },
+                    value: { values: [true] },
+                    placement: { values: ['bottom-start'] },
+                    color: { examples: '*' },
+                    children: { values: [TEST_DATA.children] },
+                    content: { values: [TEST_DATA.content] },
+                },
+                cellSize: '65-90',
             });
         },
     };
