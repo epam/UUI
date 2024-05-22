@@ -10,9 +10,9 @@ import css from './DataTableHeaderRow.module.scss';
 
 export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(
     uuiDataTableHeaderRow,
-    () => [css.root, 'uui-dt-vars'],
+    (props) => [css.root, 'uui-dt-vars', props.size === '48' && css.truncate],
     (mods) => ({
-        renderCell: (props) => <DataTableHeaderCell { ...props } size={ mods.size } textCase={ mods.textCase || 'normal' } key={ props.column.key } />,
+        renderCell: (props) => <DataTableHeaderCell { ...props } size={ mods.size } textCase={ mods.textCase || 'normal' } key={ props.column.key } columnsGap={ mods.columnsGap } />,
         renderConfigButton: () => <IconButton key="configuration" onClick={ mods.onConfigButtonClick } cx="config-icon" color="neutral" icon={ ConfigIcon } />,
     }),
 );
