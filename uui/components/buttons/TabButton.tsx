@@ -1,8 +1,8 @@
 import React from 'react';
-import { cx, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers } from '@epam/uui-core';
+import { cx, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
-import { CountIndicator } from '../widgets';
+import { CountIndicator } from '../widgets/CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import css from './TabButton.module.scss';
 
@@ -16,8 +16,10 @@ type TabButtonMods = {
     withNotify?: boolean;
 };
 
+export interface TabButtonModsOverride {}
+
 /** Represents the properties of a TabButton component. */
-export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export type TabButtonProps = Overwrite<TabButtonMods, TabButtonModsOverride> & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
@@ -28,18 +30,15 @@ export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdown
     count?: React.ReactNode;
 };
 
-function applyTabButtonMods(mods: TabButtonProps) {
-    return [
+export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
+    const styles = [
         css.root,
         'uui-tab-button',
-        css['size-' + (mods.size || '48')],
-        mods.withNotify && css.withNotify,
-        ...getIconClass(mods),
+        css['size-' + (props.size || '48')],
+        props.withNotify && css.withNotify,
+        ...getIconClass(props),
+        props.cx,
     ];
-}
-
-export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
-    const styles = [applyTabButtonMods(props), props.cx];
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
     const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;

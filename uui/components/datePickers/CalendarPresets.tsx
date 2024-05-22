@@ -6,4 +6,4 @@ export function applyCalendarPresetsMods() {
     return [css.root];
 }
 
-export const CalendarPresets = withMods<CalendarPresetsProps>(uuiCalendarPresets, applyCalendarPresetsMods, () => ({}));
+export const CalendarPresets = withMods<CalendarPresetsProps, CalendarPresetsProps>(uuiCalendarPresets, applyCalendarPresetsMods, () => ({}));
