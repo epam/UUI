@@ -65,10 +65,16 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      * */
     showFoldAll?: boolean;
 
-    /** Defines table header size */
+    /**
+     * Defines table header size
+     * @default '36'
+     * */
     headerSize?: '36' | '48';
 
-    /** Defines table columns gap size */
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
     columnsGap?: '12' | '24';
 }
 

@@ -5,7 +5,7 @@ import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import css from './TablesExamples.module.scss';
 
-export default function StyledColumnsExample() {
+export default function CondencedView() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const [value, onValueChange] = useState({});
