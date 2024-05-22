@@ -157,3 +157,8 @@ export enum TMultiSwitchPreview {
     'Size Variants' = 'Size Variants',
     'Color Variants' = 'Color Variants'
 }
+
+export enum TPaginatorPreview {
+    'Size Variants' = 'Size Variants',
+    'Color Variants' = 'Color Variants'
+}
