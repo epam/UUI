@@ -152,3 +152,8 @@ export enum TLabeledInputPreview {
     'State Variants Label Left'= 'State Variants Label Left',
     'Size Variants'= 'Size Variants'
 }
+
+export enum TMultiSwitchPreview {
+    'Size Variants' = 'Size Variants',
+    'Color Variants' = 'Color Variants'
+}
