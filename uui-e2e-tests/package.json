@@ -19,7 +19,7 @@
     "start-server": "yarn --cwd ../app server"
   },
   "dependencies": {
-    "@playwright/test": "1.42.1",
+    "@playwright/test": "1.44.0",
     "typescript": "4.9.3",
     "ts-node": "10.9.1",
     "cross-spawn": "7.0.3",
