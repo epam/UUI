@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { withMods, Overwrite } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputProps } from '@epam/uui-components';
 import { EditMode, IHasEditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
@@ -16,6 +16,8 @@ type NumericInputMods = IHasEditMode & {
     size?: '24' | '30' | '36' | '42' | '48';
 };
 
+export interface NumericInputModsOverride {}
+
 function applyNumericInputMods(mods: NumericInputMods) {
     return [
         textInputCss.root,
@@ -27,9 +29,9 @@ function applyNumericInputMods(mods: NumericInputMods) {
 }
 
 /** Represents the properties of a NumericInput component. */
-export type NumericInputProps = uuiNumericInputProps & NumericInputMods;
+export type NumericInputProps = uuiNumericInputProps & Overwrite<NumericInputMods, NumericInputModsOverride>;
 
-export const NumericInput = withMods<uuiNumericInputProps, NumericInputMods>(
+export const NumericInput = withMods<uuiNumericInputProps, NumericInputProps>(
     uuiNumericInput,
     applyNumericInputMods,
     (props) => {

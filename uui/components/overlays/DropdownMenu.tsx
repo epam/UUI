@@ -67,7 +67,7 @@ function DropdownMenuContainer(props: DropdownMenuContainerProps) {
     );
 }
 
-export const DropdownMenuBody = withMods<DropdownMenuContainerProps>(
+export const DropdownMenuBody = withMods<DropdownMenuContainerProps, DropdownMenuContainerProps>(
     DropdownMenuContainer,
     () => [css.bodyRoot],
     (props) => {

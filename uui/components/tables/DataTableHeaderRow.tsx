@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
-import { DataTableHeaderRowProps, withMods } from '@epam/uui-core';
+import { DataTableHeaderRowProps as CoreDataTableHeaderRowProps, withMods } from '@epam/uui-core';
 import { DataTableHeaderRowMods } from './types';
 import { DataTableHeaderCell } from './DataTableHeaderCell';
 import { IconButton } from '../buttons';
@@ -8,7 +8,8 @@ import { ReactComponent as ConfigIcon } from '@epam/assets/icons/action-settings
 import './variables.scss';
 import css from './DataTableHeaderRow.module.scss';
 
-export const DataTableHeaderRow = withMods<DataTableHeaderRowProps, DataTableHeaderRowMods>(
+export type DataTableHeaderRowProps = CoreDataTableHeaderRowProps & DataTableHeaderRowMods;
+export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTableHeaderRowProps>(
     uuiDataTableHeaderRow,
     (props) => [css.root, 'uui-dt-vars', props.size === '48' && css.truncate],
     (mods) => ({
