@@ -19,14 +19,19 @@ import {
     TRangeDatePickerPreview,
     TTextAreaPreview,
     TTextPreview,
-    TNumericInputPreview, TRadioInputPreview, TRadioGroupPreview, TLabeledInputPreview, TMultiSwitchPreview,
+    TNumericInputPreview,
+    TRadioInputPreview,
+    TRadioGroupPreview,
+    TLabeledInputPreview,
+    TMultiSwitchPreview,
+    TPaginatorPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
     accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
     rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup, labeledInput,
-    multiSwitch,
+    multiSwitch, paginator,
 } = TComponentId;
 
 const { values } = Object;
@@ -70,6 +75,7 @@ builder
     .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview) })
     .add(radioInput, { previewId: values(TRadioInputPreview) })
     .add(radioGroup, { previewId: values(TRadioGroupPreview) })
-    .add(labeledInput, { previewId: values(TLabeledInputPreview) });
+    .add(labeledInput, { previewId: values(TLabeledInputPreview) })
+    .add(paginator, { previewId: values(TPaginatorPreview) });
 
 builder.buildTests();
