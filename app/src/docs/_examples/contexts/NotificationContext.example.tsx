@@ -15,11 +15,16 @@ import {
     NotificationCard,
     RichTextView,
 } from '@epam/uui';
-import { ArrayDataSource, INotification, useUuiContext } from '@epam/uui-core';
+import { INotification, useArrayDataSource, useUuiContext } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
 
 export interface PositionType {
     direction: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
+}
+
+interface Position { 
+    id: PositionType['direction'];
+    name: string;
 }
 
 export default function NotificationContextExample() {
@@ -157,6 +162,12 @@ export default function NotificationContextExample() {
             .catch(() => null);
     };
 
+    const dataSource = useArrayDataSource<Position, Position['id'], unknown>({
+        items: [
+            'bot-left', 'top-left', 'bot-right', 'top-right', 'top-center', 'bot-center',
+        ].map((name) => ({ id: name as Position['id'], name })),
+    }, []);
+
     return (
         <div>
             <FlexRow size="48" padding="12" columnGap="12">
@@ -197,13 +208,7 @@ export default function NotificationContextExample() {
                 <FlexCell width={ 200 }>
                     <PickerInput
                         onValueChange={ (newVal) => setPositionType({ direction: newVal }) }
-                        dataSource={
-                            new ArrayDataSource({
-                                items: [
-                                    'bot-left', 'top-left', 'bot-right', 'top-right', 'top-center', 'bot-center',
-                                ].map((name) => ({ id: name, name })),
-                            })
-                        }
+                        dataSource={ dataSource }
                         selectionMode="single"
                         valueType="id"
                         getName={ (val) => val.name }

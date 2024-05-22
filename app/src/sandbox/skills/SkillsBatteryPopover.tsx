@@ -32,7 +32,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
         return (
             <DropdownContainer cx={ cx(css.dropContainer, css.uuiThemePromo) } { ...bodyProps }>
                 <FlexRow cx={ cx(css.headerRow) }>
-                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.headerRowText) }>
+                    <Text fontSize="14" lineHeight="24" cx={ cx(css.headerRowText) }>
                         <b>{props.data?.caption}</b>
                     </Text>
                     <FlexRow columnGap="6">
@@ -41,7 +41,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                     </FlexRow>
                 </FlexRow>
                 <FlexRow cx={ cx(css.levelRow) }>
-                    <Text fontSize="14" lineHeight="24" font="sans" cx={ cx(css.rowText) }>
+                    <Text fontSize="14" lineHeight="24" cx={ cx(css.rowText) }>
                         Current Level:
                         {' '}
                         {getLevel(level)}
@@ -49,7 +49,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                     <IconButton icon={ infoLogo } color="gray50" onClick={ () => null } />
                 </FlexRow>
                 <FlexRow cx={ cx(css.descriptionRow) }>
-                    <Text fontSize="12" lineHeight="18" font="sans" color="gray60" cx={ cx(css.rowText) }>
+                    <Text fontSize="12" lineHeight="18" color="gray60" cx={ cx(css.rowText) }>
                         {getLevelDescription(level)}
                     </Text>
                 </FlexRow>
@@ -94,7 +94,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
         <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, { [css.targetBodyContainerHover]: bodyProps.isOpen }]) } size="30">
             <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } style={ isFavorite?.status && { fill: '#DB3A1A' } } />
             <SmallBattery rating={ level } />
-            <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18" font="sans">
+            <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18">
                 {props.data?.caption}
             </Text>
             {Object.entries(props?.data.options).map((val) => (

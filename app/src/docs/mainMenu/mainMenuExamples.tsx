@@ -11,6 +11,7 @@ import {
 } from '@epam/uui';
 import { AdaptiveItemProps, Dropdown, MainMenuCustomElement, MainMenuLogo } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
+import { ALL_AVATARS } from '../avatarStack/avatarsExamples';
 
 export const renderBurgerExamples = [
     {
@@ -178,5 +179,52 @@ export const itemsExamples = [
     {
         name: `Items: ${items.map((i) => i.id).join(', ')}.`,
         value: items,
+    },
+    {
+        name: 'Learn',
+        value: [
+            {
+                id: 'appLogo2',
+                priority: 99,
+                render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl="/static/images/app-logos/learn_logo.svg" estimatedWidth={ 142 } />,
+            },
+            {
+                id: 'start',
+                priority: 3,
+                render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+            },
+            {
+                id: 'explore',
+                priority: 2,
+                render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore estimatedWidth={ 78 } showInBurgerMenu />,
+            },
+            {
+                id: 'myLearning',
+                priority: 2,
+                render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore estimatedWidth={ 104 } showInBurgerMenu href="/" />,
+            },
+            {
+                id: 'spacer',
+                priority: 3,
+                render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } />,
+            },
+            {
+                id: 'avatar',
+                priority: 100,
+                render: (p: AdaptiveItemProps) => (
+                    <MainMenuAvatar
+                        isDropdown
+                        key={ p.id }
+                        avatarUrl={ ALL_AVATARS[0] }
+                        estimatedWidth={ 84 }
+                    />
+                ),
+            },
+            {
+                id: 'global-menu',
+                priority: 100,
+                render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } />,
+            },
+        ],
     },
 ];

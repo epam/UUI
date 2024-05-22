@@ -1,4 +1,4 @@
-import { ProgressBar as uuiProgressBar, IProgressBarProps } from '@epam/uui-components';
+import * as uui from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import css from './ProgressBar.module.scss';
 
@@ -16,7 +16,7 @@ interface ProgressBarMods {
     striped?: boolean;
 }
 
-export type ProgressBarProps = IProgressBarProps & ProgressBarMods;
+export type ProgressBarProps = uui.ProgressBarProps & ProgressBarMods;
 
 function applyProgressBarMods(mods: ProgressBarMods) {
     const size = mods.size || DEFAULT_SIZE;
@@ -28,6 +28,10 @@ function applyProgressBarMods(mods: ProgressBarMods) {
     ];
 }
 
-export const ProgressBar = withMods<ProgressBarProps, ProgressBarMods>(uuiProgressBar, applyProgressBarMods, (props) => ({
-    hideLabel: props.hideLabel || props.striped,
-}));
+export const ProgressBar = withMods<uui.ProgressBarProps, ProgressBarProps>(
+    uui.ProgressBar,
+    applyProgressBarMods,
+    (props) => ({
+        hideLabel: props.hideLabel || props.striped,
+    }),
+);

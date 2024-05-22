@@ -3,17 +3,9 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import {
-    DocBuilder,
-    DocPreviewBuilder,
-    TDocConfig,
-    TDocContext,
-    TPreviewCellSize,
-    TPreviewMatrix,
-    TSkin,
-} from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TPreviewCellSize, TPreviewMatrix, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common/docs';
-import { renderTogglerExamples } from './pickerInputExamples';
+import { renderTagExamples, renderTogglerExamples } from './pickerInputExamples';
 import { TPickerInputPreview } from '../_types/previewIds';
 import { euLocationsDs } from './previewTestData';
 
@@ -65,6 +57,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 examples: [{ name: "{ country: 'UK' }", value: { country: 'UK' } }],
                 remountOnChange: true,
             });
+            doc.merge('renderTag', { examples: renderTagExamples });
         },
         preview: (docPreview: DocPreviewBuilder<uui.PickerInputProps<any, any>>) => {
             enum GROUPS {
