@@ -56,7 +56,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
                 },
             };
             type TMatrixLocal = TPreviewMatrix<uui.LabeledInputProps>;
-            const w250_h75: TPreviewCellSize = '250-75';
+            const w280_h75: TPreviewCellSize = '280-75';
             const w250_h120: TPreviewCellSize = '250-120';
             const w190_h100: TPreviewCellSize = '190-100';
 
@@ -79,12 +79,11 @@ export class LabeledInputDoc extends BaseDocsBlock {
                 isRequired: { values: [false, true] },
             };
             docPreview.add(TLabeledInputPreview['State Variants Label Top'], { labelPosition: { values: ['top'] }, ...stateVariantsBase }, w190_h100);
-            docPreview.add(TLabeledInputPreview['State Variants Label Left'], { labelPosition: { values: ['left'] }, ...stateVariantsBase }, w250_h75);
+            docPreview.add(TLabeledInputPreview['State Variants Label Left'], { labelPosition: { values: ['left'] }, ...stateVariantsBase }, w280_h75);
             docPreview.add({
                 id: TLabeledInputPreview['Size Variants'],
                 matrix: {
                     ...commonBase,
-                    labelPosition: { values: ['top', 'left'] },
                     size: { examples: '*' },
                     info: { values: [TEST_DATA.info] },
                     charCounter: { values: [true] },
