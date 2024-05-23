@@ -49,39 +49,36 @@ export class LinkButtonDoc extends BaseDocsBlock {
                 icon: 'action-account-fill.svg',
             };
             docPreview.add({
-                id: TLinkButtonPreview['One-line caption'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption1Line] },
-                    size: { examples: '*' },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
-                    isDropdown: { examples: '*' },
-                },
-                cellSize: '100-60',
-            });
-            docPreview.add({
-                id: TLinkButtonPreview['Two-line caption'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption2Lines] },
-                    size: { examples: '*' },
-                    isDropdown: { examples: '*' },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    iconPosition: { examples: '*' },
-                },
+                id: TLinkButtonPreview['Size Variants'],
+                matrix: [
+                    // 1-line caption
+                    {
+                        caption: { values: [TEST_DATA.caption1Line] },
+                        size: { examples: '*' },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
+                        isDropdown: { examples: '*' },
+                    },
+                    // 2-line caption
+                    {
+                        caption: { values: [TEST_DATA.caption2Lines] },
+                        size: { examples: '*' },
+                        isDropdown: { examples: '*' },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        iconPosition: { examples: '*' },
+                    },
+                    // No caption
+                    {
+                        caption: { values: [undefined] },
+                        size: { examples: '*' },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
+                    },
+                ],
                 cellSize: '100-80',
             });
             docPreview.add({
-                id: TLinkButtonPreview['No caption'],
-                matrix: {
-                    caption: { values: [undefined] },
-                    size: { examples: '*' },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
-                },
-                cellSize: '80-50',
-            });
-            docPreview.add({
-                id: TLinkButtonPreview.Colors,
+                id: TLinkButtonPreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption1Line] },
                     icon: { examples: [TEST_DATA.icon] },

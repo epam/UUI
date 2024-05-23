@@ -33,7 +33,7 @@ export class CountIndicatorDoc extends BaseDocsBlock {
                 caption: '+999',
             };
             docPreview.add({
-                id: TCountIndicatorPreview.Colors,
+                id: TCountIndicatorPreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption] },
                     color: { examples: '*' },
@@ -41,7 +41,7 @@ export class CountIndicatorDoc extends BaseDocsBlock {
                 cellSize: '50-40',
             });
             docPreview.add({
-                id: TCountIndicatorPreview.Sizes,
+                id: TCountIndicatorPreview['Size Variants'],
                 matrix: {
                     caption: { values: [undefined, TEST_DATA.caption] },
                     size: { examples: '*' },
