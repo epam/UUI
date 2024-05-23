@@ -6,17 +6,28 @@ import {
     TButtonPreview,
     TCheckboxPreview,
     TCountIndicatorPreview,
-    TIconButtonPreview,
-    TLinkButtonPreview,
-    TSwitchPreview,
-    TTagPreview,
-    TTextInputPreview,
-    TVerticalTabButtonPreview,
-    TTabButtonPreview,
-    TPickerInputPreview,
     TDatePickerPreview,
+    TIconButtonPreview,
+    TLabeledInputPreview,
+    TLinkButtonPreview,
+    TMainMenuPreview,
+    TMultiSwitchPreview,
+    TNotificationCardPreview,
+    TNumericInputPreview,
+    TPaginatorPreview,
+    TPickerInputPreview,
+    TRadioGroupPreview,
+    TRadioInputPreview,
     TRangeDatePickerPreview,
+    TSwitchPreview,
+    TTabButtonPreview,
+    TTagPreview,
+    TTextAreaPreview,
+    TTextInputPreview,
+    TTextPreview, TTooltipPreview,
+    TVerticalTabButtonPreview,
 } from './previewIds';
+import { TTheme } from '../types';
 
 /**
  * Keep in sync with app/src/documents/structureComponents.ts
@@ -113,6 +124,29 @@ export type TPreviewIdByComponentId = {
     [TComponentId.switch]: TSwitchPreview[],
     [TComponentId.tabButton]: TTabButtonPreview[],
     [TComponentId.tag]: TTagPreview[],
+    [TComponentId.text]: TTextPreview[],
+    [TComponentId.textArea]: TTextAreaPreview[],
     [TComponentId.textInput]: TTextInputPreview[],
     [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
+    [TComponentId.numericInput]: TNumericInputPreview[],
+    [TComponentId.radioInput]: TRadioInputPreview[],
+    [TComponentId.radioGroup]: TRadioGroupPreview[],
+    [TComponentId.labeledInput]: TLabeledInputPreview[],
+    [TComponentId.multiSwitch]: TMultiSwitchPreview[],
+    [TComponentId.paginator]: TPaginatorPreview[],
+    [TComponentId.mainMenu]: TMainMenuPreview[],
+    [TComponentId.notificationCard]: TNotificationCardPreview[],
+    [TComponentId.tooltip]: TTooltipPreview[],
+};
+
+export const THEMES = {
+    allExceptVanillaThunder: Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder),
+};
+
+/**
+ * Terminology is not perfect, but it's basically list of themes which support "isSkin=true" parameter
+ */
+export const SKINS = {
+    promo_loveship_electric: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark, TTheme.electric],
+    promo_loveship: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark],
 };
