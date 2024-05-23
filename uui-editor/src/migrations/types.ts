@@ -47,7 +47,7 @@ export type SlateElement = SlateBlockElement | SlateInlineElement | SlateTextEle
 type ObjectType = 'text' | 'inline' | 'block' | 'mark' | 'value' | 'document';
 export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
 
-export interface SlateBaseElement {
+interface SlateBaseElement {
     object: ObjectType,
     type?: string,
     nodes?: SlateElement[],
