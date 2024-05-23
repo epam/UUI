@@ -91,7 +91,7 @@ export class ButtonDoc extends BaseDocsBlock {
                 cellSize: '110-70',
             });
             docPreview.add({
-                id: TButtonPreview.Colors,
+                id: TButtonPreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption1Line] },
                     icon: { examples: [TEST_DATA.icon] },

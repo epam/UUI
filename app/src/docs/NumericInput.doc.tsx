@@ -64,7 +64,7 @@ export class NumericInputDoc extends BaseDocsBlock {
             };
 
             docPreview.add({
-                id: TNumericInputPreview.Sizes,
+                id: TNumericInputPreview['Size Variants'],
                 matrix: {
                     mode: { values: ['form', 'inline', 'cell'] },
                     size: { examples: '*' },
@@ -75,7 +75,7 @@ export class NumericInputDoc extends BaseDocsBlock {
                 cellSize: w120_h60,
             });
             docPreview.add({
-                id: TNumericInputPreview.States,
+                id: TNumericInputPreview['Color Variants'],
                 matrix: {
                     mode: { values: ['form', 'inline', 'cell'] },
                     ...baseMatrix,
