@@ -156,7 +156,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             cellSize: ppi.cellSize,
         };
         const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
-        result.props = TestMatrixUtils.createTestMatrix({ matrixNorm: matrixConfig });
+        result.props = TestMatrixUtils.createTestMatrixFromArr({ matrixNorm: matrixConfig });
         return result;
     };
 
