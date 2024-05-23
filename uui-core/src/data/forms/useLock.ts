@@ -11,7 +11,7 @@ type LockStatus = 'blocked' | 'unblocked' | 'remain';
 
 export function useLock({ handleLeave }: UseLockProps) {
     const context = useUuiContext();
-    const [status, setStatus] = useState<LockStatus>();
+    const [status, setStatus] = useState<LockStatus>('unblocked');
 
     const block = () => {
         setStatus('blocked');
@@ -43,9 +43,10 @@ export function useLock({ handleLeave }: UseLockProps) {
     };
 
     useEffect(() => {
-        if (!handleLeave || status === 'blocked') return;
+        if (!handleLeave || status === 'unblocked') return;
         if (status === 'remain') {
             setStatus('blocked');
+            return;
         }
 
         const unblockRouter = blockRouter();
