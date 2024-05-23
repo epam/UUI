@@ -1,0 +1,32 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "When you want to see more data you can set the property "
+      },
+      {
+        "text": "columnsGap: '12'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and the gaps between table columns will be smaller. \nYou can also set the property "
+      },
+      {
+        "text": "headerSize: '48'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and the captions will be split into two lines."
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "But be aware that columnsGap: '12' will not work on editable tables correctly."
+      }
+    ]
+  }
+]
