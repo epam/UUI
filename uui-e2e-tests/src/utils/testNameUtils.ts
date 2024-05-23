@@ -1,20 +1,14 @@
 import { PreviewPageParams } from '../types';
 
-export function createUniqueTestName(
-    params: { runId?: string, pageParams: PreviewPageParams },
-) {
+export function createUniqueTestName(pageParams: PreviewPageParams) {
     const {
-        runId = '',
-        pageParams: {
-            isSkin,
-            theme,
-            componentId,
-            previewId,
-        },
-    } = params;
+        isSkin,
+        theme,
+        componentId,
+        previewId,
+    } = pageParams;
 
     return [
-        runId,
         componentId,
         previewId,
         theme,

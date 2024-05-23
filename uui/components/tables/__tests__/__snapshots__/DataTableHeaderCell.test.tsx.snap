@@ -3,7 +3,7 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className="flexCell uui-dt-vars uui-table-header-cell cell size-36 first-column pinned-left"
+  className="flexCell uui-dt-vars uui-table-header-cell cell size-36 first-column-24 pinned-left"
   onClick={[Function]}
   role="columnheader"
   style={

@@ -143,7 +143,7 @@ type TCellSize =
     | 310 | 320 | 330 | 340 | 350 | 360 | 370 | 380 | 390 | 400
     | 410 | 420 | 430 | 440 | 450 | 460 | 470 | 480 | 490 | 500
     // etc.
-    | 640 | 768 | 1280;
+    | 600 | 640 | 768 | 1280;
 /**
  * Cell 'width-height'. E.g.: `100-200` (means 100px width and 200px height)
  *
@@ -172,12 +172,8 @@ export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps>
      * A map of prop names to prop values/examples.
      * The component will be repeated more than once in order to render all possible combinations: all-props/all-values/all-examples.
      */
-    matrix: {
-        /**
-         * Property name
-         */
-        [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop>;
-    },
+    matrix: { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop> }
+    | { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop> }[],
     /**
      * 'width-height'
      */

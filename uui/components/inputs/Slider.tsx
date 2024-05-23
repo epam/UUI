@@ -8,4 +8,4 @@ function applySliderMods() {
     return [css.root, 'uui-color-neutral'];
 }
 
-export const Slider = withMods<SliderProps>(uuiSlider, applySliderMods);
+export const Slider = withMods<SliderProps, SliderProps>(uuiSlider, applySliderMods);

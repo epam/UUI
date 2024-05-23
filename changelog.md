@@ -89,6 +89,8 @@
 * [RangeDatePickerBody] props breaking changes
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput
+* [DataTable]: added property columnsGap?: '12' | '24'. When you want to see more data you can set the property columnsGap: '12' and the gaps between table columns will be smaller
+* [DataTable]: added property headerSize?: '36' | '48'. You can set the property headerSize: '48' and the captions will be split into two lines. It's not works with editable tables
 * [uui-editor]:
   * `plugins` prop now typed as `PlatePlugin` which you can import from editor package
   * `basePlugins` deprecated, since `defaultPlugins` and `baseMarksPlugin()` available as an replacement

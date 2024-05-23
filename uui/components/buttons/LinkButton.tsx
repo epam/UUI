@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
@@ -14,7 +14,7 @@ interface LinkButtonMods {
      * Defines component color.
      * @default 'primary'
      */
-    color?: 'primary' | 'secondary' | 'contrast';
+    color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'white' | 'contrast';
 }
 
 /** Represents the Core properties of the LinkButton component. */
@@ -28,8 +28,10 @@ export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & I
     size?: types.ControlSize | '42';
 };
 
+export interface LinkButtonModsOverride {}
+
 /** Represents the properties of the LinkButton component. */
-export type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;
+export type LinkButtonProps = LinkButtonCoreProps & Overwrite<LinkButtonMods, LinkButtonModsOverride>;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
@@ -42,6 +44,15 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
 }
 
 export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
+    if (__DEV__ && props.color === 'contrast') {
+        devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
+            component: 'LinkButton',
+            propName: 'color',
+            propValue: props.color,
+            condition: () => props.color === 'contrast',
+        });
+    }
+
     const styles = [applyLinkButtonMods(props), props.cx];
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;

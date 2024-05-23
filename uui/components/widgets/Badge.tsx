@@ -1,5 +1,7 @@
 import React from 'react';
-import { Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import {
+    Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement,
+} from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
@@ -23,6 +25,8 @@ type BadgeMods = {
     size?: '18' | '24' | '30' | '36' | '42' | '48';
 };
 
+export interface BadgeModsOverride {}
+
 export type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
     /** Pass true to display an indicator. It shows only if fill = 'outline'. */
     indicator?: boolean;
@@ -38,7 +42,7 @@ export type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIc
 };
 
 /** Represents the properties of a Badge component. */
-export type BadgeProps = BadgeCoreProps & BadgeMods;
+export type BadgeProps = BadgeCoreProps & Overwrite<BadgeMods, BadgeModsOverride>;
 
 function applyBadgeMods(mods: BadgeProps) {
     return [
