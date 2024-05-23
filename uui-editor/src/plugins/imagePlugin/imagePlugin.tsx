@@ -8,16 +8,16 @@ import { Image } from './ImageBlock';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, insertEmptyElement, focusEditor, isElement, PlatePlugin, insertNodes,
+    PlateEditor, createPluginFactory, getBlockAbove, focusEditor, isElement, PlatePlugin, insertNodes, insertEmptyElement,
 } from '@udecode/plate-common';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 
-import { IImageElement, ModalPayload } from './types';
+import { ModalPayload, TImageElement } from './types';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { IMAGE_PLUGIN_KEY, IMAGE_TYPE } from './constants';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { migrateImageElement } from '../../migrations/plate_migrations';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin';
 
 export const imagePlugin = (): PlatePlugin => {
     const createImagePlugin = createPluginFactory<WithToolbarButton>({
@@ -27,13 +27,16 @@ export const imagePlugin = (): PlatePlugin => {
         isVoid: true,
         component: Image,
         serializeHtml: ({ element }) => {
-            const imageElement = element as IImageElement;
+            const imageElement = element as TImageElement;
 
             return (
                 <div style={ { textAlign: imageElement.align || 'left' } }>
                     <img
-                        src={ element.url as string }
-                        style={ { width: imageElement.width } }
+                        src={ imageElement.url }
+                        style={ {
+                            width: imageElement.data?.size?.width,
+                            height: imageElement.data?.size?.height,
+                        } }
                         alt=""
                     />
                 </div>

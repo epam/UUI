@@ -75,9 +75,7 @@ Array [
               },
             ],
             "colSpan": 2,
-            "data": Object {
-              "colSpan": 2,
-            },
+            "data": Object {},
             "type": "table_cell",
           },
         ],
@@ -89,12 +87,7 @@ Array [
       112,
       288,
     ],
-    "data": Object {
-      "cellSizes": Array [
-        112,
-        288,
-      ],
-    },
+    "data": Object {},
     "type": "table",
   },
 ]
@@ -135,9 +128,7 @@ Array [
             "uui-richTextEditor-span-mark": true,
           },
         ],
-        "data": Object {
-          "url": "https://www.slatejs.org/",
-        },
+        "data": Object {},
         "type": "link",
         "url": "https://www.slatejs.org/",
       },
@@ -162,9 +153,7 @@ Array [
             "uui-richTextEditor-span-mark": true,
           },
         ],
-        "data": Object {
-          "url": "https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx",
-        },
+        "data": Object {},
         "type": "link",
         "url": "https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx",
       },
@@ -487,7 +476,6 @@ Array [
       },
     ],
     "data": Object {
-      "align": "align-center",
       "fileName": "blue-orange.jpg",
       "id": "100500",
       "imageSize": Object {
@@ -497,7 +485,6 @@ Array [
       "name": "blue-orange.jpg",
       "path": "/static/uploads/blue-orange.jpg",
       "size": 77236,
-      "src": "/static/uploads/blue-orange.jpg",
       "type": "image",
     },
     "type": "image",
@@ -522,9 +509,7 @@ Array [
         "uui-richTextEditor-span-mark": true,
       },
     ],
-    "data": Object {
-      "src": "https://www.youtube.com/embed/5qap5aO4i9A",
-    },
+    "data": Object {},
     "type": "iframe",
     "url": "https://www.youtube.com/embed/5qap5aO4i9A",
   },
@@ -624,9 +609,7 @@ Array [
               },
             ],
             "colSpan": 2,
-            "data": Object {
-              "colSpan": 2,
-            },
+            "data": Object {},
             "type": "table_header_cell",
           },
           Object {
@@ -662,9 +645,7 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {
-              "rowSpan": 2,
-            },
+            "data": Object {},
             "rowSpan": 2,
             "type": "table_cell",
           },
@@ -788,9 +769,7 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {
-              "rowSpan": 1,
-            },
+            "data": Object {},
             "rowSpan": 1,
             "type": "table_cell",
           },
@@ -806,9 +785,7 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {
-              "rowSpan": 1,
-            },
+            "data": Object {},
             "rowSpan": 1,
             "type": "table_cell",
           },
@@ -824,9 +801,7 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {
-              "rowSpan": 1,
-            },
+            "data": Object {},
             "rowSpan": 1,
             "type": "table_cell",
           },
@@ -845,9 +820,7 @@ Array [
                 "type": "paragraph",
               },
             ],
-            "data": Object {
-              "rowSpan": 1,
-            },
+            "data": Object {},
             "rowSpan": 1,
             "type": "table_cell",
           },
@@ -885,9 +858,7 @@ Array [
               },
             ],
             "colSpan": 3,
-            "data": Object {
-              "colSpan": 3,
-            },
+            "data": Object {},
             "type": "table_cell",
           },
         ],
@@ -902,15 +873,7 @@ Array [
       183,
       161,
     ],
-    "data": Object {
-      "cellSizes": Array [
-        130,
-        200,
-        200,
-        183,
-        161,
-      ],
-    },
+    "data": Object {},
     "type": "table",
   },
   Object {

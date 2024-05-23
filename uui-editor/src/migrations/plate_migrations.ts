@@ -1,106 +1,69 @@
-import { Value, setNodes, PlateEditor, TNodeEntry, TNode } from '@udecode/plate-common';
-import { TImageElement } from '@udecode/plate-media';
+import { Value, setNodes, PlateEditor, TNodeEntry } from '@udecode/plate-common';
 import { TTableCellElement, TTableElement } from '@udecode/plate-table';
-import { toPlateAlign } from '../helpers';
-import { IImageElement } from '../plugins/imagePlugin/types';
-import { ExtendedTTableCellElement, ExtendedTTableElement } from '../plugins/tablePlugin/types';
+import { TImageElement } from '../plugins/imagePlugin/types';
+import { toPlateAlign } from './slate_migrations';
+import { DepreactedTTableElement, DeprecatedImageElement, DeprecatedTTableCellElement } from './types';
 
-export const CONTENT_VERSION = '5.7.3';
-export const DEFAULT_CONTENT_VERSION = '5.7.2';
-
-/** 5.7.3 content properties migrations */
-export const MIGRATIONS_5_7_3 = '5.7.3';
+/**
+ * Migration property functions
+ * Currently, depreate intercepting and redundant slate properties
+ * Could be used mogarte to new as plate or custom element properties
+ */
 
 /** deprecate data properties */
-const migrateTableCellElementTo_5_7_3 = (editor: PlateEditor<Value>, tableCellNode: ExtendedTTableCellElement, path: number[]) => {
-    if (!tableCellNode.data?.colSpan && !tableCellNode.data?.rowSpan) {
+export const migrateTableCellElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+    const tableCellNode = node as DeprecatedTTableCellElement;
+    const { colSpan, rowSpan, ...otherData } = tableCellNode.data || {};
+
+    if (!colSpan && !rowSpan) {
         return;
     }
-
-    const payload = {
-        ...tableCellNode,
-        data: { version: CONTENT_VERSION },
-    };
 
     setNodes<TTableCellElement>(
         editor,
-        payload,
+        { ...tableCellNode, data: { ...otherData } },
         { at: path },
     );
 };
 
 /** deprecate data properties */
-const migarteTableElementTo_5_7_3 = (editor: PlateEditor<Value>, tableNode: ExtendedTTableElement, path: number[]) => {
-    if (!tableNode.data?.cellSizes) {
+export const migrateTableElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+    const tableNode = node as DepreactedTTableElement;
+    const { cellSizes, ...otherData } = tableNode.data || {};
+
+    if (!cellSizes) {
         return;
     }
 
-    const payload = {
-        ...tableNode,
-        data: {
-            version: CONTENT_VERSION,
-        },
-    };
-
     setNodes<TTableElement>(
         editor,
-        payload,
+        { ...tableNode, data: { ...otherData } },
         { at: path },
     );
 };
 
-/** deprecate plate intercepting properties */
-const migarteImageElementTo_5_7_3 = (editor: PlateEditor<Value>, imageNode: IImageElement, path: number[]) => {
+/** deprecate intercepting properties */
+export const migrateImageElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+    const imageNode = node as DeprecatedImageElement;
+    const { align, ...otherData } = imageNode.data || {};
+
+    if (!align) {
+        return;
+    }
+
     // align where setted to data after update to plate, so we need to fix that historical mistake
-    const alignPayload = imageNode.data?.align ? {
-        align: toPlateAlign(imageNode.data.align),
-    } : {};
-
-    /** deprecate slate property */
-    delete imageNode.data?.align;
-
-    const payload = {
-        ...imageNode,
-        ...alignPayload,
-        data: {
-            ...(imageNode.data || {}),
-            version: CONTENT_VERSION,
-        },
-    };
+    const alignPayload = align ? { align: toPlateAlign(align) } : {};
 
     setNodes<TImageElement>(
         editor,
-        payload,
+        {
+            ...imageNode,
+            ...alignPayload,
+            data: { ...otherData },
+        },
         { at: path },
     );
-};
-
-export const migrateTableCellElement = (editor: PlateEditor<Value>, entry: TNodeEntry<TNode>) => {
-    const [node, path] = entry;
-    const tableCellNode = node as ExtendedTTableCellElement;
-    const usedVerion = tableCellNode.data?.version || DEFAULT_CONTENT_VERSION;
-
-    if (usedVerion < MIGRATIONS_5_7_3) {
-        migrateTableCellElementTo_5_7_3(editor, tableCellNode, path);
-    }
-};
-
-export const migrateTableElement = (editor: PlateEditor<Value>, entry: TNodeEntry<TNode>) => {
-    const [node, path] = entry;
-    const tableNode = node as ExtendedTTableElement;
-    const usedVerion = tableNode.data?.version || DEFAULT_CONTENT_VERSION;
-
-    if (usedVerion < MIGRATIONS_5_7_3) {
-        migarteTableElementTo_5_7_3(editor, tableNode, path);
-    }
-};
-
-export const migrateImageElement = (editor: PlateEditor<Value>, entry: TNodeEntry<TNode>) => {
-    const [node, path] = entry;
-    const imageNode = node as IImageElement;
-    const usedVerion = imageNode.data?.version || DEFAULT_CONTENT_VERSION;
-
-    if (usedVerion < MIGRATIONS_5_7_3) {
-        migarteImageElementTo_5_7_3(editor, imageNode, path);
-    }
 };
