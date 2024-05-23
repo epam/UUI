@@ -675,6 +675,32 @@ describe('useForm', () => {
 
             expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
         });
+
+        it('Should make redirect and lock form aging if  beforeLeave return "remain"', async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue('remain');
+            const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props), props, { wrapper });
+
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => svc.uuiRouter.redirect({ pathname: '/newLocation' }));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+            expect(svc.uuiRouter.getCurrentLink().pathname).toEqual('/newLocation');
+
+            await act(() => svc.uuiRouter.redirect({ pathname: '/newLocation2' }));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(2); // form still in lock
+        });
     });
 
     describe('useForm Server validation', () => {
