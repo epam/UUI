@@ -10,9 +10,9 @@
  * Common reusable names. Use it for consistency (if possible).
  */
 const UTILS = {
-    SizeVariants: { 'Size Variants': 'Size Variants' },
-    ColorVariants: { 'Color Variants': 'Color Variants' },
-    CommonVariants: { 'Common Variants': 'Common Variants' },
+    SizeVariants: { 'Size Variants': 'Size Variants' as const },
+    ColorVariants: { 'Color Variants': 'Color Variants' as const },
+    CommonVariants: { 'Common Variants': 'Common Variants' as const },
 };
 
 export enum TAvatarStackPreview {
@@ -90,30 +90,30 @@ export const TTextPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TTooltipPreview = { ...UTILS.CommonVariants };
 export const TAlertPreview = {
     ...UTILS.ColorVariants,
-    'Layout with icon': 'Layout with icon',
-    'Layout without icon': 'Layout without icon',
+    'Layout with icon': 'Layout with icon' as const,
+    'Layout without icon': 'Layout without icon' as const,
 };
 export const TButtonPreview = {
-    'One-line caption': 'One-line caption',
-    'Two-line caption': 'Two-line caption',
-    'No caption': 'No caption',
+    'One-line caption': 'One-line caption' as const,
+    'Two-line caption': 'Two-line caption' as const,
+    'No caption': 'No caption' as const,
     ...UTILS.ColorVariants,
 };
 export const TTabButtonPreview = {
     ...UTILS.SizeVariants,
     ...UTILS.ColorVariants,
-    'Dropdown Size Variants': 'Dropdown Size Variants',
-    'Dropdown Color Variants': 'Dropdown Color Variants',
+    'Dropdown Size Variants': 'Dropdown Size Variants' as const,
+    'Dropdown Color Variants': 'Dropdown Color Variants' as const,
 };
 export const TVerticalTabButtonPreview = { ...TTabButtonPreview };
 export const TLabeledInputPreview = {
-    'Color Variants Label Top': 'Color Variants Label Top',
-    'Color Variants Label Left': 'Color Variants Label Left',
+    'Color Variants Label Top': 'Color Variants Label Top' as const,
+    'Color Variants Label Left': 'Color Variants Label Left' as const,
     ...UTILS.SizeVariants,
 };
 export const TRangeDatePickerPreview = {
     ...UTILS.SizeVariants,
     ...UTILS.ColorVariants,
-    Opened: 'Opened',
-    'Opened With Presets': 'Opened With Presets',
+    Opened: 'Opened' as const,
+    'Opened With Presets': 'Opened With Presets' as const,
 };

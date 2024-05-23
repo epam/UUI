@@ -68,7 +68,7 @@ builder
     .add(rangeDatePicker, {
         previewId: values(TRangeDatePickerPreview),
         onlyChromium: true, // reason: https://github.com/microsoft/playwright/issues/20203
-        focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId) && 'input',
+        focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId as any) && 'input',
     })
     .add(tabButton, { previewId: values(TTabButtonPreview) })
     .add(TComponentId.switch, { previewId: values(TSwitchPreview) })

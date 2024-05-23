@@ -105,38 +105,40 @@ export enum TComponentId {
     virtualList= 'virtualList'
 }
 
+type TPreviewIds<PreviewMap extends object> = (PreviewMap[keyof PreviewMap])[];
+
 /**
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
     [TComponentId.accordion]: TAccordionPreview[],
-    [TComponentId.alert]: (typeof TAlertPreview)[],
+    [TComponentId.alert]: TPreviewIds<typeof TAlertPreview>,
     [TComponentId.avatarStack]: TAvatarStackPreview[],
-    [TComponentId.badge]: (typeof TBadgePreview)[],
-    [TComponentId.button]: (typeof TButtonPreview)[],
-    [TComponentId.checkbox]: (typeof TCheckboxPreview)[],
-    [TComponentId.countIndicator]: (typeof TCountIndicatorPreview)[],
+    [TComponentId.badge]: TPreviewIds<typeof TBadgePreview>,
+    [TComponentId.button]: TPreviewIds<typeof TButtonPreview>,
+    [TComponentId.checkbox]: TPreviewIds<typeof TCheckboxPreview>,
+    [TComponentId.countIndicator]: TPreviewIds<typeof TCountIndicatorPreview>,
     [TComponentId.datePicker]: TDatePickerPreview[],
-    [TComponentId.iconButton]: (typeof TIconButtonPreview)[],
-    [TComponentId.linkButton]: (typeof TLinkButtonPreview)[],
+    [TComponentId.iconButton]: TPreviewIds<typeof TIconButtonPreview>,
+    [TComponentId.linkButton]: TPreviewIds<typeof TLinkButtonPreview>,
     [TComponentId.pickerInput]: TPickerInputPreview[],
-    [TComponentId.rangeDatePicker]: (typeof TRangeDatePickerPreview)[],
-    [TComponentId.switch]: (typeof TSwitchPreview)[],
-    [TComponentId.tabButton]: (typeof TTabButtonPreview)[],
-    [TComponentId.tag]: (typeof TTagPreview)[],
-    [TComponentId.text]: (typeof TTextPreview)[],
-    [TComponentId.textArea]: (typeof TTextAreaPreview)[],
+    [TComponentId.rangeDatePicker]: TPreviewIds<typeof TRangeDatePickerPreview>,
+    [TComponentId.switch]: TPreviewIds<typeof TSwitchPreview>,
+    [TComponentId.tabButton]: TPreviewIds<typeof TTabButtonPreview>,
+    [TComponentId.tag]: TPreviewIds<typeof TTagPreview>,
+    [TComponentId.text]: TPreviewIds<typeof TTextPreview>,
+    [TComponentId.textArea]: TPreviewIds<typeof TTextAreaPreview>,
     [TComponentId.textInput]: TTextInputPreview[],
-    [TComponentId.verticalTabButton]: (typeof TVerticalTabButtonPreview)[],
-    [TComponentId.numericInput]: (typeof TNumericInputPreview)[],
-    [TComponentId.radioInput]: (typeof TRadioInputPreview)[],
-    [TComponentId.radioGroup]: (typeof TRadioGroupPreview)[],
-    [TComponentId.labeledInput]: (typeof TLabeledInputPreview)[],
-    [TComponentId.multiSwitch]: (typeof TMultiSwitchPreview)[],
-    [TComponentId.paginator]: (typeof TPaginatorPreview)[],
-    [TComponentId.mainMenu]: (typeof TMainMenuPreview)[],
-    [TComponentId.notificationCard]: (typeof TNotificationCardPreview)[],
-    [TComponentId.tooltip]: (typeof TTooltipPreview)[],
+    [TComponentId.verticalTabButton]: TPreviewIds<typeof TVerticalTabButtonPreview>,
+    [TComponentId.numericInput]: TPreviewIds<typeof TNumericInputPreview>,
+    [TComponentId.radioInput]: TPreviewIds<typeof TRadioInputPreview>,
+    [TComponentId.radioGroup]: TPreviewIds<typeof TRadioGroupPreview>,
+    [TComponentId.labeledInput]: TPreviewIds<typeof TLabeledInputPreview>,
+    [TComponentId.multiSwitch]: TPreviewIds<typeof TMultiSwitchPreview>,
+    [TComponentId.paginator]: TPreviewIds<typeof TPaginatorPreview>,
+    [TComponentId.mainMenu]: TPreviewIds<typeof TMainMenuPreview>,
+    [TComponentId.notificationCard]: TPreviewIds<typeof TNotificationCardPreview>,
+    [TComponentId.tooltip]: TPreviewIds<typeof TTooltipPreview>,
 };
 
 export const THEMES = {
