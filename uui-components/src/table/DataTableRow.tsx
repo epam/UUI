@@ -2,8 +2,11 @@ import React, { ReactNode } from 'react';
 import isEqual from 'react-fast-compare';
 import {
     DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
+    DropLevelProps,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
+import { FlexRow } from '../layout';
+import css from './DataTableRow.module.scss';
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
@@ -52,6 +55,18 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
+    const renderDropLevels = (params: DropLevelProps) => {
+        return (
+            <FlexRow
+                cx={ [css.container] }
+            >
+                {props.renderDropLevel?.({ ...params, row: props, level: 0 })}
+                {props.renderDropLevel?.({ ...params, row: props, level: 1 })}
+                {props.renderDropLevel?.({ ...params, row: props, level: 2 })}
+            </FlexRow>
+        );
+    };
+
     const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (
             <DataTableRowContainer
@@ -84,7 +99,14 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
     const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
     if (props.dnd && (props.dnd.srcData || props.dnd.canAcceptDrop)) {
-        return <DndActor { ...props.dnd } render={ (params) => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) } />;
+        return (
+            <DndActor
+                isMultilevel={ true }
+                { ...props.dnd }
+                render={ (params, overlays) => renderRow(params, clickHandler, overlays) }
+                renderDropLevels={ renderDropLevels }
+            />
+        );
     } else {
         return renderRow({}, clickHandler);
     }

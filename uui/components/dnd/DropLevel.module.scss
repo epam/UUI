@@ -1,0 +1,13 @@
+.drop-level {
+    height: 100%;
+    margin-right: 5px;
+
+    &:hover {
+        border-bottom: 3px solid;
+        border-color: var(--uui-info-50);
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}

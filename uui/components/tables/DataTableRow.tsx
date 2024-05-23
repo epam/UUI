@@ -2,10 +2,11 @@ import * as React from 'react';
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
 import {
     withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps,
+    DropLevelProps,
 } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
-import { DropMarker } from '../dnd';
+import { DropLevel, DropMarker } from '../dnd';
 import css from './DataTableRow.module.scss';
 import './variables.scss';
 
@@ -18,7 +19,12 @@ export const renderCell = (props: DataTableCellProps) => {
 
 export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { ...props } enableBlocker={ true } />;
 
-export const propsMods = { renderCell, renderDropMarkers };
+export const renderDropLevel = (mods: DataTableRowMods) =>
+    function RenderDropLevel(props: DropLevelProps) {
+        return <DropLevel { ...props } size={ mods.size } />;
+    };
+
+export const propsMods = (mods: DataTableRowMods) => ({ renderCell, renderDropLevel: renderDropLevel(mods) });
 
 export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
     uuiDataTableRow,
@@ -27,5 +33,5 @@ export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
             css.root, 'uui-dt-vars', borderBottom && 'uui-dt-row-border', css['size-' + (size || '36')],
         ];
     },
-    () => propsMods,
+    (mods) => propsMods(mods),
 );
