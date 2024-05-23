@@ -58,10 +58,10 @@ export class TabButtonDoc extends BaseDocsBlock {
                 isDisabled: { values: [false] },
             };
 
-            docPreview.add(TTabButtonPreview['Basic'], { ...baseMatrix }, w190_h70);
-            docPreview.add(TTabButtonPreview['Basic States'], { ...baseMatrix, ...statesMatrix }, w165_h55);
-            docPreview.add(TTabButtonPreview['Basic Dropdown'], { ...baseMatrix, isDropdown: { values: [true] } }, w190_h70);
-            docPreview.add(TTabButtonPreview['Basic Dropdown States'], { ...baseMatrix, isDropdown: { values: [true] }, ...statesMatrix }, w165_h55);
+            docPreview.add(TTabButtonPreview['Size Variants'], { ...baseMatrix }, w190_h70);
+            docPreview.add(TTabButtonPreview['Color Variants'], { ...baseMatrix, ...statesMatrix }, w165_h55);
+            docPreview.add(TTabButtonPreview['Dropdown Size Variants'], { ...baseMatrix, isDropdown: { values: [true] } }, w190_h70);
+            docPreview.add(TTabButtonPreview['Dropdown Color Variants'], { ...baseMatrix, isDropdown: { values: [true] }, ...statesMatrix }, w165_h55);
         },
     };
 
