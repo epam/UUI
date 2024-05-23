@@ -172,12 +172,8 @@ export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps>
      * A map of prop names to prop values/examples.
      * The component will be repeated more than once in order to render all possible combinations: all-props/all-values/all-examples.
      */
-    matrix: {
-        /**
-         * Property name
-         */
-        [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop>;
-    },
+    matrix: { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop> }
+    | { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop> }[],
     /**
      * 'width-height'
      */
