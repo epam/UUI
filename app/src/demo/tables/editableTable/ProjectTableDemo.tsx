@@ -50,7 +50,7 @@ export function ProjectTableDemo() {
         getMetadata: () => metadata,
     });
 
-    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000, folded: { 1: false } });
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     const searchHandler = useCallback(
@@ -122,6 +122,7 @@ export function ProjectTableDemo() {
         getRowOptions: (task) => ({
             ...lens.prop('items').key(task.id).toProps(), // pass IEditable to each row to allow editing
             isSelectable: true,
+            // checkbox: { isVisible: true },
             dnd: {
                 srcData: { ...task, isTask: true },
                 dstData: { ...task, isTask: true },

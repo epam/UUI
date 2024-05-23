@@ -17,7 +17,10 @@ import { DndContextState } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     /** Render callback for DragActor content */
-    render(props: DndActorRenderParams): React.ReactNode;
+    render(props: DndActorRenderParams, overlays?: React.ReactNode): React.ReactNode;
+    renderDropLevels?(props: DndActorRenderParams): React.ReactNode;
+
+    isMultilevel?: boolean;
 }
 
 const DND_START_THRESHOLD = 5;
@@ -301,7 +304,18 @@ function TREE_SHAKEABLE_INIT() {
                 }
             };
 
-            return this.props.render(params);
+            // if (this.props.isMultilevel 
+            //     && this.state.dndContextState.isDragging
+            // ) {
+            //     return this.props.renderDropLevels(params, this.props.render(params));
+            // }
+
+            return this.props.render(
+                params,
+                this.props.isMultilevel && this.state.dndContextState.isDragging
+                    ? this.props.renderDropLevels?.(params)
+                    : null,
+            );
         }
     };
 }

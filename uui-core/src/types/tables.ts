@@ -177,6 +177,12 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
+export interface DropLevelProps extends DndActorRenderParams, IHasCX {
+    size: string;
+    row: DataRowProps<any, any>;
+    level: number;
+}
+
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
     /** Array of visible columns */
     columns?: DataColumnProps<TItem, TId>[];
@@ -189,7 +195,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
      * Render callback for the drop marker. Rendered only if 'dnd' option was provided via getRowProps.
      * If omitted, default renderer will be used.
      * */
-    renderDropMarkers?: (props: DndActorRenderParams) => ReactNode;
+    renderDropLevel?: (props: DropLevelProps) => ReactNode;
 }
 
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {
