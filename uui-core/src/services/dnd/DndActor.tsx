@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
     IDndActor, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions,
+    DndDropLevelsRenderParams,
 } from '../../types/dnd';
 
 import { UuiContexts } from '../../types/contexts';
@@ -15,12 +16,15 @@ import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../UuiContext';
 import { DndContextState } from './DndContext';
 
-export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
+export interface DndActorProps<TId, TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     /** Render callback for DragActor content */
     render(props: DndActorRenderParams, overlays?: React.ReactNode): React.ReactNode;
-    renderDropLevels?(props: DndActorRenderParams): React.ReactNode;
+    renderDropLevels?(props: DndDropLevelsRenderParams<TId>): React.ReactNode;
 
     isMultilevel?: boolean;
+    
+    id: TId;
+    path?: TId[];
 }
 
 const DND_START_THRESHOLD = 5;
@@ -32,6 +36,7 @@ interface DndActorState {
     isDragging: boolean;
     isMouseOver: boolean;
     position?: DropPosition;
+    draggingOverLevel: number | null;
     dndContextState: DndContextState;
 }
 
@@ -42,6 +47,7 @@ const initialState: DndActorState = {
     isDragging: false,
     isMouseOver: false,
     position: null,
+    draggingOverLevel: null,
     dndContextState: {
         isDragging: false,
     },
@@ -55,7 +61,7 @@ const initialState: DndActorState = {
 
 export const DndActor = TREE_SHAKEABLE_INIT();
 function TREE_SHAKEABLE_INIT() {
-    return class DndActorComponent<TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TSrcData, TDstData>, DndActorState> {
+    return class DndActorComponent<TId = any, TSrcData = any, TDstData = any> extends React.Component<DndActorProps<TId, TSrcData, TDstData>, DndActorState> {
         state = initialState;
         static contextType = UuiContext;
         public context: UuiContexts;
@@ -63,6 +69,12 @@ function TREE_SHAKEABLE_INIT() {
 
         componentDidMount() {
             this.context?.uuiDnD?.subscribe?.(this.contextUpdateHandler);
+            this.context?.uuiDnD.setDndRowData({
+                id: this.props.id,
+                path: this.props.path ?? [],
+                dstData: this.props.dstData,
+                srcData: this.props.srcData,
+            });
             window.addEventListener('pointerup', this.windowPointerUpHandler);
             window.addEventListener('pointermove', this.windowPointerMoveHandler);
         }
@@ -250,10 +262,35 @@ function TREE_SHAKEABLE_INIT() {
                 };
             }
 
+            const getDropParams = (id: TId, e: React.MouseEvent<HTMLElement>): AcceptDropParams<TSrcData, TDstData> => {
+                const {
+                    left, top, width, height,
+                } = e.currentTarget.getBoundingClientRect();
+                const dndRowData = this.context?.uuiDnD?.getDndRowData(id);
+                return {
+                    srcData: this.context.uuiDnD.dragData,
+                    dstData: dndRowData?.dstData,
+                    offsetLeft: e.clientX - left,
+                    offsetTop: e.clientY - top,
+                    targetWidth: width,
+                    targetHeight: height,
+                };
+            };
+
+            const pointerEnterDropLevel = (id: TId, position: DropPosition, level: number) => (e: React.PointerEvent<any>) => {
+                if (this.context.uuiDnD.isDragging) {
+                    releasePointerCaptureOnEventTarget(e); // allows you to trigger pointer events on other nodes
+                    const dropProps = getDropParams(id, e);
+                    const positionOptions = this.props.canAcceptDrop(dropProps);
+                    const actualPosition = positionOptions?.[position] ? position : null;
+                    this.setState((s) => ({ ...s, isMouseOver: true, position: actualPosition, draggingOverLevel: level }));
+                }
+            };
+
             if (this.props.canAcceptDrop) {
                 const pointerLeaveHandler = () => {
                     if (this.context.uuiDnD.isDragging) {
-                        this.setState((s) => ({ ...s, isMouseOver: false, position: null }));
+                        this.setState((s) => ({ ...s, isMouseOver: false, position: null, draggingOverLevel: null }));
                     }
                 };
 
@@ -304,17 +341,16 @@ function TREE_SHAKEABLE_INIT() {
                 }
             };
 
-            // if (this.props.isMultilevel 
-            //     && this.state.dndContextState.isDragging
-            // ) {
-            //     return this.props.renderDropLevels(params, this.props.render(params));
-            // }
-
             return this.props.render(
                 params,
                 this.props.isMultilevel && this.state.dndContextState.isDragging
-                    ? this.props.renderDropLevels?.(params)
-                    : null,
+                    ? this.props.renderDropLevels?.({
+                        id: this.props.id,
+                        path: this.props.path,
+                        onPointerEnter: pointerEnterDropLevel,
+                        isDraggedOver: this.context.uuiDnD?.isDragging && this.state.isMouseOver,
+                        draggingOverLevel: this.state.draggingOverLevel,
+                    }) : null,
             );
         }
     };

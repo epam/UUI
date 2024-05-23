@@ -1,7 +1,7 @@
 import { AnalyticsEvent, Link } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import { DndContextState, TMouseCoords } from '../services/dnd/DndContext';
+import { DndContextState } from '../services/dnd/DndContext';
 import { Lock } from '../services/LockContext';
 import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
 import { NotificationOperation } from '../services/NotificationContext';
@@ -9,6 +9,8 @@ import { ModalOperation } from '../services/ModalContext';
 import { LayoutLayer } from '../services/LayoutContext';
 
 import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
+import { TMouseCoords } from '../services/dnd/MouseCoordsService';
+import { DndRowData } from '../services/dnd/DndRowsDataService';
 
 export interface IBaseContext<TState = {}> {
     /** Add your handler, which will be called on context updates */
@@ -102,13 +104,15 @@ export interface IModalContext extends IBaseContext {
     getOperations(): ModalOperation[];
 }
 
-export interface IDndContext extends IBaseContext<DndContextState> {
+export interface IDndContext<TId = any, TSrcData = any, TDstData = any> extends IBaseContext<DndContextState> {
     startDrag(node: Node, data: any, renderGhost: () => React.ReactNode): void;
     endDrag(): void;
     /** Indicates that drag in progress */
     isDragging: boolean;
     dragData?: any;
     getMouseCoords: () => TMouseCoords
+    setDndRowData(data: DndRowData<TId, TSrcData, TDstData>): void;
+    getDndRowData(id: TId): DndRowData<TId, TSrcData, TDstData>;
 }
 
 /** Save data to the localStorage */

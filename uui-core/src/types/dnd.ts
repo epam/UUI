@@ -4,11 +4,15 @@ export type DropPosition = 'top' | 'bottom' | 'left' | 'right' | 'inside';
 
 export type DropPositionOptions = Partial<Record<DropPosition, boolean>>;
 
-export interface AcceptDropParams<TSrcData, TDstData> {
+export interface IDndData<TSrcData, TDstData> {
     /** Source item data. This is the srcData of the actor that is being dropped into. */
-    srcData: TSrcData;
+    srcData?: TSrcData;
     /** Destination item data. This is the dstData of the actor into which the drop is performed. */
     dstData?: TDstData;
+}
+
+export interface AcceptDropParams<TSrcData, TDstData> extends Omit<IDndData<TSrcData, TDstData>, 'srcData'> {
+    srcData: TSrcData;
     offsetLeft: number;
     offsetTop: number;
     targetWidth: number;
@@ -18,6 +22,14 @@ export interface AcceptDropParams<TSrcData, TDstData> {
 export interface DropParams<TSrcData, TDstData> extends AcceptDropParams<TSrcData, TDstData> {
     /** Current drop position, indicates where item will be dropped relative to the destination */
     position: DropPosition;
+}
+
+export interface DndDropLevelsRenderParams<TId> {
+    id: TId;
+    path: TId[];
+    isDraggedOver?: boolean;
+    draggingOverLevel?: number | null;
+    onPointerEnter?: (id: TId, position: DropPosition, level: number) => (e: React.PointerEvent<any>) => void;
 }
 
 export interface DndActorRenderParams {
@@ -68,15 +80,7 @@ export interface DndActorRenderParams {
     ref?: React.Ref<any>;
 }
 
-export interface IDndActor<TSrcData, TDstData> {
-    /** Data used when this component acts as a drag source.
-     * If provided, it means this component can be dragged. Can be used in combination with dstData.
-     */
-    srcData?: TSrcData;
-    /** Data used when this component acts as a drop destination.
-     * If provided, it means something can be dragged onto this component. Can be used in combination with srcData.
-     */
-    dstData?: TDstData;
+export interface IDndActor<TSrcData, TDstData> extends IDndData<TSrcData, TDstData> {
     /** A pure function that gets permitted positions for a drop action */
     canAcceptDrop?(params: AcceptDropParams<TSrcData, TDstData>): DropPositionOptions | null;
     /** Called when accepted drop action performed on this actor. Usually used to reorder and update items */

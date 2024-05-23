@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import isEqual from 'react-fast-compare';
 import {
     DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
-    DropLevelProps,
+    DndDropLevelsRenderParams,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import { FlexRow } from '../layout';
@@ -55,14 +55,28 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
-    const renderDropLevels = (params: DropLevelProps) => {
+    const renderDropLevels = (params: DndDropLevelsRenderParams<TId> & { size: string }) => {
         return (
             <FlexRow
                 cx={ [css.container] }
             >
-                {props.renderDropLevel?.({ ...params, row: props, level: 0 })}
-                {props.renderDropLevel?.({ ...params, row: props, level: 1 })}
-                {props.renderDropLevel?.({ ...params, row: props, level: 2 })}
+                { [...params.path, params.id].map((id, index) => props.renderDropLevel({
+                    ...params,
+                    row: props,
+                    id,
+                    level: index + 1,
+                    key: `${id}-bottom`,
+                    position: 'bottom',
+                })) }
+
+                { props.renderDropLevel({
+                    ...params,
+                    row: props,
+                    id: params.id,
+                    level: params.path.length + 2,
+                    key: `${params.id}-inside`,
+                    position: 'inside',
+                }) }
             </FlexRow>
         );
     };
@@ -103,8 +117,10 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             <DndActor
                 isMultilevel={ true }
                 { ...props.dnd }
+                id={ props.id }
+                path={ props.path.map(({ id }) => id) }
                 render={ (params, overlays) => renderRow(params, clickHandler, overlays) }
-                renderDropLevels={ renderDropLevels }
+                renderDropLevels={ props.renderDropLevel ? renderDropLevels : null }
             />
         );
     } else {

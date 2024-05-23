@@ -3,7 +3,7 @@ import { FlexCell } from '@epam/uui-components';
 import { DropLevelProps } from '@epam/uui-core';
 import css from './DropLevel.module.scss';
 
-export function DropLevel(props: DropLevelProps) {
+export function DropLevel<TId>(props: DropLevelProps<TId>) {
     const getIndent = (level: number) => {
         switch (props.size) {
             case '24':
@@ -51,13 +51,15 @@ export function DropLevel(props: DropLevelProps) {
         return getIndent(1) + foldingWidth;
     };
 
-    const width = props.level < 2 ? getDropLevelWidth(props.level) : '100%';
+    const isActiveLevel = props.isDraggedOver && props.draggingOverLevel !== null && props.level >= props.draggingOverLevel;
+    const width = props.level <= props.path.length + 1 ? getDropLevelWidth(props.level) : '100%';
 
     return (
         <FlexCell
             width={ width }
             minWidth={ getDropLevelWidth(props.level) }
-            cx={ css.dropLevel }
+            cx={ [css.dropLevel, props.isDraggedOver ? css.dropLevelDraggingOverRow : false, isActiveLevel ? css.dropLevelActive : false] }
+            rawProps={ { onPointerEnter: props.onPointerEnter(props.id, props.position, props.level) } }
         >
         </FlexCell>
     );
