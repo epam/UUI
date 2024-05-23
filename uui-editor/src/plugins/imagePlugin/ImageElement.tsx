@@ -12,11 +12,11 @@ import {
 import cx from 'classnames';
 import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
-import { IImageElement, PlateImgAlign } from './types';
+import { PlateImgAlign, TImageElement } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
 import { ResizableProvider } from '@udecode/plate-resizable';
 
-interface ImageElementProps extends PlateElementProps<Value, IImageElement> {
+interface ImageElementProps extends PlateElementProps<Value, TImageElement> {
     align?: PlateImgAlign;
 }
 

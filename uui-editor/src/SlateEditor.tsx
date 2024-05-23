@@ -11,19 +11,13 @@ import {
 } from '@udecode/plate-common';
 
 import { createPlateUI } from './components';
-import { baseMarksPlugin } from './plugins';
 import { Toolbars } from './implementation/Toolbars';
 import { EditorValue } from './types';
-import { defaultPlugins } from './defaultPlugins';
 
 import css from './SlateEditor.module.scss';
-import { getMigratedPlateValue, isEditorValueEmpty, isPlateValue } from './helpers';
 import { useFocusEvents } from './plugins/eventEditorPlugin';
-
-export const basePlugins: PlatePlugin[] = [
-    ...baseMarksPlugin(),
-    ...defaultPlugins,
-];
+import { isEditorValueEmpty } from './helpers';
+import { getMigratedPlateValue, isPlateValue } from './migrations';
 
 const disabledPlugins = { insertData: true };
 
@@ -31,7 +25,7 @@ export interface PlateEditorProps
     extends IEditable<EditorValue>,
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    plugins?: any[]; // TODO: improve typing
+    plugins: PlatePlugin[];
     isReadonly?: boolean;
     autoFocus?: boolean;
     minHeight?: number | 'none';
@@ -77,10 +71,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
 
     /** config */
     const plugins = useMemo(
-        () => {
-            const _plugins: PlatePlugin[] = !props.plugins || !props.plugins.length ? defaultPlugins : props.plugins;
-            return createPlugins(_plugins.flat(), { components: createPlateUI() });
-        },
+        () => createPlugins(props.plugins, { components: createPlateUI() }),
         [props.plugins],
     );
 

@@ -6,7 +6,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
 
 import {
-    PlateEditor, createPluginFactory, getPluginOptions, insertElements, PlatePlugin,
+    PlateEditor, createPluginFactory, getPluginOptions, insertElements, PlatePlugin, AnyObject,
 } from '@udecode/plate-common';
 import css from './PlaceholderPlugin.module.scss';
 import { PLACEHOLDER_PLUGIN_KEY } from './constants';
@@ -22,7 +22,7 @@ export interface PlaceholderPluginParams {
 
 type PlaceholderPluginOptins = WithToolbarButton & { params: PlaceholderPluginParams };
 
-export const placeholderPlugin = (params: PlaceholderPluginParams): PlatePlugin<PlaceholderPluginOptins> => {
+export const placeholderPlugin = (params: PlaceholderPluginParams): PlatePlugin<AnyObject> => {
     const createPlaceholderPlugin = createPluginFactory<PlaceholderPluginOptins>({
         key: PLACEHOLDER_PLUGIN_KEY,
         isElement: true,
@@ -35,7 +35,7 @@ export const placeholderPlugin = (params: PlaceholderPluginParams): PlatePlugin<
         },
     });
 
-    return createPlaceholderPlugin();
+    return createPlaceholderPlugin() as unknown as PlatePlugin<AnyObject>;
 };
 
 interface IPlaceholderButton {

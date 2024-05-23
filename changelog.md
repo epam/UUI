@@ -90,6 +90,8 @@
 * [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`
 * [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput
 * [uui-editor]:
+  * `plugins` prop now typed as `PlatePlugin` which you can import from editor package
+  * `basePlugins` deprecated, since `defaultPlugins` and `baseMarksPlugin()` available as an replacement
   * `migrateSlateSchema` now typed. There are type guards to distinct slate or plate content types: `isSlateSchema`, `isPlateValue` or `getMigratedPlateValue` which will do migration if needed
   * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance
   * `el.data.colSpan` and `el.data.rowSpan` removed from table cell node as it has duplicates: `el.colSpan` and `el.rowSpan`

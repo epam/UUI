@@ -34,7 +34,7 @@
     "type": "note-warning",
     "children": [
       {
-        "text": "Note, HTML format supports blocks which can be represented as html elements, therefore  worked only with limited set of plugins, such as: paragraphPlugin, baseMarksPlugin, headerPlugin, superscriptPlugin, listPlugin, quotePlugin, linkPlugin, imagePlugin, videoPlugin, iframePlugin, codeBlockPlugin."
+        "text": "Note, HTML format supports blocks which can be represented as html elements, therefore  worked only with limited set of plugins, such as: paragraphPlugin, baseMarksPlugin, headerPlugin, superscriptPlugin, listPlugin, quotePlugin, linkPlugin, imagePlugin, videoPlugin, iframePlugin, codeBlockPlugin, separatorPlugin."
       }
     ]
   }

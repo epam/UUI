@@ -6,10 +6,6 @@ import {
 } from '@udecode/plate-common';
 import { createPlateUI } from './components';
 import { PARAGRAPH_TYPE } from './plugins/paragraphPlugin';
-import { EditorValue } from './types';
-import { SlateImgAlign } from './plugins/imagePlugin/types';
-import { TImageElement } from '@udecode/plate-media';
-import { isSlateSchema, migrateSlateSchema } from './migrations';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -58,11 +54,13 @@ export function useIsPluginActive(key: string): boolean {
 }
 
 export const isEditorValueEmpty = (value: Value) => {
-    return (
-        !value
-        || (value.length === 0
-        || (value.length === 1 && value[0].type === PARAGRAPH_TYPE && value[0].children[0].text === ''))
-    );
+    if (!value || value.length === 0) return true;
+
+    const isFirstParagraph = value[0].type === PARAGRAPH_TYPE && value[0].children[0].text === '';
+    if (value.length === 1 && isFirstParagraph) {
+        return true;
+    }
+    return false;
 };
 
 export class SelectionUtils {
@@ -96,28 +94,4 @@ export const createTempEditor = (plugins: PlatePlugin[]): PlateEditor => {
             components: createPlateUI(),
         }),
     });
-};
-
-/** type guard to distinct plate format */
-export const isPlateValue = (value: EditorValue): value is Value => {
-    return Array.isArray(value);
-};
-
-const SLATE_TO_PLATE_IMG_ALIGN = {
-    'align-left': 'left',
-    'align-right': 'right',
-    'align-center': 'center',
-};
-
-/** converts align property */
-export const toPlateAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
-    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as TImageElement['align'];
-
-/** migrate deprecated slate format if needed */
-export const getMigratedPlateValue = (value: EditorValue): Value | undefined => {
-    if (!value) return undefined; // get rid of nulls
-    if (isSlateSchema(value)) {
-        return migrateSlateSchema(value);
-    }
-    return value;
 };

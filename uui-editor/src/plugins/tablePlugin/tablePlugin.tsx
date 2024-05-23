@@ -38,10 +38,7 @@ import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_TYPE, TABLE_ROW_TYPE } from './constants';
-import {
-    migrateTableCellElement,
-    migrateTableElement,
-} from '../../migrations/plate_migrations';
+import { migrateTableCellElement, migrateTableElement } from '../../migrations/plate_migrations';
 
 const noop = () => {};
 

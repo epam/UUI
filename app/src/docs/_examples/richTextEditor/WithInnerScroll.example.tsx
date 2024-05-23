@@ -17,7 +17,7 @@ export default function WithInnerScrollExample() {
 
     const plugins = [
         ...defaultPlugins,
-        baseMarksPlugin(),
+        ...baseMarksPlugin(),
         headerPlugin(),
         colorPlugin(),
         superscriptPlugin(),

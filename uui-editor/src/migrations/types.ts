@@ -1,4 +1,32 @@
-import { SlateImgAlign } from '../plugins/imagePlugin/types';
+import { TTableCellElement, TTableElement } from '@udecode/plate-table';
+import { TImageElement } from '../plugins/imagePlugin/types';
+
+/**
+ * Plate related
+ */
+
+export type DeprecatedImageElement = TImageElement & {
+    data: TImageElement['data'] & {
+        align?: SlateImgAlign; // removed
+    }
+};
+
+export type DepreactedTTableElement = TTableElement & {
+    data?: {
+        cellSizes?: number[]; // removed
+    },
+};
+
+export type DeprecatedTTableCellElement = TTableCellElement & {
+    data?: {
+        colSpan?: number; // removed
+        rowSpan?: number; // removed
+    },
+};
+
+/**
+ * Slate related
+ */
 
 /** Deprecated Slate content structure */
 export type SlateSchema = {
@@ -17,6 +45,7 @@ export type SlateSchema = {
 export type SlateElement = SlateBlockElement | SlateInlineElement | SlateTextElement;
 
 type ObjectType = 'text' | 'inline' | 'block' | 'mark' | 'value' | 'document';
+export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
 
 export interface SlateBaseElement {
     object: ObjectType,
