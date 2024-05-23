@@ -5,7 +5,7 @@ import {
     validateServerErrorState,
 } from '../../data/validation';
 import { useForceUpdate } from '../../hooks';
-import { UuiContexts } from '../../types/contexts';
+import { UuiContexts, Link } from '../../types';
 import { ValidationState } from '../lenses';
 import { useUuiContext } from '../../services';
 import { LensBuilder } from '../lenses/LensBuilder';
@@ -88,12 +88,19 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         context.uuiUserSettings.set(props.settingsKey, null);
     }, [context.uuiUserSettings, props.settingsKey]);
 
-    const handleLeave = useCallback(() => {
+    const handleLeave = useCallback(async (nextLocation?: Link, currentLocation?: Link) => {
         if (props.beforeLeave) {
-            return props.beforeLeave().then((res) => {
-                if (res) return handleSave(true);
+            const res = await props.beforeLeave(nextLocation, currentLocation);
+            if (res === true) {
+                return handleSave(true);
+            }
+            if (res === false) {
                 removeUnsavedChanges();
-            });
+                return Promise.resolve();
+            }
+            if (res === 'remain') {
+                return Promise.resolve('remain');
+            }
         }
         return Promise.resolve();
     }, [

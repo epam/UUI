@@ -2,17 +2,24 @@ import { IRouterContext, Link } from '@epam/uui-core';
 
 export class TestStubAdaptedRouter implements IRouterContext {
     blockerLister: (link: Link) => void;
+    currentLink: Link = { pathname: '/', query: {} };
 
     public getCurrentLink(): Link {
-        return { pathname: '', query: {} };
+        return this.currentLink;
     }
 
-    public redirect(): void {
-        this.blockerLister?.(this.getCurrentLink());
+    public redirect(link: Link): void {
+        if (this.blockerLister) {
+            this.blockerLister?.(link);
+        }
+        this.currentLink = link;
     }
 
-    public transfer(): void {
-        this.blockerLister?.(this.getCurrentLink());
+    public transfer(link: Link): void {
+        if (this.blockerLister) {
+            this.blockerLister?.(link);
+        }
+        this.currentLink = link;
     }
 
     public isActive(): boolean {
