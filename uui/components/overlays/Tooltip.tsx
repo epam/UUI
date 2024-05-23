@@ -21,4 +21,4 @@ function applyTooltipMods(mods: TooltipMods) {
     ];
 }
 
-export const Tooltip = withMods<TooltipProps, TooltipMods>(uuiComponents.Tooltip, applyTooltipMods);
+export const Tooltip = withMods<TooltipProps, TooltipProps>(uuiComponents.Tooltip, applyTooltipMods);

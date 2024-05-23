@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps as uuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
 import css from './TextArea.module.scss';
@@ -14,6 +14,8 @@ type TextAreaMods = types.IHasEditMode & {
     size?: '24' | '30' | '36' | '42' | '48';
 };
 
+export interface TextAreaModsOverride {}
+
 function applyTextAreaMods(mods: TextAreaMods) {
     return [
         css.root,
@@ -23,9 +25,9 @@ function applyTextAreaMods(mods: TextAreaMods) {
 }
 
 /** Represents the properties of a TextArea component. */
-export type TextAreaProps = uuiTextAreaProps & TextAreaMods;
+export type TextAreaProps = uuiTextAreaProps & Overwrite<TextAreaMods, TextAreaModsOverride>;
 
-export const TextArea = withMods<uuiTextAreaProps, TextAreaMods>(
+export const TextArea = withMods<uuiTextAreaProps, TextAreaProps>(
     uuiTextArea,
     applyTextAreaMods,
     (props) => {

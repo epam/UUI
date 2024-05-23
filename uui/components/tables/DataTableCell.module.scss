@@ -97,12 +97,14 @@
         padding-right: 12px;
     }
 
+    &.padding-6 { padding: 0 6px; }
     &.padding-12 { padding: 0 12px; }
     &.padding-24 { padding: 0 24px; }
 
     &.padding-left-12 { padding-left: 12px; }
     &.padding-left-24 { padding-left: 24px; }
 
+    &.padding-right-12 { padding-right: 12px; }
     &.padding-right-24 { padding-right: 24px; }
 
     &:global(.uui-invalid) {
