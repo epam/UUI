@@ -64,7 +64,22 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      * Enables collapse/expand all functionality.
      * */
     showFoldAll?: boolean;
+
+    /**
+     * Defines table header size
+     * @default '36'
+     * */
+    headerSize?: '36' | '48';
+
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
+
+const DEFAULT_HEADER_SIZE = '36';
+const DEFAULT_COLUMN_GAP = '24';
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
@@ -73,7 +88,16 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
-        return <DataTableRow key={ rowProps.rowKey } size={ props.size || '36' } borderBottom={ props.border } { ...rowProps } cx={ css.cell } />;
+        return (
+            <DataTableRow
+                key={ rowProps.rowKey }
+                size={ props.size || '36' }
+                columnsGap={ props.columnsGap || DEFAULT_COLUMN_GAP }
+                borderBottom={ props.border }
+                { ...rowProps }
+                cx={ css.cell }
+            />
+        );
     }, []);
 
     const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });
@@ -131,13 +155,14 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         columns={ columns }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                         selectAll={ props.selectAll }
-                        size={ props.size }
+                        size={ props.headerSize || DEFAULT_HEADER_SIZE }
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
                         showFoldAll={ props.showFoldAll }
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
+                        columnsGap={ props.columnsGap || DEFAULT_COLUMN_GAP }
                     />
                     <div
                         className={ cx(uuiScrollShadows.top, {

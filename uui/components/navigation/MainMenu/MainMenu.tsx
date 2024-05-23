@@ -4,11 +4,6 @@ import * as uuiComponents from '@epam/uui-components';
 import { Burger } from './Burger';
 import { MainMenuDropdown } from './MainMenuDropdown';
 
-interface MainMenuMods {}
-
-/** Represents the properties of the MainMenu component. */
-export type MainMenuProps = uuiComponents.MainMenuProps & MainMenuMods;
-
 function applyMainMenuMods() {
     return [
         css.root,
@@ -16,7 +11,13 @@ function applyMainMenuMods() {
     ];
 }
 
-export const MainMenu = withMods<uuiComponents.MainMenuProps, MainMenuMods>(uuiComponents.MainMenu, applyMainMenuMods, () => ({
-    Burger,
-    MainMenuDropdown,
-}));
+export type MainMenuProps = uuiComponents.MainMenuProps;
+
+export const MainMenu = withMods<uuiComponents.MainMenuProps, MainMenuProps>(
+    uuiComponents.MainMenu,
+    applyMainMenuMods,
+    () => ({
+        Burger,
+        MainMenuDropdown,
+    }),
+);

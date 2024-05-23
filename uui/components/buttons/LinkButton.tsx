@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
@@ -28,8 +28,10 @@ export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & I
     size?: types.ControlSize | '42';
 };
 
+export interface LinkButtonModsOverride {}
+
 /** Represents the properties of the LinkButton component. */
-export type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;
+export type LinkButtonProps = LinkButtonCoreProps & Overwrite<LinkButtonMods, LinkButtonModsOverride>;
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
