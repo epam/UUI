@@ -119,6 +119,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             return (
                 <DndActor
                     key={ this.props.column.key + (this.props.value.columnsConfig?.[this.props.column.key]?.order || '') }
+                    id={ this.props.column.key }
                     dstData={ this.props.column }
                     srcData={ this.props.column.fix ? null : this.props.column }
                     canAcceptDrop={ this.canAcceptDrop }

@@ -47,6 +47,7 @@ export class DndModule extends React.Component<DndModuleProps> {
         return (
             <DndActor
                 key={ item.id }
+                id= { item.id }
                 srcData={ item }
                 dstData={ item }
                 canAcceptDrop={ this.handleCanAcceptDrop }

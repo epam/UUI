@@ -6,7 +6,7 @@ import {
 import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName } from './dataQuery';
-import { DndActorRenderParams, DropParams } from './dnd';
+import { DndDropLevelsRenderParams, DropParams, DropPosition } from './dnd';
 import {
     DataSourceState, SortDirection, SortingOption,
 } from './dataSources';
@@ -177,10 +177,12 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DropLevelProps extends DndActorRenderParams, IHasCX {
+export interface DropLevelProps<TId> extends DndDropLevelsRenderParams<TId>, IHasCX {
     size: string;
+    position: DropPosition;
     row: DataRowProps<any, any>;
     level: number;
+    key: string;
 }
 
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {
@@ -195,7 +197,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
      * Render callback for the drop marker. Rendered only if 'dnd' option was provided via getRowProps.
      * If omitted, default renderer will be used.
      * */
-    renderDropLevel?: (props: DropLevelProps) => ReactNode;
+    renderDropLevel?: (props: DropLevelProps<TId>) => ReactNode;
 }
 
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {

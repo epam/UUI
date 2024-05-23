@@ -41,6 +41,7 @@ export class DndCriterion extends React.Component<DndCriterionProps> {
         return (
             <DndActor
                 key={ item.id }
+                id={ item.id }
                 srcData={ item }
                 dstData={ item }
                 canAcceptDrop={ this.handleCanAcceptDrop }

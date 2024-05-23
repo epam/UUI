@@ -1,13 +1,14 @@
 .drop-level {
     height: 100%;
     margin-right: 5px;
+}
 
-    &:hover {
-        border-bottom: 3px solid;
-        border-color: var(--uui-info-50);
 
-        &:last-child {
-            margin-right: 0;
-        }
-    }
+.drop-level-dragging-over-row {
+    border-bottom: 3px solid;
+    border-color: var(--uui-info-50);
+}
+
+.drop-level-active {
+    margin-right: 0;
 }

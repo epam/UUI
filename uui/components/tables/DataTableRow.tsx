@@ -19,12 +19,12 @@ export const renderCell = (props: DataTableCellProps) => {
 
 export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { ...props } enableBlocker={ true } />;
 
-export const renderDropLevel = (mods: DataTableRowMods) =>
-    function RenderDropLevel(props: DropLevelProps) {
+export const renderDropLevel = <TId,>(mods: DataTableRowMods) =>
+    function RenderDropLevel(props: DropLevelProps<TId>) {
         return <DropLevel { ...props } size={ mods.size } />;
     };
 
-export const propsMods = (mods: DataTableRowMods) => ({ renderCell, renderDropLevel: renderDropLevel(mods) });
+export const propsMods = <TId,>(mods: DataTableRowMods) => ({ renderCell, renderDropLevel: renderDropLevel<TId>(mods) });
 
 export const DataTableRow = withMods<DataTableRowProps, DataTableRowMods>(
     uuiDataTableRow,
