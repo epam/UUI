@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { DataTable, FlexRow, Panel, StatusIndicator, StatusIndicatorProps, Text } from '@epam/uui';
+import { DataTable, Panel, StatusIndicator, StatusIndicatorProps, Text } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import css from './TablesExamples.module.scss';
 
-export default function CondencedView() {
+export default function CondensedView() {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const [value, onValueChange] = useState({});
@@ -27,8 +27,8 @@ export default function CondencedView() {
             {
                 key: 'name',
                 caption: 'Employee name and surname',
-                render: (p) => <Text>{p.name}</Text>,
-                width: 160,
+                render: (p) => <Text size="30">{p.name}</Text>,
+                width: 200,
                 fix: 'left',
                 isSortable: true,
                 info: 'Person full name',
@@ -36,14 +36,9 @@ export default function CondencedView() {
             },
             {
                 key: 'profileStatus',
-                caption: 'Worker profile status',
-                render: (p) =>
-                    p.profileStatus && (
-                        <FlexRow>
-                            <StatusIndicator color={ p.profileStatus.toLowerCase() as StatusIndicatorProps['color'] } size="18" caption={ p.profileStatus } />
-                        </FlexRow>
-                    ),
-                width: 160,
+                caption: 'Profile status',
+                render: (p) => p.profileStatus && <StatusIndicator color={ p.profileStatus.toLowerCase() as StatusIndicatorProps['color'] } size="18" caption={ p.profileStatus } />,
+                width: 120,
                 minWidth: 80,
                 isSortable: true,
                 alignSelf: 'center',
@@ -53,17 +48,17 @@ export default function CondencedView() {
             {
                 key: 'primarySkill',
                 caption: 'Primary skill',
-                render: (r) => <Text>{r.primarySkill}</Text>,
-                width: 200,
+                render: (p) => <Text size="30">{p.primarySkill}</Text>,
+                width: 220,
                 isSortable: true,
                 info: 'Primary skill',
             },
             {
                 key: 'salary',
                 caption: 'Salary',
-                render: (p) => <Text>{ `$ ${p.salary}`}</Text>,
+                render: (p) => <Text size="30">{ `$ ${p.salary}`}</Text>,
                 isSortable: true,
-                width: 100,
+                width: 80,
                 textAlign: 'right',
                 info: 'Salary sum for the last year',
                 allowResizing: true,
@@ -71,8 +66,8 @@ export default function CondencedView() {
             {
                 key: 'jobTitle',
                 caption: 'Specialization',
-                render: (r) => <Text>{r.jobTitle}</Text>,
-                width: 200,
+                render: (p) => <Text size="30">{p.jobTitle}</Text>,
+                width: 180,
                 grow: 1,
                 isSortable: true,
                 info: 'Job full description',
@@ -95,6 +90,8 @@ export default function CondencedView() {
                 allowColumnsReordering={ true }
                 columnsGap="12"
                 headerSize="48"
+                size="30"
+                border={ false }
             />
         </Panel>
     );
