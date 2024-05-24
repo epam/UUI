@@ -2,15 +2,16 @@ import { isClientSide } from '../../helpers/ssr';
 import { getOffset } from '../../helpers/getOffset';
 import { getScrollParentOfEventTarget } from '../../helpers/events';
 import * as React from 'react';
-import { IDndContext } from '../../types/contexts';
+import { IDndContext, IDraggingOverInfo } from '../../types/contexts';
 import { BaseContext } from '../BaseContext';
 import { MouseCoordsService, TMouseCoords } from './MouseCoordsService';
 import { DndRowData, DndRowsDataService } from './DndRowsDataService';
 
 const maxScrollSpeed = 2000; // px/second
 
-export interface DndContextState {
+export interface DndContextState<TId = any> {
     isDragging: boolean;
+    draggingOverInfo?: IDraggingOverInfo<TId> | null;
     ghostOffsetX?: number;
     ghostOffsetY?: number;
     ghostWidth?: number;
@@ -18,8 +19,9 @@ export interface DndContextState {
     renderGhost?(): React.ReactNode;
 }
 
-export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseContext<DndContextState> implements IDndContext {
+export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseContext<DndContextState<TId>> implements IDndContext {
     public isDragging = false;
+    public draggingOverInfo: IDraggingOverInfo<TId> | null = null;
     public dragData: TSrcData;
     private scrollZoneSize = 85;
     private ghostOffsetX: number = 0;
@@ -62,6 +64,10 @@ export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseC
         return this.rowsDataService.getDndRowData(id);
     }
 
+    public setDraggingOverInfo(info: IDraggingOverInfo<TId>) {
+        this.update({ isDragging: this.isDragging, draggingOverInfo: info });
+    }
+
     public startDrag(node: HTMLElement, data: TSrcData, renderGhost: () => React.ReactNode) {
         const offset = getOffset(node);
         const mouseCoords = this.mouseCoordsService.getCoords();
@@ -79,6 +85,7 @@ export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseC
 
         this.update({
             isDragging: true,
+            draggingOverInfo: null,
             ghostOffsetX: this.ghostOffsetX,
             ghostOffsetY: this.ghostOffsetY,
             ghostWidth: this.ghostWidth,
@@ -98,7 +105,7 @@ export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseC
         }
 
         new Promise<void>((res) => {
-            this.update({ isDragging: false });
+            this.update({ isDragging: false, draggingOverInfo: null });
             res();
         }).then(() => {
             this.renderGhostCallback = null;

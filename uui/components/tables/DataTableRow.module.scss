@@ -41,6 +41,10 @@
     &:global(.uui-dt-row-border) {
         border-bottom-color: var(--uui-dt-border);
     }
+
+    &:global(.uui-dropping-marker) {
+        --uui-dt-row-bg: var(--uui-dt-row-bg-dropping-capabilities);
+    }
 }
 
 :global(.uui-dt-row-border) {

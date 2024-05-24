@@ -62,6 +62,7 @@ export const uuiMarkers = {
     scrolledRight: '-scrolled-right',
     scrolledTop: '-scrolled-top',
     scrolledBottom: '-scrolled-bottom',
+    dropping: 'uui-dropping-marker',
 } as const;
 
 export const uuiDndState = {
