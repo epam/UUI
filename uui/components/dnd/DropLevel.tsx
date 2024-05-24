@@ -59,7 +59,10 @@ export function DropLevel<TId>(props: DropLevelProps<TId>) {
             width={ width }
             minWidth={ getDropLevelWidth(props.level) }
             cx={ [css.dropLevel, props.isDraggedOver ? css.dropLevelDraggingOverRow : false, isActiveLevel ? css.dropLevelActive : false] }
-            rawProps={ { onPointerEnter: props.onPointerEnter(props.id, props.position, props.level) } }
+            rawProps={ {
+                onPointerEnter: props.onPointerEnter?.(props.id, props.position, props.level),
+                onPointerUp: props.onPointerUp?.(props.id),
+            } }
         >
         </FlexCell>
     );

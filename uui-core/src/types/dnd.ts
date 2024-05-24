@@ -28,8 +28,10 @@ export interface DndDropLevelsRenderParams<TId> {
     id: TId;
     path: TId[];
     isDraggedOver?: boolean;
+    isRowHighlighted?: boolean;
     draggingOverLevel?: number | null;
     onPointerEnter?: (id: TId, position: DropPosition, level: number) => (e: React.PointerEvent<any>) => void;
+    onPointerUp?: (id: TId) => (e: React.PointerEvent<any>) => void;
 }
 
 export interface DndActorRenderParams {
@@ -56,6 +58,7 @@ export interface DndActorRenderParams {
 
     /** Drop position. Chosen from accepted drop positions according to pointer coordinates */
     position?: DropPosition;
+    isRowHighlighted?: boolean;
 
     /**
      * Event handlers. Component is expected to pass these events to the top element it renders.

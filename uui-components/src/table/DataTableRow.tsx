@@ -57,9 +57,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
 
     const renderDropLevels = (params: DndDropLevelsRenderParams<TId> & { size: string }) => {
         return (
-            <FlexRow
-                cx={ [css.container] }
-            >
+            <FlexRow cx={ [css.container] }>
                 { [...params.path, params.id].map((id, index) => props.renderDropLevel({
                     ...params,
                     row: props,
@@ -100,6 +98,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                     props.isSelected && uuiMod.selected,
                     params.isDraggable && uuiMarkers.draggable,
                     props.isInvalid && uuiMod.invalid,
+                    params.isRowHighlighted && uuiMarkers.dropping,
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
                     props.isFocused && uuiMod.focus,

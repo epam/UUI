@@ -11,6 +11,7 @@ import { LayoutLayer } from '../services/LayoutContext';
 import { FileUploadOptions, FileUploadResponse } from '../services/ApiContext';
 import { TMouseCoords } from '../services/dnd/MouseCoordsService';
 import { DndRowData } from '../services/dnd/DndRowsDataService';
+import { DropPosition } from './dnd';
 
 export interface IBaseContext<TState = {}> {
     /** Add your handler, which will be called on context updates */
@@ -104,9 +105,15 @@ export interface IModalContext extends IBaseContext {
     getOperations(): ModalOperation[];
 }
 
+export interface IDraggingOverInfo<TId = any> {
+    id: TId;
+    position: DropPosition;
+}
+
 export interface IDndContext<TId = any, TSrcData = any, TDstData = any> extends IBaseContext<DndContextState> {
     startDrag(node: Node, data: any, renderGhost: () => React.ReactNode): void;
     endDrag(): void;
+    setDraggingOverInfo(info: IDraggingOverInfo<TId>): void;
     /** Indicates that drag in progress */
     isDragging: boolean;
     dragData?: any;

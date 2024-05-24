@@ -37,6 +37,7 @@ interface DndActorState {
     isMouseOver: boolean;
     position?: DropPosition;
     draggingOverLevel: number | null;
+    
     dndContextState: DndContextState;
 }
 
@@ -50,6 +51,7 @@ const initialState: DndActorState = {
     draggingOverLevel: null,
     dndContextState: {
         isDragging: false,
+        draggingOverInfo: null,
     },
 };
 
@@ -283,7 +285,13 @@ function TREE_SHAKEABLE_INIT() {
                     const dropProps = getDropParams(id, e);
                     const positionOptions = this.props.canAcceptDrop(dropProps);
                     const actualPosition = positionOptions?.[position] ? position : null;
-                    this.setState((s) => ({ ...s, isMouseOver: true, position: actualPosition, draggingOverLevel: level }));
+                    this.setState((s) => ({
+                        ...s,
+                        isMouseOver: true,
+                        position: actualPosition,
+                        draggingOverLevel: level,
+                    }));
+                    this.context?.uuiDnD.setDraggingOverInfo(positionOptions?.[position] ? { id, position } : null);
                 }
             };
 
@@ -311,12 +319,12 @@ function TREE_SHAKEABLE_INIT() {
 
                 params.eventHandlers.onTouchStart = (e) => e.preventDefault(); // prevent defaults on ios
 
-                params.eventHandlers.onPointerEnter = pointerMoveHandler;
-                params.eventHandlers.onPointerMove = pointerMoveHandler;
+                params.eventHandlers.onPointerEnter = !this.props.isMultilevel ? pointerMoveHandler : null;
+                params.eventHandlers.onPointerMove = !this.props.isMultilevel ? pointerMoveHandler : null;
                 params.eventHandlers.onPointerLeave = pointerLeaveHandler;
             }
 
-            params.eventHandlers.onPointerUp = (e) => {
+            params.eventHandlers.onPointerUp = !this.props.isMultilevel ? (e) => {
                 if (this.context.uuiDnD.isDragging) {
                     if (isEventTargetInsideDraggable(e, e.currentTarget)) {
                         return;
@@ -339,7 +347,67 @@ function TREE_SHAKEABLE_INIT() {
                     //     this.setState(s => ({ ...s, pendingMouseDownTarget: null }));
                     // }
                 }
+            } : null;
+
+            const onPointerUp = (id: TId) => (e: React.PointerEvent<any>) => {
+                if (this.context.uuiDnD.isDragging) {
+                    if (isEventTargetInsideDraggable(e, e.currentTarget)) {
+                        return;
+                    }
+                    e.preventDefault();
+                    if (!!this.state.position && this.props.onDrop) {
+                        this.props.onDrop({
+                            ...getDropParams(id, e),
+                            position: this.state.position,
+                        });
+                    }
+                    this.context.uuiDnD.endDrag();
+                    this.setState(() => initialState);
+                } else {
+                    // TBD: investigate. Should blur inputs, but doesn't work so far.
+                    // if (this.state.pendingMouseDownTarget) {
+                    //     $(this.state.pendingMouseDownTarget).trigger("mousedown");
+                    //     $(this.state.pendingMouseDownTarget).trigger("mouseup");
+                    //     $(this.state.pendingMouseDownTarget).trigger("click");
+                    //     this.setState(s => ({ ...s, pendingMouseDownTarget: null }));
+                    // }
+                }
             };
+
+            const shouldHighlightRow = (id: TId) => {
+                if (this.state.dndContextState.draggingOverInfo == null) {
+                    return false;
+                }
+
+                const rowData = this.context?.uuiDnD?.getDndRowData(id);
+                const draggingOverItemData = this.context?.uuiDnD?.getDndRowData(this.state.dndContextState.draggingOverInfo.id);
+                
+                const { position } = this.state.dndContextState.draggingOverInfo;
+                if (position === 'bottom') {
+                    const draggingOverItemParent = draggingOverItemData.path[draggingOverItemData.path.length - 1];
+                    const rowParent = rowData.path[rowData.path.length - 1];
+                    if (
+                        draggingOverItemData.id === rowData.id
+                        || draggingOverItemParent === rowParent
+                        || draggingOverItemParent === rowData.id) {
+                        return true;
+                    }
+                    return false;
+                }
+                
+                if (position === 'inside') {
+                    if (rowData.id === draggingOverItemData.id
+                        || rowData.path[rowData.path.length - 1] === draggingOverItemData.id
+                    ) {
+                        return true;
+                    }
+                    return false;
+                }
+                
+                return false;
+            };
+
+            params.isRowHighlighted = shouldHighlightRow(this.props.id);
 
             return this.props.render(
                 params,
@@ -348,9 +416,11 @@ function TREE_SHAKEABLE_INIT() {
                         id: this.props.id,
                         path: this.props.path,
                         onPointerEnter: pointerEnterDropLevel,
+                        onPointerUp: onPointerUp,
                         isDraggedOver: this.context.uuiDnD?.isDragging && this.state.isMouseOver,
                         draggingOverLevel: this.state.draggingOverLevel,
-                    }) : null,
+                    })
+                    : null,
             );
         }
     };
