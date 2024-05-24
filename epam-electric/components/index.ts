@@ -2,8 +2,9 @@ export * from './buttons';
 export * from './widgets';
 export {
     Button, IconButton, LinkButton, TabButton, VerticalTabButton, Calendar, DatePicker, DataPickerBody, RangeDatePicker, RangeDatePickerBody, TextInput, Text,
-    LabeledInput, Panel, FlexRow, ScrollBars, ModalWindow, InputAddon, MultiSwitch, VirtualList, Alert, DropdownContainer, NotificationCard, Tooltip,
-    FiltersPanel, PresetsPanel, defaultPredicates, NumericInput, Switch, TextArea, Dropdown, TextPlaceholder, PickerListItem, DataPickerHeader, MobileDropdownWrapper,
+    LabeledInput, Panel, FlexRow, ScrollBars, ModalWindow, InputAddon, MultiSwitch, VirtualList, Alert, HintAlert,
+    SuccessAlert, WarningAlert, ErrorAlert, DropdownContainer, NotificationCard, Tooltip, FiltersPanel, PresetsPanel, defaultPredicates,
+    NumericInput, Switch, TextArea, Dropdown, TextPlaceholder, PickerListItem, DataPickerHeader, MobileDropdownWrapper,
     RadioInput, MainMenu, GlobalMenu, Burger, BurgerButton, BurgerSearch, MainMenuAvatar, MainMenuSearch, MainMenuIcon, MainMenuDropdown, MainMenuButton,
     Accordion, Form, useForm, PickerInput, PickerItem, DataPickerRow, PickerToggler, PickerList, Blocker, CheckboxGroup, ControlGroup, DataPickerFooter,
     ConfirmationModal, RadioGroup, Anchor, Avatar, AvatarStack, Paginator, DataTable, DataTableCell, DataTableRow, DataTableHeaderRow, ColumnsConfigurationModal,
