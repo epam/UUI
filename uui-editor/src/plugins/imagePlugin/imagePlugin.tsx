@@ -16,7 +16,7 @@ import { ModalPayload, TImageElement } from './types';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { IMAGE_PLUGIN_KEY, IMAGE_TYPE } from './constants';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
-import { migrateImageElement } from '../../migrations/plate_migrations';
+import { normalizeImageElement } from '../../migrations/normalizers';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin';
 
 export const imagePlugin = (): PlatePlugin => {
@@ -87,7 +87,7 @@ export const imagePlugin = (): PlatePlugin => {
                 const [node] = entry;
 
                 if (isElement(node) && node.type === IMAGE_TYPE) {
-                    migrateImageElement(editor, entry);
+                    normalizeImageElement(editor, entry);
                 }
 
                 normalizeNode(entry);

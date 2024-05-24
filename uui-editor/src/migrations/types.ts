@@ -2,7 +2,7 @@ import { TTableCellElement, TTableElement } from '@udecode/plate-table';
 import { TImageElement } from '../plugins/imagePlugin/types';
 
 /**
- * Plate related
+ * Deprecated plate schema types
  */
 
 export type DeprecatedImageElement = TImageElement & {
@@ -25,7 +25,7 @@ export type DeprecatedTTableCellElement = TTableCellElement & {
 };
 
 /**
- * Slate related
+ * Legacy slate schema types
  */
 
 /** Deprecated Slate content structure */

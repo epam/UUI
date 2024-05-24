@@ -28,7 +28,7 @@ import {
 import { createTempEditor } from './helpers';
 import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin';
 import { serializeMd } from '@udecode/plate-serializer-md';
-import { migrateSlateSchema } from './migrations/slate_migrations';
+import { migrateLegacySchema } from './migrations/legacy_migrations';
 
 type SerializerType = 'html' | 'md';
 
@@ -112,7 +112,7 @@ const initializeEditor = (editor: PlateEditor<Value>, v: EditorValue): Value => 
         value = [createNode(PARAGRAPH_TYPE)];
     } else {
         if (!Array.isArray(v)) {
-            value = migrateSlateSchema(v); // slate migraitons
+            value = migrateLegacySchema(v); // slate migraitons
         } else {
             value = v;
         }

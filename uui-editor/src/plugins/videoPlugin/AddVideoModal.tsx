@@ -67,7 +67,7 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                         <TextInput
                             value={ src }
                             onValueChange={ (v) => {
-                                if (v) {
+                                if (typeof v === 'string') {
                                     setSrc(v);
                                 }
                             } }

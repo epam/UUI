@@ -38,7 +38,7 @@ import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_TYPE, TABLE_ROW_TYPE } from './constants';
-import { migrateTableCellElement, migrateTableElement } from '../../migrations/plate_migrations';
+import { normalizeTableCellElement, normalizeTableElement } from '../../migrations/normalizers';
 
 const noop = () => {};
 
@@ -136,11 +136,11 @@ export const tablePlugin = (): PlatePlugin<TablePLuginOptions> =>
                 const [node] = entry;
 
                 if (isElement(node) && node.type === TABLE_TYPE) {
-                    migrateTableElement(editor, entry);
+                    normalizeTableElement(editor, entry);
                 }
 
                 if (isElement(node) && (TABLE_CELL_TYPE === node.type || TABLE_CELL_TYPE === node.type)) {
-                    migrateTableCellElement(editor, entry);
+                    normalizeTableCellElement(editor, entry);
                 }
 
                 normalizeNode(entry);

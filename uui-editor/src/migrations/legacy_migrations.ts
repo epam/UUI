@@ -11,8 +11,6 @@ const mediaTypes = [IMAGE_TYPE, IFRAME_TYPE];
 const cellTypes = [TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE];
 const createPlateEmptyTextNode = () => ({ text: '' });
 
-/** migration functions */
-
 const migrateTextNode = (oldNode: SlateTextElement) => {
     const marksPayload = (oldNode.marks || []).reduce<SlateMark>((acc, mark) => {
         return {
@@ -80,7 +78,7 @@ const getMediaTypesPayload = (node: SlateElement) => {
 
     const { src, align, ...other } = node.data || {};
     const urlPayload = src ? { url: src } : {};
-    const alignPayload = align ? { align: toPlateAlign(align) } : {};
+    const alignPayload = align ? { align: toNewAlign(align) } : {};
 
     return { ...urlPayload, ...alignPayload, data: { ...other } };
 };
@@ -124,7 +122,7 @@ const migrate = (descendants: SlateElement[]): TDescendant[] =>
         return migrateTextNode(node);
     });
 
-export const migrateSlateSchema = (schema: SlateSchema): Value => {
+export const migrateLegacySchema = (schema: SlateSchema): Value => {
     try {
         return migrate(schema.document.nodes) as Value;
     } catch (e) {
@@ -135,12 +133,12 @@ export const migrateSlateSchema = (schema: SlateSchema): Value => {
     return schema as unknown as Value;
 };
 
-const SLATE_TO_PLATE_IMG_ALIGN = {
+const LEGACY_TO_NEW_IMG_ALIGN = {
     'align-left': 'left',
     'align-right': 'right',
     'align-center': 'center',
 };
 
 /** converts align property */
-export const toPlateAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
-    SLATE_TO_PLATE_IMG_ALIGN[slateAlign] as TImageElement['align'];
+export const toNewAlign = (slateAlign: SlateImgAlign): TImageElement['align'] =>
+    LEGACY_TO_NEW_IMG_ALIGN[slateAlign] as TImageElement['align'];
