@@ -1,8 +1,11 @@
 import { Value, setNodes, PlateEditor, TNodeEntry } from '@udecode/plate-common';
+import { TLinkElement } from '@udecode/plate-link';
 import { TTableCellElement, TTableElement } from '@udecode/plate-table';
+import { TAttachmentElement } from '../plugins/attachmentPlugin/types';
+import { TIframeElement } from '../plugins/iframePlugin/types';
 import { TImageElement } from '../plugins/imagePlugin/types';
 import { toNewAlign } from './legacy_migrations';
-import { DepreactedTTableElement, DeprecatedImageElement, DeprecatedTTableCellElement } from './types';
+import { DepreactedTTableElement, DeprecatedImageElement, DeprecatedTAttachmentElement, DeprecatedTIframeElement, DeprecatedTLinkElement, DeprecatedTTableCellElement } from './types';
 
 /**
  * Migration property functions
@@ -14,58 +17,147 @@ import { DepreactedTTableElement, DeprecatedImageElement, DeprecatedTTableCellEl
 export const normalizeTableCellElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
     const [node, path] = entry;
     const tableCellNode = node as DeprecatedTTableCellElement;
-    const { colSpan, rowSpan, ...otherData } = tableCellNode.data || {};
 
-    if (!colSpan && !rowSpan) {
-        return;
+    if (tableCellNode.data) {
+        const { colSpan, rowSpan, ...otherData } = tableCellNode.data;
+
+        if (!colSpan && !rowSpan) {
+            return;
+        }
+
+        const cellNode: TTableCellElement = { ...tableCellNode, data: { ...otherData } };
+
+        setNodes(
+            editor,
+            cellNode,
+            { at: path },
+        );
     }
-
-    setNodes<TTableCellElement>(
-        editor,
-        { ...tableCellNode, data: { ...otherData } },
-        { at: path },
-    );
 };
 
 /** deprecate data properties */
 export const normalizeTableElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
     const [node, path] = entry;
     const tableNode = node as DepreactedTTableElement;
-    const { cellSizes, ...otherData } = tableNode.data || {};
 
-    if (!cellSizes) {
-        return;
+    if (tableNode.data) {
+        const { cellSizes, ...otherData } = tableNode.data;
+
+        // removing props
+        if (!cellSizes) {
+            return;
+        }
+
+        const tableElement: TTableElement = { ...tableNode, data: { ...otherData } };
+
+        setNodes(
+            editor,
+            tableElement,
+            { at: path },
+        );
     }
-
-    setNodes<TTableElement>(
-        editor,
-        { ...tableNode, data: { ...otherData } },
-        { at: path },
-    );
 };
 
 /** deprecate intercepting properties */
 export const normalizeImageElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
     const [node, path] = entry;
     const imageNode = node as DeprecatedImageElement;
-    const { align, src, ...otherData } = imageNode.data || {};
 
-    if (!align || !src) {
-        return;
-    }
+    if (imageNode.data) {
+        const { align, imageSize, src, ...otherData } = imageNode.data;
 
-    // align where setted to data after update to plate, so we need to fix that historical mistake
-    const alignPayload = align ? { align: toNewAlign(align) } : {};
-    const srcPayload = src ? { url: src } : {};
+        // removing props
+        if (!align || !imageSize || !src) {
+            return;
+        }
 
-    setNodes<TImageElement>(
-        editor,
-        {
+        // align where setted to data after update to plate, so we need to fix that historical mistake
+        const alignPayload = !!imageNode.align && !!align ? { align: toNewAlign(align) } : {};
+        const widthPayload = imageSize?.width ? { width: imageSize.width } : {};
+        const heightPayload = imageSize?.height ? { height: imageSize.height } : {};
+
+        const imageElement: TImageElement = {
             ...imageNode,
             ...alignPayload,
-            ...srcPayload,
+            ...widthPayload,
+            ...heightPayload,
             data: { ...otherData },
-        },
-        { at: path },
-    );
+        };
+
+        setNodes(
+            editor,
+            imageElement,
+            { at: path },
+        );
+    }
+};
+
+/** deprecate data properties */
+export const normalizeLinkElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+    const linkNode = node as DeprecatedTLinkElement;
+
+    if (linkNode.data) {
+        const { url, ...otherData } = linkNode.data;
+
+        // removing props
+        if (!url) {
+            return;
+        }
+
+        const link: TLinkElement = { ...linkNode, data: { ...otherData } };
+
+        setNodes(
+            editor,
+            link,
+            { at: path },
+        );
+    }
+};
+
+/** deprecate data properties */
+export const normalizeIframeElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+    const iframeNode = node as DeprecatedTIframeElement;
+
+    if (iframeNode.data) {
+        const { src, ...otherData } = iframeNode.data;
+
+        // removing props
+        if (!src) {
+            return;
+        }
+
+        const iframe: TIframeElement = { ...iframeNode, data: { ...otherData } };
+
+        setNodes<TTableCellElement>(
+            editor,
+            iframe,
+            { at: path },
+        );
+    }
+};
+
+/** deprecate data properties */
+export const normalizeAttachmentElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+    const attachment = node as DeprecatedTAttachmentElement;
+
+    if (attachment.data) {
+        const { src, ...otherData } = attachment.data;
+
+        // removing props
+        if (!src) {
+            return;
+        }
+
+        const tableAttach: TAttachmentElement = { ...attachment, data: { ...otherData } };
+
+        // path shouldn't be removed from data
+        setNodes<TTableCellElement>(
+            editor,
+            tableAttach,
+            { at: path },
+        );
+    }
 };

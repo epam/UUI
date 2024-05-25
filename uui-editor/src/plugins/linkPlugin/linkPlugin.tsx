@@ -3,13 +3,14 @@ import { useUuiContext } from '@epam/uui-core';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, PlatePlugin, someNode } from '@udecode/plate-common';
+import { isElement, PlateEditor, PlatePlugin, someNode } from '@udecode/plate-common';
 import { ELEMENT_LINK, LinkPlugin, createLinkPlugin } from '@udecode/plate-link';
 import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { LINK_TYPE } from './constants';
+import { normalizeLinkElement } from '../../migrations';
 
 export const linkPlugin = (): PlatePlugin => createLinkPlugin<WithToolbarButton & LinkPlugin>({
     type: LINK_TYPE,
@@ -31,6 +32,22 @@ export const linkPlugin = (): PlatePlugin => createLinkPlugin<WithToolbarButton 
     options: {
         keepSelectedTextOnPaste: false,
         floatingBarButton: LinkButton,
+    },
+    // move to common function / plugin
+    withOverrides: (editor) => {
+        const { normalizeNode } = editor;
+
+        editor.normalizeNode = (entry) => {
+            const [node] = entry;
+
+            if (isElement(node) && node.type === LINK_TYPE) {
+                normalizeLinkElement(editor, entry);
+            }
+
+            normalizeNode(entry);
+        };
+
+        return editor;
     },
 });
 

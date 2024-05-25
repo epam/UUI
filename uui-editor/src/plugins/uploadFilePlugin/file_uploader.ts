@@ -13,6 +13,8 @@ import { ATTACHMENT_TYPE } from '../attachmentPlugin/constants';
 import { IMAGE_TYPE } from '../imagePlugin/constants';
 import { IFRAME_TYPE } from '../iframePlugin/constants';
 import { TImageElement } from '../imagePlugin/types';
+import { TIframeElement } from '../iframePlugin/types';
+import { TAttachmentElement } from '../attachmentPlugin/types';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
 
@@ -26,27 +28,24 @@ type UploadFile = (
 ) => Promise<FileUploadResponse>;
 
 const UPLOAD_BLOCKS = {
-    attachment: (file: FileUploadResponse) => ({
+    attachment: (file: FileUploadResponse): TAttachmentElement => ({
         type: ATTACHMENT_TYPE,
         data: {
-            ...file, // TODO: remove, seems irrelevant
+            ...file,
             fileName: file.name,
         },
         children: [{ text: '' }],
     }),
     image: (file: FileUploadResponse): TImageElement => ({
         type: IMAGE_TYPE,
-        data: {
-            ...file, // TODO: remove, seems irrelevant
-            size: {},
-        },
-        url: file.path || '', // plate property
+        url: file.path!,
+        data: file,
         children: [{ text: '' }],
     }),
-    iframe: (file: FileUploadResponse) => ({
+    iframe: (file: FileUploadResponse): TIframeElement => ({
         type: IFRAME_TYPE,
-        data: file, // TODO: remove, seems irrelevant
-        src: file.path,
+        url: file.path!,
+        data: file,
         children: [{ text: '' }],
     }),
 };

@@ -1,4 +1,5 @@
 import { TElement } from '@udecode/plate-common';
+import type { FileUploadResponse } from '@epam/uui-core';
 
 export type PlateImgAlign = 'left' | 'center' | 'right';
 export type ImageSize = { width?: number, height?: number | string };
@@ -9,8 +10,6 @@ export interface TImageElement extends TElement {
     url: string;
     width?: number;
     align?: PlateImgAlign;
-    data?: {
-        size?: ImageSize;
-        [key: string]: unknown;
-    }
+    data?: FileUploadResponse;
+    height?: number;
 }

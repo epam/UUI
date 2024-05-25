@@ -26,7 +26,7 @@ const IMAGE_STYLES = {
     paddingBottom: 0,
 };
 
-export const Image: PlatePluginComponent<PlateRenderElementProps<Value, TImageElement>> = function (props) {
+export const Image: PlatePluginComponent<PlateRenderElementProps<Value, TImageElement>> = function ImageComp(props) {
     const {
         editor, element, children,
     } = props;

@@ -93,7 +93,7 @@
 * [DataTable]: added property headerSize?: '36' | '48'. You can set the property headerSize: '48' and the captions will be split into two lines. It's not works with editable tables
 * [uui-editor]:
   * `plugins` prop now typed as `PlatePlugin` which you can import from editor package
-  * `basePlugins` deprecated, since `defaultPlugins` and `baseMarksPlugin()` available as an replacement
+  * `basePlugins` deprecated, use `[...defaultPlugins, ...baseMarksPlugin(), ...]` instead
   * `migrateSlateSchema` now typed. There are type guards to distinct slate or plate content types: `isSlateSchema`, `isPlateValue` or `getMigratedPlateValue` which will do migration if needed
   * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance
   * `el.data.colSpan` and `el.data.rowSpan` removed from table cell node as it has duplicates: `el.colSpan` and `el.rowSpan`

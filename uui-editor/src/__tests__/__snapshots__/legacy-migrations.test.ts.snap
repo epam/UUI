@@ -385,17 +385,15 @@ Array [
     "data": Object {
       "fileName": "blue-orange.jpg",
       "id": "100500",
-      "imageSize": Object {
-        "height": 417,
-        "width": 800,
-      },
       "name": "blue-orange.jpg",
       "path": "/static/uploads/blue-orange.jpg",
       "size": 77236,
       "type": "image",
     },
+    "height": 417,
     "type": "image",
     "url": "/static/uploads/blue-orange.jpg",
+    "width": 800,
   },
   Object {
     "children": Array [
@@ -446,10 +444,10 @@ Array [
       "name": "DemoExcelAttachment.xlsx",
       "path": "/static/uploads/DemoExcelAttachment.xlsx",
       "size": 8669,
-      "src": "/static/uploads/DemoExcelAttachment.xlsx",
       "type": "attachment",
     },
     "type": "attachment",
+    "url": "/static/uploads/DemoExcelAttachment.xlsx",
   },
   Object {
     "children": Array [

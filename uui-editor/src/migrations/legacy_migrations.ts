@@ -1,4 +1,5 @@
 import { TDescendant, Value } from '@udecode/plate-common';
+import { ATTACHMENT_TYPE } from '../plugins/attachmentPlugin/constants';
 import { IFRAME_TYPE } from '../plugins/iframePlugin/constants';
 import { IMAGE_TYPE } from '../plugins/imagePlugin/constants';
 import { TImageElement } from '../plugins/imagePlugin/types';
@@ -72,15 +73,35 @@ const getLinkPayload = (node: SlateElement) => {
     return url ? { url, data: { ...otherData } } : {};
 };
 
+const getAttachmentPayload = (node: SlateElement) => {
+    if (node.type !== ATTACHMENT_TYPE) return {};
+
+    const { src, ...otherData } = node.data || {};
+    // path shouldn't be removed from data
+    return src ? { url: src || node.data?.path, data: { ...otherData } } : {};
+};
+
 /** iframes and images */
 const getMediaTypesPayload = (node: SlateElement) => {
     if (!mediaTypes.includes(node.type || '')) return {};
 
-    const { src, align, ...other } = node.data || {};
-    const urlPayload = src ? { url: src } : {};
-    const alignPayload = align ? { align: toNewAlign(align) } : {};
+    const { src, align, imageSize, ...other } = node.data || {};
 
-    return { ...urlPayload, ...alignPayload, data: { ...other } };
+    // path shouldn't be removed from data
+    const urlPayload = src ? { url: src || node.data?.path } : {};
+
+    // only image related
+    const alignPayload = align ? { align: toNewAlign(align) } : {};
+    const widthPayload = imageSize?.width ? { width: imageSize.width } : {};
+    const heightPayload = imageSize?.height ? { height: imageSize.height } : {};
+
+    return {
+        ...urlPayload,
+        ...alignPayload,
+        ...widthPayload,
+        ...heightPayload,
+        data: { ...other },
+    };
 };
 
 const isTable = (node: SlateElement): boolean => {
@@ -108,6 +129,7 @@ const migrateDeeper = (_node: SlateBlockElement | SlateInlineElement): TDescenda
         ...getTableCellElementPayload(node),
         ...getLinkPayload(node),
         ...getMediaTypesPayload(node),
+        ...getAttachmentPayload(node),
         ...childrenPayload,
     };
 };
