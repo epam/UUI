@@ -34,8 +34,7 @@ export const imagePlugin = (): PlatePlugin => {
                     <img
                         src={ imageElement.url }
                         style={ {
-                            width: imageElement.data?.size?.width,
-                            height: imageElement.data?.size?.height,
+                            width: imageElement.width,
                         } }
                         alt=""
                     />
@@ -76,10 +75,10 @@ export const imagePlugin = (): PlatePlugin => {
         options: {
             bottomBarButton: ImageButton,
         },
-
     });
 
     return createImagePlugin({
+        // move to common function / plugin
         withOverrides: (editor) => {
             const { normalizeNode } = editor;
 

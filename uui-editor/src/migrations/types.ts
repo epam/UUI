@@ -1,4 +1,7 @@
+import { TLinkElement } from '@udecode/plate-link';
 import { TTableCellElement, TTableElement } from '@udecode/plate-table';
+import { TAttachmentElement } from '../plugins/attachmentPlugin/types';
+import { TIframeElement } from '../plugins/iframePlugin/types';
 import { TImageElement } from '../plugins/imagePlugin/types';
 
 /**
@@ -7,21 +10,44 @@ import { TImageElement } from '../plugins/imagePlugin/types';
 
 export type DeprecatedImageElement = TImageElement & {
     data: TImageElement['data'] & {
+        src?: string; // removed
         align?: SlateImgAlign; // removed
+        imageSize?: { // removed
+            width?: number;
+            height?: number;
+        }
     }
 };
 
 export type DepreactedTTableElement = TTableElement & {
-    data?: {
+    data?: TTableElement['data'] & {
         cellSizes?: number[]; // removed
     },
 };
 
 export type DeprecatedTTableCellElement = TTableCellElement & {
-    data?: {
+    data?: TTableCellElement['data'] & {
         colSpan?: number; // removed
         rowSpan?: number; // removed
     },
+};
+
+export type DeprecatedTLinkElement = TLinkElement & {
+    data?: TLinkElement['data'] & {
+        url?: string; // removed
+    }
+};
+
+export type DeprecatedTIframeElement = TIframeElement & {
+    data: TIframeElement['data'] & {
+        src?: string; // removed
+    }
+};
+
+export type DeprecatedTAttachmentElement = TAttachmentElement & {
+    data?: TAttachmentElement['data'] & {
+        src?: string; // removed
+    }
 };
 
 /**
@@ -39,7 +65,9 @@ export type SlateSchema = {
         data?: {
             [key: string]: unknown;
         }
+        [key: string]: unknown;
     }
+    [key: string]: unknown;
 };
 
 export type SlateElement = SlateBlockElement | SlateInlineElement | SlateTextElement;
@@ -47,33 +75,45 @@ export type SlateElement = SlateBlockElement | SlateInlineElement | SlateTextEle
 type ObjectType = 'text' | 'inline' | 'block' | 'mark' | 'value' | 'document';
 export type SlateImgAlign = 'align-left' | 'align-right' | 'align-center';
 
+interface DataObject {
+    url?: string; // links
+    cellSizes?: number[]; // table
+    align?: SlateImgAlign;
+    src?: string; // media types: images, iframes
+
+    // images
+    imageSize?: {
+        width?: number;
+        height?: number;
+    }
+
+    // table cells
+    colSpan?: number;
+    rowSpan?: number;
+
+    // attachment / iframe / image
+    path?: string;
+
+    // any other custom stuff
+    [key: string]: unknown;
+}
+
 interface SlateBaseElement {
     object: ObjectType,
     type?: string,
     nodes?: SlateElement[],
-    data?: {
-        url?: string; // links
-        cellSizes?: number[]; // table
-        align?: SlateImgAlign;
-        src?: string; // media types: images, iframes
-
-        // table cells
-        colSpan?: number;
-        rowSpan?: number;
-
-        [key: string]: unknown;
-    },
-    [key: string]: unknown;
+    data?: DataObject,
+    [key: string]: unknown,
 }
 
 export interface SlateBlockElement extends SlateBaseElement {
     object: 'block',
-    type: string;
+    type: string,
 }
 
 export interface SlateInlineElement extends SlateBaseElement {
     object: 'inline',
-    type: string;
+    type: string,
 }
 
 export interface SlateTextElement extends SlateBaseElement {
@@ -85,9 +125,9 @@ export interface SlateTextElement extends SlateBaseElement {
 export interface SlateMark {
     object: 'mark',
     type: string,
-    data?: {
+    data?: DataObject & {
         style?: {
             [key: string]: unknown;
-        },
+        }
     },
 }

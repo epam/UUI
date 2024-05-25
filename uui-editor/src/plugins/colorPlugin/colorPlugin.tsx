@@ -1,5 +1,5 @@
 import { Dropdown } from '@epam/uui-components';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { useIsPluginActive } from '../../helpers';
 import { ColorBar } from '../../implementation/ColorBar';
@@ -32,8 +32,6 @@ interface IToolbarButton {
     editor: PlateEditor;
 }
 
-const modifiers = [{ name: 'offset', options: { offset: [0, 3] } }];
-
 export function ColorButton({ editor }: IToolbarButton) {
     const pluginActive = useIsPluginActive(MARK_COLOR);
 
@@ -51,6 +49,8 @@ export function ColorButton({ editor }: IToolbarButton) {
     const clearColor = useCallback(() => {
         removeMark(editor, { key: type });
     }, [editor, type]);
+
+    const modifiers = useMemo(() => ([{ name: 'offset', options: { offset: [0, 3] } }]), []);
 
     if (!pluginActive) return null;
 

@@ -35,9 +35,7 @@ Array [
             "uui-richTextEditor-span-mark": true,
           },
         ],
-        "data": Object {
-          "url": "https://www.slatejs.org/",
-        },
+        "data": Object {},
         "type": "link",
         "url": "https://www.slatejs.org/",
       },
@@ -62,9 +60,7 @@ Array [
             "uui-richTextEditor-span-mark": true,
           },
         ],
-        "data": Object {
-          "url": "https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx",
-        },
+        "data": Object {},
         "type": "link",
         "url": "https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx",
       },
@@ -379,7 +375,6 @@ Array [
     "type": "paragraph",
   },
   Object {
-    "align": "center",
     "children": Array [
       Object {
         "text": "",
@@ -389,17 +384,15 @@ Array [
     "data": Object {
       "fileName": "blue-orange.jpg",
       "id": "100500",
-      "imageSize": Object {
-        "height": 417,
-        "width": 800,
-      },
       "name": "blue-orange.jpg",
       "path": "/static/uploads/blue-orange.jpg",
       "size": 77236,
       "type": "image",
     },
+    "height": 417,
     "type": "image",
     "url": "/static/uploads/blue-orange.jpg",
+    "width": 800,
   },
   Object {
     "children": Array [
@@ -420,9 +413,7 @@ Array [
         "uui-richTextEditor-span-mark": true,
       },
     ],
-    "data": Object {
-      "src": "https://www.youtube.com/embed/5qap5aO4i9A",
-    },
+    "data": Object {},
     "type": "iframe",
     "url": "https://www.youtube.com/embed/5qap5aO4i9A",
   },
@@ -452,7 +443,6 @@ Array [
       "name": "DemoExcelAttachment.xlsx",
       "path": "/static/uploads/DemoExcelAttachment.xlsx",
       "size": 8669,
-      "src": "/static/uploads/DemoExcelAttachment.xlsx",
       "type": "attachment",
     },
     "type": "attachment",
