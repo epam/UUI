@@ -1,5 +1,5 @@
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor, PlatePlugin, isElement, TNodeEntry,
+    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor, PlatePlugin, isElement,
 } from '@udecode/plate-common';
 import React from 'react';
 
