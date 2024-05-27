@@ -3,8 +3,6 @@ import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { getQuery } from '../helpers';
-import { ComplexForm } from './forms/ComplexForm';
-import { TagInputDemo } from './forms/TagInput';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
@@ -29,7 +27,6 @@ import { ProjectTableDemo } from './editableTable';
 export function SandboxPage() {
     const items = useMemo(
         () => [
-            { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
             { id: 'dbDemo', name: 'DB demo', component: DbDemo },
             { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
             { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
@@ -47,7 +44,6 @@ export function SandboxPage() {
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
-            { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
         ],

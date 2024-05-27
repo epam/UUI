@@ -1,5 +1,5 @@
 {
- "version": "5.7.1",
+ "version": "5.7.2",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -3793,7 +3793,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "CascadeSelectionService",
-     "nameFull": "CascadeSelectionService<TId>"
+     "nameFull": "CascadeSelectionService<TItem, TId>"
     },
     "src": "uui-core/src/data/processing/views/dataRows/services/useCascadeSelectionService.ts",
     "comment": {
@@ -3806,12 +3806,12 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "CascadeSelectionService<TId>",
+     "raw": "CascadeSelectionService<TItem, TId>",
      "print": [
       "/**",
       " * A service which provides cascade selection functionality with loading missing records.",
       " */",
-      "interface CascadeSelectionService<TId> {",
+      "interface CascadeSelectionService<TItem, TId> {",
       "    /**",
       "     * Provides a cascade selection functionality.",
       "     * @param isChecked - checking state of the item.",
@@ -3820,14 +3820,14 @@
       "     * @param checked - current state of checked items.",
       "     * @returns new checked items.",
       "     */",
-      "    handleCascadeSelection: (isChecked: boolean, checkedId?: TId, isRoot?: boolean, checked?: TId[]) => Promise<TId[]>;",
+      "    getCompleteTreeForCascadeSelection: (id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>;",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "handleCascadeSelection",
-      "name": "handleCascadeSelection",
+      "uid": "getCompleteTreeForCascadeSelection",
+      "name": "getCompleteTreeForCascadeSelection",
       "comment": {
        "raw": [
         "Provides a cascade selection functionality.",
@@ -3839,7 +3839,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(isChecked: boolean, checkedId?: TId | undefined, isRoot?: boolean | undefined, checked?: TId[] | undefined) => Promise<TId[]>"
+       "raw": "(id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>"
       },
       "editor": {
        "type": "func"
@@ -9854,6 +9854,26 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:DistributiveOmit": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DistributiveOmit",
+     "nameFull": "DistributiveOmit<T, K>"
+    },
+    "src": "uui-core/src/helpers/typeHelpers.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DistributiveOmit<T, K>",
+     "print": [
+      "type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;"
+     ]
+    }
+   }
+  },
   "@epam/uui-core:DndActorProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -15601,7 +15621,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -15825,6 +15845,23 @@
       },
       "editor": {
        "type": "number"
+      },
+      "from": "@epam/uui-core:PickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerFilterConfig",
       "required": false
@@ -16383,6 +16420,10 @@
       "    isChanged: boolean;",
       "    /** True if save is in progress */",
       "    isInProgress: boolean;",
+      "    /** Validation state which was returned from `onSave` callback  */",
+      "    serverValidationState: ValidationState;",
+      "    /** Sets new server validation state from client side */",
+      "    setServerValidationState: (s: React.SetStateAction<ValidationState>) => void;",
       "}"
      ]
     },
@@ -16609,6 +16650,35 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "serverValidationState",
+      "name": "serverValidationState",
+      "comment": {
+       "raw": [
+        "Validation state which was returned from `onSave` callback"
+       ]
+      },
+      "typeValue": {
+       "raw": "ValidationState"
+      },
+      "required": true
+     },
+     {
+      "uid": "setServerValidationState",
+      "name": "setServerValidationState",
+      "comment": {
+       "raw": [
+        "Sets new server validation state from client side"
+       ]
+      },
+      "typeValue": {
+       "raw": "(s: React.SetStateAction<ValidationState>) => void"
+      },
+      "editor": {
+       "type": "func"
       },
       "required": true
      },
@@ -23540,6 +23610,26 @@
     }
    }
   },
+  "@epam/uui-core:Overwrite": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "Overwrite",
+     "nameFull": "Overwrite<T, U>"
+    },
+    "src": "uui-core/src/helpers/typeHelpers.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "Overwrite<T, U>",
+     "print": [
+      "type Overwrite<T, U> = DistributiveOmit<T, keyof U> & U;"
+     ]
+    }
+   }
+  },
   "@epam/uui-core:PatchOptions": {
    "summary": {
     "module": "@epam/uui-core",
@@ -25055,6 +25145,10 @@
       "    showSearch?: boolean;",
       "    /** Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates) */",
       "    maxBodyHeight?: number;",
+      "    /**",
+      "     * Enables highlighting of the items' text with search-matching results.",
+      "     */",
+      "    highlightSearchMatches?: boolean;",
       "};"
      ]
     },
@@ -25272,6 +25366,22 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -32059,6 +32169,23 @@
       "required": false
      },
      {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "filter",
       "name": "filter",
       "comment": {
@@ -33108,7 +33235,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "UseCascadeSelectionServiceProps",
-     "nameFull": "UseCascadeSelectionServiceProps<TItem, TId, TFilter>"
+     "nameFull": "UseCascadeSelectionServiceProps<TItem, TId>"
     },
     "src": "uui-core/src/data/processing/views/dataRows/services/useCascadeSelectionService.ts",
     "comment": {
@@ -33121,12 +33248,12 @@
    "details": {
     "kind": 264,
     "typeValue": {
-     "raw": "UseCascadeSelectionServiceProps<TItem, TId, TFilter>",
+     "raw": "UseCascadeSelectionServiceProps<TItem, TId>",
      "print": [
       "/**",
       " * Cascade selection service configuration.",
       " */",
-      "interface UseCascadeSelectionServiceProps<TItem, TId, TFilter = any> extends Pick<CommonTreeConfig<TItem, TId, TFilter>, 'rowOptions' | 'getRowOptions' | 'cascadeSelection'>, LoadMissingRecords<TItem, TId>, GetItemStatus<TId> {",
+      "interface UseCascadeSelectionServiceProps<TItem, TId> extends LoadMissingRecords<TItem, TId> {",
       "    /**",
       "     * Tree-like data, cascade selection should be performed on.",
       "     */",
@@ -33149,78 +33276,6 @@
       "required": true
      },
      {
-      "uid": "rowOptions",
-      "name": "rowOptions",
-      "comment": {
-       "raw": [
-        "Specifies if rows are selectable, checkable, draggable, clickable, and more.",
-        " See DataRowOptions for more details.",
-        " If options depends on the item itself, use getRowOptions.",
-        " Specifying both rowOptions and getRowOptions might help to render better loading skeletons: we use only rowOptions in this case, as we haven't loaded an item yet.",
-        " Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance",
-        " @param item An item to get options for"
-       ]
-      },
-      "typeValue": {
-       "raw": "DataRowOptions<TItem, TId>"
-      },
-      "from": "@epam/uui-core:BaseDataSourceConfig",
-      "required": false
-     },
-     {
-      "uid": "getRowOptions",
-      "name": "getRowOptions",
-      "comment": {
-       "raw": [
-        "For each row, specify if row is selectable, editable, checkable, draggable, clickable, have its own set of columns, and more.",
-        " To make rows editable, pass IEditable interface to each row. This works the same way as for other editable components.",
-        " See DataRowOptions for more details.",
-        " If both getRowOptions and rowOptions specified, we'll use getRowOptions for loaded rows, and rowOptions only for loading rows.",
-        " Make sure all callbacks are properly memoized, as changing them will trigger re-renders or row, which would impact performance",
-        " @param item - record, configuration should be returned for.",
-        " @param index - index of a row. It is optional and should not be expected, that it is provided on every call."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, index?: number | undefined) => DataRowOptions<TItem, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:BaseDataSourceConfig",
-      "required": false
-     },
-     {
-      "uid": "cascadeSelection",
-      "name": "cascadeSelection",
-      "comment": {
-       "raw": [
-        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
-        " - false: All nodes are selected independently (default).",
-        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-        " - 'implicit': Selecting a parent node means that all children are considered checked.",
-        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
-        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
-        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
-        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean | 'implicit' | 'explicit'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        false,
-        true,
-        "implicit",
-        "explicit"
-       ]
-      },
-      "from": "@epam/uui-core:BaseDataSourceConfig",
-      "required": false
-     },
-     {
       "uid": "loadMissingRecordsOnCheck",
       "name": "loadMissingRecordsOnCheck",
       "comment": {
@@ -33239,25 +33294,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:LoadMissingRecords",
-      "required": false
-     },
-     {
-      "uid": "getItemStatus",
-      "name": "getItemStatus",
-      "comment": {
-       "raw": [
-        "Provides a status of the given item.",
-        " @param id - id of an item, status to be provided for.",
-        " @returns status of the item."
-       ]
-      },
-      "typeValue": {
-       "raw": "(id: TId) => RecordStatus"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:GetItemStatus",
       "required": false
      }
     ],
@@ -33287,7 +33323,7 @@
       "/**",
       " * `useDataRows` configuration.",
       " */",
-      "interface UseDataRowsProps<TItem, TId, TFilter = any> extends CommonTreeConfig<TItem, TId, TFilter>, ITreeLoadingState, Partial<CascadeSelectionService<TId>>, GetItemStatus<TId> {",
+      "interface UseDataRowsProps<TItem, TId, TFilter = any> extends CommonTreeConfig<TItem, TId, TFilter>, ITreeLoadingState, Partial<CascadeSelectionService<TItem, TId>>, GetItemStatus<TId> {",
       "    /**",
       "     * Tree-like data, rows to be built from.",
       "     */",
@@ -33682,8 +33718,8 @@
       "required": false
      },
      {
-      "uid": "handleCascadeSelection",
-      "name": "handleCascadeSelection",
+      "uid": "getCompleteTreeForCascadeSelection",
+      "name": "getCompleteTreeForCascadeSelection",
       "comment": {
        "raw": [
         "Provides a cascade selection functionality.",
@@ -33695,7 +33731,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(isChecked: boolean, checkedId?: TId | undefined, isRoot?: boolean | undefined, checked?: TId[] | undefined) => Promise<TId[]>"
+       "raw": "(id: TId, isChecked: boolean, isRoot: boolean) => Promise<ITree<TItem, TId>>"
       },
       "editor": {
        "type": "func"
@@ -34919,6 +34955,15 @@
       },
       "typeValue": {
        "raw": "IMap<TId, RecordStatus>"
+      },
+      "from": "@epam/uui-core:ItemsStatuses",
+      "required": false
+     },
+     {
+      "uid": "itemsStatusCollector",
+      "name": "itemsStatusCollector",
+      "typeValue": {
+       "raw": "ItemsStatusCollector<TItem, TId, TFilter>"
       },
       "from": "@epam/uui-core:ItemsStatuses",
       "required": false
@@ -36728,11 +36773,6 @@
       "     * It would attempt to put scroll so this item will be at the top of the list.",
       "     */",
       "    scrollTo?: ScrollToConfig;",
-      "    /**",
-      "     * Virtual List manually scroll to this Index when it appears not within the visible area.",
-      "     * It would attempt to put scroll so this item will be in the middle of the list.",
-      "     */",
-      "    focusedIndex?: number;",
       "}"
      ]
     },
@@ -36750,23 +36790,6 @@
       },
       "typeValue": {
        "raw": "ScrollToConfig"
-      },
-      "required": false
-     },
-     {
-      "uid": "focusedIndex",
-      "name": "focusedIndex",
-      "comment": {
-       "raw": [
-        "Virtual List manually scroll to this Index when it appears not within the visible area.",
-        " It would attempt to put scroll so this item will be in the middle of the list."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
       },
       "required": false
      },
@@ -37060,7 +37083,7 @@
     "module": "@epam/uui-core",
     "typeName": {
      "name": "ItemsStatuses",
-     "nameFull": "ItemsStatuses<TId>"
+     "nameFull": "ItemsStatuses<TItem, TId, TFilter>"
     },
     "src": "uui-core/src/data/processing/views/tree/hooks/strategies/types/common.ts",
     "exported": false
@@ -38023,10 +38046,6 @@
       "    size: '12' | '18' | '24' | '30' | '36' | '42' | '48' | '54' | '60' | '72' | '78' | '90' | '144' | number;",
       "    /** True to show placeholder */",
       "    isLoading?: boolean;",
-      "    /** Avatar onClick.",
-      "     *  @deprecated Property onClick is deprecated and will be removed in future release.",
-      "     * */",
-      "    onClick?: () => void;",
       "}"
      ]
     },
@@ -38108,26 +38127,6 @@
       },
       "editor": {
        "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Avatar onClick.",
-        "  @deprecated Property onClick is deprecated and will be removed in future release."
-       ],
-       "tags": {
-        "@deprecated": "Property onClick is deprecated and will be removed in future release."
-       }
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
       },
       "required": false
      },
@@ -38825,11 +38824,6 @@
       "    onClear?(e?: any): void;",
       "    /** Icon for clear value button (usually cross) */",
       "    clearIcon?: Icon;",
-      "    /**",
-      "     * CSS classes to put on the caption",
-      "     * @deprecated",
-      "     */",
-      "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "};"
@@ -39133,21 +39127,6 @@
       "editor": {
        "type": "component"
       },
-      "required": false
-     },
-     {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "required": false
      },
      {
@@ -42509,95 +42488,6 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:IProgressBarProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "IProgressBarProps",
-     "nameFull": "IProgressBarProps"
-    },
-    "src": "uui-components/src/widgets/Loaders/ProgressBar.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "IProgressBarProps",
-     "print": [
-      "interface IProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    progress: number;",
-      "    label?: string;",
-      "    hideLabel?: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "progress",
-      "name": "progress",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": true
-     },
-     {
-      "uid": "label",
-      "name": "label",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "hideLabel",
-      "name": "hideLabel",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      }
     ],
@@ -52702,6 +52592,95 @@
       },
       "from": "node_modules/react-custom-scrollbars-2/index.d.ts:positionValues",
       "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-components:ProgressBarProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "ProgressBarProps",
+     "nameFull": "ProgressBarProps"
+    },
+    "src": "uui-components/src/widgets/Loaders/ProgressBar.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ProgressBarProps",
+     "print": [
+      "interface ProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "    progress: number;",
+      "    label?: string;",
+      "    hideLabel?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "progress",
+      "name": "progress",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "label",
+      "name": "label",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "hideLabel",
+      "name": "hideLabel",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -64754,6 +64733,27 @@
     "exported": false
    }
   },
+  "@epam/uui:AccordionModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "AccordionModsOverride",
+     "nameFull": "AccordionModsOverride"
+    },
+    "src": "uui/components/layout/Accordion.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "AccordionModsOverride",
+     "print": [
+      "interface AccordionModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:AccordionProps": {
    "summary": {
     "module": "@epam/uui",
@@ -64772,10 +64772,10 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "AccordionMods & GeneralAccordionProps | AccordionMods & GeneralAccordionProps & IControlled<boolean>",
+     "raw": "Omit<AccordionMods, never> & AccordionModsOverride & GeneralAccordionProps | Omit<AccordionMods, never> & AccordionModsOverride & GeneralAccordionProps & IControlled<boolean>",
      "print": [
       "/** Represents the properties of the Accordion component. */",
-      "type AccordionProps = AccordionMods & uuiComponents.AccordionProps;"
+      "type AccordionProps = Overwrite<AccordionMods, AccordionModsOverride> & uuiComponents.AccordionProps;"
      ]
     },
     "props": [
@@ -65327,11 +65327,6 @@
       "     * @default 'left'",
       "     */",
       "    iconPosition?: 'left' | 'right';",
-      "    /**",
-      "     * CSS classes to put on the caption",
-      "     * @deprecated",
-      "     * */",
-      "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /** Count value to be placed in component */",
@@ -65624,21 +65619,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -65672,6 +65652,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:BadgeModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "BadgeModsOverride",
+     "nameFull": "BadgeModsOverride"
+    },
+    "src": "uui/components/widgets/Badge.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "BadgeModsOverride",
+     "print": [
+      "interface BadgeModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:BadgeProps": {
    "summary": {
     "module": "@epam/uui",
@@ -65693,7 +65694,7 @@
      "raw": "BadgeProps",
      "print": [
       "/** Represents the properties of a Badge component. */",
-      "type BadgeProps = BadgeCoreProps & BadgeMods;"
+      "type BadgeProps = BadgeCoreProps & Overwrite<BadgeMods, BadgeModsOverride>;"
      ]
     },
     "props": [
@@ -65982,22 +65983,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:BadgeCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -66105,6 +66090,375 @@
        ]
       },
       "from": "@epam/uui:BadgeMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:BurgerButtonProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "BurgerButtonProps",
+     "nameFull": "BurgerButtonProps"
+    },
+    "src": "uui/components/navigation/MainMenu/Burger/BurgerButton.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "BurgerButtonProps",
+     "print": [
+      "type BurgerButtonProps = ButtonProps & BurgerButtonMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "clickAnalyticsEvent",
+      "name": "clickAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "An analytics event to send (via AnalyticsContext) when component is clicked.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | { [key: string]: any; name: string; }"
+      },
+      "from": "@epam/uui-core:IAnalyticableClick",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "href",
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "target",
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.AnchorHTMLAttributes<HTMLAnchorElement> & Record<`data-${string}`, string> | React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string> | React.HTMLAttributes<HTMLSpanElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": "isDropdown",
+      "name": "isDropdown",
+      "comment": {
+       "raw": [
+        "Shows chevron icon, enabling component to act as dropdown toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownToggler",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconPosition",
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Position of the icon (left of right)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right"
+       ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "onIconClick",
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Click handler for the icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "onClear",
+      "name": "onClear",
+      "comment": {
+       "raw": [
+        "Call to clear toggler value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": "clearIcon",
+      "name": "clearIcon",
+      "comment": {
+       "raw": [
+        "Icon for clear value button (usually cross)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": "dropdownIcon",
+      "name": "dropdownIcon",
+      "comment": {
+       "raw": [
+        "Icon for drop-down toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "typeValue": {
+       "raw": "'primary' | 'secondary'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "primary",
+        "secondary"
+       ]
+      },
+      "from": "@epam/uui:BurgerButtonMods",
+      "required": false
+     },
+     {
+      "uid": "indentLevel",
+      "name": "indentLevel",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui:BurgerButtonMods",
       "required": false
      }
     ],
@@ -66438,22 +66792,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -66472,6 +66810,27 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui:ButtonModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "ButtonModsOverride",
+     "nameFull": "ButtonModsOverride"
+    },
+    "src": "uui/components/buttons/Button.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ButtonModsOverride",
+     "print": [
+      "interface ButtonModsOverride {",
+      "}"
+     ]
+    }
    }
   },
   "@epam/uui:ButtonProps": {
@@ -66495,95 +66854,10 @@
      "raw": "ButtonProps",
      "print": [
       "/** Represents the props for a Button component. */",
-      "type ButtonProps = ButtonMods & ButtonCoreProps;"
+      "type ButtonProps = ButtonCoreProps & Overwrite<ButtonMods, ButtonModsOverride>;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:ButtonMods",
-      "required": false
-     },
-     {
-      "uid": "fill",
-      "name": "fill",
-      "comment": {
-       "raw": [
-        "Defines component fill style.",
-        " @default 'solid'"
-       ],
-       "tags": {
-        "@default": "solid"
-       }
-      },
-      "typeValue": {
-       "raw": "'solid' | 'outline' | 'ghost' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "solid",
-        "outline",
-        "ghost",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:ButtonMods",
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color.",
-        " @default 'primary'"
-       ],
-       "tags": {
-        "@default": "primary"
-       }
-      },
-      "typeValue": {
-       "raw": "'critical' | 'neutral' | 'accent' | 'primary' | 'secondary' | 'white'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "critical",
-        "neutral",
-        "accent",
-        "primary",
-        "secondary",
-        "white"
-       ]
-      },
-      "from": "@epam/uui:ButtonMods",
-      "required": false
-     },
      {
       "uid": "onClick",
       "name": "onClick",
@@ -66886,22 +67160,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -66916,6 +67174,91 @@
        "type": "component"
       },
       "from": "@epam/uui-components:ButtonProps",
+      "required": false
+     },
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color.",
+        " @default 'primary'"
+       ],
+       "tags": {
+        "@default": "primary"
+       }
+      },
+      "typeValue": {
+       "raw": "'critical' | 'neutral' | 'primary' | 'secondary' | 'accent' | 'white'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "critical",
+        "neutral",
+        "primary",
+        "secondary",
+        "accent",
+        "white"
+       ]
+      },
+      "from": "@epam/uui:ButtonMods",
+      "required": false
+     },
+     {
+      "uid": "fill",
+      "name": "fill",
+      "comment": {
+       "raw": [
+        "Defines component fill style.",
+        " @default 'solid'"
+       ],
+       "tags": {
+        "@default": "solid"
+       }
+      },
+      "typeValue": {
+       "raw": "'solid' | 'outline' | 'ghost' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "outline",
+        "ghost",
+        "none"
+       ]
+      },
+      "from": "@epam/uui:ButtonMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:ButtonMods",
       "required": false
      }
     ],
@@ -67146,6 +67489,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:CheckboxModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "CheckboxModsOverride",
+     "nameFull": "CheckboxModsOverride"
+    },
+    "src": "uui/components/inputs/Checkbox.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "CheckboxModsOverride",
+     "print": [
+      "interface CheckboxModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:CheckboxProps": {
    "summary": {
     "module": "@epam/uui",
@@ -67167,60 +67531,10 @@
      "raw": "CheckboxProps",
      "print": [
       "/** Represents the properties of the Checkbox component. */",
-      "type CheckboxProps = CheckboxMods & uuiComponents.CheckboxProps;"
+      "type CheckboxProps = uuiComponents.CheckboxProps & Overwrite<CheckboxMods, CheckboxModsOverride>;"
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '18'"
-       ],
-       "tags": {
-        "@default": "18"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '18'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18"
-       ]
-      },
-      "from": "@epam/uui:CheckboxMods",
-      "required": false
-     },
-     {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Defines the different edit modes.",
-        " @default 'form'"
-       ],
-       "tags": {
-        "@default": "form"
-       }
-      },
-      "typeValue": {
-       "raw": "'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:CheckboxMods",
-      "required": false
-     },
      {
       "uid": "renderLabel",
       "name": "renderLabel",
@@ -67522,6 +67836,56 @@
        "type": "number"
       },
       "from": "@epam/uui-core:IHasTabIndex",
+      "required": false
+     },
+     {
+      "uid": "mode",
+      "name": "mode",
+      "comment": {
+       "raw": [
+        "Defines the different edit modes.",
+        " @default 'form'"
+       ],
+       "tags": {
+        "@default": "form"
+       }
+      },
+      "typeValue": {
+       "raw": "'form' | 'cell'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "form",
+        "cell"
+       ]
+      },
+      "from": "@epam/uui:CheckboxMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '18'"
+       ],
+       "tags": {
+        "@default": "18"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18"
+       ]
+      },
+      "from": "@epam/uui:CheckboxMods",
       "required": false
      }
     ],
@@ -69742,6 +70106,292 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:DataTableHeaderRowProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataTableHeaderRowProps",
+     "nameFull": "DataTableHeaderRowProps"
+    },
+    "src": "uui/components/tables/DataTableHeaderRow.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DataTableHeaderRowProps",
+     "print": [
+      "type DataTableHeaderRowProps = CoreDataTableHeaderRowProps & DataTableHeaderRowMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "columns",
+      "name": "columns",
+      "typeValue": {
+       "raw": "DataColumnProps<any, any, any>[]"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": true
+     },
+     {
+      "uid": "selectAll",
+      "name": "selectAll",
+      "typeValue": {
+       "raw": "ICheckable"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "showFoldAll",
+      "name": "showFoldAll",
+      "comment": {
+       "raw": [
+        "Enables collapse/expand all functionality."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "onConfigButtonClick",
+      "name": "onConfigButtonClick",
+      "typeValue": {
+       "raw": "(params: DataTableConfigModalParams) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "renderCell",
+      "name": "renderCell",
+      "typeValue": {
+       "raw": "(props: DataTableHeaderCellProps<any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "renderConfigButton",
+      "name": "renderConfigButton",
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataTableState<any, any>"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: DataTableState<any, any>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "allowColumnsReordering",
+      "name": "allowColumnsReordering",
+      "comment": {
+       "raw": [
+        "If true, allows user to change columns order",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataTableColumnsConfigOptions",
+      "required": false
+     },
+     {
+      "uid": "allowColumnsResizing",
+      "name": "allowColumnsResizing",
+      "comment": {
+       "raw": [
+        "If true, allows user to change columns width",
+        " @default false"
+       ],
+       "tags": {
+        "@default": false
+       }
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataTableColumnsConfigOptions",
+      "required": false
+     },
+     {
+      "uid": "textCase",
+      "name": "textCase",
+      "typeValue": {
+       "raw": "'upper' | 'normal'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "upper",
+        "normal"
+       ]
+      },
+      "from": "@epam/uui:DataTableHeaderRowMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/uui:BaseRowMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:DataTableMods": {
    "summary": {
     "module": "@epam/uui",
@@ -70410,6 +71060,892 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:DataTableRowProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataTableRowProps",
+     "nameFull": "DataTableRowProps"
+    },
+    "src": "uui/components/tables/DataTableRow.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DataTableRowProps",
+     "print": [
+      "type DataTableRowProps = CoreDataTableRowProps & DataTableRowMods;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "columns",
+      "name": "columns",
+      "comment": {
+       "raw": [
+        "Array of visible columns"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnProps<any, any, any>[]"
+      },
+      "from": "@epam/uui-core:DataTableRowProps",
+      "required": false
+     },
+     {
+      "uid": "renderCell",
+      "name": "renderCell",
+      "comment": {
+       "raw": [
+        "Render callback for each cell at row.",
+        " If omitted, default cell renderer will be used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataTableCellProps<any, any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataTableRowProps",
+      "required": false
+     },
+     {
+      "uid": "renderDropMarkers",
+      "name": "renderDropMarkers",
+      "comment": {
+       "raw": [
+        "Render callback for the drop marker. Rendered only if 'dnd' option was provided via getRowProps.",
+        " If omitted, default renderer will be used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DndActorRenderParams) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataTableRowProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "((e?: any) => void) & ((rowProps: DataRowProps<any, any>) => void) & ((rowProps: DataRowProps<any, any>) => void)"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "key",
+      "name": "key",
+      "typeValue": {
+       "raw": "null | string | number"
+      },
+      "from": "@types/react:Attributes",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "alignItems",
+      "name": "alignItems",
+      "comment": {
+       "raw": [
+        "Flexbox align-items property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)",
+        " @default 'center'"
+       ],
+       "tags": {
+        "@default": "center"
+       }
+      },
+      "typeValue": {
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "center",
+        "bottom",
+        "stretch"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "justifyContent",
+      "name": "justifyContent",
+      "comment": {
+       "raw": [
+        "Flexbox justifyContent property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'center' | 'space-between' | 'space-around' | 'space-evenly' | 'start' | 'end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "center",
+        "space-between",
+        "space-around",
+        "space-evenly",
+        "start",
+        "end"
+       ]
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "columnGap",
+      "name": "columnGap",
+      "comment": {
+       "raw": [
+        "Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "rowGap",
+      "name": "rowGap",
+      "comment": {
+       "raw": [
+        "Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number | '6' | '12' | '18' | '36' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "6",
+        "12",
+        "18",
+        "24",
+        "36"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "from": "@epam/uui-core:FlexRowProps",
+      "required": false
+     },
+     {
+      "uid": "checkbox",
+      "name": "checkbox",
+      "comment": {
+       "raw": [
+        "If row needs a checkbox, this field should be specified, and it props can be configured here"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ isVisible: boolean; } & IDisableable & ICanBeInvalid"
+      },
+      "from": "@epam/uui-core:DataRowOptions",
+      "required": false
+     },
+     {
+      "uid": "isSelectable",
+      "name": "isSelectable",
+      "comment": {
+       "raw": [
+        "True if row is selectable (for whole-row single-selection, multi-selection via checkbox are configured with the checkbox prop)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowOptions",
+      "required": false
+     },
+     {
+      "uid": "dnd",
+      "name": "dnd",
+      "comment": {
+       "raw": [
+        "Configures row drag-n-drop options - if it can be dragged, can rows can be dropped into it, etc."
+       ]
+      },
+      "typeValue": {
+       "raw": "IDndActor<any, any>"
+      },
+      "from": "@epam/uui-core:DataRowOptions",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Can be specified to make row act as a link (plain or SPA)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:DataRowOptions",
+      "required": false
+     },
+     {
+      "uid": "pin",
+      "name": "pin",
+      "comment": {
+       "raw": [
+        "A pure function that gets pinned state for each row.",
+        " If row pinned, it means that it will be sticky inside their parent section."
+       ]
+      },
+      "typeValue": {
+       "raw": "(rowProps: DataRowProps<any, any>) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:DataRowOptions",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": false
+     },
+     {
+      "uid": "validationMessage",
+      "name": "validationMessage",
+      "comment": {
+       "raw": [
+        "Message describing why the value is invalid"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasValidationMessage",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "ID of the TItem rows displays"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": true
+     },
+     {
+      "uid": "rowKey",
+      "name": "rowKey",
+      "comment": {
+       "raw": [
+        "Key to be used as component's key when rendering. Usually, it's stringified ID"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": true
+     },
+     {
+      "uid": "index",
+      "name": "index",
+      "comment": {
+       "raw": [
+        "Index of the row, from the top of the list. This doesn't account any hierarchy."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": true
+     },
+     {
+      "uid": "parentId",
+      "name": "parentId",
+      "comment": {
+       "raw": [
+        "ID of the parent TItem"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "path",
+      "name": "path",
+      "comment": {
+       "raw": [
+        "Hierarchical path from the root node to the item (excluding the item itself)"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataRowPathItem<any, any>[]"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "depth",
+      "name": "depth",
+      "comment": {
+       "raw": [
+        "Depth of the row in tree, 0 for the top-level"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "indent",
+      "name": "indent",
+      "comment": {
+       "raw": [
+        "Indent of the item, to show hierarchy.",
+        "  Unlike depth, it contains additional logic, to not add unnecessary indents:",
+        "  if all children of node has no children, all nodes would get the same indent as parent."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "True if row is in loading state. 'value' is empty in this case"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isUnknown",
+      "name": "isUnknown",
+      "comment": {
+       "raw": [
+        "True if item doesn't exist in a dataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isFoldable",
+      "name": "isFoldable",
+      "comment": {
+       "raw": [
+        "True if row be folded or unfolded (usually because it contains children)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isFolded",
+      "name": "isFolded",
+      "comment": {
+       "raw": [
+        "True if row is currently folded"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isChecked",
+      "name": "isChecked",
+      "comment": {
+       "raw": [
+        "True if row is checked with checkbox"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isCheckable",
+      "name": "isCheckable",
+      "comment": {
+       "raw": [
+        "True if row has checkbox and can be checkable"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isChildrenChecked",
+      "name": "isChildrenChecked",
+      "comment": {
+       "raw": [
+        "True if some of row's children are checked.",
+        " Used to show 'indefinite' checkbox state, to show user that something inside is checked"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isSelected",
+      "name": "isSelected",
+      "comment": {
+       "raw": [
+        "True if row is selected (in single-select mode, or in case when interface use both single row selection and checkboxes)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isChildrenSelected",
+      "name": "isChildrenSelected",
+      "comment": {
+       "raw": [
+        "True if any of row's children is selected."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isFocused",
+      "name": "isFocused",
+      "comment": {
+       "raw": [
+        "True if row is focused. Focus can be changed via keyboard arrow keys, or by hovering mouse on top of the row"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isLastChild",
+      "name": "isLastChild",
+      "comment": {
+       "raw": [
+        "True if row is the last child of his parent"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "onFold",
+      "name": "onFold",
+      "comment": {
+       "raw": [
+        "Handles row folding change.",
+        " We demand to pass the row as well, to avoid creating closures for each row."
+       ]
+      },
+      "typeValue": {
+       "raw": "(rowProps: DataRowProps<any, any>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "onCheck",
+      "name": "onCheck",
+      "comment": {
+       "raw": [
+        "Handles row checkbox change.",
+        " We demand to pass the row as well, to avoid creating closures for each row."
+       ]
+      },
+      "typeValue": {
+       "raw": "(rowProps: DataRowProps<any, any>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "onSelect",
+      "name": "onSelect",
+      "comment": {
+       "raw": [
+        "Handles row selection.",
+        " We demand to pass the row as well, to avoid creating closures for each row."
+       ]
+      },
+      "typeValue": {
+       "raw": "(rowProps: DataRowProps<any, any>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Handles row focusing."
+       ]
+      },
+      "typeValue": {
+       "raw": "(focusedIndex: number) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isPinned",
+      "name": "isPinned",
+      "comment": {
+       "raw": [
+        "True if row pinned, it means that it will be sticky inside his nesting level"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "borderBottom",
+      "name": "borderBottom",
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui:DataTableRowMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
+      "required": false
+     },
+     {
+      "uid": "padding",
+      "name": "padding",
+      "typeValue": {
+       "raw": "'0' | '12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "12",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
+      "required": false
+     },
+     {
+      "uid": "alignActions",
+      "name": "alignActions",
+      "typeValue": {
+       "raw": "'top' | 'center'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "center"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:DatePickerBodyProps": {
    "summary": {
     "module": "@epam/uui",
@@ -70573,7 +72109,11 @@
       "/**",
       " * Represents the properties of the DatePicker component",
       " */",
-      "interface DatePickerProps extends CommonDatePickerProps, SizeMod, IHasEditMode, ICanFocus<HTMLInputElement>, IEditable<string | null>, IAnalyticableOnChange<string>, IHasPlaceholder {",
+      "interface DatePickerProps extends CommonDatePickerProps, IHasEditMode, ICanFocus<HTMLInputElement>, IEditable<string | null>, IAnalyticableOnChange<string>, IHasPlaceholder {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * Defines where to place calendar icon",
       "     */",
@@ -70603,6 +72143,29 @@
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "required": false
+     },
      {
       "uid": "iconPosition",
       "name": "iconPosition",
@@ -70866,30 +72429,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
       "required": false
      },
      {
@@ -73575,6 +75114,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:IconButtonModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "IconButtonModsOverride",
+     "nameFull": "IconButtonModsOverride"
+    },
+    "src": "uui/components/buttons/IconButton.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IconButtonModsOverride",
+     "print": [
+      "interface IconButtonModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:IconButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -73596,7 +75156,7 @@
      "raw": "IconButtonProps",
      "print": [
       "/** Represents the properties of the IconButton component. */",
-      "type IconButtonProps = IconButtonCoreProps & IconButtonMods;"
+      "type IconButtonProps = IconButtonCoreProps & Overwrite<IconButtonMods, IconButtonModsOverride>;"
      ]
     },
     "props": [
@@ -74381,6 +75941,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:LabeledInputModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "LabeledInputModsOverride",
+     "nameFull": "LabeledInputModsOverride"
+    },
+    "src": "uui/components/layout/LabeledInput.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "LabeledInputModsOverride",
+     "print": [
+      "interface LabeledInputModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:LabeledInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -74402,7 +75983,7 @@
      "raw": "LabeledInputProps",
      "print": [
       "/** Represents the properties of the LabeledInput component. */",
-      "type LabeledInputProps = uuiComponents.LabeledInputProps & LabeledInputMods;"
+      "type LabeledInputProps = uuiComponents.LabeledInputProps & Overwrite<LabeledInputMods, LabeledInputModsOverride>;"
      ]
     },
     "props": [
@@ -74715,7 +76296,7 @@
         "48"
        ]
       },
-      "from": "@epam/uui:SizeMod",
+      "from": "@epam/uui:LabeledInputMods",
       "required": false
      }
     ],
@@ -74744,11 +76325,6 @@
      "print": [
       "/** Represents the Core properties of the LinkButton component. */",
       "type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
-      "    /**",
-      "     * CSS classes to put on the caption",
-      "     * @deprecated",
-      "     * */",
-      "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /**",
@@ -75028,21 +76604,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -75089,6 +76650,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:LinkButtonModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "LinkButtonModsOverride",
+     "nameFull": "LinkButtonModsOverride"
+    },
+    "src": "uui/components/buttons/LinkButton.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "LinkButtonModsOverride",
+     "print": [
+      "interface LinkButtonModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:LinkButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -75110,7 +76692,7 @@
      "raw": "LinkButtonProps",
      "print": [
       "/** Represents the properties of the LinkButton component. */",
-      "type LinkButtonProps = LinkButtonCoreProps & LinkButtonMods;"
+      "type LinkButtonProps = LinkButtonCoreProps & Overwrite<LinkButtonMods, LinkButtonModsOverride>;"
      ]
     },
     "props": [
@@ -75382,22 +76964,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:LinkButtonCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -75455,13 +77021,16 @@
        }
       },
       "typeValue": {
-       "raw": "'primary' | 'secondary' | 'contrast'"
+       "raw": "'critical' | 'primary' | 'secondary' | 'accent' | 'white' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "critical",
         "primary",
         "secondary",
+        "accent",
+        "white",
         "contrast"
        ]
       },
@@ -75668,11 +77237,6 @@
      "raw": "MainMenuButtonProps",
      "print": [
       "type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'> & IHasIcon & IHasCaption & {",
-      "    /**",
-      "     * CSS classes to put on the caption",
-      "     * @deprecated",
-      "     * */",
-      "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /** Count value to be placed in component */",
@@ -76009,21 +77573,6 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
-      "required": false
-     },
-     {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
       "required": false
      },
      {
@@ -76392,22 +77941,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -76496,11 +78029,6 @@
      "nameFull": "MainMenuProps"
     },
     "src": "uui/components/navigation/MainMenu/MainMenu.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of the MainMenu component."
-     ]
-    },
     "exported": true
    },
    "details": {
@@ -76508,8 +78036,7 @@
     "typeValue": {
      "raw": "MainMenuProps",
      "print": [
-      "/** Represents the properties of the MainMenu component. */",
-      "type MainMenuProps = uuiComponents.MainMenuProps & MainMenuMods;"
+      "type MainMenuProps = uuiComponents.MainMenuProps;"
      ]
     },
     "props": [
@@ -79268,6 +80795,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:NumericInputModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "NumericInputModsOverride",
+     "nameFull": "NumericInputModsOverride"
+    },
+    "src": "uui/components/inputs/NumericInput.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "NumericInputModsOverride",
+     "print": [
+      "interface NumericInputModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:NumericInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -79289,7 +80837,7 @@
      "raw": "NumericInputProps",
      "print": [
       "/** Represents the properties of a NumericInput component. */",
-      "type NumericInputProps = uuiNumericInputProps & NumericInputMods;"
+      "type NumericInputProps = uuiNumericInputProps & Overwrite<NumericInputMods, NumericInputModsOverride>;"
      ]
     },
     "props": [
@@ -79752,8 +81300,7 @@
       "comment": {
        "raw": [
         "Defines component size",
-        " @default '36'",
-        " Size '48' is deprecated and will be removed in future release"
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -81134,7 +82681,11 @@
     "typeValue": {
      "raw": "PickerItemProps<TItem, TId>",
      "print": [
-      "interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {",
+      "interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId> {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /** Path to the user avatar.",
       "     * If omitted, no avatar will be rendered.",
       "     * * */",
@@ -81160,6 +82711,29 @@
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "required": false
+     },
      {
       "uid": "avatarUrl",
       "name": "avatarUrl",
@@ -82010,30 +83584,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-core:DataRowProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
       "required": false
      }
     ],
@@ -84840,22 +86390,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -85137,7 +86671,7 @@
     "typeValue": {
      "raw": "ProgressBarProps",
      "print": [
-      "type ProgressBarProps = IProgressBarProps & ProgressBarMods;"
+      "type ProgressBarProps = uui.ProgressBarProps & ProgressBarMods;"
      ]
     },
     "props": [
@@ -85150,7 +86684,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:IProgressBarProps",
+      "from": "@epam/uui-components:ProgressBarProps",
       "required": true
      },
      {
@@ -85162,7 +86696,7 @@
       "editor": {
        "type": "string"
       },
-      "from": "@epam/uui-components:IProgressBarProps",
+      "from": "@epam/uui-components:ProgressBarProps",
       "required": false
      },
      {
@@ -85174,7 +86708,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:IProgressBarProps",
+      "from": "@epam/uui-components:ProgressBarProps",
       "required": false
      },
      {
@@ -86423,7 +87957,11 @@
       "/**",
       " * Represents RangeDatePickerInputProps",
       " */",
-      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, SizeMod, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {",
+      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * rawProps as HTML attributes",
       "     */",
@@ -86457,6 +87995,29 @@
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "required": false
+     },
      {
       "uid": "rawProps",
       "name": "rawProps",
@@ -86655,30 +88216,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -86807,7 +88344,11 @@
       "/**",
       " * Represents the properties of the RangeDatePicker component",
       " */",
-      "interface RangeDatePickerProps extends SizeMod, IEditable<RangeDatePickerValue | null>, IAnalyticableOnChange<RangeDatePickerValue | null>, CommonDatePickerProps {",
+      "interface RangeDatePickerProps extends IEditable<RangeDatePickerValue | null>, IAnalyticableOnChange<RangeDatePickerValue | null>, CommonDatePickerProps {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
       "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
@@ -86858,6 +88399,29 @@
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "required": false
+     },
      {
       "uid": "presets",
       "name": "presets",
@@ -86979,30 +88543,6 @@
       "typeValue": {
        "raw": "{ from?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; to?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
       "required": false
      },
      {
@@ -87316,13 +88856,13 @@
       " * Represents RangeDatePicker value",
       "*/",
       "type RangeDatePickerValue = {",
-      "    /*",
-      "    * Defines DatePicker value 'from'.",
-      "    */",
+      "    /**",
+      "     * Defines DatePicker value 'from'.",
+      "     */",
       "    from: string | null;",
-      "    /*",
-      "   * Defines DatePicker value 'to'.",
-      "   */",
+      "    /**",
+      "     * Defines DatePicker value 'to'.",
+      "     */",
       "    to: string | null;",
       "};"
      ]
@@ -87331,6 +88871,11 @@
      {
       "uid": "from",
       "name": "from",
+      "comment": {
+       "raw": [
+        "Defines DatePicker value 'from'."
+       ]
+      },
       "typeValue": {
        "raw": "null | string"
       },
@@ -87342,6 +88887,11 @@
      {
       "uid": "to",
       "name": "to",
+      "comment": {
+       "raw": [
+        "Defines DatePicker value 'to'."
+       ]
+      },
       "typeValue": {
        "raw": "null | string"
       },
@@ -87352,6 +88902,27 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui:RichTextViewModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RichTextViewModsOverride",
+     "nameFull": "RichTextViewModsOverride"
+    },
+    "src": "uui/components/typography/RichTextView.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RichTextViewModsOverride",
+     "print": [
+      "interface RichTextViewModsOverride {",
+      "}"
+     ]
+    }
    }
   },
   "@epam/uui:RichTextViewProps": {
@@ -87369,7 +88940,7 @@
     "typeValue": {
      "raw": "RichTextViewProps",
      "print": [
-      "type RichTextViewProps = uuiComponents.RichTextViewProps & RichTextViewMods;"
+      "type RichTextViewProps = uuiComponents.RichTextViewProps & Overwrite<RichTextViewMods, RichTextViewModsOverride>;"
      ]
     },
     "props": [
@@ -89056,6 +90627,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:SwitchModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "SwitchModsOverride",
+     "nameFull": "SwitchModsOverride"
+    },
+    "src": "uui/components/inputs/Switch.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "SwitchModsOverride",
+     "print": [
+      "interface SwitchModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:SwitchProps": {
    "summary": {
     "module": "@epam/uui",
@@ -89077,7 +90669,7 @@
      "raw": "SwitchProps",
      "print": [
       "/** Represents the properties of the Switch component. */",
-      "type SwitchProps = uuiComponents.SwitchProps & SwitchMods;"
+      "type SwitchProps = uuiComponents.SwitchProps & Overwrite<SwitchMods, SwitchModsOverride>;"
      ]
     },
     "props": [
@@ -89326,6 +90918,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TabButtonModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TabButtonModsOverride",
+     "nameFull": "TabButtonModsOverride"
+    },
+    "src": "uui/components/buttons/TabButton.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TabButtonModsOverride",
+     "print": [
+      "interface TabButtonModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:TabButtonProps": {
    "summary": {
     "module": "@epam/uui",
@@ -89347,16 +90960,11 @@
      "raw": "TabButtonProps",
      "print": [
       "/** Represents the properties of a TabButton component. */",
-      "type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
+      "type TabButtonProps = Overwrite<TabButtonMods, TabButtonModsOverride> & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {",
       "    /** Call to clear toggler value */",
       "    onClear?(e?: any): void;",
       "    /** Icon for clear value button (usually cross) */",
       "    clearIcon?: Icon;",
-      "    /**",
-      "     * CSS classes to put on the caption",
-      "     * @deprecated",
-      "     * */",
-      "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /** Count value to be placed in component */",
@@ -89708,21 +91316,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -89792,11 +91385,6 @@
       "    onClear?(e?: any): void;",
       "    /** Icon for clear value button (usually cross) */",
       "    clearIcon?: Icon;",
-      "    /**",
-      "     * CSS classes to put on the caption",
-      "     * @deprecated",
-      "     * */",
-      "    captionCX?: CX;",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /** Count value to be placed in component */",
@@ -90157,21 +91745,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -90205,6 +91778,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TagModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TagModsOverride",
+     "nameFull": "TagModsOverride"
+    },
+    "src": "uui/components/widgets/Tag.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TagModsOverride",
+     "print": [
+      "interface TagModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:TagProps": {
    "summary": {
     "module": "@epam/uui",
@@ -90226,7 +91820,7 @@
      "raw": "TagProps",
      "print": [
       "/** Represents the properties of the Tag component. */",
-      "type TagProps = TagCoreProps & TagMods;"
+      "type TagProps = TagCoreProps & Overwrite<TagMods, TagModsOverride>;"
      ]
     },
     "props": [
@@ -90586,22 +92180,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -90665,6 +92243,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TextAreaModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextAreaModsOverride",
+     "nameFull": "TextAreaModsOverride"
+    },
+    "src": "uui/components/inputs/TextArea.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TextAreaModsOverride",
+     "print": [
+      "interface TextAreaModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:TextAreaProps": {
    "summary": {
     "module": "@epam/uui",
@@ -90686,7 +92285,7 @@
      "raw": "TextAreaProps",
      "print": [
       "/** Represents the properties of a TextArea component. */",
-      "type TextAreaProps = uuiTextAreaProps & TextAreaMods;"
+      "type TextAreaProps = uuiTextAreaProps & Overwrite<TextAreaMods, TextAreaModsOverride>;"
      ]
     },
     "props": [
@@ -91017,8 +92616,7 @@
       "comment": {
        "raw": [
         "Defines component size.",
-        " @default '36'",
-        " Size '48' is deprecated, and will be removed in future release"
+        " @default '36'"
        ],
        "tags": {
         "@default": "36"
@@ -91302,6 +92900,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TextInputModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextInputModsOverride",
+     "nameFull": "TextInputModsOverride"
+    },
+    "src": "uui/components/inputs/TextInput.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TextInputModsOverride",
+     "print": [
+      "interface TextInputModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:TextInputProps": {
    "summary": {
     "module": "@epam/uui",
@@ -91323,7 +92942,7 @@
      "raw": "TextInputProps",
      "print": [
       "/** Represents the properties for a TextInput component. */",
-      "interface TextInputProps extends CoreTextInputProps, TextInputMods {",
+      "interface TextInputProps extends CoreTextInputProps, Overwrite<TextInputMods, TextInputModsOverride> {",
       "}"
      ]
     },
@@ -91969,6 +93588,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TextModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TextModsOverride",
+     "nameFull": "TextModsOverride"
+    },
+    "src": "uui/components/typography/Text.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TextModsOverride",
+     "print": [
+      "interface TextModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:TextPlaceholderProps": {
    "summary": {
     "module": "@epam/uui",
@@ -92080,7 +93720,7 @@
     "typeValue": {
      "raw": "TextProps",
      "print": [
-      "interface TextProps extends TextCoreProps, TextMods {",
+      "interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {",
       "}"
      ]
     },
@@ -92320,7 +93960,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'brand' | 'tertiary' | 'disabled'"
+       "raw": "'info' | 'success' | 'warning' | 'critical' | 'primary' | 'secondary' | 'white' | 'tertiary' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -92332,7 +93972,6 @@
         "primary",
         "secondary",
         "white",
-        "brand",
         "tertiary",
         "disabled"
        ]
@@ -92687,7 +94326,11 @@
     "typeValue": {
      "raw": "TimePickerProps",
      "print": [
-      "interface TimePickerProps extends SizeMod, IHasEditMode, IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder, ICanFocus<HTMLElement>, IHasForwardedRef<HTMLElement> {",
+      "interface TimePickerProps extends IHasEditMode, IEditable<TimePickerValue | null>, IDisableable, ICanBeReadonly, IHasPlaceholder, ICanFocus<HTMLElement>, IHasForwardedRef<HTMLElement> {",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: '24' | '30' | '36' | '42' | '48';",
       "    /**",
       "     * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys",
       "     * @default 5",
@@ -92724,6 +94367,29 @@
      ]
     },
     "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "required": false
+     },
      {
       "uid": "minutesStep",
       "name": "minutesStep",
@@ -92856,30 +94522,6 @@
       "editor": {
        "type": "bool"
       },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
       "required": false
      },
      {
@@ -94234,22 +95876,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:TabButtonProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -94665,6 +96291,17 @@
     "exported": false
    }
   },
+  "@epam/uui:BurgerButtonMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "BurgerButtonMods",
+     "nameFull": "BurgerButtonMods"
+    },
+    "src": "uui/components/navigation/MainMenu/Burger/BurgerButton.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:ButtonMods": {
    "summary": {
     "module": "@epam/uui",
@@ -94744,6 +96381,17 @@
       "Component can adjust visuals for different contexts: forms, tables cells, on in WYSIWYG UX"
      ]
     },
+    "exported": false
+   }
+  },
+  "@epam/uui:LabeledInputMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "LabeledInputMods",
+     "nameFull": "LabeledInputMods"
+    },
+    "src": "uui/components/layout/LabeledInput.tsx",
     "exported": false
    }
   },
@@ -95482,22 +97130,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:BadgeCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -95587,14 +97219,13 @@
        }
       },
       "typeValue": {
-       "raw": "'solid' | 'outline' | 'semitransparent'"
+       "raw": "'solid' | 'outline'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "solid",
-        "outline",
-        "semitransparent"
+        "outline"
        ]
       },
       "from": "@epam/promo:BadgeMods",
@@ -95960,22 +97591,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -96032,7 +97647,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'red' | 'white' | 'critical' | 'neutral' | 'gray50' | 'gray' | 'accent' | 'primary' | 'secondary'"
+       "raw": "'blue' | 'green' | 'red' | 'white' | 'critical' | 'neutral' | 'gray' | 'accent' | 'primary' | 'secondary'"
       },
       "typeValueRef": "@epam/promo:ButtonColor",
       "editor": {
@@ -96044,7 +97659,6 @@
         "white",
         "critical",
         "neutral",
-        "gray50",
         "gray",
         "accent",
         "primary",
@@ -96202,557 +97816,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:DropdownContainerProps": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "DropdownContainerProps",
-     "nameFull": "DropdownContainerProps"
-    },
-    "src": "epam-promo/components/overlays/DropdownContainer.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of a DropdownContainer component."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "DropdownContainerProps",
-     "print": [
-      "/** Represents the properties of a DropdownContainer component. */",
-      "interface DropdownContainerProps extends uui.DropdownContainerProps, DropdownContainerMods {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "width",
-      "name": "width",
-      "comment": {
-       "raw": [
-        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
-       ]
-      },
-      "typeValue": {
-       "raw": "number | 'auto'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "auto"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "maxWidth",
-      "name": "maxWidth",
-      "comment": {
-       "raw": [
-        "Defines maximum width in 'px'. If 'auto' provided, will be used width of the content."
-       ]
-      },
-      "typeValue": {
-       "raw": "number | 'auto'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "auto"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "height",
-      "name": "height",
-      "comment": {
-       "raw": [
-        "Defines height in 'px'."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "maxHeight",
-      "name": "maxHeight",
-      "comment": {
-       "raw": [
-        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
-       ]
-      },
-      "typeValue": {
-       "raw": "number | 'auto'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "auto"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "showArrow",
-      "name": "showArrow",
-      "comment": {
-       "raw": [
-        "If true, arrow tip will be shown",
-        " @default false"
-       ],
-       "tags": {
-        "@default": false
-       }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "focusLock",
-      "name": "focusLock",
-      "comment": {
-       "raw": [
-        "Pass true to wrap DropdownContainer with FocusLock component to support keyboard navigation.",
-        " If omitted, true value will be used.",
-        "",
-        " After DropdownContainer appeared the focus will be set on the first focusable element inside.",
-        " @default true"
-       ],
-       "tags": {
-        "@default": true
-       }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "returnFocus",
-      "name": "returnFocus",
-      "comment": {
-       "raw": [
-        "Pass true to return focus into initial position on unmount.",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "persistentFocus",
-      "name": "persistentFocus",
-      "comment": {
-       "raw": [
-        "Pass true to lock focus within DropdownContainer.",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "lockProps",
-      "name": "lockProps",
-      "comment": {
-       "raw": [
-        "Pass any extra props to the FocusLock wrapper."
-       ]
-      },
-      "typeValue": {
-       "raw": "Record<string, any>"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "shards",
-      "name": "shards",
-      "comment": {
-       "raw": [
-        "Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering."
-       ]
-      },
-      "typeValue": {
-       "raw": "React.RefObject<HTMLElement>[]"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "as",
-      "name": "as",
-      "comment": {
-       "raw": [
-        "Pass element name if you need to change internal FocusLock div element, to any other."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "closeOnEsc",
-      "name": "closeOnEsc",
-      "comment": {
-       "raw": [
-        "Pass true to handle Escape key press and call props.onClose().",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "onKeyDown",
-      "name": "onKeyDown",
-      "comment": {
-       "raw": [
-        "Called on keyDown event in DropdownContainer.",
-        "     Can be used to provide your own handlers."
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.KeyboardEvent<HTMLElement>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     },
-     {
-      "uid": "style",
-      "name": "style",
-      "comment": {
-       "raw": [
-        "CSS style prop to put on the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-core:IHasStyleAttrs",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "onClose",
-      "name": "onClose",
-      "comment": {
-       "raw": [
-        "Call to close the Dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "togglerWidth",
-      "name": "togglerWidth",
-      "comment": {
-       "raw": [
-        "The width of the toggler, which can be used to adjust the body width to it"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "togglerHeight",
-      "name": "togglerHeight",
-      "comment": {
-       "raw": [
-        "The height of the toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "scheduleUpdate",
-      "name": "scheduleUpdate",
-      "comment": {
-       "raw": [
-        "Call to force recompute dropdown position"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "Indicates that dropdown is open"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "arrowProps",
-      "name": "arrowProps",
-      "comment": {
-       "raw": [
-        "Props that should be provided to the arrow component"
-       ]
-      },
-      "typeValue": {
-       "raw": "PopperArrowProps"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "placement",
-      "name": "placement",
-      "comment": {
-       "raw": [
-        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right",
-        "auto",
-        "auto-start",
-        "auto-end",
-        "top",
-        "bottom",
-        "top-start",
-        "top-end",
-        "bottom-start",
-        "bottom-end",
-        "right-start",
-        "right-end",
-        "left-start",
-        "left-end"
-       ]
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "vPadding",
-      "name": "vPadding",
-      "comment": {
-       "raw": [
-        "Defines vertical padding."
-       ]
-      },
-      "typeValue": {
-       "raw": "'48' | '18' | '24' | '30' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "30",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:DropdownContainerMods",
-      "required": false
-     },
-     {
-      "uid": "padding",
-      "name": "padding",
-      "comment": {
-       "raw": [
-        "Defines horizontal padding."
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '30' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:DropdownContainerMods",
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color.",
-        " @default 'white'"
-       ],
-       "tags": {
-        "@default": "white"
-       }
-      },
-      "typeValue": {
-       "raw": "'white' | 'gray70'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "gray70"
-       ]
-      },
-      "from": "@epam/promo:DropdownContainerMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:FlexRowProps": {
    "summary": {
     "module": "@epam/promo",
@@ -96878,14 +97941,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "bottom",
         "center",
+        "bottom",
         "stretch"
        ]
       },
@@ -97429,7 +98492,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray30' | 'gray60' | 'neutral' | 'gray50' | 'secondary'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray30' | 'gray60' | 'neutral' | 'secondary' | 'gray50'"
       },
       "editor": {
        "type": "oneOf",
@@ -97445,253 +98508,11 @@
         "gray30",
         "gray60",
         "neutral",
-        "gray50",
-        "secondary"
+        "secondary",
+        "gray50"
        ]
       },
       "from": "@epam/promo:IconButtonMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/promo:IconContainerProps": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "IconContainerProps",
-     "nameFull": "IconContainerProps"
-    },
-    "src": "epam-promo/components/layout/IconContainer.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of a IconContainer component."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "IconContainerProps",
-     "print": [
-      "/** Represents the properties of a IconContainer component. */",
-      "interface IconContainerProps extends uuiComponents.ControlIconProps, IconContainerMods {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon to display"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "flipY",
-      "name": "flipY",
-      "comment": {
-       "raw": [
-        "Flips the icon vertically"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "rotate",
-      "name": "rotate",
-      "comment": {
-       "raw": [
-        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise))"
-       ]
-      },
-      "typeValue": {
-       "raw": "'0' | '90cw' | '180' | '90ccw'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "0",
-        "180",
-        "90cw",
-        "90ccw"
-       ]
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Click handler"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "style",
-      "name": "style",
-      "comment": {
-       "raw": [
-        "CSS style prop to put on the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Icon size in pixels (both width and height, as icons are assumed to be square-shaped)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color.",
-        "  @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.",
-        "  @default 'gray60'"
-       ],
-       "tags": {
-        "@default": "gray60",
-        "@deprecated": "Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop."
-       }
-      },
-      "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'orange' | 'purple' | 'violet' | 'cyan' | 'white' | 'gray10' | 'gray30' | 'gray60' | 'gray50' | 'gray70' | 'gray5' | 'gray20' | 'gray40' | 'gray80' | 'gray90'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "blue",
-        "green",
-        "amber",
-        "red",
-        "orange",
-        "purple",
-        "violet",
-        "cyan",
-        "white",
-        "gray10",
-        "gray30",
-        "gray60",
-        "gray50",
-        "gray70",
-        "gray5",
-        "gray20",
-        "gray40",
-        "gray80",
-        "gray90"
-       ]
-      },
-      "from": "@epam/promo:IconContainerMods",
       "required": false
      }
     ],
@@ -97991,22 +98812,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:LinkButtonCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -98064,17 +98869,19 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'gray10' | 'gray60' | 'primary' | 'secondary' | 'contrast'"
+       "raw": "'blue' | 'green' | 'red' | 'white' | 'gray10' | 'gray60' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "blue",
         "green",
-        "amber",
         "red",
+        "white",
         "gray10",
         "gray60",
+        "critical",
+        "accent",
         "primary",
         "secondary",
         "contrast"
@@ -98250,7 +99057,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | 'auto' | '300' | '700'"
+       "raw": "number | '300' | '700' | 'auto'"
       },
       "editor": {
        "type": "oneOf",
@@ -98457,16 +99264,16 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'gray50' | 'gray' | 'primary' | 'secondary'"
+       "raw": "'blue' | 'gray' | 'primary' | 'secondary' | 'gray50'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "blue",
-        "gray50",
         "gray",
         "primary",
-        "secondary"
+        "secondary",
+        "gray50"
        ]
       },
       "from": "@epam/promo:MultiSwitchMods",
@@ -98688,7 +99495,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray60'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error'"
       },
       "editor": {
        "type": "oneOf",
@@ -98700,8 +99507,7 @@
         "info",
         "success",
         "warning",
-        "error",
-        "gray60"
+        "error"
        ]
       },
       "from": "@epam/promo:NotificationCardMods",
@@ -99805,22 +100611,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -100153,7 +100943,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'gray50' | 'primary' | 'secondary' | 'gray5' | 'gray80' | 'gray90' | 'brand' | 'tertiary' | 'disabled'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'white' | 'gray60' | 'critical' | 'primary' | 'secondary' | 'gray5' | 'gray50' | 'gray90' | 'gray80' | 'tertiary' | 'disabled'"
       },
       "editor": {
        "type": "oneOf",
@@ -100168,43 +100958,14 @@
         "white",
         "gray60",
         "critical",
-        "gray50",
         "primary",
         "secondary",
         "gray5",
-        "gray80",
+        "gray50",
         "gray90",
-        "brand",
+        "gray80",
         "tertiary",
         "disabled"
-       ]
-      },
-      "from": "@epam/promo:TextMods",
-      "required": false
-     },
-     {
-      "uid": "font",
-      "name": "font",
-      "comment": {
-       "raw": [
-        "Defines component font.",
-        " @default 'sans'"
-       ],
-       "tags": {
-        "@default": "sans"
-       }
-      },
-      "typeValue": {
-       "raw": "'sans' | 'sans-semibold' | 'sans-italic' | 'museo-sans' | 'museo-slab'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sans",
-        "sans-semibold",
-        "sans-italic",
-        "museo-sans",
-        "museo-slab"
        ]
       },
       "from": "@epam/promo:TextMods",
@@ -100407,18 +101168,18 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'top' | 'bottom' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "left",
         "right",
+        "top",
+        "bottom",
         "auto",
         "auto-start",
         "auto-end",
-        "top",
-        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -100582,7 +101343,7 @@
        }
       },
       "typeValue": {
-       "raw": "'red' | 'white' | 'critical' | 'neutral' | 'gray' | 'gray90' | 'inverted'"
+       "raw": "'red' | 'white' | 'critical' | 'neutral' | 'gray' | 'inverted'"
       },
       "editor": {
        "type": "oneOf",
@@ -100592,7 +101353,6 @@
         "critical",
         "neutral",
         "gray",
-        "gray90",
         "inverted"
        ]
       },
@@ -100674,17 +101434,6 @@
     "exported": false
    }
   },
-  "@epam/promo:DropdownContainerMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "DropdownContainerMods",
-     "nameFull": "DropdownContainerMods"
-    },
-    "src": "epam-promo/components/overlays/DropdownContainer.tsx",
-    "exported": false
-   }
-  },
   "@epam/promo:FlexRowMods": {
    "summary": {
     "module": "@epam/promo",
@@ -100704,17 +101453,6 @@
      "nameFull": "IconButtonMods"
     },
     "src": "epam-promo/components/buttons/IconButton.tsx",
-    "exported": false
-   }
-  },
-  "@epam/promo:IconContainerMods": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "IconContainerMods",
-     "nameFull": "IconContainerMods"
-    },
-    "src": "epam-promo/components/layout/IconContainer.tsx",
     "exported": false
    }
   },
@@ -101138,22 +101876,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:BadgeCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -101537,21 +102259,6 @@
        "raw": "React.ReactNode"
       },
       "from": "@epam/uui-core:IHasCaption",
-      "required": false
-     },
-     {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "from": "@epam/uui-components:ButtonProps",
       "required": false
      },
      {
@@ -102173,22 +102880,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -102776,22 +103467,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:BadgeCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -102869,31 +103544,6 @@
       "required": false
      },
      {
-      "uid": "shape",
-      "name": "shape",
-      "comment": {
-       "raw": [
-        "Defines component shape style.",
-        " @default 'square'"
-       ],
-       "tags": {
-        "@default": "square"
-       }
-      },
-      "typeValue": {
-       "raw": "'square' | 'round'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "square",
-        "round"
-       ]
-      },
-      "from": "@epam/loveship:BadgeMods",
-      "required": false
-     },
-     {
       "uid": "fill",
       "name": "fill",
       "comment": {
@@ -102906,14 +103556,13 @@
        }
       },
       "typeValue": {
-       "raw": "'solid' | 'outline' | 'semitransparent'"
+       "raw": "'solid' | 'outline'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "solid",
-        "outline",
-        "semitransparent"
+        "outline"
        ]
       },
       "from": "@epam/loveship:BadgeMods",
@@ -102932,12 +103581,11 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | '12'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "12",
         "18",
         "24",
         "30",
@@ -103280,22 +103928,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:ButtonProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -103325,7 +103957,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'night600' | 'critical' | 'neutral' | 'night500' | 'gray' | 'accent' | 'primary' | 'secondary'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'white' | 'critical' | 'neutral' | 'gray' | 'accent' | 'primary' | 'secondary'"
       },
       "typeValueRef": "@epam/loveship:ButtonColor",
       "editor": {
@@ -103336,10 +103968,8 @@
         "sun",
         "fire",
         "white",
-        "night600",
         "critical",
         "neutral",
-        "night500",
         "gray",
         "accent",
         "primary",
@@ -103549,553 +104179,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/loveship:DropdownContainerProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "DropdownContainerProps",
-     "nameFull": "DropdownContainerProps"
-    },
-    "src": "loveship/components/overlays/DropdownContainer.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of the DropdownContainer component."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "DropdownContainerProps",
-     "print": [
-      "/** Represents the properties of the DropdownContainer component. */",
-      "interface DropdownContainerProps extends uui.DropdownContainerProps, DropdownContainerMods {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "width",
-      "name": "width",
-      "comment": {
-       "raw": [
-        "Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content."
-       ]
-      },
-      "typeValue": {
-       "raw": "number | 'auto'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "auto"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "maxWidth",
-      "name": "maxWidth",
-      "comment": {
-       "raw": [
-        "Defines maximum width in 'px'. If 'auto' provided, will be used width of the content."
-       ]
-      },
-      "typeValue": {
-       "raw": "number | 'auto'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "auto"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "height",
-      "name": "height",
-      "comment": {
-       "raw": [
-        "Defines height in 'px'."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "maxHeight",
-      "name": "maxHeight",
-      "comment": {
-       "raw": [
-        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
-       ]
-      },
-      "typeValue": {
-       "raw": "number | 'auto'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "auto"
-       ],
-       "scalarTypeOption": "number"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "showArrow",
-      "name": "showArrow",
-      "comment": {
-       "raw": [
-        "If true, arrow tip will be shown",
-        " @default false"
-       ],
-       "tags": {
-        "@default": false
-       }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "focusLock",
-      "name": "focusLock",
-      "comment": {
-       "raw": [
-        "Pass true to wrap DropdownContainer with FocusLock component to support keyboard navigation.",
-        " If omitted, true value will be used.",
-        "",
-        " After DropdownContainer appeared the focus will be set on the first focusable element inside.",
-        " @default true"
-       ],
-       "tags": {
-        "@default": true
-       }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "returnFocus",
-      "name": "returnFocus",
-      "comment": {
-       "raw": [
-        "Pass true to return focus into initial position on unmount.",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "persistentFocus",
-      "name": "persistentFocus",
-      "comment": {
-       "raw": [
-        "Pass true to lock focus within DropdownContainer.",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "lockProps",
-      "name": "lockProps",
-      "comment": {
-       "raw": [
-        "Pass any extra props to the FocusLock wrapper."
-       ]
-      },
-      "typeValue": {
-       "raw": "Record<string, any>"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "shards",
-      "name": "shards",
-      "comment": {
-       "raw": [
-        "Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering."
-       ]
-      },
-      "typeValue": {
-       "raw": "React.RefObject<HTMLElement>[]"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "as",
-      "name": "as",
-      "comment": {
-       "raw": [
-        "Pass element name if you need to change internal FocusLock div element, to any other."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "closeOnEsc",
-      "name": "closeOnEsc",
-      "comment": {
-       "raw": [
-        "Pass true to handle Escape key press and call props.onClose().",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "onKeyDown",
-      "name": "onKeyDown",
-      "comment": {
-       "raw": [
-        "Called on keyDown event in DropdownContainer.",
-        "     Can be used to provide your own handlers."
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.KeyboardEvent<HTMLElement>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     },
-     {
-      "uid": "style",
-      "name": "style",
-      "comment": {
-       "raw": [
-        "CSS style prop to put on the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-core:IHasStyleAttrs",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "onClose",
-      "name": "onClose",
-      "comment": {
-       "raw": [
-        "Call to close the Dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "togglerWidth",
-      "name": "togglerWidth",
-      "comment": {
-       "raw": [
-        "The width of the toggler, which can be used to adjust the body width to it"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "togglerHeight",
-      "name": "togglerHeight",
-      "comment": {
-       "raw": [
-        "The height of the toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "scheduleUpdate",
-      "name": "scheduleUpdate",
-      "comment": {
-       "raw": [
-        "Call to force recompute dropdown position"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "Indicates that dropdown is open"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "arrowProps",
-      "name": "arrowProps",
-      "comment": {
-       "raw": [
-        "Props that should be provided to the arrow component"
-       ]
-      },
-      "typeValue": {
-       "raw": "PopperArrowProps"
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "placement",
-      "name": "placement",
-      "comment": {
-       "raw": [
-        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "left",
-        "right",
-        "auto",
-        "auto-start",
-        "auto-end",
-        "top",
-        "bottom",
-        "top-start",
-        "top-end",
-        "bottom-start",
-        "bottom-end",
-        "right-start",
-        "right-end",
-        "left-start",
-        "left-end"
-       ]
-      },
-      "from": "@epam/uui-core:IDropdownBodyProps",
-      "required": false
-     },
-     {
-      "uid": "vPadding",
-      "name": "vPadding",
-      "comment": {
-       "raw": [
-        "Defines vertical padding."
-       ]
-      },
-      "typeValue": {
-       "raw": "'48' | '18' | '24' | '30' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "30",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:DropdownContainerMods",
-      "required": false
-     },
-     {
-      "uid": "padding",
-      "name": "padding",
-      "comment": {
-       "raw": [
-        "Defines horizontal padding."
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '30' | '12' | '6'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "6",
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:DropdownContainerMods",
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color."
-       ]
-      },
-      "typeValue": {
-       "raw": "'white' | 'night700'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "white",
-        "night700"
-       ]
-      },
-      "from": "@epam/loveship:DropdownContainerMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/loveship:FlexRowProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -104198,14 +104281,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
+       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "bottom",
         "center",
+        "bottom",
         "stretch"
        ]
       },
@@ -104794,7 +104877,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night300' | 'night600' | 'neutral' | 'night500' | 'secondary' | 'night200' | 'night400'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night600' | 'neutral' | 'secondary' | 'night500'"
       },
       "typeValueRef": "@epam/loveship:IconButtonColor",
       "editor": {
@@ -104812,258 +104895,13 @@
         "violet",
         "fuchsia",
         "white",
-        "night300",
         "night600",
         "neutral",
-        "night500",
         "secondary",
-        "night200",
-        "night400"
+        "night500"
        ]
       },
       "from": "@epam/loveship:IconButtonMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:IconContainerProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "IconContainerProps",
-     "nameFull": "IconContainerProps"
-    },
-    "src": "loveship/components/layout/IconContainer.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of the IconContainer component."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "IconContainerProps",
-     "print": [
-      "/** Represents the properties of the IconContainer component. */",
-      "interface IconContainerProps extends ControlIconProps, IconContainerMods {",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon to display"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "flipY",
-      "name": "flipY",
-      "comment": {
-       "raw": [
-        "Flips the icon vertically"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "rotate",
-      "name": "rotate",
-      "comment": {
-       "raw": [
-        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise))"
-       ]
-      },
-      "typeValue": {
-       "raw": "'0' | '90cw' | '180' | '90ccw'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "0",
-        "180",
-        "90cw",
-        "90ccw"
-       ]
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "onClick",
-      "name": "onClick",
-      "comment": {
-       "raw": [
-        "Click handler"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "style",
-      "name": "style",
-      "comment": {
-       "raw": [
-        "CSS style prop to put on the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Icon size in pixels (both width and height, as icons are assumed to be square-shaped)"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-components:ControlIconProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "tabIndex",
-      "name": "tabIndex",
-      "comment": {
-       "raw": [
-        "Controls the order of keyboard navigation between components"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:IHasTabIndex",
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color.",
-        " @deprecated Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop.",
-        " @default 'night600'"
-       ],
-       "tags": {
-        "@default": "night600",
-        "@deprecated": "Property color is deprecated and will be removed in future release. Please make icon color configuration by yourself, e.g. via cx or style prop."
-       }
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night700' | 'night50' | 'night200' | 'night400' | 'carbon' | 'night800' | 'night900'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "white",
-        "night100",
-        "night300",
-        "night600",
-        "night500",
-        "night700",
-        "night50",
-        "night200",
-        "night400",
-        "carbon",
-        "night800",
-        "night900"
-       ]
-      },
-      "from": "@epam/loveship:IconContainerMods",
       "required": false
      }
     ],
@@ -105090,7 +104928,6 @@
     "typeValue": {
      "raw": "LinkButtonProps",
      "print": [
-      "// TODO: leave 3 colors white, blue, gray - more specific colors will be determined later.",
       "/** Represents the properties of a LinkButton component. */",
       "type LinkButtonProps = uui.LinkButtonCoreProps & LinkButtonMods;"
      ]
@@ -105364,22 +105201,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:LinkButtonCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -105437,7 +105258,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night200' | 'night400' | 'night800' | 'night900' | 'contrast'"
+       "raw": "'sky' | 'grass' | 'fire' | 'white' | 'night100' | 'night600' | 'critical' | 'accent' | 'primary' | 'secondary' | 'contrast'"
       },
       "typeValueRef": "@epam/loveship:LinkButtonColor",
       "editor": {
@@ -105445,24 +105266,14 @@
        "options": [
         "sky",
         "grass",
-        "sun",
         "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
         "white",
         "night100",
-        "night300",
         "night600",
-        "night500",
+        "critical",
+        "accent",
         "primary",
         "secondary",
-        "night700",
-        "night50",
-        "night200",
-        "night400",
-        "night800",
-        "night900",
         "contrast"
        ]
       },
@@ -105637,7 +105448,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | 'auto' | '300' | '700'"
+       "raw": "number | '300' | '700' | 'auto'"
       },
       "editor": {
        "type": "oneOf",
@@ -105844,13 +105655,12 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'night600' | 'gray' | 'primary' | 'secondary'"
+       "raw": "'sky' | 'gray' | 'primary' | 'secondary'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "sky",
-        "night600",
         "gray",
         "primary",
         "secondary"
@@ -106075,7 +105885,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'night600'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error'"
       },
       "editor": {
        "type": "oneOf",
@@ -106087,8 +105897,7 @@
         "info",
         "success",
         "warning",
-        "error",
-        "night600"
+        "error"
        ]
       },
       "from": "@epam/loveship:NotificationCardMods",
@@ -106357,7 +106166,7 @@
      "raw": "RangeSliderProps",
      "print": [
       "/** Represents the properties of a RangeSlider component. */",
-      "interface RangeSliderProps extends uuiRangeSliderProps, RangeSliderMods {",
+      "interface RangeSliderProps extends uuiRangeSliderProps {",
       "}"
      ]
     },
@@ -106604,43 +106413,6 @@
        "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "color",
-      "name": "color",
-      "comment": {
-       "raw": [
-        "Defines component color."
-       ]
-      },
-      "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night100' | 'night300' | 'night600' | 'night500' | 'night700' | 'night50' | 'night200' | 'night400' | 'night800' | 'night900'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sky",
-        "grass",
-        "sun",
-        "fire",
-        "cobalt",
-        "violet",
-        "fuchsia",
-        "white",
-        "night100",
-        "night300",
-        "night600",
-        "night500",
-        "night700",
-        "night50",
-        "night200",
-        "night400",
-        "night800",
-        "night900"
-       ]
-      },
-      "from": "@epam/loveship:RangeSliderMods",
       "required": false
      }
     ],
@@ -106980,7 +106752,7 @@
     "typeValue": {
      "raw": "RowMods",
      "print": [
-      "interface RowMods extends Omit<uui.RowMods, 'spacing' | 'background'>, types.RowSizeMod {",
+      "interface RowMods extends Omit<uui.RowMods, 'spacing' | 'background'> {",
       "    /**",
       "     * @default 'none'",
       "     */",
@@ -107488,182 +107260,6 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/loveship:SnackbarCardProps": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "SnackbarCardProps",
-     "nameFull": "SnackbarCardProps"
-    },
-    "src": "loveship/components/overlays/SnackbarCard.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "SnackbarCardProps",
-     "print": [
-      "interface SnackbarCardProps extends INotification, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
-      "    /*",
-      "   * Defines component type.",
-      "   */",
-      "    snackType: 'success' | 'warning' | 'info' | 'danger';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "snackType",
-      "name": "snackType",
-      "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'danger'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "info",
-        "success",
-        "warning",
-        "danger"
-       ]
-      },
-      "required": true
-     },
-     {
-      "uid": "onClose",
-      "name": "onClose",
-      "comment": {
-       "raw": [
-        "Call to close the notification with abort action. It's rejects `notificationContext.show()` promise."
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:INotification",
-      "required": false
-     },
-     {
-      "uid": "onSuccess",
-      "name": "onSuccess",
-      "comment": {
-       "raw": [
-        "Call to close the notification with success action. It's resolved `notificationContext.show()` promise."
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:INotification",
-      "required": false
-     },
-     {
-      "uid": "clearTimer",
-      "name": "clearTimer",
-      "comment": {
-       "raw": [
-        "Cancel notification closing timer"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:INotification",
-      "required": false
-     },
-     {
-      "uid": "refreshTimer",
-      "name": "refreshTimer",
-      "comment": {
-       "raw": [
-        "Reinitialize notification closing timer. It will be set to the provided notification duration."
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:INotification",
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "Unique id of the notification"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@epam/uui-core:INotification",
-      "required": true
-     },
-     {
-      "uid": "key",
-      "name": "key",
-      "comment": {
-       "raw": [
-        "Unique key of the notification"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:INotification",
-      "required": true
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
      },
      {
       "uid": "rawProps",
@@ -108218,22 +107814,6 @@
       "required": false
      },
      {
-      "uid": "captionCX",
-      "name": "captionCX",
-      "comment": {
-       "raw": [
-        "CSS classes to put on the caption",
-        " @deprecated"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui:TagCoreProps",
-      "required": false
-     },
-     {
       "uid": "dropdownIcon",
       "name": "dropdownIcon",
       "comment": {
@@ -108566,7 +108146,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'night500' | 'primary' | 'secondary' | 'night700' | 'night50' | 'night400' | 'night800' | 'night900' | 'brand' | 'tertiary' | 'disabled'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'white' | 'night300' | 'night600' | 'critical' | 'primary' | 'secondary' | 'night50' | 'night500' | 'night700' | 'night400' | 'night800' | 'night900' | 'tertiary' | 'disabled'"
       },
       "typeValueRef": "@epam/loveship:TextColors",
       "editor": {
@@ -108583,43 +108163,16 @@
         "night300",
         "night600",
         "critical",
-        "night500",
         "primary",
         "secondary",
-        "night700",
         "night50",
+        "night500",
+        "night700",
         "night400",
         "night800",
         "night900",
-        "brand",
         "tertiary",
         "disabled"
-       ]
-      },
-      "from": "@epam/loveship:TextMods",
-      "required": false
-     },
-     {
-      "uid": "font",
-      "name": "font",
-      "comment": {
-       "raw": [
-        "Defines component font.",
-        " @default 'sans'"
-       ],
-       "tags": {
-        "@default": "sans"
-       }
-      },
-      "typeValue": {
-       "raw": "'sans' | 'sans-semibold' | 'sans-light'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "sans",
-        "sans-semibold",
-        "sans-light"
        ]
       },
       "from": "@epam/loveship:TextMods",
@@ -108822,18 +108375,18 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'top' | 'bottom' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "left",
         "right",
+        "top",
+        "bottom",
         "auto",
         "auto-start",
         "auto-end",
-        "top",
-        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -108990,7 +108543,6 @@
       "comment": {
        "raw": [
         "Defines component color.",
-        " 'night900' is deprecated and will be removed in future release, use 'gray' instead.",
         " @default 'gray'"
        ],
        "tags": {
@@ -108998,7 +108550,7 @@
        }
       },
       "typeValue": {
-       "raw": "'fire' | 'white' | 'critical' | 'neutral' | 'gray' | 'night900' | 'inverted'"
+       "raw": "'fire' | 'white' | 'critical' | 'neutral' | 'gray' | 'inverted'"
       },
       "editor": {
        "type": "oneOf",
@@ -109008,7 +108560,6 @@
         "critical",
         "neutral",
         "gray",
-        "night900",
         "inverted"
        ]
       },
@@ -109090,17 +108641,6 @@
     "exported": false
    }
   },
-  "@epam/loveship:DropdownContainerMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "DropdownContainerMods",
-     "nameFull": "DropdownContainerMods"
-    },
-    "src": "loveship/components/overlays/DropdownContainer.tsx",
-    "exported": false
-   }
-  },
   "@epam/loveship:IconButtonColor": {
    "summary": {
     "module": "@epam/loveship",
@@ -109120,17 +108660,6 @@
      "nameFull": "IconButtonMods"
     },
     "src": "loveship/components/buttons/IconButton.tsx",
-    "exported": false
-   }
-  },
-  "@epam/loveship:IconContainerMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "IconContainerMods",
-     "nameFull": "IconContainerMods"
-    },
-    "src": "loveship/components/layout/IconContainer.tsx",
     "exported": false
    }
   },
@@ -109186,17 +108715,6 @@
      "nameFull": "NotificationCardMods"
     },
     "src": "loveship/components/overlays/NotificationCard.tsx",
-    "exported": false
-   }
-  },
-  "@epam/loveship:RangeSliderMods": {
-   "summary": {
-    "module": "@epam/loveship",
-    "typeName": {
-     "name": "RangeSliderMods",
-     "nameFull": "RangeSliderMods"
-    },
-    "src": "loveship/components/inputs/Slider/RangeSlider.tsx",
     "exported": false
    }
   },

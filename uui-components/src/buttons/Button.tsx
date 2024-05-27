@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, uuiElement, uuiMarkers, CX, cx, IHasIcon, IDropdownToggler, IHasCaption, devLogger } from '@epam/uui-core';
+import { Icon, uuiElement, uuiMarkers, IHasIcon, IDropdownToggler, IHasCaption } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './Button.module.scss';
@@ -9,20 +9,11 @@ export type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon 
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
     clearIcon?: Icon;
-    /**
-     * CSS classes to put on the caption
-     * @deprecated
-     */
-    captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
 };
 
 export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
-    if (__DEV__ && props.captionCX) {
-        devLogger.warn('Button: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
-    }
-
     return (
         <Clickable
             { ...props }
@@ -42,7 +33,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
                 />
             )}
             { props.caption && (
-                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ uuiElement.caption }>
                     { props.caption }
                 </div>
             )}

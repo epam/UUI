@@ -44,7 +44,7 @@ export class AlertDoc extends BaseDocsBlock {
                 children2lines: (<uui.Text size="30">{'Test Test'}<br/>{'Test Test'}</uui.Text>),
             };
             docPreview.add({
-                id: TAlertPreview.Colors,
+                id: TAlertPreview['Color Variants'],
                 matrix: {
                     icon: { examples: [TEST_DATA.icon] },
                     onClose: { examples: ['callback'] },

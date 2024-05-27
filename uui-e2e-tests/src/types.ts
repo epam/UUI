@@ -1,7 +1,12 @@
-import { TComponentId, TPreviewIdByComponentId } from './data/testData';
+import type { TComponentId, TPreviewIdByComponentId } from './data/testData';
 import type { PreviewPage } from './pages/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
+
+export enum TEngine {
+    chromium = 'chromium',
+    webkit = 'webkit'
+}
 
 export enum TTheme {
     electric = 'electric',
@@ -18,15 +23,20 @@ export interface PreviewPageParams {
     previewId: string;
 }
 
-export type TMatrix<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId] = TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = {
-    theme: TTheme[];
-    isSkin: boolean[];
-    previewId: Previews;
-    onBeforeExpect: (params: { previewPage: PreviewPage }) => Promise<void>
+type TObjValues<T> = T[keyof T];
+type TArrItem<T> = T extends (infer TItem)[] ? TItem : never;
+
+export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = {
+    previewId: PreviewIdArr;
+    theme?: TTheme[];
+    skins?: TTheme[];
+    onlyChromium?: boolean,
+    onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
+    focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
 };
-export type TMatrixMinimal<Previews extends TPreviewIdByComponentId[keyof TPreviewIdByComponentId]> = Partial<TMatrix<Previews>> & { previewId: Previews };
-export type ScreenshotTestParamsSingle = {
-    runId?: string;
-    componentId: TComponentId;
-    matrix: TMatrix;
+
+export type TMatrixFull<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = TMatrixMinimal<PreviewIdArr> & {
+    only?: boolean;
 };
+
+export type TKnownCompId = keyof TPreviewIdByComponentId;

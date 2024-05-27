@@ -42,51 +42,38 @@ export class TagDoc extends BaseDocsBlock {
 
         preview: (docPreview: DocPreviewBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps>) => {
             const TEST_DATA = {
+                count: '+999',
                 caption1Line: 'Test',
                 // eslint-disable-next-line
                 caption2Lines: (<>{'Test'}<br/>{'Test'}</>),
                 icon: 'action-account-fill.svg',
             };
             docPreview.add({
-                id: TTagPreview['One-line caption'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption1Line] },
-                    size: { examples: '*' },
-                    count: { values: [undefined, '+999'] },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
-                    isDropdown: { examples: '*' },
-                    onClear: { examples: ['callback', undefined] },
-                },
+                id: TTagPreview['Size Variants'],
+                matrix: [
+                    {
+                        caption: { values: [TEST_DATA.caption1Line] },
+                        size: { examples: '*' },
+                        count: { values: [undefined, TEST_DATA.count] },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
+                        isDropdown: { examples: '*' },
+                        onClear: { examples: ['callback', undefined] },
+                    },
+                    {
+                        caption: { values: [undefined, TEST_DATA.caption2Lines] },
+                        size: { values: ['24'] },
+                        count: { values: [undefined, TEST_DATA.count] },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
+                        isDropdown: { examples: '*' },
+                        onClear: { examples: ['callback', undefined] },
+                    },
+                ],
                 cellSize: '180-60',
             });
             docPreview.add({
-                id: TTagPreview['Two-line caption'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption2Lines] },
-                    size: { examples: '*' },
-                    count: { values: [undefined, '+999'] },
-                    isDropdown: { examples: '*' },
-                    onClear: { examples: ['callback', undefined] },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    iconPosition: { examples: '*' },
-                },
-                cellSize: '180-80',
-            });
-            docPreview.add({
-                id: TTagPreview['No caption'],
-                matrix: {
-                    caption: { values: [undefined] },
-                    size: { examples: '*' },
-                    count: { values: [undefined, '+999'] },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
-                    onClear: { examples: ['callback', undefined] },
-                },
-                cellSize: '150-60',
-            });
-            docPreview.add({
-                id: TTagPreview.Colors,
+                id: TTagPreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption1Line] },
                     icon: { examples: [TEST_DATA.icon] },

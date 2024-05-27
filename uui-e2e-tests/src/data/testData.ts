@@ -1,11 +1,33 @@
 import {
-    TAccordionPreview, TAlertPreview,
+    TAccordionPreview,
+    TAlertPreview,
     TAvatarStackPreview,
     TBadgePreview,
-    TButtonPreview, TCheckboxPreview, TCountIndicatorPreview, TIconButtonPreview,
-    TLinkButtonPreview, TSwitchPreview, TTagPreview,
-    TTextInputPreview, TVerticalTabButtonPreview, TTabButtonPreview,
+    TButtonPreview,
+    TCheckboxPreview,
+    TCountIndicatorPreview,
+    TDatePickerPreview, TDropdownContainerPreview,
+    TIconButtonPreview,
+    TLabeledInputPreview,
+    TLinkButtonPreview,
+    TMainMenuPreview,
+    TMultiSwitchPreview,
+    TNotificationCardPreview,
+    TNumericInputPreview,
+    TPaginatorPreview,
+    TPickerInputPreview,
+    TRadioGroupPreview,
+    TRadioInputPreview,
+    TRangeDatePickerPreview,
+    TSwitchPreview,
+    TTabButtonPreview,
+    TTagPreview,
+    TTextAreaPreview,
+    TTextInputPreview,
+    TTextPreview, TTooltipPreview,
+    TVerticalTabButtonPreview,
 } from './previewIds';
+import { TTheme } from '../types';
 
 /**
  * Keep in sync with app/src/documents/structureComponents.ts
@@ -83,22 +105,51 @@ export enum TComponentId {
     virtualList= 'virtualList'
 }
 
+type TPreviewIds<PreviewMap extends object> = (PreviewMap[keyof PreviewMap])[];
+
 /**
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.badge]: TBadgePreview[],
-    [TComponentId.button]: TButtonPreview[],
-    [TComponentId.linkButton]: TLinkButtonPreview[],
-    [TComponentId.textInput]: TTextInputPreview[],
-    [TComponentId.avatarStack]: TAvatarStackPreview[],
-    [TComponentId.tag]: TTagPreview[],
-    [TComponentId.switch]: TSwitchPreview[],
-    [TComponentId.checkbox]: TCheckboxPreview[],
-    [TComponentId.countIndicator]: TCountIndicatorPreview[],
     [TComponentId.accordion]: TAccordionPreview[],
-    [TComponentId.alert]: TAlertPreview[],
-    [TComponentId.iconButton]: TIconButtonPreview[],
-    [TComponentId.tabButton]: TTabButtonPreview[],
-    [TComponentId.verticalTabButton]: TVerticalTabButtonPreview[],
+    [TComponentId.alert]: TPreviewIds<typeof TAlertPreview>,
+    [TComponentId.avatarStack]: TAvatarStackPreview[],
+    [TComponentId.badge]: TPreviewIds<typeof TBadgePreview>,
+    [TComponentId.button]: TPreviewIds<typeof TButtonPreview>,
+    [TComponentId.checkbox]: TPreviewIds<typeof TCheckboxPreview>,
+    [TComponentId.countIndicator]: TPreviewIds<typeof TCountIndicatorPreview>,
+    [TComponentId.datePicker]: TPreviewIds<typeof TDatePickerPreview>,
+    [TComponentId.dropdownContainer]: TPreviewIds<typeof TDropdownContainerPreview>,
+    [TComponentId.iconButton]: TPreviewIds<typeof TIconButtonPreview>,
+    [TComponentId.linkButton]: TPreviewIds<typeof TLinkButtonPreview>,
+    [TComponentId.pickerInput]: TPickerInputPreview[],
+    [TComponentId.rangeDatePicker]: TPreviewIds<typeof TRangeDatePickerPreview>,
+    [TComponentId.switch]: TPreviewIds<typeof TSwitchPreview>,
+    [TComponentId.tabButton]: TPreviewIds<typeof TTabButtonPreview>,
+    [TComponentId.tag]: TPreviewIds<typeof TTagPreview>,
+    [TComponentId.text]: TPreviewIds<typeof TTextPreview>,
+    [TComponentId.textArea]: TPreviewIds<typeof TTextAreaPreview>,
+    [TComponentId.textInput]: TPreviewIds<typeof TTextInputPreview>,
+    [TComponentId.verticalTabButton]: TPreviewIds<typeof TVerticalTabButtonPreview>,
+    [TComponentId.numericInput]: TPreviewIds<typeof TNumericInputPreview>,
+    [TComponentId.radioInput]: TPreviewIds<typeof TRadioInputPreview>,
+    [TComponentId.radioGroup]: TPreviewIds<typeof TRadioGroupPreview>,
+    [TComponentId.labeledInput]: TPreviewIds<typeof TLabeledInputPreview>,
+    [TComponentId.multiSwitch]: TPreviewIds<typeof TMultiSwitchPreview>,
+    [TComponentId.paginator]: TPreviewIds<typeof TPaginatorPreview>,
+    [TComponentId.mainMenu]: TPreviewIds<typeof TMainMenuPreview>,
+    [TComponentId.notificationCard]: TPreviewIds<typeof TNotificationCardPreview>,
+    [TComponentId.tooltip]: TPreviewIds<typeof TTooltipPreview>,
+};
+
+export const THEMES = {
+    allExceptVanillaThunder: Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder),
+};
+
+/**
+ * Terminology is not perfect, but it's basically list of themes which support "isSkin=true" parameter
+ */
+export const SKINS = {
+    promo_loveship_electric: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark, TTheme.electric],
+    promo_loveship: [TTheme.promo, TTheme.loveship, TTheme.loveship_dark],
 };

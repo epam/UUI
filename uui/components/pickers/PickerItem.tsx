@@ -4,12 +4,15 @@ import { AvatarProps, IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow, FlexRowProps } from '../layout';
 import { Text, TextPlaceholder, TextProps } from '../typography';
 import { Avatar } from '../widgets';
-import { ControlSize, SizeMod } from '../types';
 import { getHighlightedSearchMatches } from './highlight';
 import { settings } from '../../settings';
 import css from './PickerItem.module.scss';
 
-export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId>, SizeMod {
+export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId> {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
     /** Path to the user avatar.
      * If omitted, no avatar will be rendered.
      * * */
@@ -39,7 +42,7 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
         size, avatarUrl, isLoading, isDisabled, icon, cx,
     } = props;
 
-    const itemSize = size || settings.sizes.defaults.pickerItem as ControlSize;
+    const itemSize = size || settings.sizes.defaults.pickerItem as PickerItemProps<any, any>['size'];
     const isMultiline = !!(props.title && props.subtitle);
 
     const { search } = props.dataSourceState ?? {};
@@ -78,6 +81,6 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
     );
 }
 
-function getAvatarSize(size: ControlSize, isMultiline: boolean): string | number {
+function getAvatarSize(size: PickerItemProps<any, any>['size'], isMultiline: boolean): string | number {
     return settings.sizes.pickerItem.avatar[isMultiline ? 'multiline' : 'rest'][size];
 }

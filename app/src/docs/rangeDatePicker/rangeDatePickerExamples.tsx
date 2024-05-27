@@ -32,6 +32,8 @@ export const filterExamples = () => {
         },
     ];
 };
+
+const { lastMonth, ...rangeDatePickerPresetsNoLastMonth } = rangeDatePickerPresets;
 export const presetsExamples = () => [
     {
         name: 'default',
@@ -40,8 +42,7 @@ export const presetsExamples = () => [
     {
         name: 'custom',
         value: {
-            ...rangeDatePickerPresets,
-            lastMonth: null,
+            ...rangeDatePickerPresetsNoLastMonth,
             last3Days: {
                 name: 'Last 3 days (custom)',
                 getRange: () => {

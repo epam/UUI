@@ -21,7 +21,7 @@ export class SwitchDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<uui.SwitchProps>) => {
             docPreview.add({
-                id: TSwitchPreview.Basic,
+                id: TSwitchPreview['Common Variants'],
                 matrix: {
                     value: { values: [true, false] },
                     size: { examples: '*' },

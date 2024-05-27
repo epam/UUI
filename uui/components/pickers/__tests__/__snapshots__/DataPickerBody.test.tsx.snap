@@ -33,7 +33,6 @@ Array [
         </div>
         <input
           aria-invalid={false}
-          autoFocus={true}
           className="uui-input"
           inputMode="search"
           onBlur={[Function]}

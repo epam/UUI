@@ -8,7 +8,7 @@ import {
     TDocContext,
     TComponentPreviewList,
     TComponentPreview,
-    TPreviewPropsItemRenderCases,
+    TPreviewPropsItemRenderCases, TPreviewCellSize, TPreviewMatrix,
 } from './types';
 import { TestMatrixUtils } from './utils/testMatrixUtils';
 
@@ -19,7 +19,22 @@ export class DocPreviewBuilder<TProps> {
      * Most recently added preview will replace another one with same ID
      * @param previewItem
      */
-    add(previewItem: TComponentPreview<TProps, keyof TProps>) {
+    add(previewItem: TComponentPreview<TProps, keyof TProps>): void;
+    add(id: string, matrix: TPreviewMatrix<TProps>, cellSize?: TPreviewCellSize): void;
+    add(groupId: string, id: string, matrix: TPreviewMatrix<TProps>, cellSize?: TPreviewCellSize): void;
+    add(...args: any[]) {
+        let previewItem: TComponentPreview<TProps, keyof TProps>;
+        if (typeof args[0] === 'string') {
+            if (typeof args[1] === 'string') {
+                const [groupId, id, matrix, cellSize] = args;
+                previewItem = { groupId, id, matrix, cellSize };
+            } else {
+                const [id, matrix, cellSize] = args;
+                previewItem = { id, matrix, cellSize };
+            }
+        } else {
+            previewItem = args[0];
+        }
         this.listOfPreviews = this.listOfPreviews.filter(({ id }) => id !== previewItem.id);
         this.listOfPreviews.push({
             id: previewItem.id,
@@ -27,7 +42,7 @@ export class DocPreviewBuilder<TProps> {
         });
     }
 
-    update(id: string, updateMatrixFn: (prevMatrix: TComponentPreview<TProps>['matrix']) => TComponentPreview<TProps>['matrix']) {
+    update(id: string, updateMatrixFn: (prevMatrix: TPreviewMatrix<TProps>) => TPreviewMatrix<TProps>) {
         const prev = this.listOfPreviews.find((i) => i.id === id);
         if (prev) {
             prev.matrix = { ...updateMatrixFn(prev.matrix) };
@@ -141,7 +156,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             cellSize: ppi.cellSize,
         };
         const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
-        result.props = TestMatrixUtils.createTestMatrix({ matrixNorm: matrixConfig });
+        result.props = TestMatrixUtils.createTestMatrixFromArr({ matrixNorm: matrixConfig });
         return result;
     };
 

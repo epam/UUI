@@ -38,6 +38,7 @@
     min-width: var(--uui-picker_toggler-min-width);
     box-sizing: border-box;
     border-style: solid;
+    border-radius: var(--uui-picker_toggler-border-radius);
 
     &:global(.uui-input-box) {
         min-height: var(--uui-picker_toggler-min-height);
@@ -100,7 +101,6 @@
         background-color: var(--uui-picker_toggler-bg);
         border-color: var(--uui-picker_toggler-border);
         fill: var(--uui-picker_toggler-icon);
-        border-radius: var(--uui-picker_toggler-border-radius);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
             &:global(.uui-enabled) {
@@ -129,6 +129,7 @@
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
+        border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
 
         :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
@@ -167,7 +168,6 @@
     &.mode-inline {
         background-color: initial;
         border-color: transparent;
-        border-radius: var(--uui-picker_toggler-border-radius);
         fill: var(--uui-picker_toggler-icon-clickable);
 
         &:hover {

@@ -7,4 +7,5 @@ export type TPreviewContentParams = {
     previewId: string | undefined | TComponentPreview<unknown>;
 };
 
-export type TPreviewRef = { link: string, error: string | undefined, predefinedPreviewRefs: { id: string, link: string }[] };
+export type TPredefinedPreviewRefItem = { groupId?: string; id: string, link: string };
+export type TPreviewRef = { link: string, error: string | undefined, predefinedPreviewRefs: TPredefinedPreviewRefItem[] };

@@ -17,6 +17,10 @@ export class PreviewPage {
         };
     }
 
+    async focusElement(selector: string) {
+        await this.page.locator(selector).first().focus();
+    }
+
     async goto() {
         await this.page.goto(PREVIEW_URL);
     }
