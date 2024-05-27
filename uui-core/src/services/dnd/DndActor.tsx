@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
     IDndActor, DropPosition, AcceptDropParams, DndActorRenderParams, DropPositionOptions,
     DndDropLevelsRenderParams,
+    DndDropLevelRenderProps,
 } from '../../types/dnd';
 
 import { UuiContexts } from '../../types/contexts';
@@ -218,6 +219,87 @@ function TREE_SHAKEABLE_INIT() {
             }
         }
 
+        private getMultilevelDropParams = (id: TId, e: React.MouseEvent<HTMLElement>): AcceptDropParams<TSrcData, TDstData> => {
+            const {
+                left, top, width, height,
+            } = e.currentTarget.getBoundingClientRect();
+            const dndRowData = this.context?.uuiDnD?.getDndRowData(id);
+            return {
+                srcData: this.context.uuiDnD.dragData,
+                dstData: dndRowData?.dstData,
+                offsetLeft: e.clientX - left,
+                offsetTop: e.clientY - top,
+                targetWidth: width,
+                targetHeight: height,
+            };
+        };
+
+        private pointerEnterDropLevel = (id: TId, position: DropPosition, level: number) => (e: React.PointerEvent<any>) => {
+            if (this.context.uuiDnD.isDragging) {
+                releasePointerCaptureOnEventTarget(e); // allows you to trigger pointer events on other nodes
+                const dropProps = this.getMultilevelDropParams(id, e);
+                const positionOptions = this.props.canAcceptDrop(dropProps);
+                const actualPosition = positionOptions?.[position] ? position : null;
+                this.setState((s) => ({
+                    ...s,
+                    isMouseOver: true,
+                    position: actualPosition,
+                    draggingOverLevel: level,
+                }));
+                this.context?.uuiDnD.setDraggingOverInfo(positionOptions?.[position] ? { id, position } : null);
+            }
+        };
+
+        private onMultilevelDropPointerUp = (id: TId) => (e: React.PointerEvent<any>) => {
+            if (this.context.uuiDnD.isDragging) {
+                if (isEventTargetInsideDraggable(e, e.currentTarget)) {
+                    return;
+                }
+                e.preventDefault();
+                if (!!this.state.position && this.props.onDrop) {
+                    this.props.onDrop({
+                        ...this.getMultilevelDropParams(id, e),
+                        position: this.state.position,
+                    });
+                }
+                this.context.uuiDnD.endDrag();
+                this.setState(() => initialState);
+            }
+        };
+
+        getDropLevelsProps(): DndDropLevelRenderProps<TId>[] {
+            const lastLevel = this.props.path.length + 2;
+            const lastPosition = 'inside';
+            const isDraggedOver = this.context.uuiDnD?.isDragging && this.state.isMouseOver;
+            const draggingOverLevel = this.state.draggingOverLevel;
+            return [
+                ...[...this.props.path, this.props.id].map((id, index) => {
+                    const position = 'bottom';
+                    const level = index + 1;
+                    return {
+                        id,
+                        level,
+                        lastLevel,
+                        key: `${id}-${position}`,
+                        isDraggedOver,
+                        draggingOverLevel,
+                        onPointerUp: this.onMultilevelDropPointerUp(id),
+                        onPointerEnter: this.pointerEnterDropLevel(id, position, level),
+                    };
+                }),
+                {
+                    id: this.props.id,
+                    level: lastLevel,
+                    lastLevel,
+                    key: `${this.props.id}-${lastPosition}`,
+                    isDraggedOver,
+                    draggingOverLevel,
+                    onPointerUp: this.onMultilevelDropPointerUp(this.props.id),
+                    onPointerEnter: this.pointerEnterDropLevel(this.props.id, lastPosition, lastLevel),
+                },
+            ];
+        }
+
         render() {
             const params: DndActorRenderParams = {
                 isDraggable: !!this.props.srcData,
@@ -263,37 +345,6 @@ function TREE_SHAKEABLE_INIT() {
                     }
                 };
             }
-
-            const getDropParams = (id: TId, e: React.MouseEvent<HTMLElement>): AcceptDropParams<TSrcData, TDstData> => {
-                const {
-                    left, top, width, height,
-                } = e.currentTarget.getBoundingClientRect();
-                const dndRowData = this.context?.uuiDnD?.getDndRowData(id);
-                return {
-                    srcData: this.context.uuiDnD.dragData,
-                    dstData: dndRowData?.dstData,
-                    offsetLeft: e.clientX - left,
-                    offsetTop: e.clientY - top,
-                    targetWidth: width,
-                    targetHeight: height,
-                };
-            };
-
-            const pointerEnterDropLevel = (id: TId, position: DropPosition, level: number) => (e: React.PointerEvent<any>) => {
-                if (this.context.uuiDnD.isDragging) {
-                    releasePointerCaptureOnEventTarget(e); // allows you to trigger pointer events on other nodes
-                    const dropProps = getDropParams(id, e);
-                    const positionOptions = this.props.canAcceptDrop(dropProps);
-                    const actualPosition = positionOptions?.[position] ? position : null;
-                    this.setState((s) => ({
-                        ...s,
-                        isMouseOver: true,
-                        position: actualPosition,
-                        draggingOverLevel: level,
-                    }));
-                    this.context?.uuiDnD.setDraggingOverInfo(positionOptions?.[position] ? { id, position } : null);
-                }
-            };
 
             if (this.props.canAcceptDrop) {
                 const pointerLeaveHandler = () => {
@@ -349,31 +400,6 @@ function TREE_SHAKEABLE_INIT() {
                 }
             } : null;
 
-            const onPointerUp = (id: TId) => (e: React.PointerEvent<any>) => {
-                if (this.context.uuiDnD.isDragging) {
-                    if (isEventTargetInsideDraggable(e, e.currentTarget)) {
-                        return;
-                    }
-                    e.preventDefault();
-                    if (!!this.state.position && this.props.onDrop) {
-                        this.props.onDrop({
-                            ...getDropParams(id, e),
-                            position: this.state.position,
-                        });
-                    }
-                    this.context.uuiDnD.endDrag();
-                    this.setState(() => initialState);
-                } else {
-                    // TBD: investigate. Should blur inputs, but doesn't work so far.
-                    // if (this.state.pendingMouseDownTarget) {
-                    //     $(this.state.pendingMouseDownTarget).trigger("mousedown");
-                    //     $(this.state.pendingMouseDownTarget).trigger("mouseup");
-                    //     $(this.state.pendingMouseDownTarget).trigger("click");
-                    //     this.setState(s => ({ ...s, pendingMouseDownTarget: null }));
-                    // }
-                }
-            };
-
             const shouldHighlightRow = (id: TId) => {
                 if (this.state.dndContextState.draggingOverInfo == null) {
                     return false;
@@ -413,12 +439,7 @@ function TREE_SHAKEABLE_INIT() {
                 params,
                 this.props.isMultilevel && this.state.dndContextState.isDragging
                     ? this.props.renderDropLevels?.({
-                        id: this.props.id,
-                        path: this.props.path,
-                        onPointerEnter: pointerEnterDropLevel,
-                        onPointerUp: onPointerUp,
-                        isDraggedOver: this.context.uuiDnD?.isDragging && this.state.isMouseOver,
-                        draggingOverLevel: this.state.draggingOverLevel,
+                        dropLevelsProps: this.getDropLevelsProps(),
                     })
                     : null,
             );

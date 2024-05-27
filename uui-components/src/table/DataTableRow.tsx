@@ -55,26 +55,10 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
-    const renderDropLevels = (params: DndDropLevelsRenderParams<TId> & { size: string }) => {
+    const renderDropLevels = (params: DndDropLevelsRenderParams<TId>) => {
         return (
             <FlexRow cx={ [css.container] }>
-                { [...params.path, params.id].map((id, index) => props.renderDropLevel({
-                    ...params,
-                    row: props,
-                    id,
-                    level: index + 1,
-                    key: `${id}-bottom`,
-                    position: 'bottom',
-                })) }
-
-                { props.renderDropLevel({
-                    ...params,
-                    row: props,
-                    id: params.id,
-                    level: params.path.length + 2,
-                    key: `${params.id}-inside`,
-                    position: 'inside',
-                }) }
+                { params.dropLevelsProps.map((dropLevelProps) => props.renderDropLevel({ ...dropLevelProps, isRowCheckable: props.isCheckable })) }
             </FlexRow>
         );
     };
