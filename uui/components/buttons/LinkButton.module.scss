@@ -1,20 +1,33 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    // colors
     --uui-link_btn-text: var(--uui-color-50);
     --uui-link_btn-text-hover: var(--uui-color-60);
     --uui-link_btn-text-active: var(--uui-color-70);
     --uui-link_btn-text-disabled: var(--uui-text-disabled);
 
+    // fonts
     --uui-link-button-font: var(--uui-font);
     --uui-link-button-font-weight: 600;
 
+    // sizes
+    --uui-link-button-min-height: var(--uui-size);
+    --uui-link-button-min-width: var(--uui-size);
+    --uui-link-button-inner-gap: var(--uui-x-inner-padding);
+    --uui-link-button-caption-padding: calc((var(--uui-link-button-min-height) - var(--uui-link-button-line-height)) / 2);
+    --uui-link-button-icon-height: var(--uui-icon-size);
+    --uui-link-button-line-height: var(--uui-line-height);
+    --uui-link-button-font-size: var(--uui-font-size);
+
     @include clickable-styles();
+    min-width: var(--uui-link-button-min-width);
 
     &:global(.uui-button-box) {
         background-color: transparent;
         color: var(--uui-link_btn-text);
         fill: var(--uui-link_btn-text);
+        min-height: var(--uui-link-button-min-height);
         min-width: auto;
 
         &:global(.-clickable:not(.uui-disabled)) {
@@ -56,32 +69,24 @@
     :global(.uui-caption) {
         font-family: var(--uui-link-button-font);
         font-weight: var(--uui-link-button-font-weight, normal);
+        line-height: var(--uui-link-button-line-height);
+        font-size: var(--uui-link-button-font-size);
+        padding-top: var(--uui-link-button-caption-padding);
+        padding-bottom: var(--uui-link-button-caption-padding);
+
+        &:not(:first-child) {
+            padding-left: var(--uui-link-button-inner-gap);
+        }
+
+        &:not(:last-child) {
+            padding-right: var(--uui-link-button-inner-gap);
+        }
     }
 
-    // Sizes
-    &:global {
-        &.uui-size-18 {
-            @include link-button-layout(18px);
-        }
-
-        &.uui-size-24 {
-            @include link-button-layout(24px);
-        }
-
-        &.uui-size-30 {
-            @include link-button-layout(30px);
-        }
-
-        &.uui-size-36 {
-            @include link-button-layout(36px);
-        }
-
-        &.uui-size-42 {
-            @include link-button-layout(42px);
-        }
-
-        &.uui-size-48 {
-            @include link-button-layout(48px);
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-link-button-icon-height);
+            width: inherit;
         }
     }
 }

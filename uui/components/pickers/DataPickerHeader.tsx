@@ -1,9 +1,10 @@
 import React from 'react';
-import css from './DataPickerHeader.module.scss';
-import { ReactComponent as CloseIcon } from '@epam/assets/icons/navigation-close-outline.svg';
-import { Text } from '../typography';
+import { Text, TextProps } from '../typography';
 import { IconButton } from '../buttons';
 import { FlexRow } from '../layout';
+import { settings } from '../../settings';
+import { ReactComponent as CloseIcon } from '@epam/assets/icons/navigation-close-outline.svg';
+import css from './DataPickerHeader.module.scss';
 
 interface DataPickerHeaderProps {
     title?: string;
@@ -15,7 +16,7 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = (props) => {
 
     return (
         <FlexRow alignItems="center" borderBottom cx={ css.header }>
-            <Text size="48" fontWeight="600">{title}</Text>
+            <Text size={ settings.sizes.dataPickerHeader.text.size as TextProps['size'] } fontWeight={ settings.sizes.dataPickerHeader.text.fontWeight as TextProps['fontWeight'] }>{title}</Text>
             <IconButton icon={ CloseIcon } onClick={ () => props.close?.() } cx={ css.close } />
         </FlexRow>
     );

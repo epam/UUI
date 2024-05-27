@@ -3,10 +3,10 @@ import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiEl
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import { getIconClass } from './helper';
 import css from './LinkButton.module.scss';
 
-const DEFAULT_SIZE = '36';
 const DEFAULT_COLOR = 'primary';
 
 interface LinkButtonMods {
@@ -40,7 +40,7 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
         'uui-link_button',
         css.root,
-        `uui-size-${mods.size || DEFAULT_SIZE}`,
+        `uui-size-${mods.size || settings.sizes.defaults.linkButton}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || DEFAULT_COLOR}`,
     ];

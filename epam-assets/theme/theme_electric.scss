@@ -1,4 +1,5 @@
 @use './tokens/_theme_electric.scss' as tokens;
+@use './theme_6px' as *;
 @import '../scss/electric/font-faces';
 
 /*  Name convention  */
@@ -537,5 +538,6 @@
 }
 
 .uui-theme-electric {
+    @include uui-6px-grid();
     @include theme-electric();
 }

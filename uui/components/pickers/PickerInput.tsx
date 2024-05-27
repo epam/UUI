@@ -7,12 +7,10 @@ import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
 import { DataPickerBody } from './DataPickerBody';
-import { DataPickerRow } from './DataPickerRow';
+import { DataPickerRow, DataPickerRowProps } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
-import { PickerItem } from './PickerItem';
-
-const pickerHeight = 300;
-const pickerWidth = 360;
+import { PickerItem, PickerItemProps } from './PickerItem';
+import { settings } from '../../settings';
 
 export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
     /**
@@ -108,10 +106,10 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const getRowSize = () => {
         if (isMobile()) {
-            return '48';
+            return settings.sizes.pickerInput.rowSize.mobile;
         }
 
-        return props.editMode === 'modal' ? '36' : props.size;
+        return props.editMode === 'modal' ? settings.sizes.pickerInput.rowSize.modal : props.size;
     };
 
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
@@ -129,7 +127,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         return (
             <PickerItem
                 title={ getName(item) }
-                size={ getRowSize() }
+                size={ getRowSize() as PickerItemProps<any, any>['size'] }
                 dataSourceState={ dsState }
                 highlightSearchMatches={ highlightSearchMatches }
                 { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dataSourceState) } : {}) }
@@ -145,8 +143,8 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                size={ getRowSize() }
-                padding={ props.editMode === 'modal' ? '24' : '12' }
+                size={ getRowSize() as DataPickerRowProps<any, any>['size'] }
+                padding={ (props.editMode === 'modal' ? settings.sizes.pickerInput.rowSize.padding.modal : settings.sizes.pickerInput.rowSize.padding.default) as DataPickerRowProps<any, any>['padding'] }
                 renderItem={ (item, itemProps) => renderRowItem(item, itemProps, dsState) }
             />
         );
@@ -154,8 +152,8 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
-        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || pickerHeight;
-        const minBodyWidth = props.minBodyWidth || pickerWidth;
+        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.sizes.pickerInput.height;
+        const minBodyWidth = props.minBodyWidth || settings.sizes.pickerInput.width;
 
         return (
             <MobileDropdownWrapper

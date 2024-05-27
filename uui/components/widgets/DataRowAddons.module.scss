@@ -1,5 +1,5 @@
 :global(.uui-dr_addons-checkbox) {
-    padding-right: 12px;
+    padding-right: calc(var(--uui-x-inner-padding) * 2);
 }
 
 .drag-handle {
