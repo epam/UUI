@@ -47,7 +47,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<uui.DropdownContainerProps>) => {
             const TEST_DATA = {
-                children: 'TEST',
+                children: (<span style={ { fontStretch: '100%' } }>TEST</span>),
             };
             docPreview.add({
                 id: TDropdownContainerPreview['Size Variants'],
@@ -61,7 +61,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
                         vPadding: { examples: '*' },
                     },
                 ],
-                cellSize: '180-90',
+                cellSize: '180-110',
             });
         },
     };
