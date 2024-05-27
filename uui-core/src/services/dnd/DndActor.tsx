@@ -21,6 +21,7 @@ export interface DndActorProps<TId, TSrcData, TDstData> extends IDndActor<TSrcDa
     /** Render callback for DragActor content */
     render(props: DndActorRenderParams, overlays?: React.ReactNode): React.ReactNode;
     renderDropLevels?(props: DndDropLevelsRenderParams<TId>): React.ReactNode;
+    renderDragGhost?(props: DndActorRenderParams, overlays?: React.ReactNode): React.ReactNode;
 
     isMultilevel?: boolean;
     
@@ -115,7 +116,7 @@ function TREE_SHAKEABLE_INIT() {
 
             if (dist > DND_START_THRESHOLD) {
                 this.context.uuiDnD.startDrag(this.dndRef.current, this.props.srcData, () =>
-                    this.props.render({
+                    (this.props.renderDragGhost ?? this.props.render)({
                         isDragGhost: true,
                         isDraggedOver: false,
                         isDraggable: false,

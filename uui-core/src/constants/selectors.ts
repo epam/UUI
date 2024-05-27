@@ -69,6 +69,8 @@ export const uuiDndState = {
     draggedOut: 'uui-dragged-out',
     dropAccepted: 'uui-drop-accepted',
     dragGhost: 'uui-drag-ghost',
+    dragHandle: 'uui-drag-handle',
+    dragInProgress: 'uui-drag-in-progress',
 } as const;
 
 export const uuiDataTableHeaderCell = {

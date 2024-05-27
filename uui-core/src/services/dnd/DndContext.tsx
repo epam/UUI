@@ -97,6 +97,7 @@ export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseC
         const ev = document.createEvent('Events');
         ev.initEvent('dragstart', true, false);
         document.body.dispatchEvent(ev);
+        document.body.style.cursor = 'grabbing';
     }
 
     public endDrag() {
@@ -111,6 +112,7 @@ export class DndContext<TId = any, TSrcData = any, TDstData = any> extends BaseC
             this.renderGhostCallback = null;
             this.dragData = null;
             this.isDragging = false;
+            document.body.style.cursor = 'default';
         });
     }
 

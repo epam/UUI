@@ -14,7 +14,7 @@
         }
     }
 
-    &:global(.-draggable) {
+    &:global(.-draggable):not(:global(.uui-drag-in-progress)) {
         @include dnd-cursor-style();
     }
 
@@ -31,7 +31,19 @@
     }
 
     &:global(.uui-drag-ghost) {
+        opacity: 0.8;
+        cursor: grabbing;
+
+        :global(.uui-drag-handle) {
+            visibility: visible;
+        }
+
         @include dnd-ghost-shadow();
+        @include dnd-cursor-style();
+    }
+
+    &:global(.uui-drag-in-progress) {
+        cursor: grabbing;
     }
 
     &:global(.uui-focus) {
