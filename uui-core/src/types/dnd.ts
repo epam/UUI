@@ -25,13 +25,19 @@ export interface DropParams<TSrcData, TDstData> extends AcceptDropParams<TSrcDat
 }
 
 export interface DndDropLevelsRenderParams<TId> {
+    isRowCheckable?: boolean;
+    dropLevelsProps: DndDropLevelRenderProps<TId>[];
+}
+
+export interface DndDropLevelRenderProps<TId> {
     id: TId;
-    path: TId[];
+    level: number;
+    lastLevel: number;
+    key: string;
     isDraggedOver?: boolean;
-    isRowHighlighted?: boolean;
     draggingOverLevel?: number | null;
-    onPointerEnter?: (id: TId, position: DropPosition, level: number) => (e: React.PointerEvent<any>) => void;
-    onPointerUp?: (id: TId) => (e: React.PointerEvent<any>) => void;
+    onPointerEnter?: (e: React.PointerEvent<any>) => void;
+    onPointerUp?: (e: React.PointerEvent<any>) => void;
 }
 
 export interface DndActorRenderParams {

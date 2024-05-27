@@ -6,7 +6,7 @@ import {
 import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName } from './dataQuery';
-import { DndDropLevelsRenderParams, DropParams, DropPosition } from './dnd';
+import { DndDropLevelRenderProps, DropParams } from './dnd';
 import {
     DataSourceState, SortDirection, SortingOption,
 } from './dataSources';
@@ -177,12 +177,9 @@ export interface DataTableColumnsConfigOptions {
     allowColumnsResizing?: boolean;
 }
 
-export interface DropLevelProps<TId> extends DndDropLevelsRenderParams<TId>, IHasCX {
-    size: string;
-    position: DropPosition;
-    row: DataRowProps<any, any>;
-    level: number;
-    key: string;
+export interface DropLevelProps<TId> extends DndDropLevelRenderProps<TId>, IHasCX {
+    size?: string;
+    isRowCheckable: boolean;
 }
 
 export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<TItem, TId> {

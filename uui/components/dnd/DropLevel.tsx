@@ -44,7 +44,7 @@ export function DropLevel<TId>(props: DropLevelProps<TId>) {
     const getDropLevelWidth = (level: number) => {
         const foldingWidth = getFoldingWidth();
         if (level === 0) {
-            const checkboxWidth = props.row.isCheckable ? getCheckboxWidth() : 0;
+            const checkboxWidth = props.isRowCheckable ? getCheckboxWidth() : 0;
             return getIndent(1) + foldingWidth + checkboxWidth;
         }
 
@@ -52,7 +52,7 @@ export function DropLevel<TId>(props: DropLevelProps<TId>) {
     };
 
     const isActiveLevel = props.isDraggedOver && props.draggingOverLevel !== null && props.level >= props.draggingOverLevel;
-    const width = props.level <= props.path.length + 1 ? getDropLevelWidth(props.level) : '100%';
+    const width = props.level < props.lastLevel ? getDropLevelWidth(props.level) : '100%';
 
     return (
         <FlexCell
@@ -60,8 +60,8 @@ export function DropLevel<TId>(props: DropLevelProps<TId>) {
             minWidth={ getDropLevelWidth(props.level) }
             cx={ [css.dropLevel, props.isDraggedOver ? css.dropLevelDraggingOverRow : false, isActiveLevel ? css.dropLevelActive : false] }
             rawProps={ {
-                onPointerEnter: props.onPointerEnter?.(props.id, props.position, props.level),
-                onPointerUp: props.onPointerUp?.(props.id),
+                onPointerEnter: props.onPointerEnter,
+                onPointerUp: props.onPointerUp,
             } }
         >
         </FlexCell>
