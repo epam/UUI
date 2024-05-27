@@ -54,9 +54,9 @@ export class TextAreaDoc extends BaseDocsBlock {
                 isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
             };
 
-            docPreview.add(TTextAreaPreview.Sizes, { ...baseMatrix, size: { examples: '*' } }, w210_h90);
+            docPreview.add(TTextAreaPreview['Size Variants'], { ...baseMatrix, size: { examples: '*' } }, w210_h90);
             docPreview.add(
-                TTextAreaPreview.States,
+                TTextAreaPreview['Color Variants'],
                 {
                     ...baseMatrix,
                     size: { values: ['36'] },

@@ -58,10 +58,10 @@ export class VerticalTabButtonDoc extends BaseDocsBlock {
                 isDisabled: { values: [false] },
             };
 
-            docPreview.add(TVerticalTabButtonPreview['Basic'], { ...baseMatrix }, w190_h70);
-            docPreview.add(TVerticalTabButtonPreview['Basic States'], { ...baseMatrix, ...statesMatrix }, w165_h55);
-            docPreview.add(TVerticalTabButtonPreview['Basic Dropdown'], { ...baseMatrix, isDropdown: { values: [true] } }, w190_h70);
-            docPreview.add(TVerticalTabButtonPreview['Basic Dropdown States'], { ...baseMatrix, isDropdown: { values: [true] }, ...statesMatrix }, w165_h55);
+            docPreview.add(TVerticalTabButtonPreview['Size Variants'], { ...baseMatrix }, w190_h70);
+            docPreview.add(TVerticalTabButtonPreview['Color Variants'], { ...baseMatrix, ...statesMatrix }, w165_h55);
+            docPreview.add(TVerticalTabButtonPreview['Dropdown Size Variants'], { ...baseMatrix, isDropdown: { values: [true] } }, w190_h70);
+            docPreview.add(TVerticalTabButtonPreview['Dropdown Color Variants'], { ...baseMatrix, isDropdown: { values: [true] }, ...statesMatrix }, w165_h55);
         },
     };
 

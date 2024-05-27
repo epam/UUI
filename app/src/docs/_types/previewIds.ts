@@ -5,73 +5,24 @@
  * These files MUST be kept in sync:
  * app/src/docs/_types/previewIds.ts --> uui-e2e-tests/src/data/previewIds.ts
  */
-export enum TBadgePreview {
-    'Colors' = 'Colors',
-    'Sizes with icon' = 'Sizes with icon',
-    'Sizes without icon' = 'Sizes without icon'
-}
-export enum TButtonPreview {
-    'One-line caption' = 'One-line caption',
-    'Two-line caption' = 'Two-line caption',
-    'No caption' = 'No caption',
-    Colors = 'Colors'
-}
-export enum TLinkButtonPreview {
-    'One-line caption' = 'One-line caption',
-    'Two-line caption' = 'Two-line caption',
-    'No caption' = 'No caption',
-    Colors = 'Colors'
-}
+
+/**
+ * Common reusable names. Use it for consistency (if possible).
+ */
+const UTILS = {
+    SizeVariants: { 'Size Variants': 'Size Variants' as const },
+    ColorVariants: { 'Color Variants': 'Color Variants' as const },
+    CommonVariants: { 'Common Variants': 'Common Variants' as const },
+};
+
 export enum TAvatarStackPreview {
     'Smaller size' = 'Smaller size',
     'Bigger size' = 'Bigger size'
 }
-export enum TTagPreview {
-    'One-line caption' = 'One-line caption',
-    'Two-line caption' = 'Two-line caption',
-    'No caption' = 'No caption',
-    Colors = 'Colors'
-}
-export enum TSwitchPreview {
-    Basic = 'Basic'
-}
-export enum TCheckboxPreview {
-    Basic = 'Basic'
-}
-export enum TTextInputPreview {
-    'Form'= 'Form',
-    'Form States'= 'Form States',
-    'Inline'= 'Inline',
-    'Inline States'= 'Inline States'
-}
-export enum TCountIndicatorPreview {
-    Colors = 'Colors',
-    Sizes = 'Sizes'
-}
+
 export enum TAccordionPreview {
     Expanded = 'Expanded',
     Collapsed = 'Collapsed'
-}
-export enum TAlertPreview {
-    Colors = 'Colors',
-    'Layout with icon' = 'Layout with icon',
-    'Layout without icon' = 'Layout without icon'
-}
-export enum TIconButtonPreview {
-    Colors = 'Colors',
-    Layout = 'Layout'
-}
-export enum TTabButtonPreview {
-    Basic = 'Basic',
-    'Basic States' = 'Basic States',
-    'Basic Dropdown' = 'Basic Dropdown',
-    'Basic Dropdown States' = 'Basic Dropdown States'
-}
-export enum TVerticalTabButtonPreview {
-    Basic = 'Basic',
-    'Basic States' = 'Basic States',
-    'Basic Dropdown' = 'Basic Dropdown',
-    'Basic Dropdown States' = 'Basic Dropdown States'
 }
 
 export enum TPickerInputPreview {
@@ -103,75 +54,62 @@ export enum TPickerInputPreview {
     'Cell MultiSelect Multiline States'= 'Cell MultiSelect Multiline States'
 }
 
-export enum TDatePickerPreview {
-    Form = 'Form',
-    'Form Opened' = 'Form Opened',
-    'Form States' = 'Form States',
-    Cell = 'Cell',
-    'Cell States' = 'Cell States',
-    Inline = 'Inline',
-    'Inline States' = 'Inline States'
-}
-
-export enum TRangeDatePickerPreview {
-    'Basic' = 'Basic',
-    'Basic States' = 'Basic States',
-    'Opened' = 'Opened',
-    'Opened With Presets' = 'Opened With Presets'
-}
-
-export enum TTextAreaPreview {
-    Sizes = 'Sizes',
-    States = 'States'
-}
-
-export enum TTextPreview {
-    'Sizes'= 'Sizes',
-    'Font'= 'Font',
-    'Line Height' = 'Line Height',
-    Colors = 'Colors'
-}
-
-export enum TNumericInputPreview {
-    Sizes = 'Sizes',
-    States = 'States'
-}
-
-export enum TRadioInputPreview {
-    'Size Variants' = 'Size Variants',
-    'Color Variants' = 'Color Variants'
-}
-
-export enum TRadioGroupPreview {
-    'Size Variants' = 'Size Variants',
-    'Color Variants' = 'Color Variants'
-}
-
-export enum TLabeledInputPreview {
-    'State Variants Label Top'= 'State Variants Label Top',
-    'State Variants Label Left'= 'State Variants Label Left',
-    'Size Variants'= 'Size Variants'
-}
-
-export enum TMultiSwitchPreview {
-    'Size Variants' = 'Size Variants',
-    'Color Variants' = 'Color Variants'
-}
-
-export enum TPaginatorPreview {
-    'Size Variants' = 'Size Variants',
-    'Color Variants' = 'Color Variants'
-}
-
-export enum TMainMenuPreview {
-    'Common Variants' = 'Common Variants'
-}
-
-export enum TNotificationCardPreview {
-    'Size Variants' = 'Size Variants',
-    'Color Variants' = 'Color Variants'
-}
-
-export enum TTooltipPreview {
-    'Common Variants' = 'Common Variants'
-}
+export const TBadgePreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TCheckboxPreview = { ...UTILS.CommonVariants };
+export const TCountIndicatorPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TIconButtonPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TLinkButtonPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TMainMenuPreview = { ...UTILS.CommonVariants };
+export const TMultiSwitchPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TNotificationCardPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TNumericInputPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TPaginatorPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TRadioGroupPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TRadioInputPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TSwitchPreview = { ...UTILS.CommonVariants };
+export const TTagPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TTextAreaPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TTextPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
+export const TTooltipPreview = { ...UTILS.CommonVariants };
+export const TAlertPreview = {
+    ...UTILS.ColorVariants,
+    'Layout with icon': 'Layout with icon' as const,
+    'Layout without icon': 'Layout without icon' as const,
+};
+export const TButtonPreview = {
+    'One-line caption': 'One-line caption' as const,
+    'Two-line caption': 'Two-line caption' as const,
+    'No caption': 'No caption' as const,
+    ...UTILS.ColorVariants,
+};
+export const TTabButtonPreview = {
+    ...UTILS.SizeVariants,
+    ...UTILS.ColorVariants,
+    'Dropdown Size Variants': 'Dropdown Size Variants' as const,
+    'Dropdown Color Variants': 'Dropdown Color Variants' as const,
+};
+export const TVerticalTabButtonPreview = { ...TTabButtonPreview };
+export const TLabeledInputPreview = {
+    'Color Variants Label Top': 'Color Variants Label Top' as const,
+    'Color Variants Label Left': 'Color Variants Label Left' as const,
+    ...UTILS.SizeVariants,
+};
+export const TRangeDatePickerPreview = {
+    ...UTILS.SizeVariants,
+    ...UTILS.ColorVariants,
+    Opened: 'Opened' as const,
+    'Opened With Presets': 'Opened With Presets' as const,
+};
+export const TTextInputPreview = {
+    'Form Size Variants': 'Form Size Variants' as const,
+    'Inline Size Variants': 'Inline Size Variants' as const,
+    ...UTILS.ColorVariants,
+};
+export const TDatePickerPreview = {
+    ...UTILS.SizeVariants,
+    ...UTILS.ColorVariants,
+    'Form Opened': 'Form Opened' as const,
+};
+export const TDropdownContainerPreview = {
+    ...UTILS.SizeVariants,
+};

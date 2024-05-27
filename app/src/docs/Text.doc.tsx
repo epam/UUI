@@ -58,27 +58,28 @@ export class TextDoc extends BaseDocsBlock {
                 value2lines: (<>{'Abc'}<br/>{'Abc'}</>),
             };
             const w70_h85: TPreviewCellSize = '70-85';
-            const w60_h55: TPreviewCellSize = '60-55';
             const w70_h55: TPreviewCellSize = '70-55';
-            const w60_h45: TPreviewCellSize = '60-45';
 
-            docPreview.add(TTextPreview.Sizes, {
-                size: { examples: '*' },
-                children: { values: [TEST_DATA.value1line] },
-            }, w60_h55);
-            docPreview.add(TTextPreview['Font'], {
-                children: { values: [TEST_DATA.value1line] },
-                fontSize: { examples: '*' },
-                fontWeight: { examples: '*' },
-                fontStyle: { examples: '*' },
-            }, w60_h45);
-            docPreview.add(TTextPreview['Line Height'], {
-                size: { examples: '*' },
-                children: { values: [TEST_DATA.value2lines] },
-                lineHeight: { examples: '*' },
-            }, w70_h85);
+            docPreview.add(TTextPreview['Size Variants'], [
+                {
+                    size: { examples: '*' },
+                    children: { values: [TEST_DATA.value1line] },
+                },
+                {
+                    size: { examples: '*' },
+                    children: { values: [TEST_DATA.value2lines] },
+                    lineHeight: { examples: '*' },
+                },
+                {
+                    size: { values: ['48'] },
+                    children: { values: [TEST_DATA.value1line] },
+                    fontSize: { examples: '*' },
+                    fontWeight: { examples: '*' },
+                    fontStyle: { examples: '*' },
+                },
+            ], w70_h85);
             docPreview.add(
-                TTextPreview.Colors,
+                TTextPreview['Color Variants'],
                 {
                     children: { values: [TEST_DATA.value1line] },
                     fontWeight: { values: ['900'] },

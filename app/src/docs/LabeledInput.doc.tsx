@@ -78,8 +78,8 @@ export class LabeledInputDoc extends BaseDocsBlock {
                 isOptional: { values: [true], condition: (props) => { return (props.labelPosition as any) !== 'left' && !props.isRequired; } },
                 isRequired: { values: [false, true] },
             };
-            docPreview.add(TLabeledInputPreview['State Variants Label Top'], { labelPosition: { values: ['top'] }, ...stateVariantsBase }, w190_h100);
-            docPreview.add(TLabeledInputPreview['State Variants Label Left'], { labelPosition: { values: ['left'] }, ...stateVariantsBase }, w280_h75);
+            docPreview.add(TLabeledInputPreview['Color Variants Label Top'], { labelPosition: { values: ['top'] }, ...stateVariantsBase }, w190_h100);
+            docPreview.add(TLabeledInputPreview['Color Variants Label Left'], { labelPosition: { values: ['left'] }, ...stateVariantsBase }, w280_h75);
             docPreview.add({
                 id: TLabeledInputPreview['Size Variants'],
                 matrix: {
