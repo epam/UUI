@@ -57,11 +57,9 @@ export class TextInputDoc extends BaseDocsBlock {
             const w180_h80: TPreviewCellSize = '180-80';
             const w180_h50: TPreviewCellSize = '180-50';
             const formBaseMatrix: TMatrixLocal = { mode: { examples: ['form'] }, ...baseMatrix };
-            docPreview.add(TTextInputPreview['Form'], formBaseMatrix, w180_h80);
-            docPreview.add(TTextInputPreview['Form States'], { ...formBaseMatrix, ...statesBaseMatrix }, w180_h50);
-            const inlineBaseMatrix: TMatrixLocal = { mode: { examples: ['inline'] }, ...baseMatrix };
-            docPreview.add(TTextInputPreview['Inline'], inlineBaseMatrix, w180_h80);
-            docPreview.add(TTextInputPreview['Inline States'], { ...inlineBaseMatrix, ...statesBaseMatrix }, w180_h50);
+            docPreview.add(TTextInputPreview['Form Size Variants'], formBaseMatrix, w180_h80);
+            docPreview.add(TTextInputPreview['Inline Size Variants'], { mode: { examples: ['inline'] }, ...baseMatrix }, w180_h80);
+            docPreview.add(TTextInputPreview['Color Variants'], { mode: { examples: ['form', 'inline'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h50);
         },
     };
 
