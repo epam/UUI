@@ -47,7 +47,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<uui.DropdownContainerProps>) => {
             const TEST_DATA = {
-                children: (<span style={ { fontStretch: '100%' } }>TEST</span>),
+                children: (<uui.Text>Test</uui.Text>),
             };
             docPreview.add({
                 id: TDropdownContainerPreview['Size Variants'],
