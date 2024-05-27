@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {
     Button, ControlGroup,
-    Dropdown, DropdownMenuButton, Panel, Text, Tooltip,
+    Dropdown, DropdownMenuBody, DropdownMenuButton, DropdownSubMenu, Text, Tooltip,
 } from '@epam/uui';
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { TPreviewRef } from '../../../../../preview/types';
+import { TPredefinedPreviewRefItem, TPreviewRef } from '../../../../../preview/types';
+import { DropdownBodyProps } from '@epam/uui-core';
 
 const LABELS = {
     Fullscreen: 'Fullscreen',
@@ -24,21 +25,48 @@ export function FullscreenBtn(props: { previewRef: TPreviewRef }) {
             </>
         );
     };
+    const renderDropdownTooltipContent = () => <Text size="30">{ `${totalAmountOfPreviews} preview(s)` }</Text>;
 
-    const hasPredefinedPreviews = previewRef.predefinedPreviewRefs.length > 0;
+    const totalAmountOfPreviews = previewRef.predefinedPreviewRefs.length;
+    const hasPredefinedPreviews = totalAmountOfPreviews > 0;
 
-    const renderPredefinedPreviewList = () => {
+    const renderPredefinedPreviewList = (props: DropdownBodyProps) => {
         if (hasPredefinedPreviews) {
+            const grouped: Record<string | undefined, TPredefinedPreviewRefItem[]> = {};
+            previewRef.predefinedPreviewRefs.forEach((item) => {
+                if (!grouped[item.groupId]) {
+                    grouped[item.groupId] = [];
+                }
+                grouped[item.groupId].push(item);
+            });
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const renderPlainList = (list: TPredefinedPreviewRefItem[], groupId: string | undefined) => {
+                return list.map(
+                    ({ link, id }) => {
+                        return <DropdownMenuButton key={ id } caption={ id } href={ link } target="_blank" />;
+                    },
+                );
+            };
+            const menuContent = Object.keys(grouped).map((groupId) => {
+                const list = grouped[groupId];
+                if (groupId === 'undefined') {
+                    return (
+                        <React.Fragment key={ groupId }>
+                            {renderPlainList(list, undefined)}
+                        </React.Fragment>
+                    );
+                } else {
+                    return (
+                        <DropdownSubMenu caption={ groupId } key={ groupId }>
+                            {renderPlainList(list, groupId)}
+                        </DropdownSubMenu>
+                    );
+                }
+            });
             return (
-                <Panel background="surface-main" shadow={ true }>
-                    {
-                        previewRef.predefinedPreviewRefs.map(({ link, id }) => {
-                            return (
-                                <DropdownMenuButton caption={ id } href={ link } target="_blank" />
-                            );
-                        })
-                    }
-                </Panel>
+                <DropdownMenuBody { ...props } rawProps={ { style: { padding: '6px 0' } } }>
+                    {menuContent}
+                </DropdownMenuBody>
             );
         }
         return null;
@@ -57,11 +85,13 @@ export function FullscreenBtn(props: { previewRef: TPreviewRef }) {
                 />
             </Tooltip>
             { hasPredefinedPreviews && (
-                <Dropdown
-                    renderBody={ renderPredefinedPreviewList }
-                    renderTarget={ (props) => <Button { ...props } size="24" fill="none" icon={ MenuIcon } isDropdown={ false } /> }
-                    placement="bottom-end"
-                />
+                <Tooltip placement="top" color="neutral" content={ renderDropdownTooltipContent() }>
+                    <Dropdown
+                        renderBody={ renderPredefinedPreviewList }
+                        renderTarget={ (props) => <Button { ...props } size="24" fill="none" icon={ MenuIcon } isDropdown={ false } /> }
+                        placement="bottom-end"
+                    />
+                </Tooltip>
             )}
         </ControlGroup>
     );

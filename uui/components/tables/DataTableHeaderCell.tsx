@@ -108,24 +108,31 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
                         icon={ this.props.areAllFolded ? UnfoldIcon : FoldIcon }
                         onClick={ this.props.onFoldAll }
+                        rawProps={ {
+                            'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All',
+                            'aria-expanded': !!this.props.areAllFolded,
+                        } }
                     />
                 </Tooltip>
             );
         }
     };
 
-    renderResizeMark = (props: HeaderCellContentProps) => (
-        <div
-            role="separator"
-            onMouseDown={ props.onResizeStart }
-            className={ cx(css.resizeMark, uuiMarkers.draggable, uuiMarkers.clickable) }
-        />
-    );
+    renderResizeMark = (props: HeaderCellContentProps) => {
+        const resizeMarkSize = this.props.columnsGap === '12' ? '6' : '12';
+        return (
+            <div
+                role="separator"
+                onMouseDown={ props.onResizeStart }
+                className={ cx(css.resizeMark, css[`resize-mark-${resizeMarkSize}`], uuiMarkers.draggable, uuiMarkers.clickable) }
+            />
+        );
+    };
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
         const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
-
+        const sideColumnPadding = this.props.columnsGap === '12' ? '12' : '24';
         return (
             <FlexCell
                 { ...this.props.column }
@@ -140,8 +147,9 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.cell,
                     css['size-' + (this.props.size || '36')],
-                    this.props.isFirstColumn && css['first-column'],
-                    this.props.isLastColumn && css['last-column'],
+                    this.props.columnsGap && css[`column-gap-${this.props.columnsGap}`],
+                    this.props.isFirstColumn && css[`first-column-${sideColumnPadding}`],
+                    this.props.isLastColumn && css[`last-column-${sideColumnPadding}`],
                     this.props.column.cx,
                     this.props.column.fix && css['pinned-' + this.props.column.fix],
                     isResizable && css.resizable,

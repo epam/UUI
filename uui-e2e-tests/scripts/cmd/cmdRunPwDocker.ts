@@ -71,12 +71,12 @@ function resolvePwInDockerTaskName() {
 }
 
 function getEnvParamsForDocker(): string[] {
-    const env = [`-e ${ENV_UUI_PARAMS.UUI_DOCKER_HOST_MACHINE_IP}=${currentMachineIpv4}`];
+    const env = ['-e', `${ENV_UUI_PARAMS.UUI_DOCKER_HOST_MACHINE_IP}=${currentMachineIpv4}`];
     if (UUI_TEST_PARAM_PROJECT) {
-        env.push(`-e ${ENV_UUI_PARAMS.UUI_TEST_PARAM_PROJECT}=${UUI_TEST_PARAM_PROJECT}`);
+        env.push('-e', `${ENV_UUI_PARAMS.UUI_TEST_PARAM_PROJECT}=${UUI_TEST_PARAM_PROJECT}`);
     }
     if (UUI_TEST_PARAM_ONLY_FAILED) {
-        env.push(`-e ${ENV_UUI_PARAMS.UUI_TEST_PARAM_ONLY_FAILED}=true`);
+        env.push('-e', `${ENV_UUI_PARAMS.UUI_TEST_PARAM_ONLY_FAILED}=true`);
     }
     return env;
 }

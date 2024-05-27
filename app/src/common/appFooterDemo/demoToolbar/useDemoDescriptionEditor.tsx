@@ -29,7 +29,7 @@ export function useDemoDescriptionEditor(demoItemName: string) {
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" font="sans" fontSize="14">
+                        <Text size="36" fontSize="14">
                             Description has been updated.
                         </Text>
                     </SuccessNotification>

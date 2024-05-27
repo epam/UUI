@@ -19,6 +19,8 @@ export class TablesOverviewDoc extends BaseDocsBlock {
                 <DocExample cx={ css.appBg } title="Tree Table" path="./_examples/tables/TreeTable.example.tsx" />
 
                 <DocExample cx={ css.appBg } title="Column size and content align configuration" path="./_examples/tables/StyledColumns.example.tsx" />
+
+                <DocExample cx={ css.appBg } title="Condensed view" path="./_examples/tables/CondensedView.example.tsx" />
             </>
         );
     }

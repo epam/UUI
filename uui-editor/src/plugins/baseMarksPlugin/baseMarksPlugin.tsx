@@ -15,11 +15,9 @@ import { ReactComponent as BoldIcon } from '../../icons/bold.svg';
 import { ReactComponent as ItalicIcon } from '../../icons/italic.svg';
 import { ReactComponent as UnderlineIcon } from '../../icons/underline.svg';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
+import { BOLD_KEY, ITALIC_KEY, UNDERLINE_KEY } from './constants';
 
-export const BOLD_KEY = 'uui-richTextEditor-bold';
-export const ITALIC_KEY = 'uui-richTextEditor-italic';
-export const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
-
+// eslint-disable-next-line react/function-component-definition
 const Bold: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -28,6 +26,7 @@ const Bold: PlatePluginComponent = (props) => {
     );
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Italic: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -36,6 +35,7 @@ const Italic: PlatePluginComponent = (props) => {
     );
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Underline: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -44,7 +44,7 @@ const Underline: PlatePluginComponent = (props) => {
     );
 };
 
-export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
+export const boldPlugin = (): PlatePlugin => createBoldPlugin<WithToolbarButton>({
     type: BOLD_KEY,
     component: Bold,
     options: {
@@ -52,7 +52,7 @@ export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
     },
 });
 
-export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
+export const italicPlugin = (): PlatePlugin => createItalicPlugin<WithToolbarButton>({
     type: ITALIC_KEY,
     component: Italic,
     options: {
@@ -60,7 +60,7 @@ export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
     },
 });
 
-const underlinePlugin = () => createUnderlinePlugin<WithToolbarButton>({
+const underlinePlugin = (): PlatePlugin => createUnderlinePlugin<WithToolbarButton>({
     type: UNDERLINE_KEY,
     component: Underline,
     options: {

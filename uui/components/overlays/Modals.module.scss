@@ -4,7 +4,7 @@
     --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface-main);
 
-    --uui-modals-border-radius: var(--uui-border-radius);
+    --uui-modals-border-radius: calc(var(--uui-border-radius) * 2);
 }
 
 .modal-blocker {

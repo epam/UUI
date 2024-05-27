@@ -68,6 +68,7 @@ export function buildPreviewRef(params: TBuildPreviewLinkParams): TPreviewRef {
         return {
             link: `${baseLink}&previewId=${encodeURIComponent(pp.id)}`,
             id: pp.id,
+            groupId: pp.groupId,
         };
     }) || [];
 

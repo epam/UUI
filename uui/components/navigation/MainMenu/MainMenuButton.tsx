@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CX, cx, devLogger, IAdaptiveItem, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import { IAdaptiveItem, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets';
 import { ReactComponent as SvgTriangle } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
@@ -14,11 +14,6 @@ interface MainMenuButtonMods {
 
 export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'>
 & IHasIcon & IHasCaption & {
-    /**
-     * CSS classes to put on the caption
-     * @deprecated
-     * */
-    captionCX?: CX;
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
@@ -26,10 +21,6 @@ export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdown
 };
 
 export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {
-    if (__DEV__ && props.captionCX) {
-        devLogger.warn('MainMenuButton: Property \'captionCX\' is deprecated and will be removed in the future release. Please use \'cx\' prop to access caption styles and use cascading to change the styles for the \'uui-caption\' global class');
-    }
-
     const { type, ...clickableProps } = props;
 
     return (
@@ -55,7 +46,7 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
                 />
             ) }
             { props.caption && (
-                <div className={ cx(uuiElement.caption, props.captionCX) }>
+                <div className={ uuiElement.caption }>
                     { props.caption }
                 </div>
             ) }

@@ -172,6 +172,10 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
 
     useEffect(() => {
         if (sortedActiveFilters.length && newFilterId && sortedActiveFilters.find(({ field }) => field === newFilterId)) {
+            // PickerInput should be closed after filterId update and opening the filter's body.
+            // Otherwise, the focus will be not set in the search input of the filter's body.
+            pickerInputRef.current?.closePickerBody?.();
+
             // Reset new filter id, after first render with autofocus
             setNewFilterId(null);
         }
@@ -199,7 +203,6 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     onValueChange={ onFiltersChange }
                     selectionMode="multi"
                     valueType="entity"
-                    // key={ newFilterId }
                     renderRow={ (props) => (
                         <DataPickerRow
                             { ...props }
@@ -207,8 +210,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                             key={ props.key }
                             onCheck={ (row) => {
                                 props.onCheck && props.onCheck(row);
-                                pickerInputRef.current?.closePickerBody?.();
-                                !row.isChecked && setNewFilterId(row.value.field);
+                                setNewFilterId(row.value.field);
                             } }
                             renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                         />

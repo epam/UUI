@@ -2,7 +2,6 @@ import * as React from 'react';
 import { IModal, prependHttp } from '@epam/uui-core';
 import { FlexSpacer, FlexRow, ModalBlocker, ModalHeader, ModalWindow, ModalFooter, LabeledInput, Button, TextInput } from '@epam/uui';
 import css from './AddVideoModal.module.scss';
-
 import getVideoId from 'get-video-id';
 import { useState } from 'react';
 import { PlateEditor, setElements } from '@udecode/plate-common';
@@ -13,7 +12,7 @@ interface AddVideoModalProps extends IModal<any> {
 
 export type VideoService = 'youtube' | 'vimeo' | 'videoportal' | 'vine' | 'videopress';
 
-export function getVideoInfo(url: string): { id?: string, service?: VideoService } {
+export function getVideoInfo(url: string) {
     const videoInfo = getVideoId(url);
     if (videoInfo.id || videoInfo.service) {
         return videoInfo;
@@ -65,7 +64,15 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                 <ModalHeader title="Add video" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
                     <LabeledInput label="Video url">
-                        <TextInput value={ src } onValueChange={ setSrc } autoFocus />
+                        <TextInput
+                            value={ src }
+                            onValueChange={ (v) => {
+                                if (typeof v === 'string') {
+                                    setSrc(v);
+                                }
+                            } }
+                            autoFocus
+                        />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop>

@@ -21,3 +21,16 @@
     --uui-dt-row-bg: var(--uui-dt-header-row-bg);
     --uui-dt-row-bg-hover: var(--uui-dt-header-row-bg-hover);
 }
+
+.truncate {
+    /* stylelint-disable */
+    :global(.uui-table-header-caption) {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        white-space: normal;
+        line-height: 18px;
+    }
+    /* stylelint-enable */
+}

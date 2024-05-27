@@ -1,4 +1,4 @@
-import { TestBuilder, TComponentId } from '../src';
+import { TestBuilder, TComponentId, SKINS } from '../src';
 import {
     TBadgePreview,
     TButtonPreview,
@@ -11,29 +11,75 @@ import {
     TCountIndicatorPreview,
     TAccordionPreview,
     TAlertPreview,
-    TIconButtonPreview, TTabButtonPreview, TVerticalTabButtonPreview,
-
+    TIconButtonPreview,
+    TTabButtonPreview,
+    TVerticalTabButtonPreview,
+    TPickerInputPreview,
+    TDatePickerPreview,
+    TRangeDatePickerPreview,
+    TTextAreaPreview,
+    TTextPreview,
+    TNumericInputPreview,
+    TRadioInputPreview,
+    TRadioGroupPreview,
+    TLabeledInputPreview,
+    TMultiSwitchPreview,
+    TPaginatorPreview, TMainMenuPreview, TNotificationCardPreview, TTooltipPreview, TDropdownContainerPreview,
 } from '../src/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
-    accordion, alert, iconButton, tabButton, verticalTabButton,
+    accordion, alert, iconButton, tabButton, verticalTabButton, pickerInput, datePicker,
+    rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup, labeledInput,
+    multiSwitch, paginator, mainMenu, notificationCard, tooltip, dropdownContainer,
 } = TComponentId;
 
+const { values } = Object;
+
 const builder = new TestBuilder();
-builder.add(badge, { previewId: Object.values(TBadgePreview) });
-builder.add(button, { previewId: Object.values(TButtonPreview) });
-builder.add(linkButton, { previewId: Object.values(TLinkButtonPreview) });
-builder.add(avatarStack, { previewId: Object.values(TAvatarStackPreview) });
-builder.add(tag, { previewId: Object.values(TTagPreview) });
-builder.add(TComponentId.switch, { previewId: Object.values(TSwitchPreview) });
-builder.add(checkbox, { previewId: Object.values(TCheckboxPreview) });
-builder.add(textInput, { previewId: Object.values(TTextInputPreview) });
-builder.add(countIndicator, { previewId: Object.values(TCountIndicatorPreview) });
-builder.add(accordion, { previewId: Object.values(TAccordionPreview) });
-builder.add(alert, { previewId: Object.values(TAlertPreview) });
-builder.add(iconButton, { previewId: Object.values(TIconButtonPreview) });
-builder.add(tabButton, { previewId: Object.values(TTabButtonPreview) });
-builder.add(verticalTabButton, { previewId: Object.values(TVerticalTabButtonPreview) });
+// Skins tested: all
+builder
+    .add(tag, { previewId: values(TTagPreview), skins: SKINS.promo_loveship_electric });
+
+// Skins tested: all except "Electric"
+builder
+    .add(alert, { previewId: values(TAlertPreview), skins: SKINS.promo_loveship })
+    .add(badge, { previewId: values(TBadgePreview), skins: SKINS.promo_loveship })
+    .add(button, { previewId: values(TButtonPreview), skins: SKINS.promo_loveship })
+    .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
+    .add(dropdownContainer, { previewId: values(TDropdownContainerPreview), skins: SKINS.promo_loveship })
+    .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
+    .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.promo_loveship })
+    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship })
+    .add(notificationCard, { previewId: values(TNotificationCardPreview), skins: SKINS.promo_loveship })
+    .add(tooltip, { previewId: values(TTooltipPreview), skins: SKINS.promo_loveship })
+    .add(multiSwitch, { previewId: values(TMultiSwitchPreview), skins: SKINS.promo_loveship });
+
+// Skins not tested
+builder
+    .add(accordion, { previewId: values(TAccordionPreview) })
+    .add(avatarStack, { previewId: values(TAvatarStackPreview) })
+    .add(datePicker, {
+        previewId: values(TDatePickerPreview),
+        focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input',
+    })
+    .add(checkbox, { previewId: values(TCheckboxPreview) })
+    .add(numericInput, { previewId: values(TNumericInputPreview) })
+    .add(pickerInput, { previewId: values(TPickerInputPreview) })
+    .add(rangeDatePicker, {
+        previewId: values(TRangeDatePickerPreview),
+        onlyChromium: true, // reason: https://github.com/microsoft/playwright/issues/20203
+        focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId as any) && 'input',
+    })
+    .add(tabButton, { previewId: values(TTabButtonPreview) })
+    .add(TComponentId.switch, { previewId: values(TSwitchPreview) })
+    .add(textArea, { previewId: values(TTextAreaPreview) })
+    .add(textInput, { previewId: values(TTextInputPreview) })
+    .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview) })
+    .add(radioInput, { previewId: values(TRadioInputPreview) })
+    .add(radioGroup, { previewId: values(TRadioGroupPreview) })
+    .add(labeledInput, { previewId: values(TLabeledInputPreview) })
+    .add(mainMenu, { previewId: values(TMainMenuPreview) })
+    .add(paginator, { previewId: values(TPaginatorPreview) });
 
 builder.buildTests();

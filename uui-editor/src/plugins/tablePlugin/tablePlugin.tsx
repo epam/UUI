@@ -9,8 +9,27 @@ import { ReactComponent as TableIcon } from '../../icons/table-add.svg';
 import { FloatingToolbar } from '../../implementation/PositionedToolbar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { DeserializeHtml, PlateEditor, getPluginType, insertNodes, someNode, useEditorRef, withoutNormalizing } from '@udecode/plate-common';
-import { ELEMENT_TABLE, ELEMENT_TD, ELEMENT_TH, ELEMENT_TR, TablePlugin, createTablePlugin, getTableGridAbove, useTableMergeState } from '@udecode/plate-table';
+import {
+    DeserializeHtml,
+    PlateEditor,
+    getPluginType,
+    insertNodes,
+    someNode,
+    useEditorRef,
+    withoutNormalizing,
+    isElement,
+    PlatePlugin,
+} from '@udecode/plate-common';
+import {
+    ELEMENT_TABLE,
+    ELEMENT_TD,
+    ELEMENT_TH,
+    ELEMENT_TR,
+    TablePlugin,
+    createTablePlugin,
+    getTableGridAbove,
+    useTableMergeState,
+} from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
 import { createInitialTable, selectFirstCell } from './utils';
@@ -18,6 +37,8 @@ import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_TYPE, TABLE_ROW_TYPE } from './constants';
+import { normalizeTableCellElement, normalizeTableElement } from '../../migrations/normalizers';
 
 const noop = () => {};
 
@@ -43,9 +64,11 @@ function TableRenderer(props: any) {
                 <FloatingToolbar
                     placement="bottom"
                     children={
-                        canMerge
-                            ? <MergeToolbarContent />
-                            : <TableToolbarContent canUnmerge={ canUnmerge } />
+                        canMerge ? (
+                            <MergeToolbarContent />
+                        ) : (
+                            <TableToolbarContent canUnmerge={ canUnmerge } />
+                        )
                     }
                     editor={ editor }
                     isTable
@@ -74,38 +97,60 @@ const createGetNodeFunc = (type: string) => {
     return getNode;
 };
 
-export const tablePlugin = () => createTablePlugin<WithToolbarButton & TablePlugin>({
-    overrideByKey: {
-        [ELEMENT_TABLE]: {
-            type: 'table',
-            component: TableRenderer,
-        },
-        [ELEMENT_TR]: {
-            type: 'table_row',
-            component: TableRowElement,
-        },
-        [ELEMENT_TD]: {
-            type: 'table_cell',
-            component: TableCellElement,
-            deserializeHtml: {
-                getNode: createGetNodeFunc('table_cell'),
-            },
-        },
-        [ELEMENT_TH]: {
-            type: 'table_header_cell',
-            component: TableCellElement,
-            deserializeHtml: {
-                getNode: createGetNodeFunc('table_header_cell'),
-            },
-        },
-    },
-    options: {
-        enableMerging: true,
-        bottomBarButton: TableButton,
-    },
-});
+type TablePLuginOptions = WithToolbarButton & TablePlugin;
 
-export function TableButton({ editor }: { editor: PlateEditor; }) {
+export const tablePlugin = (): PlatePlugin<TablePLuginOptions> =>
+    createTablePlugin<TablePLuginOptions>({
+        overrideByKey: {
+            [ELEMENT_TABLE]: {
+                type: TABLE_TYPE,
+                component: TableRenderer,
+            },
+            [ELEMENT_TR]: {
+                type: TABLE_ROW_TYPE,
+                component: TableRowElement,
+            },
+            [ELEMENT_TD]: {
+                type: TABLE_CELL_TYPE,
+                component: TableCellElement,
+                deserializeHtml: {
+                    getNode: createGetNodeFunc(TABLE_CELL_TYPE),
+                },
+            },
+            [ELEMENT_TH]: {
+                type: TABLE_HEADER_CELL_TYPE,
+                component: TableCellElement,
+                deserializeHtml: {
+                    getNode: createGetNodeFunc(TABLE_HEADER_CELL_TYPE),
+                },
+            },
+        },
+        options: {
+            enableMerging: true,
+            bottomBarButton: TableButton,
+        },
+        withOverrides: (editor) => {
+            const { normalizeNode } = editor;
+
+            editor.normalizeNode = (entry) => {
+                const [node] = entry;
+
+                if (isElement(node) && node.type === TABLE_TYPE) {
+                    normalizeTableElement(editor, entry);
+                }
+
+                if (isElement(node) && (TABLE_CELL_TYPE === node.type || TABLE_CELL_TYPE === node.type)) {
+                    normalizeTableCellElement(editor, entry);
+                }
+
+                normalizeNode(entry);
+            };
+
+            return editor;
+        },
+    });
+
+export function TableButton({ editor }: { editor: PlateEditor }) {
     if (!useIsPluginActive(ELEMENT_TABLE)) return null;
 
     const onCreateTable = async () => {

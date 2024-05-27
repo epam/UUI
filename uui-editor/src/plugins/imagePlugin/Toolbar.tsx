@@ -17,7 +17,7 @@ export function ImgToolbar({
     isFullWidth,
     setMaxWidth,
 }: {
-    align: PlateImgAlign,
+    align?: PlateImgAlign,
     toggleBlockAlignment: (align: PlateImgAlign) => void,
     isFullWidth: () => boolean,
     setMaxWidth: () => void,

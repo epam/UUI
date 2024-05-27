@@ -23,7 +23,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     ], []);
 
     const pickerInputState = usePickerInputState({
-        dataSourceState: { visibleCount: initialRowsVisible },
+        dataSourceState: { visibleCount: initialRowsVisible, checked: [] },
     });
 
     const {
@@ -238,6 +238,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         toggleBodyOpening(false);
     };
 
+    const openPickerBody = () => toggleBodyOpening(true);
+
     const getFooterProps = (): PickerFooterProps<TItem, TId> & { onClose: () => void } => {
         const footerProps = picker.getFooterProps();
         return {
@@ -340,6 +342,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         handleSelectionValueChange,
         getSearchPosition,
         closePickerBody,
+        openPickerBody,
         handlePickerInputKeyboard,
     };
 }

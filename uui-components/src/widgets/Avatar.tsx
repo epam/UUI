@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    devLogger, IHasCX, cx, IHasRawProps, IHasForwardedRef,
-} from '@epam/uui-core';
+import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import css from './Avatar.module.scss';
 
 export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttributes<HTMLImageElement>>, IHasForwardedRef<HTMLImageElement> {
@@ -16,21 +14,10 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
 
     /** True to show placeholder */
     isLoading?: boolean;
-
-    /** Avatar onClick.
-     *  @deprecated Property onClick is deprecated and will be removed in future release.
-     * */
-    onClick?: () => void;
 }
 
 function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) {
     const [isError, setIsError] = React.useState<boolean>(false);
-
-    if (__DEV__) {
-        if (props.onClick) {
-            devLogger.warn('Avatar: Property onClick is deprecated and will be removed in the future release.');
-        }
-    }
 
     function onError() {
         if (!isError) {
@@ -40,7 +27,6 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
 
     return (
         <img
-            onClick={ props.onClick }
             ref={ ref }
             className={ cx(css.avatar, props.cx) }
             width={ props.size }

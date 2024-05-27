@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { ReactComponent as Check } from '@epam/assets/icons/notification-done-outline.svg';
 import { ReactComponent as PartlySelect } from '@epam/assets/icons/content-minus-outline.svg';
@@ -18,8 +18,10 @@ interface CheckboxMods {
     mode?: 'form' | 'cell';
 }
 
+export interface CheckboxModsOverride {}
+
 /** Represents the properties of the Checkbox component. */
-export type CheckboxProps = CheckboxMods & uuiComponents.CheckboxProps;
+export type CheckboxProps = uuiComponents.CheckboxProps & Overwrite<CheckboxMods, CheckboxModsOverride>;
 
 function applyCheckboxMods(mods: CheckboxMods) {
     return [
@@ -39,4 +41,8 @@ const applyUUICheckboxProps = (props: CheckboxProps) => {
     };
 };
 
-export const Checkbox = withMods<uuiComponents.CheckboxProps, CheckboxMods>(uuiComponents.Checkbox, applyCheckboxMods, applyUUICheckboxProps);
+export const Checkbox = withMods<uuiComponents.CheckboxProps, CheckboxProps>(
+    uuiComponents.Checkbox,
+    applyCheckboxMods,
+    applyUUICheckboxProps,
+);

@@ -27,17 +27,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 type: '@epam/uui:BadgeProps',
                 component: uui.Badge,
             },
-            [TSkin.Loveship]: {
-                type: '@epam/loveship:BadgeProps',
-                component: loveship.Badge,
-                doc: (doc: DocBuilder<loveship.BadgeProps>) => {
-                    doc.setDefaultPropExample('shape', ({ value }) => value === 'round');
-                },
-                preview: (docPreview: DocPreviewBuilder<loveship.BadgeProps>) => {
-                    docPreview.update(TBadgePreview['Sizes with icon'], (prev) => ({ shape: { examples: '*' }, ...prev }));
-                    docPreview.update(TBadgePreview['Sizes without icon'], (prev) => ({ shape: { examples: '*' }, ...prev }));
-                },
-            },
+            [TSkin.Loveship]: { type: '@epam/loveship:BadgeProps', component: loveship.Badge },
             [TSkin.Promo]: { type: '@epam/promo:BadgeProps', component: promo.Badge },
             [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
@@ -59,7 +49,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 count: 123,
             };
             docPreview.add({
-                id: TBadgePreview.Colors,
+                id: TBadgePreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption] },
                     isDropdown: { values: [true] },
@@ -71,28 +61,15 @@ export class BadgeDoc extends BaseDocsBlock {
                 cellSize: '150-50',
             });
             docPreview.add({
-                id: TBadgePreview['Sizes without icon'],
+                id: TBadgePreview['Size Variants'],
                 matrix: {
-                    icon: { examples: [undefined] },
                     caption: { values: [TEST_DATA.caption] },
                     color: { values: ['info'] },
+                    icon: { examples: [TEST_DATA.icon, undefined] },
                     size: { examples: '*' },
                     count: { values: [TEST_DATA.count, undefined] },
-                    isDropdown: { examples: '*' },
-
-                },
-                cellSize: '140-60',
-            });
-            docPreview.add({
-                id: TBadgePreview['Sizes with icon'],
-                matrix: {
-                    icon: { examples: [TEST_DATA.icon] },
-                    caption: { values: [TEST_DATA.caption] },
-                    color: { values: ['info'] },
-                    size: { examples: '*' },
-                    count: { values: [TEST_DATA.count, undefined] },
-                    isDropdown: { examples: '*' },
-                    iconPosition: { examples: '*' },
+                    isDropdown: { values: [false, true] },
+                    iconPosition: { values: ['left', 'right'], condition: ({ icon }) => !!icon },
                 },
                 cellSize: '170-60',
             });

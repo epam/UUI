@@ -24,7 +24,7 @@ function applyRadioInputMods(mods: RadioInputProps) {
     ];
 }
 
-export const RadioInput = withMods<uuiRadioInputProps, RadioInputMods>(
+export const RadioInput = withMods<uuiRadioInputProps, RadioInputProps>(
     uuiRadioInput,
     applyRadioInputMods,
     (props) => ({ icon: props.icon ? props.icon : RadioPoint }),
