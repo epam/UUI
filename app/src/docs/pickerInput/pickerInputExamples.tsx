@@ -33,7 +33,9 @@ export const renderTagExamples = [
                 return <PickerTogglerTag { ...props } key="collapsed" />;
             } else {
                 // rendering all other Tags with Tooltip
-                const tooltipContent = props.rowProps?.value?.tz ? `${props.rowProps?.value?.tz}/${props.caption}` : `${props.caption}`;
+                const continent = props.rowProps?.value?.tz ? props.rowProps?.value?.tz.split('/')[0].concat('/') : '';
+                const country = props.rowProps?.value?.countryName ? props.rowProps?.value?.countryName.concat('/') : '';
+                const tooltipContent = `${continent}${country}${props.caption}`;
                 return (
                     <Tooltip key={ props.rowProps?.id } content={ tooltipContent }>
                         <PickerTogglerTag { ...props } />
