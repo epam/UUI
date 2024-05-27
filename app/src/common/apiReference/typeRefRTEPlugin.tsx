@@ -1,6 +1,6 @@
 import { IModal, useUuiContext } from '@epam/uui-core';
 import React, { useState } from 'react';
-import { PlateEditor, createPluginFactory, setElements, getBlockAbove, insertEmptyElement } from '@udecode/plate-common';
+import { PlateEditor, createPluginFactory, setElements, getBlockAbove, insertEmptyElement, PlatePlugin } from '@udecode/plate-common';
 import { ReactComponent as TypeRefTableIcon } from '../../icons/add-type-ref-table.svg';
 import { TypeRefTable } from './TypeRefTable';
 import { FlexSpacer, ModalBlocker, ModalWindow, ModalHeader, FlexRow, Button, ModalFooter, LabeledInput, TextInput } from '@epam/uui';
@@ -9,7 +9,7 @@ import { useDocsGenForType, useDocsGenSummaries } from './dataHooks';
 
 const TYPE_REF_TABLE_KEY = 'type-ref-table';
 
-export const typeRefRTEPlugin = () => {
+export const typeRefRTEPlugin = (): PlatePlugin => {
     const createImagePlugin = createPluginFactory({
         key: TYPE_REF_TABLE_KEY,
         type: TYPE_REF_TABLE_KEY,

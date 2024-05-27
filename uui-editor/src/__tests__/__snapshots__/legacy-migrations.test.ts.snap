@@ -1,0 +1,909 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`migrate slate should migrate content correctly 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "text": "Rich Text Editor",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {},
+    "type": "uui-richTextEditor-header-1",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Introduction",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {},
+    "type": "uui-richTextEditor-header-3",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "@epam/uui-editor package contains a full-featured Rich Text Editor, based on open-source ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "children": Array [
+          Object {
+            "text": "slate.js",
+            "uui-richTextEditor-span-mark": true,
+          },
+        ],
+        "data": Object {},
+        "type": "link",
+        "url": "https://www.slatejs.org/",
+      },
+      Object {
+        "text": " library. Slate.JS is a framework to build editors, and it's highly configurable with plugins. In UUI, we picked and tuned dozen of plugins, build several plugins ourselves, added common styles and UX on top of it. One can pick from our default set of plugins, or even introduce new, app-specific plugins, on top.",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Unlikely to most Rich-Text editors, Slate uses JSON data model instead of HTML, which allows it to embed any entities, like arbitrary React components. For example, this checkbox, is a custom react component (check ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "children": Array [
+          Object {
+            "text": "source here",
+            "uui-richTextEditor-span-mark": true,
+          },
+        ],
+        "data": Object {},
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/main/uui-editor/src/plugins/toDoListPlugin/ToDoItem.tsx",
+      },
+      Object {
+        "text": "):",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": " An item",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "toDoItem",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "We include HTML to Slate JSON converter, which is also used to convert pasted HTML.",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Out of the box components",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "uui-richTextEditor-header-2",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Basic layout",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "uui-richTextEditor-header-3",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "We support inline text styles: ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": "bold",
+        "uui-richTextEditor-bold": true,
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": ", ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": "italic",
+        "uui-richTextEditor-italic": true,
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": ", ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": "underlined,",
+        "uui-richTextEditor-span-mark": true,
+        "uui-richTextEditor-underlined": true,
+      },
+      Object {
+        "text": " several UUI-friendly text colors: ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "color": "#FF4E33",
+        "text": "red",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": ", ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "color": "#FFA21D",
+        "text": "yellow",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "text": ", and ",
+        "uui-richTextEditor-span-mark": true,
+      },
+      Object {
+        "color": "#9BC837",
+        "text": "green.",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Numbered lists:",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "text": "In edit mode, we detect  '1.' and start list automatically",
+                "uui-richTextEditor-span-mark": true,
+              },
+            ],
+            "data": Object {
+              "checked": false,
+            },
+            "type": "list-item-child",
+          },
+        ],
+        "data": Object {},
+        "type": "list-item",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "text": "You can use 'tab' / 'shift/tab' to indent the list",
+                "uui-richTextEditor-span-mark": true,
+              },
+            ],
+            "data": Object {
+              "checked": false,
+            },
+            "type": "list-item-child",
+          },
+        ],
+        "data": Object {},
+        "type": "list-item",
+      },
+    ],
+    "data": Object {},
+    "type": "ordered-list",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Bullet lists:",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "text": "Type '- ' to start the list",
+                "uui-richTextEditor-span-mark": true,
+              },
+            ],
+            "data": Object {
+              "checked": false,
+            },
+            "type": "list-item-child",
+          },
+        ],
+        "data": Object {},
+        "type": "list-item",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "text": "You can create multi-level lists with 'tab' / 'shift+tab'. Example:",
+                "uui-richTextEditor-span-mark": true,
+              },
+            ],
+            "data": Object {
+              "checked": false,
+            },
+            "type": "list-item-child",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "children": Array [
+                      Object {
+                        "text": "Level 2",
+                        "uui-richTextEditor-span-mark": true,
+                      },
+                    ],
+                    "data": Object {
+                      "checked": false,
+                    },
+                    "type": "list-item-child",
+                  },
+                  Object {
+                    "children": Array [
+                      Object {
+                        "children": Array [
+                          Object {
+                            "children": Array [
+                              Object {
+                                "text": "Level 3",
+                                "uui-richTextEditor-span-mark": true,
+                              },
+                            ],
+                            "data": Object {
+                              "checked": false,
+                            },
+                            "type": "list-item-child",
+                          },
+                        ],
+                        "data": Object {},
+                        "type": "list-item",
+                      },
+                    ],
+                    "data": Object {},
+                    "type": "unordered-list",
+                  },
+                ],
+                "data": Object {},
+                "type": "list-item",
+              },
+            ],
+            "data": Object {},
+            "type": "unordered-list",
+          },
+        ],
+        "data": Object {},
+        "type": "list-item",
+      },
+    ],
+    "data": Object {},
+    "type": "unordered-list",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "There's also support 3 levels of headers, hyperlinks, superscript, and more.",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Embedded content",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "uui-richTextEditor-header-3",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Files can be dropped directly into the editor. You can embed images (align and resizing is supported):",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "align": "center",
+    "children": Array [
+      Object {
+        "text": "",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "fileName": "blue-orange.jpg",
+      "id": "100500",
+      "name": "blue-orange.jpg",
+      "path": "/static/uploads/blue-orange.jpg",
+      "size": 77236,
+      "type": "image",
+    },
+    "height": 417,
+    "type": "image",
+    "url": "/static/uploads/blue-orange.jpg",
+    "width": 800,
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Video:",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {},
+    "type": "iframe",
+    "url": "https://www.youtube.com/embed/5qap5aO4i9A",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Arbitrary attachments:",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "checked": false,
+    },
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+        "uui-richTextEditor-span-mark": true,
+      },
+    ],
+    "data": Object {
+      "extension": "xlsx",
+      "fileName": "DemoExcelAttachment.xlsx",
+      "id": "100500",
+      "name": "DemoExcelAttachment.xlsx",
+      "path": "/static/uploads/DemoExcelAttachment.xlsx",
+      "size": 8669,
+      "type": "attachment",
+    },
+    "type": "attachment",
+    "url": "/static/uploads/DemoExcelAttachment.xlsx",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "You can also embed any arbitrary content, like PDF files, directly into the document, inside IFrame.",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Tables",
+      },
+    ],
+    "data": Object {},
+    "type": "uui-richTextEditor-header-3",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "We provide a powerful tables plugin:",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Department",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_header_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Name",
+                  },
+                  Object {
+                    "text": " & ",
+                  },
+                  Object {
+                    "text": "Title",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "colSpan": 2,
+            "data": Object {},
+            "type": "table_header_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Tasks",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_header_cell",
+          },
+        ],
+        "data": Object {},
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "RnD",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "rowSpan": 2,
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Alice Green",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Design",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "color": "#9BC837",
+                    "text": "Ok",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-span-mark": true,
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+        ],
+        "data": Object {},
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Bob Blue",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Developer",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "color": "#9BC837",
+                    "text": "Ok",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-span-mark": true,
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+        ],
+        "data": Object {},
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "People",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "rowSpan": 1,
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Ann Chovey",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "rowSpan": 1,
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Primary HR",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "rowSpan": 1,
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "color": "#8A7CBB",
+                    "text": "In progress",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-span-mark": true,
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "rowSpan": 1,
+            "type": "table_cell",
+          },
+        ],
+        "data": Object {},
+        "type": "table_row",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "data": Object {},
+            "type": "table_cell",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "children": Array [
+                  Object {
+                    "text": "Footer",
+                  },
+                ],
+                "data": Object {},
+                "type": "paragraph",
+              },
+            ],
+            "colSpan": 3,
+            "data": Object {},
+            "type": "table_cell",
+          },
+        ],
+        "data": Object {},
+        "type": "table_row",
+      },
+    ],
+    "colSizes": Array [
+      130,
+      200,
+      200,
+      183,
+      161,
+    ],
+    "data": Object {},
+    "type": "table",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Placeholders:",
+      },
+    ],
+    "data": Object {},
+    "type": "uui-richTextEditor-header-3",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Allows to insert ",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "text": "",
+          },
+        ],
+        "data": Object {
+          "field": "placeholder",
+          "name": "Placeholder",
+        },
+        "type": "placeholder",
+      },
+      Object {
+        "text": " into text. Can be used for editing templates, for example for emails. Placeholders can be then replaced with real values programmatically (currently that's done by some apps in back-end code).",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Misc features",
+      },
+    ],
+    "data": Object {},
+    "type": "uui-richTextEditor-header-2",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Highlighted blocks:",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Danger!",
+        "uui-richTextEditor-bold": true,
+      },
+    ],
+    "data": Object {},
+    "type": "note-error",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Info",
+      },
+    ],
+    "data": Object {},
+    "type": "note-link",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Warning",
+      },
+    ],
+    "data": Object {},
+    "type": "note-warning",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Side note",
+      },
+    ],
+    "data": Object {},
+    "type": "note-quote",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "Splitter:",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+      },
+    ],
+    "data": Object {},
+    "type": "separatorBLock",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "text": "",
+      },
+    ],
+    "data": Object {},
+    "type": "paragraph",
+  },
+]
+`;
