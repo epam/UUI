@@ -1,5 +1,5 @@
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor,
+    PlateEditor, createPluginFactory, getBlockAbove, getEndPoint, getPluginType, insertEmptyElement, selectEditor, PlatePlugin, isElement,
 } from '@udecode/plate-common';
 import React from 'react';
 
@@ -9,18 +9,18 @@ import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as PdfIcon } from '../../icons/pdf.svg';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { getBlockAboveByType } from '../../utils/getAboveBlock';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
-import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { IframeBlock } from './IframeBlock';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { IFRAME_PLUGIN_KEY, IFRAME_TYPE } from './constants';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
+import { normalizeIframeElement } from '../../migrations';
 
-export const IFRAME_PLUGIN_KEY = 'iframe';
-export const IFRAME_PLUGIN_TYPE = 'iframe';
-
-export const iframePlugin = () => {
+// TODO: implement iframe resize
+export const iframePlugin = (): PlatePlugin => {
     const createIframePlugin = createPluginFactory<WithToolbarButton>({
         key: IFRAME_PLUGIN_KEY,
-        type: IFRAME_PLUGIN_TYPE,
+        type: IFRAME_TYPE,
         isElement: true,
         isVoid: true,
         component: IframeBlock,
@@ -34,8 +34,6 @@ export const iframePlugin = () => {
                         return {
                             type,
                             url,
-                            src: url,
-                            data: { src: url },
                         };
                     }
                 },
@@ -44,10 +42,10 @@ export const iframePlugin = () => {
         handlers: {
             // move selection to the end of iframe for further new line render on Enter click
             onLoad: (editor) => () => {
-                if (!getBlockAboveByType(editor, ['iframe'])) return;
+                if (!getBlockAboveByType(editor, [IFRAME_TYPE])) return;
 
                 const videoEntry = getBlockAbove(editor, {
-                    match: { type: getPluginType(editor, 'iframe') },
+                    match: { type: getPluginType(editor, IFRAME_TYPE) },
                 });
                 if (!videoEntry) return;
 
@@ -58,7 +56,7 @@ export const iframePlugin = () => {
                 });
             },
             onKeyDown: (editor) => (event) => {
-                if (!getBlockAboveByType(editor, ['iframe'])) return;
+                if (!getBlockAboveByType(editor, [IFRAME_TYPE])) return;
 
                 if (event.key === 'Enter') {
                     return insertEmptyElement(editor, PARAGRAPH_TYPE);
@@ -67,6 +65,22 @@ export const iframePlugin = () => {
         },
         options: {
             bottomBarButton: IframeButton,
+        },
+        // move to common function / plugin
+        withOverrides: (editor) => {
+            const { normalizeNode } = editor;
+
+            editor.normalizeNode = (entry) => {
+                const [node] = entry;
+
+                if (isElement(node) && node.type === IFRAME_TYPE) {
+                    normalizeIframeElement(editor, entry);
+                }
+
+                normalizeNode(entry);
+            };
+
+            return editor;
         },
     });
 

@@ -2,42 +2,40 @@ import { AutoformatRule } from '@udecode/plate-autoformat';
 import { TTodoListItemElement } from '@udecode/plate-list';
 import { formatList, preFormat } from './formatUtils';
 import { isBlock, setNodes } from '@udecode/plate-common';
-import {
-    ELEMENT_LI_CUSTOM, ELEMENT_OL_CUSTOM, ELEMENT_UL_CUSTOM,
-} from '../listPlugin/constants';
-import { TODO_ELEMENT_KEY } from '../toDoListPlugin/toDoListPlugin';
+import { LI_TYPE, OL_TYPE, UL_TYPE } from '../listPlugin';
+import { TODO_TYPE } from '../toDoListPlugin';
 
 export const autoformatLists: AutoformatRule[] = [
     {
         mode: 'block',
-        type: ELEMENT_LI_CUSTOM,
+        type: LI_TYPE,
         match: ['* ', '- '],
         preFormat,
         format: (editor) => {
-            formatList(editor, ELEMENT_UL_CUSTOM);
+            formatList(editor, UL_TYPE);
         },
     },
     {
         mode: 'block',
-        type: ELEMENT_LI_CUSTOM,
+        type: LI_TYPE,
         match: ['1. ', '1) '],
         preFormat,
-        format: (editor) => formatList(editor, ELEMENT_OL_CUSTOM),
+        format: (editor) => formatList(editor, OL_TYPE),
     },
     {
         mode: 'block',
-        type: TODO_ELEMENT_KEY,
+        type: TODO_TYPE,
         match: '[] ',
     },
     {
         mode: 'block',
-        type: TODO_ELEMENT_KEY,
+        type: TODO_TYPE,
         match: '[x] ',
         format: (editor) =>
             setNodes<TTodoListItemElement>(
                 editor,
                 {
-                    type: TODO_ELEMENT_KEY,
+                    type: TODO_TYPE,
                     checked: true,
                 },
                 {

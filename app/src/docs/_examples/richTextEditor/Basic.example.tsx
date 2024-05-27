@@ -26,7 +26,7 @@ export default function SlateEditorBasicExample() {
 
     const plugins = [
         ...defaultPlugins,
-        baseMarksPlugin(),
+        ...baseMarksPlugin(),
         headerPlugin(),
         colorPlugin(),
         superscriptPlugin(),

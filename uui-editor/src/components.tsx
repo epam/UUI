@@ -41,7 +41,7 @@ export const createPlateUI = <T extends string = string>(
     if (overrideByKey) {
         Object.keys(overrideByKey).forEach((k) => {
             const key = k as DefaultPluginKey;
-            components[key] = overrideByKey[key];
+            components[key] = overrideByKey[key]!; // TODO: improve typing
         });
     }
 
