@@ -110,3 +110,6 @@ export const TDatePickerPreview = {
     ...UTILS.ColorVariants,
     'Form Opened': 'Form Opened' as const,
 };
+export const TDropdownContainerPreview = {
+    ...UTILS.SizeVariants,
+};
