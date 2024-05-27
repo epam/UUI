@@ -3,19 +3,8 @@ import { CX, cx, devLogger, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiEl
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import css from './Tag.module.scss';
-
-const DEFAULT_SIZE = '36';
-
-const mapCountIndicatorSizes: Record<TagCoreProps['size'], CountIndicatorProps['size']> = {
-    18: '12',
-    24: '18',
-    30: '18',
-    36: '18',
-    42: '24',
-    48: '24',
-    inherit: 'inherit',
-};
 
 interface TagMods {
     /**
@@ -31,7 +20,7 @@ export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon
      * Defines component size.
      * @default '36'
      */
-    size?: '18' | '24' | '30' | '36' | '42' | '48' | 'inherit';
+    size?: '18' | '24' | '30' | '36' | '42' | '48';
     /**
      * Defines component fill style.
      * @default 'solid'
@@ -58,7 +47,7 @@ export type TagProps = TagCoreProps & TagMods;
 function applyTagMods(props: TagProps) {
     return [
         css.root,
-        `uui-size-${props.size || DEFAULT_SIZE}`,
+        `uui-size-${props.size || settings.sizes.defaults.tag as TagProps['size']}`,
         `uui-color-${props.color || 'neutral'}`,
         `uui-fill-${props.fill || 'solid'}`,
         'uui-tag',
@@ -100,7 +89,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             { props.count !== undefined && props.count !== null && (
                 <CountIndicator
                     color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
-                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                    size={ settings.sizes.tag.countIndicator[(props.size || settings.sizes.defaults.tag) as TagProps['size']] as CountIndicatorProps['size'] }
                     caption={ props.count }
                 />
             ) }

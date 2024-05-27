@@ -53,7 +53,7 @@
         border: var(--uui-tag-border-width) solid var(--uui-tag-border);
 
         :global(.uui-count_indicator):not(:last-child) {
-            margin-right: 6px;
+            margin-right: var(--uui-tag-inner-padding);
         }
 
         &:global(.-clickable) {

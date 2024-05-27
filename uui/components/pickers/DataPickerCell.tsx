@@ -2,14 +2,13 @@ import * as React from 'react';
 import { DataPickerCellProps, uuiMod, cx } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { PickerCellMods } from './types';
-import { TextPlaceholder, Text } from '../typography';
+import { TextPlaceholder, Text, TextProps } from '../typography';
 import { DataRowAddons } from '../widgets';
+import { FlexCell } from '../layout';
+import { settings } from '../../settings';
 import { ReactComponent as BoldTickIcon } from '@epam/assets/icons/notification-done-fill.svg';
 import { ReactComponent as TickIcon } from '@epam/assets/icons/notification-done-outline.svg';
-
 import css from './DataPickerCell.module.scss';
-
-import { FlexCell } from '../layout';
 
 export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId> & PickerCellMods) {
     const ref = React.useRef<HTMLDivElement>();
@@ -19,13 +18,13 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
     if (props.rowProps.isLoading) {
         content = (
             // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' } cx={ css.loadingCell }>
+            <Text key="t" size={ settings.sizes.dataPickerCell.text[props.size] as TextProps['size'] } cx={ css.loadingCell }>
                 <TextPlaceholder />
             </Text>
         );
     } else if (props.rowProps.isUnknown) {
         content = (
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
+            <Text key="t" size={ settings.sizes.dataPickerCell.text[props.size] as TextProps['size'] }>
                 Unknown
             </Text>
         );
@@ -36,11 +35,11 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 <FlexSpacer />
                 {(props.rowProps.isChildrenSelected || props.rowProps.isSelected) && (
                     <div className={ cx(css.iconWrapper, uuiMod.selected) }>
-                        <IconContainer 
-                            icon={ props.size === '24' ? BoldTickIcon : TickIcon }
+                        <IconContainer
+                            icon={ settings.sizes.dataPickerCell.isBoldIcon[props.size as never] ? BoldTickIcon : TickIcon }
                             cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary }
-                            rawProps={ { 'aria-label': props.rowProps.isChildrenSelected 
-                                ? 'Child is selected' 
+                            rawProps={ { 'aria-label': props.rowProps.isChildrenSelected
+                                ? 'Child is selected'
                                 : 'Selected' } }
                         />
                     </div>
@@ -66,9 +65,9 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 css.cell,
                 props.cx,
                 'data-picker-cell',
-                css['size-' + (props.size || '36')],
-                css[`padding-${props.padding || '12'}`],
-                css[`padding-left-${props.padding || '24'}`],
+                css['size-' + (props.size || settings.sizes.defaults.dataPickerCell)],
+                css[`padding-${props.padding || settings.sizes.dataPickerCell.padding.default}`],
+                css[`padding-left-${props.padding || settings.sizes.dataPickerCell.paddingLeft.default}`],
                 css[`align-widgets-${props.alignActions || 'top'}`],
             ] }
         >

@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as types from '../types';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { PickerTogglerTag, PickerTogglerTagProps } from './PickerTogglerTag';
-import css from './PickerToggler.module.scss';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
+import css from './PickerToggler.module.scss';
 
-const defaultSize = '36';
 const defaultMode = types.EditMode.FORM;
 
 export interface PickerTogglerMods extends types.IHasEditMode {
@@ -13,14 +13,14 @@ export interface PickerTogglerMods extends types.IHasEditMode {
      * Defines component size
      * @default 36
      */
-    size?: '24' | '30' | '36' | '42' | '48' | 'inherit';
+    size?: '24' | '30' | '36' | '42' | '48';
 }
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         'uui-picker-toggler',
         css.root,
-        `uui-size-${mods.size || defaultSize}`,
+        `uui-size-${mods.size || settings.sizes.defaults.pickerToggler}`,
         css['mode-' + (mods.mode || defaultMode)],
     ];
 }

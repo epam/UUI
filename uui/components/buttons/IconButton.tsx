@@ -31,7 +31,6 @@ export const IconButton = createSkinComponent<uuiComponents.IconButtonProps, Ico
     (props) => {
         return {
             dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
-            size: props.size && Number(props.size),
         };
     },
     applyIconButtonMods,

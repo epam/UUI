@@ -3,11 +3,12 @@ import {
     Lens, DataSourceState, isMobile, cx,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
-import { SearchInput } from '../inputs';
+import { SearchInput, SearchInputProps } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
 import { ControlSize } from '../types';
+import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
 
 export interface DataPickerBodyProps extends PickerBodyBaseProps {
@@ -26,15 +27,16 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             return this.props.renderNotFound();
         }
 
+        // TODO: need fix sizes, how to use variables
         return (
-            <FlexCell cx={ css[`no-found-size-${this.props.searchSize || 36}`] } grow={ 1 } textAlign="center">
-                <Text size={ this.props.searchSize || '36' }>{i18n.dataPickerBody.noRecordsMessage}</Text>
+            <FlexCell cx={ css[`no-found-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
+                <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
             </FlexCell>
         );
     }
 
     render() {
-        const searchSize = isMobile() ? '48' : this.props.searchSize || '36';
+        const searchSize = (isMobile() ? settings.sizes.dataPickerBody.searchInput['mobile'] : this.props.searchSize) as SearchInputProps['size'];
 
         return (
             <>
@@ -55,7 +57,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                 )}
                 <FlexRow key="body" cx={ cx(css.body, css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
                     { this.props.rowsCount > 0 ? (
-                        <VirtualList 
+                        <VirtualList
                             { ...this.lens.toProps() }
                             rows={ this.props.rows }
                             rawProps={ this.props.rawProps }

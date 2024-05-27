@@ -5,7 +5,7 @@ import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
     IEditable, devLogger, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
 } from '@epam/uui-core';
-import { TextInput } from '../inputs';
+import { TextInput, TextInputProps } from '../inputs';
 import { SizeMod } from '../types';
 import {
     RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
@@ -16,6 +16,7 @@ import css from './RangeDatePicker.module.scss';
 import {
     defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat,
 } from './helpers';
+import { settings } from '../../settings';
 
 /**
  * Represents RangeDatePickerInputProps
@@ -150,8 +151,8 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         >
             <TextInput
                 icon={ systemIcons.calendar }
-                cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'from' && uuiMod.focus) }
-                size={ size || '36' }
+                cx={ cx(css.dateInput, inFocus === 'from' && uuiMod.focus) }
+                size={ size || settings.sizes.defaults.rangeDatePicker as TextInputProps['size'] }
                 placeholder={ getPlaceholder ? getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                 value={ inputValue.from || undefined }
                 onValueChange={ (v) => onInputChange(v || '', 'from') }
@@ -166,9 +167,9 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             />
             <div className={ css.separator } />
             <TextInput
-                cx={ cx(css.dateInput, css['size-' + (size || 36)], inFocus === 'to' && uuiMod.focus) }
+                cx={ cx(css.dateInput, inFocus === 'to' && uuiMod.focus) }
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
-                size={ size || '36' }
+                size={ size || settings.sizes.defaults.rangeDatePicker as TextInputProps['size'] }
                 value={ inputValue.to || undefined }
                 onCancel={ clearAllowed ? () => {
                     onValueChange(defaultRangeValue);

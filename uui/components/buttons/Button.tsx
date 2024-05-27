@@ -2,16 +2,15 @@ import * as uuiComponents from '@epam/uui-components';
 import { devLogger, withMods } from '@epam/uui-core';
 import { ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import css from './Button.module.scss';
-
-const DEFAULT_SIZE = '36';
 
 type ButtonMods = {
     /**
      * Defines component size.
      * @default '36'
      */
-    size?: ControlSize | '18' | 'inherit';
+    size?: ControlSize | '18';
     /**
      * Defines component fill style.
      * @default 'solid'
@@ -36,7 +35,7 @@ function applyButtonMods(mods: ButtonProps) {
         'uui-button',
         `uui-fill-${mods.fill || 'solid'}`,
         `uui-color-${mods.color || 'primary'}`,
-        `uui-size-${mods.size || DEFAULT_SIZE}`,
+        `uui-size-${mods.size || settings.sizes.defaults.button}`,
     ];
 }
 

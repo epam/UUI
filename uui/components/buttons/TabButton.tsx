@@ -4,6 +4,7 @@ import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-com
 import { getIconClass } from './helper';
 import { CountIndicator } from '../widgets';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import css from './TabButton.module.scss';
 
 type TabButtonMods = {
@@ -15,8 +16,6 @@ type TabButtonMods = {
     /** Defines is the component showing Notify */
     withNotify?: boolean;
 };
-
-const DEFAULT_SIZE = '48';
 
 /** Represents the properties of a TabButton component. */
 export type TabButtonProps = TabButtonMods & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
@@ -39,7 +38,7 @@ function applyTabButtonMods(mods: TabButtonProps) {
     return [
         css.root,
         'uui-tab-button',
-        `uui-size-${mods.size || DEFAULT_SIZE}`,
+        `uui-size-${mods.size || settings.sizes.defaults.tabButton}`,
         mods.withNotify && css.withNotify,
         ...getIconClass(mods),
     ];

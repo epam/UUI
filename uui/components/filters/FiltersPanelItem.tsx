@@ -33,7 +33,7 @@ function useView(props: FiltersToolbarItemProps, value: any) {
         if (props.type === 'singlePicker') {
             dataSourceState.selectedId = value;
         }
-        
+
         if (props.type === 'multiPicker') {
             dataSourceState.checked = value;
         }
