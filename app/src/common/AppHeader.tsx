@@ -201,7 +201,7 @@ export function AppHeader() {
                         target="_blank"
                         href="https://forms.office.com/e/9iEvJUKdeM"
                     >
-                        <img height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
+                        <img height="60px" width="172.5px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
                     </Anchor>
                 ),
             },
