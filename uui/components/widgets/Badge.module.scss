@@ -30,28 +30,28 @@
     border-radius: math.div($size, 2);
 
     @if ($size == 18px) {
-        @include partial-calc(3px, 3px, 6px, $borderWidth, 0);
+        @include partial-calc(3px, 3px, 6px, $borderWidth);
     } @else if ($size == 24px) {
-        @include partial-calc(3px, 6px, 8px, $borderWidth, 3px);
+        @include partial-calc(3px, 6px, 8px, $borderWidth);
     } @else if ($size == 30px) {
-        @include partial-calc(6px, 6px, 8px, $borderWidth, 3px);
+        @include partial-calc(6px, 6px, 8px, $borderWidth);
     } @else if ($size == 36px) {
-        @include partial-calc(9px, 6px, 8px, $borderWidth, 3px);
+        @include partial-calc(9px, 6px, 8px, $borderWidth);
     } @else if ($size == 42px) {
-        @include partial-calc(12px, 6px, 10px, $borderWidth, 0);
+        @include partial-calc(12px, 6px, 10px, $borderWidth);
     } @else if ($size == 48px) {
-        @include partial-calc(12px, 6px, 12px, $borderWidth, 0);
+        @include partial-calc(12px, 6px, 12px, $borderWidth);
     }
 
     @include scalable-icon-size($size);
 }
 
-@mixin partial-calc($controlPadding, $captionPadding, $dotSize, $borderWidth, $leftIconPadding) {
+@mixin partial-calc($controlPadding, $captionPadding, $dotSize, $borderWidth) {
     padding-left: $controlPadding - $borderWidth;
     padding-right: $controlPadding - $borderWidth;
 
     :global(.uui-icon):first-child {
-        padding-left: $leftIconPadding;
+        padding-left: 3px;
     }
 
     :global(.uui-caption) {
