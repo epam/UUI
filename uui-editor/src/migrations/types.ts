@@ -67,6 +67,7 @@ export type SlateSchema = {
         }
         [key: string]: unknown;
     }
+    /** any other key */
     [key: string]: unknown;
 };
 
