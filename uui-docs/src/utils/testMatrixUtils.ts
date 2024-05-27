@@ -3,6 +3,14 @@ import { IComponentDocs, TComponentPreview, TPreviewPropsItemMatrixCondition } f
 type TNormalizedMatrix = Record<string, { values: unknown[]; condition?: TPreviewPropsItemMatrixCondition<any, any> } >;
 
 export class TestMatrixUtils {
+    static createTestMatrixFromArr(params: { matrixNorm: TNormalizedMatrix[], parentProps?: Record<string, unknown> }): Record<string, unknown>[] {
+        const { matrixNorm } = params;
+        return matrixNorm.reduce<Record<string, unknown>[]>((acc, matrixNormItem) => {
+            const res = TestMatrixUtils.createTestMatrix({ matrixNorm: matrixNormItem });
+            return acc.concat(res);
+        }, []);
+    }
+
     /**
      * It takes config with props values to iterate, and creates all possible combinations.
      * E.g.:
@@ -51,51 +59,58 @@ export class TestMatrixUtils {
             matrix: TComponentPreview<TProps>['matrix'],
             docs: IComponentDocs<TProps>
         },
-    ): TNormalizedMatrix {
+    ): TNormalizedMatrix[] {
         const { matrix, docs } = params;
-        const res: TNormalizedMatrix = {};
-        Object.keys(matrix).forEach((name) => {
-            const { values, examples, condition } = matrix[name as keyof TProps];
-            if (examples) {
-                // convert examples to values
-                const allExamplesMap = docs.getPropExamplesMap(name as keyof TProps);
-                if (examples === '*') {
-                    res[name] = {
-                        values: Object.values(allExamplesMap).map((e) => e.value),
-                        condition,
-                    };
-                } else {
-                    const unknownExampleNames: string[] = [];
-                    res[name] = {
-                        values: examples.reduce<unknown[]>((acc, exampleName) => {
-                            if (exampleName === undefined) {
-                                // special case, it means prop value is not defined
-                                acc.push(undefined);
-                            } else {
-                                const ex = allExamplesMap[exampleName];
-                                if (!ex) {
-                                    unknownExampleNames.push(exampleName);
+        const resArr: TNormalizedMatrix[] = [];
+        const matrixArr = Array.isArray(matrix) ? matrix : [matrix];
+
+        matrixArr.forEach((_matrixItem) => {
+            const res: TNormalizedMatrix = {};
+            Object.keys(_matrixItem).forEach((name) => {
+                const { values, examples, condition } = _matrixItem[name as keyof TProps];
+                if (examples) {
+                    // convert examples to values
+                    const allExamplesMap = docs.getPropExamplesMap(name as keyof TProps);
+                    if (examples === '*') {
+                        res[name] = {
+                            values: Object.values(allExamplesMap).map((e) => e.value),
+                            condition,
+                        };
+                    } else {
+                        const unknownExampleNames: string[] = [];
+                        res[name] = {
+                            values: examples.reduce<unknown[]>((acc, exampleName) => {
+                                if (exampleName === undefined) {
+                                    // special case, it means prop value is not defined
+                                    acc.push(undefined);
                                 } else {
-                                    acc.push(ex?.value);
+                                    const ex = allExamplesMap[exampleName];
+                                    if (!ex) {
+                                        unknownExampleNames.push(exampleName);
+                                    } else {
+                                        acc.push(ex?.value);
+                                    }
                                 }
-                            }
-                            return acc;
-                        }, []),
-                        condition,
-                    };
-                    if (unknownExampleNames.length > 0) {
-                        const notFound = unknownExampleNames.map((e) => `"${e}"`).join(',');
-                        const available = Object.keys(allExamplesMap).map((e) => `"${e}"`).join(',');
-                        const component = docs.name;
-                        const err = `Unable to find examples with names: ${notFound}. Component="${component}". Available examples: ${available}`;
-                        console.error(err);
-                        throw new Error(err);
+                                return acc;
+                            }, []),
+                            condition,
+                        };
+                        if (unknownExampleNames.length > 0) {
+                            const notFound = unknownExampleNames.map((e) => `"${e}"`).join(',');
+                            const available = Object.keys(allExamplesMap).map((e) => `"${e}"`).join(',');
+                            const component = docs.name;
+                            const err = `Unable to find examples with names: ${notFound}. Component="${component}". Available examples: ${available}`;
+                            console.error(err);
+                            throw new Error(err);
+                        }
                     }
+                } else {
+                    res[name] = { values, condition };
                 }
-            } else {
-                res[name] = { values, condition };
-            }
+            });
+            resArr.push(res);
         });
-        return res;
+
+        return resArr;
     }
 }

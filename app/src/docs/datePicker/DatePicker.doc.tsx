@@ -57,26 +57,13 @@ export class DatePickerDoc extends BaseDocsBlock {
             };
             const w180_h60: TPreviewCellSize = '180-60';
             const w320_h400: TPreviewCellSize = '320-400';
-            /**
-             * Form
-             */
-            docPreview.add(TDatePickerPreview.Form, { mode: { values: ['form'] }, ...baseMatrix }, w180_h60);
-            docPreview.add(TDatePickerPreview['Form States'], { mode: { values: ['form'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
+            docPreview.add(TDatePickerPreview['Size Variants'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix }, w180_h60);
+            docPreview.add(TDatePickerPreview['Color Variants'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
             docPreview.add({
                 id: TDatePickerPreview['Form Opened'],
                 matrix: { value: { values: [TEST_DATA.value] } },
                 cellSize: w320_h400,
             });
-            /**
-             * Inline
-             */
-            docPreview.add(TDatePickerPreview.Inline, { mode: { values: ['inline'] }, ...baseMatrix }, w180_h60);
-            docPreview.add(TDatePickerPreview['Inline States'], { mode: { values: ['inline'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
-            /**
-             * Cell
-             */
-            docPreview.add(TDatePickerPreview.Cell, { mode: { values: ['cell'] }, ...baseMatrix }, w180_h60);
-            docPreview.add(TDatePickerPreview['Cell States'], { mode: { values: ['cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
         },
     };
 

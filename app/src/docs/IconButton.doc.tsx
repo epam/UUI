@@ -42,7 +42,7 @@ export class IconButtonDoc extends BaseDocsBlock {
                 dropdownIcon: 'navigation-chevron_down-outline.svg',
             };
             docPreview.add({
-                id: TIconButtonPreview.Colors,
+                id: TIconButtonPreview['Color Variants'],
                 matrix: {
                     size: { values: ['24'] },
                     color: { examples: '*' },
@@ -56,7 +56,7 @@ export class IconButtonDoc extends BaseDocsBlock {
                 cellSize: '60-40',
             });
             docPreview.add({
-                id: TIconButtonPreview.Layout,
+                id: TIconButtonPreview['Size Variants'],
                 matrix: {
                     dropdownIcon: { examples: [undefined, TEST_DATA.dropdownIcon] },
                     showDropdownIcon: { values: [true], condition: (props) => !!props.dropdownIcon },

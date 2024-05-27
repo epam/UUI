@@ -49,7 +49,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 count: 123,
             };
             docPreview.add({
-                id: TBadgePreview.Colors,
+                id: TBadgePreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption] },
                     isDropdown: { values: [true] },
@@ -61,28 +61,15 @@ export class BadgeDoc extends BaseDocsBlock {
                 cellSize: '150-50',
             });
             docPreview.add({
-                id: TBadgePreview['Sizes without icon'],
+                id: TBadgePreview['Size Variants'],
                 matrix: {
-                    icon: { examples: [undefined] },
                     caption: { values: [TEST_DATA.caption] },
                     color: { values: ['info'] },
+                    icon: { examples: [TEST_DATA.icon, undefined] },
                     size: { examples: '*' },
                     count: { values: [TEST_DATA.count, undefined] },
-                    isDropdown: { examples: '*' },
-
-                },
-                cellSize: '140-60',
-            });
-            docPreview.add({
-                id: TBadgePreview['Sizes with icon'],
-                matrix: {
-                    icon: { examples: [TEST_DATA.icon] },
-                    caption: { values: [TEST_DATA.caption] },
-                    color: { values: ['info'] },
-                    size: { examples: '*' },
-                    count: { values: [TEST_DATA.count, undefined] },
-                    isDropdown: { examples: '*' },
-                    iconPosition: { examples: '*' },
+                    isDropdown: { values: [false, true] },
+                    iconPosition: { values: ['left', 'right'], condition: ({ icon }) => !!icon },
                 },
                 cellSize: '170-60',
             });

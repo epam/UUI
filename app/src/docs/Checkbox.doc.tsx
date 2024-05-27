@@ -26,7 +26,7 @@ export class CheckboxDoc extends BaseDocsBlock {
                 label2Lines: (<>{'Test'}<br/>{'Test'}</>),
             };
             docPreview.add({
-                id: TCheckboxPreview.Basic,
+                id: TCheckboxPreview['Common Variants'],
                 matrix: {
                     isInvalid: { values: [false, true] },
                     value: { values: [true, false, undefined] },
