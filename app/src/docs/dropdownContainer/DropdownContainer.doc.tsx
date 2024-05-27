@@ -3,9 +3,10 @@ import * as uui from '@epam/uui';
 import * as promo from '@epam/promo';
 import * as loveship from '@epam/loveship';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { childrenUui } from './dropdownContainerExamples';
+import { TDropdownContainerPreview } from '../_types/previewIds';
 
 export class DropdownContainerDoc extends BaseDocsBlock {
     title = 'Dropdown Container';
@@ -42,6 +43,25 @@ export class DropdownContainerDoc extends BaseDocsBlock {
             doc.merge('arrowProps', {
                 editorType: 'MultiUnknownEditor',
                 examples: [{ name: '{ ref: { current: null }, style: {} }', value: { ref: { current: null }, style: {} } }],
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.DropdownContainerProps>) => {
+            const TEST_DATA = {
+                children: (<>Test</>),
+            };
+            docPreview.add({
+                id: TDropdownContainerPreview['Size Variants'],
+                matrix: [
+                    {
+                        children: { values: [TEST_DATA.children] },
+                        padding: { examples: '*' },
+                    },
+                    {
+                        children: { values: [TEST_DATA.children] },
+                        vPadding: { examples: '*' },
+                    },
+                ],
+                cellSize: '180-90',
             });
         },
     };
