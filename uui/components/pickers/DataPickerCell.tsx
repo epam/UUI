@@ -38,7 +38,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                     <div className={ cx(css.iconWrapper, uuiMod.selected) }>
                         <IconContainer 
                             icon={ props.size === '24' ? BoldTickIcon : TickIcon }
-                            cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary }
+                            cx={ cx(css.root, props.rowProps.isChildrenSelected ? css.iconDefault : 'uui-data_cell-checkmark') }
                             rawProps={ { 'aria-label': props.rowProps.isChildrenSelected 
                                 ? 'Child is selected' 
                                 : 'Selected' } }

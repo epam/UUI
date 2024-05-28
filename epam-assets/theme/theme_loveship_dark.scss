@@ -797,6 +797,18 @@
         --uui-filters_toggler-bg-hover: var(--uui-neutral-30);
     }
 
+    /* DropdownMenu */
+
+    .uui-dropdown-checkmark {
+        --uui-dropdown-checkmark: var(--uui-info-60);
+    }
+
+    /* DataPicker */
+
+    .uui-data_cell-checkmark {
+        --uui-data_cell-checkmark: var(--uui-info-60);
+    }
+
     /* fonts */
 
     .uui-font-sans {
