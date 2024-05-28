@@ -5,6 +5,7 @@ const THEME_MANIFEST_FILE = 'theme-manifest.json';
 
 export interface CustomThemeManifest extends Theme {
     css: string[];
+    settings: null | object;
     propsOverride?: TPropEditorTypeOverride;
 }
 
@@ -40,9 +41,11 @@ async function loadCustomThemesInternal() {
                 const themeManifestUrl = `${themeUrl}/${THEME_MANIFEST_FILE}`;
                 return fetch(themeManifestUrl)
                     .then(async (r) => {
-                        const manifest: CustomThemeManifest = await r.json();
-                        await loadCssArr(manifest.css.map((cssRel) => convertRelCssUrlToAbs(cssRel, themeUrl)));
-                        ctManifestArr.push(manifest);
+                        const tmJson: { css: string[]; settings: null | string, id: string, name: string } = await r.json();
+                        const { id, name, css, settings } = tmJson;
+                        const loadedSettings = settings ? await loadSettings(convertRelUrlToAbs(settings, themeUrl)) : null;
+                        await loadCssArr(css.map((cssRel) => convertRelUrlToAbs(cssRel, themeUrl)));
+                        ctManifestArr.push({ id, name, css, settings: loadedSettings });
                     })
                     .catch((err) => {
                         console.error(`Unable to load custom theme from "${themeManifestUrl}"`, err);
@@ -51,6 +54,15 @@ async function loadCustomThemesInternal() {
         );
     }
     return ctManifestArr;
+}
+
+async function loadSettings(url: string) {
+    try {
+        const result = await fetch(url);
+        return (await result.json()) as object;
+    } catch (err) {
+        console.error(`Unable to load settings from: "${url}"`, err);
+    }
 }
 
 async function loadCssArr(urlArr: string[]): Promise<void> {
@@ -76,11 +88,11 @@ function loadCss(url: string): Promise<void> {
     });
 }
 
-function convertRelCssUrlToAbs(themeRelativeUrl: string, themeAbsoluteUrl: string) {
+function convertRelUrlToAbs(relativeUrl: string, themeManifestAbsUrl: string) {
     const DEL = '/';
-    let urlRelativeToManifestNorm = themeRelativeUrl;
+    let urlRelativeToManifestNorm = relativeUrl;
     if (urlRelativeToManifestNorm.indexOf('./') === 0) {
         urlRelativeToManifestNorm = urlRelativeToManifestNorm.substring(2);
     }
-    return `${themeAbsoluteUrl}${DEL}${urlRelativeToManifestNorm}`;
+    return `${themeManifestAbsUrl}${DEL}${urlRelativeToManifestNorm}`;
 }
