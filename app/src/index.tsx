@@ -20,11 +20,6 @@ import '@epam/assets/theme/theme_loveship_dark.scss';
 import '@epam/assets/theme/theme_electric.scss';
 import './index.module.scss';
 
-import { settings } from '@epam/uui';
-import { settings_override } from './settings_override';
-
-settings.sizes = settings_override.sizes;
-
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
 ]);
