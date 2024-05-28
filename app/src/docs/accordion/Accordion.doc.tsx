@@ -36,8 +36,9 @@ export class AccordionDoc extends BaseDocsBlock {
                 componentWithShortText: () => (<i style={ { margin: '0 6px 0 6px' } }>Test</i>),
             };
             docPreview.add({
-                id: TAccordionPreview.Collapsed,
+                id: TAccordionPreview['All Variants Collapsed'],
                 matrix: {
+                    isDisabled: { values: [false, true] },
                     value: { values: [false] },
                     mode: { examples: '*' },
                     renderAdditionalItems: {
@@ -45,21 +46,20 @@ export class AccordionDoc extends BaseDocsBlock {
                     },
                     children: { examples: [TEST_DATA.childrenExampleName] },
                     title: { values: [TEST_DATA.title, TEST_DATA.title2lines] },
-                    isDisabled: { examples: '*' },
                 },
                 cellSize: '160-70',
             });
             docPreview.add({
-                id: TAccordionPreview.Expanded,
+                id: TAccordionPreview['All Variants Expanded'],
                 matrix: {
+                    isDisabled: { values: [false, true] },
                     value: { values: [true] },
                     mode: { examples: '*' },
                     children: { examples: [TEST_DATA.childrenExampleName] },
                     title: { values: [TEST_DATA.title] },
-                    isDisabled: { examples: '*' },
                     padding: { examples: '*' },
                 },
-                cellSize: '280-280',
+                cellSize: '280-190',
             });
         },
     };
