@@ -104,6 +104,7 @@
 **What's Fixed**
 * [PickerInput]: fixed setting emptyValue in case of unselecting all picker items
 * [Tooltip][Dropdown]: fixed recalculation of boundary area(when we shouldn't close body) after target position was changed in closeOnMouseLeave="boundary" mode
+* [DropdownMenu]: prevent page scrolling when navigation through menu items via keyboard up/down button
 
 # 5.7.2 - 12.04.2024
 

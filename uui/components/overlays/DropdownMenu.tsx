@@ -47,8 +47,10 @@ function DropdownMenuContainer(props: DropdownMenuContainerProps) {
 
         if (e.key === IDropdownControlKeys.UP_ARROW) {
             changeFocus(currentlyFocused > 0 ? currentlyFocused - 1 : lastMenuItemsIndex);
+            e.preventDefault();
         } else if (e.key === IDropdownControlKeys.DOWN_ARROW) {
             changeFocus(currentlyFocused < lastMenuItemsIndex ? currentlyFocused + 1 : 0);
+            e.preventDefault();
         } else if (e.key === props.closeOnKey && props.onClose) {
             e.stopPropagation();
             props.onClose();
