@@ -256,7 +256,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-disabled"
                   >
                     <div
                       className="uui-checkbox uui-checked"
@@ -367,7 +367,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-disabled"
                   >
                     <div
                       className="uui-checkbox uui-checked"
