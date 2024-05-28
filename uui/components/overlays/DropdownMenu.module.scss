@@ -5,9 +5,10 @@
     --uui-dropdown_menu-bg: var(--uui-surface-main);
     --uui-dropdown_menu-shadow: var(--uui-shadow-level-2);
     --uui-dropdown_menu-splitter: var(--uui-divider);
-    --uui-dropdown_menu-item-hover: var(--uui-surface-highest);
-    --uui-dropdown_menu-item-active: var(--uui-surface-highest);
+    --uui-dropdown_menu-item-hover: var(--uui-surface-higher);
+    --uui-dropdown_menu-item-active: var(--uui-surface-higher);
     --uui-dropdown_menu-item-text: var(--uui-text-primary);
+    --uui-dropdown-checkmark: var(--uui-info-50);
 
     --uui-dropdown_menu-body-font: var(--uui-font);
     --uui-dropdown_menu-body-font-weight: 400;
@@ -158,4 +159,8 @@
 
 .indent {
     padding-left: 24px;
+}
+
+:global(.uui-dropdown-checkmark) {
+    fill: var(--uui-dropdown-checkmark);
 }

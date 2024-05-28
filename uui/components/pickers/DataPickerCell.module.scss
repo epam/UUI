@@ -15,6 +15,10 @@
     }
 }
 
+.root {
+    --uui-data_cell-checkmark: var(--uui-info-50);
+}
+
 .cell {
     position: relative;
     box-sizing: border-box;
@@ -141,6 +145,6 @@
     fill: var(--uui-icon);
 }
 
-.icon-primary {
-    fill: var(--uui-primary-50);
+:global(.uui-data_cell-checkmark) {
+    fill: var(--uui-data_cell-checkmark);
 }
