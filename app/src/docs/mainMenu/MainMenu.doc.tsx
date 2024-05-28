@@ -45,7 +45,7 @@ export class MainMenuDoc extends BaseDocsBlock {
         preview: (docPreview: DocPreviewBuilder<uui.MainMenuProps>) => {
             const w600_h80: TPreviewCellSize = '600-80';
             docPreview.add({
-                id: TMainMenuPreview['Common Variants'],
+                id: TMainMenuPreview['All Variants'],
                 matrix: {
                     items: { examples: ['Learn'] },
                 },
