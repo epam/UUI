@@ -45,7 +45,7 @@ export class CheckboxDoc extends BaseDocsBlock {
                 id: TCheckboxPreview['Color Variants'],
                 matrix: [
                     {
-                        value: { values: [true] },
+                        value: { values: [true, false] },
                         size: { values: ['18'] },
                         label: { values: [TEST_DATA.label] },
                         ...statesBaseMatrix,
