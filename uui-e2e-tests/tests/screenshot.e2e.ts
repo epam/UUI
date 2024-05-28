@@ -1,4 +1,4 @@
-import { TestBuilder, TComponentId, SKINS } from '../src';
+import { TestBuilder, TComponentId, SKINS } from '../framework';
 import {
     TBadgePreview,
     TButtonPreview,
@@ -25,7 +25,7 @@ import {
     TLabeledInputPreview,
     TMultiSwitchPreview,
     TPaginatorPreview, TMainMenuPreview, TNotificationCardPreview, TTooltipPreview, TDropdownContainerPreview,
-} from '../src/data/previewIds';
+} from '../framework/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
