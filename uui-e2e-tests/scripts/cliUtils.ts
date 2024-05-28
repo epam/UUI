@@ -1,6 +1,6 @@
 // @ts-ignore
 import spawn from 'cross-spawn';
-import { Logger } from '../src/utils/logger';
+import { Logger } from '../framework/utils/logger';
 
 export function isCmdSuccessful(params: { cmd: string, args: string[], cwd?: string }) {
     const { cwd = process.cwd(), cmd, args } = params;

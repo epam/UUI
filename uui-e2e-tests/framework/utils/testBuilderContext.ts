@@ -7,7 +7,12 @@ import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
 import * as console from 'console';
 import { TEngine } from '../types';
 
-const { isCi, UUI_TEST_PARAM_ONLY_FAILED, UUI_TEST_PARAM_CHECK_ISSUES } = readUuiSpecificEnvVariables();
+const {
+    isCi,
+    UUI_TEST_PARAM_ONLY_FAILED,
+    UUI_TEST_PARAM_CHECK_ISSUES,
+    UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR,
+} = readUuiSpecificEnvVariables();
 
 type TScrSizeMap = {
     [component: string]: {
@@ -20,8 +25,6 @@ type TScrSizeMap = {
     }
 };
 type TIssues = { msg: string; exit: boolean }[];
-
-const REMOVE_OBSOLETE_SCR = false;
 
 export class TestBuilderContext {
     private seenTestNames: Set<string> = new Set();
@@ -70,8 +73,10 @@ export class TestBuilderContext {
                 const scrSize = fs.statSync(scrFileFullPath).size;
                 const isObsoleteScr = !this.seenTestNames.has(testName) || (this.onlyChromiumTests.has(testName) && engineName !== TEngine.chromium);
                 if (isObsoleteScr) {
+                    if (UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR) {
+                        fs.rmSync(scrFileFullPath);
+                    }
                     obsoleteScr.push(scrFileFullPath);
-                    REMOVE_OBSOLETE_SCR && fs.rmSync(scrFileFullPath);
                 }
                 if (engineName === TEngine.chromium && !isObsoleteScr) {
                     // Always use chromium engine. It does not matter which engine to use for this check.
@@ -98,7 +103,7 @@ export class TestBuilderContext {
         console.log(`Total number of tests: ${numOfAllEnginesTests * 2 + numOfChromiumOnlyTests} = ${numOfAllEnginesTests} * ${numOfEngines}(engines) + ${numOfChromiumOnlyTests}(only chromium)`);
 
         const issuesArr: TIssues = [];
-        reportObsoleteScr(obsoleteScr, issuesArr);
+        reportObsoleteScr(obsoleteScr, issuesArr, !!UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR);
         reportEqualPreview(scrSizeMap, issuesArr);
         reportUnnecessarySkinTests(scrSizeMap, issuesArr);
 
@@ -149,9 +154,10 @@ function reportEqualPreview(scrSizeMap: TScrSizeMap, issuesArr: TIssues) {
     }
 }
 
-function reportObsoleteScr(obsoleteScreenshots: string[], issuesArr: TIssues) {
+function reportObsoleteScr(obsoleteScreenshots: string[], issuesArr: TIssues, isRemoved: boolean) {
     if (obsoleteScreenshots.length > 0) {
-        const msg = `Next screenshots are not used by any test (${obsoleteScreenshots.length}):\n\t${obsoleteScreenshots.join('\n\t')}`;
+        const prefix = isRemoved ? 'Obsolete screenshots were deleted' : 'Obsolete screenshots found';
+        const msg = `${prefix} (${obsoleteScreenshots.length}):\n\t${obsoleteScreenshots.join('\n\t')}`;
         issuesArr.push({ msg, exit: false });
     }
 }
