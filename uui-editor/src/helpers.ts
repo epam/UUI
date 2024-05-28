@@ -2,10 +2,10 @@ import {
     Range, Editor,
 } from 'slate';
 import {
-    PlatePlugin, createPlateEditor, createPlugins, getPlugins, useEditorState,
+    PlatePlugin, Value, createPlateEditor, getPlugins, useEditorState, PlateEditor, createPlugins,
 } from '@udecode/plate-common';
-import { EditorValue } from './types';
 import { createPlateUI } from './components';
+import { PARAGRAPH_TYPE } from './plugins/paragraphPlugin';
 
 export function getBlockDesirialiser(blockTags: Record<string, string>) {
     return (el: any, next: any) => {
@@ -46,18 +46,21 @@ export function isImageSelected(editor: any) {
     return selection && node === 'image';
 }
 
+// TODO: get rid of that
 export function useIsPluginActive(key: string): boolean {
     const editor = useEditorState();
     const plugins = getPlugins(editor);
     return plugins.some((plugin) => plugin.key === key);
 }
 
-export const isEditorValueEmpty = (value: EditorValue) => {
-    return (
-        !value
-        || (value.length === 0
-        || (value.length === 1 && value[0].type === 'paragraph' && value[0].children[0].text === ''))
-    );
+export const isEditorValueEmpty = (value: Value) => {
+    if (!value || value.length === 0) return true;
+
+    const isFirstParagraph = value[0].type === PARAGRAPH_TYPE && value[0].children[0].text === '';
+    if (value.length === 1 && isFirstParagraph) {
+        return true;
+    }
+    return false;
 };
 
 export class SelectionUtils {
@@ -85,7 +88,7 @@ export class SelectionUtils {
     }
 }
 
-export const createTempEditor = (plugins: PlatePlugin[]) => {
+export const createTempEditor = (plugins: PlatePlugin[]): PlateEditor => {
     return createPlateEditor({
         plugins: createPlugins((plugins).flat(), {
             components: createPlateUI(),

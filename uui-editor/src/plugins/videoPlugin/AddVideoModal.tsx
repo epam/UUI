@@ -64,7 +64,15 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                 <ModalHeader title="Add video" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
                     <LabeledInput label="Video url">
-                        <TextInput value={ src } onValueChange={ setSrc } autoFocus />
+                        <TextInput
+                            value={ src }
+                            onValueChange={ (v) => {
+                                if (typeof v === 'string') {
+                                    setSrc(v);
+                                }
+                            } }
+                            autoFocus
+                        />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop>

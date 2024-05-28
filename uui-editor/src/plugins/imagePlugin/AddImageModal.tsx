@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 import { PlateEditor } from '@udecode/plate-common';
-import { IModal, prependHttp } from '@epam/uui-core';
+import { IModal } from '@epam/uui-core';
 import { UploadFileToggler } from '@epam/uui-components';
 import { Button, FlexRow, FlexSpacer, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, LabeledInput, TextInput } from '@epam/uui';
-import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 
 import css from './AddImageModal.module.scss';
 
 interface AddImageModalProps extends IModal<any> {
-    insertImage: (imageURL: string) => void;
     editor: PlateEditor;
 }
 
 export function AddImageModal(props: AddImageModalProps): JSX.Element {
     const { abort } = props;
 
-    // TODO: make image file upload independent form uploadFilePlugin
-    const onFilesAdded = useFilesUploader(props.editor);
-    const [imageURL, setImageURL] = useState(null);
-    const [files, setFiles] = useState([]);
+    const [imageURL, setImageURL] = useState('');
+    const [files, setFiles] = useState<File[]>([]);
 
     return (
         <ModalBlocker { ...props }>
@@ -26,7 +22,15 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                 <ModalHeader title="Add image" onClose={ abort } />
                 <FlexRow cx={ css.inputWrapper }>
                     <LabeledInput label="Image url">
-                        <TextInput value={ imageURL } onValueChange={ (newVal) => setImageURL(newVal) } autoFocus />
+                        <TextInput
+                            value={ imageURL }
+                            onValueChange={ (newVal) => {
+                                if (newVal) {
+                                    setImageURL(newVal);
+                                }
+                            } }
+                            autoFocus
+                        />
                     </LabeledInput>
                 </FlexRow>
                 <ModalFooter borderTop>
@@ -45,13 +49,12 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                         color="primary"
                         caption="Ok"
                         isDisabled={ !imageURL }
-                        onClick={ async () => {
-                            if (files && files.length) {
-                                await onFilesAdded(files);
+                        onClick={ () => {
+                            if (files.length) {
+                                props.success(files);
                             } else {
-                                props.insertImage(prependHttp(imageURL, { https: true }));
+                                props.success(imageURL);
                             }
-                            props.success(true);
                         } }
                     />
                 </ModalFooter>

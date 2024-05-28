@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
     PlateElement,
     withHOC,
@@ -16,12 +16,6 @@ import cx from 'classnames';
 import css from './TableElement.module.scss';
 import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
 
-interface OldTableElement extends TTableElement {
-    data?: {
-        cellSizes?: number[];
-    };
-}
-
 const getDefaultColWidths = (columnsNumber: number) =>
     Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
 
@@ -29,20 +23,16 @@ const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ clas
     const { isSelectingCell, minColumnWidth, marginLeft } = useTableElementState();
     const { props: tableProps, colGroupProps } = useTableElement();
 
-    const element: OldTableElement = props.element;
+    const element = props.element as TTableElement;
     const tableStore = useTableStore().get;
 
-    if (!element.colSizes) {
-        element.colSizes = (element as OldTableElement).data?.cellSizes
-            || getDefaultColWidths(getTableColumnCount(element));
-    }
-
     const colSizeOverrides = tableStore.colSizeOverrides();
-    const currentColSizes = element.colSizes.map(
-        (size, index) => colSizeOverrides?.get(index) || size || EMPTY_COL_WIDTH,
-    );
 
-    const tableWidth = currentColSizes.reduce((acc, cur) => acc + cur, 0);
+    const currentColSizes = useMemo(() => {
+        const sizes = !element.colSizes ? getDefaultColWidths(getTableColumnCount(element)) : element.colSizes;
+        return sizes.map((size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH);
+    }, [colSizeOverrides, element]);
+    const tableWidth = useMemo(() => currentColSizes.reduce((acc, cur) => acc + cur, 0), [currentColSizes]);
 
     return (
         <div className={ css.tableWrapper } style={ { paddingLeft: marginLeft } }>

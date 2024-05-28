@@ -2,6 +2,7 @@ import {
     createInsertDataPlugin,
     select,
     findEventRange,
+    PlatePlugin,
 } from '@udecode/plate-common';
 import {
     UploadFileOptions,
@@ -17,7 +18,7 @@ const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
     return false;
 };
 
-export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
+export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin =>
     createInsertDataPlugin({
         options: { uploadFiles: createFileUploader(uploadOptions) },
         handlers: {

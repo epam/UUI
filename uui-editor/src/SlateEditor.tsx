@@ -1,8 +1,9 @@
 import React, {
-    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useMemo, useRef,
+    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
-    IEditable, IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
+    IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
+    IEditable,
 } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui';
 import {
@@ -10,26 +11,22 @@ import {
 } from '@udecode/plate-common';
 
 import { createPlateUI } from './components';
-import { migrateSchema } from './migration';
-import { baseMarksPlugin, paragraphPlugin } from './plugins';
 import { Toolbars } from './implementation/Toolbars';
 import { EditorValue } from './types';
-import { defaultPlugins } from './defaultPlugins';
 
 import css from './SlateEditor.module.scss';
+import { useFocusEvents } from './plugins/eventEditorPlugin';
 import { isEditorValueEmpty } from './helpers';
-import { useFocusEvents } from './plugins/eventEditorPlugin/eventEditorPlugin';
-
-const basePlugins: PlatePlugin[] = [
-    ...baseMarksPlugin(),
-    ...defaultPlugins,
-];
+import { getMigratedPlateValue, isPlateValue } from './migrations';
 
 const disabledPlugins = { insertData: true };
 
-interface PlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface PlateEditorProps
+    extends IEditable<EditorValue>,
+    IHasCX,
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    plugins: PlatePlugin[];
     isReadonly?: boolean;
-    plugins?: any[];
     autoFocus?: boolean;
     minHeight?: number | 'none';
     placeholder?: string;
@@ -42,25 +39,41 @@ interface PlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     toolbarPosition?: 'floating' | 'fixed';
 }
 
-const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, ref) => {
-    const currentId = useRef(String(Date.now()));
+export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, ref) => {
+    const [currentId] = useState(String(Date.now()));
     const editorRef = useRef<PlateEditor | null>(null);
     const editableWrapperRef = useRef<HTMLDivElement>();
 
-    /** config */
-    const plugins = useMemo(
-        () => createPlugins((props.plugins || [paragraphPlugin()]).flat(), { components: createPlateUI() }),
-        [props.plugins],
+    /** value */
+    /** consider legacy slate to plate content migraions once. should be deprecated in the near future */
+    const plateValue: Value | undefined = useMemo(
+        () => {
+            return getMigratedPlateValue(props.value);
+        },
+        [props.value],
     );
 
-    /** value */
-    const value = useMemo(() => { return migrateSchema(props.value); }, [props.value]);
+    const initialPlateValue: Value | undefined = useMemo(() => {
+        const content = editorRef.current?.children;
+        if (content) return content;
+
+        return plateValue;
+    }, [plateValue]);
+
+    const { isReadonly, onValueChange } = props;
     const onChange = useCallback((v: Value) => {
-        if (props.isReadonly) {
+        if (isReadonly) {
             return;
         }
-        props.onValueChange(v);
-    }, [props.isReadonly, props.onValueChange]);
+
+        onValueChange(v);
+    }, [isReadonly, onValueChange]);
+
+    /** config */
+    const plugins = useMemo(
+        () => createPlugins(props.plugins, { components: createPlateUI() }),
+        [props.plugins],
+    );
 
     /** styles */
     const contentStyle = useMemo(() => ({ minHeight: props.minHeight }), [props.minHeight]);
@@ -76,7 +89,12 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
 
     /** focus management */
     /** TODO: move to plate */
-    useFocusEvents({ editorId: currentId.current, editorWrapperRef: editableWrapperRef, isReadonly: props.isReadonly });
+    useFocusEvents({
+        editorId: currentId,
+        editorWrapperRef: editableWrapperRef,
+        isReadonly: props.isReadonly,
+    });
+
     const autoFocusRef = useCallback((node: HTMLDivElement) => {
         if (!editableWrapperRef.current && node) {
             editableWrapperRef.current = node;
@@ -87,28 +105,30 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
         }
         return editableWrapperRef;
     }, [props.autoFocus, props.isReadonly]);
+    const composedRef = useComposedRef(autoFocusRef, ref);
 
     /** render related */
     const renderEditable = useCallback(() => {
+        const editor = editorRef.current;
+        const displayPlaceholder = !editor || (!!editor.children && isEditorValueEmpty(editor.children));
+        const placeholder = displayPlaceholder ? props.placeholder : undefined;
         return (
             <Fragment>
                 <PlateContent
-                    id={ currentId.current }
+                    id={ currentId }
                     autoFocus={ props.autoFocus }
                     readOnly={ props.isReadonly }
                     className={ css.editor }
                     onKeyDown={ props.onKeyDown }
                     onBlur={ props.onBlur }
                     onFocus={ props.onFocus }
-                    placeholder={ editorRef.current
-                        && isEditorValueEmpty(editorRef.current.children)
-                        ? props.placeholder : undefined }
+                    placeholder={ placeholder }
                     style={ contentStyle }
                 />
                 <Toolbars toolbarPosition={ props.toolbarPosition } />
             </Fragment>
         );
-    }, [props.autoFocus, contentStyle, props.isReadonly, props.onBlur, props.onFocus, props.onKeyDown, props.placeholder, props.toolbarPosition]);
+    }, [currentId, props.autoFocus, props.isReadonly, props.onKeyDown, props.onBlur, props.onFocus, props.placeholder, props.toolbarPosition, contentStyle]);
 
     /** could not be memoized, since slate is uncontrolled component */
     const editorContent = props.scrollbars
@@ -117,22 +137,26 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
 
     /** force update of uncontrolled component */
     const forceUpdate = useForceUpdate();
-    if (value && editorRef.current && editorRef.current.children !== value) {
-        editorRef.current.children = value;
-        forceUpdate();
-    }
+    useEffect(() => {
+        if (isPlateValue(plateValue) && editorRef.current && editorRef.current.children !== plateValue) {
+            editorRef.current.children = plateValue;
+            forceUpdate();
+        }
+    }, [forceUpdate, plateValue]);
 
     return (
         <Plate
-            id={ currentId.current }
-            initialValue={ value }
+            key={ currentId }
+            id={ currentId }
+            initialValue={ initialPlateValue }
+            normalizeInitialValue // invokes plate migrations
             plugins={ plugins }
             onChange={ onChange }
             editorRef={ editorRef }
             disableCorePlugins={ disabledPlugins }
         >
             <div
-                ref={ useComposedRef(autoFocusRef, ref) }
+                ref={ composedRef }
                 className={ editorWrapperClassNames }
                 { ...props.rawProps }
             >
@@ -141,5 +165,3 @@ const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, re
         </Plate>
     );
 }));
-
-export { SlateEditor, basePlugins };
