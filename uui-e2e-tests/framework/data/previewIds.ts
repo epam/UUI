@@ -3,7 +3,7 @@
  * Preview IDs are used for screenshot tests
  *
  * These files MUST be kept in sync:
- * app/src/docs/_types/previewIds.ts --> uui-e2e-tests/src/data/previewIds.ts
+ * app/src/docs/_types/previewIds.ts --> uui-e2e-tests/framework/data/previewIds.ts
  */
 
 /**
