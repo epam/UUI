@@ -20,13 +20,6 @@ export enum TAvatarStackPreview {
     'Bigger size' = 'Bigger size'
 }
 
-export enum TTextInputPreview {
-    'Form'= 'Form',
-    'Form States'= 'Form States',
-    'Inline'= 'Inline',
-    'Inline States'= 'Inline States'
-}
-
 export enum TAccordionPreview {
     Expanded = 'Expanded',
     Collapsed = 'Collapsed'
@@ -59,16 +52,6 @@ export enum TPickerInputPreview {
     'Cell MultiSelect States'= 'Cell MultiSelect States',
     'Cell MultiSelect Multiline'= 'Cell MultiSelect Multiline',
     'Cell MultiSelect Multiline States'= 'Cell MultiSelect Multiline States'
-}
-
-export enum TDatePickerPreview {
-    Form = 'Form',
-    'Form Opened' = 'Form Opened',
-    'Form States' = 'Form States',
-    Cell = 'Cell',
-    'Cell States' = 'Cell States',
-    Inline = 'Inline',
-    'Inline States' = 'Inline States'
 }
 
 export const TBadgePreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
@@ -116,4 +99,17 @@ export const TRangeDatePickerPreview = {
     ...UTILS.ColorVariants,
     Opened: 'Opened' as const,
     'Opened With Presets': 'Opened With Presets' as const,
+};
+export const TTextInputPreview = {
+    'Form Size Variants': 'Form Size Variants' as const,
+    'Inline Size Variants': 'Inline Size Variants' as const,
+    ...UTILS.ColorVariants,
+};
+export const TDatePickerPreview = {
+    ...UTILS.SizeVariants,
+    ...UTILS.ColorVariants,
+    'Form Opened': 'Form Opened' as const,
+};
+export const TDropdownContainerPreview = {
+    ...UTILS.SizeVariants,
 };

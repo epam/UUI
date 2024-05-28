@@ -5,8 +5,8 @@
   * removed `SnackbarCard` component in Loveship, use `NotificationCard` instead;
   * removed `ControlWrapper` component in Loveship and Promo;
 * [Breaking change][Loveship]: removed previously deprecated props:
-  * [All skins]: 
-    * [DropdownContainer]: removed 'color' prop;  
+  * [All skins]:
+    * [DropdownContainer]: removed 'color' prop;
     * [TabButton][Tag][Badge][LinkButton][Button][MainMenuButton]: removed 'captionCx' prop. Please use 'cx' prop with cascading to 'uui-caption' global class;
     * [Text]: removed 'font' prop;
     * [IconContainer]: removed color prop. Define icon color by yourself, e.g. via cx or style prop;
@@ -17,7 +17,7 @@
     * [IconButton]: removed 'night200', 'night300', 'night400' colors;
     * [NotificationCard]: removed 'night600' color, use 'primary' instead;
     * [Tooltip]: removed 'night900' prop, use 'neutral' instead;
-    * [Badge]: 
+    * [Badge]:
       * removed 'semitransparent' fill value, use 'outline' instead;
       * removed shape prop, 'round' value will be used by default. If you use 'square' value, use `Tag` component instead;
       * removed '12' size;
@@ -88,10 +88,18 @@
 * [ControlGroup] shared border is made flat
 * [DatePickerBody] props breaking changes
 * [RangeDatePickerBody] props breaking changes
-* [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`.
-* [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput.
-* [DataTable]: added property columnsGap?: '12' | '24'. When you want to see more data you can set the property columnsGap: '12' and the gaps between table columns will be smaller.
-* [DataTable]: added property headerSize?: '36' | '48'. You can set the property headerSize: '48' and the captions will be split into two lines. It's not works with editable tables.
+* [PickerInput]: added property `renderTag` it's a callback for rendering custom Tags in selectionMode: `multi`
+* [PickerTogglerTag]: it's a new component, and we recommend it to use in the `renderTag` callback in the PickerInput
+* [DataTable]: added property columnsGap?: '12' | '24'. When you want to see more data you can set the property columnsGap: '12' and the gaps between table columns will be smaller
+* [DataTable]: added property headerSize?: '36' | '48'. You can set the property headerSize: '48' and the captions will be split into two lines. It's not works with editable tables
+* [uui-editor]:
+  * `plugins` prop now typed as `PlatePlugin` which you can import from editor package
+  * `basePlugins` deprecated, use `[...defaultPlugins, ...baseMarksPlugin(), ...]` instead
+  * `migrateSlateSchema` now typed. There are type guards to distinct slate or plate content types: `isSlateSchema`, `isPlateValue` or `getMigratedPlateValue` which will do migration if needed
+  * value prop could be updated without remounting component. `key` update could be removed if value changes for better performance
+  * `el.data.colSpan` and `el.data.rowSpan` removed from table cell node as it has duplicates: `el.colSpan` and `el.rowSpan`
+  * `data.cellSizes` removed from table element as it has duplicate: `el.colSizes`
+  * `data.align` removed from image element as it has duplicate: `el.align`
 
 **What's Fixed**
 [PickerInput]: fixed setting emptyValue in case of unselecting all picker items

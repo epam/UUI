@@ -20,6 +20,7 @@ import {
     paragraphPlugin,
     uploadFilePlugin,
     defaultPlugins,
+    separatorPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
@@ -45,6 +46,7 @@ const plugins = [
     videoPlugin(),
     iframePlugin(),
     codeBlockPlugin(),
+    separatorPlugin(),
 ];
 
 const serializeHTML = createSerializer();
