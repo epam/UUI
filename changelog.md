@@ -102,7 +102,8 @@
   * `data.align` removed from image element as it has duplicate: `el.align`
 
 **What's Fixed**
-[PickerInput]: fixed setting emptyValue in case of unselecting all picker items
+* [PickerInput]: fixed setting emptyValue in case of unselecting all picker items
+* [Tooltip][Dropdown]: fixed recalculation of boundary area(when we shouldn't close body) after target position was changed in closeOnMouseLeave="boundary" mode
 
 # 5.7.2 - 12.04.2024
 

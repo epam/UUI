@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { defineConfig, devices, type TraceMode } from '@playwright/test';
-import { SHARED_DEVICE_CFG } from './src/constants';
+import { SHARED_DEVICE_CFG } from './framework/constants';
 import { readEnvFile } from './scripts/envFileUtils';
 import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 
@@ -28,7 +28,7 @@ const outputDir = `${parentDir}tests/.report/results`;
 const outputFolder = `${parentDir}tests/.report/report`;
 export const outputJsonFile = `${parentDir}tests/.report/report.json`;
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}';
-export const stylePath = `${parentDir}src/fixtures/screenshot.css`;
+export const stylePath = `${parentDir}framework/fixtures/screenshot.css`;
 
 export default defineConfig({
     timeout,
