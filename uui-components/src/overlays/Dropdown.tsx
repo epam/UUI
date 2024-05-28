@@ -117,7 +117,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         const areaPadding = 30;
         const {
             y, x, height, width,
-        } = this.state.bodyBoundingRect;
+        } = this.bodyNode.getBoundingClientRect();
 
         if (y && x && width && height) {
             return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
@@ -241,18 +241,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         const setRef = (node: HTMLElement) => {
             (ref as React.RefCallback<HTMLElement>)(node);
             this.bodyNode = node;
-            if (this.bodyNode && this.props.closeOnMouseLeave === 'boundary') {
-                const {
-                    x, y, height, width,
-                } = this.bodyNode.getBoundingClientRect();
-                if (x && y && !this.state.bodyBoundingRect.y && !this.state.bodyBoundingRect.x) {
-                    this.setState({
-                        bodyBoundingRect: {
-                            y, height, width, x,
-                        },
-                    });
-                }
-            }
         };
 
         if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && this.isOpened()) {

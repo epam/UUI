@@ -1,5 +1,5 @@
 import { readEnvFile } from './envFileUtils';
-import { Logger } from '../src/utils/logger';
+import { Logger } from '../framework/utils/logger';
 import { CONTAINER_ENGINES, ENV_FILES } from './constants';
 import { isCmdSuccessful } from './cliUtils';
 

@@ -62,14 +62,14 @@ export class TooltipDoc extends BaseDocsBlock {
                 ),
             };
             docPreview.add({
-                id: TTooltipPreview['Common Variants'],
+                id: TTooltipPreview['Color Variants'],
                 matrix: {
                     closeOnMouseLeave: { values: [false] },
                     value: { values: [true] },
                     placement: { values: ['bottom-start'] },
-                    color: { examples: '*' },
                     children: { values: [TEST_DATA.children] },
                     content: { values: [TEST_DATA.content] },
+                    color: { examples: '*' },
                 },
                 cellSize: '65-90',
             });
