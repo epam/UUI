@@ -12,18 +12,8 @@
 const UTILS = {
     SizeVariants: { 'Size Variants': 'Size Variants' as const },
     ColorVariants: { 'Color Variants': 'Color Variants' as const },
-    CommonVariants: { 'Common Variants': 'Common Variants' as const },
+    AllVariants: { 'All Variants': 'All Variants' as const },
 };
-
-export enum TAvatarStackPreview {
-    'Smaller size' = 'Smaller size',
-    'Bigger size' = 'Bigger size'
-}
-
-export enum TAccordionPreview {
-    Expanded = 'Expanded',
-    Collapsed = 'Collapsed'
-}
 
 export enum TPickerInputPreview {
     // FORM
@@ -55,22 +45,22 @@ export enum TPickerInputPreview {
 }
 
 export const TBadgePreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
-export const TCheckboxPreview = { ...UTILS.CommonVariants };
+export const TCheckboxPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TCountIndicatorPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TIconButtonPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TLinkButtonPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
-export const TMainMenuPreview = { ...UTILS.CommonVariants };
+export const TMainMenuPreview = { ...UTILS.AllVariants };
 export const TMultiSwitchPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TNotificationCardPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TNumericInputPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TPaginatorPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TRadioGroupPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TRadioInputPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
-export const TSwitchPreview = { ...UTILS.CommonVariants };
+export const TSwitchPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TTagPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TTextAreaPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
 export const TTextPreview = { ...UTILS.SizeVariants, ...UTILS.ColorVariants };
-export const TTooltipPreview = { ...UTILS.CommonVariants };
+export const TTooltipPreview = { ...UTILS.ColorVariants };
 export const TAlertPreview = {
     ...UTILS.ColorVariants,
     'Layout with icon': 'Layout with icon' as const,
@@ -112,4 +102,12 @@ export const TDatePickerPreview = {
 };
 export const TDropdownContainerPreview = {
     ...UTILS.SizeVariants,
+};
+export const TAvatarStackPreview = {
+    'Smaller size': 'Smaller size',
+    'Bigger size': 'Bigger size',
+};
+export const TAccordionPreview = {
+    'All Variants Expanded': 'All Variants Expanded',
+    'All Variants Collapsed': 'All Variants Collapsed',
 };

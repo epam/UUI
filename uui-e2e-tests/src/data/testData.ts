@@ -111,9 +111,9 @@ type TPreviewIds<PreviewMap extends object> = (PreviewMap[keyof PreviewMap])[];
  * Keep list of previews in sync with corresponding *.doc.tsx files
  */
 export type TPreviewIdByComponentId = {
-    [TComponentId.accordion]: TAccordionPreview[],
+    [TComponentId.accordion]: TPreviewIds<typeof TAccordionPreview>,
     [TComponentId.alert]: TPreviewIds<typeof TAlertPreview>,
-    [TComponentId.avatarStack]: TAvatarStackPreview[],
+    [TComponentId.avatarStack]: TPreviewIds<typeof TAvatarStackPreview>,
     [TComponentId.badge]: TPreviewIds<typeof TBadgePreview>,
     [TComponentId.button]: TPreviewIds<typeof TButtonPreview>,
     [TComponentId.checkbox]: TPreviewIds<typeof TCheckboxPreview>,
