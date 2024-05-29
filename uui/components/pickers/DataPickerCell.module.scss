@@ -17,9 +17,7 @@
 
 .root {
     --uui-data_cell-checkmark: var(--uui-info-50);
-}
-
-.cell {
+    //
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;

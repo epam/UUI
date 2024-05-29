@@ -63,7 +63,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
             minWidth={ 0 }
             rawProps={ { role: 'cell' } }
             cx={ [
-                css.cell,
+                css.root,
                 props.cx,
                 'data-picker-cell',
                 css['size-' + (props.size || '36')],
