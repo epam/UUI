@@ -12185,11 +12185,14 @@
       "    onSave(state: T): Promise<FormSaveResponse<T> | void>;",
       "    /**",
       "     * Called when form is unmounted, but user still have unsaved changes.",
-      "     * Accepts a Promise<boolean> to be returned. If promise resolves to true - save procedure is performed.",
+      "     * Accepts a Promise<boolean | 'remain'> to be returned.",
+      "     * If promise resolves to true - save procedure is performed.",
+      "     * If promise resolves to false - localStorage will be cleaned.",
+      "     * If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.",
       "     * The common use-case is to show a modal with \"Save Changes?\" dialog",
       "     * Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it.",
       "     */",
-      "    beforeLeave?: (() => Promise<boolean>) | null;",
+      "    beforeLeave?: ((nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>) | null;",
       "    /**",
       "     * Used to restore unsaved user edits from the last session (usually to localstorage, via uuiUserSettings context)",
       "     * If unsaved changes are detected, this callback is called. If it is resolved - the form restores unsaved edits.",
@@ -12290,13 +12293,16 @@
       "comment": {
        "raw": [
         "Called when form is unmounted, but user still have unsaved changes.",
-        " Accepts a Promise<boolean> to be returned. If promise resolves to true - save procedure is performed.",
+        " Accepts a Promise<boolean | 'remain'> to be returned.",
+        " If promise resolves to true - save procedure is performed.",
+        " If promise resolves to false - localStorage will be cleaned.",
+        " If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.",
         " The common use-case is to show a modal with \"Save Changes?\" dialog",
         " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
        ]
       },
       "typeValue": {
-       "raw": "null | () => Promise<boolean>"
+       "raw": "null | (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>"
       },
       "editor": {
        "type": "func"
@@ -33941,13 +33947,16 @@
       "comment": {
        "raw": [
         "Called when form is unmounted, but user still have unsaved changes.",
-        " Accepts a Promise<boolean> to be returned. If promise resolves to true - save procedure is performed.",
+        " Accepts a Promise<boolean | 'remain'> to be returned.",
+        " If promise resolves to true - save procedure is performed.",
+        " If promise resolves to false - localStorage will be cleaned.",
+        " If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.",
         " The common use-case is to show a modal with \"Save Changes?\" dialog",
         " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
        ]
       },
       "typeValue": {
-       "raw": "null | () => Promise<boolean>"
+       "raw": "null | (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>"
       },
       "editor": {
        "type": "func"
@@ -69914,6 +69923,11 @@
      "print": [
       "interface DataTableCellMods extends TableSizesAndPositionMods {",
       "    border?: boolean;",
+      "    /**",
+      "     * Defines table columns gap size",
+      "     * @default '24'",
+      "     * */",
+      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -69926,6 +69940,30 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines table columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
       },
       "required": false
      },
@@ -70003,6 +70041,11 @@
      "print": [
       "interface DataTableHeaderCellMods extends BaseRowMods {",
       "    textCase?: 'upper' | 'normal';",
+      "    /**",
+      "     * Defines table columns gap size",
+      "     * @default '24'",
+      "     * */",
+      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -70018,6 +70061,30 @@
        "options": [
         "upper",
         "normal"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines table columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
        ]
       },
       "required": false
@@ -70063,6 +70130,11 @@
      "print": [
       "interface DataTableHeaderRowMods extends BaseRowMods {",
       "    textCase?: 'upper' | 'normal';",
+      "    /**",
+      "     * Defines table columns gap size",
+      "     * @default '24'",
+      "     * */",
+      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -70078,6 +70150,30 @@
        "options": [
         "upper",
         "normal"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines table columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
        ]
       },
       "required": false
@@ -70369,6 +70465,31 @@
       "required": false
      },
      {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines table columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:DataTableHeaderRowMods",
+      "required": false
+     },
+     {
       "uid": "size",
       "name": "size",
       "typeValue": {
@@ -70539,6 +70660,16 @@
       "     * Enables collapse/expand all functionality.",
       "     * */",
       "    showFoldAll?: boolean;",
+      "    /**",
+      "     * Defines table header size",
+      "     * @default '36'",
+      "     * */",
+      "    headerSize?: '36' | '48';",
+      "    /**",
+      "     * Defines table columns gap size",
+      "     * @default '24'",
+      "     * */",
+      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -70706,6 +70837,54 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "headerSize",
+      "name": "headerSize",
+      "comment": {
+       "raw": [
+        "Defines table header size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "36",
+        "48"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines table columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
       },
       "required": false
      },
@@ -70991,6 +71170,11 @@
      "print": [
       "interface DataTableRowMods extends TableSizesAndPositionMods {",
       "    borderBottom?: any;",
+      "    /**",
+      "     * Defines columns gap size",
+      "     * @default '24'",
+      "     * */",
+      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -71000,6 +71184,30 @@
       "name": "borderBottom",
       "typeValue": {
        "raw": "any"
+      },
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
       },
       "required": false
      },
@@ -71885,6 +72093,31 @@
       "name": "borderBottom",
       "typeValue": {
        "raw": "any"
+      },
+      "from": "@epam/uui:DataTableRowMods",
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
       },
       "from": "@epam/uui:DataTableRowMods",
       "required": false
@@ -75426,7 +75659,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'error' | 'neutral' | 'secondary'"
+       "raw": "'info' | 'success' | 'warning' | 'error' | 'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'"
       },
       "editor": {
        "type": "oneOf",
@@ -75435,8 +75668,11 @@
         "success",
         "warning",
         "error",
+        "critical",
         "neutral",
-        "secondary"
+        "primary",
+        "secondary",
+        "accent"
        ]
       },
       "from": "@epam/uui:IconButtonMods",
@@ -98492,7 +98728,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray30' | 'gray60' | 'neutral' | 'secondary' | 'gray50'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray30' | 'gray60' | 'critical' | 'neutral' | 'accent' | 'primary' | 'secondary' | 'gray50'"
       },
       "editor": {
        "type": "oneOf",
@@ -98507,7 +98743,10 @@
         "error",
         "gray30",
         "gray60",
+        "critical",
         "neutral",
+        "accent",
+        "primary",
         "secondary",
         "gray50"
        ]
@@ -104877,7 +105116,7 @@
        }
       },
       "typeValue": {
-       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night600' | 'neutral' | 'secondary' | 'night500'"
+       "raw": "'sky' | 'grass' | 'sun' | 'fire' | 'info' | 'success' | 'warning' | 'error' | 'cobalt' | 'violet' | 'fuchsia' | 'white' | 'night600' | 'critical' | 'neutral' | 'accent' | 'primary' | 'secondary' | 'night500'"
       },
       "typeValueRef": "@epam/loveship:IconButtonColor",
       "editor": {
@@ -104896,7 +105135,10 @@
         "fuchsia",
         "white",
         "night600",
+        "critical",
         "neutral",
+        "accent",
+        "primary",
         "secondary",
         "night500"
        ]
@@ -108792,14 +109034,21 @@
      "nameFull": "EditorValue"
     },
     "src": "uui-editor/src/types.ts",
+    "comment": {
+     "raw": [
+      "null historically added and should also be deprecated to in favor of undefined"
+     ]
+    },
     "exported": true
    },
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "null | Value",
+     "raw": "undefined | null | Value | SlateSchema",
      "print": [
-      "type EditorValue = Value | null;"
+      "/** Slate schema needed to support legacy format which should be deprecated */",
+      "/** null historically added and should also be deprecated to in favor of undefined */",
+      "type EditorValue = Value | SlateSchema | undefined | null;"
      ]
     }
    }
@@ -108844,6 +109093,275 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui-editor:SlateSchema": {
+   "summary": {
+    "module": "@epam/uui-editor",
+    "typeName": {
+     "name": "SlateSchema",
+     "nameFull": "SlateSchema"
+    },
+    "src": "uui-editor/src/migrations/types.ts",
+    "comment": {
+     "raw": [
+      "Deprecated Slate content structure"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "SlateSchema",
+     "print": [
+      "/**",
+      " * Legacy slate schema types",
+      " */",
+      "/** Deprecated Slate content structure */",
+      "type SlateSchema = {",
+      "    /** object type */",
+      "    object: 'value';",
+      "    /** document object */",
+      "    document: {",
+      "        object: 'document';",
+      "        nodes: SlateElement[];",
+      "        data?: {",
+      "            [key: string]: unknown;",
+      "        };",
+      "        [key: string]: unknown;",
+      "    };",
+      "    /** any other key */",
+      "    [key: string]: unknown;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "[key: string]",
+      "name": "[key: string]",
+      "comment": {
+       "raw": [
+        "any other key"
+       ]
+      },
+      "typeValue": {
+       "raw": "unknown"
+      },
+      "required": true
+     },
+     {
+      "uid": "object",
+      "name": "object",
+      "comment": {
+       "raw": [
+        "object type"
+       ]
+      },
+      "typeValue": {
+       "raw": "'value'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "value"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "document",
+      "name": "document",
+      "comment": {
+       "raw": [
+        "document object"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ [key: string]: unknown; object: 'document'; nodes: SlateElement[]; data?: { [key: string]: unknown; } | undefined; }"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "node_modules/@udecode/plate-core/dist/index.d.ts:PlatePlugin": {
+   "summary": {
+    "module": "node_modules/@udecode/plate-core/dist/index.d.ts",
+    "typeName": {
+     "name": "PlatePlugin",
+     "nameFull": "PlatePlugin<P, V, E>"
+    },
+    "src": "node_modules/@udecode/plate-core/dist/index.d.ts",
+    "comment": {
+     "raw": [
+      "The `PlatePlugin` interface is a base interface for all plugins."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "PlatePlugin<P, V, E>",
+     "print": [
+      "/**",
+      " * The `PlatePlugin` interface is a base interface for all plugins.",
+      " */",
+      "type PlatePlugin<P = PluginOptions, V extends Value = Value, E extends PlateEditor<V> = PlateEditor<V>> = Required<PlatePluginKey> & {",
+      "    editor?: Nullable<{",
+      "        /**",
+      "         * Properties used by the `insertData` core plugin to deserialize inserted data to a slate fragment.",
+      "         * The fragment will be inserted to the editor if not empty.",
+      "         */",
+      "        insertData?: PlatePluginInsertData<V>;",
+      "    }>;",
+      "    /**",
+      "     * Handlers called whenever the corresponding event occurs in the editor.",
+      "     * Event handlers can return a boolean flag to specify whether the event can be treated as being handled.",
+      "     * If it returns `true`, the next handlers will not be called.",
+      "     */",
+      "    handlers?: Nullable<DOMHandlers<P, V, E> & {",
+      "        /**",
+      "         * @see {@link OnChange}",
+      "         */",
+      "        onChange?: OnChange<P, V, E>;",
+      "    }>;",
+      "    /**",
+      "     * Inject into Plate.",
+      "     */",
+      "    inject?: Nullable<{",
+      "        /**",
+      "         * Property used by Plate to inject a component above other plugins `component`.",
+      "         */",
+      "        aboveComponent?: InjectComponent<V>;",
+      "        /**",
+      "         * Property used by Plate to inject a component below other plugins `component`, i.e. above its `children`.",
+      "         */",
+      "        belowComponent?: InjectComponent<V>;",
+      "        /**",
+      "         * Property that can be used by a plugin to allow other plugins to inject code.",
+      "         * For example, if multiple plugins have defined",
+      "         * `inject.editor.insertData.transformData` for `key=KEY_DESERIALIZE_HTML`,",
+      "         * `insertData` plugin will call all of these `transformData` for `KEY_DESERIALIZE_HTML` plugin.",
+      "         * Differs from `overrideByKey` as this is not overriding any plugin.",
+      "         */",
+      "        pluginsByKey?: Record<PluginKey, Partial<PlatePlugin<PluginOptions, V, E>>>;",
+      "    }>;",
+      "    /**",
+      "     * Property used by Plate to render nodes of this `type` as elements, i.e. `renderElement`.",
+      "     */",
+      "    isElement?: boolean;",
+      "    /**",
+      "     * Property used by `inlineVoid` core plugin to set elements of this `type` as inline.",
+      "     */",
+      "    isInline?: boolean;",
+      "    /**",
+      "     * Property used by `isMarkableVoid` core plugin to set void elements of this `type` as markable.",
+      "     */",
+      "    isMarkableVoid?: boolean;",
+      "    /**",
+      "     * Property used by Plate to render nodes of this `type` as leaves, i.e. `renderLeaf`.",
+      "     */",
+      "    isLeaf?: boolean;",
+      "    /**",
+      "     * Property used by `inlineVoid` core plugin to set elements of this `type` as void.",
+      "     */",
+      "    isVoid?: boolean;",
+      "    /**",
+      "     * Property used by Plate to enable/disable the plugin.",
+      "     */",
+      "    enabled?: boolean;",
+      "    /**",
+      "     * Extended properties used by any plugin as options.",
+      "     */",
+      "    options?: P;",
+      "    /**",
+      "     * Property used by Plate to render a node by type.",
+      "     * It requires slate node properties to have a `type` property.",
+      "     * @default key",
+      "     */",
+      "    type?: string;",
+      "} & InjectProps<V> & Nullable<{",
+      "    /**",
+      "     * React component rendering a slate element or leaf.",
+      "     * @default DefaultElement | DefaultLeaf",
+      "     */",
+      "    component?: PlatePluginComponent;",
+      "    /**",
+      "     * @see {@link Decorate}",
+      "     */",
+      "    decorate?: Decorate<P, V, E>;",
+      "    /**",
+      "     * Properties used by the HTML deserializer core plugin for each HTML element.",
+      "     */",
+      "    deserializeHtml?: Nullable<DeserializeHtml>;",
+      "    /**",
+      "     * Normalize initial value before passing it into the editor.",
+      "     * @return normalized value",
+      "     */",
+      "    normalizeInitialValue?: (initialValue: V) => V;",
+      "    /**",
+      "     * Property used by Plate to deeply override plugins by key.",
+      "     */",
+      "    overrideByKey?: Record<PluginKey, Partial<PlatePlugin<PluginOptions, V, E>>>;",
+      "    /**",
+      "     * Recursive plugin support to allow having multiple plugins in a single plugin.",
+      "     * Plate eventually flattens all the plugins into the editor.",
+      "     */",
+      "    plugins?: PlatePlugin<PluginOptions, V, E>[];",
+      "    /**",
+      "     * Property used by Plate to override node `component` props.",
+      "     * If function, its returning value will be shallow merged to the old props, with the old props as parameter.",
+      "     * If object, its value will be shallow merged to the old props.",
+      "     */",
+      "    props?: PlatePluginProps<V>;",
+      "    /**",
+      "     * Render a component above `Editable`.",
+      "     */",
+      "    renderAboveEditable?: React__default.FC<{",
+      "        children: React__default.ReactNode;",
+      "    }>;",
+      "    /**",
+      "     * Render a component above `Slate`.",
+      "     */",
+      "    renderAboveSlate?: React__default.FC<{",
+      "        children: React__default.ReactNode;",
+      "    }>;",
+      "    /**",
+      "     * Render a component after `Editable`.",
+      "     */",
+      "    renderAfterEditable?: RenderAfterEditable;",
+      "    /**",
+      "     * Render a component before `Editable`.",
+      "     */",
+      "    renderBeforeEditable?: RenderAfterEditable;",
+      "    /**",
+      "     * Property used by `serializeHtml` util to replace `renderElement` and `renderLeaf` when serializing a node of this `type`.",
+      "     */",
+      "    serializeHtml?: SerializeHtml<V>;",
+      "    /**",
+      "     * Recursive plugin merging.",
+      "     * Can be used to derive plugin fields from `editor` and `plugin`.",
+      "     * The returned value will be deeply merged to the plugin.",
+      "     */",
+      "    then?: (editor: E, plugin: WithPlatePlugin<P, V, E>) => Partial<PlatePlugin<PluginOptions, V, E>> | undefined | void;",
+      "    /**",
+      "     * For internal use. Tracks if then has been replaced for recursive calls.",
+      "     */",
+      "    _thenReplaced?: number;",
+      "    /**",
+      "     * Hook called when the editor is initialized.",
+      "     */",
+      "    useHooks?: (editor: E, plugin: WithPlatePlugin<P, V, E>) => void;",
+      "    /**",
+      "     * Editor method overriders.",
+      "     */",
+      "    withOverrides?: WithOverride<P, V, E>;",
+      "}>;"
+     ]
+    }
    }
   },
   "@types/react:AllHTMLAttributes": {
