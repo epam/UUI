@@ -791,6 +791,18 @@
         --uui-filters_toggler-bg-hover: var(--uui-neutral-30);
     }
 
+    /* DropdownMenu */
+
+    .uui-dropdownMenu-body {
+        --uui-dropdown-selected_mark: var(--uui-info-60);
+    }
+
+    /* PickerInput */
+
+    .uui-pickerInput-body {
+        --uui-pickerInput-selected_mark: var(--uui-info-60);
+    }
+
     /* fonts */
 
     .uui-font-sans {
