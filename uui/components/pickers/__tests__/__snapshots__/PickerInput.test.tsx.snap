@@ -71,7 +71,7 @@ exports[`PickerInput should open body 1`] = `
                   role="option"
                 >
                   <div
-                    class="flexCell cell data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="flexCell root data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
                     role="cell"
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
@@ -115,7 +115,7 @@ exports[`PickerInput should open body 1`] = `
                   role="option"
                 >
                   <div
-                    class="flexCell cell data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="flexCell root data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
                     role="cell"
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
