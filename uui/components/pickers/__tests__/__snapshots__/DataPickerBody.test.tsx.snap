@@ -48,7 +48,7 @@ Array [
     </div>
   </div>,
   <div
-    className="uui-flex-row root size-36 body modal undefined container align-items-center"
+    className="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -604,7 +604,7 @@ Array [
 
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
 <div
-  className="uui-flex-row root size-36 body undefined undefined container align-items-center"
+  className="uui-flex-row root size-36 uui-pickerInput-body undefined undefined container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -638,7 +638,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
 
 exports[`DataPickerBody should be rendered without rows 1`] = `
 <div
-  className="uui-flex-row root size-36 body undefined undefined container align-items-center"
+  className="uui-flex-row root size-36 uui-pickerInput-body undefined undefined container align-items-center"
   style={
     Object {
       "columnGap": undefined,

@@ -217,7 +217,7 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root size-36 body modal undefined container align-items-center"
+          class="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
