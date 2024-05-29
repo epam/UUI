@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { DndActorRenderParams, IHasCX } from '@epam/uui-core';
+import { DndActorRenderParams, IHasCX, uuiElement } from '@epam/uui-core';
 import css from './DropMarker.module.scss';
 
 interface DropMarkerProps extends DndActorRenderParams, IHasCX {
@@ -16,6 +16,7 @@ export function DropMarker(props: DropMarkerProps) {
             <>
                 { props.enableBlocker && <div className={ css.blocker } /> }
                 <div className={ cx([
+                    uuiElement.dropMarker,
                     css.root,
                     css.marker,
                     css[props.position],

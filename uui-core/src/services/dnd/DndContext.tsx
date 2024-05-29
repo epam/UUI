@@ -4,6 +4,7 @@ import { getScrollParentOfEventTarget } from '../../helpers/events';
 import * as React from 'react';
 import { IDndContext } from '../../types/contexts';
 import { BaseContext } from '../BaseContext';
+import isEqual from 'react-fast-compare';
 
 const maxScrollSpeed = 2000; // px/second
 
@@ -12,8 +13,8 @@ export interface DndContextState {
     ghostOffsetX?: number;
     ghostOffsetY?: number;
     ghostWidth?: number;
-
-    renderGhost?(): React.ReactNode;
+    position?: any;
+    renderGhost?(position: any): React.ReactNode;
 }
 
 export class DndContext extends BaseContext<DndContextState> implements IDndContext {
@@ -23,7 +24,8 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private ghostOffsetX: number = 0;
     private ghostOffsetY: number = 0;
     private ghostWidth: number = 300;
-    private renderGhostCallback: () => React.ReactNode = null;
+    private renderGhostCallback: (position: any) => React.ReactNode = null;
+    private position: any;
     private lastScrollTime = new Date().getTime();
     private mouseCoordsService = new MouseCoordsService();
 
@@ -50,13 +52,13 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         return this.mouseCoordsService.getCoords();
     };
 
-    public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode) {
+    public startDrag(node: HTMLElement, data: {}, renderGhost: (position: any) => React.ReactNode) {
         const offset = getOffset(node);
         const mouseCoords = this.mouseCoordsService.getCoords();
 
-        this.ghostOffsetX = offset.left - mouseCoords.mouseDownPageX - parseInt(getComputedStyle(node, null).marginLeft, 10);
-        this.ghostOffsetY = offset.top - mouseCoords.mouseDownPageY - parseInt(getComputedStyle(node, null).marginTop, 10);
-        this.ghostWidth = node.offsetWidth + parseInt(getComputedStyle(node, null).marginLeft, 10) + parseInt(getComputedStyle(node, null).marginRight, 10);
+        this.ghostOffsetX = offset.left - mouseCoords.mouseDownPageX - parseInt(getComputedStyle(node, null).marginLeft);
+        this.ghostOffsetY = offset.top - mouseCoords.mouseDownPageY - parseInt(getComputedStyle(node, null).marginTop);
+        this.ghostWidth = node.offsetWidth + parseInt(getComputedStyle(node, null).marginLeft) + parseInt(getComputedStyle(node, null).marginRight);
 
         this.dragData = data;
         this.renderGhostCallback = renderGhost;
@@ -78,6 +80,21 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         const ev = document.createEvent('Events');
         ev.initEvent('dragstart', true, false);
         document.body.dispatchEvent(ev);
+    }
+
+    public setPosition(position: any) {
+        if (isEqual(this.position, position)) {
+            return;
+        }
+        this.position = position;
+        this.update({
+            isDragging: this.isDragging,
+            ghostOffsetX: this.ghostOffsetX,
+            ghostOffsetY: this.ghostOffsetY,
+            ghostWidth: this.ghostWidth,
+            renderGhost: this.renderGhostCallback,
+            position,
+        });
     }
 
     public endDrag() {

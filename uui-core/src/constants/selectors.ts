@@ -28,6 +28,7 @@ export const uuiElement = {
     modalBlocker: 'uui-modal-blocker',
     modalWindow: 'uui-modal-window',
     textareaCounter: 'uui-textarea-counter',
+    dropMarker: 'uui-drop-marker',
 } as const;
 
 export const uuiMod = {

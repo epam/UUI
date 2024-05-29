@@ -63,7 +63,7 @@ export function ProjectTableDemo() {
 
     const { tree, ...restProps } = useTree({
         type: 'sync',
-        dataSourceState: tableState, 
+        dataSourceState: tableState,
         setDataSourceState: setTableState,
         items,
 
@@ -83,15 +83,15 @@ export function ProjectTableDemo() {
     }, [setValue, tree]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
-        if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
+        if (!params.srcData.isTask) {
             return null;
-        } 
+        }
         const parents = Tree.getPathById(params.dstData.id, tree);
         if (parents.some((parent) => parent.id === params.srcData.id)) {
             return null;
         }
 
-        return { bottom: true, top: true, inside: true };
+        return { bottom: true, top: true };
     }, [tree]);
 
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
@@ -149,7 +149,7 @@ export function ProjectTableDemo() {
 
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
-        
+
         const prevRows = [...rows];
         deleteTask(selectedItem);
         const index = prevRows.findIndex((task) => task.id === selectedItem.id);
@@ -194,7 +194,7 @@ export function ProjectTableDemo() {
         const controlKey = navigator.platform.indexOf('Mac') === 0 ? '⌘' : 'Ctrl';
         return (
             <>
-                { tooltip } 
+                { tooltip }
                 {' '}
                 <br />
                 { `(${controlKey} + ${keybindingWithoutControl})` }

@@ -119,6 +119,11 @@ export interface DataRowPathItem<TId, TItem> {
     isLastChild: boolean;
 }
 
+export interface DataRowDropPosition {
+    position: 'top' | 'bottom';
+    depth: number;
+}
+
 /** A part of the DataRowProps, which can be configured for each data row via getRowOptions callback.
  * Other props in DataRowProps are computed when generating rows.
  */
@@ -130,7 +135,7 @@ export interface DataRowOptions<TItem, TId> extends Partial<IEditable<TItem>>, I
     isSelectable?: boolean;
 
     /** Configures row drag-n-drop options - if it can be dragged, can rows can be dropped into it, etc. */
-    dnd?: IDndActor<any, any>;
+    dnd?: IDndActor<any, any, DataRowDropPosition>;
 
     /** Row click handler */
     onClick?(rowProps: DataRowProps<TItem, TId>): void;
