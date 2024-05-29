@@ -64,14 +64,14 @@ function DropdownMenuContainer(props: DropdownMenuContainerProps) {
             ref={ menuRef }
             width={ props.minWidth }
             lockProps={ { onKeyDown: handleArrowKeys } }
-            cx={ [props.cx, css.root] }
+            cx={ [props.cx] }
         />
     );
 }
 
 export const DropdownMenuBody = withMods<DropdownMenuContainerProps, DropdownMenuContainerProps>(
     DropdownMenuContainer,
-    () => [css.bodyRoot],
+    () => ['uui-dropdownMenu-body'],
     (props) => {
         return ({ closeOnKey: IDropdownControlKeys.ESCAPE, ...props });
     },
@@ -107,7 +107,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
                 color={ isActive ? 'info' : 'neutral' }
                 onClick={ onIconClick }
                 isDisabled={ isDisabled }
-                cx={ cx(css.root, css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
+                cx={ cx(css.icon, iconPosition === 'right' ? css.iconAfter : css.iconBefore) }
             />
         );
 
@@ -127,7 +127,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
 
     const isAnchor = Boolean(link || href);
 
-    const itemClassNames = cx(css.root, props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
+    const itemClassNames = cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
 
     return isAnchor ? (
         <Anchor
@@ -154,14 +154,19 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ref={ ref }
         >
             { getMenuButtonContent() }
-            { isSelected && <IconContainer icon={ systemIcons.accept } cx={ cx(css.root, css.selectedCheckmark) } /> }
+            { isSelected && (
+                <>
+                    <FlexSpacer />
+                    <IconContainer icon={ systemIcons.accept } cx={ css.selectedMark } />
+                </>
+            ) }
         </FlexRow>
     );
 });
 
 export function DropdownMenuSplitter(props: IHasCX) {
     return (
-        <div className={ cx(css.root, props.cx, css.splitterRoot) }>
+        <div className={ cx(props.cx, css.splitterRoot) }>
             <hr className={ css.splitter } />
         </div>
     );
@@ -171,7 +176,7 @@ interface IDropdownMenuHeader extends IHasCX, IHasCaption {}
 
 export function DropdownMenuHeader(props: IDropdownMenuHeader) {
     return (
-        <div className={ cx('uui-dropdown-menu-header', css.root, props.cx, css.headerRoot) }>
+        <div className={ cx('uui-dropdown-menu-header', props.cx, css.headerRoot) }>
             <span className={ css.header }>{ props.caption }</span>
         </div>
     );
@@ -208,7 +213,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
-                    cx={ cx(css.root, css.submenuRootItem) }
+                    cx={ cx(css.submenuRootItem) }
                     icon={ systemIcons.foldingArrow }
                     iconPosition="right"
                     isDropdown={ true }
