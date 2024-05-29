@@ -18,6 +18,7 @@ import { DndContextState } from './DndContext';
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     /** Render callback for DragActor content */
     render(props: DndActorRenderParams): React.ReactNode;
+    renderDragGhost?(props: DndActorRenderParams): React.ReactNode;
 }
 
 const DND_START_THRESHOLD = 5;
@@ -96,8 +97,9 @@ function TREE_SHAKEABLE_INIT() {
             const dist = Math.sqrt(Math.pow(this.state.pointerX - mouseCoords.mousePageX, 2) + Math.pow(this.state.pointerY - mouseCoords.mousePageY, 2));
 
             if (dist > DND_START_THRESHOLD) {
+                document.body.style.cursor = 'grabbing';
                 this.context.uuiDnD.startDrag(this.dndRef.current, this.props.srcData, () =>
-                    this.props.render({
+                    (this.props.renderDragGhost ?? this.props.render)({
                         isDragGhost: true,
                         isDraggedOver: false,
                         isDraggable: false,
@@ -288,6 +290,8 @@ function TREE_SHAKEABLE_INIT() {
                             position: this.state.position,
                         });
                     }
+                    document.body.style.cursor = 'default';
+
                     this.context.uuiDnD.endDrag();
                     this.setState(() => initialState);
                 } else {

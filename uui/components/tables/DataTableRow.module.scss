@@ -6,7 +6,7 @@
         --uui-dt-row-border-width: 1px;
     }
 
-    &:global(.-clickable) {
+    &:global(.-clickable):not(:global(:uui-drag-ghost)) {
         cursor: pointer;
 
         &:hover {
@@ -14,7 +14,7 @@
         }
     }
 
-    &:global(.-draggable) {
+    &:global(.-draggable):not(:global(:uui-drag-ghost)) {
         @include dnd-cursor-style();
     }
 
@@ -32,6 +32,7 @@
 
     &:global(.uui-drag-ghost) {
         @include dnd-ghost-shadow();
+        border-left: 3px solid var(--uui-primary-50);
     }
 
     &:global(.uui-focus) {

@@ -12,6 +12,7 @@
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 300;
 }
 
 .marker {
@@ -21,19 +22,44 @@
 }
 
 .top {
-    top: var(--uui-drop_marker-offset);
+    top: 0;
     left: 0;
     right: 0;
-    height: var(--uui-drop_marker-width);
-    background-color: var(--uui-drop_marker);
+    border-top: 2px solid var(--uui-drop_marker);
+    margin-left: 4px;
+
+    &::before {
+        width: 6px;
+        height: 6px;
+        content: '';
+        background-color: var(--uui-drop_marker);
+        position: absolute;
+        top: -3px;
+        margin-left: -1px;
+        border-radius: 50%;
+    }
 }
 
 .bottom {
-    bottom: var(--uui-drop_marker-offset);
     left: 0;
     right: 0;
-    height: var(--uui-drop_marker-width);
-    background-color: var(--uui-drop_marker);
+    bottom: -1px;
+    border-width: var(--uui-drop_marker-width);
+    border-bottom: 2px solid var(--uui-drop_marker);
+    margin-left: 4px;
+    background-color: red;
+    width: 100%;
+
+    &::before {
+        width: 6px;
+        height: 6px;
+        content: '';
+        background-color: var(--uui-drop_marker);
+        position: absolute;
+        bottom: -3.5px;
+        margin-left: -1px;
+        border-radius: 50%;
+    }
 }
 
 .left {
@@ -53,10 +79,11 @@
 }
 
 .inside {
-    top: 0;
+    top: var(--uui-drop_marker-offset);
     bottom: 0;
     left: 0;
     right: 0;
-    border: var(--uui-drop_marker-width) solid var(--uui-drop_marker);
-    background-color: color-mix(in srgb, var(--uui-surface-highest) 50%, transparent);;
+    border: solid var(--uui-drop_marker);
+    border-width: var(--uui-drop_marker-width);
+    margin-left: 2px;
 }

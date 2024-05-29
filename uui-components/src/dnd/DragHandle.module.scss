@@ -1,6 +1,10 @@
 .container {
     cursor: grab;
 
+    &:global(.uui-drag-ghost) {
+        cursor: grabbing;
+    }
+
     &:global(.uui-drag-handle) {
         &.no-icon {
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMjHxIGmVAAAAI0lEQVQoU2M4e/bsfxAGAgYQRucTVgBj4MJYBZHxwLvhPwMAPCnF0V9FrXoAAAAASUVORK5CYII=');
