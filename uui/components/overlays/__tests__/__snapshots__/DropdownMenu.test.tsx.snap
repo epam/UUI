@@ -2,7 +2,7 @@
 
 exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
 <div
-  className="uui-dropdown-body -lock-focus root bodyRoot root container"
+  className="uui-dropdown-body -lock-focus root uui-dropdownMenu-body container"
   role="menu"
   style={
     Object {
@@ -15,7 +15,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
   tabIndex={-1}
 >
   <div
-    className="uui-flex-row root itemRoot container -clickable align-items-center"
+    className="uui-flex-row itemRoot container -clickable align-items-center"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="menuitem"
@@ -34,14 +34,14 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     </div>
   </div>
   <div
-    className="root splitterRoot"
+    className="splitterRoot"
   >
     <hr
       className="splitter"
     />
   </div>
   <div
-    className="uui-dropdown-menu-header root headerRoot"
+    className="uui-dropdown-menu-header headerRoot"
   >
     <span
       className="header"
@@ -50,7 +50,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     </span>
   </div>
   <div
-    className="uui-flex-row root root submenuRootItem itemRoot container -clickable align-items-center"
+    className="uui-flex-row submenuRootItem itemRoot container -clickable align-items-center"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="menuitem"
@@ -71,7 +71,7 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
       className="flexSpacer"
     />
     <button
-      className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root root icon iconAfter"
+      className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root icon iconAfter"
       tabIndex={-1}
       type="button"
     >

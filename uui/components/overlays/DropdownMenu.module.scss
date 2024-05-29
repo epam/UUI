@@ -1,21 +1,6 @@
 @use 'sass:math';
 @use '../../assets/styles/index' as *;
 
-.root {
-    --uui-dropdown_menu-bg: var(--uui-surface-main);
-    --uui-dropdown_menu-shadow: var(--uui-shadow-level-2);
-    --uui-dropdown_menu-splitter: var(--uui-divider);
-    --uui-dropdown_menu-item-hover: var(--uui-surface-higher);
-    --uui-dropdown_menu-item-active: var(--uui-surface-higher);
-    --uui-dropdown_menu-item-text: var(--uui-text-primary);
-    --uui-dropdown-selected_mark: var(--uui-info-50);
-
-    --uui-dropdown_menu-body-font: var(--uui-font);
-    --uui-dropdown_menu-body-font-weight: 400;
-    --uui-dropdown_menu-item-font: var(--uui-font);
-    --uui-dropdown_menu-item-font-weight: 400;
-}
-
 // TODO: need to revamp
 
 @mixin fillColor($fill, $color: null) {
@@ -58,7 +43,20 @@
     }
 }
 
-.body-root {
+:global(.uui-dropdownMenu-body) {
+    --uui-dropdown_menu-bg: var(--uui-surface-main);
+    --uui-dropdown_menu-shadow: var(--uui-shadow-level-2);
+    --uui-dropdown_menu-splitter: var(--uui-divider);
+    --uui-dropdown_menu-item-hover: var(--uui-surface-higher);
+    --uui-dropdown_menu-item-active: var(--uui-surface-higher);
+    --uui-dropdown_menu-item-text: var(--uui-text-primary);
+    --uui-dropdown-selected_mark: var(--uui-info-50);
+
+    --uui-dropdown_menu-body-font: var(--uui-font);
+    --uui-dropdown_menu-body-font-weight: 400;
+    --uui-dropdown_menu-item-font: var(--uui-font);
+    --uui-dropdown_menu-item-font-weight: 400;
+    //
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
     font-family: var(--uui-dropdown_menu-body-font);
     font-weight: var(--uui-dropdown_menu-body-font-weight);
@@ -161,6 +159,6 @@
     padding-left: 24px;
 }
 
-:global(.uui-dropdown-selected_mark) {
+.selected-mark {
     fill: var(--uui-dropdown-selected_mark);
 }
