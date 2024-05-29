@@ -4,23 +4,42 @@ export type DropPosition = 'top' | 'bottom' | 'left' | 'right' | 'inside';
 
 export type DropPositionOptions = Partial<Record<DropPosition, boolean>>;
 
+export type DefaultDropPositionInfo = {
+    /** Current drop position, indicates where item will be dropped relative to the destination */
+    position: DropPosition;
+};
+
+/**
+ * Parameters which are passed to DndActor canAcceptDrop props, to decide if drop target can accept currently dragged item.
+ */
 export interface AcceptDropParams<TSrcData, TDstData> {
     /** Source item data. This is the srcData of the actor that is being dropped into. */
     srcData: TSrcData;
     /** Destination item data. This is the dstData of the actor into which the drop is performed. */
     dstData?: TDstData;
+
+    /** X offset of mouse pointer relative to the target's left */
     offsetLeft: number;
+
+    /** Y offset of mouse pointer relative to the target's top */
     offsetTop: number;
+
+    /** Target width */
     targetWidth: number;
+
+    /** Target height */
     targetHeight: number;
+
+    /** Mouse delta X from drag start to the current position */
+    mouseDx: number;
+
+    /** Mouse delta Н from drag start to the current position */
+    mouseDy: number;
 }
 
-export interface DropParams<TSrcData, TDstData> extends AcceptDropParams<TSrcData, TDstData> {
-    /** Current drop position, indicates where item will be dropped relative to the destination */
-    position: DropPosition;
-}
+export type DropParams<TSrcData, TDstData, TPositionInfo = DefaultDropPositionInfo> = AcceptDropParams<TSrcData, TDstData> & TPositionInfo;
 
-export interface DndActorRenderParams {
+export type DndActorRenderParams<TPositionInfo extends Object = DefaultDropPositionInfo> = Partial<TPositionInfo> & {
     /** True, if the element can be dragged. Doesn't mean that DnD is active. */
     isDraggable: boolean;
 
@@ -41,9 +60,6 @@ export interface DndActorRenderParams {
 
     /** Drag data associated with the element. Specified always, even if there is no DnD operation happening. */
     dragData?: any;
-
-    /** Drop position. Chosen from accepted drop positions according to pointer coordinates */
-    position?: DropPosition;
 
     /**
      * Event handlers. Component is expected to pass these events to the top element it renders.
@@ -66,19 +82,33 @@ export interface DndActorRenderParams {
 
     /** Ref to the DOM element to perform DnD actions */
     ref?: React.Ref<any>;
-}
+};
 
-export interface IDndActor<TSrcData, TDstData> {
+export interface IDndActor<TSrcData, TDstData, TPositionInfo = DefaultDropPositionInfo> {
     /** Data used when this component acts as a drag source.
      * If provided, it means this component can be dragged. Can be used in combination with dstData.
      */
     srcData?: TSrcData;
+
     /** Data used when this component acts as a drop destination.
      * If provided, it means something can be dragged onto this component. Can be used in combination with srcData.
      */
     dstData?: TDstData;
+
     /** A pure function that gets permitted positions for a drop action */
     canAcceptDrop?(params: AcceptDropParams<TSrcData, TDstData>): DropPositionOptions | null;
+
+    /** A pure function, to decide position relative to an target element (e.g. above/below).
+     *
+     * By default, we call canAcceptDrop, which can return a set of possible options (top/bottom/above/below/inside),
+     * and decide a standard drop position based on this.
+     *
+     * This option allows to override this, and provide your own position types and logic to decide it based on coordinates.
+     *
+     * For example, this is used in DataTableRow to decide relative depth or the row in case of tree table.
+     */
+    getDropPosition?(params: AcceptDropParams<TSrcData, TDstData>): TPositionInfo;
+
     /** Called when accepted drop action performed on this actor. Usually used to reorder and update items */
-    onDrop?(data: DropParams<TSrcData, TDstData>): void;
+    onDrop?(data: DropParams<TSrcData, TDstData, TPositionInfo>): void;
 }

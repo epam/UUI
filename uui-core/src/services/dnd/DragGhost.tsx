@@ -65,13 +65,13 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
                 style={ {
                     position: 'fixed',
                     width: this.state.ghostWidth,
-                    left: this.state.pointerX + this.state.ghostOffsetX,
+                    left: 0, // this.state.pointerX + this.state.ghostOffsetX,
                     top: this.state.pointerY + this.state.ghostOffsetY,
                     pointerEvents: 'none',
                     zIndex: this.layer.zIndex,
                 } }
             >
-                {this.state.renderGhost()}
+                {this.state.renderGhost(this.state.position)}
             </div>
         );
     }
