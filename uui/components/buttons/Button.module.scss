@@ -64,7 +64,7 @@
         @include overflow-ellipsis();
         min-width: 0;
         text-align: center;
-        flex: 1 1 auto;
+        flex: 0 1 auto;
         font-family: var(--uui-btn-font);
         font-weight: var(--uui-btn-font-weight, normal);
         user-select: none;
