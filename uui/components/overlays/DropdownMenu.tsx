@@ -155,7 +155,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             { isSelected && (
                 <>
                     <FlexSpacer />
-                    <IconContainer icon={ systemIcons.accept } cx={ cx(css.root, 'uui-dropdown-checkmark') } />
+                    <IconContainer icon={ systemIcons.accept } cx="uui-dropdown-checkmark" />
                 </>
             ) }
         </FlexRow>
