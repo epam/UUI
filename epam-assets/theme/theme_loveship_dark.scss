@@ -799,14 +799,14 @@
 
     /* DropdownMenu */
 
-    .uui-dropdown-checkmark {
-        --uui-dropdown-checkmark: var(--uui-info-60);
+    .uui-dropdown-selected_mark {
+        --uui-dropdown-selected_mark: var(--uui-info-60);
     }
 
-    /* DataPicker */
+    /* PickerInput */
 
-    .uui-data_cell-checkmark {
-        --uui-data_cell-checkmark: var(--uui-info-60);
+    .uui-pickerInput-selected_mark {
+        --uui-pickerInput-selected_mark: var(--uui-info-60);
     }
 
     /* fonts */

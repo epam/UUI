@@ -85,7 +85,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
         >
           <div
             aria-label="Selected"
-            className="container uui-icon uui-enabled root uui-data_cell-checkmark"
+            className="container uui-icon uui-enabled uui-pickerInput-selected_mark"
             style={Object {}}
           >
             <svg

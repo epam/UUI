@@ -16,8 +16,6 @@
 }
 
 .root {
-    --uui-data_cell-checkmark: var(--uui-info-50);
-    //
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;
@@ -143,6 +141,6 @@
     fill: var(--uui-icon);
 }
 
-:global(.uui-data_cell-checkmark) {
-    fill: var(--uui-data_cell-checkmark);
+:global(.uui-pickerInput-selected_mark) {
+    fill: var(--uui-pickerInput-selected_mark);
 }

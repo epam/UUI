@@ -8,7 +8,7 @@
     --uui-dropdown_menu-item-hover: var(--uui-surface-higher);
     --uui-dropdown_menu-item-active: var(--uui-surface-higher);
     --uui-dropdown_menu-item-text: var(--uui-text-primary);
-    --uui-dropdown-checkmark: var(--uui-info-50);
+    --uui-dropdown-selected_mark: var(--uui-info-50);
 
     --uui-dropdown_menu-body-font: var(--uui-font);
     --uui-dropdown_menu-body-font-weight: 400;
@@ -161,6 +161,6 @@
     padding-left: 24px;
 }
 
-:global(.uui-dropdown-checkmark) {
-    fill: var(--uui-dropdown-checkmark);
+:global(.uui-dropdown-selected_mark) {
+    fill: var(--uui-dropdown-selected_mark);
 }
