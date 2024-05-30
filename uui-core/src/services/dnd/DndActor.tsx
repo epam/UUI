@@ -13,13 +13,14 @@ import {
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../UuiContext';
-import { DndContextState } from './DndContext';
+import { DndContextState, PlaceholderData } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
+    getPlaceholderRowProps?:() => { indent: number, depth: number };
     /** Render callback for DragActor content */
     render(props: DndActorRenderParams, placeholder?: any): React.ReactNode;
     renderDragGhost?(props: DndActorRenderParams): React.ReactNode;
-    renderPlaceholder?(props: DndActorRenderParams): React.ReactNode;
+    renderPlaceholder?(props: DndActorRenderParams & PlaceholderData): React.ReactNode;
 }
 
 const DND_START_THRESHOLD = 5;
@@ -99,17 +100,24 @@ function TREE_SHAKEABLE_INIT() {
 
             if (dist > DND_START_THRESHOLD) {
                 document.body.style.cursor = 'grabbing';
-                this.context.uuiDnD.startDrag(this.dndRef.current, this.props.srcData, () =>
-                    (this.props.renderDragGhost ?? this.props.render)({
-                        isDragGhost: true,
-                        isDraggedOver: false,
-                        isDraggable: false,
-                        isDraggedOut: false,
-                        isDropAccepted: false,
-                        isDndInProgress: true,
-                        eventHandlers: {},
-                        classNames: [uuiDndState.dragGhost],
-                    }));
+                this.context.uuiDnD.startDrag(
+                    this.dndRef.current,
+                    this.props.srcData,
+                    () =>
+                        (this.props.renderDragGhost ?? this.props.render)({
+                            isDragGhost: true,
+                            isDraggedOver: false,
+                            isDraggable: false,
+                            isDraggedOut: false,
+                            isDropAccepted: false,
+                            isDndInProgress: true,
+                            eventHandlers: {},
+                            classNames: [uuiDndState.dragGhost],
+                        }), 
+                    (params: DndActorRenderParams & PlaceholderData) => {
+                        return this.props.renderPlaceholder?.(params);
+                    },
+                );
 
                 this.setState((s) => ({
                     ...s,
@@ -310,7 +318,7 @@ function TREE_SHAKEABLE_INIT() {
             return this.props.render(
                 params,
                 params.isDraggedOver 
-                    ? this.props.renderPlaceholder?.({
+                    ? this.state.dndContextState.renderPlaceholder?.({
                         eventHandlers: {
                             onPointerEnter: () => this.setState((s) => ({ ...s, isMouseOver: true, position })),
                             onPointerLeave: () => this.setState((s) => ({ ...s, isMouseOver: false, position: null })),
@@ -320,17 +328,17 @@ function TREE_SHAKEABLE_INIT() {
                         isDndInProgress: true,
                         isDropAccepted: params.isDropAccepted,
                         isDragGhost: false,
-                        ref: this.dndRef,
                         classNames: null,
                         isDraggable: false,
                         isDraggedOut: false,
                         position,
+                        placeholderRowProps: this.props.getPlaceholderRowProps?.(),
                     })
                     : null,
             );
 
         //     return (
-        //         <>
+        //         <> 
         //             { this.props.render(params) }
         //             {/* { params.isDraggedOver && 'placehoder' } */}
         //         </>

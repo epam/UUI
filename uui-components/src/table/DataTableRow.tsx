@@ -5,6 +5,8 @@ import {
     uuiDndState,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
+import { PlaceholderData } from '@epam/uui-core';
+import css from './DataTableRow.module.scss';
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
@@ -53,15 +55,14 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
-    const renderCellPlaceholder = (column: DataColumnProps<TItem, TId>, idx: number, moveInside?: boolean) => {
+    const renderCellPlaceholder = (column: DataColumnProps<TItem, TId>, idx: number, placeholderData: PlaceholderData['placeholderRowProps'], moveInside?: boolean) => {
         const renderCellCallback = column.renderCell || props.renderCell;
         const isFirstColumn = idx === 0;
         const isLastColumn = !props.columns || idx === props.columns.length - 1;
         const rowPlaceholderProps = {
             ...props,
-            value: { name: 'Placeholder' } as TItem,
-            indent: moveInside ? props.indent + 1 : props.indent,
-            depth: moveInside ? props.depth + 1 : props.depth,
+            indent: moveInside ? placeholderData.indent + 1 : placeholderData.indent,
+            depth: moveInside ? placeholderData.depth + 1 : placeholderData.depth,
             isFoldable: false,
             isFolded: false,
             isFocused: false,
@@ -151,12 +152,12 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             />
         );
     };
-    const renderPlaceholder = (params: Partial<DndActorRenderParams>) => {
+    const renderPlaceholder = (params: Partial<DndActorRenderParams & PlaceholderData>) => {
         return (
             <DataTableRowContainer
                 columns={ [props.columns[0]] }
                 ref={ params.ref || ref }
-                renderCell={ (props, idx) => renderCellPlaceholder(props, idx, params.position === 'inside') }
+                renderCell={ (props, idx) => renderCellPlaceholder(props, idx, params.placeholderRowProps, params.position === 'inside') }
                 rawProps={ {
                     ...props.rawProps,
                     ...params.eventHandlers,
@@ -167,7 +168,10 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
                     uuiMod.selected,
+                    uuiDndState.dragPlaceholder,
                 ] }
+                
+                overlays={ <div className={ css.blocker } /> }
             />
         );
     };
@@ -181,6 +185,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                 render={ (params, placeholder) => renderRow(params, clickHandler, props.renderDropMarkers?.(params), placeholder) }
                 renderDragGhost={ (params) => renderDragGhost(params, clickHandler, props.renderDropMarkers?.(params)) }
                 renderPlaceholder={ (params) => renderPlaceholder(params) }
+                getPlaceholderRowProps={ () => ({ indent: props.indent, depth: props.depth }) }
             />
         );
     } else {
