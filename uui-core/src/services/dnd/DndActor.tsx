@@ -17,8 +17,9 @@ import { DndContextState } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     /** Render callback for DragActor content */
-    render(props: DndActorRenderParams): React.ReactNode;
+    render(props: DndActorRenderParams, placeholder?: any): React.ReactNode;
     renderDragGhost?(props: DndActorRenderParams): React.ReactNode;
+    renderPlaceholder?(props: DndActorRenderParams): React.ReactNode;
 }
 
 const DND_START_THRESHOLD = 5;
@@ -304,8 +305,36 @@ function TREE_SHAKEABLE_INIT() {
                     // }
                 }
             };
+        
+            const { position } = this.state;
+            return this.props.render(
+                params,
+                params.isDraggedOver 
+                    ? this.props.renderPlaceholder?.({
+                        eventHandlers: {
+                            onPointerEnter: () => this.setState((s) => ({ ...s, isMouseOver: true, position })),
+                            onPointerLeave: () => this.setState((s) => ({ ...s, isMouseOver: false, position: null })),
+                            onPointerUp: params.eventHandlers.onPointerUp,
+                        },
+                        isDraggedOver: true,
+                        isDndInProgress: true,
+                        isDropAccepted: params.isDropAccepted,
+                        isDragGhost: false,
+                        ref: this.dndRef,
+                        classNames: null,
+                        isDraggable: false,
+                        isDraggedOut: false,
+                        position,
+                    })
+                    : null,
+            );
 
-            return this.props.render(params);
+        //     return (
+        //         <>
+        //             { this.props.render(params) }
+        //             {/* { params.isDraggedOver && 'placehoder' } */}
+        //         </>
+        //     );
         }
     };
 }
