@@ -32,12 +32,13 @@ export const IconButton = withMods<uuiComponents.IconButtonProps, IconButtonProp
     uuiComponents.IconButton,
     applyIconButtonMods,
     (props) => {
-        if (__DEV__ && ['info', 'success', 'error'].includes(props.color)) {
+        const isDeprecated = ['info', 'success', 'error', 'warning'].includes(props.color);
+        if (__DEV__ && isDeprecated) {
             devLogger.warnAboutDeprecatedPropValue<IconButtonProps, 'color'>({
                 component: 'IconButton',
                 propName: 'color',
                 propValue: props.color,
-                condition: () => ['info', 'success', 'error', 'warning'].includes(props.color),
+                condition: () => isDeprecated,
             });
         }
         return {
