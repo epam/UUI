@@ -431,7 +431,7 @@
 
     /* IconButton */
 
-    .uui-icon_button:is(.uui-color-info, .uui-color-primary, .uui-color-success, .uui-color-grass, .uui-color-error, .uui-color-critical) {
+    .uui-icon_button:is(.uui-color-info, .uui-color-primary, .uui-color-sky, .uui-color-success, .uui-color-accent, .uui-color-grass .uui-color-error, .uui-color-critical, .uui-color-sun, .uui-color-fire) {
         --uui-icon_btn: var(--uui-color-60);
         --uui-icon_btn-hover: var(--uui-color-70);
         --uui-icon_btn-active: var(--uui-color-70);
