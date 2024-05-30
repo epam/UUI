@@ -371,6 +371,11 @@
         --uui-icon_btn-active: var(--uui-neutral-70);
     }
 
+    .uui-icon_button.uui-color-white {
+        --uui-icon_btn-hover: var(--uui-neutral-20);
+        --uui-icon_btn-active: var(--uui-neutral-30);
+    }
+
     /* LinkButton */
 
     .uui-link_button.uui-color-white {
