@@ -53,32 +53,68 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
-    const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
+    const renderCellPlaceholder = (column: DataColumnProps<TItem, TId>, idx: number, moveInside?: boolean) => {
+        const renderCellCallback = column.renderCell || props.renderCell;
+        const isFirstColumn = idx === 0;
+        const isLastColumn = !props.columns || idx === props.columns.length - 1;
+        const rowPlaceholderProps = {
+            ...props,
+            value: { name: 'Placeholder' } as TItem,
+            indent: moveInside ? props.indent + 1 : props.indent,
+            depth: moveInside ? props.depth + 1 : props.depth,
+            isFoldable: false,
+            isFolded: false,
+            isFocused: false,
+        };
+
+        const rowLensPlaceholder = Lens.onEditable(rowPlaceholderProps as IEditable<TItem>);
+
+        return renderCellCallback?.({
+            key: column.key,
+            column,
+            rowProps: rowPlaceholderProps,
+            index: idx,
+            isFirstColumn,
+            isLastColumn,
+            rowLens: rowLensPlaceholder,
+        });
+    };
+
+    const renderRow = (
+        params: Partial<DndActorRenderParams>,
+        clickHandler?: (props: DataRowProps<TItem, TId>) => void,
+        overlays?: ReactNode,
+        placeholder?: ReactNode,
+    ) => {
         return (
-            <DataTableRowContainer
-                columns={ props.columns }
-                ref={ params.ref || ref }
-                renderCell={ renderCell }
-                onClick={ clickHandler && (() => clickHandler(props)) }
-                rawProps={ {
-                    ...props.rawProps,
-                    ...params.eventHandlers,
-                    role: 'row',
-                    'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
-                    ...(props.isSelectable && { 'aria-selected': props.isSelected }),
-                } }
-                cx={ [
-                    params.classNames,
-                    props.isSelected && uuiMod.selected,
-                    params.isDraggable && uuiMarkers.draggable,
-                    props.isInvalid && uuiMod.invalid,
-                    uuiDataTableRow.uuiTableRow,
-                    props.cx,
-                    props.isFocused && uuiMod.focus,
-                ] }
-                overlays={ overlays }
-                link={ props.link }
-            />
+            <div>
+                { params.position === 'top' && placeholder }
+                <DataTableRowContainer
+                    columns={ props.columns }
+                    ref={ params.ref || ref }
+                    renderCell={ renderCell }
+                    onClick={ clickHandler && (() => clickHandler(props)) }
+                    rawProps={ {
+                        ...props.rawProps,
+                        ...params.eventHandlers,
+                        role: 'row',
+                        'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
+                        ...(props.isSelectable && { 'aria-selected': props.isSelected }),
+                    } }
+                    cx={ [
+                        params.classNames,
+                        props.isSelected && uuiMod.selected,
+                        params.isDraggable && uuiMarkers.draggable,
+                        props.isInvalid && uuiMod.invalid,
+                        uuiDataTableRow.uuiTableRow,
+                        props.cx,
+                        props.isFocused && uuiMod.focus,
+                    ] }
+                    overlays={ overlays }
+                    link={ props.link }
+                />
+                { (params.position === 'bottom' || params.position === 'inside') && placeholder }
+            </div>
         );
     };
 
@@ -115,6 +151,26 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             />
         );
     };
+    const renderPlaceholder = (params: Partial<DndActorRenderParams>) => {
+        return (
+            <DataTableRowContainer
+                columns={ [props.columns[0]] }
+                ref={ params.ref || ref }
+                renderCell={ (props, idx) => renderCellPlaceholder(props, idx, params.position === 'inside') }
+                rawProps={ {
+                    ...props.rawProps,
+                    ...params.eventHandlers,
+                    role: 'row',
+                } }
+                cx={ [
+                    params.classNames,
+                    uuiDataTableRow.uuiTableRow,
+                    props.cx,
+                    uuiMod.selected,
+                ] }
+            />
+        );
+    };
 
     const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
@@ -122,8 +178,9 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         return (
             <DndActor
                 { ...props.dnd }
-                render={ (params) => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) }
+                render={ (params, placeholder) => renderRow(params, clickHandler, props.renderDropMarkers?.(params), placeholder) }
                 renderDragGhost={ (params) => renderDragGhost(params, clickHandler, props.renderDropMarkers?.(params)) }
+                renderPlaceholder={ (params) => renderPlaceholder(params) }
             />
         );
     } else {
