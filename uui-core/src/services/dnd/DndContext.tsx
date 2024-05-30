@@ -4,8 +4,13 @@ import { getScrollParentOfEventTarget } from '../../helpers/events';
 import * as React from 'react';
 import { IDndContext } from '../../types/contexts';
 import { BaseContext } from '../BaseContext';
+import { DndActorRenderParams } from '../../types';
 
 const maxScrollSpeed = 2000; // px/second
+
+export interface PlaceholderData {
+    placeholderRowProps: { indent: number, depth: number };
+}
 
 export interface DndContextState {
     isDragging: boolean;
@@ -14,6 +19,8 @@ export interface DndContextState {
     ghostWidth?: number;
 
     renderGhost?(): React.ReactNode;
+    renderPlaceholder?(params: DndActorRenderParams & PlaceholderData): React.ReactNode;
+    placeholderValue?: any;
 }
 
 export class DndContext extends BaseContext<DndContextState> implements IDndContext {
@@ -24,6 +31,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
     private ghostOffsetY: number = 0;
     private ghostWidth: number = 300;
     private renderGhostCallback: () => React.ReactNode = null;
+    private renderPlaceholderCallback: (params: DndActorRenderParams & PlaceholderData) => React.ReactNode = null;
     private lastScrollTime = new Date().getTime();
     private mouseCoordsService = new MouseCoordsService();
 
@@ -50,7 +58,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         return this.mouseCoordsService.getCoords();
     };
 
-    public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode) {
+    public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode, renderPlaceholder?: (params: DndActorRenderParams & PlaceholderData) => React.ReactNode) {
         const offset = getOffset(node);
         const mouseCoords = this.mouseCoordsService.getCoords();
 
@@ -60,6 +68,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
         this.dragData = data;
         this.renderGhostCallback = renderGhost;
+        this.renderPlaceholderCallback = renderPlaceholder;
 
         // prepare scroll
         this.lastScrollTime = new Date().getTime();
@@ -71,6 +80,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             ghostOffsetY: this.ghostOffsetY,
             ghostWidth: this.ghostWidth,
             renderGhost: this.renderGhostCallback,
+            renderPlaceholder: this.renderPlaceholderCallback,
         });
         this.isDragging = true;
 
@@ -90,6 +100,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             res();
         }).then(() => {
             this.renderGhostCallback = null;
+            this.renderPlaceholderCallback = null;
             this.dragData = null;
             this.isDragging = false;
         });

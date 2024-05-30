@@ -21,6 +21,11 @@
     }
 }
 
+:global(.uui-drag-placeholder) {
+    display: block;
+    background-color: red;
+}
+
 :global(.uui-dr_addons-indent) {
     display: flex;
     justify-content: flex-start;

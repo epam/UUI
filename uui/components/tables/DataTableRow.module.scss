@@ -28,6 +28,8 @@
 
     &:global(.uui-dragged-out) {
         opacity: 0.5;
+        visibility: hidden;
+        display: none;
     }
 
     &:global(.uui-drag-ghost) {
