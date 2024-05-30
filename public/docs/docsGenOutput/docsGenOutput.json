@@ -75659,7 +75659,7 @@
        }
       },
       "typeValue": {
-       "raw": "'info' | 'success' | 'warning' | 'error' | 'critical' | 'neutral' | 'primary' | 'secondary' | 'accent'"
+       "raw": "'info' | 'success' | 'warning' | 'error' | 'critical' | 'neutral' | 'primary' | 'secondary' | 'accent' | 'white'"
       },
       "editor": {
        "type": "oneOf",
@@ -75672,7 +75672,8 @@
         "neutral",
         "primary",
         "secondary",
-        "accent"
+        "accent",
+        "white"
        ]
       },
       "from": "@epam/uui:IconButtonMods",
@@ -98728,7 +98729,7 @@
        }
       },
       "typeValue": {
-       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'gray30' | 'gray60' | 'critical' | 'neutral' | 'accent' | 'primary' | 'secondary' | 'gray50'"
+       "raw": "'blue' | 'green' | 'amber' | 'red' | 'info' | 'success' | 'warning' | 'error' | 'white' | 'gray30' | 'gray60' | 'critical' | 'neutral' | 'accent' | 'primary' | 'secondary' | 'gray50'"
       },
       "editor": {
        "type": "oneOf",
@@ -98741,6 +98742,7 @@
         "success",
         "warning",
         "error",
+        "white",
         "gray30",
         "gray60",
         "critical",
