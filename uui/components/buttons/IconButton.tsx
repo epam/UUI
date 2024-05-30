@@ -37,7 +37,7 @@ export const IconButton = withMods<uuiComponents.IconButtonProps, IconButtonProp
                 component: 'IconButton',
                 propName: 'color',
                 propValue: props.color,
-                condition: () => ['info', 'success', 'error'].includes(props.color),
+                condition: () => ['info', 'success', 'error', 'warning'].includes(props.color),
             });
         }
         return {
