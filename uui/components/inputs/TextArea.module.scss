@@ -167,6 +167,7 @@
 
         :global(.uui-input) {
             @include text-size(24px, 1px);
+            min-height: 24px;
         }
     }
 
@@ -176,6 +177,7 @@
 
         :global(.uui-input) {
             @include text-size(30px, 1px);
+            min-height: 30px;
         }
     }
 
@@ -185,6 +187,7 @@
 
         :global(.uui-input) {
             @include text-size(36px, 1px);
+            min-height: 36px;
         }
     }
 
@@ -194,6 +197,7 @@
 
         :global(.uui-input) {
             @include text-size(42px, 1px);
+            min-height: 42px;
         }
     }
 
@@ -204,6 +208,7 @@
 
         :global(.uui-input) {
             @include text-size(48px, 1px);
+            min-height: 48px;
         }
     }
 }
