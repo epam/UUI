@@ -2,8 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import css from './ColorPicker.module.scss';
 import { IEditable } from '@epam/uui-core';
-import { Tooltip } from '@epam/uui-components';
-import { Button } from '@epam/uui';
+import { Button, Tooltip } from '@epam/uui';
 
 interface Color {
     value: string;
@@ -51,9 +50,8 @@ export function ColorPicker(props: ColorPickerProps) {
 
         return (
             <Tooltip
-                cx={ css.tooltip }
-                renderContent={ () => <div className={ css.tooltipContent }>{ color.value }</div> }
                 key={ color.value }
+                content={ color.value }
             >
                 {
                     isUnknownColor ? renderUnknownColor() : renderKnownColor()

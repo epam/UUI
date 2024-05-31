@@ -53,7 +53,6 @@ export class TooltipDoc extends BaseDocsBlock {
                     inverted: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-10' : 'neutral-80'})`,
                 }),
             });
-            doc.setDefaultPropExample('value', () => true);
         },
         preview: (docPreview: DocPreviewBuilder<uui.TooltipProps | loveship.TooltipProps | promo.TooltipProps>) => {
             const TEST_DATA = {
