@@ -27,10 +27,17 @@ interface DndActorState<TPosition> {
     pointerX: number;
     pointerY: number;
     isMouseDown: boolean;
+
+    // Currently dragging this Actor, as drag source
     isDragging: boolean;
+
     isMouseOver: boolean;
+
+    // Active insert position into this Actor, which acts as drop target
     positionInfo?: TPosition;
-    dndContextState: DndContextState;
+
+    // Currently dragging any Actor (this or some other)
+    isDndInProgress: boolean;
 }
 
 const initialState: DndActorState<any> = {
@@ -40,9 +47,7 @@ const initialState: DndActorState<any> = {
     isDragging: false,
     isMouseOver: false,
     positionInfo: null,
-    dndContextState: {
-        isDragging: false,
-    },
+    isDndInProgress: false,
 };
 
 /**
@@ -73,7 +78,9 @@ function TREE_SHAKEABLE_INIT() {
         }
 
         contextUpdateHandler = (dndContextState: DndContextState) => {
-            this.setState({ dndContextState });
+            if (this.state.isDndInProgress !== dndContextState.isDragging) {
+                this.setState({ isDndInProgress: dndContextState.isDragging });
+            }
         };
 
         windowPointerUpHandler = () => {
@@ -216,7 +223,7 @@ function TREE_SHAKEABLE_INIT() {
                 isDraggedOver: this.context.uuiDnD?.isDragging && this.state.isMouseOver,
                 isDropAccepted: this.state.isMouseOver && !!this.state.positionInfo,
                 isDragGhost: false,
-                isDndInProgress: this.state.dndContextState.isDragging,
+                isDndInProgress: this.state.isDndInProgress,
                 dragData: this.state.isMouseOver ? this.context.uuiDnD.dragData : null,
                 eventHandlers: {},
                 classNames: null,
