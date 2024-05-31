@@ -84,8 +84,17 @@ function overrideProp(prop: TTypeProp, propOverride: TPropEditorTypeOverride[TTy
                 }
                 options.push(...propOverride.editor.options);
                 options = sortOptions(options);
+
+                const commentTags = propOverride.comment?.tags || {};
                 return {
                     ...prop,
+                    comment: {
+                        ...prop.comment,
+                        tags: {
+                            ...prop.comment?.tags,
+                            ...commentTags,
+                        },
+                    },
                     editor: {
                         ...prop.editor,
                         options,

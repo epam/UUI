@@ -14,7 +14,7 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
 
     const skin = getSkin(theme, isSkin);
     const docBuilderGenCtx = useDocBuilderGenCtx(
-        usePropEditorTypeOverride(theme, config.bySkin[skin]?.type),
+        usePropEditorTypeOverride(theme, config?.bySkin[skin]?.type),
     );
     const { isLoaded, docs } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
     const allRenderCases = useMemo(() => buildRenderCaseArr(docs, previewId), [docs, previewId]);

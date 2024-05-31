@@ -7,5 +7,8 @@ export function getQuery<T>(query: string): T {
 
 export function useQuery<T = string>(name: string): T {
     const [params] = useSearchParams();
-    return params.get(name) as T;
+    const result = params.get(name);
+    if (result !== null) {
+        return params.get(name) as T;
+    }
 }

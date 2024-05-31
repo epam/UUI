@@ -6,17 +6,17 @@ import {
 import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import { useTheme } from '../helpers/useTheme';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import css from './AppHeader.module.scss';
 import { TMode } from './docs/docsConstants';
+import { useAppThemeContext } from '../helpers/appTheme';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
 export function AppHeader() {
-    const { theme, toggleTheme } = useTheme();
+    const { theme, toggleTheme, themesById } = useAppThemeContext();
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
@@ -61,7 +61,7 @@ export function AppHeader() {
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
-                        { Object.values(svc.uuiApp.themesById).map(({ id, name }) => (
+                        { Object.values(themesById).map(({ id, name }) => (
                             <DropdownMenuButton
                                 caption={ name }
                                 icon={ theme === id && DoneIcon }
@@ -73,7 +73,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ svc.uuiApp.themesById[theme]?.name } fill="none" size="36" isDropdown={ true } />
+                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" size="36" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
