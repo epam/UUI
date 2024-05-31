@@ -15,6 +15,7 @@ import {
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { getCurrentTheme } from '../helpers';
 import { TTagPreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class TagDoc extends BaseDocsBlock {
     title = 'Tag';
@@ -37,7 +38,8 @@ export class TagDoc extends BaseDocsBlock {
                 }),
             });
             doc.setDefaultPropExample('onClick', () => true);
-            doc.merge('count', { examples: [{ value: '9' }, { value: '+99' }, { value: '+999' }] });
+            doc.merge('count', { examples: [{ value: '9' }, { value: '+99', isDefault: true }, { value: '+999' }] });
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
 
         preview: (docPreview: DocPreviewBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps>) => {

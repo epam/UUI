@@ -15,6 +15,7 @@ import {
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
 import { TBadgePreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class BadgeDoc extends BaseDocsBlock {
     title = 'Badge';
@@ -41,6 +42,13 @@ export class BadgeDoc extends BaseDocsBlock {
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-40' : 'neutral-30'})`,
                 }),
             });
+            doc.merge('count', { examples: [
+                { value: '', name: 'empty value' },
+                { value: '9' },
+                { value: '99', isDefault: true },
+                { value: '99+' },
+            ] });
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
         preview: (docPreview: DocPreviewBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
             const TEST_DATA = {
