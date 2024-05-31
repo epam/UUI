@@ -1,9 +1,10 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
-import { Theme } from './themes';
 
 const THEME_MANIFEST_FILE = 'theme-manifest.json';
 
-export interface CustomThemeManifest extends Theme {
+export interface CustomThemeManifest {
+    id: string;
+    name: string;
     css: string[];
     settings: null | object;
     propsOverride?: TPropEditorTypeOverride;
@@ -41,11 +42,11 @@ async function loadCustomThemesInternal() {
                 const themeManifestUrl = `${themeUrl}/${THEME_MANIFEST_FILE}`;
                 return fetch(themeManifestUrl)
                     .then(async (r) => {
-                        const tmJson: { css: string[]; settings: null | string, id: string, name: string } = await r.json();
-                        const { id, name, css, settings } = tmJson;
+                        const tmJson: { css: string[]; settings: null | string, id: string, name: string, propsOverride?: TPropEditorTypeOverride } = await r.json();
+                        const { id, name, css, settings, propsOverride } = tmJson;
                         const loadedSettings = settings ? await loadSettings(convertRelUrlToAbs(settings, themeUrl)) : null;
                         await loadCssArr(css.map((cssRel) => convertRelUrlToAbs(cssRel, themeUrl)));
-                        ctManifestArr.push({ id, name, css, settings: loadedSettings });
+                        ctManifestArr.push({ id, name, css, settings: loadedSettings, propsOverride });
                     })
                     .catch((err) => {
                         console.error(`Unable to load custom theme from "${themeManifestUrl}"`, err);

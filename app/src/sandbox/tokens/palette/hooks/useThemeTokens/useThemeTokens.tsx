@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { TLoadThemeTokensParams, TLoadThemeTokensResult } from '../../types/types';
 import { loadThemeTokens } from './loadThemeTokens';
-import { useCurrentTheme } from '../useCurrentTheme';
+import { useAppThemeContext } from '../../../../../helpers/appTheme';
 
 export function useThemeTokens(params: TLoadThemeTokensParams): TLoadThemeTokensResult {
     const { valueType, filter } = params;
-    const uuiTheme = useCurrentTheme();
+    const { theme: uuiTheme } = useAppThemeContext();
     const [result, setResult] = useState<TLoadThemeTokensResult>({ loading: true, tokens: [], uuiTheme });
 
     useEffect(() => {

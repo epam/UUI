@@ -5,6 +5,7 @@ import { loadDocsGenType } from '../../apiReference/dataHooks';
 import { getAllIcons } from '../../../documents/iconListHelpers';
 import { AppContext, BuiltInTheme } from '../../../data';
 import { CustomThemeManifest } from '../../../data/customThemes';
+import { useAppThemeContext } from '../../../helpers/appTheme';
 
 export function getSkin(theme: string, isSkin: boolean): TSkin {
     if (!isSkin) return TSkin.UUI;
@@ -39,8 +40,7 @@ export function useDocBuilderGenCtx(propsOverride: TPropEditorTypeOverride[TType
 }
 
 export function usePropEditorTypeOverride(themeId: string, typeRef: TTypeRef | undefined): TPropEditorTypeOverride[TTypeRef] | undefined {
-    const uuiCtx = useUuiContext();
-    const themesById = uuiCtx.uuiApp.themesById;
+    const { themesById } = useAppThemeContext();
     if (typeRef && themesById) {
         const themeDetails = (themesById[themeId] as CustomThemeManifest);
         return themeDetails?.propsOverride?.[typeRef];

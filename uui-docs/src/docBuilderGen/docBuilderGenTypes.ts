@@ -30,6 +30,11 @@ export type TPropEditorTypeOverride = {
         [propName: string]: {
             mode: 'replace' | 'add',
             editor: { type: TPropEditorType.oneOf, options: TOneOfItemType[] },
+            comment?: {
+                tags?: {
+                    '@default': string
+                }
+            },
         }
     }
 };

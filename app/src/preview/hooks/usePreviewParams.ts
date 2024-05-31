@@ -2,19 +2,23 @@ import { useEffect, useMemo } from 'react';
 import { TPreviewContentParams } from '../types';
 import { useQuery } from '../../helpers';
 import { BuiltInTheme } from '../../data';
-import { setThemeCssClass } from '../../helpers/appRootUtils';
 import { parsePreviewIdFromString } from '../utils/previewLinkUtils';
+import { useAppThemeContext } from '../../helpers/appTheme';
 
 export function usePreviewParams(): TPreviewContentParams {
     const isSkin: boolean = useQuery('isSkin') === 'true';
     const componentId: string = useQuery('componentId') || undefined;
     let previewId: string = useQuery('previewId') || undefined;
     previewId = previewId !== undefined ? String(previewId) : undefined;
-    const theme = useQuery('theme') as string || BuiltInTheme.promo;
+    const themeFromQuery = useQuery('theme') as string || BuiltInTheme.promo;
+
+    const { theme, toggleTheme } = useAppThemeContext();
 
     useEffect(() => {
-        theme && setThemeCssClass(theme);
-    }, [theme]);
+        if (themeFromQuery !== theme) {
+            toggleTheme(themeFromQuery);
+        }
+    }, [themeFromQuery, theme, toggleTheme]);
 
     const previewIdNorm = useMemo(() => parsePreviewIdFromString(previewId), [previewId]);
 
