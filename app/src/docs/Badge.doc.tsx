@@ -45,7 +45,7 @@ export class BadgeDoc extends BaseDocsBlock {
             doc.merge('count', { examples: [
                 { value: '', name: 'empty value' },
                 { value: '9' },
-                { value: '99', isDefault: true },
+                { value: '99' },
                 { value: '99+' },
             ] });
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);

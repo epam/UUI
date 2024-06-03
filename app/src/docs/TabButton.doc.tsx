@@ -30,11 +30,10 @@ export class TabButtonDoc extends BaseDocsBlock {
         doc: (doc: DocBuilder<uui.TabButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
             doc.setDefaultPropExample('isLinkActive', ({ value }) => value === true);
-            doc.setDefaultPropExample('withNotify', ({ value }) => value === true);
             doc.merge('count', { examples: [
                 { value: '', name: 'empty value' },
                 { value: '9' },
-                { value: '99', isDefault: true },
+                { value: '99' },
                 { value: '99+' },
             ] });
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
