@@ -43,9 +43,8 @@ export class BadgeDoc extends BaseDocsBlock {
                 }),
             });
             doc.merge('count', { examples: [
-                { value: '', name: 'empty value' },
                 { value: '9' },
-                { value: '99' },
+                { value: '19' },
                 { value: '99+' },
             ] });
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
@@ -54,7 +53,7 @@ export class BadgeDoc extends BaseDocsBlock {
             const TEST_DATA = {
                 caption: 'Test',
                 icon: 'action-account-fill.svg',
-                count: 123,
+                count: '99+',
             };
             docPreview.add({
                 id: TBadgePreview['Color Variants'],
