@@ -13,6 +13,7 @@ import {
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { TTabButtonPreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class TabButtonDoc extends BaseDocsBlock {
     title = 'Tab Button';
@@ -28,6 +29,14 @@ export class TabButtonDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.TabButtonProps>) => {
             doc.merge('iconPosition', { defaultValue: 'left' });
+            doc.setDefaultPropExample('isLinkActive', ({ value }) => value === true);
+            doc.merge('count', { examples: [
+                { value: '', name: 'empty value' },
+                { value: '9' },
+                { value: '99' },
+                { value: '99+' },
+            ] });
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
         preview: (docPreview: DocPreviewBuilder<uui.TabButtonProps>) => {
             const TEST_DATA = {
