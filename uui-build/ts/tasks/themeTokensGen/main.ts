@@ -51,7 +51,10 @@ function generateTokens() {
 
     FileUtils.writeResults({
         newFigmaVarCollection: { ...source, variables },
-        uuiTokensCollection: { exposedTokens },
+        uuiTokensCollection: {
+            modes: source.modes,
+            exposedTokens,
+        },
         ctx,
     });
 }

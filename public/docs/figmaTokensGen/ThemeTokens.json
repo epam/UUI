@@ -1,4 +1,10 @@
 {
+  "modes": {
+    "25178:0": "Loveship-Light",
+    "25178:1": "Loveship-Dark",
+    "25178:2": "Promo",
+    "26302:0": "Electric"
+  },
   "exposedTokens": [
     {
       "id": "core/border-radius",
