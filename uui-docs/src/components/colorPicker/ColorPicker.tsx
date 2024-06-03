@@ -36,9 +36,9 @@ export function ColorPicker(props: ColorPickerProps) {
                 backgroundColor: color.hex,
             };
             if (isSelectedColor) {
-                style.boxShadow = `0 0 0 1px ${color.hex}`;
+                style.boxShadow = '0 0 0 1px var(--uui-info-50)';
             } else {
-                style.borderColor = color.hex;
+                style.borderColor = color.value === 'white' ? 'var(--uui-neutral-20)' : color.hex;
             }
             return (
                 <div
