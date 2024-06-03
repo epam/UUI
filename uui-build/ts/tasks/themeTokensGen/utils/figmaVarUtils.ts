@@ -121,7 +121,7 @@ function isTokenExcludedByAliasRef(params: { rawTokenNorm: IFigmaVarRawNorm, the
         }
         return true;
     }
-    return Object.values(TFigmaThemeName).every((themeItem) => {
+    return Object.values(modes).every((themeItem) => {
         return isTokenExcludedByAliasRef({ rawTokenNorm, theme: themeItem, modes });
     });
 }
