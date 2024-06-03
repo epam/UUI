@@ -1,10 +1,22 @@
 import { getQuery, useQuery } from './getQuery';
 import { BuiltInTheme, Theme } from '../data';
 import { getUuiThemeRoot } from './appRootUtils';
-import { overrideSettings } from '@epam/uui';
+import { settings } from '@epam/uui';
 import { CustomThemeManifest } from '../data/customThemes';
 import { IRouterContext, useUuiContext } from '@epam/uui-core';
 import { useEffect } from 'react';
+
+/**
+ * Override settings. Pass undefined in order to reset to default settings.
+ * @param newSettings
+ */
+export const overrideUuiSettings = ((_defaultSettings: string) => (newSettings: object | undefined) => {
+    if (newSettings) {
+        Object.assign(settings.sizes, (newSettings as { sizes: object }).sizes);
+    } else {
+        Object.assign(settings, JSON.parse(_defaultSettings));
+    }
+})(JSON.stringify(settings));
 
 export type TThemeConfig = {
     themes: string[];
@@ -45,7 +57,7 @@ export function changeThemeQueryParam(nextTheme: string, uuiRouter: IRouterConte
 export function applyTheme(theme: string, config: TThemeConfig) {
     setThemeCssClass(theme);
     saveThemeIdToLocalStorage(theme);
-    overrideSettings((config.themesById[theme] as CustomThemeManifest).settings);
+    overrideUuiSettings((config.themesById[theme] as CustomThemeManifest).settings);
 }
 
 function getInitialThemeFallback() {
