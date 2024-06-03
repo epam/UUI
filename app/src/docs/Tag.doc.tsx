@@ -38,13 +38,13 @@ export class TagDoc extends BaseDocsBlock {
                 }),
             });
             doc.setDefaultPropExample('onClick', () => true);
-            doc.merge('count', { examples: [{ value: '9' }, { value: '+99' }, { value: '+999' }] });
+            doc.merge('count', { examples: [{ value: '9' }, { value: '19' }, { value: '99+' }] });
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
 
         preview: (docPreview: DocPreviewBuilder<loveship.TagProps | uui.TagProps | promo.TagProps | electric.TagProps>) => {
             const TEST_DATA = {
-                count: '+999',
+                count: '99+',
                 caption1Line: 'Test',
                 // eslint-disable-next-line
                 caption2Lines: (<>{'Test'}<br/>{'Test'}</>),
