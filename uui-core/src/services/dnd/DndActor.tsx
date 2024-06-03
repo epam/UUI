@@ -14,12 +14,12 @@ import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../UuiContext';
 import { DndContextState, PlaceholderData } from './DndContext';
+import debounce from 'lodash.debounce';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
     getPlaceholderRowProps?:() => { indent: number, depth: number };
     /** Render callback for DragActor content */
     render(props: DndActorRenderParams, placeholder?: any): React.ReactNode;
-    renderDragGhost?(props: DndActorRenderParams): React.ReactNode;
     renderPlaceholder?(props: DndActorRenderParams & PlaceholderData): React.ReactNode;
 }
 
@@ -31,6 +31,7 @@ interface DndActorState {
     isMouseDown: boolean;
     isDragging: boolean;
     isMouseOver: boolean;
+    fixPosition?: boolean;
     position?: DropPosition;
     dndContextState: DndContextState;
 }
@@ -41,6 +42,7 @@ const initialState: DndActorState = {
     isMouseDown: false,
     isDragging: false,
     isMouseOver: false,
+    fixPosition: false,
     position: null,
     dndContextState: {
         isDragging: false,
@@ -104,7 +106,7 @@ function TREE_SHAKEABLE_INIT() {
                     this.dndRef.current,
                     this.props.srcData,
                     () =>
-                        (this.props.renderDragGhost ?? this.props.render)({
+                        this.props.render({
                             isDragGhost: true,
                             isDraggedOver: false,
                             isDraggable: false,
@@ -183,16 +185,16 @@ function TREE_SHAKEABLE_INIT() {
             const x = (params.offsetLeft / params.targetWidth - 0.5) * 2;
             const y = (params.offsetTop / params.targetHeight - 0.5) * 2;
 
-            if (options.inside) {
-                const insideBoxLeft = options.left ? -0.5 : -1;
-                const insideBoxRight = options.right ? 0.5 : 1;
-                const insideBoxTop = options.top ? -0.5 : -1;
-                const insideBoxBottom = options.bottom ? 0.5 : 1;
+            // if (options.inside) {
+            //     const insideBoxLeft = options.left ? -0.5 : -1;
+            //     const insideBoxRight = options.right ? 0.5 : 1;
+            //     const insideBoxTop = options.top ? -0.5 : -1;
+            //     const insideBoxBottom = options.bottom ? 0.5 : 1;
 
-                if (insideBoxLeft < x && x < insideBoxRight && insideBoxTop < y && y < insideBoxBottom) {
-                    return 'inside';
-                }
-            }
+            //     if (insideBoxLeft < x && x < insideBoxRight && insideBoxTop < y && y < insideBoxBottom) {
+            //         return 'inside';
+            //     }
+            // }
 
             // Compute the sector#. Basically it's clock-wise angle of mouse pointer normalized to [0,7) range
             //    7 | 0
@@ -211,6 +213,18 @@ function TREE_SHAKEABLE_INIT() {
                 return null;
             }
         }
+
+        debounceDropInside = debounce((e: React.PointerEvent<any>) => {
+            if (this.context.uuiDnD.isDragging && this.state.isMouseOver) {
+                // releasePointerCaptureOnEventTarget(e); // allows you to trigger pointer events on other nodes
+
+                const dropParams = this.getDropParams(e);
+                const positionOptions = this.props.canAcceptDrop(dropParams);
+                const defaultPosition = 'inside';
+                const position = positionOptions?.[defaultPosition] ? defaultPosition : null;
+                this.setState((s) => ({ ...s, isMouseOver: true, fixPosition: true, position }));
+            }
+        }, 750);
 
         render() {
             const params: DndActorRenderParams = {
@@ -261,7 +275,7 @@ function TREE_SHAKEABLE_INIT() {
             if (this.props.canAcceptDrop) {
                 const pointerLeaveHandler = () => {
                     if (this.context.uuiDnD.isDragging) {
-                        this.setState((s) => ({ ...s, isMouseOver: false, position: null }));
+                        this.setState((s) => ({ ...s, isMouseOver: false, position: null, fixPosition: false }));
                     }
                 };
 
@@ -276,7 +290,16 @@ function TREE_SHAKEABLE_INIT() {
                         const dropParams = this.getDropParams(e);
                         const positionOptions = this.props.canAcceptDrop(dropParams);
                         const position = this.getPosition(dropParams, positionOptions);
-                        this.setState((s) => ({ ...s, isMouseOver: true, position }));
+                        this.setState((s) => {
+                            if (s.fixPosition) {
+                                return s;
+                            }
+
+                            return { ...s, isMouseOver: true, position };
+                        });
+                        if (position === 'bottom') {
+                            this.debounceDropInside(Object.assign({}, e));
+                        }
                     }
                 };
 
@@ -313,15 +336,21 @@ function TREE_SHAKEABLE_INIT() {
                     // }
                 }
             };
-        
+
             const { position } = this.state;
             return this.props.render(
                 params,
                 params.isDraggedOver 
                     ? this.state.dndContextState.renderPlaceholder?.({
                         eventHandlers: {
-                            onPointerEnter: () => this.setState((s) => ({ ...s, isMouseOver: true, position })),
-                            onPointerLeave: () => this.setState((s) => ({ ...s, isMouseOver: false, position: null })),
+                            onPointerEnter: () => this.setState((s) => ({ ...s, isMouseOver: true, fixPosition: true, placeholderEnter: true, position })),
+                            onPointerLeave: (e) => this.setState((s) => {
+                                if (this.dndRef.current.contains(e.relatedTarget as Element)) {
+                                    return s;
+                                }
+                                
+                                return { ...s, isMouseOver: false, fixPosition: false, position: null };
+                            }),
                             onPointerUp: params.eventHandlers.onPointerUp,
                         },
                         isDraggedOver: true,

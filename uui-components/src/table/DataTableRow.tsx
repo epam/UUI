@@ -81,44 +81,6 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
-    const renderRow = (
-        params: Partial<DndActorRenderParams>,
-        clickHandler?: (props: DataRowProps<TItem, TId>) => void,
-        overlays?: ReactNode,
-        placeholder?: ReactNode,
-    ) => {
-        return (
-            <div>
-                { params.position === 'top' && placeholder }
-                <DataTableRowContainer
-                    columns={ props.columns }
-                    ref={ params.ref || ref }
-                    renderCell={ renderCell }
-                    onClick={ clickHandler && (() => clickHandler(props)) }
-                    rawProps={ {
-                        ...props.rawProps,
-                        ...params.eventHandlers,
-                        role: 'row',
-                        'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
-                        ...(props.isSelectable && { 'aria-selected': props.isSelected }),
-                    } }
-                    cx={ [
-                        params.classNames,
-                        props.isSelected && uuiMod.selected,
-                        params.isDraggable && uuiMarkers.draggable,
-                        props.isInvalid && uuiMod.invalid,
-                        uuiDataTableRow.uuiTableRow,
-                        props.cx,
-                        props.isFocused && uuiMod.focus,
-                    ] }
-                    overlays={ overlays }
-                    link={ props.link }
-                />
-                { (params.position === 'bottom' || params.position === 'inside') && placeholder }
-            </div>
-        );
-    };
-
     const renderDragGhost = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (
             <DataTableRowContainer
@@ -152,6 +114,49 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             />
         );
     };
+
+    const renderRow = (
+        params: Partial<DndActorRenderParams>,
+        clickHandler?: (props: DataRowProps<TItem, TId>) => void,
+        overlays?: ReactNode,
+        placeholder?: ReactNode,
+    ) => {
+        if (params.isDragGhost) {
+            return renderDragGhost(params, clickHandler, overlays);
+        }
+
+        return (
+            <div>
+                { params.position === 'top' && placeholder }
+                <DataTableRowContainer
+                    columns={ props.columns }
+                    ref={ params.ref || ref }
+                    renderCell={ renderCell }
+                    onClick={ clickHandler && (() => clickHandler(props)) }
+                    rawProps={ {
+                        ...props.rawProps,
+                        ...params.eventHandlers,
+                        role: 'row',
+                        'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
+                        ...(props.isSelectable && { 'aria-selected': props.isSelected }),
+                    } }
+                    cx={ [
+                        params.classNames,
+                        props.isSelected && uuiMod.selected,
+                        params.isDraggable && uuiMarkers.draggable,
+                        props.isInvalid && uuiMod.invalid,
+                        uuiDataTableRow.uuiTableRow,
+                        props.cx,
+                        props.isFocused && uuiMod.focus,
+                    ] }
+                    overlays={ overlays }
+                    link={ props.link }
+                />
+                { (params.position === 'bottom' || params.position === 'inside') && placeholder }
+            </div>
+        );
+    };
+
     const renderPlaceholder = (params: Partial<DndActorRenderParams & PlaceholderData>) => {
         return (
             <DataTableRowContainer
@@ -183,7 +188,6 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             <DndActor
                 { ...props.dnd }
                 render={ (params, placeholder) => renderRow(params, clickHandler, props.renderDropMarkers?.(params), placeholder) }
-                renderDragGhost={ (params) => renderDragGhost(params, clickHandler, props.renderDropMarkers?.(params)) }
                 renderPlaceholder={ (params) => renderPlaceholder(params) }
                 getPlaceholderRowProps={ () => ({ indent: props.indent, depth: props.depth }) }
             />
