@@ -26,6 +26,10 @@
     background-color: red;
 }
 
+:global(.uui-drag-children) {
+    display: none;
+}
+
 :global(.uui-dr_addons-indent) {
     display: flex;
     justify-content: flex-start;

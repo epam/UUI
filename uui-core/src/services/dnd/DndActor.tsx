@@ -17,6 +17,8 @@ import { DndContextState, PlaceholderData } from './DndContext';
 import debounce from 'lodash.debounce';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
+    id?: any;
+    path?: any[];
     getPlaceholderRowProps?:() => { indent: number, depth: number };
     /** Render callback for DragActor content */
     render(props: DndActorRenderParams, placeholder?: any): React.ReactNode;
@@ -104,6 +106,7 @@ function TREE_SHAKEABLE_INIT() {
                 document.body.style.cursor = 'grabbing';
                 this.context.uuiDnD.startDrag(
                     this.dndRef.current,
+                    this.props.id,
                     this.props.srcData,
                     () =>
                         this.props.render({
@@ -224,7 +227,7 @@ function TREE_SHAKEABLE_INIT() {
                 const position = positionOptions?.[defaultPosition] ? defaultPosition : null;
                 this.setState((s) => ({ ...s, isMouseOver: true, fixPosition: true, position }));
             }
-        }, 750);
+        }, 750, { leading: false, trailing: true });
 
         render() {
             const params: DndActorRenderParams = {
@@ -242,7 +245,12 @@ function TREE_SHAKEABLE_INIT() {
             };
 
             params.classNames = [
-                params.isDropAccepted && uuiDndState.dropAccepted, params.isDraggedOut && uuiDndState.draggedOut, params.isDraggable && uuiMarkers.draggable,
+                params.isDropAccepted && uuiDndState.dropAccepted,
+                params.isDraggedOut && uuiDndState.draggedOut,
+                params.isDraggable && uuiMarkers.draggable,
+                this.context.uuiDnD.isDragging
+                    && (this.props.id === this.state.dndContextState.id || this.props.path?.some((id) => id === this.state.dndContextState.id))
+                    && uuiDndState.dragChildren, 
             ].filter(Boolean);
 
             if (!!this.props.srcData) {
@@ -338,6 +346,7 @@ function TREE_SHAKEABLE_INIT() {
             };
 
             const { position } = this.state;
+
             return this.props.render(
                 params,
                 params.isDraggedOver 

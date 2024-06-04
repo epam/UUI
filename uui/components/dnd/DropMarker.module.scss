@@ -21,69 +21,69 @@
     z-index: 10;
 }
 
-.top {
-    top: 0;
-    left: 0;
-    right: 0;
-    border-top: 2px solid var(--uui-drop_marker);
-    margin-left: 4px;
+// .top {
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     // border-top: 2px solid var(--uui-drop_marker);
+//     // margin-left: 4px;
 
-    &::before {
-        width: 6px;
-        height: 6px;
-        content: '';
-        background-color: var(--uui-drop_marker);
-        position: absolute;
-        top: -3px;
-        margin-left: -1px;
-        border-radius: 50%;
-    }
-}
+//     &::before {
+//         width: 6px;
+//         height: 6px;
+//         content: '';
+//         // background-color: var(--uui-drop_marker);
+//         position: absolute;
+//         top: -3px;
+//         margin-left: -1px;
+//         border-radius: 50%;
+//     }
+// }
 
-.bottom {
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    border-width: var(--uui-drop_marker-width);
-    border-bottom: 2px solid var(--uui-drop_marker);
-    margin-left: 4px;
-    background-color: red;
-    width: 100%;
+// .bottom {
+//     left: 0;
+//     right: 0;
+//     bottom: -1px;
+//     border-width: var(--uui-drop_marker-width);
+//     border-bottom: 2px solid var(--uui-drop_marker);
+//     margin-left: 4px;
+//     background-color: red;
+//     width: 100%;
 
-    &::before {
-        width: 6px;
-        height: 6px;
-        content: '';
-        background-color: var(--uui-drop_marker);
-        position: absolute;
-        bottom: -3.5px;
-        margin-left: -1px;
-        border-radius: 50%;
-    }
-}
+//     &::before {
+//         width: 6px;
+//         height: 6px;
+//         content: '';
+//         background-color: var(--uui-drop_marker);
+//         position: absolute;
+//         bottom: -3.5px;
+//         margin-left: -1px;
+//         border-radius: 50%;
+//     }
+// }
 
-.left {
-    top: 0;
-    bottom: 0;
-    left: var(--uui-drop_marker-offset);
-    width: var(--uui-drop_marker-width);
-    background-color: var(--uui-drop_marker);
-}
+// .left {
+//     top: 0;
+//     bottom: 0;
+//     left: var(--uui-drop_marker-offset);
+//     width: var(--uui-drop_marker-width);
+//     background-color: var(--uui-drop_marker);
+// }
 
-.right {
-    top: 0;
-    bottom: 0;
-    right: var(--uui-drop_marker-offset);
-    width: var(--uui-drop_marker-width);
-    background-color: var(--uui-drop_marker);
-}
+// .right {
+//     top: 0;
+//     bottom: 0;
+//     right: var(--uui-drop_marker-offset);
+//     width: var(--uui-drop_marker-width);
+//     background-color: var(--uui-drop_marker);
+// }
 
-.inside {
-    top: var(--uui-drop_marker-offset);
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border: solid var(--uui-drop_marker);
-    border-width: var(--uui-drop_marker-width);
-    margin-left: 2px;
-}
+// .inside {
+//     top: var(--uui-drop_marker-offset);
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     border: solid var(--uui-drop_marker);
+//     border-width: var(--uui-drop_marker-width);
+//     margin-left: 2px;
+// }

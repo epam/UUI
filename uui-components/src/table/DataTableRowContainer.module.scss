@@ -20,6 +20,10 @@
     display: flex;
     align-items: stretch;
     background: var(--uui-dt-row-bg);
+
+    &:global(.uui-drag-children) {
+        display: none;;
+    }
 }
 
 .section {
