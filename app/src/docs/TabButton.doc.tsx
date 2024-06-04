@@ -31,16 +31,15 @@ export class TabButtonDoc extends BaseDocsBlock {
             doc.merge('iconPosition', { defaultValue: 'left' });
             doc.setDefaultPropExample('isLinkActive', ({ value }) => value === true);
             doc.merge('count', { examples: [
-                { value: '', name: 'empty value' },
                 { value: '9' },
-                { value: '99' },
+                { value: '19' },
                 { value: '99+' },
             ] });
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
         preview: (docPreview: DocPreviewBuilder<uui.TabButtonProps>) => {
             const TEST_DATA = {
-                count: 999,
+                count: '99+',
                 caption: 'Test',
                 callback: 'callback',
                 href: 'https://google.com',

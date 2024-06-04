@@ -66,6 +66,9 @@
 * [PickerInput]: added property `renderTag` which can be used for rendering custom Tags in PickerInput toggler. Exposed `PickerTogglerTag` component, which is used in `PickerInput` for default for tag rendering.
 * [PickerInput]: when using `maxItems` prop, selected values are only partially collapsed. Some(equal `maxItems` value) items remain visible, and the rest are collapsed into the "+N" view. Added tooltip with list of collapsed items to the "+N" tag
 * [DataTable]: 
+  * isAlwaysVisible flag now makes column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.
+    Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.
+    Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.
   * added property `columnsGap?: '12' | '24'`
   * added property headerSize?: '36' | '48'. In '48' size, column name can be braked in 2 lines text.
 * [uui-editor]:

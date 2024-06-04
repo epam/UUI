@@ -25,23 +25,16 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
     const data = { column, columnConfig };
 
     const renderContent = (dndActorParams: DndActorRenderParams) => {
-        const wrapperClasses = cx(styles.rowWrapper, !isPinned && styles.notPinned, ...(isDndAllowed ? dndActorParams.classNames : []));
+        const wrapperClasses = cx(styles.rowWrapper, !isPinned && styles.notPinned);
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
-        const wrapperAttrs = {
-            ...(isDndAllowed ? { ref: dndActorParams.ref } : {}),
-            ...(isDndAllowed ? { rawProps: { ...restEventHandlers } } : {}),
-        };
-        const dragHandleRawProps: any = {
-            ...(isDndAllowed ? { onTouchStart, onPointerDown } : {}),
-        };
 
         const { ref, ...dndActorPropsWithoutRef } = dndActorParams;
 
         return (
-            <FlexRow size="30" cx={ wrapperClasses } { ...wrapperAttrs }>
+            <FlexRow size="30" cx={ wrapperClasses } ref={ dndActorParams.ref } rawProps={ { ...restEventHandlers } }>
                 <DragHandle
                     dragHandleIcon={ DragIndicatorIcon }
-                    rawProps={ dragHandleRawProps }
+                    rawProps={ { onTouchStart, onPointerDown } }
                     isDisabled={ !isDndAllowed }
                     cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) }
                 />
@@ -64,7 +57,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
     return (
         <DndActor
             key={ column.key }
-            srcData={ data }
+            srcData={ isDndAllowed && data }
             dstData={ data }
             canAcceptDrop={ onCanAcceptDrop }
             onDrop={ onDrop }
