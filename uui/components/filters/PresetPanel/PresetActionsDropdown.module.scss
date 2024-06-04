@@ -1,10 +1,8 @@
-.delete-row {
+.delete-button {
+    color: var(--uui-critical-70);
+
     svg {
         fill: var(--uui-critical-70);
-    }
-
-    .delete-button {
-        color: var(--uui-critical-70);
     }
 }
 
