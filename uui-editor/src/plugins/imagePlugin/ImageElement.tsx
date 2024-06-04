@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React from 'react';
 import {
     PlateElement,
     PlateElementProps,
@@ -14,7 +14,7 @@ import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
 import { PlateImgAlign, TImageElement } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
-import { ResizableProvider } from '@udecode/plate-resizable';
+import { ResizableProvider, useResizableStore } from '@udecode/plate-resizable';
 
 interface ImageElementProps extends PlateElementProps<Value, TImageElement> {
     align?: PlateImgAlign;
@@ -34,12 +34,8 @@ export const ImageElement = withHOC(ResizableProvider, ({
     const selected = useSelected();
     const readOnly = useReadOnly();
 
-    const imageRef = useRef<HTMLImageElement>();
-
-    const isCaptionEnabled = useMemo(() => {
-        const imageWidth = imageRef.current?.width;
-        return typeof imageWidth === 'number' && imageWidth >= MIN_CAPTION_WIDTH;
-    }, []);
+    const width = useResizableStore().get.width();
+    const isCaptionEnabled = typeof width === 'number' && width >= MIN_CAPTION_WIDTH;
 
     const aligns = [
         align === 'center' && css.alignCenter,
@@ -78,7 +74,6 @@ export const ImageElement = withHOC(ResizableProvider, ({
                             visible && css.selectedImage, // for mobile
                             nodeProps?.className,
                         ) }
-                        ref={ imageRef }
                     />
                     {!readOnly && (
                         <ResizeHandle
@@ -89,7 +84,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
                 </Resizable>
 
                 {isCaptionEnabled && (
-                    <Caption style={ { width: imageRef.current?.width } } className={ cx(css.imageCaption, ...aligns) }>
+                    <Caption style={ { width } } className={ cx(css.imageCaption, ...aligns) }>
                         <CaptionTextarea
                             className={ cx(css.caption) }
                             placeholder="Write a caption..."
