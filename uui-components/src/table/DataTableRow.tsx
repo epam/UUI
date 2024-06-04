@@ -187,6 +187,8 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         return (
             <DndActor
                 { ...props.dnd }
+                id={ props.id }
+                path={ props.path.map(({ id }) => id) }
                 render={ (params, placeholder) => renderRow(params, clickHandler, props.renderDropMarkers?.(params), placeholder) }
                 renderPlaceholder={ (params) => renderPlaceholder(params) }
                 getPlaceholderRowProps={ () => ({ indent: props.indent, depth: props.depth }) }

@@ -12,8 +12,9 @@ export interface PlaceholderData {
     placeholderRowProps: { indent: number, depth: number };
 }
 
-export interface DndContextState {
+export interface DndContextState<TId = any> {
     isDragging: boolean;
+    id?: TId;
     ghostOffsetX?: number;
     ghostOffsetY?: number;
     ghostWidth?: number;
@@ -58,7 +59,13 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         return this.mouseCoordsService.getCoords();
     };
 
-    public startDrag(node: HTMLElement, data: {}, renderGhost: () => React.ReactNode, renderPlaceholder?: (params: DndActorRenderParams & PlaceholderData) => React.ReactNode) {
+    public startDrag(
+        node: HTMLElement,
+        id: any,
+        data: {},
+        renderGhost: () => React.ReactNode, 
+        renderPlaceholder?: (params: DndActorRenderParams & PlaceholderData) => React.ReactNode,
+    ) {
         const offset = getOffset(node);
         const mouseCoords = this.mouseCoordsService.getCoords();
 
@@ -76,6 +83,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
         this.update({
             isDragging: true,
+            id,
             ghostOffsetX: this.ghostOffsetX,
             ghostOffsetY: this.ghostOffsetY,
             ghostWidth: this.ghostWidth,

@@ -104,7 +104,13 @@ export interface IModalContext extends IBaseContext {
 }
 
 export interface IDndContext extends IBaseContext<DndContextState> {
-    startDrag(node: Node, data: any, renderGhost: () => React.ReactNode, renderPlaceholder: (params?: DndActorRenderParams & PlaceholderData) => React.ReactNode): void;
+    startDrag(
+        node: Node,
+        id: any,
+        data: any,
+        renderGhost: () => React.ReactNode,
+        renderPlaceholder: (params?: DndActorRenderParams & PlaceholderData) => React.ReactNode,
+    ): void;
     endDrag(): void;
     /** Indicates that drag in progress */
     isDragging: boolean;
