@@ -48,7 +48,7 @@ Array [
       tabIndex={-1}
     >
       <div
-        className="flexCell sortingPanelContainer"
+        className="flexCell sortingPanelContainer uui-dropdownMenu-body"
         style={
           Object {
             "alignSelf": undefined,
