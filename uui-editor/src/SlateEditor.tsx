@@ -108,32 +108,29 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
     const composedRef = useComposedRef(autoFocusRef, ref);
 
     /** render related */
-    const renderEditable = useCallback(() => {
+    const renderContent = useCallback(() => {
         const editor = editorRef.current;
         const displayPlaceholder = !editor || (!!editor.children && isEditorValueEmpty(editor.children));
         const placeholder = displayPlaceholder ? props.placeholder : undefined;
         return (
-            <Fragment>
-                <PlateContent
-                    id={ currentId }
-                    autoFocus={ props.autoFocus }
-                    readOnly={ props.isReadonly }
-                    className={ css.editor }
-                    onKeyDown={ props.onKeyDown }
-                    onBlur={ props.onBlur }
-                    onFocus={ props.onFocus }
-                    placeholder={ placeholder }
-                    style={ contentStyle }
-                />
-                <Toolbars toolbarPosition={ props.toolbarPosition } />
-            </Fragment>
+            <PlateContent
+                id={ currentId }
+                autoFocus={ props.autoFocus }
+                readOnly={ props.isReadonly }
+                className={ css.editor }
+                onKeyDown={ props.onKeyDown }
+                onBlur={ props.onBlur }
+                onFocus={ props.onFocus }
+                placeholder={ placeholder }
+                style={ contentStyle }
+            />
         );
-    }, [currentId, props.autoFocus, props.isReadonly, props.onKeyDown, props.onBlur, props.onFocus, props.placeholder, props.toolbarPosition, contentStyle]);
+    }, [currentId, props.autoFocus, props.isReadonly, props.onKeyDown, props.onBlur, props.onFocus, props.placeholder, contentStyle]);
 
     /** could not be memoized, since slate is uncontrolled component */
-    const editorContent = props.scrollbars
-        ? <ScrollBars cx={ css.scrollbars }>{ renderEditable() }</ScrollBars>
-        : renderEditable();
+    const content = props.scrollbars
+        ? <ScrollBars cx={ css.scrollbars }>{ renderContent() }</ScrollBars>
+        : renderContent();
 
     /** force update of uncontrolled component */
     const forceUpdate = useForceUpdate();
@@ -160,7 +157,8 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
                 className={ editorWrapperClassNames }
                 { ...props.rawProps }
             >
-                {editorContent}
+                {content}
+                <Toolbars toolbarPosition={ props.toolbarPosition } />
             </div>
         </Plate>
     );

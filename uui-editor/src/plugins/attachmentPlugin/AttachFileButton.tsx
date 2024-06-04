@@ -1,6 +1,6 @@
 import { UploadFileToggler } from '@epam/uui-components';
-import { PlateEditor, focusEditor } from '@udecode/plate-common';
-import React, { memo, useCallback } from 'react';
+import { useEditorRef } from '@udecode/plate-common';
+import React, { useCallback, useRef } from 'react';
 
 import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
@@ -8,11 +8,8 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
 import { ATTACHMENT_PLUGIN_KEY, ATTACHMENT_TYPE } from './constants';
 
-interface IUploadFileButton {
-    editor: PlateEditor;
-}
-
-export const AttachFileButton = memo(({ editor }: IUploadFileButton): any => {
+export function AttachFileButton() {
+    const editor = useEditorRef();
     const uploadFiles = useFilesUploader(editor);
 
     const onFilesAdded = useCallback(
@@ -24,19 +21,16 @@ export const AttachFileButton = memo(({ editor }: IUploadFileButton): any => {
 
     return (
         <UploadFileToggler
-            render={ (props) => (
-                <ToolbarButton
-                    { ...props }
-                    onClick={ () => {
-                        focusEditor(editor);
-                        props.onClick();
-                        focusEditor(editor);
-                    } }
-                    icon={ AttachIcon }
-                    isDisabled={ isTextSelected(editor, true) }
-                />
-            ) }
+            render={ (props) => {
+                return (
+                    <ToolbarButton
+                        { ...props }
+                        icon={ AttachIcon }
+                        isDisabled={ isTextSelected(editor, true) }
+                    />
+                );
+            } }
             onFilesAdded={ onFilesAdded }
         />
     );
-});
+}
