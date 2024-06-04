@@ -176,6 +176,7 @@
 * [Modals]: change 'accent' buttons to 'primary' in UUI built in modals
 * [Badge]: small style tweaks according to the design
 * [LayoutContext]: fixed uncontrolled accumulation of layers if using useLock hook. Added releaseLayer for manual notification close
+* [DataTable]: added background(surface-main) for table container
 
 # 5.6.2 - 15.03.2024
 
