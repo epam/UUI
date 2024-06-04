@@ -54,8 +54,10 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
         () =>
             columnsSorted.map((column: DataColumnProps, index): ColumnsConfigurationRowProps => {
                 const columnConfig = columnsConfig[column.key];
-                const prevColumn = columnsConfig[columnsSorted[index - 1]?.key];
-                const nextColumn = columnsConfig[columnsSorted[index + 1]?.key];
+                const nextColumn = columnsSorted[index + 1];
+                const prevColumn = columnsSorted[index - 1];
+                const prevColumnConfig = columnsConfig[prevColumn?.key];
+                const nextColumnConfig = columnsConfig[nextColumn?.key];
                 const handleDrop = (params: DropParams<DndDataType, DndDataType>) => {
                     const { srcData, position } = params;
                     // NOTE: srcData - is the column which we are dropping.
@@ -63,8 +65,8 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                         const columnNew = moveColumnRelativeToAnotherColumn({
                             columnConfig: srcData.columnConfig,
                             targetColumn: columnConfig,
-                            targetNextColumn: nextColumn,
-                            targetPrevColumn: prevColumn,
+                            targetNextColumn: nextColumnConfig,
+                            targetPrevColumn: prevColumnConfig,
                             position,
                         });
                         return {
@@ -78,12 +80,12 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                 return {
                     ...column,
                     columnConfig,
-                    isDndAllowed,
+                    isDndAllowed: isDndAllowed && !isPinnedAlways,
                     isPinnedAlways,
                     fix,
                     togglePin: (_fix: TColumnPinPosition) => togglePin(column.key, _fix),
                     toggleVisibility: () => toggleVisibility(column.key),
-                    onCanAcceptDrop: canAcceptDrop,
+                    onCanAcceptDrop: (props) => canAcceptDrop(props, nextColumn, prevColumn),
                     onDrop: handleDrop,
                 };
             }),
