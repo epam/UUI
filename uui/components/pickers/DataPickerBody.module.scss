@@ -25,7 +25,7 @@
     }
 }
 
-.search-wrapper ~ .body {
+.search-wrapper ~ :global(.uui-pickerInput-body) {
     &:not(.modal) {
         :global(.-scrolled-top) {
             border-top: 1px solid var(--uui-divider);
