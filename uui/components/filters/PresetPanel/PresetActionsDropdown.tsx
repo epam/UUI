@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
-import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState } from '@epam/uui-core';
-import { Dropdown, DropdownMenuButton, SuccessNotification } from '../../overlays';
+import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState, DropdownBodyProps } from '@epam/uui-core';
+import { Dropdown, DropdownMenuBody, DropdownMenuButton, SuccessNotification } from '../../overlays';
 import { IconButton } from '../../buttons';
 import { Text } from '../../typography';
-import { FlexRow, Panel } from '../../layout';
+import { FlexRow } from '../../layout';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
 import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
 import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/action-save-outline.svg';
@@ -80,11 +80,14 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         props.activePresetId, props.deletePreset, props.preset,
     ]);
 
-    const renderBody = () => {
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
         const isReadonlyPreset = props.preset.isReadonly;
+        const isPresetChanged = props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset);
+        const isRenameAvailable = props.preset.id === props.activePresetId && !isReadonlyPreset;
+
         return (
-            <Panel background="surface-main" shadow={ true } cx={ css.presetDropdownPanel }>
-                {props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) && (
+            <DropdownMenuBody { ...dropdownProps }>
+                { isPresetChanged && (
                     <>
                         {!isReadonlyPreset && (
                             <FlexRow key={ `${props.preset.id}-save-in-current` }>
@@ -94,28 +97,28 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                         <FlexRow key={ `${props.preset.id}-save-as-new` }>
                             <DropdownMenuButton icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset } />
                         </FlexRow>
-                        <FlexRow key={ `${props.preset.id}-discard` } borderBottom={ true }>
+                        <FlexRow key={ `${props.preset.id}-discard` }>
                             <DropdownMenuButton icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler } />
                         </FlexRow>
                     </>
                 )}
-                {props.preset.id === props.activePresetId && !isReadonlyPreset && (
-                    <FlexRow key={ `${props.preset.id}-rename` }>
+                { isRenameAvailable && (
+                    <FlexRow key={ `${props.preset.id}-rename` } borderTop={ isPresetChanged }>
                         <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset } />
                     </FlexRow>
                 )}
                 <FlexRow key={ `${props.preset.id}-duplicate` }>
                     <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler } />
                 </FlexRow>
-                <FlexRow borderBottom={ true } key={ `${props.preset.id}-copyLink` }>
+                <FlexRow key={ `${props.preset.id}-copyLink` }>
                     <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard } />
                 </FlexRow>
                 {!isReadonlyPreset && (
-                    <FlexRow key={ `${props.preset.id}-delete` } cx={ css.deleteRow }>
+                    <FlexRow key={ `${props.preset.id}-delete` } cx={ css.deleteRow } borderTop={ true }>
                         <DropdownMenuButton icon={ DeleteIcon } caption="Delete" cx={ css.deleteButton } onClick={ deleteHandler } />
                     </FlexRow>
                 )}
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 
