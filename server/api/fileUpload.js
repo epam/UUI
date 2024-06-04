@@ -12,7 +12,7 @@ router.post('/uploadFileMock', function uploadFileMock(req, res) {
     if (file.name.search(pdfFileRegex) > -1) {
         fileType = 'iframe';
     }
-    const imageRegex = /svg|png|jpg|heic|avif$/i;
+    const imageRegex = /svg|png|jpg|jpeg|heic|avif$/i;
     if (file.name.search(imageRegex) > -1) {
         fileType = 'image';
     }
