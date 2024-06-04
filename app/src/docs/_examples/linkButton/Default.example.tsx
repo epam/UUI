@@ -1,11 +1,11 @@
 import React from 'react';
 import { IDropdownToggler } from '@epam/uui-core';
-import { Dropdown, LinkButton, Panel, Text } from '@epam/uui';
+import { Dropdown, DropdownMenuBody, DropdownMenuButton, LinkButton, Panel, Text } from '@epam/uui';
 import { ReactComponent as navigationBack } from '@epam/assets/icons/common/navigation-back-18.svg';
 import css from './DefaultExample.module.scss';
 
 export default function DefaultLinkButtonExample() {
-    const renderDropdownBody = () => <Panel background="surface-main" shadow><Text>Dropdown body</Text></Panel>;
+    const renderDropdownBody = () => <DropdownMenuBody><DropdownMenuButton caption="Dropdown body" /></DropdownMenuBody>;
 
     return (
         <div className={ css.wrapper }>

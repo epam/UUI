@@ -11,7 +11,7 @@ import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/navigation-c
 
 import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
 import { Button, LinkButton } from '../../buttons';
-import { Dropdown, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
+import { Dropdown, DropdownMenuBody, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
 import { Text } from '../../typography';
 import { CountIndicator } from '../../widgets';
 import { SearchInput } from '../../inputs';
@@ -100,10 +100,10 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () => (
-                            <Panel background="surface-main" shadow={ true }>
+                            <DropdownMenuBody minWidth={ 100 }>
                                 <DropdownMenuButton caption={ i18n.clearAllButton } onClick={ uncheckAll } />
                                 <DropdownMenuButton caption={ i18n.selectAllButton } onClick={ checkAll } />
-                            </Panel>
+                            </DropdownMenuBody>
                         ) }
                         renderTarget={ (props) => <Button { ...props } fill="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
                     />
