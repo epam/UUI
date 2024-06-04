@@ -4,7 +4,6 @@ import { IDropdownToggler, DropdownBodyProps, mobilePopperModifier } from '@epam
 import { Dropdown } from '@epam/uui-components';
 import { MobileDropdownWrapper } from '../../pickers';
 import { SortingPanel, SortingPanelProps } from './SortingPanel';
-import { DropdownMenuBody } from '../../overlays';
 
 type ColumnHeaderDropdownProps = SortingPanelProps & {
     isOpen: boolean;
@@ -32,12 +31,10 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
         <Dropdown
             renderTarget={ props.renderTarget }
             renderBody={ (dropdownProps) => (
-                <DropdownMenuBody { ...dropdownProps } rawProps={ { style: { padding: 0 } } }>
-                    <MobileDropdownWrapper width={ 280 } maxWidth="auto" title={ props.title } onClose={ closeDropdown }>
-                        {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
-                        {props.renderFilter(dropdownProps)}
-                    </MobileDropdownWrapper>
-                </DropdownMenuBody>
+                <MobileDropdownWrapper width={ 280 } maxWidth="auto" title={ props.title } onClose={ closeDropdown }>
+                    {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
+                    {props.renderFilter(dropdownProps)}
+                </MobileDropdownWrapper>
             ) }
             modifiers={ popperModifiers }
             value={ props.isOpen }
