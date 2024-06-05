@@ -6,6 +6,7 @@
   * removed `ControlWrapper` component in Loveship and Promo;
 * [Breaking change][Loveship]: removed previously deprecated props:
   * [All skins]:
+    * [DropdownMenu]: all `DropdownMenu items` must be wrapped into `DropdownMenuBody`;
     * [DropdownContainer]: removed 'color' prop;
     * [TabButton][Tag][Badge][LinkButton][Button][MainMenuButton]: removed 'captionCx' prop. Please use 'cx' prop with cascading to 'uui-caption' global class;
     * [Text]: removed 'font' prop;
