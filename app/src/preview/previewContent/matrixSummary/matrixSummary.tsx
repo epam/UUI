@@ -18,7 +18,7 @@ export function MatrixInfo(modalProps: IModal<string> & { arr: TNormalizedMatrix
         <ModalBlocker { ...modalProps }>
             <ModalWindow>
                 <Panel background="surface-main">
-                    <ModalHeader title="Test matrix" onClose={ () => modalProps.abort() } />
+                    <ModalHeader title="Props" onClose={ () => modalProps.abort() } />
                     <ScrollBars hasTopShadow hasBottomShadow>
                         <FlexRow padding="24" vPadding="24">
                             <FlexCell>
@@ -45,15 +45,19 @@ function formatNormalizedMatrix(arr: TNormalizedMatrix[]): React.ReactNode | und
         if (result.length) {
             result.push(<br key={ `${index}_br` } />);
         }
+        const useCases = matrixInfo.totalUseCases > 1 ? `(Use cases: ${matrixInfo.totalUseCases})` : '';
+        const title = arr.length > 1 ? `Matrix ${index + 1} ${useCases}` : useCases;
         result.push((
             <table className={ css.rootTable } key={ index }>
-                <thead>
-                    <tr>
-                        <th colSpan={ 2 } className={ css.title }>
-                            { `Matrix ${index + 1} (${matrixInfo.totalUseCases} use cases)` }
-                        </th>
-                    </tr>
-                </thead>
+                { !!title && (
+                    <thead>
+                        <tr>
+                            <th colSpan={ 2 } className={ css.title }>
+                                { title }
+                            </th>
+                        </tr>
+                    </thead>
+                )}
                 <tbody>
                     { fixed }
                     { dynamic }
@@ -140,5 +144,5 @@ function getMatrixInfo(matrix: TNormalizedMatrix): TAcc {
         }
         acc.valueSpan = Math.max(acc.valueSpan, values.length);
         return acc;
-    }, { fixed: {}, dynamic: {}, totalUseCases: 0, valueSpan: 1 });
+    }, { fixed: {}, dynamic: {}, totalUseCases: 1, valueSpan: 1 });
 }
