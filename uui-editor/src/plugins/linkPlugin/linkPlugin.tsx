@@ -4,7 +4,7 @@ import { useUuiContext } from '@epam/uui-core';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { isElement, PlateEditor, PlatePlugin, someNode } from '@udecode/plate-common';
-import { ELEMENT_LINK, LinkPlugin, createLinkPlugin } from '@udecode/plate-link';
+import { ELEMENT_LINK, LinkPlugin, createLinkPlugin, withLink } from '@udecode/plate-link';
 import { useIsPluginActive } from '../../helpers';
 import { ReactComponent as LinkIcon } from '../../icons/link.svg';
 import { AddLinkModal } from './AddLinkModal';
@@ -34,8 +34,11 @@ export const linkPlugin = (): PlatePlugin => createLinkPlugin<WithToolbarButton 
         floatingBarButton: LinkButton,
     },
     // move to common function / plugin
-    withOverrides: (editor) => {
+    withOverrides: (editor, plugin) => {
         const { normalizeNode } = editor;
+
+        // eslint-disable-next-line no-param-reassign
+        editor = withLink(editor, plugin);
 
         editor.normalizeNode = (entry) => {
             const [node] = entry;
