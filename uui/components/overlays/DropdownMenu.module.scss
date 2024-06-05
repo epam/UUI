@@ -161,4 +161,9 @@
 
 .selected-mark {
     fill: var(--uui-dropdown-selected_mark);
+
+    & > svg {
+        width: 18px;
+        height: 18px;
+    }
 }
