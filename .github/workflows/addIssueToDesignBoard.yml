@@ -1,0 +1,19 @@
+name: Add design tasks to the design board
+
+on:
+    issues:
+        types:
+            - labeled
+            - opened
+
+jobs:
+    add-to-project:
+        name: Add issue to project
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/add-to-project@RELEASE_VERSION
+              with:
+                  project-url: https://github.com/orgs/epam/projects/38
+                  github-token: ${{ secrets.UUI_CI_SECRET }}
+                  labeled: Figma, Design needed
+                  label-operator: OR
