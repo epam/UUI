@@ -384,18 +384,12 @@
             .uui-count_indicator {
                 --uui-count_indicator-bg: color-mix(in srgb, var(--uui-neutral-100) 8%, transparent);
                 --uui-count_indicator-border: color-mix(in srgb, var(--uui-neutral-100) 40%, transparent);
-                --uui-count_indicator-caption: var(--uui-neutral-80);
+                --uui-count_indicator-caption: var(--uui-neutral-70);
             }
         }
     }
 
     .uui-badge.uui-color-night100 {
-        .uui-count_indicator {
-            --uui-count_indicator-bg: color-mix(in srgb, var(--uui-neutral-100) 8%, transparent);
-            --uui-count_indicator-border: color-mix(in srgb, var(--uui-neutral-100) 40%, transparent);
-            --uui-count_indicator-caption: var(--uui-neutral-80);
-        }
-
         &.uui-fill-solid {
             --uui-badge-bg: var(--uui-neutral-10);
             --uui-badge-border: var(--uui-neutral-10);
@@ -412,6 +406,12 @@
             --uui-badge-border-hover: var(--uui-neutral-30);
             --uui-badge-caption: var(--uui-neutral-70);
             --uui-badge-caption-hover: var(--uui-neutral-70);
+
+            .uui-count_indicator {
+                --uui-count_indicator-bg: color-mix(in srgb, var(--uui-neutral-100) 8%, transparent);
+                --uui-count_indicator-border: color-mix(in srgb, var(--uui-neutral-100) 40%, transparent);
+                --uui-count_indicator-caption: var(--uui-neutral-70);
+            }
         }
     }
 
@@ -437,7 +437,7 @@
 
     /* IconButton */
 
-    .uui-icon_button:is(.uui-color-info, .uui-color-success, .uui-color-warning, .uui-color-error) {
+    .uui-icon_button:is(.uui-color-info, .uui-color-primary, .uui-color-sky, .uui-color-success, .uui-color-accent, .uui-color-grass .uui-color-error, .uui-color-critical, .uui-color-sun, .uui-color-fire) {
         --uui-icon_btn: var(--uui-color-60);
         --uui-icon_btn-hover: var(--uui-color-70);
         --uui-icon_btn-active: var(--uui-color-70);
@@ -552,7 +552,7 @@
     }
 
     .uui-tooltip-container.uui-color-critical {
-        --uui-tooltip-border: var(--uui-critical-50);
+        --uui-tooltip-bg: var(--uui-critical-50);
     }
 
     .uui-tooltip-container.uui-color-inverted {
@@ -625,8 +625,8 @@
         }
 
         &.uui-fill-outline {
-            --uui-tag-caption: var(--uui-text-primary);
-            --uui-tag-fill: var(--uui-neutral-10);
+            --uui-tag-caption: var(--uui-neutral-0);
+            --uui-tag-fill: var(--uui-neutral-0);
 
             .uui-count_indicator {
                 --uui-count_indicator-bg: var(--uui-neutral-70);
@@ -638,8 +638,8 @@
         &.uui-color-neutral,
         &.uui-color-night300 {
             &.uui-fill-solid {
-                --uui-tag-caption: var(--uui-neutral-5);
-                --uui-tag-fill: var(--uui-neutral-10);
+                --uui-tag-caption: var(--uui-neutral-0);
+                --uui-tag-fill: var(--uui-neutral-0);
                 --uui-tag-bg: var(--uui-neutral-50);
                 --uui-tag-border: var(--uui-neutral-50);
                 --uui-tag-bg-hover: var(--uui-neutral-60);
@@ -652,12 +652,10 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-caption: var(--uui-neutral-5);
-                --uui-tag-fill: var(--uui-neutral-10);
-                --uui-tag-bg: var(--uui-neutral-60);
-                --uui-tag-border: var(--uui-neutral-40);
-                --uui-tag-bg-hover: var(--uui-neutral-50);
-                --uui-tag-border-hover: var(--uui-neutral-40);
+                --uui-tag-bg: var(--uui-neutral-30);
+                --uui-tag-border: var(--uui-neutral-20);
+                --uui-tag-bg-hover: var(--uui-neutral-40);
+                --uui-tag-border-hover: var(--uui-neutral-20);
 
                 .uui-count_indicator {
                     --uui-count_indicator-bg: var(--uui-neutral-40);
@@ -680,8 +678,6 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-caption: var(--uui-neutral-0);
-                --uui-tag-fill: var(--uui-neutral-0);
                 --uui-tag-bg: color-mix(in srgb, var(--white) 5%, transparent);
                 --uui-tag-border: var(--uui-neutral-0);
                 --uui-tag-bg-hover: color-mix(in srgb, var(--white) 10%, transparent);
@@ -697,10 +693,10 @@
         &.uui-color-night100 {
             &.uui-fill-solid {
                 --uui-tag-caption: var(--uui-neutral-80);
-                --uui-tag-fill: var(--uui-neutral-0);
+                --uui-tag-fill: var(--uui-neutral-80);
                 --uui-tag-bg: var(--uui-neutral-10);
                 --uui-tag-border: var(--uui-neutral-40);
-                --uui-tag-bg-hover: var(--uui-neutral-20);
+                --uui-tag-bg-hover: var(--uui-neutral-5);
                 --uui-tag-border-hover: var(--uui-neutral-30);
 
                 .uui-count_indicator {
@@ -711,8 +707,6 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-caption: var(--uui-neutral-5);
-                --uui-tag-fill: var(--uui-neutral-5);
                 --uui-tag-bg: color-mix(in srgb, var(--uui-neutral-0) 12%, transparent);
                 --uui-tag-bg-hover: color-mix(in srgb, var(--uui-neutral-0) 15%, transparent);
                 --uui-tag-border: var(--uui-neutral-20);
@@ -741,8 +735,6 @@
             }
 
             &.uui-fill-outline {
-                --uui-tag-caption: var(--uui-neutral-5);
-                --uui-tag-fill: var(--uui-neutral-0);
                 --uui-tag-bg: var(--uui-neutral-80);
                 --uui-tag-border: var(--uui-neutral-40);
                 --uui-tag-bg-hover: var(--uui-neutral-70);
@@ -795,6 +787,18 @@
 
     .uui-filters-panel-item-toggler {
         --uui-filters_toggler-bg-hover: var(--uui-neutral-30);
+    }
+
+    /* DropdownMenu */
+
+    .uui-dropdownMenu-body {
+        --uui-dropdown-selected_mark: var(--uui-info-60);
+    }
+
+    /* PickerInput */
+
+    .uui-pickerInput-body {
+        --uui-pickerInput-selected_mark: var(--uui-info-60);
     }
 
     /* fonts */

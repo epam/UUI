@@ -6,6 +6,7 @@ import * as promo from '@epam/promo';
 import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { TAlertPreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
@@ -29,10 +30,12 @@ export class AlertDoc extends BaseDocsBlock {
             });
             doc.merge('actions', {
                 examples: [
-                    { name: '1 action', value: [{ name: 'ACTION 1', action: () => {} }] },
-                    { name: '2 actions', value: [{ name: 'ACTION 1', action: () => {} }, { name: 'ACTION 2', action: () => {} }] },
+                    { name: '1 action', value: [{ name: 'ACTION 1', action: () => alert('Action 1') }] },
+                    { name: '2 actions', value: [{ name: 'ACTION 1', action: () => alert('Action 1') }, { name: 'ACTION 2', action: () => alert('Action 2') }], isDefault: true },
                 ],
             });
+            doc.setDefaultPropExample('onClose', () => true);
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
         preview: (docPreview: DocPreviewBuilder<uui.AlertProps | loveship.AlertProps | promo.AlertProps>) => {
             const TEST_DATA = {

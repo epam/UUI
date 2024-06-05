@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlateElement, PlateElementProps } from '@udecode/plate-common';
-import { ELEMENT_OL_CUSTOM } from './constants';
+import { OL_TYPE } from './constants';
 
 interface ListElementProps extends PlateElementProps {
     variant: 'ul' | 'ol';
@@ -11,7 +11,7 @@ export function ListElement({
     children,
     ...props
 }: ListElementProps) {
-    const Element = props.element.type === ELEMENT_OL_CUSTOM ? 'ol' : 'ul';
+    const Element = props.element.type === OL_TYPE ? 'ol' : 'ul';
 
     return (
         <PlateElement

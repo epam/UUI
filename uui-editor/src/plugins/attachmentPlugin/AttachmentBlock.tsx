@@ -15,16 +15,22 @@ import { ReactComponent as TextIcon } from '../../icons/file-file_text-24.svg';
 import { ReactComponent as MailIcon } from '../../icons/file-file_eml-24.svg';
 
 import css from './AttachmentBlock.module.scss';
-import { setElements } from '@udecode/plate-common';
+import { AnyObject, PlateEditor, PlatePluginComponent, setElements } from '@udecode/plate-common';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
+import { TAttachmentElement } from './types';
 
-export function AttachmentBlock(props: any) {
+export const AttachmentBlock: PlatePluginComponent<{
+    editor: PlateEditor,
+    attributes: AnyObject,
+    children: React.ReactNode,
+    element: TAttachmentElement
+}> = function AttachmentComp(props) {
     const isFocused = useFocused();
     const isSelected = useSelected() && isFocused;
     const isReadonly = useReadOnly();
 
     const { element, editor, children } = props;
-    const [fileName, setFileName] = useState(element.data.fileName || element.fileName);
+    const [fileName, setFileName] = useState(element.data.fileName || '');
 
     const changeName = (name: string) => {
         setElements(editor, {
@@ -36,17 +42,19 @@ export function AttachmentBlock(props: any) {
         });
     };
 
-    const handleKeyDown = (event: any) => {
-        event.preventDefault();
-        if (event.code === 'Enter') {
-            event.target.click();
-            event.target.blur();
-        }
+    const handleKeyDown: React.KeyboardEventHandler<HTMLAnchorElement> = (event) => {
+        event.preventDefault(); // TODO: check if we need that
+
+        // TODO: remove that, seems like dead code. target doesn't have click and blur
+        // if (event.code === 'Enter') {
+        //     event.target.click();
+        //     event.target.blur();
+        // }
     };
 
     const getIcon = () => {
         const { data } = element;
-        const type = data?.extension && data?.extension.toLowerCase();
+        const type = data.extension?.toLowerCase();
         switch (type) {
             case 'doc':
             case 'docx': {
@@ -120,7 +128,7 @@ export function AttachmentBlock(props: any) {
                                     placeholder="Describe attachment: book, link..."
                                     onBlur={ () => changeName(fileName) }
                                     value={ fileName }
-                                    onValueChange={ setFileName }
+                                    onValueChange={ (val) => typeof val === 'string' && setFileName(val) }
                                     isReadonly={ isReadonly }
                                 />
                             )
@@ -140,4 +148,4 @@ export function AttachmentBlock(props: any) {
             { children }
         </div>
     );
-}
+};

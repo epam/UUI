@@ -54,7 +54,7 @@ export class RadioInputDoc extends BaseDocsBlock {
                 id: TRadioInputPreview['Color Variants'],
                 matrix: {
                     size: { values: ['18'] },
-                    value: { values: [true] },
+                    value: { values: [true, false] },
                     label: { values: [TEST_DATA.label] },
                     ...statesBaseMatrix,
                 },

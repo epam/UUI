@@ -1,28 +1,28 @@
 import { createJuicePlugin } from '@udecode/plate-juice';
 import { createDeserializeDocxPlugin } from '@udecode/plate-serializer-docx';
-import { isBlockAboveEmpty, isSelectionAtBlockStart } from '@udecode/plate-common';
-import { ResetNodePlugin, createResetNodePlugin } from '@udecode/plate-reset-node';
+import { isBlockAboveEmpty, isSelectionAtBlockStart, PlatePlugin } from '@udecode/plate-common';
+import { type ResetNodePlugin, createResetNodePlugin } from '@udecode/plate-reset-node';
 import { createSoftBreakPlugin } from '@udecode/plate-break';
 import {
     paragraphPlugin,
     PARAGRAPH_TYPE,
-    QUOTE_PLUGIN_KEY,
-    TODO_ELEMENT_KEY,
     noteTypes,
+    QUOTE_TYPE,
+    TODO_TYPE,
 } from './plugins';
-import { createAutoformatPlugin } from './plugins/autoformatPlugin/autoformatPlugin';
-import { createEventEditorPlugin } from './plugins/eventEditorPlugin/eventEditorPlugin';
+import { createAutoformatPlugin } from './plugins/autoformatPlugin';
+import { createEventEditorPlugin } from './plugins/eventEditorPlugin';
 
 const resetBlockTypesCommonRule = {
     types: [
-        QUOTE_PLUGIN_KEY,
-        TODO_ELEMENT_KEY,
+        QUOTE_TYPE,
+        TODO_TYPE,
         ...noteTypes,
     ],
     defaultType: PARAGRAPH_TYPE,
 };
 
-const resetBlockTypePlugin: { options: Partial<ResetNodePlugin> } = {
+const resetBlockTypePlugin: Partial<PlatePlugin<ResetNodePlugin>> = {
     options: {
         rules: [
             {
@@ -44,12 +44,12 @@ const resetBlockTypePlugin: { options: Partial<ResetNodePlugin> } = {
  * with the following list when disableCorePlugins prop hasn't been set
  * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
  */
-export const defaultPlugins = [
+export const defaultPlugins: PlatePlugin[] = [
     createDeserializeDocxPlugin(), // depends on juice plugin
     createJuicePlugin(),
     paragraphPlugin(),
     createResetNodePlugin(resetBlockTypePlugin),
     createSoftBreakPlugin(),
-    createAutoformatPlugin(),
+    createAutoformatPlugin(), // TODO: should only be enabled if lists plugin listed
     createEventEditorPlugin(),
 ];

@@ -1,4 +1,4 @@
-import { IThemeVar, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
+import { IThemeVar } from '../themeTokensGen/types/sharedTypes';
 import { PATH } from '../themeTokensGen/constants';
 
 export type TVar = { token: IThemeVar, name: string, value: string };
@@ -12,27 +12,12 @@ export type TMainGroupConfig = {
 
 export const TOKENS_MIXIN_NAME = 'theme-tokens';
 
-const THEME_DIR = './epam-assets/theme';
 const THEME_TOKENS_DIR = './epam-assets/theme/tokens';
 
 export const tokensFile = PATH.FIGMA_VARS_COLLECTION_OUT_TOKENS;
-export const coreThemeMixinsConfig: Record<TFigmaThemeName, { themeFile: string, mixinsFile: string }> = {
-    [TFigmaThemeName.ELECTRIC]: {
-        themeFile: `${THEME_DIR}/theme_electric.scss`,
-        mixinsFile: `${THEME_TOKENS_DIR}/_theme_electric.scss`,
-    },
-    [TFigmaThemeName.PROMO]: {
-        themeFile: `${THEME_DIR}/theme_promo.scss`,
-        mixinsFile: `${THEME_TOKENS_DIR}/_theme_promo.scss`,
-    },
-    [TFigmaThemeName.LOVESHIP_LIGHT]: {
-        themeFile: `${THEME_DIR}/theme_loveship.scss`,
-        mixinsFile: `${THEME_TOKENS_DIR}/_theme_loveship.scss`,
-    },
-    [TFigmaThemeName.LOVESHIP_DARK]: {
-        themeFile: `${THEME_DIR}/theme_loveship_dark.scss`,
-        mixinsFile: `${THEME_TOKENS_DIR}/_theme_loveship_dark.scss`,
-    },
+export const getThemeMixinsFilePath = (themeName: string) => {
+    const themeNameNorm = themeName.toLowerCase().replaceAll('-', '_');
+    return `${THEME_TOKENS_DIR}/_theme_${themeNameNorm}.scss`;
 };
 
 const getInnerGroupIdLevel2 = (v: TVar) => {
