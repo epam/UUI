@@ -63,6 +63,7 @@ export const normalizeImageElement = (editor: PlateEditor<Value>, entry: TNodeEn
     const [node, path] = entry;
     const imageNode = node as DeprecatedImageElement;
 
+    // migrations
     if (imageNode.data) {
         const { align, imageSize, src, ...otherData } = imageNode.data;
 
