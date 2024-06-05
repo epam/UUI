@@ -26,3 +26,8 @@ export const uuiDocContextsMap: Record<TDocContext, React.ComponentType<DemoComp
     [TDocContext.VerticalTabButton]: VerticalTabButtonContext,
     [TDocContext.OpenedPickerBody]: OpenedPickerBodyContext,
 };
+
+export const isDocContextVisibleInPE = (ctxName: string) => {
+    const previewSpecificCtx = [TDocContext.OpenedPickerBody];
+    return !previewSpecificCtx.includes(ctxName as TDocContext);
+};
