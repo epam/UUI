@@ -1,0 +1,26 @@
+.rootTable {
+    width: 100%;
+    border-collapse: collapse;
+
+    .title {
+        padding-bottom: 12px;
+    }
+
+    .propName {
+        padding: 0 6px 0 6px;
+        text-align: right;
+        width: 200px;
+    }
+
+    .propValueContainer {
+        padding: 0 6px 0 6px;
+    }
+}
+
+.valueTable {
+    border-collapse: collapse;
+
+    .propValue {
+        padding: 0 6px 0 6px;
+    }
+}
