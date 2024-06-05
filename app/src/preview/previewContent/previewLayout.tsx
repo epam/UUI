@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { cx } from '@epam/uui-core';
 import { TPreviewCellSize } from '@epam/uui-docs';
 import { FlexCell, FlexRow, Spinner, Text, ErrorAlert } from '@epam/uui';
@@ -12,6 +12,7 @@ interface IPreviewLayout {
     renderCell: (params: { index: number }) => (React.ReactNode | undefined);
     totalNumberOfCells: number;
     cellSize: TPreviewCellSize | undefined;
+    onOpenConfig: () => void;
 }
 
 export function PreviewLayout(props: IPreviewLayout) {
@@ -59,8 +60,15 @@ export function PreviewLayout(props: IPreviewLayout) {
         );
     };
 
+    const ref = useRef();
+    const handleLayoutClick = (e: Event) => {
+        if (ref.current === e.target) {
+            props.onOpenConfig();
+        }
+    };
+
     return (
-        <FlexRow cx={ css.root } rawProps={ getPreviewRegionAttrs(isLoaded) }>
+        <FlexRow cx={ css.root } rawProps={ getPreviewRegionAttrs(isLoaded) } onClick={ handleLayoutClick } ref={ ref }>
             { renderContent() }
         </FlexRow>
     );
