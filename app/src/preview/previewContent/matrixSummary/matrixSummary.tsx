@@ -13,12 +13,13 @@ import {
 } from '@epam/uui';
 import css from './matrixSummary.module.scss';
 
-export function MatrixInfo(modalProps: IModal<string> & { arr: TNormalizedMatrix[] }) {
+export function MatrixInfo(modalProps: IModal<string> & { arr: TNormalizedMatrix[], totalUseCases: number }) {
+    const title = modalProps.totalUseCases > 1 ? `Props (total use cases: ${modalProps.totalUseCases})` : 'Props';
     return (
         <ModalBlocker { ...modalProps }>
             <ModalWindow>
                 <Panel background="surface-main">
-                    <ModalHeader title="Props" onClose={ () => modalProps.abort() } />
+                    <ModalHeader title={ title } onClose={ () => modalProps.abort() } />
                     <ScrollBars hasTopShadow hasBottomShadow>
                         <FlexRow padding="24" vPadding="24">
                             <FlexCell>
@@ -45,8 +46,7 @@ function formatNormalizedMatrix(arr: TNormalizedMatrix[]): React.ReactNode | und
         if (result.length) {
             result.push(<br key={ `${index}_br` } />);
         }
-        const useCases = matrixInfo.totalUseCases > 1 ? `(Use cases: ${matrixInfo.totalUseCases})` : '';
-        const title = arr.length > 1 ? `Matrix ${index + 1} ${useCases}` : useCases;
+        const title = arr.length > 1 ? `Matrix ${index + 1}` : '';
         result.push((
             <table className={ css.rootTable } key={ index }>
                 { !!title && (

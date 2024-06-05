@@ -58,7 +58,7 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
     const handleOpenConfig = () => {
         if (allRenderCases?.matrix.length > 0) {
             uuiModals
-                .show<string>((props) => <MatrixInfo { ...props } arr={ allRenderCases.matrix } />)
+                .show<string>((props) => <MatrixInfo { ...props } arr={ allRenderCases.matrix } totalUseCases={ allRenderCases?.props.length || 0 } />)
                 .catch(() => {});
         }
     };
