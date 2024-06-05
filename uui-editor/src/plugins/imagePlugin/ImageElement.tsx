@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     PlateElement,
     PlateElementProps,
@@ -29,12 +29,15 @@ export const ImageElement = withHOC(ResizableProvider, ({
     ...props
 }: ImageElementProps) => {
     const { children, nodeProps } = props;
+    const imageRef = useRef<HTMLImageElement>();
 
     const focused = useFocused();
     const selected = useSelected();
     const readOnly = useReadOnly();
 
     const width = useResizableStore().get.width();
+    const setWidth = useResizableStore().set.width();
+
     const isCaptionEnabled = typeof width === 'number' && width >= MIN_CAPTION_WIDTH;
 
     const aligns = [
@@ -69,6 +72,12 @@ export const ImageElement = withHOC(ResizableProvider, ({
                     )}
                     <Image
                         { ...nodeProps }
+                        ref={ imageRef }
+                        onLoad={ () => {
+                            if (typeof imageRef.current?.width === 'number') {
+                                setWidth(imageRef.current?.width);
+                            }
+                        } }
                         className={ cx(
                             css.image,
                             visible && css.selectedImage, // for mobile
