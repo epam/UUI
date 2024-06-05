@@ -7,8 +7,11 @@ import { TPreviewContentParams } from '../types';
 import { ERRORS } from '../constants';
 import { buildRenderCaseArr, getConfigByComponentId } from './previewContentUtils';
 import { formatPreviewIdToString } from '../utils/previewLinkUtils';
+import { useUuiContext } from '@epam/uui-core';
+import { MatrixInfo } from './matrixSummary/matrixSummary';
 
 export function PreviewContent(props: { params: TPreviewContentParams }) {
+    const { uuiModals } = useUuiContext();
     const { theme, isSkin, previewId, componentId } = props.params;
     const compConfig = useMemo(() => getConfigByComponentId(componentId), [componentId]);
     const docBuilderGenCtx = useDocBuilderGenCtx();
@@ -52,8 +55,17 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
         return null;
     }, [allRenderCases, docs, previewIdAsString]);
 
+    const handleOpenConfig = () => {
+        if (allRenderCases?.matrix.length > 0) {
+            uuiModals
+                .show<string>((props) => <MatrixInfo { ...props } arr={ allRenderCases.matrix } totalUseCases={ allRenderCases?.props.length || 0 } />)
+                .catch(() => {});
+        }
+    };
+
     return (
         <PreviewLayout
+            onOpenConfig={ handleOpenConfig }
             error={ error }
             totalNumberOfCells={ totalNumberOfCases }
             cellSize={ allRenderCases?.cellSize }
