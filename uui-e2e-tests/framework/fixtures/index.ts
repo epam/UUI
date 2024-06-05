@@ -1,14 +1,14 @@
 import { test as baseTest } from '@playwright/test';
 import { mockApi } from '../mocks/apiMocks';
 import { PreviewPage } from '../pages/previewPage';
-import { stylePath } from '../../playwright.config';
+import { stylePath, timeoutForFixture } from '../../playwright.config';
 
 const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
     previewPage: [
         async ({ browser }, use) => {
             const context = await browser.newContext();
-            const page = await context.newPage();
             try {
+                const page = await context.newPage();
                 await mockApi(page);
                 const pePage = new PreviewPage(page);
                 await pePage.goto();
@@ -19,7 +19,7 @@ const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
                 await context.close();
             }
         },
-        { scope: 'worker' },
+        { scope: 'worker', timeout: timeoutForFixture },
     ],
 });
 
