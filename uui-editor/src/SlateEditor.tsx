@@ -1,5 +1,5 @@
 import React, {
-    FocusEventHandler, forwardRef, Fragment, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
+    FocusEventHandler, forwardRef, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
     IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
@@ -125,7 +125,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
                 style={ contentStyle }
             />
         );
-    }, [currentId, props.autoFocus, props.isReadonly, props.onKeyDown, props.onBlur, props.onFocus, props.placeholder, contentStyle]);
+    }, [props.placeholder, props.autoFocus, props.isReadonly, props.onKeyDown, props.onBlur, props.onFocus, currentId, contentStyle]);
 
     /** could not be memoized, since slate is uncontrolled component */
     const content = props.scrollbars

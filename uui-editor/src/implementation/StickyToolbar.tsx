@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import css from './StickyToolbar.module.scss';
 import { useLayer } from '@epam/uui-core';
-import { isBlock, isEditorFocused, useEditorRef, useEventPlateId } from '@udecode/plate-common';
+import { isEditorFocused, useEditorRef, useEventPlateId } from '@udecode/plate-common';
 
 interface SidebarProps {
     children: JSX.Element[];
@@ -11,6 +11,7 @@ interface SidebarProps {
 
 // eslint-disable-next-line react/function-component-definition
 export const StickyToolbar: React.FC<SidebarProps> = ({ children }) => {
+    const zIndex = useLayer()?.zIndex;
     const editor = useEditorRef(useEventPlateId());
     const isActive = isEditorFocused(editor);
 
@@ -19,18 +20,8 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ children }) => {
      * Basically for keeping UploadFileToggler mounted after files selection
      * TODO: refactoring
     */
-    const isBlockSelected = isBlock(editor, editor.value);
-    const [isVisible, setIsVisible] = useState(false);
-    const zIndex = useLayer()?.zIndex;
-    useEffect(() => {
-        const isSidebarVisible = true;
-        if (isSidebarVisible !== isVisible) {
-            const timeout = setTimeout(() => {
-                setIsVisible(isSidebarVisible);
-            }, 50);
-            return () => clearTimeout(timeout);
-        }
-    }, [isBlockSelected, editor.readOnly, isVisible]);
+    const [init, setInit] = useState(false);
+    useEffect(() => { setInit(true); }, []);
 
     /**
      * Prevents unwanted event propagation of focus change (cursor hide)
@@ -42,7 +33,7 @@ export const StickyToolbar: React.FC<SidebarProps> = ({ children }) => {
         event.stopPropagation();
     };
 
-    if (!isActive || !isVisible) {
+    if (!isActive || !init) {
         return null;
     }
 
