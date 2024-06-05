@@ -1,6 +1,6 @@
 import { UploadFileToggler } from '@epam/uui-components';
 import { useEditorRef } from '@udecode/plate-common';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback } from 'react';
 
 import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ReactComponent as AttachIcon } from '../../icons/attach-file.svg';
