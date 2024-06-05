@@ -261,6 +261,11 @@
 
         &.uui-fill-solid.uui-color-white {
             --uui-btn-bg-active: var(--uui-neutral-20);
+
+            &:active {
+                background-color: var(--uui-neutral-20);
+                border-color: var(--uui-neutral-20);
+            }
         }
 
         &.uui-fill-outline {
