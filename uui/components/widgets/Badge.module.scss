@@ -51,7 +51,7 @@
     padding-right: $controlPadding - $borderWidth;
 
     :global(.uui-icon):first-child {
-        padding-left: $captionPadding;
+        padding-left: 3px;
     }
 
     :global(.uui-caption) {

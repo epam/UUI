@@ -1,7 +1,5 @@
 import React, { Fragment, useMemo } from 'react';
-import {
-    useEditorRef, isEditorFocused, PlateEditor, WithPlatePlugin, Value, PluginOptions,
-} from '@udecode/plate-common';
+import { useEditorRef, PlateEditor, WithPlatePlugin, Value, PluginOptions } from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
 import { FloatingToolbar } from './PositionedToolbar';
 
@@ -48,9 +46,7 @@ export function Toolbars({
     toolbarPosition?: 'floating' | 'fixed';
 }) {
     const editorRef = useEditorRef();
-    const isActive = isEditorFocused(editorRef);
-
-    const { bottom, floating } = useMemo(() => getButtons(editorRef), [editorRef.plugins]);
+    const { bottom, floating } = useMemo(() => getButtons(editorRef), [editorRef]);
 
     return (
         <Fragment>
@@ -59,11 +55,10 @@ export function Toolbars({
                     { floating }
                 </FloatingToolbar>
             ) }
-            {isActive && (
-                <StickyToolbar isReadonly={ false }>
-                    { toolbarPosition === 'floating' ? bottom : [...floating, ...bottom] }
-                </StickyToolbar>
-            )}
+
+            <StickyToolbar>
+                { toolbarPosition === 'floating' ? bottom : [...floating, ...bottom] }
+            </StickyToolbar>
         </Fragment>
     );
 }

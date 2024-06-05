@@ -5,6 +5,7 @@ type TEnvParams = {
     UUI_TEST_PARAM_PROJECT?: string,
     UUI_TEST_PARAM_ONLY_FAILED?: boolean,
     UUI_TEST_PARAM_CHECK_ISSUES?: boolean,
+    UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR?: boolean,
     UUI_TEST_PARAM_UPDATE_SNAPSHOTS?: boolean,
 };
 export function readUuiSpecificEnvVariables(): TEnvParams {
@@ -16,6 +17,7 @@ export function readUuiSpecificEnvVariables(): TEnvParams {
         UUI_TEST_PARAM_PROJECT,
         UUI_TEST_PARAM_ONLY_FAILED,
         UUI_TEST_PARAM_CHECK_ISSUES,
+        UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR,
         UUI_TEST_PARAM_UPDATE_SNAPSHOTS,
         //
     } = process.env;
@@ -26,6 +28,7 @@ export function readUuiSpecificEnvVariables(): TEnvParams {
         UUI_TEST_PARAM_PROJECT,
         UUI_TEST_PARAM_ONLY_FAILED: UUI_TEST_PARAM_ONLY_FAILED === 'true',
         UUI_TEST_PARAM_CHECK_ISSUES: UUI_TEST_PARAM_CHECK_ISSUES === 'true',
+        UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR: UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR === 'true',
         UUI_TEST_PARAM_UPDATE_SNAPSHOTS: UUI_TEST_PARAM_UPDATE_SNAPSHOTS === 'true',
     };
 }

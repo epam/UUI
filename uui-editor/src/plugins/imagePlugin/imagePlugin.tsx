@@ -1,47 +1,47 @@
-import { useUuiContext } from '@epam/uui-core';
 import React from 'react';
-
+import { prependHttp, useUuiContext } from '@epam/uui-core';
 import { useIsPluginActive, isTextSelected } from '../../helpers';
 
 import { AddImageModal } from './AddImageModal';
-import { Image, toPlateAlign } from './ImageBlock';
+import { Image } from './ImageBlock';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import {
-    PlateEditor, createPluginFactory, focusEditor, getBlockAbove, insertEmptyElement, insertNodes,
+    PlateEditor, createPluginFactory, getBlockAbove, focusEditor, isElement, PlatePlugin, insertNodes, insertEmptyElement,
 } from '@udecode/plate-common';
-import { TImageElement } from '@udecode/plate-media';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/paragraphPlugin';
 
-import { IImageElement } from './types';
+import { ModalPayload, TImageElement } from './types';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { IMAGE_PLUGIN_KEY, IMAGE_TYPE } from './constants';
+import { useFilesUploader } from '../uploadFilePlugin/file_uploader';
+import { normalizeImageElement } from '../../migrations/normalizers';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin';
 
-export const IMAGE_PLUGIN_KEY = 'image';
-export const IMAGE_PLUGIN_TYPE = 'image';
-
-export const imagePlugin = () => {
+export const imagePlugin = (): PlatePlugin => {
     const createImagePlugin = createPluginFactory<WithToolbarButton>({
         key: IMAGE_PLUGIN_KEY,
-        type: IMAGE_PLUGIN_TYPE,
+        type: IMAGE_TYPE,
         isElement: true,
         isVoid: true,
         component: Image,
         serializeHtml: ({ element }) => {
-            const imageElement = element as IImageElement;
-            const align = toPlateAlign(imageElement.data?.align);
+            const imageElement = element as TImageElement;
+
             return (
-                <div style={ { textAlign: align || 'center' } }>
+                <div style={ { textAlign: imageElement.align || 'left' } }>
                     <img
-                        src={ element.url as string }
-                        style={ { width: imageElement.width } }
+                        src={ imageElement.url }
+                        style={ {
+                            width: imageElement.width,
+                        } }
                         alt=""
                     />
                 </div>
             );
         },
-        then: (editor, { type }) => ({
+        then: (_, { type }) => ({
             deserializeHtml: {
                 rules: [{ validNodeName: 'IMG' }],
                 getNode: (el) => {
@@ -55,7 +55,7 @@ export const imagePlugin = () => {
         }),
         handlers: {
             onKeyDown: (editor) => (event) => {
-                const imageEntry = getBlockAbove(editor, { match: { type: IMAGE_PLUGIN_TYPE } });
+                const imageEntry = getBlockAbove(editor, { match: { type: IMAGE_TYPE } });
                 if (!imageEntry) return;
 
                 if (event.key === 'Enter') {
@@ -77,7 +77,24 @@ export const imagePlugin = () => {
         },
     });
 
-    return createImagePlugin();
+    return createImagePlugin({
+        // move to common function / plugin
+        withOverrides: (editor) => {
+            const { normalizeNode } = editor;
+
+            editor.normalizeNode = (entry) => {
+                const [node] = entry;
+
+                if (isElement(node) && node.type === IMAGE_TYPE) {
+                    normalizeImageElement(editor, entry);
+                }
+
+                normalizeNode(entry);
+            };
+
+            return editor;
+        },
+    });
 };
 
 interface IImageButton {
@@ -87,44 +104,59 @@ interface IImageButton {
 export function ImageButton({ editor }: IImageButton) {
     const context = useUuiContext();
 
-    const handleImageInsert = (url: string) => {
-        const text = { text: '' };
+    // TODO: make image file upload independent form uploadFilePlugin
+    const onFilesAdded = useFilesUploader(editor);
 
-        const image: TImageElement = {
-            align: 'left',
-            type: IMAGE_PLUGIN_KEY,
-            url: url,
-            children: [text],
+    const onInsertImage = () => {
+        const returnSelection = (path?: number[]) => {
+            if (path && !!path.length) {
+                editor.select(editor.start(path));
+                focusEditor(editor);
+            }
         };
 
-        insertNodes<TImageElement>(editor, image);
+        const handleInsert = (payload: ModalPayload) => {
+            const path = editor.selection?.anchor.path;
+            if (typeof payload === 'string') {
+                const link = prependHttp(payload, { https: true });
+                insertNodes(editor, {
+                    align: 'left',
+                    url: link,
+                    width: 'fit-content', // intial image size before resize
+                    type: IMAGE_TYPE,
+                    children: [{ text: '' }],
+                });
+                return path;
+            } else {
+                return onFilesAdded(payload).then(() => path);
+            }
+        };
+
+        context.uuiModals.show<ModalPayload>((modalProps) => (
+            <AddImageModal
+                editor={ editor }
+                { ...modalProps }
+            />
+        ))
+            .then(handleInsert)
+            .then(returnSelection)
+            .catch(console.error);
     };
 
+    // TODO: get rid of that
     if (!useIsPluginActive(IMAGE_PLUGIN_KEY)) return null;
     const block = getBlockAbove(editor);
 
     return (
         <ToolbarButton
             isDisabled={ isTextSelected(editor, true) }
-            onClick={ async (event) => {
-                if (!editor) return;
+            onClick={ (event) => {
                 event.preventDefault();
                 event.stopPropagation();
-
-                context.uuiModals.show<string>((modalProps) => (
-                    <AddImageModal
-                        editor={ editor }
-                        insertImage={ handleImageInsert }
-                        { ...modalProps }
-                    />
-                )).then(() => {
-                    focusEditor(editor); // focusing right after insert leads to bugs
-                }).catch((error) => {
-                    console.error(error);
-                });
+                onInsertImage();
             } }
             icon={ ImageIcon }
-            isActive={ block?.length && block[0].type === 'image' }
+            isActive={ block?.length && block[0].type === IMAGE_TYPE }
         />
     );
 }

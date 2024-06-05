@@ -21,9 +21,10 @@ import {
     codeBlockPlugin,
 } from '../plugins';
 import { defaultPlugins } from '../defaultPlugins';
-import { createPlateEditor, PlatePlugin } from '@udecode/plate-core';
+import { PlatePlugin } from '@udecode/plate-common';
 import { createTempEditor } from '../helpers';
 import { expectedSlateValue, inputMarkdowValue, editorValueMock } from './data/md-serialization';
+import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin';
 
 export const readTestFile = (filepath: string): string => {
     const absoluteFilepath = path.resolve(__dirname, filepath);
@@ -61,7 +62,7 @@ const initEditor = () => {
     editor.children = [
         {
             data: {},
-            type: 'paragraph',
+            type: PARAGRAPH_TYPE,
             children: [
                 {
                     text: '',
@@ -69,10 +70,8 @@ const initEditor = () => {
             ],
         },
     ];
-    return createPlateEditor({
-        editor,
-        plugins,
-    });
+
+    return editor;
 };
 
 describe('serialization', () => {

@@ -92,11 +92,18 @@ export class NotificationContext extends BaseContext implements INotificationCon
     }
 
     public remove(id: number) {
-        this.notifications = this.notifications.filter((i) => i.props.id !== id);
+        this.notifications = this.notifications.filter((i) => {
+            if (i.props.id === id) {
+                this.layoutCtx.releaseLayer(i.props.id);
+                return false;
+            }
+            return true;
+        });
         this.update({});
     }
 
     public clearAll() {
+        this.notifications.map((i) => this.layoutCtx.releaseLayer(i.props.id));
         this.notifications = [];
         this.update({});
     }

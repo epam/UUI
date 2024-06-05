@@ -1,5 +1,5 @@
 import * as uuiComponents from '@epam/uui-components';
-import { withMods, Overwrite } from '@epam/uui-core';
+import { withMods, Overwrite, devLogger } from '@epam/uui-core';
 import css from './IconButton.module.scss';
 import { systemIcons } from '../../icons/icons';
 
@@ -8,7 +8,7 @@ interface IconButtonMods {
      * Defines component color.
      * @default 'neutral'
      */
-    color?: 'info' | 'success' | 'warning' | 'error' | 'secondary' | 'neutral';
+    color?: 'info' | 'success' | 'error' | 'primary' | 'accent' | 'critical' | 'warning' | 'secondary' | 'neutral' | 'white';
 }
 
 /** Represents the Core properties of the IconButton component. */
@@ -32,6 +32,15 @@ export const IconButton = withMods<uuiComponents.IconButtonProps, IconButtonProp
     uuiComponents.IconButton,
     applyIconButtonMods,
     (props) => {
+        const isDeprecated = ['info', 'success', 'error', 'warning'].includes(props.color);
+        if (__DEV__ && isDeprecated) {
+            devLogger.warnAboutDeprecatedPropValue<IconButtonProps, 'color'>({
+                component: 'IconButton',
+                propName: 'color',
+                propValue: props.color,
+                condition: () => isDeprecated,
+            });
+        }
         return {
             dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
             size: props.size && Number(props.size),

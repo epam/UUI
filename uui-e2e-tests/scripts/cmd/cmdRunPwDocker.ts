@@ -85,7 +85,7 @@ function getVolumesMapArgs() {
     // files/folders to mount volumes
     return [
         './scripts',
-        './src',
+        './framework',
         './tests',
         './playwright.config.ts',
         './.env',

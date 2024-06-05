@@ -11,6 +11,8 @@ import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
 import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
 
 import css from './NoteBar.module.scss';
+import { NOTE_ERROR_TYPE, NOTE_LINK_TYPE, NOTE_QUOTE_TYPE, NOTE_WARN_TYPE } from '../plugins/notePlugin/constants';
+import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin/constants';
 
 interface NoteBarProps extends DropdownBodyProps {
     editor: PlateEditor;
@@ -26,7 +28,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
 
         let newType = toggleType;
         if (newType === prevElementType.current) {
-            newType = 'paragraph';
+            newType = PARAGRAPH_TYPE;
         }
         prevElementType.current = newType;
 
@@ -34,7 +36,7 @@ export function NoteBar({ editor, type }: NoteBarProps) {
     };
 
     const clearBlock = () => {
-        setElements(editor, { type: 'paragraph' });
+        setElements(editor, { type: PARAGRAPH_TYPE });
     };
 
     return (
@@ -45,26 +47,26 @@ export function NoteBar({ editor, type }: NoteBarProps) {
                 iconColor="gray60"
             />
             <ToolbarButton
-                isActive={ type === 'note-quote' }
-                onClick={ (e) => toggleBlock(e, 'note-quote') }
+                isActive={ type === NOTE_QUOTE_TYPE }
+                onClick={ (e) => toggleBlock(e, NOTE_QUOTE_TYPE) }
                 icon={ NoteIconQuote }
                 iconColor="gray60"
             />
             <ToolbarButton
-                isActive={ type === 'note-error' }
-                onClick={ (e) => toggleBlock(e, 'note-error') }
+                isActive={ type === NOTE_ERROR_TYPE }
+                onClick={ (e) => toggleBlock(e, NOTE_ERROR_TYPE) }
                 icon={ NoteIconError }
                 iconColor="red"
             />
             <ToolbarButton
-                isActive={ type === 'note-warning' }
-                onClick={ (e) => toggleBlock(e, 'note-warning') }
+                isActive={ type === NOTE_WARN_TYPE }
+                onClick={ (e) => toggleBlock(e, NOTE_WARN_TYPE) }
                 icon={ NoteIconWarning }
                 iconColor="amber"
             />
             <ToolbarButton
-                isActive={ type === 'note-link' }
-                onClick={ (e) => toggleBlock(e, 'note-link') }
+                isActive={ type === NOTE_LINK_TYPE }
+                onClick={ (e) => toggleBlock(e, NOTE_LINK_TYPE) }
                 icon={ NoteIconLink }
                 iconColor="blue"
             />

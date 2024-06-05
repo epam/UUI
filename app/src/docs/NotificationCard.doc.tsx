@@ -6,6 +6,7 @@ import * as electric from '@epam/electric';
 import { DocBuilder, DocPreviewBuilder, TDocConfig, TPreviewCellSize, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { TNotificationCardPreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
@@ -36,6 +37,14 @@ export class NotificationCardDoc extends BaseDocsBlock {
                 ],
             });
             doc.setDefaultPropExample('color', ({ value }) => value === 'info');
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
+            doc.merge('actions', {
+                examples: [
+                    { name: '1 action', value: [{ name: 'ACTION 1', action: () => alert('Action 1') }] },
+                    { name: '2 actions', value: [{ name: 'ACTION 1', action: () => alert('Action 1') }, { name: 'ACTION 2', action: () => alert('Action 2') }], isDefault: true },
+                ],
+            });
+            doc.setDefaultPropExample('onClose', () => true);
         },
 
         preview: (docPreview: DocPreviewBuilder<uui.NotificationCardProps | loveship.NotificationCardProps| promo.NotificationCardProps>) => {

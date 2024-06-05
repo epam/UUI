@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
-import { Button, Dropdown, DropdownContainer, FlexCell, VerticalTabButton, Slider } from '@epam/uui';
+import { Button, Dropdown, FlexCell, VerticalTabButton, Slider, DropdownMenuBody } from '@epam/uui';
 
 export default function BasicAdaptivePanelExample() {
     const [width, setWidth] = useState<number>(100);
+    const [value, onValueChange] = useState('');
 
     const renderItem = (item: AdaptiveItemProps<{ data?: { caption: string } }>) => {
         return (
@@ -30,11 +31,15 @@ export default function BasicAdaptivePanelExample() {
                 <Dropdown
                     renderTarget={ (props) => <Button caption="Hidden items" { ...props } /> }
                     renderBody={ (props) => (
-                        <DropdownContainer { ...props }>
+                        <DropdownMenuBody { ...props }>
                             {hiddenItems.map((i) => (
-                                <VerticalTabButton caption={ i.data.caption } onClick={ () => {} } />
+                                <VerticalTabButton
+                                    caption={ i.data.caption }
+                                    onClick={ () => onValueChange(i.data.caption) }
+                                    isLinkActive={ i.data.caption === value }
+                                />
                             ))}
-                        </DropdownContainer>
+                        </DropdownMenuBody>
                     ) }
                 />
             ),

@@ -47,7 +47,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
 
     plugins = [
         ...defaultPlugins,
-        baseMarksPlugin(),
+        ...baseMarksPlugin(),
         headerPlugin(),
         colorPlugin(),
         superscriptPlugin(),

@@ -1,9 +1,9 @@
-import { ELEMENT_DEFAULT } from '@udecode/plate-common';
-import { createParagraphPlugin } from '@udecode/plate-paragraph';
 import * as React from 'react';
+import { ELEMENT_DEFAULT, PlatePlugin } from '@udecode/plate-common';
+import { createParagraphPlugin } from '@udecode/plate-paragraph';
+import { PARAGRAPH_TYPE } from './constants';
 
-export const PARAGRAPH_TYPE = 'paragraph';
-export const paragraphPlugin = () => {
+export const paragraphPlugin = (): PlatePlugin => {
     return createParagraphPlugin({
         type: PARAGRAPH_TYPE,
         overrideByKey: {
