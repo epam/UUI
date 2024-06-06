@@ -21,7 +21,7 @@
     "print-error": "ts-node scripts/cmd/cmdPrintError.ts"
   },
   "dependencies": {
-    "@playwright/test": "1.44.0",
+    "@playwright/test": "1.44.1",
     "typescript": "4.9.3",
     "ts-node": "10.9.1",
     "cross-spawn": "7.0.3",

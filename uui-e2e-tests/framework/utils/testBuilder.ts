@@ -86,7 +86,7 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                     }
                     async function assert() {
                         const opts = await previewPage.getScreenshotOptions();
-                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
+                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts, ...(matrix.slow ? { timeout: 15000 } : {}) });
                     }
                 });
             });
