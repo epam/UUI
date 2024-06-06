@@ -41,8 +41,8 @@ function formatNormalizedMatrix(arr: TNormalizedMatrix[]): React.ReactNode | und
     const result: React.ReactNode[] = [];
     arr.forEach((matrix, index) => {
         const matrixInfo = getMatrixInfo(matrix);
-        const fixed = renderRows(matrixInfo.fixed);
-        const dynamic = renderRows(matrixInfo.dynamic);
+        const fixed = renderRows(matrixInfo.fixed, (name: string) => !!matrix[name].condition);
+        const dynamic = renderRows(matrixInfo.dynamic, (name: string) => !!matrix[name].condition);
         const isNoProps = Object.keys(matrix).length === 0;
         if (result.length) {
             result.push(<br key={ `${index}_br` } />);
@@ -76,12 +76,12 @@ function formatNormalizedMatrix(arr: TNormalizedMatrix[]): React.ReactNode | und
     }
 }
 
-function renderRows(o: Record<string, unknown[]>): JSX.Element[] {
+function renderRows(o: Record<string, unknown[]>, hasCondition: (name: string) => boolean): JSX.Element[] {
     return Object.keys(o).map((name) => {
         const valueArr = o[name as keyof typeof o];
         return (
             <tr key={ name }>
-                <th className={ css.propName }>{`${name}`}</th>
+                <th className={ css.propName }>{`${name}${hasCondition(name) ? ' (conditional)' : ''}`}</th>
                 <td className={ css.propValueContainer }>
                     <table className={ css.valueTable } border={ 1 }>
                         <tbody>
@@ -134,21 +134,16 @@ function trucStr(str: string, truncAfter: number = 100) {
     return trunc;
 }
 
-type TAcc = { fixed: Record<string, unknown[]>; dynamic: Record<string, unknown[]>; totalUseCases: number; valueSpan: number };
+type TAcc = { fixed: Record<string, unknown[]>; dynamic: Record<string, unknown[]>; valueSpan: number };
 function getMatrixInfo(matrix: TNormalizedMatrix): TAcc {
     return Object.keys(matrix).reduce<TAcc>((acc, name) => {
         const values = matrix[name].values;
-        if (values.length > 1) {
-            if (!acc.totalUseCases) {
-                acc.totalUseCases = values.length;
-            } else {
-                acc.totalUseCases *= values.length;
-            }
+        if (values.length > 1 || !!matrix[name].condition) {
             acc.dynamic[name] = values;
         } else {
             acc.fixed[name] = values;
         }
         acc.valueSpan = Math.max(acc.valueSpan, values.length);
         return acc;
-    }, { fixed: {}, dynamic: {}, totalUseCases: 1, valueSpan: 1 });
+    }, { fixed: {}, dynamic: {}, valueSpan: 1 });
 }
