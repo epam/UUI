@@ -1,0 +1,33 @@
+.rootTable {
+    width: 100%;
+    min-width: 100%;
+    border-collapse: collapse;
+
+    .title {
+        padding-bottom: 12px;
+    }
+
+    .propName {
+        white-space: nowrap;
+        padding: 0 6px 0 6px;
+        text-align: right;
+        width: 200px;
+    }
+
+    .propValueContainer {
+        padding: 0 6px 0 6px;
+    }
+}
+
+.valueTable {
+    border-collapse: collapse;
+
+    .propValue {
+        padding: 0 6px 0 6px;
+
+        > :global(.uui-text) {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+    }
+}

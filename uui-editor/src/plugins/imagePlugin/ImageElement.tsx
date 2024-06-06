@@ -35,6 +35,8 @@ export const ImageElement = withHOC(ResizableProvider, ({
     const readOnly = useReadOnly();
 
     const width = useResizableStore().get.width();
+    const setWidth = useResizableStore().set.width();
+
     const isCaptionEnabled = typeof width === 'number' && width >= MIN_CAPTION_WIDTH;
 
     const aligns = [
@@ -69,6 +71,9 @@ export const ImageElement = withHOC(ResizableProvider, ({
                     )}
                     <Image
                         { ...nodeProps }
+                        onLoad={ (event) => {
+                            setWidth((event.target as HTMLImageElement).width);
+                        } }
                         className={ cx(
                             css.image,
                             visible && css.selectedImage, // for mobile

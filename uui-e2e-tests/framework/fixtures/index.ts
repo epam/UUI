@@ -1,25 +1,29 @@
-import { test as baseTest } from '@playwright/test';
+import { Page, test as baseTest } from '@playwright/test';
 import { mockApi } from '../mocks/apiMocks';
 import { PreviewPage } from '../pages/previewPage';
-import { stylePath } from '../../playwright.config';
+import { stylePath, timeoutForFixture } from '../../playwright.config';
+import { TEngine } from '../types';
 
 const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
     previewPage: [
-        async ({ browser }, use) => {
+        async ({ browser }, use, { project }) => {
             const context = await browser.newContext();
-            const page = await context.newPage();
+            let page: Page | undefined;
+            let previewPage: PreviewPage | undefined;
             try {
+                page = await context.newPage();
                 await mockApi(page);
-                const pePage = new PreviewPage(page);
-                await pePage.goto();
+                previewPage = new PreviewPage({ page, engine: project.name as TEngine });
+                await previewPage.goto();
                 await page.addStyleTag({ path: stylePath });
                 await page.waitForTimeout(50);
-                await use(pePage);
+                await use(previewPage);
             } finally {
+                previewPage && await previewPage.close();
                 await context.close();
             }
         },
-        { scope: 'worker' },
+        { scope: 'worker', timeout: timeoutForFixture },
     ],
 });
 

@@ -1,6 +1,4 @@
-import { IComponentDocs, TComponentPreview, TPreviewPropsItemMatrixCondition } from '../types';
-
-type TNormalizedMatrix = Record<string, { values: unknown[]; condition?: TPreviewPropsItemMatrixCondition<any, any> } >;
+import { IComponentDocs, TComponentPreview, TNormalizedMatrix } from '../types';
 
 export class TestMatrixUtils {
     static createTestMatrixFromArr(params: { matrixNorm: TNormalizedMatrix[], parentProps?: Record<string, unknown> }): Record<string, unknown>[] {

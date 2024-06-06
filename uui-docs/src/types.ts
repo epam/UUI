@@ -159,7 +159,10 @@ export type TPreviewPropsItemRenderCases = {
     context: TDocContext | undefined;
     cellSize: TPreviewCellSize | undefined;
     props: Record<string, unknown>[];
+    matrix: TNormalizedMatrix[];
 };
+export type TNormalizedMatrix = Record<string, { values: unknown[]; condition?: TPreviewPropsItemMatrixCondition<any, any> } >;
+
 export type TPreviewMatrix<T> = TComponentPreview<T>['matrix'];
 export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps> = {
     /** Optional group ID. It will visually group list of previews in the Property Explorer. */
