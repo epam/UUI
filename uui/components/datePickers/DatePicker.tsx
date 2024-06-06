@@ -1,80 +1,140 @@
-import React from 'react';
-import { cx, DatePickerCoreProps, IDropdownToggler, uuiMod, DropdownBodyProps, devLogger, withMods } from '@epam/uui-core';
-import { BaseDatePicker } from '@epam/uui-components';
-import { EditMode, SizeMod, IHasEditMode } from '../types';
+import React, { useEffect, useState } from 'react';
+import { Dropdown } from '@epam/uui-components';
+import {
+    DropdownBodyProps, IDropdownToggler, cx, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
+} from '@epam/uui-core';
 import { TextInput } from '../inputs';
-import { DatePickerBody } from './DatePickerBody';
+import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
+import { DatePickerProps } from './types';
+import {
+    defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
+} from './helpers';
+import { DatePickerBody } from './DatePickerBody';
 
 const defaultMode = EditMode.FORM;
+const modifiers = [{
+    name: 'offset',
+    options: { offset: [0, 6] },
+}];
 
-/** Represents the properties of the DatePicker component. */
-export interface DatePickerProps extends DatePickerCoreProps, SizeMod, IHasEditMode {
-    /**
-    * HTML ID attribute for the toggler input
-    */
-    id?: string;
-}
+export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
+    const { format = defaultFormat, value } = props;
+    const context = useUuiContext();
+    const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
+    const [isBodyOpen, setBodyIsOpen] = useState(false);
 
-class DatePickerComponent extends BaseDatePicker<DatePickerProps> {
-    renderInput = (props: IDropdownToggler & { cx: any }) => {
-        if (__DEV__) {
-            if (this.props.size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<DatePickerProps, 'size'>({
-                    component: 'DatePicker',
-                    propName: 'size',
-                    propValue: this.props.size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(this.props.size) !== -1,
-                });
+    useEffect(() => {
+        setInputValue(toCustomDateFormat(value, format));
+    }, [value, setInputValue]);
+
+    const onValueChange = (newValue: string | null) => {
+        if (value !== newValue) {
+            props.onValueChange(newValue);
+
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue, value);
+                context.uuiAnalytics.sendEvent(event);
             }
         }
+    };
+
+    const onBodyValueChange = (newValue: string | null) => {
+        setInputValue(toCustomDateFormat(newValue, format));
+        onValueChange(newValue);
+        setBodyIsOpen(false);
+    };
+
+    const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        if (isFocusReceiverInsideFocusLock(e)) return;
+        props.onBlur?.(e);
+
+        if (isValidDate(inputValue, format, props.filter)) {
+            setInputValue(toCustomDateFormat(inputValue, format));
+            onValueChange(toValueDateFormat(inputValue, format));
+        } else {
+            setInputValue(null);
+            onValueChange(null);
+        }
+        setBodyIsOpen(false);
+    };
+
+    const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
+        const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
-                { ...props }
-                onClick={ null }
+                { ...renderProps }
+                // fixes a bug with body open, it skips unwanted prevent default
+                onClick={ () => {} }
                 isDropdown={ false }
-                cx={ cx(this.props.inputCx, this.state.isOpen && uuiMod.focus) }
-                icon={ this.props.mode !== EditMode.CELL && systemIcons.calendar }
-                iconPosition={ this.props.iconPosition || 'left' }
-                placeholder={ this.props.placeholder ? this.props.placeholder : this.getFormat() }
-                size={ this.props.size || '36' }
-                value={ this.state.inputValue }
-                onValueChange={ this.handleInputChange }
-                onCancel={ this.props.disableClear || !this.state.inputValue ? undefined : this.handleCancel }
-                isInvalid={ this.props.isInvalid }
-                isDisabled={ this.props.isDisabled }
-                isReadonly={ this.props.isReadonly }
-                isRequired={ this.props.isRequired }
-                tabIndex={ this.props.isReadonly || this.props.isDisabled ? -1 : 0 }
-                onFocus={ this.handleFocus }
-                onBlur={ this.handleBlur }
-                mode={ this.props.mode || defaultMode }
-                rawProps={ this.props.rawProps?.input }
-                id={ this.props.id }
+                cx={ cx(props.inputCx, isBodyOpen && uuiMod.focus) }
+                icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
+                iconPosition={ props.iconPosition || 'left' }
+                placeholder={ props.placeholder ? props.placeholder : format }
+                size={ props.size || '36' }
+                value={ inputValue || undefined }
+                onValueChange={ (v) => {
+                    setInputValue(v || '');
+                } }
+                onCancel={ allowClear ? () => {
+                    if (!props.disableClear && !!inputValue) {
+                        onValueChange(null);
+                    }
+                } : undefined }
+                isInvalid={ props.isInvalid }
+                isDisabled={ props.isDisabled }
+                isReadonly={ props.isReadonly }
+                tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
+                onFocus={ (e) => {
+                    setBodyIsOpen(true);
+                    props.onFocus?.(e);
+                } }
+                onBlur={ onBlur }
+                mode={ props.mode || defaultMode }
+                rawProps={ props.rawProps?.input }
+                id={ props.id }
             />
         );
     };
 
-    renderBody(props: DropdownBodyProps) {
+    const renderBody = (renderProps: DropdownBodyProps) => {
         return (
-            <DropdownContainer { ...props } focusLock={ false }>
+            <DropdownContainer
+                { ...renderProps }
+                focusLock={ false }
+            >
                 <DatePickerBody
-                    cx={ cx(this.props.bodyCx) }
-                    filter={ this.props.filter }
-                    value={ this.getValue() }
-                    setSelectedDate={ this.setSelectedDate }
-                    setDisplayedDateAndView={ this.setDisplayedDateAndView }
-                    changeIsOpen={ this.onToggle }
-                    renderDay={ this.props.renderDay }
-                    isHoliday={ this.props.isHoliday }
-                    rawProps={ this.props.rawProps?.body }
+                    value={ value }
+                    onValueChange={ onBodyValueChange }
+                    cx={ cx(props.bodyCx) }
+                    filter={ props.filter }
+                    isHoliday={ props.isHoliday }
+                    renderDay={ props.renderDay }
+                    rawProps={ props.rawProps?.body }
                 />
-                {this.props.renderFooter?.()}
+                {props.renderFooter?.()}
             </DropdownContainer>
         );
-    }
+    };
+
+    return (
+        <Dropdown
+            value={ isBodyOpen }
+            modifiers={ modifiers }
+            placement={ props.placement }
+            forwardedRef={ ref }
+            onValueChange={ (v) => {
+                setBodyIsOpen(v);
+            } }
+            renderTarget={ (renderProps) => {
+                return props.renderTarget?.(renderProps) || renderInput(renderProps);
+            } }
+            renderBody={ (renderProps) => {
+                return renderBody(renderProps);
+            } }
+        />
+    );
 }
 
-export const DatePicker = withMods(DatePickerComponent);
+export const DatePicker = React.forwardRef(DatePickerComponent);

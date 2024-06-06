@@ -4,7 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "An anchor component is used to wrap anything that will have the link behavior. It supports both plain and SPA navigation."
+        "text": "Like an usual <a>, but supports SPA navigation."
       }
     ]
   }

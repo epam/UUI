@@ -1,21 +1,21 @@
-import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import updateLocale from 'dayjs/plugin/updateLocale.js';
-import { cx } from '@epam/uui-core';
-import { MonthSelection, YearSelection, DatePickerBodyBase, DatePickerBodyBaseProps, valueFormat, i18n } from '@epam/uui-components';
+import React, { forwardRef, useEffect, useState } from 'react';
+import {
+    IControlled,
+    cx,
+} from '@epam/uui-core';
+import { MonthSelection, YearSelection } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
 import css from './DatePickerBody.module.scss';
+import { CommonDatePickerBodyProps, ViewType } from './types';
+import {
+    getNewMonth, uuiDatePickerBodyBase, valueFormat,
+} from './helpers';
+import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 
-dayjs.extend(updateLocale);
-
-export interface DatePickerBodyProps extends DatePickerBodyBaseProps<string> {
-    /*
-    * A pure function that gets array of classes for styling a day for each day.
-    */
-    getDayCX?(day: Dayjs): string[];
+export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
     /**
-     * A pure function that gets whether day is holiday for each day.
+     * Manually handles holidays
      */
     isHoliday?: (day: Dayjs) => boolean;
 }
@@ -25,54 +25,129 @@ export const uuiDatePickerBody = {
     separator: 'uui-datepickerBody-separator',
 } as const;
 
-export class DatePickerBody extends DatePickerBodyBase<string, DatePickerBodyProps> {
-    constructor(props: DatePickerBodyProps) {
-        super(props);
-        dayjs.locale('en');
-        dayjs.updateLocale(i18n.datePicker.locale, { weekStart: 1 });
-    }
+export const DatePickerBody = forwardRef(DatePickerBodyComp);
 
-    onDayClick = (day: Dayjs) => {
-        if (!this.props.filter || this.props.filter(day)) {
-            this.props.setSelectedDate(day.format(valueFormat));
-        }
-        this.props.changeIsOpen && this.props.changeIsOpen(false);
+function DatePickerBodyComp(props: DatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
+    const { value, onValueChange } = props;
+    const [month, setMonth] = useState<Dayjs>(getNewMonth(value));
+    const [view, setView] = useState<ViewType>('DAY_SELECTION');
+
+    // sync updated props with internal state
+    useEffect(() => {
+        setMonth(getNewMonth(value));
+        setView('DAY_SELECTION');
+    }, [value, setMonth]);
+
+    return (
+        <StatelessDatePickerBody
+            ref={ ref }
+            { ...props }
+            month={ month }
+            view={ view }
+            onValueChange={ onValueChange }
+            onMonthChange={ (m) => setMonth(m) }
+            onViewChange={ (v) => setView(v) }
+        />
+    );
+}
+
+export interface StatelessDatePickerBodyValue<TSelection> {
+    value: TSelection | null;
+    month: Dayjs;
+    view: ViewType;
+}
+
+export interface StatelessDatePickerBodyProps extends CommonDatePickerBodyProps, StatelessDatePickerBodyValue<string> {
+    onValueChange: (value: string | null) => void;
+    onMonthChange: (m: Dayjs) => void;
+    onViewChange: (v: ViewType) => void;
+    isHoliday?: (day: Dayjs) => boolean;
+}
+
+export const StatelessDatePickerBody = forwardRef(StatelessDatePickerBodyComp);
+
+function StatelessDatePickerBodyComp({
+    renderDay,
+    isHoliday,
+    cx: classes,
+    filter,
+    rawProps,
+    value,
+    month,
+    view,
+    onValueChange,
+    onMonthChange,
+    onViewChange,
+}: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
+    const selectedDate = uuiDayjs.dayjs(value);
+
+    const onMonthClick = (newDate: Dayjs) => {
+        onMonthChange(newDate);
+        onViewChange('DAY_SELECTION');
     };
 
-    getView = () => {
-        switch (this.props.value?.view) {
+    const onYearClick = (newDate: Dayjs) => {
+        onMonthChange(newDate);
+        onViewChange('MONTH_SELECTION');
+    };
+
+    const onDayClick = (day: Dayjs) => {
+        if (!filter || filter(day)) {
+            onValueChange(day.format(valueFormat));
+        }
+    };
+
+    const getView = () => {
+        switch (view) {
             case 'MONTH_SELECTION':
                 return (
-                    <MonthSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onMonthClick } />
+                    <MonthSelection
+                        selectedDate={ selectedDate }
+                        value={ month }
+                        onValueChange={ onMonthClick }
+                    />
                 );
             case 'YEAR_SELECTION':
                 return (
-                    <YearSelection selectedDate={ dayjs(this.props.value.selectedDate) } value={ this.props.value.displayedDate } onValueChange={ this.onYearClick } />
+                    <YearSelection
+                        selectedDate={ selectedDate }
+                        value={ month }
+                        onValueChange={ onYearClick }
+                    />
                 );
             case 'DAY_SELECTION':
                 return (
                     <Calendar
-                        value={ dayjs(this.props.value.selectedDate) }
-                        onValueChange={ this.onDayClick }
-                        displayedDate={ this.props.value.displayedDate }
-                        filter={ this.props.filter }
-                        getDayCX={ this.props.getDayCX }
-                        renderDay={ this.props.renderDay }
-                        isHoliday={ this.props.isHoliday }
+                        value={ selectedDate }
+                        month={ month }
+                        onValueChange={ onDayClick }
+                        filter={ filter }
+                        renderDay={ renderDay }
+                        isHoliday={ isHoliday }
                     />
                 );
         }
     };
 
-    renderBody = () => {
-        return (
-            <div className={ cx(css.root, uuiDatePickerBody.wrapper, this.props.cx) }>
+    return (
+        <div
+            ref={ ref }
+            className={ cx(uuiDatePickerBodyBase.container, classes) }
+            { ...rawProps }
+        >
+            <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>
                 <DatePickerHeader
-                    value={ this.props.value }
-                    onValueChange={ (newValue) => this.props.setDisplayedDateAndView(newValue.displayedDate, newValue.view) }
+                    value={ {
+                        view,
+                        month,
+                    } }
+                    onValueChange={ (newValue) => {
+                        onMonthChange(newValue.month);
+                        onViewChange(newValue.view);
+                    } }
                 />
-                {this.getView()}
+                {getView()}
             </div>
-        );
-    };
+        </div>
+    );
 }

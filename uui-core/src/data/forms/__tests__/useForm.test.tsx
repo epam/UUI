@@ -2,11 +2,6 @@ import { useForm } from '../useForm';
 import type { Metadata, ValidationMode } from '../../../../index';
 import type { FormSaveResponse, IFormApi, UseFormProps } from '../index';
 import { renderHookWithContextAsync, act, getDefaultUUiContextWrapper } from '@epam/uui-test-utils';
-import { useLock } from '../useLock';
-
-jest.mock('../useLock', () => {
-    return { useLock: jest.fn() };
-});
 
 async function handleSave(save: () => void) {
     try {
@@ -170,34 +165,6 @@ describe('useForm', () => {
             expect(result.current.lens.prop('dummy').toProps().isInvalid).toBe(false);
         });
 
-        it('Should do nothing, if value isn`t changed', async () => {
-            const saveMock = jest.fn().mockResolvedValue(false);
-            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
-            const props = {
-                value: testData,
-                onSave: saveMock,
-                onError: jest.fn(),
-                beforeLeave: beforeLeaveMock,
-                getMetadata: () => testMetadata,
-            };
-
-            const { result, rerender } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
-
-            rerender(props);
-
-            expect(beforeLeaveMock).not.toHaveBeenCalled();
-            expect(saveMock).not.toHaveBeenCalled();
-
-            act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(result.current.isChanged).toBe(true);
-
-            rerender(props);
-            expect(result.current.isChanged).toBe(true);
-
-            expect(beforeLeaveMock).not.toHaveBeenCalled();
-            expect(saveMock).not.toHaveBeenCalled();
-        });
-
         it('Should return isInvalid as false for 1 or more invalid fields', async () => {
             const enhancedMetadata = { ...testMetadata, props: { ...testMetadata.props, tummy: testMetadata.props.dummy } };
             const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() =>
@@ -230,7 +197,7 @@ describe('useForm', () => {
                 }));
 
             act(() => result.current.lens.prop('dummy').set(null));
-            expect(result.current.lens.toProps().validationProps).toStrictEqual({
+            expect(result.current.validationProps).toStrictEqual({
                 dummy: {
                     isInvalid: true,
                     validationMessage: 'The field is mandatory',
@@ -341,30 +308,6 @@ describe('useForm', () => {
             act(() => result.current.lens.prop('dummy').set(''));
 
             expect(result.current.isChanged).toBe(false);
-        });
-
-        it('Should show the same value, if you: save => leave => come back', async () => {
-            const saveMock = jest.fn().mockResolvedValue({ form: {} });
-            const beforeLeaveMock = jest.fn().mockResolvedValue(true);
-            const { wrapper } = getDefaultUUiContextWrapper();
-            const useFormHook = () =>
-                useForm({
-                    value: testData,
-                    onSave: saveMock,
-                    beforeLeave: beforeLeaveMock,
-                    onError: jest.fn(),
-                    getMetadata: () => testMetadata,
-                });
-            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
-
-            act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(result.current.isChanged).toBe(true);
-
-            await act(() => (useLock as jest.Mock).mock.calls.at(-1)[0].handleLeave());
-
-            expect(result.current.isInvalid).toBe(false);
-            expect(beforeLeaveMock).toHaveBeenCalled();
-            expect(saveMock).toHaveBeenCalled();
         });
 
         it('Should undo to previous value, redo to the next value', async () => {
@@ -505,24 +448,6 @@ describe('useForm', () => {
             expect(result.current.isChanged).toBe(true);
         });
 
-        it('Should reset lock after component unmount', async () => {
-            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
-            const { wrapper } = getDefaultUUiContextWrapper();
-            const useFormHook = () =>
-                useForm({
-                    value: testData,
-                    onSave: () => Promise.resolve(),
-                    beforeLeave: beforeLeaveMock,
-                    getMetadata: () => testMetadata,
-                });
-            const { result, unmount } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined, { wrapper });
-
-            act(() => result.current.lens.prop('dummy').set('hi'));
-            expect(result.current.isChanged).toBe(true);
-
-            unmount();
-        });
-
         it('Should store unsaved data to localstorage', async () => {
             const settingsKey = 'form-test';
             const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
@@ -647,6 +572,134 @@ describe('useForm', () => {
             await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
 
             expect(loadUnsavedChangesMock).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('useForm before leave(lock)', () => {
+        it('Should call beforeLeave callback when trying to leave form with unsaved changes', async () => {
+            const saveMock = jest.fn().mockResolvedValue({ form: {} });
+            const beforeLeaveMock = jest.fn().mockResolvedValue(true);
+
+            const useFormHook = () =>
+                useForm({
+                    value: testData,
+                    onSave: saveMock,
+                    beforeLeave: beforeLeaveMock,
+                    onError: jest.fn(),
+                    getMetadata: () => testMetadata,
+                });
+            const { result, svc } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(useFormHook, undefined);
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => svc.uuiRouter.redirect('/'));
+
+            expect(result.current.isInvalid).toBe(false);
+            expect(beforeLeaveMock).toHaveBeenCalled();
+            expect(saveMock).toHaveBeenCalled();
+        });
+
+        it('Should not call beforeLeave if form is not changed', async () => {
+            const saveMock = jest.fn().mockResolvedValue(false);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                onError: jest.fn(),
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            expect(result.current.isChanged).toBe(false);
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            act(() => result.current.lens.prop('dummy').set(''));
+
+            expect(result.current.isChanged).toBe(false);
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+        });
+
+        it('Should unblock router when form is saved', async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+            const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                onError: jest.fn(),
+                beforeLeave: beforeLeaveMock,
+                onSuccess: () => { svc.uuiRouter.redirect('/'); }, // We add redirect in onSuccess callback, to check that form 'unblock' router right after the save action
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props), props, { wrapper });
+
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => svc.uuiRouter.redirect('/'));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+
+            await act(() => result.current.save());
+            await act(() => svc.uuiRouter.redirect('/'));
+
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+            expect(saveMock).toHaveBeenCalled();
+        });
+
+        it('Should call beforeLeave when calling form.close method', async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            await act(() => result.current.close()); // Form isn't changed
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => result.current.close());
+
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+        });
+
+        it('Should make redirect and lock form aging if  beforeLeave return "remain"', async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue('remain');
+            const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props), props, { wrapper });
+
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => svc.uuiRouter.redirect({ pathname: '/newLocation' }));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+            expect(svc.uuiRouter.getCurrentLink().pathname).toEqual('/newLocation');
+
+            await act(() => svc.uuiRouter.redirect({ pathname: '/newLocation2' }));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(2); // form still in lock
         });
     });
 
@@ -818,6 +871,42 @@ describe('useForm', () => {
             expect(result.current.lens.prop('deep2').prop('inner2').toProps().validationMessage).toBe(
                 serverResponse.validation.validationProps.deep2.validationProps.inner2.validationMessage,
             );
+        });
+
+        it('Should change sever validation state via setServerValidationState callback', async () => {
+            const serverResponse: FormSaveResponse<IAdvancedFoo> = {
+                validation: {
+                    isInvalid: true,
+                    validationProps: {
+                        deep: {
+                            isInvalid: true,
+                            validationProps: {
+                                inner: {
+                                    isInvalid: true,
+                                    validationMessage: 'Single test error',
+                                },
+                            },
+                        },
+                    },
+                },
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IAdvancedFoo>, IFormApi<IAdvancedFoo>>(() =>
+                useForm({
+                    value: testDataLocal,
+                    onSave: () => Promise.resolve(serverResponse),
+                    onSuccess: () => '',
+                    getMetadata: () => testMetadataLocal,
+                    beforeLeave: () => Promise.resolve(false),
+                }));
+
+            await act(() => result.current.save());
+
+            expect(result.current.serverValidationState).toBe(serverResponse.validation);
+
+            await act(() => result.current.setServerValidationState(undefined));
+
+            expect(result.current.serverValidationState).toBe(undefined);
         });
     });
 });

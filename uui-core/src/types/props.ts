@@ -124,6 +124,9 @@ export interface IHasChildren {
     children?: ReactNode;
 }
 
+/**
+ * Represents placeholder component prop
+ */
 export interface IHasPlaceholder {
     /** Placeholder to display when empty */
     placeholder?: any;

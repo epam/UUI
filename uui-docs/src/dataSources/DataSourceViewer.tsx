@@ -1,18 +1,21 @@
 import React, { useCallback } from 'react';
 import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/promo';
-import { FlexRow, PickerItem } from '@epam/uui';
+import { FlexRow, PickerItem, Switch } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
 import css from './DataSourceViewer.module.scss';
 
 interface Props<TItem, TId> extends IEditable<DataSourceState> {
     exampleTitle?: string;
     selectAll?: boolean;
+    showSelectedOnly?: boolean;
     getName?: (item: TItem) => string;
     dataSource: IDataSource<TItem, TId, any>;
+    onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<any, TId>>>;
+    onShowSelectedOnlyChange?: () => void;
 }
 
 export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
-    const { value, onValueChange, dataSource, exampleTitle, selectAll: showSelectAll } = props;
+    const { value, onValueChange, dataSource, exampleTitle, selectAll: showSelectAll, showSelectedOnly, onShowSelectedOnlyChange } = props;
     const view = dataSource.useView(value, onValueChange);
 
     const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
@@ -73,6 +76,9 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                         caption={ hasSelection ? 'Clear all' : 'Select all' }
                         onClick={ hasSelection ? clearAll : selectAll }
                     />
+                )}
+                {onShowSelectedOnlyChange && (
+                    <Switch label="Show selected rows only" value={ showSelectedOnly } onValueChange={ onShowSelectedOnlyChange } />
                 )}
             </FlexRow>
             { value.checked?.length > 0 && (

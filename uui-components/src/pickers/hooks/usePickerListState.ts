@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import isEqual from 'react-fast-compare';
 import { usePickerState } from './usePickerState';
 import { PickerState, UsePickerStateProps } from './types';
-import isEqual from 'lodash.isequal';
 
 interface PickerListState<TId> extends PickerState {
     visibleIds: TId[];
@@ -20,19 +20,19 @@ export function usePickerListState<TId>(props: UsePickerListStateProps<TId>): Pi
 
     useEffect(() => {
         if (
-            !isEqual(prevProps.current?.dataSourceState, props.dataSourceState)
-            && !isEqual(props.dataSourceState, pickerState.dataSourceState)
+            prevProps.current?.dataSourceState.visibleCount !== props.dataSourceState.visibleCount
+            && props.dataSourceState.visibleCount !== pickerState.dataSourceState.visibleCount
         ) {
             pickerState.setDataSourceState({
                 ...pickerState.dataSourceState,
-                ...props.dataSourceState,
+                visibleCount: props.dataSourceState.visibleCount,
             });
         }
 
         if (!isEqual(prevProps.current?.visibleIds, props.visibleIds) && !isEqual(props.visibleIds, visibleIds)) {
             setVisibleIds(props.visibleIds);
         }
-    }, [props]);
+    }, [props.visibleIds, props.visibleIds]);
 
     useEffect(() => {
         prevProps.current = props;

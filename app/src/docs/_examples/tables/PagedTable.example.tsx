@@ -1,9 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { SetStateAction, useCallback, useMemo, useState } from 'react';
+import isEqual from 'react-fast-compare';
 import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
-import isEqual from 'lodash.isequal';
 
 export default function PagedTable() {
     const svc = useUuiContext();
@@ -11,18 +11,20 @@ export default function PagedTable() {
         page: 1, pageSize: 10,
     });
 
-    const setTableState = useCallback((newState: DataSourceState) => {
-        const isFilterChanged = !isEqual(state.filter, newState.filter);
-        const isSearchChanged = state.search !== newState.search;
-        const isSortingChanged = !isEqual(state.sorting, newState.sorting);
-        const isPagingChanged = state.page !== newState.page || state.pageSize !== newState.pageSize;
-
-        if (isFilterChanged || isSearchChanged || isSortingChanged || isPagingChanged) {
-            setState({ ...newState, checked: [] });
-            return;
-        }
-        setState(newState);
-    }, [state]);
+    const setTableState = useCallback((newState: SetStateAction<DataSourceState>) => {
+        setState((currentState) => {
+            const updatedState = typeof newState === 'function' ? newState(currentState) : newState;
+            const isFilterChanged = !isEqual(currentState.filter, updatedState.filter);
+            const isSearchChanged = currentState.search !== updatedState.search;
+            const isSortingChanged = !isEqual(currentState.sorting, updatedState.sorting);
+            const isPagingChanged = currentState.page !== updatedState.page || currentState.pageSize !== updatedState.pageSize;
+    
+            if (isFilterChanged || isSearchChanged || isSortingChanged || isPagingChanged) {
+                return { ...updatedState, checked: [] };
+            }
+            return updatedState;
+        });
+    }, []);
 
     const columns: DataColumnProps<Person>[] = useMemo(
         () => [

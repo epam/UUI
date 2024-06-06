@@ -1,7 +1,7 @@
-import { useCallback, useContext } from 'react';
-import isEqual from 'lodash.isequal';
+import { useCallback, useContext, useLayoutEffect } from 'react';
+import isEqual from 'react-fast-compare';
 import {
-    DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext,
+    DataSourceListProps, DataSourceState, PickerBaseProps, PickerFooterProps, UuiContext, usePrevious,
 } from '@epam/uui-core';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { PickerState } from './types';
@@ -12,6 +12,8 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 ) {
     const context = useContext(UuiContext);
     const { showSelected, setShowSelected, dataSourceState, setDataSourceState } = pickerState;
+    const prevDataSourceState = usePrevious(dataSourceState);
+
     const {
         dataSource,
         emptyValue,
@@ -25,24 +27,8 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         isFoldedByDefault,
         sortBy,
         cascadeSelection,
+        showSelectedOnly,
     } = props;
-
-    const handleDataSourceValueChange = (newDataSourceState: DataSourceState) => {
-        if (showSelected && (!newDataSourceState.checked?.length || newDataSourceState.search)) {
-            setShowSelected(false);
-        }
-
-        if (newDataSourceState.search !== dataSourceState.search) {
-            newDataSourceState.focusedIndex = 0;
-        }
-
-        setDataSourceState(newDataSourceState);
-        const newValue = dataSourceStateToValue(props, newDataSourceState, dataSource);
-
-        if (!isEqual(value, newValue)) {
-            handleSelectionValueChange(newValue);
-        }
-    };
 
     const handleSelectionValueChange = useCallback((newValue: any) => {
         onValueChange(newValue);
@@ -52,6 +38,41 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
             context.uuiAnalytics.sendEvent(event);
         }
     }, [onValueChange, getValueChangeAnalyticsEvent]);
+
+    const handleDataSourceValueChange = useCallback((newDataSourceState: React.SetStateAction<DataSourceState<any, TId>>) => {
+        setDataSourceState((st) => {
+            let newDsState: DataSourceState;
+            if (typeof newDataSourceState === 'function') {
+                newDsState = newDataSourceState(st);
+            } else {
+                newDsState = newDataSourceState;
+            }
+
+            if ((newDsState.search || st.search) && newDsState.search !== st.search) {
+                newDsState.focusedIndex = 0;
+            }
+
+            return newDsState;
+        });
+    }, [setDataSourceState]);
+
+    useLayoutEffect(() => {
+        if (showSelected && (!dataSourceState.checked?.length || dataSourceState.search)) {
+            setShowSelected(false);
+        }
+
+        if ((!prevDataSourceState && (dataSourceState.checked?.length || dataSourceState.selectedId != null))
+            || (prevDataSourceState && (
+                !isEqual(prevDataSourceState.checked, dataSourceState.checked)
+                || dataSourceState.selectedId !== prevDataSourceState.selectedId
+            ))
+        ) {
+            const newValue = dataSourceStateToValue(props, dataSourceState, dataSource);
+            if (!isEqual(value, newValue)) {
+                handleSelectionValueChange(newValue);
+            }
+        }
+    }, [dataSourceState]);
 
     const getName = (i: (TItem & { name?: string }) | void) => {
         const unknownStr = 'Unknown';
@@ -104,10 +125,10 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     const clearSelection = () => {
         view.clearAllChecked();
 
-        handleDataSourceValueChange({
-            ...dataSourceState,
-            selectedId: emptyValue,
-        });
+        handleDataSourceValueChange((dsState) =>({
+            ...dsState,
+            selectedId: emptyValue as undefined,
+        }));
     };
 
     const hasSelection = () => {
@@ -126,14 +147,8 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         ...(cascadeSelection ? { cascadeSelection } : {}),
         ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
         backgroundReload: true,
+        showSelectedOnly,
     }, [dataSource]);
-
-    const getSelectedRows = (visibleCount?: number) => {
-        if (hasSelection()) {
-            return view.getSelectedRows({ visibleCount });
-        }
-        return [];
-    };
 
     const getListProps = (): DataSourceListProps => {
         const listProps = view.getListProps();
@@ -153,7 +168,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
     const toggleShowOnlySelected = (val: boolean) => {
         setShowSelected(val);
-        setDataSourceState({ ...dataSourceState, search: '' });
+        handleDataSourceValueChange({ ...dataSourceState, search: '' });
     };
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> => ({
@@ -166,6 +181,19 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         selectionMode,
     });
 
+    const getSelectedRows = (itemsToTake: number) => {
+        const dsState = getDataSourceState();
+        let checked = [];
+        if (props.selectionMode === 'single') {
+            checked = dsState.selectedId !== null && dsState.selectedId !== undefined ? [dsState.selectedId] : [];
+        } else {
+            checked = dsState.checked ?? [];
+        }
+        return checked
+            .slice(0, itemsToTake)
+            .map((id, index) => view.getById(id, index));
+    };
+
     return {
         context,
         dataSourceState,
@@ -174,11 +202,11 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         getEntityName,
         isSingleSelect,
         getSelectedIdsArray,
+        getSelectedRows,
         getDataSourceState,
         getRowOptions,
         clearSelection,
         hasSelection,
-        getSelectedRows,
         view,
         getListProps,
         getFooterProps,

@@ -2,33 +2,35 @@
 
 exports[`Blocker should be rendered correctly 1`] = `
 <div
+  aria-busy="true"
+  aria-label="Loading"
+  aria-live="polite"
   className="container uui-blocker-container root"
+  role="status"
   style={
     Object {
       "minHeight": undefined,
     }
   }
 >
-  <div>
+  <div
+    className="uui-blocker"
+  >
     <div
-      className="uui-blocker"
+      className="container uui-spinner-container root uui-spinner"
     >
       <div
-        className="container uui-spinner-container root uui-spinner"
+        className="uui-spinner-animation"
       >
         <div
-          className="uui-spinner-animation"
-        >
-          <div
-            className="uui-spinner-dot uui-spinner-dot-1"
-          />
-          <div
-            className="uui-spinner-dot uui-spinner-dot-2"
-          />
-          <div
-            className="uui-spinner-dot uui-spinner-dot-3"
-          />
-        </div>
+          className="uui-spinner-dot uui-spinner-dot-1"
+        />
+        <div
+          className="uui-spinner-dot uui-spinner-dot-2"
+        />
+        <div
+          className="uui-spinner-dot uui-spinner-dot-3"
+        />
       </div>
     </div>
   </div>

@@ -3,13 +3,22 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize,
+    TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { TNumericInputPreview } from './_types/previewIds';
 
 export class NumericInputDoc extends BaseDocsBlock {
     title = 'NumericInput';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'NumericInput',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Table, TDocContext.Resizable],
         bySkin: {
@@ -32,6 +41,47 @@ export class NumericInputDoc extends BaseDocsBlock {
                     { name: 'fraction >= 2', value: { minimumFractionDigits: 2 } },
                 ],
                 editorType: 'JsonEditor',
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.NumericInputProps>) => {
+            const TEST_DATA = {
+                value: 1234,
+                placeholder: 'Test',
+            };
+            const w160_h45: TPreviewCellSize = '160-45';
+            const w120_h60: TPreviewCellSize = '120-60';
+            type TMatrixLocal = TPreviewMatrix<uui.NumericInputProps>;
+            const baseMatrix: TMatrixLocal = {
+                placeholder: { values: [TEST_DATA.placeholder] },
+                value: { values: [undefined, TEST_DATA.value] },
+            };
+            const statesBaseMatrix: TMatrixLocal = {
+                size: { values: ['30'] },
+                disableArrows: { values: [false] },
+                isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
+
+            docPreview.add({
+                id: TNumericInputPreview['Size Variants'],
+                matrix: {
+                    mode: { values: ['form', 'inline', 'cell'] },
+                    size: { examples: '*' },
+                    disableArrows: { values: [false, true] },
+                    align: { values: ['left', 'right'] },
+                    ...baseMatrix,
+                },
+                cellSize: w120_h60,
+            });
+            docPreview.add({
+                id: TNumericInputPreview['Color Variants'],
+                matrix: {
+                    mode: { values: ['form', 'inline', 'cell'] },
+                    ...baseMatrix,
+                    ...statesBaseMatrix,
+                },
+                cellSize: w160_h45,
             });
         },
     };

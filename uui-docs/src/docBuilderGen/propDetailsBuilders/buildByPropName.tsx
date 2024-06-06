@@ -12,7 +12,7 @@ const BY_PROP_NAME: Record<string, TPropDocBuilder> = {
         return { editorType: 'StringEditor', examples: [] };
     },
     ref: (params) => {
-        return { examples: getReactRefExamples({ name: 'ref', uuiCtx: params.uuiCtx }) };
+        return { examples: getReactRefExamples({ name: 'ref', uuiCtx: params.docBuilderGenCtx.uuiCtx }) };
     },
     portalTarget: () => {
         return { examples: [{ value: document.body, name: 'document.body' }] };

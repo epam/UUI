@@ -1,12 +1,8 @@
 import * as React from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import {
-    IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
-} from '@epam/uui-core';
-import localeData from 'dayjs/plugin/localeData.js';
-import css from './MonthSelection.module.scss';
+import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
-dayjs.extend(localeData);
+import css from './MonthSelection.module.scss';
 
 const MONTH_ROW_LENGTH = 3;
 
@@ -23,37 +19,42 @@ interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<Rea
     selectedDate: Dayjs;
 }
 
-export class MonthSelection extends React.Component<MonthSelectionProps> {
-    renderMonth(month: string, index: number) {
-        const isSelected = this.props.selectedDate.year() === this.props.value.year() && month === this.props.selectedDate.format('MMM');
+interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+    selectedDate: Dayjs;
+}
+
+export function MonthSelection(props: MonthSelectionProps): JSX.Element {
+    const renderMonth = (month: string, index: number) => {
+        const isSelected = props.selectedDate.year() === props.value.year() && month === props.selectedDate.format('MMM');
         return (
             <div
                 key={ month }
                 className={ cx(isSelected && uuiMonthSelection.currentMonth, uuiMonthSelection.month) }
-                onClick={ () => this.props.onValueChange(this.props.value.month(index)) }
+                onClick={ () => props.onValueChange(props.value.month(index)) }
             >
                 {month}
             </div>
         );
-    }
-
-    render() {
-        const MONTHS_SHORT_ARRAY = dayjs.monthsShort();
-        return (
-            <div ref={ this.props.forwardedRef } className={ cx(css.container, uuiMonthSelection.container, this.props.cx) } { ...this.props.rawProps }>
-                <div className={ uuiMonthSelection.content }>
-                    <div className={ uuiMonthSelection.monthContainer }>
-                        {arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) => (
-                            <div key={ index } className={ uuiMonthSelection.monthsRow }>
-                                {monthsRow.map((month) => {
-                                    const monthIndex = MONTHS_SHORT_ARRAY.findIndex((it) => it === month);
-                                    return this.renderMonth(month, monthIndex);
-                                })}
-                            </div>
-                        ))}
-                    </div>
+    };
+    const MONTHS_SHORT_ARRAY = uuiDayjs.dayjs.monthsShort();
+    return (
+        <div
+            ref={ props.forwardedRef }
+            className={ cx(css.container, uuiMonthSelection.container, props.cx) }
+            { ...props.rawProps }
+        >
+            <div className={ uuiMonthSelection.content }>
+                <div className={ uuiMonthSelection.monthContainer }>
+                    {arrayToMatrix(MONTHS_SHORT_ARRAY, MONTH_ROW_LENGTH).map((monthsRow, index) => (
+                        <div key={ index } className={ uuiMonthSelection.monthsRow }>
+                            {monthsRow.map((month) => {
+                                const monthIndex = MONTHS_SHORT_ARRAY.findIndex((it) => it === month);
+                                return renderMonth(month, monthIndex);
+                            })}
+                        </div>
+                    ))}
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }

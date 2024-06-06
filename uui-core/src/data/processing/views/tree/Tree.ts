@@ -1,163 +1,238 @@
-import { getSearchFilter } from '../../../querying';
-import { LoadableTree } from './LoadableTree';
-import {
-    ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ITree,
-} from './ITree';
-import sortBy from 'lodash.sortby';
+import isEqual from 'react-fast-compare';
+import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceState, IMap, LazyDataSourceApi } from '../../../../types';
+import { ITree } from './ITree';
+import { FULLY_LOADED, NOT_FOUND_RECORD, ROOT_ID } from './constants';
+import { FetchingHelper } from './treeStructure/helpers/FetchingHelper';
+import { ITreeNodeInfo } from './treeStructure/types';
 
-export class Tree<TItem, TId> extends LoadableTree<TItem, TId> {
-    public filter<TFilter>(options: ApplyFilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
-        const filter = options.getFilter?.(options.filter);
-        return this.applyFilterToTree(filter);
-    }
+export interface LoadOptions<TItem, TId, TFilter = any> {
+    tree: ITree<TItem, TId>;
+    api: LazyDataSourceApi<TItem, TId, TFilter>;
+    getChildCount?(item: TItem): number;
+    isFolded?: (item: TItem) => boolean;
+    dataSourceState: DataSourceState<TFilter, TId>;
+    filter?: TFilter;
+}
 
-    public search<TFilter>(options: ApplySearchOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
-        const search = this.buildSearchFilter(options);
-        return this.applySearchToTree(search, options.sortSearchByRelevance);
-    }
+export interface LoadMissingOnCheckOptions<TItem, TId, TFilter = any> extends Omit<LoadOptions<TItem, TId, TFilter>, 'withNestedChildren'> {
+    cascadeSelection?: CascadeSelection;
+    checkedId?: TId;
+    isRoot: boolean;
+    isChecked: boolean;
+}
 
-    public sort<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
-        const sort = this.buildSorter(options);
-        const sortedItems: TItem[] = [];
-        const sortRec = (items: TItem[]) => {
-            sortedItems.push(...sort(items));
-            items.forEach((item) => {
-                const children = this.getChildren(item);
-                sortRec(children);
-            });
-        };
+/**
+ * Structured result of tree records loading.
+ */
+export interface ITreeLoadResult<TItem, TId> {
+    /**
+     * Loaded records.
+     */
+    loadedItems: TItem[];
+    /**
+     * Loaded records, structured by parents IDs.
+     */
+    byParentId: IMap<TId, TId[]>;
+    /**
+     * Loading node info, like count/assumedCount/totalCount, by IDs.
+     */
+    nodeInfoById: IMap<TId, ITreeNodeInfo>;
+}
 
-        sortRec(this.getRootItems());
-        return Tree.create({ ...this.params }, sortedItems);
-    }
-
-    private buildSearchFilter<TFilter>({ search, getSearchFields }: ApplySearchOptions<TItem, TId, TFilter>) {
-        if (!search) return null;
-
-        if (!getSearchFields) {
-            console.warn('[Tree] Search value is set, but options.getSearchField is not specified. Nothing to search on.');
-            return null;
-        }
-        const searchFilter = getSearchFilter(search);
-        return (i: TItem) => searchFilter(getSearchFields(i));
-    }
-
-    private buildSorter<TFilter>(options: ApplySortOptions<TItem, TId, TFilter>) {
-        const compareScalars = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
-        const comparers: ((a: TItem, b: TItem) => number)[] = [];
-
-        if (options.sorting) {
-            options.sorting.forEach((sortingOption) => {
-                const sortByFn = options.sortBy || ((i: TItem) => i[sortingOption.field as keyof TItem] || '');
-                const sign = sortingOption.direction === 'desc' ? -1 : 1;
-                comparers.push((a, b) => sign * compareScalars(sortByFn(a, sortingOption) + '', sortByFn(b, sortingOption) + ''));
-            });
-        }
-
-        return (items: TItem[]) => {
-            if (comparers.length === 0) {
-                return items;
+export class Tree {
+    public static getParents<TItem, TId>(id: TId, tree: ITree<TItem, TId>) {
+        const parentIds: TId[] = [];
+        let parentId = id;
+        while (true) {
+            const item = tree.getById(parentId);
+            if (item === NOT_FOUND_RECORD) {
+                break;
             }
+            parentId = tree.getParams().getParentId?.(item);
+            if (parentId === undefined) {
+                break;
+            }
+            parentIds.unshift(parentId);
+        }
+        return parentIds;
+    }
 
-            const indexes = new Map<TItem, number>();
-            items.forEach((item, index) => indexes.set(item, index));
+    public static getPathById<TItem, TId>(id: TId, tree: ITree<TItem, TId>): DataRowPathItem<TId, TItem>[] {
+        const foundParents = this.getParents(id, tree);
+        const path: DataRowPathItem<TId, TItem>[] = [];
+        foundParents.forEach((parentId) => {
+            const parent = tree.getById(parentId);
+            if (parent === NOT_FOUND_RECORD) {
+                return;
+            }
+            const pathItem: DataRowPathItem<TId, TItem> = this.getPathItem(parent, tree);
+            path.push(pathItem);
+        });
+        return path;
+    }
 
-            const comparer = (a: TItem, b: TItem) => {
-                for (let n = 0; n < comparers.length; n++) {
-                    const compare = comparers[n];
-                    const result = compare(a, b);
-                    if (result !== 0) {
-                        return result;
-                    }
-                }
+    public static getPathItem<TItem, TId>(item: TItem, tree: ITree<TItem, TId>): DataRowPathItem<TId, TItem> {
+        const parentId = tree.getParams().getParentId?.(item);
+        const id = tree.getParams().getId(item);
 
-                // to make sort stable, compare items indices if other comparers return 0 (equal)
-                return indexes.get(a) - indexes.get(b);
-            };
+        const { ids, count, status } = tree.getItems(parentId);
+        const lastId = ids[ids.length - 1];
 
-            items = [...items];
-            items.sort(comparer);
-            return items;
+        const isLastChild = lastId !== undefined
+            && lastId === id
+            && status === FULLY_LOADED
+            && count === ids.length;
+
+        return {
+            id: tree.getParams().getId(item),
+            value: item,
+            isLastChild,
         };
     }
 
-    private applyFilterToTree(isMatchingFilterFn: undefined | ((item: TItem) => number | boolean)) {
-        if (!isMatchingFilterFn) return this;
-
-        const matchedItems: TItem[] = [];
-        const applyFilterRec = (items: TItem[]) => {
-            let isSomeMatching: number | boolean = false;
-            items.forEach((item) => {
-                const isItemMatching = isMatchingFilterFn(item);
-                const isSomeChildMatching = applyFilterRec(this.getChildren(item));
-                const isMatching = isItemMatching || isSomeChildMatching;
-                if (isMatching) {
-                    matchedItems.push(item);
-                }
-
-                if (!isSomeMatching) {
-                    isSomeMatching = isMatching;
-                }
-            });
-
-            return isSomeMatching;
+    public static forEach<TItem, TId>(
+        tree: ITree<TItem, TId>,
+        action: (item: TItem, id: TId, parentId: TId, stop: () => void) => void,
+        options?: {
+            direction?: 'bottom-up' | 'top-down';
+            parentId?: TId;
+            includeParent?: boolean;
+        },
+    ) {
+        let shouldStop = false;
+        const stop = () => {
+            shouldStop = true;
         };
 
-        applyFilterRec(this.getRootItems());
-        return Tree.create({ ...this.params }, matchedItems);
+        options = { direction: 'top-down', parentId: undefined, ...options };
+        if (options.includeParent == null) {
+            options.includeParent = options.parentId != null;
+        }
+
+        const iterateNodes = (ids: TId[]) => {
+            if (shouldStop) return;
+            ids.forEach((id) => {
+                if (shouldStop) return;
+                const item = tree.getById(id);
+                const parentId = item !== NOT_FOUND_RECORD ? tree.getParams().getParentId?.(item) : undefined;
+                walkChildrenRec(item === NOT_FOUND_RECORD ? undefined : item, id, parentId);
+            });
+        };
+
+        const walkChildrenRec = (item: TItem, id: TId, parentId: TId) => {
+            if (options.direction === 'top-down') {
+                action(item, id, parentId, stop);
+            }
+            const { ids: childrenIds } = tree.getItems(id);
+            childrenIds && iterateNodes(childrenIds);
+            if (options.direction === 'bottom-up') {
+                action(item, id, parentId, stop);
+            }
+        };
+
+        if (options.includeParent) {
+            iterateNodes([options.parentId]);
+        } else {
+            iterateNodes(tree.getItems(options.parentId).ids);
+        }
     }
 
-    private applySearchToTree(isMatchingSearchFn: undefined | ((item: TItem) => number | boolean), sortSearchByRelevance?: boolean) {
-        if (!isMatchingSearchFn) return this;
-
-        const matchedItems: TItem[] = [];
-        const ranks: Map<TId, number> = new Map();
-        const applySearchRec = (items: TItem[]) => {
-            let isSomeMatching: number | boolean = false;
-            items.forEach((item) => {
-                const isItemMatching = isMatchingSearchFn(item);
-                const isSomeChildMatching = applySearchRec(this.getChildren(item));
-                const isMatching = isItemMatching || isSomeChildMatching;
-                if (isMatching !== false) {
-                    matchedItems.push(item);
-                    if (typeof isMatching !== 'boolean') {
-                        const id = this.getId(item);
-                        const rank = ranks.has(id) ? Math.max(ranks.get(id), isMatching) : isMatching;
-                        ranks.set(this.getId(item), rank);
-                    }
+    public static forEachChildren<TItem, TId>(
+        tree: ITree<TItem, TId>,
+        action: (id: TId) => void,
+        isSelectable: (id: TId, item: TItem | typeof NOT_FOUND_RECORD) => boolean,
+        parentId?: TId,
+        includeParent: boolean = true,
+    ) {
+        this.forEach(
+            tree,
+            (item, id) => {
+                if (item && isSelectable(id, item)) {
+                    action(id);
                 }
-
-                if (!isSomeMatching) {
-                    isSomeMatching = isMatching;
-                } else if (typeof isMatching === 'number') {
-                    isSomeMatching = typeof isSomeMatching === 'number'
-                        ? Math.max(isMatching, isSomeMatching)
-                        : isMatching;
-                }
-            });
-
-            return isSomeMatching;
-        };
-
-        applySearchRec(this.getRootItems());
-        return Tree.create(
-            { ...this.params },
-            sortSearchByRelevance ? this.sortByRanks(matchedItems, ranks) : matchedItems,
+            },
+            { parentId: parentId, includeParent },
         );
     }
 
-    private sortByRanks = (items: TItem[], ranks: Map<TId, number>) => {
-        if (ranks.size === 0) {
-            return items;
-        }
-        const itemsToSort = [...items];
-
-        return sortBy(itemsToSort, (item) => {
-            const id = this.getId(item);
-            if (!ranks.has(id)) {
-                return 0;
-            }
-            return ranks.get(id) * -1;
+    public static async load<TItem, TId, TFilter = any>({
+        tree,
+        dataSourceState,
+        api,
+        getChildCount,
+        isFolded,
+        filter,
+    }: LoadOptions<TItem, TId, TFilter>): Promise<ITreeLoadResult<TItem, TId>> {
+        return await FetchingHelper.load<TItem, TId, TFilter>({
+            tree,
+            options: {
+                api,
+                getChildCount,
+                isFolded,
+                filter: { ...dataSourceState?.filter, ...filter },
+            },
+            dataSourceState,
         });
-    };
+    }
+
+    public static async loadMissingOnCheck<TItem, TId, TFilter = any>({
+        tree,
+        dataSourceState,
+        api,
+        getChildCount,
+        isFolded,
+        filter,
+        cascadeSelection,
+        isRoot,
+        isChecked,
+        checkedId,
+    }: LoadMissingOnCheckOptions<TItem, TId, TFilter>): Promise<ITree<TItem, TId> | ITreeLoadResult<TItem, TId>> {
+        const isImplicitMode = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
+
+        if (!cascadeSelection && !isRoot) {
+            return tree;
+        }
+
+        const parents = this.getParents(checkedId, tree);
+        return await FetchingHelper.load<TItem, TId, TFilter>({
+            tree,
+            options: {
+                api,
+                getChildCount,
+                isFolded,
+                filter: { ...dataSourceState?.filter, ...filter },
+                loadAllChildren: (itemId) => {
+                    const loadAllConfig = { nestedChildren: !isImplicitMode, children: false };
+                    if (!cascadeSelection) {
+                        return { ...loadAllConfig, children: isChecked && isRoot };
+                    }
+
+                    if (!isChecked && isRoot) {
+                        return { ...loadAllConfig, children: false };
+                    }
+
+                    if (isImplicitMode) {
+                        return { ...loadAllConfig, children: itemId === ROOT_ID || parents.some((parent) => isEqual(parent, itemId)) };
+                    }
+
+                    const { ids } = tree.getItems(undefined);
+                    const rootIsNotLoaded = ids.length === 0;
+
+                    const shouldLoadChildrenAfterSearch = (!!dataSourceState.search?.length
+                        && (parents.some((parent) => isEqual(parent, itemId))
+                        || (itemId === ROOT_ID && rootIsNotLoaded)));
+
+                    // `isEqual` is used, because complex ids can be recreated after fetching of parents.
+                    // So, they should be compared not by reference, but by value.
+                    const shouldLoadAllChildren = isRoot
+                        || isEqual(itemId, checkedId)
+                        || shouldLoadChildrenAfterSearch;
+
+                    return { children: shouldLoadAllChildren, nestedChildren: !shouldLoadChildrenAfterSearch };
+                },
+                isLoadStrict: true,
+            },
+            dataSourceState: { ...dataSourceState, search: null },
+        });
+    }
 }

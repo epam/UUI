@@ -4,10 +4,10 @@ import {
     createNode,
     deserializeHtml,
     parseHtmlDocument,
+    PlateEditor,
 } from '@udecode/plate-common';
 import { serializeHtml } from '@udecode/plate-serializer-html';
 import { EditorValue } from './types';
-import { migrateSchema } from './migration';
 import {
     baseMarksPlugin,
     headerPlugin,
@@ -23,11 +23,12 @@ import {
     boldPlugin,
     italicPlugin,
     PARAGRAPH_TYPE,
+    separatorPlugin,
 } from './plugins';
-import { remarkNodeTypesMap, serialize } from './md-serializer';
-import { createTempEditor, isEditorValueEmpty } from './helpers';
-import { BaseEditor, Editor } from 'slate';
-import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin/deserializeMdPlugin';
+import { createTempEditor } from './helpers';
+import { createDeserializeMdPlugin, deserializeMd } from './plugins/deserializeMdPlugin';
+import { serializeMd } from '@udecode/plate-serializer-md';
+import { migrateLegacySchema } from './migrations/legacy_migrations';
 
 type SerializerType = 'html' | 'md';
 
@@ -43,6 +44,7 @@ export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
     videoPlugin(),
     iframePlugin(),
     codeBlockPlugin(),
+    separatorPlugin(),
 ];
 
 export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
@@ -76,11 +78,11 @@ export const createDeserializer = (type: SerializerType = 'html') => {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
         return (data: string) => {
             editor.children = deserializeMd<Value>(editor, data);
-            Editor.normalize(editor as BaseEditor, { force: true });
+            editor.normalize({ force: true });
 
             // escape from invalid empty state
             return !!editor.children.length
-                ? editor.children as EditorValue
+                ? (editor.children as EditorValue)
                 : [createNode(PARAGRAPH_TYPE)];
         };
     }
@@ -89,20 +91,35 @@ export const createDeserializer = (type: SerializerType = 'html') => {
 export const createSerializer = (type: SerializerType = 'html') => {
     if (type === 'html') {
         const editor = createTempEditor(htmlSerializationsWorkingPlugins);
-        return (value: EditorValue) => {
-            return serializeHtml(editor, {
-                nodes: migrateSchema(value),
-            });
+        return (v: EditorValue) => {
+            const value = initializeEditor(editor, v);
+            return serializeHtml(editor, { nodes: value });
         };
     } else {
-        return (value: EditorValue) => {
-            if (isEditorValueEmpty(value)) {
-                return '';
-            }
+        const editor = createTempEditor(mdSerializationsWorkingPlugins);
+        return (v: EditorValue) => {
+            const value = initializeEditor(editor, v);
 
-            return value
-                ?.map((v) => serialize(v, { nodeTypes: remarkNodeTypesMap }))
-                .join('');
+            return serializeMd(editor, { nodes: value });
         };
     }
+};
+
+/** Consider slate and plate migarions */
+const initializeEditor = (editor: PlateEditor<Value>, v: EditorValue): Value => {
+    let value: Value;
+    if (!v) {
+        value = [createNode(PARAGRAPH_TYPE)];
+    } else {
+        if (!Array.isArray(v)) {
+            value = migrateLegacySchema(v); // slate migraitons
+        } else {
+            value = v;
+        }
+    }
+
+    editor.children = value;
+    editor.normalize({ force: true }); // plate migratoins
+
+    return editor.children;
 };

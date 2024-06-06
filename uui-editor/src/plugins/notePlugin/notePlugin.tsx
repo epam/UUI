@@ -1,7 +1,7 @@
 import { Dropdown } from '@epam/uui-components';
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 
 import { NoteBar } from '../../implementation/NoteBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
@@ -9,12 +9,11 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import {
-    PlateEditor, createPluginFactory, getBlockAbove,
+    PlateEditor, createPluginFactory, getBlockAbove, PlatePlugin,
 } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-
-export const noteTypes = ['note-error', 'note-warning', 'note-link', 'note-quote'];
+import { NODE_PLUGIN_KEY, noteTypes, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
 
 function Note(props: any) {
     return (
@@ -25,37 +24,37 @@ function Note(props: any) {
     );
 }
 
-export const notePlugin = () => {
+export const notePlugin = (): PlatePlugin => {
     const createNotePlugin = createPluginFactory<WithToolbarButton>({
-        key: 'note',
+        key: NODE_PLUGIN_KEY,
         isElement: true,
         isVoid: false,
         component: Note,
         plugins: [
             {
-                key: 'note-error',
-                type: 'note-error',
+                key: NOTE_ERROR_PLUGIN_KEY,
+                type: NOTE_ERROR_TYPE,
                 isElement: true,
                 isVoid: false,
                 component: Note,
             },
             {
-                key: 'note-warning',
-                type: 'note-warning',
+                key: NOTE_WARN_PLUGIN_KEY,
+                type: NOTE_WARN_TYPE,
                 isElement: true,
                 isVoid: false,
                 component: Note,
             },
             {
-                key: 'note-link',
-                type: 'note-link',
+                key: NOTE_LINK_PLUGIN_KEY,
+                type: NOTE_LINK_TYPE,
                 isElement: true,
                 isVoid: false,
                 component: Note,
             },
             {
-                key: 'note-quote',
-                type: 'note-quote',
+                key: NOTE_QUOTE_PLUGIN_KEY,
+                type: NOTE_QUOTE_TYPE,
                 isElement: true,
                 isVoid: false,
                 component: Note,
@@ -73,7 +72,7 @@ interface IToolbarNote {
 }
 
 export function NoteButton({ editor }: IToolbarNote) {
-    if (!isPluginActive('note')) return null;
+    if (!useIsPluginActive(NODE_PLUGIN_KEY)) return null;
 
     const block = getBlockAbove(editor, { block: true });
     const type: any = block?.length && block[0].type;
@@ -89,7 +88,8 @@ export function NoteButton({ editor }: IToolbarNote) {
             ) }
             renderBody={ (props) => (
                 <NoteBar
-                    editor={ editor } type={ type }
+                    editor={ editor }
+                    type={ type }
                     { ...props }
                 />
             ) }

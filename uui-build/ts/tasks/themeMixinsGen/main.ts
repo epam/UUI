@@ -1,7 +1,7 @@
 import path from 'path';
 import { logger } from '../../utils/jsBridge';
 import { IThemeVar, IUuiTokensCollection, TCssVarSupport, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
-import { coreThemeMixinsConfig } from './constants';
+import { getThemeMixinsFilePath } from './constants';
 import { ITaskConfig } from '../../utils/taskUtils';
 import { uuiRoot } from '../../constants';
 import { createFileSync } from '../../utils/fileUtils';
@@ -12,7 +12,7 @@ export const taskConfig: ITaskConfig = { main };
 
 async function main() {
     const tokens = readFigmaTokens();
-    Object.values(TFigmaThemeName).forEach((figmaTheme) => {
+    Object.values(tokens.modes).forEach((figmaTheme) => {
         genForFigmaTheme({
             tokens,
             figmaTheme,
@@ -54,7 +54,7 @@ function genForFigmaTheme(params: { figmaTheme: TFigmaThemeName, tokens: IUuiTok
     });
 
     const content = formatVarsAsMixin({ cssVars, scssVars });
-    const mixinsPath = coreThemeMixinsConfig[figmaTheme].mixinsFile;
+    const mixinsPath = getThemeMixinsFilePath(figmaTheme);
     const mixinsPathRes = path.resolve(uuiRoot, mixinsPath);
     createFileSync(mixinsPathRes, content);
     logger.success(`File created: ${mixinsPathRes}`);

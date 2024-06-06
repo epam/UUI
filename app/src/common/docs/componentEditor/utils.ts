@@ -1,5 +1,9 @@
-import { TSkin } from '@epam/uui-docs';
+import { IDocBuilderGenCtx, TSkin } from '@epam/uui-docs';
 import { TTheme } from '../docsConstants';
+import { useUuiContext } from '@epam/uui-core';
+import { useMemo } from 'react';
+import { loadDocsGenType } from '../../apiReference/dataHooks';
+import { getAllIcons } from '../../../documents/iconListHelpers';
 
 export function getSkin(theme: TTheme, isSkin: boolean): TSkin {
     if (!isSkin) return TSkin.UUI;
@@ -15,4 +19,19 @@ export function getSkin(theme: TTheme, isSkin: boolean): TSkin {
         default:
             return TSkin.UUI;
     }
+}
+
+export function useDocBuilderGenCtx(): IDocBuilderGenCtx {
+    const uuiCtx = useUuiContext();
+    return useMemo(() => {
+        const result: IDocBuilderGenCtx = {
+            loadDocsGenType,
+            uuiCtx: {
+                uuiNotifications: uuiCtx.uuiNotifications,
+            },
+            demoApi: uuiCtx.api.demo,
+            getIconList: getAllIcons,
+        };
+        return result;
+    }, [uuiCtx.api.demo, uuiCtx.uuiNotifications]);
 }

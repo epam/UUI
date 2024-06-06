@@ -34,15 +34,37 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
 
     const isEditable = !!props.onValueChange;
 
+    const getPaddings = () => {
+        const { rowProps, padding, columnsGap } = props;
+        const { isLoading } = rowProps;
+
+        if (isEditable && !isLoading) {
+            return { padding: '0', sidePadding: '12' };
+        }
+
+        if (padding) {
+            return { padding, sidePadding: padding };
+        }
+
+        switch (columnsGap) {
+            case '12':
+                return { padding: '6', sidePadding: '12' };
+            case '24':
+                return { padding: '12', sidePadding: '24' };
+        }
+
+        return { padding: '12', sidePadding: '24' };
+    };
+
     props.cx = [
         'uui-dt-vars',
         'data-table-cell',
         props.cx,
         css.cell,
         css['size-' + (props.size || '36')],
-        css[`padding-${props.padding || (isEditable && !props.rowProps.isLoading && '0') || '12'}`],
-        props.isFirstColumn && css[`padding-left-${props.padding || (isEditable && !props.rowProps.isLoading && '12') || '24'}`],
-        props.isLastColumn && css['padding-right-24'],
+        css[`padding-${getPaddings().padding}`],
+        props.isFirstColumn && css[`padding-left-${getPaddings().sidePadding}`],
+        props.isLastColumn && css[`padding-right-${getPaddings().sidePadding}`],
         css[`align-widgets-${props.alignActions || 'top'}`],
         (props.border || isEditable) && 'uui-dt-vertical-cell-border',
     ];

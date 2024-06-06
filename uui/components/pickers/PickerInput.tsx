@@ -1,8 +1,8 @@
-import React from 'react';
-import { PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
+import React, { useImperativeHandle, useRef } from 'react';
+import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, isMobile } from '@epam/uui-core';
+import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
@@ -14,9 +14,15 @@ import { PickerItem } from './PickerItem';
 const pickerHeight = 300;
 const pickerWidth = 360;
 
-export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId>;
+export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
+    /**
+     * Render callback for picker toggler selection tag
+     * If omitted, default `PickerTogglerTag` component will be rendered
+     */
+    renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;
+};
 
-function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
+function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
@@ -55,8 +61,21 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         getListProps,
         shouldShowBody,
         getSearchPosition,
+        closePickerBody,
+        openPickerBody,
         handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
+
+    const dropdownRef = useRef(null);
+
+    useImperativeHandle(ref, () => {
+        if (dropdownRef.current) {
+            dropdownRef.current.closePickerBody = closePickerBody;
+            dropdownRef.current.openPickerBody = openPickerBody;
+        }
+
+        return dropdownRef.current;
+    }, [closePickerBody, openPickerBody]);
 
     const getTogglerMods = (): PickerTogglerMods => {
         return {
@@ -106,7 +125,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             .join(' / ');
     };
 
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
+    const renderRowItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
         const { flattenSearchResults } = view.getConfig();
 
         return (
@@ -130,7 +149,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                 key={ rowProps.rowKey }
                 size={ getRowSize() }
                 padding={ props.editMode === 'modal' ? '24' : '12' }
-                renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
+                renderItem={ (item, itemProps) => renderRowItem(item, itemProps, dsState) }
             />
         );
     };
@@ -172,12 +191,13 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const rows = getRows();
+    const renderItem = props.renderTag ? props.renderTag : null;
 
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {
                 const targetProps = getTogglerProps();
-                return renderTarget({ ...dropdownProps, ...targetProps });
+                return renderTarget({ ...dropdownProps, ...targetProps, renderItem });
             } }
             renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
             value={ shouldShowBody() }
@@ -186,12 +206,12 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             modifiers={ popperModifiers }
             closeBodyOnTogglerHidden={ !isMobile() }
             portalTarget={ props.portalTarget }
-            ref={ ref }
+            ref={ dropdownRef }
         />
     );
 }
 
 export const PickerInput = React.forwardRef(PickerInputComponent) as <TItem, TId>(
     props: PickerInputProps<TItem, TId>,
-    ref: React.ForwardedRef<HTMLElement>
+    ref: React.ForwardedRef<PickerInputElement>
 ) => JSX.Element;

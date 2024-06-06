@@ -9,4 +9,4 @@ export { logger } from '../../utils/loggerUtils';
 // @ts-ignore
 export { getAllMonorepoPackages, getAllLocalDependenciesInfo, getUuiVersion } from '../../utils/monorepoUtils';
 // @ts-ignore
-export { isRollupModule } from '../../utils/indexFileUtils';
+export { isRollupModule, getIndexFileRelativePath } from '../../utils/indexFileUtils';

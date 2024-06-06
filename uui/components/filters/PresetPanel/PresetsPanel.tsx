@@ -1,14 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import sortBy from 'lodash.sortby';
 import { i18n } from '../../../i18n';
 import {
-    DataTableState, IHasRawProps, IPresetsApi, ITablePreset, cx,
+    DataTableState, IHasRawProps, IPresetsApi, ITablePreset, orderBy,
 } from '@epam/uui-core';
 import { AdaptiveItemProps, AdaptivePanel, ScrollBars } from '@epam/uui-components';
 import css from './PresetsPanel.module.scss';
 import { Button } from '../../buttons';
 import { FlexCell, FlexRow } from '../../layout';
-import { Dropdown, DropdownContainer, DropdownMenuButton } from '../../overlays';
+import { Dropdown, DropdownMenuBody, DropdownMenuButton } from '../../overlays';
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
 import { ReactComponent as DeleteIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
@@ -66,7 +65,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
                     </FlexRow>
                 ) }
                 renderBody={ (propsBody) => (
-                    <DropdownContainer cx={ cx(css.dropContainer) } width={ 230 } { ...propsBody }>
+                    <DropdownMenuBody minWidth={ 230 } { ...propsBody }>
                         <ScrollBars>
                             {hiddenItems.map((hiddenItem) => (
                                 <DropdownMenuButton
@@ -80,7 +79,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
                                 />
                             ))}
                         </ScrollBars>
-                    </DropdownContainer>
+                    </DropdownMenuBody>
                 ) }
             />
         );
@@ -92,14 +91,17 @@ export function PresetsPanel(props: PresetsPanelProps) {
 
     const getPanelItems = (): PresetAdaptiveItem[] => {
         return [
-            ...sortBy(props.presets, (i) => i.order).map((preset, index) => ({
-                id: preset.id.toString(),
-                render: () => renderPreset(preset),
-                priority: getPresetPriority(preset, index),
-                preset: preset,
-            })), {
+            ...orderBy(props.presets, ({ order }) => order)
+                .map((preset, index) => ({
+                    id: preset.id.toString(),
+                    render: () => renderPreset(preset),
+                    priority: getPresetPriority(preset, index),
+                    preset: preset,
+                })),
+            {
                 id: 'collapsedContainer', render: renderMoreButtonDropdown, priority: 100501, collapsedContainer: true,
-            }, { id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
+            },
+            { id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
         ];
     };
 

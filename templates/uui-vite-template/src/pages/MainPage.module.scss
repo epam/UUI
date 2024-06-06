@@ -19,6 +19,10 @@
         0 3px 10px 0 rgba(44, 47, 60, 0.09);
     margin: -90px auto 60px;
     max-width: 1000px;
+
+    h3 {
+        color: var(--uui-primary-contrast);
+    }
 }
 
 .welcome {

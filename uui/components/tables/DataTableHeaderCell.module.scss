@@ -1,4 +1,4 @@
-@use  '../../assets/styles/index' as *;
+@use '../../assets/styles/index' as *;
 
 @mixin cell-size($size) {
     &.size-#{$size} {
@@ -28,12 +28,38 @@
     margin-left: -1px;
     background-clip: padding-box;
 
-    &.first-column {
-        padding-left: 18px;
+    &.column-gap-12 {
+        padding: 0 6px;
+        column-gap: 3px;
+
+        .caption-wrapper {
+            column-gap: 3px;
+        }
     }
 
-    &.last-column {
-        padding-right: 18px;
+    &.column-gap-24 {
+        padding: 0 12px;
+        column-gap: 3px;
+
+        .caption-wrapper {
+            column-gap: 3px;
+        }
+    }
+
+    &.first-column-12 {
+        padding-left: 12px;
+    }
+
+    &.last-column-12 {
+        padding-right: 12px;
+    }
+
+    &.first-column-24 {
+        padding-left: 24px;
+    }
+
+    &.last-column-24 {
+        padding-right: 24px;
     }
 
     &:global(.-clickable) {
@@ -63,9 +89,13 @@
     @include cell-size(42);
     @include cell-size(48);
 
-    &.padding-left-24 { padding-left: 24px; }
+    &.padding-left-24 {
+        padding-left: 24px;
+    }
 
-    &.padding-right-24 { padding-right: 24px; }
+    &.padding-right-24 {
+        padding-right: 24px;
+    }
 
     .caption-wrapper {
         display: flex;
@@ -88,12 +118,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin: 0 6px;
+        margin: 0;
     }
 
     .checkbox {
         align-self: stretch;
-        padding: 0 6px;
+        padding: 0 6px 0 0;
     }
 
     .icon {
@@ -104,7 +134,7 @@
 
     .fold-all-icon {
         display: flex;
-        padding: 0 6px;
+        padding: 0 6px 0 0;
         align-self: stretch;
 
         &:hover {
@@ -128,13 +158,20 @@
     .resize-mark {
         position: absolute;
         right: 0;
-        width: 12px;
         height: 100%;
         cursor: col-resize;
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
         }
+    }
+
+    .resize-mark-6 {
+        width: 6px;
+    }
+
+    .resize-mark-12 {
+        width: 12px;
     }
 
     &.pinned-right .resize-mark {

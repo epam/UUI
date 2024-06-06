@@ -70,7 +70,9 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     });
 
     const { dataSourceState, visibleIds } = pickerListState;
-    const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(props, pickerListState);
+
+    const pickerProps = { ...props, showSelectedOnly: pickerListState.showSelected };
+    const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(pickerProps, pickerListState);
     const {
         view,
         getEntityName,
@@ -78,7 +80,21 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         getDataSourceState,
         isSingleSelect,
         getName,
+        getSelectedRows,
+        handleDataSourceValueChange,
+        getRowOptions,
     } = picker;
+
+    const onlySelectedView = props.dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
+        rowOptions: getRowOptions(),
+        getSearchFields: props.getSearchFields || ((item: TItem) => [getName(item)]),
+        ...(props.isFoldedByDefault ? { isFoldedByDefault: props.isFoldedByDefault } : {}),
+        ...(props.sortBy ? { sortBy: props.sortBy } : {}),
+        ...(props.cascadeSelection ? { cascadeSelection: props.cascadeSelection } : {}),
+        ...(props.getRowOptions ? { getRowOptions: props.getRowOptions } : {}),
+        backgroundReload: true,
+        showSelectedOnly: true,
+    }, [props.dataSource]);
 
     const getEntityNameForToggler = () => props.entityPluralName || getPluralName();
 
@@ -123,8 +139,10 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         const sign = sorting.direction === 'desc' ? -1 : 1;
         const stringComparer = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' }).compare;
         const comparer = (a: DataRowProps<TItem, TId>, b: DataRowProps<TItem, TId>) => {
-            const loadingComparison = (b.isLoading ? 0 : 1) - (a.isLoading ? 0 : 1);
-            if ((loadingComparison && loadingComparison !== 0) || (a.isLoading && b.isLoading)) {
+            const aIsLoading = (a.isLoading || a.isUnknown);
+            const bIsLoading = (b.isLoading || b.isUnknown);
+            const loadingComparison = (bIsLoading ? 0 : 1) - (aIsLoading ? 0 : 1);
+            if ((loadingComparison && loadingComparison !== 0) || (aIsLoading && bIsLoading)) {
                 return loadingComparison;
             } else {
                 return sign * stringComparer(sortBy(a.value, sorting), sortBy(b.value, sorting));
@@ -149,16 +167,14 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
                 }
             }
         };
-
-        addRows(view.getSelectedRows(), getMaxTotalItems());
-
-        if (visibleIds && result.length < maxTotalItems) {
+        addRows(getSelectedRows(maxTotalItems), maxTotalItems);
+        if (visibleIds?.length && result.length < maxTotalItems) {
             const rows = visibleIds.map((id, n) => view.getById(id, n));
             addRows(rows, maxTotalItems);
         }
+
         if (!props.defaultIds && result.length < maxDefaultItems) {
             const rows = view.getVisibleRows();
-
             addRows(rows, maxDefaultItems);
         }
         return sortRows(result);
@@ -172,6 +188,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         appendLastSelected,
         getSelectedIdsArray,
         view,
+        onlySelectedView,
         buildRowsList,
         getMaxDefaultItems,
         getModalTogglerCaption,

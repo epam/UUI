@@ -1,4 +1,4 @@
-import React, { Attributes, ForwardedRef, ReactNode } from 'react';
+import React, { Attributes, Dispatch, ForwardedRef, ReactNode, SetStateAction } from 'react';
 import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
     IDropdownToggler, IHasValidationMessage,
@@ -7,10 +7,12 @@ import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName } from './dataQuery';
 import { DndActorRenderParams, DropParams } from './dnd';
-import { DataSourceState, SortDirection, SortingOption } from './dataSources';
+import {
+    DataSourceState, SortDirection, SortingOption,
+} from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { BaseDatePickerProps, TooltipCoreProps } from './components';
+import { CommonDatePickerProps, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
@@ -67,7 +69,10 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
      */
     isSortable?: boolean;
 
-    /** Disallows to hide column via ColumnsConfiguration */
+    /** Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.
+     * Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.
+     * Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.
+     * */
     isAlwaysVisible?: boolean;
 
     /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */
@@ -336,14 +341,18 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Picke
     showSearch?: boolean;
     /** Height of picker items list in px. This height doesn't include height of body toolbars(sorting, predicates) */
     maxBodyHeight?: number;
+    /**
+     * Enables highlighting of the items' text with search-matching results.
+     */
+    highlightSearchMatches?: boolean;
 };
 
-type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {
+type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
     /** Type of the filter */
     type: 'datePicker';
 };
 
-type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<BaseDatePickerProps, 'filter' | 'format'> & {
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
     /** Type of the filter */
     type: 'rangeDatePicker';
 };
@@ -414,7 +423,7 @@ export interface ITableState<TFilter = Record<string, any>, TViewState = any> ex
     /** Table state value */
     tableState: DataTableState<TFilter, TViewState>;
     /** Function that updates table state value */
-    setTableState(newState: DataTableState<TFilter, TViewState>): void;
+    setTableState: Dispatch<SetStateAction<DataTableState<TFilter, TViewState>>>;
     /** Function that updates filter value */
     setFilter(filter: TFilter): void;
     /** Function that updates columns config value */

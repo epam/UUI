@@ -3,7 +3,7 @@ import { cx } from '@epam/uui-core';
 import { FlexCell, FlexRow, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/uui';
 import { BaseDocsBlock } from '../../common/docs';
 import css from './DownloadsDoc.module.scss';
-import { ReactComponent as Artbord } from '../../icons/artboard.svg';
+import { ReactComponent as FigmaIcon } from '../../icons/figma.svg';
 import { ReactComponent as FontIcon } from '../../icons/fonts_icon.svg';
 import { ReactComponent as IllustrationsIcon } from '../../icons/illustrations_icon.svg';
 import { ReactComponent as LogotypeIcon } from '../../icons/design_platform_icon.svg';
@@ -16,31 +16,31 @@ const library = [
         title: 'UUI Components Library',
         additionalInfo: '4 theme included: Loveship Light, Loveship Dark, Promo and Electric',
         link: 'https://www.figma.com/file/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?type=design&node-id=29222%3A39517&mode=design&t=NuhhdX8NzuSvGdaX-1',
-        image: Artbord,
+        image: FigmaIcon,
         libraryType: 'figma',
     }, {
         title: 'UUI Assets Library',
         additionalInfo: 'Icons, logotypes, cursors',
         link: 'https://www.figma.com/file/3mpAy3BEZ75n5GJEZ5UV8z/UUI-Assets?type=design&node-id=137%3A2&mode=design&t=bqol9mr8suaBMnCm-1',
-        image: Artbord,
+        image: FigmaIcon,
         libraryType: 'figma',
     }, {
         title: 'UUI Component Guidelines',
         additionalInfo: 'Guidelines of UUI components',
         link: 'https://www.figma.com/file/dYwal6PrxrPQWg1lL6ijpn/UUI-Guidelines?type=design&node-id=1886%3A625715&mode=design&t=3ve5cI7s6roXxHxw-1',
-        image: Artbord,
+        image: FigmaIcon,
         libraryType: 'figma',
     }, {
         title: 'UUI Patterns',
         additionalInfo: 'Templates guidelines',
         link: 'https://www.figma.com/file/qb7WHgBkyBpovFlOZRe30p/UUI-Patterns?type=design&node-id=0%3A1&mode=design&t=LByFqSyb9pwJ6FMX-1',
-        image: Artbord,
+        image: FigmaIcon,
         libraryType: 'figma',
     }, {
         title: 'UUI Illustrations',
         additionalInfo: 'Illustrations pack in addition (promo images, empty states, etc.)',
         link: 'https://www.figma.com/file/fNIMFXueuk3pfJzL4lWCex/UUI-Illustrations?type=design&t=f7W2ssNZnh1LeBJK-6',
-        image: Artbord,
+        image: FigmaIcon,
         libraryType: 'figma',
     },
 ];
@@ -72,14 +72,14 @@ export class DownloadsDoc extends BaseDocsBlock {
                     <FlexCell width="auto">
                         { title === 'UUI Illustrations' ? (
                             <Tooltip content="For internal use only" offset={ [0, 10] }>
-                                <LinkButton href={ link } size="24" target="_blank" captionCX={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
+                                <LinkButton href={ link } size="24" target="_blank" cx={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
                             </Tooltip>
                         ) : (
                             <LinkButton
                                 href={ link }
                                 size="24"
                                 target="_blank"
-                                captionCX={ css.libraryLinkTitle }
+                                cx={ css.libraryLinkTitle }
                                 caption={ title }
                                 iconPosition="right"
                                 icon={ ContentLinkIcon }
@@ -130,7 +130,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                             caption="Download"
                                             size="24"
                                             href={ assets.fonts }
-                                            captionCX={ css.assetsLinkCaption }
+                                            cx={ css.assetsLinkCaption }
                                         />
                                     </Tooltip>
                                 </FlexCell>
@@ -149,7 +149,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                         caption="Download"
                                         size="24"
                                         href={ assets.logos }
-                                        captionCX={ css.assetsLinkCaption }
+                                        cx={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
                             </FlexRow>
@@ -167,7 +167,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                         caption="Download"
                                         size="24"
                                         href={ assets.icons }
-                                        captionCX={ css.assetsLinkCaption }
+                                        cx={ css.assetsLinkCaption }
                                     />
                                 </FlexCell>
                             </FlexRow>
@@ -191,7 +191,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                                 caption="Download"
                                                 size="24"
                                                 href={ assets.illustrations }
-                                                captionCX={ css.assetsLinkCaption }
+                                                cx={ css.assetsLinkCaption }
                                             />
                                         </Tooltip>
                                     </FlexRow>

@@ -1,9 +1,8 @@
 import BTree from 'sorted-btree';
 import { DbQuery } from './types';
 import {
-    DataQueryFilterCondition, DataQueryFilter, getFilterPredicate,
+    DataQueryFilterCondition, DataQueryFilter, getFilterPredicate, orderBy,
 } from '@epam/uui-core';
-import orderBy from 'lodash.orderby';
 
 export interface IxSetIndexDefinition<TEntity> {
     fields: (keyof TEntity)[];
@@ -195,7 +194,7 @@ export class IxSet<TEntity, TId> {
             })
             .filter((p) => p != null);
 
-        plans = orderBy(plans, 'score', 'desc');
+        plans = orderBy(plans, (plan) => plan.score, 'desc');
         const plan = plans[0];
 
         // const indexEntities = plan.index.tree.entries();

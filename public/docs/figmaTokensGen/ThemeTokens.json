@@ -1,4 +1,10 @@
 {
+  "modes": {
+    "25178:0": "Loveship-Light",
+    "25178:1": "Loveship-Dark",
+    "25178:2": "Promo",
+    "26302:0": "Electric"
+  },
   "exposedTokens": [
     {
       "id": "core/border-radius",
@@ -99,17 +105,17 @@
                 "cssVarSupport": "supported"
               },
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-80",
+                "cssVar": "--uui-neutral-80",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night700",
-                "cssVar": "--night700",
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#303240"
+            "value": "#272833"
           },
           "valueDirect": {
             "alias": [
@@ -2958,6 +2964,56 @@
       }
     },
     {
+      "id": "core/internal/undefined-color",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-undefined-color",
+      "cssVarSupport": "notDecided",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          },
+          "valueDirect": {
+            "alias": [],
+            "value": "#FFFFFF00"
+          }
+        }
+      }
+    },
+    {
       "id": "core/internal/warning-contrast",
       "type": "COLOR",
       "description": "",
@@ -4951,18 +5007,18 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/electric/electric-5",
-                "cssVar": "--electric-5",
+                "id": "palette/emerald/emerald-5",
+                "cssVar": "--emerald-5",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#F3F8FE"
+            "value": "#F3FBF7"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/electric/electric-5",
-                "cssVar": "--electric-5",
+                "id": "palette/emerald/emerald-5",
+                "cssVar": "--emerald-5",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
@@ -5049,18 +5105,18 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/electric/electric-10",
-                "cssVar": "--electric-10",
+                "id": "palette/emerald/emerald-10",
+                "cssVar": "--emerald-10",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#CEE1FC"
+            "value": "#CDEEDD"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/electric/electric-10",
-                "cssVar": "--electric-10",
+                "id": "palette/emerald/emerald-10",
+                "cssVar": "--emerald-10",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
@@ -5147,18 +5203,18 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/electric/electric-20",
-                "cssVar": "--electric-20",
+                "id": "palette/emerald/emerald-20",
+                "cssVar": "--emerald-20",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#85B4F8"
+            "value": "#97D9B7"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/electric/electric-20",
-                "cssVar": "--electric-20",
+                "id": "palette/emerald/emerald-20",
+                "cssVar": "--emerald-20",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
@@ -5245,18 +5301,18 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/electric/electric-50",
-                "cssVar": "--electric-50",
+                "id": "palette/emerald/emerald-50",
+                "cssVar": "--emerald-50",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#0A68F1"
+            "value": "#07A956"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/electric/electric-50",
-                "cssVar": "--electric-50",
+                "id": "palette/emerald/emerald-50",
+                "cssVar": "--emerald-50",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
@@ -5343,18 +5399,18 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/electric/electric-60",
-                "cssVar": "--electric-60",
+                "id": "palette/emerald/emerald-60",
+                "cssVar": "--emerald-60",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#095ED9"
+            "value": "#06984D"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/electric/electric-60",
-                "cssVar": "--electric-60",
+                "id": "palette/emerald/emerald-60",
+                "cssVar": "--emerald-60",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
@@ -5441,18 +5497,18 @@
           "valueChain": {
             "alias": [
               {
-                "id": "palette/electric/electric-70",
-                "cssVar": "--electric-70",
+                "id": "palette/emerald/emerald-70",
+                "cssVar": "--emerald-70",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#0853C1"
+            "value": "#068745"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "palette/electric/electric-70",
-                "cssVar": "--electric-70",
+                "id": "palette/emerald/emerald-70",
+                "cssVar": "--emerald-70",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
@@ -9734,27 +9790,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-40",
-                "cssVar": "--uui-neutral-40",
+                "id": "core/neutral/neutral-50",
+                "cssVar": "--uui-neutral-50",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night400",
-                "cssVar": "--night400",
+                "id": "palette/night/night500",
+                "cssVar": "--night500",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#585B69"
+            "value": "#474A59"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-40",
-                "cssVar": "--uui-neutral-40",
+                "id": "core/neutral/neutral-50",
+                "cssVar": "--uui-neutral-50",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#CED0DB"
+            "value": "#ACAFBF"
           }
         },
         "Promo": {
@@ -9852,27 +9908,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#474A59"
+            "value": "#383B4A"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#6C6F80"
           }
         },
         "Promo": {
@@ -10020,27 +10076,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-70",
+                "cssVar": "--uui-neutral-70",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night600",
-                "cssVar": "--night600",
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#383B4A"
+            "value": "#303240"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-70",
+                "cssVar": "--uui-neutral-70",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#6C6F80"
+            "value": "#474A59"
           }
         },
         "Promo": {
@@ -10138,27 +10194,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#474A59"
+            "value": "#383B4A"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#6C6F80"
           }
         },
         "Promo": {
@@ -10256,27 +10312,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-80",
+                "cssVar": "--uui-neutral-80",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night700",
-                "cssVar": "--night700",
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#303240"
+            "value": "#272833"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-80",
+                "cssVar": "--uui-neutral-80",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#474A59"
+            "value": "#303240"
           }
         },
         "Promo": {
@@ -10374,27 +10430,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-80",
-                "cssVar": "--uui-neutral-80",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night800",
-                "cssVar": "--night800",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#272833"
+            "value": "#383B4A"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-80",
-                "cssVar": "--uui-neutral-80",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#303240"
+            "value": "#6C6F80"
           }
         },
         "Promo": {

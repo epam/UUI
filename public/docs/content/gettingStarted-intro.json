@@ -1,36 +1,9 @@
 [
   {
-    "data": {},
     "type": "paragraph",
     "children": [
       {
-        "text": "Pre-requisites: "
-      },
-      {
-        "type": "link",
-        "url": "https://nodejs.org/",
-        "target": "_blank",
-        "children": [
-          {
-            "text": "NodeJS 18"
-          }
-        ]
-      },
-      {
-        "text": " or higher; "
-      },
-      {
-        "type": "link",
-        "url": "https://react.dev/",
-        "target": "_blank",
-        "children": [
-          {
-            "text": "React"
-          }
-        ]
-      },
-      {
-        "text": " 16 or higher."
+        "text": "We provide several ready-to-go templates for most popular setups. UUI would also work on any project with React >= 18."
       }
     ]
   }

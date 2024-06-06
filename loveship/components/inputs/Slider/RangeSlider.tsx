@@ -3,17 +3,9 @@ import {
 } from '@epam/uui-components';
 import css from './RangeSlider.module.scss';
 import { createSkinComponent } from '@epam/uui-core';
-import { EpamColor } from '../../types';
-
-interface RangeSliderMods {
-    /**
-     * Defines component color.
-     */
-    color?: EpamColor;
-}
 
 /** Represents the properties of a RangeSlider component. */
-export interface RangeSliderProps extends uuiRangeSliderProps, RangeSliderMods {}
+export interface RangeSliderProps extends uuiRangeSliderProps {}
 
 export function applyRangeSliderMods() {
     return [

@@ -9,6 +9,8 @@ enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.`;
 
+const MEDIUM_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+
 export const accordionExamples = [
     {
         name: 'Simple text 14px',
@@ -20,6 +22,11 @@ export const accordionExamples = [
         name: 'Simple text 12px',
         value: (
             <Text fontSize="12">{LONG_TEXT}</Text>
+        ),
+    }, {
+        name: 'Simple text 12px - medium length',
+        value: (
+            <Text fontSize="12">{MEDIUM_TEXT}</Text>
         ),
     }, {
         name: 'Marked up content',

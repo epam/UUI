@@ -1,7 +1,5 @@
 /// <reference path="../uui_globals.d.ts" />
 
-declare module 'jsurl';
-declare module 'query-string';
 declare module 'draft-js-plugins-editor';
 declare module 'draft-js-clear-formatting';
 declare module 'draft-convert';

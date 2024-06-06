@@ -6,7 +6,6 @@ import { Button } from '@epam/uui-components';
 import { DraftBlockStyleButton, DraftButtonProps } from '../types';
 import { blockTypeIsActive } from './helpers';
 import css from '../common/Toolbar/buttons/HeaderDropdownButton.module.scss'
-
 export function createBlockStyleDropDownItem({ blockType, icon, caption = '' }: DraftBlockStyleButton) {
     return class BlockStyleDropDownItem extends React.Component<DraftButtonProps> {
 
@@ -42,8 +41,7 @@ export function createBlockStyleDropDownItem({ blockType, icon, caption = '' }: 
                         caption={ caption }
                         onClick={ this.toggleStyle }
                         icon={ icon ? icon : null }
-                        cx={css[className || '']}
-                        captionCX={captionClassNames}
+                        cx={ cx(css[className || ''], captionClassNames) }
                     />
                 </div>
             );

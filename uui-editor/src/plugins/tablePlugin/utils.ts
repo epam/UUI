@@ -1,4 +1,3 @@
-import { ExtendedTTableCellElement } from './types';
 import { DEFAULT_COL_WIDTH } from './constants';
 import {
     PlateEditor,

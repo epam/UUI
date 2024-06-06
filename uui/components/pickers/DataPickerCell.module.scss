@@ -15,7 +15,7 @@
     }
 }
 
-.cell {
+.root {
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;
@@ -141,6 +141,6 @@
     fill: var(--uui-icon);
 }
 
-.icon-primary {
-    fill: var(--uui-primary-50);
+.selected-mark {
+    fill: var(--uui-pickerInput-selected_mark);
 }

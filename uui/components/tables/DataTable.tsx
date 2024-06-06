@@ -19,40 +19,67 @@ import { i18n } from '../../i18n';
 
 export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
     /** Callback to get rows that will be rendered in table */
-    getRows(): DataRowProps<TItem, TId>[];
+    getRows?(): DataRowProps<TItem, TId>[];
+    
+    /** Rows that should be rendered in table */
+    rows?: DataRowProps<TItem, TId>[];
+
     /** Array of all possible columns for the table */
     columns: DataColumnProps<TItem, TId>[];
+
     /** Render callback for the table row.
      * If omitted, default DataTableRow implementation will be rendered.
      * */
     renderRow?(props: DataTableRowProps<TItem, TId>): React.ReactNode;
+
     /** Render callback for the 'No results' block. Will be rendered when table doesn't have rows for displaying, e.g. after search applying.
      * If omitted, default implementation will be rendered.
      * */
     renderNoResultsBlock?(): React.ReactNode;
+
     /** Pass true to enable the column configuration button in the last column header. On this button click will show the columns configuration modal.
      * Note that you need to have at least one column fixed to the right for proper display
      * */
     showColumnsConfig?: boolean;
+
     /** Array of filters to be added to the column header.
      * For each filter, you need to specify the `columnKey` of the column where it will be attached.
      * */
     filters?: TableFiltersConfig<any>[];
+
     /** Called when cell content is copied to other cells via the DataTable cell copying mechanism.
      * This callback is typically used to update the state according to the changes.
      * To enable cell copying, provide the canCopy prop for the column.
      * */
     onCopy?: (copyFrom: DataTableSelectedCellData<TItem, TId, TFilter>, selectedCells: DataTableSelectedCellData<TItem, TId, TFilter>[]) => void;
+
     /** Render callback for column configuration modal.
      * If omitted, default `ColumnsConfigurationModal` implementation will be rendered.
      */
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
+
     dataTableFocusManager?: DataTableFocusManager<TId>;
+
     /**
      * Enables collapse/expand all functionality.
      * */
     showFoldAll?: boolean;
+
+    /**
+     * Defines table header size
+     * @default '36'
+     * */
+    headerSize?: '36' | '48';
+
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
+
+const DEFAULT_HEADER_SIZE = '36';
+const DEFAULT_COLUMN_GAP = '24';
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & DataTableMods>) {
     const { uuiModals } = useUuiContext();
@@ -61,11 +88,20 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
-        return <DataTableRow key={ rowProps.rowKey } size={ props.size || '36' } borderBottom={ props.border } { ...rowProps } cx={ css.cell } />;
+        return (
+            <DataTableRow
+                key={ rowProps.rowKey }
+                size={ props.size || '36' }
+                columnsGap={ props.columnsGap || DEFAULT_COLUMN_GAP }
+                borderBottom={ props.border }
+                { ...rowProps }
+                cx={ css.cell }
+            />
+        );
     }, []);
 
     const renderRow = (row: DataRowProps<TItem, TId>) => (props.renderRow ?? defaultRenderRow)({ ...row, columns });
-    const rows = props.getRows();
+    const rows = props.getRows?.() ?? props.rows ?? [];
 
     const renderNoResultsBlock = React.useCallback(() => {
         return (
@@ -119,13 +155,14 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         columns={ columns }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                         selectAll={ props.selectAll }
-                        size={ props.size }
+                        size={ props.headerSize || DEFAULT_HEADER_SIZE }
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
                         showFoldAll={ props.showFoldAll }
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
+                        columnsGap={ props.columnsGap || DEFAULT_COLUMN_GAP }
                     />
                     <div
                         className={ cx(uuiScrollShadows.top, {

@@ -1,9 +1,7 @@
 import { TOneOfItemType, TPropEditorType } from '../../docsGen/sharedTypes';
-import { getColorDocBySkin } from '../../commonDocs';
+import { COLOR_MAP, getColorDocBySkin } from '../../commonDocs';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 import { getCallbackExample, getComponentExamples, getTextExamplesNoUndefined } from './shared/reusableExamples';
-import { IPropSamplesCreationContext } from '../../types';
-import { COLOR_MAP } from '../../commonDocs';
 
 const COLOR_PROP_NAMES = ['color'];
 const SIMPLE_STRING_EDITOR_PROP_NAMES = ['key', 'id', 'settingsKey', 'htmlFor'];
@@ -23,18 +21,16 @@ const ICON_PROP_NAMES = [
 
 const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
     [TPropEditorType.component]: (params) => {
-        const { prop } = params;
+        const { prop, docBuilderGenCtx } = params;
         if (ICON_PROP_NAMES.indexOf(prop.name) !== -1) {
             return {
                 editorType: 'IconEditor',
-                examples: (ctx: IPropSamplesCreationContext) => {
-                    return ctx.getIconList().map((value) => {
-                        return {
-                            id: value.id,
-                            value,
-                        };
-                    });
-                },
+                examples: docBuilderGenCtx.getIconList().map((value) => {
+                    return {
+                        name: value.id,
+                        value: value.icon,
+                    };
+                }),
             };
         }
         return { examples: getComponentExamples() };
@@ -43,8 +39,8 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
         return { editorType: 'NumEditor', examples: [] };
     },
     [TPropEditorType.func]: (params) => {
-        const { prop, uuiCtx } = params;
-        return { examples: getCallbackExample({ uuiCtx, name: prop.name }) };
+        const { prop, docBuilderGenCtx } = params;
+        return { examples: getCallbackExample({ uuiCtx: docBuilderGenCtx.uuiCtx, name: prop.name }) };
     },
     [TPropEditorType.bool]: () => {
         return { examples: [{ value: true }, { value: false }] };
@@ -75,7 +71,18 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
                     }) as TOneOfItemType[]).concat(editor.options.filter((example) => !COLOR_MAP[`${example}`])),
                 };
             } else {
-                return { examples: editor.options };
+                const res = { examples: editor.options };
+                switch (editor.scalarTypeOption) {
+                    case TPropEditorType.string: {
+                        return { ...res, editorType: 'StringWithExamplesEditor' };
+                    }
+                    case TPropEditorType.number: {
+                        return { ...res, editorType: 'NumEditor' };
+                    }
+                    default: {
+                        return res;
+                    }
+                }
             }
         }
     },
@@ -86,12 +93,12 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
  * See "public/docs/docsGenOutput/docsGenOutput.json" for details.
  */
 export const buildByEditorType: TPropDocBuilder = (params) => {
-    const { prop, docs, skin, uuiCtx } = params;
+    const { prop, docs, skin, docBuilderGenCtx } = params;
     const peType = prop.editor?.type;
     if (peType) {
         const builder = BY_EDITOR_TYPE[peType];
         if (builder) {
-            return builder({ prop, docs, skin, uuiCtx });
+            return builder({ prop, docs, skin, docBuilderGenCtx });
         }
         throw new Error(`Unsupported prop editor type: ${peType}`);
     }

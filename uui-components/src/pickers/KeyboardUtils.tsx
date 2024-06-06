@@ -16,10 +16,9 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
 
     switch (e.key) {
         case 'Backspace': {
-            const selectedRowsCount = params.listView.getSelectedRowsCount();
-            const selectedRows = params.listView.getSelectedRows({ topIndex: selectedRowsCount - 1, visibleCount: 1 });
-            if (params.searchPosition === 'input' && !value.search && value.checked && selectedRows.length > 0) {
-                const lastSelection = selectedRows[selectedRows.length - 1];
+            if (params.searchPosition === 'input' && !value.search && value.checked && value.checked.length > 0) {
+                const lastSelectionId = value.checked[value.checked.length - 1];
+                const lastSelection = params.listView.getById(lastSelectionId, null);
                 lastSelection.onCheck(lastSelection);
             }
             break;
@@ -58,6 +57,7 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
         params.onValueChange({
             ...value,
             focusedIndex,
+            scrollTo: { index: focusedIndex, behavior: 'smooth', align: 'nearest' },
             search,
         });
     }

@@ -1,0 +1,46 @@
+name: e2e tests
+on:
+    pull_request:
+        branches:
+            - develop
+            - main
+    push:
+        branches: [ develop ]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.base_ref }}-${{ github.head_ref }}
+    cancel-in-progress: true
+
+jobs:
+    e2e-tests:
+        timeout-minutes: 60
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.draft == false
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: '18.x'
+                  cache: 'yarn'
+                  cache-dependency-path: |
+                      **/yarn.lock
+
+            - name: 'Build'
+              run: |
+                  yarn
+                  yarn --cwd uui-e2e-tests local-test-e2e-deps-install
+                  yarn build
+                  cd server && yarn
+
+            - name: 'Run e2e tests'
+              run: |
+                  yarn --cwd uui-e2e-tests local-check-issues
+                  yarn --cwd uui-e2e-tests local-test-e2e
+
+            - name: 'Upload e2e HTML report'
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: e2e-html-report
+                  path: ./uui-e2e-tests/tests/.report/report
+                  retention-days: 1

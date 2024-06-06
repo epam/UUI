@@ -3,65 +3,28 @@
 .container {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 6px;
+    align-items: center;
+    gap: 6px;
 
     .color-item {
         width: 12px;
         height: 12px;
         cursor: pointer;
-        margin-right: 6px;
         border-style: solid;
         border-width: 3px;
         border-radius: 50%;
     }
-}
 
-.tooltip {
-    &:global(.uui-tooltip-container[data-placement^='top']) {
-        :global(.uui-tooltip-arrow) {
-            top: 100%;
-
-            &::after {
-                transform: translateX(30%) translateY(-50%) rotate(45deg);
-            }
-        }
+    .color-item-selected {
+        border-width: 2px;
+        width: 14px;
+        height: 14px;
+        border-color: white;
     }
 
-    :global(.uui-tooltip-body) {
-        padding: 3px 12px;
-        line-height: 18px;
-        font-size: 12px;
-        font-family: $font-sans;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
-        border-radius: 3px;
-        word-wrap: break-word;
-        background-color: #2C2F3C;
-    }
-
-    :global(.uui-tooltip-arrow) {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        overflow: hidden;
-    }
-
-    :global(.uui-tooltip-arrow)::after {
-        content: '';
-        position: absolute;
-        width: 8px;
-        height: 8px;
-        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
-        background-color: #2C2F3C;
+    .color-item-unknown {
+        word-break: break-word;
+        min-width: 15px;
+        margin: 0 2px 0 0;
     }
 }
-
-.tooltip-content {
-    padding: 6px;
-    background: #2C2F3C;
-    color: white;
-    line-height: 18px;
-    font-size: 12px;
-    font-family: $font-sans;
-}
-

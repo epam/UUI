@@ -1,3 +1,4 @@
+import isEqual from 'react-fast-compare';
 import { DataRowOptions, LazyDataSourceApiRequest, LazyDataSourceApiRequestContext, LazyDataSourceApiResponse, LazyDataSourceProps } from '@epam/uui-core';
 import {
     BaseGroups,
@@ -6,7 +7,6 @@ import {
     GroupingConfig, GroupingsConfig, TGroupsWithMeta, ToUnion, BaseFilter, FilterFromParentId, BaseGroupBy, GroupByForType,
 } from './types';
 import { ID, PATH } from './constants';
-import isEqual from 'lodash.isequal';
 
 const DEFAULT_CONFIG = Symbol('DEFAULT_CONFIG');
 
@@ -121,7 +121,9 @@ export class GroupingConfigBuilder<
         LazyDataSourceProps<TGroupsWithMeta<TGroups, TId, TGroupBy>[TType], TId[TType], TFilter[TType]>['api']
         >
     ) {
-        return this.entitiesConfig[this.defaultEntity].api(...apiArgs);
+        const [request, context] = apiArgs;
+        const response = await this.entitiesConfig[this.defaultEntity].api(request, context);
+        return this.getResultsWithMeta(response, context?.parent, []);
     }
 
     private getGroupByPathForParent(
