@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
-import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState } from '@epam/uui-core';
-import { Dropdown, DropdownMenuButton, SuccessNotification } from '../../overlays';
+import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState, DropdownBodyProps } from '@epam/uui-core';
+import { Dropdown, DropdownMenuBody, DropdownMenuButton, SuccessNotification, DropdownMenuSplitter } from '../../overlays';
 import { IconButton } from '../../buttons';
 import { Text } from '../../typography';
-import { FlexRow, Panel } from '../../layout';
 import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
 import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
 import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/action-save-outline.svg';
@@ -11,7 +10,7 @@ import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/content
 import { ReactComponent as CopyIcon } from '@epam/assets/icons/action-copy_content-outline.svg';
 import { ReactComponent as RenameIcon } from '@epam/assets/icons/content-edit-fill.svg';
 import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/content-link-outline.svg';
-import { ReactComponent as DeleteIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
+import { ReactComponent as ActionDeleteOutlineIcon } from '@epam/assets/icons/action-delete-outline.svg';
 import css from './PresetActionsDropdown.module.scss';
 
 interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
@@ -80,42 +79,35 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         props.activePresetId, props.deletePreset, props.preset,
     ]);
 
-    const renderBody = () => {
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
         const isReadonlyPreset = props.preset.isReadonly;
+        const isPresetChanged = props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset);
+        const isRenameAvailable = props.preset.id === props.activePresetId && !isReadonlyPreset;
+
         return (
-            <Panel background="surface-main" shadow={ true } cx={ css.presetDropdownPanel }>
-                {props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset) && (
+            <DropdownMenuBody { ...dropdownProps }>
+                { isPresetChanged && (
                     <>
                         {!isReadonlyPreset && (
-                            <FlexRow key={ `${props.preset.id}-save-in-current` }>
-                                <DropdownMenuButton icon={ SaveInCurrentIcon } caption="Save in current" onClick={ saveInCurrentHandler } />
-                            </FlexRow>
+                            <DropdownMenuButton key={ `${props.preset.id}-save-in-current` } icon={ SaveInCurrentIcon } caption="Save in current" onClick={ saveInCurrentHandler } />
                         )}
-                        <FlexRow key={ `${props.preset.id}-save-as-new` }>
-                            <DropdownMenuButton icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset } />
-                        </FlexRow>
-                        <FlexRow key={ `${props.preset.id}-discard` } borderBottom={ true }>
-                            <DropdownMenuButton icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler } />
-                        </FlexRow>
+                        <DropdownMenuButton key={ `${props.preset.id}-save-as-new` } icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset } />
+                        <DropdownMenuButton key={ `${props.preset.id}-discard` } icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler } />
+                        <DropdownMenuSplitter key="discard-splitter" />
                     </>
                 )}
-                {props.preset.id === props.activePresetId && !isReadonlyPreset && (
-                    <FlexRow key={ `${props.preset.id}-rename` }>
-                        <DropdownMenuButton icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset } />
-                    </FlexRow>
+                { isRenameAvailable && (
+                    <DropdownMenuButton key={ `${props.preset.id}-rename` } icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset } />
                 )}
-                <FlexRow key={ `${props.preset.id}-duplicate` }>
-                    <DropdownMenuButton icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler } />
-                </FlexRow>
-                <FlexRow borderBottom={ true } key={ `${props.preset.id}-copyLink` }>
-                    <DropdownMenuButton icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard } />
-                </FlexRow>
+                <DropdownMenuButton key={ `${props.preset.id}-duplicate` } icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler } />
+                <DropdownMenuButton key={ `${props.preset.id}-copyLink` } icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard } />
                 {!isReadonlyPreset && (
-                    <FlexRow key={ `${props.preset.id}-delete` } cx={ css.deleteRow }>
-                        <DropdownMenuButton icon={ DeleteIcon } caption="Delete" cx={ css.deleteButton } onClick={ deleteHandler } />
-                    </FlexRow>
+                    <>
+                        <DropdownMenuSplitter key="delete-splitter" />
+                        <DropdownMenuButton icon={ ActionDeleteOutlineIcon } caption="Delete" cx={ css.deleteButton } onClick={ deleteHandler } />
+                    </>
                 )}
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 
@@ -123,7 +115,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         return (
             <IconButton
                 cx={ [css.tabButton, dropdownProps.isOpen && css.targetOpen] }
-                color={ props.preset.id === props.activePresetId ? 'info' : 'neutral' }
+                color={ props.preset.id === props.activePresetId ? 'primary' : 'neutral' }
                 { ...dropdownProps }
                 icon={ MenuIcon }
                 size="18"

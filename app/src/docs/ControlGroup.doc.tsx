@@ -29,13 +29,13 @@ export class ControlGroupDoc extends BaseDocsBlock {
                             <uui.ControlGroup>
                                 <uui.Button size="36" caption="Preset" fill="none" onClick={ () => {} } />
                                 <uui.Dropdown
-                                    renderBody={ () => {
+                                    renderBody={ (dropdownBodyProps) => {
                                         return (
-                                            <uui.Panel background="surface-main" shadow={ true }>
+                                            <uui.DropdownMenuBody { ...dropdownBodyProps }>
                                                 <uui.DropdownMenuButton caption="Duplicate" onClick={ () => {} } />
                                                 <uui.DropdownMenuButton caption="Rename" onClick={ () => {} } />
                                                 <uui.DropdownMenuButton caption="Delete" onClick={ () => {} } />
-                                            </uui.Panel>
+                                            </uui.DropdownMenuBody>
                                         );
                                     } }
                                     renderTarget={ (props) => <uui.Button { ...props } fill="none" icon={ menuIcon } size="36" isDropdown={ false } /> }

@@ -25,9 +25,7 @@ export function AddImageModal(props: AddImageModalProps): JSX.Element {
                         <TextInput
                             value={ imageURL }
                             onValueChange={ (newVal) => {
-                                if (newVal) {
-                                    setImageURL(newVal);
-                                }
+                                setImageURL(newVal || '');
                             } }
                             autoFocus
                         />

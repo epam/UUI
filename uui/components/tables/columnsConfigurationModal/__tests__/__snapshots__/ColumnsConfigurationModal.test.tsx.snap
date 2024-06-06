@@ -207,7 +207,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       width={18}
                     />
                   </div>
-                  Not pinned
+                  Pinned to the left
                 </span>
                 <div
                   className="container uui-icon uui-enabled arrow"
@@ -229,7 +229,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
+                  className="uui-flex-row root size-30 rowWrapper container align-items-center"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -242,12 +242,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
+                    className="dragHandle dndDisabled container uui-drag-handle uui-disabled"
                     onTouchStart={[Function]}
                   >
                     <div
-                      className="container uui-icon uui-enabled"
+                      className="container uui-icon uui-disabled"
                       style={Object {}}
                     >
                       <svg
@@ -295,52 +294,26 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     }
                   >
                     <span>
-                      <span
-                        style={
-                          Object {
-                            "display": "flex",
-                            "gap": "12px",
-                          }
-                        }
+                      <button
+                        aria-disabled={true}
+                        className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
+                        tabIndex={-1}
+                        type="button"
                       >
-                        <button
-                          aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <div
+                          className="container uui-icon uui-enabled"
+                          style={Object {}}
                         >
-                          <div
-                            className="container uui-icon uui-enabled"
-                            style={Object {}}
-                          >
-                            <svg
-                              className=""
-                            />
-                          </div>
-                        </button>
-                        <button
-                          aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
-                        >
-                          <div
-                            className="container uui-icon uui-enabled"
-                            style={Object {}}
-                          >
-                            <svg
-                              className=""
-                            />
-                          </div>
-                        </button>
-                      </span>
+                          <svg
+                            className=""
+                          />
+                        </div>
+                      </button>
                     </span>
                   </div>
                 </div>
                 <div
-                  className="uui-flex-row root size-30 rowWrapper notPinned -draggable container align-items-center"
+                  className="uui-flex-row root size-30 rowWrapper container align-items-center"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -353,12 +326,11 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
+                    className="dragHandle dndDisabled container uui-drag-handle uui-disabled"
                     onTouchStart={[Function]}
                   >
                     <div
-                      className="container uui-icon uui-enabled"
+                      className="container uui-icon uui-disabled"
                       style={Object {}}
                     >
                       <svg
@@ -406,47 +378,21 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     }
                   >
                     <span>
-                      <span
-                        style={
-                          Object {
-                            "display": "flex",
-                            "gap": "12px",
-                          }
-                        }
+                      <button
+                        aria-disabled={true}
+                        className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
+                        tabIndex={-1}
+                        type="button"
                       >
-                        <button
-                          aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
+                        <div
+                          className="container uui-icon uui-enabled"
+                          style={Object {}}
                         >
-                          <div
-                            className="container uui-icon uui-enabled"
-                            style={Object {}}
-                          >
-                            <svg
-                              className=""
-                            />
-                          </div>
-                        </button>
-                        <button
-                          aria-disabled={false}
-                          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                          onClick={[Function]}
-                          tabIndex={0}
-                          type="button"
-                        >
-                          <div
-                            className="container uui-icon uui-enabled"
-                            style={Object {}}
-                          >
-                            <svg
-                              className=""
-                            />
-                          </div>
-                        </button>
-                      </span>
+                          <svg
+                            className=""
+                          />
+                        </div>
+                      </button>
                     </span>
                   </div>
                 </div>

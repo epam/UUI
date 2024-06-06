@@ -1,14 +1,8 @@
-.preset-dropdown-panel {
-    min-width: 150px;
-}
+.delete-button {
+    color: var(--uui-critical-70);
 
-.delete-row {
     svg {
         fill: var(--uui-critical-70);
-    }
-
-    .delete-button {
-        color: var(--uui-critical-70);
     }
 }
 

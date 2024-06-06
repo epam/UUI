@@ -75,7 +75,13 @@ export class LayoutContext extends BaseContext {
         return layer;
     }
 
-    public releaseLayer(layer: LayoutLayer) {
-        this.layers = this.layers.filter((l) => l.id !== layer.id);
+    public releaseLayer(layer: LayoutLayer | number) {
+        let id: number;
+        if (typeof layer === 'number') {
+            id = layer;
+        } else {
+            id = layer.id;
+        }
+        this.layers = this.layers.filter((l) => l.id !== id);
     }
 }

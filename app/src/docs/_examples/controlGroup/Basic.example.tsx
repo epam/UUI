@@ -1,15 +1,15 @@
 import React from 'react';
-import { Button, ControlGroup, Dropdown, Panel, DropdownMenuButton } from '@epam/uui';
+import { Button, ControlGroup, Dropdown, DropdownMenuButton, DropdownMenuBody } from '@epam/uui';
 import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 
 export default function BasicExample() {
     const renderBody = () => {
         return (
-            <Panel background="surface-main" shadow={ true }>
+            <DropdownMenuBody>
                 <DropdownMenuButton caption="Duplicate" onClick={ () => {} } />
                 <DropdownMenuButton caption="Rename" onClick={ () => {} } />
                 <DropdownMenuButton caption="Delete" onClick={ () => {} } />
-            </Panel>
+            </DropdownMenuBody>
         );
     };
 

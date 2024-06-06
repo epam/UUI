@@ -20,6 +20,9 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<Rea
     size?: number | string;
 }
 
+/** Represents the properties of a IconContainer component. */
+export type IconContainerProps = ControlIconProps & {};
+
 export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
     const isClickable = !props.isDisabled && props.onClick;
 

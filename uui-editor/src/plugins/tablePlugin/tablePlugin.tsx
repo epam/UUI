@@ -29,6 +29,7 @@ import {
     createTablePlugin,
     getTableGridAbove,
     useTableMergeState,
+    withTable,
 } from '@udecode/plate-table';
 import { MergeToolbarContent } from './MergeToolbarContent';
 import { TableToolbarContent } from './ToolbarContent';
@@ -129,7 +130,10 @@ export const tablePlugin = (): PlatePlugin<TablePLuginOptions> =>
             enableMerging: true,
             bottomBarButton: TableButton,
         },
-        withOverrides: (editor) => {
+        withOverrides: (editor, plugin) => {
+            // eslint-disable-next-line no-param-reassign
+            editor = withTable(editor, plugin);
+
             const { normalizeNode } = editor;
 
             editor.normalizeNode = (entry) => {

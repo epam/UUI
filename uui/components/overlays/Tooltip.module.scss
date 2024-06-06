@@ -10,7 +10,7 @@
     --uui-tooltip-font-weight: 400;
     //
     :global(.uui-tooltip-body) {
-        padding: 3px 12px;
+        padding: 5px 11px;
         line-height: 24px;
         font-size: 14px;
         font-family: var(--uui-tooltip-font);
@@ -79,7 +79,7 @@
         }
 
         &.uui-color-critical {
-            --uui-tooltip-bg: var(--uui-error-60);
+            --uui-tooltip-bg: var(--uui-critical-60);
         }
 
         &.uui-color-inverted {

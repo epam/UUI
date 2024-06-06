@@ -15,6 +15,7 @@ import {
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { getCurrentTheme } from '../helpers';
 import { TIconButtonPreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class IconButtonDoc extends BaseDocsBlock {
     title = 'Icon Button';
@@ -35,6 +36,8 @@ export class IconButtonDoc extends BaseDocsBlock {
                     neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-10' : 'neutral-60'})`,
                 }),
             });
+            doc.setDefaultPropExample('onClick', () => true);
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
         preview: (docPreview: DocPreviewBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
             const TEST_DATA = {

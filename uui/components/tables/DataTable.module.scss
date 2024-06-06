@@ -6,6 +6,8 @@
 }
 
 .table {
+    background: var(--uui-dt-bg);
+
     &:global(.-scrolled-left) {
         :global(.uui-scroll-shadow-left) {
             opacity: 1;

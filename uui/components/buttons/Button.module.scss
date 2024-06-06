@@ -11,8 +11,8 @@
 @mixin button-white-disables-styles($bg-opacity, $border-color) {
     background-color: color-mix(in srgb, var(--uui-neutral-0) $bg-opacity, transparent);
     border-color: $border-color;
-    color: color-mix(in srgb, var(--uui-neutral-0) 40% - $bg-opacity, transparent);
-    fill: color-mix(in srgb, var(--uui-neutral-0) 40% - $bg-opacity, transparent);
+    color: color-mix(in srgb, var(--uui-neutral-0) 40% , transparent);
+    fill: color-mix(in srgb, var(--uui-neutral-0) 40% , transparent);
 
 }
 
@@ -81,7 +81,7 @@
         @include overflow-ellipsis();
         min-width: 0;
         text-align: center;
-        flex: 1 1 auto;
+        flex: 0 1 auto;
         font-family: var(--uui-btn-font);
         font-weight: var(--uui-btn-font-weight, normal);
         user-select: none;
@@ -125,6 +125,11 @@
         --uui-btn-caption-disabled: var(--uui-text-disabled);
 
         &:global(.uui-color-white) {
+            &:active {
+                background-color: var(--uui-neutral-30);
+                border-color: var(--uui-neutral-30);
+            }
+
             &:global(.uui-disabled) {
                 @include button-white-disables-styles(10%, transparent);
             }
@@ -146,7 +151,7 @@
             --uui-btn-bg: var(--uui-color-5);
 
             &:global(.uui-disabled) {
-                @include button-white-disables-styles(10%, color-mix(in srgb, var(--uui-neutral-0) 20%, transparent));
+                @include button-white-disables-styles(10%, color-mix(in srgb, var(--uui-neutral-0) 30%, transparent));
             }
         }
     }
