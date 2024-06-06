@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';

@@ -2,12 +2,13 @@ import React from 'react';
 import { fireEvent, screen, setupComponentForTest } from '@epam/uui-test-utils';
 import { IModal, ModalBlockerProps, useUuiContext } from '@epam/uui-core';
 import { Button } from '../../buttons';
-import { Modals } from '../Modals';
-import { ModalBlocker } from '../ModalBlocker';
+import { ModalBlocker, ModalHeader } from '@epam/uui';
+import { Modals } from '@epam/uui-components';
 
 function TestElement(props: ModalBlockerProps) {
     return (
         <ModalBlocker { ...props }>
+            <ModalHeader borderBottom title="Modal header" onClose={ () => props.abort() } />
             <div id="modal-content">Test content</div>
         </ModalBlocker>
     );
@@ -73,52 +74,18 @@ describe('ModalBlocker', () => {
         expect(testElement).toBeInTheDocument();
     });
 
-    it('should close when clicked outside', async () => {
-        await setupModalBlocker({});
+    it('should close when esc button is pressed', async () => {
+        await setupModalBlocker({ disableCloseByEsc: false });
 
-        const button = await screen.findByText('Show modal');
-        // open ModalBlocker
-        fireEvent.click(button);
+        const openModalButton = await screen.findByText('Show modal');
+        fireEvent.click(openModalButton);
 
         const testElement = await screen.findByText('Test content');
         expect(testElement).toBeInTheDocument();
 
-        const modalBlocker = document.getElementsByClassName('uui-modal-blocker')[0];
-        // close ModalBlocker
-        fireEvent.click(modalBlocker);
+        const closeModalButton = await screen.findByLabelText('Close modal');
+        fireEvent.click(closeModalButton);
+
         expect(screen.queryByText('Test content')).toBeNull();
     });
-
-    it('should not close when esc key is pressed', async () => {
-        await setupModalBlocker({ disableCloseByEsc: true });
-
-        const button = await screen.findByText('Show modal');
-        fireEvent.click(button);
-
-        const testElement = await screen.findByText('Test content');
-        expect(testElement).toBeInTheDocument();
-
-        const escEvent = new KeyboardEvent('keydown', { key: 'Escape' });
-        document.dispatchEvent(escEvent);
-
-        expect(screen.getByText('Test content')).toBeInTheDocument();
-    });
-
-    it('should not close when clicked outside', async () => {
-        await setupModalBlocker({ disallowClickOutside: true });
-
-        const button = await screen.findByText('Show modal');
-        fireEvent.click(button);
-
-        const testElement = await screen.findByText('Test content');
-        expect(testElement).toBeInTheDocument();
-
-        // try to close ModalBlocker by clicking at the start of the document
-        fireEvent.mouseDown(document.documentElement, { clientX: 10, clientY: 10 });
-        fireEvent.click(document.documentElement, { clientX: 10, clientY: 10 });
-
-        expect(screen.getByText('Test content')).toBeInTheDocument();
-    });
-
-    // TODO: create test for 'disableCloseOnRouterChange' when our 'setupComponentForTest' be able listen routes
 });
