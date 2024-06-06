@@ -8,7 +8,7 @@ import { Image } from './ImageBlock';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, focusEditor, isElement, PlatePlugin, insertNodes, insertEmptyElement,
+    PlateEditor, createPluginFactory, getBlockAbove, focusEditor, isElement, PlatePlugin, insertNodes, insertEmptyElement, setNodes,
 } from '@udecode/plate-common';
 import { ReactComponent as ImageIcon } from '../../icons/image.svg';
 
@@ -83,10 +83,17 @@ export const imagePlugin = (): PlatePlugin => {
             const { normalizeNode } = editor;
 
             editor.normalizeNode = (entry) => {
-                const [node] = entry;
+                const [node, path] = entry;
 
                 if (isElement(node) && node.type === IMAGE_TYPE) {
-                    normalizeImageElement(editor, entry);
+                    let migratedElement = normalizeImageElement(editor, entry);
+
+                    // set width for new images
+                    if (!migratedElement.width) {
+                        migratedElement = { ...migratedElement, width: 'fit-content' };
+                    }
+
+                    setNodes(editor, migratedElement, { at: path });
                 }
 
                 normalizeNode(entry);
@@ -122,7 +129,7 @@ export function ImageButton({ editor }: IImageButton) {
                 insertNodes(editor, {
                     align: 'left',
                     url: link,
-                    width: 'fit-content', // intial image size before resize
+                    width: 'fit-content',
                     type: IMAGE_TYPE,
                     children: [{ text: '' }],
                 });
