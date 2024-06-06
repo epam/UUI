@@ -88,7 +88,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
                         />
                     )}
 
-                    {isCaptionEnabled && (
+                    {isCaptionEnabled() && (
                         <Caption className={ cx(css.imageCaption, ...aligns) }>
                             <CaptionTextarea
                                 className={ cx(css.caption) }

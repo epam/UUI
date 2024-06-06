@@ -59,8 +59,8 @@ export const normalizeTableElement = (editor: PlateEditor<Value>, entry: TNodeEn
 };
 
 /** deprecate intercepting properties */
-export const normalizeImageElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
-    const [node, path] = entry;
+export const normalizeImageElement = (editor: PlateEditor<Value>, entry: TNodeEntry): TImageElement => {
+    const [node] = entry;
     const imageNode = node as DeprecatedImageElement;
 
     // migrations
@@ -69,7 +69,7 @@ export const normalizeImageElement = (editor: PlateEditor<Value>, entry: TNodeEn
 
         // removing props
         if (!align || !imageSize || !src) {
-            return;
+            return imageNode;
         }
 
         // align where setted to data after update to plate, so we need to fix that historical mistake
@@ -85,12 +85,10 @@ export const normalizeImageElement = (editor: PlateEditor<Value>, entry: TNodeEn
             data: { ...otherData },
         };
 
-        setNodes(
-            editor,
-            imageElement,
-            { at: path },
-        );
+        return imageElement;
     }
+
+    return imageNode;
 };
 
 /** deprecate data properties */
