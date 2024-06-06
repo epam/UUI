@@ -296,7 +296,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     <span>
                       <button
                         aria-disabled={true}
-                        className="uui-button-box uui-disabled container uui-icon_button uui-color-info root pinTogglerIcon"
+                        className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
                         tabIndex={-1}
                         type="button"
                       >
@@ -380,7 +380,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     <span>
                       <button
                         aria-disabled={true}
-                        className="uui-button-box uui-disabled container uui-icon_button uui-color-info root pinTogglerIcon"
+                        className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
                         tabIndex={-1}
                         type="button"
                       >
