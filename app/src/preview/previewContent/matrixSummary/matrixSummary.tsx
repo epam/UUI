@@ -13,23 +13,23 @@ import {
 } from '@epam/uui';
 import css from './matrixSummary.module.scss';
 
-export function MatrixInfo(modalProps: IModal<string> & { arr: TNormalizedMatrix[], totalUseCases: number }) {
+export function MatrixSummary(modalProps: IModal<string> & { arr: TNormalizedMatrix[], totalUseCases: number }) {
     const title = modalProps.totalUseCases > 1 ? `Props (total use cases: ${modalProps.totalUseCases})` : 'Props';
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow>
+            <ModalWindow width={ 640 }>
                 <Panel background="surface-main">
                     <ModalHeader title={ title } onClose={ () => modalProps.abort() } />
                     <ScrollBars hasTopShadow hasBottomShadow>
                         <FlexRow padding="24" vPadding="24">
-                            <FlexCell>
+                            <FlexCell minWidth={ 360 }>
                                 { formatNormalizedMatrix(modalProps.arr) }
                             </FlexCell>
                         </FlexRow>
                     </ScrollBars>
                     <ModalFooter>
                         <FlexSpacer />
-                        <Button color="primary" caption="Ok" onClick={ () => modalProps.success('ok') } />
+                        <Button color="primary" caption="OK" onClick={ () => modalProps.success('OK') } />
                     </ModalFooter>
                 </Panel>
             </ModalWindow>
@@ -43,6 +43,7 @@ function formatNormalizedMatrix(arr: TNormalizedMatrix[]): React.ReactNode | und
         const matrixInfo = getMatrixInfo(matrix);
         const fixed = renderRows(matrixInfo.fixed);
         const dynamic = renderRows(matrixInfo.dynamic);
+        const isNoProps = Object.keys(matrix).length === 0;
         if (result.length) {
             result.push(<br key={ `${index}_br` } />);
         }
@@ -61,6 +62,11 @@ function formatNormalizedMatrix(arr: TNormalizedMatrix[]): React.ReactNode | und
                 <tbody>
                     { fixed }
                     { dynamic }
+                    {
+                        isNoProps && (
+                            <tr><td colSpan={ 2 }>No properties defined. Only use the default properties defined in "Property Explorer" will be used.</td></tr>
+                        )
+                    }
                 </tbody>
             </table>
         ));
