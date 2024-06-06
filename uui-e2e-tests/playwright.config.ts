@@ -35,6 +35,7 @@ const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectN
 export const stylePath = `${parentDir}framework/fixtures/screenshot.css`;
 
 export default defineConfig({
+    globalTimeout: 3_600_000, // = 1 hour (it should be sufficient to run all our tests)
     timeout,
     maxFailures,
     testMatch,
