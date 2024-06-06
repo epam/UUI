@@ -149,13 +149,14 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
             ctxToSet = undefined;
             console.error(`The context="${ctxToSet}" is not supported by the component`);
         }
+        const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
         const result: TPreviewPropsItemRenderCases = {
             id: ppi.id,
             context: ctxToSet,
             props: [],
             cellSize: ppi.cellSize,
+            matrix: matrixConfig,
         };
-        const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
         result.props = TestMatrixUtils.createTestMatrixFromArr({ matrixNorm: matrixConfig });
         return result;
     };

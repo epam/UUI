@@ -7,7 +7,8 @@ import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables();
 const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
-const timeout = isCi ? 20000 : 50000;
+const timeout = isCi ? 10000 : 20000;
+export const timeoutForFixture = isCi ? 20000 : 50000;
 const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
 /**
@@ -16,9 +17,12 @@ const retries = isCi ? 1 : 0;
 const workers = isCi ? undefined : undefined;
 const forbidOnly = isCi;
 const trace = (isCi ? 'retry-with-trace' : 'retain-on-failure') as TraceMode;
-const server = {
-    startCmd: isCi ? 'yarn start-server' : undefined,
-    baseUrl: isCi ? UUI_APP_BASE_URL_CI : UUI_APP_BASE_URL,
+const server = isCi ? {
+    command: 'yarn start-server',
+    url: UUI_APP_BASE_URL_CI,
+} : {
+    command: `yarn print-error "Server is not available ${UUI_APP_BASE_URL}"`,
+    url: UUI_APP_BASE_URL,
 };
 //
 const parentDir = '';
@@ -31,6 +35,7 @@ const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectN
 export const stylePath = `${parentDir}framework/fixtures/screenshot.css`;
 
 export default defineConfig({
+    globalTimeout: 3_600_000, // = 1 hour (it should be sufficient to run all our tests)
     timeout,
     maxFailures,
     testMatch,
@@ -46,7 +51,7 @@ export default defineConfig({
     ],
     use: {
         bypassCSP: true,
-        baseURL: server.baseUrl,
+        baseURL: server.url,
         trace,
         ...SHARED_DEVICE_CFG.DEFAULT,
     },
@@ -69,11 +74,10 @@ export default defineConfig({
         }
         return true;
     }),
-    webServer: server.startCmd ? {
-        command: server.startCmd,
-        url: server.baseUrl,
+    webServer: {
+        ...server,
         reuseExistingServer: true,
-    } : undefined,
+    },
     expect: {
         toHaveScreenshot: {
             animations: 'disabled',

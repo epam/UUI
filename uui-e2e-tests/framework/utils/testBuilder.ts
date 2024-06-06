@@ -74,8 +74,20 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                         const sel = matrix.focusFirstElement({ previewId });
                         typeof sel === 'string' && await previewPage.focusElement(sel);
                     }
-                    const opts = await previewPage.getScreenshotOptions();
-                    await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts });
+                    if (matrix.forcePseudoState) {
+                        try {
+                            await previewPage.cdpSession.cssForcePseudoState(matrix.forcePseudoState);
+                            await assert();
+                        } finally {
+                            await previewPage.cdpSession.close();
+                        }
+                    } else {
+                        await assert();
+                    }
+                    async function assert() {
+                        const opts = await previewPage.getScreenshotOptions();
+                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts, ...(matrix.slow ? { timeout: 15000 } : {}) });
+                    }
                 });
             });
         }

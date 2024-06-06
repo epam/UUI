@@ -12,7 +12,7 @@ describe('IconButton', () => {
     it('should be rendered correctly with props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <IconButton
-                color="info"
+                color="primary"
                 onClick={ jest.fn }
                 icon={ CalendarIcon }
                 isDisabled={ true }

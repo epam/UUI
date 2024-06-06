@@ -1,10 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { cx } from '@epam/uui-core';
 import { TPreviewCellSize } from '@epam/uui-docs';
 import { FlexCell, FlexRow, Spinner, Text, ErrorAlert } from '@epam/uui';
 import { calcLayoutCssFromCellSize } from './previewContentUtils';
 //
 import css from './previewLayout.module.scss';
+import { Page } from '../../common';
 
 interface IPreviewLayout {
     error: string | undefined;
@@ -12,6 +13,7 @@ interface IPreviewLayout {
     renderCell: (params: { index: number }) => (React.ReactNode | undefined);
     totalNumberOfCells: number;
     cellSize: TPreviewCellSize | undefined;
+    onOpenConfig: () => void;
 }
 
 export function PreviewLayout(props: IPreviewLayout) {
@@ -59,10 +61,25 @@ export function PreviewLayout(props: IPreviewLayout) {
         );
     };
 
+    const wrapperRef = useRef<HTMLDivElement>();
+    const layoutRef = useRef<HTMLDivElement>();
+    const handleLayoutClick = (e: React.MouseEvent<HTMLElement>) => {
+        if ([wrapperRef.current, layoutRef.current].includes(e.target as HTMLDivElement)) {
+            props.onOpenConfig();
+        }
+    };
+
     return (
-        <FlexRow cx={ css.root } rawProps={ getPreviewRegionAttrs(isLoaded) }>
-            { renderContent() }
-        </FlexRow>
+        <Page
+            renderHeader={ () => null }
+            rootCx={ css.root }
+            wrapperRef={ wrapperRef }
+            onClick={ handleLayoutClick }
+        >
+            <FlexRow cx={ css.layoutRoot } rawProps={ getPreviewRegionAttrs(isLoaded) } ref={ layoutRef }>
+                { renderContent() }
+            </FlexRow>
+        </Page>
     );
 }
 
