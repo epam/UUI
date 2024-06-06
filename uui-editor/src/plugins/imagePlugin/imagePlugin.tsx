@@ -129,6 +129,7 @@ export function ImageButton({ editor }: IImageButton) {
                 insertNodes(editor, {
                     align: 'left',
                     url: link,
+                    width: 'fit-content',
                     type: IMAGE_TYPE,
                     children: [{ text: '' }],
                 });
