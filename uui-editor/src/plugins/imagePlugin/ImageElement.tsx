@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     PlateElement,
     PlateElementProps,
-    setElements,
-    useEditorRef,
     Value,
     withHOC,
 } from '@udecode/plate-common';
@@ -16,7 +14,7 @@ import css from './ImageElement.module.scss';
 import { Resizable, ResizeHandle } from '../../implementation/Resizable';
 import { PlateImgAlign, TImageElement } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
-import { ResizableProvider, useResizableStore } from '@udecode/plate-resizable';
+import { ResizableProvider } from '@udecode/plate-resizable';
 
 interface ImageElementProps extends PlateElementProps<Value, TImageElement> {
     align?: PlateImgAlign;
@@ -32,15 +30,16 @@ export const ImageElement = withHOC(ResizableProvider, ({
 }: ImageElementProps) => {
     const { children, nodeProps } = props;
 
-    const editor = useEditorRef();
     const focused = useFocused();
     const selected = useSelected();
     const readOnly = useReadOnly();
 
-    const width = useResizableStore().get.width();
-    const setWidth = useResizableStore().set.width();
+    const imageRef = useRef<HTMLImageElement>();
 
-    const isCaptionEnabled = typeof width === 'number' && width >= MIN_CAPTION_WIDTH;
+    const isCaptionEnabled = () => {
+        const imageWidth = imageRef.current?.width;
+        return typeof imageWidth === 'number' && imageWidth >= MIN_CAPTION_WIDTH;
+    };
 
     const aligns = [
         align === 'center' && css.alignCenter,
@@ -55,6 +54,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
         visible && css.resizeHandleVisible, // for mobile
     ];
 
+    // @ts-ignore
     return (
         <PlateElement className={ cx(className) } { ...props }>
             <figure className={ cx(css.group) } contentEditable={ false }>
@@ -74,10 +74,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
                     )}
                     <Image
                         { ...nodeProps }
-                        onLoad={ (event) => {
-                            setWidth((event.target as HTMLImageElement).width);
-                            setElements(editor, { width: (event.target as HTMLImageElement).width });
-                        } }
+                        ref={ imageRef }
                         className={ cx(
                             css.image,
                             visible && css.selectedImage, // for mobile
@@ -90,17 +87,18 @@ export const ImageElement = withHOC(ResizableProvider, ({
                             className={ cx(resizeHandleClasses) }
                         />
                     )}
-                </Resizable>
 
-                {isCaptionEnabled && (
-                    <Caption style={ { width } } className={ cx(css.imageCaption, ...aligns) }>
-                        <CaptionTextarea
-                            className={ cx(css.caption) }
-                            placeholder="Write a caption..."
-                            readOnly={ readOnly }
-                        />
-                    </Caption>
-                )}
+                    {isCaptionEnabled && (
+                        <Caption className={ cx(css.imageCaption, ...aligns) }>
+                            <CaptionTextarea
+                                className={ cx(css.caption) }
+                                placeholder="Write a caption..."
+                                readOnly={ readOnly }
+                            />
+                        </Caption>
+                    )}
+
+                </Resizable>
             </figure>
 
             {children}
