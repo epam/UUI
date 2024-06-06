@@ -1,14 +1,23 @@
 import type { Page, Locator } from '@playwright/test';
-import { PreviewPageParams, TClip } from '../types';
+import { PreviewPageParams, TClip, TEngine } from '../types';
 import { PlayWrightInterfaceName, PREVIEW_URL } from '../constants';
+import { CdpSessionWrapper } from './cdpSessionWrapper';
 
 export class PreviewPage {
-    private locators: {
+    private readonly locators: {
         regionContentNotBusy: Locator;
         regionScreenshotContent: Locator;
     };
 
-    constructor(public readonly page: Page) {
+    private readonly engine: TEngine;
+    public cdpSession: CdpSessionWrapper;
+    public readonly page: Page;
+
+    constructor(params: { page: Page, engine: TEngine }) {
+        const { page, engine } = params;
+        this.page = page;
+        this.engine = engine;
+        this.cdpSession = new CdpSessionWrapper(page, engine);
         const regionContentNotBusy = page.locator('[aria-label="Preview Content"][aria-busy="false"]');
         const regionScreenshotContent = page.locator('[aria-label="Preview Content"][aria-busy="false"] > div');
         this.locators = {
@@ -39,6 +48,10 @@ export class PreviewPage {
             (window as any)[i](p);
         }, [jsonStringify(params), PlayWrightInterfaceName].join('[||||]'));
         await this.locators.regionContentNotBusy.waitFor();
+    }
+
+    async close() {
+        await this.cdpSession.close();
     }
 }
 
