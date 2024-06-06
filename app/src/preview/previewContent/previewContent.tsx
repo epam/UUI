@@ -19,6 +19,7 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
     const { isLoaded, docs } = useDocBuilderGen({ config: compConfig, skin, docBuilderGenCtx });
     const allRenderCases = useMemo(() => buildRenderCaseArr(docs, previewId), [docs, previewId]);
     const totalNumberOfCases = allRenderCases?.props.length || 0;
+    const isFullScreen = typeof previewId === 'object';
 
     const error = useMemo(() => {
         if (isLoaded) {
@@ -56,7 +57,7 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
     }, [allRenderCases, docs, previewIdAsString]);
 
     const handleOpenConfig = () => {
-        if (allRenderCases?.matrix.length > 0) {
+        if (!isFullScreen && allRenderCases?.matrix.length > 0) {
             uuiModals
                 .show<string>((props) => <MatrixSummary { ...props } arr={ allRenderCases.matrix } totalUseCases={ allRenderCases?.props.length || 1 } />)
                 .catch(() => {});
