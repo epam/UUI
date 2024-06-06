@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
     PlateElement,
     PlateElementProps,
@@ -36,10 +36,10 @@ export const ImageElement = withHOC(ResizableProvider, ({
 
     const imageRef = useRef<HTMLImageElement>();
 
-    const isCaptionEnabled = useMemo(() => {
+    const isCaptionEnabled = () => {
         const imageWidth = imageRef.current?.width;
         return typeof imageWidth === 'number' && imageWidth >= MIN_CAPTION_WIDTH;
-    }, []);
+    };
 
     const aligns = [
         align === 'center' && css.alignCenter,
@@ -54,6 +54,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
         visible && css.resizeHandleVisible, // for mobile
     ];
 
+    // @ts-ignore
     return (
         <PlateElement className={ cx(className) } { ...props }>
             <figure className={ cx(css.group) } contentEditable={ false }>
@@ -73,12 +74,12 @@ export const ImageElement = withHOC(ResizableProvider, ({
                     )}
                     <Image
                         { ...nodeProps }
+                        ref={ imageRef }
                         className={ cx(
                             css.image,
                             visible && css.selectedImage, // for mobile
                             nodeProps?.className,
                         ) }
-                        ref={ imageRef }
                     />
                     {!readOnly && (
                         <ResizeHandle
@@ -86,17 +87,18 @@ export const ImageElement = withHOC(ResizableProvider, ({
                             className={ cx(resizeHandleClasses) }
                         />
                     )}
-                </Resizable>
 
-                {isCaptionEnabled && (
-                    <Caption style={ { width: imageRef.current?.width } } className={ cx(css.imageCaption, ...aligns) }>
-                        <CaptionTextarea
-                            className={ cx(css.caption) }
-                            placeholder="Write a caption..."
-                            readOnly={ readOnly }
-                        />
-                    </Caption>
-                )}
+                    {isCaptionEnabled() && (
+                        <Caption className={ cx(css.imageCaption, ...aligns) }>
+                            <CaptionTextarea
+                                className={ cx(css.caption) }
+                                placeholder="Write a caption..."
+                                readOnly={ readOnly }
+                            />
+                        </Caption>
+                    )}
+
+                </Resizable>
             </figure>
 
             {children}

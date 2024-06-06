@@ -2,8 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import css from './ColorPicker.module.scss';
 import { IEditable } from '@epam/uui-core';
-import { Tooltip } from '@epam/uui-components';
-import { Button } from '@epam/uui';
+import { Button, Tooltip } from '@epam/uui';
 
 interface Color {
     value: string;
@@ -36,9 +35,9 @@ export function ColorPicker(props: ColorPickerProps) {
                 backgroundColor: color.hex,
             };
             if (isSelectedColor) {
-                style.boxShadow = `0 0 0 1px ${color.hex}`;
+                style.boxShadow = '0 0 0 1px var(--uui-info-50)';
             } else {
-                style.borderColor = color.hex;
+                style.borderColor = (color.value === 'white' || color.hex === 'var(--uui-neutral-0)') ? 'var(--uui-neutral-20)' : color.hex;
             }
             return (
                 <div
@@ -51,9 +50,8 @@ export function ColorPicker(props: ColorPickerProps) {
 
         return (
             <Tooltip
-                cx={ css.tooltip }
-                renderContent={ () => <div className={ css.tooltipContent }>{ color.value }</div> }
                 key={ color.value }
+                content={ color.value }
             >
                 {
                     isUnknownColor ? renderUnknownColor() : renderKnownColor()

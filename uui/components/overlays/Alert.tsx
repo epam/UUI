@@ -6,7 +6,7 @@ import { IconButton, LinkButton } from '../buttons';
 import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
 import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
 import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
-import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help-fill.svg';
+import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-info-fill.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './Alert.module.scss';
 

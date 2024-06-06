@@ -49,6 +49,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             component: 'LinkButton',
             propName: 'color',
             propValue: props.color,
+            propValueUseInstead: 'white',
             condition: () => props.color === 'contrast',
         });
     }

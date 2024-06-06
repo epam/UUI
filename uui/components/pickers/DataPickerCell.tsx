@@ -37,7 +37,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                     <div className={ cx(css.iconWrapper, uuiMod.selected) }>
                         <IconContainer
                             icon={ settings.sizes.dataPickerCell.isBoldIcon[props.size as never] ? BoldTickIcon : TickIcon }
-                            cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.iconPrimary }
+                            cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.selectedMark }
                             rawProps={ { 'aria-label': props.rowProps.isChildrenSelected
                                 ? 'Child is selected'
                                 : 'Selected' } }
@@ -62,7 +62,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
             minWidth={ 0 }
             rawProps={ { role: 'cell' } }
             cx={ [
-                css.cell,
+                css.root,
                 props.cx,
                 'data-picker-cell',
                 css['size-' + (props.size || settings.sizes.defaults.dataPickerCell)],
