@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
     PlateElement,
     PlateElementProps,
@@ -29,7 +29,6 @@ export const ImageElement = withHOC(ResizableProvider, ({
     ...props
 }: ImageElementProps) => {
     const { children, nodeProps } = props;
-    const imageRef = useRef<HTMLImageElement>();
 
     const focused = useFocused();
     const selected = useSelected();
@@ -72,11 +71,8 @@ export const ImageElement = withHOC(ResizableProvider, ({
                     )}
                     <Image
                         { ...nodeProps }
-                        ref={ imageRef }
-                        onLoad={ () => {
-                            if (typeof imageRef.current?.width === 'number') {
-                                setWidth(imageRef.current?.width);
-                            }
+                        onLoad={ (event) => {
+                            setWidth((event.target as HTMLImageElement).width);
                         } }
                         className={ cx(
                             css.image,
