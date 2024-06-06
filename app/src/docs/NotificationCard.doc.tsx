@@ -3,13 +3,15 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TPreviewCellSize, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { TNotificationCardPreview } from './_types/previewIds';
+import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
 export class NotificationCardDoc extends BaseDocsBlock {
     title = 'Notification Card';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'NotificationCard',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:NotificationCardProps', component: uui.NotificationCard },
@@ -35,6 +37,49 @@ export class NotificationCardDoc extends BaseDocsBlock {
                 ],
             });
             doc.setDefaultPropExample('color', ({ value }) => value === 'info');
+            doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
+            doc.merge('actions', {
+                examples: [
+                    { name: '1 action', value: [{ name: 'ACTION 1', action: () => alert('Action 1') }] },
+                    { name: '2 actions', value: [{ name: 'ACTION 1', action: () => alert('Action 1') }, { name: 'ACTION 2', action: () => alert('Action 2') }], isDefault: true },
+                ],
+            });
+            doc.setDefaultPropExample('onClose', () => true);
+        },
+
+        preview: (docPreview: DocPreviewBuilder<uui.NotificationCardProps | loveship.NotificationCardProps| promo.NotificationCardProps>) => {
+            const w430_h110: TPreviewCellSize = '430-110';
+            const w430_h75: TPreviewCellSize = '430-75';
+            const getChild = (text: string) => (<uui.Text size="36">{text}</uui.Text>);
+            const TEST_DATA = {
+                valueLong: getChild('Test Test Test Test Test Test Test Test'),
+                valueShort: getChild('Test'),
+                callbackExample: 'callback',
+                icon: 'action-account-fill.svg',
+                actions1: [{ name: 'Action 1', action: () => {} }],
+                actions2: [{ name: 'Action 1', action: () => {} }, { name: 'Action 2', action: () => {} }],
+            };
+            docPreview.add({
+                id: TNotificationCardPreview['Size Variants'],
+                matrix: {
+                    actions: { values: [undefined, TEST_DATA.actions2] },
+                    children: { values: [TEST_DATA.valueShort, TEST_DATA.valueLong] },
+                    icon: { examples: [undefined, TEST_DATA.icon] },
+                    onClose: { examples: [undefined, TEST_DATA.callbackExample] },
+                },
+                cellSize: w430_h110,
+            });
+            docPreview.add({
+                id: TNotificationCardPreview['Color Variants'],
+                matrix: {
+                    children: { values: [TEST_DATA.valueShort] },
+                    actions: { values: [TEST_DATA.actions1] },
+                    icon: { examples: [TEST_DATA.icon] },
+                    onClose: { examples: [TEST_DATA.callbackExample] },
+                    color: { examples: '*' },
+                },
+                cellSize: w430_h75,
+            });
         },
     };
 

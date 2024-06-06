@@ -1,0 +1,46 @@
+.spinner {
+    height: 95vh;
+    align-self: center;
+}
+
+.root {
+    background-color: var(--uui-surface-main);
+    height: 100%;
+    width: 100%;
+}
+
+.layoutRoot {
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: transparent;
+    padding: 24px;
+
+    .preview-wrapper {
+        flex-basis: auto;
+
+        .preview {
+            display: flex;
+            flex-wrap: wrap;
+
+            .cell {
+                box-sizing: border-box;
+                overflow: hidden;
+                background-color: transparent;
+                width: 100%;
+                display: flex;
+                border: 1px dotted transparent;
+
+                &:global(.uui-preview-layout-cell-outline) {
+                    &:hover {
+                        border-color: var(--uui-text);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+

@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
     IHasCX, IDisableable, IEditable, IHasPlaceholder, uuiMod, uuiElement, uuiMarkers, ICanBeReadonly, IHasRawProps,
-    CX, cx, ICanFocus, IHasForwardedRef,
+    CX, cx, ICanFocus,
 } from '@epam/uui-core';
 import css from './TextArea.module.scss';
 
@@ -11,8 +12,7 @@ export interface TextAreaProps
     IHasPlaceholder,
     IDisableable,
     ICanBeReadonly,
-    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>, 
-    IHasForwardedRef<HTMLDivElement>,
+    IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
     ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
@@ -37,13 +37,14 @@ interface TextAreaState {
     inFocus?: boolean;
 }
 
-export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
-    textAreaRef = React.createRef<HTMLTextAreaElement>();
-    state = {
+export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
+    const [state, setState] = useState<TextAreaState>({
         inFocus: false,
-    };
+    });
+    const textAreaRef = useRef<HTMLTextAreaElement>(null);
+    const prevValue = useRef(null);
 
-    getParentOverflows(el: Element) {
+    const getParentOverflows = (el: Element) => {
         const arr = [];
         while (el && el.parentNode && el.parentNode instanceof Element) {
             if (el.parentNode.scrollTop) {
@@ -55,14 +56,14 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             el = el.parentNode;
         }
         return arr;
-    }
+    };
 
-    updateHeight() {
+    const updateHeight = () => {
         /* https://stackoverflow.com/questions/454202/creating-a-textarea-with-auto-resize */
-        if (this.props.autoSize) {
-            const node = this.textAreaRef.current;
+        if (props.autoSize) {
+            const node = textAreaRef.current;
             if (node) {
-                const overflows = this.getParentOverflows(node);
+                const overflows = getParentOverflows(node);
                 node.style.height = 'auto';
                 const borderWidth = node.offsetHeight - node.clientHeight;
                 node.style.height = node.scrollHeight + borderWidth + 'px';
@@ -71,87 +72,86 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
                 });
             }
         }
-    }
+    };
 
-    componentDidMount() {
+    useEffect(() => {
         // Delay auto-size hack to the next tick.
         // Helps with performance if there are many TextAreas on the page
-        setTimeout(() => this.updateHeight(), 0);
-    }
+        setTimeout(() => updateHeight(), 0);
+    }, []);
 
-    componentDidUpdate(prevProps: TextAreaProps) {
-        if (prevProps.value !== this.props.value) {
-            this.updateHeight();
+    useEffect(() => {
+        if (prevValue?.current !== props.value) {
+            updateHeight();
         }
-    }
+        prevValue.current = props.value;
+    }, [props.value]);
 
-    handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         // Android does not support maxLength
         // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
         const targetValue = e.target.value;
         let newValue;
-        if (this.props.maxLength && targetValue.length > this.props.maxLength) {
-            newValue = targetValue.slice(0, this.props.maxLength);
+        if (props.maxLength && targetValue.length > props.maxLength) {
+            newValue = targetValue.slice(0, props.maxLength);
         } else {
             newValue = targetValue;
         }
 
-        this.props.onValueChange(newValue);
+        props.onValueChange(newValue);
     };
 
-    handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        this.props.onFocus && this.props.onFocus(e);
-        this.setState({ inFocus: true });
+    const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+        props.onFocus && props.onFocus(e);
+        setState(() => ({ inFocus: true }));
     };
 
-    handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-        this.props.onBlur && this.props.onBlur(e);
-        this.setState({ inFocus: false });
+    const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+        props.onBlur && props.onBlur(e);
+        setState(() => ({ inFocus: false }));
     };
 
-    handleWrapperFocus = () => {
-        this.textAreaRef.current?.focus();
+    const handleWrapperFocus = () => {
+        textAreaRef.current?.focus();
     };
 
-    render() {
-        return (
-            <div
-                className={ cx(css.container, uuiElement.inputBox, this.props.cx) }
-                { ...this.props.rawProps }
-                tabIndex={ -1 }
-                onFocus={ this.handleWrapperFocus }
-                ref={ this.props.forwardedRef }
-            >
-                <textarea
-                    autoFocus={ this.props.autoFocus }
-                    placeholder={ this.props.placeholder }
-                    className={ cx(
-                        !this.props.isDisabled && uuiMarkers.clickable,
-                        this.props.autoSize || this.props.isDisabled || this.props.isReadonly ? css.autoSize : css.noAutoSize,
-                        uuiElement.input,
-                        !this.props.isReadonly && this.state.inFocus && uuiMod.focus,
-                        this.props.isDisabled && uuiMod.disabled,
-                        this.props.isReadonly && uuiMod.readonly,
-                        this.props.isInvalid && uuiMod.invalid,
-                        this.props.inputCx,
-                    ) }
-                    rows={ this.props.rows != null ? this.props.rows : this.props.autoSize ? 1 : undefined }
-                    id={ this.props.id }
-                    readOnly={ this.props.isReadonly }
-                    aria-readonly={ this.props.isReadonly }
-                    required={ this.props.isRequired }
-                    disabled={ this.props.isDisabled }
-                    aria-disabled={ this.props.isDisabled }
-                    onChange={ this.handleChange }
-                    value={ this.props.value || '' }
-                    maxLength={ this.props.maxLength }
-                    onFocus={ this.handleFocus }
-                    onBlur={ this.handleBlur }
-                    ref={ this.textAreaRef }
-                    onKeyDown={ this.props.onKeyDown }
-                    tabIndex={ (this.state.inFocus || this.props.isReadonly || this.props.isDisabled) ? -1 : 0 }
-                />
-            </div>
-        );
-    }
-}
+    return (
+        <div
+            className={ cx(css.container, uuiElement.inputBox, props.cx) }
+            { ...props.rawProps }
+            tabIndex={ -1 }
+            onFocus={ handleWrapperFocus }
+            ref={ ref }
+        >
+            <textarea
+                autoFocus={ props.autoFocus }
+                placeholder={ props.placeholder }
+                className={ cx(
+                    !props.isDisabled && uuiMarkers.clickable,
+                    props.autoSize || props.isDisabled || props.isReadonly ? css.autoSize : css.noAutoSize,
+                    uuiElement.input,
+                    !props.isReadonly && state.inFocus && uuiMod.focus,
+                    props.isDisabled && uuiMod.disabled,
+                    props.isReadonly && uuiMod.readonly,
+                    props.isInvalid && uuiMod.invalid,
+                    props.inputCx,
+                ) }
+                rows={ props.rows != null ? props.rows : props.autoSize ? 1 : undefined }
+                id={ props.id }
+                readOnly={ props.isReadonly }
+                aria-readonly={ props.isReadonly }
+                required={ props.isRequired }
+                disabled={ props.isDisabled }
+                aria-disabled={ props.isDisabled }
+                onChange={ handleChange }
+                value={ props.value || '' }
+                maxLength={ props.maxLength }
+                onFocus={ handleFocus }
+                onBlur={ handleBlur }
+                ref={ textAreaRef }
+                onKeyDown={ props.onKeyDown }
+                tabIndex={ (state.inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
+            />
+        </div>
+    );
+});

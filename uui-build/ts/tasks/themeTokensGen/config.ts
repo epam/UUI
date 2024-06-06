@@ -1,10 +1,9 @@
-import { TCssVarSupport, TFigmaThemeName, TUuiCssVarName } from './types/sharedTypes';
+import { TCssVarSupport, TUuiCssVarName } from './types/sharedTypes';
 import { corePathToCssVar, palettePathToCssVar } from './utils/cssVarUtils';
 
 interface IFigmaVarsConfig {
     [pathPrefix: string]: IFigmaVarConfigValue
 }
-export type TList = Record<string, TFigmaThemeName[] | '*'>;
 export interface IFigmaVarConfigValue {
     enabled: boolean;
     pathToCssVar: (path: string) => TUuiCssVarName;

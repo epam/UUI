@@ -1,5 +1,5 @@
 import * as React from 'react';
-import dayjs from 'dayjs';
+import { uuiDayjs } from '../helpers';
 import { UuiReactMarkdown } from '../documents/uuiReactMarkdown';
 import { cx } from '@epam/uui-core';
 import { FlexRow, LinkButton, RichTextView } from '@epam/uui';
@@ -48,7 +48,7 @@ export class ReleasesCell extends React.Component<ReleasesCellProps, ReleasesCel
                     <RichTextView size="16">
                         <FlexRow columnGap="12">
                             <h3>{header}</h3>
-                            <div className={ css.releaseDate }>{dayjs(date, 'DD.MM.YYYY').isValid() && dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}</div>
+                            <div className={ css.releaseDate }>{uuiDayjs.dayjs(date, 'DD.MM.YYYY').isValid() && uuiDayjs.dayjs(date, 'DD.MM.YYYY').format('MMM DD, YYYY')}</div>
                         </FlexRow>
                         <UuiReactMarkdown content={ releaseNotes } />
                     </RichTextView>

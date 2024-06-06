@@ -113,7 +113,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI is free, under MIT license, including Figma libraries, and community support via our GitHub. EPAM and UUI team can provide services on top of UUI ("
+        "text": "UUI is free, open-source under MIT license, including Figma libraries, and community support via our GitHub. EPAM and UUI team can provide services on top of UUI ("
       },
       {
         "type": "link",
@@ -161,7 +161,7 @@
         ]
       },
       {
-        "text": ". It is also used in projects for EPAM customers. The library is run by a dedicated team of 10."
+        "text": ". UUI is also used in projects for EPAM customers. The library is run by a dedicated team of 10."
       }
     ]
   },
@@ -179,7 +179,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Our focus is modern interactive web-applications, ranging from standard data-entry and data-discovery tools, to a complex WYSIWYG experiences."
+        "text": "Our focus is modern web-applications, ranging from standard data-entry and data-discovery tools, to a complex WYSIWYG experiences."
       }
     ]
   },
@@ -197,7 +197,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI also helps to build complex non-standard experiences, with features like built-in Rich text editor, drag-n-drop, inline-mode for components, and high customizability."
+        "text": "UUI also helps to build complex editing experiences, with features like built-in Rich text editor, drag-n-drop, inline-mode for components, and high customizability."
       }
     ]
   },
@@ -215,7 +215,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI's strong points are:"
+        "text": "Areas where UUI is strong are:"
       }
     ]
   },
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "text": " to get an overview of the use-cases we support."
+        "text": " to get an overview of use-cases we support."
       }
     ]
   },

@@ -217,7 +217,7 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root size-36 body modal undefined container align-items-center"
+          class="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -240,7 +240,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -284,7 +284,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -328,7 +328,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -372,7 +372,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -416,7 +416,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -460,7 +460,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -504,7 +504,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -548,7 +548,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -592,7 +592,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -636,7 +636,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -680,7 +680,7 @@ exports[`PickerList should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell cell data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -721,9 +721,33 @@ exports[`PickerList should open body 1`] = `
               </div>
             </div>
             <div
+              aria-busy="false"
+              aria-label=""
+              aria-live="polite"
               class="container uui-blocker-container root"
+              role="status"
             >
-              <div />
+              <div
+                class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+              >
+                <div
+                  class="container uui-spinner-container root uui-spinner"
+                >
+                  <div
+                    class="uui-spinner-animation"
+                  >
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-1"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-2"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-3"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div
               class="uui-track-horizontal"

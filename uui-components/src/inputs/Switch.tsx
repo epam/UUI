@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers,
-    IAnalyticableOnChange, UuiContexts, UuiContext, IHasForwardedRef, IHasTabIndex, ICanFocus,
+import {
+    cx, IHasRawProps, uuiMod, uuiElement, IHasCX, IDisableable, IEditable, IHasLabel, uuiMarkers,
+    IAnalyticableOnChange, IHasTabIndex, ICanFocus, useUuiContext,
 } from '@epam/uui-core';
 import css from './Switch.module.scss';
 
@@ -11,62 +12,59 @@ export interface SwitchProps
     IHasLabel,
     IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
-    IHasForwardedRef<HTMLLabelElement>,
     IHasTabIndex,
     ICanFocus<HTMLInputElement> {
     /** ID to put on 'input' node */
     id?: string;
 }
 
-export class Switch extends React.Component<SwitchProps> {
-    static contextType = UuiContext;
-    context: UuiContexts;
-    toggle = () => {
-        this.props.onValueChange(!this.props.value);
+export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>((props, ref) => {
+    const context = useUuiContext();
 
-        if (this.props.getValueChangeAnalyticsEvent) {
-            const event = this.props.getValueChangeAnalyticsEvent(!this.props.value, this.props.value);
-            this.context.uuiAnalytics.sendEvent(event);
+    const toggle = () => {
+        props.onValueChange(!props.value);
+
+        if (props.getValueChangeAnalyticsEvent) {
+            const event = props.getValueChangeAnalyticsEvent(!props.value, props.value);
+            context.uuiAnalytics.sendEvent(event);
         }
     };
 
-    render() {
-        return (
-            <label
-                className={ cx(
-                    'uui-switch',
-                    css.container,
-                    this.props.cx,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.isReadonly && uuiMod.readonly,
-                    !this.props.isReadonly && !this.props.isDisabled && uuiMarkers.clickable,
-                ) }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
+    return (
+        <label
+            className={ cx(
+                'uui-switch',
+                css.container,
+                props.cx,
+                props.isDisabled && uuiMod.disabled,
+                props.isReadonly && uuiMod.readonly,
+                !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
+            ) }
+            ref={ ref }
+            { ...props.rawProps }
+        >
+            <div
+                className={ cx(uuiElement.switchBody, props.value && uuiMod.checked) }
+                onFocus={ props.onFocus }
+                onBlur={ props.onBlur }
             >
-                <div
-                    className={ cx(uuiElement.switchBody, this.props.value && uuiMod.checked) }
-                    onFocus={ this.props.onFocus }
-                    onBlur={ this.props.onBlur }
-                >
-                    <input
-                        type="checkbox"
-                        role="switch"
-                        onChange={ !this.props.isReadonly ? this.toggle : undefined }
-                        readOnly={ this.props.isReadonly }
-                        aria-readonly={ this.props.isReadonly || undefined }
-                        disabled={ this.props.isDisabled }
-                        aria-disabled={ this.props.isDisabled }
-                        checked={ this.props.value || false }
-                        aria-checked={ this.props.value || false }
-                        required={ this.props.isRequired }
-                        tabIndex={ this.props.tabIndex }
-                        id={ this.props.id }
-                    />
-                    <div className={ uuiElement.switchToggler } />
-                </div>
-                {this.props.label && <div className={ uuiElement.inputLabel }>{this.props.label}</div>}
-            </label>
-        );
-    }
-}
+                <input
+                    type="checkbox"
+                    role="switch"
+                    onChange={ !props.isReadonly ? toggle : undefined }
+                    readOnly={ props.isReadonly }
+                    aria-readonly={ props.isReadonly || undefined }
+                    disabled={ props.isDisabled }
+                    aria-disabled={ props.isDisabled }
+                    checked={ props.value || false }
+                    aria-checked={ props.value || false }
+                    required={ props.isRequired }
+                    tabIndex={ props.tabIndex }
+                    id={ props.id }
+                />
+                <div className={ uuiElement.switchToggler } />
+            </div>
+            {props.label && <div className={ uuiElement.inputLabel }>{props.label}</div>}
+        </label>
+    );
+});

@@ -3,7 +3,15 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize,
+    TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import {
     filterExamples,
@@ -12,11 +20,12 @@ import {
     renderDayExamples,
     renderFooterExamples,
 } from './rangeDatePickerExamples';
+import { TRangeDatePickerPreview } from '../_types/previewIds';
 
 export class RangeDatePickerDoc extends BaseDocsBlock {
     title = 'RangeDatePicker';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'RangeDatePicker',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
@@ -36,7 +45,7 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
             });
             doc.merge('renderDay', { examples: renderDayExamples });
             doc.merge('renderFooter', { examples: renderFooterExamples });
-            doc.merge('presets', { examples: presetsExamples });
+            doc.merge('presets', { examples: presetsExamples() });
             doc.merge('getPlaceholder', { examples: getPlaceholderExamples });
             doc.merge('filter', { examples: filterExamples });
             doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });
@@ -53,6 +62,30 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
                     },
                 ],
             });
+        },
+
+        preview: (docPreview: DocPreviewBuilder<uui.RangeDatePickerProps>) => {
+            const TEST_DATA = {
+                value: { from: '2345-10-15', to: '2345-11-25' },
+            };
+            const w320_h60: TPreviewCellSize = '320-60';
+            const w768_h500: TPreviewCellSize = '768-500';
+            type TMatrixLocal = TPreviewMatrix<uui.RangeDatePickerProps>;
+            const statesBaseMatrix: TMatrixLocal = {
+                size: { values: ['30'] },
+                isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
+            const baseMatrix: TMatrixLocal = {
+                size: { examples: '*' },
+                value: { values: [undefined, TEST_DATA.value] },
+                disableClear: { values: [true, false], condition: (props) => !!props.value },
+            };
+            docPreview.add(TRangeDatePickerPreview['Size Variants'], { ...baseMatrix }, w320_h60);
+            docPreview.add(TRangeDatePickerPreview['Color Variants'], { ...baseMatrix, ...statesBaseMatrix }, w320_h60);
+            docPreview.add(TRangeDatePickerPreview.Opened, { value: { values: [TEST_DATA.value] } }, w768_h500);
+            docPreview.add(TRangeDatePickerPreview['Opened With Presets'], { value: { values: [TEST_DATA.value] }, presets: { examples: ['default'] } }, w768_h500);
         },
     };
 

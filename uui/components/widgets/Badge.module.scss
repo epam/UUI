@@ -1,21 +1,44 @@
 @use '../../assets/styles/index' as *;
 @use 'sass:math';
 
+@mixin scalable-icon-size($size, $additionalClass: '') {
+    $striped-size: strip-unit($size);
+
+    #{$additionalClass}:global(.uui-icon) {
+        svg {
+            @if ($striped-size == 18) {
+                height: 12px;
+            } @else if ($striped-size == 24) {
+                height: 18px;
+            } @else if ($striped-size == 30) {
+                height: 18px;
+            } @else if ($striped-size == 36) {
+                height: 18px;
+            } @else if ($striped-size == 42) {
+                height: 24px;
+            } @else if ($striped-size == 48) {
+                height: 24px;
+            }
+            width: inherit;
+        }
+    }
+}
+
 @mixin badge-layout($size, $borderWidth) {
     min-height: $size;
     min-width: $size;
     border-radius: math.div($size, 2);
 
     @if ($size == 18px) {
-        @include partial-calc(6px, 3px, 4px, $borderWidth);
+        @include partial-calc(3px, 3px, 6px, $borderWidth);
     } @else if ($size == 24px) {
-        @include partial-calc(6px, 6px, 8px, $borderWidth);
+        @include partial-calc(3px, 6px, 8px, $borderWidth);
     } @else if ($size == 30px) {
         @include partial-calc(6px, 6px, 8px, $borderWidth);
     } @else if ($size == 36px) {
         @include partial-calc(9px, 6px, 8px, $borderWidth);
     } @else if ($size == 42px) {
-        @include partial-calc(12px, 6px, 12px, $borderWidth);
+        @include partial-calc(12px, 6px, 10px, $borderWidth);
     } @else if ($size == 48px) {
         @include partial-calc(12px, 6px, 12px, $borderWidth);
     }
@@ -28,7 +51,7 @@
     padding-right: $controlPadding - $borderWidth;
 
     :global(.uui-icon):first-child {
-        padding-left: $captionPadding;
+        padding-left: 3px;
     }
 
     :global(.uui-caption) {
@@ -109,8 +132,8 @@
 
         &:global(.uui-indicator) {
             &::before {
-                top: 6px;
-                left: 8px;
+                top: 5px;
+                left: 5px;
             }
         }
 
@@ -128,7 +151,7 @@
         &:global(.uui-indicator) {
             &::before {
                 top: 7px;
-                left: 11px;
+                left: 9px;
             }
         }
 
@@ -188,7 +211,7 @@
 
         &:global(.uui-indicator) {
             &::before {
-                top: 14px;
+                top: 15px;
                 left: 17px;
             }
         }
@@ -233,8 +256,6 @@
         --uui-badge-border-hover: var(--uui-color-20);
         --uui-badge-caption: var(--uui-color-70);
         --uui-badge-caption-hover: var(--uui-color-70);
-
-        --uui-badge-font-weight: 600;
 
         :global(.uui-count_indicator) {
             --uui-count_indicator-bg: var(--uui-neutral-0);

@@ -1,118 +1,137 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
-import { uuiMod, BaseRangeDatePickerProps, DropdownBodyProps, devLogger, withMods, IDropdownTogglerProps } from '@epam/uui-core';
-import { RangeDatePickerValue } from '@epam/uui-core';
-import { BaseRangeDatePicker } from '@epam/uui-components';
+import {
+    DropdownBodyProps, isFocusReceiverInsideFocusLock, useUuiContext,
+} from '@epam/uui-core';
+import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
-import { SizeMod } from '../types';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
-import { TextInput } from '../inputs';
-import { systemIcons } from '../../icons/icons';
-import { i18n } from '../../i18n';
 import css from './RangeDatePicker.module.scss';
+import {
+    RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
+} from './types';
+import { defaultFormat, defaultRangeValue } from './helpers';
+import { RangeDatePickerInput } from './RangeDatePickerInput';
 
-export interface RangeDatePickerProps extends BaseRangeDatePickerProps, SizeMod {
-    /**
-     * A pure function that gets placeholder for 'from' or 'to' input.
-     */
-    getPlaceholder?(type: InputType): string;
-    /**
-    * HTML ID attribute for the first input into toggler
-    */
-    id?: string;
-}
+const modifiers = [{
+    name: 'offset',
+    options: { offset: [0, 6] },
+}];
 
-/*
-* Defines input type.
-*/
-export type InputType = 'from' | 'to';
-const defaultValue: RangeDatePickerValue = { from: null, to: null };
+function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
+    const { value: _value, format = defaultFormat } = props;
+    const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
-class RangeDatePickerComponent extends BaseRangeDatePicker<RangeDatePickerProps> {
-    renderBody(props: DropdownBodyProps) {
+    const context = useUuiContext();
+    const [isOpen, setIsOpen] = useState(false);
+    const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(null);
+
+    const onValueChange = (newValue: RangeDatePickerValue) => {
+        const fromChanged = value?.from !== newValue?.from;
+        const toChanged = value?.to !== newValue?.to;
+        if (fromChanged || toChanged) {
+            props.onValueChange(newValue);
+            if (props.getValueChangeAnalyticsEvent) {
+                const event = props.getValueChangeAnalyticsEvent(newValue, value);
+                context.uuiAnalytics.sendEvent(event);
+            }
+        }
+    };
+
+    const onOpenChange = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
+        setInFocus(newIsOpen && focus ? focus : null);
+        setIsOpen(newIsOpen);
+        props.onOpenChange?.(newIsOpen);
+    };
+
+    const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
+        setInFocus(newValue.inFocus ?? inFocus);
+        onValueChange(newValue.selectedDate);
+
+        const toChanged = value.to !== newValue.selectedDate.to;
+        const closeBody = newValue.selectedDate.from && newValue.selectedDate.to
+         && inFocus === 'to'
+           && toChanged;
+
+        if (closeBody) {
+            onOpenChange(false);
+        }
+    };
+
+    // mainly for closing body on tab
+    const onInputWrapperBlur: React.FocusEventHandler<HTMLDivElement> = (event) => {
+        if (isFocusReceiverInsideFocusLock(event)) {
+            return;
+        }
+        onOpenChange(false);
+    };
+
+    const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         return (
-            <DropdownContainer { ...props } cx={ cx(css.dropdownContainer) } focusLock={ false }>
+            <DropdownContainer
+                { ...renderProps }
+                cx={ cx(css.dropdownContainer) }
+                focusLock={ false }
+            >
                 <FlexRow>
                     <RangeDatePickerBody
-                        cx={ cx(this.props.bodyCx) }
-                        value={ this.getValue() }
-                        onValueChange={ this.onRangeChange }
-                        filter={ this.props.filter }
-                        changeIsOpen={ this.toggleOpening }
-                        presets={ this.props.presets }
-                        focusPart={ this.state.inFocus }
-                        renderDay={ this.props.renderDay }
-                        renderFooter={ this.props.renderFooter && (() => this.props.renderFooter(this.props.value || defaultValue)) }
-                        isHoliday={ this.props.isHoliday }
-                        rawProps={ this.props.rawProps?.body }
+                        cx={ cx(props.bodyCx) }
+                        value={ {
+                            selectedDate: _value,
+                            inFocus,
+                        } }
+                        onValueChange={ onBodyValueChange }
+                        filter={ props.filter }
+                        presets={ props.presets }
+                        renderDay={ props.renderDay }
+                        renderFooter={ () => {
+                            return props.renderFooter?.(value);
+                        } }
+                        isHoliday={ props.isHoliday }
+                        rawProps={ props.rawProps?.body }
                     />
                 </FlexRow>
             </DropdownContainer>
         );
-    }
-
-    renderInput = (props: IDropdownTogglerProps) => {
-        if (__DEV__) {
-            if (this.props.size === '48') {
-                devLogger.warnAboutDeprecatedPropValue<RangeDatePickerProps, 'size'>({
-                    component: 'RangeDatePicker',
-                    propName: 'size',
-                    propValue: this.props.size,
-                    propValueUseInstead: '42',
-                    condition: () => ['48'].indexOf(this.props.size) !== -1,
-                });
-            }
-        }
-        return (
-            <div
-                className={ cx(
-                    this.props.inputCx,
-                    css.dateInputGroup,
-                    this.props.isDisabled && uuiMod.disabled,
-                    this.props.isReadonly && uuiMod.readonly,
-                    this.props.isInvalid && uuiMod.invalid,
-                    this.state.inFocus && uuiMod.focus,
-                ) }
-                onClick={ !this.props.isDisabled && props.onClick }
-                onBlur={ this.handleWrapperBlur }
-                ref={ props.ref }
-            >
-                <TextInput
-                    icon={ systemIcons.calendar }
-                    cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'from' && uuiMod.focus) }
-                    size={ this.props.size || '36' }
-                    placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
-                    value={ this.state.inputValue.from }
-                    onValueChange={ this.getChangeHandler('from') }
-                    isInvalid={ this.props.isInvalid }
-                    isDisabled={ this.props.isDisabled }
-                    isReadonly={ this.props.isReadonly }
-                    onFocus={ (event) => this.handleFocus(event, 'from') }
-                    onBlur={ (event) => this.handleBlur(event, 'from') }
-                    isDropdown={ false }
-                    rawProps={ this.props.rawProps?.from }
-                    id={ this.props?.id }
-                />
-                <div className={ css.separator } />
-                <TextInput
-                    cx={ cx(css.dateInput, css['size-' + (this.props.size || 36)], this.state.inFocus === 'to' && uuiMod.focus) }
-                    placeholder={ this.props.getPlaceholder ? this.props.getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
-                    size={ this.props.size || '36' }
-                    value={ this.state.inputValue.to }
-                    onCancel={ this.props.disableClear ? null : this.state.inputValue.from && this.state.inputValue.to && this.handleCancel }
-                    onValueChange={ this.getChangeHandler('to') }
-                    isInvalid={ this.props.isInvalid }
-                    isDisabled={ this.props.isDisabled }
-                    isReadonly={ this.props.isReadonly }
-                    onFocus={ (e) => this.handleFocus(e, 'to') }
-                    onBlur={ (e) => this.handleBlur(e, 'to') }
-                    isDropdown={ false }
-                    rawProps={ this.props.rawProps?.to }
-                />
-            </div>
-        );
     };
+
+    return (
+        <Dropdown
+            renderTarget={ (renderProps) => {
+                return props.renderTarget?.(renderProps) || (
+                    <RangeDatePickerInput
+                        ref={ renderProps.ref }
+                        cx={ props.inputCx }
+                        onClick={ renderProps.onClick }
+                        isDisabled={ props.isDisabled }
+                        isInvalid={ props.isInvalid }
+                        isReadonly={ props.isReadonly }
+                        size={ props.size }
+                        getPlaceholder={ props.getPlaceholder }
+                        disableClear={ props.disableClear }
+                        rawProps={ props.rawProps }
+                        inFocus={ inFocus }
+                        value={ value }
+                        format={ format }
+                        onValueChange={ onValueChange }
+                        onBlur={ onInputWrapperBlur }
+                        onFocusInput={ (e, i) => {
+                            props.onFocus?.(e, i);
+                            onOpenChange(true, i);
+                        } }
+                        onBlurInput={ props.onBlur }
+                    />
+                );
+            } }
+            renderBody={ (renderProps) => renderBody(renderProps) }
+            onValueChange={ (v) => onOpenChange(v) }
+            value={ isOpen }
+            modifiers={ modifiers }
+            placement={ props.placement }
+            forwardedRef={ ref }
+        />
+    );
 }
 
-export const RangeDatePicker = withMods(RangeDatePickerComponent);
+export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);

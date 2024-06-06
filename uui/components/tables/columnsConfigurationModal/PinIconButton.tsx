@@ -16,9 +16,8 @@ interface IPinIconButton {
     onTogglePin: (pinPosition: TPinPosition) => void;
 }
 
-const i18nLocal = i18n.tables.columnsConfigurationModal;
-
 export function PinIconButton(props: IPinIconButton) {
+    const i18nLocal = i18n.tables.columnsConfigurationModal;
     const {
         onTogglePin, pinPosition, canUnpin,
     } = props;
@@ -33,7 +32,7 @@ export function PinIconButton(props: IPinIconButton) {
         const unpinClickHandler = isPinnedAlways ? undefined : () => onTogglePin(undefined);
         pinUnpinNode = (
             <Tooltip content={ iconTooltip } placement="bottom" color="inverted">
-                <IconButton cx={ cx(!isPinnedAlways && css.unpinIcon, css.pinTogglerIcon) } icon={ unpinIcon } onClick={ unpinClickHandler } isDisabled={ isPinnedAlways } color="info" />
+                <IconButton cx={ cx(!isPinnedAlways && css.unpinIcon, css.pinTogglerIcon) } icon={ unpinIcon } onClick={ unpinClickHandler } isDisabled={ isPinnedAlways } color="primary" />
             </Tooltip>
         );
     } else {

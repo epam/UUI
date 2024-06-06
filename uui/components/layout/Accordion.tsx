@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import css from './Accordion.module.scss';
@@ -15,8 +15,10 @@ interface AccordionMods {
     padding?: '0' | '6' | '12' | '18';
 }
 
+export interface AccordionModsOverride {}
+
 /** Represents the properties of the Accordion component. */
-export type AccordionProps = AccordionMods & uuiComponents.AccordionProps;
+export type AccordionProps = Overwrite<AccordionMods, AccordionModsOverride> & uuiComponents.AccordionProps;
 
 const getMode = (mode: AccordionMods['mode']) => {
     return mode || 'block';
@@ -30,6 +32,6 @@ function applyAccordionMods(mods: AccordionProps) {
     ];
 }
 
-export const Accordion = withMods<uuiComponents.AccordionProps, AccordionMods>(uuiComponents.Accordion, applyAccordionMods, (mods) => ({
+export const Accordion = withMods<uuiComponents.AccordionProps, AccordionProps>(uuiComponents.Accordion, applyAccordionMods, (mods) => ({
     dropdownIcon: mods.dropdownIcon !== null && systemIcons.foldingArrow,
 }));

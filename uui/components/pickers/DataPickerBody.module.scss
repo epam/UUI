@@ -1,7 +1,9 @@
 @use  '../../assets/styles/index' as *;
 
-.body {
+:global(.uui-pickerInput-body) {
     --uui-dt-cell-border-width: 0;
+    --uui-pickerInput-selected_mark: var(--uui-info-50);
+    //
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;

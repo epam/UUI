@@ -1,19 +1,26 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
-import { BaseArrayListViewProps } from './views/ArrayListView';
-import { DataSourceState, IDataSourceView } from '../../types';
-import { AsyncListView, AsyncListViewProps } from './views/AsyncListView';
+import { useForceUpdate } from '../../hooks';
+import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
+import { useCascadeSelectionService, useDataRows, useTree, newMap } from './views';
+import { ItemsStorage } from './views/tree/ItemsStorage';
+import { AsyncListViewProps } from './views/types';
+import { ItemsStatusCollector } from './views/tree/ItemsStatusCollector';
 
 export interface AsyncDataSourceProps<TItem, TId, TFilter> extends AsyncListViewProps<TItem, TId, TFilter> {}
 
 export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends ArrayDataSource<TItem, TId> {
     api: () => Promise<TItem[]> = null;
+    itemsStatusCollector: ItemsStatusCollector<TItem, TId, TFilter>;
+
     constructor(props: AsyncDataSourceProps<TItem, TId, TFilter>) {
         super({
             ...props,
             items: [],
         });
+        const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.api = props.api;
+        this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
     }
 
     public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
@@ -21,85 +28,113 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
         // so this tweak is required to not reset items on any update
         props.items = newProps.items || this.props.items;
+
         super.setProps(props);
+        if (newProps.items && newProps.items !== this.props.items) {
+            this.itemsStorage.setItems(newProps.items, { reset: true });
+        }
     }
 
     reload() {
-        super.reload();
         this.setProps({ ...this.props, items: [] });
+        const params = { getId: this.getId, complexIds: this.props.complexIds };
+        this.itemsStorage = new ItemsStorage({ items: [], params });
+        this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
+        super.reload();
     }
 
-    private loadViewData(view: AsyncListView<TItem, TId, TFilter>) {
-        if (!view.isLoaded) {
-            view.loadData().then((loadedItems) => {
-                if (loadedItems !== undefined) {
-                    this.setProps({ ...this.props, items: loadedItems }); 
-                    this.updateViews();
-                }
-            });
-        }
-    }
-
-    getView(
-        value: DataSourceState<any, TId>,
-        onValueChange: (val: DataSourceState<any, TId>) => any,
-        options?: Partial<BaseArrayListViewProps<TItem, TId, TFilter>>,
-    ): IDataSourceView<TItem, TId, TFilter> {
-        const view = this.views.get(onValueChange) as AsyncListView<TItem, TId, TFilter>;
-        const { items, ...props } = this.props;
-        const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
-            ...props,
-            ...options,
-            api: this.api,
-            // These defaults are added for compatibility reasons.
-            // We'll require getId and getParentId callbacks in other APIs, including the views.
-            getId: this.getId,
-            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
-        };
-
-        if (view) {
-            view.update({ value, onValueChange }, viewProps);
-            this.loadViewData(view);
-
-            return view;
-        } else {
-            const newView = new AsyncListView({ value, onValueChange }, viewProps);
-            this.views.set(onValueChange, newView);
-            return newView;
-        }
-    }
-    
     useView(
         value: DataSourceState<TFilter, TId>,
-        onValueChange: (val: DataSourceState<TFilter, TId>) => void,
+        onValueChange: SetDataSourceState<any, TId>,
         options?: Partial<AsyncListViewProps<TItem, TId, TFilter>>,
         deps: any[] = [],
     ): IDataSourceView<TItem, TId, TFilter> {
-        const viewProps: AsyncListViewProps<TItem, TId, TFilter> = {
-            ...this.props,
-            api: this.api,
-            ...options,
-            // These defaults are added for compatibility reasons.
-            // We'll require getId and getParentId callbacks in other APIs, including the views.
-            getId: this.getId,
-            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
-        };
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const forceUpdate = useForceUpdate();
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
+        
+        const { items, ...props } = { ...this.props, ...options };
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const view = useMemo(
-            () => new AsyncListView({ value, onValueChange }, viewProps),
-            [...deps, this], // every time, datasource is updated, view should be recreated
-        );
+        const { tree, reload, selectionTree, totalCount, ...restProps } = useTree({
+            type: 'async',
+            api: this.api,
+            ...props,
+            itemsMap,
+            setItems: this.itemsStorage.setItems,
+            itemsStatusCollector: this.itemsStatusCollector,
+            isLoaded: this.props.items.length > 0,
+            getId: this.getId,
+            getParentId: options?.getParentId ?? this.props.getParentId ?? this.defaultGetParentId,
+            dataSourceState: value,
+            setDataSourceState: onValueChange,
+        }, [...deps, this]);
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            const unsubscribe = this.subscribe(view);
-            return () => { unsubscribe(); };
-        }, [...deps, this]); // every time, datasource is updated, view should be resubscribed
+            const unsubscribe = this.itemsStorage.subscribe((newItemsMap) => {
+                if (itemsMap !== newItemsMap) {
+                    setItemsMap(newItemsMap);
+                }
+            });
+            
+            return () => {
+                unsubscribe();
+            };
+        }, [this.itemsStorage]);
+                
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            const unsubscribe = this.itemsStatusCollector.subscribe(() => {
+                forceUpdate();
+            });
+            
+            return () => {
+                unsubscribe();
+            };
+        }, [this.itemsStatusCollector]);
 
-        view.update({ value, onValueChange }, viewProps);
-        this.loadViewData(view);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        useEffect(() => {
+            this.trees.set(tree, reload);
+            return () => { 
+                this.trees.delete(tree);
+            };
+        }, [tree, reload]);
 
-        return view;
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const cascadeSelectionService = useCascadeSelectionService({
+            tree: selectionTree,
+        });
+
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const { rows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
+            tree,
+            ...restProps,
+            ...cascadeSelectionService,
+        });
+    
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        return useMemo(() => ({
+            getVisibleRows: () => rows,
+            getListProps: () => ({ ...listProps, totalCount }),
+            selectAll,
+            getConfig: () => restProps,
+            reload,
+            getById,
+            getSelectedRowsCount,
+            clearAllChecked,
+        }), [
+            rows,
+            listProps,
+            selectAll,
+            restProps,
+            totalCount,
+            reload,
+            getById,
+            getSelectedRowsCount,
+            clearAllChecked,
+        ]);
     }
 }

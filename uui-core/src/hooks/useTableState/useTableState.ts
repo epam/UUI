@@ -1,11 +1,10 @@
 import { useCallback, useRef, useState } from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
 import {
     ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
 } from '../../types';
-import { getOrderBetween } from '../../helpers';
+import { getOrderBetween, orderBy } from '../../helpers';
 import { useUuiContext } from '../../services';
-import sortBy from 'lodash.sortby';
 import { stateToQueryObject, getValueFromUrl, normalizeTableStateValue, normalizeFilterConfig } from './utils';
 
 interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState = any> {
@@ -72,7 +71,7 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
     }, []);
 
     const getNewPresetOrder = useCallback(() => {
-        const maxOrder = sortBy(presets, (i) => i.order).reverse()[0]?.order;
+        const maxOrder = orderBy(presets, (i) => i.order, 'desc')[0]?.order;
         return getOrderBetween(maxOrder, null);
     }, [presets]);
 
@@ -171,8 +170,8 @@ export const useTableStateImpl = <TFilter = Record<string, any>, TViewState = an
         );
     }, []);
 
-    const setTableState = useCallback((newValue: DataTableState<TFilter, TViewState>) => {
-        params.onValueChange(() => newValue);
+    const setTableState = useCallback((newValue: React.SetStateAction<DataTableState<TFilter, TViewState>>) => {
+        params.onValueChange(typeof newValue === 'function' ? newValue : () => newValue);
     }, []);
 
     return {

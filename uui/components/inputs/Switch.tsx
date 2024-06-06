@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import css from './Switch.module.scss';
 
@@ -10,8 +10,10 @@ interface SwitchMods {
     size?: '12' | '18' | '24';
 }
 
+export interface SwitchModsOverride {}
+
 /** Represents the properties of the Switch component. */
-export type SwitchProps = uuiComponents.SwitchProps & SwitchMods;
+export type SwitchProps = uuiComponents.SwitchProps & Overwrite<SwitchMods, SwitchModsOverride>;
 
 function applySwitchMods(mods: SwitchProps) {
     return [
@@ -19,4 +21,4 @@ function applySwitchMods(mods: SwitchProps) {
     ];
 }
 
-export const Switch = withMods<uuiComponents.SwitchProps, SwitchMods>(uuiComponents.Switch, applySwitchMods);
+export const Switch = withMods<uuiComponents.SwitchProps, SwitchProps>(uuiComponents.Switch, applySwitchMods);

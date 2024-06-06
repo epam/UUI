@@ -1,9 +1,9 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import { getTextClasses, TextSettings } from '../../helpers';
 import * as uuiComponents from '@epam/uui-components';
 import css from './Text.module.scss';
 
-type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'brand' | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'white';
+type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'white';
 type TextSize = 'none' | '18' | '24' | '30' | '36' | '42' | '48';
 type TextFontStyle = 'normal' | 'italic';
 type TextFontWeight = '200' | '300' | '400' | '600' | '700' | '900';
@@ -15,6 +15,8 @@ interface TextMods {
      */
     color?: TextColor;
 }
+
+export interface TextModsOverride {}
 
 export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
     /**
@@ -34,7 +36,7 @@ export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
     size?: TextSize;
 }
 
-export interface TextProps extends TextCoreProps, TextMods {}
+export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}
 
 function applyTextMods(mods: TextProps) {
     const textClasses = getTextClasses(

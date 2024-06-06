@@ -1,4 +1,4 @@
-import range from 'lodash.range';
+import { range } from '@epam/uui-core';
 import { IxSet } from '../IxSet';
 
 export interface Person {

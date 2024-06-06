@@ -2,12 +2,13 @@ import React, { ReactNode } from 'react';
 import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
+    delayAct,
 } from '@epam/uui-test-utils';
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
 import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
-import { TestItemType, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
+import { Item, TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
 type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
@@ -16,19 +17,31 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
         (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 return Object.assign({
-                    onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
+                    onValueChange: jest.fn().mockImplementation((newValue) => {
+                        if (typeof newValue === 'function') {
+                            const v = newValue(params.value);
+                            context.current?.setProperty('value', v);
+                        }
+                        context.current?.setProperty('value', newValue);
+                    }),
                     dataSource: mockDataSourceAsync,
                     disableClear: false,
                     searchPosition: 'input',
                     getName: (item: TestItemType) => item.level,
                     value: params.value as TId,
-                    selectionMode: 'single',
                     searchDebounceDelay: 0,
                 }, params) as PickerInputComponentProps<TItem, TId>;
             }
 
             return Object.assign({
-                onValueChange: jest.fn().mockImplementation((newValue) => context.current?.setProperty('value', newValue)),
+                onValueChange: jest.fn().mockImplementation((newValue) => {
+                    if (typeof newValue === 'function') {
+                        const v = newValue(params.value);
+                        context.current?.setProperty('value', v);
+                        return;
+                    }
+                    context.current?.setProperty('value', newValue);
+                }),
                 dataSource: mockDataSourceAsync,
                 disableClear: false,
                 searchPosition: 'input',
@@ -56,6 +69,21 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
 }
 
 describe('PickerInput', () => {
+    beforeEach(() => {
+        jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(() => {
+            return {
+                width: 0,
+                height: 1,
+                top: 0,
+                left: 0,
+            } as DOMRect;
+        });
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     it('should render with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <PickerInput value={ null } onValueChange={ jest.fn } selectionMode="single" dataSource={ mockDataSource } disableClear searchPosition="input" />,
@@ -92,7 +120,7 @@ describe('PickerInput', () => {
     });
 
     it('should open body', async () => {
-        const { dom, result } = await setupPickerInputForTest({
+        const { dom, result } = await setupPickerInputForTest<Item, number>({
             value: undefined,
             selectionMode: 'single',
             dataSource: mockSmallDataSourceAsync,
@@ -117,13 +145,80 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            });
+
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
             expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
             const clear = screen.getByRole('button');
             fireEvent.click(clear);
+            await waitFor(() => {
+                expect(screen.queryByText('C2')).not.toBeInTheDocument();
+            });
+
+            // double click should be performed to check, if on blur selection is still present
+            fireEvent.click(document.body);
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
             expect(screen.queryByText('C2')).not.toBeInTheDocument();
+
+            fireEvent.click(document.body);
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
+            expect(screen.queryByText('C2')).not.toBeInTheDocument();
+        });
+
+        it('should close body on click outside', async () => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+            });
+            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            fireEvent.click(dom.input);
+            await waitFor(() => {
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+            });
+            
+            fireEvent.click(document.body);
+
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
+        });
+
+        it('should keep selection on close body', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+            });
+            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            fireEvent.click(dom.input);
+            await waitFor(() => {
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+            });
+        
+            const optionC2 = await screen.findByText('C2');
+            fireEvent.click(optionC2);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            });
+
+            // double click should be performed to check, if on blur selection is still present
+            fireEvent.click(document.body);
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
+            expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
+
+            fireEvent.click(document.body);
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
+            expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
         });
 
         it('[valueType entity] should select & clear option', async () => {
@@ -134,16 +229,26 @@ describe('PickerInput', () => {
             });
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
             fireEvent.click(dom.input);
-            expect(screen.getByRole('dialog')).toBeInTheDocument();
+            await waitFor(() => {
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+            });
+
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 12, level: 'C2', name: 'Proficiency' });
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith({ id: 12, level: 'C2', name: 'Proficiency' });
+            });
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
+            await waitFor(() => {
+                expect(screen.getByPlaceholderText('C2')).toBeInTheDocument();
+            });
+
             const clear = screen.getByRole('button');
             fireEvent.click(clear);
-            expect(screen.queryByText('C2')).not.toBeInTheDocument();
+            await waitFor(() => {
+                expect(screen.queryByText('C2')).not.toBeInTheDocument();
+            });
         });
 
         it('should render names of items by getName', async () => {
@@ -153,14 +258,16 @@ describe('PickerInput', () => {
                 getName: ({ name }) => name,
             });
 
-            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toBeUndefined();
             await waitFor(async () => expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Elementary+'));
 
             fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
+
             const optionC2 = await screen.findByText('Proficiency');
             fireEvent.click(optionC2);
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(12);
+            });
         });
 
         it('should render entity name in placeholder', async () => {
@@ -188,7 +295,7 @@ describe('PickerInput', () => {
             [[false], [true], ['implicit'], ['explicit']],
         )
         ('should pick single element with cascadeSelection = %s', async (cascadeSelection) => {
-            const { mocks, dom } = await setupPickerInputForTest({
+            const { mocks, dom } = await setupPickerInputForTest<TestTreeItem, number>({
                 value: undefined,
                 getName: ({ name }) => name,
                 selectionMode: 'single',
@@ -201,7 +308,11 @@ describe('PickerInput', () => {
 
             // Check parent
             await PickerInputTestObject.clickOptionByText('Parent 2');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
+            });
+
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Parent 2');
         });
 
@@ -220,7 +331,10 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickOptionByText('A1');
             fireEvent.click(dom.input);
             await PickerInputTestObject.clickOptionByText('A1+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith(3);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(3);
+            });
+
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('A1+');
         });
 
@@ -236,9 +350,20 @@ describe('PickerInput', () => {
             const clearButton = within(dom.container).getByRole('button', { name: 'Clear' });
             expect(clearButton).toBeInTheDocument();
             fireEvent.click(clearButton);
-            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            await waitFor(() => {
+                expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            });
+
+            // After clearing of all the items, debounced version of clear search is called.
+            // If update items just after clearing, handleDataSourceValueChange with old value will be called.
+            // So, to wait for all debounced events execution, delayAct should be called.
+            await delayAct();
+
             setProps({ disableClear: true, value: 2 });
-            expect(within(dom.container).queryByRole('button', { name: 'Clear' })).not.toBeInTheDocument();
+            await waitFor(() => {
+                expect(within(dom.container).queryByRole('button', { name: 'Clear' })).not.toBeInTheDocument();
+            });
+
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('A1');
         });
 
@@ -257,7 +382,9 @@ describe('PickerInput', () => {
             expect(clearButton).toHaveAttribute('aria-disabled', 'true');
 
             await PickerInputTestObject.clickOptionByText('A1');
-            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('A1');
+            await waitFor(() => {
+                expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('A1');
+            });
 
             fireEvent.click(dom.input);
 
@@ -265,8 +392,10 @@ describe('PickerInput', () => {
             expect(clearButton2).toHaveAttribute('aria-disabled', 'false');
 
             fireEvent.click(clearButton2);
+            await waitFor(() => {
+                expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            });
 
-            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
             const clearButton3 = within(screen.getByRole('dialog')).getByRole('button', { name: 'CLEAR' });
             expect(clearButton3).toHaveAttribute('aria-disabled', 'true');
         });
@@ -283,10 +412,15 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
 
             await PickerInputTestObject.clickOptionCheckbox('A1+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
             fireEvent.click(window.document.body);
@@ -294,10 +428,110 @@ describe('PickerInput', () => {
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
 
             PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1+');
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
-
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
+            });
+            
             PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1');
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            });
+        });
+
+        it('[valueType id] should select & clear all', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+            });
+            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            fireEvent.click(dom.input);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+            await PickerInputTestObject.clickOptionCheckbox('A1');
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
+
+            await PickerInputTestObject.clickOptionCheckbox('A1+');
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
+            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+
+            await PickerInputTestObject.clickClearAllOptions();
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            });
+
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+        });
+        it('should close body on click outside', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+            });
+            fireEvent.click(dom.input);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+            await PickerInputTestObject.clickOptionCheckbox('A1');
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
+
+            await PickerInputTestObject.clickOptionCheckbox('A1+');
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
+            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+        });
+
+        it('should keep selection on close body', async () => {
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'multi',
+            });
+            fireEvent.click(dom.input);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+            await PickerInputTestObject.clickOptionCheckbox('A1');
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
+
+            await PickerInputTestObject.clickOptionCheckbox('A1+');
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
+            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+            expect(await PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+
+            fireEvent.click(window.document.body);
+            expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    
+            // double click should be performed to check, if on blur selection is still present
+            fireEvent.click(document.body);
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
+            expect(await PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+
+            fireEvent.click(document.body);
+            await waitFor(() => {
+                expect(screen.queryByRole('dialog')).toBeNull();
+            });
+            expect(await PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
         });
 
         it('[valueType entity] should select & clear several options', async () => {
@@ -311,13 +545,17 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([{ id: 2, level: 'A1', name: 'Elementary' }]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([{ id: 2, level: 'A1', name: 'Elementary' }]);
+            });
 
             await PickerInputTestObject.clickOptionCheckbox('A1+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([
-                { id: 2, level: 'A1', name: 'Elementary' },
-                { id: 3, level: 'A1+', name: 'Elementary+' },
-            ]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([
+                    { id: 2, level: 'A1', name: 'Elementary' },
+                    { id: 3, level: 'A1+', name: 'Elementary+' },
+                ]);
+            });
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
             fireEvent.click(window.document.body);
@@ -325,18 +563,21 @@ describe('PickerInput', () => {
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
 
             PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1+');
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
-
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
+            });
             PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1');
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            });
         });
+
         it('should render names of items by getName', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: [3, 4],
                 selectionMode: 'multi',
                 getName: ({ name }) => name,
             });
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['', '']);
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
             await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Elementary+', 'Pre-Intermediate']));
         });
@@ -363,7 +604,7 @@ describe('PickerInput', () => {
         });
 
         it('should pick single element with cascadeSelection = false', async () => {
-            const { mocks, dom } = await setupPickerInputForTest({
+            const { mocks, dom } = await setupPickerInputForTest<TestTreeItem, number>({
                 value: undefined,
                 getName: ({ name }) => name,
                 selectionMode: 'multi',
@@ -373,7 +614,9 @@ describe('PickerInput', () => {
             fireEvent.click(dom.input);
             expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
             await PickerInputTestObject.clickOptionCheckbox('Parent 2');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
 
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Parent 2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
@@ -384,7 +627,7 @@ describe('PickerInput', () => {
             [[true], ['explicit']],
         )
         ('should pick multiple elements with cascadeSelection = %s', async (cascadeSelection) => {
-            const { mocks, dom } = await setupPickerInputForTest({
+            const { mocks, dom } = await setupPickerInputForTest<TestTreeItem, number>({
                 value: undefined,
                 getName: ({ name }) => name,
                 selectionMode: 'multi',
@@ -398,23 +641,28 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickOptionCheckbox('Parent 2');
             // Unfold parent
             await PickerInputTestObject.clickOptionUnfold('Parent 2');
-            // Test if checkboxes are checked/unchecked
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
+            await waitFor(() => {
+                // Test if checkboxes are checked/unchecked
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
+            });
+
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
 
             // Check child
             await PickerInputTestObject.clickOptionCheckbox('Child 2.2');
-            // Test if checkboxes are checked/unchecked
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
+            await waitFor(() => {
+                // Test if checkboxes are checked/unchecked
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
+            });
+            
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });
 
         it('should pick single element with cascadeSelection = implicit', async () => {
-            const { mocks, dom } = await setupPickerInputForTest({
+            const { mocks, dom } = await setupPickerInputForTest<TestTreeItem, number>({
                 value: undefined,
                 getName: ({ name }) => name,
                 selectionMode: 'multi',
@@ -423,47 +671,64 @@ describe('PickerInput', () => {
             });
 
             fireEvent.click(dom.input);
-            expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+            await waitFor(async () => {
+                expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+            });
 
             // Check parent
             await PickerInputTestObject.clickOptionCheckbox('Parent 2');
             // Unfold parent
             await PickerInputTestObject.clickOptionUnfold('Parent 2');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+            });
+
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2']);
+
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
 
             // Check child
             await PickerInputTestObject.clickOptionCheckbox('Child 2.2');
-            // Test if checkboxes are checked/unchecked
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
+            await waitFor(() => {
+                // Test if checkboxes are checked/unchecked
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
+            });
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });
 
-        it('should wrap up if number of elements is greater than maxItems', async () => {
+        it('should wrap up extra items if number of elements is greater than maxItems', async () => {
             const { mocks, dom } = await setupPickerInputForTest({
                 value: undefined,
-                maxItems: 3,
+                maxItems: 2,
                 entityPluralName: 'languages',
                 selectionMode: 'multi',
             });
 
             fireEvent.click(dom.input);
-            expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+            await waitFor(async () => {
+                expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+            });
 
             // Check parent
             await PickerInputTestObject.clickOptionByText('A1');
             await PickerInputTestObject.clickOptionByText('A1+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
             expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
 
             await PickerInputTestObject.clickOptionByText('A2');
             await PickerInputTestObject.clickOptionByText('A2+');
-            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['4 languages selected']);
+          
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
+            });
+
+            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2']);
         });
 
         it('should disable clear', async () => {
@@ -474,11 +739,15 @@ describe('PickerInput', () => {
             });
             await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']));
             PickerInputTestObject.clearInput(result.container);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            });
 
             setProps({ disableClear: true, value: [2, 3] });
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            });
             expect(PickerInputTestObject.hasClearInputButton(result.container)).toBeFalsy();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
         });
 
         it('should select all', async () => {
@@ -489,7 +758,9 @@ describe('PickerInput', () => {
             });
 
             fireEvent.click(dom.input);
-            expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+            await waitFor(async () => {
+                expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+            });
 
             await PickerInputTestObject.clickSelectAllOptions();
             await waitFor(() => {
@@ -497,7 +768,9 @@ describe('PickerInput', () => {
             });
 
             await PickerInputTestObject.clickClearAllOptions();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            });
         });
 
         describe('show only selected', () => {
@@ -512,9 +785,10 @@ describe('PickerInput', () => {
                 const dialog = await screen.findByRole('dialog');
                 expect(dialog).toBeInTheDocument();
 
-                await PickerInputTestObject.waitForOptionsToBeReady();
+                await waitFor(async () => {
+                    expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
+                });
 
-                expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
                 expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
 
                 await PickerInputTestObject.clickShowOnlySelected();
@@ -566,10 +840,10 @@ describe('PickerInput', () => {
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
 
-            const searchInput = within(dialog).getByRole('searchbox') as HTMLInputElement;
+            const searchInput = within(dialog!).getByRole('searchbox') as HTMLInputElement;
             fireEvent.change(searchInput, { target: { value: 'search' } });
 
-            const showOnlySelectedSwitch = within(dialog).queryByRole('switch', { name: 'Show only selected' }) as HTMLInputElement;
+            const showOnlySelectedSwitch = within(dialog!).queryByRole('switch', { name: 'Show only selected' }) as HTMLInputElement;
 
             await waitFor(() => expect(showOnlySelectedSwitch.checked).toEqual(false));
         });
@@ -779,11 +1053,15 @@ describe('PickerInput', () => {
         expect(dom.target.getAttribute('type')).toBe('button');
 
         fireEvent.click(dom.target);
-        expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+        await waitFor(async () => {
+            expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
+        });
 
         await PickerInputTestObject.clickOptionCheckbox('A1');
         await PickerInputTestObject.clickOptionCheckbox('A1+');
-        expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+        await waitFor(async () => {
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+        });
 
         expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
         expect(screen.getByTestId('test-toggler').textContent?.trim()).toEqual('Elementary, Elementary+');
@@ -1014,19 +1292,29 @@ describe('PickerInput', () => {
 
             fireEvent.click(dom.input);
 
-            const dialog = await screen.findByRole('dialog');
             await PickerInputTestObject.waitForOptionsToBeReady();
 
-            let focusedItem = dialog.querySelector('.uui-focus');
-            expect(focusedItem.getAttribute('aria-posinset')).toBe('1');
+            await waitFor(async () => {
+                const dialog = await screen.findByRole('dialog');
+                const focusedItem = dialog.querySelector('.uui-focus');
+                expect(focusedItem!.getAttribute('aria-posinset')).toBe('1');
+            });
 
             fireEvent.keyDown(dom.input, { key: 'ArrowDown', code: 'ArrowDown', charCode: 40 });
-            focusedItem = dialog.querySelector('.uui-focus');
-            expect(focusedItem.getAttribute('aria-posinset')).toBe('2');
+    
+            await waitFor(async () => {
+                const dialog = await screen.findByRole('dialog');
+                const focusedItem = dialog.querySelector('.uui-focus');
+                expect(focusedItem!.getAttribute('aria-posinset')).toBe('2');
+            });
 
             fireEvent.keyDown(dom.input, { key: 'ArrowUp', code: 'ArrowUp', charCode: 38 });
-            focusedItem = dialog.querySelector('.uui-focus');
-            expect(focusedItem.getAttribute('aria-posinset')).toBe('1');
+            
+            await waitFor(async () => {
+                const dialog = await screen.findByRole('dialog');
+                const focusedItem = dialog.querySelector('.uui-focus');
+                expect(focusedItem!.getAttribute('aria-posinset')).toBe('1');
+            });
         });
 
         it('should focus first founded item after search', async () => {
@@ -1043,8 +1331,10 @@ describe('PickerInput', () => {
 
             await PickerInputTestObject.waitForOptionsToBeReady();
 
-            const focusedItem = dialog.querySelector('.uui-focus');
-            expect(focusedItem.getAttribute('aria-posinset')).toBe('1');
+            await waitFor(() => {
+                const focusedItem = dialog.querySelector('.uui-focus');
+                expect(focusedItem?.getAttribute('aria-posinset')).toBe('1');
+            });
         });
 
         it('should select focused item by enter', async () => {
@@ -1058,7 +1348,9 @@ describe('PickerInput', () => {
             await PickerInputTestObject.waitForOptionsToBeReady();
 
             fireEvent.keyDown(dom.input, { key: 'Enter', code: 'Enter', charCode: 13 });
-            expect(mocks.onValueChange).toHaveBeenCalledWith(2);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenCalledWith(2);
+            });
         });
 
         it('should remove last item from selection by backspace in case of searchPosition="input"', async () => {
@@ -1073,13 +1365,44 @@ describe('PickerInput', () => {
             await PickerInputTestObject.waitForOptionsToBeReady();
 
             fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
-            expect(mocks.onValueChange).toHaveBeenCalledWith([2, 3]);
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenCalledWith([2, 3]);
+            });
 
             fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
-            expect(mocks.onValueChange).toHaveBeenCalledWith([2]);
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenCalledWith([2]);
+            });
         });
 
-        it.each<[undefined | null | []]>([[[]]])
+        it.each<[undefined | null | []]>([[[]], [undefined], [null]])
+        ('should not call onValueChange on edit search with emptyValue = %s; and return emptyValue = %s on check -> uncheck', async (emptyValue) => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                emptyValue: emptyValue,
+                value: emptyValue,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            const bodyInput = await within(dialog).findByPlaceholderText('Search');
+            fireEvent.change(bodyInput, { target: { value: 'A' } });
+
+            expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
+
+            // Test value after check -> uncheck
+            await PickerInputTestObject.clickOptionCheckbox('A1'); // check
+            await PickerInputTestObject.clickOptionCheckbox('A1'); // uncheck
+
+            await waitFor(async () => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith(emptyValue);
+            });
+        });
+
+        it.each<[undefined | null | []]>([[[]], [undefined], [null]])
         ('should not call onValueChange on edit search if emptyValue = %s does not equal to the initial value', async (emptyValue) => {
             const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
                 emptyValue: emptyValue,
@@ -1095,6 +1418,25 @@ describe('PickerInput', () => {
             fireEvent.change(bodyInput, { target: { value: 'A' } });
 
             expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
+        });
+
+        it('should not call onValueChange on edit search if emptyValue on clear button', async () => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                emptyValue: [],
+                value: undefined,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+            });
+
+            fireEvent.click(dom.input);
+
+            await PickerInputTestObject.clickOptionCheckbox('A1'); // check
+
+            await PickerInputTestObject.clickClearAllOptions();
+
+            await waitFor(async () => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([]);
+            });
         });
     });
 });

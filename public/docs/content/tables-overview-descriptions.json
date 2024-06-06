@@ -4,14 +4,35 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI has a widely configurable solution for displaying data as a table. We have already built components like "
+        "text": "UUI has a widely configurable solution for displaying data as a table. The "
       },
       {
         "text": "DataTable",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " as well as a set of  separate table components from which you can create your custom table."
+        "text": " component provides a complete table, including ith header, rows, and built-in virtualized scrolling. We also provide a set it's parts, like "
+      },
+      {
+        "text": "DataTableHeader",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "DataTableRow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", and more, to allow deep customization and building custom Table-like experiences."
       }
     ]
   },
@@ -67,7 +88,7 @@
             "type": "list-item-child",
             "children": [
               {
-                "text": "Sorting, filtering."
+                "text": "Sorting, filtering, search"
               }
             ]
           }
@@ -187,7 +208,7 @@
                 ]
               },
               {
-                "text": " column value."
+                "text": " cell values."
               }
             ]
           }

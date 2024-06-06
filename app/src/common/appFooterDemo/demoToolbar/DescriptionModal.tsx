@@ -4,9 +4,11 @@ import {
 import { FlexSpacer } from '@epam/uui-components';
 import React, { useCallback, useEffect, useState } from 'react';
 import { IModal } from '@epam/uui-core';
-import { SlateEditor, basePlugins, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
+import { SlateEditor, toDoListPlugin, attachmentPlugin, imagePlugin, videoPlugin, linkPlugin, iframePlugin,
     notePlugin, separatorPlugin, headerPlugin, colorPlugin, superscriptPlugin, listPlugin, quotePlugin, tablePlugin,
     codeBlockPlugin,
+    defaultPlugins,
+    baseMarksPlugin,
 } from '@epam/uui-editor';
 
 interface IDemoItemDescriptionModal {
@@ -36,7 +38,8 @@ export function DescriptionModal(props: IDemoItemDescriptionModal) {
     }, [modalProps, valueLocal]);
 
     const plugins = [
-        ...basePlugins,
+        ...defaultPlugins,
+        ...baseMarksPlugin(),
         headerPlugin(),
         colorPlugin(),
         superscriptPlugin(),

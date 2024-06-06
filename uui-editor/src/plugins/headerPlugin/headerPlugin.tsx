@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Dropdown } from '@epam/uui-components';
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { HeaderBar } from '../../implementation/HeaderBar';
@@ -10,31 +10,18 @@ import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
 import {
     ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6, createHeadingPlugin,
 } from '@udecode/plate-heading';
-import { PlateEditor } from '@udecode/plate-common';
+import { PlateEditor, PlatePlugin } from '@udecode/plate-common';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { HEADER_PLUGIN_KEY, HEADER_TYPE_H1, HEADER_TYPE_H2, HEADER_TYPE_H3, HEADER_TYPE_H4, HEADER_TYPE_H5, HEADER_TYPE_H6 } from './constants';
 
-const KEY = 'heading';
-
-export const headerPlugin = () => createHeadingPlugin<WithToolbarButton>({
+export const headerPlugin = (): PlatePlugin => createHeadingPlugin<WithToolbarButton>({
     overrideByKey: {
-        [ELEMENT_H1]: {
-            type: 'uui-richTextEditor-header-1',
-        },
-        [ELEMENT_H2]: {
-            type: 'uui-richTextEditor-header-2',
-        },
-        [ELEMENT_H3]: {
-            type: 'uui-richTextEditor-header-3',
-        },
-        [ELEMENT_H4]: {
-            type: 'uui-richTextEditor-header-4',
-        },
-        [ELEMENT_H5]: {
-            type: 'uui-richTextEditor-header-5',
-        },
-        [ELEMENT_H6]: {
-            type: 'uui-richTextEditor-header-6',
-        },
+        [ELEMENT_H1]: { type: HEADER_TYPE_H1 },
+        [ELEMENT_H2]: { type: HEADER_TYPE_H2 },
+        [ELEMENT_H3]: { type: HEADER_TYPE_H3 },
+        [ELEMENT_H4]: { type: HEADER_TYPE_H4 },
+        [ELEMENT_H5]: { type: HEADER_TYPE_H5 },
+        [ELEMENT_H6]: { type: HEADER_TYPE_H6 },
     },
     options: {
         bottomBarButton: HeaderButton,
@@ -46,7 +33,7 @@ interface IToolbarButton {
 }
 
 export function HeaderButton({ editor }: IToolbarButton): any {
-    if (!isPluginActive(KEY)) return null;
+    if (!useIsPluginActive(HEADER_PLUGIN_KEY)) return null;
 
     return (
         <Dropdown

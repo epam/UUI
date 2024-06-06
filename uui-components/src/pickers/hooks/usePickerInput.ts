@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useCallback } from 'react';
 import { Modifier } from 'react-popper';
 import {
     DataRowProps, isMobile, mobilePopperModifier, Lens, PickerFooterProps, DataSourceState,
@@ -8,7 +8,6 @@ import { PickerBodyBaseProps } from '../PickerBodyBase';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { handleDataSourceKeyboard } from '../KeyboardUtils';
 import { i18n } from '../../i18n';
-import { getMaxItems } from '../helpers';
 import { usePicker } from './usePicker';
 import { usePickerInputState } from './usePickerInputState';
 import { UsePickerInputProps } from './types';
@@ -24,14 +23,31 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     ], []);
 
     const pickerInputState = usePickerInputState({
-        dataSourceState: { visibleCount: initialRowsVisible },
+        dataSourceState: { visibleCount: initialRowsVisible, checked: [] },
     });
+
     const {
-        opened, setOpened, isSearchChanged, setIsSearchChanged,
-        dataSourceState, setDataSourceState, showSelected, setShowSelected,
+        opened, setOpened, isSearchChanged, setIsSearchChanged, setShowSelected, dataSourceState, setDataSourceState,
     } = pickerInputState;
 
-    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>(props, pickerInputState);
+    const defaultShouldShowBody = () => {
+        const searchPosition = props.searchPosition || 'input';
+        const isOpened = opened && !props.isDisabled;
+
+        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
+            const isEnoughSearchLength = dataSourceState.search
+                ? dataSourceState.search.length >= props.minCharsToSearch
+                : false;
+            return isEnoughSearchLength && isOpened;
+        }
+        return isOpened;
+    };
+
+    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
+
+    const showSelectedOnly = !shouldShowBody() || pickerInputState.showSelected;
+
+    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showSelectedOnly }, pickerInputState);
     const {
         context,
         view,
@@ -42,26 +58,25 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         isSingleSelect,
         getListProps,
         getName,
-        getSelectedRows,
         handleSelectionValueChange,
+        getSelectedRows,
     } = picker;
 
     const lens = useMemo(
-        () => Lens.onEditable<DataSourceState>({ value: dataSourceState, onValueChange: setDataSourceState }),
+        () => Lens.onEditable<DataSourceState>({ value: dataSourceState, onValueChange: handleDataSourceValueChange }),
         [dataSourceState],
     );
 
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (prevValue !== props.value) {
-            setDataSourceState(
+            setDataSourceState((state) =>
                 applyValueToDataSourceState(
                     props,
-                    dataSourceState,
+                    state,
                     props.value,
                     props.dataSource,
-                ),
-            );
+                ));
         }
     }, [props.value]);
 
@@ -78,7 +93,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             document.body.style.overflow = !newOpened && modals.length === 0 ? '' : 'hidden';
         }
 
-        setDataSourceState({
+        handleDataSourceValueChange({
             ...dataSourceState,
             topIndex: 0,
             visibleCount: initialRowsVisible,
@@ -106,7 +121,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         toggleDropdownOpening(false);
-        handleDataSourceValueChange({ ...dataSourceState, search: '', selectedId: row.id });
+        handleDataSourceValueChange((currentState) => ({ ...currentState, search: '', selectedId: row.id }));
     };
 
     const getSearchPosition = () => {
@@ -125,21 +140,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         toggleDropdownOpening(false);
         clearSelection();
     };
-
-    const defaultShouldShowBody = () => {
-        const searchPosition = props.searchPosition || 'input';
-        const isOpened = opened && !props.isDisabled;
-
-        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
-            const isEnoughSearchLength = dataSourceState.search
-                ? dataSourceState.search.length >= props.minCharsToSearch
-                : false;
-            return isEnoughSearchLength && isOpened;
-        }
-        return isOpened;
-    };
-
-    const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
     const handlePickerInputKeyboard = (
         rows: DataRowProps<TItem, TId>[],
@@ -194,13 +194,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         };
     };
 
-    const handleTogglerSearchChange = (value: string) => {
+    const handleTogglerSearchChange = useCallback((value: string) => {
         let isOpen = !opened && value.length > 0 ? true : opened;
         if (props.minCharsToSearch) {
             isOpen = value.length >= props.minCharsToSearch;
         }
 
-        setDataSourceState((dsState) => ({
+        handleDataSourceValueChange((dsState) => ({
             ...dsState,
             focusedIndex: 0,
             search: value,
@@ -208,28 +208,21 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
         setOpened(isOpen);
         setIsSearchChanged(true);
-    };
+    }, [opened, props.minCharsToSearch, dataSourceState, handleDataSourceValueChange, setOpened, setIsSearchChanged]);
 
-    const closePickerBody = () => {
-        setDataSourceState((dsState) => ({
+    const closePickerBody = useCallback(() => {
+        handleDataSourceValueChange((dsState) => ({
             ...dsState,
             search: '',
         }));
         setOpened(false);
         setIsSearchChanged(false);
-    };
+    }, [handleDataSourceValueChange, setOpened, setIsSearchChanged]);
 
     const getRows = () => {
         if (!shouldShowBody()) return [];
 
-        let preparedRows: DataRowProps<TItem, TId>[];
-
-        if (!showSelected) {
-            preparedRows = view.getVisibleRows();
-        } else {
-            const { topIndex, visibleCount } = dataSourceState;
-            preparedRows = view.getSelectedRows({ topIndex, visibleCount });
-        }
+        const preparedRows = view.getVisibleRows();
 
         return preparedRows.map((rowProps) => {
             const newRowProps = { ...rowProps };
@@ -244,6 +237,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const handleCloseBody = () => {
         toggleBodyOpening(false);
     };
+
+    const openPickerBody = () => toggleBodyOpening(true);
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> & { onClose: () => void } => {
         const footerProps = picker.getFooterProps();
@@ -268,11 +263,10 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return dataSourceState.search;
     };
 
+    const selectedRows = useMemo(() => getSelectedRows(view.getSelectedRowsCount()), [view, dataSourceState.checked]);
+
     const getTogglerProps = (): PickerTogglerProps<TItem, TId> => {
         const selectedRowsCount = view.getSelectedRowsCount();
-        const allowedMaxItems = getMaxItems(props.maxItems);
-        const itemsToTake = selectedRowsCount > allowedMaxItems ? allowedMaxItems : selectedRowsCount;
-        const selectedRows = getSelectedRows(itemsToTake);
         const {
             isDisabled,
             autoFocus,
@@ -320,7 +314,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             disableSearch: searchPosition !== 'input',
             disableClear: disableClear,
             toggleDropdownOpening,
-            closePickerBody: closePickerBody,
+            closePickerBody,
             rawProps: props.rawProps?.input,
             value: searchValue,
             cx: inputCx,
@@ -347,6 +341,8 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         handleDataSourceValueChange,
         handleSelectionValueChange,
         getSearchPosition,
+        closePickerBody,
+        openPickerBody,
         handlePickerInputKeyboard,
     };
 }

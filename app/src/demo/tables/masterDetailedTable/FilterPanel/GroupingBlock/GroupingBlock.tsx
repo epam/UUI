@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Accordion, PickerList } from '@epam/uui';
 import { DataTableState } from '@epam/uui-core';
 import { groupingsDataSource } from '../../groupings';
 
 interface GroupingBlockProps<TFilter> {
     tableState: DataTableState<TFilter>;
-    setTableState(newState: DataTableState<TFilter>): void;
+    setTableState: Dispatch<SetStateAction<DataTableState<TFilter, any>>>;
 }
 
 function GroupingBlock<TFilter extends { groupBy?: string[] }>({ tableState, setTableState }: GroupingBlockProps<TFilter>) {
@@ -33,4 +33,4 @@ function GroupingBlock<TFilter extends { groupBy?: string[] }>({ tableState, set
     );
 }
 
-export default React.memo(GroupingBlock);
+export default React.memo(GroupingBlock) as typeof GroupingBlock;

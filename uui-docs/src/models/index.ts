@@ -280,3 +280,30 @@ export interface PersonDetails {
     rating?: number;
     attachments?: ({ progress?: number } & FileUploadResponse)[];
 }
+
+export interface TodoTask {
+    id: number;
+    isDone?: boolean;
+    name?: string;
+    priority?: number;
+    dueDate?: string;
+    comments?: string;
+    isDeleted?: boolean;
+}
+
+export interface ProjectTask {
+    id: number;
+    parentId?: number;
+    name: string;
+    estimate?: number;
+    resources?: number[];
+    startDate?: string;
+    dueDate?: string;
+    status?: string;
+    description?: string;
+    order?: string;
+    isNew?: boolean;
+    isDeleted?: boolean;
+    childCount?: number;
+    tempOrder?: string;
+}

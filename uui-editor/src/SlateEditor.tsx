@@ -1,33 +1,32 @@
 import React, {
-    FocusEventHandler, Fragment, KeyboardEventHandler, useMemo, useRef,
+    FocusEventHandler, forwardRef, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
-    IEditable, IHasCX, IHasRawProps, cx, useForceUpdate, uuiMod,
+    IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
+    IEditable,
 } from '@epam/uui-core';
 import { ScrollBars } from '@epam/uui';
 import {
-    Plate, PlateContent, PlateEditor, PlatePlugin, Value, createPlugins, useEditorState, useEventEditorSelectors,
+    Plate, PlateContent, PlateEditor, PlatePlugin, Value, createPlugins, useComposedRef,
 } from '@udecode/plate-common';
 
 import { createPlateUI } from './components';
-import { migrateSchema } from './migration';
-import { baseMarksPlugin, paragraphPlugin } from './plugins';
 import { Toolbars } from './implementation/Toolbars';
 import { EditorValue } from './types';
-import { defaultPlugins } from './defaultPlugins';
 
 import css from './SlateEditor.module.scss';
+import { useFocusEvents } from './plugins/eventEditorPlugin';
 import { isEditorValueEmpty } from './helpers';
-import { RenderPlaceholderProps } from 'slate-react';
+import { getMigratedPlateValue, isPlateValue } from './migrations';
 
-const basePlugins: PlatePlugin[] = [
-    ...baseMarksPlugin(),
-    ...defaultPlugins,
-];
+const disabledPlugins = { insertData: true };
 
-interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface PlateEditorProps
+    extends IEditable<EditorValue>,
+    IHasCX,
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    plugins: PlatePlugin[];
     isReadonly?: boolean;
-    plugins?: any[];
     autoFocus?: boolean;
     minHeight?: number | 'none';
     placeholder?: string;
@@ -40,100 +39,127 @@ interface SlateEditorProps extends IEditable<EditorValue>, IHasCX, IHasRawProps<
     toolbarPosition?: 'floating' | 'fixed';
 }
 
-interface PlateEditorProps extends SlateEditorProps {
-    id: string,
-}
+export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, ref) => {
+    const [currentId] = useState(String(Date.now()));
+    const editorRef = useRef<PlateEditor | null>(null);
+    const editableWrapperRef = useRef<HTMLDivElement>();
 
-function Editor(props: PlateEditorProps) {
-    const editor = useEditorState();
-    const focusedEditorId = useEventEditorSelectors.focus();
-    const isFocused = editor.id === focusedEditorId;
+    /** value */
+    /** consider legacy slate to plate content migraions once. should be deprecated in the near future */
+    const plateValue: Value | undefined = useMemo(
+        () => {
+            return getMigratedPlateValue(props.value);
+        },
+        [props.value],
+    );
 
-    const renderEditor = () => (
-        <Fragment>
+    const initialPlateValue: Value | undefined = useMemo(() => {
+        const content = editorRef.current?.children;
+        if (content) return content;
+
+        return plateValue;
+    }, [plateValue]);
+
+    const { isReadonly, onValueChange } = props;
+    const onChange = useCallback((v: Value) => {
+        if (isReadonly) {
+            return;
+        }
+
+        onValueChange(v);
+    }, [isReadonly, onValueChange]);
+
+    /** config */
+    const plugins = useMemo(
+        () => createPlugins(props.plugins, { components: createPlateUI() }),
+        [props.plugins],
+    );
+
+    /** styles */
+    const contentStyle = useMemo(() => ({ minHeight: props.minHeight }), [props.minHeight]);
+    const editorWrapperClassNames = useMemo(() => cx(
+        'uui-typography',
+        props.cx,
+        css.container,
+        css['mode-' + (props.mode || 'form')],
+        props.isReadonly && uuiMod.readonly,
+        props.scrollbars && css.withScrollbars,
+        props.fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',
+    ), [props.cx, props.fontSize, props.isReadonly, props.mode, props.scrollbars]);
+
+    /** focus management */
+    /** TODO: move to plate */
+    useFocusEvents({
+        editorId: currentId,
+        editorWrapperRef: editableWrapperRef,
+        isReadonly: props.isReadonly,
+    });
+
+    const autoFocusRef = useCallback((node: HTMLDivElement) => {
+        if (!editableWrapperRef.current && node) {
+            editableWrapperRef.current = node;
+
+            if (!props.isReadonly && props.autoFocus) {
+                editableWrapperRef.current.classList.add(uuiMod.focus);
+            }
+        }
+        return editableWrapperRef;
+    }, [props.autoFocus, props.isReadonly]);
+    const composedRef = useComposedRef(autoFocusRef, ref);
+
+    /** render related */
+    const renderContent = useCallback(() => {
+        const editor = editorRef.current;
+        const displayPlaceholder = !editor || (!!editor.children && isEditorValueEmpty(editor.children));
+        const placeholder = displayPlaceholder ? props.placeholder : undefined;
+        return (
             <PlateContent
-                id={ props.id }
+                id={ currentId }
                 autoFocus={ props.autoFocus }
                 readOnly={ props.isReadonly }
                 className={ css.editor }
                 onKeyDown={ props.onKeyDown }
                 onBlur={ props.onBlur }
                 onFocus={ props.onFocus }
-                placeholder={ isEditorValueEmpty(editor.children) ? props.placeholder : undefined }
-                style={ { minHeight: props.minHeight } }
+                placeholder={ placeholder }
+                style={ contentStyle }
             />
-            <Toolbars toolbarPosition={ props.toolbarPosition } />
-        </Fragment>
-    );
+        );
+    }, [props.placeholder, props.autoFocus, props.isReadonly, props.onKeyDown, props.onBlur, props.onFocus, currentId, contentStyle]);
 
-    return (
-        <div
-            className={ cx(
-                'uui-typography',
-                props.cx,
-                css.container,
-                css['mode-' + (props.mode || 'form')],
-                (!props.isReadonly && isFocused) && uuiMod.focus,
-                props.isReadonly && uuiMod.readonly,
-                props.scrollbars && css.withScrollbars,
-                props.fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',
-            ) }
-            { ...props.rawProps }
-        >
-            { props.scrollbars
-                ? (
-                    <ScrollBars cx={ css.scrollbars }>
-                        { renderEditor() }
-                    </ScrollBars>
-                )
-                : renderEditor()}
-        </div>
-    );
-}
+    /** could not be memoized, since slate is uncontrolled component */
+    const content = props.scrollbars
+        ? <ScrollBars cx={ css.scrollbars }>{ renderContent() }</ScrollBars>
+        : renderContent();
 
-function SlateEditor(props: SlateEditorProps) {
-    const currentId = useRef(String(Date.now()));
-    const editor = useRef<PlateEditor | null>(null);
-
-    const plugins = useMemo(
-        () => {
-            return createPlugins((props.plugins || [paragraphPlugin()]).flat(), { components: createPlateUI() });
-        },
-        [props.plugins],
-    );
-
-    const onChange = (value: Value) => {
-        if (props.isReadonly) return;
-        props?.onValueChange(value);
-    };
-
-    const value = useMemo(() => {
-        return migrateSchema(props.value);
-    }, [props.value]);
-
+    /** force update of uncontrolled component */
     const forceUpdate = useForceUpdate();
-    if (value && editor.current?.children && editor.current.children !== value) {
-        editor.current.children = value;
-        forceUpdate();
-    }
+    useEffect(() => {
+        if (isPlateValue(plateValue) && editorRef.current && editorRef.current.children !== plateValue) {
+            editorRef.current.children = plateValue;
+            forceUpdate();
+        }
+    }, [forceUpdate, plateValue]);
 
     return (
         <Plate
-            id={ currentId.current }
-            initialValue={ value }
+            key={ currentId }
+            id={ currentId }
+            initialValue={ initialPlateValue }
+            normalizeInitialValue // invokes plate migrations
             plugins={ plugins }
             onChange={ onChange }
-            editorRef={ editor }
-            // we override plate core insertData plugin
-            // so, we need to disable default implementation
-            disableCorePlugins={ { insertData: true } }
+            editorRef={ editorRef }
+            disableCorePlugins={ disabledPlugins }
         >
-            <Editor
-                id={ currentId.current }
-                { ...props }
-            />
+            <div
+                ref={ composedRef }
+                className={ editorWrapperClassNames }
+                { ...props.rawProps }
+            >
+                {content}
+                <Toolbars toolbarPosition={ props.toolbarPosition } />
+            </div>
         </Plate>
     );
-}
-
-export { SlateEditor, basePlugins };
+}));

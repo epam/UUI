@@ -1,7 +1,7 @@
 import { ArrayDataSource, LazyDataSource, AsyncDataSource, PickerBaseOptions } from '@epam/uui-core';
-import { IPropSamplesCreationContext } from '../types';
 import { DocBuilder } from '../DocBuilder';
 import { demoData } from '../demoData';
+import { IDocBuilderGenCtx } from '../docBuilderGen';
 
 const dataSourcesMap: any = {
     languages: null,
@@ -14,7 +14,7 @@ const dataSourcesMap: any = {
     persons: null,
 };
 
-const getDataSourceExamples = (ctx: IPropSamplesCreationContext) => {
+const getDataSourceExamples = (ctx: IDocBuilderGenCtx) => {
     dataSourcesMap.languages = dataSourcesMap.languages
         || new AsyncDataSource({
             api: () => ctx.demoApi.languages({}).then((r) => r.items),
@@ -41,6 +41,7 @@ const getDataSourceExamples = (ctx: IPropSamplesCreationContext) => {
                 const filter = { parentId: context?.parentId };
                 return ctx.demoApi.locations({ ...request, filter });
             },
+            flattenSearchResults: false,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
@@ -82,8 +83,8 @@ const getDataSourceExamples = (ctx: IPropSamplesCreationContext) => {
     ];
 };
 
-export const pickerBaseOptionsDoc = new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
-    .prop('dataSource', { examples: getDataSourceExamples, isRequired: true })
+export const getPickerBaseOptionsDoc = (ctx: IDocBuilderGenCtx) => new DocBuilder<PickerBaseOptions<any, any>>({ name: 'PickerBaseOptions' })
+    .prop('dataSource', { examples: getDataSourceExamples(ctx), isRequired: true, remountOnChange: true })
     .prop('sorting', {
         examples: [
             { value: { field: 'name', direction: 'asc' }, name: 'name' }, { value: { field: 'id', direction: 'asc' }, name: 'id' }, { value: { field: 'population', direction: 'asc' }, name: 'population' },

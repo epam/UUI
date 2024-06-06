@@ -1,4 +1,5 @@
-import { Metadata } from '../../types';
+import { IImmutableMap, IMap, Metadata } from '../../types';
+import { cloneMap } from '../processing';
 import { blankValidationState } from '../validation';
 import { ValidationState } from './types';
 
@@ -27,6 +28,20 @@ export function identity<A>(): ILensImpl<A, A> {
     return identityLens;
 }
 
+function getMetadata<T>(big: T) {
+    const metadata: Metadata<T> = big || { all: { props: {} } };
+    const metadataProps = metadata.all;
+    const { isDisabled, isRequired, isReadonly } = metadata;
+    return {
+        ...metadataProps, isDisabled, isReadonly, isRequired,
+    } as any;
+}
+
+function getValidationState(big: ValidationState, field: string | number, defaultValidationStateProps: ValidationState['validationProps'] = {}) {
+    const validationStateProps = (big || blankValidationState).validationProps || defaultValidationStateProps;
+    return validationStateProps[field];
+}
+
 export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl<TObject, TObject[TKey]> {
     return {
         get(big) {
@@ -44,8 +59,7 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return newObject;
         },
         getValidationState(big: ValidationState) {
-            const validationStateProps = (big || blankValidationState).validationProps || { [name]: { isInvalid: false } };
-            return validationStateProps[name as string];
+            return getValidationState(big, name as string, { [name]: { isInvalid: false } });
         },
         getMetadata(big: Metadata<TObject>) {
             const metadata: Metadata<TObject> = big || { props: {} };
@@ -54,6 +68,28 @@ export function prop<TObject, TKey extends keyof TObject>(name: TKey): ILensImpl
             return {
                 isDisabled, isReadonly, isRequired, ...metadataProps[name],
             };
+        },
+    };
+}
+
+export function key<TItem, TId>(id: TId): ILensImpl<IMap<TId, TItem> | IImmutableMap<TId, TItem>, TItem> {
+    return {
+        get(big: IMap<TId, TItem> | IImmutableMap<TId, TItem>) {
+            if (big == null) {
+                return undefined;
+            } else {
+                return big.get(id);
+            }
+        },
+        set(big: IMap<TId, TItem> | IImmutableMap<TId, TItem>, small: TItem) {
+            const newMap = cloneMap(big);
+            return newMap.set(id, small);
+        },
+        getValidationState(big: ValidationState) {
+            return getValidationState(big, id as string);
+        },
+        getMetadata(big: Metadata<IMap<TId, TItem> | IImmutableMap<TId, TItem>>) {
+            return getMetadata(big);
         },
     };
 }
@@ -73,16 +109,10 @@ export function index<TItem>(num: number): ILensImpl<TItem[], TItem> {
             return newArray;
         },
         getValidationState(big: ValidationState) {
-            const validationStateProps = (big || blankValidationState).validationProps || {};
-            return validationStateProps[num];
+            return getValidationState(big, num);
         },
         getMetadata(big: Metadata<TItem[]>) {
-            const metadata: Metadata<TItem[]> = big || { all: { props: {} } };
-            const metadataProps = metadata.all;
-            const { isDisabled, isRequired, isReadonly } = metadata;
-            return {
-                ...metadataProps, isDisabled, isReadonly, isRequired,
-            } as any;
+            return getMetadata(big);
         },
     };
 }
@@ -126,8 +156,7 @@ export function compose<TBig, TMiddle, TSmall>(left: ILensImpl<TBig, TMiddle>, r
         set(big: TBig, small: TSmall) {
             let middle = left.get(big);
             middle = right.set(middle, small);
-            big = left.set(big, middle);
-            return big;
+            return left.set(big, middle);
         },
         getValidationState(big?: TBig) {
             const middle = left.getValidationState && left.getValidationState(big);

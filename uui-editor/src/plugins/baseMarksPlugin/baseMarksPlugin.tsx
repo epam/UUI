@@ -1,9 +1,9 @@
 import {
-    PlateEditor, PlatePluginComponent, isMarkActive,
+    PlateEditor, PlatePluginComponent, isMarkActive, PlatePlugin,
 } from '@udecode/plate-common';
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { WithToolbarButton } from '../../implementation/Toolbars';
@@ -15,11 +15,9 @@ import { ReactComponent as BoldIcon } from '../../icons/bold.svg';
 import { ReactComponent as ItalicIcon } from '../../icons/italic.svg';
 import { ReactComponent as UnderlineIcon } from '../../icons/underline.svg';
 import { handleMarkButtonClick } from '../../utils/handleMarkButtonClick';
+import { BOLD_KEY, ITALIC_KEY, UNDERLINE_KEY } from './constants';
 
-export const BOLD_KEY = 'uui-richTextEditor-bold';
-export const ITALIC_KEY = 'uui-richTextEditor-italic';
-export const UNDERLINE_KEY = 'uui-richTextEditor-underlined';
-
+// eslint-disable-next-line react/function-component-definition
 const Bold: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -28,6 +26,7 @@ const Bold: PlatePluginComponent = (props) => {
     );
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Italic: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -36,6 +35,7 @@ const Italic: PlatePluginComponent = (props) => {
     );
 };
 
+// eslint-disable-next-line react/function-component-definition
 const Underline: PlatePluginComponent = (props) => {
     const { attributes, children } = props;
 
@@ -44,7 +44,7 @@ const Underline: PlatePluginComponent = (props) => {
     );
 };
 
-export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
+export const boldPlugin = (): PlatePlugin => createBoldPlugin<WithToolbarButton>({
     type: BOLD_KEY,
     component: Bold,
     options: {
@@ -52,7 +52,7 @@ export const boldPlugin = () => createBoldPlugin<WithToolbarButton>({
     },
 });
 
-export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
+export const italicPlugin = (): PlatePlugin => createItalicPlugin<WithToolbarButton>({
     type: ITALIC_KEY,
     component: Italic,
     options: {
@@ -60,7 +60,7 @@ export const italicPlugin = () => createItalicPlugin<WithToolbarButton>({
     },
 });
 
-const underlinePlugin = () => createUnderlinePlugin<WithToolbarButton>({
+const underlinePlugin = (): PlatePlugin => createUnderlinePlugin<WithToolbarButton>({
     type: UNDERLINE_KEY,
     component: Underline,
     options: {
@@ -73,7 +73,7 @@ interface IToolbarButton {
 }
 
 export function BoldButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_BOLD)) return null;
+    if (!useIsPluginActive(MARK_BOLD)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, BOLD_KEY) }
@@ -84,7 +84,7 @@ export function BoldButton({ editor }: IToolbarButton) {
 }
 
 export function ItalicButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_ITALIC)) return null;
+    if (!useIsPluginActive(MARK_ITALIC)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, ITALIC_KEY) }
@@ -95,7 +95,7 @@ export function ItalicButton({ editor }: IToolbarButton) {
 }
 
 export function UnderlineButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(MARK_UNDERLINE)) return null;
+    if (!useIsPluginActive(MARK_UNDERLINE)) return null;
     return (
         <ToolbarButton
             onClick={ handleMarkButtonClick(editor, UNDERLINE_KEY) }
@@ -105,7 +105,7 @@ export function UnderlineButton({ editor }: IToolbarButton) {
     );
 }
 
-export const baseMarksPlugin = () => ([
+export const baseMarksPlugin = (): PlatePlugin[] => ([
     boldPlugin(),
     underlinePlugin(),
     italicPlugin(),

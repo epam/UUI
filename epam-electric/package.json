@@ -8,11 +8,10 @@
   "epam:uui:main": "build/index.esm.js",
   "typings": "index.d.ts",
   "scripts": {
-    "build": "node ../uui-build/scripts/buildModule",
+    "build": "ts-node -T ../uui-build/ts/scripts/buildUuiModule.ts",
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "5.7.2",
     "@epam/uui": "5.7.2",
     "@epam/uui-components": "5.7.2",
     "@epam/uui-core": "5.7.2"

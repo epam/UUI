@@ -75,4 +75,8 @@ export type TPropEditor =
     { type: TPropEditorType.number } |
     { type: TPropEditorType.func } |
     { type: TPropEditorType.component } |
-    { type: TPropEditorType.oneOf, options: TOneOfItemType[] };
+    {
+        type: TPropEditorType.oneOf,
+        options: TOneOfItemType[],
+        scalarTypeOption?: TPropEditorType.string | TPropEditorType.number
+    };

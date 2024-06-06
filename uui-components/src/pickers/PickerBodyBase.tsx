@@ -1,5 +1,6 @@
 import * as React from 'react';
-import isEqual from 'lodash.isequal';
+import isEqual from 'react-fast-compare';
+
 import {
     DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile,
 } from '@epam/uui-core';
@@ -18,7 +19,10 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {
     needFocusSearch = this.showSearch();
     searchRef = React.createRef<HTMLInputElement>();
+
     componentDidUpdate(prevProps: PickerBodyBaseProps) {
+        // Focusing of searchInput is done via ref.focus(), but not via autoFocus on SearchInput,
+        // because otherwise, after body close, focus on PickerToggler is lost and on  press Tab, it is moved to document.body.
         if (this.needFocusSearch && !isMobile()) {
             this.searchRef.current?.focus({ preventScroll: true });
             this.needFocusSearch = false;

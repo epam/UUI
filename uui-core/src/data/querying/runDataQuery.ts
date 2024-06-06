@@ -2,7 +2,7 @@ import { DataQuery } from '../../types/dataQuery';
 import { getOrderComparer } from './getOrderComparer';
 import { getFilterPredicate } from './getFilterPredicate';
 import { getSearchFilter } from './getSearchFilter';
-import orderBy from 'lodash.orderby';
+import { orderBy } from '../../helpers';
 
 export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], request: DataQuery<TItem> & { ids?: any[] }, searchBy?: (item: TItem) => string[]) {
     let items = allItems || [];
@@ -29,11 +29,10 @@ export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], reque
         const comparer = getOrderComparer(request.sorting);
         items.sort(comparer);
     } else {
-        items = orderBy(items, 'name');
+        items = orderBy(items, ({ name }: any) => name);
     }
 
     const filteredAndSorted = items;
-
     if (request.range) {
         const from = request.range.from || 0;
         const count = request.range.count == null ? items.length : request.range.count;

@@ -1,13 +1,20 @@
-import { renderHook } from '@epam/uui-test-utils';
-import { ArrayListViewProps } from '../ArrayListView';
-import { ArrayDataSource } from '../../ArrayDataSource';
-import { CascadeSelection, DataSourceState, SortDirection } from '../../../../types';
-import isEqual from 'lodash.isequal';
+import { act, renderHook, waitFor } from '@epam/uui-test-utils';
+import { ArrayDataSource, ArrayDataSourceProps } from '../../ArrayDataSource';
+import { CascadeSelection, DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView, SortDirection } from '../../../../types';
+import isEqual from 'react-fast-compare';
+import { ArrayListViewProps } from '../types';
+import { LocationItem, getArrayLocationsDS } from '../../__tests__/mocks';
 
 interface TItem {
     id: number;
     level: string;
     parentId?: number;
+}
+
+interface TestItem {
+    id: number;
+    parentId?: number;
+    childrenCount?: number;
 }
 
 const testItems: TItem[] = [
@@ -43,17 +50,66 @@ const countries: Country[] = [
 const totalRowsCount = 12;
 const rootNodesCount = 9;
 
-let dataSource: ArrayDataSource<{ id: number; level: string }, number, any>;
+let dataSource: ArrayDataSource<TItem, number, any>;
 
-let onValueChangeFn: (newValue: DataSourceState<any, number>) => any;
+let onValueChangeFn: (newValue: DataSourceState<any, number> | ((value: DataSourceState<any, number>) => DataSourceState<any, number>)) => any;
 const initialValue: DataSourceState = { topIndex: 0, visibleCount: totalRowsCount };
+let currentValue = initialValue;
 let viewProps: ArrayListViewProps<TItem, number, any>;
 
 describe('ArrayListView', () => {
-    beforeEach(() => {
-        onValueChangeFn = jest.fn();
+    const testData: TestItem[] = [
+        { id: 100 }, //  0   100
+        { id: 110, parentId: 100 }, //  1   110
+        { id: 120, parentId: 100 }, //  2     120
+        { id: 121, parentId: 120 }, //  3       121
+        { id: 122, parentId: 120 }, //  4       122
+        { id: 200 }, //  5   200
+        { id: 300 }, //  6   300
+        { id: 310, parentId: 300 }, //  7     310
+        { id: 320, parentId: 300 }, //  8     320
+        { id: 330, parentId: 300 }, //  9     330
+    ];
 
-        dataSource = new ArrayDataSource<TItem, number>({
+    testData.forEach((i) => {
+        i.childrenCount = testData.filter((x) => x.parentId === i.id).length;
+    });
+
+    const testDataById = (Object as any).fromEntries(testData.map((i) => [i.id, i]));
+
+    function expectViewToLookLike(
+        view: IDataSourceView<TestItem, number, DataQueryFilter<TestItem>>,
+        rows: Partial<DataRowProps<TestItem, number>>[],
+    ) {
+        const viewRows = view.getVisibleRows();
+
+        rows.forEach((r) => {
+            if (r.id) {
+                r.value = testDataById[r.id];
+            }
+        });
+        expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+    }
+
+    const treeDataSource = new ArrayDataSource({
+        items: testData,
+        getId: (i) => i.id,
+        getParentId: (i) => i.parentId,
+    });
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+
+        currentValue = initialValue;
+        onValueChangeFn = jest.fn().mockImplementation((newValue) => {
+            if (typeof newValue === 'function') {
+                currentValue = newValue(currentValue);
+                return;
+            }
+            currentValue = newValue;
+        });
+
+        dataSource = new ArrayDataSource<TItem, number, any>({
             items: testItems,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
@@ -69,8 +125,6 @@ describe('ArrayListView', () => {
                 isSelectable: true,
             }),
         };
-
-        jest.clearAllMocks();
     });
 
     it('should create visibleRows on constructor', () => {
@@ -84,16 +138,19 @@ describe('ArrayListView', () => {
 
     describe('setValue logic', () => {
         it('should set new value and update rows', () => {
+            const getFilter = (filter) => (item) => filter(item);
+            const filter = (item) => item.parentId === 6;
+
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: initialValue, onValueChange: onValueChangeFn, props: viewProps } },
+                { initialProps: { value: { ...initialValue, filter }, onValueChange: onValueChangeFn, props: { ...viewProps, getFilter } } },
             );
 
             let view = hookResult.result.current;
 
             const rows = view.getVisibleRows();
 
-            hookResult.rerender({ value: { filter: {} }, onValueChange: onValueChangeFn, props: viewProps });
+            hookResult.rerender({ value: { filter: () => true }, onValueChange: onValueChangeFn, props: { ...viewProps, getFilter } });
             view = hookResult.result.current;
 
             const newRows = view.getVisibleRows();
@@ -120,9 +177,10 @@ describe('ArrayListView', () => {
                 { initialProps: { value: initialValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
-            const view = hookResult.result.current;
+            let view = hookResult.result.current;
 
             hookResult.rerender({ value: { ...initialValue, focusedIndex: 1 }, onValueChange: onValueChangeFn, props: viewProps });
+            view = hookResult.result.current;
 
             const rows = view.getVisibleRows();
             const focusedRows = rows.filter((row) => row.isFocused);
@@ -222,7 +280,7 @@ describe('ArrayListView', () => {
     describe('search', () => {
         let countriesDataSource: ArrayDataSource<Country, string>;
         let countriesViewProps: ArrayListViewProps<Country, string, any>;
-        let countriesOnValueChange: (newValue: DataSourceState<Country, string>) => any;
+        let countriesOnValueChange: (newValue: DataSourceState<any, string> | ((value: DataSourceState<any, string>) => DataSourceState<any, string>)) => any;
 
         beforeEach(() => {
             countriesOnValueChange = jest.fn();
@@ -348,24 +406,376 @@ describe('ArrayListView', () => {
         });
     });
 
+    describe('tree-search', () => {
+        const onValueChanged = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                currentValue = newValue(currentValue);
+                return;
+            }
+            currentValue = newValue;
+        };
+
+        beforeEach(() => {
+            currentValue = { visibleCount: 5 };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
+        it('should show unfolded tree results', async () => {
+            const locationsDS = getArrayLocationsDS({
+                getSearchFields: ({ name }) => [name],
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+        });
+
+        it.each<CascadeSelection>([true, 'explicit'])('should check all children for search results with cascadeSelection = %s', async (cascadeSelection) => {
+            const locationsDS = getArrayLocationsDS({
+                cascadeSelection,
+                getSearchFields: ({ name }) => [name],
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            view = hookResult.result.current;
+            expectRows(
+                view,
+                [
+                    { id: 'c-AF', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 1, depth: 0 },
+                    { id: 'DZ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                    { id: '2474583', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 3, depth: 2 },
+                ],
+            );
+
+            const rows = view.getVisibleRows();
+            const rowDZ = rows[1];
+
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            expect(currentValue.checked).toEqual([
+                'DZ',
+                '2474141',
+                '2475744',
+                '2475740',
+                '2475752',
+                '2475687',
+                '2475612',
+                '2475475',
+                '2474638',
+                '2474583',
+                '2474506',
+            ]);
+
+            currentValue.search = 'Touggourt';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rowTouggourt = view.getVisibleRows()[2];
+
+            await act(() => {
+                rowTouggourt.onCheck?.(rowTouggourt);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: true, indent: 1, depth: 0 },
+                        { id: 'c-EU', isChecked: false, isChildrenChecked: false, isFolded: true, indent: 1, depth: 0 },
+                    ],
+                );
+            });
+        });
+
+        it('should check all children for search results with cascadeSelection = implicit', async () => {
+            const locationsDS = getArrayLocationsDS({
+                cascadeSelection: 'implicit',
+                getSearchFields: ({ name }) => [name],
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rows = view.getVisibleRows();
+            const rowDZ = rows[1];
+
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            expect(currentValue.checked).toEqual(['DZ']);
+
+            currentValue.search = 'Touggourt';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: true, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rowTouggourt = view.getVisibleRows()[2];
+
+            await act(() => {
+                rowTouggourt.onCheck?.(rowTouggourt);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2475475', isChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: true, indent: 1, depth: 0 },
+                        { id: 'c-EU', isChecked: false, isChildrenChecked: false, isFolded: true, indent: 1, depth: 0 },
+                    ],
+                );
+            });
+        });
+
+        it('should check all children for search results with cascadeSelection = false', async () => {
+            const locationsDS = getArrayLocationsDS({
+                cascadeSelection: false,
+                getSearchFields: ({ name }) => [name],
+                rowOptions: { checkbox: { isVisible: true } },
+            });
+
+            currentValue.search = 'Zeral';
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                { initialProps: {
+                    value: currentValue,
+                    onValueChange: onValueChanged,
+                    props: {},
+                } },
+            );
+
+            let view = hookResult.result.current;
+            const listProps = view.getListProps();
+            expect(listProps.isReloading).toBeFalsy();
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            const rows = view.getVisibleRows();
+            const rowDZ = rows[1];
+
+            await act(() => {
+                rowDZ.onCheck?.(rowDZ);
+            });
+
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'DZ', isChecked: true, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                        { id: '2474583', isChecked: false, isFolded: false, indent: 3, depth: 2 },
+                    ],
+                );
+            });
+
+            expect(currentValue.checked).toEqual(['DZ']);
+
+            currentValue.search = 'Benin';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: false, indent: 1, depth: 0 },
+                        { id: 'BJ', isChecked: false, isChildrenChecked: false, isFolded: false, indent: 2, depth: 1 },
+                    ],
+                );
+            });
+
+            currentValue.search = '';
+            hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
+            await waitFor(() => {
+                view = hookResult.result.current;
+                expectRows(
+                    view,
+                    [
+                        { id: 'c-AF', isChecked: false, isChildrenChecked: true, isFolded: true, indent: 1, depth: 0 },
+                        { id: 'c-EU', isChecked: false, isChildrenChecked: false, isFolded: true, indent: 1, depth: 0 },
+                    ],
+                );
+            });
+        });
+    });
+
     describe('updateTree', () => {
         const getFilter = (filter) => (item) => filter(item);
         const filter = (item) => item.parentId === 6;
 
-        let currentValue = initialValue;
-        const currentOnValueChange = (newValue: typeof currentValue) => {
-            currentValue = newValue;
-        };
-
-        it('should update tree if filter was changed', () => {
+        it('should update tree if filter was changed', async () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: currentOnValueChange, props: viewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -377,11 +787,13 @@ describe('ArrayListView', () => {
             expect(rowsIds).toEqual([6]);
 
             const [row] = rows;
-            row.onFold?.(row);
+            await act(() => {
+                row.onFold?.(row);
+            });
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -398,12 +810,12 @@ describe('ArrayListView', () => {
         it('should update tree if filter and search was changed', () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: currentOnValueChange, props: viewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
             hookResult.rerender({
                 value: { ...currentValue, topIndex: 0, visibleCount: 20, filter, search: 'B1' },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -418,7 +830,7 @@ describe('ArrayListView', () => {
         it('should update tree if filter, search and sorting was changed', () => {
             const hookResult = renderHook(
                 ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                { initialProps: { value: currentValue, onValueChange: currentOnValueChange, props: viewProps } },
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: viewProps } },
             );
 
             hookResult.rerender({
@@ -430,7 +842,7 @@ describe('ArrayListView', () => {
                     search: 'B',
                     sorting: [{ field: 'level', direction: 'desc' as SortDirection }],
                 },
-                onValueChange: currentOnValueChange,
+                onValueChange: onValueChangeFn,
                 props: { ...viewProps, getFilter },
             });
 
@@ -446,6 +858,27 @@ describe('ArrayListView', () => {
     });
 
     describe('rows check', () => {
+        let updatedValue = { ...initialValue };
+        const onValueChanged = (newValue: React.SetStateAction<DataSourceState<Record<string, any>, any>>) => {
+            if (typeof newValue === 'function') {
+                updatedValue = newValue(updatedValue);
+                return;
+            }
+            updatedValue = newValue;
+        };
+
+        beforeEach(() => {
+            updatedValue = { ...initialValue };
+        });
+
+        function expectRows(
+            view: IDataSourceView<LocationItem, string, DataQueryFilter<LocationItem>>,
+            rows: Partial<DataRowProps<LocationItem, string>>[],
+        ) {
+            const viewRows = view.getVisibleRows();
+            expect(viewRows).toEqual(rows.map((r) => expect.objectContaining(r)));
+        }
+
         describe('cascadeSelection = false', () => {
             it('should select item in single mode', () => {
                 const hookResult = renderHook(
@@ -458,7 +891,11 @@ describe('ArrayListView', () => {
                 const row = view.getById(6, 6);
                 row.onSelect?.(row);
 
-                expect(onValueChangeFn).toBeCalledWith({ ...initialValue, selectedId: 6 });
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    selectedId: 6,
+                });
             });
 
             it('onCheck handler should set id to checked array in value', async () => {
@@ -469,21 +906,164 @@ describe('ArrayListView', () => {
 
                 let view = hookResult.result.current;
                 const row1 = view.getById(6, 6);
-                row1.onCheck?.(row1);
-                expect(onValueChangeFn).toHaveBeenCalledWith({ ...initialValue, checked: [6] });
+
+                await act(() => {
+                    row1.onCheck?.(row1);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6],
+                });
 
                 hookResult.rerender({ value: { ...initialValue, checked: [6] }, onValueChange: onValueChangeFn, props: viewProps });
                 view = hookResult.result.current;
 
                 const row2 = view.getById(7, 7);
-                row2.onCheck?.(row2);
+                await act(() => {
+                    row2.onCheck?.(row2);
+                });
 
-                expect(onValueChangeFn).toHaveBeenCalledWith({ ...initialValue, checked: [6, 7] });
+                expect(onValueChangeFn).toBeCalledTimes(2);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6, 7],
+                });
+            });
+
+            it('should clear specific unknown record', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const locationsDS = getArrayLocationsDS({
+                    cascadeSelection: false,
+                    showSelectedOnly: true,
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    unknownRow.onCheck?.(unknownRow);
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            it('should clear unknown record via clearAll', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const locationsDS = getArrayLocationsDS({
+                    cascadeSelection: false,
+                    showSelectedOnly: true,
+                    rowOptions: {
+                        checkbox: {
+                            isVisible: true,
+                            isDisabled: false,
+                        },
+                    },
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                expect(updatedValue.checked).toEqual([unknownId, 'BJ']);
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    view.clearAllChecked();
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                await waitFor(() => {
+                    expect(updatedValue.checked).toEqual([]);
+                });
+            });
+        });
+
+        it('should select all top items with cascadeSelection = false', async () => {
+            const currentViewProps: ArrayListViewProps<TItem, number, any> = {
+                getId: (i) => i.id,
+                cascadeSelection: false,
+                getRowOptions: () => ({
+                    checkbox: { isVisible: true },
+                }),
+            };
+            currentValue = { ...initialValue, checked: [7, 8] };
+            const hookResult = renderHook(
+                ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
+                { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
+            );
+
+            const view = hookResult.result.current;
+            await act(() => {
+                view.selectAll?.onValueChange(true);
+            });
+
+            expect(onValueChangeFn).toBeCalledTimes(1);
+            expect(currentValue).toEqual({
+                ...initialValue,
+                checked: [
+                    7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12,
+                ],
+            });
+
+            await act(() => {
+                view.selectAll?.onValueChange(false);
+            });
+
+            expect(onValueChangeFn).toBeCalledTimes(2);
+            expect(currentValue).toEqual({
+                ...initialValue,
+                checked: [],
             });
         });
 
         describe("cascadeSelection = true | cascadeSelection = 'explicit'", () => {
-            it.each<[CascadeSelection]>([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should check all children when parent checked with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -499,9 +1079,13 @@ describe('ArrayListView', () => {
 
                 const view = hookResult.result.current;
                 const row1 = view.getById(6, 6);
-                row1.onCheck?.(row1);
 
-                expect(onValueChangeFn).toBeCalledWith({
+                await act(() => {
+                    row1.onCheck?.(row1);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         6, 7, 8, 9,
@@ -509,7 +1093,7 @@ describe('ArrayListView', () => {
                 });
             });
 
-            it.each<[CascadeSelection]>([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should check parent if all siblings checked with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -518,17 +1102,22 @@ describe('ArrayListView', () => {
                     }),
                 };
 
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
 
                 const view = hookResult.result.current;
 
                 const row = view.getById(9, 9);
-                row.onCheck?.(row);
 
-                expect(onValueChangeFn).toBeCalledWith({
+                await act(() => {
+                    row.onCheck?.(row);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         7, 8, 9, 6,
@@ -536,7 +1125,7 @@ describe('ArrayListView', () => {
                 });
             });
 
-            it.each<[CascadeSelection]>([[true], ['explicit']])('should select all top items with cascadeSelection = %s', (cascadeSelection) => {
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should select all top items with cascadeSelection = %s', async (cascadeSelection) => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection,
@@ -544,25 +1133,168 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
 
                 const view = hookResult.result.current;
-                view.selectAll?.onValueChange(true);
+                await act(() => {
+                    view.selectAll?.onValueChange(true);
+                });
 
-                expect(onValueChangeFn).toBeCalledWith({
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         7, 8, 2, 5, 1, 3, 4, 6, 9, 10, 11, 12,
                     ],
                 });
+
+                await act(() => {
+                    view.selectAll?.onValueChange(false);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(2);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [],
+                });
+            });
+
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should clear specific unknown record', async (cascadeSelection) => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const locationsDS = getArrayLocationsDS({
+                    cascadeSelection,
+                    showSelectedOnly: true,
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    unknownRow.onCheck?.(unknownRow);
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            it.each<[CascadeSelection]>([[true], ['explicit']])('should clear unknown record via clearAll', async (cascadeSelection) => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue,
+                    checked: [
+                        'BJ',
+                        '2392505',
+                        '2392308',
+                        '2392204',
+                        '2392108',
+                        '2392087',
+                        '2392009',
+                        '2391895',
+                        '2391893',
+                        '2391455',
+                        '2391377',
+                        unknownId,
+                    ],
+                };
+
+                const locationsDS = getArrayLocationsDS({
+                    cascadeSelection,
+                    showSelectedOnly: true,
+                    rowOptions: {
+                        checkbox: {
+                            isVisible: true,
+                            isDisabled: false,
+                        },
+                    },
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                expect(updatedValue.checked).toEqual([
+                    'BJ',
+                    '2392505',
+                    '2392308',
+                    '2392204',
+                    '2392108',
+                    '2392087',
+                    '2392009',
+                    '2391895',
+                    '2391893',
+                    '2391455',
+                    '2391377',
+                    unknownId,
+                ]);
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                            { id: '2392505', isChecked: true },
+                            { id: '2392308', isChecked: true },
+                            { id: '2392204', isChecked: true },
+                            { id: '2392108', isChecked: true },
+                            { id: '2392087', isChecked: true },
+                            { id: '2392009', isChecked: true },
+                            { id: '2391895', isChecked: true },
+                            { id: '2391893', isChecked: true },
+                            { id: '2391455', isChecked: true },
+                            { id: '2391377', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    view.clearAllChecked();
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                await waitFor(() => {
+                    expect(updatedValue.checked).toEqual([]);
+                });
             });
         });
 
         describe("cascadeSelection = 'implicit'", () => {
-            it('should check only parent when parent checked with cascadeSelection = implicit', () => {
+            it('should check only parent when parent checked with cascadeSelection = implicit', async () => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection: 'implicit',
@@ -577,12 +1309,19 @@ describe('ArrayListView', () => {
                 const view = hookResult.result.current;
 
                 const row1 = view.getById(6, 6);
-                row1.onCheck?.(row1);
 
-                expect(onValueChangeFn).toBeCalledWith({ ...initialValue, checked: [6] });
+                await act(() => {
+                    row1.onCheck?.(row1);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6],
+                });
             });
 
-            it('should check parent if all siblings checked with cascadeSelection = implicit', () => {
+            it('should check parent if all siblings checked with cascadeSelection = implicit', async () => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection: 'implicit',
@@ -590,19 +1329,27 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+
+                currentValue = { ...initialValue, checked: [7, 8] };
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 const view = hookResult.result.current;
 
                 const row = view.getById(9, 9);
-                row.onCheck?.(row);
+                await act(() => {
+                    row.onCheck?.(row);
+                });
 
-                expect(onValueChangeFn).toBeCalledWith({ ...initialValue, checked: [6] });
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [6],
+                });
             });
 
-            it('should select all top items with cascadeSelection = implicit', () => {
+            it('should select all top items with cascadeSelection = implicit', async () => {
                 const currentViewProps: ArrayListViewProps<TItem, number, any> = {
                     getId: (i) => i.id,
                     cascadeSelection: 'implicit',
@@ -610,19 +1357,132 @@ describe('ArrayListView', () => {
                         checkbox: { isVisible: true },
                     }),
                 };
+                currentValue = { ...initialValue, checked: [7, 8] };
+
                 const hookResult = renderHook(
                     ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-                    { initialProps: { value: { ...initialValue, checked: [7, 8] }, onValueChange: onValueChangeFn, props: currentViewProps } },
+                    { initialProps: { value: currentValue, onValueChange: onValueChangeFn, props: currentViewProps } },
                 );
                 const view = hookResult.result.current;
+                await act(() => {
+                    view.selectAll?.onValueChange(true);
+                });
 
-                view.selectAll?.onValueChange(true);
-
-                expect(onValueChangeFn).toBeCalledWith({
+                expect(onValueChangeFn).toBeCalledTimes(1);
+                expect(currentValue).toEqual({
                     ...initialValue,
                     checked: [
                         2, 5, 1, 3, 4, 6, 10, 11, 12,
                     ],
+                });
+
+                await act(() => {
+                    view.selectAll?.onValueChange(false);
+                });
+
+                expect(onValueChangeFn).toBeCalledTimes(2);
+                expect(currentValue).toEqual({
+                    ...initialValue,
+                    checked: [],
+                });
+            });
+
+            it('should clear specific unknown record', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
+
+                const locationsDS = getArrayLocationsDS({
+                    cascadeSelection: 'implicit',
+                    showSelectedOnly: true,
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    unknownRow.onCheck?.(unknownRow);
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            it('should clear unknown record via clearAll', async () => {
+                const unknownId = '-10000';
+                updatedValue = { ...updatedValue,
+                    checked: [
+                        'BJ',
+                        unknownId,
+                    ],
+                };
+
+                const locationsDS = getArrayLocationsDS({
+                    cascadeSelection: 'implicit',
+                    showSelectedOnly: true,
+                    rowOptions: {
+                        checkbox: {
+                            isVisible: true,
+                            isDisabled: false,
+                        },
+                    },
+                });
+
+                const hookResult = renderHook(
+                    ({ value, onValueChange, props }) => locationsDS.useView(value, onValueChange, props),
+                    { initialProps: {
+                        value: updatedValue,
+                        onValueChange: onValueChanged,
+                        props: {},
+                    } },
+                );
+
+                expect(updatedValue.checked).toEqual([
+                    'BJ',
+                    unknownId,
+                ]);
+                await waitFor(() => {
+                    const view = hookResult.result.current;
+                    expectRows(
+                        view,
+                        [
+                            { id: 'BJ', isChecked: true },
+                        ],
+                    );
+                });
+                const view = hookResult.result.current;
+                const unknownRow = view.getById(unknownId, -1000);
+
+                expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
+
+                await act(() => {
+                    view.clearAllChecked();
+                });
+
+                hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+
+                await waitFor(() => {
+                    expect(updatedValue.checked).toEqual([]);
                 });
             });
         });
@@ -637,7 +1497,8 @@ describe('ArrayListView', () => {
         const row = view.getById(6, 6);
         row.onFocus?.(row.index);
 
-        expect(onValueChangeFn).toBeCalledWith({ ...initialValue, focusedIndex: row.index });
+        expect(onValueChangeFn).toBeCalledTimes(1);
+        expect(currentValue).toEqual({ ...initialValue, focusedIndex: row.index });
     });
 
     it('should fold/unfold item', () => {
@@ -649,21 +1510,92 @@ describe('ArrayListView', () => {
         const row = view.getVisibleRows()[5];
         row.onFold?.(row);
 
-        expect(onValueChangeFn).toBeCalledWith({ ...initialValue, folded: { [row.id]: !row.isFolded } });
+        expect(onValueChangeFn).toBeCalledTimes(1);
+        expect(currentValue).toEqual({ ...initialValue, folded: { [row.id]: !row.isFolded } });
     });
 
-    it('should return selected rows in selection order', () => {
+    it('Correctly computes path and isLastChild', async () => {
+        currentValue.folded = { 120: true };
+        currentValue.visibleCount = 10;
+
         const hookResult = renderHook(
-            ({ value, onValueChange, props }) => dataSource.useView(value, onValueChange, props),
-            { initialProps: { value: initialValue, onValueChange: onValueChangeFn, props: viewProps } },
+            ({ value, onValueChange }) => treeDataSource.useView(value, onValueChange, {
+                cascadeSelection: true,
+                getRowOptions: () => ({ checkbox: { isVisible: true } }),
+                isFoldedByDefault: () => false,
+            }),
+            { initialProps: { value: currentValue, onValueChange: onValueChangeFn } },
         );
 
-        hookResult.rerender({ value: { ...initialValue, checked: [6, 5, 4] }, onValueChange: onValueChangeFn, props: viewProps });
-        const view = hookResult.result.current;
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
 
-        const selectedRows = view.getSelectedRows();
-        expect(selectedRows.map(({ id }) => id)).toEqual([
-            6, 5, 4,
-        ]);
+        currentValue.folded = { 120: false };
+        hookResult.rerender({ value: currentValue, onValueChange: onValueChangeFn });
+
+        let view = hookResult.result.current;
+        expect(view.getListProps().rowsCount).toBe(10);
+
+        await waitFor(() => {
+            view = hookResult.result.current;
+
+            expectViewToLookLike(
+                view,
+                [
+                    { id: 100, path: [], isLastChild: false },
+                    { id: 110, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: false },
+                    { id: 120, path: [{ id: 100, isLastChild: false, value: testDataById[100] }], isLastChild: true },
+                    {
+                        id: 121,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: false,
+                    },
+                    {
+                        id: 122,
+                        path: [{ id: 100, isLastChild: false, value: testDataById[100] }, { id: 120, isLastChild: true, value: testDataById[120] }],
+                        isLastChild: true,
+                    },
+                    { id: 200, path: [], isLastChild: false },
+                    { id: 300, path: [], isLastChild: true },
+                    { id: 310, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 320, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: false },
+                    { id: 330, path: [{ id: 300, isLastChild: true, value: testDataById[300] }], isLastChild: true },
+                ],
+            );
+        });
+        expect(view.getListProps().rowsCount).toBe(10);
+    });
+
+    it('handles empty result', async () => {
+        const props: Partial<ArrayDataSourceProps<TestItem, number, any>> = {
+            getFilter: () => (item) => item.id === -100500,
+        };
+
+        const hookResult = renderHook(
+            ({ value, onValueChange, props }) => treeDataSource.useView(value, onValueChange, props),
+            { initialProps: { value: { visibleCount: 3, filter: { id: -100500 } }, onValueChange: onValueChangeFn, props } },
+        );
+
+        let view = hookResult.result.current;
+        await waitFor(() => {
+            view = hookResult.result.current;
+            expectViewToLookLike(view, []);
+        });
+
+        expect(view.getListProps().rowsCount).toBe(0);
     });
 });

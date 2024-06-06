@@ -3,13 +3,14 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
+import { DocBuilder, DocPreviewBuilder, TDocConfig, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, EditableDocContent, DocExample } from '../common';
+import { TCountIndicatorPreview } from './_types/previewIds';
 
 export class CountIndicatorDoc extends BaseDocsBlock {
     title = 'CountIndicator';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'CountIndicator',
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:CountIndicatorProps', component: uui.CountIndicator },
@@ -25,6 +26,27 @@ export class CountIndicatorDoc extends BaseDocsBlock {
                     { name: 'Number 1', value: '1' },
                     { name: 'Number 999', value: '999+' },
                 ],
+            });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.CountIndicatorProps | promo.CountIndicatorProps | loveship.CountIndicatorProps>) => {
+            const TEST_DATA = {
+                caption: '+999',
+            };
+            docPreview.add({
+                id: TCountIndicatorPreview['Color Variants'],
+                matrix: {
+                    caption: { values: [TEST_DATA.caption] },
+                    color: { examples: '*' },
+                },
+                cellSize: '50-40',
+            });
+            docPreview.add({
+                id: TCountIndicatorPreview['Size Variants'],
+                matrix: {
+                    caption: { values: [undefined, TEST_DATA.caption] },
+                    size: { examples: '*' },
+                },
+                cellSize: '60-40',
             });
         },
     };

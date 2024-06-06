@@ -1,58 +1,70 @@
-import React from 'react';
-import dayjs from 'dayjs';
+import React, { Fragment } from 'react';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import { i18n } from '../../i18n';
-import { DatePickerCoreProps, IDropdownBodyProps } from '@epam/uui-core';
-import { BaseDatePicker } from '@epam/uui-components';
-import { FlexSpacer, FlexRow, FlexCell } from '../layout';
+import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
+import {
+    FlexSpacer, FlexRow, FlexCell,
+} from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
-import { DatePickerBody } from '../datePickers';
+import { DatePickerProps } from '../datePickers';
+import { DatePickerBody } from '../datePickers/DatePickerBody';
 
-/** Represents the properties of the DatePicker. */
-export interface DatePickerProps extends DatePickerCoreProps, IDropdownBodyProps {}
+/**
+ * Represents the properties of the FiterDatePicker
+ */
+export interface FilterDatePickerProps extends DatePickerProps, IDropdownBodyProps {}
 
-export class FilterDatePickerBody extends BaseDatePicker<DatePickerProps> {
-    renderInput = (): any => {
-        return null;
+export function FilterDatePickerBody(props: FilterDatePickerProps) {
+    const { value } = props;
+    const context = useUuiContext();
+
+    const handleValueChange = (newValue: string | null) => {
+        props.onValueChange(newValue);
+
+        if (props.getValueChangeAnalyticsEvent) {
+            const event = props.getValueChangeAnalyticsEvent(newValue, value);
+            context.uuiAnalytics.sendEvent(event);
+        }
+        if (newValue) {
+            props.onClose?.();
+        }
     };
 
-    onToggleHandler = (val: boolean) => {
-        this.onToggle(val);
-        this.props.onClose();
+    const handleBodyChange = (newValue: string) => {
+        if (newValue && value !== newValue) {
+            handleValueChange(newValue);
+        }
     };
 
-    handleCancel = () => {
-        this.handleValueChange(undefined);
-        this.setState({ inputValue: null, selectedDate: null });
-    };
-
-    renderBody() {
-        return (
-            <>
-                <FlexRow borderBottom={ true }>
-                    <DatePickerBody
-                        filter={ this.props.filter }
-                        value={ this.getValue() }
-                        setSelectedDate={ this.setSelectedDate }
-                        setDisplayedDateAndView={ this.setDisplayedDateAndView }
-                        changeIsOpen={ this.onToggleHandler }
-                        renderDay={ this.props.renderDay }
-                        isHoliday={ this.props.isHoliday }
-                        rawProps={ this.props.rawProps?.body }
+    return (
+        <Fragment>
+            <FlexRow borderBottom={ true }>
+                <DatePickerBody
+                    filter={ props.filter }
+                    value={ value }
+                    onValueChange={ handleBodyChange }
+                    renderDay={ props.renderDay }
+                    isHoliday={ props.isHoliday }
+                    rawProps={ props.rawProps?.body }
+                />
+            </FlexRow>
+            <FlexCell alignSelf="stretch">
+                <FlexRow
+                    padding="24"
+                    vPadding="12"
+                >
+                    <Text>{value ? uuiDayjs.dayjs(value).format('MMM DD, YYYY') : ''}</Text>
+                    <FlexSpacer />
+                    <LinkButton
+                        isDisabled={ !value }
+                        caption={ i18n.filterToolbar.datePicker.clearCaption }
+                        onClick={ () => {
+                            handleValueChange(undefined); // null is not working with setTableData filters
+                        } }
                     />
                 </FlexRow>
-                <FlexCell alignSelf="stretch">
-                    <FlexRow padding="24" vPadding="12">
-                        <Text>{this.state.selectedDate ? dayjs(this.state.selectedDate).format('MMM DD, YYYY') : ''}</Text>
-                        <FlexSpacer />
-                        <LinkButton isDisabled={ !this.state.selectedDate } caption={ i18n.filterToolbar.datePicker.clearCaption } onClick={ this.handleCancel } />
-                    </FlexRow>
-                </FlexCell>
-            </>
-        );
-    }
-
-    render() {
-        return this.renderBody();
-    }
+            </FlexCell>
+        </Fragment>
+    );
 }

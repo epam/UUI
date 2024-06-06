@@ -1,12 +1,12 @@
 import React, {
-    useCallback, useEffect, useMemo, useState,
+    useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
-import sortBy from 'lodash.sortby';
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
 import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
 import {
-    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource,
+    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource, orderBy,
+    PickerInputElement,
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
@@ -67,6 +67,8 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     const { filters, tableState, setTableState } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
+    const pickerInputRef = useRef<PickerInputElement>(null);
+
     const dataSource = useArrayDataSource(
         {
             items: filters,
@@ -79,7 +81,8 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         const newConfig: FiltersConfig = {};
         const newFilter: any = {};
 
-        const sortedOrders = tableState.filtersConfig && sortBy(tableState.filtersConfig, (f) => f?.order);
+        const filtersConfig = Object.values(tableState.filtersConfig ?? {});
+        const sortedOrders = orderBy(filtersConfig, ({ order }) => order);
         let lastItemOrder: string | null = sortedOrders?.length ? sortedOrders[sortedOrders.length - 1]?.order : null;
 
         updatedFilters.forEach((filter) => {
@@ -134,7 +137,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     }, [tableState.filtersConfig, filters]);
 
     const sortedActiveFilters = useMemo(() => {
-        return sortBy(selectedFilters, (f) => tableState.filtersConfig?.[f.field]?.order);
+        return orderBy(selectedFilters, (f) => tableState.filtersConfig?.[f.field]?.order);
     }, [filters, tableState.filtersConfig]);
 
     const renderAddFilterToggler = useCallback((togglerProps: PickerTogglerProps) => {
@@ -168,9 +171,15 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     const isAllFiltersAlwaysVisible = props.filters.every((i) => i.isAlwaysVisible);
 
     useEffect(() => {
-        // Reset new filter id, after first render with autofocus
-        setNewFilterId(null);
-    }, [newFilterId]);
+        if (sortedActiveFilters.length && newFilterId && sortedActiveFilters.find(({ field }) => field === newFilterId)) {
+            // PickerInput should be closed after filterId update and opening the filter's body.
+            // Otherwise, the focus will be not set in the search input of the filter's body.
+            pickerInputRef.current?.closePickerBody?.();
+
+            // Reset new filter id, after first render with autofocus
+            setNewFilterId(null);
+        }
+    }, [newFilterId, sortedActiveFilters]);
 
     return (
         <>
@@ -194,7 +203,6 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     onValueChange={ onFiltersChange }
                     selectionMode="multi"
                     valueType="entity"
-                    key={ newFilterId }
                     renderRow={ (props) => (
                         <DataPickerRow
                             { ...props }
@@ -202,7 +210,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                             key={ props.key }
                             onCheck={ (row) => {
                                 props.onCheck && props.onCheck(row);
-                                !row.isChecked && setNewFilterId(row.value.field);
+                                setNewFilterId(row.value.field);
                             } }
                             renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                         />
@@ -214,6 +222,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     fixedBodyPosition={ true }
                     size={ props.size }
                     bodyCx={ UUI_FILTERS_PANEL_ADD_BUTTON_BODY }
+                    ref={ pickerInputRef }
                 />
             )}
         </>

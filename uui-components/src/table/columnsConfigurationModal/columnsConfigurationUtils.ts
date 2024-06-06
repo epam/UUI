@@ -1,31 +1,24 @@
 import React from 'react';
-import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig } from '@epam/uui-core';
+import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig, orderBy } from '@epam/uui-core';
 import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from './types';
-import sortBy from 'lodash.sortby';
 
 export function isColumnAlwaysPinned(column: DataColumnProps) {
-    return Boolean(column.isAlwaysVisible && column.fix);
+    return Boolean(column?.isAlwaysVisible);
 }
 
-export function canAcceptDrop(props: Pick<AcceptDropParams<DndDataType, DndDataType>, 'srcData' | 'dstData'>) {
-    const { srcData, dstData } = props;
+export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>, nextColumn?: DataColumnProps, prevColumn?: DataColumnProps) {
+    const { dstData } = props;
 
-    const DISALLOW = {};
+    if (isColumnAlwaysPinned(dstData.column)) {
+        if (dstData.column.fix === 'left' && !isColumnAlwaysPinned(nextColumn)) { // If user try to drop column at the last isAlwaysVisible column. Allow to drop only to the end of the fixed list.
+            return { bottom: true };
+        }
 
-    const isMovingToUnpinnedArea = !dstData.columnConfig.fix;
-    const isMovingBetweenPinnedAreas = !!srcData.columnConfig.fix && !!dstData.columnConfig.fix && srcData.columnConfig.fix !== dstData.columnConfig.fix;
-    const isMovingToHiddenArea = !dstData.columnConfig.isVisible;
+        if (dstData.column.fix === 'right' && !isColumnAlwaysPinned(prevColumn)) { // If user try to drop column at the first isAlwaysVisible. Allow to drop only to the start of the fixed list
+            return { top: true };
+        }
 
-    if (isColumnAlwaysPinned(srcData.column) && isMovingToUnpinnedArea) {
-        return DISALLOW;
-    }
-
-    if (srcData.column.isAlwaysVisible && isMovingToHiddenArea) {
-        return DISALLOW;
-    }
-
-    if (isMovingBetweenPinnedAreas) {
-        return DISALLOW;
+        return {}; // Shouldn't drop between 2 isAlwaysVisible columns
     }
 
     return { top: true, bottom: true };
@@ -100,7 +93,7 @@ export function findLastByGroupKey<T extends GroupedDataColumnProps>(arr: T[], g
 }
 export function sortColumnsAndAddGroupKey(props: { columns: DataColumnProps[]; prevConfig: ColumnsConfig }): GroupedDataColumnProps[] {
     const { prevConfig, columns } = props;
-    const sorted: DataColumnProps[] = sortBy(columns, (i) => prevConfig[i.key].order);
+    const sorted: DataColumnProps[] = orderBy(columns, (i) => prevConfig[i.key].order);
     return sorted.map((c: DataColumnProps) => {
         const groupKey = getGroupKey(prevConfig[c.key]);
         return { ...c, groupKey };

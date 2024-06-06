@@ -11,7 +11,7 @@ import { ReactComponent as menuIcon } from '@epam/assets/icons/common/navigation
 export class ControlGroupDoc extends BaseDocsBlock {
     title = 'Control Group';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'ControlGroup',
         contexts: [TDocContext.Default, TDocContext.Form, TDocContext.Resizable],
         bySkin: {
@@ -29,13 +29,13 @@ export class ControlGroupDoc extends BaseDocsBlock {
                             <uui.ControlGroup>
                                 <uui.Button size="36" caption="Preset" fill="none" onClick={ () => {} } />
                                 <uui.Dropdown
-                                    renderBody={ () => {
+                                    renderBody={ (dropdownBodyProps) => {
                                         return (
-                                            <uui.Panel background="surface-main" shadow={ true }>
+                                            <uui.DropdownMenuBody { ...dropdownBodyProps }>
                                                 <uui.DropdownMenuButton caption="Duplicate" onClick={ () => {} } />
                                                 <uui.DropdownMenuButton caption="Rename" onClick={ () => {} } />
                                                 <uui.DropdownMenuButton caption="Delete" onClick={ () => {} } />
-                                            </uui.Panel>
+                                            </uui.DropdownMenuBody>
                                         );
                                     } }
                                     renderTarget={ (props) => <uui.Button { ...props } fill="none" icon={ menuIcon } size="36" isDropdown={ false } /> }

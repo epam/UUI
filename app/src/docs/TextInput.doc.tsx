@@ -3,13 +3,21 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize, TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
+import { TTextInputPreview } from './_types/previewIds';
 
 export class TextInputDoc extends BaseDocsBlock {
     title = 'Text Input';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'TextInput',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form, TDocContext.Table],
         bySkin: {
@@ -23,6 +31,35 @@ export class TextInputDoc extends BaseDocsBlock {
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('iconPosition', { defaultValue: 'left' });
             doc.merge('maxLength', { examples: [10, 20, 30] });
+        },
+        preview: (docPreview: DocPreviewBuilder<uui.TextInputProps>) => {
+            const TEST_DATA = {
+                value: 'Test',
+                icon: 'action-account-fill.svg',
+                placeholder: 'Test placeholder',
+            };
+            type TMatrixLocal = TPreviewMatrix<uui.TextInputProps>;
+            const statesBaseMatrix: TMatrixLocal = {
+                size: { values: ['30'] },
+                isInvalid: { values: [false, true] },
+                isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
+                isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
+            };
+            const baseMatrix: TMatrixLocal = {
+                size: { examples: '*' },
+                icon: { examples: [undefined, TEST_DATA.icon] },
+                iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
+                isDropdown: { values: [false, true] },
+                onAccept: { examples: ['callback'] },
+                onCancel: { examples: ['callback'] },
+                value: { values: [undefined, TEST_DATA.value] },
+            };
+            const w180_h80: TPreviewCellSize = '180-80';
+            const w180_h50: TPreviewCellSize = '180-50';
+            const formBaseMatrix: TMatrixLocal = { mode: { examples: ['form'] }, ...baseMatrix };
+            docPreview.add(TTextInputPreview['Form Size Variants'], formBaseMatrix, w180_h80);
+            docPreview.add(TTextInputPreview['Inline Size Variants'], { mode: { examples: ['inline'] }, ...baseMatrix }, w180_h80);
+            docPreview.add(TTextInputPreview['Color Variants'], { mode: { examples: ['form', 'inline'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h50);
         },
     };
 

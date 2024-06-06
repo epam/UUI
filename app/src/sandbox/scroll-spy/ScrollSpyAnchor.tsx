@@ -29,7 +29,7 @@ export function ScrollSpyAnchor() {
             </FlexCell>
             <FlexCell grow={ 5 }>
                 <section ref={ setRef }>
-                    <Text font="museo-slab" size="48" cx={ css.content } lineHeight="30">
+                    <Text size="48" cx={ css.content } lineHeight="30">
                         <Text rawProps={ { 'data-spy': 'a' } } cx={ css.header } color="gray90">
                             Section 1
                         </Text>

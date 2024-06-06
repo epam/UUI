@@ -13,10 +13,10 @@ import {
     IHasForwardedRef,
     IHasPlaceholder,
     IHasRawProps, IHasValidationMessage,
-    TextInputCoreProps, UuiContexts,
+    TextInputCoreProps,
 } from '@epam/uui-core';
-import { pickerBaseOptionsDoc } from '../../commonDocs';
-import { TPropDocBuilder } from '../docBuilderGenTypes';
+import { getPickerBaseOptionsDoc } from '../../commonDocs';
+import { IDocBuilderGenCtx, TPropDocBuilder } from '../docBuilderGenTypes';
 import {
     getRawPropsExamples,
     getReactNodeExamples,
@@ -25,7 +25,7 @@ import {
 } from './shared/reusableExamples';
 import { iCanRedirectDoc, IControlled, iHasLabelDoc } from '../../commonDocs';
 
-const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx: Pick<UuiContexts, 'uuiNotifications'> }) => DocBuilder<any> } = {
+const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { docBuilderGenCtx: IDocBuilderGenCtx }) => DocBuilder<any> } = {
     '@epam/uui-components:ButtonProps': () => {
         return new DocBuilder<any>({ name: '' }).prop('countIndicator', {
             examples: [
@@ -36,7 +36,7 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx:
         });
     },
     '@epam/uui-core:IHasForwardedRef': (params) => new DocBuilder<IHasForwardedRef<any>>({ name: '' }).prop('forwardedRef', {
-        examples: getReactRefExamples({ name: 'ref', uuiCtx: params.uuiCtx }),
+        examples: getReactRefExamples({ name: 'ref', uuiCtx: params.docBuilderGenCtx.uuiCtx }),
     }),
     '@epam/uui-core:IHasLabel': () => iHasLabelDoc,
     '@epam/uui-core:IHasCX': () => new DocBuilder<IHasCX>({ name: '' }).prop('cx', {
@@ -125,7 +125,7 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx:
             editorType: 'JsonEditor',
         }),
     '@epam/uui-core:ICanRedirect': () => iCanRedirectDoc,
-    '@epam/uui-core:PickerBaseOptions': () => pickerBaseOptionsDoc,
+    '@epam/uui-core:PickerBaseOptions': (params) => getPickerBaseOptionsDoc(params.docBuilderGenCtx),
     '@epam/uui-core:IControlled': () => {
         return new DocBuilder<any>({ name: '' }).implements([IControlled]);
     },
@@ -136,8 +136,8 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { uuiCtx:
  * See "public/docs/docsGenOutput/docsGenOutput.json" for details.
  */
 export const buildByPropFromRef: TPropDocBuilder = (params) => {
-    const { prop, uuiCtx } = params;
-    const db: DocBuilder<any> = BY_PROP_FROM_REF[prop.from as TDocsGenExportedType]?.({ uuiCtx });
+    const { prop, docBuilderGenCtx } = params;
+    const db: DocBuilder<any> = BY_PROP_FROM_REF[prop.from as TDocsGenExportedType]?.({ docBuilderGenCtx });
     if (db) {
         const found = db.props.find((p) => p.name === prop.name);
         if (found) {

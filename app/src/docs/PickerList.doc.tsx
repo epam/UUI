@@ -9,7 +9,7 @@ import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 export class PickerListDoc extends BaseDocsBlock {
     title = 'PickerList';
 
-    override config: TDocConfig = {
+    static override config: TDocConfig = {
         name: 'PickerList',
         contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
         bySkin: {

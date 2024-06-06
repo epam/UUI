@@ -28,7 +28,7 @@ export default function LazyTreePickerModal() {
     const handleModalOpening = useCallback(() => {
         context.uuiModals
             .show((props) => (
-                <PickerModal
+                <PickerModal<Location, string>
                     initialValue={ value }
                     dataSource={ dataSource }
                     selectionMode="multi"

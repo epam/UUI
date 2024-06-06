@@ -1,26 +1,25 @@
 import React from 'react';
 
-import { isPluginActive } from '../../helpers';
+import { useIsPluginActive } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as ToDoIcon } from '../../icons/to-do.svg';
 
 import {
-    PlateEditor, focusEditor, getBlockAbove, toggleNodeType,
+    PlateEditor, focusEditor, getBlockAbove, toggleNodeType, PlatePlugin,
 } from '@udecode/plate-common';
 import { ELEMENT_TODO_LI, createTodoListPlugin } from '@udecode/plate-list';
 import { ToDoItem } from './ToDoItem';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import { TODO_PLUGIN_KEY, TODO_TYPE } from './constants';
 
-export const TODO_ELEMENT_KEY = 'toDoItem';
-
-export const toDoListPlugin = () => {
+export const toDoListPlugin = (): PlatePlugin<WithToolbarButton> => {
     // TODO: implement withOverrides for toggling between lists and todo lists
     return createTodoListPlugin<WithToolbarButton>({
         overrideByKey: {
             [ELEMENT_TODO_LI]: {
-                key: TODO_ELEMENT_KEY,
-                type: TODO_ELEMENT_KEY,
+                key: TODO_PLUGIN_KEY,
+                type: TODO_TYPE,
                 component: ToDoItem,
             },
         },
@@ -35,7 +34,7 @@ interface IToolbarButton {
 }
 
 export function ToDoListButton({ editor }: IToolbarButton) {
-    if (!isPluginActive(TODO_ELEMENT_KEY)) return null;
+    if (!useIsPluginActive(TODO_PLUGIN_KEY)) return null;
 
     const block = getBlockAbove(editor);
 
@@ -49,9 +48,9 @@ export function ToDoListButton({ editor }: IToolbarButton) {
 
     return (
         <ToolbarButton
-            onClick={ (e) => onToDoListButtonClick(e, TODO_ELEMENT_KEY) }
+            onClick={ (e) => onToDoListButtonClick(e, TODO_TYPE) }
             icon={ ToDoIcon }
-            isActive={ !!editor?.selection && block?.length && block[0].type === TODO_ELEMENT_KEY }
+            isActive={ !!editor?.selection && block?.length && block[0].type === TODO_TYPE }
         />
     );
 }

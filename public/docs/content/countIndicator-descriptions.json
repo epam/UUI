@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "The count indicator notifies users about the number of unread messages, notifications, or updates they have. They help users be aware of new activities or events within an application. Count indicators are also used to represent the number of items. Use the Count Indicator when you want to provide users with specific, quantifiable information about updates or changes. Displaying the number can help users quickly understand how many important updates they have missed:"
+        "text": "The count indicator notifies users about the number of unread messages, notifications, or updates they have. They help users be aware of new activities or events within an application. Count indicators are also used to represent the number of items. Use the Count Indicator when you want to provide users with specific, quantifiable information about updates or changes. Displaying the number can help users quickly understand how many important updates they have missed."
       }
     ]
   }

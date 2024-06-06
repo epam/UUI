@@ -1,0 +1,1723 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`docsGen:all docsGen:comments should convert comments 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:ITest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ITest",
+     "nameFull": "ITest"
+    },
+    "src": "test/test.tsx",
+    "comment": {
+     "raw": [
+      "This is an export level multiline TSDoc."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ITest",
+     "print": [
+      "/**",
+      " * This is an export level multiline TSDoc.",
+      "*/",
+      "interface ITest {",
+      "    // Single line comment should be ignored",
+      "    a: number;",
+      "    /** This is property-level TSDoc */",
+      "    b: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "a",
+      "name": "a",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "b",
+      "name": "b",
+      "comment": {
+       "raw": [
+        "This is property-level TSDoc"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:comments should convert property-level tags 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:ITest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ITest",
+     "nameFull": "ITest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ITest",
+     "print": [
+      "interface ITest {",
+      "    /**",
+      "     * This is property \\"a\\"",
+      "     * @default true",
+      "     */",
+      "    a: boolean;",
+      "    /**",
+      "     * This is property \\"b\\"",
+      "     * @default 100",
+      "     */",
+      "    b: number;",
+      "    /**",
+      "     * This is property \\"c\\"",
+      "     * @default 'hello'",
+      "     */",
+      "    c: string;",
+      "    /**",
+      "     * This is property \\"d\\"",
+      "     * @default null",
+      "     */",
+      "    d: string;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "a",
+      "name": "a",
+      "comment": {
+       "raw": [
+        "This is property \\"a\\"",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "b",
+      "name": "b",
+      "comment": {
+       "raw": [
+        "This is property \\"b\\"",
+        " @default 100"
+       ],
+       "tags": {
+        "@default": 100
+       }
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "c",
+      "name": "c",
+      "comment": {
+       "raw": [
+        "This is property \\"c\\"",
+        " @default 'hello'"
+       ],
+       "tags": {
+        "@default": "hello"
+       }
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "d",
+      "name": "d",
+      "comment": {
+       "raw": [
+        "This is property \\"d\\"",
+        " @default null"
+       ],
+       "tags": {
+        "@default": null
+       }
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should convert interface when it extends another interface and passes specific generic parameter to it 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:IInterface": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IInterface",
+     "nameFull": "IInterface"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IInterface",
+     "print": [
+      "interface IInterface extends IBaseInterface<string> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:IBaseInterface",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "typeValue": {
+       "raw": "(newValue: string) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "test/test.tsx:IBaseInterface",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:IBaseInterface": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IBaseInterface",
+     "nameFull": "IBaseInterface<T>"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should convert interface which extends other interface 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:ITestA": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ITestA",
+     "nameFull": "ITestA"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ITestA",
+     "print": [
+      "interface ITestA extends ITestB {",
+      "    // This comment must be ignored, because it's not TSDoc",
+      "    aProp: 'black' | 'white';",
+      "    propExternalTypeTest: HTMLElement;",
+      "    /** This is PropertySignature */",
+      "    propSignatureTest: {",
+      "        name: string;",
+      "        value: any;",
+      "    }[];",
+      "    /** This is MethodSignature */",
+      "    methodSignatureTest: (a?: number, b?: number) => number | undefined;",
+      "    /** This is MethodDeclaration */",
+      "    methodDeclarationTest: (p: number) => number;",
+      "    /** This is GetAccessor */",
+      "    get someBool(): boolean;",
+      "    /** This is SetAccessor */",
+      "    set someBool(b: boolean);",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "aProp",
+      "name": "aProp",
+      "typeValue": {
+       "raw": "'black' | 'white'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "black",
+        "white"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "propExternalTypeTest",
+      "name": "propExternalTypeTest",
+      "typeValue": {
+       "raw": "HTMLElement"
+      },
+      "required": true
+     },
+     {
+      "uid": "propSignatureTest",
+      "name": "propSignatureTest",
+      "comment": {
+       "raw": [
+        "This is PropertySignature"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ name: string; value: any; }[]"
+      },
+      "required": true
+     },
+     {
+      "uid": "methodSignatureTest",
+      "name": "methodSignatureTest",
+      "comment": {
+       "raw": [
+        "This is MethodSignature"
+       ]
+      },
+      "typeValue": {
+       "raw": "(a?: number | undefined, b?: number | undefined) => number | undefined"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "methodDeclarationTest",
+      "name": "methodDeclarationTest",
+      "comment": {
+       "raw": [
+        "This is MethodDeclaration"
+       ]
+      },
+      "typeValue": {
+       "raw": "(p: number) => number"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "get someBool",
+      "name": "get someBool",
+      "comment": {
+       "raw": [
+        "This is GetAccessor"
+       ]
+      },
+      "typeValue": {
+       "raw": "get someBool(): boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "a",
+      "name": "a",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:ITestB",
+      "required": true
+     },
+     {
+      "uid": "b",
+      "name": "b",
+      "comment": {
+       "raw": [
+        "This is inherited property TSDoc"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:ITestB",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:ITestB": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ITestB",
+     "nameFull": "ITestB"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ITestB",
+     "print": [
+      "interface ITestB {",
+      "    a: number;",
+      "    /** This is inherited property TSDoc */",
+      "    b: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "a",
+      "name": "a",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "b",
+      "name": "b",
+      "comment": {
+       "raw": [
+        "This is inherited property TSDoc"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should convert interface with generics 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:AcceptDropParams": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "AcceptDropParams",
+     "nameFull": "AcceptDropParams<TSrcData, TDstData>"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "AcceptDropParams<TSrcData, TDstData>",
+     "print": [
+      "interface AcceptDropParams<TSrcData, TDstData> {",
+      "    srcData: TSrcData;",
+      "    dstData?: TDstData;",
+      "    offsetLeft: number;",
+      "    offsetTop: number;",
+      "    targetWidth: number;",
+      "    targetHeight: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "srcData",
+      "name": "srcData",
+      "typeValue": {
+       "raw": "TSrcData"
+      },
+      "required": true
+     },
+     {
+      "uid": "dstData",
+      "name": "dstData",
+      "typeValue": {
+       "raw": "TDstData"
+      },
+      "required": false
+     },
+     {
+      "uid": "offsetLeft",
+      "name": "offsetLeft",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "offsetTop",
+      "name": "offsetTop",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "targetWidth",
+      "name": "targetWidth",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "targetHeight",
+      "name": "targetHeight",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should convert object type with different types of props 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TPrimitives": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TPrimitives",
+     "nameFull": "TPrimitives"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TPrimitives",
+     "print": [
+      "type TPrimitives = {",
+      "    pBool: boolean;",
+      "    pNumber: number;",
+      "    pString: string;",
+      "    pAny: any;",
+      "    pUnknown: unknown;",
+      "    pNever: never;",
+      "    pVoid: void;",
+      "    pNull: null;",
+      "    pUndefined: undefined;",
+      "    pArray: string[];",
+      "    pObject: object;",
+      "    pBigint: bigint;",
+      "    pSymbol: symbol;",
+      "    pLiteral: 'test';",
+      "    pTuple: [",
+      "        boolean,",
+      "        number,",
+      "        string,",
+      "        any,",
+      "        unknown,",
+      "        never,",
+      "        void,",
+      "        null,",
+      "        undefined,",
+      "        string[],",
+      "        object,",
+      "        bigint,",
+      "        symbol,",
+      "        'test'",
+      "    ];",
+      "    pUnion: boolean | number | string | never | void | null | undefined | string[] | object | bigint | symbol | 'test';",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "pBool",
+      "name": "pBool",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "pNumber",
+      "name": "pNumber",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": true
+     },
+     {
+      "uid": "pString",
+      "name": "pString",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "pAny",
+      "name": "pAny",
+      "typeValue": {
+       "raw": "any"
+      },
+      "required": true
+     },
+     {
+      "uid": "pUnknown",
+      "name": "pUnknown",
+      "typeValue": {
+       "raw": "unknown"
+      },
+      "required": true
+     },
+     {
+      "uid": "pNever",
+      "name": "pNever",
+      "typeValue": {
+       "raw": "never"
+      },
+      "required": true
+     },
+     {
+      "uid": "pVoid",
+      "name": "pVoid",
+      "typeValue": {
+       "raw": "void"
+      },
+      "required": true
+     },
+     {
+      "uid": "pNull",
+      "name": "pNull",
+      "typeValue": {
+       "raw": "null"
+      },
+      "required": true
+     },
+     {
+      "uid": "pUndefined",
+      "name": "pUndefined",
+      "typeValue": {
+       "raw": "undefined"
+      },
+      "required": true
+     },
+     {
+      "uid": "pArray",
+      "name": "pArray",
+      "typeValue": {
+       "raw": "string[]"
+      },
+      "required": true
+     },
+     {
+      "uid": "pObject",
+      "name": "pObject",
+      "typeValue": {
+       "raw": "object"
+      },
+      "required": true
+     },
+     {
+      "uid": "pBigint",
+      "name": "pBigint",
+      "typeValue": {
+       "raw": "bigint"
+      },
+      "required": true
+     },
+     {
+      "uid": "pSymbol",
+      "name": "pSymbol",
+      "typeValue": {
+       "raw": "symbol"
+      },
+      "required": true
+     },
+     {
+      "uid": "pLiteral",
+      "name": "pLiteral",
+      "typeValue": {
+       "raw": "'test'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "test"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "pTuple",
+      "name": "pTuple",
+      "typeValue": {
+       "raw": "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']"
+      },
+      "required": true
+     },
+     {
+      "uid": "pUnion",
+      "name": "pUnion",
+      "typeValue": {
+       "raw": "null | string | number | bigint | boolean | symbol | void | object | string[]"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should expand props if internal type is wrapped in Typescript utility type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TTest",
+     "print": [
+      "type TTest = Omit<TLocal, 'p1'>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "p2",
+      "name": "p2",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:TLocal",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:TLocal": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TLocal",
+     "nameFull": "TLocal"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should include generic type argument names in fullName of type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:IA": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IA",
+     "nameFull": "IA<T>"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IA<T>",
+     "print": [
+      "interface IA<T> {",
+      "    p1: Record<string, T>;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "p1",
+      "name": "p1",
+      "typeValue": {
+       "raw": "Record<string, T>"
+      },
+      "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Record",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:TA": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TA",
+     "nameFull": "TA<S>"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TA<S>",
+     "print": [
+      "type TA<S> = {",
+      "    p1: Record<string, S>;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "p1",
+      "name": "p1",
+      "typeValue": {
+       "raw": "Record<string, S>"
+      },
+      "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Record",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "node_modules/typescript/lib/lib.es5.d.ts:Record": {
+   "summary": {
+    "module": "node_modules/typescript/lib/lib.es5.d.ts",
+    "typeName": {
+     "name": "Record",
+     "nameFull": "Record<K, T>"
+    },
+    "src": "node_modules/typescript/lib/lib.es5.d.ts",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should mark props as optional when type extends from Partial of another type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:ISecondType": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "ISecondType",
+     "nameFull": "ISecondType"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ISecondType",
+     "print": [
+      "interface ISecondType extends Partial<IFirstType> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "test/test.tsx:IFirstType",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:IFirstType": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IFirstType",
+     "nameFull": "IFirstType"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:complexTypes should not expand props from external type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TExternalTypeTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TExternalTypeTest",
+     "nameFull": "TExternalTypeTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "HTMLElement",
+     "print": [
+      "type TExternalTypeTest = HTMLElement;"
+     ]
+    }
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:intersection should convert intersection 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TIntersection": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TIntersection",
+     "nameFull": "TIntersection"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TIntersection",
+     "print": [
+      "type TIntersection = TIntersectionMemberA & IIntersectionMemberB;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "a1",
+      "name": "a1",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:TIntersectionMemberA",
+      "required": true
+     },
+     {
+      "uid": "a2",
+      "name": "a2",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:TIntersectionMemberA",
+      "required": true
+     },
+     {
+      "uid": "b1",
+      "name": "b1",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:IIntersectionMemberB",
+      "required": true
+     },
+     {
+      "uid": "b2",
+      "name": "b2",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:IIntersectionMemberB",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:IIntersectionMemberB": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IIntersectionMemberB",
+     "nameFull": "IIntersectionMemberB"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  },
+  "test/test.tsx:TIntersectionMemberA": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TIntersectionMemberA",
+     "nameFull": "TIntersectionMemberA"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:intersection should convert top level type with Omit 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TIntersection": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TIntersection",
+     "nameFull": "TIntersection"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TIntersection",
+     "print": [
+      "type TIntersection = Omit<TFirst, 'f2'>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "f1",
+      "name": "f1",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:TFirst",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:TFirst": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TFirst",
+     "nameFull": "TFirst"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:intersection should convert type intersection with Omit 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TIntersection": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TIntersection",
+     "nameFull": "TIntersection"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TIntersection",
+     "print": [
+      "type TIntersection = Omit<TFirst, 'f2'> & TSecond;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "f1",
+      "name": "f1",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:IFirstPart1",
+      "required": true
+     },
+     {
+      "uid": "f3",
+      "name": "f3",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:IFirstPart2",
+      "required": true
+     },
+     {
+      "uid": "f4",
+      "name": "f4",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:IFirstPart2",
+      "required": true
+     },
+     {
+      "uid": "s1",
+      "name": "s1",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:TSecond",
+      "required": true
+     },
+     {
+      "uid": "s2",
+      "name": "s2",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "test/test.tsx:TSecond",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:IFirstPart1": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IFirstPart1",
+     "nameFull": "IFirstPart1"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  },
+  "test/test.tsx:IFirstPart2": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "IFirstPart2",
+     "nameFull": "IFirstPart2"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  },
+  "test/test.tsx:TSecond": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TSecond",
+     "nameFull": "TSecond"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:mappedType should convert mapped type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TLocal": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TLocal",
+     "nameFull": "TLocal"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "TLocal",
+     "print": [
+      "type TLocal = {",
+      "    [key: number]: string;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "[key: number]",
+      "name": "[key: number]",
+      "typeValue": {
+       "raw": "string"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:propEditor should convert prop editor for optional icon prop 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TTest",
+     "print": [
+      "interface TTest {",
+      "    icon?: Icon;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "icon",
+      "name": "icon",
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:propEditor:oneOf should convert union of literals and single scalar type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TTest",
+     "print": [
+      "interface TTest {",
+      "    size: '12' | '18' | number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "number | '12' | '18'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18"
+       ],
+       "scalarTypeOption": "number"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:union should convert union of simple types 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TUnionTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TUnionTest",
+     "nameFull": "TUnionTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "boolean | 'one' | 'two' | 'three' | 'four'",
+     "print": [
+      "type TUnionTest = 'one' | 'two' | 'three' | 'four' | boolean;"
+     ]
+    }
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:union should convert union of two anonymous object types 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "{ sameProp: string; n1Prop: string; } | { sameProp: string; n2Prop: string; }",
+     "print": [
+      "type TTest = ({",
+      "    sameProp: string;",
+      "    n1Prop: string;",
+      "}) | ({",
+      "    sameProp: string;",
+      "    n2Prop: string;",
+      "});"
+     ]
+    },
+    "props": [
+     {
+      "uid": "sameProp",
+      "name": "sameProp",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "n1Prop",
+      "name": "n1Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "n2Prop",
+      "name": "n2Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:union should convert union of two object types 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "N1 | N2",
+     "print": [
+      "type TTest = N1 | N2;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "sameProp",
+      "name": "sameProp",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:N1",
+      "required": true
+     },
+     {
+      "uid": "n1Prop",
+      "name": "n1Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:N1",
+      "required": true
+     },
+     {
+      "uid": "sameProp_2",
+      "name": "sameProp",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:N2",
+      "required": true
+     },
+     {
+      "uid": "n2Prop",
+      "name": "n2Prop",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "test/test.tsx:N2",
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
+   }
+  },
+  "test/test.tsx:N1": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "N1",
+     "nameFull": "N1"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  },
+  "test/test.tsx:N2": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "N2",
+     "nameFull": "N2"
+    },
+    "src": "test/test.tsx",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:union should not expand ReactNode type of property 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTestOptional": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTestOptional",
+     "nameFull": "TTestOptional"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TTestOptional",
+     "print": [
+      "interface TTestOptional {",
+      "    testProp?: React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "testProp",
+      "name": "testProp",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "test/test.tsx:TTestRequired": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTestRequired",
+     "nameFull": "TTestRequired"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TTestRequired",
+     "print": [
+      "interface TTestRequired {",
+      "    testProp: React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "testProp",
+      "name": "testProp",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@types/react:ReactNode": {
+   "summary": {
+    "module": "@types/react",
+    "typeName": {
+     "name": "ReactNode",
+     "nameFull": "ReactNode"
+    },
+    "src": "node_modules/@types/react/index.d.ts",
+    "exported": false
+   }
+  }
+ }
+}
+`;
+
+exports[`docsGen:all docsGen:union should not try to expand props if union contains an external type 1`] = `
+{
+ "docsGenTypes": {
+  "test/test.tsx:TTest": {
+   "summary": {
+    "module": "test/test.tsx",
+    "typeName": {
+     "name": "TTest",
+     "nameFull": "TTest"
+    },
+    "src": "test/test.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "{ a: string; b: string; } | HTMLElement",
+     "print": [
+      "type TTest = ({",
+      "    a: string;",
+      "    b: string;",
+      "}) | HTMLElement;"
+     ]
+    }
+   }
+  }
+ }
+}
+`;

@@ -3,8 +3,6 @@ import { FlexRow } from '@epam/promo';
 import { AppHeader, Page, Sidebar } from '../common';
 import { svc } from '../services';
 import { getQuery } from '../helpers';
-import { ComplexForm } from './forms/ComplexForm';
-import { TagInputDemo } from './forms/TagInput';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
@@ -23,15 +21,18 @@ import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
 import { PalettePage } from './tokens/palette/palettePage';
+import { ReactQueryLocationsTable } from './reactQueryLocationsTable';
+import { ProjectTableDemo } from './editableTable';
 
 export function SandboxPage() {
     const items = useMemo(
         () => [
-            { id: 'complexForm', name: 'Complex Form', component: ComplexForm },
             { id: 'dbDemo', name: 'DB demo', component: DbDemo },
             { id: 'tableDemo', name: 'Persons Table', component: PersonsTableDemo },
             { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
             { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
+            { id: 'editableTableDemo', name: 'Editable Table', component: ProjectTableDemo },
+            { id: 'reactQueryLocationsTableDemo', name: 'React-query Loactions Demo', component: ReactQueryLocationsTable },
             { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
             { id: 'responsive', name: 'Responsive', component: Responsive },
@@ -43,7 +44,6 @@ export function SandboxPage() {
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
-            { id: 'tagInput', name: 'Tag Input', component: TagInputDemo },
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
         ],

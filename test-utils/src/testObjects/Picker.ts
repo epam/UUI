@@ -119,4 +119,15 @@ export class PickerTestObject {
             () => expect(this.getOptions({ editMode, busy: false }).length).toBeGreaterThan(0),
         );
     }
+
+    static querySpinner(props: { editMode?: string } = {}) {
+        const dialog = within(this.getDialog(props.editMode));
+        return dialog.queryByRole('status', { busy: false });
+    }
+
+    public static async waitForLoadingComplete(editMode?: string) {
+        return await waitFor(() => {
+            expect(this.querySpinner({ editMode })).not.toBeNull();
+        });
+    }
 }

@@ -1,6 +1,6 @@
-import { devLogger, withMods } from '@epam/uui-core';
+import { withMods, Overwrite } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputProps } from '@epam/uui-components';
-import { ControlSize, EditMode, IHasEditMode } from '../types';
+import { EditMode, IHasEditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import textInputCss from './TextInput.module.scss';
 import css from './NumericInput.module.scss';
@@ -12,10 +12,11 @@ type NumericInputMods = IHasEditMode & {
     /**
      * Defines component size
      * @default '36'
-     * Size '48' is deprecated and will be removed in future release
      */
-    size?: ControlSize;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
+
+export interface NumericInputModsOverride {}
 
 function applyNumericInputMods(mods: NumericInputMods) {
     return [
@@ -28,21 +29,12 @@ function applyNumericInputMods(mods: NumericInputMods) {
 }
 
 /** Represents the properties of a NumericInput component. */
-export type NumericInputProps = uuiNumericInputProps & NumericInputMods;
+export type NumericInputProps = uuiNumericInputProps & Overwrite<NumericInputMods, NumericInputModsOverride>;
 
-export const NumericInput = withMods<uuiNumericInputProps, NumericInputMods>(
+export const NumericInput = withMods<uuiNumericInputProps, NumericInputProps>(
     uuiNumericInput,
     applyNumericInputMods,
     (props) => {
-        if (__DEV__) {
-            devLogger.warnAboutDeprecatedPropValue<NumericInputProps, 'size'>({
-                component: 'NumericInput',
-                propName: 'size',
-                propValue: '48',
-                propValueUseInstead: '42',
-                condition: () => props.size === '48',
-            });
-        }
         return {
             upIcon: systemIcons.foldingArrow,
             downIcon: systemIcons.foldingArrow,

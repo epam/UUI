@@ -50,8 +50,10 @@
     }
 
     .caption {
-        width: 100%;
-        padding: 6px 18px;
+        :global(.uui-caption) {
+            width: 100%;
+            padding: 6px 18px;
+        }
     }
 
     .active {

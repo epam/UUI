@@ -48,7 +48,7 @@ Array [
       tabIndex={-1}
     >
       <div
-        className="flexCell sortingPanelContainer"
+        className="flexCell sortingPanelContainer uui-dropdownMenu-body"
         style={
           Object {
             "alignSelf": undefined,
@@ -61,7 +61,7 @@ Array [
         }
       >
         <div
-          className="uui-flex-row root itemRoot uui-active container -clickable align-items-center"
+          className="uui-flex-row itemRoot uui-active container -clickable align-items-center"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="menuitem"
@@ -74,7 +74,7 @@ Array [
           tabIndex={0}
         >
           <button
-            className="uui-button-box uui-enabled container uui-icon_button uui-color-info root root icon iconBefore"
+            className="uui-button-box uui-enabled container uui-icon_button uui-color-primary root icon iconBefore"
             tabIndex={-1}
             type="button"
           >
@@ -94,7 +94,7 @@ Array [
           </div>
         </div>
         <div
-          className="uui-flex-row root itemRoot container -clickable align-items-center"
+          className="uui-flex-row itemRoot container -clickable align-items-center"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="menuitem"
@@ -107,7 +107,7 @@ Array [
           tabIndex={0}
         >
           <button
-            className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root root icon iconBefore"
+            className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root icon iconBefore"
             tabIndex={-1}
             type="button"
           >
