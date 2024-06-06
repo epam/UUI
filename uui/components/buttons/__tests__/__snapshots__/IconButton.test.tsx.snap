@@ -16,7 +16,7 @@ exports[`IconButton should be rendered correctly 1`] = `
 exports[`IconButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={true}
-  className="uui-button-box uui-disabled container uui-icon_button uui-color-info root"
+  className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root"
   tabIndex={-1}
   type="button"
 >

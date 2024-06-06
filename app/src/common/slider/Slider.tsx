@@ -43,14 +43,14 @@ export class Slider extends React.Component<SliderProps> {
                 <div className={ css.controls }>
                     <IconButton
                         rawProps={ { 'aria-label': 'Backward' } }
-                        color="info"
+                        color="primary"
                         isDisabled={ this.state.activeSlide === 0 }
                         icon={ ArrowPrev }
                         onClick={ this.handlePreviousClick }
                     />
                     <IconButton
                         rawProps={ { 'aria-label': 'Forward' } }
-                        color="info"
+                        color="primary"
                         isDisabled={ this.state.activeSlide === this.props.slides.length - 1 }
                         icon={ ArrowNext }
                         onClick={ this.handleNextClick }
