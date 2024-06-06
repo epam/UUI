@@ -4,7 +4,15 @@ import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import * as uuiComponents from '@epam/uui-components';
-import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TPreviewCellSize, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize,
+    TPreviewMatrix,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { TPaginatorPreview } from './_types/previewIds';
 
@@ -38,20 +46,26 @@ export class PaginatorDoc extends BaseDocsBlock {
             };
             const w330_h60: TPreviewCellSize = '330-60';
             const w250_h60: TPreviewCellSize = '250-60';
+
+            const sizeVariantsBase: TPreviewMatrix<uuiComponents.PaginatorProps> = {
+                isDisabled: { values: [false] },
+                size: { examples: '*' },
+            };
+
             docPreview.add({
                 id: TPaginatorPreview['Size Variants'],
-                matrix: {
-                    isDisabled: { values: [false] },
-                    size: { examples: '*' },
-                    totalPages: { values: [TEST_DATA.total5.totalPages, TEST_DATA.total10.totalPages] },
-                    value: {
-                        values: [...TEST_DATA.total5.valuesToTest, ...TEST_DATA.total10.valuesToTest],
-                        condition: ({ totalPages }, v) => {
-                            const allowedValues = totalPages === TEST_DATA.total5.totalPages ? TEST_DATA.total5.valuesToTest : TEST_DATA.total10.valuesToTest;
-                            return allowedValues.includes(v as number);
-                        },
+                matrix: [
+                    {
+                        ...sizeVariantsBase,
+                        totalPages: { values: [TEST_DATA.total10.totalPages] },
+                        value: { values: TEST_DATA.total10.valuesToTest },
                     },
-                },
+                    {
+                        ...sizeVariantsBase,
+                        totalPages: { values: [TEST_DATA.total5.totalPages] },
+                        value: { values: TEST_DATA.total5.valuesToTest },
+                    },
+                ],
                 cellSize: w330_h60,
             });
             docPreview.add({
