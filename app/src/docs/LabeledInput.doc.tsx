@@ -74,7 +74,7 @@ export class LabeledInputDoc extends BaseDocsBlock {
                 footnote: { values: [undefined, TEST_DATA.footNote] },
                 info: { values: [undefined, TEST_DATA.info] },
                 isInvalid: { values: [false, true] },
-                validationMessage: { values: [undefined, TEST_DATA.validationMsg], condition: (p, v) => p.isInvalid && v !== undefined },
+                validationMessage: { values: [TEST_DATA.validationMsg], condition: (p) => !!p.isInvalid },
                 isOptional: { values: [true], condition: (props) => { return (props.labelPosition as any) !== 'left' && !props.isRequired; } },
                 isRequired: { values: [false, true] },
             };
