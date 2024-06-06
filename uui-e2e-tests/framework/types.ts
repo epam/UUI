@@ -30,9 +30,11 @@ export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponent
     previewId: PreviewIdArr;
     theme?: TTheme[];
     skins?: TTheme[];
-    onlyChromium?: boolean,
     onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
     focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
+    onlyChromium?: true;
+    // Chromium-only property
+    forcePseudoState?: { state: 'hover', selector: string };
 };
 
 export type TMatrixFull<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = TMatrixMinimal<PreviewIdArr> & {
