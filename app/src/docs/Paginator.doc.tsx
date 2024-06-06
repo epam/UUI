@@ -57,13 +57,13 @@ export class PaginatorDoc extends BaseDocsBlock {
                 matrix: [
                     {
                         ...sizeVariantsBase,
-                        totalPages: { values: [TEST_DATA.total10.totalPages] },
-                        value: { values: TEST_DATA.total10.valuesToTest },
+                        totalPages: { values: [TEST_DATA.total5.totalPages] },
+                        value: { values: TEST_DATA.total5.valuesToTest },
                     },
                     {
                         ...sizeVariantsBase,
-                        totalPages: { values: [TEST_DATA.total5.totalPages] },
-                        value: { values: TEST_DATA.total5.valuesToTest },
+                        totalPages: { values: [TEST_DATA.total10.totalPages] },
+                        value: { values: TEST_DATA.total10.valuesToTest },
                     },
                 ],
                 cellSize: w330_h60,

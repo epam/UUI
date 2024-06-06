@@ -20,7 +20,6 @@ const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
                 await use(previewPage);
             } finally {
                 previewPage && await previewPage.close();
-                page && await page.close();
                 await context.close();
             }
         },
