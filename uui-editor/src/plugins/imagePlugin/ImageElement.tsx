@@ -2,6 +2,8 @@ import React from 'react';
 import {
     PlateElement,
     PlateElementProps,
+    setElements,
+    useEditorRef,
     Value,
     withHOC,
 } from '@udecode/plate-common';
@@ -30,6 +32,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
 }: ImageElementProps) => {
     const { children, nodeProps } = props;
 
+    const editor = useEditorRef();
     const focused = useFocused();
     const selected = useSelected();
     const readOnly = useReadOnly();
@@ -73,6 +76,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
                         { ...nodeProps }
                         onLoad={ (event) => {
                             setWidth((event.target as HTMLImageElement).width);
+                            setElements(editor, { width: (event.target as HTMLImageElement).width });
                         } }
                         className={ cx(
                             css.image,
