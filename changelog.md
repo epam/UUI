@@ -1,4 +1,4 @@
-# 5.x.x - xx.xx.2024
+# 5.8.0 - 06.06.2024
 
 **What's New**
 * [Breaking change]: removed previously deprecated components:
@@ -84,6 +84,7 @@
   * added semantic 'accent','critical' and 'white' colors
   * 'contrast' color is deprecated and will be removed in future versions. Please use 'white' color value instead.
 * [Button]: added 'white' color
+* [IconButton]: added semantic Primary, Accent and Critical colors. Colors info, success, error, warning is deprecated, use new one instead.
 
 
 **What's Fixed**
@@ -107,6 +108,7 @@
 * [StatusIndicator]: style tweaks according to the design
 * [Badge]: style tweaks according to the design
 * [Tag]: style tweaks according to the design
+* [Tooltip]: style tweaks according to the design
 * [DatePicker][RangeDatePicker]: style tweaks according to design
 * [Modals]: make border radius equal 6px for Loveship Light, Loveship Dark, Electric themes
 

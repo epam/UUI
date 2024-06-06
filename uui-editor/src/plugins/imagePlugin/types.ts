@@ -8,7 +8,7 @@ export type ModalPayload = string | File[];
 
 export interface TImageElement extends TElement {
     url: string;
-    width?: number;
+    width?: number | string;
     align?: PlateImgAlign;
     data?: FileUploadResponse;
     height?: number;
