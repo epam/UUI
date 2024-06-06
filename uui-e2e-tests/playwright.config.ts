@@ -7,7 +7,7 @@ import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables();
 const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
-const timeout = isCi ? 10000 : 20000;
+const timeout = isCi ? 10000 : 30000;
 export const timeoutForFixture = isCi ? 20000 : 50000;
 const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
