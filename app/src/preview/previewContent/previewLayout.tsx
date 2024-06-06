@@ -5,6 +5,7 @@ import { FlexCell, FlexRow, Spinner, Text, ErrorAlert } from '@epam/uui';
 import { calcLayoutCssFromCellSize } from './previewContentUtils';
 //
 import css from './previewLayout.module.scss';
+import { Page } from '../../common';
 
 interface IPreviewLayout {
     error: string | undefined;
@@ -60,17 +61,25 @@ export function PreviewLayout(props: IPreviewLayout) {
         );
     };
 
-    const ref = useRef();
-    const handleLayoutClick = (e: Event) => {
-        if (ref.current === e.target) {
+    const wrapperRef = useRef<HTMLDivElement>();
+    const layoutRef = useRef<HTMLDivElement>();
+    const handleLayoutClick = (e: React.MouseEvent<HTMLElement>) => {
+        if ([wrapperRef.current, layoutRef.current].includes(e.target as HTMLDivElement)) {
             props.onOpenConfig();
         }
     };
 
     return (
-        <FlexRow cx={ css.root } rawProps={ getPreviewRegionAttrs(isLoaded) } onClick={ handleLayoutClick } ref={ ref }>
-            { renderContent() }
-        </FlexRow>
+        <Page
+            renderHeader={ () => null }
+            rootCx={ css.root }
+            wrapperRef={ wrapperRef }
+            onClick={ handleLayoutClick }
+        >
+            <FlexRow cx={ css.layoutRoot } rawProps={ getPreviewRegionAttrs(isLoaded) } ref={ layoutRef }>
+                { renderContent() }
+            </FlexRow>
+        </Page>
     );
 }
 

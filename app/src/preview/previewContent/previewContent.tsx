@@ -8,7 +8,7 @@ import { ERRORS } from '../constants';
 import { buildRenderCaseArr, getConfigByComponentId } from './previewContentUtils';
 import { formatPreviewIdToString } from '../utils/previewLinkUtils';
 import { useUuiContext } from '@epam/uui-core';
-import { MatrixInfo } from './matrixSummary/matrixSummary';
+import { MatrixSummary } from './matrixSummary/matrixSummary';
 
 export function PreviewContent(props: { params: TPreviewContentParams }) {
     const { uuiModals } = useUuiContext();
@@ -58,7 +58,7 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
     const handleOpenConfig = () => {
         if (allRenderCases?.matrix.length > 0) {
             uuiModals
-                .show<string>((props) => <MatrixInfo { ...props } arr={ allRenderCases.matrix } totalUseCases={ allRenderCases?.props.length || 0 } />)
+                .show<string>((props) => <MatrixSummary { ...props } arr={ allRenderCases.matrix } totalUseCases={ allRenderCases?.props.length || 1 } />)
                 .catch(() => {});
         }
     };
