@@ -35,6 +35,8 @@ export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponent
     onlyChromium?: true;
     // Chromium-only property
     forcePseudoState?: { state: 'hover', selector: string };
+    // increases the default "expect" timeout
+    slow?: true;
 };
 
 export type TMatrixFull<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = TMatrixMinimal<PreviewIdArr> & {
