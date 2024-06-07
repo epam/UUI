@@ -40,7 +40,7 @@ const UPLOAD_BLOCKS = {
         type: IMAGE_TYPE,
         url: file.path!,
         data: file,
-        width: 'fit-content' as unknown as number, // intial image size before resize
+        width: 'fit-content',
         children: [{ text: '' }],
     }),
     iframe: (file: FileUploadResponse): TIframeElement => ({
