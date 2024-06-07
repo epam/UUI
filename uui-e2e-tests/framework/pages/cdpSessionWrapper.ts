@@ -2,7 +2,8 @@ import { CDPSession, Page } from '@playwright/test';
 import { TEngine } from '../types';
 
 /**
- * See https://chromedevtools.github.io/devtools-protocol/
+ * Wrapper around Chrome DevTools Protocol
+ * See also: https://chromedevtools.github.io/devtools-protocol/
  */
 export class CdpSessionWrapper {
     private cdpSession: CDPSession | undefined;
@@ -23,7 +24,7 @@ export class CdpSessionWrapper {
         }
     };
 
-    cssForcePseudoState = async (params: { state: 'hover', selector: string }) => {
+    cssForcePseudoState = async (params: { state: 'hover' | 'focus', selector: string }) => {
         const client = await this.getCdpSession();
         const { root } = await client.send('DOM.getDocument');
         const { nodeIds } = await client.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: params.selector });

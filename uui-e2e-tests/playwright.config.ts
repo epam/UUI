@@ -7,8 +7,10 @@ import { readUuiSpecificEnvVariables } from './scripts/envParamUtils';
 const { isCi, isDocker, UUI_TEST_PARAM_PROJECT } = readUuiSpecificEnvVariables();
 const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
-const timeout = isCi ? 10000 : 30000;
+const testTimeout = isCi ? 10000 : 30000;
 export const timeoutForFixture = isCi ? 20000 : 50000;
+// The "expect" timeout for slow tests. It should be less than "testTimeout".
+export const slowTestExpectTimeout = isCi ? 7000 : 15000;
 const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
 /**
@@ -35,8 +37,9 @@ const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectN
 export const stylePath = `${parentDir}framework/fixtures/screenshot.css`;
 
 export default defineConfig({
-    globalTimeout: 3_600_000, // = 1 hour (it should be sufficient to run all our tests)
-    timeout,
+    // = 1 hour (it should be sufficient to run all our tests)
+    globalTimeout: 3_600_000,
+    timeout: testTimeout,
     maxFailures,
     testMatch,
     fullyParallel: true,

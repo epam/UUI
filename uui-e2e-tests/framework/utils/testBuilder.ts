@@ -9,6 +9,11 @@ import { screenshotsDirAbsPath } from '../../playwright.config';
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrixFull[]> = new Map();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    skip<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>): TestBuilder {
+        return this;
+    }
+
     only<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>): TestBuilder {
         return this._add(cid, matrix, true);
     }
@@ -85,8 +90,8 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                         await assert();
                     }
                     async function assert() {
-                        const opts = await previewPage.getScreenshotOptions();
-                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts, ...(matrix.slow ? { timeout: 15000 } : {}) });
+                        const scrOpts = await previewPage.getScreenshotOptions(matrix.slow);
+                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...scrOpts });
                     }
                 });
             });

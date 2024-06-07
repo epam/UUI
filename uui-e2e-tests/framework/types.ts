@@ -33,8 +33,12 @@ export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponent
     onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
     focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
     onlyChromium?: true;
-    // Chromium-only property
-    forcePseudoState?: { state: 'hover', selector: string };
+    // Chromium-only! It uses Chrome DevToolsProtocol to set certain pseudo states to all elements matching given CSS selector.
+    forcePseudoState?: {
+        state: 'hover' | 'focus',
+        // Valid CSS selector string. See also: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors
+        selector: string
+    };
     // increases the default "expect" timeout
     slow?: true;
 };
