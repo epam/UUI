@@ -16,11 +16,11 @@ export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
 }
 
 function getItemParents<TItem extends TreeListItem>(allItems: TItem[], itemId: string): string[] {
-    const { parentId } = allItems.find((i) => i.id === itemId);
+    const item = allItems.find((i) => i.id === itemId);
     const parents = [];
-    if (parentId) {
-        parents.push(parentId);
-        const otherParents = getItemParents(allItems, parentId);
+    if (item?.parentId) {
+        parents.push(item.parentId);
+        const otherParents = getItemParents(allItems, item.parentId);
         parents.push(...otherParents);
     }
     return parents;
