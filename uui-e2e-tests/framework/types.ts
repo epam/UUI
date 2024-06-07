@@ -34,11 +34,7 @@ export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponent
     focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
     onlyChromium?: true;
     // Chromium-only! It uses Chrome DevToolsProtocol to set certain pseudo states to all elements matching given CSS selector.
-    forcePseudoState?: {
-        state: 'hover' | 'focus',
-        // Valid CSS selector string. See also: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors
-        selector: string
-    };
+    forcePseudoState?: TCdpPseudoStateParams;
     // increases the default "expect" timeout
     slow?: true;
 };
@@ -48,3 +44,9 @@ export type TMatrixFull<PreviewIdArr extends TObjValues<TPreviewIdByComponentId>
 };
 
 export type TKnownCompId = keyof TPreviewIdByComponentId;
+
+export type TCdpPseudoStateParams = {
+    state: 'hover' | 'focus' | 'active' | 'focus-visible';
+    // Valid CSS selector string. See also: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors
+    selector: string;
+};

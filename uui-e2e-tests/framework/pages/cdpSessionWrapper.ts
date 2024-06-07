@@ -1,5 +1,5 @@
 import { CDPSession, Page } from '@playwright/test';
-import { TEngine } from '../types';
+import { TCdpPseudoStateParams, TEngine } from '../types';
 
 /**
  * Wrapper around Chrome DevTools Protocol
@@ -24,7 +24,7 @@ export class CdpSessionWrapper {
         }
     };
 
-    cssForcePseudoState = async (params: { state: 'hover' | 'focus', selector: string }) => {
+    cssForcePseudoState = async (params: TCdpPseudoStateParams) => {
         const client = await this.getCdpSession();
         const { root } = await client.send('DOM.getDocument');
         const { nodeIds } = await client.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: params.selector });
