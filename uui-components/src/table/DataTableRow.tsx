@@ -16,6 +16,11 @@ const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
 } as const;
 
+interface RowDndData<TItem, TId> {
+    userData: any;
+    row: DataTableRowProps<TItem, TId>;
+}
+
 function compareProps(props: any, nextProps: any) {
     const isDeepEqual = isEqual(props, nextProps);
 
@@ -118,8 +123,8 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
 
     const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
-    const getRowDropPosition = useCallback((params: AcceptDropParams<any, any>) => {
-        const positionOptions = props.dnd?.canAcceptDrop(params) ?? noDropOptions;
+    const getRowDropPosition = useCallback((params: AcceptDropParams<RowDndData<TItem, TId>, RowDndData<TItem, TId>>) => {
+        const positionOptions = props.dnd?.canAcceptDrop({ ...params, srcData: params.srcData.userData, dstData: params.dstData.userData }) ?? noDropOptions;
 
         // Y Offset of the middle of drag ghost, relative to the destination top.
         const offset = params.offsetTop - params.srcOffsetTop + params.srcHeight / 2;
@@ -130,8 +135,8 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             return null;
         }
 
-        // const depthDelta = Math.round(params.mouseDx / 32);
-        let depth = props.depth; // + depthDelta;
+        const depthDelta = Math.round(params.mouseDx / 32);
+        let depth = params.srcData.row.depth + depthDelta;
 
         const maxDepth = props.depth + 1;
         const minDepth = 0; // Math.max(0, props.depth - );
@@ -145,9 +150,11 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
 
     if (props.dnd) {
         dndProps = {
-            ...props.dnd,
+            srcData: props.dnd.srcData && { userData: props.dnd.srcData, row: props } as RowDndData<TItem, TId>,
+            dstData: props.dnd.dstData && { userData: props.dnd.dstData, row: props } as RowDndData<TItem, TId>,
             canAcceptDrop: null,
             getDropPosition: getRowDropPosition,
+            onDrop: (params) => props.dnd.onDrop?.({ ...params, srcData: params.srcData.userData, dstData: params.dstData.userData }),
         };
     }
 
