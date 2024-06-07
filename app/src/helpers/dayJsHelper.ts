@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-imports */
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween.js';
+import customParseFormat from 'dayjs/plugin/customParseFormat.js';
 
 export type { Dayjs } from 'dayjs';
 
@@ -12,6 +13,7 @@ function TREE_SHAKEABLE_INIT() {
         get dayjs() {
             if (!extended) {
                 dayjs.extend(isBetween);
+                dayjs.extend(customParseFormat);
                 extended = true;
             }
             return dayjs;
