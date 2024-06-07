@@ -1,4 +1,4 @@
-@mixin dnd-ghost-shadow() { box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05); }
+@mixin dnd-ghost-shadow() { box-shadow: 0 0 0 1px rgba(29, 30, 38, 0.05), 0 3px 13px 0 rgba(29, 30, 38, 0.05); }
 
 @mixin focus-visible-effect($offset: 2px, $radius: 2px) {
     outline: 2px solid var(--uui-outline-focus);

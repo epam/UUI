@@ -11,7 +11,7 @@
     align-self: stretch;
     visibility: hidden;
 
-    :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover & {
+    :global(.-draggable.uui-table-row):not(:global(.uui-dnd-in-progress)):hover & {
         visibility: visible;
     }
 }

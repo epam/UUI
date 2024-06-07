@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import isEqual from 'react-fast-compare';
 import {
     DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
@@ -8,6 +8,7 @@ import {
     ILens,
     DataRowDropPosition,
     DropPositionOptions,
+    uuiDndState,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 
@@ -35,8 +36,9 @@ function compareProps(props: any, nextProps: any) {
     //     } else {
     //         shallowDiffKeys.push({ path: prefix, left: left, right: right });
     //     }
-    // }
-    // compareDeep(this.props, nextProps);
+    // };
+    // compareDeep(props, nextProps);
+
     return isDeepEqual;
 }
 
@@ -60,40 +62,49 @@ const noDropOptions: DropPositionOptions = { top: false, bottom: false };
 const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
     const rowLens = Lens.onEditable(props as IEditable<TItem>);
 
-    const renderRow = (params: Partial<DndActorRenderParams<DataRowDropPosition>>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
+    const renderRow = (
+        dndParams?: DndActorRenderParams<DataRowDropPosition>,
+        clickHandler?: (props: DataRowProps<TItem, TId>) => void,
+    ) => {
         const style: React.CSSProperties = {};
         let rowProps = props;
+        let overlays = null;
 
-        if (params.isDragGhost) {
-            const indent = params.depth + 1;
-            const verticalInset = '3px';
-            const leftInset = (18 + indent * 24) + 'px';
-            style.clipPath = `inset(${verticalInset} 0 ${verticalInset} ${leftInset}`;
-            rowProps = {
-                ...rowProps,
-                depth: params.depth,
-                indent,
-            };
+        if (dndParams != null) {
+            if (dndParams.isDragGhost) {
+                const indent = dndParams.depth + 1;
+                const verticalInset = '-3px';
+                const leftInset = (18 + indent * 24) + 'px';
+                style.clipPath = `inset(${verticalInset} 0 ${verticalInset} ${leftInset}`;
+                rowProps = {
+                    ...rowProps,
+                    depth: dndParams.depth,
+                    indent,
+                };
+            } else {
+                overlays = props.renderDropMarkers?.(dndParams);
+            }
         }
 
         return (
             <DataTableRowContainer
                 columns={ props.columns }
-                ref={ params.ref || ref }
+                ref={ dndParams.ref || ref }
                 renderCell={ (column, idx) => renderCell(rowProps, rowLens, column, idx) }
                 onClick={ clickHandler && (() => clickHandler(props)) }
                 rawProps={ {
                     ...props.rawProps,
-                    ...params.eventHandlers,
+                    ...dndParams.eventHandlers,
                     role: 'row',
                     'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
                     ...(props.isSelectable && { 'aria-selected': props.isSelected }),
                     style,
                 } }
                 cx={ [
-                    params.classNames,
+                    dndParams.classNames,
                     props.isSelected && uuiMod.selected,
-                    params.isDraggable && uuiMarkers.draggable,
+                    dndParams.isDraggable && uuiMarkers.draggable,
+                    dndParams.isDndInProgress && uuiDndState.dndInProgress,
                     props.isInvalid && uuiMod.invalid,
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
@@ -109,17 +120,21 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
 
     const getRowDropPosition = useCallback((params: AcceptDropParams<any, any>) => {
         const positionOptions = props.dnd?.canAcceptDrop(params) ?? noDropOptions;
-        const position: DropPosition = params.offsetTop > 18 ? 'bottom' : 'top';
+
+        // Y Offset of the middle of drag ghost, relative to the destination top.
+        const offset = params.offsetTop - params.srcOffsetTop + params.srcHeight / 2;
+
+        const position: DropPosition = offset > (params.targetHeight / 2) ? 'bottom' : 'top';
 
         if (!positionOptions[position]) {
             return null;
         }
 
-        const depthDelta = 0; // Math.round(params.mouseDx / 32);
-        let depth = props.depth + depthDelta;
+        // const depthDelta = Math.round(params.mouseDx / 32);
+        let depth = props.depth; // + depthDelta;
 
         const maxDepth = props.depth + 1;
-        const minDepth = Math.max(0, props.depth - 2);
+        const minDepth = 0; // Math.max(0, props.depth - );
         depth = Math.min(depth, maxDepth);
         depth = Math.max(minDepth, depth);
 
@@ -140,11 +155,11 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         return (
             <DndActor<any, any, DataRowDropPosition>
                 { ...dndProps }
-                render={ (params) => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) }
+                render={ (params) => renderRow(params, clickHandler) }
             />
         );
     } else {
-        return renderRow({}, clickHandler);
+        return renderRow(null, clickHandler);
     }
 });
 

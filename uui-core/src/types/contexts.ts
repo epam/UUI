@@ -1,7 +1,6 @@
 import { AnalyticsEvent, Link } from './objects';
 import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
-import { DndContextState, TMouseCoords } from '../services/dnd/DndContext';
 import { Lock } from '../services/LockContext';
 import { IHistory4 } from '../services/routing/HistoryAdaptedRouter';
 import { NotificationOperation } from '../services/NotificationContext';
@@ -102,12 +101,35 @@ export interface IModalContext extends IBaseContext {
     getOperations(): ModalOperation[];
 }
 
+export interface DndContextState {
+    isDragging: boolean;
+    srcData?: any;
+    srcOffsetTop?: number;
+    srcOffsetLeft?: number;
+    srcWidth?: number;
+    srcHeight?: number;
+    position?: any;
+    renderGhost?(position: any): React.ReactNode;
+}
+
+export type TMouseCoords = {
+    mousePageX: number,
+    mousePageY: number,
+    mouseDx: number,
+    mouseDy: number,
+    mouseDxSmooth: number,
+    mouseDySmooth: number,
+    mouseDownPageX: number,
+    mouseDownPageY: number,
+    buttons: number,
+};
+
 export interface IDndContext extends IBaseContext<DndContextState> {
     startDrag(node: Node, data: any, renderGhost: (position: any) => React.ReactNode): void;
     setPosition(position: any): void;
     endDrag(): void;
     /** Indicates that drag in progress */
-    isDragging: boolean;
+    isDragging(): boolean;
     dragData?: any;
     getMouseCoords: () => TMouseCoords
 }
