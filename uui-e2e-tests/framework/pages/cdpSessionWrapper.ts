@@ -24,7 +24,13 @@ export class CdpSessionWrapper {
         }
     };
 
-    cssForcePseudoState = async (params: TCdpPseudoStateParams) => {
+    cssForcePseudoState = async (params: TCdpPseudoStateParams[]) => {
+        for (const p of params) {
+            await this.applyCssForcePseudoState(p);
+        }
+    };
+
+    private async applyCssForcePseudoState(params: TCdpPseudoStateParams) {
         const client = await this.getCdpSession();
         const { root } = await client.send('DOM.getDocument');
         const { nodeIds } = await client.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: params.selector });
@@ -37,7 +43,7 @@ export class CdpSessionWrapper {
         for (const n of nodeIds) {
             await apply(n, [params.state]);
         }
-    };
+    }
 
     /**
      * Close the session. Any changes will be reset.

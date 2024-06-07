@@ -16,8 +16,6 @@ const {
     multiSwitch, paginator, mainMenu, notificationCard, tooltip, dropdownContainer,
 } = TComponentId;
 
-const { values } = Object;
-
 const builder = new TestBuilder();
 // Skins tested: all
 builder
@@ -27,7 +25,22 @@ builder
 builder
     .add(alert, { previewId: values(TAlertPreview), skins: SKINS.promo_loveship })
     .add(badge, { previewId: values(TBadgePreview), skins: SKINS.promo_loveship })
-    .add(button, { previewId: values(TButtonPreview), skins: SKINS.promo_loveship })
+    .add(button, {
+        previewId: values(TButtonPreview, { exclude: [TButtonPreview['Pseudo State Active'], TButtonPreview['Pseudo State Hover']] }),
+        skins: SKINS.promo_loveship,
+    })
+    .add(button, {
+        onlyChromium: true,
+        previewId: [TButtonPreview['Pseudo State Active']],
+        skins: SKINS.promo_loveship,
+        forcePseudoState: [{ state: 'active', selector: '[data-testid="active"]' }],
+    })
+    .add(button, {
+        onlyChromium: true,
+        previewId: [TButtonPreview['Pseudo State Hover']],
+        skins: SKINS.promo_loveship,
+        forcePseudoState: [{ state: 'hover', selector: '[data-testid="hover"]' }],
+    })
     .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
     .add(dropdownContainer, { previewId: values(TDropdownContainerPreview), skins: SKINS.promo_loveship })
     .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
@@ -65,3 +78,11 @@ builder
     .add(paginator, { previewId: values(TPaginatorPreview) });
 
 builder.buildTests();
+
+function values<Obj extends object, ObjValue extends Obj[keyof Obj]>(o: Obj, opts?: { exclude: ObjValue[] }): ObjValue[] {
+    const arr = Object.values(o);
+    if (opts?.exclude) {
+        return arr.filter((v) => opts.exclude.indexOf(v) === -1);
+    }
+    return arr;
+}

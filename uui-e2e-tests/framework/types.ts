@@ -34,7 +34,7 @@ export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponent
     focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
     onlyChromium?: true;
     // Chromium-only! It uses Chrome DevToolsProtocol to set certain pseudo states to all elements matching given CSS selector.
-    forcePseudoState?: TCdpPseudoStateParams;
+    forcePseudoState?: TCdpPseudoStateParams[];
     // increases the default "expect" timeout
     slow?: true;
 };
