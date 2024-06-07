@@ -4,5 +4,7 @@
     "target": "ES2021",
     "strictNullChecks": true,
     "noEmit": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node"
   }
 }

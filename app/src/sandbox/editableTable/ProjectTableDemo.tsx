@@ -184,7 +184,7 @@ export function ProjectTableDemo() {
         setTableState((currentTableState) => {
             return {
                 ...currentTableState,
-                folded: position === 'inside'
+                folded: (position as DropPosition) === 'inside'
                     ? { ...currentTableState.folded, [`${task.parentId}`]: false }
                     : currentTableState.folded,
                 selectedId: task.id,
