@@ -1,9 +1,10 @@
 import {
-    createInsertDataPlugin,
     select,
     findEventRange,
     PlatePlugin,
+    createPluginFactory,
 } from '@udecode/plate-common';
+import { UPLOAD_PLUGIN_KEY } from './constants';
 import {
     UploadFileOptions,
     createFileUploader,
@@ -18,8 +19,9 @@ const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
     return false;
 };
 
-export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin =>
-    createInsertDataPlugin({
+export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin => {
+    const createUploadPlugin = createPluginFactory({
+        key: UPLOAD_PLUGIN_KEY,
         options: { uploadFiles: createFileUploader(uploadOptions) },
         handlers: {
             onDrop: (editor, plugin) => {
@@ -53,3 +55,6 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin
             },
         },
     });
+
+    return createUploadPlugin();
+};

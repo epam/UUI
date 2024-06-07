@@ -19,8 +19,6 @@ import { useFocusEvents } from './plugins/eventEditorPlugin';
 import { isEditorValueEmpty } from './helpers';
 import { getMigratedPlateValue, isPlateValue } from './migrations';
 
-const disabledPlugins = { insertData: true };
-
 export interface PlateEditorProps
     extends IEditable<EditorValue>,
     IHasCX,
@@ -150,7 +148,6 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
             plugins={ plugins }
             onChange={ onChange }
             editorRef={ editorRef }
-            disableCorePlugins={ disabledPlugins }
         >
             <div
                 ref={ composedRef }
