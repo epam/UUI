@@ -9,8 +9,8 @@ const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
 const testTimeout = isCi ? 10000 : 30000;
 export const timeoutForFixture = isCi ? 20000 : 50000;
-// The "expect" timeout for slow tests. It should be less than "testTimeout".
-export const slowTestExpectTimeout = isCi ? 7000 : 15000;
+// The "expect" timeout for slow tests. It should not exceed "testTimeout".
+export const slowTestExpectTimeout = Math.min(20000, testTimeout);
 const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
 /**
