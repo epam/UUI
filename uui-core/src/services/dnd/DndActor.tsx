@@ -4,7 +4,7 @@ import {
     DefaultDropPositionInfo,
 } from '../../types/dnd';
 
-import { UuiContexts } from '../../types/contexts';
+import { DndContextState, UuiContexts } from '../../types/contexts';
 
 import {
     isEventTargetInsideDraggable,
@@ -14,7 +14,6 @@ import {
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../UuiContext';
-import { DndContextState } from './DndContext';
 
 export interface DndActorProps<TSrcData, TDstData, TPositionInfo = DefaultDropPositionInfo> extends IDndActor<TSrcData, TDstData, TPositionInfo> {
     /** Render callback for DragActor content */
@@ -30,6 +29,8 @@ interface DndActorState<TPosition> {
 
     // Currently dragging this Actor, as drag source
     isDragging: boolean;
+
+    dndState?: DndContextState;
 
     isMouseOver: boolean;
 
@@ -77,9 +78,12 @@ function TREE_SHAKEABLE_INIT() {
             this.context.uuiDnD.unsubscribe(this.contextUpdateHandler);
         }
 
-        contextUpdateHandler = (dndContextState: DndContextState) => {
-            if (this.state.isDndInProgress !== dndContextState.isDragging) {
-                this.setState({ isDndInProgress: dndContextState.isDragging });
+        contextUpdateHandler = (dndState: DndContextState) => {
+            if (this.state.isDndInProgress !== dndState.isDragging) {
+                this.setState({
+                    isDndInProgress: dndState.isDragging,
+                    dndState,
+                });
             }
         };
 
@@ -135,10 +139,14 @@ function TREE_SHAKEABLE_INIT() {
             const mouseCoords = this.context.uuiDnD.getMouseCoords();
 
             return {
-                srcData: this.context.uuiDnD.dragData,
+                srcData: this.state.dndState.srcData,
                 dstData: this.props.dstData,
                 offsetLeft: e.clientX - left,
                 offsetTop: e.clientY - top,
+                srcOffsetLeft: this.state.dndState.srcOffsetLeft,
+                srcOffsetTop: this.state.dndState.srcOffsetTop,
+                srcWidth: this.state.dndState.srcWidth,
+                srcHeight: this.state.dndState.srcHeight,
                 targetWidth: width,
                 targetHeight: height,
                 mouseDx: mouseCoords.mousePageX - mouseCoords.mouseDownPageX,
@@ -220,7 +228,7 @@ function TREE_SHAKEABLE_INIT() {
             const params: DndActorRenderParams<TPositionInfo> = {
                 isDraggable: !!this.props.srcData,
                 isDraggedOut: this.state.isDragging,
-                isDraggedOver: this.context.uuiDnD?.isDragging && this.state.isMouseOver,
+                isDraggedOver: this.context.uuiDnD?.isDragging() && this.state.isMouseOver,
                 isDropAccepted: this.state.isMouseOver && !!this.state.positionInfo,
                 isDragGhost: false,
                 isDndInProgress: this.state.isDndInProgress,
@@ -264,13 +272,13 @@ function TREE_SHAKEABLE_INIT() {
 
             if (this.props.canAcceptDrop || this.props.getDropPosition) {
                 const pointerLeaveHandler = () => {
-                    if (this.context.uuiDnD.isDragging) {
+                    if (this.context.uuiDnD.isDragging()) {
                         this.setState((s) => ({ ...s, isMouseOver: false, positionInfo: null }));
                     }
                 };
 
                 const pointerMoveHandler = (e: React.PointerEvent<any>) => {
-                    if (this.context.uuiDnD.isDragging) {
+                    if (this.context.uuiDnD.isDragging()) {
                         if (isEventTargetInsideDraggable(e, e.currentTarget)) {
                             return pointerLeaveHandler();
                         }
@@ -301,7 +309,7 @@ function TREE_SHAKEABLE_INIT() {
             }
 
             params.eventHandlers.onPointerUp = (e) => {
-                if (this.context.uuiDnD.isDragging) {
+                if (this.context.uuiDnD.isDragging()) {
                     if (isEventTargetInsideDraggable(e, e.currentTarget)) {
                         return;
                     }

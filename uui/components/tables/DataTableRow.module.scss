@@ -6,7 +6,7 @@
         --uui-dt-row-border-width: 1px;
     }
 
-    &:global(.-clickable) {
+    &:global(.-clickable):not(:global(.uui-dnd-in-progress)) {
         cursor: pointer;
 
         &:hover {
@@ -32,7 +32,6 @@
 
     &:global(.uui-drag-ghost) {
         @include dnd-ghost-shadow();
-        clip-path: inset(3px 0 3px 36px);
     }
 
     &:global(.uui-focus) {

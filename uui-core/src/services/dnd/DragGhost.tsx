@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { UuiContexts } from '../../types/contexts';
-import { DndContextState } from './DndContext';
+import { DndContextState, UuiContexts } from '../../types/contexts';
 import { LayoutLayer } from '../LayoutContext';
 import { UuiContext } from '../UuiContext';
 
@@ -50,8 +49,8 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
 
     getGhostCoords(pointerX: number, pointerY: number) {
         return {
-            left: pointerX + this.state.ghostOffsetX,
-            top: pointerY + this.state.ghostOffsetY,
+            left: pointerX - this.state.srcOffsetLeft,
+            top: pointerY - this.state.srcOffsetTop,
         };
     }
 
@@ -64,9 +63,9 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
             <div
                 style={ {
                     position: 'fixed',
-                    width: this.state.ghostWidth,
-                    left: 0, // this.state.pointerX + this.state.ghostOffsetX,
-                    top: this.state.pointerY + this.state.ghostOffsetY,
+                    width: this.state.srcWidth,
+                    left: 0, // this.state.pointerX - this.state.srcOffsetLeft,
+                    top: this.state.pointerY - this.state.srcOffsetTop,
                     pointerEvents: 'none',
                     zIndex: this.layer.zIndex,
                 } }

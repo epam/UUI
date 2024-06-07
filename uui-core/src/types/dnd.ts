@@ -24,6 +24,18 @@ export interface AcceptDropParams<TSrcData, TDstData> {
     /** Y offset of mouse pointer relative to the target's top */
     offsetTop: number;
 
+    /** X offset of mouse pointer relative to source's left. Captured on drag start */
+    srcOffsetLeft: number;
+
+    /** Y offset of mouse pointer relative to source's top. Captured on drag start */
+    srcOffsetTop: number;
+
+    /** Source width */
+    srcWidth: number;
+
+    /** Source height */
+    srcHeight: number;
+
     /** Target width */
     targetWidth: number;
 
