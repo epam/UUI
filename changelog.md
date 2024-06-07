@@ -31,7 +31,7 @@
     * [MultiSwitch]: removed 'gray60' color value. Use 'gray' instead.
     * [NotificationCard]: removed 'gray60' color, use 'primary' instead;
     * [Tooltip]: removed 'gray90' prop, use 'neutral' instead;
-* [uui-core]: helpers cleanup, removed following helpers: `LazyLoadedMap`, `browser`, `Debouncer`, `parseIconViewbox`, `parseStringToCSSProperties`, `getScreenSize` , `urlParser`, `batch`
+  * [uui-core]: helpers cleanup, removed following helpers: `LazyLoadedMap`, `browser`, `Debouncer`, `parseIconViewbox`, `parseStringToCSSProperties`, `getScreenSize` , `urlParser`, `batch`
 
 * [useTree]: useTree hook is added.
   * [Features]:
@@ -85,7 +85,6 @@
   * 'contrast' color is deprecated and will be removed in future versions. Please use 'white' color value instead.
 * [Button]: added 'white' color
 * [IconButton]: added semantic Primary, Accent and Critical colors. Colors info, success, error, warning is deprecated, use new one instead.
-
 
 **What's Fixed**
 * [Tooltip][Dropdown]: fixed recalculation of boundary area(when we shouldn't close body) after target position was changed in closeOnMouseLeave="boundary" mode
