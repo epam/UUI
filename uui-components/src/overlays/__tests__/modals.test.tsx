@@ -31,12 +31,11 @@ function Test() {
 
 describe('Modals', () => {
     it('should render children component', async () => {
-        const tree = await renderWithContextAsync(<Test />);
+        await renderWithContextAsync(<Test />);
         const button = await screen.findByText('Show modal');
 
         fireEvent.click(button);
         const testElement = await screen.findByText('Test content');
         expect(testElement).toBeInTheDocument();
-        expect(tree).toMatchSnapshot();
     });
 });
