@@ -89,7 +89,7 @@ export default defineConfig({
              * Threshold is an acceptable perceived color difference between two pixels
              * The default value 0.2 is not strict enough, so we are changing it to lower value.
              */
-            threshold: 0.1,
+            threshold: 0,
         },
     },
 });
