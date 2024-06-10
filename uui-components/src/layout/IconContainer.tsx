@@ -17,7 +17,7 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<Rea
     /** CSS style prop to put on the component */
     style?: React.CSSProperties;
     /** Icon size in pixels (both width and height, as icons are assumed to be square-shaped) */
-    size?: number;
+    size?: number | string;
 }
 
 /** Represents the properties of a IconContainer component. */

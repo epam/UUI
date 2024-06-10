@@ -1,4 +1,5 @@
 @use '../scss/loveship/font-faces';
+@use './theme_6px' as *;
 @use './tokens/_theme_loveship_light.scss' as tokens;
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
@@ -603,5 +604,6 @@
 }
 
 .uui-theme-loveship {
+    @include uui-6px-grid();
     @include theme-loveship();
 }

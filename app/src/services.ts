@@ -1,5 +1,8 @@
 import { CommonContexts } from '@epam/uui-core';
-import type { TApi } from './data';
-import { MutableRefObject } from 'react';
+import type { AppContext, TApi } from './data';
 
-export const svc: Partial<CommonContexts<TApi, { appTheme: MutableRefObject<string>, toggleTheme: (theme: string) => void }>> = {};
+export interface AppSettings {
+
+}
+
+export const svc: Partial<CommonContexts<TApi, AppContext>> = {};

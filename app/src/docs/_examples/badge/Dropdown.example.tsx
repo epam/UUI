@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, DropdownMenuButton, FlexRow, Badge, DropdownMenuBody } from '@epam/uui';
+import { Dropdown, DropdownContainer, DropdownMenuButton, FlexRow, Badge } from '@epam/uui';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import { DropdownBodyProps } from '@epam/uui-core';
 import css from './DropdownExample.module.scss';
@@ -18,7 +18,7 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownMenuBody { ...props }>
+            <DropdownContainer { ...props } width="auto">
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
@@ -30,7 +30,7 @@ export default function TypesExample() {
                         } }
                     />
                 ))}
-            </DropdownMenuBody>
+            </DropdownContainer>
         );
     };
 

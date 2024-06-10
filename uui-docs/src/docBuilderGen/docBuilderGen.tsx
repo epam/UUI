@@ -2,9 +2,9 @@ import { TSkin } from '../types';
 import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
-import { TTypeProp } from '../docsGen/sharedTypes';
+import { TOneOfItemType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
-import { IDocBuilderGenCtx, TDocConfig } from './docBuilderGenTypes';
+import { IDocBuilderGenCtx, TDocConfig, TPropEditorTypeOverride } from './docBuilderGenTypes';
 
 interface IDocBuilderGenParams {
     config: TDocConfig,
@@ -33,7 +33,8 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
         const docs = new DocBuilder<any>({ name, component });
         const props = type.details?.props;
         const unresolvedProps: TTypeProp[] = [];
-        props?.forEach((prop) => {
+        props?.forEach((propParam) => {
+            const prop = overrideProp(propParam, docBuilderGenCtx.propsOverride?.[propParam.name]);
             let nextProp = buildPropDetails({ prop, docs, skin: params.skin, docBuilderGenCtx });
             const isResolved = !!nextProp;
             if (!isResolved) {
@@ -69,4 +70,64 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
 
         return docs;
     }
+}
+
+function overrideProp(prop: TTypeProp, propOverride: TPropEditorTypeOverride[TTypeRef][string] | undefined): TTypeProp {
+    if (propOverride) {
+        if (prop.editor) {
+            const t = prop.editor.type;
+            const ot = propOverride.editor.type;
+            if (prop.editor.type === ot) {
+                let options = [];
+                if (propOverride.mode === 'add') {
+                    options.push(...prop.editor.options);
+                }
+                options.push(...propOverride.editor.options);
+                options = sortOptions(options);
+
+                const commentTags = propOverride.comment?.tags || {};
+                return {
+                    ...prop,
+                    comment: {
+                        ...prop.comment,
+                        tags: {
+                            ...prop.comment?.tags,
+                            ...commentTags,
+                        },
+                    },
+                    editor: {
+                        ...prop.editor,
+                        options,
+                    },
+                };
+            } else {
+                console.error(`Unable to override prop=${prop.name}. Reason: "editor.type" does not match (${t} !== ${ot})`);
+            }
+        } else {
+            console.error(`Unable to override prop=${prop.name}. Reason: "editor" property is absent`);
+        }
+    }
+    return prop;
+}
+
+// copied from uui-build/ts/tasks/docsGen/converters/converterUtils/propEditorUtils.ts
+function sortOptions(options: TOneOfItemType[]): TOneOfItemType[] {
+    const isNumeric = (opt: TOneOfItemType) => typeof opt === 'number';
+    const isStrNumeric = (opt: TOneOfItemType) => typeof opt === 'string' && !isNaN(+opt);
+    const isStrNumericOrNumeric = (opt: TOneOfItemType) => isNumeric(opt) || isStrNumeric(opt);
+    //
+    const sortedOptions = [...options];
+    sortedOptions.sort((a: any, b: any) => {
+        if (isNumeric(a) && isNumeric(b)) {
+            return a - b; // Asc. E.g.: 1, 2, 3
+        }
+        if (isStrNumeric(a) && isStrNumeric(b)) {
+            return +a - +b; // Asc. E.g.: '1', '2', '3'
+        }
+        if (isStrNumericOrNumeric(a) && isStrNumericOrNumeric(b)) {
+            return (typeof a).localeCompare(typeof b); // Numbers go before strings. E.g: 1, 2, 3, '1', '2', '3'
+        }
+        return +isStrNumericOrNumeric(b) - +isStrNumericOrNumeric(a); // str and strNumeric go first, everything else go last
+    });
+    return sortedOptions;
 }

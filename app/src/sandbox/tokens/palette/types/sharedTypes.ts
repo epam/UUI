@@ -6,7 +6,12 @@
  */
 //
 
-export type TFigmaThemeName = string;
+export enum TFigmaThemeName {
+    LOVESHIP_LIGHT = 'Loveship-Light',
+    LOVESHIP_DARK = 'Loveship-Dark',
+    PROMO = 'Promo',
+    ELECTRIC = 'Electric'
+}
 export type TVariableValue = unknown;
 
 export type TUuiCssVarName = `--${string}`;
@@ -47,6 +52,5 @@ export interface IThemeVar {
     },
 }
 export interface IUuiTokensCollection {
-    modes: Record<string, TFigmaThemeName>;
     exposedTokens: IThemeVar[]
 }

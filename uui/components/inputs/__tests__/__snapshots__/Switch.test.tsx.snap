@@ -2,7 +2,7 @@
 
 exports[`Switch should be rendered correctly 1`] = `
 <label
-  className="uui-switch container root size-18 uui-color-primary -clickable"
+  className="uui-switch container root uui-size-18 uui-color-primary -clickable"
 >
   <div
     className="uui-switch-body"
@@ -23,7 +23,7 @@ exports[`Switch should be rendered correctly 1`] = `
 
 exports[`Switch should be rendered correctly with maximum props 1`] = `
 <label
-  className="uui-switch container root size-18 uui-color-primary uui-disabled uui-readonly"
+  className="uui-switch container root uui-size-18 uui-color-primary uui-disabled uui-readonly"
 >
   <div
     className="uui-switch-body"
