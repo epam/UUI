@@ -23,6 +23,7 @@ import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnCon
 import { PalettePage } from './tokens/palette/palettePage';
 import { ReactQueryLocationsTable } from './reactQueryLocationsTable';
 import { ProjectTableDemo } from './editableTable';
+import { RtlExample } from './rtl/Rtl-example';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -46,6 +47,7 @@ export function SandboxPage() {
             { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
+            { id: 'rtl-example', name: 'Rtl-example', component: RtlExample },
         ],
         [],
     );
