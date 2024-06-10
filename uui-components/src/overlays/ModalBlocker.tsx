@@ -1,65 +1,61 @@
-import * as React from 'react';
+import React, { useContext, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 import css from './ModalBlocker.module.scss';
-import { ModalBlockerProps, UuiContext, UuiContexts, cx, uuiElement } from '@epam/uui-core';
+import { ModalBlockerProps, UuiContext, cx, uuiElement } from '@epam/uui-core';
 
-export class ModalBlocker extends React.Component<ModalBlockerProps> {
-    public static contextType = UuiContext;
-    public context: UuiContexts;
+export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>((props, ref) => {
+    const context = useContext(UuiContext);
 
-    private unsubscribeFromRouter:() => void | null = null;
-
-    componentDidMount() {
+    useEffect(() => {
+        let unsubscribeFromRouter: () => void | null = null;
         document.body.style.overflow = 'hidden';
-        !this.props.disableCloseByEsc && window.addEventListener('keydown', this.keydownHandler);
+        !props.disableCloseByEsc && window.addEventListener('keydown', keydownHandler);
 
-        if (!this.props.disableCloseOnRouterChange) {
-            this.unsubscribeFromRouter = this.context.uuiRouter.listen(() => {
-                this.urlChangeHandler();
+        if (!props.disableCloseOnRouterChange) {
+            unsubscribeFromRouter = context.uuiRouter.listen(() => {
+                urlChangeHandler();
             });
         }
-    }
 
-    componentWillUnmount() {
-        !this.props.disableCloseByEsc && window.removeEventListener('keydown', this.keydownHandler);
+        return () => {
+            !props.disableCloseByEsc && window.removeEventListener('keydown', keydownHandler);
 
-        if (!this.context.uuiModals.getOperations().length) {
-            document.body.style.overflow = 'visible';
-        }
+            if (!context.uuiModals.getOperations().length) {
+                document.body.style.overflow = 'visible';
+            }
 
-        if (this.unsubscribeFromRouter) {
-            this.unsubscribeFromRouter();
-        }
-    }
+            if (unsubscribeFromRouter) {
+                unsubscribeFromRouter();
+            }
+        };
+    }, []);
 
-    urlChangeHandler = () => {
-        !this.props.disableCloseOnRouterChange && this.context.uuiModals.closeAll();
+    const urlChangeHandler = () => {
+        !props.disableCloseOnRouterChange && context.uuiModals.closeAll();
     };
 
-    keydownHandler = (e: KeyboardEvent) => {
+    const keydownHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-            this.props.abort();
+            props.abort();
         }
     };
 
-    private handleBlockerClick = () => {
-        if (!this.props.disallowClickOutside) {
-            this.props.abort();
+    const handleBlockerClick = () => {
+        if (!props.disallowClickOutside) {
+            props.abort();
         }
     };
 
-    render() {
-        return (
-            <div className={ cx(css.container, this.props.cx) } style={ { zIndex: this.props.zIndex } } ref={ this.props.forwardedRef } { ...this.props.rawProps }>
-                <div
-                    className={ uuiElement.modalBlocker }
-                    onClick={ this.handleBlockerClick }
-                    aria-label="Click to close a modal"
-                />
-                <FocusLock autoFocus={ false } returnFocus disabled={ this.props.disableFocusLock }>
-                    {this.props.children}
-                </FocusLock>
-            </div>
-        );
-    }
-}
+    return (
+        <div className={ cx(css.container, props.cx) } style={ { zIndex: props.zIndex } } ref={ ref } { ...props.rawProps }>
+            <div
+                className={ uuiElement.modalBlocker }
+                onClick={ handleBlockerClick }
+                aria-label="Click to close a modal"
+            />
+            <FocusLock autoFocus={ false } returnFocus disabled={ props.disableFocusLock }>
+                {props.children}
+            </FocusLock>
+        </div>
+    );
+});

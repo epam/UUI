@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-e2e-tests",
-  "version": "5.7.1",
+  "version": "5.8.0",
   "description": "",
   "author": "EPAM",
   "license": "MIT",
@@ -22,14 +22,14 @@
   },
   "dependencies": {
     "@playwright/test": "1.44.1",
-    "typescript": "5.4.2",
-    "ts-node": "10.9.1",
-    "cross-spawn": "7.0.3",
     "@types/node": "*",
-    "tslib": "^2.6.2",
+    "address": "2.0.2",
     "cross-env": "^7.0.3",
+    "cross-spawn": "7.0.3",
     "dotenv": "^16",
-    "address": "2.0.2"
+    "ts-node": "10.9.1",
+    "tslib": "^2.6.2",
+    "typescript": "5.4.2"
   },
   "repository": {
     "type": "git",
