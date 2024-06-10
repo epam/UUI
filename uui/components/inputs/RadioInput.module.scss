@@ -1,32 +1,6 @@
 @use 'sass:math';
 @use '../../assets/styles/index.scss' as *;
 
-
-@mixin radio-sizes($size, $font-size, $bullet-size, $line-height) {
-    $vpadding: math.div(($line-height - $size), 2);
-
-    :global(.uui-radioinput) {
-        width: $size;
-        height: $size;
-        border-radius: math.div($size, 2);
-        margin: $vpadding 0;
-    }
-
-    :global(.uui-icon) {
-        margin: $vpadding 0;
-
-        svg {
-            height: $bullet-size;
-            width: $bullet-size;
-        }
-    }
-
-    :global(.uui-input-label) {
-        font-size: $font-size;
-        line-height: $line-height;
-    }
-}
-
 .root {
     --uui-radio_input-bg: var(--uui-control-bg);
     --uui-radio_input-bg-disabled: var(--uui-control-bg-disabled);
@@ -42,9 +16,68 @@
     --uui-radio_input-fill-checked-disabled: var(--uui-color-20);
     --uui-radio_input-error: var(--uui-error-50);
 
+    // font
     --uui-radio_input-font: var(--uui-font);
     --uui-radio_input-font-weight: 400;
+
+    // size
+    --uui-radio_input-size: var(--uui-size);
+    --uui-radio_input-bullet-size: var(--uui-size);
+    --uui-radio_input-border-radius: var(--uui-border-radius);
+    --uui-radio_input-border-width: var(--uui-border-width);
+    --uui-radio_input-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-radio_input-line-height: var(--uui-line-height);
+    --uui-radio_input-font-size: var(--uui-font-size);
     //
+    column-gap: var(--uui-radio_input-horizontal-gap);
+
+    :global(.uui-radioinput) {
+        height: var(--uui-radio_input-size);
+        width: var(--uui-radio_input-size);
+        border-radius: calc(var(--uui-radio_input-size) / 2);
+        background-color: var(--uui-radio_input-bg);
+        border: var(--uui-radio_input-border-width) solid var(--uui-radio_input-border);
+        position: relative;
+        align-self: baseline;
+        flex-shrink: 0;
+        box-sizing: border-box;
+
+        :global(input[type='radio']):focus-visible {
+            @include focus-visible-effect();
+            width: inherit;
+            height: inherit;
+            position: absolute;
+        }
+
+        &:global(.uui-checked) {
+            border-color: var(--uui-radio_input-border-checked);
+
+            :global(.uui-icon) {
+                fill: var(--uui-radio_input-fill-checked);
+                position: absolute;
+                top: calc(0px - var(--uui-radio_input-border-width));
+                left: calc(0px - var(--uui-radio_input-border-width));
+
+                svg {
+                    height: var(--uui-radio_input-bullet-size);
+                    width: var(--uui-radio_input-bullet-size);
+                }
+            }
+        }
+    }
+
+    :global(.uui-input-label) {
+        //@include typography-inline(); TODO: ???
+        color: var(--uui-radio_input-label);
+        font-family: var(--uui-radio_input-font);
+        font-weight: var(--uui-radio_input-font-weight);
+        font-size: var(--uui-radio_input-font-size);
+        line-height: var(--uui-radio_input-line-height);
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+    }
+
     &:hover, &:focus-within {
         :global(.uui-radioinput) {
             border-color: var(--uui-radio_input-border-hover);
@@ -69,40 +102,6 @@
                 }
             }
         }
-    }
-
-    :global(.uui-radioinput) {
-        background-color: var(--uui-radio_input-bg);
-        border: 1px solid var(--uui-radio_input-border);
-        align-self: baseline;
-        flex-shrink: 0;
-        box-sizing: border-box;
-
-        :global(input[type='radio']):focus-visible {
-            @include focus-visible-effect(2px, inherit);
-            width: inherit;
-            height: inherit;
-            position: absolute;
-        }
-
-        &:global(.uui-checked) {
-            border-color: var(--uui-radio_input-border-checked);
-
-            :global(.uui-icon) {
-                fill: var(--uui-radio_input-fill-checked);
-            }
-        }
-    }
-
-    :global(.uui-input-label) {
-        //@include typography-inline(); TODO: ???
-        color: var(--uui-radio_input-label);
-        flex-grow: 1;
-        font-family: var(--uui-radio_input-font);
-        font-weight: var(--uui-radio_input-font-weight);
-        margin-left: 12px;
-        display: flex;
-        align-items: center;
     }
 
     &:global(.uui-invalid) {
@@ -182,19 +181,6 @@
     &:global(.uui-disabled) {
         :global(.uui-input-label) {
             color: var(--uui-radio_input-label-disabled);
-        }
-    }
-
-    //Sizes
-    &.size-18 {
-        @include radio-sizes(18px, 14px, 18px, 18px);
-    }
-
-    &.size-12 {
-        @include radio-sizes(12px, 12px, 12px, 14px);
-
-        :global(.uui-input-label) {
-            margin-left: 6px;
         }
     }
 }

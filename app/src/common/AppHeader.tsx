@@ -6,18 +6,18 @@ import {
 import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import { useTheme } from '../helpers/useTheme';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import css from './AppHeader.module.scss';
-import { themeName, TMode, TTheme } from './docs/docsConstants';
+import { TMode } from './docs/docsConstants';
+import { useAppThemeContext } from '../helpers/appTheme';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
 type ContentDirection = 'rtl' | 'ltr';
 export function AppHeader() {
-    const { theme, toggleTheme } = useTheme();
+    const { theme, toggleTheme, themesById } = useAppThemeContext();
     const [direction, setDirection] = useState<ContentDirection>('ltr');
 
     const sendEvent = (link: string) => {
@@ -68,15 +68,19 @@ export function AppHeader() {
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
-                        <DropdownMenuButton caption="Loveship Light" icon={ theme === TTheme.loveship && DoneIcon } isActive={ theme === TTheme.loveship } iconPosition="right" onClick={ () => toggleTheme(TTheme.loveship) } />
-                        <DropdownMenuButton caption="Loveship Dark" icon={ theme === TTheme.loveship_dark && DoneIcon } isActive={ theme === TTheme.loveship_dark } iconPosition="right" onClick={ () => toggleTheme(TTheme.loveship_dark) } />
-                        <DropdownMenuButton caption="Electric" icon={ theme === TTheme.electric && DoneIcon } isActive={ theme === TTheme.electric } iconPosition="right" onClick={ () => toggleTheme(TTheme.electric) } />
-                        <DropdownMenuButton caption="Vanilla Thunder" icon={ theme === TTheme.vanilla_thunder && DoneIcon } isActive={ theme === TTheme.vanilla_thunder } iconPosition="right" onClick={ () => toggleTheme(TTheme.vanilla_thunder) } />
-                        <DropdownMenuButton caption="Promo" icon={ theme === TTheme.promo && DoneIcon } isActive={ theme === TTheme.promo } iconPosition="right" onClick={ () => toggleTheme(TTheme.promo) } />
+                        { Object.values(themesById).map(({ id, name }) => (
+                            <DropdownMenuButton
+                                caption={ name }
+                                icon={ theme === id && DoneIcon }
+                                isActive={ theme === id }
+                                iconPosition="right"
+                                onClick={ () => toggleTheme(id) }
+                            />
+                        )) }
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themeName[theme] } fill="none" size="36" isDropdown={ true } />
+                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" size="36" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
@@ -220,7 +224,7 @@ export function AppHeader() {
                         target="_blank"
                         href="https://forms.office.com/e/9iEvJUKdeM"
                     >
-                        <img height="60px" width="172.5px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
+                        <img width="172px" height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
                     </Anchor>
                 ),
             },

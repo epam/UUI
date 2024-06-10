@@ -9,7 +9,7 @@
     }
 
     :global(.uui-input) {
-        flex: 1 0 auto;
+        flex: 1 0 0;
         min-width: 0;
         border: 0;
         outline: none;
@@ -19,7 +19,7 @@
 
 
         &.single-input {
-            flex: 1 1 auto;
+            flex: 1 1 0;
         }
 
         &.cursor-text {
@@ -28,19 +28,19 @@
     }
 }
 
-.body {
+:global(.uui-picker-toggler-body) {
     display: flex;
     width: 100%;
     overflow: hidden;
     outline: none;
     align-items: center;
 
-    &.multiline {
+    &:global(.uui-multiline) {
         flex-wrap: wrap;
     }
 }
 
-.actions {
+:global(.uui-actions) {
     display: flex;
     flex-shrink: 0;
 }

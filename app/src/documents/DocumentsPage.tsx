@@ -7,13 +7,13 @@ import { svc } from '../services';
 import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
-import { TMode, TTheme } from '../common/docs/docsConstants';
+import { TMode } from '../common/docs/docsConstants';
 
 type DocsQuery = {
     id: string;
     mode?: TMode;
     isSkin?: boolean;
-    theme?: TTheme;
+    theme?: string;
     category?: string;
 };
 
@@ -32,13 +32,15 @@ async function loadApiReferenceStructure(): Promise<DocItem[]> {
     }, [root]);
 }
 
-function useItems(selectedId: string): { items: DocItem[], PageComponent: any } {
+function useItems(selectedId: string) {
     const [apiRefItems, setApiRefItems] = useState<DocItem[]>();
+
     useEffect(() => {
         loadApiReferenceStructure().then((res) => {
             setApiRefItems(res);
         });
     }, []);
+
     return useMemo(() => {
         if (apiRefItems) {
             const items = itemsStructure.concat(apiRefItems);
@@ -75,11 +77,6 @@ export function DocumentsPage() {
         return () => codesandboxService.clearFiles();
     }, []);
 
-    if (!itemsInfo?.PageComponent) {
-        return null;
-    }
-    const { items, PageComponent } = itemsInfo;
-
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
         if (row.parentId === 'components') {
             redirectTo({
@@ -93,13 +90,16 @@ export function DocumentsPage() {
             redirectTo({ id: row.id, category: row.parentId });
         }
     };
+
+    const PageComponent = itemsInfo?.PageComponent;
+
     return (
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
                 <Sidebar<DocItem>
                     value={ queryParamId }
                     onValueChange={ onChange }
-                    items={ items }
+                    items={ itemsInfo?.items }
                     getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
                     getItemLink={ (row) =>
                         !row.isFoldable && {
@@ -112,7 +112,7 @@ export function DocumentsPage() {
                             },
                         } }
                 />
-                <PageComponent />
+                { PageComponent && <PageComponent /> }
             </FlexRow>
         </Page>
     );

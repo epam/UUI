@@ -240,14 +240,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && css.multiline) }>
+            <div className={ cx('uui-picker-toggler-body', !props.isSingleLine && props.pickerMode !== 'single' && 'uui-multiline') }>
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
                 {renderInput()}
                 {props.iconPosition === 'right' && icon}
             </div>
             {!props.isDisabled && !props.isReadonly && (
-                <div className={ css.actions }>
+                <div className="uui-actions">
                     {!props.disableClear && (props.value || props.selectedRowsCount > 0) && (
                         <IconContainer
                             cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }

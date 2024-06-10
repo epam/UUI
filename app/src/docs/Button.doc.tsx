@@ -9,7 +9,7 @@ import {
     DocPreviewBuilder,
     getColorPickerComponent,
     TDocConfig,
-    TDocContext,
+    TDocContext, TPreviewMatrix,
     TSkin,
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
@@ -55,6 +55,7 @@ export class ButtonDoc extends BaseDocsBlock {
                 caption2Lines: (<>{'Test'}<br/>{'Test'}</>),
                 icon: 'action-account-fill.svg',
             };
+            type TMatrixLocal = TPreviewMatrix<uui.ButtonProps | promo.ButtonProps | loveship.ButtonProps>;
             docPreview.add({
                 id: TButtonPreview['One-line caption'],
                 matrix: {
@@ -90,18 +91,17 @@ export class ButtonDoc extends BaseDocsBlock {
                 },
                 cellSize: '110-70',
             });
-            docPreview.add({
-                id: TButtonPreview['Color Variants'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption1Line] },
-                    icon: { examples: [TEST_DATA.icon] },
-                    isDropdown: { values: [true] },
-                    color: { examples: '*' },
-                    fill: { examples: '*' },
-                    isDisabled: { examples: '*' },
-                },
-                cellSize: '100-50',
-            });
+            const colorVariantsMatrix: TMatrixLocal = {
+                caption: { values: [TEST_DATA.caption1Line] },
+                icon: { examples: [TEST_DATA.icon] },
+                isDropdown: { values: [true] },
+                color: { examples: '*' },
+                fill: { examples: '*' },
+                isDisabled: { examples: '*' },
+            };
+            docPreview.add(TButtonPreview['Color Variants'], colorVariantsMatrix, '100-50');
+            docPreview.add(TButtonPreview['Pseudo State Hover'], colorVariantsMatrix, '100-50');
+            docPreview.add(TButtonPreview['Pseudo State Active'], colorVariantsMatrix, '100-50');
         },
     };
 

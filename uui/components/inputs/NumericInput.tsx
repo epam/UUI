@@ -3,9 +3,9 @@ import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputPr
 import { EditMode, IHasEditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import textInputCss from './TextInput.module.scss';
+import { settings } from '../../settings';
 import css from './NumericInput.module.scss';
 
-const DEFAULT_SIZE = '36';
 const DEFAULT_MODE = EditMode.FORM;
 
 type NumericInputMods = IHasEditMode & {
@@ -22,8 +22,7 @@ function applyNumericInputMods(mods: NumericInputMods) {
     return [
         textInputCss.root,
         css.root,
-        css['size-' + (mods.size || DEFAULT_SIZE)],
-        textInputCss['size-' + (mods.size || DEFAULT_SIZE)],
+        `uui-size-${mods.size || settings.sizes.defaults.numericInput}`,
         textInputCss['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }

@@ -30,7 +30,7 @@ exports[`Badge should be rendered correctly with props 1`] = `
     Test badge
   </div>
   <div
-    className="root uui-count_indicator size-18"
+    className="root uui-count_indicator uui-size-18"
   >
     12
   </div>

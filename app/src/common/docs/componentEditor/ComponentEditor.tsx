@@ -8,9 +8,8 @@ import {
     PropDocUnknown, TDocContext, DocBuilder,
 } from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { getSkin, useDocBuilderGenCtx } from './utils';
+import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
-import { TTheme } from '../docsConstants';
 import {
     buildExamplesAndFindById,
     buildExamplesAndFindByValue,
@@ -23,7 +22,7 @@ import { useQuery } from '../../../helpers';
 import { buildPreviewRef } from '../../../preview/utils/previewLinkUtils';
 
 export function ComponentEditorWrapper(props: {
-    theme: TTheme,
+    theme: string,
     title: string;
     isSkin: boolean;
     config: TDocConfig;
@@ -38,8 +37,9 @@ export function ComponentEditorWrapper(props: {
     } = props;
     const componentId = useQuery('id');
     const skin = getSkin(theme, isSkin);
-    const docBuilderGenCtx = useDocBuilderGenCtx();
-
+    const docBuilderGenCtx = useDocBuilderGenCtx(
+        usePropEditorTypeOverride(theme, config?.bySkin[skin]?.type),
+    );
     const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
 
     React.useEffect(() => {
@@ -68,7 +68,7 @@ interface ComponentEditorProps {
     skin: TSkin;
     title: string;
     isSkin: boolean;
-    theme: TTheme;
+    theme: string;
     componentId: string;
     isLoaded: boolean;
     onRedirectBackToDocs: () => void;
