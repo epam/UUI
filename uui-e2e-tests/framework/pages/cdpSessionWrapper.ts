@@ -1,8 +1,9 @@
 import { CDPSession, Page } from '@playwright/test';
-import { TEngine } from '../types';
+import { TCdpPseudoStateParams, TEngine } from '../types';
 
 /**
- * See https://chromedevtools.github.io/devtools-protocol/
+ * Wrapper around Chrome DevTools Protocol
+ * See also: https://chromedevtools.github.io/devtools-protocol/
  */
 export class CdpSessionWrapper {
     private cdpSession: CDPSession | undefined;
@@ -23,7 +24,13 @@ export class CdpSessionWrapper {
         }
     };
 
-    cssForcePseudoState = async (params: { state: 'hover', selector: string }) => {
+    cssForcePseudoState = async (params: TCdpPseudoStateParams[]) => {
+        for (const p of params) {
+            await this.applyCssForcePseudoState(p);
+        }
+    };
+
+    private async applyCssForcePseudoState(params: TCdpPseudoStateParams) {
         const client = await this.getCdpSession();
         const { root } = await client.send('DOM.getDocument');
         const { nodeIds } = await client.send('DOM.querySelectorAll', { nodeId: root.nodeId, selector: params.selector });
@@ -36,7 +43,7 @@ export class CdpSessionWrapper {
         for (const n of nodeIds) {
             await apply(n, [params.state]);
         }
-    };
+    }
 
     /**
      * Close the session. Any changes will be reset.

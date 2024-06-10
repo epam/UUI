@@ -1,25 +1,24 @@
 import * as React from 'react';
-import { UuiContexts, UuiContext } from '@epam/uui-core';
+import { UuiContext } from '@epam/uui-core';
+import { useContext, useEffect, useState } from 'react';
 
-export class Modals extends React.Component {
-    static contextType = UuiContext;
-    context: UuiContexts;
-    constructor(props: {}) {
-        super(props);
-    }
+export function Modals() {
+    const context = useContext(UuiContext);
+    const [, setCount] = useState(0);
 
-    componentDidMount() {
-        if (!this.context) return;
-        this.context.uuiModals.subscribe(() => this.forceUpdate());
-    }
+    useEffect(() => {
+        if (!context) return;
 
-    public render() {
-        return (
-            <>
-                {this.context.uuiModals.getOperations().map((modalOperation) => {
-                    return React.createElement(modalOperation.component, modalOperation.props);
-                })}
-            </>
-        );
-    }
+        context.uuiModals.subscribe(() => {
+            setCount((state) => state + 1);
+        });
+    }, [context]);
+
+    return (
+        <>
+            {context.uuiModals.getOperations().map((modalOperation) => {
+                return React.createElement(modalOperation.component, modalOperation.props);
+            })}
+        </>
+    );
 }

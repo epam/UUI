@@ -32,13 +32,15 @@ async function loadApiReferenceStructure(): Promise<DocItem[]> {
     }, [root]);
 }
 
-function useItems(selectedId: string): { items: DocItem[], PageComponent: any } {
+function useItems(selectedId: string) {
     const [apiRefItems, setApiRefItems] = useState<DocItem[]>();
+
     useEffect(() => {
         loadApiReferenceStructure().then((res) => {
             setApiRefItems(res);
         });
     }, []);
+
     return useMemo(() => {
         if (apiRefItems) {
             const items = itemsStructure.concat(apiRefItems);
@@ -75,11 +77,6 @@ export function DocumentsPage() {
         return () => codesandboxService.clearFiles();
     }, []);
 
-    if (!itemsInfo?.PageComponent) {
-        return null;
-    }
-    const { items, PageComponent } = itemsInfo;
-
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
         if (row.parentId === 'components') {
             redirectTo({
@@ -93,13 +90,16 @@ export function DocumentsPage() {
             redirectTo({ id: row.id, category: row.parentId });
         }
     };
+
+    const PageComponent = itemsInfo?.PageComponent;
+
     return (
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
                 <Sidebar<DocItem>
                     value={ queryParamId }
                     onValueChange={ onChange }
-                    items={ items }
+                    items={ itemsInfo?.items }
                     getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
                     getItemLink={ (row) =>
                         !row.isFoldable && {
@@ -112,7 +112,7 @@ export function DocumentsPage() {
                             },
                         } }
                 />
-                <PageComponent />
+                { PageComponent && <PageComponent /> }
             </FlexRow>
         </Page>
     );
