@@ -101,6 +101,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         required: props.isRequired,
         'aria-invalid': props.isInvalid,
         'aria-disabled': props.isDisabled,
+        dir: props?.rawProps?.dir,
+        style: props?.rawProps?.style,
     });
 
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
