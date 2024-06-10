@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Modals should be rendered correctly 1`] = `
+exports[`Modals should be rendered correctly with many props 1`] = `
 <div
   className="container modalBlocker"
   style={
