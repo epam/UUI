@@ -240,7 +240,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && 'uui-multiline') }>
+            <div className={ cx('uui-picker-toggler-body', !props.isSingleLine && props.pickerMode !== 'single' && 'uui-multiline') }>
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
                 {renderInput()}

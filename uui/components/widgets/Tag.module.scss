@@ -42,9 +42,10 @@
     --uui-tag-min-height: var(--uui-size);
     --uui-tag-min-width: var(--uui-size);
     --uui-tag-border-width: var(--uui-border-width);
-    --uui-tag-outer-padding: var(--uui-x-outer-padding);
-    --uui-tag-inner-padding: var(--uui-x-inner-padding);
-    --uui-tag-caption-padding: 0 var(--uui-x-inner-padding);
+    --uui-tag-horizontal-padding: var(--uui-horizontal-padding);
+    --uui-tag-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-tag-caption-padding: 0 var(--uui-horizontal-gap);
+    --uui-tag-count_indicator-margin-end: var(--uui-horizontal-gap);
     --uui-tag-icon-height: var(--uui-icon-size);
     --uui-tag-line-height: var(--uui-line-height);
     --uui-tag-font-size: var(--uui-font-size);
@@ -52,16 +53,16 @@
     @include clickable-styles();
     min-height: var(--uui-tag-min-height);
     min-width: var(--uui-tag-min-width);
-    padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - (var(--uui-tag-border-width) * 2)) / 2) calc(var(--uui-tag-outer-padding) - var(--uui-tag-border-width)); // y
+    padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - (var(--uui-tag-border-width) * 2)) / 2) calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width)); // y
 
     :global(.uui-count_indicator):not(:last-child) {
-        margin-right: var(--uui-tag-inner-padding);
+        margin-right: var(--uui-tag-horizontal-gap);
     }
 
     :global(.uui-caption) {
         font-size: var(--uui-tag-font-size);
         line-height: var(--uui-tag-line-height);
-        padding: var(--uui-tag-caption-padding);
+        padding: 0 var(--uui-tag-horizontal-gap);
     }
 
     :global(.uui-icon) {
@@ -78,7 +79,7 @@
         border: var(--uui-tag-border-width) solid var(--uui-tag-border);
 
         :global(.uui-count_indicator):not(:last-child) {
-            margin-right: var(--uui-tag-inner-padding);
+            margin-inline-end: var(--uui-tag-count_indicator-margin-end);
         }
 
         &:global(.-clickable) {

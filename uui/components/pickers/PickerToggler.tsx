@@ -18,8 +18,8 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
-        'uui-picker-toggler',
         css.root,
+        'uui-picker-toggler',
         `uui-size-${mods.size || settings.sizes.defaults.pickerToggler}`,
         css['mode-' + (mods.mode || defaultMode)],
     ];
@@ -27,11 +27,11 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
 
 function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
-        const itemPropsWithSize = { ...itemProps, size: props.size };
+        const itemPropsWithSize = { ...itemProps, size: (props.size || settings.sizes.defaults.pickerToggler) as PickerTogglerMods['size'] };
         if (!!props.renderItem) {
             return props.renderItem(itemPropsWithSize);
         }
-        return <PickerTogglerTag { ...itemProps } />;
+        return <PickerTogglerTag { ...itemPropsWithSize } />;
     };
 
     return (

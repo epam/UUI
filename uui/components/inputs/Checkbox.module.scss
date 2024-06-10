@@ -26,10 +26,12 @@
     --uui-checkbox-min-width: var(--uui-size);
     --uui-checkbox-border-radius: var(--uui-border-radius);
     --uui-checkbox-border-width: var(--uui-border-width);
-    --uui-checkbox-inner-gap: var(--uui-x-inner-padding);
+    --uui-checkbox-horizontal-gap: var(--uui-horizontal-gap);
     --uui-checkbox-line-height: var(--uui-line-height);
     --uui-checkbox-font-size: var(--uui-font-size);
-    //Colors
+    //
+    column-gap: var(--uui-checkbox-horizontal-gap);
+
     :global(.uui-checkbox) {
         background-color: var(--uui-checkbox-bg);
         border: var(--uui-checkbox-border-width) solid var(--uui-checkbox-border);
@@ -64,7 +66,6 @@
         font-size: var(--uui-checkbox-font-size);
         font-weight: var(--uui-checkbox-font-weigth);
         line-height: var(--uui-checkbox-line-height);
-        margin-left: var(--uui-checkbox-inner-gap);
         flex-grow: 1;
     }
 

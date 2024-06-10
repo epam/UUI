@@ -18,7 +18,7 @@ export type RadioInputProps = RadioInputMods & uuiRadioInputProps;
 function applyRadioInputMods(mods: RadioInputProps) {
     return [
         css.root,
-        css['size-' + (mods.size || settings.sizes.defaults.radioInput)],
+        `uui-size-${mods.size || settings.sizes.defaults.radioInput}`,
         'uui-radio-input-container',
         'uui-color-primary',
     ];

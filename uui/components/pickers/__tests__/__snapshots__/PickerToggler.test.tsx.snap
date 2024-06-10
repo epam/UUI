@@ -2,7 +2,7 @@
 
 exports[`PickerToggler should render with maximum props 1`] = `
 <div
-  className="container uui-input-box -clickable uui-picker-toggler root uui-size-48 mode-form"
+  className="container uui-input-box -clickable root uui-picker-toggler uui-size-48 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -10,10 +10,10 @@ exports[`PickerToggler should render with maximum props 1`] = `
   tabIndex={0}
 >
   <div
-    className="body uui-multiline"
+    className="uui-picker-toggler-body uui-multiline"
   >
     <span
-      className="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+      className="uui-button-box uui-enabled root uui-size-42 uui-color-neutral uui-fill-solid uui-tag"
       tabIndex={-1}
     >
       <div
@@ -53,14 +53,14 @@ exports[`PickerToggler should render with maximum props 1`] = `
 
 exports[`PickerToggler should render with minimum props 1`] = `
 <div
-  className="container uui-input-box uui-picker-toggler root uui-size-36 mode-form"
+  className="container uui-input-box root uui-picker-toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
   tabIndex={0}
 >
   <div
-    className="body"
+    className="uui-picker-toggler-body"
   >
     <input
       aria-haspopup={true}
