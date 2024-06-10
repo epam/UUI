@@ -1,30 +1,12 @@
 import { TestBuilder, TComponentId, SKINS } from '../framework';
 import {
-    TBadgePreview,
-    TButtonPreview,
-    TLinkButtonPreview,
-    TAvatarStackPreview,
-    TTagPreview,
-    TSwitchPreview,
-    TCheckboxPreview,
-    TTextInputPreview,
-    TCountIndicatorPreview,
-    TAccordionPreview,
-    TAlertPreview,
-    TIconButtonPreview,
-    TTabButtonPreview,
-    TVerticalTabButtonPreview,
-    TPickerInputPreview,
-    TDatePickerPreview,
-    TRangeDatePickerPreview,
-    TTextAreaPreview,
-    TTextPreview,
-    TNumericInputPreview,
-    TRadioInputPreview,
-    TRadioGroupPreview,
-    TLabeledInputPreview,
-    TMultiSwitchPreview,
-    TPaginatorPreview, TMainMenuPreview, TNotificationCardPreview, TTooltipPreview, TDropdownContainerPreview,
+    TAccordionPreview, TAlertPreview, TAvatarStackPreview, TBadgePreview, TButtonPreview,
+    TCheckboxPreview, TCountIndicatorPreview, TDatePickerPreview, TDropdownContainerPreview,
+    TIconButtonPreview, TLabeledInputPreview, TLinkButtonPreview, TMainMenuPreview,
+    TMultiSwitchPreview, TNotificationCardPreview, TNumericInputPreview, TPaginatorPreview,
+    TPickerInputPreview, TRadioGroupPreview, TRadioInputPreview, TRangeDatePickerPreview,
+    TSwitchPreview, TTabButtonPreview, TTagPreview, TTextAreaPreview, TTextInputPreview,
+    TTextPreview, TTooltipPreview, TVerticalTabButtonPreview,
 } from '../framework/data/previewIds';
 
 const {
@@ -33,8 +15,6 @@ const {
     rangeDatePicker, textArea, text, numericInput, radioInput, radioGroup, labeledInput,
     multiSwitch, paginator, mainMenu, notificationCard, tooltip, dropdownContainer,
 } = TComponentId;
-
-const { values } = Object;
 
 const builder = new TestBuilder();
 // Skins tested: all
@@ -45,12 +25,29 @@ builder
 builder
     .add(alert, { previewId: values(TAlertPreview), skins: SKINS.promo_loveship })
     .add(badge, { previewId: values(TBadgePreview), skins: SKINS.promo_loveship })
-    .add(button, { previewId: values(TButtonPreview), skins: SKINS.promo_loveship })
+    .add(button, [
+        {
+            previewId: values(TButtonPreview, { exclude: [TButtonPreview['Pseudo State Active'], TButtonPreview['Pseudo State Hover']] }),
+            skins: SKINS.promo_loveship,
+        },
+        {
+            onlyChromium: true,
+            previewId: [TButtonPreview['Pseudo State Active']],
+            skins: SKINS.promo_loveship,
+            forcePseudoState: [{ state: 'active', selector: '.uui-button' }],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TButtonPreview['Pseudo State Hover']],
+            skins: SKINS.promo_loveship,
+            forcePseudoState: [{ state: 'hover', selector: '.uui-button' }],
+        },
+    ])
     .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
     .add(dropdownContainer, { previewId: values(TDropdownContainerPreview), skins: SKINS.promo_loveship })
     .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
     .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.promo_loveship })
-    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship, slow: true })
+    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship })
     .add(notificationCard, { previewId: values(TNotificationCardPreview), skins: SKINS.promo_loveship })
     .add(tooltip, { previewId: values(TTooltipPreview), skins: SKINS.promo_loveship })
     .add(multiSwitch, { previewId: values(TMultiSwitchPreview), skins: SKINS.promo_loveship });
@@ -83,3 +80,11 @@ builder
     .add(paginator, { previewId: values(TPaginatorPreview) });
 
 builder.buildTests();
+
+function values<Obj extends object, ObjValue extends Obj[keyof Obj]>(o: Obj, opts?: { exclude: ObjValue[] }): ObjValue[] {
+    const arr = Object.values(o);
+    if (opts?.exclude) {
+        return arr.filter((v) => opts.exclude.indexOf(v) === -1);
+    }
+    return arr;
+}
