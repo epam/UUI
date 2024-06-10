@@ -64,12 +64,12 @@ export default function BasicDropdownExample() {
                 <FlexRow padding="12" vPadding="24">
                     <Panel background="surface-main">
                         <FlexRow alignItems="center" columnGap="12" padding="6">
-                            <IconButton size="18" icon={ telescopeIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ chatIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ githubIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ skypeIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ instaIcon } color="primary" onClick={ () => null } />
-                            <IconButton size="18" icon={ shareIcon } color="primary" onClick={ () => null } />
+                            <IconButton size="18" icon={ telescopeIcon } color="info" onClick={ () => null } />
+                            <IconButton size="18" icon={ chatIcon } color="info" onClick={ () => null } />
+                            <IconButton size="18" icon={ githubIcon } color="info" onClick={ () => null } />
+                            <IconButton size="18" icon={ skypeIcon } color="info" onClick={ () => null } />
+                            <IconButton size="18" icon={ instaIcon } color="info" onClick={ () => null } />
+                            <IconButton size="18" icon={ shareIcon } color="info" onClick={ () => null } />
                         </FlexRow>
                         <FlexRow padding="6">
                             <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">

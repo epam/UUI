@@ -25,14 +25,12 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
         }
     }
 
-    const size = typeof props.size === 'number' ? props.size.toString() : props.size;
-
     return (
         <img
             ref={ ref }
             className={ cx(css.avatar, props.cx) }
-            width={ size }
-            height={ size }
+            width={ props.size }
+            height={ props.size }
             src={
                 props.isLoading || !props.img || isError
                     ? 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg'

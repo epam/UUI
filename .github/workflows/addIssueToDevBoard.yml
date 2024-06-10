@@ -1,4 +1,4 @@
-name: Add issues to the project
+name: Add dev tasks to the dev board
 
 on:
     issues:
@@ -11,7 +11,9 @@ jobs:
         runs-on: ubuntu-latest
         permissions: write-all
         steps:
-            - uses: actions/add-to-project@v0.4.0
+            - uses: actions/add-to-project@v1.0.1
               with:
                   project-url: https://github.com/orgs/epam/projects/14
                   github-token: ${{ secrets.UUI_CI_SECRET }}
+                  labeled: Figma
+                  label-operator: NOT

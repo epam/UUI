@@ -144,27 +144,24 @@ export class PropEditorUtils {
     }
 }
 
-const numericAscComparator = (a: number, b: number) => a - b;
-const strNumericAscComparator = (a: string, b: string) => {
-    return +a - +b;
-};
-const isNumeric = (opt: any) => typeof opt === 'number';
-const isStrNumeric = (opt: any) => typeof opt === 'string' && !isNaN(+opt);
 //
 function sortOptions(options: TOneOfItemType[]): TOneOfItemType[] {
-    const containsNumeric = options.some(isNumeric);
-    if (containsNumeric) {
-        const numericPart = options.filter(isNumeric);
-        const nonNumericPart = options.filter((opt) => !isNumeric(opt));
-        (numericPart as number[]).sort(numericAscComparator);
-        return numericPart.concat(nonNumericPart);
-    }
-    const containsStringNumeric = options.some(isStrNumeric);
-    if (containsStringNumeric) {
-        const numericPart = options.filter(isStrNumeric);
-        const nonNumericPart = options.filter((opt) => !isStrNumeric(opt));
-        (numericPart as string[]).sort(strNumericAscComparator);
-        return numericPart.concat(nonNumericPart);
-    }
-    return options;
+    const isNumeric = (opt: any) => typeof opt === 'number';
+    const isStrNumeric = (opt: any) => typeof opt === 'string' && !isNaN(+opt);
+    const isStrNumericOrNumeric = (opt: any) => isNumeric(opt) || isStrNumeric(opt);
+    //
+    const sortedOptions = [...options];
+    sortedOptions.sort((a: any, b: any) => {
+        if (isNumeric(a) && isNumeric(b)) {
+            return a - b; // Asc. E.g.: 1, 2, 3
+        }
+        if (isStrNumeric(a) && isStrNumeric(b)) {
+            return +a - +b; // Asc. E.g.: '1', '2', '3'
+        }
+        if (isStrNumericOrNumeric(a) && isStrNumericOrNumeric(b)) {
+            return (typeof a).localeCompare(typeof b); // Numbers go before strings. E.g: 1, 2, 3, '1', '2', '3'
+        }
+        return +isStrNumericOrNumeric(b) - +isStrNumericOrNumeric(a); // str and strNumeric go first, everything else go last
+    });
+    return sortedOptions;
 }

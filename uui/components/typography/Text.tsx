@@ -1,6 +1,7 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import { getTextClasses, TextSettings } from '../../helpers';
 import * as uuiComponents from '@epam/uui-components';
+import { settings } from '../../settings';
 import css from './Text.module.scss';
 
 type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'white';
@@ -41,7 +42,7 @@ export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOv
 function applyTextMods(mods: TextProps) {
     const textClasses = getTextClasses(
         {
-            size: mods.size || '36',
+            size: mods.size || (settings.sizes.defaults.text as TextSize),
             lineHeight: mods.lineHeight,
             fontSize: mods.fontSize,
         },

@@ -1,31 +1,5 @@
 @use  '../../assets/styles/effects' as *;
 
-@mixin control-switch-size($size) {
-    :global(.uui-switch-body) {
-        height: $size;
-        width: $size * 2;
-    }
-
-    :global(.uui-switch-toggler) {
-        height: $size;
-        width: $size;
-    }
-
-    :global(.uui-input-label) {
-        @if ($size == 12px) {
-            font-size: 12px;
-        } @else if ($size == 18px or $size == 24px) {
-            font-size: 14px;
-        }
-    }
-
-    :global(.uui-checked) {
-        :global(.uui-switch-toggler) {
-            transform: translateX($size);
-        }
-    }
-}
-
 .root {
     --uui-switch-bg: var(--uui-neutral-40);
     --uui-switch-bg-checked: var(--uui-color-50);
@@ -49,31 +23,36 @@
     --uui-switch-label: var(--uui-text-primary);
     --uui-switch-label-disabled: var(--uui-text-disabled);
 
+    // font
     --uui-switch-font: var(--uui-font);
     --uui-switch-font-weight: 400;
+
+    // size
+    --uui-switch-min-height: var(--uui-size);
+    --uui-switch-min-width: var(--uui-size);
+    --uui-switch-border-width: var(--uui-border-width);
+    --uui-switch-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-switch-line-height: var(--uui-line-height);
+    --uui-switch-font-size: var(--uui-font-size);
     //
-    //Sizes
-    &.size-12 {
-        @include control-switch-size(12px);
-    }
+    column-gap: var(--uui-switch-horizontal-gap);
 
-    &.size-18 {
-        @include control-switch-size(18px);
-    }
-
-    &.size-24 {
-        @include control-switch-size(24px);
+    :global(.uui-checked) {
+        :global(.uui-switch-toggler) {
+            transform: translateX(var(--uui-switch-min-width));
+        }
     }
 
     :global(.uui-switch-body) {
+        height: var(--uui-switch-min-height);
+        width: calc(var(--uui-switch-min-width) * 2);
         background-color: var(--uui-switch-bg);
-        border: 1px solid var(--uui-switch-border);
-        width: 36px;
-        border-radius: 18px;
+        border: var(--uui-switch-border-width) solid var(--uui-switch-border);
+        border-radius: var(--uui-switch-min-height);
         box-sizing: border-box;
 
         :global(input[type='checkbox']):focus-visible {
-            @include focus-visible-effect(2px, inherit);
+            @include focus-visible-effect(var(--uui-focus-outline-offset), inherit);
             width: inherit;
             height: inherit;
             position: absolute;
@@ -82,19 +61,22 @@
     }
 
     :global(.uui-switch-toggler) {
-        left: -1px;
+        height: var(--uui-switch-min-height);
+        width: var(--uui-switch-min-width);
+        left: calc(0px - var(--uui-switch-border-width));
         border-radius: 50%;
         box-sizing: border-box;
         background-color: var(--uui-switch-toggler-bg);
-        border: 1px solid var(--uui-switch-border);
+        border: var(--uui-switch-border-width) solid var(--uui-switch-border);
         transition: 0.1s transform cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     :global(.uui-input-label) {
+        font-size: var(--uui-switch-font-size);
+        line-height: var(--uui-switch-line-height);
         font-family: var(--uui-switch-font);
         font-weight: var(--uui-switch-font-weight, normal);
         color: var(--uui-switch-label);
-        margin-left: 11px;
     }
 
     //Colors

@@ -9,7 +9,7 @@ export default function BasicIconButtonExample() {
         <>
             <IconButton icon={ AccountIcon24 } onClick={ () => null } />
             <IconButton icon={ AccountIcon24 } isDisabled={ true } onClick={ () => null } />
-            <IconButton icon={ EyeIcon18 } color="primary" onClick={ () => null } />
+            <IconButton icon={ EyeIcon18 } color="info" onClick={ () => null } />
             <IconButton icon={ EyeIcon18 } onClick={ () => null } />
             <IconButton icon={ ConfigIcon12 } href="https://www.epam.com/" />
         </>
