@@ -9,7 +9,19 @@ import { screenshotsDirAbsPath } from '../../playwright.config';
 export class TestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrixFull[]> = new Map();
 
-    only<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>): TestBuilder {
+    skip<CompId extends TKnownCompId>(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        cid: CompId,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
+    ): TestBuilder {
+        return this;
+    }
+
+    only<CompId extends TKnownCompId>(
+        cid: CompId,
+        matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
+    ): TestBuilder {
         return this._add(cid, matrix, true);
     }
 
@@ -17,13 +29,26 @@ export class TestBuilder {
      * @param cid
      * @param matrix
      */
-    add<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>): TestBuilder {
+    add<CompId extends TKnownCompId>(
+        cid: CompId,
+        matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
+    ): TestBuilder {
         return this._add(cid, matrix, false);
     }
 
-    private _add<CompId extends TKnownCompId>(cid: CompId, matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]>, only: boolean) {
+    private _add<CompId extends TKnownCompId>(
+        cid: CompId,
+        matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
+        only: boolean,
+    ) {
         const prev = this.cfgByComponent.get(cid) || [];
-        prev.push({ ...(matrix as TMatrixMinimal), only });
+        if (Array.isArray(matrix)) {
+            matrix.forEach((item) => {
+                prev.push({ ...(item as TMatrixMinimal), only });
+            });
+        } else {
+            prev.push({ ...(matrix as TMatrixMinimal), only });
+        }
         this.cfgByComponent.set(cid, prev);
         return this;
     }
@@ -85,8 +110,8 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                         await assert();
                     }
                     async function assert() {
-                        const opts = await previewPage.getScreenshotOptions();
-                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...opts, ...(matrix.slow ? { timeout: 15000 } : {}) });
+                        const scrOpts = await previewPage.getScreenshotOptions(matrix.slow);
+                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...scrOpts });
                     }
                 });
             });

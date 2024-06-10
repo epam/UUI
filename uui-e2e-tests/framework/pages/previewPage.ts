@@ -2,6 +2,7 @@ import type { Page, Locator } from '@playwright/test';
 import { PreviewPageParams, TClip, TEngine } from '../types';
 import { PlayWrightInterfaceName, PREVIEW_URL } from '../constants';
 import { CdpSessionWrapper } from './cdpSessionWrapper';
+import { slowTestExpectTimeout } from '../../playwright.config';
 
 export class PreviewPage {
     private readonly locators: {
@@ -34,11 +35,15 @@ export class PreviewPage {
         await this.page.goto(PREVIEW_URL);
     }
 
-    async getScreenshotOptions(): Promise<{ fullPage?: boolean; clip: TClip }> {
+    async getScreenshotOptions(isSlow?: boolean): Promise<{ fullPage?: boolean; clip: TClip; timeout?: number }> {
         // in some very rare cases, the content is not fully ready, this small timeout solves the issue.
         await this.page.waitForTimeout(30);
         const clip = await this.locators.regionScreenshotContent.boundingBox() as TClip;
-        return { fullPage: true, clip };
+        const res: { fullPage?: boolean; clip: TClip; timeout?: number } = { fullPage: true, clip };
+        if (isSlow) {
+            res.timeout = slowTestExpectTimeout;
+        }
+        return res;
     }
 
     async editPreview(params: PreviewPageParams) {
