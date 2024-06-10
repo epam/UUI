@@ -76,7 +76,7 @@
     "@types/react-dom": "18.0.10",
     "@types/history": "4.7.11",
     "@types/node": "18.19.31",
-    "typescript": "5.4.5"
+    "typescript": "5.4.2"
   },
   "devDependencies": {
     "@types/node": "18.19.31",
