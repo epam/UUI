@@ -15,7 +15,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -39,7 +39,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -63,7 +63,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -87,7 +87,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -111,7 +111,7 @@ exports[`PickerList should open body 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -893,7 +893,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -917,7 +917,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -941,7 +941,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -965,7 +965,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"
@@ -989,7 +989,7 @@ exports[`PickerList should render with minimum props 1`] = `
         role="option"
       >
         <label
-          class="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+          class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
         >
           <div
             class="uui-radioinput"

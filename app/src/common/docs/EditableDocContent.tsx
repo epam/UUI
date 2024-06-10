@@ -102,7 +102,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                         <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
                             {this.props.title}
                         </div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="primary" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
+                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="info" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
                     </FlexRow>
                 )}
                 <IEditableDebouncer

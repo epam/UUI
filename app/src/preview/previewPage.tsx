@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
+import { Page } from '../common';
 import { PreviewContent } from './previewContent/previewContent';
 import { TPreviewContentParams } from './types';
 import { usePlayWrightInterface } from './hooks/usePlayWrightInterface';
@@ -7,6 +8,8 @@ import { usePreviewParams } from './hooks/usePreviewParams';
 import { svc } from '../services';
 import { BuiltInTheme } from '../data';
 import { formatPreviewIdToString } from './utils/previewLinkUtils';
+
+import css from './previewPage.module.scss';
 
 export function PreviewPage() {
     const params = usePreviewParams();
@@ -45,5 +48,9 @@ export function PreviewPage() {
     usePreviewPageBg();
 
     const key = `${theme}_${isSkin}_${componentId}_${previewId}`;
-    return <PreviewContent key={ key } params={ currentParams } />;
+    return (
+        <Page renderHeader={ () => null } rootCx={ css.root }>
+            <PreviewContent key={ key } params={ currentParams } />
+        </Page>
+    );
 }

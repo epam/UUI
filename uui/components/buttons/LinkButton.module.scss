@@ -14,7 +14,7 @@
     // sizes
     --uui-link-button-min-height: var(--uui-size);
     --uui-link-button-min-width: var(--uui-size);
-    --uui-link-button-inner-gap: var(--uui-x-inner-padding);
+    --uui-link-button-gap: var(--uui-horizontal-gap);
     --uui-link-button-caption-padding: calc((var(--uui-link-button-min-height) - var(--uui-link-button-line-height)) / 2);
     --uui-link-button-icon-height: var(--uui-icon-size);
     --uui-link-button-line-height: var(--uui-line-height);
@@ -75,11 +75,11 @@
         padding-bottom: var(--uui-link-button-caption-padding);
 
         &:not(:first-child) {
-            padding-left: var(--uui-link-button-inner-gap);
+            padding-left: var(--uui-link-button-gap);
         }
 
         &:not(:last-child) {
-            padding-right: var(--uui-link-button-inner-gap);
+            padding-right: var(--uui-link-button-gap);
         }
     }
 
