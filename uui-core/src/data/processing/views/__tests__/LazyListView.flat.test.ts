@@ -140,7 +140,7 @@ describe('LazyListView - flat list test', () => {
         );
         let view = hookResult.result.current;
 
-        view.reload();
+        act(() => view.reload());
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -209,7 +209,7 @@ describe('LazyListView - flat list test', () => {
         expect(view.getListProps().rowsCount).toEqual(5);
 
         const rows = view.getVisibleRows();
-        await act(() => {
+        await act(async () => {
             rows[0].onCheck?.(rows[0]);
         });
 
