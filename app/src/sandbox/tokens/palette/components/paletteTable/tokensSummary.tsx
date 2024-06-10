@@ -1,12 +1,11 @@
 import React from 'react';
 import { useArrayDataSource } from '@epam/uui-core';
 import { FlexRow, LabeledInput, PickerInput } from '@epam/uui';
-import { TTheme } from '../../../../../common/docs/docsConstants';
 import { TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
 
 type TokensSummaryProps = {
-    uuiTheme: TTheme,
+    uuiTheme: string,
     expectedValueType: TThemeTokenValueType,
     onChangeExpectedValueType: (v: TThemeTokenValueType) => void
 };

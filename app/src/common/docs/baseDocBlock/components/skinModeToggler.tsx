@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconContainer } from '@epam/uui-components';
 import { Checkbox, Tooltip } from '@epam/uui';
-import { TMode, TTheme } from '../../docsConstants';
+import { TMode } from '../../docsConstants';
 //
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 //
@@ -11,7 +11,7 @@ const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific pack
 
 type TSkinModeTogglerProps = {
     mode: TMode;
-    theme: TTheme;
+    theme: string;
     isSkinEnabled: boolean;
     onToggleSkin: () => void;
 };
@@ -37,6 +37,6 @@ export function SkinModeToggler(props: TSkinModeTogglerProps) {
     }
 }
 
-function isSkinSupportedInTheme(theme: TTheme): boolean {
+function isSkinSupportedInTheme(theme: string): boolean {
     return ['electric', 'loveship', 'loveship_dark', 'promo'].includes(theme);
 }

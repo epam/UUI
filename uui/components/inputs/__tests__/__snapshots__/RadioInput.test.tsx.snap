@@ -2,7 +2,7 @@
 
 exports[`RadioInput should be rendered correctly with maximum 1`] = `
 <label
-  className="container uui-disabled uui-readonly uui-invalid root size-18 uui-radio-input-container uui-color-primary"
+  className="container uui-disabled uui-readonly uui-invalid root uui-size-18 uui-radio-input-container uui-color-primary"
 >
   <div
     className="uui-radioinput"
@@ -29,7 +29,7 @@ exports[`RadioInput should be rendered correctly with maximum 1`] = `
 
 exports[`RadioInput should be rendered correctly with minimum props 1`] = `
 <label
-  className="container root size-18 uui-radio-input-container uui-color-primary -clickable"
+  className="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
 >
   <div
     className="uui-radioinput"

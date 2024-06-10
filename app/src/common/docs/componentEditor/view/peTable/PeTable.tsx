@@ -79,7 +79,7 @@ const PeTableToolbar = React.memo(
                     <IconButton
                         icon={ ResetIcon }
                         onClick={ onResetAllProps }
-                        color="primary"
+                        color="info"
                     />
                 </Tooltip>
             </FlexRow>

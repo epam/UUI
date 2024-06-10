@@ -4,12 +4,6 @@
 }
 
 .root {
-    background-color: var(--uui-surface-main);
-    height: 100%;
-    width: 100%;
-}
-
-.layoutRoot {
     flex-direction: column;
     align-items: flex-start;
     background-color: transparent;
