@@ -1,4 +1,7 @@
 import * as React from 'react';
+import '../index.scss';
+
+// console.log(css)
 import {
     IHasCX, IHasChildren, IHasRawProps, cx,
 } from '@epam/uui-core';
