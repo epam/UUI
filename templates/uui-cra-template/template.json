@@ -20,7 +20,8 @@
       "@types/react": "18.2.21",
       "@types/react-router-dom": "^5.3.3",
       "@types/history": "4.7.11",
-      "@types/node": "16.18.4"
+      "@types/node": "16.18.4",
+      "typescript": "4.9.5"
     },
     "eslintConfig": {
       "extends": ["react-app", "react-app/jest"]
