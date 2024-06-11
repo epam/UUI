@@ -24,6 +24,7 @@ import { PalettePage } from './tokens/palette/palettePage';
 import { ReactQueryLocationsTable } from './reactQueryLocationsTable';
 import { ProjectTableDemo } from './editableTable';
 import { RtlExample } from './rtl/Rtl-example';
+import { DemoForm } from './rtl/form/DemoForm';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -48,6 +49,7 @@ export function SandboxPage() {
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
             { id: 'rtl-example', name: 'Rtl-example', component: RtlExample },
+            { id: 'rtl-form', name: 'Rtl-Form', component: DemoForm },
         ],
         [],
     );
