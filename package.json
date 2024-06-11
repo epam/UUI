@@ -82,7 +82,7 @@
     "@types/node": "18.19.31",
     "cross-env": "^7.0.3",
     "husky": "8.0.3",
-    "lerna": "8.1.3",
+    "lerna": "6.6.2",
     "lint-staged": "12.5.0",
     "postcss-scss": "^4.0.6",
     "tslib": "^2.6.2",
