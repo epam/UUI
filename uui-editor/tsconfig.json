@@ -3,7 +3,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "./build",
-    // "strictNullChecks": true
+    // "strictNullChecks": true // ready
   },
   "exclude": ["**/__tests__", "build", "node_modules"]
 }
