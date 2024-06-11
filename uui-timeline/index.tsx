@@ -1,4 +1,4 @@
-export * from './src/BaseTimelineCanvasComponent';
+export * from './src/useCanvas';
 export * from './src/TimelineController';
 export * from './src/TimelineGrid';
 export * from './src/TimelineNav';
