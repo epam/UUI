@@ -1,17 +1,16 @@
-import { TimelineTransform } from '@epam/uui-timeline';
-import { BaseTimelineCanvasComponent, BaseTimelineCanvasComponentProps } from '@epam/uui-timeline';
+import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps } from '@epam/uui-timeline';
 import { renderBars, Item } from '@epam/uui-timeline';
 
 export interface DemoCanvasBarsProps extends BaseTimelineCanvasComponentProps {
     items: Item[];
 }
 
-export class DemoCanvasBars extends BaseTimelineCanvasComponent<DemoCanvasBarsProps> {
-    canvasHeight = 30;
-    protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
-        ctx.clearRect(0, 0, t.widthMs, this.canvasHeight);
+export function DemoCanvasBars(props: DemoCanvasBarsProps) {
+    const canvasHeight = 30;
+    const draw = (ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
+        ctx.clearRect(0, 0, t.widthMs, canvasHeight);
 
-        const transformedItems = this.props.items
+        const transformedItems = props.items
             .map((i) => ({
                 ...i,
                 priority: i.priority ? i.priority : 0,
@@ -20,6 +19,14 @@ export class DemoCanvasBars extends BaseTimelineCanvasComponent<DemoCanvasBarsPr
             }))
             .filter((i) => i.isVisible && i.opacity > 0.01);
 
-        renderBars(transformedItems, this.canvasHeight, ctx, t);
-    }
+        renderBars(transformedItems, canvasHeight, ctx, t);
+    };
+    
+    const { renderCanvas } = useCanvas({
+        draw,
+        canvasHeight,
+        timelineController: props.timelineController,
+    });
+    
+    return renderCanvas();
 }

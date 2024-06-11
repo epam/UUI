@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { TimelineController } from './TimelineController';
-import { BaseTimelineCanvasComponent } from './BaseTimelineCanvasComponent';
+import { useCanvas } from './useCanvas';
 import { TimelineTransform } from './TimelineTransform';
 import { getleftXforCentering } from './helpers';
 
@@ -17,9 +16,9 @@ export interface TimelineEventsBarProps {
     stages: Stage[];
 }
 
-export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEventsBarProps> {
-    protected canvasHeight = 14;
-    renderTodayLine = (ctx: CanvasRenderingContext2D, t: TimelineTransform, yFrom: number, yTo: number) => {
+export function TimelineEventsBar({ stages, timelineController }: TimelineEventsBarProps) {
+    const canvasHeight = 14;
+    const renderTodayLine = (ctx: CanvasRenderingContext2D, t: TimelineTransform, yFrom: number, yTo: number) => {
         ctx.strokeStyle = '#F37B94';
         ctx.beginPath();
         ctx.moveTo(t.getX(new Date()), yFrom);
@@ -28,17 +27,17 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
         ctx.stroke();
     };
 
-    renderStage(ctx: CanvasRenderingContext2D, t: TimelineTransform, stage: Stage) {
+    const renderStage = (ctx: CanvasRenderingContext2D, t: TimelineTransform, stage: Stage) => {
         const stageSegment = {
             ...t.transformSegment(stage.startDate, stage.endDate),
         };
 
         const thickness = 2;
         ctx.fillStyle = '#fff';
-        ctx.fillRect(stageSegment.leftTrimmed - thickness, 0, stageSegment.widthTrimmed + thickness * 2, this.canvasHeight + thickness * 2 - thickness);
+        ctx.fillRect(stageSegment.leftTrimmed - thickness, 0, stageSegment.widthTrimmed + thickness * 2, canvasHeight + thickness * 2 - thickness);
 
         ctx.fillStyle = stage.color;
-        ctx.fillRect(stageSegment.leftTrimmed, 0, stageSegment.widthTrimmed, this.canvasHeight - thickness);
+        ctx.fillRect(stageSegment.leftTrimmed, 0, stageSegment.widthTrimmed, canvasHeight - thickness);
 
         const padding = 12;
         let text = stage.eventName + ' ' + stage.name;
@@ -57,16 +56,20 @@ export class TimelineEventsBar extends BaseTimelineCanvasComponent<TimelineEvent
         if (left != null) {
             ctx.fillText(text, left, 10);
         }
-    }
+    };
 
-    protected renderCanvas(ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
-        ctx.clearRect(0, 0, t.widthMs, this.canvasHeight);
-        this.props.stages.forEach((stage) => this.renderStage(ctx, t, stage));
+    const draw = (ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
+        ctx.clearRect(0, 0, t.widthMs, canvasHeight);
+        stages.forEach((stage) => renderStage(ctx, t, stage));
         // render today line on border
-        this.renderTodayLine(ctx, t, this.canvasHeight - 2, this.canvasHeight);
-    }
+        renderTodayLine(ctx, t, canvasHeight - 2, canvasHeight);
+    };
 
-    public render() {
-        return this.renderCanvasElement();
-    }
+    const { renderCanvas } = useCanvas({
+        draw,
+        canvasHeight,
+        timelineController,
+    });
+
+    return renderCanvas();
 }
