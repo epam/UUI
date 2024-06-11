@@ -57,7 +57,7 @@ export function DemoForm() {
                 <FlexCell width="100%">
                     <PersonalInfoSection lens={ lens.prop('personalInfo') } dir={ dir } />
                     <LocationSection lens={ lens.prop('location') } />
-                    <PrimaryInfoSection lens={ lens.prop('primaryInfo') } dir={ dir } />
+                    <PrimaryInfoSection lens={ lens.prop('primaryInfo') } />
                     <EducationSection lens={ lens.prop('education') } />
                     <LanguagesSection lens={ lens.prop('languageInfo').default([emptyInfo.language]) } />
                     <VisasSection lens={ lens.prop('travelVisas') } dir={ dir } />
