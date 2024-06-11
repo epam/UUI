@@ -1,5 +1,5 @@
 :global(.uui-dr_addons-checkbox) {
-    padding-right: var(--uui-horizontal-gap);
+    padding-inline-end: var(--uui-horizontal-gap);
 }
 
 .drag-handle {
@@ -21,7 +21,7 @@
     justify-content: flex-start;
     flex-grow: 0;
     flex-shrink: 0;
-    padding-right: 12px;
+    padding-inline-end: 12px;
     box-sizing: content-box; // to fix reset css like *, *::before, *::after { box-sizing: border-box; }
 }
 
