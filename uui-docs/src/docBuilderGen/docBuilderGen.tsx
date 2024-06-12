@@ -79,9 +79,6 @@ function overrideProp(prop: TTypeProp, propOverride: TPropEditorTypeOverride[TTy
             const ot = propOverride.editor.type;
             if (prop.editor.type === ot) {
                 let options = [];
-                if (propOverride.mode === 'add') {
-                    options.push(...prop.editor.options);
-                }
                 options.push(...propOverride.editor.options);
                 options = sortOptions(options);
 
