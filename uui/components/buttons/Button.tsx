@@ -29,7 +29,7 @@ export interface ButtonModsOverride {}
 export type ButtonCoreProps = uuiComponents.ButtonProps;
 
 /** Represents the props for a Button component. */
-export type ButtonProps = ButtonCoreProps & Overwrite<ButtonMods, ButtonModsOverride>;
+export interface ButtonProps extends ButtonCoreProps, Overwrite<ButtonMods, ButtonModsOverride> {}
 
 function applyButtonMods(mods: ButtonProps) {
     return [
