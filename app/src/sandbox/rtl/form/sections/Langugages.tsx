@@ -11,8 +11,9 @@ import {
 } from '@epam/uui';
 import { emptyInfo } from '../defaultData';
 import * as React from 'react';
+import { IDir } from '../DemoForm';
 
-export function LanguagesSection({ lens }: { lens: ILens<PersonLanguageInfo[]> }) {
+export function LanguagesSection({ lens, dir }: { lens: ILens<PersonLanguageInfo[]>, dir: IDir }) {
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const languageDataSource = useAsyncDataSource(
@@ -53,6 +54,7 @@ export function LanguagesSection({ lens }: { lens: ILens<PersonLanguageInfo[]> }
                             valueType="id"
                             id={ `language-${index}` }
                             placeholder="Select Language"
+                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -66,6 +68,7 @@ export function LanguagesSection({ lens }: { lens: ILens<PersonLanguageInfo[]> }
                             id={ `speakingLevel-${index}` }
                             placeholder="Select Level"
                             getName={ (item) => item.level }
+                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -79,6 +82,7 @@ export function LanguagesSection({ lens }: { lens: ILens<PersonLanguageInfo[]> }
                             id={ `writingLevel-${index}` }
                             placeholder="Select Level"
                             getName={ (item) => item.level }
+                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>
