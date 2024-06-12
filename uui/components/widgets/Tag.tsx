@@ -51,7 +51,7 @@ export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon
 };
 
 /** Represents the properties of the Tag component. */
-export type TagProps = TagCoreProps & Overwrite<TagMods, TagModsOverride>;
+export interface TagProps extends TagCoreProps, Overwrite<TagMods, TagModsOverride> {}
 
 function applyTagMods(props: TagProps) {
     return [
