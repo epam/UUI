@@ -73,13 +73,7 @@ export class RenderCase extends React.PureComponent<ISingleRenderCaseView, ISing
             return null;
         }
 
-        let SelectedDemoContext;
-        if (context === TDocContext.Default) {
-            // Assumption: all components support Default context, so we never report error when Default context is selected.
-            SelectedDemoContext = uuiDocContextsMap[TDocContext.Default];
-        } else {
-            SelectedDemoContext = docs.contexts.find(({ name }) => name === context).context;
-        }
+        const SelectedDemoContext = uuiDocContextsMap[context];
         const inputValues = this.getInputValues();
         const { propsForTooltip, propsForDataAttr } = formatPropsForNativeTooltip(inputValues);
         const DemoComponent = docs.component;
