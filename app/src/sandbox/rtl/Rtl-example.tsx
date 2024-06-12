@@ -9,14 +9,14 @@ export function RtlExample() {
     const [value, setValue] = useState('');
     const [labelDir, setLabelDir] = useState<IDir>('ltr');
     const [inputDir, setInputDir] = useState<IDir>('ltr');
-    const [labelDateDir, setlabelDateDir] = useState<IDir>('ltr');
+    const [labelDateDir, setLabelDateDir] = useState<IDir>('ltr');
     const [dateDir, setDateDir] = useState<IDir>('ltr');
     const [switchDir, setSwitchDir] = useState<IDir>('ltr');
     const [textAreaDir, setTextAreaDir] = useState<IDir>('ltr');
     const [dateValue, setDateValue] = useState('');
     const [rangeValue, setRangeValue] = useState({ from: null, to: null });
     const [switchValue, setSwitchValue] = useState(false);
-    const [textAreaValue, settextAreaValue] = useState('');
+    const [textAreaValue, setTextAreaValue] = useState('');
 
     return (
         <>
@@ -93,7 +93,7 @@ export function RtlExample() {
                     <LabeledInput label="DatePickerLabel dir" labelPosition="top">
                         <MultiSwitch
                             value={ labelDateDir }
-                            onValueChange={ setlabelDateDir }
+                            onValueChange={ setLabelDateDir }
                             items={ rtlSwitchItems }
                         />
                     </LabeledInput>
@@ -139,7 +139,7 @@ export function RtlExample() {
                 </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
                     <LabeledInput label="Notes" rawProps={ { dir: textAreaDir } }>
-                        <TextArea rawProps={ { dir: textAreaDir } } value={ textAreaValue } onValueChange={ settextAreaValue } placeholder="Type text" />
+                        <TextArea rawProps={ { dir: textAreaDir } } value={ textAreaValue } onValueChange={ setTextAreaValue } placeholder="Type text" />
                     </LabeledInput>
                 </FlexRow>
             </FlexCell>
