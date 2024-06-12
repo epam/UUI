@@ -13,3 +13,11 @@
         border-bottom-right-radius: var(--uui-border-radius);
     }
 }
+
+*[dir='rtl'] .root > :first-child, .root[dir='rtl'] > :first-child {
+    border-radius: 0 var(--uui-border-radius) var(--uui-border-radius) 0;
+}
+
+*[dir='rtl'] .root > :last-child, .root[dir='rtl'] > :last-child {
+    border-radius: var(--uui-border-radius) 0 0 var(--uui-border-radius);
+}
