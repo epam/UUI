@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@epam/uui-test-utils';
+import { renderHook, waitFor, act } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getLazyLocationsDS, getLazyPagedLocationsDS } from '../../__tests__/mocks';
 
@@ -377,7 +377,7 @@ describe('LazyListView - background reload', () => {
 
             expect(view.getListProps().rowsCount).toEqual(2);
 
-            view.reload();
+            act(() => view.reload());
 
             hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
 

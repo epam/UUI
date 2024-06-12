@@ -248,7 +248,7 @@ describe('LazyListView - search', () => {
             let view = hookResult.result.current;
             let rows = view.getVisibleRows();
             const rowDZ = rows[0];
-            await act(() => {
+            await act(async () => {
                 rowDZ.onCheck?.(rowDZ);
             });
 
@@ -310,7 +310,7 @@ describe('LazyListView - search', () => {
             rows = view.getVisibleRows();
             const rowZeralda = rows[0];
 
-            await act(() => {
+            await act(async () => {
                 rowZeralda.onCheck?.(rowZeralda);
             });
 
@@ -432,7 +432,7 @@ describe('LazyListView - search', () => {
             let view = hookResult.result.current;
             let rows = view.getVisibleRows();
             const rowDZ = rows[0];
-            await act(() => {
+            await act(async () => {
                 rowDZ.onCheck?.(rowDZ);
             });
 
@@ -484,7 +484,7 @@ describe('LazyListView - search', () => {
             rows = view.getVisibleRows();
             const rowZeralda = rows[0];
 
-            await act(() => {
+            await act(async () => {
                 rowZeralda.onCheck?.(rowZeralda);
             });
 
@@ -620,7 +620,7 @@ describe('LazyListView - search', () => {
             let view = hookResult.result.current;
             let rows = view.getVisibleRows();
             const rowDZ = rows[0];
-            await act(() => {
+            await act(async () => {
                 rowDZ.onCheck?.(rowDZ);
             });
 
@@ -672,7 +672,7 @@ describe('LazyListView - search', () => {
             rows = view.getVisibleRows();
             const rowZeralda = rows[0];
 
-            await act(() => {
+            await act(async () => {
                 rowZeralda.onCheck?.(rowZeralda);
             });
 
@@ -864,7 +864,7 @@ describe('LazyListView - search', () => {
             const rows = view.getVisibleRows();
             const rowDZ = rows[1];
 
-            await act(() => {
+            await act(async () => {
                 rowDZ.onCheck?.(rowDZ);
             });
 
@@ -913,7 +913,7 @@ describe('LazyListView - search', () => {
 
             const rowTouggourt = view.getVisibleRows()[2];
 
-            await act(() => {
+            await act(async () => {
                 rowTouggourt.onCheck?.(rowTouggourt);
             });
 
@@ -993,7 +993,7 @@ describe('LazyListView - search', () => {
             const rows = view.getVisibleRows();
             const rowDZ = rows[1];
 
-            await act(() => {
+            await act(async () => {
                 rowDZ.onCheck?.(rowDZ);
             });
 
@@ -1030,7 +1030,7 @@ describe('LazyListView - search', () => {
 
             const rowTouggourt = view.getVisibleRows()[2];
 
-            await act(() => {
+            await act(async () => {
                 rowTouggourt.onCheck?.(rowTouggourt);
             });
 
@@ -1110,7 +1110,7 @@ describe('LazyListView - search', () => {
             const rows = view.getVisibleRows();
             const rowDZ = rows[1];
 
-            await act(() => {
+            await act(async () => {
                 rowDZ.onCheck?.(rowDZ);
             });
 

@@ -135,7 +135,7 @@ describe('LazyListView', () => {
             expect(typeof rows[0].onFold).toBe('function');
         });
 
-        await act(() => {
+        await act(async () => {
             rows[0].onFold?.(rows[0]);
         });
 
@@ -173,7 +173,7 @@ describe('LazyListView', () => {
         // Unfold more rows
         rows = view.getVisibleRows();
 
-        await act(() => {
+        await act(async () => {
             rows[2].onFold?.(rows[2]);
         });
 
@@ -244,7 +244,7 @@ describe('LazyListView', () => {
 
         // fold row #120
         let rows = view.getVisibleRows();
-        await act(() => {
+        await act(async () => {
             rows[2].onFold?.(rows[2]);
         });
 
@@ -262,7 +262,7 @@ describe('LazyListView', () => {
 
         // fold row #100
         rows = view.getVisibleRows();
-        await act(() => {
+        await act(async () => {
             rows[0].onFold?.(rows[0]);
         });
 
@@ -365,7 +365,7 @@ describe('LazyListView', () => {
 
         let view = hookResult.result.current;
         let row110 = view.getVisibleRows()[1];
-        await act(() => {
+        await act(async () => {
             row110.onCheck?.(row110);
         });
 
@@ -379,7 +379,7 @@ describe('LazyListView', () => {
         });
 
         row110 = view.getVisibleRows()[1];
-        await act(() => {
+        await act(async () => {
             row110.onCheck?.(row110);
         });
         hookResult.rerender({ value: currentValue });
@@ -413,7 +413,7 @@ describe('LazyListView', () => {
         let view = hookResult.result.current;
         const row110 = view.getVisibleRows()[1];
 
-        await act(() => {
+        await act(async () => {
             row110.onCheck?.(row110);
         });
 
@@ -497,7 +497,7 @@ describe('LazyListView', () => {
         let selectAll = view.getListProps().selectAll;
         expect(selectAll?.indeterminate).toBe(true);
 
-        await act(() => {
+        await act(async () => {
             selectAll?.onValueChange(true);
         });
 
@@ -536,7 +536,7 @@ describe('LazyListView', () => {
         expect(view.getListProps().rowsCount).toBe(10);
         selectAll = view.getListProps().selectAll;
         expect(selectAll?.indeterminate).toBe(false);
-        await act(() => {
+        await act(async () => {
             selectAll?.onValueChange(false);
         });
 
@@ -628,7 +628,7 @@ describe('LazyListView', () => {
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(() => {
+            await act(async () => {
                 unknownRow.onCheck?.(unknownRow);
             });
 
@@ -676,7 +676,7 @@ describe('LazyListView', () => {
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(() => {
+            await act(async () => {
                 view.clearAllChecked();
             });
 
@@ -743,7 +743,7 @@ describe('LazyListView', () => {
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(() => {
+            await act(async () => {
                 unknownRow.onCheck?.(unknownRow);
             });
 
@@ -791,7 +791,7 @@ describe('LazyListView', () => {
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(() => {
+            await act(async () => {
                 view.clearAllChecked();
             });
 
@@ -828,7 +828,7 @@ describe('LazyListView', () => {
             let view = hookResult.result.current;
             let row120 = view.getVisibleRows()[2];
 
-            await act(() => {
+            await act(async () => {
                 row120.onCheck?.(row120);
             });
 
@@ -847,7 +847,7 @@ describe('LazyListView', () => {
             });
 
             row120 = view.getVisibleRows()[2];
-            await act(() => {
+            await act(async () => {
                 row120.onCheck?.(row120);
             });
 
@@ -896,7 +896,7 @@ describe('LazyListView', () => {
             let view = hookResult.result.current;
             const row120 = view.getVisibleRows()[2];
 
-            await act(() => {
+            await act(async () => {
                 row120.onCheck?.(row120);
             });
 
@@ -906,7 +906,7 @@ describe('LazyListView', () => {
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
 
-            await act(() => {
+            await act(async () => {
                 row300.onCheck?.(row300);
             });
 
@@ -955,7 +955,7 @@ describe('LazyListView', () => {
             let selectAll = view.getListProps().selectAll;
             expect(selectAll?.indeterminate).toBe(true);
 
-            await act(() => {
+            await act(async () => {
                 selectAll?.onValueChange(true);
             });
 
@@ -994,7 +994,7 @@ describe('LazyListView', () => {
             expect(view.getListProps().rowsCount).toBe(10);
             selectAll = view.getListProps().selectAll;
             expect(selectAll?.indeterminate).toBe(false);
-            await act(() => {
+            await act(async () => {
                 selectAll?.onValueChange(false);
             });
 
@@ -1087,7 +1087,7 @@ describe('LazyListView', () => {
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(() => {
+            await act(async () => {
                 unknownRow.onCheck?.(unknownRow);
             });
 
@@ -1135,7 +1135,7 @@ describe('LazyListView', () => {
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(() => {
+            await act(async () => {
                 view.clearAllChecked();
             });
 
@@ -1175,7 +1175,7 @@ describe('LazyListView', () => {
             expect(row120.id).toBe(120);
             expect(row120.isChecked).toBe(false);
 
-            await act(() => {
+            await act(async () => {
                 row120.onCheck?.(row120);
             });
             expect(currentValue.checked).toEqual([120]);
@@ -1197,7 +1197,7 @@ describe('LazyListView', () => {
             expect(currentValue.checked).toEqual([120]);
 
             row120 = view.getVisibleRows()[2];
-            await act(() => {
+            await act(async () => {
                 row120.onCheck?.(row120);
             });
 
@@ -1249,7 +1249,7 @@ describe('LazyListView', () => {
             const row120 = view.getVisibleRows()[2];
             expect(row120.id).toBe(120);
 
-            await act(() => {
+            await act(async () => {
                 row120.onCheck?.(row120);
             });
 
@@ -1259,7 +1259,7 @@ describe('LazyListView', () => {
             const row300 = view.getVisibleRows()[6];
             expect(row300.id).toBe(300);
 
-            await act(() => {
+            await act(async () => {
                 row300.onCheck?.(row300);
             });
 
@@ -1308,7 +1308,7 @@ describe('LazyListView', () => {
             let selectAll = view.getListProps().selectAll;
             expect(selectAll?.indeterminate).toBe(true);
 
-            await act(() => {
+            await act(async () => {
                 selectAll?.onValueChange(true);
             });
 
@@ -1350,7 +1350,7 @@ describe('LazyListView', () => {
 
             view = hookResult.result.current;
             selectAll = view.getListProps().selectAll;
-            await act(() => {
+            await act(async () => {
                 selectAll?.onValueChange(false);
             });
 
@@ -1604,7 +1604,7 @@ describe('LazyListView', () => {
         // fold row #100
         let rows = view.getVisibleRows();
 
-        await act(() => {
+        await act(async () => {
             rows[0].onFold?.(rows[0]);
         });
 
@@ -1652,14 +1652,14 @@ describe('LazyListView', () => {
         let view = hookResult.result.current;
         let row121 = view.getVisibleRows()[3];
 
-        await act(() => {
+        await act(async () => {
             row121.onCheck?.(row121);
         });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged });
         view = hookResult.result.current;
         const row122 = view.getVisibleRows()[4];
-        await act(() => {
+        await act(async () => {
             row122.onCheck?.(row122);
         });
 
@@ -1682,7 +1682,7 @@ describe('LazyListView', () => {
 
         view = hookResult.result.current;
         row121 = view.getVisibleRows()[3];
-        await act(() => {
+        await act(async () => {
             row121.onCheck?.(row121);
         });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Slider, SliderProps } from '../Slider';
-import { setupComponentForTest, userEvent, screen } from '@epam/uui-test-utils';
+import { setupComponentForTest, userEvent, screen, act } from '@epam/uui-test-utils';
 
 async function setupSlider(params: Partial<SliderProps>) {
     const { mocks, setProps } = await setupComponentForTest<SliderProps>(
@@ -31,7 +31,7 @@ describe('Slider', () => {
     it('changes the value when clicked', async () => {
         const setup = await setupSlider({ value: 50 });
         const slider = screen.getByRole('slider');
-        slider.click();
+        act(() => slider.click());
         expect(setup.mocks.onValueChange).toHaveBeenCalled();
     });
 
