@@ -39,7 +39,7 @@ export function DropSpot(props: DropSpotProps) {
         return (
             <div className={ cx(css.root, props.cx, params.isDragStart && css.dropStart, params.isDraggingOver && css.dropOver) } { ...props.rawProps }>
                 <div { ...params.eventHandlers } className={ css.dropArea }>
-                    <FlexRow size="24">
+                    <FlexRow size="24" rawProps={ { dir: 'ltr' } }>
                         <IconContainer icon={ ShapeIcon } cx={ css.iconBlue } />
                         <Text lineHeight="24" size="24" fontSize="14" cx={ css.dropCaption }>
                             {i18n.fileUpload.labelStart}

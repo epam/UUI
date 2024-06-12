@@ -102,6 +102,7 @@ export function VisasSection({ lens, dir }: { lens: ILens<PersonTravelVisas>, di
                             valueType="id"
                             id={ `travelVisasCountry-${index}` }
                             placeholder="Select Country"
+                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker, FlexCell, FlexRow, LabeledInput, MultiSwitch, RangeDatePicker, RichTextView, Switch, TextArea, TextInput } from '@epam/uui';
+import { DatePicker, FlexCell, FlexRow, LabeledInput, MultiSwitch, RangeDatePicker, RichTextView, Switch, TextArea, TextInput, Text } from '@epam/uui';
 
 type IDir = 'ltr' | 'rtl' | 'auto';
 
@@ -125,7 +125,7 @@ export function RtlExample() {
                 </FlexRow>
                 <FlexRow padding="24">
                     <RichTextView>
-                        <h3>TextArea</h3>
+                        <h3>TextArea & Text</h3>
                     </RichTextView>
                 </FlexRow>
                 <FlexRow padding="24">
@@ -140,6 +140,13 @@ export function RtlExample() {
                 <FlexRow padding="24" vPadding="24" alignItems="top">
                     <LabeledInput label="Notes" rawProps={ { dir: textAreaDir } }>
                         <TextArea rawProps={ { dir: textAreaDir } } value={ textAreaValue } onValueChange={ setTextAreaValue } placeholder="Type text" />
+                    </LabeledInput>
+                </FlexRow>
+                <FlexRow padding="24" vPadding="24" alignItems="top">
+                    <LabeledInput label="Notes" rawProps={ { dir: textAreaDir } }>
+                        <Text color="primary" fontSize="18">
+                            أهلاً بكم! هذا مثال على نص بحجم 18
+                        </Text>
                     </LabeledInput>
                 </FlexRow>
             </FlexCell>
