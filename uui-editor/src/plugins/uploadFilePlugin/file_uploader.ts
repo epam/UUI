@@ -3,7 +3,6 @@ import type { FileUploadResponse } from '@epam/uui-core';
 import {
     PlateEditor,
     getPlugin,
-    KEY_INSERT_DATA,
     deleteBackward,
     insertEmptyElement,
     insertNodes,
@@ -15,17 +14,28 @@ import { IFRAME_TYPE } from '../iframePlugin/constants';
 import { TImageElement } from '../imagePlugin/types';
 import { TIframeElement } from '../iframePlugin/types';
 import { TAttachmentElement } from '../attachmentPlugin/types';
+import { UPLOAD_PLUGIN_KEY } from './constants';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
-
-export interface UploadFileOptions {
-    uploadFile?: UploadFile;
-}
 
 type UploadFile = (
     file: File,
     onProgress?: (progress: number) => any
 ) => Promise<FileUploadResponse>;
+
+export interface UploadFileOptions {
+    uploadFile?: UploadFile;
+}
+
+type FileUploader = (
+    editor: PlateEditor,
+    files: File[],
+    overriddenAction?: UploadType,
+) => Promise<void>;
+
+export interface FileUploaderOptions {
+    uploadFiles?: FileUploader;
+}
 
 const UPLOAD_BLOCKS = {
     attachment: (file: FileUploadResponse): TAttachmentElement => ({
@@ -120,7 +130,8 @@ export const createFileUploader = (options?: UploadFileOptions) =>
 export const useFilesUploader = (editor: PlateEditor) => {
     return useCallback(
         (files: File[], overriddenAction?: UploadType): Promise<void> => {
-            const callback = getPlugin(editor, KEY_INSERT_DATA)?.options?.uploadFiles;
+            const callback = getPlugin<FileUploaderOptions>(editor, UPLOAD_PLUGIN_KEY)?.options.uploadFiles;
+
             if (callback) {
                 return callback(
                     editor,
