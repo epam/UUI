@@ -18,7 +18,7 @@ interface AccordionMods {
 export interface AccordionModsOverride {}
 
 /** Represents the properties of the Accordion component. */
-export type AccordionProps = Overwrite<AccordionMods, AccordionModsOverride> & uuiComponents.AccordionProps;
+export interface AccordionProps extends Overwrite<AccordionMods, AccordionModsOverride>, uuiComponents.AccordionProps {}
 
 const getMode = (mode: AccordionMods['mode']) => {
     return mode || 'block';

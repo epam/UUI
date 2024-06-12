@@ -16,9 +16,7 @@ interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHas
     renderAdditionalItems?: (isOpen: boolean) => React.ReactNode;
 }
 
-type EditableAccordionProps = GeneralAccordionProps & IControlled<boolean>;
-
-export type AccordionProps = GeneralAccordionProps | EditableAccordionProps;
+export type AccordionProps = GeneralAccordionProps & Partial<IControlled<boolean>>;
 
 interface AccordionState {
     opened: boolean;
@@ -32,7 +30,7 @@ const uuiAccordion = {
     body: 'uui-accordion-body',
 } as const;
 
-const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps => (props as EditableAccordionProps).onValueChange !== undefined;
+const isEditableAccordionProps = (props: AccordionProps): boolean => props.onValueChange !== undefined;
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
     const [state, setState] = useState<AccordionState>({
