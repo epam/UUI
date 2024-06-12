@@ -1,6 +1,6 @@
-import './index.module.scss';
+import './index.scss';
 
-export * from './Text';
+export * from './typography';
 export * from './layout';
 export * from './overlays';
 export * from './dnd';
@@ -9,6 +9,5 @@ export * from './buttons';
 export * from './widgets';
 export * from './table';
 export * from './navigation';
-export * from './RichTextView';
 export * from './pickers';
 export * from './errors';

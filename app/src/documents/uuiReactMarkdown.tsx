@@ -15,18 +15,20 @@ interface UuiReactMarkdownProps {
  * @param props
  * @constructor
  */
-export function UuiReactMarkdown(props: UuiReactMarkdownProps) {
+export function UuiReactMarkdown(props: React.PropsWithChildren<UuiReactMarkdownProps>) {
     const { isReplaceStrongToBold } = props;
+
     const comp = React.useMemo(() => {
         const c: Components = {};
         if (isReplaceStrongToBold) {
-            c.strong = ({ node, ...props }) => <b>{props.children[0]}</b>;
+            c.strong = ({ node, ...props }) => <b>{props.children}</b>;
         }
         c.a = ({ node, children, ...props }) => {
             return <a { ...props } target="_blank">{children}</a>;
         };
         return c;
     }, [isReplaceStrongToBold]);
+
     return (
         <ReactMarkdown remarkPlugins={ [RemarkGfm] } components={ comp }>
             {props.content}

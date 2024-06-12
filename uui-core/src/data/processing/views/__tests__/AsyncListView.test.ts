@@ -145,7 +145,7 @@ describe('AsyncListView', () => {
             ]);
         });
 
-        treeDataSource.reload();
+        act(() => treeDataSource.reload());
 
         hookResult.rerender({ value: currentValue });
         await waitFor(() => {
