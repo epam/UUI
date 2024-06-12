@@ -2,6 +2,7 @@ import * as React from 'react';
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
 import {
     withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps as CoreDataTableRowProps,
+    DndEventHandlers,
 } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
@@ -11,9 +12,9 @@ import './variables.scss';
 
 // Here we define a single instance of the renderCell function to make DataTableRow#shouldComponentUpdate work.
 // As we need our mods to style the cell properly, we extract them from DataTableCellProps.rowProps, which is a hack, but it's reliable enough.
-export const renderCell = (props: DataTableCellProps) => {
+export const renderCell = (props: DataTableCellProps, eventHandlers?: DndEventHandlers) => {
     const mods = props.rowProps as DataTableRowMods & DataTableRowProps;
-    return <DataTableCell { ...props } size={ mods.size } columnsGap={ mods.columnsGap } />;
+    return <DataTableCell { ...props } size={ mods.size } columnsGap={ mods.columnsGap } eventHandlers={ eventHandlers } />;
 };
 
 export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { ...props } enableBlocker={ true } />;

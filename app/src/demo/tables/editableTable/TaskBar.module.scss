@@ -1,0 +1,10 @@
+
+.task-bar {
+    position: relative;
+    top: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    /* to prevent text selection on canvases */
+    user-select: none;
+}

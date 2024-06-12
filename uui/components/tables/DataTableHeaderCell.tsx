@@ -46,18 +46,21 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
         return (
             <div className={ cx(css.captionWrapper, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
-                <Tooltip
-                    placement="top"
-                    color="inverted"
-                    content={ renderTooltip(this.props.column) }
-                    cx={ css.cellTooltip }
-                    openDelay={ 600 }
-                >
-                    <Text key="text" lineHeight="30" fontSize="14" size="30" cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }>
-                        {this.props.column.caption}
-                    </Text>
-                </Tooltip>
-
+                { this.props.column.renderHeaderCell
+                    ? this.props.column.renderHeaderCell(this.props)
+                    : (
+                        <Tooltip
+                            placement="top"
+                            color="inverted"
+                            content={ renderTooltip(this.props.column) }
+                            cx={ css.cellTooltip }
+                            openDelay={ 600 }
+                        >
+                            <Text key="text" lineHeight="30" fontSize="14" size="30" cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }>
+                                {this.props.column.caption}
+                            </Text>
+                        </Tooltip>
+                    )}
                 {this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
                     <IconButton
                         key="sort"

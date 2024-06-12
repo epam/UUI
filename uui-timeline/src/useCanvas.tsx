@@ -2,6 +2,7 @@ import React, { useRef, useCallback, useEffect } from 'react';
 import cx from 'classnames';
 import { TimelineController } from './TimelineController';
 import { TimelineTransform } from './TimelineTransform';
+import { useForceUpdate } from '@epam/uui-core';
 
 export interface BaseTimelineCanvasComponentProps {
     draw?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void; 
@@ -13,7 +14,9 @@ export interface BaseTimelineCanvasComponentProps {
 
 export function useCanvas(
     props: BaseTimelineCanvasComponentProps,
+    deps?: any[],
 ) {
+    const forceUpdate = useForceUpdate();
     const { timelineController, canvasHeight = 60 } = props;
     const canvasRef = useRef(null);
 
@@ -24,7 +27,7 @@ export function useCanvas(
         props?.draw(ctx, t);
         props.renderOnTop?.(ctx, t);
         ctx.restore();
-    }, []);
+    }, [props?.draw]);
 
     useEffect(() => {
         timelineController.subscribe(handleRenderCanvas);
@@ -32,8 +35,12 @@ export function useCanvas(
     }, [handleRenderCanvas, timelineController]);
 
     useEffect(() => {
+        forceUpdate();
+    }, [timelineController.currentViewport.widthPx]);
+
+    useEffect(() => {
         handleRenderCanvas(timelineController.getTransform());
-    });
+    }, deps ? [...deps] : undefined);
 
     const renderCanvas = useCallback((canvasProps?: any) => {
         const width = timelineController.currentViewport.widthPx;
