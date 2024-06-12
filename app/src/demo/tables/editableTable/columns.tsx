@@ -8,11 +8,14 @@ import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-po
 
 import { RowKebabButton } from './RowKebabButton';
 import css from './ProjectTableDemo.module.scss';
+import { TimelineController } from '@epam/uui-timeline';
+import { TimelineHeader } from './TimelineHeader';
+import { TaskBar } from './TaskBar';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 const statusDataSource = new ArrayDataSource({ items: statuses });
 
-export function getColumns(columnsProps: ColumnsProps) {
+export function getColumnsTableMode(columnsProps: ColumnsProps) {
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         {
             key: 'name',
@@ -157,6 +160,138 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
+        },
+        {
+            key: 'actions',
+            render: (_, row) => <RowKebabButton row={ row } { ...columnsProps } />,
+            width: 54,
+            fix: 'right',
+            alignSelf: 'center',
+            allowResizing: false,
+        },
+    ];
+
+    return columns;
+}
+
+export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineController: TimelineController }) {
+    const { timelineController } = columnsProps;
+    const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
+        {
+            key: 'name',
+            caption: 'Name1',
+            width: 300,
+            fix: 'left',
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('name').toProps() }
+                    renderEditor={ (props) => <TextInput { ...props } /> }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'estimate',
+            textAlign: 'right',
+            caption: 'Estimate',
+            info: 'Estimate in man/days',
+            width: 100,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('estimate').toProps() }
+                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'status',
+            caption: 'Status',
+            width: 150,
+            minWidth: 150,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('status').toProps() }
+                    size="24"
+                    renderEditor={ (props) => (
+                        <PickerInput
+                            valueType="id"
+                            placeholder="Add Status"
+                            dataSource={ statusDataSource }
+                            selectionMode="single"
+                            minBodyWidth={ 150 }
+                            renderRow={ (props) => (
+                                <DataPickerRow
+                                    { ...props }
+                                    padding="12"
+                                    renderItem={ (item) => (
+                                        <PickerItem
+                                            title={ item.name }
+                                            icon={ () => <IconContainer icon={ statusIcon } style={ { fill: item.color } } /> }
+                                            { ...props }
+                                        />
+                                    ) }
+                                />
+                            ) }
+                            renderToggler={ (togglerProps) => {
+                                const row = togglerProps.selection?.[0];
+                                const fill = row?.value?.color && togglerProps.value && row?.value?.name?.includes(togglerProps.value)
+                                    ? row?.value?.color
+                                    : '#E1E3EB';
+                        
+                                return (
+                                    <PickerToggler
+                                        { ...props }
+                                        { ...togglerProps }
+                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill: fill, marginBottom: '0' } } cx={ css.statusIcon } /> }
+                                        iconPosition="left"
+                                    />
+                                );
+                            } }
+                            { ...props }
+                        />
+                    ) }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'startDate',
+            caption: 'Start date',
+            width: 150,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('startDate').toProps() }
+                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'dueDate',
+            caption: 'Due date',
+            width: 150,
+            renderCell: (props) => (
+                <DataTableCell
+                    { ...props.rowLens.prop('dueDate').toProps() }
+                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    { ...props }
+                />
+            ),
+        },
+        {
+            key: 'task',
+            width: 200,
+            grow: 1,
+            allowResizing: false,
+            renderHeaderCell() {
+                return (<TimelineHeader timelineController={ timelineController } />);
+            },
+            renderCell(props) {
+                return (
+                    <TaskBar task={ props.rowLens.toProps().value } timelineController={ timelineController } />
+                );
+            },
         },
         {
             key: 'actions',

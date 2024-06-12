@@ -20,6 +20,15 @@ export interface DropParams<TSrcData, TDstData> extends AcceptDropParams<TSrcDat
     position: DropPosition;
 }
 
+export interface DndEventHandlers {
+    onTouchStart?(e: React.TouchEvent): void;
+    onPointerDown?(e: React.PointerEvent): void;
+    onPointerEnter?(e: React.PointerEvent<any>): void;
+    onPointerMove?(e: React.PointerEvent<any>): void;
+    onPointerLeave?(e: React.PointerEvent<any>): void;
+    onPointerUp?(e: React.PointerEvent<any>): void;
+}
+
 export interface DndActorRenderParams {
     /** True, if the element can be dragged. Doesn't mean that DnD is active. */
     isDraggable: boolean;
@@ -49,15 +58,7 @@ export interface DndActorRenderParams {
      * Event handlers. Component is expected to pass these events to the top element it renders.
      * As onClick event on the element will be overwritten, use DndActorProps.onClick to receive click events on the element
      */
-    eventHandlers: {
-        onTouchStart?(e: React.TouchEvent): void;
-        onPointerDown?(e: React.PointerEvent): void;
-        onPointerEnter?(e: React.PointerEvent<any>): void;
-        onPointerMove?(e: React.PointerEvent<any>): void;
-        onPointerLeave?(e: React.PointerEvent<any>): void;
-        onPointerUp?(e: React.PointerEvent<any>): void;
-    };
-
+    eventHandlers: DndEventHandlers;
     /**
      * CSS class names to add to the element.
      * Some of these markers are used by the DndActor internally, so they must be added even if no used by component itself to apply styles.

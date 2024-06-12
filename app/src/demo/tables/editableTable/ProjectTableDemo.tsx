@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { DataTable, Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip } from '@epam/uui';
+import { Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip, MultiSwitch } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
@@ -12,13 +12,19 @@ import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg
 
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
-import { getColumns } from './columns';
 import { deleteTaskWithChildren, setTaskInsertPosition } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
+import { TimelineMode } from './TimelineMode';
+import { TableMode } from './TableMode';
 
 interface FormState {
     items: IImmutableMap<number, Task>;
+}
+
+interface ViewMode {
+    id: 'timeline' | 'table';
+    caption: string;
 }
 
 const metadata: Metadata<FormState> = {
@@ -39,6 +45,9 @@ let savedValue: FormState = { items: ItemsMap.blank<number, Task>({ getId: (item
 
 const items = Object.values(getDemoTasks());
 export function ProjectTableDemo() {
+    const viewModes: ViewMode[] = [{ id: 'timeline', caption: 'Timeline' }, { id: 'table', caption: 'Table' }];
+    const [selectedViewMode, setSelectedViewMode] = useState<ViewMode['id']>('timeline');
+
     const {
         value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
     } = useForm<FormState>({
@@ -131,11 +140,6 @@ export function ProjectTableDemo() {
         }),
     });
 
-    const columns = useMemo(
-        () => getColumns({ insertTask, deleteTask }),
-        [insertTask, deleteTask],
-    );
-
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
             const item = tree.getById(tableState.selectedId);
@@ -226,6 +230,13 @@ export function ProjectTableDemo() {
                     </Tooltip>
                 </FlexCell>
                 <FlexSpacer />
+                <FlexCell width={ 150 }>
+                    <MultiSwitch
+                        items={ viewModes }
+                        value={ selectedViewMode }
+                        onValueChange={ setSelectedViewMode }
+                    />
+                </FlexCell>
                 <FlexCell cx={ css.search } width={ 295 }>
                     <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
                 </FlexCell>
@@ -243,18 +254,29 @@ export function ProjectTableDemo() {
                     <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
-            <DataTable
-                headerTextCase="upper"
-                rows={ rows }
-                columns={ columns }
-                value={ tableState }
-                onValueChange={ setTableState }
-                dataTableFocusManager={ dataTableFocusManager }
-                showColumnsConfig
-                allowColumnsResizing
-                allowColumnsReordering
-                { ...listProps }
-            />
+            
+            { selectedViewMode === 'timeline'
+                ? (
+                    <TimelineMode
+                        tableState={ tableState } 
+                        setTableState={ setTableState }
+                        listProps={ listProps }
+                        rows={ rows }
+                        dataTableFocusManager={ dataTableFocusManager }
+                        insertTask={ insertTask }
+                        deleteTask={ deleteTask }
+                    />
+                ) : (
+                    <TableMode
+                        tableState={ tableState } 
+                        setTableState={ setTableState }
+                        listProps={ listProps }
+                        rows={ rows }
+                        dataTableFocusManager={ dataTableFocusManager }
+                        insertTask={ insertTask }
+                        deleteTask={ deleteTask }
+                    />
+                )}
         </Panel>
     );
 }
