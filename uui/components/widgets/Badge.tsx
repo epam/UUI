@@ -27,7 +27,7 @@ type BadgeMods = {
 
 export interface BadgeModsOverride {}
 
-export type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export interface BadgeCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
     /** Pass true to display an indicator. It shows only if fill = 'outline'. */
     indicator?: boolean;
     /**
@@ -39,7 +39,7 @@ export type BadgeCoreProps = ClickableComponentProps & IDropdownToggler & IHasIc
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
     count?: React.ReactNode;
-};
+}
 
 /** Represents the properties of a Badge component. */
 export type BadgeProps = BadgeCoreProps & Overwrite<BadgeMods, BadgeModsOverride>;
