@@ -107,7 +107,7 @@ export function RtlExample() {
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
-                    <LabeledInput label="Notes" rawProps={ { dir: textAreaDir } }>
+                    <LabeledInput label="Text example" rawProps={ { dir: textAreaDir } }>
                         <Text color="primary" fontSize="18">
                             أهلاً بكم! هذا مثال على نص بحجم 18
                         </Text>
