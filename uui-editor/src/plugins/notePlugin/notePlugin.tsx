@@ -3,7 +3,7 @@ import React from 'react';
 
 import { useIsPluginActive } from '../../helpers';
 
-import { NoteBar } from '../../implementation/NoteBar';
+import { NoteBar } from './NoteBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';

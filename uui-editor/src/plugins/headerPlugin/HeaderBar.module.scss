@@ -1,0 +1,18 @@
+@use "~@epam/assets/scss/index" as *;
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--uui-divider-light);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    font-family: $font-sans-bold;
+    font-size: 20px;
+    text-align: center;
+}

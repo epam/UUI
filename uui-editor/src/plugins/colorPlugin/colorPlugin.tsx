@@ -2,21 +2,22 @@ import { Dropdown } from '@epam/uui-components';
 import React, { useCallback, useMemo } from 'react';
 
 import { useIsPluginActive } from '../../helpers';
-import { ColorBar } from '../../implementation/ColorBar';
+import { ColorBar } from './ColorBar';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { PlateEditor, getMark, getPluginType, removeMark, setMarks, PlatePlugin } from '@udecode/plate-common';
+import { getMark, getPluginType, removeMark, setMarks, PlatePlugin, useEditorRef } from '@udecode/plate-common';
 import { MARK_COLOR, createFontColorPlugin } from '@udecode/plate-font';
 import { ReactComponent as ColorIcon } from '../../icons/text-color-normal.svg';
+import { ColorPluginOptions, ColorValueHex } from './types';
 
-export const colorPlugin = (): PlatePlugin => createFontColorPlugin({
+export const colorPlugin = (...colors: ColorValueHex[]): PlatePlugin => createFontColorPlugin({
     inject: {
         props: {
             nodeKey: MARK_COLOR,
             defaultNodeValue: 'black',
             transformClassName: (options) => {
                 if (options.nodeValue.at(0) === '#') {
-                    return null;
+                    return options.nodeValue;
                 } else {
                     return `uui-${options.nodeValue}`;
                 }
@@ -25,14 +26,12 @@ export const colorPlugin = (): PlatePlugin => createFontColorPlugin({
     },
     options: {
         floatingBarButton: ColorButton,
-    },
+        colors: colors.length ? colors : undefined,
+    } as ColorPluginOptions,
 });
 
-interface IToolbarButton {
-    editor: PlateEditor;
-}
-
-export function ColorButton({ editor }: IToolbarButton) {
+export function ColorButton() {
+    const editor = useEditorRef();
     const pluginActive = useIsPluginActive(MARK_COLOR);
 
     const type = getPluginType(editor, MARK_COLOR);
@@ -64,8 +63,8 @@ export function ColorButton({ editor }: IToolbarButton) {
             ) }
             renderBody={ () => (
                 <ColorBar
-                    updateColor={ updateColor }
-                    clearColor={ clearColor }
+                    onColorUpdate={ updateColor }
+                    onColorClear={ clearColor }
                     value={ markValue }
                 />
             ) }

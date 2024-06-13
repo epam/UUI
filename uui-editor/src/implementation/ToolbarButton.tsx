@@ -11,17 +11,25 @@ interface ToolbarButtonProps extends IHasCX, IHasCaption, IDisableable {
     icon?: Icon;
     iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';
     editor?: Editor;
+    color?: string;
 }
 
-export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => (
-    <Button
-        onClick={ (e) => {
-            props.onClick(e);
-        } }
-        icon={ props.icon }
-        caption={ props.caption }
-        ref={ ref }
-        cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
-        isDisabled={ props.isDisabled }
-    />
-));
+export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => {
+    const rawProps = React.useMemo(() => {
+        return {
+            style: { fill: props.color },
+        };
+    }, [props.color]);
+
+    return (
+        <Button
+            ref={ ref }
+            rawProps={ rawProps }
+            cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
+            icon={ props.icon }
+            caption={ props.caption }
+            onClick={ props.onClick }
+            isDisabled={ props.isDisabled }
+        />
+    );
+});

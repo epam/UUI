@@ -2,17 +2,17 @@ import * as React from 'react';
 import { PlateEditor, setElements } from '@udecode/plate-common';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
-import { ToolbarButton } from './ToolbarButton';
+import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { ReactComponent as NoteIconLink } from '../icons/info-block-link.svg';
-import { ReactComponent as NoteIconQuote } from '../icons/info-block-quote.svg';
-import { ReactComponent as NoteIconError } from '../icons/info-block-warning.svg';
-import { ReactComponent as NoteIconWarning } from '../icons/info-block.svg';
-import { ReactComponent as ClearIcon } from '../icons/text-color-default.svg';
+import { ReactComponent as NoteIconLink } from '../../icons/info-block-link.svg';
+import { ReactComponent as NoteIconQuote } from '../../icons/info-block-quote.svg';
+import { ReactComponent as NoteIconError } from '../../icons/info-block-warning.svg';
+import { ReactComponent as NoteIconWarning } from '../../icons/info-block.svg';
+import { ReactComponent as ClearIcon } from '../../icons/text-color-default.svg';
 
 import css from './NoteBar.module.scss';
-import { NOTE_ERROR_TYPE, NOTE_LINK_TYPE, NOTE_QUOTE_TYPE, NOTE_WARN_TYPE } from '../plugins/notePlugin/constants';
-import { PARAGRAPH_TYPE } from '../plugins/paragraphPlugin/constants';
+import { NOTE_ERROR_TYPE, NOTE_LINK_TYPE, NOTE_QUOTE_TYPE, NOTE_WARN_TYPE } from './constants';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
 
 interface NoteBarProps extends DropdownBodyProps {
     editor: PlateEditor;
