@@ -42,7 +42,7 @@ export interface BadgeCoreProps extends ClickableComponentProps, IDropdownToggle
 }
 
 /** Represents the properties of a Badge component. */
-export type BadgeProps = BadgeCoreProps & Overwrite<BadgeMods, BadgeModsOverride>;
+export interface BadgeProps extends BadgeCoreProps, Overwrite<BadgeMods, BadgeModsOverride> {}
 
 function applyBadgeMods(mods: BadgeProps) {
     return [
