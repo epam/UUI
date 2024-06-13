@@ -57,7 +57,6 @@ export function LocationSection({ lens, dir }: { lens: ILens<PersonLocation>, di
                             dataSource={ citiesDataSource }
                             filter={ { country: lens.prop('country').get() } }
                             placeholder="Select City"
-                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>

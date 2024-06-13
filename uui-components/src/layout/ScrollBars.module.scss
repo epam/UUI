@@ -47,7 +47,3 @@
         bottom: 2px;
     }
 }
-
-*[dir='rtl'] .root > div[aria-orientation='vertical'], .root[dir='rtl']  > div[aria-orientation='vertical'] {
-    right: 17px !important;
-}
