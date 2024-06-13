@@ -6,9 +6,8 @@ import { TApi } from '../../../../data';
 import css from '../DemoForm.module.scss';
 import * as React from 'react';
 import { useState } from 'react';
-import { IDir } from '../DemoForm';
 
-export function LocationSection({ lens, dir }: { lens: ILens<PersonLocation>, dir: IDir }) {
+export function LocationSection({ lens }: { lens: ILens<PersonLocation> }) {
     const svc = useUuiContext<TApi, UuiContexts>();
     const [value, setValue] = useState(false);
 
@@ -43,7 +42,6 @@ export function LocationSection({ lens, dir }: { lens: ILens<PersonLocation>, di
                             id="country"
                             placeholder="Select Country"
                             onValueChange={ (inputValue) => lens.set({ country: inputValue as string, city: null }) }
-                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>

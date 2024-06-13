@@ -12,9 +12,8 @@ import { Attachment, PersonTravelVisa, PersonTravelVisas } from '../types';
 import { TApi } from '../../../../data';
 import { emptyInfo } from '../defaultData';
 import css from '../DemoForm.module.scss';
-import { IDir } from '../DemoForm';
 
-export function VisasSection({ lens, dir }: { lens: ILens<PersonTravelVisas>, dir: IDir }) {
+export function VisasSection({ lens }: { lens: ILens<PersonTravelVisas> }) {
     const svc = useUuiContext<TApi, UuiContexts>();
     const visasLens = lens.prop('visas').default([emptyInfo.visa]);
     const scansLens = Lens.onEditable(lens.prop('scans').toProps()).default([]);
@@ -102,7 +101,6 @@ export function VisasSection({ lens, dir }: { lens: ILens<PersonTravelVisas>, di
                             valueType="id"
                             id={ `travelVisasCountry-${index}` }
                             placeholder="Select Country"
-                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -111,7 +109,6 @@ export function VisasSection({ lens, dir }: { lens: ILens<PersonTravelVisas>, di
                         <RangeDatePicker
                             id="term"
                             format="MMM D, YYYY"
-                            rawProps={ { from: { dir: dir }, to: { dir: dir }, body: { dir: dir } } }
                             { ...visasLens.index(index).prop('term').toProps() }
                         />
                     </LabeledInput>

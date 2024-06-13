@@ -6,9 +6,8 @@ import {
 } from '@epam/uui';
 import css from '../DemoForm.module.scss';
 import * as React from 'react';
-import { IDir } from '../DemoForm';
 
-export function EducationSection({ lens, dir }: { lens: ILens<PersonEducation>, dir: IDir }) {
+export function EducationSection({ lens }: { lens: ILens<PersonEducation> }) {
     const institutionLevelsDataSource = useArrayDataSource(
         {
             items: demoData.universities,
@@ -34,7 +33,6 @@ export function EducationSection({ lens, dir }: { lens: ILens<PersonEducation>, 
                             sorting={ { field: 'university', direction: 'asc' } }
                             valueType="id"
                             placeholder="Select Institution"
-                            rawProps={ { body: { dir: dir } } }
                         />
                     </LabeledInput>
                 </FlexCell>
