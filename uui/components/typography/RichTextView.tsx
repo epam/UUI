@@ -11,7 +11,7 @@ interface RichTextViewMods {
 
 export interface RichTextViewModsOverride {}
 
-export type RichTextViewProps = uuiComponents.RichTextViewProps & Overwrite<RichTextViewMods, RichTextViewModsOverride>;
+export interface RichTextViewProps extends uuiComponents.RichTextViewProps, Overwrite<RichTextViewMods, RichTextViewModsOverride> {}
 
 export const RichTextView = withMods<uuiComponents.RichTextViewProps, RichTextViewProps>(
     uuiComponents.RichTextView,

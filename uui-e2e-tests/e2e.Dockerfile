@@ -1,7 +1,7 @@
 # The version of the base image must be in sync with the version of "@playwright/test" NPM package
 FROM mcr.microsoft.com/playwright:v1.44.1-jammy
 
-WORKDIR /app
+WORKDIR /e2e
 
 COPY package.json ./
 RUN yarn
