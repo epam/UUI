@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { TimelineController, msPerDay } from '@epam/uui-timeline';
 import { Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip, MultiSwitch } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
@@ -90,6 +91,61 @@ export function ProjectTableDemo() {
             items: deleteTaskWithChildren(task, currentValue.items, tree),
         }));
     }, [setValue, tree]);
+
+    const getMinMaxDate = () => {
+        let minStartDate;
+        let maxDueDate;
+        for (const item of items) {
+            let estimatedDate;
+            let dueDate;
+            if (item.startDate) {
+                const startDate = new Date(item.startDate);
+                const startDateTime = startDate.getTime();
+                if (minStartDate === undefined || startDateTime < minStartDate) {
+                    minStartDate = startDateTime;
+                }
+                if (item.estimate) {
+                    startDate.setDate(startDate.getDate() + item.estimate);
+                    estimatedDate = startDate.getTime();
+                }
+            }
+            
+            if (item.dueDate) {
+                dueDate = new Date(item.dueDate).getTime();
+            }
+            
+            let localMaxDueDate;
+            if (estimatedDate === undefined) {
+                if (dueDate !== undefined) {
+                    localMaxDueDate = dueDate;
+                }
+            } else if (dueDate === undefined) {
+                localMaxDueDate = estimatedDate;
+            } else {
+                localMaxDueDate = Math.max(dueDate, estimatedDate);
+            }
+           
+            maxDueDate = maxDueDate === undefined ? localMaxDueDate : Math.max(localMaxDueDate ?? 0, maxDueDate);
+        }
+        return { minStartDate, maxDueDate };
+    };
+
+    const timelineController = useMemo(() => {
+        const { minStartDate, maxDueDate } = getMinMaxDate();
+        const centerDate = new Date();
+        if (minStartDate === undefined) {
+            if (maxDueDate !== undefined) {
+                centerDate.setTime(maxDueDate);
+            }
+        } else if (maxDueDate === undefined) {
+            centerDate.setTime(minStartDate);
+        } else {
+            centerDate.setTime(Math.floor((minStartDate + maxDueDate) / 2));
+        }
+        
+        const pxPerMs = minStartDate !== undefined && maxDueDate !== undefined ? maxDueDate - minStartDate : undefined;
+        return new TimelineController({ center: centerDate, pxPerMs: pxPerMs !== undefined ? (500 / pxPerMs) : (32 / msPerDay), widthPx: 0 });
+    }, []);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
@@ -262,6 +318,7 @@ export function ProjectTableDemo() {
                         setTableState={ setTableState }
                         listProps={ listProps }
                         rows={ rows }
+                        timelineController={ timelineController }
                         dataTableFocusManager={ dataTableFocusManager }
                         insertTask={ insertTask }
                         deleteTask={ deleteTask }

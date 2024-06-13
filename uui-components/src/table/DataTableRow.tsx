@@ -55,7 +55,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
     };
 
     const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
-        const { onPointerEnter, onPointerLeave, onPointerMove, ...restEventHandlers } = params.eventHandlers ?? {};
+        const { onPointerEnter, onPointerLeave, onPointerMove, onPointerUp, ...restEventHandlers } = params.eventHandlers ?? {};
         return (
             <DataTableRowContainer
                 columns={ props.columns }
@@ -68,6 +68,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                     onPointerEnter,
                     onPointerLeave,
                     onPointerMove,
+                    onPointerUp,
                     role: 'row',
                     'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
                     ...(props.isSelectable && { 'aria-selected': props.isSelected }),

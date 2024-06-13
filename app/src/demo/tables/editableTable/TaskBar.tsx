@@ -42,23 +42,37 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
             from: task.startDate ? new Date(task.startDate) : null,
             to: task.dueDate ? new Date(task.dueDate) : null,
             color: getTaskColor(task.status),
-            minPixPerDay: 5,
+            minPixPerDay: 0.1,
             fillType: 'solid',
             opacity: 1.0,
             height: 30,
         };
 
-        const transformedItems = [item]
+        let to = new Date(task.startDate);
+        if (task.startDate && task.estimate) {
+            to.setDate(to.getDate() + task.estimate);
+        } else {
+            to = null;
+        }
+        const estimatedItem: Item = {
+            from: task.startDate ? new Date(task.startDate) : null,
+            to,
+            color: 'grey',
+            minPixPerDay: 0.1,
+            fillType: 'shaded',
+            opacity: task.estimate ? 0.6 : 0,
+            height: 30,
+        };
+
+        const transformedItems = [item, estimatedItem]
             .map((i) => ({
                 ...i,
                 priority: 1,
-                // opacity: t.getScaleVisibility(i.minPixPerDay || 0, i.maxPxPerDay || 100500) * i.opacity,
-                opacity: 1,
                 ...t.transformSegment(i.from, i.to),
             })).filter((i) => i.from !== null && i.to !== null && i.isVisible && i.opacity > 0.01);
 
         renderBars(transformedItems, canvasHeight, ctx, t);
-    }, [task.dueDate, task.startDate, task.status]);
+    }, [task.dueDate, task.estimate, task.startDate, task.status]);
 
     const { renderCanvas } = useCanvas({
         draw,
