@@ -31,7 +31,7 @@ export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownT
 export interface LinkButtonModsOverride {}
 
 /** Represents the properties of the LinkButton component. */
-export type LinkButtonProps = LinkButtonCoreProps & Overwrite<LinkButtonMods, LinkButtonModsOverride>;
+export interface LinkButtonProps extends LinkButtonCoreProps, Overwrite<LinkButtonMods, LinkButtonModsOverride> {}
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
