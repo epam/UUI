@@ -63,6 +63,7 @@ export function AppHeader() {
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
                         { Object.values(themesById).map(({ id, name }) => (
                             <DropdownMenuButton
+                                key={ id }
                                 caption={ name }
                                 icon={ theme === id && DoneIcon }
                                 isActive={ theme === id }
