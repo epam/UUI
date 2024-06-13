@@ -14,7 +14,7 @@ export class PickerInputDoc extends BaseDocsBlock {
 
     static override config: TDocConfig = {
         name: 'PickerInput',
-        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form, TDocContext.OpenedPickerBody],
+        contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Table, TDocContext.Form],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:PickerInputProps', component: uui.PickerInput },
             [TSkin.Electric]: { type: '@epam/uui:PickerInputProps', component: electric.PickerInput },
