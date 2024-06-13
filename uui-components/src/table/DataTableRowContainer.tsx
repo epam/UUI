@@ -57,10 +57,10 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
 export const DataTableRowContainer = React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
         function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
-            const { onPointerUp, onPointerDown, onTouchStart } = props.eventHandlers ?? {};
+            const { onPointerDown, onTouchStart } = props.eventHandlers ?? {};
             return columns.reduce<React.ReactNode[]>((cells, column) => {
                 const idx = props.columns?.indexOf(column) || 0;
-                cells.push(props.renderCell(column, idx, { onPointerUp, onPointerDown, onTouchStart }));
+                cells.push(props.renderCell(column, idx, { onPointerDown, onTouchStart }));
                 return cells;
             }, []);
         }

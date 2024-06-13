@@ -4,9 +4,10 @@ import { DataRowProps, DataSourceListProps, DataTableState, IControlled } from '
 import { DataTableFocusManager } from '@epam/uui-components';
 import { ColumnsProps, Task } from './types';
 import { getColumnsTimelineMode } from './columns';
-import { TimelineController, msPerDay } from '@epam/uui-timeline';
+import { TimelineController } from '@epam/uui-timeline';
 
 export interface TimelineModeProps extends ColumnsProps {
+    timelineController: TimelineController;
     rows: DataRowProps<Task, any>[];
     tableState: IControlled<DataTableState<any, any>>['value'];
     setTableState: IControlled<DataTableState<any, any>>['onValueChange'];
@@ -15,10 +16,8 @@ export interface TimelineModeProps extends ColumnsProps {
 }
 
 export function TimelineMode({
-    rows, tableState, setTableState, listProps, dataTableFocusManager, insertTask, deleteTask,
+    rows, tableState, setTableState, listProps, dataTableFocusManager, insertTask, deleteTask, timelineController,
 }: TimelineModeProps) {
-    const timelineController = useMemo(() => new TimelineController({ center: new Date('2024-12-04'), pxPerMs: 32 / msPerDay, widthPx: 0 }), []);
-
     const columns = useMemo(
         () => getColumnsTimelineMode({ insertTask, deleteTask, timelineController }),
         [insertTask, deleteTask, timelineController],
