@@ -33,7 +33,8 @@ function getCspHeaderValue(isDevServer) {
         'img-src * data: ; ',
         dir(
             "script-src 'self'",
-            isDevServer && "'unsafe-eval' 'unsafe-inline'",
+            "'unsafe-inline'",
+            isDevServer && "'unsafe-eval'",
             'https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/',
         ),
     );
