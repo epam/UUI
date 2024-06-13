@@ -3,11 +3,15 @@ import { BuiltInTheme } from '../../../../data';
 import { TFigmaThemeName, TVarType } from '../types/sharedTypes';
 import { normalizeColor } from './colorUtils';
 
+/**
+ * The Figma theme names (i.e. the values) are hardcoded here.
+ * Make sure they are updated when modes in "public/docs/figmaTokensGen/Theme.json" are changed.
+ */
 const THEME_MAP: Record<string, TFigmaThemeName | undefined> = {
-    [BuiltInTheme.electric]: TFigmaThemeName.ELECTRIC,
-    [BuiltInTheme.promo]: TFigmaThemeName.PROMO,
-    [BuiltInTheme.loveship]: TFigmaThemeName.LOVESHIP_LIGHT,
-    [BuiltInTheme.loveship_dark]: TFigmaThemeName.LOVESHIP_DARK,
+    [BuiltInTheme.electric]: 'Electric',
+    [BuiltInTheme.promo]: 'Promo',
+    [BuiltInTheme.loveship]: 'Loveship-Light',
+    [BuiltInTheme.loveship_dark]: 'Loveship-Dark',
     [BuiltInTheme.vanilla_thunder]: undefined,
 };
 
