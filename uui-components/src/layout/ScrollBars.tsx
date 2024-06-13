@@ -60,9 +60,11 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const getIndent = (margin: string | number): string | number => {
+    const getIndent = (margin: string | number) => {
         // for windows we need to get positive right margin to hide native scrollbar
-        return typeof margin === 'string' ? (Math.abs(parseInt(margin, 10)) + 'px') : margin;
+        if (margin === 0) return margin;
+        const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
+        return Math.abs(marginNum) + 'px';
     };
 
     const customRenderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
