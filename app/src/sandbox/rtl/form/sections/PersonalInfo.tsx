@@ -4,9 +4,9 @@ import { ILens } from '@epam/uui-core';
 import { DatePicker, FlexCell, FlexRow, LabeledInput, RichTextView, TextInput } from '@epam/uui';
 import { PersonalInfo } from '../types';
 import css from '../DemoForm.module.scss';
-import { IDir } from '../DemoForm';
+import { ReactComponent as ActionAccountFillIcon } from '@epam/assets/icons/action-account-fill.svg';
 
-export function PersonalInfoSection({ lens, dir }: { lens: ILens<PersonalInfo>, dir: IDir }) {
+export function PersonalInfoSection({ lens }: { lens: ILens<PersonalInfo> }) {
     return (
         <>
             <RichTextView>
@@ -16,7 +16,7 @@ export function PersonalInfoSection({ lens, dir }: { lens: ILens<PersonalInfo>, 
             <FlexRow vPadding="12">
                 <FlexCell minWidth={ 324 }>
                     <LabeledInput htmlFor="fullName" label="Full Name" { ...lens.prop('fullName').toProps() }>
-                        <TextInput { ...lens.prop('fullName').toProps() } id="fullName" placeholder="Ivan Petrov" />
+                        <TextInput icon={ ActionAccountFillIcon } { ...lens.prop('fullName').toProps() } id="fullName" placeholder="Ivan Petrov" />
                     </LabeledInput>
                 </FlexCell>
             </FlexRow>
@@ -27,7 +27,6 @@ export function PersonalInfoSection({ lens, dir }: { lens: ILens<PersonalInfo>, 
                             filter={ (day: Dayjs) => day.valueOf() <= uuiDayjs.dayjs().subtract(0, 'day').valueOf() }
                             id="birthDate"
                             format="MMM D, YYYY"
-                            rawProps={ { input: { dir: dir }, body: { dir: dir } } }
                             { ...lens.prop('birthdayDate').toProps() }
                         />
                     </LabeledInput>

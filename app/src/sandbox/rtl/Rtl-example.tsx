@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { DatePicker, FlexCell, FlexRow, LabeledInput, MultiSwitch, RangeDatePicker, RichTextView, Switch, TextArea, TextInput, Text } from '@epam/uui';
 
-type IDir = 'ltr' | 'rtl' | 'auto';
+type IDir = undefined | 'auto';
 
-const rtlSwitchItems = [{ id: 'ltr', caption: 'Ltr' }, { id: 'rtl', caption: 'Rtl' }, { id: 'auto', caption: 'Auto' }];
+const rtlSwitchItems = [{ id: undefined, caption: 'html' }, { id: 'auto', caption: 'Auto' }];
 
 export function RtlExample() {
     const [value, setValue] = useState('');
-    const [labelDir, setLabelDir] = useState<IDir>('ltr');
-    const [inputDir, setInputDir] = useState<IDir>('ltr');
-    const [labelDateDir, setLabelDateDir] = useState<IDir>('ltr');
-    const [dateDir, setDateDir] = useState<IDir>('ltr');
-    const [switchDir, setSwitchDir] = useState<IDir>('ltr');
-    const [textAreaDir, setTextAreaDir] = useState<IDir>('ltr');
+    const [inputDir, setInputDir] = useState<IDir>();
+    const [textAreaDir, setTextAreaDir] = useState<IDir>();
     const [dateValue, setDateValue] = useState('');
     const [rangeValue, setRangeValue] = useState({ from: null, to: null });
     const [switchValue, setSwitchValue] = useState(false);
@@ -27,13 +23,6 @@ export function RtlExample() {
                     </RichTextView>
                 </FlexRow>
                 <FlexRow padding="24" vPadding="24" columnGap="24">
-                    <LabeledInput label="Label dir" labelPosition="top">
-                        <MultiSwitch
-                            value={ labelDir }
-                            onValueChange={ setLabelDir }
-                            items={ rtlSwitchItems }
-                        />
-                    </LabeledInput>
                     <LabeledInput label="Input dir" labelPosition="top">
                         <MultiSwitch
                             value={ inputDir }
@@ -43,7 +32,7 @@ export function RtlExample() {
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
-                    <LabeledInput label="Address" labelPosition="left" rawProps={ { dir: labelDir } }>
+                    <LabeledInput label="Address" labelPosition="left">
                         <TextInput
                         // mode="inline"
                             value={ value }
@@ -53,7 +42,7 @@ export function RtlExample() {
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
-                    <LabeledInput label="Address" labelPosition="top" rawProps={ { dir: labelDir } }>
+                    <LabeledInput label="Address" labelPosition="top">
                         <TextInput
                         // mode="inline"
                             value={ value }
@@ -67,17 +56,8 @@ export function RtlExample() {
                         <h3>Switch</h3>
                     </RichTextView>
                 </FlexRow>
-                <FlexRow padding="24">
-                    <LabeledInput label="Switch dir" labelPosition="top">
-                        <MultiSwitch
-                            value={ switchDir }
-                            onValueChange={ setSwitchDir }
-                            items={ rtlSwitchItems }
-                        />
-                    </LabeledInput>
-                </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
-                    <Switch label="Default" value={ switchValue } onValueChange={ setSwitchValue } rawProps={ { dir: switchDir } } size="24" />
+                    <Switch label="Power" value={ switchValue } onValueChange={ setSwitchValue } size="24" />
                 </FlexRow>
             </FlexCell>
 
@@ -89,37 +69,21 @@ export function RtlExample() {
                         <h3>Date & DateRange</h3>
                     </RichTextView>
                 </FlexRow>
-                <FlexRow padding="24" vPadding="24" columnGap="24">
-                    <LabeledInput label="DatePickerLabel dir" labelPosition="top">
-                        <MultiSwitch
-                            value={ labelDateDir }
-                            onValueChange={ setLabelDateDir }
-                            items={ rtlSwitchItems }
-                        />
-                    </LabeledInput>
-                    <LabeledInput label="DatePicker dir" labelPosition="top">
-                        <MultiSwitch
-                            value={ dateDir }
-                            onValueChange={ setDateDir }
-                            items={ rtlSwitchItems }
-                        />
-                    </LabeledInput>
-                </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
-                    <LabeledInput label="Date" labelPosition="left" rawProps={ { dir: labelDateDir } }>
+                    <LabeledInput label="Date" labelPosition="left">
                         <DatePicker
                             value={ dateValue }
                             onValueChange={ setDateValue }
-                            rawProps={ { input: { dir: dateDir }, body: { dir: dateDir } } }
+                            // rawProps={ { input: { dir: dateDir }, body: { dir: dateDir } } }
                         />
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow padding="24" vPadding="24" alignItems="top">
-                    <LabeledInput label="RangeDatePicker" labelPosition="top" rawProps={ { dir: labelDateDir } }>
+                    <LabeledInput label="RangeDatePicker" labelPosition="top">
                         <RangeDatePicker
                             value={ rangeValue }
                             onValueChange={ setRangeValue }
-                            rawProps={ { from: { dir: dateDir }, to: { dir: dateDir }, body: { dir: dateDir } } }
+                            // rawProps={ { from: { dir: dateDir }, to: { dir: dateDir }, body: { dir: dateDir } } }
                         />
                     </LabeledInput>
                 </FlexRow>
@@ -129,7 +93,7 @@ export function RtlExample() {
                     </RichTextView>
                 </FlexRow>
                 <FlexRow padding="24">
-                    <LabeledInput label="Switch dir" labelPosition="top">
+                    <LabeledInput label="Text dir" labelPosition="top">
                         <MultiSwitch
                             value={ textAreaDir }
                             onValueChange={ setTextAreaDir }

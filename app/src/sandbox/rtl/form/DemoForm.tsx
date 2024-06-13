@@ -34,8 +34,6 @@ export function DemoForm() {
         },
     });
 
-    const dir: IDir = undefined;
-
     return (
         <div className={ css.root }>
             <FlexRow size="48">
@@ -46,12 +44,12 @@ export function DemoForm() {
             </FlexRow>
             <Panel background="surface-main" cx={ css.formPanel } shadow>
                 <FlexCell width="100%">
-                    <PersonalInfoSection lens={ lens.prop('personalInfo') } dir={ dir } />
-                    <LocationSection lens={ lens.prop('location') } dir={ dir } />
+                    <PersonalInfoSection lens={ lens.prop('personalInfo') } />
+                    <LocationSection lens={ lens.prop('location') } />
                     <PrimaryInfoSection lens={ lens.prop('primaryInfo') } />
-                    <EducationSection lens={ lens.prop('education') } dir={ dir } />
-                    <LanguagesSection lens={ lens.prop('languageInfo').default([emptyInfo.language]) } dir={ dir } />
-                    <VisasSection lens={ lens.prop('travelVisas') } dir={ dir } />
+                    <EducationSection lens={ lens.prop('education') } />
+                    <LanguagesSection lens={ lens.prop('languageInfo').default([emptyInfo.language]) } />
+                    <VisasSection lens={ lens.prop('travelVisas') } />
                     <OtherInfoSection lens={ lens.prop('otherInfo') } />
                     <hr className={ css.divider } />
                     <FlexRow columnGap="12">
