@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, msPerDay } from '@epam/uui-timeline';
+import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, msPerDay, TimelineGrid } from '@epam/uui-timeline';
 import { useForceUpdate } from '@epam/uui-core';
 import { renderBars } from '@epam/uui-timeline';
 import { Task } from './types';
@@ -86,12 +86,16 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
             className={ css.taskBar }
             onWheel={ (e) => timelineController.handleWheelEvent(e.nativeEvent as WheelEvent) }
         >
+            <div className={ css.layer }>
+                <TimelineGrid className={ css.grid } timelineController={ timelineController } canvasHeight={ 36 } />
+            </div>
             <div
                 className={ css.layer }
                 onMouseDown={ (e) => timelineController.startDrag(e) }
             >
                 {renderCanvas()}
             </div>
+          
         </div>
     );
 }

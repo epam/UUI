@@ -4,8 +4,8 @@ import { msPerDay } from './helpers';
 
 export interface TimelineGridProps extends BaseTimelineCanvasComponentProps {}
 
-export function TimelineGrid({ timelineController }: TimelineGridProps) {
-    const canvasHeight = 60;
+export function TimelineGrid({ timelineController, ...restProps }: TimelineGridProps) {
+    const canvasHeight = restProps.canvasHeight ?? 60;
     const renderLine = (ctx: CanvasRenderingContext2D, x: number, width?: number) => {
         ctx.beginPath();
         ctx.moveTo(x, 0);
