@@ -116,5 +116,5 @@ async function loadListOfThemes(): Promise<TThemeConfig> {
 }
 
 function reportUnknownThemeError(theme: string) {
-    console.error(`[initialization] Theme "${theme}" is unknown`);
+    console.error(`[appTheme] Theme "${theme}" is unknown`);
 }
