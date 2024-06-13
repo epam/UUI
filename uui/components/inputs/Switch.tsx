@@ -14,7 +14,7 @@ interface SwitchMods {
 export interface SwitchModsOverride {}
 
 /** Represents the properties of the Switch component. */
-export type SwitchProps = uuiComponents.SwitchProps & Overwrite<SwitchMods, SwitchModsOverride>;
+export interface SwitchProps extends uuiComponents.SwitchProps, Overwrite<SwitchMods, SwitchModsOverride> {}
 
 function applySwitchMods(mods: SwitchProps) {
     return [

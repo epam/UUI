@@ -18,7 +18,7 @@ interface LinkButtonMods {
 }
 
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /**
@@ -26,12 +26,12 @@ export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & I
      * @default '36'
      */
     size?: types.ControlSize | '42';
-};
+}
 
 export interface LinkButtonModsOverride {}
 
 /** Represents the properties of the LinkButton component. */
-export type LinkButtonProps = LinkButtonCoreProps & Overwrite<LinkButtonMods, LinkButtonModsOverride>;
+export interface LinkButtonProps extends LinkButtonCoreProps, Overwrite<LinkButtonMods, LinkButtonModsOverride> {}
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
