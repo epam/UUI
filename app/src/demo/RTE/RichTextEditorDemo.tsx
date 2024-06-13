@@ -48,8 +48,21 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
     plugins = [
         ...defaultPlugins,
         ...baseMarksPlugin(),
-        headerPlugin(),
-        colorPlugin(),
+        headerPlugin(
+            'uui-richTextEditor-header-1',
+            'uui-richTextEditor-header-2',
+            'uui-richTextEditor-header-3',
+            'uui-richTextEditor-header-4',
+            'uui-richTextEditor-header-5',
+            'uui-richTextEditor-header-6',
+        ),
+        colorPlugin(
+            '#FF8B72',
+            '#72FFFE',
+            '#F372FF',
+            '#72FFCF',
+            '#FF72BF',
+        ),
         superscriptPlugin(),
         listPlugin(),
         toDoListPlugin(),
