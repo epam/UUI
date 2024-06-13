@@ -1,3 +1,6 @@
+.grid {
+    transform: scaleY(100500);
+}
 
 .task-bar {
     position: relative;
@@ -7,4 +10,13 @@
     width: 100%;
     /* to prevent text selection on canvases */
     user-select: none;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateZ(0);
 }

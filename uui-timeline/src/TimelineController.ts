@@ -109,7 +109,7 @@ export class TimelineController {
         }
 
         // Prevent text selection of drag start
-        e.preventDefault();
+        e.cancelable && e.preventDefault();
     };
 
     public handleWheelEvent = (e: WheelEvent) => {
@@ -125,7 +125,7 @@ export class TimelineController {
             },
             true,
         );
-        e.preventDefault();
+        e.cancelable && e.preventDefault();
     };
 
     private changeZoomStep(steps: number) {
