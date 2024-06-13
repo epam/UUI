@@ -7,7 +7,7 @@ import {
     DemoContext,
     TDocsGenExportedType,
     PropDocPropsUnknown,
-    PropDoc, isDocContextVisibleInPE,
+    PropDoc,
 } from '@epam/uui-docs';
 import { DemoCode } from './DemoCode';
 import { DemoErrorBoundary } from './DemoErrorBoundary';
@@ -115,8 +115,7 @@ export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: ICompon
 
 const ContextSwitcher = React.memo((props: IHaveContexts & IHavePreviewRef) => {
     const { contexts, selectedCtxName, onChangeSelectedCtx, previewRef } = props;
-    const availableCtxNames = contexts?.map((i) => i.name) || [];
-    const visibleCtxNames = availableCtxNames.filter(isDocContextVisibleInPE);
+    const visibleCtxNames = contexts?.map((i) => i.name) || [];
     return (
         <FlexRow
             key="head"

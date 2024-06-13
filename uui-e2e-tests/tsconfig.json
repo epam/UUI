@@ -8,7 +8,7 @@
     "strict": true,
     "preserveConstEnums": true,
     "noEmit": true,
-    "rootDir": ".",
+    "rootDir": "../.",
     "baseUrl": ".",
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true
@@ -16,5 +16,12 @@
   "exclude": [
     "node_modules",
     ".reports"
+  ],
+  "include": [
+    "framework",
+    "scripts",
+    "tests",
+    "playwright.config.ts",
+    "../app/src/docs/_types/previewIds.ts"
   ]
 }
