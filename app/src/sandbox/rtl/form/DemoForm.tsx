@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { UuiContexts, useUuiContext } from '@epam/uui-core';
 import type { TApi } from '../../../data';
-import { FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Button, useForm, MultiSwitch, LabeledInput } from '@epam/uui';
+import { FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Button, useForm } from '@epam/uui';
 import type { PersonDetails } from './types';
 import { personDetailsSchema } from './validationShema';
 import { defaultData, emptyInfo } from './defaultData';
@@ -9,20 +9,18 @@ import css from './DemoForm.module.scss';
 import {
     EducationSection, LanguagesSection, OtherInfoSection, PersonalInfoSection, PrimaryInfoSection, VisasSection, LocationSection,
 } from './sections';
-import { useState } from 'react';
 
-export type IDir = 'ltr' | 'rtl' | 'auto';
+export type IDir = 'ltr' | 'rtl' | 'auto' | undefined;
 
 export function DemoForm() {
     const svc = useUuiContext<TApi, UuiContexts>();
-    const [dir, setDir] = useState<IDir>('ltr');
 
     const { lens, save } = useForm<PersonDetails>({
         settingsKey: 'form-test',
         value: defaultData,
         getMetadata: personDetailsSchema,
         onSave: (person) => Promise.resolve({ form: person }),
-        onSuccess: () =>{
+        onSuccess: () => {
             svc.uuiNotifications.show(
                 (props) => (
                     <SuccessNotification { ...props }>
@@ -36,22 +34,15 @@ export function DemoForm() {
         },
     });
 
+    const dir: IDir = undefined;
+
     return (
-        <div className={ css.root } dir={ dir }>
+        <div className={ css.root }>
             <FlexRow size="48">
                 <RichTextView>
                     <h1>My Profile</h1>
                 </RichTextView>
                 <FlexSpacer />
-                <FlexCell width={ 200 }>
-                    <LabeledInput label="Root dir" labelPosition="top">
-                        <MultiSwitch
-                            value={ dir }
-                            onValueChange={ setDir }
-                            items={ [{ id: 'ltr', caption: 'Ltr' }, { id: 'rtl', caption: 'Rtl' }, { id: 'auto', caption: 'Auto' }] }
-                        />
-                    </LabeledInput>
-                </FlexCell>
             </FlexRow>
             <Panel background="surface-main" cx={ css.formPanel } shadow>
                 <FlexCell width="100%">

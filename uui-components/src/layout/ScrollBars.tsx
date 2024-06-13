@@ -18,9 +18,11 @@ export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, 
     renderView?: (props: any) => React.ReactElement;
 }
 
-export interface PositionValues extends positionValues {}
+export interface PositionValues extends positionValues {
+}
 
-export interface ScrollbarsApi extends Scrollbars {}
+export interface ScrollbarsApi extends Scrollbars {
+}
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
@@ -58,16 +60,24 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const renderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
-        const propsRenderView = props.renderView as (p: any) => any;
-        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } }, ...rest });
-        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto' } } } { ...rest } />;
+    const getIndent = (margin: string | number): string => {
+        // for windows we need to get positive right margin to hide native scrollbar
+        const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
+        return Math.abs(marginNum) + 'px';
     };
+
+    const customRenderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
+        const propsRenderView = props.renderView as (p: any) => any;
+        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', right: getIndent(innerStyle?.marginRight) } }, ...rest });
+        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', right: getIndent(innerStyle?.marginRight) } } } { ...rest } />;
+    };
+
+    const { renderView, ...customProps } = props;
 
     return (
         <ReactCustomScrollBars
             className={ cx(css.root, outerCx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
-            renderView={ (params) => renderView(params) }
+            renderView={ (params) => customRenderView(params) }
             renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
             renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
             renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
@@ -76,7 +86,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
             onScroll={ handleUpdateScroll }
             hideTracksWhenNotNeeded
             ref={ bars }
-            { ...props }
+            { ...customProps }
             { ...rawProps }
         />
     );
