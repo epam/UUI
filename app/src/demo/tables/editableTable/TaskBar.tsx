@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, msPerDay, TimelineGrid } from '@epam/uui-timeline';
+import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, TimelineGrid } from '@epam/uui-timeline';
 import { useForceUpdate } from '@epam/uui-core';
 import { renderBars } from '@epam/uui-timeline';
 import { Task } from './types';
@@ -17,23 +17,8 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
     const forceUpdate = useForceUpdate();
     const canvasHeight = 36;
     useEffect(() => {
-        timelineController.setWidth(taskBarWrapperRef.current?.offsetWidth);
-        forceUpdate();
-        window.onresize = () => {
-            timelineController.setViewport(
-                {
-                    center: timelineController.currentViewport.center,
-                    pxPerMs: taskBarWrapperRef.current?.clientWidth / msPerDay,
-                    widthPx: taskBarWrapperRef.current.clientWidth,
-                },
-                false,
-            );
-            forceUpdate();
-        };
-        
-        return () => {
-            window.onresize = null;
-        };
+        timelineController.subscribe(forceUpdate);
+        return () => timelineController.unsubscribe(forceUpdate);
     }, [forceUpdate, timelineController]);
     
     const draw = useCallback((ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
