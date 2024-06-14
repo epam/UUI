@@ -4,6 +4,9 @@ const EXTRA_ASSETS_FOR_DEV = [
     'http://localhost:*',
 ].join(' ');
 
+// TODO: probably we should limit to specific pages deployed to CF, not entire CF.
+const CLOUDFLARE_PAGES = 'https://*.pages.dev';
+
 /**
  * @param isDevServer {boolean}
  * @returns {string}
@@ -14,19 +17,19 @@ function getCspHeaderValue(isDevServer) {
         dir(
             "style-src 'self' 'unsafe-inline'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
-            'https://*.pages.dev',
+            CLOUDFLARE_PAGES,
             'https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/',
         ),
         dir(
             "font-src 'self'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
-            'https://*.pages.dev',
+            CLOUDFLARE_PAGES,
             'https://*.epam.com https://fonts.gstatic.com/',
         ),
         dir(
             "connect-src 'self'",
             isDevServer && EXTRA_ASSETS_FOR_DEV,
-            'https://*.pages.dev',
+            CLOUDFLARE_PAGES,
             'https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
         ),
         'frame-src *; ',
