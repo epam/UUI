@@ -42,13 +42,17 @@
     border-style: solid;
     border-radius: var(--uui-picker_toggler-border-radius);
 
-    :global(.uui-picker-toggler-body) {
-        gap: var(--uui-picker_toggler-multiline-gaps);
-    }
-
     &:global(.uui-input-box) {
         min-height: var(--uui-picker_toggler-min-height);
         border-width: var(--uui-picker_toggler-border-width);
+    }
+
+    div:first-child {
+        gap: var(--uui-picker_toggler-multiline-gaps);
+
+        :global(.uui-icon):first-child {
+            padding-inline-end: var(--uui-picker_toggler-horizontal-gap);
+        }
     }
 
     :global(.uui-input) {
@@ -89,14 +93,14 @@
 
     :global(.uui-placeholder) {
         color: var(--uui-picker_toggler-text);
-    }
 
-    :global(.uui-placeholder)::placeholder {
-        color: var(--uui-picker_toggler-text);
-    }
+        &::placeholder {
+            color: var(--uui-picker_toggler-text);
+        }
 
-    :global(.uui-placeholder)::-moz-placeholder {
-        opacity: 1;
+        &::-moz-placeholder {
+            opacity: 1;
+        }
     }
 
     :global(.uui-icon-cancel) {
@@ -108,10 +112,6 @@
             height: var(--uui-picker_toggler-icon-height);
             width: inherit;
         }
-    }
-
-    :global(.uui-picker-toggler-body) :global(.uui-icon):first-child {
-        padding-inline-end: var(--uui-picker_toggler-horizontal-gap);
     }
 
     &.mode-form {
@@ -149,7 +149,7 @@
         border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
 
-        :global(.uui-actions) :global(.uui-icon),
+        :global(.uui-picker_toggler-actions) :global(.uui-icon),
         :global(.uui-button-box) :global(.uui-icon):global(.-clickable) {
             cursor: pointer;
 
