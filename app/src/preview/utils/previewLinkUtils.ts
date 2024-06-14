@@ -1,13 +1,14 @@
 import { DocBuilder, PropDocPropsUnknown, TDocContext, TComponentPreview } from '@epam/uui-docs';
 import { TPropInputDataAll } from '../../common/docs/componentEditor/propDocUtils';
 import { TPreviewRef } from '../types';
+import { TTheme } from '../../data';
 
 const INLINE_PREVIEW_PREFIX = 'json:';
 
 type TBuildPreviewLinkParams = {
     context: TDocContext,
     inputData: TPropInputDataAll,
-    theme: string,
+    theme: TTheme,
     isSkin: boolean,
     componentId: string,
     docs: DocBuilder<PropDocPropsUnknown>

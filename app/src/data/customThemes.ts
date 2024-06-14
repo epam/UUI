@@ -1,9 +1,10 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
+import { TTheme } from './themes';
 
 const THEME_MANIFEST_FILE = 'theme-manifest.json';
 
 export interface CustomThemeManifest {
-    id: string;
+    id: TTheme;
     name: string;
     css: string[];
     settings: null | object;

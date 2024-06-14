@@ -4,6 +4,7 @@ import {
 import { useThemeTokens } from '../../../sandbox/tokens/palette/hooks/useThemeTokens/useThemeTokens';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../../sandbox/tokens/palette/types/types';
 import { isGroupCfgWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
+import { TTheme } from '../../../data';
 
 const PARAMS: TLoadThemeTokensParams = {
     filter: {
@@ -12,7 +13,7 @@ const PARAMS: TLoadThemeTokensParams = {
     },
     valueType: TThemeTokenValueType.chain,
 };
-export function useTokensDoc(): { loading: boolean, tokens: ITokensDocGroup[], uuiTheme: string } {
+export function useTokensDoc(): { loading: boolean, tokens: ITokensDocGroup[], uuiTheme: TTheme } {
     const result = useThemeTokens(PARAMS);
     const {
         tokens,
