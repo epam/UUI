@@ -71,7 +71,7 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
             <div className={ cx(labelMod[props.labelPosition ? props.labelPosition : 'top']) }>
                 {props.label && (
                     <div className={ css.labelWrapper }>
-                        <label htmlFor={ props.htmlFor } className={ uuiElement.label }>
+                        <label htmlFor={ props.htmlFor } className={ uuiElement.label } dir={ props?.rawProps?.dir }>
                             {props.label}
                             {props.isRequired && <span className={ uuiLabeledInput.asterisk }>*</span>}
                             {props.info && Tooltip && (

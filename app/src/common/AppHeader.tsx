@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, Text,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import { svc } from '../services';
@@ -15,11 +15,18 @@ import { useAppThemeContext } from '../helpers/appTheme';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
+type ContentDirection = 'rtl' | 'ltr';
 export function AppHeader() {
     const { theme, toggleTheme, themesById } = useAppThemeContext();
+    const [direction, setDirection] = useState<ContentDirection>('ltr');
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
+    };
+
+    const changeContentDirection = (value: ContentDirection) => {
+        setDirection(value);
+        window.document.dir = value;
     };
 
     const renderBurger = () => {
@@ -79,6 +86,14 @@ export function AppHeader() {
                 placement="bottom-end"
                 key="Theme-switcher"
             />
+        );
+    };
+
+    const renderDirectionSwitcher = () => {
+        return (
+            <FlexRow padding="12">
+                <MultiSwitch value={ direction } onValueChange={ changeContentDirection } items={ [{ id: 'ltr', caption: 'LTR' }, { id: 'rtl', caption: 'RTL' }] } />
+            </FlexRow>
         );
     };
 
@@ -171,7 +186,6 @@ export function AppHeader() {
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
-
             {
                 id: 'themeCaption',
                 priority: 2,
@@ -185,6 +199,11 @@ export function AppHeader() {
                 ),
             },
             { id: 'theme', priority: 3, render: renderThemeSwitcher },
+            !window.location.host.includes('uui.epam.com') && {
+                id: 'direction',
+                priority: 2,
+                render: renderDirectionSwitcher,
+            },
             {
                 id: 'git',
                 priority: 0,

@@ -46,7 +46,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                 />
             )}
             {row.indent > 0 && (
-                <div key="fold" className="uui-dr_addons-indent" style={ { marginLeft: getIndent(), width: getWidth() } }>
+                <div key="fold" className="uui-dr_addons-indent" style={ { marginInlineStart: getIndent(), width: getWidth() } }>
                     {row.isFoldable && (
                         <IconContainer
                             rawProps={ {
