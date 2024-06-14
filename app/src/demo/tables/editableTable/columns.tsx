@@ -2,7 +2,8 @@ import { Task, ColumnsProps } from './types';
 import { resources, statuses } from './demoData';
 import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
-    DatePicker, DataPickerRow, PickerItem, IconContainer } from '@epam/uui';
+    DatePicker, DataPickerRow, PickerItem, IconContainer, 
+    DataTableTimelineHeaderCell } from '@epam/uui';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 
@@ -123,6 +124,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             key: 'teams',
             caption: 'Teams',
             width: 220,
+            allowResizing: false,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('resources').toProps() }
@@ -157,6 +159,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             caption: 'Description',
             width: 200,
             grow: 1,
+            allowResizing: false,
             renderCell: (props) => (
                 <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
             ),
@@ -259,6 +262,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             key: 'startDate',
             caption: 'Start date',
             width: 150,
+            allowResizing: false,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
@@ -284,8 +288,12 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             width: 200,
             grow: 1,
             allowResizing: false,
-            renderHeaderCell() {
-                return (<TimelineHeader timelineController={ timelineController } />);
+            renderHeaderCell(props) {
+                return (
+                    <DataTableTimelineHeaderCell { ...props }>
+                        <TimelineHeader timelineController={ timelineController } />
+                    </DataTableTimelineHeaderCell>
+                );
             },
             renderCell(props) {
                 return (

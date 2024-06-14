@@ -62,7 +62,7 @@ export const DataTableRowContainer = React.forwardRef(
                 const idx = props.columns?.indexOf(column) || 0;
                 cells.push(props.renderCell(column, idx, { onPointerDown, onTouchStart }));
                 return cells;
-            }, []);
+            }, []); 
         }
 
         function wrapFixedSection(columns: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right', hasScrollingSection: boolean) {

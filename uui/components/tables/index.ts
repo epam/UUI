@@ -2,6 +2,7 @@ export * from './DataTableCell';
 export * from './DataTableRow';
 export * from './DataTableHeaderRow';
 export * from './DataTableHeaderCell';
+export * from './DataTableTimelineHeaderCell';
 export * from './DataTable';
 export * from './DataRowsContainer';
 export * from './columnsConfigurationModal';
