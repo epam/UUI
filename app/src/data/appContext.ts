@@ -1,15 +1,15 @@
-import { Theme, builtInThemes } from './themes';
+import { ThemeBaseParams, builtInThemes, TTheme } from './themes';
 import { CustomThemeManifest, loadCustomThemes } from './customThemes';
 
 export interface AppContext {
-    themes: string[],
-    themesById: Record<string, Theme | CustomThemeManifest>,
+    themes: TTheme[],
+    themesById: Record<TTheme, ThemeBaseParams | CustomThemeManifest>,
 }
 
 export async function getAppContext() {
     const customThemesArr = await loadCustomThemes();
     const allThemes = [...builtInThemes, ...customThemesArr];
-    const themesById = allThemes.reduce<Record<string, Theme | CustomThemeManifest>>((acc, t) => {
+    const themesById = allThemes.reduce<Record<TTheme, ThemeBaseParams | CustomThemeManifest>>((acc, t) => {
         acc[t.id] = t;
         return acc;
     }, {});
