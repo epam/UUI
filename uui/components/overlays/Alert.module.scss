@@ -47,7 +47,7 @@
 
 .icon-wrapper {
     height: 100%;
-    margin-right: 12px;
+    margin-inline-end: 12px;
 }
 
 .action-wrapper {
@@ -60,11 +60,11 @@
 }
 
 .action-link:not(:last-child) {
-    margin-right: 12px;
+    margin-inline-end: 12px;
 }
 
 .close-icon {
-    margin-left: 17px;
+    margin-inline-start: 17px;
     min-height: 30px;
     min-width: fit-content;
     align-self: flex-start;

@@ -30,6 +30,7 @@
     // size
     --uui-switch-min-height: var(--uui-size);
     --uui-switch-min-width: var(--uui-size);
+    --uui-switch-negative-min-width: calc(var(--uui-size) * -1);
     --uui-switch-border-width: var(--uui-border-width);
     --uui-switch-horizontal-gap: var(--uui-horizontal-gap);
     --uui-switch-line-height: var(--uui-line-height);
@@ -150,5 +151,16 @@
         :global(.uui-input-label) {
             color: var(--uui-switch-label-disabled);
         }
+    }
+}
+
+
+*[dir='rtl'] .root :global(.uui-switch-toggler), .root[dir='rtl'] :global(.uui-switch-toggler) {
+    right: calc(0px - var(--uui-switch-border-width));
+}
+
+*[dir='rtl'] .root :global(.uui-checked), .root[dir='rtl'] :global(.uui-checked) {
+    :global(.uui-switch-toggler) {
+        transform: translateX(var(--uui-switch-negative-min-width));
     }
 }

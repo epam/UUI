@@ -12,4 +12,14 @@
     }
 }
 
+*[dir='rtl'] .container :global(.uui-datepickerheader-nav-icon-left), .container[dir='rtl'] :global(.uui-datepickerheader-nav-icon-left) {
+    svg {
+        transform: rotate(180deg);
+    }
+}
 
+*[dir='rtl'] .container :global(.uui-datepickerheader-nav-icon-right), .container[dir='rtl'] :global(.uui-datepickerheader-nav-icon-right) {
+    svg {
+        transform: rotate(180deg);
+    }
+}
