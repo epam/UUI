@@ -1,10 +1,9 @@
-import React, {
-    CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef,
-} from 'react';
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
-import css from './ScrollBars.module.scss';
 import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
+import { getHtmlDir } from '../helpers/getHtmlDir';
+import css from './ScrollBars.module.scss';
 
 export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
     /** If true, shadow will be added to the top of container, in case when scroll isn't in top position */
@@ -60,17 +59,21 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
-    const getIndent = (margin: string | number) => {
+    const getIndent = (margin: string | number): Record<string, string | number> => {
         // for windows we need to get positive right margin to hide native scrollbar
-        if (margin === 0) return margin;
-        const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
-        return Math.abs(marginNum) + 'px';
+        const dir = getHtmlDir();
+        if (dir === 'rtl') {
+            if (margin === 0) return { right: margin };
+            const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
+            return { right: Math.abs(marginNum) + 'px' };
+        }
+        return {};
     };
 
     const customRenderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
         const propsRenderView = props.renderView as (p: any) => any;
-        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', right: getIndent(innerStyle?.marginRight) } }, ...rest });
-        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', right: getIndent(innerStyle?.marginRight) } } } { ...rest } />;
+        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', ...getIndent(innerStyle?.marginRight) } }, ...rest });
+        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', ...getIndent(innerStyle?.marginRight) } } } { ...rest } />;
     };
 
     const { renderView, ...customProps } = props;
