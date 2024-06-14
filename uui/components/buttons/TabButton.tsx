@@ -20,7 +20,7 @@ type TabButtonMods = {
 export interface TabButtonModsOverride {}
 
 /** Represents the properties of a TabButton component. */
-export type TabButtonProps = Overwrite<TabButtonMods, TabButtonModsOverride> & ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOverride>, ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
@@ -29,7 +29,7 @@ export type TabButtonProps = Overwrite<TabButtonMods, TabButtonModsOverride> & C
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
     count?: React.ReactNode;
-};
+}
 
 export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
     const styles = [

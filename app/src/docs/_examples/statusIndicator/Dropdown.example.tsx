@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown, DropdownContainer, DropdownMenuButton, FlexRow, StatusIndicator, StatusIndicatorProps, LinkButton } from '@epam/uui';
+import { Dropdown, DropdownMenuButton, FlexRow, StatusIndicator, StatusIndicatorProps, LinkButton, DropdownMenuBody } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
 
 const dropdownMenuItems = [
@@ -14,7 +14,7 @@ export default function TypesExample() {
 
     const renderDropdownBody = (props: DropdownBodyProps) => {
         return (
-            <DropdownContainer { ...props } width="auto">
+            <DropdownMenuBody { ...props }>
                 {dropdownMenuItems.map((item) => (
                     <DropdownMenuButton
                         key={ item.id }
@@ -25,7 +25,7 @@ export default function TypesExample() {
                         } }
                     />
                 ))}
-            </DropdownContainer>
+            </DropdownMenuBody>
         );
     };
 

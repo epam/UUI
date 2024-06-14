@@ -91,8 +91,8 @@ function getVolumesMapArgs() {
         './.env',
         './tsconfig.json',
     ].reduce<string[]>((acc, from) => {
-        const to = `/app/${from.replace('./', '')}`;
+        const to = `/e2e/${from.replace('./', '')}`;
         acc.push('-v', `${from}:${to}`);
         return acc;
-    }, []);
+    }, []).concat(['-v', '../app/src/docs/_types/previewIds.ts:/app/src/docs/_types/previewIds.ts']);
 }

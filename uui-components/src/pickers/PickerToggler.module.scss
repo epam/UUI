@@ -28,19 +28,19 @@
     }
 }
 
-:global(.uui-picker-toggler-body) {
+.body {
     display: flex;
     width: 100%;
     overflow: hidden;
     outline: none;
     align-items: center;
 
-    &:global(.uui-multiline) {
+    &:global(.uui-picker_toggler-multiline) {
         flex-wrap: wrap;
     }
 }
 
-:global(.uui-actions) {
+:global(.uui-picker_toggler-actions) {
     display: flex;
     flex-shrink: 0;
 }

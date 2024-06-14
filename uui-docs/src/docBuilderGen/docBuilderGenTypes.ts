@@ -28,7 +28,6 @@ export interface IDocBuilderGenCtx {
 export type TPropEditorTypeOverride = {
     [typeRef: TTypeRef]: {
         [propName: string]: {
-            mode: 'replace' | 'add',
             editor: { type: TPropEditorType.oneOf, options: TOneOfItemType[] },
             comment?: {
                 tags?: {

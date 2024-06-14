@@ -1,9 +1,5 @@
 /**
- *
- * Preview IDs are used for screenshot tests
- *
- * These files MUST be kept in sync:
- * app/src/docs/_types/previewIds.ts --> uui-e2e-tests/framework/data/previewIds.ts
+ * This file is referenced by "uui-e2e-tests" module
  */
 
 /**

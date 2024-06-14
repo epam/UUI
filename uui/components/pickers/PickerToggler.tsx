@@ -19,7 +19,7 @@ export interface PickerTogglerMods extends types.IHasEditMode {
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         css.root,
-        'uui-picker-toggler',
+        'uui-picker_toggler',
         `uui-size-${mods.size || settings.sizes.defaults.pickerToggler}`,
         css['mode-' + (mods.mode || defaultMode)],
     ];

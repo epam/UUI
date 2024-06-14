@@ -46,7 +46,7 @@
     &:global(.-clickable) {
         &:hover, &:focus {
             background-color: var(--uui-main_menu-hover);
-            color: var(--uui-main_menu-text);
+            color: var(--uui-main_menu-text-hover);
             fill: var(--uui-main_menu-icon-hover);
         }
     }

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { TDocConfig } from '@epam/uui-docs';
 import { ComponentEditorWrapper } from '../../componentEditor/ComponentEditor';
+import { TTheme } from '../../../../data';
 
 type TPropExplorerTabProps = {
     isSkin: boolean;
     title: string;
-    theme: string;
+    theme: TTheme;
     config: TDocConfig | undefined;
     onOpenDocTab: () => void;
 };
