@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, TimelineGrid } from '@epam/uui-timeline';
-import { useForceUpdate } from '@epam/uui-core';
+import { useForceUpdate, useResizeObserver } from '@epam/uui-core';
 import { renderBars } from '@epam/uui-timeline';
 import { Task } from './types';
 import { statuses } from './demoData';
@@ -16,11 +16,16 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
     const taskBarWrapperRef = useRef<HTMLDivElement>(null);
     const forceUpdate = useForceUpdate();
     const canvasHeight = 36;
-    useEffect(() => {
-        timelineController.subscribe(forceUpdate);
-        return () => timelineController.unsubscribe(forceUpdate);
-    }, [forceUpdate, timelineController]);
-    
+    const onResize = useCallback(() => {
+        forceUpdate();
+    }, [forceUpdate]);
+
+    useResizeObserver({
+        onResize: onResize,
+        observables: [document.body, taskBarWrapperRef.current],
+        delay: 100,
+    });
+
     const draw = useCallback((ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
         ctx.clearRect(0, 0, t.widthMs, canvasHeight);
         const item: Item = {

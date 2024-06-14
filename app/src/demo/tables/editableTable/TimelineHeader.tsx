@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useForceUpdate, useResizeObserver } from '@epam/uui-core';
-import { TimelineController, TimelineGrid, TimelineScale, msPerDay } from '@epam/uui-timeline';
+import { TimelineController, TimelineGrid, TimelineScale } from '@epam/uui-timeline';
 import css from './TimelineHeader.module.scss';
 
 export interface TimelineHeaderProps {
@@ -20,7 +20,7 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
         timelineController.setViewport(
             {
                 center: timelineController.currentViewport.center,
-                pxPerMs: timelineRef.current?.clientWidth / msPerDay,
+                pxPerMs: timelineController.currentViewport.pxPerMs,
                 widthPx: timelineRef.current.clientWidth,
             },
             false,
