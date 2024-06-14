@@ -10,7 +10,7 @@
 
     &:global(.uui-input-box) {
         border-width: 0;
-        min-height: calc(var(--uui-size) - 2px);
+        height: calc(var(--uui-size) - 2px);
     }
 }
 
