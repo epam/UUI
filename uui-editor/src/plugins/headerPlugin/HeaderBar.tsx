@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { PlateEditor, getBlockAbove, getPluginOptions, setElements, useEditorRef } from '@udecode/plate-common';
 import { DropdownBodyProps } from '@epam/uui-core';
-import { FlexRow } from '@epam/uui';
+import { Dropdown, FlexRow } from '@epam/uui';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
 import { ReactComponent as ClearIcon } from '../../icons/text-color-default.svg';
+import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
 
 import css from './HeaderBar.module.scss';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin';
 import { HEADER_MAP, HEADER_PLUGIN_KEY } from './constants';
 import { HeaderPluginOptions } from './types';
+import { useIsPluginActive } from '../../helpers';
 
 interface HeaderBarProps extends DropdownBodyProps {
     editor: PlateEditor;
@@ -60,14 +62,35 @@ export function HeaderBar(props: HeaderBarProps) {
                         cx={ css.button }
                         onClick={ (event) => toggleBlock(event, type) }
                         isActive={ block?.length && block[0].type === type }
-                        icon={ () => {
-                            return (
-                                <span className={ css.icon }>{HEADER_MAP[type as keyof typeof HEADER_MAP]}</span>
-                            );
-                        } }
+                        icon={ HEADER_MAP[type as keyof typeof HEADER_MAP] }
                     />
                 );
             })}
         </FlexRow>
+    );
+}
+
+interface IToolbarButton {
+    editor: PlateEditor;
+}
+
+export function HeaderButton({ editor }: IToolbarButton): any {
+    if (!useIsPluginActive(HEADER_PLUGIN_KEY)) return null;
+
+    return (
+        <Dropdown
+            renderTarget={ (props) => (
+                <ToolbarButton
+                    icon={ HeadlinePickerIcon }
+                    { ...props }
+                />
+            ) }
+            renderBody={ (props) => <HeaderBar editor={ editor } { ...props } /> }
+            placement="top-start"
+            modifiers={ [{
+                name: 'offset',
+                options: { offset: [0, 3] },
+            }] }
+        />
     );
 }

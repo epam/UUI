@@ -1,103 +1,70 @@
-import { Dropdown } from '@epam/uui-components';
-import React from 'react';
-
-import { useIsPluginActive } from '../../helpers';
-
-import { NoteBar } from './NoteBar';
-import { ToolbarButton } from '../../implementation/ToolbarButton';
-
-import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
-
 import {
-    PlateEditor, createPluginFactory, getBlockAbove, PlatePlugin,
+    createPluginFactory, PlatePlugin,
 } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
-import { WithToolbarButton } from '../../implementation/Toolbars';
-import { NODE_PLUGIN_KEY, noteTypes, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
+import { NODE_PLUGIN_KEY, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
+import { NoteEntryConfig, NoteNodeProps, NotePluginOptions } from './types';
+import { NoteButton } from './NoteBar';
 
-function Note(props: any) {
-    return (
-        <NotePluginBlock
-            { ...props }
-            type={ props.element.type.replace('note-', '') }
-        />
-    );
-}
+const defaultNodes = [
+    {
+        key: NOTE_ERROR_PLUGIN_KEY,
+        type: NOTE_ERROR_TYPE,
+        isElement: true,
+        isVoid: false,
+        component: NotePluginBlock,
+    },
+    {
+        key: NOTE_WARN_PLUGIN_KEY,
+        type: NOTE_WARN_TYPE,
+        isElement: true,
+        isVoid: false,
+        component: NotePluginBlock,
+    },
+    {
+        key: NOTE_LINK_PLUGIN_KEY,
+        type: NOTE_LINK_TYPE,
+        isElement: true,
+        isVoid: false,
+        component: NotePluginBlock,
+    },
+    {
+        key: NOTE_QUOTE_PLUGIN_KEY,
+        type: NOTE_QUOTE_TYPE,
+        isElement: true,
+        isVoid: false,
+        component: NotePluginBlock,
+    },
+];
 
-export const notePlugin = (): PlatePlugin => {
-    const createNotePlugin = createPluginFactory<WithToolbarButton>({
+const createNote = (config: NoteEntryConfig): PlatePlugin => {
+    return {
+        key: config.type,
+        type: config.type,
+        isElement: true,
+        isVoid: false,
+        component: NotePluginBlock,
+        props: () => ({
+            nodeProps: {
+                borderColor: config.borderColor,
+                backgroundColor: config.backgroundColor,
+            } as NoteNodeProps,
+        }),
+    };
+};
+
+export const notePlugin = (...notes: NoteEntryConfig[]): PlatePlugin => {
+    const createNotePlugin = createPluginFactory<NotePluginOptions>({
         key: NODE_PLUGIN_KEY,
         isElement: true,
         isVoid: false,
-        component: Note,
-        plugins: [
-            {
-                key: NOTE_ERROR_PLUGIN_KEY,
-                type: NOTE_ERROR_TYPE,
-                isElement: true,
-                isVoid: false,
-                component: Note,
-            },
-            {
-                key: NOTE_WARN_PLUGIN_KEY,
-                type: NOTE_WARN_TYPE,
-                isElement: true,
-                isVoid: false,
-                component: Note,
-            },
-            {
-                key: NOTE_LINK_PLUGIN_KEY,
-                type: NOTE_LINK_TYPE,
-                isElement: true,
-                isVoid: false,
-                component: Note,
-            },
-            {
-                key: NOTE_QUOTE_PLUGIN_KEY,
-                type: NOTE_QUOTE_TYPE,
-                isElement: true,
-                isVoid: false,
-                component: Note,
-            },
-        ],
+        component: NotePluginBlock,
+        plugins: !!notes.length ? notes.map((config) => createNote(config)) : defaultNodes,
         options: {
             bottomBarButton: NoteButton,
-        },
+            notes: !!notes.length ? notes : undefined,
+        } as NotePluginOptions,
     });
+
     return createNotePlugin();
 };
-
-interface IToolbarNote {
-    editor: PlateEditor;
-}
-
-export function NoteButton({ editor }: IToolbarNote) {
-    if (!useIsPluginActive(NODE_PLUGIN_KEY)) return null;
-
-    const block = getBlockAbove(editor, { block: true });
-    const type: any = block?.length && block[0].type;
-
-    return (
-        <Dropdown
-            renderTarget={ (props) => (
-                <ToolbarButton
-                    isActive={ noteTypes.includes(type) }
-                    icon={ NoteIcon }
-                    { ...props }
-                />
-            ) }
-            renderBody={ (props) => (
-                <NoteBar
-                    editor={ editor }
-                    type={ type }
-                    { ...props }
-                />
-            ) }
-            placement="top-start"
-            modifiers={ [{
-                name: 'offset',
-                options: { offset: [0, 3] },
-            }] }
-        />
-    );
-}
