@@ -8,14 +8,14 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         key: 'name',
         caption: 'Name',
         render: (p) => <Text>{p.name}</Text>,
-        width: 200,
+        width: 130,
         fix: 'left',
         isSortable: true,
         isAlwaysVisible: true,
     },
     {
         key: 'profileStatus',
-        caption: 'Profile Status',
+        caption: 'Status',
         render: (p) =>
             p.profileStatus && (
                 <FlexRow>
@@ -23,9 +23,8 @@ export const personColumns: DataColumnProps<Person, number>[] = [
                 </FlexRow>
             ),
         grow: 0,
-        width: 140,
+        width: 100,
         isSortable: true,
-        isFilterActive: (f) => !!f.profileStatusId,
     },
     {
         key: 'salary',
@@ -37,7 +36,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
                 }, 'en-US')}
             </Text>
         ),
-        width: 150,
+        width: 90,
         textAlign: 'right',
         isSortable: true,
     },
@@ -45,9 +44,8 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         key: 'jobTitle',
         caption: 'Title',
         render: (r) => <Text>{r.jobTitle}</Text>,
-        width: 200,
+        width: 210,
         isSortable: true,
-        isFilterActive: (f) => !!f.jobTitleId,
     },
     {
         key: 'departmentName',
@@ -56,7 +54,6 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         grow: 0,
         width: 200,
         isSortable: true,
-        isFilterActive: (f) => !!f.departmentId,
         isHiddenByDefault: true,
     },
     {
@@ -66,50 +63,45 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         grow: 0,
         width: 150,
         isSortable: true,
-        isFilterActive: (f) => !!f.officeId,
     },
     {
         key: 'managerName',
         caption: 'Manager',
         render: (p) => <LinkButton caption={ p.managerName } href="#" />,
         grow: 0,
-        width: 150,
+        width: 120,
         isSortable: true,
-        isFilterActive: (f) => !!f.managerId,
     },
     {
         key: 'countryName',
         caption: 'Country',
         render: (p) => <Text>{p.countryName}</Text>,
         grow: 0,
-        width: 150,
+        width: 110,
         isSortable: true,
-        isFilterActive: (f) => !!f.countryId,
     },
     {
         key: 'cityName',
         caption: 'City',
         render: (p) => <Text>{p.cityName}</Text>,
         grow: 0,
-        width: 150,
+        width: 110,
         isSortable: true,
-        isFilterActive: (f) => !!f.cityId,
     },
     {
         key: 'profileType',
-        caption: 'Profile Type',
+        caption: 'Type',
         render: (p) => <Text>{p.hireDate ? 'Employee' : 'Student'}</Text>,
         grow: 0,
-        width: 150,
+        width: 100,
     },
     {
         key: 'birthDate',
         caption: 'Birth Date',
         render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
         grow: 0,
-        width: 120,
+        width: 90,
         isSortable: true,
-        isFilterActive: (f) => !!f.birthDate,
     },
     {
         key: 'relatedNPR',
@@ -138,7 +130,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
                 %
             </Text>
         ),
-        width: 120,
+        width: 90,
         textAlign: 'right',
         isSortable: true,
     },
