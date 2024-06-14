@@ -2,7 +2,6 @@
     &.mode-form {
         @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled), var(--uui-control-placeholder-disabled));
         cursor: default;
-        pointer-events: none;
 
         &:hover, &:active, &:focus {
             @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled), var(--uui-control-placeholder-disabled));
@@ -13,7 +12,6 @@
     &.mode-cell {
         @include input-colors(transparent, var(--uui-control-text-disabled), transparent, var(--uui-control-placeholder-disabled));
         cursor: default;
-        pointer-events: none;
 
         &:hover, &:active, &:focus {
             @include input-colors(transparent, var(--uui-control-text-disabled), transparent, var(--uui-control-placeholder-disabled));
@@ -26,7 +24,6 @@
     &.mode-form {
         background-color: var(--uui-control-bg-disabled);
         border-color: var(--uui-control-border-disabled);
-        pointer-events: none;
 
         &:hover {
             border-color: var(--uui-control-border-disabled);
@@ -42,7 +39,6 @@
     &.mode-cell {
         background-color: transparent;
         border-color: transparent;
-        pointer-events: none;
 
         &:hover {
             background-color: transparent;
