@@ -643,11 +643,11 @@ describe('useForm', () => {
             act(() => result.current.lens.prop('dummy').set('hi'));
             expect(result.current.isChanged).toBe(true);
 
-            await act(() => svc.uuiRouter.redirect('/'));
+            await act(async () => svc.uuiRouter.redirect('/'));
             expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
 
-            await act(() => result.current.save());
-            await act(() => svc.uuiRouter.redirect('/'));
+            await act(async () => result.current.save());
+            await act(async () => svc.uuiRouter.redirect('/'));
 
             expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
             expect(saveMock).toHaveBeenCalled();
@@ -744,12 +744,12 @@ describe('useForm', () => {
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
-            await act(() => handleSave(result.current.save));
+            await act(async () => handleSave(result.current.save));
             expect(result.current.isInvalid).toBe(true);
 
             act(() => result.current.lens.prop('dummy').set('name'));
 
-            await act(() => handleSave(result.current.save));
+            await act(async () => handleSave(result.current.save));
 
             expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('dummy').toProps()).toHaveProperty('isInvalid', true);
@@ -792,7 +792,7 @@ describe('useForm', () => {
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
-            await act(() => handleSave(result.current.save));
+            await act(async () => handleSave(result.current.save));
             expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('deep').prop('inner').toProps()).toHaveProperty(
@@ -846,7 +846,7 @@ describe('useForm', () => {
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
-            await act(() => handleSave(result.current.save));
+            await act(async () => handleSave(result.current.save));
 
             expect(result.current.lens.toProps()).toHaveProperty('isInvalid', true);
             expect(result.current.lens.prop('deep').toProps().isInvalid).toBe(true);
@@ -900,11 +900,11 @@ describe('useForm', () => {
                     beforeLeave: () => Promise.resolve(false),
                 }));
 
-            await act(() => result.current.save());
+            await act(async () => result.current.save());
 
             expect(result.current.serverValidationState).toBe(serverResponse.validation);
 
-            await act(() => result.current.setServerValidationState(undefined));
+            await act(async () => result.current.setServerValidationState(undefined));
 
             expect(result.current.serverValidationState).toBe(undefined);
         });

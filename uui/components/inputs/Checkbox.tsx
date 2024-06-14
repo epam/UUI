@@ -21,7 +21,7 @@ interface CheckboxMods {
 export interface CheckboxModsOverride {}
 
 /** Represents the properties of the Checkbox component. */
-export type CheckboxProps = uuiComponents.CheckboxProps & Overwrite<CheckboxMods, CheckboxModsOverride>;
+export interface CheckboxProps extends uuiComponents.CheckboxProps, Overwrite<CheckboxMods, CheckboxModsOverride> {}
 
 function applyCheckboxMods(mods: CheckboxMods) {
     return [

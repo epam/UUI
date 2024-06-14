@@ -1,20 +1,20 @@
 @use '~@epam/uui/assets/styles/dnd' as *;
 
-.drag-element {
+.dragElement {
     @include dnd-cursor-style();
     position: relative;
     padding: 6px 0;
     margin: 0 24px;
 
-    .material-row {
+    .materialRow {
         border: 1px solid var(--uui-control-border);
     }
 
-    &:hover .drag-handle {
+    &:hover .dragHandle {
         visibility: visible;
     }
 
-    .icon-wrapper {
+    .iconWrapper {
         padding: 12px 24px;
 
         &:first-child {
@@ -26,29 +26,29 @@
         }
     }
 
-    .text-wrapper {
+    .textWrapper {
         padding-left: 6px;
     }
 
     &:global(.uui-dragged-out) {
-        .dnd-item {
+        .dndItem {
             opacity: 0.25;
         }
 
-        .drag-handle {
+        .dragHandle {
             visibility: hidden;
         }
     }
 
     :global(.uui-drag-ghost) {
-        box-shadow: 0 6px 18px 0 rgba(29, 30 , 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
+        box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
 
-        .drag-handle {
+        .dragHandle {
             visibility: visible;
         }
     }
 
-    .drag-handle {
+    .dragHandle {
         position: absolute;
         left: 8px;
         top: 12px;

@@ -70,7 +70,7 @@ function enableMockForCommon3rdPartyDeps() {
          */
         Popper: function PopperMock({ children }) {
             return children({
-                ref: jest.fn,
+                ref: jest.fn(() => {}),
                 update: jest.fn(),
                 style: {},
                 arrowProps: { ref: jest.fn },

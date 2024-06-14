@@ -161,19 +161,19 @@
         }
     }
 
-    .uui-picker-toggler:is(.uui-size-24, .uui-size-30, .uui-size-36, .uui-size-42) {
+    .uui-picker_toggler:is(.uui-size-24, .uui-size-30, .uui-size-36, .uui-size-42) {
         .uui-tag.uui-size-inherit {
             --uui-horizontal-gap: 3px;
         }
     }
 
-    .uui-picker-toggler:is(.uui-size-24, .uui-size-30, .uui-size-36) {
+    .uui-picker_toggler:is(.uui-size-24, .uui-size-30, .uui-size-36) {
         .uui-tag.uui-size-inherit {
             --uui-horizontal-padding: 3px;
         }
     }
 
-    .uui-size-48.uui-picker-toggler {
+    .uui-size-48.uui-picker_toggler {
         .uui-tag.uui-size-inherit {
             --uui-horizontal-padding: 6px;
         }

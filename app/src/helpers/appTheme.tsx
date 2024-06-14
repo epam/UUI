@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { CustomThemeManifest, loadCustomThemes } from '../data/customThemes';
-import { builtInThemes, Theme } from '../data';
+import { builtInThemes, ThemeBaseParams, TTheme } from '../data';
 import { applyTheme, changeThemeQueryParam, TAppThemeContext, TThemeConfig, useCurrentTheme } from './appThemeUtils';
 import { useUuiContext } from '@epam/uui-core';
 
@@ -11,8 +11,7 @@ export function useAppThemeContext() {
 
 export function AppTheme(props: { children: React.ReactNode }) {
     const { uuiRouter } = useUuiContext();
-    const [appliedTheme, setAppliedTheme] = useState<string | null>(null);
-    const [key, setKey] = useState<number>(0);
+    const [appliedTheme, setAppliedTheme] = useState<TTheme | null>(null);
     const config = useThemeConfig();
     /**
      * The query parameter "theme" is a single source of truth.
@@ -22,16 +21,27 @@ export function AppTheme(props: { children: React.ReactNode }) {
     useEffect(() => {
         if (theme && config && appliedTheme !== theme) {
             if (!config.themesById[theme]) {
-                console.error(`[initialization] Theme "${theme}" is unknown. Unable to apply it.`);
+                reportUnknownThemeError(theme);
                 return;
             }
-            applyTheme(theme, config);
-            setAppliedTheme(theme);
 
-            const isPrevThemeHasCustomSetting = !!(config.themesById[appliedTheme] as any)?.settings;
-            const isNextThemeHasCustomSetting = !!(config.themesById[theme] as any)?.settings;
-            if (isPrevThemeHasCustomSetting || isNextThemeHasCustomSetting) {
-                setKey((pKey) => pKey + 1); // will cause children to re-render
+            if (isFullReloadNeeded()) {
+                window.location.reload();
+            } else {
+                applyTheme(theme, config);
+                setAppliedTheme(theme);
+            }
+
+            function isFullReloadNeeded() {
+                const isFirstInit = !appliedTheme;
+                if (!isFirstInit) {
+                    const isPrevThemeHasCustomSetting = !!(config.themesById[appliedTheme] as any)?.settings;
+                    const isNextThemeHasCustomSetting = !!(config.themesById[theme] as any)?.settings;
+                    if (isPrevThemeHasCustomSetting || isNextThemeHasCustomSetting) {
+                        // full reload is needed to correctly render components which depend on "settings.ts"
+                        return true;
+                    }
+                }
             }
         }
     }, [appliedTheme, config, theme]);
@@ -41,9 +51,9 @@ export function AppTheme(props: { children: React.ReactNode }) {
             return {
                 ...config,
                 theme,
-                toggleTheme: (nextTheme: string) => {
+                toggleTheme: (nextTheme: TTheme) => {
                     if (!config.themesById[nextTheme]) {
-                        console.error(`[toggleTheme] Theme "${nextTheme}" is unknown. Unable to open it.`);
+                        reportUnknownThemeError(theme);
                         return;
                     }
                     changeThemeQueryParam(nextTheme, uuiRouter);
@@ -57,12 +67,7 @@ export function AppTheme(props: { children: React.ReactNode }) {
         if (!value) {
             return null;
         }
-        return React.Children.map(props.children, (child, index) => {
-            if (React.isValidElement(child)) {
-                return React.cloneElement(child, { key: `${index}_${key}` });
-            }
-            return child;
-        });
+        return props.children;
     };
 
     return (
@@ -100,7 +105,7 @@ function useThemeConfig() {
 async function loadListOfThemes(): Promise<TThemeConfig> {
     const customThemesArr = await loadCustomThemes();
     const allThemes = [...builtInThemes, ...customThemesArr];
-    const themesById = allThemes.reduce<Record<string, Theme | CustomThemeManifest>>((acc, t) => {
+    const themesById = allThemes.reduce<Record<string, ThemeBaseParams | CustomThemeManifest>>((acc, t) => {
         acc[t.id] = t;
         return acc;
     }, {});
@@ -108,4 +113,8 @@ async function loadListOfThemes(): Promise<TThemeConfig> {
         themes: Object.keys(themesById),
         themesById,
     };
+}
+
+function reportUnknownThemeError(theme: TTheme) {
+    console.error(`[appTheme] Theme "${theme}" is unknown`);
 }

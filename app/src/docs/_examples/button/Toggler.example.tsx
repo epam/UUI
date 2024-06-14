@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Button, FlexRow, Panel, Tooltip, PickerInput } from '@epam/uui';
+import { Button, FlexRow, Tooltip, PickerInput, DropdownMenuBody, DropdownMenuButton } from '@epam/uui';
 import { Dropdown } from '@epam/uui-components';
 import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
@@ -18,9 +18,9 @@ export default function ButtonAsToggler() {
         <FlexRow columnGap="12">
             <Dropdown
                 renderBody={ (props) => (
-                    <Panel background="surface-main" { ...props }>
-                        some dropdown content
-                    </Panel>
+                    <DropdownMenuBody { ...props }>
+                        <DropdownMenuButton caption="Some dropdown content" onClick={ () => window.alert('onClick') } />
+                    </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => <Button caption="Dropdown" { ...props } /> }
             />

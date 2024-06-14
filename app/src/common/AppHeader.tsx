@@ -70,6 +70,7 @@ export function AppHeader() {
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
                         { Object.values(themesById).map(({ id, name }) => (
                             <DropdownMenuButton
+                                key={ id }
                                 caption={ name }
                                 icon={ theme === id && DoneIcon }
                                 isActive={ theme === id }
@@ -80,7 +81,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" size="36" isDropdown={ true } />
+                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
