@@ -5,7 +5,7 @@ import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, Dro
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
 import { Placement } from '@popperjs/core';
-import { getHtmlDir } from '../helpers/getHtmlDir';
+import { getHtmlDir } from '../helpers';
 
 interface DropdownState {
     opened: boolean;
