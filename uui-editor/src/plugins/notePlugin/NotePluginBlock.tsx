@@ -8,17 +8,16 @@ import { NoteNodeProps } from './types';
 export function NotePluginBlock({ attributes, children, nodeProps }: PlateElementProps) {
     const element = useElement();
 
-    const type = React.useMemo(() => element.type.replace('note-', ''), [element.type]);
+    const type = element.type.replace('note-', '');
 
-    const style = React.useMemo(() => {
-        if (nodeProps) {
-            const { borderColor, backgroundColor } = nodeProps as NoteNodeProps;
-            return {
-                borderColor,
-                backgroundColor,
-            };
-        }
-    }, [nodeProps]);
+    let style;
+    if (nodeProps) {
+        const { borderColor, backgroundColor } = nodeProps as NoteNodeProps;
+        style = {
+            borderColor,
+            backgroundColor,
+        };
+    }
 
     return (
         <div { ...attributes } style={ style } className={ cx(css.wrapper, css[type]) }>
