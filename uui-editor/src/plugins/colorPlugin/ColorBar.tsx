@@ -26,7 +26,7 @@ export function ColorBar({ onColorUpdate, onColorClear, value }: IColorBar) {
         COLOR_PLUGIN_KEY,
     ), [editorRef]);
 
-    const defaultColors = React.useMemo(() => (
+    const defaultColors = (
         <React.Fragment>
             <ToolbarButton
                 key="critical"
@@ -50,20 +50,19 @@ export function ColorBar({ onColorUpdate, onColorClear, value }: IColorBar) {
                 icon={ ColorIcon }
             />
         </React.Fragment>
-    ), [onColorUpdate, value]);
+    );
 
-    const userColors = React.useMemo(() =>
-        colorProps?.map((color) => {
-            return (
-                <ToolbarButton
-                    key={ color }
-                    onClick={ () => onColorUpdate(color) }
-                    isActive={ value === color }
-                    rawProps={ { style: { fill: color } } }
-                    icon={ ColorIcon }
-                />
-            );
-        }), [colorProps, onColorUpdate, value]);
+    const userColors = colorProps?.map((color) => {
+        return (
+            <ToolbarButton
+                key={ color }
+                onClick={ () => onColorUpdate(color) }
+                isActive={ value === color }
+                rawProps={ { style: { fill: color } } }
+                icon={ ColorIcon }
+            />
+        );
+    });
 
     const colors = userColors || defaultColors;
     return (
