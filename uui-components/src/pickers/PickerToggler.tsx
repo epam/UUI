@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import css from './PickerToggler.module.scss';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
+import css from './PickerToggler.module.scss';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** Key for the component */
@@ -240,14 +240,14 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
-            <div className={ cx('uui-picker-toggler-body', !props.isSingleLine && props.pickerMode !== 'single' && 'uui-multiline') }>
+            <div className={ cx(css.body, !props.isSingleLine && props.pickerMode !== 'single' && 'uui-picker_toggler-multiline') }>
                 {props.iconPosition !== 'right' && icon}
                 {props.pickerMode !== 'single' && renderItems()}
                 {renderInput()}
                 {props.iconPosition === 'right' && icon}
             </div>
             {!props.isDisabled && !props.isReadonly && (
-                <div className="uui-actions">
+                <div className="uui-picker_toggler-actions">
                     {!props.disableClear && (props.value || props.selectedRowsCount > 0) && (
                         <IconContainer
                             cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
