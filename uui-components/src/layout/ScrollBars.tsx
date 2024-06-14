@@ -2,7 +2,7 @@ import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRe
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
-import { getHtmlDir } from '../helpers/getHtmlDir';
+import { getHtmlDir } from '../helpers';
 import css from './ScrollBars.module.scss';
 
 export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {

@@ -1,3 +1,3 @@
-export const getHtmlDir = () => {
+export function getHtmlDir() {
     return window.document.dir;
-};
+}
