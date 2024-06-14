@@ -46,7 +46,7 @@
     border-radius: var(--uui-text_input-border-radius);
 
     &:global(.uui-input-box) {
-        min-height: var(--uui-text_input-min-height);
+        height: var(--uui-text_input-min-height);
         border-width: var(--uui-text_input-border-width);
     }
 
