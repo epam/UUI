@@ -7,6 +7,7 @@ import {
     IProcessRequest,
     useUuiServices,
     UuiContext,
+    DragGhost,
 } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
 import '@epam/uui-components/styles.css';
@@ -47,6 +48,7 @@ function UuiEnhancedApp() {
                     </FlexRow>
                     <Snackbar />
                     <Modals />
+                    <DragGhost />
                 </ErrorHandler>
             </UuiContext.Provider>
         );
