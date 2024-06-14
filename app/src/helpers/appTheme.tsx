@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { CustomThemeManifest, loadCustomThemes } from '../data/customThemes';
-import { builtInThemes, Theme } from '../data';
+import { builtInThemes, ThemeBaseParams, TTheme } from '../data';
 import { applyTheme, changeThemeQueryParam, TAppThemeContext, TThemeConfig, useCurrentTheme } from './appThemeUtils';
 import { useUuiContext } from '@epam/uui-core';
 
@@ -11,7 +11,7 @@ export function useAppThemeContext() {
 
 export function AppTheme(props: { children: React.ReactNode }) {
     const { uuiRouter } = useUuiContext();
-    const [appliedTheme, setAppliedTheme] = useState<string | null>(null);
+    const [appliedTheme, setAppliedTheme] = useState<TTheme | null>(null);
     const config = useThemeConfig();
     /**
      * The query parameter "theme" is a single source of truth.
@@ -51,7 +51,7 @@ export function AppTheme(props: { children: React.ReactNode }) {
             return {
                 ...config,
                 theme,
-                toggleTheme: (nextTheme: string) => {
+                toggleTheme: (nextTheme: TTheme) => {
                     if (!config.themesById[nextTheme]) {
                         reportUnknownThemeError(theme);
                         return;
@@ -105,7 +105,7 @@ function useThemeConfig() {
 async function loadListOfThemes(): Promise<TThemeConfig> {
     const customThemesArr = await loadCustomThemes();
     const allThemes = [...builtInThemes, ...customThemesArr];
-    const themesById = allThemes.reduce<Record<string, Theme | CustomThemeManifest>>((acc, t) => {
+    const themesById = allThemes.reduce<Record<string, ThemeBaseParams | CustomThemeManifest>>((acc, t) => {
         acc[t.id] = t;
         return acc;
     }, {});
@@ -115,6 +115,6 @@ async function loadListOfThemes(): Promise<TThemeConfig> {
     };
 }
 
-function reportUnknownThemeError(theme: string) {
+function reportUnknownThemeError(theme: TTheme) {
     console.error(`[appTheme] Theme "${theme}" is unknown`);
 }

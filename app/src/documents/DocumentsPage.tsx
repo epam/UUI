@@ -8,12 +8,13 @@ import { DocItem, items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TMode } from '../common/docs/docsConstants';
+import { TTheme } from '../data';
 
 type DocsQuery = {
     id: string;
     mode?: TMode;
     isSkin?: boolean;
-    theme?: string;
+    theme?: TTheme;
     category?: string;
 };
 
