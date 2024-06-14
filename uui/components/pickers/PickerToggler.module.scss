@@ -199,7 +199,7 @@
     }
 
     &:global(.uui-invalid) {
-        &.mode-form {
+        &.mode-form, &.mode-inline {
             border-color: var(--uui-picker_toggler-border-error);
         }
     }
