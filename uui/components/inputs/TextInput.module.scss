@@ -20,24 +20,43 @@
     --uui-text_input-icon-clickable: var(--uui-icon);
     --uui-text_input-icon-clickable-hover: var(--uui-icon-hover);
 
-    --uui-text_input-border-radius: var(--uui-border-radius);
-
+    // font
     --uui-text_input-font: var(--uui-font);
     --uui-text_input-font-weight: 400;
+
+    // size
+    --uui-text_input-border-radius: var(--uui-border-radius);
+    --uui-text_input-min-height: var(--uui-size);
+    --uui-text_input-min-width: var(--uui-size);
+    --uui-text_input-border-width: var(--uui-border-width);
+    --uui-text_input-horizontal-padding: var(--uui-horizontal-padding);
+    --uui-text_input-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-text_input-icon-height: var(--uui-icon-size);
+    --uui-text_input-line-height: var(--uui-line-height);
+    --uui-text_input-font-size: var(--uui-font-size);
+
+
     //
     fill: var(--uui-text_input-icon);
     border-style: solid;
     box-sizing: border-box;
-    padding-left: 5px;
-    padding-right: 5px;
+    min-width: var(--uui-text_input-min-width);
+    padding-left: calc(var(--uui-text_input-horizontal-padding) - var(--uui-text_input-border-width));
+    padding-right: calc(var(--uui-text_input-horizontal-padding) - var(--uui-text_input-border-width));
     border-radius: var(--uui-text_input-border-radius);
+
+    &:global(.uui-input-box) {
+        height: var(--uui-text_input-min-height);
+        border-width: var(--uui-text_input-border-width);
+    }
 
     :global(.uui-input) {
         color: var(--uui-text_input-text);
         font-family: var(--uui-text_input-font);
         font-weight: var(--uui-text_input-font-weight);
-        padding-left: 6px;
-        padding-right: 6px;
+        line-height: var(--uui-text_input-line-height);
+        font-size: var(--uui-text_input-font-size);
+        padding: calc((var(--uui-text_input-min-height) - var(--uui-text_input-line-height) - (var(--uui-text_input-border-width) * 2)) / 2) var(--uui-text_input-horizontal-gap);
 
         &::placeholder {
             color: var(--uui-text_input-placeholder);
@@ -49,6 +68,13 @@
 
         &::-moz-placeholder {
             opacity: 1;
+        }
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-text_input-icon-height);
+            width: inherit;
         }
     }
 
@@ -156,50 +182,6 @@
         &.mode-form {
             background-color: var(--uui-text_input-bg-disabled);
             border-color: var(--uui-text_input-border-disabled);
-        }
-    }
-
-    //Sizes
-    &.size-24 {
-        @include control-vertical-layout(24px, 1px);
-        @include scalable-icon-size(24);
-        min-width: 24px;
-    }
-
-    &.size-30 {
-        @include control-vertical-layout(30px, 1px);
-        @include scalable-icon-size(30);
-        min-width: 30px;
-    }
-
-    &.size-36 {
-        @include control-vertical-layout(36px, 1px);
-        @include scalable-icon-size(36);
-        min-width: 36px;
-    }
-
-    &.size-42 {
-        @include control-vertical-layout(42px, 1px);
-        @include scalable-icon-size(42);
-        min-width: 42px;
-    }
-
-    &.size-48 {
-        @include control-vertical-layout(48px, 1px);
-        @include scalable-icon-size(48);
-        min-width: 48px;
-    }
-
-    &.size-60 {
-        @include control-vertical-layout(60px, 1px);
-        @include scalable-icon-size(60);
-        min-width: 60px;
-        padding-left: 11px;
-        padding-right: 11px;
-
-        :global(.uui-input) {
-            padding-left: 6px;
-            padding-right: 0;
         }
     }
 }

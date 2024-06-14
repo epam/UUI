@@ -1,9 +1,9 @@
 import React from 'react';
 import { useArrayDataSource } from '@epam/uui-core';
 import { FlexRow, LabeledInput, PickerInput } from '@epam/uui';
-import { TTheme } from '../../../../../common/docs/docsConstants';
 import { TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
+import { TTheme } from '../../../../../data';
 
 type TokensSummaryProps = {
     uuiTheme: TTheme,

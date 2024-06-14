@@ -1,6 +1,7 @@
 import { getCurrentTheme, getQuery } from '../../../../helpers';
-import { DEFAULT_MODE, TMode, TTheme } from '../../docsConstants';
+import { DEFAULT_MODE, TMode } from '../../docsConstants';
 import { svc } from '../../../../services';
+import { TTheme } from '../../../../data';
 
 export class QueryHelpers {
     static isSkin(): boolean {
