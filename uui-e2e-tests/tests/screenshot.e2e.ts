@@ -62,7 +62,7 @@ builder
     })
     .add(checkbox, { previewId: values(TCheckboxPreview) })
     .add(numericInput, { previewId: values(TNumericInputPreview) })
-    .add(pickerInput, { previewId: values(TPickerInputPreview) })
+    .only(pickerInput, { previewId: values(TPickerInputPreview) })
     .add(rangeDatePicker, {
         previewId: values(TRangeDatePickerPreview),
         onlyChromium: true, // reason: https://github.com/microsoft/playwright/issues/20203
