@@ -67,7 +67,7 @@ const COLLECT_COVERAGE_FROM_PACKAGES = [
 const NODEJS_TESTS_ROOTS = [
     // TODO: uncomment line(s) below as soon as we have any tests in these modules
     'uui-build',
-    // 'server',
+    'server',
 ];
 
 const argv = process.argv.slice(2);

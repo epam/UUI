@@ -1,28 +1,30 @@
-import { IDocBuilderGenCtx, TSkin } from '@epam/uui-docs';
-import { TTheme } from '../docsConstants';
+import { IDocBuilderGenCtx, TPropEditorTypeOverride, TSkin, TTypeRef } from '@epam/uui-docs';
 import { useUuiContext } from '@epam/uui-core';
 import { useMemo } from 'react';
 import { loadDocsGenType } from '../../apiReference/dataHooks';
 import { getAllIcons } from '../../../documents/iconListHelpers';
+import { AppContext, BuiltInTheme, TTheme } from '../../../data';
+import { CustomThemeManifest } from '../../../data/customThemes';
+import { useAppThemeContext } from '../../../helpers/appTheme';
 
 export function getSkin(theme: TTheme, isSkin: boolean): TSkin {
     if (!isSkin) return TSkin.UUI;
 
     switch (theme) {
-        case TTheme.electric:
+        case BuiltInTheme.electric:
             return TSkin.Electric;
-        case TTheme.loveship:
-        case TTheme.loveship_dark:
+        case BuiltInTheme.loveship:
+        case BuiltInTheme.loveship_dark:
             return TSkin.Loveship;
-        case TTheme.promo:
+        case BuiltInTheme.promo:
             return TSkin.Promo;
         default:
             return TSkin.UUI;
     }
 }
 
-export function useDocBuilderGenCtx(): IDocBuilderGenCtx {
-    const uuiCtx = useUuiContext();
+export function useDocBuilderGenCtx(propsOverride: TPropEditorTypeOverride[TTypeRef] | undefined): IDocBuilderGenCtx {
+    const uuiCtx = useUuiContext<any, AppContext>();
     return useMemo(() => {
         const result: IDocBuilderGenCtx = {
             loadDocsGenType,
@@ -31,7 +33,16 @@ export function useDocBuilderGenCtx(): IDocBuilderGenCtx {
             },
             demoApi: uuiCtx.api.demo,
             getIconList: getAllIcons,
+            propsOverride,
         };
         return result;
-    }, [uuiCtx.api.demo, uuiCtx.uuiNotifications]);
+    }, [propsOverride, uuiCtx.api.demo, uuiCtx.uuiNotifications]);
+}
+
+export function usePropEditorTypeOverride(themeId: TTheme, typeRef: TTypeRef | undefined): TPropEditorTypeOverride[TTypeRef] | undefined {
+    const { themesById } = useAppThemeContext();
+    if (typeRef && themesById) {
+        const themeDetails = (themesById[themeId] as CustomThemeManifest);
+        return themeDetails?.propsOverride?.[typeRef];
+    }
 }

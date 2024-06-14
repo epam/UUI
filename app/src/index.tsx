@@ -4,15 +4,13 @@ import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import { init as initApm } from '@elastic/apm-rum';
 import {
-    Router6AdaptedRouter, useUuiServices, DragGhost,
+    Router6AdaptedRouter, useUuiServices,
     UuiContext, IProcessRequest,
 } from '@epam/uui-core';
-import { Modals, PortalRoot } from '@epam/uui-components';
-import { Snackbar } from '@epam/uui';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
-import { getApi, TApi, TAppContext } from './data';
+import { getApi, TApi, AppContext, getAppContext } from './data';
 import { getAppRootNode } from './helpers/appRootUtils';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
@@ -48,7 +46,7 @@ apm.addLabels({ project: 'epm-uui', service_type: 'ui' });
 
 function UuiEnhancedApp() {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { services } = useUuiServices<TApi, TAppContext>({
+    const { services } = useUuiServices<TApi, AppContext>({
         apiDefinition,
         router,
         apiReloginPath: 'api/auth/login',
@@ -56,20 +54,20 @@ function UuiEnhancedApp() {
     });
 
     useEffect(() => {
-        Object.assign(svc, services);
-        // isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
-        services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
-        setIsLoaded(true);
+        async function initServices() {
+            services.uuiApp = await getAppContext();
+            Object.assign(svc, services);
+            // isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
+            services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
+            setIsLoaded(true);
+        }
+        initServices();
     }, [services]);
 
     if (isLoaded) {
         return (
             <UuiContext.Provider value={ services }>
                 <RouterProvider router={ router6 } />
-                <Snackbar />
-                <Modals />
-                <DragGhost />
-                <PortalRoot />
             </UuiContext.Provider>
         );
     }

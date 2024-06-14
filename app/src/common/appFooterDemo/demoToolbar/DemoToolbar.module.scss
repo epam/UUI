@@ -6,14 +6,14 @@
     .item {
         padding-left: 18px;
         padding-right: 18px;
-        color: var(--white) !important;
+        color: var(--uui-neutral-0) !important;
 
         &:hover {
-            background-color: $gray90;
+            background-color: var(--uui-neutral-90);
         }
 
         :global(.uui-icon) {
-            fill: var(--white);
+            fill: var(--uui-neutral-0);
         }
     }
 

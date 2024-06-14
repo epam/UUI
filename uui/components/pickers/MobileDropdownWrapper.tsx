@@ -1,11 +1,12 @@
 import React, { ReactNode } from 'react';
-import css from './MobileDropdownWrapper.module.scss';
 import { IDropdownBodyProps, IHasCX, IHasRawProps, isMobile } from '@epam/uui-core';
-import { LinkButton } from '../buttons';
+import { LinkButton, LinkButtonProps } from '../buttons';
 import { ControlSize } from '../types';
 import { DataPickerHeader } from './DataPickerHeader';
 import { DropdownContainer } from '../overlays';
 import { i18n } from '../../i18n';
+import { settings } from '../../settings';
+import css from './MobileDropdownWrapper.module.scss';
 
 interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
     children: ReactNode;
@@ -34,7 +35,7 @@ export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = (pro
 
             {props.children}
 
-            {isMobileView && <LinkButton caption={ i18n.pickerInput.doneButton } onClick={ () => props.onClose?.() } cx={ css.done } size="48" />}
+            {isMobileView && <LinkButton caption={ i18n.pickerInput.doneButton } onClick={ () => props.onClose?.() } cx={ css.done } size={ settings.sizes.mobileDropdownWrapper.linkButton as LinkButtonProps['size'] } />}
         </DropdownContainer>
     );
 };

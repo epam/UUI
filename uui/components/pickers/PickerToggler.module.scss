@@ -1,37 +1,5 @@
 @use  '../../assets/styles/index' as *;
 
-$shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
-
-@mixin picker-toggler-vertical-layout($size, $borderWidth) {
-    &:global(.uui-input-box) {
-        min-height: $size;
-        border-width: $borderWidth;
-    }
-
-    :global(.uui-input) {
-        @include text-size($size);
-
-        @if ($size == 24px) {
-            padding-top: 0;
-            padding-bottom: 0;
-        } @else if ($size == 30px) {
-            padding-top: 3px;
-            padding-bottom: 3px;
-        } @else if ($size == 36px or $size == 42px) {
-            padding-top: 6px;
-            padding-bottom: 6px;
-        } @else if ($size == 48px) {
-            padding-top: 9px;
-            padding-bottom: 9px;
-        }
-    }
-
-    :not(:global(.uui-button-box)) > :global(.uui-icon) {
-        height: $size - 6px;
-        margin-bottom: 2px;
-    }
-}
-
 .root {
     --uui-picker_toggler-bg: var(--uui-control-bg);
     --uui-picker_toggler-border: var(--uui-control-border);
@@ -48,18 +16,103 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
     --uui-picker_toggler-icon-clickable: var(--uui-icon);
     --uui-picker_toggler-icon-clickable-hover: var(--uui-icon-hover);
 
-    --uui-picker_toggler-border-radius: var(--uui-border-radius);
-
+    // font
     --uui-picker_toggler-font: var(--uui-font);
     --uui-picker_toggler-font-weight: 400;
+
+    // size
+    --uui-picker_toggler-border-radius: var(--uui-border-radius);
+    --uui-picker_toggler-min-height: var(--uui-size);
+    --uui-picker_toggler-min-width: var(--uui-size);
+    --uui-picker_toggler-border-width: var(--uui-border-width);
+    --uui-picker_toggler-horizontal-padding: var(--uui-horizontal-padding);
+    --uui-picker_toggler-vertical-padding: var(--uui-vertical-padding);
+    --uui-picker_toggler-inner-padding: var(--uui-horizontal-gap);
+    --uui-picker_toggler-icon-height: var(--uui-icon-size);
+    --uui-picker_toggler-line-height: var(--uui-line-height);
+    --uui-picker_toggler-font-size: var(--uui-font-size);
+    --uui-picker_toggler-horizontal-gap: 3px;
+    --uui-picker_toggler-vertical-gap: 2px;
+    --uui-picker_toggler-multiline-gaps: var(--uui-picker_toggler-vertical-gap) var(--uui-picker_toggler-horizontal-gap);
     //
-    padding-top: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: calc(var(--uui-picker_toggler-vertical-padding) - var(--uui-picker_toggler-border-width)) calc(var(--uui-picker_toggler-horizontal-padding) - var(--uui-picker_toggler-border-width));
     width: 100%;
+    min-width: var(--uui-picker_toggler-min-width);
     box-sizing: border-box;
     border-style: solid;
     border-radius: var(--uui-picker_toggler-border-radius);
+
+    &:global(.uui-input-box) {
+        min-height: var(--uui-picker_toggler-min-height);
+        border-width: var(--uui-picker_toggler-border-width);
+    }
+
+    div:first-child {
+        gap: var(--uui-picker_toggler-multiline-gaps);
+
+        :global(.uui-icon):first-child {
+            padding-inline-end: var(--uui-picker_toggler-horizontal-gap);
+        }
+    }
+
+    :global(.uui-input) {
+        line-height: var(--uui-picker_toggler-line-height);
+        font-size: var(--uui-picker_toggler-font-size);
+        padding-left: var(--uui-picker_toggler-inner-padding);
+        padding-right: var(--uui-picker_toggler-inner-padding);
+        padding-top: calc((var(--uui-picker_toggler-min-height) - var(--uui-picker_toggler-line-height) - (var(--uui-picker_toggler-vertical-padding) * 2)) / 2);
+        padding-bottom: calc((var(--uui-picker_toggler-min-height) - var(--uui-picker_toggler-line-height) - (var(--uui-picker_toggler-vertical-padding) * 2)) / 2);
+        font-family: var(--uui-picker_toggler-font);
+        font-weight: var(--uui-picker_toggler-font-weight, normal);
+        color: var(--uui-picker_toggler-text);
+
+        &::placeholder {
+            color: var(--uui-picker_toggler-placeholder);
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+
+        &:not(:first-child) {
+            padding-left: calc(var(--uui-picker_toggler-inner-padding) - 3px);
+        }
+
+        &:not(:last-child) {
+            padding-right: calc(var(--uui-picker_toggler-inner-padding) - 3px);
+        }
+    }
+
+    :global(.uui-caption) {
+        @include overflow-ellipsis();
+        font-family: var(--uui-picker_toggler-font);
+        font-weight: var(--uui-picker_toggler-font-weight, normal);
+        align-self: center;
+        white-space: nowrap;
+    }
+
+    :global(.uui-placeholder) {
+        color: var(--uui-picker_toggler-text);
+
+        &::placeholder {
+            color: var(--uui-picker_toggler-text);
+        }
+
+        &::-moz-placeholder {
+            opacity: 1;
+        }
+    }
+
+    :global(.uui-icon-cancel) {
+        margin-left: var(--uui-picker_toggler-inner-padding);
+    }
+
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-picker_toggler-icon-height);
+            width: inherit;
+        }
+    }
 
     &.mode-form {
         background-color: var(--uui-picker_toggler-bg);
@@ -96,7 +149,8 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
 
-        :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
+        :global(.uui-picker_toggler-actions) :global(.uui-icon),
+        :global(.uui-button-box) :global(.uui-icon):global(.-clickable) {
             cursor: pointer;
 
             &:global(.uui-enabled) {
@@ -169,86 +223,5 @@ $shadow: 0 1px 3px 0 rgba(29, 30, 38, 0.15);
         :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {
             visibility: hidden;
         }
-    }
-
-    :global(.uui-input) {
-        padding-left: 6px;
-        padding-right: 6px;
-        margin-bottom: 2px;
-        font-family: var(--uui-picker_toggler-font);
-        font-weight: var(--uui-picker_toggler-font-weight, normal);
-        color: var(--uui-picker_toggler-text);
-
-        &::placeholder {
-            color: var(--uui-picker_toggler-placeholder);
-        }
-
-        &::-moz-placeholder {
-            opacity: 1;
-        }
-    }
-
-    :global(.uui-caption) {
-        @include overflow-ellipsis();
-        font-family: var(--uui-picker_toggler-font);
-        font-weight: var(--uui-picker_toggler-font-weight, normal);
-        align-self: center;
-        white-space: nowrap;
-    }
-
-    :global(.uui-button-box) {
-        margin-right: 3px;
-        margin-bottom: 2px;
-
-        &:last-of-type {
-            margin-right: 0;
-        }
-    }
-
-    :global(.uui-placeholder) {
-        color: var(--uui-picker_toggler-text);
-    }
-
-    :global(.uui-placeholder)::placeholder {
-        color: var(--uui-picker_toggler-text);
-    }
-
-    :global(.uui-placeholder)::-moz-placeholder {
-        opacity: 1;
-    }
-
-    :global(.uui-icon-cancel) {
-        margin-left: 6px;
-    }
-
-    // Sizes
-    &.size-24 {
-        @include picker-toggler-vertical-layout(24px, 1px);
-        @include scalable-icon-size(24);
-        min-width: 24px;
-    }
-
-    &.size-30 {
-        @include picker-toggler-vertical-layout(30px, 1px);
-        @include scalable-icon-size(30);
-        min-width: 30px;
-    }
-
-    &.size-36 {
-        @include picker-toggler-vertical-layout(36px, 1px);
-        @include scalable-icon-size(36);
-        min-width: 36px;
-    }
-
-    &.size-42 {
-        @include picker-toggler-vertical-layout(42px, 1px);
-        @include scalable-icon-size(42);
-        min-width: 42px;
-    }
-
-    &.size-48 {
-        @include picker-toggler-vertical-layout(48px, 1px);
-        @include scalable-icon-size(48);
-        min-width: 48px;
     }
 }

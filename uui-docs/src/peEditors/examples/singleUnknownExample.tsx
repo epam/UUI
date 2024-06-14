@@ -14,7 +14,6 @@ export function SingleUnknownExample(props: IPropDocEditor<unknown>) {
             name={ name }
             value={ isChecked }
             onValueChange={ handleChange }
-            size="18"
             label={ singleExample.name }
         />
     );

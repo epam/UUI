@@ -17,8 +17,8 @@ import {
 import { TokenInfo } from '../tokenInfo/tokenInfo';
 //
 import css from './paletteTable.module.scss';
-import { TTheme } from '../../../../../common/docs/docsConstants';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
+import { TTheme } from '../../../../../data';
 
 const WIDTH = {
     [COL_NAMES.path]: 250, // E.g: core/surfaces/surface-main

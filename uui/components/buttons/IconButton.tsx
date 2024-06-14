@@ -43,7 +43,6 @@ export const IconButton = withMods<uuiComponents.IconButtonProps, IconButtonProp
         }
         return {
             dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
-            size: props.size && Number(props.size),
         };
     },
 );
