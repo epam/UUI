@@ -6,12 +6,17 @@ export enum BuiltInTheme {
     vanilla_thunder = 'vanilla_thunder'
 }
 
-export interface Theme {
-    id: string;
+/* No restrictions on custom theme id - it can be any string */
+type CustomTheme = string;
+
+export type TTheme = BuiltInTheme | CustomTheme;
+
+export interface ThemeBaseParams {
+    id: TTheme;
     name: string;
 }
 
-export const builtInThemes: Theme[] = [
+export const builtInThemes: ThemeBaseParams[] = [
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
     { id: BuiltInTheme.electric, name: 'Electric' },

@@ -1,5 +1,5 @@
 import { IThemeVarUI, IThemeVarUIError, TThemeVarUiErr } from '../types/types';
-import { BuiltInTheme } from '../../../../data';
+import { BuiltInTheme, TTheme } from '../../../../data';
 import { TFigmaThemeName, TVarType } from '../types/sharedTypes';
 import { normalizeColor } from './colorUtils';
 
@@ -7,7 +7,7 @@ import { normalizeColor } from './colorUtils';
  * The Figma theme names (i.e. the values) are hardcoded here.
  * Make sure they are updated when modes in "public/docs/figmaTokensGen/Theme.json" are changed.
  */
-const THEME_MAP: Record<string, TFigmaThemeName | undefined> = {
+const THEME_MAP: Record<TTheme, TFigmaThemeName | undefined> = {
     [BuiltInTheme.electric]: 'Electric',
     [BuiltInTheme.promo]: 'Promo',
     [BuiltInTheme.loveship]: 'Loveship-Light',
@@ -15,7 +15,7 @@ const THEME_MAP: Record<string, TFigmaThemeName | undefined> = {
     [BuiltInTheme.vanilla_thunder]: undefined,
 };
 
-export function getFigmaTheme(theme: string) {
+export function getFigmaTheme(theme: TTheme) {
     return THEME_MAP[theme];
 }
 

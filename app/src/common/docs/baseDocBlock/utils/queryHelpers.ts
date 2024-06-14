@@ -1,6 +1,7 @@
 import { getCurrentTheme, getQuery } from '../../../../helpers';
 import { DEFAULT_MODE, TMode } from '../../docsConstants';
 import { svc } from '../../../../services';
+import { TTheme } from '../../../../data';
 
 export class QueryHelpers {
     static isSkin(): boolean {
@@ -11,7 +12,7 @@ export class QueryHelpers {
         return getQuery('mode') || DEFAULT_MODE;
     }
 
-    static getTheme(): string {
+    static getTheme(): TTheme {
         return getCurrentTheme();
     }
 
@@ -25,10 +26,10 @@ export class QueryHelpers {
         QueryHelpers.handleNav({ mode });
     }
 
-    static handleNav = (params: { id?: string; mode?: TMode, isSkin?: boolean, theme?: string }) => {
+    static handleNav = (params: { id?: string; mode?: TMode, isSkin?: boolean, theme?: TTheme }) => {
         const mode: TMode = params.mode ? params.mode : QueryHelpers.getMode();
         const isSkin: boolean = params.isSkin ?? QueryHelpers.isSkin();
-        const theme: string = params.theme ? params.theme : QueryHelpers.getTheme();
+        const theme: TTheme = params.theme ? params.theme : QueryHelpers.getTheme();
 
         svc.uuiRouter.redirect({
             pathname: '/documents',
