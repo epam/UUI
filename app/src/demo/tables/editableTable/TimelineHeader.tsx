@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { useForceUpdate } from '@epam/uui-core';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { useForceUpdate, useResizeObserver } from '@epam/uui-core';
 import { TimelineController, TimelineGrid, TimelineScale, msPerDay } from '@epam/uui-timeline';
 import css from './TimelineHeader.module.scss';
 
@@ -14,28 +14,31 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
     useEffect(() => {
         timelineController.setWidth(timelineRef.current?.offsetWidth);
         forceUpdate();
-        window.onresize = () => {
-            timelineController.setViewport(
-                {
-                    center: timelineController.currentViewport.center,
-                    pxPerMs: timelineRef.current?.clientWidth / msPerDay,
-                    widthPx: timelineRef.current.clientWidth,
-                },
-                false,
-            );
-            forceUpdate();
-        };
-        
-        return () => {
-            window.onresize = null;
-        };
     }, [forceUpdate, timelineController]);
+
+    const onResize = useCallback(() => {
+        timelineController.setViewport(
+            {
+                center: timelineController.currentViewport.center,
+                pxPerMs: timelineRef.current?.clientWidth / msPerDay,
+                widthPx: timelineRef.current.clientWidth,
+            },
+            false,
+        );
+        forceUpdate();
+    }, [forceUpdate, timelineController]);
+
+    useResizeObserver({
+        onResize: onResize,
+        observables: [document.body, timelineRef.current],
+        delay: 100,
+    });
 
     return (
         <div
             ref={ timelineRef }
             className={ css.timeline }
-            onWheel={ (e) => timelineController.handleWheelEvent(e.nativeEvent as WheelEvent) }
+            onWheel={ (e) => timelineController.handleWheelEvent(e.nativeEvent as WheelEvent) } 
         >
             <div className={ css.layer } onMouseDown={ timelineController.startDrag }>
                 <TimelineGrid className={ css.grid } timelineController={ timelineController } />
