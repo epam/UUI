@@ -43,8 +43,8 @@
     @include clickable-styles();
     @include tab-button-color(var(--uui-tab_btn-text), var(--uui-tab_btn-text-active), transparent);
     cursor: pointer;
-    padding-left: var(--uui-tab_btn-padding);
-    padding-right: var(--uui-tab_btn-padding);
+    padding-inline-start: var(--uui-tab_btn-padding);
+    padding-inline-end: var(--uui-tab_btn-padding);
     bottom: -1px;
     align-items: center;
     font-family: var(--uui-tab_btn-font);
@@ -82,20 +82,20 @@
     &:global {
         &.uui-has-left-icon {
             :global(.uui-caption) {
-                padding-left: var(--uui-tab_btn-horizontal-caption-padding);
+                padding-inline-start: var(--uui-tab_btn-horizontal-caption-padding);
             }
         }
 
         &.uui-has-right-icon {
             :global(.uui-caption) {
-                padding-right: var(--uui-tab_btn-horizontal-caption-padding);
+                padding-inline-end: var(--uui-tab_btn-horizontal-caption-padding);
             }
         }
     }
 
     &.withNotify {
         :global(.uui-caption) {
-            padding-right: var(--uui-tab_btn-notification-gap);
+            padding-inline-end: var(--uui-tab_btn-notification-gap);
 
             &::after {
                 content: '';
@@ -111,11 +111,11 @@
     }
 
     :global(.uui-count_indicator) {
-        margin-right: calc(var(--uui-tab_btn-gap) / 2);
-        margin-left: calc(var(--uui-tab_btn-gap) / 2);
+        margin-inline-start: calc(var(--uui-tab_btn-gap) / 2);
+        margin-inline-end: calc(var(--uui-tab_btn-gap) / 2);
 
         ~ :global(.uui-caption) {
-            padding-right: 0;
+            padding-inline-end: 0;
         }
     }
 }

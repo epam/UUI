@@ -3,7 +3,7 @@ import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
     IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps, getHtmlDir } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
@@ -202,13 +202,15 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         },
     ];
 
+    const dir = getHtmlDir();
+
     return (
         <Dropdown
             openOnHover={ props.openOnHover || true }
             closeOnMouseLeave="boundary"
             openDelay={ 400 }
             closeDelay={ 400 }
-            placement="right-start"
+            placement={ dir === 'rtl' ? 'left-start' : 'right-start' }
             modifiers={ subMenuModifiers }
             renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
