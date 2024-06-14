@@ -1,3 +1,18 @@
 .wrapper {
+    display: flex;
     border: 1px solid var(--uui-divider-light);
+}
+
+.note-button {
+    display: flex;
+    justify-content: center;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 20px;
+    border-radius: 2px;
 }
