@@ -140,7 +140,7 @@
     }
 
     &:global(.uui-invalid) {
-        &.mode-form {
+        &.mode-form, &.mode-inline {
             background-color: var(--uui-text_input-bg);
             border-color: var(--uui-text_input-border-error);
         }
