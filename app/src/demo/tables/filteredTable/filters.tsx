@@ -9,7 +9,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
         {
             field: 'profileStatusId',
             columnKey: 'profileStatus',
-            title: 'Profile Status',
+            title: 'Status',
             type: 'multiPicker',
             isAlwaysVisible: true,
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
