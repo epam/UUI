@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Viewport } from './types';
-import { msPerDay, scaleSteps } from './helpers';
+import { Viewport, ViewportRange } from './types';
+import { getScaleByRange, msPerDay, scaleSteps } from './helpers';
 import { TimelineTransform } from '../index';
 import sortedIndex from 'lodash.sortedindex';
 import { isClientSide } from '@epam/uui-core';
@@ -84,6 +84,23 @@ export class TimelineController {
         if (this.onViewportChange) {
             this.onViewportChange(newViewport);
         }
+    }
+
+    public setViewportRange(newViewportRange: ViewportRange, doAnimation: boolean) {
+        const rangeTimestamp = newViewportRange.to.getTime() - newViewportRange.from.getTime();
+        const centerTimestamp = Math.floor((newViewportRange.to.getTime() + newViewportRange.from.getTime()) / 2);
+        const pxPerMs = getScaleByRange(rangeTimestamp);
+
+        const center = new Date();
+        center.setTime(centerTimestamp);
+        this.setViewport(
+            {
+                center,
+                widthPx: this.currentViewport.widthPx,
+                pxPerMs,
+            },
+            doAnimation,
+        );
     }
 
     public setShiftPercent(shiftPercent: number) {

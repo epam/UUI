@@ -71,11 +71,7 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
     });
 
     return (
-        <div
-            ref={ taskBarWrapperRef }
-            className={ css.taskBar }
-            onWheel={ (e) => timelineController.handleWheelEvent(e.nativeEvent as WheelEvent) }
-        >
+        <div ref={ taskBarWrapperRef } className={ css.taskBar }>
             <div className={ css.layer }>
                 <TimelineGrid className={ css.grid } timelineController={ timelineController } canvasHeight={ 36 } />
             </div>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { TimelineController, msPerDay } from '@epam/uui-timeline';
 import { Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip, MultiSwitch } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
@@ -10,7 +10,9 @@ import { ReactComponent as insertAfter } from '@epam/assets/icons/table-row_plus
 import { ReactComponent as insertBefore } from '@epam/assets/icons/table-row_plus_before-outline.svg';
 import { ReactComponent as deleteLast } from '@epam/assets/icons/table-row_remove-outline.svg';
 import { ReactComponent as add } from '@epam/assets/icons/action-add-outline.svg';
-
+import { ReactComponent as zoomIn } from '@epam/assets/icons/action-add-outline.svg';
+import { ReactComponent as zoomOut } from '@epam/assets/icons/content-minus-outline.svg';
+import { ReactComponent as fitContent } from '@epam/assets/icons/action-align_center-outline.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { deleteTaskWithChildren, setTaskInsertPosition } from './helpers';
@@ -88,9 +90,9 @@ export function ProjectTableDemo() {
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => ({
             ...currentValue,
-            items: deleteTaskWithChildren(task, currentValue.items, tree),
+            items: deleteTaskWithChildren(task, currentValue.items, treeRef.current),
         }));
-    }, [setValue, tree]);
+    }, [setValue]);
 
     const getMinMaxDate = () => {
         let minStartDate;
@@ -127,41 +129,47 @@ export function ProjectTableDemo() {
            
             maxDueDate = maxDueDate === undefined ? localMaxDueDate : Math.max(localMaxDueDate ?? 0, maxDueDate);
         }
-        return { minStartDate, maxDueDate };
+        let from: Date;
+        let to: Date;
+        if (minStartDate && maxDueDate) {
+            from = new Date();
+            from.setTime(minStartDate);
+            to = new Date();
+            to.setTime(maxDueDate);
+        }
+        
+        return { from, to };
     };
 
     const timelineController = useMemo(() => {
-        const { minStartDate, maxDueDate } = getMinMaxDate();
-        const centerDate = new Date();
-        if (minStartDate === undefined) {
-            if (maxDueDate !== undefined) {
-                centerDate.setTime(maxDueDate);
-            }
-        } else if (maxDueDate === undefined) {
-            centerDate.setTime(minStartDate);
-        } else {
-            centerDate.setTime(Math.floor((minStartDate + maxDueDate) / 2));
+        const { from, to } = getMinMaxDate();
+
+        const timeController = new TimelineController({ widthPx: 0, center: new Date(), pxPerMs: 32 / msPerDay });
+        if (from && to) {
+            timeController.setViewportRange({ from, to, widthPx: 0 }, false);
         }
-        
-        const pxPerMs = minStartDate !== undefined && maxDueDate !== undefined ? maxDueDate - minStartDate : undefined;
-        return new TimelineController({ center: centerDate, pxPerMs: pxPerMs !== undefined ? (500 / pxPerMs) : (32 / msPerDay), widthPx: 0 });
+        return timeController;
     }, []);
+
+    const treeRef = useRef(tree);
+    
+    treeRef.current = tree;
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
             return null;
         } 
-        const parents = Tree.getPathById(params.dstData.id, tree);
+        const parents = Tree.getPathById(params.dstData.id, treeRef.current);
         if (parents.some((parent) => parent.id === params.srcData.id)) {
             return null;
         }
 
         return { bottom: true, top: true, inside: true };
-    }, [tree]);
+    }, []);
 
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
         const taskToInsert = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
-        const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, tree);
+        const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, treeRef.current);
 
         setValue((currentValue) => ({ ...currentValue, items: currentValue.items.set(task.id, task) }));
 
@@ -174,7 +182,7 @@ export function ProjectTableDemo() {
         }));
 
         dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, dataTableFocusManager, tree]);
+    }, [setValue, dataTableFocusManager]);
 
     const handleDrop = useCallback(
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
@@ -261,6 +269,7 @@ export function ProjectTableDemo() {
             </>
         );
     };
+    const { from, to } = getMinMaxDate();
 
     return (
         <Panel cx={ css.container }>
@@ -286,6 +295,25 @@ export function ProjectTableDemo() {
                     </Tooltip>
                 </FlexCell>
                 <FlexSpacer />
+                <FlexCell width="auto">
+                    <Button
+                        icon={ fitContent }
+                        iconPosition="left"
+                        caption="Fit content"
+                        onClick={ () => {
+                            if (from && to) {
+                                timelineController.setViewportRange({ from, to, widthPx: timelineController.currentViewport.widthPx }, true);
+                            } 
+                        } }
+                    />
+                </FlexCell>
+
+                <FlexCell width="auto">
+                    <Button icon={ zoomIn } iconPosition="right" caption="Zoom In" isDisabled={ !timelineController.canZoomBy(1) } onClick={ () => timelineController.zoomBy(1) } />
+                </FlexCell>
+                <FlexCell width="auto">
+                    <Button icon={ zoomOut } iconPosition="right" caption="Zoom Out" isDisabled={ !timelineController.canZoomBy(-1) } fill="outline" onClick={ () => timelineController.zoomBy(-1) } />
+                </FlexCell>
                 <FlexCell width={ 150 }>
                     <MultiSwitch
                         items={ viewModes }
