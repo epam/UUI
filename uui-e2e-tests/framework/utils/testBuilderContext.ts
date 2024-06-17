@@ -6,6 +6,7 @@ import { getFailedTestNamesFromLastRun } from './failedTestsUtils';
 import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
 import * as console from 'console';
 import { TEngine } from '../types';
+import { parseTestName } from './testNameUtils';
 
 const {
     isCi,
@@ -16,7 +17,7 @@ const {
 
 type TScrSizeMap = {
     [component: string]: {
-        [previewId: string]: {
+        [previewIdWithTag: string]: {
             [themeId: string]: {
                 NotSkin?: number;
                 Skin?: number;
@@ -71,6 +72,9 @@ export class TestBuilderContext {
                 const testName = path.basename(fileName, '.png');
                 const scrFileFullPath = path.resolve(enginePath, fileName);
                 const scrSize = fs.statSync(scrFileFullPath).size;
+
+                const parsedTestName = parseTestName(testName);
+
                 const isObsoleteScr = !this.seenTestNames.has(testName) || (this.onlyChromiumTests.has(testName) && engineName !== TEngine.chromium);
                 if (isObsoleteScr) {
                     if (UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR) {
@@ -80,19 +84,17 @@ export class TestBuilderContext {
                 }
                 if (engineName === TEngine.chromium && !isObsoleteScr) {
                     // Always use chromium engine. It does not matter which engine to use for this check.
-                    const [componentId, ...rest] = testName.split('-');
-                    const previewId = rest.slice(0, rest.length - 2).join('-');
-                    const [themeId, skinKey] = rest.slice(rest.length - 2);
+                    const { componentId, previewIdWithTag, theme, skinToken } = parsedTestName;
                     if (!scrSizeMap[componentId]) {
                         scrSizeMap[componentId] = {};
                     }
-                    if (!scrSizeMap[componentId][previewId]) {
-                        scrSizeMap[componentId][previewId] = {};
+                    if (!scrSizeMap[componentId][previewIdWithTag]) {
+                        scrSizeMap[componentId][previewIdWithTag] = {};
                     }
-                    if (!scrSizeMap[componentId][previewId][themeId]) {
-                        scrSizeMap[componentId][previewId][themeId] = {};
+                    if (!scrSizeMap[componentId][previewIdWithTag][theme]) {
+                        scrSizeMap[componentId][previewIdWithTag][theme] = {};
                     }
-                    scrSizeMap[componentId][previewId][themeId][skinKey as ('Skin' | 'NotSkin')] = scrSize;
+                    scrSizeMap[componentId][previewIdWithTag][theme][skinToken as ('Skin' | 'NotSkin')] = scrSize;
                 }
             });
         });
@@ -122,13 +124,18 @@ export class TestBuilderContext {
     }
 }
 
+/**
+ * It prints list of previews which have associated exactly same screenshot file size
+ * @param scrSizeMap
+ * @param issuesArr
+ */
 function reportEqualPreview(scrSizeMap: TScrSizeMap, issuesArr: TIssues) {
     const errs: { compId: string, duplicates: string[] }[] = [];
     Object.keys(scrSizeMap).forEach((compId: string) => {
         const mapSizesToArrOfPreview = new Map<string, string[]>();
         const previewMap = scrSizeMap[compId];
-        Object.keys(previewMap).forEach((previewId) => {
-            const themeMap = previewMap[previewId];
+        Object.keys(previewMap).forEach((previewIdWithTag) => {
+            const themeMap = previewMap[previewIdWithTag];
             const sortedThemeIds = Object.keys(themeMap).sort();
             const sizeStr = sortedThemeIds.map((themeId) => {
                 const { NotSkin, Skin } = themeMap[themeId];
@@ -137,7 +144,7 @@ function reportEqualPreview(scrSizeMap: TScrSizeMap, issuesArr: TIssues) {
             if (!mapSizesToArrOfPreview.get(sizeStr)) {
                 mapSizesToArrOfPreview.set(sizeStr, []);
             }
-            mapSizesToArrOfPreview.get(sizeStr)!.push(previewId);
+            mapSizesToArrOfPreview.get(sizeStr)!.push(previewIdWithTag);
         });
         mapSizesToArrOfPreview.forEach((duplicates) => {
             if (duplicates.length > 1) {

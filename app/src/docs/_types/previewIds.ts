@@ -9,8 +9,6 @@ const UTILS = {
     SizeVariants: { 'Size Variants': 'Size Variants' as const },
     ColorVariants: { 'Color Variants': 'Color Variants' as const },
     AllVariants: { 'All Variants': 'All Variants' as const },
-    PseudoStateHover: { 'Pseudo State Hover': 'Pseudo State Hover' as const },
-    PseudoStateActive: { 'Pseudo State Active': 'Pseudo State Active' as const },
 };
 
 export enum TPickerInputPreview {
@@ -69,8 +67,6 @@ export const TButtonPreview = {
     'Two-line caption': 'Two-line caption' as const,
     'No caption': 'No caption' as const,
     ...UTILS.ColorVariants,
-    ...UTILS.PseudoStateHover,
-    ...UTILS.PseudoStateActive,
 };
 export const TTabButtonPreview = {
     ...UTILS.SizeVariants,

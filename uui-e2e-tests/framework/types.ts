@@ -28,6 +28,10 @@ type TArrItem<T> = T extends (infer TItem)[] ? TItem : never;
 
 export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponentId> = TObjValues<TPreviewIdByComponentId>> = {
     previewId: PreviewIdArr;
+    /*
+     * "previewTag" makes it possible to use the same preview for more than one test case
+     */
+    previewTag?: 'PseudoStateActive' | 'PseudoStateHover' | string;
     theme?: TTheme[];
     skins?: TTheme[];
     onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
