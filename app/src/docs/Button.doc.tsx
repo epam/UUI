@@ -100,8 +100,6 @@ export class ButtonDoc extends BaseDocsBlock {
                 isDisabled: { examples: '*' },
             };
             docPreview.add(TButtonPreview['Color Variants'], colorVariantsMatrix, '100-50');
-            docPreview.add(TButtonPreview['Pseudo State Hover'], colorVariantsMatrix, '100-50');
-            docPreview.add(TButtonPreview['Pseudo State Active'], colorVariantsMatrix, '100-50');
         },
     };
 
