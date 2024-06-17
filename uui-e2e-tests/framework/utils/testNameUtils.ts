@@ -2,6 +2,7 @@ import { PreviewPageParams } from '../types';
 
 const DELIMITERS = {
     TOKEN: '-',
+    TAG: '--',
 };
 
 export type TUniqueTestNameParams = PreviewPageParams & { previewTag?: string };
@@ -13,7 +14,7 @@ export function formatTestName(params: TUniqueTestNameParams): string {
     const { isSkin, theme, componentId, previewId, previewTag } = params;
     const skinToken = normToken(isSkin ? 'Skin' : 'NotSkin');
     const previewToken = previewTag
-        ? `${normToken(previewId)}${normToken(previewTag)}`
+        ? `${normToken(previewId)}${DELIMITERS.TAG}${normToken(previewTag)}`
         : normToken(previewId);
 
     return [
@@ -26,16 +27,21 @@ export function formatTestName(params: TUniqueTestNameParams): string {
 
 type TUniqueTestNameTokens = {
     componentId: string,
-    previewIdWithTag: string,
+    previewId: string,
+    previewIdTag: string | undefined,
     theme: string,
     skinToken: string,
 };
 export function parseTestName(testName: string): TUniqueTestNameTokens {
-    const [componentId, previewIdWithTag, theme, skinToken] = testName.split(DELIMITERS.TOKEN);
+    const TEMP_DELIM = '__';
+    const testName1 = testName.replaceAll(DELIMITERS.TAG, TEMP_DELIM);
+    const [componentId, previewIdWithTag, theme, skinToken] = testName1.split(DELIMITERS.TOKEN);
+    const [previewId, previewIdTag] = previewIdWithTag.split(TEMP_DELIM);
 
     return {
         componentId,
-        previewIdWithTag,
+        previewId,
+        previewIdTag,
         theme,
         skinToken,
     };

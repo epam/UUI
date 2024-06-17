@@ -9,10 +9,12 @@ const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
 const testTimeout = isCi ? 10000 : 50000;
 export const timeoutForFixture = isCi ? 20000 : 50000;
+const expectTimeout = 10000;
 // The "expect" timeout for slow tests. It should not exceed "testTimeout".
-export const slowTestExpectTimeout = Math.min(20000, testTimeout);
+export const slowTestExpectTimeout = Math.min(expectTimeout * 3, testTimeout);
 const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
+export const screenshotSizeLimitKb = 130;
 /**
  * The fastest option (for both CI and Local) is to use default (undefined) amount of workers (which is 50% of CPU cores).
  */
@@ -82,6 +84,7 @@ export default defineConfig({
         reuseExistingServer: true,
     },
     expect: {
+        timeout: expectTimeout,
         toHaveScreenshot: {
             animations: 'disabled',
             caret: 'hide',
