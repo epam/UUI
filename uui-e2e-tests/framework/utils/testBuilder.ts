@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures';
 import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
-import { createUniqueTestName } from './testNameUtils';
+import { formatTestName } from './testNameUtils';
 import { TestBuilderContext } from './testBuilderContext';
 import { screenshotsDirAbsPath } from '../../playwright.config';
 
@@ -77,7 +77,7 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
         function testAllPreviews(params: { isSkin: boolean }) {
             matrix.previewId.forEach((previewId) => {
                 const pageParams = { theme, isSkin: params.isSkin, previewId, componentId };
-                const testName = createUniqueTestName(pageParams);
+                const testName = formatTestName({ ...pageParams, previewTag: matrix.previewTag });
                 ctx.seen(testName, matrix.onlyChromium);
                 if (ctx.isDryRun()) {
                     return;
