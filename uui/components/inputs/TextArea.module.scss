@@ -126,6 +126,10 @@
             padding-left: 5px;
             padding-right: 5px;
 
+            &:global(.uui-invalid) {
+                border-color: var(--uui-text_area-border-error);
+            }
+
             &:global(.uui-readonly) {
                 &:hover {
                     border-color: transparent;
