@@ -27,18 +27,20 @@ builder
     .add(badge, { previewId: values(TBadgePreview), skins: SKINS.promo_loveship })
     .add(button, [
         {
-            previewId: values(TButtonPreview, { exclude: [TButtonPreview['Pseudo State Active'], TButtonPreview['Pseudo State Hover']] }),
+            previewId: values(TButtonPreview),
             skins: SKINS.promo_loveship,
         },
         {
             onlyChromium: true,
-            previewId: [TButtonPreview['Pseudo State Active']],
+            previewId: [TButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateActive',
             skins: SKINS.promo_loveship,
             forcePseudoState: [{ state: 'active', selector: '.uui-button' }],
         },
         {
             onlyChromium: true,
-            previewId: [TButtonPreview['Pseudo State Hover']],
+            previewId: [TButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateHover',
             skins: SKINS.promo_loveship,
             forcePseudoState: [{ state: 'hover', selector: '.uui-button' }],
         },
