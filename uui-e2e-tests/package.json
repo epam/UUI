@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "yarn typecheck",
     "typecheck": "tsc --project ./tsconfig.json --skipLibCheck true --noEmit true",
     "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests",
     "docker-test-e2e-update": "yarn docker-test-e2e --update-snapshots",
