@@ -40,12 +40,12 @@ const getPlugins = () => {
         ...defaultPlugins,
         ...baseMarksPlugin(),
         headerPlugin(
-            'uui-richTextEditor-header-1',
-            'uui-richTextEditor-header-2',
-            'uui-richTextEditor-header-3',
-            'uui-richTextEditor-header-4',
-            'uui-richTextEditor-header-5',
-            'uui-richTextEditor-header-6',
+            'header-1',
+            'header-2',
+            'header-3',
+            'header-4',
+            'header-5',
+            'header-6',
         ),
         colorPlugin(
             '#2596be',
@@ -62,16 +62,19 @@ const getPlugins = () => {
         notePlugin(
             {
                 type: 'note-custom-warn',
+                buttonFill: '#a32f71',
                 backgroundColor: '#a32f71',
                 borderColor: '#521437',
             },
             {
                 type: 'note-custom-info',
+                buttonFill: '#145bb3',
                 backgroundColor: '#145bb3',
                 borderColor: '#0d2d54',
             },
             {
                 type: 'note-custom-notification',
+                buttonFill: '#c4700a',
                 backgroundColor: '#c4700a',
                 borderColor: '#8c5108',
             },

@@ -4,6 +4,8 @@ import { WithToolbarButton } from '../../implementation/Toolbars';
 export interface NoteEntryConfig extends NoteNodeProps {
     /** type of note */
     type: `note-${string}`;
+    /** button fill color */
+    buttonFill: string;
 }
 
 export interface NoteNodeProps {
@@ -16,5 +18,5 @@ export interface NoteNodeProps {
 /** note plugin options */
 export type NotePluginOptions = WithToolbarButton & {
     /** notes list */
-    notes?: NoteEntryConfig[];
+    notes: NoteEntryConfig[];
 };

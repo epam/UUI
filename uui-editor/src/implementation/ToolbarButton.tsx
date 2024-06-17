@@ -8,7 +8,6 @@ interface ToolbarButtonProps extends IHasCX, IHasCaption, IDisableable, IHasRawP
     isActive?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     icon?: Icon;
-    iconColor?: 'red' | 'green' | 'amber' | 'blue' | 'gray60';
 }
 
 export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => {
@@ -16,7 +15,7 @@ export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElem
         <Button
             ref={ ref }
             rawProps={ props.rawProps }
-            cx={ cx(css.toolbarButton, css['color-' + props.iconColor], css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
+            cx={ cx(css.toolbarButton, css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
             icon={ props.icon }
             caption={ props.caption }
             onClick={ props.onClick }
