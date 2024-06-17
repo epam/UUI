@@ -26,33 +26,7 @@ export function ColorBar({ onColorUpdate, onColorClear, value }: IColorBar) {
         COLOR_PLUGIN_KEY,
     ), [editorRef]);
 
-    const defaultColors = (
-        <React.Fragment>
-            <ToolbarButton
-                key="critical"
-                onClick={ () => onColorUpdate('critical') }
-                iconColor="red"
-                isActive={ value === 'critical' }
-                icon={ ColorIcon }
-            />
-            <ToolbarButton
-                key="warning"
-                onClick={ () => onColorUpdate('warning') }
-                iconColor="amber"
-                isActive={ value === 'warning' }
-                icon={ ColorIcon }
-            />
-            <ToolbarButton
-                key="success"
-                onClick={ () => onColorUpdate('success') }
-                iconColor="green"
-                isActive={ value === 'success' }
-                icon={ ColorIcon }
-            />
-        </React.Fragment>
-    );
-
-    const userColors = colorProps?.map((color) => {
+    const colors = colorProps.map((color) => {
         return (
             <ToolbarButton
                 key={ color }
@@ -64,7 +38,6 @@ export function ColorBar({ onColorUpdate, onColorClear, value }: IColorBar) {
         );
     });
 
-    const colors = userColors || defaultColors;
     return (
         <FlexRow cx={ css.wrapper }>
             <ToolbarButton

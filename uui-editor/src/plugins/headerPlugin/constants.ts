@@ -14,11 +14,29 @@ export const HEADER_TYPE_H4 = 'uui-richTextEditor-header-4';
 export const HEADER_TYPE_H5 = 'uui-richTextEditor-header-5';
 export const HEADER_TYPE_H6 = 'uui-richTextEditor-header-6';
 
-export type HeaderType = keyof typeof HEADER_MAP;
+const HEADER_H1 = 'header-1';
+const HEADER_H2 = 'header-2';
+const HEADER_H3 = 'header-3';
+const HEADER_H4 = 'header-4';
+const HEADER_H5 = 'header-5';
+const HEADER_H6 = 'header-6';
 
-export const defaultHeaders: HeaderType[] = [HEADER_TYPE_H1, HEADER_TYPE_H2, HEADER_TYPE_H3];
+/** map header to uui type */
+export const HEADER_TO_TYPE = {
+    [HEADER_H1]: HEADER_TYPE_H1,
+    [HEADER_H2]: HEADER_TYPE_H2,
+    [HEADER_H3]: HEADER_TYPE_H3,
+    [HEADER_H4]: HEADER_TYPE_H4,
+    [HEADER_H5]: HEADER_TYPE_H5,
+    [HEADER_H6]: HEADER_TYPE_H6,
+};
 
-export const HEADER_MAP = {
+/** type of headers */
+export type HeaderType = keyof typeof HEADER_TO_TYPE;
+
+export const defaultHeaders: HeaderType[] = [HEADER_H1, HEADER_H2, HEADER_H3];
+
+export const HEADER_TYPE_TO_ICON = {
     [HEADER_TYPE_H1]: H1Icon,
     [HEADER_TYPE_H2]: H2Icon,
     [HEADER_TYPE_H3]: H3Icon,

@@ -4,15 +4,11 @@ import { DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
-import { ReactComponent as NoteIconLink } from '../../icons/info-block-link.svg';
-import { ReactComponent as NoteIconQuote } from '../../icons/info-block-quote.svg';
-import { ReactComponent as NoteIconError } from '../../icons/info-block-warning.svg';
-import { ReactComponent as NoteIconWarning } from '../../icons/info-block.svg';
 import { ReactComponent as ClearIcon } from '../../icons/text-color-default.svg';
 import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import css from './NoteBar.module.scss';
-import { NODE_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_TYPE, NOTE_QUOTE_TYPE, NOTE_WARN_TYPE, noteTypes } from './constants';
+import { NODE_PLUGIN_KEY, noteTypes } from './constants';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
 import { useIsPluginActive } from '../../helpers';
 import { NotePluginOptions } from './types';
@@ -46,40 +42,7 @@ export function NoteBar({ editor, type: currentType }: NoteBarProps) {
         setElements(editor, { type: PARAGRAPH_TYPE });
     };
 
-    const defaultNoteButtons = (
-        <React.Fragment>
-            <ToolbarButton
-                key="quote"
-                isActive={ currentType === NOTE_QUOTE_TYPE }
-                onClick={ (e) => toggleBlock(e, NOTE_QUOTE_TYPE) }
-                icon={ NoteIconQuote }
-                iconColor="gray60"
-            />
-            <ToolbarButton
-                key="error"
-                isActive={ currentType === NOTE_ERROR_TYPE }
-                onClick={ (e) => toggleBlock(e, NOTE_ERROR_TYPE) }
-                icon={ NoteIconError }
-                iconColor="red"
-            />
-            <ToolbarButton
-                key="warn"
-                isActive={ currentType === NOTE_WARN_TYPE }
-                onClick={ (e) => toggleBlock(e, NOTE_WARN_TYPE) }
-                icon={ NoteIconWarning }
-                iconColor="amber"
-            />
-            <ToolbarButton
-                key="link"
-                isActive={ currentType === NOTE_LINK_TYPE }
-                onClick={ (e) => toggleBlock(e, NOTE_LINK_TYPE) }
-                icon={ NoteIconLink }
-                iconColor="blue"
-            />
-        </React.Fragment>
-    );
-
-    const notes = userNotes ? userNotes.map(({ type, backgroundColor }) => {
+    const notes = userNotes.map(({ type, buttonFill }) => {
         return (
             <ToolbarButton
                 key={ type }
@@ -87,7 +50,7 @@ export function NoteBar({ editor, type: currentType }: NoteBarProps) {
                 onClick={ (e) => toggleBlock(e, type) }
                 icon={ () => {
                     return (
-                        <div className={ css.iconWrapper } style={ { backgroundColor } }>
+                        <div className={ css.iconWrapper } style={ { backgroundColor: buttonFill } }>
                             <span>A</span>
                         </div>
                     );
@@ -95,7 +58,7 @@ export function NoteBar({ editor, type: currentType }: NoteBarProps) {
                 cx={ css.noteButton }
             />
         );
-    }) : defaultNoteButtons;
+    });
 
     return (
         <div className={ css.wrapper }>

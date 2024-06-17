@@ -9,9 +9,9 @@ import { ReactComponent as HeadlinePickerIcon } from '../../icons/heading.svg';
 
 import css from './HeaderBar.module.scss';
 import { PARAGRAPH_TYPE } from '../paragraphPlugin';
-import { HEADER_MAP, HEADER_PLUGIN_KEY } from './constants';
 import { HeaderPluginOptions } from './types';
 import { useIsPluginActive } from '../../helpers';
+import { HEADER_PLUGIN_KEY, HEADER_TO_TYPE, HEADER_TYPE_TO_ICON } from './constants';
 
 interface HeaderBarProps extends DropdownBodyProps {
     editor: PlateEditor;
@@ -55,14 +55,15 @@ export function HeaderBar(props: HeaderBarProps) {
                 onClick={ (event) => clearHeaderStyle(event) }
                 icon={ ClearIcon }
             />
-            {headers.map((type) => {
+            {headers.map((header) => {
+                const type = HEADER_TO_TYPE[header];
                 return (
                     <ToolbarButton
                         key={ type }
                         cx={ css.button }
                         onClick={ (event) => toggleBlock(event, type) }
                         isActive={ block?.length && block[0].type === type }
-                        icon={ HEADER_MAP[type as keyof typeof HEADER_MAP] }
+                        icon={ HEADER_TYPE_TO_ICON[type as keyof typeof HEADER_TYPE_TO_ICON] }
                     />
                 );
             })}

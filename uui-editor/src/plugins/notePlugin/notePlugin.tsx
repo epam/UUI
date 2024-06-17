@@ -1,8 +1,9 @@
 import {
+    AnyObject,
     createPluginFactory, PlatePlugin,
 } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
-import { NODE_PLUGIN_KEY, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
+import { defaultNotes, NODE_PLUGIN_KEY, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
 import { NoteEntryConfig, NoteNodeProps, NotePluginOptions } from './types';
 import { NoteButton } from './NoteBar';
 
@@ -54,7 +55,7 @@ const createNote = (config: NoteEntryConfig): PlatePlugin => {
 };
 
 export const notePlugin = (...notes: NoteEntryConfig[]): PlatePlugin => {
-    const createNotePlugin = createPluginFactory<NotePluginOptions>({
+    const createNotePlugin = createPluginFactory<AnyObject>({
         key: NODE_PLUGIN_KEY,
         isElement: true,
         isVoid: false,
@@ -62,7 +63,7 @@ export const notePlugin = (...notes: NoteEntryConfig[]): PlatePlugin => {
         plugins: !!notes.length ? notes.map((config) => createNote(config)) : defaultNodes,
         options: {
             bottomBarButton: NoteButton,
-            notes: !!notes.length ? notes : undefined,
+            notes: !!notes.length ? notes : defaultNotes,
         } as NotePluginOptions,
     });
 

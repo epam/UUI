@@ -1,26 +1,30 @@
-import { PlatePlugin } from '@udecode/plate-common';
+import { PlatePlugin, isText } from '@udecode/plate-common';
 import { createFontColorPlugin } from '@udecode/plate-font';
 
 import { ColorPluginOptions, ColorValueHex } from './types';
-import { COLOR_PLUGIN_KEY } from './constants';
+import { defaultColorVars } from './constants';
 import { ColorButton } from './ColorBar';
+import { normaizeColoredText } from '../../migrations';
 
 export const colorPlugin = (...colors: ColorValueHex[]): PlatePlugin => createFontColorPlugin({
-    inject: {
-        props: {
-            nodeKey: COLOR_PLUGIN_KEY,
-            defaultNodeValue: 'black',
-            transformClassName: (options) => {
-                if (options.nodeValue.at(0) === '#') {
-                    return options.nodeValue;
-                } else {
-                    return `uui-${options.nodeValue}`;
-                }
-            },
-        },
-    },
     options: {
         floatingBarButton: ColorButton,
-        colors: !!colors.length ? colors : undefined,
+        colors: !!colors.length ? colors : defaultColorVars,
     } as ColorPluginOptions,
+    // move to common function / plugin
+    withOverrides: (editor) => {
+        const { normalizeNode } = editor;
+
+        editor.normalizeNode = (entry) => {
+            const [node] = entry;
+
+            if (isText(node)) {
+                normaizeColoredText(editor, entry);
+            }
+
+            normalizeNode(entry);
+        };
+
+        return editor;
+    },
 });
