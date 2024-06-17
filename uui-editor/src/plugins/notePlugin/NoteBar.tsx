@@ -66,7 +66,7 @@ export function NoteBar({ editor, type: currentType }: NoteBarProps) {
                 key="clear"
                 onClick={ clearBlock }
                 icon={ ClearIcon }
-                iconColor="gray60"
+                rawProps={ { style: { fill: '#6C6F80' } } }
             />
             {notes}
         </div>
