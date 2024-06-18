@@ -123,7 +123,6 @@ export function RichTextEditorDemo() {
     }, []);
 
     const onChange = React.useCallback((newValue: EditorValue) => {
-        console.log('newValue', newValue);
         setValue(newValue);
     }, []);
 
