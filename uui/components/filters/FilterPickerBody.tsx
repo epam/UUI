@@ -1,4 +1,4 @@
-import * as React from 'react'; 
+import * as React from 'react';
 import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
@@ -9,7 +9,7 @@ type FilterPickerBodyProps<TItem, TId> = DropdownBodyProps & PickerInputBaseProp
     showSearch?: boolean;
 };
 
-export function FilterPickerBody<TItem, TId>({ 
+export function FilterPickerBody<TItem, TId>({
     highlightSearchMatches = true,
     ...restProps
 }: FilterPickerBodyProps<TItem, TId>) {
@@ -33,14 +33,14 @@ export function FilterPickerBody<TItem, TId>({
     const prevOpened = usePrevious(props.isOpen);
 
     React.useLayoutEffect(() => {
-        if (prevOpened === props.isOpen && props.isOpen 
+        if (prevOpened === props.isOpen && props.isOpen
             && prevValue !== props.value && props.value !== props.emptyValue
             && props.selectionMode === 'single'
         ) {
             props.onClose();
         }
     }, [props.value]);
-    
+
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
         if (!search) return;
 
@@ -59,7 +59,7 @@ export function FilterPickerBody<TItem, TId>({
                 highlightSearchMatches={ highlightSearchMatches }
                 { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
                 dataSourceState={ dsState }
-                size="36" 
+                size="36"
                 { ...rowProps }
             />
         );

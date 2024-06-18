@@ -84,7 +84,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="container uui-input-box -clickable root size-30 mode-form"
+        className="container uui-input-box -clickable root uui-size-30 mode-form"
         onFocus={[Function]}
         tabIndex={-1}
       >
@@ -173,7 +173,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               Displayed in table
             </div>
             <div
-              className="root uui-count_indicator size-18 uui-color-neutral"
+              className="root uui-count_indicator uui-size-18 uui-color-neutral"
             >
               2
             </div>
@@ -255,7 +255,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-disabled"
                   >
                     <div
                       className="uui-checkbox uui-checked"
@@ -339,7 +339,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root size-18 mode-form uui-color-primary checkbox uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-disabled"
                   >
                     <div
                       className="uui-checkbox uui-checked"

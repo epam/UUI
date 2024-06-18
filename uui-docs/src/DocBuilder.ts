@@ -45,7 +45,7 @@ export class DocPreviewBuilder<TProps> {
     update(id: string, updateMatrixFn: (prevMatrix: TPreviewMatrix<TProps>) => TPreviewMatrix<TProps>) {
         const prev = this.listOfPreviews.find((i) => i.id === id);
         if (prev) {
-            prev.matrix = { ...updateMatrixFn(prev.matrix) };
+            prev.matrix = updateMatrixFn(prev.matrix);
         } else {
             throw new Error(`Unable to find preview by id = ${id}`);
         }
@@ -142,13 +142,7 @@ export class DocBuilder<TProps> implements IComponentDocs<TProps> {
     }
 
     static convertPreviewPropsItemToRenderCases = (ppi: TComponentPreview<unknown>, docs: DocBuilder<PropDocPropsUnknown>): TPreviewPropsItemRenderCases => {
-        let ctxToSet = ppi.context || TDocContext.Default;
-        // Assumption: all components support Default context, so we never report error when Default context is selected.
-        const ctxToSetSupported = ctxToSet === TDocContext.Default || !!docs.contexts.find((ctx) => ctx.name === ctxToSet);
-        if (!ctxToSetSupported) {
-            ctxToSet = undefined;
-            console.error(`The context="${ctxToSet}" is not supported by the component`);
-        }
+        const ctxToSet = ppi.context || TDocContext.Default;
         const matrixConfig = TestMatrixUtils.normalizePreviewPropsMatrix<unknown>({ matrix: ppi.matrix, docs: docs as unknown as IComponentDocs<unknown> });
         const result: TPreviewPropsItemRenderCases = {
             id: ppi.id,

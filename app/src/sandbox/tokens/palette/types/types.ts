@@ -1,5 +1,5 @@
 import { IThemeVar, TValueByThemeValue } from './sharedTypes';
-import { TTheme } from '../../../../common/docs/docsConstants';
+import { TTheme } from '../../../../data';
 
 export enum TThemeVarUiErr {
     VAR_ABSENT= 'VAR_ABSENT',

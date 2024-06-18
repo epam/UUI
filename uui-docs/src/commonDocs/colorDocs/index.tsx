@@ -31,7 +31,8 @@ export function getColorPickerComponent(colorMap?: TColorMap) {
             const res: { value: string; hex?: string; } = { value: ex.value };
             if (colorMap) {
                 if (!colorMap.hasOwnProperty(ex.value)) {
-                    console.error(`Color map doesn't contain color value=${ex.value}`, colorMap);
+                    // eslint-disable-next-line no-console
+                    console.debug(`Color map doesn't contain color value=${ex.value}`, colorMap);
                 }
                 res.hex = colorMap[ex.value as keyof typeof colorMap];
             }

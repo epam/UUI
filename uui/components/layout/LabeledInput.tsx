@@ -17,7 +17,7 @@ interface LabeledInputMods {
 export interface LabeledInputModsOverride {}
 
 /** Represents the properties of the LabeledInput component. */
-export type LabeledInputProps = uuiComponents.LabeledInputProps & Overwrite<LabeledInputMods, LabeledInputModsOverride>;
+export interface LabeledInputProps extends uuiComponents.LabeledInputProps, Overwrite<LabeledInputMods, LabeledInputModsOverride> {}
 
 function applyLabeledInputMods(mods: LabeledInputMods) {
     return [css.root, css['size-' + (mods.size || DEFAULT_SIZE)]];
