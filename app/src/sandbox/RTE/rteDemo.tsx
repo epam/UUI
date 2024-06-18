@@ -21,6 +21,7 @@ import {
     placeholderPlugin,
     codeBlockPlugin,
     EditorValue,
+    NoteIcon,
 } from '@epam/uui-editor';
 import { svc } from '../../services';
 import { FlexCell, FlexRow, Switch, PickerInput } from '@epam/promo';
@@ -62,21 +63,21 @@ const getPlugins = () => {
         notePlugin(
             {
                 type: 'note-custom-warn',
-                buttonFill: '#a32f71',
                 backgroundColor: '#a32f71',
                 borderColor: '#521437',
+                Icon: () => <NoteIcon backgroundColor="#a32f71" />,
             },
             {
                 type: 'note-custom-info',
-                buttonFill: '#145bb3',
                 backgroundColor: '#145bb3',
                 borderColor: '#0d2d54',
+                Icon: () => <NoteIcon backgroundColor="#145bb3" />,
             },
             {
                 type: 'note-custom-notification',
-                buttonFill: '#c4700a',
                 backgroundColor: '#c4700a',
                 borderColor: '#8c5108',
+                Icon: () => <NoteIcon backgroundColor="#c4700a" />,
             },
         ),
         uploadFilePlugin({ uploadFile: uploadFile }),
@@ -122,6 +123,7 @@ export function RichTextEditorDemo() {
     }, []);
 
     const onChange = React.useCallback((newValue: EditorValue) => {
+        console.log('newValue', newValue);
         setValue(newValue);
     }, []);
 

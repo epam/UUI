@@ -49,6 +49,7 @@ const createNote = (config: NoteEntryConfig): PlatePlugin => {
             nodeProps: {
                 borderColor: config.borderColor,
                 backgroundColor: config.backgroundColor,
+                Icon: config.Icon,
             } as NoteNodeProps,
         }),
     };

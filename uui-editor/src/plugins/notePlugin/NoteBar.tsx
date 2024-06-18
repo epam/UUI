@@ -42,19 +42,13 @@ export function NoteBar({ editor, type: currentType }: NoteBarProps) {
         setElements(editor, { type: PARAGRAPH_TYPE });
     };
 
-    const notes = userNotes.map(({ type, buttonFill }) => {
+    const notes = userNotes.map(({ type, Icon }) => {
         return (
             <ToolbarButton
                 key={ type }
                 isActive={ currentType === type }
                 onClick={ (e) => toggleBlock(e, type) }
-                icon={ () => {
-                    return (
-                        <div className={ css.iconWrapper } style={ { backgroundColor: buttonFill } }>
-                            <span>A</span>
-                        </div>
-                    );
-                } }
+                icon={ Icon }
                 cx={ css.noteButton }
             />
         );
