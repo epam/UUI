@@ -3,7 +3,7 @@ import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
     MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow,
 } from '@epam/uui';
-import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
+import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
@@ -18,7 +18,8 @@ const GIT_LINK = 'https://github.com/epam/UUI';
 type ContentDirection = 'rtl' | 'ltr';
 export function AppHeader() {
     const { theme, toggleTheme, themesById } = useAppThemeContext();
-    const [direction, setDirection] = useState<ContentDirection>('ltr');
+    const dir = useDocumentDir();
+    const [direction, setDirection] = useState<ContentDirection>(dir || 'ltr');
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
