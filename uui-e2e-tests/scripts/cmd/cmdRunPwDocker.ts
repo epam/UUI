@@ -8,6 +8,7 @@ import {
 import { currentMachineIpv4 } from '../ipUtils';
 import { getContainerEngineCmd } from '../containerEngineUtils';
 import { readUuiSpecificEnvVariables } from '../envParamUtils';
+import path from 'node:path';
 
 const CONTAINER_ENGINE_CMD = getContainerEngineCmd();
 const {
@@ -82,6 +83,7 @@ function getEnvParamsForDocker(): string[] {
 }
 
 function getVolumesMapArgs() {
+    const absPathToPreviewIds = forwardSlashes(path.resolve('../app/src/docs/_types/previewIds.ts'));
     // files/folders to mount volumes
     return [
         './scripts',
@@ -91,8 +93,12 @@ function getVolumesMapArgs() {
         './.env',
         './tsconfig.json',
     ].reduce<string[]>((acc, from) => {
-        const to = `/app/${from.replace('./', '')}`;
+        const to = `/e2e/${from.replace('./', '')}`;
         acc.push('-v', `${from}:${to}`);
         return acc;
-    }, []);
+    }, []).concat(['-v', `${absPathToPreviewIds}:/app/src/docs/_types/previewIds.ts`]);
+}
+
+function forwardSlashes(pathStr: string) {
+    return pathStr.replace(/\\/g, '/');
 }

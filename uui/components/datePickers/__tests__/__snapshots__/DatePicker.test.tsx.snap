@@ -2,7 +2,7 @@
 
 exports[`DatePicker should render with maximum props defined 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-size-36 mode-form"
   onClick={[Function]}
   onFocus={[Function]}
   tabIndex={-1}
@@ -31,7 +31,7 @@ exports[`DatePicker should render with maximum props defined 1`] = `
 
 exports[`DatePicker should render with minimum props defined 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-size-36 mode-form"
   onClick={[Function]}
   onFocus={[Function]}
   tabIndex={-1}

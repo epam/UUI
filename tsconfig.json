@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "module": "commonjs",
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
     "target": "ES6",
     "declaration": false,
     "declarationMap": false,
@@ -17,15 +19,11 @@
     "outDir": "./build",
     "rootDir": ".",
     "importHelpers": true,
-    "esModuleInterop": true,
     "paths": {
-      "@epam/uui-test-utils": [
-        "test-utils"
-      ]
+      "@epam/uui-test-utils": ["test-utils"]
     },
     "baseUrl": ".",
     "isolatedModules": true,
-    "moduleResolution": "node",
     "stripInternal": true
   },
   "exclude": [

@@ -1,7 +1,6 @@
 .container {
     display: flex;
     cursor: pointer;
-    align-items: center;
 
     &:focus-within {
         outline: none;

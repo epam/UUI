@@ -25,7 +25,7 @@ function applyTextAreaMods(mods: TextAreaMods) {
 }
 
 /** Represents the properties of a TextArea component. */
-export type TextAreaProps = uuiTextAreaProps & Overwrite<TextAreaMods, TextAreaModsOverride>;
+export interface TextAreaProps extends uuiTextAreaProps, Overwrite<TextAreaMods, TextAreaModsOverride> {}
 
 export const TextArea = withMods<uuiTextAreaProps, TextAreaProps>(
     uuiTextArea,
