@@ -94,7 +94,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         forceReload: isForceReload,
         backgroundReload,
         showSelectedOnly,
-    });
+    }, [...deps]);
 
     useEffect(() => {
         if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
