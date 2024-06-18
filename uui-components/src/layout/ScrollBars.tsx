@@ -2,7 +2,7 @@ import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRe
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
-import { getHtmlDir } from '../helpers';
+import { useDocumentDir } from '../helpers';
 import css from './ScrollBars.module.scss';
 
 export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
@@ -59,9 +59,10 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
 
     useEffect(handleUpdateScroll);
 
+    const dir = useDocumentDir();
+
     const getIndent = (margin: string | number): Record<string, string | number> => {
         // for windows we need to get positive right margin to hide native scrollbar
-        const dir = getHtmlDir();
         if (dir === 'rtl') {
             if (margin === 0) return { right: margin };
             const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
