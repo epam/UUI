@@ -9,7 +9,6 @@ import { Placement } from '@popperjs/core';
 interface DropdownState {
     opened: boolean;
     bodyBoundingRect: { y: number | null; x: number | null; width: number | null; height: number | null };
-    dir: 'ltr' | 'rtl';
 }
 
 export class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -30,7 +29,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         bodyBoundingRect: {
             y: null, x: null, height: null, width: null,
         },
-        dir: document.documentElement.getAttribute('dir') as DropdownState['dir'],
     };
 
     constructor(props: DropdownProps) {
@@ -53,16 +51,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         if (this.props.closeOnClickOutside !== false) {
             window.addEventListener('click', this.clickOutsideHandler, true);
         }
-
-        this.observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
-                    this.setState({ dir: document.documentElement.getAttribute('dir') as DropdownState['dir'] });
-                }
-            });
-        });
-
-        this.observer.observe(document.documentElement, { attributes: true });
     }
 
     public componentWillUnmount() {
@@ -71,7 +59,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         this.targetNode?.removeEventListener?.('mouseleave', this.handleMouseLeave);
         window.removeEventListener('click', this.clickOutsideHandler, true);
         this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
-        this.observer.disconnect();
     }
 
     handleOpenedChange = (opened: boolean) => {
@@ -226,7 +213,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     };
 
     private getPlacement = (placement: Placement): Placement => {
-        if (this.state.dir === 'rtl') {
+        if (window.document?.dir === 'rtl') {
             if (!placement) return 'bottom-end';
             return placement.replace('start', 'end') as Placement;
         }
