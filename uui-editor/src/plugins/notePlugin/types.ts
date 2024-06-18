@@ -12,7 +12,7 @@ export interface NoteNodeProps {
     /** background color */
     backgroundColor: string;
     /** icon */
-    Icon: React.FC<NoteIconProps>;
+    icon: React.FC;
 }
 
 /** note plugin options */

@@ -1,6 +1,9 @@
-import React from 'react';
-import { NoteIcon } from './NoteIcon';
 import { NoteEntryConfig } from './types';
+
+import { ReactComponent as NoteIconLink } from '../../icons/info-block-link.svg';
+import { ReactComponent as NoteIconQuote } from '../../icons/info-block-quote.svg';
+import { ReactComponent as NoteIconError } from '../../icons/info-block-warning.svg';
+import { ReactComponent as NoteIconWarning } from '../../icons/info-block.svg';
 
 export const NODE_PLUGIN_KEY = 'note';
 
@@ -18,29 +21,29 @@ export const NOTE_QUOTE_TYPE = 'note-quote';
 
 export const noteTypes = [NOTE_ERROR_TYPE, NOTE_WARN_TYPE, NOTE_LINK_TYPE, NOTE_QUOTE_TYPE];
 
-export const defaultNotes: NoteEntryConfig[] = [
+export const defaultNotesConfig: NoteEntryConfig[] = [
     {
         type: NOTE_QUOTE_TYPE,
         backgroundColor: 'var(--uui-secondary-5)',
         borderColor: 'var(--uui-secondary-50)',
-        Icon: () => <NoteIcon backgroundColor="var(--uui-neutral-60)" />,
+        icon: NoteIconQuote,
     },
     {
         type: NOTE_ERROR_TYPE,
         backgroundColor: 'var(--uui-error-5)',
         borderColor: 'var(--uui-error-50)',
-        Icon: () => <NoteIcon backgroundColor="var(--uui-text-critical)" />,
+        icon: NoteIconError,
     },
     {
         type: NOTE_WARN_TYPE,
         backgroundColor: 'var(--uui-warning-5)',
         borderColor: 'var(--uui-warning-50)',
-        Icon: () => <NoteIcon backgroundColor="var(--uui-text-warning)" />,
+        icon: NoteIconWarning,
     },
     {
         type: NOTE_LINK_TYPE,
         backgroundColor: 'var(--uui-info-5)',
         borderColor: 'var(--uui-info-50)',
-        Icon: () => <NoteIcon backgroundColor="var(--uui-text-info)" />,
+        icon: NoteIconLink,
     },
 ];
