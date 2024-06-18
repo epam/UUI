@@ -1,3 +1,5 @@
+import React from 'react';
+import { NoteIcon } from './NoteIcon';
 import { NoteEntryConfig } from './types';
 
 export const NODE_PLUGIN_KEY = 'note';
@@ -19,26 +21,26 @@ export const noteTypes = [NOTE_ERROR_TYPE, NOTE_WARN_TYPE, NOTE_LINK_TYPE, NOTE_
 export const defaultNotes: NoteEntryConfig[] = [
     {
         type: NOTE_QUOTE_TYPE,
-        buttonFill: 'var(--uui-neutral-60)',
         backgroundColor: 'var(--uui-secondary-5)',
         borderColor: 'var(--uui-secondary-50)',
+        Icon: () => <NoteIcon backgroundColor="var(--uui-neutral-60)" />,
     },
     {
         type: NOTE_ERROR_TYPE,
-        buttonFill: 'var(--uui-text-critical)',
         backgroundColor: 'var(--uui-error-5)',
         borderColor: 'var(--uui-error-50)',
+        Icon: () => <NoteIcon backgroundColor="var(--uui-text-critical)" />,
     },
     {
         type: NOTE_WARN_TYPE,
-        buttonFill: 'var(--uui-text-warning)',
         backgroundColor: 'var(--uui-warning-5)',
         borderColor: 'var(--uui-warning-50)',
+        Icon: () => <NoteIcon backgroundColor="var(--uui-text-warning)" />,
     },
     {
         type: NOTE_LINK_TYPE,
-        buttonFill: 'var(--uui-text-info)',
         backgroundColor: 'var(--uui-info-5)',
         borderColor: 'var(--uui-info-50)',
+        Icon: () => <NoteIcon backgroundColor="var(--uui-text-info)" />,
     },
 ];
