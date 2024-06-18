@@ -61,9 +61,8 @@ const getPlugins = () => {
         toDoListPlugin(),
         quotePlugin(),
         linkPlugin(),
-        notePlugin(
-            // ...[...defaultNotesConfig],
-        ),
+        // ...[...defaultNotesConfig],
+        notePlugin(),
         uploadFilePlugin({ uploadFile: uploadFile }),
         attachmentPlugin(),
         imagePlugin(),
