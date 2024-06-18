@@ -34,7 +34,7 @@ export const HEADER_TO_TYPE = {
 /** type of headers */
 export type HeaderType = keyof typeof HEADER_TO_TYPE;
 
-export const defaultHeaders: HeaderType[] = [HEADER_H1, HEADER_H2, HEADER_H3];
+export const defaultHeadersConig: HeaderType[] = [HEADER_H1, HEADER_H2, HEADER_H3];
 
 export const HEADER_TYPE_TO_ICON = {
     [HEADER_TYPE_H1]: H1Icon,

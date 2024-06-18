@@ -42,13 +42,13 @@ export function NoteBar({ editor, type: currentType }: NoteBarProps) {
         setElements(editor, { type: PARAGRAPH_TYPE });
     };
 
-    const notes = userNotes.map(({ type, Icon }) => {
+    const notes = userNotes.map(({ type, icon }) => {
         return (
             <ToolbarButton
                 key={ type }
                 isActive={ currentType === type }
                 onClick={ (e) => toggleBlock(e, type) }
-                icon={ Icon }
+                icon={ icon }
                 cx={ css.noteButton }
             />
         );

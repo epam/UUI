@@ -3,7 +3,7 @@ import {
     createPluginFactory, PlatePlugin,
 } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
-import { defaultNotes, NODE_PLUGIN_KEY, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
+import { defaultNotesConfig, NODE_PLUGIN_KEY, NOTE_ERROR_PLUGIN_KEY, NOTE_ERROR_TYPE, NOTE_LINK_PLUGIN_KEY, NOTE_LINK_TYPE, NOTE_QUOTE_PLUGIN_KEY, NOTE_QUOTE_TYPE, NOTE_WARN_PLUGIN_KEY, NOTE_WARN_TYPE } from './constants';
 import { NoteEntryConfig, NoteNodeProps, NotePluginOptions } from './types';
 import { NoteButton } from './NoteBar';
 
@@ -49,7 +49,7 @@ const createNote = (config: NoteEntryConfig): PlatePlugin => {
             nodeProps: {
                 borderColor: config.borderColor,
                 backgroundColor: config.backgroundColor,
-                Icon: config.Icon,
+                icon: config.icon,
             } as NoteNodeProps,
         }),
     };
@@ -64,7 +64,7 @@ export const notePlugin = (...notes: NoteEntryConfig[]): PlatePlugin => {
         plugins: !!notes.length ? notes.map((config) => createNote(config)) : defaultNodes,
         options: {
             bottomBarButton: NoteButton,
-            notes: !!notes.length ? notes : defaultNotes,
+            notes: !!notes.length ? notes : defaultNotesConfig,
         } as NotePluginOptions,
     });
 
