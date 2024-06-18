@@ -122,16 +122,16 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
         },
         {
             key: 'teams',
-            caption: 'Teams',
+            caption: 'Assignee',
             width: 220,
             allowResizing: false,
             renderCell: (props) => (
                 <DataTableCell
-                    { ...props.rowLens.prop('resources').toProps() }
+                    { ...props.rowLens.prop('assignee').toProps() }
                     renderEditor={ (props) => (
                         <PickerInput
                             valueType="id"
-                            selectionMode="multi"
+                            selectionMode="single"
                             dataSource={ resourceDataSource }
                             emptyValue={ undefined }
                             renderRow={ (props) => (

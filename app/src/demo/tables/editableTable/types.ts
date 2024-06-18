@@ -5,7 +5,7 @@ export interface Task {
     parentId?: number;
     name: string;
     estimate?: number;
-    resources?: number[];
+    assignee?: number;
     startDate?: string;
     dueDate?: string;
     status?: string;
