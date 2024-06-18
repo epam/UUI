@@ -24,9 +24,10 @@
     width: 0;
 
     // to align with cell's borders. TBD: move this to uui-components.
-    border-right: 1px solid transparent;
     margin-left: -1px;
     background-clip: padding-box;
+    border-left: 1px solid var(--uui-dt-border);
+    border-right: 1px solid var(--uui-dt-border);
 
     &.column-gap-12 {
         padding: 0 6px;
@@ -77,13 +78,6 @@
         }
     }
 
-    @include cell-size(24);
-    @include cell-size(30);
-    @include cell-size(36);
-    @include cell-size(42);
-    @include cell-size(48);
-    @include cell-size(60);
-
     &.padding-left-24 {
         padding-left: 24px;
     }
@@ -119,6 +113,13 @@
     .font-size-14 {
         font-size: 14px;
     }
+
+    @include cell-size(24);
+    @include cell-size(30);
+    @include cell-size(36);
+    @include cell-size(42);
+    @include cell-size(48);
+    @include cell-size(60);
 }
 
 .cell-tooltip-wrapper {
