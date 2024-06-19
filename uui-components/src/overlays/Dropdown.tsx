@@ -5,7 +5,6 @@ import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, Dro
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
 import { Placement } from '@popperjs/core';
-import { getHtmlDir } from '../helpers';
 
 interface DropdownState {
     opened: boolean;
@@ -23,6 +22,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private layer: LayoutLayer;
     private openDropdownTimerId: NodeJS.Timeout = null;
     private closeDropdownTimerId: NodeJS.Timeout = null;
+    private observer: MutationObserver;
+
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: {
@@ -212,8 +213,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     };
 
     private getPlacement = (placement: Placement): Placement => {
-        const dir = getHtmlDir() || 'ltr';
-        if (dir === 'rtl') {
+        if (window.document?.dir === 'rtl') {
             if (!placement) return 'bottom-end';
             return placement.replace('start', 'end') as Placement;
         }
