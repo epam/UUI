@@ -7,8 +7,9 @@ import { SandboxPage } from './sandbox/SandboxPage';
 import { PreviewPage } from './preview/previewPage';
 import { AppTheme } from './helpers/appTheme';
 import { Snackbar } from '@epam/uui';
-import { Modals, PortalRoot } from '@epam/uui-components';
+import { Modals, PortalRoot, useDocumentDir } from '@epam/uui-components';
 import { DragGhost } from '@epam/uui-core';
+import { getCurrentTheme } from './helpers';
 
 function App() {
     return (
@@ -25,8 +26,11 @@ function App() {
 }
 
 function AppLayout() {
+    const theme = getCurrentTheme();
+    const dir = useDocumentDir();
+
     return (
-        <AppTheme>
+        <AppTheme key={ `${theme}-${dir}` }>
             <Outlet />
             <Snackbar />
             <Modals />
