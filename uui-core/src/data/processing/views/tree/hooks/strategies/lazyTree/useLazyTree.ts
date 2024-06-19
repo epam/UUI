@@ -96,10 +96,15 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         showSelectedOnly,
     });
 
+    const treeWithDataActual = useActualItemsMap({
+        tree: treeWithData,
+        itemsMap,
+    });
+
     useEffect(() => {
         if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
             loadMissing({
-                tree: treeWithData,
+                tree: treeWithDataActual,
                 using: 'full',
                 abortInProgress: shouldRefetch,
                 dataSourceState: {
@@ -108,7 +113,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 },
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
-                    if (!isOutdated && (isUpdated || newTree !== treeWithData)) {
+                    if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
                         setTreeWithData(newTree);
                     }
                 });
@@ -120,14 +125,14 @@ export function useLazyTree<TItem, TId, TFilter = any>(
             return;
         }
 
-        let currentTree = treeWithData;
+        let currentTree = treeWithDataActual;
         if (shouldRefetch) {
             setIsFetching(true);
-            currentTree = treeWithData.clearStructure();
+            currentTree = treeWithDataActual.clearStructure();
         }
 
         if (shouldLoad) {
-            if (currentTree !== treeWithData) {
+            if (currentTree !== treeWithDataActual) {
                 setTreeWithData(currentTree);
             }
             setIsLoading(true);
@@ -140,7 +145,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                 abortInProgress: shouldRefetch,
             })
                 .then(({ isUpdated, isOutdated, tree: newTree }) => {
-                    if (!isOutdated && (isUpdated || newTree !== treeWithData)) {
+                    if (!isOutdated && (isUpdated || newTree !== treeWithDataActual)) {
                         setTreeWithData(newTree);
                     }
                 }).finally(() => {
@@ -159,10 +164,10 @@ export function useLazyTree<TItem, TId, TFilter = any>(
     ]);
 
     const treeWithSelectedOnly = useSelectedOnlyTree({
-        tree: treeWithData,
+        tree: treeWithDataActual,
         dataSourceState,
         isLoading: isLoading || isFetching,
-    }, [treeWithData]);
+    }, [treeWithDataActual]);
 
     const treeWithNewItemsMap = useActualItemsMap({
         tree: treeWithSelectedOnly,
