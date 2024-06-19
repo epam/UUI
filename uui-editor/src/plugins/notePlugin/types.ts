@@ -20,7 +20,3 @@ export type NotePluginOptions = WithToolbarButton & {
     /** notes list */
     notes: NoteEntryConfig[];
 };
-
-export interface NoteIconProps {
-    backgroundColor: string;
-}
