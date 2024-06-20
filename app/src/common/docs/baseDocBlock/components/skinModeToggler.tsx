@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { IconContainer } from '@epam/uui-components';
 import { Checkbox, Tooltip } from '@epam/uui';
-import { TMode, TTheme } from '../../docsConstants';
+import { TMode } from '../../docsConstants';
 //
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 //
 import css from './skinModeToggler.module.scss';
+import { TTheme } from '../../../../data';
 
 const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific package will be used, according to the selected theme (for example, "@epam/loveship"). If unchecked, it will use a component from the "@epam/uui" package, only with semantic props.';
 

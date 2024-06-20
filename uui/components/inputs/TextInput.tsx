@@ -3,9 +3,9 @@ import { withMods, IEditableDebouncer, IEditableDebouncerOptions, Overwrite } fr
 import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import css from './TextInput.module.scss';
 
-const DEFAULT_SIZE = '36';
 const DEFAULT_MODE = EditMode.FORM;
 
 type TextInputMods = IHasEditMode & {
@@ -18,10 +18,10 @@ type TextInputMods = IHasEditMode & {
 
 export interface TextInputModsOverride {}
 
-function applyTextInputMods(mods: TextInputMods) {
+function applyTextInputMods(mods: CoreTextInputProps & TextInputMods) {
     return [
         css.root,
-        css['size-' + (mods.size || DEFAULT_SIZE)],
+        `uui-size-${mods.size || settings.sizes.defaults.textInput}`,
         css['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }

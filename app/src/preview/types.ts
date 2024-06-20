@@ -1,5 +1,5 @@
-import { TTheme } from '../common/docs/docsConstants';
 import { TComponentPreview } from '@epam/uui-docs';
+import { TTheme } from '../data';
 
 export type TPreviewContentParams = {
     theme: TTheme;

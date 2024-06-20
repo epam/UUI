@@ -4,6 +4,7 @@ import { FreeFocusInside } from 'react-focus-lock';
 import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps } from '@epam/uui-core';
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
+import { Placement } from '@popperjs/core';
 
 interface DropdownState {
     opened: boolean;
@@ -21,6 +22,8 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     private layer: LayoutLayer;
     private openDropdownTimerId: NodeJS.Timeout = null;
     private closeDropdownTimerId: NodeJS.Timeout = null;
+    private observer: MutationObserver;
+
     state: DropdownState = {
         opened: this.props.value || false,
         bodyBoundingRect: {
@@ -209,6 +212,14 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
+    private getPlacement = (placement: Placement): Placement => {
+        if (window.document?.dir === 'rtl') {
+            if (!placement) return 'bottom-end';
+            return placement.replace('start', 'end') as Placement;
+        }
+        return placement;
+    };
+
     private renderTarget(targetProps: ReferenceChildrenProps) {
         const innerRef = (node: HTMLElement | null) => {
             if (!node) {
@@ -258,7 +269,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     aria-hidden={ !this.isOpened() }
                     ref={ setRef }
                     style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                    data-placement={ placement }
+                    data-placement={ this.getPlacement(placement) }
                 >
                     {this.props.renderBody({
                         onClose: this.onClose,
@@ -267,7 +278,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                         scheduleUpdate: update,
                         isOpen: this.isOpened(),
                         arrowProps: arrowProps,
-                        placement: placement,
+                        placement: this.getPlacement(placement),
                     })}
                 </div>
             </FreeFocusInside>
@@ -317,7 +328,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                 <Reference>{(targetProps) => this.renderTarget(targetProps)}</Reference>
                 {shouldShowBody && (
                     <Portal target={ this.props.portalTarget }>
-                        <Popper placement={ this.props.placement || 'bottom-start' } strategy="fixed" modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }>
+                        <Popper placement={ this.getPlacement(this.props.placement) || 'bottom-start' } strategy="fixed" modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }>
                             {this.renderDropdownBody}
                         </Popper>
                     </Portal>

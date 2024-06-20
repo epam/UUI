@@ -4,7 +4,7 @@ import {
 import { useThemeTokens } from '../../../sandbox/tokens/palette/hooks/useThemeTokens/useThemeTokens';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../../sandbox/tokens/palette/types/types';
 import { isGroupCfgWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
-import { TTheme } from '../../../common/docs/docsConstants';
+import { TTheme } from '../../../data';
 
 const PARAMS: TLoadThemeTokensParams = {
     filter: {

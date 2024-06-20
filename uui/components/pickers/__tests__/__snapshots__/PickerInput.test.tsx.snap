@@ -4,7 +4,7 @@ exports[`PickerInput should open body 1`] = `
 <body>
   <div>
     <div
-      class="container uui-input-box -clickable uui-focus root size-36 mode-form"
+      class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 mode-form"
       tabindex="-1"
     >
       <div
@@ -21,7 +21,7 @@ exports[`PickerInput should open body 1`] = `
         />
       </div>
       <div
-        class="actions"
+        class="uui-picker_toggler-actions"
       >
         <div
           class="container uui-icon uui-enabled uui-icon-dropdown"
@@ -234,7 +234,7 @@ exports[`PickerInput should open body 1`] = `
 
 exports[`PickerInput should render icon at specific position 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -242,7 +242,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <div
       className="container uui-icon uui-enabled"
@@ -265,7 +265,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -281,7 +281,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
 
 exports[`PickerInput should render icon at specific position 2`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -289,7 +289,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <div
       className="container uui-icon uui-enabled"
@@ -312,7 +312,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -328,7 +328,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
 
 exports[`PickerInput should render icon at specific position 3`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -336,7 +336,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <input
       aria-haspopup={true}
@@ -359,7 +359,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
     </div>
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -375,7 +375,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
 
 exports[`PickerInput should render input as invalid 1`] = `
 <div
-  className="container uui-input-box uui-invalid -clickable root size-36 mode-form"
+  className="container uui-input-box uui-invalid -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -398,7 +398,7 @@ exports[`PickerInput should render input as invalid 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -414,7 +414,7 @@ exports[`PickerInput should render input as invalid 1`] = `
 
 exports[`PickerInput should render with maximum props 1`] = `
 <div
-  className="container uui-input-box -clickable root size-48 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-48 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -422,10 +422,10 @@ exports[`PickerInput should render with maximum props 1`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <span
-      className="uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
+      className="uui-button-box uui-enabled root uui-size-42 uui-color-neutral uui-fill-solid uui-tag"
       tabIndex={-1}
     >
       <div
@@ -444,7 +444,7 @@ exports[`PickerInput should render with maximum props 1`] = `
       </div>
     </span>
     <span
-      className="uui-button-box uui-enabled size-42 root uui-color-neutral uui-fill-solid uui-tag"
+      className="uui-button-box uui-enabled root uui-size-42 uui-color-neutral uui-fill-solid uui-tag"
       tabIndex={-1}
     >
       <div
@@ -464,7 +464,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     </span>
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       aria-label="Clear"
@@ -484,7 +484,7 @@ exports[`PickerInput should render with maximum props 1`] = `
 
 exports[`PickerInput should render with minimum props 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -507,7 +507,7 @@ exports[`PickerInput should render with minimum props 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -523,7 +523,7 @@ exports[`PickerInput should render with minimum props 1`] = `
 
 exports[`PickerInput should render with mode = cell 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-cell"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-cell"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -531,7 +531,7 @@ exports[`PickerInput should render with mode = cell 1`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <input
       aria-haspopup={true}
@@ -546,7 +546,7 @@ exports[`PickerInput should render with mode = cell 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -562,7 +562,7 @@ exports[`PickerInput should render with mode = cell 1`] = `
 
 exports[`PickerInput should render with mode = form 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -570,7 +570,7 @@ exports[`PickerInput should render with mode = form 1`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <input
       aria-haspopup={true}
@@ -585,7 +585,7 @@ exports[`PickerInput should render with mode = form 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -601,7 +601,7 @@ exports[`PickerInput should render with mode = form 1`] = `
 
 exports[`PickerInput should render with mode = inline 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-inline"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-inline"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -609,7 +609,7 @@ exports[`PickerInput should render with mode = inline 1`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <input
       aria-haspopup={true}
@@ -624,7 +624,7 @@ exports[`PickerInput should render with mode = inline 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -640,7 +640,7 @@ exports[`PickerInput should render with mode = inline 1`] = `
 
 exports[`PickerInput should render with mode = undefined 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -648,7 +648,7 @@ exports[`PickerInput should render with mode = undefined 1`] = `
   tabIndex={0}
 >
   <div
-    className="body multiline"
+    className="body uui-picker_toggler-multiline"
   >
     <input
       aria-haspopup={true}
@@ -663,7 +663,7 @@ exports[`PickerInput should render with mode = undefined 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"
@@ -679,7 +679,7 @@ exports[`PickerInput should render with mode = undefined 1`] = `
 
 exports[`PickerInput should support single line 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form"
+  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -702,7 +702,7 @@ exports[`PickerInput should support single line 1`] = `
     />
   </div>
   <div
-    className="actions"
+    className="uui-picker_toggler-actions"
   >
     <div
       className="container uui-icon uui-enabled uui-icon-dropdown"

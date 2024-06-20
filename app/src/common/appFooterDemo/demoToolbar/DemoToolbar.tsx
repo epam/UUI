@@ -1,4 +1,3 @@
-import css from './DemoToolbar.module.scss';
 import * as React from 'react';
 import {
     LinkButton, FlexRow, FlexCell,
@@ -11,6 +10,7 @@ import { ReactComponent as DescriptionIcon } from '@epam/assets/icons/common/act
 import { analyticsEvents } from '../../../analyticsEvents';
 import { useDemoDescriptionEditor } from './useDemoDescriptionEditor';
 import { useUuiContext } from '@epam/uui-core';
+import css from './DemoToolbar.module.scss';
 
 interface AppFooterContentDemoProps {
     demoItem: DemoItem;

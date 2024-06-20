@@ -3,10 +3,10 @@ import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, O
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import { getIconClass } from './helper';
 import css from './LinkButton.module.scss';
 
-const DEFAULT_SIZE = '36';
 const DEFAULT_COLOR = 'primary';
 
 interface LinkButtonMods {
@@ -18,7 +18,7 @@ interface LinkButtonMods {
 }
 
 /** Represents the Core properties of the LinkButton component. */
-export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /**
@@ -26,18 +26,18 @@ export type LinkButtonCoreProps = ClickableComponentProps & IDropdownToggler & I
      * @default '36'
      */
     size?: types.ControlSize | '42';
-};
+}
 
 export interface LinkButtonModsOverride {}
 
 /** Represents the properties of the LinkButton component. */
-export type LinkButtonProps = LinkButtonCoreProps & Overwrite<LinkButtonMods, LinkButtonModsOverride>;
+export interface LinkButtonProps extends LinkButtonCoreProps, Overwrite<LinkButtonMods, LinkButtonModsOverride> {}
 
 function applyLinkButtonMods(mods: LinkButtonProps) {
     return [
         'uui-link_button',
         css.root,
-        `uui-size-${mods.size || DEFAULT_SIZE}`,
+        `uui-size-${mods.size || settings.sizes.defaults.linkButton}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || DEFAULT_COLOR}`,
     ];

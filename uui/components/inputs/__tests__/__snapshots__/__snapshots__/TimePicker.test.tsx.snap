@@ -2,7 +2,7 @@
 
 exports[`TimePicker should be rendered correctly 1`] = `
 <div
-  className="container uui-input-box -clickable root size-36 mode-form root timepickerInput"
+  className="container uui-input-box -clickable root uui-size-36 mode-form root timepickerInput"
   onClick={null}
   onFocus={[Function]}
   tabIndex={-1}
@@ -23,7 +23,7 @@ exports[`TimePicker should be rendered correctly 1`] = `
 
 exports[`TimePicker should be rendered correctly 2`] = `
 <div
-  className="container uui-input-box uui-disabled root size-36 mode-form root timepickerInput"
+  className="container uui-input-box uui-disabled root uui-size-36 mode-form root timepickerInput"
   onClick={null}
   onFocus={[Function]}
   tabIndex={-1}

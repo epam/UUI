@@ -8,9 +8,8 @@ import {
     PropDocUnknown, TDocContext, DocBuilder,
 } from '@epam/uui-docs';
 import { ComponentEditorView } from './view/ComponentEditorView';
-import { getSkin, useDocBuilderGenCtx } from './utils';
+import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
-import { TTheme } from '../docsConstants';
 import {
     buildExamplesAndFindById,
     buildExamplesAndFindByValue,
@@ -21,6 +20,7 @@ import {
 } from './propDocUtils';
 import { useQuery } from '../../../helpers';
 import { buildPreviewRef } from '../../../preview/utils/previewLinkUtils';
+import { TTheme } from '../../../data';
 
 export function ComponentEditorWrapper(props: {
     theme: TTheme,
@@ -38,8 +38,9 @@ export function ComponentEditorWrapper(props: {
     } = props;
     const componentId = useQuery('id');
     const skin = getSkin(theme, isSkin);
-    const docBuilderGenCtx = useDocBuilderGenCtx();
-
+    const docBuilderGenCtx = useDocBuilderGenCtx(
+        usePropEditorTypeOverride(theme, config?.bySkin[skin]?.type),
+    );
     const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
 
     React.useEffect(() => {

@@ -151,6 +151,7 @@ export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, 
                 ref={ textAreaRef }
                 onKeyDown={ props.onKeyDown }
                 tabIndex={ (state.inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
+                dir={ props.rawProps?.dir }
             />
         </div>
     );

@@ -22,7 +22,7 @@ export type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'> & 
 export interface IconButtonModsOverride {}
 
 /** Represents the properties of the IconButton component. */
-export type IconButtonProps = IconButtonCoreProps & Overwrite<IconButtonMods, IconButtonModsOverride>;
+export interface IconButtonProps extends IconButtonCoreProps, Overwrite<IconButtonMods, IconButtonModsOverride> {}
 
 function applyIconButtonMods(props: IconButtonProps) {
     return ['uui-icon_button', `uui-color-${props.color || 'neutral'}`, css.root];
@@ -43,7 +43,6 @@ export const IconButton = withMods<uuiComponents.IconButtonProps, IconButtonProp
         }
         return {
             dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
-            size: props.size && Number(props.size),
         };
     },
 );

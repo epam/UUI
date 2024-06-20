@@ -1,11 +1,12 @@
 {
   "name": "@epam/uui-e2e-tests",
-  "version": "5.8.0",
+  "version": "5.8.1-beta.0",
   "description": "",
   "author": "EPAM",
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "yarn typecheck",
     "typecheck": "tsc --project ./tsconfig.json --skipLibCheck true --noEmit true",
     "docker-test-e2e": "yarn typecheck && npx playwright test --pass-with-no-tests",
     "docker-test-e2e-update": "yarn docker-test-e2e --update-snapshots",
