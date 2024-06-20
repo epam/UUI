@@ -280,6 +280,10 @@ export class TreeState<TItem, TId> {
     }
 
     public updateItemsMap(itemsMap: ItemsMap<TId, TItem>) {
+        if (itemsMap === this.itemsMap) {
+            return this;
+        }
+
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
         return new TreeState(
             TreeStructure.withNewItemsAccessor(itemsAccessor, this.full),
