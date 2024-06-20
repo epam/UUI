@@ -3,7 +3,7 @@ import { Dropdown } from '@epam/uui-components';
 import {
     DropdownBodyProps, IDropdownToggler, cx, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
 } from '@epam/uui-core';
-import { TextInput } from '../inputs';
+import { TextInput, TextInputProps } from '../inputs';
 import { EditMode } from '../types';
 import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
@@ -12,6 +12,7 @@ import {
     defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
 import { DatePickerBody } from './DatePickerBody';
+import { settings } from '../../settings';
 
 const defaultMode = EditMode.FORM;
 const modifiers = [{
@@ -72,7 +73,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
-                size={ props.size || '36' }
+                size={ props.size || settings.sizes.defaults.datePicker as TextInputProps['size'] }
                 value={ inputValue || undefined }
                 onValueChange={ (v) => {
                     setInputValue(v || '');

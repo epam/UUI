@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import cx from 'classnames';
 import { IHasCaption, IHasCX } from '@epam/uui-core';
+import { settings } from '../../settings';
 import css from './CountIndicator.module.scss';
 
 type CountIndicatorMods = {
@@ -27,7 +28,7 @@ export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((p
             className={ cx([
                 css.root,
                 'uui-count_indicator',
-                css[`size-${props.size || 24}`],
+                `uui-size-${props.size || settings.sizes.defaults.countIndicator}`,
                 props.color && `uui-color-${props.color}`,
                 props.cx,
             ]) }

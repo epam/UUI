@@ -1,22 +1,16 @@
 import React, { PropsWithChildren } from 'react';
 import { isMobile, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
-import { Switch } from '../inputs';
-import { FlexCell, FlexRow, FlexSpacer } from '../layout';
-import { LinkButton } from '../buttons';
+import { Switch, SwitchProps } from '../inputs';
+import { FlexCell, FlexRow, FlexRowProps, FlexSpacer } from '../layout';
+import { LinkButton, LinkButtonProps } from '../buttons';
 import { SizeMod } from '../types';
+import { settings } from '../../settings';
 
 type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> &
 SizeMod & {
     selectionMode: 'single' | 'multi';
 };
-
-const switchSizes = {
-    24: '12',
-    36: '18',
-    42: '24',
-    48: '24',
-} as const;
 
 function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) {
     const {
@@ -25,8 +19,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         showSelected,
         selectionMode,
     } = props;
-    const size = isMobile() ? '48' : props.size || '36';
-    const switchSize = switchSizes[size as unknown as (keyof typeof switchSizes)];
+    const size = settings.sizes.dataPickerFooter.linkButton[isMobile() ? 'mobile' : props.size] as LinkButtonProps['size'];
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;
     const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
@@ -41,10 +34,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
 
     return shouldShowFooter && (
-        <FlexRow padding="12">
+        <FlexRow padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
             {!isSinglePicker && (
                 <Switch
-                    size={ switchSize }
+                    size={ settings.sizes.dataPickerFooter.switch[props.size] as SwitchProps['size'] }
                     value={ showSelected.value }
                     isDisabled={ !hasSelection }
                     onValueChange={ showSelected.onValueChange }

@@ -1,8 +1,9 @@
 import React from 'react';
 import { uuiElement, uuiMarkers, DataRowProps } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
-import { Checkbox } from '../inputs';
+import { Checkbox, CheckboxProps } from '../inputs';
 import { ControlSize } from '../types';
+import { settings } from '../../settings';
 import { ReactComponent as FoldingArrow } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './DataRowAddons.module.scss';
 
@@ -12,47 +13,20 @@ import css from './DataRowAddons.module.scss';
 export interface DataRowAddonsProps<TItem, TId> {
     /** DataRowProps object for the row where an addon is placed. */
     rowProps: DataRowProps<TItem, TId>;
-    
     /** HTML tabIndex attribute to set on the cell. */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-    
     /** Controls size. */
     size?: ControlSize | '60';
 }
 
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;
-    const additionalItemSize = +props.size < 30 ? '12' : '18';
     const getIndent = () => {
-        switch (props.size) {
-            case '24':
-                return (row.indent - 1) * 6;
-            case '30':
-            case '36':
-                return (row.indent - 1) * 12;
-            case '42':
-            case '48':
-            case '60':
-                return (row.indent - 1) * 24;
-            default:
-                return (row.indent - 1) * 24;
-        }
+        return (row.indent - 1) * settings.sizes.rowAddons.indentUnit[props.size || 'default'];
     };
 
     const getWidth = () => {
-        switch (props.size) {
-            case '24':
-                return '12px';
-            case '30':
-            case '36':
-                return '18px';
-            case '42':
-            case '48':
-            case '60':
-                return '24px';
-            default:
-                return '12px';
-        }
+        return settings.sizes.rowAddons.indentWidth[props.size || 'default'];
     };
 
     return (
@@ -63,7 +37,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                     key="cb"
                     cx="uui-dr_addons-checkbox"
                     tabIndex={ props.tabIndex }
-                    size={ additionalItemSize }
+                    size={ settings.sizes.rowAddons.checkbox[props.size] as CheckboxProps['size'] }
                     value={ row.isChecked }
                     indeterminate={ !row.isChecked && row.isChildrenChecked }
                     onValueChange={ () => row.onCheck?.(row) }
@@ -72,7 +46,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                 />
             )}
             {row.indent > 0 && (
-                <div key="fold" className="uui-dr_addons-indent" style={ { marginLeft: getIndent(), width: getWidth() } }>
+                <div key="fold" className="uui-dr_addons-indent" style={ { marginInlineStart: getIndent(), width: getWidth() } }>
                     {row.isFoldable && (
                         <IconContainer
                             rawProps={ {

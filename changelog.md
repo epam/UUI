@@ -1,3 +1,11 @@
+# 5.*.* - **.**.2024
+
+**What's Fixed**
+* [Checkbox]: fixed icon size according design
+* [RadioInput]: fixed caption line-height according design
+* [Switch]: fixed caption size & line-height according design
+* [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
+
 # 5.8.0 - 06.06.2024
 
 **What's New**

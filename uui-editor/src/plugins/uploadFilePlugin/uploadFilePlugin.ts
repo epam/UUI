@@ -6,6 +6,7 @@ import {
 } from '@udecode/plate-common';
 import { UPLOAD_PLUGIN_KEY } from './constants';
 import {
+    FileUploaderOptions,
     UploadFileOptions,
     createFileUploader,
 } from './file_uploader';
@@ -20,7 +21,7 @@ const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
 };
 
 export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin => {
-    const createUploadPlugin = createPluginFactory({
+    const createUploadPlugin = createPluginFactory<FileUploaderOptions>({
         key: UPLOAD_PLUGIN_KEY,
         options: { uploadFiles: createFileUploader(uploadOptions) },
         handlers: {
@@ -37,7 +38,7 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin
                     select(editor, at);
 
                     const { files } = event.dataTransfer;
-                    plugin.options.uploadFiles(editor, Array.from(files));
+                    plugin.options.uploadFiles?.(editor, Array.from(files));
                     return true;
                 };
             },
@@ -49,7 +50,7 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin
                     event.stopPropagation();
 
                     const { files } = event.clipboardData;
-                    plugin.options.uploadFiles(editor, Array.from(files));
+                    plugin.options.uploadFiles?.(editor, Array.from(files));
                     return true;
                 };
             },

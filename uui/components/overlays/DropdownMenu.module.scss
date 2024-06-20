@@ -151,7 +151,7 @@
     }
 
     & > *:not(:last-child) {
-        margin: 0 7px 0 0;
+        margin-inline: 0 7px;
     }
 }
 

@@ -2,7 +2,7 @@ import { IThemeVar } from '../../types/sharedTypes';
 import { svc } from '../../../../../services';
 import { loadedTokensConverter } from './loadedTokensConverter';
 import { IThemeVarUI, TLoadThemeTokensParams } from '../../types/types';
-import { TTheme } from '../../../../../common/docs/docsConstants';
+import { TTheme } from '../../../../../data';
 
 const cache: { content: IThemeVar[] | undefined } = { content: undefined };
 export async function loadThemeTokens(params: TLoadThemeTokensParams & { uuiTheme: TTheme }): Promise<IThemeVarUI[]> {

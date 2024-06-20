@@ -23,7 +23,6 @@ function PropEditorRowComponent<TProps>(props: IPeTableRowProps<TProps>) {
                     <RadioInput
                         name={ prop.name }
                         label={ isNone ? 'none' : String(prop.defaultValue) }
-                        size="18"
                         value={ isNothingSelected }
                         onValueChange={ () => onClearProp(prop.name) }
                     />

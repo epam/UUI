@@ -2,7 +2,8 @@ import * as React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { DataPickerCell } from './DataPickerCell';
-
+import { PickerCellMods } from './types';
+import { settings } from '../../settings';
 import css from './DataPickerRow.module.scss';
 
 export interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
@@ -17,8 +18,8 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         return (
             <DataPickerCell
                 key="name"
-                size={ this.props.size || '36' }
-                padding={ this.props.padding || '24' }
+                size={ this.props.size || (settings.sizes.dataPickerRow.dataPickerCell.default as PickerCellMods['size']) }
+                padding={ this.props.padding || (settings.sizes.dataPickerRow.padding.default as PickerCellMods['padding']) }
                 rowProps={ this.props }
                 alignActions={ this.props.alignActions || 'top' }
                 renderItem={ this.props.renderItem }
