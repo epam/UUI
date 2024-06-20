@@ -4,6 +4,8 @@ import { WithToolbarButton } from '../../implementation/Toolbars';
 export interface NoteEntryConfig extends NoteNodeProps {
     /** type of note */
     type: `note-${string}`;
+    /** icon */
+    icon: React.FC;
 }
 
 export interface NoteNodeProps {
@@ -11,8 +13,6 @@ export interface NoteNodeProps {
     borderColor: string;
     /** background color */
     backgroundColor: string;
-    /** icon */
-    icon: React.FC;
 }
 
 /** note plugin options */
