@@ -1,5 +1,5 @@
 {
- "version": "5.7.2",
+ "version": "5.8.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -4911,7 +4911,10 @@
       "     * Sorting state is kept in DataSourceState.sorting",
       "     */",
       "    isSortable?: boolean;",
-      "    /** Disallows to hide column via ColumnsConfiguration */",
+      "    /** Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
+      "     * Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
+      "     * Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.",
+      "     * */",
       "    isAlwaysVisible?: boolean;",
       "    /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */",
       "    isHiddenByDefault?: boolean;",
@@ -5112,7 +5115,9 @@
       "name": "isAlwaysVisible",
       "comment": {
        "raw": [
-        "Disallows to hide column via ColumnsConfiguration"
+        "Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
+        " Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
+        " Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array."
        ]
       },
       "typeValue": {
@@ -40271,7 +40276,9 @@
       "name": "isAlwaysVisible",
       "comment": {
        "raw": [
-        "Disallows to hide column via ColumnsConfiguration"
+        "Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
+        " Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
+        " Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array."
        ]
       },
       "typeValue": {
@@ -42442,6 +42449,203 @@
       "editor": {
        "type": "bool"
       },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-components:IconContainerProps": {
+   "summary": {
+    "module": "@epam/uui-components",
+    "typeName": {
+     "name": "IconContainerProps",
+     "nameFull": "IconContainerProps"
+    },
+    "src": "uui-components/src/layout/IconContainer.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties of a IconContainer component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "ControlIconProps",
+     "print": [
+      "/** Represents the properties of a IconContainer component. */",
+      "type IconContainerProps = ControlIconProps & {};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon to display"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "flipY",
+      "name": "flipY",
+      "comment": {
+       "raw": [
+        "Flips the icon vertically"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "rotate",
+      "name": "rotate",
+      "comment": {
+       "raw": [
+        "Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise))"
+       ]
+      },
+      "typeValue": {
+       "raw": "'0' | '90cw' | '180' | '90ccw'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "0",
+        "180",
+        "90cw",
+        "90ccw"
+       ]
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Click handler"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.SyntheticEvent<HTMLDivElement, Event>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "style",
+      "name": "style",
+      "comment": {
+       "raw": [
+        "CSS style prop to put on the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Icon size in pixels (both width and height, as icons are assumed to be square-shaped)"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:ControlIconProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "tabIndex",
+      "name": "tabIndex",
+      "comment": {
+       "raw": [
+        "Controls the order of keyboard navigation between components"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IHasTabIndex",
       "required": false
      }
     ],
@@ -53715,7 +53919,7 @@
      "name": "RichTextViewProps",
      "nameFull": "RichTextViewProps"
     },
-    "src": "uui-components/src/RichTextView.tsx",
+    "src": "uui-components/src/typography/RichTextView.tsx",
     "exported": true
    },
    "details": {
@@ -61362,7 +61566,7 @@
      "name": "TextProps",
      "nameFull": "TextProps"
     },
-    "src": "uui-components/src/Text.tsx",
+    "src": "uui-components/src/typography/Text.tsx",
     "exported": true
    },
    "details": {
