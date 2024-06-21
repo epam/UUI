@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, LinkButton, DropdownMenuHeader,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
-import { ReactComponent as GitIcon } from '../icons/git-branch-18.svg';
-import { ReactComponent as LogoIcon } from '../icons/logo.svg';
-import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
-import css from './AppHeader.module.scss';
 import { TMode } from './docs/docsConstants';
 import { useAppThemeContext } from '../helpers/appTheme';
+import { ReactComponent as LogoIcon } from '../icons/logo.svg';
+import { ReactComponent as GitIcon } from '@epam/assets/icons/external_logo/github-fill.svg';
+import { ReactComponent as FigmaIcon } from '@epam/assets/icons/external_logo/figma-logo-outline-inverted.svg';
+import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
+import { ReactComponent as CommunicationStarOutlineIcon } from '@epam/assets/icons/communication-star-outline.svg';
+import css from './AppHeader.module.scss';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
 type ContentDirection = 'rtl' | 'ltr';
+
 export function AppHeader() {
     const { theme, toggleTheme, themesById } = useAppThemeContext();
     const dir = useDocumentDir();
@@ -115,7 +118,7 @@ export function AppHeader() {
                 render: () => (
                     <MainMenuCustomElement key="logo">
                         <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') }>
-                            <IconContainer icon={ LogoIcon } cx={ css.logoIcon } />
+                            <IconContainer icon={ LogoIcon } cx={ css.icon } />
                         </Anchor>
                     </MainMenuCustomElement>
                 ),
@@ -188,6 +191,43 @@ export function AppHeader() {
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             {
+                id: 'figma',
+                priority: 3,
+                render: () => (
+                    <Dropdown
+                        renderTarget={ (props) => <LinkButton icon={ FigmaIcon } cx={ css.icon } size="36" { ...props } /> }
+                        renderBody={ (props) => (
+                            <DropdownMenuBody { ...props }>
+                                <DropdownMenuHeader caption="Open in" />
+                                <DropdownMenuButton caption="Figma Community" href="/" target="_blank" />
+                                <DropdownMenuButton caption="EPAM Team (employee only)" href="/" target="_blank" />
+                            </DropdownMenuBody>
+                        ) }
+                    />
+                ),
+            },
+            {
+                id: 'git',
+                priority: 3,
+                render: () => (
+                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
+                        <IconContainer icon={ GitIcon } cx={ css.icon } />
+                    </Anchor>
+                ),
+            },
+            {
+                id: 'gitStar',
+                priority: 0,
+                render: () => (
+                    <Anchor cx={ css.gitStarContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="gitstar">
+                        <div className={ css.wrapper }>
+                            <IconContainer icon={ CommunicationStarOutlineIcon } />
+                            <Text cx={ css.starCaption }>Star on github</Text>
+                        </div>
+                    </Anchor>
+                ),
+            },
+            {
                 id: 'themeCaption',
                 priority: 2,
                 render: () => (
@@ -206,18 +246,7 @@ export function AppHeader() {
                 render: renderDirectionSwitcher,
             },
             {
-                id: 'git',
-                priority: 0,
-                render: () => (
-                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
-                        <IconContainer icon={ GitIcon } cx={ css.gitIcon } />
-                        <Text fontWeight="600" fontSize="14" lineHeight="24" cx={ css.linkCaption }>
-                            Open Git
-                        </Text>
-                    </Anchor>
-                ),
-            },
-            { id: 'survey',
+                id: 'survey',
                 priority: 0,
                 render: () => (
                     <Anchor

@@ -9,6 +9,7 @@ import { AppFooter, AppHeader, Page } from '../common';
 import { FlexCell } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
 import { svc } from '../services';
+import { IntroBlock } from './IntroBlock';
 
 export class LandingPage extends React.Component {
     constructor(props: {}) {
@@ -28,6 +29,7 @@ export class LandingPage extends React.Component {
         return (
             <Page renderHeader={ this.renderHeader } renderFooter={ this.renderFooter }>
                 <FlexCell width="100%">
+                    <IntroBlock />
                     <HeroBlock />
                     <StartedBlock />
                     <ExploreBlock />
