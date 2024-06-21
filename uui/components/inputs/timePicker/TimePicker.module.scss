@@ -66,3 +66,8 @@
 .timepicker-input {
     width: 100%;
 }
+
+.ltr-always {
+    display: flex;
+    direction: ltr;
+}
