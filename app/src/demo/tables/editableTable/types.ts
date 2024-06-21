@@ -1,7 +1,10 @@
 import { DropPosition } from '@epam/uui-core';
 
+export type TaskType = 'story' | 'task';
+
 export interface Task {
     id: number;
+    type: TaskType;
     parentId?: number;
     name: string;
     estimate?: number;

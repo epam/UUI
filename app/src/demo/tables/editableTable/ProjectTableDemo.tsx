@@ -15,7 +15,7 @@ import { ReactComponent as zoomOut } from '@epam/assets/icons/content-minus-outl
 import { ReactComponent as fitContent } from '@epam/assets/icons/action-align_center-outline.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
-import { deleteTaskWithChildren, setTaskInsertPosition } from './helpers';
+import { deleteTaskWithChildren, scheduleTasks, setTaskInsertPosition } from './helpers';
 
 import css from './ProjectTableDemo.module.scss';
 import { TimelineMode } from './TimelineMode';
@@ -72,13 +72,14 @@ export function ProjectTableDemo() {
         })),
         [],
     );
-
-    const { tree, ...restProps } = useTree({
+    
+    const scheduledItems = useMemo(() => scheduleTasks(items), []);
+    const { tree, ...restProps } = useTree<Task, number>({
         type: 'sync',
         dataSourceState: tableState, 
         setDataSourceState: setTableState,
-        items,
-
+        items: scheduledItems,
+        // items,
         patch: value.items,
         getSearchFields: (item) => [item.name],
         getId: (i) => i.id,
@@ -87,17 +88,40 @@ export function ProjectTableDemo() {
         isDeleted: ({ isDeleted }) => isDeleted,
     }, []);
 
+    const treeRef = useRef(tree);
+    
+    treeRef.current = tree;
+
     const deleteTask = useCallback((task: Task) => {
-        setValue((currentValue) => ({
-            ...currentValue,
-            items: deleteTaskWithChildren(task, currentValue.items, treeRef.current),
-        }));
+        setValue((currentValue) => {
+            const items = deleteTaskWithChildren(task, currentValue.items, treeRef.current);
+            let allDeleted = task.parentId === null ? false : true;
+            if (task.parentId !== null) {
+                const children = treeRef.current.getItems(task.parentId).ids;
+                for (const id of children) {
+                    const item = treeRef.current.getById(id);
+                    if (item === NOT_FOUND_RECORD) {
+                        continue;
+                    }
+
+                    if (item.id !== task.id && !item.isDeleted) {
+                        allDeleted = false;
+                        break;
+                    }
+                }
+            }
+            
+            return {
+                ...currentValue,
+                items: allDeleted ? items.set(task.parentId, { ...items.get(task.parentId), type: 'task' }) : items,
+            };
+        });
     }, [setValue]);
 
     const getMinMaxDate = () => {
         let minStartDate;
         let maxDueDate;
-        for (const item of items) {
+        for (const item of scheduledItems) {
             let estimatedDate;
             let dueDate;
             if (item.startDate) {
@@ -151,10 +175,6 @@ export function ProjectTableDemo() {
         return timeController;
     }, []);
 
-    const treeRef = useRef(tree);
-    
-    treeRef.current = tree;
-
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
             return null;
@@ -168,10 +188,36 @@ export function ProjectTableDemo() {
     }, []);
 
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        const taskToInsert = existingTask ? { ...existingTask } : { id: lastId--, name: '' };
+        const taskToInsert: Task = existingTask ? { ...existingTask, type: 'task' } : { id: lastId--, name: '', type: 'task' };
         const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, treeRef.current);
 
-        setValue((currentValue) => ({ ...currentValue, items: currentValue.items.set(task.id, task) }));
+        let parentTask = relativeTask;
+        if (position === 'inside' && relativeTask.type !== 'story') {
+            parentTask = { ...relativeTask, type: 'story' };
+        }
+
+        let prevParentTask = taskToInsert.parentId === null ? null : treeRef.current.getById(taskToInsert.parentId);
+        if (taskToInsert.parentId !== null && prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD && taskToInsert.parentId !== task.parentId) {
+            const children = treeRef.current.getItems(taskToInsert.parentId);
+            const areAllMoved = children.ids.every((id) => id === taskToInsert.id);
+            if (areAllMoved) {
+                prevParentTask = { ...prevParentTask, type: 'task' };
+            }
+        }
+
+        setValue((currentValue) => {
+            let currentItems = currentValue.items
+                .set(task.id, task)
+                .set(parentTask.id, parentTask);
+            if (prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD) {
+                currentItems = currentItems.set(prevParentTask.id, prevParentTask);
+            }
+
+            return {
+                ...currentValue,
+                items: currentItems,
+            };
+        });
 
         setTableState((currentTableState) => ({
             ...currentTableState,
@@ -270,7 +316,6 @@ export function ProjectTableDemo() {
         );
     };
     const { from, to } = getMinMaxDate();
-
     return (
         <Panel cx={ css.container }>
             <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
@@ -309,11 +354,12 @@ export function ProjectTableDemo() {
                 </FlexCell>
 
                 <FlexCell width="auto">
-                    <Button icon={ zoomIn } iconPosition="right" caption="Zoom In" isDisabled={ !timelineController.canZoomBy(1) } onClick={ () => timelineController.zoomBy(1) } />
-                </FlexCell>
-                <FlexCell width="auto">
                     <Button icon={ zoomOut } iconPosition="right" caption="Zoom Out" isDisabled={ !timelineController.canZoomBy(-1) } fill="outline" onClick={ () => timelineController.zoomBy(-1) } />
                 </FlexCell>
+                <FlexCell width="auto">
+                    <Button icon={ zoomIn } iconPosition="right" caption="Zoom In" isDisabled={ !timelineController.canZoomBy(1) } onClick={ () => timelineController.zoomBy(1) } />
+                </FlexCell>
+
                 <FlexCell width={ 150 }>
                     <MultiSwitch
                         items={ viewModes }

@@ -4,6 +4,7 @@ import { useForceUpdate, useResizeObserver } from '@epam/uui-core';
 import { renderBars } from '@epam/uui-timeline';
 import { Task } from './types';
 import { statuses } from './demoData';
+import { uuiDayjs } from '../../../helpers';
 import css from './TaskBar.module.scss';
 
 export interface TaskBarProps extends BaseTimelineCanvasComponentProps {
@@ -28,39 +29,41 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
 
     const draw = useCallback((ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
         ctx.clearRect(0, 0, t.widthMs, canvasHeight);
-        const item: Item = {
-            from: task.startDate ? new Date(task.startDate) : null,
-            to: task.dueDate ? new Date(task.dueDate) : null,
+        let to = uuiDayjs.dayjs(task.startDate, 'YYYY-MM-DD');
+        
+        if (task.startDate && task.estimate) {
+            to = to.add(task.estimate, 'day');
+        } else {
+            to = null;
+        }
+
+        const item: Item = task.dueDate ? {
+            from: task.startDate ? uuiDayjs.dayjs(task.startDate, 'YYYY-MM-DD').toDate() : null,
+            to: task.dueDate ? uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate() : null,
             color: getTaskColor(task.status),
-            minPixPerDay: 0.1,
+            minPixPerDay: 0.01,
+            fillType: 'solid',
+            opacity: 1.0,
+            height: 30,
+        } : {
+            from: task.startDate ? uuiDayjs.dayjs(task.startDate, 'YYYY-MM-DD').toDate() : null,
+            to: to ? to.toDate() : null,
+            color: getTaskColor(task.status),
+            minPixPerDay: 0.01,
             fillType: 'solid',
             opacity: 1.0,
             height: 30,
         };
 
-        let to = new Date(task.startDate);
-        if (task.startDate && task.estimate) {
-            to.setDate(to.getDate() + task.estimate);
-        } else {
-            to = null;
-        }
-        const estimatedItem: Item = {
-            from: task.startDate ? new Date(task.startDate) : null,
-            to,
-            color: 'grey',
-            minPixPerDay: 0.1,
-            fillType: 'shaded',
-            opacity: task.estimate ? 0.6 : 0,
-            height: 30,
-        };
-
-        const transformedItems = [item, estimatedItem]
+        const transformedItems = [item]
             .map((i) => ({
                 ...i,
                 priority: 1,
                 ...t.transformSegment(i.from, i.to),
-            })).filter((i) => i.from !== null && i.to !== null && i.isVisible && i.opacity > 0.01);
+            }))
+            .filter((i) => i.from !== null && i.to !== null && i.isVisible && i.opacity > 0.01);
 
+        console.log(transformedItems);
         renderBars(transformedItems, canvasHeight, ctx, t);
     }, [task.dueDate, task.estimate, task.startDate, task.status]);
 

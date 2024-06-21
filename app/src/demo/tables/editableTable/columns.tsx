@@ -11,6 +11,7 @@ import { RowKebabButton } from './RowKebabButton';
 import css from './ProjectTableDemo.module.scss';
 import { TimelineController } from '@epam/uui-timeline';
 import { TimelineHeader } from './TimelineHeader';
+
 import { TaskBar } from './TaskBar';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
