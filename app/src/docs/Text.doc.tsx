@@ -55,7 +55,7 @@ export class TextDoc extends BaseDocsBlock {
             const TEST_DATA = {
                 value1line: 'Abc',
                 // eslint-disable-next-line
-                value2lines: (<>{'Abc'}<br/>{'Abc'}</>),
+                value2lines: (<>{'Abc Abc Abc Abc'}</>),
             };
             const w70_h85: TPreviewCellSize = '70-85';
             const w70_h55: TPreviewCellSize = '70-55';
@@ -71,7 +71,7 @@ export class TextDoc extends BaseDocsBlock {
                     lineHeight: { examples: '*' },
                 },
                 {
-                    size: { values: ['48'] },
+                    size: { values: ['none'] },
                     children: { values: [TEST_DATA.value1line] },
                     fontSize: { examples: '*' },
                     fontWeight: { examples: '*' },
@@ -82,7 +82,6 @@ export class TextDoc extends BaseDocsBlock {
                 TTextPreview['Color Variants'],
                 {
                     children: { values: [TEST_DATA.value1line] },
-                    fontWeight: { values: ['900'] },
                     color: { examples: '*' },
                 },
                 w70_h55,

@@ -9,7 +9,7 @@ export class BlockContext extends React.Component<DemoComponentProps, any> {
         const bg = props?.color === 'white' && whiteElementBackground;
 
         return (
-            <div style={ { background: bg } }>
+            <div style={ { background: bg, padding: '4px' } }>
                 <DemoComponent { ...props } />
             </div>
         );

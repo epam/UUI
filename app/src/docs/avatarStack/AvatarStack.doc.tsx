@@ -54,18 +54,9 @@ export class AvatarStackDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<AvatarStackProps>) => {
             docPreview.add({
-                id: TAvatarStackPreview['Smaller size'],
+                id: TAvatarStackPreview['Sizes'],
                 matrix: {
-                    avatarSize: { examples: '*', condition: (_, v) => Number(v) < 144 },
-                    avatarsCount: { values: [undefined, 2] },
-                    direction: { examples: '*' },
-                },
-                cellSize: '140-60',
-            });
-            docPreview.add({
-                id: TAvatarStackPreview['Bigger size'],
-                matrix: {
-                    avatarSize: { examples: '*', condition: (_, v) => Number(v) >= 144 },
+                    avatarSize: { examples: '*' },
                     avatarsCount: { values: [undefined, 2] },
                     direction: { examples: '*' },
                 },

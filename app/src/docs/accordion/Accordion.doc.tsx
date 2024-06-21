@@ -31,9 +31,12 @@ export class AccordionDoc extends BaseDocsBlock {
             const TEST_DATA = {
                 childrenExampleName: 'Simple text 12px - medium length',
                 title: 'Title',
-                // eslint-disable-next-line
-                title2lines: (<>{'Title'}<br/>{'Title'}</>),
-                componentWithShortText: () => (<i style={ { margin: '0 6px 0 6px' } }>Test</i>),
+                componentWithShortText: () => (
+                    <>
+                        <uui.FlexSpacer />
+                        <i>Side</i>
+                    </>
+                ),
             };
             docPreview.add({
                 id: TAccordionPreview['All Variants Collapsed'],
@@ -45,8 +48,9 @@ export class AccordionDoc extends BaseDocsBlock {
                         values: [undefined, TEST_DATA.componentWithShortText],
                     },
                     children: { examples: [TEST_DATA.childrenExampleName] },
-                    title: { values: [TEST_DATA.title, TEST_DATA.title2lines] },
+                    title: { values: [TEST_DATA.title] },
                 },
+                context: TDocContext.Block,
                 cellSize: '160-70',
             });
             docPreview.add({
@@ -59,6 +63,7 @@ export class AccordionDoc extends BaseDocsBlock {
                     title: { values: [TEST_DATA.title] },
                     padding: { examples: '*' },
                 },
+                context: TDocContext.Block,
                 cellSize: '280-190',
             });
         },

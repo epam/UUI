@@ -17,17 +17,22 @@ const {
 } = TComponentId;
 
 const builder = new TestBuilder();
-// Skins tested: all
-builder
-    .add(tag, { previewId: values(TTagPreview), skins: SKINS.promo_loveship_electric, slow: true });
 
-// Skins tested: all except "Electric"
 builder
-    .add(alert, { previewId: values(TAlertPreview), skins: SKINS.promo_loveship })
-    .add(badge, { previewId: values(TBadgePreview), skins: SKINS.promo_loveship })
+    .add(alert, [
+        { previewId: [TAlertPreview['Color Variants']] },
+        { previewId: [TAlertPreview['Layout']] },
+    ])
+    .add(badge, [
+        { previewId: [TBadgePreview['Color Variants']], skins: SKINS.promo_loveship_electric },
+        { previewId: [TBadgePreview['Size Variants']] },
+    ])
     .add(button, [
         {
-            previewId: values(TButtonPreview),
+            previewId: [TButtonPreview['Size Variants']],
+        },
+        {
+            previewId: [TButtonPreview['Color Variants']],
             skins: SKINS.promo_loveship,
         },
         {
@@ -45,17 +50,64 @@ builder
             forcePseudoState: [{ state: 'hover', selector: '.uui-button' }],
         },
     ])
-    .add(countIndicator, { previewId: values(TCountIndicatorPreview), skins: SKINS.promo_loveship })
-    .add(dropdownContainer, { previewId: values(TDropdownContainerPreview), skins: SKINS.promo_loveship })
-    .add(iconButton, { previewId: values(TIconButtonPreview), skins: SKINS.promo_loveship })
-    .add(linkButton, { previewId: values(TLinkButtonPreview), skins: SKINS.promo_loveship })
-    .add(text, { previewId: values(TTextPreview), skins: SKINS.promo_loveship })
-    .add(notificationCard, { previewId: values(TNotificationCardPreview), skins: SKINS.promo_loveship })
+    .add(countIndicator, [
+        {
+            previewId: [TCountIndicatorPreview['Color Variants']],
+            skins: SKINS.promo_loveship,
+        },
+        {
+            previewId: [TCountIndicatorPreview['Size Variants']],
+        },
+    ])
+    .add(dropdownContainer, { previewId: values(TDropdownContainerPreview) })
+    .add(iconButton, [
+        {
+            previewId: [TIconButtonPreview['Color Variants']],
+            skins: SKINS.promo_loveship,
+        },
+        {
+            previewId: [TIconButtonPreview['Size Variants']],
+        },
+    ])
+    .add(linkButton, [
+        {
+            previewId: [TLinkButtonPreview['Color Variants']],
+            skins: SKINS.promo_loveship,
+        },
+        {
+            previewId: [TLinkButtonPreview['Size Variants']],
+        },
+    ])
+    .add(text, [
+        {
+            previewId: [TTextPreview['Color Variants']],
+            skins: SKINS.promo_loveship,
+        },
+        {
+            previewId: [TTextPreview['Size Variants']],
+        },
+    ])
+    .add(notificationCard, [
+        {
+            previewId: [TNotificationCardPreview['Color Variants']],
+            skins: SKINS.promo_loveship,
+        },
+        {
+            previewId: [TNotificationCardPreview['Size Variants']],
+        },
+    ])
     .add(tooltip, { previewId: values(TTooltipPreview), skins: SKINS.promo_loveship })
-    .add(multiSwitch, { previewId: values(TMultiSwitchPreview), skins: SKINS.promo_loveship });
-
-// Skins not tested
-builder
+    .add(tag, [
+        {
+            previewId: [TTagPreview['Color Variants']],
+            skins: SKINS.promo_loveship_electric,
+            slow: true,
+        },
+        {
+            previewId: [TTagPreview['Size Variants']],
+        },
+    ])
+    .add(multiSwitch, { previewId: values(TMultiSwitchPreview) })
     .add(accordion, { previewId: values(TAccordionPreview) })
     .add(avatarStack, { previewId: values(TAvatarStackPreview) })
     .add(datePicker, {

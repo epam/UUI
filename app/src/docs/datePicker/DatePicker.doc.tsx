@@ -46,8 +46,6 @@ export class DatePickerDoc extends BaseDocsBlock {
             const baseMatrix: TMatrixLocal = {
                 value: { values: [undefined, TEST_DATA.value] },
                 size: { examples: '*' },
-                iconPosition: { examples: '*' },
-                disableClear: { values: [true, false] },
             };
             const statesBaseMatrix: TMatrixLocal = {
                 size: { values: ['30'] },
@@ -57,8 +55,16 @@ export class DatePickerDoc extends BaseDocsBlock {
             };
             const w180_h60: TPreviewCellSize = '180-60';
             const w320_h400: TPreviewCellSize = '320-400';
-            docPreview.add(TDatePickerPreview['Size Variants'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix }, w180_h60);
-            docPreview.add(TDatePickerPreview['Color Variants'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
+
+            docPreview.add(TDatePickerPreview['Size Variants'], { 
+                mode: { values: ['form'] },
+                disableClear: { values: [true, false] },
+                iconPosition: { examples: '*' },
+                ...baseMatrix, 
+            }, w180_h60);
+
+            docPreview.add(TDatePickerPreview['States'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
+
             docPreview.add({
                 id: TDatePickerPreview['Form Opened'],
                 matrix: { value: { values: [TEST_DATA.value] } },
