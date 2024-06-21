@@ -1,4 +1,4 @@
-import { NoteEntryConfig } from './types';
+import { NoteConfigItem } from './types';
 
 import { ReactComponent as NoteIconLink } from '../../icons/info-block-link.svg';
 import { ReactComponent as NoteIconQuote } from '../../icons/info-block-quote.svg';
@@ -21,29 +21,29 @@ export const NOTE_QUOTE_TYPE = 'note-quote';
 
 export const noteTypes = [NOTE_ERROR_TYPE, NOTE_WARN_TYPE, NOTE_LINK_TYPE, NOTE_QUOTE_TYPE];
 
-export const defaultNotesConfig: NoteEntryConfig[] = [
+export const defaultNotesConfig: NoteConfigItem[] = [
     {
         type: NOTE_QUOTE_TYPE,
         backgroundColor: 'var(--uui-secondary-5)',
         borderColor: 'var(--uui-secondary-50)',
-        icon: NoteIconQuote,
+        toolbarIcon: NoteIconQuote,
     },
     {
         type: NOTE_ERROR_TYPE,
         backgroundColor: 'var(--uui-error-5)',
         borderColor: 'var(--uui-error-50)',
-        icon: NoteIconError,
+        toolbarIcon: NoteIconError,
     },
     {
         type: NOTE_WARN_TYPE,
         backgroundColor: 'var(--uui-warning-5)',
         borderColor: 'var(--uui-warning-50)',
-        icon: NoteIconWarning,
+        toolbarIcon: NoteIconWarning,
     },
     {
         type: NOTE_LINK_TYPE,
         backgroundColor: 'var(--uui-info-5)',
         borderColor: 'var(--uui-info-50)',
-        icon: NoteIconLink,
+        toolbarIcon: NoteIconLink,
     },
 ];

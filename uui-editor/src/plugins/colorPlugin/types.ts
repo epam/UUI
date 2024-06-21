@@ -2,6 +2,8 @@ import { WithFloatingButtonPlugin } from '../../implementation/Toolbars';
 
 export type ColorValueHex = `#${string}` | `var(--${string})`;
 
-export type ColorPluginOptions = WithFloatingButtonPlugin & {
-    colors: ColorValueHex[];
+export type ColorConfig = {
+    colors?: ColorValueHex[];
 };
+
+export type ColorPluginOptions = WithFloatingButtonPlugin & Required<ColorConfig>;

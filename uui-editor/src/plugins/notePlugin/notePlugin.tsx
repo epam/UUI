@@ -4,10 +4,10 @@ import {
 } from '@udecode/plate-common';
 import { NotePluginBlock } from './NotePluginBlock';
 import { defaultNotesConfig, NODE_PLUGIN_KEY } from './constants';
-import { NoteEntryConfig, NoteNodeProps, NotePluginOptions } from './types';
+import { NodeConfig, NoteConfigItem, NoteNodeProps, NotePluginOptions } from './types';
 import { NoteButton } from './NoteBar';
 
-const createPlugin = (config: NoteEntryConfig): PlatePlugin => {
+const createPlugin = (config: NoteConfigItem): PlatePlugin => {
     return {
         key: config.type,
         type: config.type,
@@ -18,14 +18,15 @@ const createPlugin = (config: NoteEntryConfig): PlatePlugin => {
             nodeProps: {
                 borderColor: config.borderColor,
                 backgroundColor: config.backgroundColor,
-                icon: config.icon,
+                toolbarIcon: config.toolbarIcon,
             } as NoteNodeProps,
         }),
     };
 };
 
-export const notePlugin = (...userNotes: NoteEntryConfig[]): PlatePlugin => {
-    const notes = !!userNotes.length ? userNotes : defaultNotesConfig;
+export const notePlugin = (noteConfig?: NodeConfig): PlatePlugin => {
+    const notes = !!noteConfig?.notes?.length ? noteConfig.notes : defaultNotesConfig;
+
     const createNotePlugin = createPluginFactory<AnyObject>({
         key: NODE_PLUGIN_KEY,
         isElement: true,
