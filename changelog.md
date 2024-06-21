@@ -1,3 +1,10 @@
+# 5.8.1 - 21.06.2024
+
+**What's Fixed**
+* [LazyDataSource]: 
+  * fixed reload data on DS deps change and fixed fetching minus count on scroll up
+  * fixed updating itemsMap after setItems.
+
 # 5.8.0 - 06.06.2024
 
 **What's New**
