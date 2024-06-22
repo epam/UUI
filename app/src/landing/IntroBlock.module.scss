@@ -2,9 +2,12 @@
     --uui-intro-gradient-electric: linear-gradient(to right, #0078C2, #0047FF, #8453D2);
     //
     margin: 0 auto;
-    background-color: var(--uui-surface-lower);
+    //background-color: var(--uui-surface-lower);
     overflow: hidden;
     transition: 0.2s ease;
+    position: relative;
+    //background: url('/static/media/intro-blur-light-theme.svg') no-repeat right;
+    //background-size: 100%;
 
     .info {
         max-width: 1440px;
@@ -61,13 +64,6 @@
                 color: var(--uui-text-primary);
                 padding-top: 0;
 
-                //&-loveship {
-                //}
-                //
-                //&-loveship-dark {
-                //
-                //}
-
                 &-electric {
                     font-size: 60px;
                     line-height: 66px;
@@ -84,7 +80,7 @@
 
             .intro-header-lower-text {
                 max-width: 400px;
-                margin-bottom: 30px;
+                margin-bottom: 24px;
             }
 
             .info-block {
@@ -168,13 +164,21 @@
 
     @media (max-width: 768px) {
         .info {
-            padding: 27px 12px 35px 12px;
+            padding: 27px 18px 35px 18px;
 
             .info-start {
                 flex-basis: 100dvw;
 
-                .intro-header, .intro-header-text {
+                .intro-header {
                     font-size: 42px;
+                    line-height: 42px;
+                }
+
+                .intro-header-text {
+                    font-size: 42px;
+                    line-height: 48px;
+                    padding-bottom: 12px;
+                    max-width: 325px;
                 }
 
                 .info-block-wrapper {
