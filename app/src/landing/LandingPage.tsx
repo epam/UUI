@@ -10,6 +10,7 @@ import { FlexCell } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
 import { svc } from '../services';
 import { IntroBlock } from './IntroBlock';
+import { PatternBlock } from './PatternBlock';
 
 export class LandingPage extends React.Component {
     constructor(props: {}) {
@@ -30,6 +31,7 @@ export class LandingPage extends React.Component {
             <Page renderHeader={ this.renderHeader } renderFooter={ this.renderFooter }>
                 <FlexCell width="100%">
                     <IntroBlock />
+                    <PatternBlock />
                     <HeroBlock />
                     <StartedBlock />
                     <ExploreBlock />
