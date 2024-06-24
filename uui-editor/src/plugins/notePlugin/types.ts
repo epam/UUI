@@ -1,6 +1,8 @@
 import { WithToolbarButton } from '../../implementation/Toolbars';
 
+/** node config */
 export interface NodeConfig {
+    /** notes items */
     notes?: NoteConfigItem[];
 }
 
