@@ -1,0 +1,30 @@
+.root {
+    margin: 0 auto;
+    overflow: hidden;
+
+    .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 24px 15px;
+
+        .start-container {
+            position: relative;
+            overflow: hidden;
+            padding: 9px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 9px;
+
+            .progress {
+                position: absolute;
+                top: 9px;
+                left: 9px;
+                height: 4px;
+                width: calc(100% - 18px);
+                border-radius: calc(var(--uui-border-radius) * 3)  calc(var(--uui-border-radius) * 3) 0 0;
+                background-color: transparent;
+            }
+
+        }
+    }
+}
