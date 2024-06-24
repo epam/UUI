@@ -1,0 +1,10 @@
+@use '~@epam/assets/scss/index' as *;
+
+.wrapper {
+    border: 1px solid var(--uui-divider-light);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+}
