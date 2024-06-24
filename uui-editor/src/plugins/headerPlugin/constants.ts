@@ -33,9 +33,11 @@ export const HEADER_TO_TYPE = {
 
 /** type of headers */
 export type HeadersConfig = {
+    /** headers */
     headers?: HeaderType[];
 };
 
+/** header type */
 export type HeaderType = keyof typeof HEADER_TO_TYPE;
 
 export const defaultHeadersConig: HeadersConfig = { headers: [HEADER_H1, HEADER_H2, HEADER_H3] };
