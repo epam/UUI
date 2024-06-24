@@ -160,3 +160,22 @@ export const normalizeAttachmentElement = (editor: PlateEditor<Value>, entry: TN
         );
     }
 };
+
+const WORD_TO_COLOR = {
+    critical: 'var(--uui-text-critical)',
+    warning: 'var(--uui-text-warning)',
+    success: 'var(--uui-text-success)',
+};
+
+/** deprecate color describe words */
+export const normaizeColoredText = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+
+    if (node.color === 'warning' || node.color === 'critical' || node.color === 'success') {
+        setNodes<TTableCellElement>(
+            editor,
+            { ...node, color: WORD_TO_COLOR[node.color] },
+            { at: path },
+        );
+    }
+};

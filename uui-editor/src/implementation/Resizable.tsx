@@ -21,7 +21,7 @@ export function ResizeHandle({ className, ...props }: ResizeHandleProps) {
         <ResizeHandlePrimitive
             className={ cx(
                 css.resizeHandle,
-                variantClass[props.options.direction],
+                variantClass[props.options!.direction!],
                 className,
             ) }
             { ...props }
