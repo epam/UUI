@@ -60,7 +60,6 @@ export const TRangeDatePickerPreview = {
     ...UTILS.SizeVariants,
     ...UTILS.States,
     Opened: 'Opened' as const,
-    'Opened With Presets': 'Opened With Presets' as const,
 };
 export const TDatePickerPreview = {
     ...UTILS.SizeVariants,
