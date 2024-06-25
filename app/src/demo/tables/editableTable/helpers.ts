@@ -1,8 +1,22 @@
-import { DropPosition, IImmutableMap, IMap, ITree, getOrderBetween, newMap } from '@epam/uui-core';
+import { DropPosition, IImmutableMap, IMap, ITree, Tree, getOrderBetween, newMap } from '@epam/uui-core';
 import { Task } from './types';
 import { scheduleTasks as runScheduling, Task as SchedulingTask } from './scheduleTasks';
 import { msPerDay } from '@epam/uui-timeline';
-import { uuiDayjs, Dayjs } from '../../../helpers';
+import { Dayjs, uuiDayjs } from '../../../helpers';
+
+function compareScalars(a: any, b: any, order: number) {
+    if (a == null) {
+        if (b == null) {
+            return 0;
+        }
+        return -order;
+    }
+    if (b == null) return order;
+    if (a < b) return -order;
+    if (a === b) return 0;
+
+    return order;
+}
 
 const findAllChildren = (tree: ITree<Task, number>, parentTaskId: number) => {
     const { ids: children } = tree.getItems(parentTaskId);
@@ -70,6 +84,8 @@ export const setTaskInsertPosition = (taskToInsert: Task, relativeTask: Task | n
     return task;
 };
 
+const formatDate = (date: string | number | Dayjs | Date) => uuiDayjs.dayjs(date).format('YYYY-MM-DD');
+
 /**
  * 1. Group by assingees
  * 2. Feed tasks to the algorithm
@@ -78,14 +94,13 @@ export const setTaskInsertPosition = (taskToInsert: Task, relativeTask: Task | n
  * 5. Do the same for each level.
  */
 export const groupByAssigneesAndIndex = (tasks: Task[]) => {
-    return tasks.reduce<{ group: Record<number, Task[]>, indexById: IMap<number, number> }>(({ group, indexById }, task, index) => {
-        indexById.set(task.id, index);
+    return tasks.reduce<Record<number, Task[]>>((group, task) => {
         if (task.type !== 'task') {
-            return { group, indexById };
+            return group;
         }
 
         if (task.assignee === undefined) {
-            return { group, indexById };
+            return group;
         }
 
         if (!group[task.assignee]) {
@@ -94,32 +109,137 @@ export const groupByAssigneesAndIndex = (tasks: Task[]) => {
 
         group[task.assignee].push(task);
 
-        return { group, indexById };
-    }, { group: {}, indexById: newMap({}) });
+        return group;
+    }, []);
 };
 
-export const scheduleTasks = (tasks: Task[]) => {
-    const { group, indexById } = groupByAssigneesAndIndex(tasks);
+const getOrderedTasks = (tree: ITree<Task, number>, updatedValues: IImmutableMap<number, Task>) => {
+    const tasks: Task[][] = [];
+
+    let lastStoryTasks: Task[] = [];
+    const startDates: IMap<number, number> = newMap({});
+
+    Tree.forEach(tree, (task, id, parentId) => {
+        const currentTask = updatedValues.get(id) ?? task;
+        const parentStartDate = startDates.get(currentTask.parentId);
+        startDates.set(id, currentTask.startDate ? Math.max(new Date(currentTask.startDate).getTime(), parentStartDate ?? 0) : parentStartDate);
+
+        if (currentTask.type === 'task') {
+            const { ids } = tree.getItems(parentId);
+            const isLastChild = ids.indexOf(currentTask.id) === ids.length - 1;
+
+            lastStoryTasks.push({ ...currentTask, startDate: formatDate(startDates.get(id)) });
+            if (isLastChild) {
+                lastStoryTasks.sort((a, b) => {
+                    const startDate1 = new Date(a.startDate).getTime();
+                    const startDate2 = new Date(b.startDate).getTime();
+
+                    const res = compareScalars(startDate1, startDate2, 1);
+                    return res;
+                });
+
+                tasks.push(lastStoryTasks);
+                lastStoryTasks = [];
+            }
+        }
+    }, { direction: 'top-down' });
+
+    return tasks.flat();
+};
+
+const toTime = (date: string) => uuiDayjs.dayjs(date).toDate().getTime();
+const addTime = (date: string, estimate: number) => uuiDayjs.dayjs(date).add(estimate, 'day').toDate().getTime();
+
+type Subtotals = { startDate: string, dueDate: string, estimate: number, hasChildren?: boolean };
+
+const getStartDate = (child1: Subtotals, child2: Subtotals) => {
+    if (!child1.startDate) {
+        return child2.startDate;
+    }
+
+    if (!child2.startDate) {
+        return child1.startDate;
+    }
+    return formatDate(Math.min(toTime(child1.startDate), toTime(child2.startDate)));
+};
+
+const getChildDueDate = (child: Subtotals) => {
+    if (!child.dueDate) {
+        return child.hasChildren ? undefined : addTime(child.startDate, child.estimate);
+    }
+    return toTime(child.dueDate);
+};
+
+const getDueDate = (child1: Subtotals, child2: Subtotals) => {
+    const child1DueDate = getChildDueDate(child1);
+    const child2DueDate = getChildDueDate(child2);
+
+    if (!child1DueDate) {
+        return child2DueDate ? formatDate(child2DueDate) : undefined;
+    }
+
+    if (!child2DueDate) {
+        return child1DueDate ? formatDate(child1DueDate) : undefined;
+    }
+
+    return formatDate(Math.max(child1DueDate, child2DueDate));
+};
+
+export const scheduleTasks = (
+    patch: (updated: IImmutableMap<number, Task> | IMap<number, Task>) => ITree<Task, number>,
+    updatedItemsMap: IImmutableMap<number, Task>,
+) => {
+    const patchedTree = patch(updatedItemsMap);
+    const tasks: Task[] = getOrderedTasks(patchedTree, updatedItemsMap);
+
+    const group = groupByAssigneesAndIndex(tasks);
 
     const getTask = (t: Task): SchedulingTask<number> => ({
         id: t.id,
+        name: t.name,
         duration: t.estimate * msPerDay,
         startTime: new Date(t.startDate).getTime(),
+        parentId: t.parentId,
     });
 
-    const scheduled = [...tasks];
+    let updatedScheduleItemsMap = updatedItemsMap;
     for (const assigneesTasks of Object.values(group)) {
         const scheduledAssigneesTasks = runScheduling(assigneesTasks.map(getTask));
-
         for (const assingeeTasks of scheduledAssigneesTasks) {
             for (const sTask of assingeeTasks) {
-                const taskIndex = indexById.get(sTask.id);
-                const taskToSchedule = scheduled[taskIndex];
+                const taskToSchedule = patchedTree.getById(sTask.id) as Task;
                 const exactStartDate = uuiDayjs.dayjs(sTask.exactStartTime ?? sTask.startTime);
-                scheduled[taskIndex] = { ...taskToSchedule, startDate: uuiDayjs.dayjs(exactStartDate).format('YYYY-MM-DD') };
+                const formattedStartDate = formatDate(exactStartDate);
+                const updatedTaskToSchedule = { ...taskToSchedule, startDate: formattedStartDate };
+                if (updatedTaskToSchedule.startDate !== taskToSchedule.startDate || updatedTaskToSchedule.estimate !== taskToSchedule.estimate) {
+                    updatedScheduleItemsMap = updatedScheduleItemsMap.set(updatedTaskToSchedule.id, updatedTaskToSchedule);
+                }
             }
         }
     }
 
-    return scheduled;
+    const treeAfterScheduling = patch(updatedScheduleItemsMap);
+
+    const subtotals = Tree.computeSubtotals<Task, number, Subtotals>(
+        treeAfterScheduling,
+        ({ startDate, estimate, dueDate }, hasChildren) => ({ startDate, estimate, dueDate, hasChildren }),
+        (child1, child2) => ({
+            estimate: (child1.estimate ?? 0) + (child2.estimate ?? 0),
+            startDate: getStartDate(child1, child2),
+            dueDate: getDueDate(child1, child2),
+        }),
+    );
+
+    console.log(subtotals);
+    Tree.forEach(treeAfterScheduling, (item, id) => {
+        if (item.type === 'task') {
+            return;
+        }
+        const { hasChildren, ...itemSubtotals } = subtotals.get(id);
+        if (itemSubtotals.estimate !== item.estimate || itemSubtotals.startDate !== item.startDate || itemSubtotals.dueDate !== item.dueDate) {
+            updatedScheduleItemsMap = updatedScheduleItemsMap.set(id, { ...item, ...itemSubtotals });
+        }
+    });
+
+    return updatedScheduleItemsMap;
 };

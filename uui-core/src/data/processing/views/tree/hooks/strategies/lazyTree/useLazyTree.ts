@@ -169,7 +169,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         itemsMap,
     });
 
-    const tree = usePatchTree({
+    const { tree, patch: patchFn } = usePatchTree({
         tree: treeWithNewItemsMap,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
@@ -211,5 +211,6 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         loadMissingRecordsOnCheck,
         showSelectedOnly,
         selectAll,
+        patch: patchFn,
     };
 }

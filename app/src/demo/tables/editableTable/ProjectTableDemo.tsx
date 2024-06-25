@@ -73,13 +73,11 @@ export function ProjectTableDemo() {
         [],
     );
     
-    const scheduledItems = useMemo(() => scheduleTasks(items), []);
-    const { tree, ...restProps } = useTree<Task, number>({
+    const { tree, patch, ...restProps } = useTree<Task, number>({
         type: 'sync',
         dataSourceState: tableState, 
         setDataSourceState: setTableState,
-        items: scheduledItems,
-        // items,
+        items,
         patch: value.items,
         getSearchFields: (item) => [item.name],
         getId: (i) => i.id,
@@ -91,7 +89,6 @@ export function ProjectTableDemo() {
     const treeRef = useRef(tree);
     
     treeRef.current = tree;
-
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => {
             const items = deleteTaskWithChildren(task, currentValue.items, treeRef.current);
@@ -119,9 +116,9 @@ export function ProjectTableDemo() {
     }, [setValue]);
 
     const getMinMaxDate = () => {
-        let minStartDate;
-        let maxDueDate;
-        for (const item of scheduledItems) {
+        let minStartDate: number | undefined;
+        let maxDueDate: number | undefined;
+        Tree.forEach(treeRef.current, (item) => {
             let estimatedDate;
             let dueDate;
             if (item.startDate) {
@@ -152,7 +149,8 @@ export function ProjectTableDemo() {
             }
            
             maxDueDate = maxDueDate === undefined ? localMaxDueDate : Math.max(localMaxDueDate ?? 0, maxDueDate);
-        }
+        });
+
         let from: Date;
         let to: Date;
         if (minStartDate && maxDueDate) {
@@ -238,28 +236,53 @@ export function ProjectTableDemo() {
     const { rows, listProps } = useDataRows({
         tree,
         ...restProps,
-        getRowOptions: (task) => ({
-            ...lens.prop('items').key(task.id).toProps(), // pass IEditable to each row to allow editing
-            isSelectable: true,
-            dnd: {
-                srcData: { ...task, isTask: true },
-                dstData: { ...task, isTask: true },
-                canAcceptDrop: handleCanAcceptDrop,
-                onDrop: handleDrop,
-            },
-        }),
+        getRowOptions: (task) => {
+            return {
+                ...lens
+                    .prop('items')
+                    .onChange((prevValue, nextValue) => {
+                        const shouldReschedule = (id: number) => {
+                            const prevTask = prevValue.get(id);
+                            const t = nextValue.get(id);
+                            return !prevValue.has(id)
+                                || prevTask.estimate !== t.estimate
+                                || prevTask.startDate !== t.startDate
+                                || prevTask.dueDate !== t.dueDate
+                                || prevTask.assignee !== t.assignee
+                                || prevTask.parentId !== t.parentId;
+                        };
+
+                        for (const [id] of nextValue) {
+                            if (shouldReschedule(id)) {
+                                return scheduleTasks(patch, nextValue);
+                            }
+                        }
+                        
+                        return nextValue;
+                    })
+                    .key(task.id)
+                    .toProps(), // pass IEditable to each row to allow editing
+                isSelectable: true,
+                dnd: {
+                    srcData: { ...task, isTask: true },
+                    dstData: { ...task, isTask: true },
+                    canAcceptDrop: handleCanAcceptDrop,
+                    onDrop: handleDrop,
+                },
+            };
+        },
     });
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            const item = tree.getById(tableState.selectedId);
+            const item = treeRef.current.getById(tableState.selectedId);
             if (item === NOT_FOUND_RECORD) {
                 return undefined;
             }
             return item;
         }
         return undefined;
-    }, [tableState.selectedId, tree]);
+    }, [tableState.selectedId]);
 
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;

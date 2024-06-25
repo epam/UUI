@@ -1,12 +1,12 @@
 import { ITree } from '../ITree';
-import { FlattenSearchResultsConfig } from '../../../../../types';
+import { FlattenSearchResultsConfig, IImmutableMap, IMap } from '../../../../../types';
 import { CommonTreeConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
 
 /**
  * Result of the useTree hook.
  */
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
-    CommonTreeConfig<TItem, TId, TFilter>,
+    Omit<CommonTreeConfig<TItem, TId, TFilter>, 'patch'>,
     ITreeLoadingState,
     ITreeActions,
     LoadMissingRecords<TItem, TId>,
@@ -32,4 +32,6 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
      * Total count of the rows.
      */
     totalCount?: number;
+
+    patch: (updated: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
 }

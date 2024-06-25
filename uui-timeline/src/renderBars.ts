@@ -13,7 +13,7 @@ export interface Item {
     minPixPerDay?: number;
     maxPxPerDay?: number;
     // y: number;
-    // name: string;
+    // name?: string;
 }
 
 export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRenderingContext2D, t: TimelineTransform): void {

@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { newMap } from '../../helpers';
-import { DataSourceState, PatchOptions } from '../../../../../../types';
+import { DataSourceState, IImmutableMap, IMap, PatchOptions } from '../../../../../../types';
 import { PatchOrdering } from '../../constants';
 import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { getSortedPatchByParentId } from '../../helpers/patch';
@@ -45,8 +45,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         ),
         [patch, sorting, fixItemBetweenSortings],
     );
-
-    return useMemo(() => {
+    const patchedTree = useMemo(() => {
         return tree.patch({
             sortedPatch,
             patchAtLastSort: fixItemBetweenSortings ? patchAtLastSort : patch,
@@ -57,4 +56,30 @@ export function usePatchTree<TItem, TId, TFilter = any>(
             ...tree.visible.getParams(),
         });
     }, [tree, patch]);
+
+    const patchFn = useCallback((updated: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => {
+        const patchAfterSort = getSortedPatchByParentId(
+            tree.visible,
+            updated,
+            fixItemBetweenSortings ? patchAtLastSort : updated,
+            getNewItemPosition,
+            getItemTemporaryOrder,
+            sortBy,
+            sorting,
+            isDeleted,
+            fixItemBetweenSortings,
+        );
+
+        return tree.patch({
+            sortedPatch: patchAfterSort,
+            patchAtLastSort: fixItemBetweenSortings ? patchAtLastSort : updated,
+            getItemTemporaryOrder,
+            isDeleted,
+            sorting,
+            sortBy,
+            ...tree.visible.getParams(),
+        }).visible;
+    }, [tree, sorting, fixItemBetweenSortings]);
+
+    return { tree: patchedTree, patch: patchFn };
 }

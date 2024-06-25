@@ -63,9 +63,8 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
             }))
             .filter((i) => i.from !== null && i.to !== null && i.isVisible && i.opacity > 0.01);
 
-        console.log(transformedItems);
         renderBars(transformedItems, canvasHeight, ctx, t);
-    }, [task.dueDate, task.estimate, task.startDate, task.status]);
+    }, [task?.dueDate, task?.estimate, task?.startDate, task?.status]);
 
     const { renderCanvas } = useCanvas({
         draw,
