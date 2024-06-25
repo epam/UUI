@@ -195,6 +195,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 value={ value || '' }
                 readOnly={ props.isReadonly || props.disableSearch }
                 onChange={ (e) => props.onValueChange?.(e.target.value) }
+                dir="auto"
             />
         );
     };
