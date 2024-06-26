@@ -10,6 +10,7 @@ export interface Task {
     estimate?: number;
     assignee?: number;
     startDate?: string;
+    exactStartDate?: string;
     dueDate?: string;
     status?: string;
     description?: string;
