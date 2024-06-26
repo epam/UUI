@@ -10,19 +10,31 @@
     //background-size: 100%;
 
     .info {
+        box-sizing: border-box;
+        position: relative;
         max-width: 1440px;
         padding-top: 84px;
         padding-bottom: 57px;
-        padding-inline-start: 137px;
-        padding-inline-end: 0;
+        padding-inline-start: 143px;
+        padding-inline-end: 18px;
         margin: 0 auto;
         align-items: start;
-        gap: 36px;
+        justify-content: start;
+
+        .blur {
+            position: absolute;
+            right: 0;
+            top: -160px;
+            z-index: 0;
+            width: 1337px;
+            height: 752px;
+        }
 
         .info-start {
             display: flex;
             flex-direction: column;
             flex-basis: 565px;
+            z-index: 1;
 
             .intro-header {
                 font-size: 72px;
@@ -132,13 +144,20 @@
             width: 611px;
             height: 399px;
             border: 1px solid tomato;
+            z-index: 1;
+            margin-inline-start: 100px;
         }
     }
 
-    @media (max-width: 1300px) {
+    @media (max-width: 1400px) {
         .info {
-            padding-inline-start: 0;
-            justify-content: center;
+            padding-inline-start: 18px;
+            padding-inline-end: 18px;
+            column-gap: 0;
+
+            .blur {
+                display: none;
+            }
 
             .info-start {
                 flex-basis: 732px;

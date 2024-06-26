@@ -1,0 +1,104 @@
+.root {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 1167px;
+    padding-inline-start: 18px;
+    padding-inline-end: 18px;
+
+    .explore-header {
+        font-size: 36px;
+        line-height: 40px;
+    }
+
+    .top-block-wrapper {
+        padding-top: 9px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 24px;
+
+        .top-block-panel {
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: 1/5;
+            background-color: var(--uui-surface-highest);
+            border-radius: 9px;
+            padding: 18px;
+
+            .top-block-icon {
+                grid-row: 1;
+            }
+
+            .top-block-caption {
+                grid-row: 2;
+            }
+
+            .top-block-text {
+                grid-row: 3;
+            }
+
+            .top-block-footer {
+                grid-row: 4;
+            }
+        }
+    }
+
+    .bottom-block-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        margin-top: 24px;
+
+        .bottom-block-panel {
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: 1/5;
+            background-color: var(--uui-surface-highest);
+            border-radius: 9px;
+            padding: 18px;
+
+            .bottom-block-icon {
+                grid-row: 1;
+            }
+
+            .bottom-block-caption-wrapper {
+                grid-row: 2;
+                padding-top: 130px;
+
+                .bottom-item-badge {
+                    margin-inline-start: 6px;
+                }
+            }
+
+            .bottom-block-text {
+                grid-row: 3;
+            }
+
+            .bottom-block-footer {
+                grid-row: 4;
+                margin-top: 12px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .top-block-wrapper {
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+
+            .top-block-panel {
+                display: block;
+            }
+        }
+
+        .bottom-block-wrapper {
+            display: flex;
+            flex-direction: column;
+            row-gap: 12px;
+
+            .bottom-block-panel {
+                display: block;
+            }
+        }
+    }
+}
