@@ -66,6 +66,7 @@ exports[`PickerToggler should render with minimum props 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input singleInput"
+      dir="auto"
       onChange={[Function]}
       tabIndex={-1}
       type="text"

@@ -27,16 +27,16 @@
 
 :global(.uui-thumb-vertical) {
     width: 3px;
-    margin-left: 3px;
+    margin-inline-start: 3px;
 
     &:hover {
         width: 6px;
-        margin-left: 0;
+        margin-inline-start: 0;
     }
 
     &:active {
         width: 6px;
-        margin-left: 0;
+        margin-inline-start: 0;
     }
 }
 

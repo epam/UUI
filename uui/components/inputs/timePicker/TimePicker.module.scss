@@ -41,7 +41,7 @@
                 content: ':';
                 position: absolute;
                 top: 35px;
-                left: 81px;
+                inset-inline-start: 81px;
                 color: var(--uui-text-tertiary);
                 font-size: 24px;
                 line-height: 30px;
@@ -65,4 +65,9 @@
 
 .timepicker-input {
     width: 100%;
+}
+
+.ltr-always {
+    display: flex;
+    direction: ltr;
 }
