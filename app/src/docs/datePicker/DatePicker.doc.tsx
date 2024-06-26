@@ -66,7 +66,7 @@ export class DatePickerDoc extends BaseDocsBlock {
             docPreview.add(TDatePickerPreview['States'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
 
             docPreview.add({
-                id: TDatePickerPreview['Form Opened'],
+                id: TDatePickerPreview['Opened'],
                 matrix: { value: { values: [TEST_DATA.value] } },
                 cellSize: w320_h400,
             });

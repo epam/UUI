@@ -64,7 +64,7 @@ export const TRangeDatePickerPreview = {
 export const TDatePickerPreview = {
     ...UTILS.SizeVariants,
     ...UTILS.States,
-    'Form Opened': 'Form Opened' as const,
+    Opened: 'Opened' as const,
 };
 export const TDropdownContainerPreview = {
     ...UTILS.SizeVariants,

@@ -19,13 +19,16 @@ const {
 const builder = new TestBuilder();
 
 builder
-    .add(alert, [
-        { previewId: [TAlertPreview['Color Variants']] },
-        { previewId: [TAlertPreview['Layout']] },
-    ])
     .add(badge, [
         { previewId: [TBadgePreview['Color Variants']], skins: SKINS.promo_loveship_electric },
         { previewId: [TBadgePreview['Size Variants']] },
+        {
+            onlyChromium: true,
+            previewId: [TButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateHover',
+            skins: SKINS.promo_loveship_electric,
+            forcePseudoState: [{ state: 'hover', selector: '.uui-badge' }],
+        },
     ])
     .add(button, [
         {
@@ -59,7 +62,6 @@ builder
             previewId: [TCountIndicatorPreview['Size Variants']],
         },
     ])
-    .add(dropdownContainer, { previewId: values(TDropdownContainerPreview) })
     .add(iconButton, [
         {
             previewId: [TIconButtonPreview['Color Variants']],
@@ -67,6 +69,20 @@ builder
         },
         {
             previewId: [TIconButtonPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TIconButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateActive',
+            skins: SKINS.promo_loveship,
+            forcePseudoState: [{ state: 'active', selector: '.uui-icon_button' }],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TIconButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateHover',
+            skins: SKINS.promo_loveship,
+            forcePseudoState: [{ state: 'hover', selector: '.uui-icon_button' }],
         },
     ])
     .add(linkButton, [
@@ -76,6 +92,20 @@ builder
         },
         {
             previewId: [TLinkButtonPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TLinkButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateActive',
+            skins: SKINS.promo_loveship,
+            forcePseudoState: [{ state: 'active', selector: '.uui-link_button' }],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TLinkButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateHover',
+            skins: SKINS.promo_loveship,
+            forcePseudoState: [{ state: 'hover', selector: '.uui-link_button' }],
         },
     ])
     .add(text, [
@@ -96,7 +126,6 @@ builder
             previewId: [TNotificationCardPreview['Size Variants']],
         },
     ])
-    .add(tooltip, { previewId: values(TTooltipPreview), skins: SKINS.promo_loveship })
     .add(tag, [
         {
             previewId: [TTagPreview['Color Variants']],
@@ -106,28 +135,183 @@ builder
         {
             previewId: [TTagPreview['Size Variants']],
         },
+        {
+            onlyChromium: true,
+            previewId: [TLinkButtonPreview['Color Variants']],
+            previewTag: 'PseudoStateHover',
+            skins: SKINS.promo_loveship_electric,
+            forcePseudoState: [{ state: 'hover', selector: '.uui-tag' }],
+        },
     ])
+    .add(checkbox, [
+        {
+            previewId: [TCheckboxPreview['States']],
+        },
+        {
+            previewId: [TCheckboxPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TCheckboxPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-checkbox-container' }],
+        },
+    ])
+    .add(numericInput, [
+        {
+            previewId: [TNumericInputPreview['States']],
+        },
+        {
+            previewId: [TNumericInputPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TNumericInputPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
+        },
+    ])
+    .add(pickerInput, [
+        ...values(TPickerInputPreview).map((i) => ({ previewId: [i] })),
+        {
+            onlyChromium: true,
+            previewId: [TPickerInputPreview['Modes + States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
+        },
+    ])
+    .add(rangeDatePicker, [
+        {
+            previewId: [TRangeDatePickerPreview['States']],
+            onlyChromium: true,
+        },
+        {
+            previewId: [TRangeDatePickerPreview['Size Variants']],
+            onlyChromium: true,
+        },
+        {
+            previewId: [TRangeDatePickerPreview['Opened']],
+            focusFirstElement: () => 'input',
+            onlyChromium: true,
+        },
+        {
+            onlyChromium: true,
+            previewId: [TRangeDatePickerPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-range-date-picker' }],
+        },
+    ])
+    .add(datePicker, [
+        {
+            previewId: [TDatePickerPreview['States']],
+            onlyChromium: true,
+        },
+        {
+            previewId: [TDatePickerPreview['Size Variants']],
+            onlyChromium: true,
+        },
+        {
+            previewId: [TDatePickerPreview['Opened']],
+            focusFirstElement: () => 'input',
+            onlyChromium: true,
+        },
+        {
+            onlyChromium: true,
+            previewId: [TDatePickerPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
+        },
+    ])
+    .add(tabButton, [
+        {
+            previewId: [TTabButtonPreview['States']],
+        },
+        {
+            previewId: [TTabButtonPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TTabButtonPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-tab-button' }],
+        },
+    ])
+    .add(TComponentId.switch, [
+        {
+            previewId: [TSwitchPreview['States']],
+        },
+        {
+            previewId: [TSwitchPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TSwitchPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-switch' }],
+        },
+    ])
+    .add(textArea, [
+        {
+            previewId: [TTextAreaPreview['States']],
+        },
+        {
+            previewId: [TTextAreaPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TTextAreaPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-input' }],
+        },
+    ])
+    .add(textInput, [
+        {
+            previewId: [TTextInputPreview['States']],
+        },
+        {
+            previewId: [TTextInputPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TTextInputPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
+        },
+    ])
+    .add(verticalTabButton, [
+        {
+            previewId: [TVerticalTabButtonPreview['States']],
+        },
+        {
+            previewId: [TVerticalTabButtonPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TVerticalTabButtonPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-tab-button' }],
+        },
+    ])
+    .add(radioInput, [
+        {
+            previewId: [TRadioInputPreview.States],
+        },
+        {
+            previewId: [TRadioInputPreview['Size Variants']],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TRadioInputPreview['States']],
+            previewTag: 'PseudoStateHover',
+            forcePseudoState: [{ state: 'hover', selector: '.uui-radio-input-container' }],
+        },
+    ])
+    .add(alert, { previewId: values(TAlertPreview) })
+    .add(tooltip, { previewId: values(TTooltipPreview), skins: SKINS.promo_loveship })
     .add(multiSwitch, { previewId: values(TMultiSwitchPreview) })
     .add(accordion, { previewId: values(TAccordionPreview) })
     .add(avatarStack, { previewId: values(TAvatarStackPreview) })
-    .add(datePicker, {
-        previewId: values(TDatePickerPreview),
-        focusFirstElement: ({ previewId }) => previewId === TDatePickerPreview['Form Opened'] && 'input',
-    })
-    .add(checkbox, { previewId: values(TCheckboxPreview) })
-    .add(numericInput, { previewId: values(TNumericInputPreview) })
-    .add(pickerInput, { previewId: values(TPickerInputPreview) })
-    .add(rangeDatePicker, {
-        previewId: values(TRangeDatePickerPreview),
-        onlyChromium: true, // reason: https://github.com/microsoft/playwright/issues/20203
-        focusFirstElement: ({ previewId }) => [TRangeDatePickerPreview['Opened'], TRangeDatePickerPreview['Opened With Presets']].includes(previewId as any) && 'input',
-    })
-    .add(tabButton, { previewId: values(TTabButtonPreview) })
-    .add(TComponentId.switch, { previewId: values(TSwitchPreview) })
-    .add(textArea, { previewId: values(TTextAreaPreview) })
-    .add(textInput, { previewId: values(TTextInputPreview) })
-    .add(verticalTabButton, { previewId: values(TVerticalTabButtonPreview) })
-    .add(radioInput, { previewId: values(TRadioInputPreview) })
+    .add(dropdownContainer, { previewId: values(TDropdownContainerPreview) })
     .add(radioGroup, { previewId: values(TRadioGroupPreview) })
     .add(labeledInput, { previewId: values(TLabeledInputPreview) })
     .add(mainMenu, { previewId: values(TMainMenuPreview) })
