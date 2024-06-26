@@ -150,7 +150,22 @@ const getOrderedTasks = (tree: ITree<Task, number>, updatedValues: IImmutableMap
 const toTime = (date: string) => uuiDayjs.dayjs(date).toDate().getTime();
 const addTime = (date: string, estimate: number) => uuiDayjs.dayjs(date).add(estimate, 'day').toDate().getTime();
 
-type Subtotals = { startDate: string, dueDate: string, estimate: number, hasChildren?: boolean };
+type Subtotals = {
+    type: 'entity';
+    startDate: string;
+    dueDate: string;
+    estimate: number;
+    id: number;
+    parentId: number;
+    hasChildren?: boolean;
+} | {
+    type: 'subtotal';
+    startDate: string;
+    dueDate: string;
+    estimate: number;
+    forParentId: number;
+    hasChildren?: boolean;
+};
 
 const getStartDate = (child1: Subtotals, child2: Subtotals) => {
     if (!child1.startDate) {
@@ -183,6 +198,82 @@ const getDueDate = (child1: Subtotals, child2: Subtotals) => {
     }
 
     return formatDate(Math.max(child1DueDate, child2DueDate));
+};
+
+type ByType<T, Type> = T extends { type: Type } ? T : never;
+const getForParentIdEntities = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'entity'>) => {
+    if (child1.parentId === child2.parentId) {
+        return child1.parentId;
+    }
+
+    if (child1.id === child2.parentId) {
+        return child1.parentId;
+    }
+
+    return child2.parentId;
+};
+
+const getForParentIdEntityAndSubtotal = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'subtotal'>) => {
+    if (child1.id === child2.forParentId) {
+        return child1.parentId;
+    }
+
+    return child2.forParentId;
+};
+
+const getForParentId = (child1: Subtotals, child2: Subtotals) => {
+    if (child1.type === 'entity') {
+        if (child2.type === 'entity') {
+            return getForParentIdEntities(child1, child2);
+        }
+        return getForParentIdEntityAndSubtotal(child1, child2);
+    }
+
+    if (child2.type === 'entity') {
+        return getForParentIdEntityAndSubtotal(child2, child1);
+    }
+
+    return child1.forParentId;
+};
+
+const getEstimateForEntities = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'entity'>) => {
+    if (child1.parentId === child2.parentId) {
+        return (child1.estimate ?? 0) + (child2.estimate ?? 0);
+    }
+
+    if (child1.parentId === child2.id) {
+        return child1.estimate ?? 0;
+    }
+
+    return child2.estimate ?? 0;
+};
+
+const getEstimateForEntityAndSubtotal = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'subtotal'>) => {
+    if (child1.parentId === child2.forParentId) {
+        return (child1.estimate ?? 0) + (child2.estimate ?? 0);
+    }
+
+    if (child1.id === child2.forParentId) {
+        return child2.estimate ?? 0;
+    }
+
+    return child2.estimate;
+};
+
+const getEstimate = (child1: Subtotals, child2: Subtotals) => {
+    if (child1.type === 'entity') {
+        if (child2.type === 'entity') {
+            return getEstimateForEntities(child1, child2);
+        }
+
+        return getEstimateForEntityAndSubtotal(child1, child2);
+    }
+
+    if (child2.type === 'entity') {
+        return getEstimateForEntityAndSubtotal(child2, child1);
+    }
+
+    return child1.forParentId === child2.forParentId ? (child1.estimate + child2.estimate) : child1.estimate;
 };
 
 export const scheduleTasks = (
@@ -222,22 +313,36 @@ export const scheduleTasks = (
 
     const subtotals = Tree.computeSubtotals<Task, number, Subtotals>(
         treeAfterScheduling,
-        ({ startDate, estimate, dueDate }, hasChildren) => ({ startDate, estimate, dueDate, hasChildren }),
+        ({ startDate, estimate, dueDate, id, parentId }, hasChildren) => ({
+            type: 'entity',
+            startDate,
+            estimate,
+            dueDate,
+            id,
+            parentId,
+            hasChildren,
+        }),
         (child1, child2) => ({
-            estimate: (child1.estimate ?? 0) + (child2.estimate ?? 0),
+            type: 'subtotal',
+            forParentId: getForParentId(child1, child2),
+            estimate: getEstimate(child1, child2),
             startDate: getStartDate(child1, child2),
             dueDate: getDueDate(child1, child2),
         }),
     );
 
-    console.log(subtotals);
     Tree.forEach(treeAfterScheduling, (item, id) => {
         if (item.type === 'task') {
             return;
         }
-        const { hasChildren, ...itemSubtotals } = subtotals.get(id);
+        const itemSubtotals = subtotals.get(id);
         if (itemSubtotals.estimate !== item.estimate || itemSubtotals.startDate !== item.startDate || itemSubtotals.dueDate !== item.dueDate) {
-            updatedScheduleItemsMap = updatedScheduleItemsMap.set(id, { ...item, ...itemSubtotals });
+            updatedScheduleItemsMap = updatedScheduleItemsMap.set(id, {
+                ...item,
+                estimate: itemSubtotals.estimate,
+                startDate: itemSubtotals.startDate,
+                dueDate: itemSubtotals.dueDate,
+            });
         }
     });
 
