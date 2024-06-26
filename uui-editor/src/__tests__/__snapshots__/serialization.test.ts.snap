@@ -85,6 +85,10 @@ Array [
         "type": "table_row",
       },
     ],
+    "colSizes": Array [
+      200,
+      200,
+    ],
     "type": "table",
   },
   Object {
@@ -397,6 +401,12 @@ Array [
         ],
         "type": "table_row",
       },
+    ],
+    "colSizes": Array [
+      200,
+      200,
+      200,
+      200,
     ],
     "type": "table",
   },
