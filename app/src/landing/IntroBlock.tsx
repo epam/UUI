@@ -1,14 +1,60 @@
-import React from 'react';
-import { FlexCell, FlexRow, IconContainer, Text } from '@epam/uui';
+import React, { useState } from 'react';
+import { FlexCell, FlexRow, IconContainer, Text, FilterPickerBody } from '@epam/uui';
 import css from './IntroBlock.module.scss';
 import { ReactComponent as BrushIcon } from '../icons/brush.svg';
 import { ReactComponent as BracketsIcon } from '../icons/brackets.svg';
 import { getCurrentTheme } from '../helpers';
 import cx from 'classnames';
+import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { Location } from '@epam/uui-docs';
 
 export function IntroBlock() {
     const theme = getCurrentTheme();
+    const svc = useUuiContext();
     const getHeaderClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
+
+    const [value, onValueChange] = useState<string[]>(['c-AN', 'c-AS']);
+
+    const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
+        {
+            api: (request, ctx) => {
+                const { search } = request;
+                const filter = search ? {} : { parentId: ctx?.parentId };
+                return svc.api.demo.locations({ ...request, search, filter });
+            },
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+            getChildCount: (l) => l.childCount,
+        },
+        [],
+    );
+
+    const unfoldedIds = ['c-AS'];
+    const renderDemoPickerBody = () => {
+        return (
+            <div className={ css.pickerDemoWrapper }>
+                <FilterPickerBody
+                    isOpen={ true }
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    dataSource={ dataSource }
+                    title="Locations"
+                    selectionMode="multi"
+                    field="test"
+                    type="multiPicker"
+                    isFoldedByDefault={ (item) => !unfoldedIds.includes(item.id) }
+                />
+            </div>
+        );
+    };
+
+    const renderComponentsDemo = () => {
+        return (
+            <div>
+                {renderDemoPickerBody()}
+            </div>
+        );
+    };
 
     return (
         <div className={ css.root }>
@@ -41,7 +87,7 @@ export function IntroBlock() {
                     </FlexRow>
                 </div>
                 <div className={ css.infoEnd }>
-
+                    { renderComponentsDemo() }
                 </div>
             </FlexRow>
         </div>
