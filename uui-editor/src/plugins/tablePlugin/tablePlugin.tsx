@@ -19,14 +19,17 @@ import {
     withoutNormalizing,
     isElement,
     PlatePlugin,
+    setNodes,
 } from '@udecode/plate-common';
 import {
     ELEMENT_TABLE,
     ELEMENT_TD,
     ELEMENT_TH,
     ELEMENT_TR,
+    TTableElement,
     TablePlugin,
     createTablePlugin,
+    getTableColumnCount,
     getTableGridAbove,
     useTableMergeState,
     withTable,
@@ -38,8 +41,9 @@ import { TableRowElement } from './TableRowElement';
 import { TableCellElement } from './TableCellElement';
 import { TableElement } from './TableElement';
 import { WithToolbarButton } from '../../implementation/Toolbars';
-import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_TYPE, TABLE_ROW_TYPE } from './constants';
+import { TABLE_CELL_TYPE, TABLE_HEADER_CELL_TYPE, TABLE_TYPE, TABLE_ROW_TYPE, DEFAULT_COL_WIDTH } from './constants';
 import { normalizeTableCellElement, normalizeTableElement } from '../../migrations/normalizers';
+import { DeprecatedTTableCellElement } from '../../migrations/types';
 
 const noop = () => {};
 
@@ -81,6 +85,19 @@ function TableRenderer(props: any) {
         />
     );
 }
+
+const getDefaultColWidths = (columnsNumber: number) =>
+    Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
+
+const initDefaultTableColWidth = (tableNode: DeprecatedTTableCellElement): TTableElement => {
+    if (!tableNode.colSizes) {
+        return {
+            ...tableNode,
+            colSizes: getDefaultColWidths(getTableColumnCount(tableNode)),
+        };
+    }
+    return tableNode;
+};
 
 // TODO: move to plate
 const createGetNodeFunc = (type: string) => {
@@ -137,10 +154,16 @@ export const tablePlugin = (): PlatePlugin<TablePLuginOptions> =>
             const { normalizeNode } = editor;
 
             editor.normalizeNode = (entry) => {
-                const [node] = entry;
+                const [node, path] = entry;
 
                 if (isElement(node) && node.type === TABLE_TYPE) {
-                    normalizeTableElement(editor, entry);
+                    const normalized = initDefaultTableColWidth(normalizeTableElement(entry) as DeprecatedTTableCellElement);
+
+                    setNodes(
+                        editor,
+                        normalized,
+                        { at: path },
+                    );
                 }
 
                 if (isElement(node) && (TABLE_CELL_TYPE === node.type || TABLE_CELL_TYPE === node.type)) {

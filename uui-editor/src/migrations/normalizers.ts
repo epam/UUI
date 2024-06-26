@@ -36,8 +36,8 @@ export const normalizeTableCellElement = (editor: PlateEditor<Value>, entry: TNo
 };
 
 /** deprecate data properties */
-export const normalizeTableElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
-    const [node, path] = entry;
+export const normalizeTableElement = (entry: TNodeEntry): TTableElement => {
+    const [node] = entry;
     const tableNode = node as DepreactedTTableElement;
 
     if (tableNode.data) {
@@ -45,17 +45,12 @@ export const normalizeTableElement = (editor: PlateEditor<Value>, entry: TNodeEn
 
         // removing props
         if (!cellSizes) {
-            return;
+            return tableNode;
         }
 
-        const tableElement: TTableElement = { ...tableNode, data: { ...otherData } };
-
-        setNodes(
-            editor,
-            tableElement,
-            { at: path },
-        );
+        return { ...tableNode, data: { ...otherData } };
     }
+    return tableNode;
 };
 
 /** deprecate intercepting properties */
