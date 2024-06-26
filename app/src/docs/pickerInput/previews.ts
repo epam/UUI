@@ -100,7 +100,7 @@ export const previews: TComponentPreview<uui.PickerInputProps<any, any>>[] = [
     { id: TPickerInputPreview['Sizes multi multiline'], matrix: getMultiSelectMultiLineMatrix(), cellSize: '240-140' },
     {
         id: TPickerInputPreview['Modes + States'],
-        cellSize: '200-50',
+        cellSize: '200-90',
         matrix: [
             {
                 ...baseMatrix,
@@ -113,6 +113,7 @@ export const previews: TComponentPreview<uui.PickerInputProps<any, any>>[] = [
                 iconPosition: { values: ['left'] },
             },
             {
+                ...baseMatrix,
                 ...statesBaseMatrix,
                 size: { values: ['36'] },
                 selectionMode: { values: ['multi'] },
