@@ -110,10 +110,10 @@ export function ProjectTableDemo() {
             
             return {
                 ...currentValue,
-                items: allDeleted ? items.set(task.parentId, { ...items.get(task.parentId), type: 'task' }) : items,
+                items: scheduleTasks(patch, allDeleted ? items.set(task.parentId, { ...items.get(task.parentId), type: 'task' }) : items),
             };
         });
-    }, [setValue]);
+    }, [patch, setValue]);
 
     const getMinMaxDate = () => {
         let minStartDate: number | undefined;
@@ -213,7 +213,7 @@ export function ProjectTableDemo() {
 
             return {
                 ...currentValue,
-                items: currentItems,
+                items: scheduleTasks(patch, currentItems),
             };
         });
 
@@ -226,7 +226,7 @@ export function ProjectTableDemo() {
         }));
 
         dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, dataTableFocusManager]);
+    }, [setValue, dataTableFocusManager, patch]);
 
     const handleDrop = useCallback(
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
@@ -244,16 +244,19 @@ export function ProjectTableDemo() {
                         const shouldReschedule = (id: number) => {
                             const prevTask = prevValue.get(id);
                             const t = nextValue.get(id);
+                            console.log(t.id, t?.order, prevTask?.order);
                             return !prevValue.has(id)
                                 || prevTask.estimate !== t.estimate
                                 || prevTask.startDate !== t.startDate
                                 || prevTask.dueDate !== t.dueDate
                                 || prevTask.assignee !== t.assignee
-                                || prevTask.parentId !== t.parentId;
+                                || prevTask.parentId !== t.parentId
+                                || prevTask.order !== t.order;
                         };
-
+                        console.log('here');
                         for (const [id] of nextValue) {
                             if (shouldReschedule(id)) {
+                                console.log('should reschule', nextValue.get(id));
                                 return scheduleTasks(patch, nextValue);
                             }
                         }

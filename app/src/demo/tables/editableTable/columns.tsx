@@ -203,7 +203,9 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
-                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    renderEditor={ (editorProps) => (
+                        <NumericInput { ...editorProps } formatOptions={ { maximumFractionDigits: 1 } } isDisabled={ props.rowLens.prop('type').get() === 'story' } />
+                    ) }
                     { ...props }
                 />
             ),
@@ -267,7 +269,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (editorProps) => <DatePicker format="MMM D, YYYY" placeholder="" { ...editorProps } isDisabled={ props.rowLens.prop('type').get() === 'story' } /> }
                     { ...props }
                 />
             ),
@@ -279,7 +281,9 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (editorProps) => (
+                        <DatePicker format="MMM D, YYYY" placeholder="" { ...editorProps } isDisabled={ props.rowLens.prop('type').get() === 'story' } />
+                    ) }
                     { ...props }
                 />
             ),

@@ -117,25 +117,24 @@ const getOrderedTasks = (tree: ITree<Task, number>, updatedValues: IImmutableMap
     const tasks: Task[][] = [];
 
     let lastStoryTasks: Task[] = [];
-    const startDates: IMap<number, number> = newMap({});
 
     Tree.forEach(tree, (task, id, parentId) => {
         const currentTask = updatedValues.get(id) ?? task;
-        const parentStartDate = startDates.get(currentTask.parentId);
-        startDates.set(id, currentTask.startDate ? Math.max(new Date(currentTask.startDate).getTime(), parentStartDate ?? 0) : parentStartDate);
 
         if (currentTask.type === 'task') {
             const { ids } = tree.getItems(parentId);
             const isLastChild = ids.indexOf(currentTask.id) === ids.length - 1;
 
-            lastStoryTasks.push({ ...currentTask, startDate: formatDate(startDates.get(id)) });
+            if (currentTask.startDate) {
+                lastStoryTasks.push(currentTask);
+            }
+
             if (isLastChild) {
                 lastStoryTasks.sort((a, b) => {
                     const startDate1 = new Date(a.startDate).getTime();
                     const startDate2 = new Date(b.startDate).getTime();
 
-                    const res = compareScalars(startDate1, startDate2, 1);
-                    return res;
+                    return compareScalars(startDate1, startDate2, 1);
                 });
 
                 tasks.push(lastStoryTasks);
@@ -153,6 +152,7 @@ const addTime = (date: string, estimate: number) => uuiDayjs.dayjs(date).add(est
 type Subtotals = {
     type: 'entity';
     startDate: string;
+    exactStartDate: string;
     dueDate: string;
     estimate: number;
     id: number;
@@ -160,7 +160,7 @@ type Subtotals = {
     hasChildren?: boolean;
 } | {
     type: 'subtotal';
-    startDate: string;
+    exactStartDate: string;
     dueDate: string;
     estimate: number;
     forParentId: number;
@@ -168,19 +168,19 @@ type Subtotals = {
 };
 
 const getStartDate = (child1: Subtotals, child2: Subtotals) => {
-    if (!child1.startDate) {
-        return child2.startDate;
+    if (!child1.exactStartDate) {
+        return child2.exactStartDate;
     }
 
-    if (!child2.startDate) {
-        return child1.startDate;
+    if (!child2.exactStartDate) {
+        return child1.exactStartDate;
     }
-    return formatDate(Math.min(toTime(child1.startDate), toTime(child2.startDate)));
+    return formatDate(Math.min(toTime(child1.exactStartDate), toTime(child2.exactStartDate)));
 };
 
 const getChildDueDate = (child: Subtotals) => {
     if (!child.dueDate) {
-        return child.hasChildren ? undefined : addTime(child.startDate, child.estimate);
+        return child.hasChildren ? undefined : addTime(child.exactStartDate, child.estimate);
     }
     return toTime(child.dueDate);
 };
@@ -301,8 +301,11 @@ export const scheduleTasks = (
                 const taskToSchedule = patchedTree.getById(sTask.id) as Task;
                 const exactStartDate = uuiDayjs.dayjs(sTask.exactStartTime ?? sTask.startTime);
                 const formattedStartDate = formatDate(exactStartDate);
-                const updatedTaskToSchedule = { ...taskToSchedule, startDate: formattedStartDate };
-                if (updatedTaskToSchedule.startDate !== taskToSchedule.startDate || updatedTaskToSchedule.estimate !== taskToSchedule.estimate) {
+                const updatedTaskToSchedule = { ...taskToSchedule, exactStartDate: formattedStartDate };
+                if (
+                    updatedTaskToSchedule.exactStartDate !== taskToSchedule.exactStartDate
+                    || updatedTaskToSchedule.estimate !== taskToSchedule.estimate
+                ) {
                     updatedScheduleItemsMap = updatedScheduleItemsMap.set(updatedTaskToSchedule.id, updatedTaskToSchedule);
                 }
             }
@@ -313,12 +316,13 @@ export const scheduleTasks = (
 
     const subtotals = Tree.computeSubtotals<Task, number, Subtotals>(
         treeAfterScheduling,
-        ({ startDate, estimate, dueDate, id, parentId }, hasChildren) => ({
+        ({ startDate, estimate, dueDate, id, parentId, exactStartDate }, hasChildren) => ({
             type: 'entity',
             startDate,
             estimate,
             dueDate,
             id,
+            exactStartDate,
             parentId,
             hasChildren,
         }),
@@ -326,7 +330,7 @@ export const scheduleTasks = (
             type: 'subtotal',
             forParentId: getForParentId(child1, child2),
             estimate: getEstimate(child1, child2),
-            startDate: getStartDate(child1, child2),
+            exactStartDate: getStartDate(child1, child2),
             dueDate: getDueDate(child1, child2),
         }),
     );
@@ -336,11 +340,11 @@ export const scheduleTasks = (
             return;
         }
         const itemSubtotals = subtotals.get(id);
-        if (itemSubtotals.estimate !== item.estimate || itemSubtotals.startDate !== item.startDate || itemSubtotals.dueDate !== item.dueDate) {
+        if (itemSubtotals.estimate !== item.estimate || itemSubtotals.exactStartDate !== item.exactStartDate || itemSubtotals.dueDate !== item.dueDate) {
             updatedScheduleItemsMap = updatedScheduleItemsMap.set(id, {
                 ...item,
                 estimate: itemSubtotals.estimate,
-                startDate: itemSubtotals.startDate,
+                startDate: itemSubtotals.exactStartDate,
                 dueDate: itemSubtotals.dueDate,
             });
         }
