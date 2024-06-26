@@ -342,6 +342,8 @@ export function ProjectTableDemo() {
         );
     };
     const { from, to } = getMinMaxDate();
+    
+    console.log(tree);
     return (
         <Panel cx={ css.container }>
             <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
