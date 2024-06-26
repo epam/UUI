@@ -53,7 +53,7 @@ export const scheduleTasks = <TId>(tasks: Task<TId>[], assignees: number = 1) =>
     const maxTaskDuration = tasks.reduce((maxDuration, task) => Math.max(task.duration, maxDuration), 0);
     let lowerBinCapacity = Math.max(durationSum / assignees, maxTaskDuration);
     let upperBinCapacity = Math.max((2 * durationSum) / assignees, maxTaskDuration);
-    let k = 1;
+    let k = 4;
     while (k >= 0) {
         const c = Math.floor((lowerBinCapacity + upperBinCapacity) / 2);
         const bins = firstFitDecreasing(tasks, c);
