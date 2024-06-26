@@ -11,7 +11,7 @@ export interface TaskBarProps extends BaseTimelineCanvasComponentProps {
     task: Task;
 }
 
-const getTaskColor = (status: string) => statuses.find((s) => s.id === +status)?.color ?? '#e1e3eb';
+const getTaskColor = (status: string) => statuses.find((s) => s.id === status)?.color ?? '#e1e3eb';
 
 export function TaskBar({ task, timelineController }: TaskBarProps) {
     const taskBarWrapperRef = useRef<HTMLDivElement>(null);
