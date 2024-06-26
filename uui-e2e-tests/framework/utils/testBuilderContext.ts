@@ -56,8 +56,14 @@ export class TestBuilderContext {
         const obsoleteScr: string[] = [];
         const issuesArr: TIssues = [];
         engines.forEach((engineName) => {
+            if (!Object.values(TEngine).includes(engineName as TEngine)) {
+                return;
+            }
             const enginePath = path.resolve(rootDir, engineName);
             fs.readdirSync(enginePath).forEach((fileName) => {
+                if (!fileName.endsWith('.png')) {
+                    return;
+                }
                 const testName = path.basename(fileName, '.png');
                 const scrFileFullPath = path.resolve(enginePath, fileName);
                 const scrSize = fs.statSync(scrFileFullPath).size;
