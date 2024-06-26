@@ -7,11 +7,11 @@ interface ToolbarButtonProps {
     editor: PlateEditor;
 }
 
-type WithFloatingButtonPlugin = {
+export type WithFloatingButtonPlugin = {
     floatingBarButton: React.ComponentType<ToolbarButtonProps>,
 };
 
-type WithBottomButtonPlugin = {
+export type WithBottomButtonPlugin = {
     bottomBarButton: React.ComponentType<ToolbarButtonProps>
 };
 

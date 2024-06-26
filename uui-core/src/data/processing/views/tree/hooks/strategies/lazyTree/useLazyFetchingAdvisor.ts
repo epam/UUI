@@ -3,6 +3,7 @@ import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../../types';
 import { isQueryChanged } from './helpers';
 import { useCallback, useMemo } from 'react';
+import { useDepsChanged } from '../../common/useDepsChanged';
 
 export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     dataSourceState: DataSourceState<TFilter, TId>;
@@ -12,13 +13,17 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     showSelectedOnly?: boolean;
 }
 
-export function useLazyFetchingAdvisor<TId, TFilter = any>({
-    dataSourceState,
-    filter,
-    forceReload,
-    backgroundReload,
-    showSelectedOnly,
-}: UseLazyFetchingAdvisorProps<TId, TFilter>) {
+export function useLazyFetchingAdvisor<TId, TFilter = any>(
+    {
+        dataSourceState,
+        filter,
+        forceReload,
+        backgroundReload,
+        showSelectedOnly,
+    }: UseLazyFetchingAdvisorProps<TId, TFilter>,
+    deps: any[] = [],
+) {
+    const depsChanged = useDepsChanged(deps);
     const areMoreRowsNeeded = useCallback((
         prevValue?: DataSourceState<TFilter, TId>,
         newValue?: DataSourceState<TFilter, TId>,
@@ -40,8 +45,9 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>({
             || !isEqual(prevFilter, filter)
             || isQueryChanged(prevDataSourceState, dataSourceState)
             || (prevShowSelectedOnly !== showSelectedOnly && !showSelectedOnly)
-            || forceReload,
-        [dataSourceState, filter, forceReload],
+            || forceReload
+            || depsChanged,
+        [dataSourceState, filter, forceReload, depsChanged],
     );
 
     const moreRowsNeeded = areMoreRowsNeeded(prevDataSourceState, dataSourceState);

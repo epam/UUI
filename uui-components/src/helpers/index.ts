@@ -1,1 +1,1 @@
-export * from './getHtmlDir';
+export * from './useDocumentDir';
