@@ -2,7 +2,7 @@
 
 exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 <div
-  className="dateInputGroup uui-disabled uui-readonly uui-invalid"
+  className="dateInputGroup uui-range-date-picker uui-disabled uui-readonly uui-invalid"
   onBlur={[Function]}
   onClick={[Function]}
 >
@@ -64,7 +64,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 
 exports[`RangeDataPicker should be rendered if minimum params and custom format defined 1`] = `
 <div
-  className="dateInputGroup"
+  className="dateInputGroup uui-range-date-picker"
   onBlur={[Function]}
   onClick={[Function]}
 >
