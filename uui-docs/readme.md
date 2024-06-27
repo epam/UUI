@@ -2,7 +2,7 @@
 
 This package is a part of [EPAM UUI](https://github.com/epam/UUI) library.
 
-@epam/uui-docs is a set of helpers to document UUI libraries.
+`@epam/uui-docs` is a set of helpers to document UUI libraries.
 
 ## Features
 
