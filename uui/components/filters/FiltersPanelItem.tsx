@@ -2,21 +2,7 @@ import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import cx from 'classnames';
 import { Modifier } from 'react-popper';
-import {
-    DropdownBodyProps,
-    TableFiltersConfig,
-    IDropdownToggler,
-    IEditable,
-    isMobile,
-    FilterPredicateName,
-    getSeparatedValue,
-    DataRowProps,
-    PickerFilterConfig,
-    useForceUpdate,
-    IDataSource,
-    DataSourceState,
-    Overwrite,
-} from '@epam/uui-core';
+import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate, IDataSource, DataSourceState } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
@@ -30,16 +16,11 @@ import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
 import css from './FiltersPanelItem.module.scss';
 
-export interface FiltersToolbarItemModsOverride {}
-
-interface FiltersToolbarItemMods {
-    size?: '24' | '30' | '36' | '42' | '48';
-}
-
-export type FiltersToolbarItemProps = Overwrite<FiltersToolbarItemMods, FiltersToolbarItemModsOverride> & TableFiltersConfig<any> &
+export type FiltersToolbarItemProps = TableFiltersConfig<any> &
 IEditable<any> & {
     autoFocus?: boolean;
     removeFilter?: (field: any) => void;
+    size?: '24' | '30' | '36' | '42' | '48';
 };
 
 function useView(props: FiltersToolbarItemProps, value: any) {
