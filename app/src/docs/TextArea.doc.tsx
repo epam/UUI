@@ -8,7 +8,6 @@ import {
     DocPreviewBuilder,
     TDocConfig,
     TDocContext,
-    TPreviewCellSize,
     TPreviewMatrix,
     TSkin,
 } from '@epam/uui-docs';
@@ -34,17 +33,15 @@ export class TextAreaDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<uui.TextAreaProps>) => {
             const TEST_DATA = {
-                value: 'Test 1\nTest 2',
+                value: 'Test 1',
+                longValue: 'Test 1\nTest 2\nTest3\nTest4',
                 placeholder: 'Test placeholder',
             };
             type TMatrixLocal = TPreviewMatrix<uui.TextAreaProps>;
-            const w210_h90: TPreviewCellSize = '210-90';
-            const w210_h70: TPreviewCellSize = '210-70';
 
             const baseMatrix: TMatrixLocal = {
-                value: { values: [TEST_DATA.value, undefined] },
-                placeholder: { values: [undefined, TEST_DATA.placeholder], condition: (props) => !props.value },
-                mode: { values: ['form', 'inline', 'cell'] },
+                value: { values: [undefined, TEST_DATA.value, TEST_DATA.longValue] },
+                placeholder: { values: [TEST_DATA.placeholder], condition: (props) => !props.value },
                 maxLength: { values: [undefined] },
                 autoSize: { values: [false, true] },
             };
@@ -54,16 +51,17 @@ export class TextAreaDoc extends BaseDocsBlock {
                 isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
             };
 
-            docPreview.add(TTextAreaPreview['Size Variants'], { ...baseMatrix, size: { examples: '*' } }, w210_h90);
+            docPreview.add(TTextAreaPreview['Size Variants'], { ...baseMatrix, size: { examples: '*' } }, '210-130');
             docPreview.add(
-                TTextAreaPreview['Color Variants'],
+                TTextAreaPreview['States'],
                 {
                     ...baseMatrix,
                     size: { values: ['36'] },
                     autoSize: { values: [false] },
+                    mode: { values: ['form', 'inline', 'cell'] },
                     ...statesBaseMatrix,
                 },
-                w210_h70,
+                '210-70',
             );
         },
     };

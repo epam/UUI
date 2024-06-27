@@ -69,7 +69,7 @@ export class PaginatorDoc extends BaseDocsBlock {
                 cellSize: w330_h60,
             });
             docPreview.add({
-                id: TPaginatorPreview['Color Variants'],
+                id: TPaginatorPreview['States'],
                 matrix: {
                     isDisabled: { values: [false, true] },
                     size: { values: ['30'] },
