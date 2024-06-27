@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder } from '@epam/uui-core';
+import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, Overwrite } from '@epam/uui-core';
 import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
 import { SizeMod } from '../types';
 import { Text } from '../typography';
@@ -9,7 +9,11 @@ import { LinkButton } from '../buttons';
 import css from './PickerList.module.scss';
 import cx from 'classnames';
 
-export type PickerListProps<TItem, TId> = SizeMod &
+export interface PickerListModsOverride {}
+
+interface PickerListMods extends SizeMod {}
+
+export type PickerListProps<TItem, TId> = Overwrite<PickerListMods, PickerListModsOverride> &
 IHasPlaceholder &
 PickerModalOptions<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
@@ -34,7 +38,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     const defaultRenderRow = (row: DataRowProps<TItem, TId>) => {
         return <PickerListItem getName={ (item) => getName(item) } { ...row } key={ row.rowKey } />;
     };
-    
+
     const handleShowPicker = () => {
         context.uuiModals
             .show((modalProps) => (
