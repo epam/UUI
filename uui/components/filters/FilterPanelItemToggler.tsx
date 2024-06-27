@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDisableable, IDropdownTogglerProps, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
+import { IDisableable, IDropdownTogglerProps, IHasCX, Overwrite, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
 import { IconContainer, FlexRow } from '@epam/uui-components';
 import { systemIcons } from '../../icons/icons';
 import { Text } from '../typography';
@@ -9,12 +9,20 @@ import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
 
-export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable, IHasCX {
+export interface FilterToolbarItemTogglerModsOverride {}
+
+interface FilterToolbarItemTogglerMods {
+    size?: '24' | '30' | '36' | '42' | '48'
+}
+
+export interface FilterToolbarItemTogglerProps extends Overwrite<FilterToolbarItemTogglerMods, FilterToolbarItemTogglerModsOverride>,
+    IDropdownTogglerProps,
+    IDisableable,
+    IHasCX {
     selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;
     title?: string;
     maxWidth?: number;
-    size?: '24' | '30' | '36' | '42' | '48';
     predicateName: string | null;
 }
 

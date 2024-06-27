@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as types from '../types';
+import { Overwrite } from '@epam/uui-core';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
 import { PickerTogglerTag, PickerTogglerTagProps } from './PickerTogglerTag';
 import { systemIcons } from '../../icons/icons';
@@ -7,6 +8,8 @@ import { settings } from '../../settings';
 import css from './PickerToggler.module.scss';
 
 const defaultMode = types.EditMode.FORM;
+
+export interface PickerTogglerModsOverride {}
 
 export interface PickerTogglerMods extends types.IHasEditMode {
     /**
@@ -25,7 +28,10 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-function PickerTogglerComponent<TItem extends string, TId>(props: PickerTogglerProps<TItem, TId> & PickerTogglerMods, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
+function PickerTogglerComponent<TItem extends string, TId>(
+    props: PickerTogglerProps<TItem, TId> & Overwrite<PickerTogglerMods, PickerTogglerModsOverride>,
+    ref: React.ForwardedRef<HTMLElement>,
+): JSX.Element {
     const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
         const itemPropsWithSize = { ...itemProps, size: (props.size || settings.sizes.defaults.pickerToggler) as PickerTogglerMods['size'] };
         if (!!props.renderItem) {

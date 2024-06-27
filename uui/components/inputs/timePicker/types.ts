@@ -9,42 +9,43 @@ import {
     IEditable, IHasCX,
     IHasForwardedRef,
     IHasPlaceholder,
-    IHasRawProps,
+    IHasRawProps, Overwrite,
 } from '@epam/uui-core';
 
-export interface TimePickerProps extends IHasEditMode, IEditable<TimePickerValue | null>,
+export interface TimePickerModsOverride {}
+
+interface TimePickerMods {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+}
+
+export interface TimePickerProps extends Overwrite<TimePickerMods, TimePickerModsOverride>,
+    IHasEditMode,
+    IEditable<TimePickerValue | null>,
     IDisableable,
     ICanBeReadonly,
     IHasPlaceholder,
     ICanFocus<HTMLElement>,
     IHasForwardedRef<HTMLElement> {
-
-    /**
-     * Defines component size.
-     */
-    size?: '24' | '30' | '36' | '42' | '48';
-
     /**
      * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys
      * @default 5
      */
     minutesStep?: number;
-
     /**
      * Time format, 12 hours with AM/PM or 24 hours
      * @default 12
      */
     format?: 12 | 24;
-
     /** ID to put on time picker toggler 'input' node */
     id?: string;
-
     /**
      * Render callback for time picker toggler.
      * If omitted, default TextInput component will be rendered.
      */
     renderTarget?(props: IDropdownToggler): React.ReactNode;
-
     /** HTML attributes to put directly to TimePicker parts */
     rawProps?: {
         /** HTML attributes to put directly to the input element */
