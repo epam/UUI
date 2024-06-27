@@ -69,7 +69,7 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
             ) }
             { props.count !== undefined && props.count !== null && (
                 <CountIndicator
-                    color={ props.isLinkActive ? 'info' : 'neutral' }
+                    color="neutral"
                     size="18"
                     caption={ props.count }
                 />
