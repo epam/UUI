@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Anchor, FlexCell, FlexRow, IconContainer, PickerInput, Text } from '@epam/uui';
+import { Anchor, FlexCell, FlexRow, IconContainer, Text, FilterPickerBody } from '@epam/uui';
 import css from './IntroBlock.module.scss';
 import { ReactComponent as BrushIcon } from '../icons/brush.svg';
 import { ReactComponent as BracketsIcon } from '../icons/brackets.svg';
@@ -7,26 +7,58 @@ import { ReactComponent as BlurLightImage } from '../icons/intro-blur-light-them
 import { ReactComponent as BlurDarkImage } from '../icons/intro-blur-dark-theme.svg';
 import { getCurrentTheme } from '../helpers';
 import cx from 'classnames';
-import { useArrayDataSource } from '@epam/uui-core';
-
-const languageLevels = [
-    { id: 2, level: 'A1' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 5, level: 'A2+' }, { id: 6, level: 'B1' }, { id: 7, level: 'B1+' }, { id: 8, level: 'B2' }, { id: 9, level: 'B2+' }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
-];
+import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { Location } from '@epam/uui-docs';
 
 export function IntroBlock() {
     const theme = getCurrentTheme();
+    const svc = useUuiContext();
     const getHeaderClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
-    const [singlePickerValue, singleOnValueChange] = useState(null);
-    const [multiPickerValue, multiOnValueChange] = useState(null);
     const BLUR = theme === 'loveship_dark' ? BlurDarkImage : BlurLightImage;
 
-    // Create DataSource outside the Picker, by calling useArrayDataSource hook
-    const dataSource = useArrayDataSource(
+    const [value, onValueChange] = useState<string[]>(['c-AN', 'c-AS']);
+
+    const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
-            items: languageLevels,
+            api: (request, ctx) => {
+                const { search } = request;
+                const filter = search ? {} : { parentId: ctx?.parentId };
+                return svc.api.demo.locations({ ...request, search, filter });
+            },
+            getId: (i) => i.id,
+            getParentId: (i) => i.parentId,
+            getChildCount: (l) => l.childCount,
         },
         [],
     );
+
+    const unfoldedIds = ['c-AS'];
+    const renderDemoPickerBody = () => {
+        return (
+            <div className={ css.pickerDemoWrapper }>
+                <FilterPickerBody
+                    isOpen={ true }
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    dataSource={ dataSource }
+                    title="Locations"
+                    selectionMode="multi"
+                    field="test"
+                    type="multiPicker"
+                    isFoldedByDefault={ (item) => !unfoldedIds.includes(item.id) }
+                />
+            </div>
+        );
+    };
+
+    const renderComponentsDemo = () => {
+        return (
+            <div>
+                {renderDemoPickerBody()}
+            </div>
+        );
+    };
+
     return (
         <div className={ css.root }>
             <FlexRow cx={ css.info }>
@@ -61,30 +93,7 @@ export function IntroBlock() {
                     </FlexRow>
                 </div>
                 <div className={ css.infoEnd }>
-                    <FlexCell width={ 612 }>
-                        <FlexRow columnGap="12">
-                            <PickerInput
-                                dataSource={ dataSource }
-                                value={ multiPickerValue }
-                                onValueChange={ multiOnValueChange }
-                                getName={ (item) => item.level }
-                                entityName="Language level"
-                                selectionMode="multi"
-                                valueType="id"
-                                sorting={ { field: 'level', direction: 'asc' } }
-                            />
-                            <PickerInput
-                                dataSource={ dataSource }
-                                value={ singlePickerValue }
-                                onValueChange={ singleOnValueChange }
-                                getName={ (item) => item.level }
-                                entityName="Language level"
-                                selectionMode="single"
-                                valueType="id"
-                                sorting={ { field: 'level', direction: 'asc' } }
-                            />
-                        </FlexRow>
-                    </FlexCell>
+                    { renderComponentsDemo() }
                 </div>
             </FlexRow>
         </div>
