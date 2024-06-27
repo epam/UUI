@@ -11,7 +11,7 @@ export interface TaskBarProps extends BaseTimelineCanvasComponentProps {
     task: Task;
 }
 
-const getTaskColor = (status: string) => statuses.find((s) => s.id === +status)?.color ?? '#e1e3eb';
+const getTaskColor = (status: string) => statuses.find((s) => s.id === status)?.color ?? '#e1e3eb';
 
 export function TaskBar({ task, timelineController }: TaskBarProps) {
     const taskBarWrapperRef = useRef<HTMLDivElement>(null);
@@ -29,16 +29,17 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
 
     const draw = useCallback((ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
         ctx.clearRect(0, 0, t.widthMs, canvasHeight);
-        let to = uuiDayjs.dayjs(task.startDate, 'YYYY-MM-DD');
+        const startDate = task.type === 'story' ? task.startDate : task.exactStartDate;
+        let to = uuiDayjs.dayjs(startDate, 'YYYY-MM-DD');
         
-        if (task.startDate && task.estimate) {
+        if (startDate && task.estimate) {
             to = to.add(task.estimate, 'day');
         } else {
             to = null;
         }
 
         const item: Item = task.dueDate ? {
-            from: task.startDate ? uuiDayjs.dayjs(task.startDate, 'YYYY-MM-DD').toDate() : null,
+            from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
             to: task.dueDate ? uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate() : null,
             color: getTaskColor(task.status),
             minPixPerDay: 0.01,
@@ -46,7 +47,7 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
             opacity: 1.0,
             height: 30,
         } : {
-            from: task.startDate ? uuiDayjs.dayjs(task.startDate, 'YYYY-MM-DD').toDate() : null,
+            from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
             to: to ? to.toDate() : null,
             color: getTaskColor(task.status),
             minPixPerDay: 0.01,
@@ -64,7 +65,7 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
             .filter((i) => i.from !== null && i.to !== null && i.isVisible && i.opacity > 0.01);
 
         renderBars(transformedItems, canvasHeight, ctx, t);
-    }, [task?.dueDate, task?.estimate, task?.startDate, task?.status]);
+    }, [task.type, task.startDate, task.exactStartDate, task.estimate, task.dueDate, task.status]);
 
     const { renderCanvas } = useCanvas({
         draw,
