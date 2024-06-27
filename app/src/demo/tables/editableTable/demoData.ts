@@ -2,14 +2,14 @@ import { getOrderBetween } from '@epam/uui-core';
 import { Task, Resource, Status } from './types';
 
 const tasks: Partial<Task>[] = [
-    { id: 1, name: 'Infrastructure', type: 'story', startDate: '2024-11-01', order: 'm', estimate: 53, dueDate: '2024-12-12' },
-    { id: 2, name: 'Shared services', type: 'story', order: 'yym', estimate: 20, startDate: '2024-12-12', dueDate: '2025-01-01' },
-    { id: 3, name: 'UUI Customization', type: 'story', order: 'yyym', estimate: 20, startDate: '2024-11-08', dueDate: '2024-11-28' },
-    { id: 4, name: 'Shared Components', type: 'story', order: 'yyyym', estimate: 84, startDate: '2024-11-28', dueDate: '2025-02-20' },
-    { id: 5, name: 'Pages Template Components', type: 'story', order: 'yyyyyyym', estimate: 36, startDate: '2025-02-20', dueDate: '2025-03-28' },
-    { id: 6, name: 'Pages', type: 'story', order: 'yyyyyyyyv', estimate: 66, startDate: '2025-03-28', dueDate: '2025-06-02' },
-    { id: 101, name: 'Devops', type: 'story', order: 's', parentId: 1, estimate: 46, startDate: '2024-11-01', dueDate: '2024-12-12' },
-    { id: 102, name: 'Frontend', type: 'story', order: 'yv', parentId: 1, estimate: 7, startDate: '2024-11-01', dueDate: '2024-11-08' },
+    { id: 1, name: 'Infrastructure', type: 'story', startDate: '2024-11-01', order: 'm', estimate: 53, status: '2', dueDate: '2024-12-12' },
+    { id: 2, name: 'Shared services', type: 'story', order: 'yym', estimate: 20, startDate: '2024-12-12', status: '2', dueDate: '2025-01-01' },
+    { id: 3, name: 'UUI Customization', type: 'story', order: 'yyym', estimate: 20, startDate: '2024-11-08', status: '2', dueDate: '2024-11-28' },
+    { id: 4, name: 'Shared Components', type: 'story', order: 'yyyym', estimate: 84, startDate: '2024-11-28', status: '2', dueDate: '2025-02-20' },
+    { id: 5, name: 'Pages Template Components', type: 'story', order: 'yyyyyyym', estimate: 36, startDate: '2025-02-20', status: '2', dueDate: '2025-03-28' },
+    { id: 6, name: 'Pages', type: 'story', order: 'yyyyyyyyv', estimate: 66, startDate: '2025-03-28', status: '2', dueDate: '2025-06-02' },
+    { id: 101, name: 'Devops', type: 'story', order: 's', parentId: 1, estimate: 46, startDate: '2024-11-01', status: '2', dueDate: '2024-12-12' },
+    { id: 102, name: 'Frontend', type: 'story', order: 'yv', parentId: 1, estimate: 7, startDate: '2024-11-01', status: '2', dueDate: '2024-11-08' },
     { id: 201, name: 'Authentication', estimate: 5, startDate: '2024-11-01', assignee: 2, status: '2', type: 'task', order: 'yys', parentId: 2, exactStartDate: '2024-12-12' },
     { id: 202, name: 'Integration with API', estimate: 5, startDate: '2024-11-01', assignee: 2, status: '2', type: 'task', order: 'yyv', parentId: 2, exactStartDate: '2024-12-17' },
     { id: 203, name: 'Routing', estimate: 5, startDate: '2024-11-01', assignee: 2, status: '2', type: 'task', order: 'yyx', parentId: 2, exactStartDate: '2024-12-22' },
@@ -44,7 +44,7 @@ const tasks: Partial<Task>[] = [
     { id: 604, name: 'Favorites', estimate: 6, startDate: '2024-11-01', assignee: 1, status: '2', type: 'task', order: 'yyyyyyyyys', parentId: 6, exactStartDate: '2025-04-15' },
     { id: 605, name: 'Comparison', estimate: 6, startDate: '2024-11-01', assignee: 1, status: '2', type: 'task', order: 'yyyyyyyyyv', parentId: 6, exactStartDate: '2025-04-21' },
     { id: 606, name: 'Check-out form', estimate: 6, startDate: '2024-11-01', assignee: 1, status: '2', type: 'task', order: 'yyyyyyyyyx', parentId: 6, exactStartDate: '2025-04-27' },
-    { id: 607, name: 'Admin area', type: 'story', order: 'yyyyyyyyyy', parentId: 6, estimate: 30, startDate: '2025-05-03', dueDate: '2025-06-02' },
+    { id: 607, name: 'Admin area', type: 'story', order: 'yyyyyyyyyy', parentId: 6, estimate: 30, status: '2', startDate: '2025-05-03', dueDate: '2025-06-02' },
     { id: 10101, name: 'GIT Repository init', estimate: 1, startDate: '2024-11-01', assignee: 2, status: '2', type: 'task', order: 'v', parentId: 101, exactStartDate: '2024-11-01' },
     { id: 10102, name: 'CI - build code, publish artifacts', estimate: 6, startDate: '2024-11-01', assignee: 2, status: '2', type: 'task', order: 'x', parentId: 101, exactStartDate: '2024-11-02' },
     { id: 10103, name: 'Test instances - Dev, QA, UAT', estimate: 5, startDate: '2024-11-01', assignee: 3, status: '2', type: 'task', order: 'y', parentId: 101, exactStartDate: '2024-11-01' },
@@ -88,9 +88,9 @@ export const resources: Resource[] = [
 ];
 
 export const statuses: Status[] = [
-    { id: '1', name: 'Planned', color: '#848484' },
-    { id: '2', name: 'In Progress', color: '#009ECC' },
-    { id: '3', name: 'Blocked', color: '#FCAA00' },
-    { id: '4', name: 'At Risk', color: '#FA4B4B' },
-    { id: '5', name: 'Complete', color: '#67A300' },
+    { id: '1', name: 'Planned', priority: 1, color: '#848484' },
+    { id: '2', name: 'In Progress', priority: 2, color: '#009ECC' },
+    { id: '3', name: 'Blocked', priority: 3, color: '#FCAA00' },
+    { id: '4', name: 'At Risk', priority: 4, color: '#FA4B4B' },
+    { id: '5', name: 'Complete', priority: 5, color: '#67A300' },
 ];

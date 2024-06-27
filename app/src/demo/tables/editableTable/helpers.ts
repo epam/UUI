@@ -3,6 +3,7 @@ import { Task } from './types';
 import { scheduleTasks as runScheduling, Task as SchedulingTask } from './scheduleTasks';
 import { msPerDay } from '@epam/uui-timeline';
 import { Dayjs, uuiDayjs } from '../../../helpers';
+import { statuses } from './demoData';
 
 function compareScalars(a: any, b: any, order: number) {
     if (a == null) {
@@ -156,12 +157,14 @@ type Subtotals = {
     dueDate: string;
     estimate: number;
     id: number;
+    status?: string;
     parentId: number;
     hasChildren?: boolean;
 } | {
     type: 'subtotal';
     exactStartDate: string;
     dueDate: string;
+    status?: string;
     estimate: number;
     forParentId: number;
     hasChildren?: boolean;
@@ -308,6 +311,78 @@ const getEstimate = (child1: Subtotals, child2: Subtotals) => {
     return child1.forParentId === child2.forParentId ? (child1.estimate + child2.estimate) : child1.estimate;
 };
 
+const statusPriorities = statuses.reduce<Record<string, number>>((acc, { id, priority }) => ({ ...acc, [id]: priority }), {});
+
+const getMinStatus = (child1: Subtotals, child2: Subtotals) => {
+    if (child1.status === undefined) {
+        return child2.status;
+    }
+
+    if (child2.status === undefined) {
+        return child1.status;
+    }
+
+    const child1StatusPriority = statusPriorities[child1.status];
+    const child2StatusPriority = statusPriorities[child2.status];
+
+    if (child1StatusPriority < child2StatusPriority) {
+        return child1.status;
+    }
+
+    return child2.status;
+};
+
+const getStatusForEntities = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'entity'>) => {
+    if (child1.status === undefined) {
+        return child2.status;
+    }
+
+    if (child1.parentId === child2.id) {
+        return child1.status;
+    }
+
+    if (child2.parentId === child1.id) {
+        return child2.status;
+    }
+
+    return getMinStatus(child1, child2);
+};
+
+const getStatusForEntityAndSubtotal = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'subtotal'>) => {
+    if (child1.parentId === child2.forParentId) {
+        return getMinStatus(child1, child2);
+    }
+
+    if (child1.id === child2.forParentId) {
+        return child2.status;
+    }
+
+    return getMinStatus(child1, child2);
+};
+
+const getStatusForSubtotals = (child1: ByType<Subtotals, 'subtotal'>, child2: ByType<Subtotals, 'subtotal'>) => {
+    if (child1.forParentId === child2.forParentId) {
+        return getMinStatus(child1, child2);
+    }
+    return child1.status;
+};
+
+const getStatus = (child1: Subtotals, child2: Subtotals) => {
+    if (child1.type === 'entity') {
+        if (child2.type === 'entity') {
+            return getStatusForEntities(child1, child2);
+        }
+
+        return getStatusForEntityAndSubtotal(child1, child2);
+    }
+
+    if (child2.type === 'entity') {
+        return getStatusForEntityAndSubtotal(child2, child1);
+    }
+
+    return getStatusForSubtotals(child1, child2);
+};
+
 export const scheduleTasks = (
     patch: (updated: IImmutableMap<number, Task> | IMap<number, Task>) => ITree<Task, number>,
     updatedItemsMap: IImmutableMap<number, Task>,
@@ -348,9 +423,10 @@ export const scheduleTasks = (
 
     const subtotals = Tree.computeSubtotals<Task, number, Subtotals>(
         treeAfterScheduling,
-        ({ startDate, estimate, dueDate, id, parentId, exactStartDate }, hasChildren) => ({
+        ({ startDate, estimate, dueDate, id, parentId, exactStartDate, status }, hasChildren) => ({
             type: 'entity',
             startDate,
+            status,
             estimate,
             dueDate,
             id,
@@ -362,6 +438,7 @@ export const scheduleTasks = (
             type: 'subtotal',
             forParentId: getForParentId(child1, child2),
             estimate: getEstimate(child1, child2),
+            status: getStatus(child1, child2),
             exactStartDate: getStartDate(child1, child2),
             dueDate: getDueDate(child1, child2),
         }),
@@ -372,12 +449,17 @@ export const scheduleTasks = (
             return;
         }
         const itemSubtotals = subtotals.get(id);
-        if (itemSubtotals.estimate !== item.estimate || itemSubtotals.exactStartDate !== item.exactStartDate || itemSubtotals.dueDate !== item.dueDate) {
+        if (itemSubtotals.estimate !== item.estimate
+            || itemSubtotals.exactStartDate !== item.exactStartDate
+            || itemSubtotals.dueDate !== item.dueDate
+            || itemSubtotals.status !== item.status
+        ) {
             updatedScheduleItemsMap = updatedScheduleItemsMap.set(id, {
                 ...item,
                 estimate: itemSubtotals.estimate,
                 startDate: itemSubtotals.exactStartDate,
                 dueDate: itemSubtotals.dueDate,
+                status: itemSubtotals.status,
             });
         }
     });
