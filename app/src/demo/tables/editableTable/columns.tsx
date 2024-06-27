@@ -244,13 +244,14 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
                     size="24"
-                    renderEditor={ (props) => (
+                    renderEditor={ (editorProps) => (
                         <PickerInput
                             valueType="id"
                             placeholder="Add Status"
                             dataSource={ statusDataSource }
                             selectionMode="single"
                             minBodyWidth={ 150 }
+                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
@@ -274,12 +275,13 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
+                                        isDisabled={ props.rowLens.prop('type').get() === 'story' }
                                         icon={ () => <IconContainer icon={ statusIcon } style={ { fill: fill, marginBottom: '0' } } cx={ css.statusIcon } /> }
                                         iconPosition="left"
                                     />
                                 );
                             } }
-                            { ...props }
+                            { ...editorProps }
                         />
                     ) }
                     { ...props }

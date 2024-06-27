@@ -91,7 +91,7 @@ export function ProjectTableDemo() {
     treeRef.current = tree;
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => {
-            const items = deleteTaskWithChildren(task, currentValue.items, treeRef.current);
+            const updatedItems = deleteTaskWithChildren(task, currentValue.items, treeRef.current);
             let allDeleted = task.parentId === null ? false : true;
             if (task.parentId !== null) {
                 const children = treeRef.current.getItems(task.parentId).ids;
@@ -110,7 +110,12 @@ export function ProjectTableDemo() {
             
             return {
                 ...currentValue,
-                items: scheduleTasks(patch, allDeleted ? items.set(task.parentId, { ...items.get(task.parentId), type: 'task' }) : items),
+                items: scheduleTasks(
+                    patch,
+                    allDeleted
+                        ? updatedItems.set(task.parentId, { ...updatedItems.get(task.parentId), type: 'task' })
+                        : updatedItems,
+                ),
             };
         });
     }, [patch, setValue]);
@@ -244,19 +249,15 @@ export function ProjectTableDemo() {
                         const shouldReschedule = (id: number) => {
                             const prevTask = prevValue.get(id);
                             const t = nextValue.get(id);
-                            console.log(t.id, t?.order, prevTask?.order);
                             return !prevValue.has(id)
                                 || prevTask.estimate !== t.estimate
                                 || prevTask.startDate !== t.startDate
                                 || prevTask.dueDate !== t.dueDate
                                 || prevTask.assignee !== t.assignee
-                                || prevTask.parentId !== t.parentId
-                                || prevTask.order !== t.order;
+                                || prevTask.status !== t.status;
                         };
-                        console.log('here');
                         for (const [id] of nextValue) {
                             if (shouldReschedule(id)) {
-                                console.log('should reschule', nextValue.get(id));
                                 return scheduleTasks(patch, nextValue);
                             }
                         }
@@ -342,8 +343,7 @@ export function ProjectTableDemo() {
         );
     };
     const { from, to } = getMinMaxDate();
-    
-    console.log(tree);
+
     return (
         <Panel cx={ css.container }>
             <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">

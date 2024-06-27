@@ -27,6 +27,7 @@ export interface Resource {
 export interface Status {
     id: string;
     name: string;
+    priority: number;
     color?: string;
 }
 
