@@ -82,7 +82,7 @@ export function ExploreBenefitsBlock() {
                         <FlexRow cx={ css.bottomBlockCaptionWrapper }>
                             <Text fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
                             { item.captionBadge
-                                && <Badge fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
+                                && <Badge color="success" fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
 
                         </FlexRow>
                         <Text cx={ css.bottomBlockText }>{ item.text }</Text>
