@@ -39,13 +39,12 @@ export class TabButtonDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<uui.TabButtonProps>) => {
             const TEST_DATA = {
-                count: '99+',
+                count: '9',
                 caption: 'Test',
                 callback: 'callback',
                 href: 'https://google.com',
                 icon: 'action-account-fill.svg',
             };
-            const w190_h70: TPreviewCellSize = '190-70';
             const w165_h55: TPreviewCellSize = '165-55';
             type TMatrixLocal = TPreviewMatrix<uui.TabButtonProps>;
             const statesMatrix: TMatrixLocal = {
@@ -57,19 +56,27 @@ export class TabButtonDoc extends BaseDocsBlock {
                 href: { values: [TEST_DATA.href] },
                 caption: { values: [TEST_DATA.caption] },
                 isLinkActive: { values: [true] },
+                size: { examples: '*' },
+            };
+
+            docPreview.add(TTabButtonPreview['Size Variants'], {
+                ...baseMatrix,
                 count: { values: [undefined, TEST_DATA.count] },
                 withNotify: { values: [true, false] },
                 icon: { examples: [undefined, TEST_DATA.icon] },
                 iconPosition: { examples: '*', condition: (props) => !!props.icon },
-                size: { examples: '*' },
-                onClear: { examples: [undefined, TEST_DATA.callback] },
-                isDisabled: { values: [false] },
-            };
-
-            docPreview.add(TTabButtonPreview['Size Variants'], { ...baseMatrix }, w190_h70);
-            docPreview.add(TTabButtonPreview['Color Variants'], { ...baseMatrix, ...statesMatrix }, w165_h55);
-            docPreview.add(TTabButtonPreview['Dropdown Size Variants'], { ...baseMatrix, isDropdown: { values: [true] } }, w190_h70);
-            docPreview.add(TTabButtonPreview['Dropdown Color Variants'], { ...baseMatrix, isDropdown: { values: [true] }, ...statesMatrix }, w165_h55);
+                isDropdown: { values: [true, false] },
+            }, '140-55');
+            docPreview.add(TTabButtonPreview['States'], {
+                ...baseMatrix,
+                ...statesMatrix,
+                count: { values: [TEST_DATA.count] },
+                withNotify: { values: [true] },
+                icon: { examples: [TEST_DATA.icon] },
+                iconPosition: { examples: ['left'] },
+                onClear: { examples: [TEST_DATA.callback] },
+                isDropdown: { values: [true] },
+            }, w165_h55);
         },
     };
 

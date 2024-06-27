@@ -34,7 +34,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
 
     return shouldShowFooter && (
-        <FlexRow padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
+        <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
             {!isSinglePicker && (
                 <Switch
                     size={ settings.sizes.dataPickerFooter.switch[props.size] as SwitchProps['size'] }

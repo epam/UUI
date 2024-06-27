@@ -195,6 +195,7 @@ exports[`PickerList should open body 1`] = `
           >
             <div
               class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
+              dir="auto"
               tabindex="-1"
             >
               <div
@@ -207,6 +208,7 @@ exports[`PickerList should open body 1`] = `
               <input
                 aria-invalid="false"
                 class="uui-input"
+                dir="auto"
                 inputmode="search"
                 placeholder="Type text for quick search"
                 tabindex="-1"

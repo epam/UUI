@@ -280,7 +280,7 @@ export class FetchingHelper {
             remainingRowsCount = Number.MAX_SAFE_INTEGER;
         }
 
-        const missingCount = remainingRowsCount - ids.length;
+        const missingCount = Math.max(0, remainingRowsCount - ids.length);
 
         const availableCount = childrenCount != null ? childrenCount - ids.length : missingCount;
 

@@ -31,36 +31,6 @@
     }
 }
 
-.color-red {
-    :global(.uui-icon) {
-        fill: var(--uui-text-critical);
-    }
-}
-
-.color-green {
-    :global(.uui-icon) {
-        fill: var(--uui-text-success);
-    }
-}
-
-.color-amber {
-    :global(.uui-icon) {
-        fill: var(--uui-text-warning);
-    }
-}
-
-.color-blue {
-    :global(.uui-icon) {
-        fill: var(--uui-text-info);
-    }
-}
-
-.color-gray60 {
-    :global(.uui-icon) {
-        fill: var(--uui-neutral-60);
-    }
-}
-
 .gray80 {
     background-color: var(--uui-neutral-80);
 
@@ -77,15 +47,4 @@
 
 .gray90 {
     background-color: var(--uui-neutral-90);
-}
-
-.target-button {
-    position: relative;
-}
-
-.sub-button {
-    position: absolute;
-    display: flex;
-    top: -42px;
-    background: var(--uui-neutral-80);
 }

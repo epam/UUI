@@ -29,6 +29,14 @@ import { useEffect } from 'react';
 import cx from 'classnames';
 import css from './rteDemo.module.scss';
 
+function CustomIcon({ backgroundColor }: { backgroundColor: string }) {
+    return (
+        <div className={ css.iconWrapper } style={ { backgroundColor } }>
+            <span>A</span>
+        </div>
+    );
+}
+
 const getPlugins = () => {
     const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
         return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
@@ -39,14 +47,58 @@ const getPlugins = () => {
     return [
         ...defaultPlugins,
         ...baseMarksPlugin(),
-        headerPlugin(),
-        colorPlugin(),
+        headerPlugin(
+            {
+                headers: [
+                    'header-1',
+                    'header-2',
+                    'header-3',
+                    'header-4',
+                    'header-5',
+                    'header-6',
+                ],
+            },
+        ),
+        colorPlugin(
+            {
+                colors: [
+                    '#2596be',
+                    '#e28743',
+                    '#873e23',
+                    '#7303fc',
+                    '#a32f71',
+                ],
+            },
+            // ...defaultColorsConfig,
+        ),
         superscriptPlugin(),
         listPlugin(),
         toDoListPlugin(),
         quotePlugin(),
         linkPlugin(),
-        notePlugin(),
+        // ...[...defaultNotesConfig],
+        notePlugin({
+            notes: [
+                {
+                    type: 'note-type-one',
+                    backgroundColor: '#063970',
+                    borderColor: '#2596be',
+                    toolbarIcon: () => <CustomIcon backgroundColor="#063970" />,
+                },
+                {
+                    type: 'note-type-two',
+                    backgroundColor: '#eab676',
+                    borderColor: '#e28743',
+                    toolbarIcon: () => <CustomIcon backgroundColor="#eab676" />,
+                },
+                {
+                    type: 'note-type-three',
+                    backgroundColor: '#dfc8a2',
+                    borderColor: '#873e23',
+                    toolbarIcon: () => <CustomIcon backgroundColor="rgb(135,62,35)" />,
+                },
+            ],
+        }),
         uploadFilePlugin({ uploadFile: uploadFile }),
         attachmentPlugin(),
         imagePlugin(),

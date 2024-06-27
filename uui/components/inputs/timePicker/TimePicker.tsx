@@ -1,74 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { DropdownBodyProps, IDropdownToggler, isFocusReceiverInsideFocusLock } from '@epam/uui-core';
 import { uuiDayjs } from '../../../helpers/dayJsHelper';
-import {
-    CX, DropdownBodyProps, ICanBeReadonly, ICanFocus, IDisableable, IDropdownToggler, IEditable,
-    IHasForwardedRef, IHasPlaceholder, IHasRawProps, isFocusReceiverInsideFocusLock,
-} from '@epam/uui-core';
 import { Dropdown, DropdownContainer } from '../../overlays';
 import { TextInput } from '../TextInput';
-import { TimePickerBody } from '../timePicker';
-import { EditMode, IHasEditMode } from '../../types';
+import { TimePickerBody } from './TimePickerBody';
+import { EditMode } from '../../types';
+import { TimePickerProps, TimePickerValue } from './types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
 
 const DEFAULT_MODE = EditMode.FORM;
-
-export interface TimePickerProps extends IHasEditMode, IEditable<TimePickerValue | null>,
-    IDisableable,
-    ICanBeReadonly,
-    IHasPlaceholder,
-    ICanFocus<HTMLElement>,
-    IHasForwardedRef<HTMLElement> {
-
-    /**
-     * Defines component size.
-     */
-    size?: '24' | '30' | '36' | '42' | '48';
-
-    /**
-     * Minutes input increase/decrease step on up/down icons clicks and up/down arrow keys
-     * @default 5
-     */
-    minutesStep?: number;
-
-    /**
-     * Time format, 12 hours with AM/PM or 24 hours
-     * @default 12
-     */
-    format?: 12 | 24;
-
-    /** ID to put on time picker toggler 'input' node */
-    id?: string;
-
-    /**
-     * Render callback for time picker toggler.
-     * If omitted, default TextInput component will be rendered.
-     */
-    renderTarget?(props: IDropdownToggler): React.ReactNode;
-
-    /** HTML attributes to put directly to TimePicker parts */
-    rawProps?: {
-        /** HTML attributes to put directly to the input element */
-        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-        /** HTML attributes to put directly to the body root element */
-        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-    };
-    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
-    inputCx?: CX;
-    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
-    bodyCx?: CX;
-    /**
-     * Indicates that inputs' clear cross is hidden
-     */
-    disableClear?: boolean;
-}
-
-export interface TimePickerValue {
-    /** Selected hours value */
-    hours: number;
-    /** Selected minutes value */
-    minutes: number;
-}
 
 const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['format']) => {
     if (value === null) return null;
