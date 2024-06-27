@@ -4,7 +4,7 @@ import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
     DatePicker, DataPickerRow, PickerItem, IconContainer, 
     DataTableTimelineHeaderCell } from '@epam/uui';
-import { ArrayDataSource, DataColumnProps, DataQueryFilter } from '@epam/uui-core';
+import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditableDebouncer } from '@epam/uui-core';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 
 import { RowKebabButton } from './RowKebabButton';
@@ -41,7 +41,20 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
-                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    renderEditor={ (props) => (
+                        <IEditableDebouncer
+                            { ...props }
+                            render={ (editableProps) => {
+                                return (
+                                    <NumericInput
+                                        { ...props }
+                                        formatOptions={ { maximumFractionDigits: 1 } }
+                                        { ...editableProps }
+                                    />
+                                );
+                            } }
+                        />    
+                    ) }
                     { ...props }
                 />
             ),
@@ -203,7 +216,21 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
-                    renderEditor={ (props) => <NumericInput { ...props } formatOptions={ { maximumFractionDigits: 1 } } /> }
+                    renderEditor={ (editorProps) => (
+                        <IEditableDebouncer
+                            { ...editorProps }
+                            render={ (editableProps) => {
+                                return (
+                                    <NumericInput
+                                        { ...editorProps }
+                                        formatOptions={ { maximumFractionDigits: 1 } }
+                                        { ...editableProps }
+                                        isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                                    />
+                                );
+                            } }
+                        />    
+                    ) }
                     { ...props }
                 />
             ),
@@ -267,7 +294,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (editorProps) => <DatePicker format="MMM D, YYYY" placeholder="" { ...editorProps } isDisabled={ props.rowLens.prop('type').get() === 'story' } /> }
                     { ...props }
                 />
             ),
@@ -279,7 +306,9 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (editorProps) => (
+                        <DatePicker format="MMM D, YYYY" placeholder="" { ...editorProps } isDisabled={ props.rowLens.prop('type').get() === 'story' } />
+                    ) }
                     { ...props }
                 />
             ),

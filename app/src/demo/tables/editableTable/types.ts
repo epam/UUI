@@ -10,6 +10,7 @@ export interface Task {
     estimate?: number;
     assignee?: number;
     startDate?: string;
+    exactStartDate?: string;
     dueDate?: string;
     status?: string;
     description?: string;
@@ -24,7 +25,7 @@ export interface Resource {
 }
 
 export interface Status {
-    id: number;
+    id: string;
     name: string;
     color?: string;
 }
