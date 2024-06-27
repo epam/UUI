@@ -1,4 +1,4 @@
-import { DropPosition, IImmutableMap, IMap, ITree, Tree, getOrderBetween, newMap } from '@epam/uui-core';
+import { DropPosition, IImmutableMap, IMap, ITree, Tree, getOrderBetween } from '@epam/uui-core';
 import { Task } from './types';
 import { scheduleTasks as runScheduling, Task as SchedulingTask } from './scheduleTasks';
 import { msPerDay } from '@epam/uui-timeline';
@@ -185,6 +185,38 @@ const getChildDueDate = (child: Subtotals) => {
     return toTime(child.dueDate);
 };
 
+const getDueDateForEntities = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'entity'>) => {
+    return formatDate(Math.max(getChildDueDate(child1), getChildDueDate(child2)));
+};
+
+const getDueDateForEntityAndSubtotal = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'subtotal'>) => {
+    if (child1.parentId === child2.forParentId) {
+        return formatDate(Math.max(getChildDueDate(child1), getChildDueDate(child2)));
+    }
+
+    if (child1.id === child2.forParentId) {
+        return formatDate(getChildDueDate(child2));
+    }
+
+    return formatDate(Math.max(getChildDueDate(child1), getChildDueDate(child2)));
+};
+
+const getDueDateForSubtotals = (child1: Subtotals, child2: Subtotals) => {
+    if (child1.type === 'entity') {
+        if (child2.type === 'entity') {
+            return getDueDateForEntities(child1, child2);
+        }
+
+        return getDueDateForEntityAndSubtotal(child1, child2);
+    }
+
+    if (child2.type === 'entity') {
+        return getDueDateForEntityAndSubtotal(child2, child1);
+    }
+
+    return formatDate(Math.max(getChildDueDate(child1), getChildDueDate(child2)));
+};
+
 const getDueDate = (child1: Subtotals, child2: Subtotals) => {
     const child1DueDate = getChildDueDate(child1);
     const child2DueDate = getChildDueDate(child2);
@@ -197,7 +229,7 @@ const getDueDate = (child1: Subtotals, child2: Subtotals) => {
         return child1DueDate ? formatDate(child1DueDate) : undefined;
     }
 
-    return formatDate(Math.max(child1DueDate, child2DueDate));
+    return getDueDateForSubtotals(child1, child2);
 };
 
 type ByType<T, Type> = T extends { type: Type } ? T : never;
