@@ -1,5 +1,12 @@
-# Install container management tool
-## Windows
+# UUI e2e tests package
+
+This package is a part of [EPAM UUI](https://github.com/epam/UUI) library.
+
+This is internal package for e2e testing of UUI.
+
+
+## Install container management tool
+### Windows
 #### Option 1: Podman v5.x
 1. Install Podman v5.x from here: https://github.com/containers/podman/releases 
 You might need to restart computer after that.
@@ -32,7 +39,7 @@ You might need to restart computer after that.
     podman machine rm
     ```
 
-## macOS
+### macOS
 #### Option 1: Colima
 1. Install Colima via CLI:
     ```shell 
@@ -54,13 +61,13 @@ You might need to restart computer after that.
     ```
 2. Other steps are the same as for Windows (see above)
 
-## Usage of alternative tools not mentioned in this guide
+### Usage of alternative tools not mentioned in this guide
 By default, if "podman" is detected, then it is used to build/run containers; otherwise "docker" is used as fallback;
 To override the default behavior, you might explicitly specify any tool via ```.env``` file using ```UUI_DOCKER_CONTAINER_ENGINE=<cmd>``` option.
 Please make sure that this tool is compatible with Docker's CLI.
 
-# Run tests locally (via Docker)
-## Prerequisites
+## Run tests locally (via Docker)
+### Prerequisites
 1. Server is started. Possible options:
    * Local dev server **(this is default option)**
      * Pros: Convenient when you make changes to e2e tests and want to see results right away
@@ -89,7 +96,7 @@ yarn test-e2e-update
 yarn test-e2e-open-report
 ```
 
-# Run tests locally (without Docker)
+## Run tests locally (without Docker)
 > Important note. Our baseline screenshots are generated on Linux; and the generated screenshots differ for different OS/platform. This is why Docker has to be used on non-Linux computers to run the screenshots tests. 
 
 Cases when you can run tests without Docker:
