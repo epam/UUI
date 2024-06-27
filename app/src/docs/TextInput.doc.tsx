@@ -40,15 +40,11 @@ export class TextInputDoc extends BaseDocsBlock {
             };
             type TMatrixLocal = TPreviewMatrix<uui.TextInputProps>;
             const statesBaseMatrix: TMatrixLocal = {
-                size: { values: ['30'] },
                 isInvalid: { values: [false, true] },
                 isDisabled: { values: [false, true], condition: (props) => !props.isInvalid },
                 isReadonly: { values: [false, true], condition: (props) => !props.isInvalid && !props.isDisabled },
             };
             const baseMatrix: TMatrixLocal = {
-                size: { examples: '*' },
-                icon: { examples: [undefined, TEST_DATA.icon] },
-                iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
                 isDropdown: { values: [false, true] },
                 onAccept: { examples: ['callback'] },
                 onCancel: { examples: ['callback'] },
@@ -56,10 +52,26 @@ export class TextInputDoc extends BaseDocsBlock {
             };
             const w180_h80: TPreviewCellSize = '180-80';
             const w180_h50: TPreviewCellSize = '180-50';
-            const formBaseMatrix: TMatrixLocal = { mode: { examples: ['form'] }, ...baseMatrix };
-            docPreview.add(TTextInputPreview['Form Size Variants'], formBaseMatrix, w180_h80);
-            docPreview.add(TTextInputPreview['Inline Size Variants'], { mode: { examples: ['inline'] }, ...baseMatrix }, w180_h80);
-            docPreview.add(TTextInputPreview['Color Variants'], { mode: { examples: ['form', 'inline'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h50);
+
+            docPreview.add(TTextInputPreview['Size Variants'], {
+                size: { examples: '*' },
+                mode: { examples: ['form'] },
+                isDropdown: { values: [false, true] },
+                icon: { examples: [undefined, TEST_DATA.icon] },
+                iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
+                ...baseMatrix,
+            }, w180_h80);
+
+            docPreview.add(TTextInputPreview['States'], {
+                mode: { examples: ['form', 'inline', 'cell'] },
+                size: { values: ['30'] },
+                isDropdown: { values: [true] },
+                icon: { examples: [TEST_DATA.icon] },
+                iconPosition: { examples: ['left'] },
+                placeholder: { values: [TEST_DATA.placeholder], condition: (props) => !props.value },
+                ...baseMatrix,
+                ...statesBaseMatrix,
+            }, w180_h50);
         },
     };
 
