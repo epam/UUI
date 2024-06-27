@@ -747,6 +747,11 @@ Array [
         "type": "table_row",
       },
     ],
+    "colSizes": Array [
+      200,
+      200,
+      200,
+    ],
     "data": Object {},
     "type": "table",
   },

@@ -83,6 +83,7 @@ export enum TSkin {
 
 export enum TDocContext {
     Default = 'Default',
+    Block = 'Block',
     FlexRow = 'FlexRow',
     Form = 'Form',
     PagePanel = 'PagePanel',

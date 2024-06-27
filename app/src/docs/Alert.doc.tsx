@@ -43,8 +43,7 @@ export class AlertDoc extends BaseDocsBlock {
                 actions1: '1 action',
                 actions2: '2 actions',
                 children1line: <uui.Text size="30">Test Test</uui.Text>,
-                // eslint-disable-next-line
-                children2lines: (<uui.Text size="30">{'Test Test'}<br/>{'Test Test'}</uui.Text>),
+                children2lines: (<uui.Text size="30">Notification with some buttons and long text</uui.Text>),
             };
             docPreview.add({
                 id: TAlertPreview['Color Variants'],
@@ -59,27 +58,26 @@ export class AlertDoc extends BaseDocsBlock {
                 cellSize: '220-80',
             });
             docPreview.add({
-                id: TAlertPreview['Layout with icon'],
-                matrix: {
-                    children: { values: [TEST_DATA.children1line, TEST_DATA.children2lines] },
-                    actions: { examples: [undefined, TEST_DATA.actions1, TEST_DATA.actions2] },
-                    size: { examples: '*' },
-                    color: { examples: ['info'] },
-                    icon: { examples: [TEST_DATA.icon] },
-                    onClose: { examples: [undefined, 'callback'] },
-                },
-                cellSize: '260-120',
-            });
-            docPreview.add({
-                id: TAlertPreview['Layout without icon'],
-                matrix: {
-                    children: { values: [TEST_DATA.children1line, TEST_DATA.children2lines] },
-                    actions: { examples: [undefined, TEST_DATA.actions1, TEST_DATA.actions2] },
-                    size: { examples: '*' },
-                    color: { examples: ['info'] },
-                    icon: { examples: [undefined] },
-                    onClose: { examples: [undefined, 'callback'] },
-                },
+                id: TAlertPreview['Layout'],
+                matrix: [
+                    {
+                        children: { values: [TEST_DATA.children2lines] },
+                        actions: { examples: [TEST_DATA.actions2] },
+                        size: { examples: '*' },
+                        color: { examples: ['info'] },
+                        icon: { examples: [TEST_DATA.icon] },
+                        onClose: { examples: ['callback', undefined] },
+                    },
+                    {
+                        children: { values: [TEST_DATA.children1line] },
+                        actions: { examples: [TEST_DATA.actions1] },
+                        size: { examples: '*' },
+                        color: { examples: ['info'] },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        onClose: { examples: ['callback', undefined] },
+                    },
+                ],
+                context: TDocContext.Block,
                 cellSize: '260-120',
             });
         },

@@ -58,7 +58,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             />
         );
     };
-    
+
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         return props.renderRow ? (
             props.renderRow(rowProps, dataSourceState)
@@ -133,6 +133,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                                 ) }
                             autoFocus={ true }
                             placeholder={ i18n.pickerModal.searchPlaceholder }
+                            rawProps={ { dir: 'auto' } }
                         />
                     </FlexRow>
                     {!isSingleSelect() && (
