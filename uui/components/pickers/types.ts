@@ -5,3 +5,5 @@ export interface PickerCellMods {
     padding?: '0' | '12' | '24';
     alignActions?: 'top' | 'center';
 }
+
+export interface PickerCellModsOverride {}
