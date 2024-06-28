@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceState, Icon } from '@epam/uui-core';
+import { DataRowProps, DataSourceState, Icon, Overwrite } from '@epam/uui-core';
 import { AvatarProps, IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow, FlexRowProps } from '../layout';
 import { Text, TextPlaceholder, TextProps } from '../typography';
@@ -8,11 +8,17 @@ import { getHighlightedSearchMatches } from './highlight';
 import { settings } from '../../settings';
 import css from './PickerItem.module.scss';
 
-export interface PickerItemProps<TItem, TId> extends DataRowProps<TItem, TId> {
+export interface PickerItemModsOverride {}
+
+interface PickerItemMods {
     /**
      * Defines component size.
      */
     size?: '24' | '30' | '36' | '42' | '48';
+}
+
+export interface PickerItemProps<TItem, TId> extends Overwrite<PickerItemMods, PickerItemModsOverride>,
+    DataRowProps<TItem, TId> {
     /** Path to the user avatar.
      * If omitted, no avatar will be rendered.
      * * */
