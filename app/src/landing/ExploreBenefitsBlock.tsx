@@ -1,5 +1,5 @@
 import React, { FC, SVGProps } from 'react';
-import { Badge, Button, FlexRow, IconContainer, LinkButton, Panel, Text, ButtonProps, Anchor } from '@epam/uui';
+import { Badge, Button, FlexRow, IconContainer, LinkButton, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
 import css from './ExploreBenefitsBlock.module.scss';
 import { ReactComponent as ActionAccountFillIcon } from '@epam/assets/icons/action-account-fill.svg';
 
@@ -65,11 +65,18 @@ export function ExploreBenefitsBlock() {
                 { topExploreBlocks.map((item) => (
                     <Panel cx={ css.topBlockPanel }>
                         <IconContainer icon={ item.icon } cx={ css.topBlockIcon } />
-                        <Text fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
-                        <Text cx={ css.topBlockText }>{ item.text }</Text>
+                        <FlexCell cx={ css.topBlockContextWrapper }>
+                            <Text fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
+                            <Text cx={ css.topBlockText }>{ item.text }</Text>
+                        </FlexCell>
                         { item.footer && (
                             <FlexRow cx={ css.topBlockFooter } justifyContent="center">
-                                <LinkButton caption={ item.footer.linkCaption } />
+                                <LinkButton
+                                    caption={ item.footer.linkCaption }
+                                    href={ item.footer.href }
+                                    onClick={ () => {
+                                    } }
+                                />
                             </FlexRow>
                         ) }
                     </Panel>
@@ -89,9 +96,7 @@ export function ExploreBenefitsBlock() {
                         { item.footer && (
                             <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
                                 { item.footer.map((footerItem) => (
-                                    <Anchor href="/">
-                                        <Button color={ footerItem.color } fill="none" caption={ footerItem.linkCaption } onClick={ () => {} } /> 
-                                    </Anchor>
+                                    <Button href={ footerItem.href } color={ footerItem.color } fill="none" caption={ footerItem.linkCaption } onClick={ () => {} } />
                                 )) }
                             </FlexRow>
                         ) }
