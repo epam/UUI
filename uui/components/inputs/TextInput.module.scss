@@ -41,8 +41,8 @@
     border-style: solid;
     box-sizing: border-box;
     min-width: var(--uui-text_input-min-width);
-    padding-left: calc(var(--uui-text_input-horizontal-padding) - var(--uui-text_input-border-width));
-    padding-right: calc(var(--uui-text_input-horizontal-padding) - var(--uui-text_input-border-width));
+    padding-inline-start: calc(var(--uui-text_input-horizontal-padding) - var(--uui-text_input-border-width));
+    padding-inline-end: calc(var(--uui-text_input-horizontal-padding) - var(--uui-text_input-border-width));
     border-radius: var(--uui-text_input-border-radius);
 
     &:global(.uui-input-box) {

@@ -3,7 +3,7 @@ import { DataPickerCellProps, uuiMod, cx, Overwrite } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { PickerCellMods, PickerCellModsOverride } from './types';
 import { TextPlaceholder, Text, TextProps } from '../typography';
-import { DataRowAddons } from '../widgets';
+import { DataRowAddons, DataRowAddonsProps } from '../widgets';
 import { FlexCell } from '../layout';
 import { settings } from '../../settings';
 import { ReactComponent as BoldTickIcon } from '@epam/assets/icons/notification-done-fill.svg';
@@ -36,6 +36,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 {(props.rowProps.isChildrenSelected || props.rowProps.isSelected) && (
                     <div className={ cx(css.iconWrapper, uuiMod.selected) }>
                         <IconContainer
+                            size={ settings.sizes.dataPickerCell.icon[props.size] }
                             icon={ settings.sizes.dataPickerCell.isBoldIcon[props.size as never] ? BoldTickIcon : TickIcon }
                             cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.selectedMark }
                             rawProps={ { 'aria-label': props.rowProps.isChildrenSelected
@@ -65,13 +66,13 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 css.root,
                 props.cx,
                 'data-picker-cell',
-                css['size-' + (props.size || settings.sizes.defaults.dataPickerCell)],
+                'uui-size-' + (props.size || settings.sizes.defaults.dataPickerCell),
                 css[`padding-${props.padding || settings.sizes.dataPickerCell.padding.default}`],
                 css[`padding-left-${props.padding || settings.sizes.dataPickerCell.paddingLeft.default}`],
                 css[`align-widgets-${props.alignActions || 'top'}`],
             ] }
         >
-            <DataRowAddons { ...props } />
+            <DataRowAddons size={ props.size || settings.sizes.defaults.dataPickerCell as DataRowAddonsProps<any, any>['size'] } { ...props } />
             {getWrappedContent()}
         </FlexCell>
     );
