@@ -1,5 +1,12 @@
 import {
-    CommonDatePickerProps, IAnalyticableOnChange, ICanFocus, IEditable, IHasCX, IHasPlaceholder, IHasRawProps,
+    CommonDatePickerProps,
+    IAnalyticableOnChange,
+    ICanFocus,
+    IEditable,
+    IHasCX,
+    IHasPlaceholder,
+    IHasRawProps,
+    Overwrite,
 } from '@epam/uui-core';
 import { IHasEditMode } from '../types';
 import { ReactElement, ReactNode } from 'react';
@@ -20,22 +27,26 @@ type RangeDatePickerValue = {
     to: string | null;
 };
 
+export interface DatePickerModsOverride {}
+
+type DatePickerMods = {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+};
+
 /**
  * Represents the properties of the DatePicker component
  */
 interface DatePickerProps extends
+    Overwrite<DatePickerMods, DatePickerModsOverride>,
     CommonDatePickerProps,
     IHasEditMode,
     ICanFocus<HTMLInputElement>,
     IEditable<string | null>,
     IAnalyticableOnChange<string>,
     IHasPlaceholder {
-
-    /**
-     * Defines component size.
-     */
-    size?: '24' | '30' | '36' | '42' | '48';
-
     /**
      * Defines where to place calendar icon
      */
@@ -66,18 +77,23 @@ interface DatePickerProps extends
     };
 }
 
-/**
- * Represents the properties of the RangeDatePicker component
- */
-interface RangeDatePickerProps extends
-    IEditable<RangeDatePickerValue | null>,
-    IAnalyticableOnChange<RangeDatePickerValue | null>,
-    CommonDatePickerProps {
+export interface RangeDatePickerModsOverride {}
+
+type RangeDatePickerMods = {
     /**
      * Defines component size.
      */
     size?: '24' | '30' | '36' | '42' | '48';
+};
 
+/**
+ * Represents the properties of the RangeDatePicker component
+ */
+interface RangeDatePickerProps extends
+    Overwrite<RangeDatePickerMods, RangeDatePickerModsOverride>,
+    IEditable<RangeDatePickerValue | null>,
+    IAnalyticableOnChange<RangeDatePickerValue | null>,
+    CommonDatePickerProps {
     /**
      * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.
      * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)

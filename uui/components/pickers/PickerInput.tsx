@@ -2,7 +2,17 @@ import React, { useImperativeHandle, useRef } from 'react';
 import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile } from '@epam/uui-core';
+import {
+    DataRowProps,
+    DataSourceListProps,
+    DataSourceState,
+    DropdownBodyProps,
+    IDropdownToggler,
+    IEditableDebouncer,
+    PickerInputElement,
+    isMobile,
+    Overwrite,
+} from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { MobileDropdownWrapper } from './MobileDropdownWrapper';
@@ -12,7 +22,11 @@ import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem, PickerItemProps } from './PickerItem';
 import { settings } from '../../settings';
 
-export type PickerInputProps<TItem, TId> = SizeMod & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
+export interface PickerInputModsOverride {}
+
+interface PickerInputMods extends SizeMod {}
+
+export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInputModsOverride> & IHasEditMode & PickerInputBaseProps<TItem, TId> & {
     /**
      * Render callback for picker toggler selection tag
      * If omitted, default `PickerTogglerTag` component will be rendered
