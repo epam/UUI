@@ -1,5 +1,4 @@
 import { createJuicePlugin } from '@udecode/plate-juice';
-import { createDeserializeDocxPlugin } from '@udecode/plate-serializer-docx';
 import { isBlockAboveEmpty, isSelectionAtBlockStart, PlatePlugin } from '@udecode/plate-common';
 import { type ResetNodePlugin, createResetNodePlugin } from '@udecode/plate-reset-node';
 import { createSoftBreakPlugin } from '@udecode/plate-break';
@@ -12,6 +11,8 @@ import {
 } from './plugins';
 import { createAutoformatPlugin } from './plugins/autoformatPlugin';
 import { createEventEditorPlugin } from './plugins/eventEditorPlugin';
+import { createDeserializeDocxPlugin } from '@udecode/plate-serializer-docx';
+import { createIndentListPlugin } from '@udecode/plate-indent-list';
 
 const resetBlockTypesCommonRule = {
     types: [
@@ -45,6 +46,7 @@ const resetBlockTypePlugin: Partial<PlatePlugin<ResetNodePlugin>> = {
  * https://github.com/udecode/plate/blob/main/docs/BREAKING_CHANGES.md#general
  */
 export const defaultPlugins: PlatePlugin[] = [
+    createIndentListPlugin(), // only for pasting lists from docx, further editing diffet from regular list
     createDeserializeDocxPlugin(), // depends on juice plugin
     createJuicePlugin(),
     paragraphPlugin(),
