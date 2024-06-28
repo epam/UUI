@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DataPickerCellProps, uuiMod, cx } from '@epam/uui-core';
+import { DataPickerCellProps, uuiMod, cx, Overwrite } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
-import { PickerCellMods } from './types';
+import { PickerCellMods, PickerCellModsOverride } from './types';
 import { TextPlaceholder, Text, TextProps } from '../typography';
 import { DataRowAddons } from '../widgets';
 import { FlexCell } from '../layout';
@@ -10,7 +10,7 @@ import { ReactComponent as BoldTickIcon } from '@epam/assets/icons/notification-
 import { ReactComponent as TickIcon } from '@epam/assets/icons/notification-done-outline.svg';
 import css from './DataPickerCell.module.scss';
 
-export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId> & PickerCellMods) {
+export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId> & Overwrite<PickerCellMods, PickerCellModsOverride>) {
     const ref = React.useRef<HTMLDivElement>();
 
     let content: React.ReactNode;
