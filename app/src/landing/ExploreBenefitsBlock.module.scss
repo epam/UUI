@@ -19,7 +19,7 @@
         .top-block-panel {
             display: grid;
             grid-template-rows: subgrid;
-            grid-row: 1/5;
+            grid-row: 1/4;
             background-color: var(--uui-surface-highest);
             border-radius: 9px;
             padding: 18px;
@@ -28,16 +28,12 @@
                 grid-row: 1;
             }
 
-            .top-block-caption {
+            .top-block-context-wrapper {
                 grid-row: 2;
             }
 
-            .top-block-text {
-                grid-row: 3;
-            }
-
             .top-block-footer {
-                grid-row: 4;
+                grid-row: 3;
             }
         }
     }
