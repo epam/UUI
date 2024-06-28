@@ -1,9 +1,9 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps as uuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
+import { settings } from '../../settings';
 import css from './TextArea.module.scss';
 
-const DEFAULT_SIZE = '36';
 const DEFAULT_MODE = types.EditMode.FORM;
 
 type TextAreaMods = types.IHasEditMode & {
@@ -19,7 +19,8 @@ export interface TextAreaModsOverride {}
 function applyTextAreaMods(mods: TextAreaMods) {
     return [
         css.root,
-        css['size-' + (mods.size || DEFAULT_SIZE)],
+        'uui-textarea',
+        'uui-size-' + (mods.size || settings.sizes.defaults.textArea),
         css['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }

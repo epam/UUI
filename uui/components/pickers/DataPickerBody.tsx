@@ -60,7 +60,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         </FlexCell>
                     </div>
                 )}
-                <FlexRow key="body" cx={ cx('uui-pickerInput-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
+                <FlexRow key="body" cx={ cx('uui-picker_input-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
                     { this.props.rowsCount > 0 ? (
                         <VirtualList
                             { ...this.lens.toProps() }

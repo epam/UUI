@@ -1,8 +1,7 @@
 @use  '../../assets/styles/index' as *;
 
-:global(.uui-pickerInput-body) {
-    --uui-dt-cell-border-width: 0;
-    --uui-pickerInput-selected_mark: var(--uui-info-50);
+:global(.uui-picker_input-body) {
+    --uui-picker_input-selected_mark: var(--uui-info-50);
     //
     display: flex;
     flex-direction: column;
@@ -25,7 +24,7 @@
     }
 }
 
-.search-wrapper ~ .body {
+.search-wrapper ~ :global(.uui-picker_input-body) {
     &:not(.modal) {
         :global(.-scrolled-top) {
             border-top: 1px solid var(--uui-divider);
