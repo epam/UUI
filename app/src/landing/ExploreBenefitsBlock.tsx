@@ -1,33 +1,50 @@
 import React, { FC, SVGProps } from 'react';
 import { Badge, Button, FlexRow, IconContainer, LinkButton, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
 import css from './ExploreBenefitsBlock.module.scss';
-import { ReactComponent as ActionAccountFillIcon } from '@epam/assets/icons/action-account-fill.svg';
+import { ReactComponent as OpenSourceIcon } from '../icons/open-source.svg';
+import { ReactComponent as StarsIcon } from '../icons/stars.svg';
+import { ReactComponent as flagIcon } from '../icons/flag.svg';
+import { ReactComponent as windows } from '../icons/windows.svg';
+import { ReactComponent as brushBuilder } from '../icons/brush-builder.svg';
+import { ReactComponent as actionLockIcon } from '../icons/action-lock-open.svg';
+import { ReactComponent as notificationHelpIcon } from '../icons/notification-help.svg';
 
 interface IExploreTopBlockItem {
     id: number,
-    icon: FC<SVGProps<SVGSVGElement>>,
+    icon: { element: FC<SVGProps<SVGSVGElement>>, background: string },
     caption: string,
-    text: string,
+    text: React.ReactNode,
     footer: null | { linkCaption: string, href: string }
 }
 
 const topExploreBlocks: IExploreTopBlockItem[] = [
-    { id: 0, icon: ActionAccountFillIcon, caption: 'Figma components aligned with React', text: 'Guidelines, examples, do/don’s recommendations and many other useful guides for designer and developer', footer: null },
-    { id: 1, icon: ActionAccountFillIcon, caption: 'Integrated solutions & front-end accelerating facilities', text: 'Common services, state-management primitives: Forms with validation, Lists and Tables with lazy-loading', footer: null },
-    { id: 2, icon: ActionAccountFillIcon, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/' } },
+    { id: 0, icon: { element: StarsIcon, background: '#FFFFF0' }, caption: 'Figma components aligned with React', text: 'Guidelines, examples, do/don’s recommendations and many other useful guides for designer and developer', footer: null },
+    {
+        id: 1,
+        icon: { element: flagIcon, background: '#FDE1E1' },
+        caption: 'Integrated solutions & front-end accelerating facilities',
+        text: 'Common services, state-management primitives: Forms with validation,'
+            + ' Lists and Tables with lazy-loading',
+        footer: null,
+    },
+    { id: 2, icon: { element: windows, background: '#97D9B7' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/' } },
     {
         id: 3,
-        icon: ActionAccountFillIcon,
+        icon: { element: brushBuilder, background: '#DBCCFA' },
         caption: 'Themization',
-        // eslint-disable-next-line no-multi-str
-        text: 'Easy to create and support your own brand theme. Allows deep customization to build your own brand UI components set on top',
+        /* eslint-disable react/jsx-closing-tag-location */
+        text: <span>
+            Easy to create and support your own brand theme.
+            <br />
+            Allows deep customization to build your own brand UI components set on top
+        </span>,
         footer: { linkCaption: 'Open builder', href: '/' },
     },
 ];
 
 interface IExploreBottomBlockItem {
     id: number,
-    icon: FC<SVGProps<SVGSVGElement>>,
+    icon: { element: FC<SVGProps<SVGSVGElement>>, background: string },
     caption: string,
     captionBadge: null | { icon: FC<SVGProps<SVGSVGElement>>, caption: string },
     text: string,
@@ -37,9 +54,9 @@ interface IExploreBottomBlockItem {
 const bottomExploreBlocks: IExploreBottomBlockItem[] = [
     {
         id: 0,
-        icon: ActionAccountFillIcon,
+        icon: { element: actionLockIcon, background: '#CDEEDD' },
         caption: 'Open Source',
-        captionBadge: { icon: ActionAccountFillIcon, caption: 'MIT License' },
+        captionBadge: { icon: OpenSourceIcon, caption: 'MIT License' },
         text: 'Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects',
         footer: [
             { linkCaption: 'Figma Community', href: '/', color: 'accent' },
@@ -47,7 +64,7 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         ],
     }, {
         id: 1,
-        icon: ActionAccountFillIcon,
+        icon: { element: notificationHelpIcon, background: '#CEE1FC' },
         caption: 'Support',
         captionBadge: null,
         text: 'Ongoing support during project live cycle. Access to a dedicated UUI team of architect, designers and developers',
@@ -64,14 +81,15 @@ export function ExploreBenefitsBlock() {
             <div className={ css.topBlockWrapper }>
                 { topExploreBlocks.map((item) => (
                     <Panel cx={ css.topBlockPanel }>
-                        <IconContainer icon={ item.icon } cx={ css.topBlockIcon } />
+                        <IconContainer icon={ item.icon.element } cx={ css.topBlockIcon } size="18" style={ { backgroundColor: item.icon.background } } />
                         <FlexCell cx={ css.topBlockContextWrapper }>
-                            <Text fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
-                            <Text cx={ css.topBlockText }>{ item.text }</Text>
+                            <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
+                            <Text fontSize="16" lineHeight="24" cx={ css.topBlockText }>{ item.text }</Text>
                         </FlexCell>
                         { item.footer && (
                             <FlexRow cx={ css.topBlockFooter } justifyContent="center">
                                 <LinkButton
+                                    size="48"
                                     caption={ item.footer.linkCaption }
                                     href={ item.footer.href }
                                     onClick={ () => {
@@ -85,18 +103,25 @@ export function ExploreBenefitsBlock() {
             <div className={ css.bottomBlockWrapper }>
                 { bottomExploreBlocks.map((item) => (
                     <Panel cx={ css.bottomBlockPanel }>
-                        <IconContainer icon={ item.icon } cx={ css.bottomBlockIcon } />
+                        <IconContainer size="36" icon={ item.icon.element } cx={ css.bottomBlockIcon } style={ { backgroundColor: item.icon.background } } />
                         <FlexRow cx={ css.bottomBlockCaptionWrapper }>
-                            <Text fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
+                            <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
                             { item.captionBadge
                                 && <Badge color="success" fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
 
                         </FlexRow>
-                        <Text cx={ css.bottomBlockText }>{ item.text }</Text>
+                        <Text fontSize="16" lineHeight="24" cx={ css.bottomBlockText }>{ item.text }</Text>
                         { item.footer && (
                             <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
                                 { item.footer.map((footerItem) => (
-                                    <Button href={ footerItem.href } color={ footerItem.color } fill="none" caption={ footerItem.linkCaption } onClick={ () => {} } />
+                                    <Button
+                                        href={ footerItem.href }
+                                        color={ footerItem.color }
+                                        fill="none"
+                                        caption={ footerItem.linkCaption }
+                                        onClick={ () => {
+                                        } }
+                                    />
                                 )) }
                             </FlexRow>
                         ) }
