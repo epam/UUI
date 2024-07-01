@@ -62,7 +62,7 @@ export function ProjectTableDemo() {
         getMetadata: () => metadata,
     });
 
-    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 1000 });
+    const [tableState, setTableState] = useState<DataTableState>({ sorting: [{ field: 'order' }], visibleCount: 30 });
     const dataTableFocusManager = useDataTableFocusManager<Task['id']>({}, []);
 
     const searchHandler = useCallback(
@@ -84,11 +84,14 @@ export function ProjectTableDemo() {
         getParentId: (i) => i.parentId,
         fixItemBetweenSortings: false,
         isDeleted: ({ isDeleted }) => isDeleted,
+        isFoldedByDefault: () => false,
     }, []);
 
     const treeRef = useRef(tree);
+    const patchRef = useRef(patch);
     
     treeRef.current = tree;
+    patchRef.current = patch;
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => {
             const updatedItems = deleteTaskWithChildren(task, currentValue.items, treeRef.current);
@@ -111,14 +114,14 @@ export function ProjectTableDemo() {
             return {
                 ...currentValue,
                 items: scheduleTasks(
-                    patch,
+                    patchRef.current,
                     allDeleted
                         ? updatedItems.set(task.parentId, { ...updatedItems.get(task.parentId), type: 'task' })
                         : updatedItems,
                 ),
             };
         });
-    }, [patch, setValue]);
+    }, [setValue]);
 
     const getMinMaxDate = () => {
         let minStartDate: number | undefined;
@@ -218,7 +221,7 @@ export function ProjectTableDemo() {
 
             return {
                 ...currentValue,
-                items: scheduleTasks(patch, currentItems),
+                items: scheduleTasks(patchRef.current, currentItems),
             };
         });
 
@@ -231,41 +234,43 @@ export function ProjectTableDemo() {
         }));
 
         dataTableFocusManager?.focusRow(task.id);
-    }, [setValue, dataTableFocusManager, patch]);
+    }, [setValue, dataTableFocusManager]);
 
     const handleDrop = useCallback(
         (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
         [insertTask],
     );
 
+    const formLens = useMemo(() => {
+        return lens
+            .prop('items')
+            .onChange((prevValue, nextValue) => {
+                const shouldReschedule = (id: number) => {
+                    const prevTask = prevValue.get(id);
+                    const t = nextValue.get(id);
+                    return !prevValue.has(id)
+                    || prevTask.estimate !== t.estimate
+                    || prevTask.startDate !== t.startDate
+                    || prevTask.dueDate !== t.dueDate
+                    || prevTask.assignee !== t.assignee
+                    || prevTask.status !== t.status;
+                };
+                for (const [id] of nextValue) {
+                    if (shouldReschedule(id)) {
+                        return scheduleTasks(patchRef.current, nextValue);
+                    }
+                }
+            
+                return nextValue;
+            });
+    }, [lens]);
+    
     const { rows, listProps } = useDataRows({
         tree,
         ...restProps,
         getRowOptions: (task) => {
             return {
-                ...lens
-                    .prop('items')
-                    .onChange((prevValue, nextValue) => {
-                        const shouldReschedule = (id: number) => {
-                            const prevTask = prevValue.get(id);
-                            const t = nextValue.get(id);
-                            return !prevValue.has(id)
-                                || prevTask.estimate !== t.estimate
-                                || prevTask.startDate !== t.startDate
-                                || prevTask.dueDate !== t.dueDate
-                                || prevTask.assignee !== t.assignee
-                                || prevTask.status !== t.status;
-                        };
-                        for (const [id] of nextValue) {
-                            if (shouldReschedule(id)) {
-                                return scheduleTasks(patch, nextValue);
-                            }
-                        }
-                        
-                        return nextValue;
-                    })
-                    .key(task.id)
-                    .toProps(), // pass IEditable to each row to allow editing
+                ...formLens.key(task.id).toProps(), // pass IEditable to each row to allow editing
                 isSelectable: true,
                 dnd: {
                     srcData: { ...task, isTask: true },

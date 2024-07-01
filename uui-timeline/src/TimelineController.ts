@@ -33,6 +33,8 @@ export class TimelineController {
     isFrameScheduled = false;
     scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
+    timelineTransform: TimelineTransform;
+
     onViewportChange: (newViewport: Viewport) => void;
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
         if (!viewport) {
@@ -218,11 +220,16 @@ export class TimelineController {
     }
 
     public getTransform() {
-        return new TimelineTransform(this, this.currentViewport);
+        if (!this.timelineTransform) {
+            this.timelineTransform = new TimelineTransform(this, this.currentViewport);
+        }
+        return this.timelineTransform;
     }
 
     private doRender() {
-        const transform = new TimelineTransform(this, this.currentViewport);
+        // const transform = new TimelineTransform(this, this.currentViewport);
+        const transform = this.getTransform();
+        transform.updateView(this.currentViewport);
         this.handlers.forEach((h) => h && h(transform));
     }
 

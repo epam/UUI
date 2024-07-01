@@ -18,11 +18,15 @@ export interface Item {
 
 export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRenderingContext2D, t: TimelineTransform): void {
     const pxPerDay = t.pxPerMs * msPerDay;
-    const pattern = ctx.createPattern(getHatchingPattern(), 'repeat');
+    let pattern: CanvasPattern;
 
     orderBy(items, (i) => i.priority)
         .filter((i) => (!i.minPixPerDay || pxPerDay > i.minPixPerDay) && (!i.maxPxPerDay || pxPerDay < i.maxPxPerDay))
         .forEach((i) => {
+            if (i.fillType === 'shaded') {
+                pattern = pattern ?? ctx.createPattern(getHatchingPattern(), 'repeat');
+            }
+
             const leftTopCornerX = t.getX(i.from);
             const leftTopCornerY = Math.round((canvasHeight - i.height) / 2);
             const rectHeight = i.height ? i.height : 18;
@@ -30,6 +34,7 @@ export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRende
 
             ctx.beginPath();
             ctx.rect(leftTopCornerX, leftTopCornerY, rectWidth, rectHeight);
+
             ctx.fillStyle = i.fillType === 'shaded' ? pattern : i.color;
             ctx.globalAlpha = i.opacity ? i.opacity : 1;
             ctx.fill();
