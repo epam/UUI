@@ -143,5 +143,8 @@ interface SizesSettings {
 }
 
 export interface Settings {
+    /**
+     * setting sizes for complex and compound components to support 'Size theming'
+     */
     sizes: SizesSettings;
 }
