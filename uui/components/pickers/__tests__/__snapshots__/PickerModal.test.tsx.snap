@@ -129,7 +129,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
+      className="uui-flex-row root size-36 uui-picker_input-body modal undefined container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -198,7 +198,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -281,7 +281,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -590,7 +590,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </label>
     </div>
     <div
-      className="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
+      className="uui-flex-row root size-36 uui-picker_input-body modal undefined container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -659,7 +659,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -757,7 +757,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -855,7 +855,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -953,7 +953,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1051,7 +1051,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1149,7 +1149,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1247,7 +1247,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1345,7 +1345,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1443,7 +1443,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1541,7 +1541,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1639,7 +1639,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                   role="cell"
                   style={
                     Object {
@@ -1911,7 +1911,7 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
+          class="uui-flex-row root size-36 uui-picker_input-body modal undefined container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -1934,7 +1934,7 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
@@ -1978,7 +1978,7 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >

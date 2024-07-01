@@ -47,7 +47,7 @@ exports[`PickerInput should open body 1`] = `
       tabindex="-1"
     >
       <div
-        class="uui-flex-row root size-36 uui-pickerInput-body dropdown single container align-items-center"
+        class="uui-flex-row root size-36 uui-picker_input-body dropdown single container align-items-center"
         style="max-height: 300px;"
       >
         <div
@@ -72,7 +72,7 @@ exports[`PickerInput should open body 1`] = `
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="flexCell root data-picker-cell uui-size-36 padding-12 padding-left-12 align-widgets-top"
                     role="cell"
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
@@ -116,7 +116,7 @@ exports[`PickerInput should open body 1`] = `
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="flexCell root data-picker-cell uui-size-36 padding-12 padding-left-12 align-widgets-top"
                     role="cell"
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
