@@ -1,3 +1,17 @@
+@keyframes accordion-appears {
+    0% {
+        padding: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    100% {
+        padding: 18px;
+        height: auto;
+        opacity: 1;
+    }
+}
+
 .root {
     margin: 0 auto;
     overflow: hidden;
@@ -10,19 +24,37 @@
         padding-inline-end: 9px;
         padding-top: 24px;
         padding-bottom: 9px;
+        column-gap: 15px;
 
         .start-container {
             position: relative;
             display: flex;
             flex-direction: column;
             flex-basis: 461px;
-            padding: 9px;
-            row-gap: 9px;
             overflow: hidden;
+            
+            .accordion-wrapper {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                padding: 4.5px 9px;
+                overflow: hidden;
+
+                :global(.uui-progress_bar) > div {
+                    transition: width 0.2s linear;
+                }
+
+                :global(.uui-accordion-body) {
+                    padding: 0;
+                    height: 0;
+                    opacity: 0;
+                    animation: accordion-appears 0.5s forwards;
+                }
+            }
 
             .progress {
                 position: absolute;
-                top: 9px;
+                top: 4.5px;
                 left: 9px;
                 height: 4px;
                 width: calc(100% - 18px);

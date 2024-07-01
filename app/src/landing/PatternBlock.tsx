@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Accordion, FlexRow, IconContainer, ProgressBar, Text } from '@epam/uui';
 import css from './PatternBlock.module.scss';
 import { ReactComponent as Banner } from '../icons/banner.svg';
@@ -12,81 +12,109 @@ const accordionData = [
     { id: 5, title: '06 Accordion Title', text: '06 Accordion Text' },
 ];
 
-const ACCORDION_INTERVAL = 4000;
-const VIEW_TIMEOUT = 5000;
+const ACCORDION_INTERVAL = 5000;
 
 export function PatternBlock() {
     const [accordionValue, setAccordionValue] = useState(0);
-    const [isIntersecting, setIntersecting] = useState(false);
-    const intervalID = useRef(null);
-    const timeoutID = useRef(null);
-    const progressRef = useRef(null);
+    const [progress, setProgress] = useState(0);
+    const progressID = useRef(null);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [activeHoverId, setActiveHoverId] = useState<number | null>(null);
 
-    const startInterval = () => {
-        intervalID.current = setInterval(() => {
-            setAccordionValue((prevValue) => {
-                if (prevValue === 5) {
+    const stopInterval = () => {
+        clearInterval(progressID.current);
+        progressID.current = null;
+    };
+
+    const startProgress = () => {
+        if (windowWidth <= 768 || progressID.current !== null) return;
+
+        progressID.current = setInterval(() => {
+            setProgress((prev) => {
+                if (prev > 101) {
+                    setAccordionValue((prevValue) => {
+                        if (prevValue === 5) {
+                            return 0;
+                        }
+                        return prevValue + 1;
+                    });
                     return 0;
                 }
-                return prevValue + 1;
+                return prev + (100 / (ACCORDION_INTERVAL / 100));
             });
-        }, ACCORDION_INTERVAL);
+        }, 100);
     };
 
     useEffect(() => {
-        startInterval();
+        !progressID.current && startProgress();
 
-        const observer = new IntersectionObserver((entries) => {
-            setIntersecting(entries[0].isIntersecting);
-        });
-        if (progressRef.current) observer.observe(progressRef.current);
-        const currentRef = progressRef.current;
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
 
         return () => {
-            clearInterval(intervalID.current);
-            clearTimeout(timeoutID.current);
-            if (currentRef) observer.unobserve(currentRef);
+            stopInterval();
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    useEffect(() => {
-        if (!isIntersecting) {
-            clearInterval(intervalID.current);
-            clearTimeout(timeoutID.current);
-        } else {
-            clearInterval(intervalID.current);
-            clearTimeout(timeoutID.current);
-            startInterval();
+    useLayoutEffect(() => {
+        if (windowWidth > 768 && !progressID.current) {
+            startProgress();
+        } else if (windowWidth < 768 && progressID.current) {
+            stopInterval();
+            setProgress(0);
         }
-    }, [isIntersecting]);
+    }, [windowWidth]);
+
+    useEffect(() => {
+        if (activeHoverId === accordionValue && progressID.current) {
+            stopInterval();
+        }
+    }, [activeHoverId, accordionValue]);
 
     const onClickHandler = (id: number) => {
-        setAccordionValue(id);
-        clearInterval(intervalID.current);
-        clearTimeout(timeoutID.current);
-        if (isIntersecting) {
-            timeoutID.current = setTimeout(() => {
-                startInterval();
-            }, VIEW_TIMEOUT);
+        progressID.current && stopInterval();
+        if (accordionValue !== id) {
+            setProgress(0);
+            setAccordionValue(id);
         }
     };
 
-    const getProgress = () => parseInt(String(Math.min((100 / 6) * (accordionValue + 1), 100)));
+    const onMouseEnterHandler = (itemId: number) => {
+        setActiveHoverId(() => itemId);
+        if (itemId === accordionValue && progressID.current) {
+            stopInterval();
+        }
+    };
+
+    const onMouseLeaveHandler = (itemId: number) => {
+        setActiveHoverId(() => null);
+        if (itemId === accordionValue && !progressID.current) {
+            stopInterval();
+            startProgress();
+        }
+    };
 
     return (
         <div className={ css.root }>
-            <FlexRow cx={ css.container } columnGap="24" alignItems="top">
+            <FlexRow cx={ css.container } alignItems="top">
                 <div className={ css.startContainer }>
-                    <ProgressBar ref={ progressRef } cx={ css.progress } progress={ getProgress() } hideLabel />
                     {accordionData.map((item) => (
-                        <Accordion
-                            title={ item.title }
-                            mode="block"
-                            value={ item.id === accordionValue }
-                            onValueChange={ () => onClickHandler(item.id) }
+                        <div
+                            className={ css.accordionWrapper }
+                            onMouseEnter={ () => onMouseEnterHandler(item.id) }
+                            onMouseLeave={ () => onMouseLeaveHandler(item.id) }
                         >
-                            <Text fontSize="16" lineHeight="24">{ item.text }</Text>
-                        </Accordion>
+                            { item.id === accordionValue && <ProgressBar cx={ css.progress } progress={ progress } hideLabel /> }
+                            <Accordion
+                                title={ item.title }
+                                mode="block"
+                                value={ item.id === accordionValue }
+                                onValueChange={ () => onClickHandler(item.id) }
+                            >
+                                <Text fontSize="16" lineHeight="24">{ item.text }</Text>
+                            </Accordion>
+                        </div>
                     ))}
                 </div>
                 <IconContainer icon={ Banner } cx={ css.banner } />
