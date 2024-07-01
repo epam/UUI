@@ -4,7 +4,7 @@ import { DataRowProps, DataSourceListProps, DataTableState, IControlled } from '
 import { DataTableFocusManager } from '@epam/uui-components';
 import { ColumnsProps, Task } from './types';
 import { getColumnsTimelineMode } from './columns';
-import { TimelineController } from '@epam/uui-timeline';
+import { TimelineContextProvider, TimelineController } from '@epam/uui-timeline';
 
 export interface TimelineModeProps extends ColumnsProps {
     timelineController: TimelineController;
@@ -24,18 +24,20 @@ export function TimelineMode({
     );
 
     return (
-        <DataTable
-            headerTextCase="upper"
-            rows={ rows }
-            columns={ columns }
-            value={ tableState }
-            onValueChange={ setTableState }
-            dataTableFocusManager={ dataTableFocusManager }
-            showColumnsConfig
-            allowColumnsResizing
-            allowColumnsReordering
-            headerSize="60"
-            { ...listProps }
-        />
+        <TimelineContextProvider timelineController={ timelineController } canvasHeight={ 36 }>
+            <DataTable
+                headerTextCase="upper"
+                rows={ rows }
+                columns={ columns }
+                value={ tableState }
+                onValueChange={ setTableState }
+                dataTableFocusManager={ dataTableFocusManager }
+                showColumnsConfig
+                allowColumnsResizing
+                allowColumnsReordering
+                headerSize="60"
+                { ...listProps }
+            />
+        </TimelineContextProvider>
     );
 }

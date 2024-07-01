@@ -16,7 +16,7 @@ export function useCanvas(
     props: BaseTimelineCanvasComponentProps,
     deps?: any[],
 ) {
-    const forceUpdate = useForceUpdate();
+    // const forceUpdate = useForceUpdate();
     const { timelineController, canvasHeight = 60 } = props;
     const canvasRef = useRef(null);
 
@@ -34,9 +34,9 @@ export function useCanvas(
         return () => timelineController.unsubscribe(handleRenderCanvas);
     }, [handleRenderCanvas, timelineController]);
 
-    useEffect(() => {
-        forceUpdate();
-    }, [timelineController.currentViewport.widthPx]);
+    // useEffect(() => {
+    //     forceUpdate();
+    // }, [timelineController.currentViewport.widthPx]);
 
     useEffect(() => {
         handleRenderCanvas(timelineController.getTransform());
