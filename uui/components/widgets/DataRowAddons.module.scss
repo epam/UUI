@@ -23,6 +23,7 @@
     flex-shrink: 0;
     padding-inline-end: 12px;
     box-sizing: content-box; // to fix reset css like *, *::before, *::after { box-sizing: border-box; }
+    min-height: var(--uui-size);
 }
 
 :global(.uui-folding-arrow) {

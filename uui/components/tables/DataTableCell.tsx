@@ -8,11 +8,11 @@ import { Tooltip } from '../overlays';
 import './variables.scss';
 import css from './DataTableCell.module.scss';
 
-export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
-    props = { ...props };
+export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCellProps<TItem, TId, TCellValue> & DataTableCellMods) {
+    const props = { ...initialProps };
 
     if (props.isFirstColumn) {
-        props.addons = <DataRowAddons { ...props } />;
+        props.addons = <DataRowAddons size={ props.size } { ...props } />;
     }
 
     props.renderPlaceholder = props.renderPlaceholder
@@ -61,7 +61,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         'data-table-cell',
         props.cx,
         css.cell,
-        css['size-' + (props.size || '36')],
+        'uui-size-' + (props.size || '36'),
         css[`padding-${getPaddings().padding}`],
         props.isFirstColumn && css[`padding-left-${getPaddings().sidePadding}`],
         props.isLastColumn && css[`padding-right-${getPaddings().sidePadding}`],

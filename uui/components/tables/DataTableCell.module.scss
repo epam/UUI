@@ -1,88 +1,18 @@
 @use '../../assets/styles/index' as *;
 
-@mixin data-table-icon-size($size) {
-    :global(.uui-folding-arrow) {
-        &:global(.uui-icon) {
-            svg {
-                height: #{$size}px;
-                width: #{$size}px;
-            }
-        }
-    }
-}
-
 .cell {
+    --uui-data-table-cell-size: var(--uui-size);
+
     &.wrapper {
         display: flex;
         align-items: flex-start;
     }
 
-    &.align-widgets-top {
-        &.size-24, &.size-30 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
-                margin-top: 6px;
-            }
+    &:global(.data-table-cell).align-widgets-top {
+        div:global(.uui-checkbox) {
+            margin-top: calc(var(--uui-data-table-cell-size) / 2 - var(--uui-size) / 2);
+
         }
-
-        &.size-36 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
-                margin-top: 9px;
-            }
-        }
-
-        &.size-42 {
-            :global(.uui-checkbox) {
-                margin-top: 12px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 9px;
-            }
-        }
-
-        &.size-48 {
-            :global(.uui-checkbox) {
-                margin-top: 15px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 12px;
-            }
-        }
-
-        &.size-60 {
-            :global(.uui-checkbox) {
-                margin-top: 21px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 18px;
-            }
-        }
-    }
-
-    &.size-24 {
-        @include data-table-icon-size(12);
-    }
-
-    &.size-30 {
-        @include data-table-icon-size(18);
-    }
-
-    &.size-36 {
-        @include data-table-icon-size(18);
-    }
-
-    &.size-42 {
-        @include data-table-icon-size(24);
-    }
-
-    &.size-48 {
-        @include data-table-icon-size(24);
-    }
-
-    &.size-60 {
-        @include data-table-icon-size(24);
     }
 
     &.align-widgets-center :global(.uui-checkbox-container) {

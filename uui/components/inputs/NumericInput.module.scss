@@ -6,11 +6,11 @@
 
     //
     &:global(.uui-input-box) {
-        padding-right: 0;
+        padding-inline-end: 0;
         min-width: 40px;
 
         &:global(.uui-numeric-input-without-arrows) {
-            padding-right: 5px;
+            padding-inline-end: calc(var(--uui-horizontal-padding) - var(--uui-border-width));
         }
 
         :global(.uui-numeric-input-up-button) {
@@ -41,44 +41,9 @@
             margin-top: -2px;
         }
 
-        // TODO: need update
-        &:global(.uui-size-24) {
-            :global(.uui-numeric-input-button-group) {
-                > * {
-                    height: 11px;
-                }
-            }
-        }
-
-        &:global(.uui-size-30) {
-            :global(.uui-numeric-input-button-group) {
-                > * {
-                    height: 14px;
-                }
-            }
-        }
-
-        &:global(.uui-size-36) {
-            :global(.uui-numeric-input-button-group) {
-                > * {
-                    height: 17px;
-                }
-            }
-        }
-
-        &:global(.uui-size-42) {
-            :global(.uui-numeric-input-button-group) {
-                > * {
-                    height: 20px;
-                }
-            }
-        }
-
-        &:global(.uui-size-48) {
-            :global(.uui-numeric-input-button-group) {
-                > * {
-                    height: 23px;
-                }
+        :global(.uui-numeric-input-button-group) {
+            > * {
+                height: calc((var(--uui-size) - (var(--uui-border-width) * 2)) / 2);
             }
         }
     }

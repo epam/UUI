@@ -2,7 +2,7 @@
 
 exports[`DataTableCell should be rendered correctly 1`] = `
 <div
-  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-36 padding-12 align-widgets-top"
+  className="uui-table-cell cell uui-dt-vars data-table-cell cell uui-size-36 padding-12 align-widgets-top"
   role="cell"
   style={
     Object {
@@ -24,7 +24,7 @@ exports[`DataTableCell should be rendered correctly 1`] = `
 
 exports[`DataTableCell should be rendered correctly 2`] = `
 <div
-  className="uui-table-cell cell uui-dt-vars data-table-cell cell size-48 padding-24 padding-right-24 align-widgets-top"
+  className="uui-table-cell cell uui-dt-vars data-table-cell cell uui-size-48 padding-24 padding-right-24 align-widgets-top"
   role="cell"
   style={
     Object {

@@ -113,6 +113,14 @@
         &.uui-size-48 {
             --uui-horizontal-padding: 6px;
         }
+
+        &.uui-textarea {
+            --uui-horizontal-padding: 12px;
+
+            &.uui-size-24 {
+                --uui-line-height: 12px;
+            }
+        }
     }
 
     .uui-tab-button:is(.uui-size-36, .uui-size-48, .uui-size-60) {
