@@ -3,7 +3,7 @@
 This package is a part of [EPAM UUI](https://github.com/epam/UUI) library.
 
 `@epam/uui-build` consists of scripts and tools to build UUI monorepo. It contains scripts to run the repo as a single huge app (for development needs), and to build each package separately for NPM.
-Also, its contains some external scripts that can be used within UUI ecosystem.
+Also, it contains some external scripts that can be used within UUI ecosystem.
 
 ### CLI scripts
 1. Build a project using Rollup
