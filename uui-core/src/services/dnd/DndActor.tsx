@@ -13,11 +13,16 @@ import {
 import { getSector } from './helpers';
 import { uuiDndState, uuiMarkers } from '../../constants';
 import { UuiContext } from '../UuiContext';
-import { DndContextState } from './DndContext';
+import { DndContextState, PlaceholderData } from './DndContext';
+import debounce from 'lodash.debounce';
 
 export interface DndActorProps<TSrcData, TDstData> extends IDndActor<TSrcData, TDstData> {
+    id?: any;
+    path?: any[];
+    getPlaceholderRowProps?:() => { indent: number, depth: number };
     /** Render callback for DragActor content */
-    render(props: DndActorRenderParams): React.ReactNode;
+    render(props: DndActorRenderParams, placeholder?: any): React.ReactNode;
+    renderPlaceholder?(props: DndActorRenderParams & PlaceholderData): React.ReactNode;
 }
 
 const DND_START_THRESHOLD = 5;
@@ -28,6 +33,7 @@ interface DndActorState {
     isMouseDown: boolean;
     isDragging: boolean;
     isMouseOver: boolean;
+    fixPosition?: boolean;
     position?: DropPosition;
     dndContextState: DndContextState;
 }
@@ -38,6 +44,7 @@ const initialState: DndActorState = {
     isMouseDown: false,
     isDragging: false,
     isMouseOver: false,
+    fixPosition: false,
     position: null,
     dndContextState: {
         isDragging: false,
@@ -96,17 +103,26 @@ function TREE_SHAKEABLE_INIT() {
             const dist = Math.sqrt(Math.pow(this.state.pointerX - mouseCoords.mousePageX, 2) + Math.pow(this.state.pointerY - mouseCoords.mousePageY, 2));
 
             if (dist > DND_START_THRESHOLD) {
-                this.context.uuiDnD.startDrag(this.dndRef.current, this.props.srcData, () =>
-                    this.props.render({
-                        isDragGhost: true,
-                        isDraggedOver: false,
-                        isDraggable: false,
-                        isDraggedOut: false,
-                        isDropAccepted: false,
-                        isDndInProgress: true,
-                        eventHandlers: {},
-                        classNames: [uuiDndState.dragGhost],
-                    }));
+                document.body.style.cursor = 'grabbing';
+                this.context.uuiDnD.startDrag(
+                    this.dndRef.current,
+                    this.props.id,
+                    this.props.srcData,
+                    () =>
+                        this.props.render({
+                            isDragGhost: true,
+                            isDraggedOver: false,
+                            isDraggable: false,
+                            isDraggedOut: false,
+                            isDropAccepted: false,
+                            isDndInProgress: true,
+                            eventHandlers: {},
+                            classNames: [uuiDndState.dragGhost],
+                        }), 
+                    (params: DndActorRenderParams & PlaceholderData) => {
+                        return this.props.renderPlaceholder?.(params);
+                    },
+                );
 
                 this.setState((s) => ({
                     ...s,
@@ -172,16 +188,16 @@ function TREE_SHAKEABLE_INIT() {
             const x = (params.offsetLeft / params.targetWidth - 0.5) * 2;
             const y = (params.offsetTop / params.targetHeight - 0.5) * 2;
 
-            if (options.inside) {
-                const insideBoxLeft = options.left ? -0.5 : -1;
-                const insideBoxRight = options.right ? 0.5 : 1;
-                const insideBoxTop = options.top ? -0.5 : -1;
-                const insideBoxBottom = options.bottom ? 0.5 : 1;
+            // if (options.inside) {
+            //     const insideBoxLeft = options.left ? -0.5 : -1;
+            //     const insideBoxRight = options.right ? 0.5 : 1;
+            //     const insideBoxTop = options.top ? -0.5 : -1;
+            //     const insideBoxBottom = options.bottom ? 0.5 : 1;
 
-                if (insideBoxLeft < x && x < insideBoxRight && insideBoxTop < y && y < insideBoxBottom) {
-                    return 'inside';
-                }
-            }
+            //     if (insideBoxLeft < x && x < insideBoxRight && insideBoxTop < y && y < insideBoxBottom) {
+            //         return 'inside';
+            //     }
+            // }
 
             // Compute the sector#. Basically it's clock-wise angle of mouse pointer normalized to [0,7) range
             //    7 | 0
@@ -201,6 +217,18 @@ function TREE_SHAKEABLE_INIT() {
             }
         }
 
+        debounceDropInside = debounce((e: React.PointerEvent<any>) => {
+            if (this.context.uuiDnD.isDragging && this.state.isMouseOver) {
+                // releasePointerCaptureOnEventTarget(e); // allows you to trigger pointer events on other nodes
+
+                const dropParams = this.getDropParams(e);
+                const positionOptions = this.props.canAcceptDrop(dropParams);
+                const defaultPosition = 'inside';
+                const position = positionOptions?.[defaultPosition] ? defaultPosition : null;
+                this.setState((s) => ({ ...s, isMouseOver: true, fixPosition: true, position }));
+            }
+        }, 750, { leading: false, trailing: true });
+
         render() {
             const params: DndActorRenderParams = {
                 isDraggable: !!this.props.srcData,
@@ -217,7 +245,12 @@ function TREE_SHAKEABLE_INIT() {
             };
 
             params.classNames = [
-                params.isDropAccepted && uuiDndState.dropAccepted, params.isDraggedOut && uuiDndState.draggedOut, params.isDraggable && uuiMarkers.draggable,
+                params.isDropAccepted && uuiDndState.dropAccepted,
+                params.isDraggedOut && uuiDndState.draggedOut,
+                params.isDraggable && uuiMarkers.draggable,
+                this.context.uuiDnD.isDragging
+                    && (this.props.id === this.state.dndContextState.id || this.props.path?.some((id) => id === this.state.dndContextState.id))
+                    && uuiDndState.dragChildren, 
             ].filter(Boolean);
 
             if (!!this.props.srcData) {
@@ -250,7 +283,7 @@ function TREE_SHAKEABLE_INIT() {
             if (this.props.canAcceptDrop) {
                 const pointerLeaveHandler = () => {
                     if (this.context.uuiDnD.isDragging) {
-                        this.setState((s) => ({ ...s, isMouseOver: false, position: null }));
+                        this.setState((s) => ({ ...s, isMouseOver: false, position: null, fixPosition: false }));
                     }
                 };
 
@@ -265,7 +298,16 @@ function TREE_SHAKEABLE_INIT() {
                         const dropParams = this.getDropParams(e);
                         const positionOptions = this.props.canAcceptDrop(dropParams);
                         const position = this.getPosition(dropParams, positionOptions);
-                        this.setState((s) => ({ ...s, isMouseOver: true, position }));
+                        this.setState((s) => {
+                            if (s.fixPosition) {
+                                return s;
+                            }
+
+                            return { ...s, isMouseOver: true, position };
+                        });
+                        if (position === 'bottom') {
+                            this.debounceDropInside(Object.assign({}, e));
+                        }
                     }
                 };
 
@@ -288,6 +330,8 @@ function TREE_SHAKEABLE_INIT() {
                             position: this.state.position,
                         });
                     }
+                    document.body.style.cursor = 'default';
+
                     this.context.uuiDnD.endDrag();
                     this.setState(() => initialState);
                 } else {
@@ -301,7 +345,42 @@ function TREE_SHAKEABLE_INIT() {
                 }
             };
 
-            return this.props.render(params);
+            const { position } = this.state;
+
+            return this.props.render(
+                params,
+                params.isDraggedOver 
+                    ? this.state.dndContextState.renderPlaceholder?.({
+                        eventHandlers: {
+                            onPointerEnter: () => this.setState((s) => ({ ...s, isMouseOver: true, fixPosition: true, placeholderEnter: true, position })),
+                            onPointerLeave: (e) => this.setState((s) => {
+                                if (this.dndRef.current.contains(e.relatedTarget as Element)) {
+                                    return s;
+                                }
+                                
+                                return { ...s, isMouseOver: false, fixPosition: false, position: null };
+                            }),
+                            onPointerUp: params.eventHandlers.onPointerUp,
+                        },
+                        isDraggedOver: true,
+                        isDndInProgress: true,
+                        isDropAccepted: params.isDropAccepted,
+                        isDragGhost: false,
+                        classNames: null,
+                        isDraggable: false,
+                        isDraggedOut: false,
+                        position,
+                        placeholderRowProps: this.props.getPlaceholderRowProps?.(),
+                    })
+                    : null,
+            );
+
+        //     return (
+        //         <> 
+        //             { this.props.render(params) }
+        //             {/* { params.isDraggedOver && 'placehoder' } */}
+        //         </>
+        //     );
         }
     };
 }

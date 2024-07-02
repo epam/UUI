@@ -14,6 +14,20 @@
     :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover & {
         visibility: visible;
     }
+
+    :global(.uui-table-row):global(.uui-drag-ghost) & {
+        visibility: visible;
+        cursor: grabbing;
+    }
+}
+
+:global(.uui-drag-placeholder) {
+    display: block;
+    background-color: red;
+}
+
+:global(.uui-drag-children) {
+    display: none;
 }
 
 :global(.uui-dr_addons-indent) {

@@ -2,8 +2,11 @@ import React, { ReactNode } from 'react';
 import isEqual from 'react-fast-compare';
 import {
     DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
+    uuiDndState,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
+import { PlaceholderData } from '@epam/uui-core';
+import css from './DataTableRow.module.scss';
 
 const uuiDataTableRow = {
     uuiTableRow: 'uui-table-row',
@@ -52,10 +55,36 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         });
     };
 
-    const renderRow = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
+    const renderCellPlaceholder = (column: DataColumnProps<TItem, TId>, idx: number, placeholderData: PlaceholderData['placeholderRowProps'], moveInside?: boolean) => {
+        const renderCellCallback = column.renderCell || props.renderCell;
+        const isFirstColumn = idx === 0;
+        const isLastColumn = !props.columns || idx === props.columns.length - 1;
+        const rowPlaceholderProps = {
+            ...props,
+            indent: moveInside ? placeholderData.indent + 1 : placeholderData.indent,
+            depth: moveInside ? placeholderData.depth + 1 : placeholderData.depth,
+            isFoldable: false,
+            isFolded: false,
+            isFocused: false,
+        };
+
+        const rowLensPlaceholder = Lens.onEditable(rowPlaceholderProps as IEditable<TItem>);
+
+        return renderCellCallback?.({
+            key: column.key,
+            column,
+            rowProps: rowPlaceholderProps,
+            index: idx,
+            isFirstColumn,
+            isLastColumn,
+            rowLens: rowLensPlaceholder,
+        });
+    };
+
+    const renderDragGhost = (params: Partial<DndActorRenderParams>, clickHandler?: (props: DataRowProps<TItem, TId>) => void, overlays?: ReactNode) => {
         return (
             <DataTableRowContainer
-                columns={ props.columns }
+                columns={ [props.columns[0]] }
                 ref={ params.ref || ref }
                 renderCell={ renderCell }
                 onClick={ clickHandler && (() => clickHandler(props)) }
@@ -65,11 +94,16 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
                     role: 'row',
                     'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
                     ...(props.isSelectable && { 'aria-selected': props.isSelected }),
+                    style: {
+                        width: props.columns[0].width,
+                        minWidth: props.columns[0].minWidth ?? props.columns[0].width,
+                    },
                 } }
                 cx={ [
                     params.classNames,
                     props.isSelected && uuiMod.selected,
                     params.isDraggable && uuiMarkers.draggable,
+                    uuiDndState.dragGhost,
                     props.isInvalid && uuiMod.invalid,
                     uuiDataTableRow.uuiTableRow,
                     props.cx,
@@ -81,10 +115,85 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         );
     };
 
+    const renderRow = (
+        params: Partial<DndActorRenderParams>,
+        clickHandler?: (props: DataRowProps<TItem, TId>) => void,
+        overlays?: ReactNode,
+        placeholder?: ReactNode,
+    ) => {
+        if (params.isDragGhost) {
+            return renderDragGhost(params, clickHandler, overlays);
+        }
+
+        return (
+            <div>
+                { params.position === 'top' && placeholder }
+                <DataTableRowContainer
+                    columns={ props.columns }
+                    ref={ params.ref || ref }
+                    renderCell={ renderCell }
+                    onClick={ clickHandler && (() => clickHandler(props)) }
+                    rawProps={ {
+                        ...props.rawProps,
+                        ...params.eventHandlers,
+                        role: 'row',
+                        'aria-expanded': (props.isFolded === undefined || props.isFolded === null) ? undefined : !props.isFolded,
+                        ...(props.isSelectable && { 'aria-selected': props.isSelected }),
+                    } }
+                    cx={ [
+                        params.classNames,
+                        props.isSelected && uuiMod.selected,
+                        params.isDraggable && uuiMarkers.draggable,
+                        props.isInvalid && uuiMod.invalid,
+                        uuiDataTableRow.uuiTableRow,
+                        props.cx,
+                        props.isFocused && uuiMod.focus,
+                    ] }
+                    overlays={ overlays }
+                    link={ props.link }
+                />
+                { (params.position === 'bottom' || params.position === 'inside') && placeholder }
+            </div>
+        );
+    };
+
+    const renderPlaceholder = (params: Partial<DndActorRenderParams & PlaceholderData>) => {
+        return (
+            <DataTableRowContainer
+                columns={ [props.columns[0]] }
+                ref={ params.ref || ref }
+                renderCell={ (props, idx) => renderCellPlaceholder(props, idx, params.placeholderRowProps, params.position === 'inside') }
+                rawProps={ {
+                    ...props.rawProps,
+                    ...params.eventHandlers,
+                    role: 'row',
+                } }
+                cx={ [
+                    params.classNames,
+                    uuiDataTableRow.uuiTableRow,
+                    props.cx,
+                    uuiMod.selected,
+                    uuiDndState.dragPlaceholder,
+                ] }
+                
+                overlays={ <div className={ css.blocker } /> }
+            />
+        );
+    };
+
     const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
 
     if (props.dnd && (props.dnd.srcData || props.dnd.canAcceptDrop)) {
-        return <DndActor { ...props.dnd } render={ (params) => renderRow(params, clickHandler, props.renderDropMarkers?.(params)) } />;
+        return (
+            <DndActor
+                { ...props.dnd }
+                id={ props.id }
+                path={ props.path.map(({ id }) => id) }
+                render={ (params, placeholder) => renderRow(params, clickHandler, props.renderDropMarkers?.(params), placeholder) }
+                renderPlaceholder={ (params) => renderPlaceholder(params) }
+                getPlaceholderRowProps={ () => ({ indent: props.indent, depth: props.depth }) }
+            />
+        );
     } else {
         return renderRow({}, clickHandler);
     }
