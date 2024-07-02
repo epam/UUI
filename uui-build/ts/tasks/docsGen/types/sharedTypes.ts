@@ -63,6 +63,7 @@ export enum TPropEditorType {
     number = 'number',
     func = 'func',
     oneOf = 'oneOf',
+    oneOfType = 'oneOfType',
     component = 'component'
 }
 export type TOneOfItemType = string | number | boolean | null | {
@@ -79,4 +80,8 @@ export type TPropEditor =
         type: TPropEditorType.oneOf,
         options: TOneOfItemType[],
         scalarTypeOption?: TPropEditorType.string | TPropEditorType.number
+    } |
+    {
+        type: TPropEditorType.oneOfType,
+        options: (TPropEditorType.string | TPropEditorType.number)[],
     };
