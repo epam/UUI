@@ -1,40 +1,72 @@
-import { FileUtils } from './utils/fileUtils';
+import fs from 'fs';
+import path from 'path';
+import { readFigmaVarCollection, logFileCreated } from './utils/fileUtils';
 import { getHiddenFromPublishingVarPlaceholder } from './constants';
-import { FigmaScriptsContext } from './context/context';
 import {
     convertRawToken,
     getCssVarFromFigmaVar, getCssVarSupportForToken, canTokenPotentiallyDefineCssVar,
 } from './utils/figmaVarUtils';
 import { IThemeVar } from './types/sharedTypes';
-import { IFigmaVarRaw, IFigmaVarRawNorm } from './types/sourceTypes';
-import { ITaskConfig } from '../../utils/taskUtils';
+import { IFigmaVarCollection, IFigmaVarRaw, IFigmaVarRawNorm } from './types/sourceTypes';
+import { ITaskConfig, TTaskParams } from '../../utils/taskUtils';
 import { normalizeFigmaVarRawMap } from './utils/firmaVarRawNormalizer';
 import { sortSupportedTokens } from './utils/sortingUtils';
+import { mixinsGenerator } from './mixinsGenerator/mixinsGenerator';
 
-export const taskConfig: ITaskConfig = { main };
+const ARGS = {
+    SRC_COLLECTION: '--src-collection',
+    OUT_COLLECTION: '--out-collection',
+    OUT_TOKENS: '--out-tokens',
+    OUT_MIXINS: '--out-mixins',
+};
 
-async function main() {
-    generateTokens();
+export const taskConfig: ITaskConfig = {
+    main,
+    cliArgs: {
+        [ARGS.SRC_COLLECTION]: { format: 'NameValue', required: true },
+        [ARGS.OUT_COLLECTION]: { format: 'NameValue', required: true },
+        [ARGS.OUT_TOKENS]: { format: 'NameValue', required: true },
+        [ARGS.OUT_MIXINS]: { format: 'NameValue', required: true },
+    },
+};
+
+async function main(params: TTaskParams) {
+    const {
+        [ARGS.SRC_COLLECTION]: { value: srcCollectionPath },
+        [ARGS.OUT_COLLECTION]: { value: outCollectionPath },
+        [ARGS.OUT_TOKENS]: { value: outTokensPath },
+        [ARGS.OUT_MIXINS]: { value: outMixinsPath },
+    } = params.cliArgs;
+    const srcCollectionData = readFigmaVarCollection(srcCollectionPath as string);
+    const { outCollectionData, outTokensData } = generateTokens({ srcCollectionData });
+
+    const outCollectionPathAbs = path.resolve(outCollectionPath as string);
+    const outTokensPathAbs = path.resolve(outTokensPath as string);
+
+    fs.writeFileSync(outCollectionPathAbs, JSON.stringify(outCollectionData, undefined, 2));
+    logFileCreated(outCollectionPathAbs);
+    fs.writeFileSync(outTokensPathAbs, JSON.stringify(outTokensData, undefined, 2));
+    logFileCreated(outTokensPathAbs);
+    await mixinsGenerator(outTokensData, outMixinsPath as string);
 }
 
-function generateTokens() {
-    const ctx = new FigmaScriptsContext();
-    const source = FileUtils.readFigmaVarCollection();
+function generateTokens(params: { srcCollectionData: IFigmaVarCollection }) {
+    const { srcCollectionData } = params;
     const exposedTokens: IThemeVar[] = [];
 
     // non-filtered map
-    const rawVarsById = source.variables.reduce<Record<string, IFigmaVarRaw>>((acc, figmaVar) => {
+    const rawVarsById = srcCollectionData.variables.reduce<Record<string, IFigmaVarRaw>>((acc, figmaVar) => {
         acc[figmaVar.id] = figmaVar;
         return acc;
     }, {});
-    const figmaVarByNameNorm = normalizeFigmaVarRawMap({ rawVarsById, modes: source.modes });
+    const figmaVarByNameNorm = normalizeFigmaVarRawMap({ rawVarsById, modes: srcCollectionData.modes });
 
-    const variables = source.variables.map((figmaVar) => {
+    const variables = srcCollectionData.variables.map((figmaVar) => {
         const rawTokenNorm = figmaVarByNameNorm[figmaVar.name] as IFigmaVarRawNorm;
-        const canPotentiallyDefineCssVar = canTokenPotentiallyDefineCssVar({ rawTokenNorm, modes: source.modes });
+        const canPotentiallyDefineCssVar = canTokenPotentiallyDefineCssVar({ rawTokenNorm, modes: srcCollectionData.modes });
 
         if (canPotentiallyDefineCssVar) {
-            const converted = convertRawToken({ rawTokenNorm, modes: source.modes, figmaVarByNameNorm });
+            const converted = convertRawToken({ rawTokenNorm, modes: srcCollectionData.modes, figmaVarByNameNorm });
             exposedTokens.push(converted);
         }
         return {
@@ -49,14 +81,10 @@ function generateTokens() {
     // It will mutate the original arr.
     sortSupportedTokens(exposedTokens);
 
-    FileUtils.writeResults({
-        newFigmaVarCollection: { ...source, variables },
-        uuiTokensCollection: {
-            modes: source.modes,
-            exposedTokens,
-        },
-        ctx,
-    });
+    const outCollectionData = { ...srcCollectionData, variables };
+    const outTokensData = { modes: srcCollectionData.modes, exposedTokens };
+
+    return { outCollectionData, outTokensData };
 }
 
 function getFigmaCodeSyntaxValue(params: { rawTokenNorm: IFigmaVarRawNorm, canPotentiallyDefineCssVar: boolean }) {
