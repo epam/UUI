@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useForceUpdate, useResizeObserver } from '@epam/uui-core';
-import { TimelineController, TimelineGrid, TimelineScale } from '@epam/uui-timeline';
+import { TimelineController, TimelineScale } from '@epam/uui-timeline';
 import css from './TimelineHeader.module.scss';
 
 export interface TimelineHeaderProps {
@@ -13,7 +13,6 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
     
     useEffect(() => {
         timelineController.setWidth(timelineRef.current?.offsetWidth);
-        forceUpdate();
     }, [forceUpdate, timelineController]);
 
     const onResize = useCallback(() => {
@@ -25,8 +24,9 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
             },
             false,
         );
-        forceUpdate();
-    }, [forceUpdate, timelineController]);
+    }, [
+        timelineController,
+    ]);
 
     useResizeObserver({
         onResize: onResize,
@@ -36,9 +36,6 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
 
     return (
         <div ref={ timelineRef } className={ css.timeline }>
-            <div className={ css.layer } onMouseDown={ timelineController.startDrag }>
-                <TimelineGrid className={ css.grid } timelineController={ timelineController } />
-            </div>
             <div className={ css.layer } onMouseDown={ timelineController.startDrag }>
                 <TimelineScale timelineController={ timelineController } />
             </div>

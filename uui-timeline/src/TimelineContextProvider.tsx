@@ -24,6 +24,7 @@ export function TimelineContextProvider(props: TimelineContextProviderProps) {
     }, [props.timelineController]);
 
     useEffect(() => {
+        updateGrid();
         props.timelineController.subscribe(updateGrid);
         return () => {
             props.timelineController.unsubscribe(updateGrid);

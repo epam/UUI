@@ -5,6 +5,7 @@ import { DataTableFocusManager } from '@epam/uui-components';
 import { ColumnsProps, Task } from './types';
 import { getColumnsTimelineMode } from './columns';
 import { TimelineContextProvider, TimelineController } from '@epam/uui-timeline';
+import css from './TimelineMode.module.scss';
 
 export interface TimelineModeProps extends ColumnsProps {
     timelineController: TimelineController;
@@ -24,7 +25,7 @@ export function TimelineMode({
     );
 
     return (
-        <TimelineContextProvider timelineController={ timelineController } canvasHeight={ 36 }>
+        <TimelineContextProvider timelineController={ timelineController } canvasHeight={ 36 } className={ css.grid }>
             <DataTable
                 headerTextCase="upper"
                 rows={ rows }
