@@ -7,8 +7,10 @@ function main() {
     // We only allow to generate mixins here
     const args = [
         'ts/scripts/themeTokensGen.ts',
-        getCliArgStartWith('--src-collection='),
-        getCliArgStartWith('--out-mixins='),
+        // source collection of variables exported from Figma as *.json
+        getCliArgStartWith('--tokens='),
+        // folder where mixins will be generated
+        getCliArgStartWith('--out='),
     ];
     spawn.sync('ts-node', args, { encoding: 'utf8', stdio: 'inherit' });
 }

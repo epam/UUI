@@ -16,5 +16,5 @@ npx @epam/uui-build@latest --rollup-build --watch
 
 2. Generate a set of SCSS mixins with theme tokens. A collection of variables exported from Figma (*.json) is used as input.
 ```shell
-npx @epam/uui-build@latest --theme-tokens --src-collection=./input/Theme.json --out-mixins=./input
+npx @epam/uui-build@latest --generate-theme-variables --tokens=./input/Theme.json --out=./input
 ```
