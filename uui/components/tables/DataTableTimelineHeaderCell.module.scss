@@ -19,14 +19,15 @@
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    padding: 0 6px;
+    // padding: 0 6px;
     position: relative;
     width: 0;
 
     // to align with cell's borders. TBD: move this to uui-components.
-    border-right: 1px solid transparent;
     margin-left: -1px;
     background-clip: padding-box;
+    border-left: 1px solid var(--uui-dt-border);
+    border-right: 1px solid var(--uui-dt-border);
 
     &.column-gap-12 {
         padding: 0 6px;
@@ -77,19 +78,6 @@
         }
     }
 
-    &.resizable {
-        &:hover {
-            box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
-        }
-    }
-
-    @include cell-size(24);
-    @include cell-size(30);
-    @include cell-size(36);
-    @include cell-size(42);
-    @include cell-size(48);
-    @include cell-size(60);
-
     &.padding-left-24 {
         padding-left: 24px;
     }
@@ -122,91 +110,16 @@
         margin: 0;
     }
 
-    .checkbox {
-        padding: 0 9px 0 0;
-    }
-
-    .icon {
-        display: flex;
-        flex-shrink: 0;
-        cursor: pointer;
-    }
-
-    .fold-all-icon {
-        display: flex;
-        padding: 0 6px 0 0;
-        align-self: stretch;
-
-        &:hover {
-            fill: var(--uui-icon-hover);
-        }
-    }
-
-    .cell-tooltip {
-        top: 0;
-    }
-
-    .upper-case {
-        text-transform: uppercase;
-        font-size: 12px;
-    }
-
     .font-size-14 {
         font-size: 14px;
     }
 
-    .resize-mark {
-        position: absolute;
-        right: 0;
-        height: 100%;
-        cursor: col-resize;
-
-        &:hover {
-            background-color: var(--uui-dt-cell-bg-resize);
-        }
-    }
-
-    .resize-mark-6 {
-        width: 6px;
-    }
-
-    .resize-mark-12 {
-        width: 12px;
-    }
-
-    &.pinned-right .resize-mark {
-        left: 0;
-    }
-
-    &.draggable {
-        cursor: pointer;
-    }
-
-    &.ghost {
-        @include dnd-ghost-shadow();
-        background-color: var(--uui-dt-row-bg-hover);
-    }
-
-    &.is-dragged-out {
-        background-color: var(--uui-dt-row-bg-hover);
-        opacity: 0.5;
-    }
-
-    &.dnd-marker-left {
-        box-shadow: inset 2px 0 0 0 var(--uui-dt-header-drop_marker);
-
-        &:global(.-clickable), &:local(.resizable) {
-            box-shadow: inset 2px 0 0 0 var(--uui-dt-header-drop_marker);
-        }
-    }
-
-    &.dnd-marker-right {
-        box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
-
-        &:global(.-clickable), &:local(.resizable) {
-            box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
-        }
-    }
+    @include cell-size(24);
+    @include cell-size(30);
+    @include cell-size(36);
+    @include cell-size(42);
+    @include cell-size(48);
+    @include cell-size(60);
 }
 
 .cell-tooltip-wrapper {

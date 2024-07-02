@@ -6,6 +6,9 @@ export const msPerHour = 60 /* min */ * msPerMinute;
 export const msPerDay = 24 /* hour */ * msPerHour;
 export const msPerYear = 365 * msPerDay;
 
+const msPerMonth = 30 * msPerDay;
+const msPerWeak = 7 * msPerDay;
+
 export function addMs(date: Date, ms: number) {
     return new Date(date.getTime() + ms);
 }
@@ -65,6 +68,34 @@ export function getleftXforCentering(stageSegment: any, textWidth: number, paddi
 
     return leftX;
 }
+
+export const getScaleByRange = (range: number) => {
+    const periodToScales: Array<[number, number[]]> = [
+        [msPerYear, [scales.year, scales.yearWide]],
+        [msPerMonth, [scales.month, scales.monthWide]],
+        [msPerWeak, [scales.week, scales.weekWide]],
+        [msPerDay, [scales.day, scales.dayWide]],
+        [msPerHour, [scales.hour, scales.hourWide]],
+        [msPerMinute, [scales.minute, scales.minuteWide]],
+    ];
+
+    for (const [index, [period, [gtScale, lteScale]]] of periodToScales.entries()) {
+        if (range > period) {
+            return gtScale;
+        }
+
+        const isLastScale = index === periodToScales.length - 1;
+        if (range === period || isLastScale) {
+            return lteScale;
+        }
+
+        const [nextPeriod] = periodToScales[index + 1];
+
+        if (Math.abs(period - range) <= Math.abs(nextPeriod - range)) {
+            return lteScale;
+        }
+    }
+};
 
 export const months = i18n.months;
 

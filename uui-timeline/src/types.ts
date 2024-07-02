@@ -4,6 +4,12 @@ export interface Viewport {
     widthPx: number;
 }
 
+export interface ViewportRange {
+    from: Date;
+    to: Date;
+    widthPx: number;
+}
+
 export interface CheckpointDate {
     name: string;
     date: Date;

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Viewport } from './types';
-import { msPerDay, scaleSteps } from './helpers';
+import { Viewport, ViewportRange } from './types';
+import { getScaleByRange, msPerDay, scaleSteps } from './helpers';
 import { TimelineTransform } from '../index';
 import sortedIndex from 'lodash.sortedindex';
 import { isClientSide } from '@epam/uui-core';
@@ -33,6 +33,8 @@ export class TimelineController {
     isFrameScheduled = false;
     scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
+    timelineTransform: TimelineTransform;
+
     onViewportChange: (newViewport: Viewport) => void;
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
         if (!viewport) {
@@ -86,6 +88,23 @@ export class TimelineController {
         }
     }
 
+    public setViewportRange(newViewportRange: ViewportRange, doAnimation: boolean) {
+        const rangeTimestamp = newViewportRange.to.getTime() - newViewportRange.from.getTime();
+        const centerTimestamp = Math.floor((newViewportRange.to.getTime() + newViewportRange.from.getTime()) / 2);
+        const pxPerMs = getScaleByRange(rangeTimestamp);
+
+        const center = new Date();
+        center.setTime(centerTimestamp);
+        this.setViewport(
+            {
+                center,
+                widthPx: this.currentViewport.widthPx,
+                pxPerMs,
+            },
+            doAnimation,
+        );
+    }
+
     public setShiftPercent(shiftPercent: number) {
         this.shiftPercent = shiftPercent;
     }
@@ -109,7 +128,7 @@ export class TimelineController {
         }
 
         // Prevent text selection of drag start
-        e.preventDefault();
+        e.cancelable && e.preventDefault();
     };
 
     public handleWheelEvent = (e: WheelEvent) => {
@@ -125,7 +144,7 @@ export class TimelineController {
             },
             true,
         );
-        e.preventDefault();
+        e.cancelable && e.preventDefault();
     };
 
     private changeZoomStep(steps: number) {
@@ -201,11 +220,16 @@ export class TimelineController {
     }
 
     public getTransform() {
-        return new TimelineTransform(this, this.currentViewport);
+        if (!this.timelineTransform) {
+            this.timelineTransform = new TimelineTransform(this, this.currentViewport);
+        }
+        return this.timelineTransform;
     }
 
     private doRender() {
-        const transform = new TimelineTransform(this, this.currentViewport);
+        // const transform = new TimelineTransform(this, this.currentViewport);
+        const transform = this.getTransform();
+        transform.updateView(this.currentViewport);
         this.handlers.forEach((h) => h && h(transform));
     }
 

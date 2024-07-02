@@ -6,7 +6,7 @@ import {
 import { PickerBaseOptions } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName } from './dataQuery';
-import { DndActorRenderParams, DropParams } from './dnd';
+import { DndActorRenderParams, DndEventHandlers, DropParams } from './dnd';
 import {
     DataSourceState, SortDirection, SortingOption,
 } from './dataSources';
@@ -102,6 +102,7 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
 
     /** Overrides rendering of the whole cell */
     renderCell?(cellProps: RenderCellProps<TItem, TId>): any;
+    renderHeaderCell?(cellProps: DataTableHeaderCellProps<TItem, TId>): any;
 
     /**
      *  Render callback for column header dropdown.
@@ -254,6 +255,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    eventHandlers?: DndEventHandlers;
 }
 
 export interface RenderCellProps<TItem = any, TId = any> extends DataTableCellOptions<TItem, TId> {
