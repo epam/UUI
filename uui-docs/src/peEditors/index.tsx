@@ -6,6 +6,7 @@ import { JsonView } from './jsonView';
 import { LinkEditor } from './linkEditor';
 import { NumEditor } from './numEditor';
 import { StringEditor, StringWithExamplesEditor } from './stringEditor';
+import { StringOrNumberEditor } from './stringOrNumberEditor';
 import { MultiUnknownEditor } from './multiUnknownEditor';
 import { SingleUnknownEditor } from './singleUnknownEditor';
 import { CantResolve } from './cantResolve';
@@ -19,6 +20,7 @@ export const SharedPropEditorsMap: Record<TSharedPropEditorType, React.FC<IPropD
     NumEditor,
     StringEditor,
     StringWithExamplesEditor,
+    StringOrNumberEditor,
     MultiUnknownEditor,
     SingleUnknownEditor,
     IconEditor,

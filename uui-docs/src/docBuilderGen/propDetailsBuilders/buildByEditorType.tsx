@@ -58,6 +58,16 @@ const BY_EDITOR_TYPE: Record<TPropEditorType, TPropDocBuilder> = {
             editorType: 'StringWithExamplesEditor',
         };
     },
+    [TPropEditorType.oneOfType]: (params) => {
+        const { prop } = params;
+        const editor = prop.editor;
+        if (editor.type === TPropEditorType.oneOfType) {
+            const isTypeSupported = (item: TPropEditorType) => ([TPropEditorType.string, TPropEditorType.number].indexOf(item) !== -1);
+            if (editor.options.every(isTypeSupported)) {
+                return { editorType: 'StringOrNumberEditor', examples: [] };
+            }
+        }
+    },
     [TPropEditorType.oneOf]: (params) => {
         const { prop, skin } = params;
         const editor = prop.editor;

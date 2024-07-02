@@ -53,6 +53,7 @@ export type TSharedPropEditorType =
     'NumEditor' |
     'StringEditor' |
     'StringWithExamplesEditor' |
+    'StringOrNumberEditor' |
     'MultiUnknownEditor' |
     'SingleUnknownEditor' |
     'IconEditor' |

@@ -139,6 +139,15 @@ export class PropEditorUtils {
                 return res;
             } else if (arrNorm.length === 1) {
                 return PropEditorUtils.getPropEditorByType(arrNorm[0]);
+            } else if (!canBeNull && arrNormSplit.scalars.length > 1 && arrNormSplit.etc.length === 0 && arrNormSplit.literals.length === 0) {
+                // List of types can be extended in the future
+                const TYPES_SUPPORTED_IN_ONE_OF_TYPE = [TPropEditorType.number, TPropEditorType.string];
+                if (arrNormSplit.scalars.every((item) => TYPES_SUPPORTED_IN_ONE_OF_TYPE.includes(item))) {
+                    return {
+                        type: TPropEditorType.oneOfType,
+                        options: arrNormSplit.scalars,
+                    };
+                }
             }
         }
     }
