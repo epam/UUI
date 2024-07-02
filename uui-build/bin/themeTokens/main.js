@@ -4,11 +4,10 @@ module.exports = {
 
 function main() {
     const spawn = require('cross-spawn');
+    // We only allow to generate mixins here
     const args = [
         'ts/scripts/themeTokensGen.ts',
         getCliArgStartWith('--src-collection='),
-        getCliArgStartWith('--out-collection='),
-        getCliArgStartWith('--out-tokens='),
         getCliArgStartWith('--out-mixins='),
     ];
     spawn.sync('ts-node', args, { encoding: 'utf8', stdio: 'inherit' });

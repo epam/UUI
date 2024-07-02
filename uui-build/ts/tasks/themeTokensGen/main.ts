@@ -23,27 +23,31 @@ export const taskConfig: ITaskConfig = {
     main,
     cliArgs: {
         [ARGS.SRC_COLLECTION]: { format: 'NameValue', required: true },
-        [ARGS.OUT_COLLECTION]: { format: 'NameValue', required: true },
-        [ARGS.OUT_TOKENS]: { format: 'NameValue', required: true },
         [ARGS.OUT_MIXINS]: { format: 'NameValue', required: true },
+        [ARGS.OUT_COLLECTION]: { format: 'NameValue', required: false },
+        [ARGS.OUT_TOKENS]: { format: 'NameValue', required: false },
     },
 };
 
 async function main(params: TTaskParams) {
     const {
         [ARGS.SRC_COLLECTION]: { value: srcCollectionPath },
-        [ARGS.OUT_COLLECTION]: { value: outCollectionPath },
-        [ARGS.OUT_TOKENS]: { value: outTokensPath },
+        [ARGS.OUT_COLLECTION]: outCollection,
+        [ARGS.OUT_TOKENS]: outTokens,
         [ARGS.OUT_MIXINS]: { value: outMixinsPath },
     } = params.cliArgs;
+
     const srcCollectionData = readFigmaVarCollection(srcCollectionPath as string);
     const { outCollectionData, outTokensData } = generateTokens({ srcCollectionData });
+    if (outCollection?.value) {
+        const outCollectionPathAbs = path.resolve(outCollection.value as string);
+        writeFileSync(outCollectionPathAbs, JSON.stringify(outCollectionData, undefined, 2));
+    }
+    if (outTokens?.value) {
+        const outTokensPathAbs = path.resolve(outTokens.value as string);
+        writeFileSync(outTokensPathAbs, JSON.stringify(outTokensData, undefined, 2));
+    }
 
-    const outCollectionPathAbs = path.resolve(outCollectionPath as string);
-    const outTokensPathAbs = path.resolve(outTokensPath as string);
-
-    writeFileSync(outCollectionPathAbs, JSON.stringify(outCollectionData, undefined, 2));
-    writeFileSync(outTokensPathAbs, JSON.stringify(outTokensData, undefined, 2));
     await mixinsGenerator(outTokensData, outMixinsPath as string);
 }
 
