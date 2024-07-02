@@ -1,6 +1,5 @@
-import fs from 'fs';
 import path from 'path';
-import { readFigmaVarCollection, logFileCreated } from './utils/fileUtils';
+import { readFigmaVarCollection, writeFileSync } from './utils/fileUtils';
 import { getHiddenFromPublishingVarPlaceholder } from './constants';
 import {
     convertRawToken,
@@ -43,10 +42,8 @@ async function main(params: TTaskParams) {
     const outCollectionPathAbs = path.resolve(outCollectionPath as string);
     const outTokensPathAbs = path.resolve(outTokensPath as string);
 
-    fs.writeFileSync(outCollectionPathAbs, JSON.stringify(outCollectionData, undefined, 2));
-    logFileCreated(outCollectionPathAbs);
-    fs.writeFileSync(outTokensPathAbs, JSON.stringify(outTokensData, undefined, 2));
-    logFileCreated(outTokensPathAbs);
+    writeFileSync(outCollectionPathAbs, JSON.stringify(outCollectionData, undefined, 2));
+    writeFileSync(outTokensPathAbs, JSON.stringify(outTokensData, undefined, 2));
     await mixinsGenerator(outTokensData, outMixinsPath as string);
 }
 
