@@ -1,4 +1,4 @@
-import { compareScalars } from '../data/querying/getOrderComparer';
+import { simpleComparator } from '../data/processing/views';
 
 /**
  * Function, which orders array of items by criteria in some direction.
@@ -13,6 +13,6 @@ export function orderBy<T>(arr: T[], by: (item: T) => string | number | null | u
     return sortedArr.sort((a, b) => {
         const aBy = by(a);
         const bBy = by(b);
-        return compareScalars(aBy, bBy, sign);
+        return sign * simpleComparator(aBy, bBy);
     });
 }
