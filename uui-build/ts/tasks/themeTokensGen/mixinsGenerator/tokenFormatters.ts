@@ -1,6 +1,6 @@
-import { figmaVarComparator } from '../../themeTokensGen/utils/sortingUtils';
-import { GROUPS_CONFIG, TMainGroupConfig, TOKENS_MIXIN_NAME, TVar, TVarGroup } from '../constants';
-import { IThemeVar } from '../../themeTokensGen/types/sharedTypes';
+import { figmaVarComparator } from '../utils/sortingUtils';
+import { GROUPS_CONFIG, TMainGroupConfig, TOKENS_MIXIN_NAME, TVar, TVarGroup } from './constants';
+import { IThemeVar } from '../types/sharedTypes';
 
 export function formatVarsAsMixin(params: { scssVars: TVar[], cssVars: TVar[] }): string {
     const { cssVars, scssVars } = params;
