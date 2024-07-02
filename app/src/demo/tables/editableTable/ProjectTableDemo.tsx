@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react';
 import { TimelineController, msPerDay } from '@epam/uui-timeline';
 import { Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip, MultiSwitch } from '@epam/uui';
-import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata, NOT_FOUND_RECORD, Tree, useDataRows, useTree } from '@epam/uui-core';
+import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata,
+    NOT_FOUND_RECORD, Tree, useDataRows, usePrevious, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -16,6 +17,8 @@ import { ReactComponent as fitContent } from '@epam/assets/icons/action-align_ce
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
 import { deleteTaskWithChildren, scheduleTasks, setTaskInsertPosition } from './helpers';
+import { ReactComponent as TableViewOutlineIcon } from '@epam/assets/icons/content-view_table-outline.svg';
+import { ReactComponent as TimelineViewOutlineIcon } from '@epam/assets/icons/editor-chart_gantt-outline.svg';
 
 import css from './ProjectTableDemo.module.scss';
 import { TimelineMode } from './TimelineMode';
@@ -27,7 +30,7 @@ interface FormState {
 
 interface ViewMode {
     id: 'timeline' | 'table';
-    caption: string;
+    icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
 const metadata: Metadata<FormState> = {
@@ -48,8 +51,17 @@ let savedValue: FormState = { items: ItemsMap.blank<number, Task>({ getId: (item
 
 const items = Object.values(getDemoTasks());
 export function ProjectTableDemo() {
-    const viewModes: ViewMode[] = [{ id: 'timeline', caption: 'Timeline' }, { id: 'table', caption: 'Table' }];
+    const viewModes: ViewMode[] = [
+        { id: 'table', icon: TableViewOutlineIcon },
+        { id: 'timeline', icon: TimelineViewOutlineIcon },
+    ];
     const [selectedViewMode, setSelectedViewMode] = useState<ViewMode['id']>('timeline');
+    const [isPending, startTransition] = useTransition();
+    const selectView = useCallback((viewMode: ViewMode['id']) => {
+        startTransition(() => setSelectedViewMode(viewMode));
+    }, [setSelectedViewMode, startTransition]);
+
+    const prevSelectedViewMode = usePrevious(selectedViewMode);
 
     const {
         value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
@@ -348,7 +360,7 @@ export function ProjectTableDemo() {
         );
     };
     const { from, to } = getMinMaxDate();
-
+    const viewMode = isPending ? prevSelectedViewMode : selectedViewMode;
     return (
         <Panel cx={ css.container }>
             <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
@@ -373,37 +385,43 @@ export function ProjectTableDemo() {
                     </Tooltip>
                 </FlexCell>
                 <FlexSpacer />
-                <FlexCell width="auto">
-                    <Button
-                        icon={ fitContent }
-                        iconPosition="left"
-                        caption="Fit content"
-                        onClick={ () => {
-                            if (from && to) {
-                                timelineController.setViewportRange({ from, to, widthPx: timelineController.currentViewport.widthPx }, true);
-                            } 
-                        } }
-                    />
+                <FlexCell cx={ css.search } width={ 295 }>
+                    <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
                 </FlexCell>
 
-                <FlexCell width="auto">
-                    <Button icon={ zoomOut } iconPosition="right" caption="Zoom Out" isDisabled={ !timelineController.canZoomBy(-1) } fill="outline" onClick={ () => timelineController.zoomBy(-1) } />
-                </FlexCell>
-                <FlexCell width="auto">
-                    <Button icon={ zoomIn } iconPosition="right" caption="Zoom In" isDisabled={ !timelineController.canZoomBy(1) } onClick={ () => timelineController.zoomBy(1) } />
-                </FlexCell>
+                <div className={ css.divider } />
 
+                { viewMode === 'timeline'
+                && (
+                    <FlexRow columnGap="6" background="surface-main">
+                        <FlexCell width="auto">
+                            <Button
+                                icon={ fitContent }
+                                iconPosition="left"
+                                caption="Fit content"
+                                onClick={ () => {
+                                    if (from && to) {
+                                        timelineController.setViewportRange({ from, to, widthPx: timelineController.currentViewport.widthPx }, true);
+                                    } 
+                                } }
+                            />
+                        </FlexCell>
+                        <FlexCell width="auto">
+                            <Button icon={ zoomOut } iconPosition="right" isDisabled={ !timelineController.canZoomBy(-1) } fill="outline" onClick={ () => timelineController.zoomBy(-1) } />
+                        </FlexCell>
+                        <FlexCell width="auto">
+                            <Button icon={ zoomIn } iconPosition="right" isDisabled={ !timelineController.canZoomBy(1) } fill="outline" onClick={ () => timelineController.zoomBy(1) } />
+                        </FlexCell>
+                    </FlexRow>
+                )}
                 <FlexCell width={ 150 }>
                     <MultiSwitch
                         items={ viewModes }
                         value={ selectedViewMode }
-                        onValueChange={ setSelectedViewMode }
+                        onValueChange={ selectView }
                     />
                 </FlexCell>
-                <FlexCell cx={ css.search } width={ 295 }>
-                    <SearchInput value={ tableState.search } onValueChange={ searchHandler } placeholder="Search" debounceDelay={ 1000 } />
-                </FlexCell>
-                <div className={ css.divider } />
+
                 <FlexCell width="auto">
                     <IconButton size="18" icon={ undoIcon } onClick={ undo } isDisabled={ !canUndo } />
                 </FlexCell>
@@ -417,13 +435,13 @@ export function ProjectTableDemo() {
                     <Button size="30" color="accent" caption="Save" onClick={ save } isDisabled={ !isChanged } />
                 </FlexCell>
             </FlexRow>
-            
-            { selectedViewMode === 'timeline'
+
+            { viewMode === 'timeline'
                 ? (
                     <TimelineMode
                         tableState={ tableState } 
                         setTableState={ setTableState }
-                        listProps={ listProps }
+                        listProps={ { ...listProps, isReloading: isPending || listProps.isReloading } }
                         rows={ rows }
                         timelineController={ timelineController }
                         dataTableFocusManager={ dataTableFocusManager }
@@ -434,7 +452,7 @@ export function ProjectTableDemo() {
                     <TableMode
                         tableState={ tableState } 
                         setTableState={ setTableState }
-                        listProps={ listProps }
+                        listProps={ { ...listProps, isReloading: isPending || listProps.isReloading } }
                         rows={ rows }
                         dataTableFocusManager={ dataTableFocusManager }
                         insertTask={ insertTask }
