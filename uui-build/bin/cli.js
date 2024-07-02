@@ -13,4 +13,6 @@ if (process.argv.includes(BIN_SCRIPTS.ROLLUP_BUILD)) {
     // eslint-disable-next-line import/extensions
     const { main } = require('./themeTokens/main.js');
     main();
+} else {
+    console.error(`[ERROR] Unknown command. List of supported commands: ${Object.values(BIN_SCRIPTS).map((c) => `"${c}"`).join(', ')}.`);
 }
