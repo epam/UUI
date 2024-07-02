@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { TimelineContext } from './TimelineContext';
 import { TimelineController } from './TimelineController';
 import { TimelineGrid } from './TimelineGrid';
@@ -11,20 +11,26 @@ export interface TimelineContextProviderProps {
 }
 
 export function TimelineContextProvider(props: TimelineContextProviderProps) {
-    const timelineGrid = useRef<ReactNode>(null);
+    const [timelineGrid, setTimelineGrid] = useState<ReactNode>(null);
     
     const updateGrid = useCallback(() => {
-        timelineGrid.current = (
+        setTimelineGrid(
             <TimelineGrid
                 timelineController={ props.timelineController }
                 canvasHeight={ props.canvasHeight }
                 className={ props.className }
-            />
+            />,
         );
-    }, [props.timelineController]);
+    }, [props.timelineController, setTimelineGrid]);
 
     useEffect(() => {
         updateGrid();
+        return () => {
+            setTimelineGrid(null);
+        };
+    }, []);
+
+    useEffect(() => {
         props.timelineController.subscribe(updateGrid);
         return () => {
             props.timelineController.unsubscribe(updateGrid);
@@ -32,7 +38,7 @@ export function TimelineContextProvider(props: TimelineContextProviderProps) {
     }, [props.timelineController, updateGrid]);
 
     return (
-        <TimelineContext.Provider value={ { timelineController: props.timelineController, timelineGrid: timelineGrid.current } }>
+        <TimelineContext.Provider value={ { timelineController: props.timelineController, timelineGrid } }>
             {props.children}
         </TimelineContext.Provider>
     );
