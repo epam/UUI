@@ -1,5 +1,7 @@
 import React, { FC, SVGProps } from 'react';
 import { Badge, Button, FlexRow, IconContainer, LinkButton, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
+import { getCurrentTheme } from '../helpers';
+import cx from 'classnames';
 import css from './ExploreBenefitsBlock.module.scss';
 import { ReactComponent as OpenSourceIcon } from '../icons/open-source.svg';
 import { ReactComponent as StarsIcon } from '../icons/stars.svg';
@@ -11,26 +13,26 @@ import { ReactComponent as notificationHelpIcon } from '../icons/notification-he
 
 interface IExploreTopBlockItem {
     id: number,
-    icon: { element: FC<SVGProps<SVGSVGElement>>, background: string },
+    icon: { element: FC<SVGProps<SVGSVGElement>>, name: string },
     caption: string,
     text: React.ReactNode,
     footer: null | { linkCaption: string, href: string }
 }
 
 const topExploreBlocks: IExploreTopBlockItem[] = [
-    { id: 0, icon: { element: StarsIcon, background: '#FFFFF0' }, caption: 'Figma components aligned with React', text: 'Guidelines, examples, do/don’s recommendations and many other useful guides for designer and developer', footer: null },
+    { id: 0, icon: { element: StarsIcon, name: 'Stars' }, caption: 'Figma components aligned with React', text: 'Guidelines, examples, do/don’s recommendations and many other useful guides for designer and developer', footer: null },
     {
         id: 1,
-        icon: { element: flagIcon, background: '#FDE1E1' },
+        icon: { element: flagIcon, name: 'Flag' },
         caption: 'Integrated solutions & front-end accelerating facilities',
         text: 'Common services, state-management primitives: Forms with validation,'
             + ' Lists and Tables with lazy-loading',
         footer: null,
     },
-    { id: 2, icon: { element: windows, background: '#97D9B7' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/' } },
+    { id: 2, icon: { element: windows, name: 'Windows' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/' } },
     {
         id: 3,
-        icon: { element: brushBuilder, background: '#DBCCFA' },
+        icon: { element: brushBuilder, name: 'BrushBuilder' },
         caption: 'Themization',
         /* eslint-disable react/jsx-closing-tag-location */
         text: <span>
@@ -44,7 +46,7 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
 
 interface IExploreBottomBlockItem {
     id: number,
-    icon: { element: FC<SVGProps<SVGSVGElement>>, background: string },
+    icon: { element: FC<SVGProps<SVGSVGElement>>, name: string },
     caption: string,
     captionBadge: null | { icon: FC<SVGProps<SVGSVGElement>>, caption: string },
     text: string,
@@ -54,7 +56,7 @@ interface IExploreBottomBlockItem {
 const bottomExploreBlocks: IExploreBottomBlockItem[] = [
     {
         id: 0,
-        icon: { element: actionLockIcon, background: '#CDEEDD' },
+        icon: { element: actionLockIcon, name: 'Lock' },
         caption: 'Open Source',
         captionBadge: { icon: OpenSourceIcon, caption: 'MIT License' },
         text: 'Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects',
@@ -64,7 +66,7 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         ],
     }, {
         id: 1,
-        icon: { element: notificationHelpIcon, background: '#CEE1FC' },
+        icon: { element: notificationHelpIcon, name: 'Help' },
         caption: 'Support',
         captionBadge: null,
         text: 'Ongoing support during project live cycle. Access to a dedicated UUI team of architect, designers and developers',
@@ -75,6 +77,9 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
 ];
 
 export function ExploreBenefitsBlock() {
+    const theme = getCurrentTheme();
+    const getThemeClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
+
     return (
         <div className={ css.root }>
             <div className={ css.container }>
@@ -82,7 +87,7 @@ export function ExploreBenefitsBlock() {
                 <div className={ css.topBlockWrapper }>
                     { topExploreBlocks.map((item) => (
                         <Panel cx={ css.topBlockPanel }>
-                            <IconContainer icon={ item.icon.element } cx={ css.topBlockIcon } size="18" style={ { backgroundColor: item.icon.background } } />
+                            <IconContainer icon={ item.icon.element } cx={ cx(css.topBlockIcon, css[getThemeClassName(`topBlockIcon${item.icon.name}`)]) } size="18" />
                             <FlexCell cx={ css.topBlockContextWrapper }>
                                 <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
                                 <Text fontSize="16" lineHeight="24" cx={ css.topBlockText }>{ item.text }</Text>
@@ -104,7 +109,7 @@ export function ExploreBenefitsBlock() {
                 <div className={ css.bottomBlockWrapper }>
                     { bottomExploreBlocks.map((item) => (
                         <Panel cx={ css.bottomBlockPanel }>
-                            <IconContainer size="36" icon={ item.icon.element } cx={ css.bottomBlockIcon } style={ { backgroundColor: item.icon.background } } />
+                            <IconContainer size="36" icon={ item.icon.element } cx={ cx(css.bottomBlockIcon, css[getThemeClassName(`bottomBlockIcon${item.icon.name}`)]) } />
                             <FlexRow cx={ css.bottomBlockCaptionWrapper }>
                                 <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
                                 { item.captionBadge
