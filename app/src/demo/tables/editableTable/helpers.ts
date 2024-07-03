@@ -466,3 +466,51 @@ export const scheduleTasks = (
 
     return updatedScheduleItemsMap;
 };
+
+export const getMinMaxDate = (tree: ITree<Task, number>) => {
+    let minStartDate: number | undefined;
+    let maxDueDate: number | undefined;
+    Tree.forEach(tree, (item) => {
+        let estimatedDate;
+        let dueDate;
+        if (item.startDate) {
+            const startDate = new Date(item.startDate);
+            const startDateTime = startDate.getTime();
+            if (minStartDate === undefined || startDateTime < minStartDate) {
+                minStartDate = startDateTime;
+            }
+            if (item.estimate) {
+                startDate.setDate(startDate.getDate() + item.estimate);
+                estimatedDate = startDate.getTime();
+            }
+        }
+
+        if (item.dueDate) {
+            dueDate = new Date(item.dueDate).getTime();
+        }
+
+        let localMaxDueDate;
+        if (estimatedDate === undefined) {
+            if (dueDate !== undefined) {
+                localMaxDueDate = dueDate;
+            }
+        } else if (dueDate === undefined) {
+            localMaxDueDate = estimatedDate;
+        } else {
+            localMaxDueDate = Math.max(dueDate, estimatedDate);
+        }
+
+        maxDueDate = maxDueDate === undefined ? localMaxDueDate : Math.max(localMaxDueDate ?? 0, maxDueDate);
+    });
+
+    let from: Date;
+    let to: Date;
+    if (minStartDate && maxDueDate) {
+        from = new Date();
+        from.setTime(minStartDate);
+        to = new Date();
+        to.setTime(maxDueDate);
+    }
+
+    return { from, to };
+};

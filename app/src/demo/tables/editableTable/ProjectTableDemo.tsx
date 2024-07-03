@@ -16,7 +16,7 @@ import { ReactComponent as zoomOut } from '@epam/assets/icons/content-minus-outl
 import { ReactComponent as fitContent } from '@epam/assets/icons/action-align_center-outline.svg';
 import { Task } from './types';
 import { getDemoTasks } from './demoData';
-import { deleteTaskWithChildren, scheduleTasks, setTaskInsertPosition } from './helpers';
+import { deleteTaskWithChildren, getMinMaxDate, scheduleTasks, setTaskInsertPosition } from './helpers';
 import { ReactComponent as TableViewOutlineIcon } from '@epam/assets/icons/content-view_table-outline.svg';
 import { ReactComponent as TimelineViewOutlineIcon } from '@epam/assets/icons/editor-chart_gantt-outline.svg';
 
@@ -135,56 +135,8 @@ export function ProjectTableDemo() {
         });
     }, [setValue]);
 
-    const getMinMaxDate = () => {
-        let minStartDate: number | undefined;
-        let maxDueDate: number | undefined;
-        Tree.forEach(treeRef.current, (item) => {
-            let estimatedDate;
-            let dueDate;
-            if (item.startDate) {
-                const startDate = new Date(item.startDate);
-                const startDateTime = startDate.getTime();
-                if (minStartDate === undefined || startDateTime < minStartDate) {
-                    minStartDate = startDateTime;
-                }
-                if (item.estimate) {
-                    startDate.setDate(startDate.getDate() + item.estimate);
-                    estimatedDate = startDate.getTime();
-                }
-            }
-            
-            if (item.dueDate) {
-                dueDate = new Date(item.dueDate).getTime();
-            }
-            
-            let localMaxDueDate;
-            if (estimatedDate === undefined) {
-                if (dueDate !== undefined) {
-                    localMaxDueDate = dueDate;
-                }
-            } else if (dueDate === undefined) {
-                localMaxDueDate = estimatedDate;
-            } else {
-                localMaxDueDate = Math.max(dueDate, estimatedDate);
-            }
-           
-            maxDueDate = maxDueDate === undefined ? localMaxDueDate : Math.max(localMaxDueDate ?? 0, maxDueDate);
-        });
-
-        let from: Date;
-        let to: Date;
-        if (minStartDate && maxDueDate) {
-            from = new Date();
-            from.setTime(minStartDate);
-            to = new Date();
-            to.setTime(maxDueDate);
-        }
-        
-        return { from, to };
-    };
-
     const timelineController = useMemo(() => {
-        const { from, to } = getMinMaxDate();
+        const { from, to } = getMinMaxDate(treeRef.current);
 
         const timeController = new TimelineController({ widthPx: 0, center: new Date(), pxPerMs: 32 / msPerDay });
         if (from && to) {
@@ -359,7 +311,7 @@ export function ProjectTableDemo() {
             </>
         );
     };
-    const { from, to } = getMinMaxDate();
+
     const viewMode = isPending ? prevSelectedViewMode : selectedViewMode;
     return (
         <Panel cx={ css.container }>
@@ -400,8 +352,13 @@ export function ProjectTableDemo() {
                                 iconPosition="left"
                                 caption="Fit content"
                                 onClick={ () => {
-                                    if (from && to) {
-                                        timelineController.setViewportRange({ from, to, widthPx: timelineController.currentViewport.widthPx }, true);
+                                    const minMax = getMinMaxDate(tree);
+                                    if (minMax.from && minMax.to) {
+                                        timelineController.setViewportRange({
+                                            from: minMax.from,
+                                            to: minMax.to,
+                                            widthPx: timelineController.currentViewport.widthPx,
+                                        }, true);
                                     } 
                                 } }
                             />
