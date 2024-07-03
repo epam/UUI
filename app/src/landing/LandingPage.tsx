@@ -1,10 +1,4 @@
 import React from 'react';
-
-import { StartedBlock } from './StartedBlock';
-import { ContactsBlock } from './ContactsBlock';
-import { HeroBlock } from './HeroBlock';
-import { ExploreBlock } from './ExploreBlock';
-import { ReleasesBlock } from './ReleasesBlock';
 import { AppFooter, AppHeader, Page } from '../common';
 import { FlexCell } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
@@ -30,15 +24,10 @@ export class LandingPage extends React.Component {
     render() {
         return (
             <Page renderHeader={ this.renderHeader } renderFooter={ this.renderFooter }>
-                <FlexCell width="100%">
+                <FlexCell cx="landing" width="100%">
                     <IntroBlock />
                     <ExploreBenefitsBlock />
                     <PatternBlock />
-                    <HeroBlock />
-                    <StartedBlock />
-                    <ExploreBlock />
-                    <ReleasesBlock />
-                    <ContactsBlock />
                 </FlexCell>
             </Page>
         );

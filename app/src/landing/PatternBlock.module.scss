@@ -6,24 +6,83 @@
     }
 
     100% {
-        padding: 18px;
+        padding: 9px 12px;
         height: auto;
         opacity: 1;
     }
 }
 
 .root {
+    --uui-header-gradient: linear-gradient(to right, #1294E2, #0A68F1, #8453D2);
+    //
     margin: 0 auto;
     overflow: hidden;
+    background-color: var(--uui-app-bg);
+
+    .header-wrapper {
+        box-sizing: border-box;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding-inline-start: 18px;
+        padding-inline-end: 18px;
+        padding-top: 33px;
+
+        .header {
+            font-weight: 400;
+            font-size: 42px;
+            line-height: 48px;
+            color: var(--uui-text-primary);
+
+            &-start-electric {
+                font-weight: 250;
+                font-size: 44px;
+                line-height: 40px;
+                font-family: var(--font-museo-sans), serif;
+            }
+
+            &-start-promo {
+                font-weight: 600;
+                font-size: 30px;
+                line-height: 36px;
+                font-family: var(--font-museo-sans), serif;
+            }
+
+            &-end {
+                color: var(--uui-primary-50);
+
+                &-electric {
+                    font-weight: 600;
+                    font-size: 44px;
+                    line-height: 50px;
+                    font-family: var(--font-museo-sans), serif;
+                    color: transparent;
+                    background: var(--uui-header-gradient);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                }
+
+                &-promo {
+                    font-weight: 600;
+                    font-size: 30px;
+                    line-height: 36px;
+                    font-family: var(--font-museo-sans), serif;
+                    color: transparent;
+                    background: var(--uui-header-gradient);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                }
+            }
+        }
+    }
 
     .container {
         box-sizing: border-box;
         max-width: 1440px;
         margin: 0 auto;
         padding-inline-start: 9px;
-        padding-inline-end: 9px;
-        padding-top: 24px;
-        padding-bottom: 9px;
+        padding-inline-end: 18px;
+        padding-top: 21px;
+        padding-bottom: 42px;
         column-gap: 15px;
 
         .start-container {
@@ -32,7 +91,8 @@
             flex-direction: column;
             flex-basis: 461px;
             overflow: hidden;
-            
+            min-height: 555px;
+
             .accordion-wrapper {
                 display: flex;
                 flex-direction: column;
@@ -48,7 +108,11 @@
                     padding: 0;
                     height: 0;
                     opacity: 0;
-                    animation: accordion-appears 0.5s forwards;
+                    animation: accordion-appears 0.6s forwards;
+                }
+
+                .accordion-text-btn {
+                    max-width: 130px;
                 }
             }
 
@@ -62,6 +126,12 @@
                 background-color: transparent;
             }
 
+            .watch-all-btn {
+                max-width: max-content;
+                margin-top: 12px;
+                padding: 0 9px;
+                justify-self: flex-end;
+            }
         }
 
         .banner {
@@ -69,7 +139,7 @@
             width: calc(100% - 505px);
             max-width: 928px;
             height: auto;
-            padding: 9px 0 0;
+            padding: 4.5px 0 0;
             display: flex;
             justify-content: flex-start;
             flex-grow: 1;
@@ -87,7 +157,6 @@
             .banner {
                 width: calc(100% - (280px + 18px + 24px + 15px));
                 max-width: initial;
-                padding-inline-end: 9px;
             }
         }
     }
@@ -97,6 +166,11 @@
             .start-container {
                 width: 100%;
                 flex-grow: 1;
+                min-height: initial;
+
+                .watch-all-btn {
+                    max-width: initial;
+                }
             }
 
             .banner {
