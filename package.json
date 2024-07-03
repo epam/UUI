@@ -17,7 +17,6 @@
     "eslint-fix": "yarn eslint --fix",
     "generate-components-api": "yarn --cwd uui-build generate-components-api",
     "generate-theme-tokens": "yarn --cwd uui-build generate-theme-tokens",
-    "generate-theme-mixins": "yarn --cwd uui-build generate-theme-mixins",
     "lint-staged": "cross-env LINT_STAGED=true npx lint-staged",
     "next-app:dev": "cd ./next-demo/next-app && yarn && node ../../uui-build/scripts/runNextApp.js && yarn dev",
     "next-pages:dev": "cd ./next-demo/next-pages && yarn && node ../../uui-build/scripts/runNextApp.js && yarn dev",

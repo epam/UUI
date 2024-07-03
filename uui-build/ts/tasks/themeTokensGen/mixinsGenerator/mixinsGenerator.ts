@@ -1,37 +1,34 @@
-import path from 'path';
-import { logger } from '../../utils/jsBridge';
-import { IThemeVar, IUuiTokensCollection, TCssVarSupport, TFigmaThemeName } from '../themeTokensGen/types/sharedTypes';
+import { IThemeVar, IUuiTokensCollection, TCssVarSupport, TFigmaThemeName } from '../types/sharedTypes';
 import { getThemeMixinsFilePath } from './constants';
-import { ITaskConfig } from '../../utils/taskUtils';
-import { uuiRoot } from '../../constants';
-import { createFileSync } from '../../utils/fileUtils';
-import { readFigmaTokens } from './utils/tokensFileUtils';
-import { formatVarsAsMixin } from './utils/tokenFormatters';
+import { createFileSync } from '../../../utils/fileUtils';
 
-export const taskConfig: ITaskConfig = { main };
+import { formatVarsAsMixin } from './tokenFormatters';
+import { logFileCreated } from '../utils/fileUtils';
 
-async function main() {
-    const tokens = readFigmaTokens();
-    Object.values(tokens.modes).forEach((figmaTheme) => {
+export async function mixinsGenerator(figmaTokens: IUuiTokensCollection, outMixinsPath: string) {
+    Object.values(figmaTokens.modes).forEach((figmaTheme) => {
         genForFigmaTheme({
-            tokens,
+            figmaTokens,
             figmaTheme,
+            outMixinsPath,
         });
     });
 }
 
-function genForFigmaTheme(params: { figmaTheme: TFigmaThemeName, tokens: IUuiTokensCollection }) {
-    const { figmaTheme, tokens } = params;
+function genForFigmaTheme(
+    params: { figmaTheme: TFigmaThemeName, figmaTokens: IUuiTokensCollection, outMixinsPath: string },
+) {
+    const { figmaTheme, figmaTokens, outMixinsPath } = params;
 
     const scssVars: { token: IThemeVar, name: string, value: string }[] = [];
     const cssVars: { token: IThemeVar, name: string, value: string }[] = [];
 
-    const themeVarsMapById = tokens.exposedTokens.reduce<Record<string, IThemeVar>>((acc, v) => {
+    const themeVarsMapById = figmaTokens.exposedTokens.reduce<Record<string, IThemeVar>>((acc, v) => {
         acc[v.id] = v;
         return acc;
     }, {});
 
-    tokens.exposedTokens.forEach((token) => {
+    figmaTokens.exposedTokens.forEach((token) => {
         const { valueByTheme, cssVar } = token;
         const valueChain = valueByTheme[figmaTheme]?.valueChain;
         if (valueChain && canHaveCssVar(token.cssVarSupport)) {
@@ -54,10 +51,9 @@ function genForFigmaTheme(params: { figmaTheme: TFigmaThemeName, tokens: IUuiTok
     });
 
     const content = formatVarsAsMixin({ cssVars, scssVars });
-    const mixinsPath = getThemeMixinsFilePath(figmaTheme);
-    const mixinsPathRes = path.resolve(uuiRoot, mixinsPath);
-    createFileSync(mixinsPathRes, content);
-    logger.success(`File created: ${mixinsPathRes}`);
+    const mixinsPathAbs = getThemeMixinsFilePath(outMixinsPath, figmaTheme);
+    createFileSync(mixinsPathAbs, content);
+    logFileCreated(mixinsPathAbs);
 }
 
 function getScssVarNameForToken(token: IThemeVar) {
