@@ -1,20 +1,25 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Accordion, FlexRow, IconContainer, ProgressBar, Text } from '@epam/uui';
+import { Accordion, Button, FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, ProgressBar, Text } from '@epam/uui';
+import cx from 'classnames';
 import css from './PatternBlock.module.scss';
 import { ReactComponent as Banner } from '../icons/banner.svg';
+import { ReactComponent as NavigationChevronRightOutlineIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
+import { ReactComponent as ActionExternalLinkOutlineIcon } from '@epam/assets/icons/action-external_link-outline.svg';
+import { getCurrentTheme } from '../helpers';
 
 const accordionData = [
-    { id: 0, title: '01 Accordion Title', text: '01 Accordion Text' },
-    { id: 1, title: '02 Accordion Title', text: '02 Accordion Text' },
-    { id: 2, title: '03 Accordion Title', text: '03 Accordion Text' },
-    { id: 3, title: '04 Accordion Title', text: '04 Accordion Text' },
-    { id: 4, title: '05 Accordion Title', text: '05 Accordion Text' },
-    { id: 5, title: '06 Accordion Title', text: '06 Accordion Text' },
+    { id: 0, title: 'Filtered Table', text: 'Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs).' },
+    { id: 1, title: 'Project Planning', text: 'Project Planning Text' },
+    { id: 2, title: 'Forms', text: 'Forms Text' },
+    { id: 3, title: 'Text Editor', text: 'Text Editor Text' },
+    { id: 4, title: 'Drag and Drop', text: 'Drag and Drop Text' },
+    { id: 5, title: 'Timeline', text: 'Timeline Text' },
 ];
 
 const ACCORDION_INTERVAL = 5000;
 
 export function PatternBlock() {
+    const theme = getCurrentTheme();
     const [accordionValue, setAccordionValue] = useState(0);
     const [progress, setProgress] = useState(0);
     const progressID = useRef(null);
@@ -95,8 +100,16 @@ export function PatternBlock() {
         }
     };
 
+    const getHeaderClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
+
     return (
         <div className={ css.root }>
+            <FlexRow justifyContent="center" cx={ css.headerWrapper }>
+                <Text cx={ css.header }>
+                    <span className={ cx(css.headerStart, css[getHeaderClassName('headerStart')]) }>Find pattern for </span>
+                    <span className={ cx(css.headerEnd, css[getHeaderClassName('headerEnd')]) }>your project</span>
+                </Text>
+            </FlexRow>
             <FlexRow cx={ css.container } alignItems="top">
                 <div className={ css.startContainer }>
                     {accordionData.map((item) => (
@@ -113,9 +126,14 @@ export function PatternBlock() {
                                 onValueChange={ () => onClickHandler(item.id) }
                             >
                                 <Text fontSize="16" lineHeight="24">{ item.text }</Text>
+                                <LinkButton href="/" caption="Open Example" icon={ ActionExternalLinkOutlineIcon } iconPosition="right" size="42" onClick={ () => {} } />
                             </Accordion>
                         </div>
                     ))}
+                    <FlexSpacer />
+                    <FlexCell width="auto" cx={ css.watchAllBtn }>
+                        <Button href="/" caption="Watch all" icon={ NavigationChevronRightOutlineIcon } iconPosition="right" fill="none" size="42" onClick={ () => {} } />
+                    </FlexCell>
                 </div>
                 <IconContainer icon={ Banner } cx={ css.banner } />
             </FlexRow>

@@ -77,56 +77,58 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
 export function ExploreBenefitsBlock() {
     return (
         <div className={ css.root }>
-            <Text cx={ css.exploreHeader } fontWeight="600">Explore UUI benefits</Text>
-            <div className={ css.topBlockWrapper }>
-                { topExploreBlocks.map((item) => (
-                    <Panel cx={ css.topBlockPanel }>
-                        <IconContainer icon={ item.icon.element } cx={ css.topBlockIcon } size="18" style={ { backgroundColor: item.icon.background } } />
-                        <FlexCell cx={ css.topBlockContextWrapper }>
-                            <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
-                            <Text fontSize="16" lineHeight="24" cx={ css.topBlockText }>{ item.text }</Text>
-                        </FlexCell>
-                        { item.footer && (
-                            <FlexRow cx={ css.topBlockFooter } justifyContent="center">
-                                <LinkButton
-                                    size="48"
-                                    caption={ item.footer.linkCaption }
-                                    href={ item.footer.href }
-                                    onClick={ () => {
-                                    } }
-                                />
-                            </FlexRow>
-                        ) }
-                    </Panel>
-                )) }
-            </div>
-            <div className={ css.bottomBlockWrapper }>
-                { bottomExploreBlocks.map((item) => (
-                    <Panel cx={ css.bottomBlockPanel }>
-                        <IconContainer size="36" icon={ item.icon.element } cx={ css.bottomBlockIcon } style={ { backgroundColor: item.icon.background } } />
-                        <FlexRow cx={ css.bottomBlockCaptionWrapper }>
-                            <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
-                            { item.captionBadge
-                                && <Badge color="success" fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
-
-                        </FlexRow>
-                        <Text fontSize="16" lineHeight="24" cx={ css.bottomBlockText }>{ item.text }</Text>
-                        { item.footer && (
-                            <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
-                                { item.footer.map((footerItem) => (
-                                    <Button
-                                        href={ footerItem.href }
-                                        color={ footerItem.color }
-                                        fill="none"
-                                        caption={ footerItem.linkCaption }
+            <div className={ css.container }>
+                <Text cx={ css.exploreHeader } fontWeight="600">Explore UUI benefits</Text>
+                <div className={ css.topBlockWrapper }>
+                    { topExploreBlocks.map((item) => (
+                        <Panel cx={ css.topBlockPanel }>
+                            <IconContainer icon={ item.icon.element } cx={ css.topBlockIcon } size="18" style={ { backgroundColor: item.icon.background } } />
+                            <FlexCell cx={ css.topBlockContextWrapper }>
+                                <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
+                                <Text fontSize="16" lineHeight="24" cx={ css.topBlockText }>{ item.text }</Text>
+                            </FlexCell>
+                            { item.footer && (
+                                <FlexRow cx={ css.topBlockFooter } justifyContent="center">
+                                    <LinkButton
+                                        size="48"
+                                        caption={ item.footer.linkCaption }
+                                        href={ item.footer.href }
                                         onClick={ () => {
                                         } }
                                     />
-                                )) }
+                                </FlexRow>
+                            ) }
+                        </Panel>
+                    )) }
+                </div>
+                <div className={ css.bottomBlockWrapper }>
+                    { bottomExploreBlocks.map((item) => (
+                        <Panel cx={ css.bottomBlockPanel }>
+                            <IconContainer size="36" icon={ item.icon.element } cx={ css.bottomBlockIcon } style={ { backgroundColor: item.icon.background } } />
+                            <FlexRow cx={ css.bottomBlockCaptionWrapper }>
+                                <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
+                                { item.captionBadge
+                                && <Badge color="success" fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
+
                             </FlexRow>
-                        ) }
-                    </Panel>
-                )) }
+                            <Text fontSize="16" lineHeight="24" cx={ css.bottomBlockText }>{ item.text }</Text>
+                            { item.footer && (
+                                <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
+                                    { item.footer.map((footerItem) => (
+                                        <Button
+                                            href={ footerItem.href }
+                                            color={ footerItem.color }
+                                            fill="none"
+                                            caption={ footerItem.linkCaption }
+                                            onClick={ () => {
+                                            } }
+                                        />
+                                    )) }
+                                </FlexRow>
+                            ) }
+                        </Panel>
+                    )) }
+                </div>
             </div>
         </div>
     );

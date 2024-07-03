@@ -1,15 +1,17 @@
 .root {
     --uui-intro-gradient-electric: linear-gradient(to right, #0078C2, #0047FF, #8453D2);
     //
-    margin: 0 auto;
     overflow: hidden;
     transition: 0.2s ease;
     position: relative;
+    background-color: var(--uui-surface-main);
+
 
     .info {
-        box-sizing: border-box;
         position: relative;
-        max-width: 1440px;
+        max-width: 1200px;
+        padding-inline-start: 18px;
+        padding-inline-end: 18px;
         padding-top: 84px;
         padding-bottom: 57px;
         margin: 0 auto;
@@ -17,7 +19,7 @@
 
         .blur {
             position: absolute;
-            right: -300px;
+            right: -200px;
             top: -160px;
             z-index: 0;
             width: 1337px;
@@ -25,8 +27,9 @@
         }
 
         .info-start-wrapper {
-            flex-basis: 1357px;
-            justify-content: flex-end;
+            flex-basis: 100%;
+            justify-content: flex-start;
+            align-items: baseline;
 
             .info-start {
                 display: flex;
@@ -50,6 +53,7 @@
                     }
 
                     &-electric {
+                        font-family: var(--font-museo-sans), serif;
                         font-size: 60px;
                         font-weight: 500;
                         line-height: 66px;
@@ -75,6 +79,7 @@
                     padding-top: 0;
 
                     &-electric {
+                        font-family: var(--font-museo-sans), serif;
                         font-size: 60px;
                         line-height: 66px;
                         font-weight: 100;
@@ -141,7 +146,7 @@
 
         .info-end {
             z-index: 1;
-            margin-inline-start: 17px;
+            margin-inline-start: 15px;
             padding-top: 28px;
             display: flex;
             column-gap: 24px;
@@ -203,28 +208,15 @@
         }
     }
 
-    @media (max-width: 1380px) {
+    @media (max-width: 1165px) {
         .info {
-            .info-start-wrapper {
-                flex-basis: 100%;
-                justify-content: flex-start;
-                margin: 0 auto;
-                max-width: 1167px;
-                padding-inline-start: 18px;
-                padding-inline-end: 18px;
-            }
-
             .components-wrapper {
                 display: none;
-            }
-
-            .info-end {
-                margin-inline-start: 24px;
             }
         }
     }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 835px) {
         .info {
             .info-end {
                 .picker-demo-wrapper {
@@ -240,7 +232,7 @@
                 margin-inline-start: 0;
 
                 .info-start {
-                    flex-basis: calc(100% - 36px);
+                    flex-basis: 100%;
 
                     .intro-header {
                         font-size: 42px;
