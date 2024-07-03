@@ -50,7 +50,7 @@ interface IComponentEditorViewProps<TProps> extends IHaveContexts, IHavePreviewR
     onPropValueChange: (params: { prop: PropDoc<TProps, keyof TProps>, newValue: TProps[keyof TProps] }) => void;
     onPropExampleIdChange: (params: { prop: PropDoc<TProps, keyof TProps>, newExampleId: string | undefined }) => void;
 }
-export function ComponentEditorView<TProps = PropDocPropsUnknown>(props: IComponentEditorViewProps<TProps>) {
+export function PropertyEditorView<TProps = PropDocPropsUnknown>(props: IComponentEditorViewProps<TProps>) {
     const demoComponentProps = React.useMemo(() => {
         const map = buildNormalizedInputValuesMap(props.inputData);
         if (props.componentKey) {
