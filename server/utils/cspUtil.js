@@ -39,7 +39,7 @@ function getCspHeaderValue(isDevServer) {
             "script-src 'self'",
             "'unsafe-inline'",
             isDevServer && "'unsafe-eval'",
-            'https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/',
+            'https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/ https://*.amplitude.com',
         ),
     );
 }
