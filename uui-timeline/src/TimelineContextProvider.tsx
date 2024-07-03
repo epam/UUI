@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { TimelineContext } from './TimelineContext';
 import { TimelineController } from './TimelineController';
 import { TimelineGrid } from './TimelineGrid';
@@ -36,9 +36,13 @@ export function TimelineContextProvider(props: TimelineContextProviderProps) {
             props.timelineController.unsubscribe(updateGrid);
         };
     }, [props.timelineController, updateGrid]);
+    
+    const value = useMemo(() => ({
+        timelineGrid, timelineController: props.timelineController,
+    }), [timelineGrid, props.timelineController]);
 
     return (
-        <TimelineContext.Provider value={ { timelineController: props.timelineController, timelineGrid } }>
+        <TimelineContext.Provider value={ value }>
             {props.children}
         </TimelineContext.Provider>
     );
