@@ -30,7 +30,7 @@ app.use((req, res, next) => {
         "default-src 'self' https://*.epam.com;"
         + "style-src 'self' 'unsafe-inline' https://*.epam.com https://cdnjs.cloudflare.com/ https://fonts.googleapis.com/; "
         + "font-src 'self' https://*.epam.com https://fonts.gstatic.com/; "
-        + "connect-src 'self' https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/websocket https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
+        + "connect-src 'self' https://*.epam.com https://*.amplitude.com/ wss://menu.epam.com/websocket https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
         + 'frame-src *; '
         + 'img-src * data: ; '
         + `script-src 'self' 'unsafe-inline' ${isDevServer() ? "'unsafe-eval'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,

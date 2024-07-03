@@ -30,7 +30,7 @@ const router = new Router6AdaptedRouter(router6);
 
 // const GA_CODE = 'G-Q5ZD7N55ML';
 const isProduction = /uui.epam.com/.test(window.location.hostname);
-const AMP_CODE = isProduction ? '94e0dbdbd106e5b208a33e72b58a1345' : 'b2260a6d42a038e9f9e3863f67042cc1';
+const AMP_CODE = isProduction ? '6b2f3cccc1fddd0d5e2bbee910bfdd26' : 'd64810d2ef792ba8917976d63b3e89d';
 
 function apiDefinition(processRequest: IProcessRequest) {
     return getApi({ processRequest, fetchOptions: { credentials: undefined } });
