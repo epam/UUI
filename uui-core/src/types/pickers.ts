@@ -118,7 +118,7 @@ export type PickerFooterProps<TItem, TId> = {
     selectionMode: 'single' | 'multi';
     /** If true, 'Clear' button will be disabled */
     disableClear?: boolean;
-
+    /** Current selected items */
     selection: PickerBindingProps<TItem, TId>['value'];
 };
 
