@@ -1,5 +1,5 @@
 import { DocBuilder, PropDocPropsUnknown, TDocContext, TComponentPreview } from '@epam/uui-docs';
-import { TPropInputDataAll } from '../../common/docs/componentEditor/propDocUtils';
+import { TPropInputDataAll } from '../../common/docs/properyEditor/propDocUtils';
 import { TPreviewRef } from '../types';
 import { TTheme } from '../../data';
 

@@ -7,7 +7,7 @@ import {
     PropDocPropsUnknown,
     PropDocUnknown, TDocContext, DocBuilder,
 } from '@epam/uui-docs';
-import { ComponentEditorView } from './view/ComponentEditorView';
+import { PropertyEditorView } from './view/PropertyEditorView';
 import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from './utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
 import {
@@ -50,7 +50,7 @@ export function ComponentEditorWrapper(props: {
     }, [config, onRedirectBackToDocs]);
 
     return (
-        <ComponentEditor
+        <PropertyEditor
             isSkin={ isSkin }
             theme={ theme }
             componentId={ componentId }
@@ -90,7 +90,7 @@ const getInitialState = (): ComponentEditorState => ({
     isInited: false,
 });
 
-export class ComponentEditor extends React.Component<ComponentEditorProps, ComponentEditorState> {
+export class PropertyEditor extends React.Component<ComponentEditorProps, ComponentEditorState> {
     private propExamplesCtx = new PropSamplesCreationContext({
         forceUpdate: () => this.forceUpdate(),
         getInputValues: () => this.getInputValues(),
@@ -257,7 +257,7 @@ export class ComponentEditor extends React.Component<ComponentEditorProps, Compo
         const isDocUnsupportedForSkin = isLoaded && !docs;
 
         return (
-            <ComponentEditorView
+            <PropertyEditorView
                 contexts={ contexts }
                 componentKey={ componentKey }
                 DemoComponent={ DemoComponent }

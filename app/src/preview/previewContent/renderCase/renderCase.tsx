@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { DocBuilder, PropDocPropsUnknown, TDocContext, uuiDocContextsMap } from '@epam/uui-docs';
 import { formatPropsForNativeTooltip } from './renderCaseUtils';
-import { buildNormalizedInputValuesMap, buildPropInputDataAll, TPropInputDataAll } from '../../../common/docs/componentEditor/propDocUtils';
-import { PropSamplesCreationContext } from '../../../common/docs/componentEditor/view/PropSamplesCreationContext';
+import { buildNormalizedInputValuesMap, buildPropInputDataAll, TPropInputDataAll } from '../../../common/docs/properyEditor/propDocUtils';
+import { PropSamplesCreationContext } from '../../../common/docs/properyEditor/view/PropSamplesCreationContext';
 
 import css from './renderCase.module.scss';
 
