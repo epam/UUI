@@ -105,7 +105,7 @@
                     padding: 3px;
                     border: 3px solid var(--uui-surface-highest);
                     background-color: var(--uui-surface-highest);
-                    border-radius: 6px;
+                    border-radius: calc(var(--uui-border-radius) * 2);
                     box-shadow: var(--uui-shadow-level-1);
                     cursor: pointer;
                     min-width: 232px;

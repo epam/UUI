@@ -25,7 +25,7 @@
                 grid-template-rows: subgrid;
                 grid-row: 1/4;
                 background-color: var(--uui-surface-highest);
-                border-radius: 9px;
+                border-radius: calc(var(--uui-border-radius) * 3);
                 padding: 18px;
 
                 .top-block-icon {
@@ -35,8 +35,42 @@
                     justify-content: center;
                     width: 48px;
                     height: 48px;
-                    border-radius: 6px;
                     margin-bottom: 6px;
+                    border-radius: calc(var(--uui-border-radius) * 2);
+
+                    &-stars {
+                        background-color: #FFFFF0;
+
+                        &-electric, &-loveship, &-promo {
+                            background-color: #FFFFF0;
+                        }
+
+                        &-loveship-dark {
+                            background-color: #403F40;
+                        }
+                    }
+
+                    &-flag {
+                        &-electric, &-loveship, &-promo, &-loveship-dark {
+                            background-color: var(--uui-critical-10);
+                        }
+                    }
+
+                    &-windows {
+                        &-electric, &-loveship, &-promo, &-loveship-dark {
+                            background-color: var(--uui-success-10);
+                        }
+                    }
+
+                    &-brush-builder {
+                        &-electric, &-loveship, &-promo {
+                            background-color: #DBCCFA;
+                        }
+
+                        &-loveship-dark {
+                            background-color: #443166;
+                        }
+                    }
                 }
 
                 .top-block-context-wrapper {
@@ -60,7 +94,7 @@
                 grid-template-rows: subgrid;
                 grid-row: 1/5;
                 background-color: var(--uui-surface-highest);
-                border-radius: 9px;
+                border-radius: calc(var(--uui-border-radius) * 3);
                 padding: 18px;
 
                 .bottom-block-icon {
@@ -70,7 +104,19 @@
                     justify-content: center;
                     width: 84px;
                     height: 84px;
-                    border-radius: 6px;
+                    border-radius: calc(var(--uui-border-radius) * 2);
+
+                    &-lock {
+                        &-electric, &-loveship, &-promo, &-loveship-dark {
+                            background-color: var(--uui-accent-10);
+                        }
+                    }
+
+                    &-help {
+                        &-electric, &-loveship, &-promo, &-loveship-dark {
+                            background-color: var(--uui-primary-10);
+                        }
+                    }
                 }
 
                 .bottom-block-caption-wrapper {
