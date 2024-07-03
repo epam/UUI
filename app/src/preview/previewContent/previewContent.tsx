@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useDocBuilderGen } from '@epam/uui-docs';
-import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from '../../common/docs/componentEditor/utils';
+import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from '../../common/docs/properyEditor/utils';
 import { RenderCase } from './renderCase/renderCase';
 import { PreviewLayout } from './previewLayout';
 import { TPreviewContentParams } from '../types';
