@@ -33,7 +33,7 @@ app.use((req, res, next) => {
         + "connect-src 'self' https://*.epam.com https://*.amplitude.com/ wss://menu.epam.com/websocket https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
         + 'frame-src *; '
         + 'img-src * data: ; '
-        + `script-src 'self' 'unsafe-inline' ${isDevServer() ? "'unsafe-eval'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/;`,
+        + `script-src 'self' 'unsafe-inline' ${isDevServer() ? "'unsafe-eval'" : ''} https://*.epam.com https://www.googletagmanager.com/ https://*.amplitude.com/ https://www.google-analytics.com/;`,
     );
     res.removeHeader('X-Powered-By');
 
