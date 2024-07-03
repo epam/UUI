@@ -31,7 +31,7 @@ function getCspHeaderValue(isDevServer) {
             "connect-src 'self'",
             isDevServer && CUSTOM_THEME_ASSETS.LOCAL,
             CUSTOM_THEME_ASSETS.CLOUDFLARE_PAGES,
-            'https://*.epam.com https://api.amplitude.com/ wss://menu.epam.com/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
+            'https://*.epam.com https://*.amplitude.com/ wss://menu.epam.com/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
         ),
         'frame-src *; ',
         'img-src * data: ; ',
