@@ -179,6 +179,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         },
         clearSelection,
         selectionMode,
+        selection: dataSourceStateToValue<TId, TItem>(props, dataSourceState, dataSource),
     });
 
     const getSelectedRows = (itemsToTake: number) => {
