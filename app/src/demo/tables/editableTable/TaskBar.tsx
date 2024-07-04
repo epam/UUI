@@ -1,7 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, 
-    useSharedTimelineGrid,
-} from '@epam/uui-timeline';
+import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, TimelineGrid } from '@epam/uui-timeline';
 import { renderBars } from '@epam/uui-timeline';
 import { Task } from './types';
 import { statuses } from './demoData';
@@ -64,12 +62,13 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
         timelineController,
     });
 
-    const timelineGrid = useSharedTimelineGrid();
-
     return (
         <div ref={ taskBarWrapperRef } className={ css.taskBar }>
             <div className={ css.layer }>
-                {timelineGrid}
+                <TimelineGrid
+                    timelineController={ timelineController }
+                    canvasHeight={ canvasHeight }
+                />
             </div>
             <div
                 className={ css.layer }

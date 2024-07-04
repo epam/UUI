@@ -123,7 +123,6 @@ export class TimelineTransform {
         const to = this.formatDate(toDate);
         const key = `${from}-${to}-${keyPrefix}`;
 
-
         if (this.cache[key]) {
             return this.cache[key];
         }
