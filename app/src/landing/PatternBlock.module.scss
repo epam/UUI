@@ -80,18 +80,18 @@
         max-width: 1440px;
         margin: 0 auto;
         padding-inline-start: 9px;
-        padding-inline-end: 18px;
+        padding-inline-end: 13.5px;
         padding-top: 21px;
         padding-bottom: 42px;
         column-gap: 15px;
 
         .start-container {
-            position: relative;
+            position: initial;
             display: flex;
             flex-direction: column;
             flex-basis: 461px;
             overflow: hidden;
-            min-height: 555px;
+            min-height: 600px;
 
             .accordion-wrapper {
                 display: flex;

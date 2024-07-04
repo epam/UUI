@@ -6,6 +6,7 @@ import { svc } from '../services';
 import { IntroBlock } from './IntroBlock';
 import { PatternBlock } from './PatternBlock';
 import { ExploreBenefitsBlock } from './ExploreBenefitsBlock';
+import { FaqBlock } from './FaqBlock';
 
 export class LandingPage extends React.Component {
     constructor(props: {}) {
@@ -28,6 +29,7 @@ export class LandingPage extends React.Component {
                     <IntroBlock />
                     <ExploreBenefitsBlock />
                     <PatternBlock />
+                    <FaqBlock />
                 </FlexCell>
             </Page>
         );
