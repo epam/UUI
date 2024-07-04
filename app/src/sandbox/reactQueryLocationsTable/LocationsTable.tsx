@@ -67,7 +67,7 @@ export function LocationsTable() {
         ],
         [],
     );
-    
+
     const itemsMap = useMemo(() => new Map(), []);
     const blankTree = useMemo(() => Tree.blank(treeParams, itemsMap), []);
 
