@@ -133,6 +133,6 @@ export function TimelineGrid({ timelineController, ...restProps }: TimelineGridP
         canvasHeight,
         timelineController,
     });
-    
+
     return renderCanvas();
 }
