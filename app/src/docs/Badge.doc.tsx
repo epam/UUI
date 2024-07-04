@@ -61,24 +61,37 @@ export class BadgeDoc extends BaseDocsBlock {
                     caption: { values: [TEST_DATA.caption] },
                     isDropdown: { values: [true] },
                     count: { values: [TEST_DATA.count] },
-                    icon: { examples: [TEST_DATA.icon] },
                     fill: { examples: '*' },
                     color: { examples: '*' },
+                    indicator: { values: [true, false], condition: (props) => props.fill === 'outline' },
+                    icon: { examples: [TEST_DATA.icon], condition: (props) => !props.indicator },
                 },
                 cellSize: '150-50',
             });
             docPreview.add({
                 id: TBadgePreview['Size Variants'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption] },
-                    color: { values: ['info'] },
-                    icon: { examples: [TEST_DATA.icon, undefined] },
-                    size: { examples: '*' },
-                    count: { values: [TEST_DATA.count, undefined] },
-                    isDropdown: { values: [false, true] },
-                    iconPosition: { values: ['left', 'right'], condition: ({ icon }) => !!icon },
-                },
-                cellSize: '170-60',
+                matrix: [
+                    {
+                        caption: { values: [TEST_DATA.caption] },
+                        color: { values: ['info'] },
+                        icon: { examples: [TEST_DATA.icon, undefined] },
+                        size: { examples: '*' },
+                        count: { values: [TEST_DATA.count, undefined] },
+                        isDropdown: { values: [false, true] },
+                    },
+                    {
+                        caption: { values: [TEST_DATA.caption] },
+                        color: { values: ['info'] },
+                        size: { examples: '*' },
+                        count: { values: [TEST_DATA.count] },
+                        isDropdown: { values: [true] },
+                        icon: { examples: [TEST_DATA.icon] },
+                        fill: { examples: ['outline'] },
+                        indicator: { values: [true] },
+                        iconPosition: { values: ['right'] },
+                    },
+                ],
+                cellSize: '175-60',
             });
         },
     };
