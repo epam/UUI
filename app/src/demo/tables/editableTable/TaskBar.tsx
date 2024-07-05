@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, Item, TimelineGrid } from '@epam/uui-timeline';
+import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps, TimelineGrid, Item } from '@epam/uui-timeline';
 import { renderBars } from '@epam/uui-timeline';
 import { Task } from './types';
 import { statuses } from './demoData';
@@ -19,33 +19,60 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
     const draw = useCallback((ctx: CanvasRenderingContext2D, t: TimelineTransform) => {
         ctx.clearRect(0, 0, t.widthMs, canvasHeight);
         const startDate = task.type === 'story' ? task.startDate : task.exactStartDate;
-        let to = uuiDayjs.dayjs(startDate, 'YYYY-MM-DD');
-        
-        if (startDate && task.estimate) {
-            to = to.add(task.estimate, 'day');
+
+        // if (task.dueDate) {
+        //     item = {
+        //         from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
+        //         to: task.dueDate ? uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate() : null,
+        //         color: getTaskColor(task.status),
+        //         minPixPerDay: 0.01,
+        //         fillType: 'solid',
+        //         opacity: 1.0,
+        //         height: 30,
+        //     };
+        // } else {
+        let to = uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate();
+        if (startDate && task.estimate !== undefined) {
+            to = new Date(to.getTime() + task.estimate * 24 * 60 * 60 * 1000);
         } else {
             to = null;
         }
 
-        const item: Item = task.dueDate ? {
+        const item: Item = {
             from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
-            to: task.dueDate ? uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate() : null,
+            to,
             color: getTaskColor(task.status),
-            minPixPerDay: 0.01,
-            fillType: 'solid',
-            opacity: 1.0,
-            height: 30,
-        } : {
-            from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
-            to: to ? to.toDate() : null,
-            color: getTaskColor(task.status),
-            minPixPerDay: 0.01,
+            minPixPerDay: 0.1,
             fillType: 'solid',
             opacity: 1.0,
             height: 30,
         };
 
-        const transformedItems = [item]
+        let deadlineItems: Item[] = [];
+        const dueDate = uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate();
+        if (task.type === 'task' && task.dueDate && to.getTime() > dueDate.getTime()) {
+            deadlineItems = [{
+                from: dueDate,
+                to,
+                color: 'red',
+                minPixPerDay: 0.1,
+                fillType: 'solid',
+                opacity: 1.0,
+                height: 30,
+            }, {
+                from: dueDate,
+                to,
+                color: 'red',
+                minPixPerDay: 0.1,
+                fillType: 'shaded',
+                opacity: 0.7,
+                height: 30,
+            }];
+        }
+        // }
+
+        const transformedItems = [item, ...deadlineItems]
+            .filter(Boolean)
             .map((i) => ({
                 ...i,
                 priority: 1,
