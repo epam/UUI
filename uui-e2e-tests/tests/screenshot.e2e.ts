@@ -19,7 +19,7 @@ const {
 const builder = new TestBuilder();
 
 builder
-    .only(badge, [
+    .add(badge, [
         { previewId: [TBadgePreview['Color Variants']], skins: SKINS.promo_loveship_electric },
         { previewId: [TBadgePreview['Size Variants']] },
         {
