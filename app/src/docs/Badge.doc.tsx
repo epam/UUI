@@ -9,7 +9,7 @@ import {
     DocPreviewBuilder,
     getColorPickerComponent,
     TDocConfig,
-    TDocContext,
+    TDocContext, TPreviewMatrix,
     TSkin,
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
@@ -50,22 +50,34 @@ export class BadgeDoc extends BaseDocsBlock {
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
         preview: (docPreview: DocPreviewBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
+            type TMatrixLocal = TPreviewMatrix<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>;
             const TEST_DATA = {
                 caption: 'Test',
                 icon: 'action-account-fill.svg',
                 count: '99+',
             };
+            const colorVariantsBase: TMatrixLocal = {
+                caption: { values: [TEST_DATA.caption] },
+                isDropdown: { values: [true] },
+                count: { values: [TEST_DATA.count] },
+            };
             docPreview.add({
                 id: TBadgePreview['Color Variants'],
-                matrix: {
-                    caption: { values: [TEST_DATA.caption] },
-                    isDropdown: { values: [true] },
-                    count: { values: [TEST_DATA.count] },
-                    fill: { examples: '*' },
-                    color: { examples: '*' },
-                    indicator: { values: [true, false], condition: (props) => props.fill === 'outline' },
-                    icon: { examples: [TEST_DATA.icon], condition: (props) => !props.indicator },
-                },
+                matrix: [
+                    {
+                        ...colorVariantsBase,
+                        fill: { values: ['solid', 'outline'] },
+                        color: { examples: '*' },
+                        icon: { examples: [TEST_DATA.icon] },
+                    },
+                    {
+                        ...colorVariantsBase,
+                        fill: { values: ['outline'] },
+                        color: { examples: '*' },
+                        icon: { examples: [undefined] },
+                        indicator: { values: [true] },
+                    },
+                ],
                 cellSize: '150-50',
             });
             docPreview.add({
