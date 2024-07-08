@@ -1,5 +1,6 @@
-import { IThemeVar } from '../themeTokensGen/types/sharedTypes';
-import { PATH } from '../themeTokensGen/constants';
+import { IThemeVar } from '../types/sharedTypes';
+import path from 'path';
+import { forwardSlashes } from '../utils/fileUtils';
 
 export type TVar = { token: IThemeVar, name: string, value: string };
 export type TVarGroup = { title: string, items: TVar[] };
@@ -12,12 +13,9 @@ export type TMainGroupConfig = {
 
 export const TOKENS_MIXIN_NAME = 'theme-tokens';
 
-const THEME_TOKENS_DIR = './epam-assets/theme/tokens';
-
-export const tokensFile = PATH.FIGMA_VARS_COLLECTION_OUT_TOKENS;
-export const getThemeMixinsFilePath = (themeName: string) => {
+export const getThemeMixinsFilePath = (outMixinsPath: string, themeName: string) => {
     const themeNameNorm = themeName.toLowerCase().replaceAll('-', '_');
-    return `${THEME_TOKENS_DIR}/_theme_${themeNameNorm}.scss`;
+    return forwardSlashes(path.resolve(outMixinsPath, `_theme_${themeNameNorm}.scss`));
 };
 
 const getInnerGroupIdLevel2 = (v: TVar) => {

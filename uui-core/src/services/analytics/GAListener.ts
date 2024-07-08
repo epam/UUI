@@ -36,8 +36,9 @@ export class GAListener implements IAnalyticsListener {
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private sendToGA(...args: any[]) {
-        (window as any).dataLayer.push(...args);
+        (window as any).dataLayer.push(arguments); // For GA it's important to pass exactly arguments
     }
 
     private sendPageView(path: string) {

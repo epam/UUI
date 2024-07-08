@@ -32,7 +32,7 @@
         <script src='https://menu.epam.com/scripts/menu.js?app=uui3' async></script>
     <% } %>
 
-
+    <% if (process.env.NODE_ENV === 'production') { %>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -40,13 +40,18 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K5QNBCKB');</script>
     <!-- End Google Tag Manager -->
+    <% } %>
+
 </head>
 <body class="uui-theme-promo">
 
+<% if (process.env.NODE_ENV === 'production') { %>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5QNBCKB"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<% } %>
+
 
 <noscript>
     You need to enable JavaScript to run this app.
