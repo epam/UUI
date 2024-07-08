@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from 'react';
+import React, { useRef, useCallback, useEffect, useLayoutEffect } from 'react';
 import cx from 'classnames';
 import { TimelineController } from './TimelineController';
 import { TimelineTransform } from './TimelineTransform';
@@ -22,8 +22,13 @@ export function useCanvas(
     const prevWidth = usePrevious(timelineController.currentViewport.widthPx);
 
     const handleRenderCanvas = useCallback((t: TimelineTransform) => {
+        if (!canvasRef.current) {
+            return;
+        }
         const ctx = canvasRef.current!.getContext('2d')!;
         ctx.save();
+        // ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
         ctx.scale(devicePixelRatio, devicePixelRatio);
         props?.draw(ctx, t);
         props.renderOnTop?.(ctx, t);
@@ -36,7 +41,7 @@ export function useCanvas(
         }
     }, [forceUpdate]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         timelineController.subscribe(handleRenderCanvas);
         timelineController.subscribe(handleResize);
 
@@ -46,9 +51,13 @@ export function useCanvas(
         };
     }, [handleRenderCanvas, handleResize, timelineController]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         handleRenderCanvas(timelineController.getTransform());
     }, deps ? [...deps] : undefined);
+
+    useEffect(() => {
+        handleRenderCanvas(timelineController.getTransform());
+    });
 
     const renderCanvas = useCallback((canvasProps?: any) => {
         const width = timelineController.currentViewport.widthPx;
