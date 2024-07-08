@@ -20,7 +20,7 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
             {
                 center: timelineController.currentViewport.center,
                 pxPerMs: timelineController.currentViewport.pxPerMs,
-                widthPx: timelineRef.current.clientWidth,
+                widthPx: timelineRef.current?.clientWidth,
             },
             false,
         );

@@ -1,18 +1,18 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
-import { TimelineTransform, BaseTimelineCanvasComponentProps, TimelineGrid, TimelineController } from '@epam/uui-timeline';
+import { TimelineTransform, TimelineGrid, TimelineController, CanvasProps } from '@epam/uui-timeline';
 import { Task } from './types';
 import { statuses } from './demoData';
 import { uuiDayjs } from '../../../helpers';
 
-import css from './TaskBar.module.scss';
+import css from './TaskRow.module.scss';
 
-export interface TaskBarProps extends BaseTimelineCanvasComponentProps {
+export interface TaskRowProps extends CanvasProps {
     task: Task;
 }
 
 const getTaskColor = (status: string) => statuses.find((s) => s.id === status)?.color ?? '#e1e3eb';
 
-function TaskC({ task, timelineController }: { task: Task, timelineController: TimelineController }) {
+function TaskBar({ task, timelineController }: { task: Task, timelineController: TimelineController }) {
     const [coords, setCoords] = useState<{ width?: number, left?: number }>({});
     const startDate = task.type === 'story' ? task.startDate : task.exactStartDate;
 
@@ -70,7 +70,7 @@ function TaskC({ task, timelineController }: { task: Task, timelineController: T
     );
 }
 
-export function TaskBar({ task, timelineController }: TaskBarProps) {
+export function TaskRow({ task, timelineController }: TaskRowProps) {
     const taskBarWrapperRef = useRef<HTMLDivElement>(null);
     const canvasHeight = 36;
     return (
@@ -88,7 +88,7 @@ export function TaskBar({ task, timelineController }: TaskBarProps) {
                 className={ css.layer }
                 onMouseDown={ (e) => timelineController.startDrag(e) }
             >
-                <TaskC task={ task } timelineController={ timelineController } />
+                <TaskBar task={ task } timelineController={ timelineController } />
             </div>
         </div>
     );
