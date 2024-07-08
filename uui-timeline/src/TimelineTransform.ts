@@ -29,15 +29,6 @@ export class TimelineTransform {
         this.cache = {};
     }
 
-    updateView(vp: Viewport) {
-        this.centerMs = vp.center.getTime();
-        this.widthPx = vp.widthPx;
-        this.pxPerMs = vp.pxPerMs;
-        this.widthMs = vp.widthPx / vp.pxPerMs;
-        this.leftMs = this.centerMs - this.widthMs / 2;
-        this.rightMs = this.centerMs + this.widthMs / 2;
-    }
-
     getX(date: Date, trim?: undefined | 'left' | 'right'): number {
         let ms = date.getTime();
 
@@ -110,22 +101,10 @@ export class TimelineTransform {
         return result;
     }
 
-    private formatDate(date: Date) {
-        return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    }
-
     getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string) {
         const fromDate = new Date(this.leftMs);
         const toDate = new Date(this.rightMs);
         const baseDate = alignStartDate(fromDate);
-
-        const from = this.formatDate(fromDate);
-        const to = this.formatDate(toDate);
-        const key = `${from}-${to}-${keyPrefix}`;
-
-        if (this.cache[key]) {
-            return this.cache[key];
-        }
 
         const result = [];
         let n = 0;
@@ -148,8 +127,6 @@ export class TimelineTransform {
 
             n++;
         }
-
-        this.cache[key] = result;
 
         return result;
     }

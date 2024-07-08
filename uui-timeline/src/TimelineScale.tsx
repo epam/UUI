@@ -1,7 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { TimelineTransform } from './TimelineTransform';
-import { useCanvas, BaseTimelineCanvasComponentProps } from './useCanvas';
 import {
     addDays, months, getHoursInFormatAMPM,
 } from './helpers';
@@ -12,8 +11,9 @@ import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
 import { Icon, useForceUpdate } from '@epam/uui-core';
 import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
+import { Canvas, CanvasProps } from './Canvas';
 
-export interface TimelineScaleProps extends BaseTimelineCanvasComponentProps {
+export interface TimelineScaleProps extends CanvasProps {
     isDraggable?: boolean;
     isScaleChangeOnWheel?: boolean;
     shiftPercent?: number;
@@ -21,21 +21,21 @@ export interface TimelineScaleProps extends BaseTimelineCanvasComponentProps {
 
 const moveAmount = 0.7;
 
-export function TimelineScale({ timelineController, isDraggable, isScaleChangeOnWheel }: TimelineScaleProps) {
+export function TimelineScale({ timelineController, isDraggable, isScaleChangeOnWheel, renderCanvas }: TimelineScaleProps) {
     const isMouseDownRef = useRef(false);
     const forceUpdate = useForceUpdate();
     
     const handleWindowMouseUp = useCallback(() => {
         if (isMouseDownRef.current) {
             isMouseDownRef.current = false;
-            forceUpdate();
+            // forceUpdate();
         }
     }, [forceUpdate]);
 
     const handleMouseDown = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
         timelineController.startDrag(e);
         isMouseDownRef.current = true;
-        forceUpdate();
+        // forceUpdate();
     }, [forceUpdate, timelineController]);
 
     const handleWheel = (e: React.SyntheticEvent<HTMLCanvasElement>) => {
@@ -277,11 +277,6 @@ export function TimelineScale({ timelineController, isDraggable, isScaleChangeOn
         renderPart(ctx, t, 1, 6, renderBottomMonths);
         renderPart(ctx, t, null, 6, renderYears);
     };
-
-    const { renderCanvas } = useCanvas({
-        draw,
-        timelineController,
-    });
     
     useEffect(() => {
         window.addEventListener('mouseup', handleWindowMouseUp);
@@ -295,11 +290,13 @@ export function TimelineScale({ timelineController, isDraggable, isScaleChangeOn
         <div className={ styles.timelineHeader } style={ { width: timelineController.currentViewport.widthPx } }>
             {!isMouseDownRef.current && renderArrow('left')}
             {!isMouseDownRef.current && renderArrow('right')}
-            {renderCanvas({
-                className: isMouseDownRef.current ? styles.timelineScaleGrabbing : styles.timelineScale,
-                onMouseDown: isDraggable && handleMouseDown,
-                onWheel: isScaleChangeOnWheel && handleWheel,
-            })}
+            <Canvas
+                className={ isMouseDownRef.current ? styles.timelineScaleGrabbing : styles.timelineScale }
+                onMouseDown={ isDraggable && handleMouseDown }
+                onWheel={ isScaleChangeOnWheel && handleWheel }
+                renderCanvas={ renderCanvas ?? draw }
+                timelineController={ timelineController }
+            />
         </div>
     );
 }

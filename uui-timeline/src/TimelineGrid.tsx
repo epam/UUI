@@ -1,8 +1,9 @@
+import React from 'react';
 import { TimelineTransform } from './TimelineTransform';
-import { BaseTimelineCanvasComponentProps, useCanvas } from './useCanvas';
 import { msPerDay } from './helpers';
+import { Canvas, CanvasProps } from './Canvas';
 
-export interface TimelineGridProps extends BaseTimelineCanvasComponentProps {}
+export interface TimelineGridProps extends CanvasProps {}
 
 export function TimelineGrid({ timelineController, ...restProps }: TimelineGridProps) {
     const canvasHeight = restProps.canvasHeight ?? 60;
@@ -128,11 +129,5 @@ export function TimelineGrid({ timelineController, ...restProps }: TimelineGridP
         renderToday(ctx, t);
     };
     
-    const { renderCanvas } = useCanvas({
-        draw,
-        canvasHeight,
-        timelineController,
-    });
-
-    return renderCanvas();
+    return <Canvas renderCanvas={ draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
 }

@@ -1,4 +1,5 @@
-import { TimelineTransform, useCanvas, BaseTimelineCanvasComponentProps } from '@epam/uui-timeline';
+import React from 'react';
+import { TimelineTransform, BaseTimelineCanvasComponentProps, Canvas } from '@epam/uui-timeline';
 import { renderBars, Item } from '@epam/uui-timeline';
 
 export interface DemoCanvasBarsProps extends BaseTimelineCanvasComponentProps {
@@ -21,12 +22,6 @@ export function DemoCanvasBars(props: DemoCanvasBarsProps) {
 
         renderBars(transformedItems, canvasHeight, ctx, t);
     };
-    
-    const { renderCanvas } = useCanvas({
-        draw,
-        canvasHeight,
-        timelineController: props.timelineController,
-    });
-    
-    return renderCanvas();
+
+    return <Canvas renderCanvas={ draw } canvasHeight={ canvasHeight } timelineController={ props.timelineController } />;
 }

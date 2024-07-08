@@ -1,4 +1,5 @@
 export * from './src/useCanvas';
+export * from './src/Canvas';
 export * from './src/TimelineController';
 export * from './src/TimelineContext';
 export * from './src/TimelineGrid';
