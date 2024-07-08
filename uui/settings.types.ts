@@ -1,4 +1,5 @@
 interface DefaultSizes {
+    badge: string;
     button: string;
     checkbox: string;
     countIndicator: string;
@@ -16,6 +17,8 @@ interface DefaultSizes {
     textInput: string;
     rangeDatePicker: string;
     datePicker: string;
+    labeledInput: string;
+    statusIndicator: string;
 }
 
 interface Sizes {
@@ -125,6 +128,14 @@ interface FilterPickerBodySizes {
     searchSize: string,
 }
 
+interface LabeledInputSizes {
+    fillIcon: string[];
+}
+
+interface BadgeSizes {
+    countIndicator: Sizes;
+}
+
 interface SizesSettings {
     defaults: DefaultSizes;
     tag: TagSizes;
@@ -140,6 +151,8 @@ interface SizesSettings {
     rowAddons: RowAddonsSizes;
     text: TextSizes;
     filterPickerBody: FilterPickerBodySizes;
+    labeledInput: LabeledInputSizes;
+    badge: BadgeSizes;
 }
 
 export interface Settings {

@@ -3,6 +3,7 @@ import type { Settings } from './settings.types';
 export const settings: Settings = {
     sizes: {
         defaults: {
+            badge: '36',
             button: '36',
             checkbox: '18',
             countIndicator: '24',
@@ -20,6 +21,8 @@ export const settings: Settings = {
             textInput: '36',
             rangeDatePicker: '36',
             datePicker: '36',
+            labeledInput: '36',
+            statusIndicator: '24',
         },
         tag: {
             countIndicator: {
@@ -191,6 +194,19 @@ export const settings: Settings = {
             dataPickerRow: '36',
             dataPickerFooter: '36',
             searchSize: '36',
+        },
+        labeledInput: {
+            fillIcon: ['24', '30'],
+        },
+        badge: {
+            countIndicator: {
+                18: '12',
+                24: '18',
+                30: '18',
+                36: '18',
+                42: '24',
+                48: '24',
+            },
         },
     },
 };

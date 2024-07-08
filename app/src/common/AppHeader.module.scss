@@ -1,20 +1,16 @@
 .root {
     .link-container {
         display: flex;
-        padding-left: 18px;
-        padding-right: 18px;
+        padding-inline-start: 18px;
+        padding-inline-end: 18px;
         align-items: center;
         min-height: 60px;
 
         .link-caption {
-            padding-left: 6px;
+            padding-inline-start: 6px;
             color: var(--uui-main_menu-text);
             white-space: nowrap;
         }
-    }
-
-    .switcher {
-        padding-left: 24px;
     }
 
     @media (max-width: 768px) {

@@ -4,7 +4,9 @@
 * [Pickers]: add current selection into renderFooter callback params.
 
 **What's Fixed**
-* [Checkbox]: fixed icon size according design
+* [Checkbox]:
+  * fixed icon size according design
+  * [Breaking change]: removed centered alignment of items to ensure proper alignment of checkboxes with multi-line caption
 * [RadioInput]: fixed caption line-height according design
 * [Switch]: fixed caption size & line-height according design
 * [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
