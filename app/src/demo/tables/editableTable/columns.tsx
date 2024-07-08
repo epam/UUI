@@ -12,7 +12,7 @@ import css from './ProjectTableDemo.module.scss';
 import { TimelineController } from '@epam/uui-timeline';
 import { TimelineHeader } from './TimelineHeader';
 
-import { TaskBar } from './TaskBar';
+import { TaskRow } from './TaskRow';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 const statusDataSource = new ArrayDataSource({ items: statuses });
@@ -329,7 +329,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             },
             renderCell(props) {
                 return (
-                    <TaskBar task={ props.rowLens.toProps().value } timelineController={ timelineController } />
+                    <TaskRow task={ props.rowLens.toProps().value } timelineController={ timelineController } />
                 );
             },
         },
