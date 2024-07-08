@@ -20,7 +20,7 @@ export const headerPlugin = (headersConfig?: HeadersConfig): PlatePlugin => {
         },
         options: {
             bottomBarButton: HeaderButton,
-            headers: !!headersConfig?.headers?.length ? headersConfig.headers : defaultHeadersConig,
+            headers: !!headersConfig?.headers?.length ? headersConfig.headers : defaultHeadersConig.headers,
         } as HeaderPluginOptions,
     });
 };
