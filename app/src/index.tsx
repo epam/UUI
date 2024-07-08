@@ -5,7 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { init as initApm } from '@elastic/apm-rum';
 import {
     Router6AdaptedRouter, useUuiServices,
-    UuiContext, IProcessRequest,
+    UuiContext, IProcessRequest, GAListener,
 } from '@epam/uui-core';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
@@ -26,7 +26,7 @@ const router = new Router6AdaptedRouter(router6);
 // __COMMIT_HASH__ will be replaced to a real string by Webpack
 (window as any).BUILD_INFO = { hash: __COMMIT_HASH__ };
 
-// const GA_CODE = 'G-Q5ZD7N55ML';
+const GA_CODE = 'G-Q5ZD7N55ML';
 const isProduction = /uui.epam.com/.test(window.location.hostname);
 const AMP_CODE = isProduction ? '6b2f3cccc1fddd0d5e2bbee910bfdd26' : 'd64810d2ef792ba8917976d63b3e89d';
 
@@ -57,7 +57,7 @@ function UuiEnhancedApp() {
         async function initServices() {
             services.uuiApp = await getAppContext();
             Object.assign(svc, services);
-            // isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
+            isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
             services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));
             setIsLoaded(true);
         }

@@ -1,4 +1,7 @@
-# 5.*.* - **.**.2024
+# 5.9.0 - xx.xx.2024
+
+**What's New**
+* [Pickers]: add current selection into renderFooter callback params.
 
 **What's Fixed**
 * [Checkbox]: fixed icon size according design
@@ -6,9 +9,9 @@
 * [Switch]: fixed caption size & line-height according design
 * [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
 * [uui-editor]: header, notes and color plugins now available for customizations
+* [TextArea]: removed maxLength prop override in cell mode
 
-**What's New**
-* [TimePicker][ScrollBars]: rtl support
+
 
 # 5.8.1 - 21.06.2024
 
