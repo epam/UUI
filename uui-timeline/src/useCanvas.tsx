@@ -27,8 +27,6 @@ export function useCanvas(
         }
         const ctx = canvasRef.current!.getContext('2d')!;
         ctx.save();
-        // ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-
         ctx.scale(devicePixelRatio, devicePixelRatio);
         props?.draw(ctx, t);
         props.renderOnTop?.(ctx, t);

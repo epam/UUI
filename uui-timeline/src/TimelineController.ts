@@ -33,7 +33,7 @@ export class TimelineController {
     isFrameScheduled = false;
     scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
-    timelineTransform: TimelineTransform;
+    cache: Record<string, TimelineTransform> = {};
 
     onViewportChange: (newViewport: Viewport) => void;
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
@@ -128,7 +128,7 @@ export class TimelineController {
         }
 
         // Prevent text selection of drag start
-        e.cancelable && e.preventDefault();
+        e.preventDefault();
     };
 
     public handleWheelEvent = (e: WheelEvent) => {
@@ -144,7 +144,7 @@ export class TimelineController {
             },
             true,
         );
-        e.cancelable && e.preventDefault();
+        e.preventDefault();
     };
 
     private changeZoomStep(steps: number) {
@@ -220,16 +220,22 @@ export class TimelineController {
     }
 
     public getTransform() {
-        if (!this.timelineTransform) {
-            this.timelineTransform = new TimelineTransform(this, this.currentViewport);
-        }
-        return this.timelineTransform;
+        const bounds = this.getBounds(this.currentViewport);
+
+        const key = `${bounds.left}-${bounds.right}-${this.currentViewport.pxPerMs}`;
+
+        // if (this.cache[key]) {
+        //     return this.cache[key];
+        // }
+
+        const transform = new TimelineTransform(this, this.currentViewport);
+
+        this.cache[key] = transform;
+        return transform;
     }
 
     private doRender() {
-        // const transform = new TimelineTransform(this, this.currentViewport);
         const transform = this.getTransform();
-        transform.updateView(this.currentViewport);
         this.handlers.forEach((h) => h && h(transform));
     }
 
@@ -240,16 +246,17 @@ export class TimelineController {
         return current;
     }
 
+    getBounds = (vp: Viewport) => ({
+        left: vp.center.getTime() - 0.5 / vp.pxPerMs,
+        right: vp.center.getTime() + 0.5 / vp.pxPerMs,
+    });
+
     private interpolateViewports(vp1: Viewport, vp2: Viewport, dt: number) {
         // We'll process interpolation not scale+center, but two points -0.5ms and 0.5.
         // This will made transition trajectory linear
-        const getBounds = (vp: Viewport) => ({
-            left: vp.center.getTime() - 0.5 / vp.pxPerMs,
-            right: vp.center.getTime() + 0.5 / vp.pxPerMs,
-        });
 
-        const vp1Bounds = getBounds(vp1);
-        const vp2Bounds = getBounds(vp2);
+        const vp1Bounds = this.getBounds(vp1);
+        const vp2Bounds = this.getBounds(vp2);
         const nextBounds = {
             left: this.interpolate(vp1Bounds.left, vp2Bounds.left, dt),
             right: this.interpolate(vp1Bounds.right, vp2Bounds.right, dt),
