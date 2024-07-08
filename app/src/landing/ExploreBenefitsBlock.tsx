@@ -86,7 +86,7 @@ export function ExploreBenefitsBlock() {
                 <Text cx={ css.exploreHeader } fontWeight="600">Explore UUI benefits</Text>
                 <div className={ css.topBlockWrapper }>
                     { topExploreBlocks.map((item) => (
-                        <Panel cx={ css.topBlockPanel }>
+                        <Panel cx={ css.topBlockPanel } key={ item.id }>
                             <IconContainer icon={ item.icon.element } cx={ cx(css.topBlockIcon, css[getThemeClassName(`topBlockIcon${item.icon.name}`)]) } size="18" />
                             <FlexCell cx={ css.topBlockContextWrapper }>
                                 <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
@@ -108,7 +108,7 @@ export function ExploreBenefitsBlock() {
                 </div>
                 <div className={ css.bottomBlockWrapper }>
                     { bottomExploreBlocks.map((item) => (
-                        <Panel cx={ css.bottomBlockPanel }>
+                        <Panel cx={ css.bottomBlockPanel } key={ item.id }>
                             <IconContainer size="36" icon={ item.icon.element } cx={ cx(css.bottomBlockIcon, css[getThemeClassName(`bottomBlockIcon${item.icon.name}`)]) } />
                             <FlexRow cx={ css.bottomBlockCaptionWrapper }>
                                 <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
@@ -121,6 +121,7 @@ export function ExploreBenefitsBlock() {
                                 <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
                                     { item.footer.map((footerItem) => (
                                         <Button
+                                            key={ footerItem.linkCaption }
                                             href={ footerItem.href }
                                             color={ footerItem.color }
                                             fill="none"

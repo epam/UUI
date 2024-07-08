@@ -2,7 +2,8 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Accordion, Button, FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, ProgressBar, Text } from '@epam/uui';
 import cx from 'classnames';
 import css from './PatternBlock.module.scss';
-import { ReactComponent as Banner } from '../icons/banner.svg';
+import { ReactComponent as SlideTable } from '../icons/banner.svg';
+import { ReactComponent as SlideForms } from '../icons/slider–forms.svg';
 import { ReactComponent as NavigationChevronRightOutlineIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { ReactComponent as ActionExternalLinkOutlineIcon } from '@epam/assets/icons/action-external_link-outline.svg';
 import { getCurrentTheme } from '../helpers';
@@ -22,9 +23,9 @@ export function PatternBlock() {
     const theme = getCurrentTheme();
     const [accordionValue, setAccordionValue] = useState(0);
     const [progress, setProgress] = useState(0);
-    const progressID = useRef(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [activeHoverId, setActiveHoverId] = useState<number | null>(null);
+    const progressID = useRef(null);
 
     const stopInterval = () => {
         clearInterval(progressID.current);
@@ -102,6 +103,27 @@ export function PatternBlock() {
 
     const getHeaderClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
 
+    const getSlide = () => {
+        switch (accordionValue) {
+            case 0: {
+                return SlideTable;
+            } case 1: {
+                return SlideTable;
+            } case 2: {
+                return SlideForms;
+            } case 3: {
+                return SlideTable;
+            } case 4: {
+                return SlideTable;
+            } case 5: {
+                return SlideTable;
+            }
+            default: {
+                return SlideTable;
+            }
+        }
+    };
+
     return (
         <div className={ css.root }>
             <FlexRow justifyContent="center" cx={ css.headerWrapper }>
@@ -114,6 +136,7 @@ export function PatternBlock() {
                 <div className={ css.startContainer }>
                     {accordionData.map((item) => (
                         <div
+                            key={ item.id }
                             className={ css.accordionWrapper }
                             onMouseEnter={ () => onMouseEnterHandler(item.id) }
                             onMouseLeave={ () => onMouseLeaveHandler(item.id) }
@@ -135,7 +158,7 @@ export function PatternBlock() {
                         <Button href="/" caption="Watch all" icon={ NavigationChevronRightOutlineIcon } iconPosition="right" fill="none" size="42" onClick={ () => {} } />
                     </FlexCell>
                 </div>
-                <IconContainer icon={ Banner } cx={ css.banner } />
+                <IconContainer icon={ getSlide() } cx={ css.banner } />
             </FlexRow>
         </div>
     );

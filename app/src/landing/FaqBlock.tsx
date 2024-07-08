@@ -29,6 +29,7 @@ export function FaqBlock() {
                 <div className={ css.accordionWrapper }>
                     {faqData.map((item) => (
                         <Accordion
+                            key={ item.id }
                             title={ item.caption }
                             mode="block"
                             value={ item.id === accordionValue }
