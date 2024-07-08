@@ -34,7 +34,6 @@ export const TextArea = withMods<uuiTextAreaProps, TextAreaProps>(
     (props) => {
         return {
             autoSize: props.mode === types.EditMode.CELL ? true : props.autoSize,
-            maxLength: props.mode === types.EditMode.CELL ? undefined : props.maxLength,
         };
     },
 );

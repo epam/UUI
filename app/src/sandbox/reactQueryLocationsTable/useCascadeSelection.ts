@@ -24,6 +24,7 @@ export function useCascadeSelection({
     api,
     getId,
     getParentId,
+    getChildCount,
     complexIds,
     cascadeSelection = false,
     dataSourceState,
@@ -31,21 +32,20 @@ export function useCascadeSelection({
     itemsMap,
 }: UseCascadeSelectionProps<string>) {
     const queryClient = useQueryClient();
-    const blankTree = useMemo(() => Tree.blank({ getId, getParentId, complexIds }, itemsMap), []);
+    const blankTree = useMemo(() => Tree.blank({ getId, getParentId, getChildCount, complexIds }, itemsMap), []);
 
     const loadMissingRecordsOnCheck = useCallback(async (id: string, isChecked: boolean, isRoot: boolean) => {
         return await queryClient.fetchQuery<Tree, Error, Tree, LocationsSelectionKey>({
             queryKey: [LOCATIONS_SELECTION_QUERY, dataSourceState, isFolded, cascadeSelection],
             queryFn: async ({ queryKey: [, _dataSourceState, _isFolded, _cascadeSelection] }) => {
                 const prevTree = queryClient.getQueryData<Tree>([LOCATIONS_SELECTION_QUERY]) ?? blankTree;
-
                 const result = await UUITree.loadMissingOnCheck<Location, string, unknown>({
                     checkedId: id,
                     isChecked,
                     isRoot,
                     tree: prevTree,
                     api,
-                    getChildCount: (l) => l.childCount,
+                    getChildCount,
                     cascadeSelection: _cascadeSelection,
                     isFolded: _isFolded,
                     dataSourceState: _dataSourceState,
@@ -58,12 +58,11 @@ export function useCascadeSelection({
                 const { loadedItems, byParentId, nodeInfoById } = result;
                 const newTree = prevTree.update(loadedItems, byParentId, nodeInfoById);
                 queryClient.setQueryData([LOCATIONS_SELECTION_QUERY], newTree);
-
                 return newTree;
             },
             initialData: () => queryClient.getQueryData([LOCATIONS_SELECTION_QUERY]),
         });
-    }, [api, blankTree, cascadeSelection, dataSourceState, isFolded, queryClient]);
+    }, [api, blankTree, cascadeSelection, dataSourceState, isFolded, queryClient, getChildCount]);
 
     const cascadeSelectionService = useCascadeSelectionService({
         tree: blankTree,
