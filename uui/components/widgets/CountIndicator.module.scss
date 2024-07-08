@@ -6,49 +6,30 @@
     --uui-count_indicator-font: var(--uui-font);
     --uui-count_indicator-font-weight: 600;
 
+    --uui-count_indicator-height: var(--uui-size);
+    --uui-count_indicator-min-width: var(--uui-size);
+    --uui-count_indicator-border-width: var(--uui-border-width);
+    --uui-count_indicator-border-radius: calc(var(--uui-size) / 2);
+    --uui-count_indicator-horizontal-padding: calc(var(--uui-horizontal-padding) - var(--uui-count_indicator-border-width));
+    --uui-count_indicator-font-size: var(--uui-font-size);
+    --uui-count_indicator-line-height: var(--uui-line-height);
+
     &:global(.uui-count_indicator) {
         box-sizing: border-box;
+        height: var(--uui-count_indicator-height);
+        min-width: var(--uui-count_indicator-min-width);
         font-family: var(--uui-count_indicator-font);
+        font-size: var(--uui-count_indicator-font-size);
         font-weight: var(--uui-count_indicator-font-weight);
+        line-height: var(--uui-count_indicator-line-height);
         margin: auto;
         text-align: center;
         flex-shrink: 0;
-        //
         background-color: var(--uui-count_indicator-bg);
-        border: 1px solid var(--uui-count_indicator-border);
         color: var(--uui-count_indicator-caption);
-
-
-        &:global {
-            &.uui-size-24 {
-                height: 24px;
-                min-width: 24px;
-                font-size: 14px;
-                line-height: 22px;
-                padding-left: 5px;
-                padding-right: 5px;
-                border-radius: 12px;
-            }
-
-            &.uui-size-18 {
-                height: 18px;
-                min-width: 18px;
-                font-size: 12px;
-                line-height: 16px;
-                padding-left: 5px;
-                padding-right: 5px;
-                border-radius: 9px;
-            }
-
-            &.uui-size-12 {
-                height: 12px;
-                min-width: 12px;
-                font-size: 8px;
-                line-height: 10px;
-                padding-left: 2px;
-                padding-right: 2px;
-                border-radius: 6px;
-            }
-        }
+        border: var(--uui-count_indicator-border-width) solid var(--uui-count_indicator-border);
+        border-radius: var(--uui-count_indicator-border-radius);
+        padding-left: var(--uui-count_indicator-horizontal-padding);
+        padding-right: var(--uui-count_indicator-horizontal-padding);
     }
 }

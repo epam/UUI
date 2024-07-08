@@ -16,7 +16,7 @@ export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
      * Defines component size.
      * @default '24'
      */
-    size?: '24' | '18' | '12';
+    size?: '12' | '18' | '24';
 };
 
 export type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;

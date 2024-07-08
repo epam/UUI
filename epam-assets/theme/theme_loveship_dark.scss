@@ -580,7 +580,7 @@
     /* Status Indicator */
 
     .uui-status_indicator.uui-color-white.uui-fill-outline {
-        .uui-status_indicator_dot {
+        .uui-status_indicator-dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--white);
         }
@@ -588,12 +588,12 @@
 
     .uui-status_indicator.uui-color-night600,
     .uui-status_indicator.uui-color-neutral {
-        .uui-status_indicator_dot {
+        .uui-status_indicator-dot {
             background-color: var(--uui-neutral-30);
         }
 
         &.uui-fill-outline {
-            .uui-status_indicator_dot {
+            .uui-status_indicator-dot {
                 background-color: color-mix(in srgb, var(--uui-neutral-30) 20%, transparent);
                 border: 1px solid var(--uui-neutral-30);
             }
@@ -801,7 +801,7 @@
     /* PickerInput */
 
     .uui-picker_input-body {
-        --uui-pickerInput-selected_mark: var(--uui-info-60);
+        --uui-picker_input-selected_mark: var(--uui-info-60);
     }
 
     /* fonts */

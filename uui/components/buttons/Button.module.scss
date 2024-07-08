@@ -46,8 +46,8 @@
 
     //
     min-width: var(--uui-btn-min-width);
-    padding-left: calc(var(--uui-btn-padding) - var(--uui-btn-border-width));
-    padding-right: calc(var(--uui-btn-padding) - var(--uui-btn-border-width));
+    padding-inline-start: calc(var(--uui-btn-padding) - var(--uui-btn-border-width));
+    padding-inline-end: calc(var(--uui-btn-padding) - var(--uui-btn-border-width));
     background-color: var(--uui-btn-bg);
     color: var(--uui-btn-caption);
     fill: var(--uui-btn-caption);
