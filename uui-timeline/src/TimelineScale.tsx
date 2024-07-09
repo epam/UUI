@@ -21,7 +21,7 @@ export interface TimelineScaleProps extends CanvasProps {
 
 const moveAmount = 0.7;
 
-export function TimelineScale({ timelineController, isDraggable, isScaleChangeOnWheel, renderCanvas }: TimelineScaleProps) {
+export function TimelineScale({ timelineController, isDraggable, isScaleChangeOnWheel, draw: propsDraw }: TimelineScaleProps) {
     const isMouseDownRef = useRef(false);
     const forceUpdate = useForceUpdate();
     
@@ -294,7 +294,7 @@ export function TimelineScale({ timelineController, isDraggable, isScaleChangeOn
                 className={ isMouseDownRef.current ? styles.timelineScaleGrabbing : styles.timelineScale }
                 onMouseDown={ isDraggable && handleMouseDown }
                 onWheel={ isScaleChangeOnWheel && handleWheel }
-                renderCanvas={ renderCanvas ?? draw }
+                draw={ propsDraw ?? draw }
                 timelineController={ timelineController }
             />
         </div>

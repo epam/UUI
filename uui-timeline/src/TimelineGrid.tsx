@@ -129,5 +129,5 @@ export function TimelineGrid({ timelineController, ...restProps }: TimelineGridP
         renderToday(ctx, t);
     };
     
-    return <Canvas renderCanvas={ restProps.renderCanvas ?? draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
+    return <Canvas draw={ restProps.draw ?? draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
 }
