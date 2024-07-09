@@ -1,40 +1,45 @@
-@use '~@epam/assets/theme/theme_promo' as *;
-@use '~@epam/promo/assets/styles/colors.scss' as *;
-
-.layout {
+.root {
     display: flex;
-    background-color: #222222;
-    height: 60px;
+    justify-content: center;
     flex-shrink: 0;
+    background-color: var(--uui-neutral-95);
+    height: 240px;
+    padding: 0 18px;
 
-    :global {
-        @include theme-promo();
-    }
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-basis: 1166px;
+        padding: 36px 0;
 
-    .footer {
-        max-width: 1200px;
-        width: 100%;
-        margin: 0 auto;
+        .first-block {
+            margin-top: 9px;
+            flex-basis: 50%;
 
-        :global(.uui-icon) {
-            padding-top: 3px;
+            .sponsor-text {
+                margin-top: 60px;
+            }
+
+            .bottom-links {
+                :global(.uui-text) {
+                    padding-top: 0;
+                }
+            }
         }
 
-        .copyright {
-            padding-left: 21px;
+        .second-block {
+            flex-basis: 50%;
         }
     }
 
-    @media (max-width: 1280px) {
-        .footer {
-            max-width: 732px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .footer {
-            margin: 0 12px;
+    @media (max-width: 950px) {
+        & * {
             max-width: fit-content;
+            margin: 0 auto;
+        }
+
+        .second-block {
+            display: none;
         }
     }
 }

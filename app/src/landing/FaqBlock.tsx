@@ -35,7 +35,7 @@ export function FaqBlock() {
                             value={ item.id === accordionValue }
                             onValueChange={ () => setAccordionValue(item.id) }
                         >
-                            <Text>{item.text}</Text>
+                            <Text fontSize="16" lineHeight="24">{item.text}</Text>
                         </Accordion>
                     ))}
                 </div>
