@@ -1,7 +1,8 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { TimelineTransform, TimelineGrid, TimelineController, CanvasProps } from '@epam/uui-timeline';
+import { Text } from '@epam/uui';
 import { Task } from './types';
-import { statuses } from './demoData';
+import { resources, statuses } from './demoData';
 import { uuiDayjs } from '../../../helpers';
 
 import css from './TaskRow.module.scss';
@@ -52,6 +53,11 @@ function TaskBar({ task, timelineController }: { task: Task, timelineController:
         return () => timelineController.unsubscribe(updateCoords);
     }, [timelineController, updateCoords]);
 
+    const assignee = useMemo(
+        () => resources.find((r) => r.id === task.assignee),
+        [task.assignee],
+    );
+
     if (!coords) {
         return;
     }
@@ -61,12 +67,16 @@ function TaskBar({ task, timelineController }: { task: Task, timelineController:
             key={ item.id }
             style={ {
                 position: 'absolute' as any,
-                height: item.height ?? 18,
+                height: (item.height ?? 18) * devicePixelRatio,
                 background: item.color,
                 width: `${coords.width}px`,
-                left: `${coords.left}px`,
+                left: 0,
+                transform: `translateX(${coords.left}px)`,
+                translate: 'transform linear', 
             } }
-        />
+        >
+            { coords.width > 50 && <Text color="white" cx={ css.assingeeText }>{assignee?.fullName}</Text> }
+        </div>
     );
 }
 
