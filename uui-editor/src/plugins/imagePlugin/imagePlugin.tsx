@@ -62,15 +62,6 @@ export const imagePlugin = () => {
                 }
             },
         },
-        plugins: [
-            {
-                key: 'loader',
-                type: 'loader',
-                isElement: true,
-                isVoid: true,
-                component: Image,
-            },
-        ],
         options: {
             bottomBarButton: ImageButton,
         },

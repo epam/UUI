@@ -210,7 +210,7 @@ export interface IApiContext extends IBaseContext {
     /** Starts fetch call with providing params */
     processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any>;
     /** Starts file uploading using FormData */
-    uploadFile(url: string, file: File, options: FileUploadOptions): Promise<FileUploadResponse>;
+    uploadFile(url: string, file: File, options?: FileUploadOptions): Promise<FileUploadResponse>;
     /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.
      * Opened by this path page, should process authentication and then post 'authSuccess' cross-window message to the opener, to recover failed requests.
      * @default '/auth/login'

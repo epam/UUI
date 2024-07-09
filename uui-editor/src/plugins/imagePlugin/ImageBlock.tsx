@@ -6,9 +6,7 @@ import {
     PlateEditor, PlateRenderElementProps, Value, findNodePath, getBlockAbove, setElements,
 } from '@udecode/plate-common';
 import { useFocused, useSelected } from 'slate-react';
-import {
-    Dropdown, FlexRow, Spinner,
-} from '@epam/uui';
+import { Dropdown, FlexRow } from '@epam/uui';
 import { ImageElement } from './ImageElement';
 
 import debounce from 'lodash.debounce';
@@ -88,7 +86,7 @@ const useUpdatingElement = ({ element, editor }: { element: IImageElement, edito
 
 export function Image(props: PlateRenderElementProps<Value, IImageElement>): JSX.Element {
     const {
-        editor, element, children,
+        editor, element,
     } = props;
     const ref = useRef<HTMLDivElement>(null);
     const isFocused = useFocused();
@@ -132,15 +130,6 @@ export function Image(props: PlateRenderElementProps<Value, IImageElement>): JSX
         const clientWidth = ref.current?.clientWidth;
         return !clientWidth || (clientWidth === element.width);
     }, [element.width]);
-
-    if (element.type === 'loader') {
-        return (
-            <>
-                <Spinner { ...props } cx={ css.spinner } />
-                { children }
-            </>
-        );
-    }
 
     return (
         <Dropdown

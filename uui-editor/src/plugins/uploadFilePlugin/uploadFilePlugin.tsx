@@ -1,13 +1,15 @@
+import React from 'react';
 import {
     createInsertDataPlugin,
     select,
     findEventRange,
-    PlatePlugin,
 } from '@udecode/plate-common';
 import {
     UploadFileOptions,
     createFileUploader,
 } from './file_uploader';
+import { Spinner } from '@epam/uui';
+import css from './Loader.module.scss';
 
 const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
     const text = dataTransfer.getData('text/plain');
@@ -52,4 +54,18 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions) =>
                 };
             },
         },
+        plugins: [
+            {
+                key: 'loader',
+                type: 'loader',
+                isElement: true,
+                isVoid: true,
+                component: (props) => (
+                    <>
+                        { props.children }
+                        <Spinner { ...props } cx={ css.loader } />
+                    </>
+                ),
+            },
+        ],
     });
