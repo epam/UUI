@@ -15,17 +15,26 @@ const formatDate = (date: string) => {
     return uuiDayjs.dayjs(date, 'YYYY-MM-DD').format('DD.MM.YYYY');
 };
 
+const getDueDate = (task: Task) => {
+    if (task.type === 'story') {
+        return uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate();
+    }
+
+    const startDate = uuiDayjs.dayjs(task.exactStartDate, 'YYYY-MM-DD');
+
+    if (task.exactStartDate && task.estimate !== undefined) {
+        return startDate.add(task.estimate, 'day').toDate();
+    }
+    
+    return null;
+};
+
 export function TaskBar({ task, timelineController }: { task: Task, timelineController: TimelineController }) {
     const [coords, setCoords] = useState<{ width?: number, left?: number }>({});
     const startDate = task.type === 'story' ? task.startDate : task.exactStartDate;
 
-    let to = uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate();
-    if (startDate && task.estimate !== undefined) {
-        to = new Date(to.getTime() + task.estimate * 24 * 60 * 60 * 1000);
-    } else {
-        to = null;
-    }
-
+    const to = getDueDate(task);
+    
     const item = {
         id: task.id,
         from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
