@@ -66,5 +66,5 @@ export function TimelineEventsBar({ stages, timelineController }: TimelineEvents
         renderTodayLine(ctx, t, canvasHeight - 2, canvasHeight);
     };
 
-    return <Canvas renderCanvas={ draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
+    return <Canvas draw={ draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
 }

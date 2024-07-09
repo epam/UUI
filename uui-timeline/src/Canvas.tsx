@@ -9,16 +9,17 @@ export interface CanvasProps {
     className?: string;
     timelineController: TimelineController;
     renderOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
-    renderCanvas?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
+    draw?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
 }
 export interface CanvasState { 
     width?: number;
 }
 
 export function Canvas<TProps extends CanvasProps>({
-    timelineController, renderCanvas, renderOnTop, canvasHeight, className, ...restProps
+    timelineController, draw, renderOnTop, canvasHeight, className, ...restProps
 }: TProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const alreadyRenderedRef = useRef(false);
     const height = canvasHeight ?? 60;
 
     const [width, setWidth] = useState(0);
@@ -26,13 +27,14 @@ export function Canvas<TProps extends CanvasProps>({
     
     const handleRenderCanvas = (t: TimelineTransform) => {
         if (!canvasRef.current) {
+            alreadyRenderedRef.current = false;
             return;
         }
 
         const ctx = canvasRef.current.getContext('2d')!;
         ctx.save();
         ctx.scale(devicePixelRatio, devicePixelRatio);
-        renderCanvas(ctx, t);
+        draw?.(ctx, t);
         renderOnTop?.(ctx, t);
         ctx.restore();
     };
@@ -44,8 +46,8 @@ export function Canvas<TProps extends CanvasProps>({
     }, [width]);
 
     useLayoutEffect(() => {
-        handleResize(timelineTransform);
         handleRenderCanvas(timelineTransform);
+        handleResize(timelineTransform);
     });
 
     const currentWidth = width ?? timelineController.currentViewport.widthPx;
