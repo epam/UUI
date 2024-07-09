@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import cx from 'classnames';
 import { TimelineController } from '../index';
 import { TimelineTransform } from './TimelineTransform';
@@ -22,7 +22,6 @@ export function Canvas<TProps extends CanvasProps>({
     const alreadyRenderedRef = useRef(false);
     const height = canvasHeight ?? 60;
 
-    const [width, setWidth] = useState(0);
     const timelineTransform = useTimelineTransform({ timelineController });
     
     const handleRenderCanvas = (t: TimelineTransform) => {
@@ -39,23 +38,15 @@ export function Canvas<TProps extends CanvasProps>({
         ctx.restore();
     };
 
-    const handleResize = React.useCallback((t: TimelineTransform) => {
-        if (t.widthPx !== width) {
-            setWidth(t.widthPx);
-        }
-    }, [width]);
-
     useLayoutEffect(() => {
         handleRenderCanvas(timelineTransform);
-        handleResize(timelineTransform);
     });
 
-    const currentWidth = width ?? timelineController.currentViewport.widthPx;
     return (
         <canvas
             className={ cx(className) }
-            style={ { width: currentWidth, height } }
-            width={ currentWidth * devicePixelRatio }
+            style={ { width: timelineTransform.widthPx, height } }
+            width={ timelineTransform.widthPx * devicePixelRatio }
             height={ height * devicePixelRatio }
             ref={ canvasRef }
             { ...restProps }

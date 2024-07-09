@@ -33,7 +33,6 @@ export class TimelineController {
     isFrameScheduled = false;
     scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
-    cache: Record<string, TimelineTransform> = {};
 
     onViewportChange: (newViewport: Viewport) => void;
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
@@ -220,18 +219,7 @@ export class TimelineController {
     }
 
     public getTransform() {
-        const bounds = this.getBounds(this.currentViewport);
-
-        const key = `${bounds.left}-${bounds.right}-${this.currentViewport.pxPerMs}`;
-
-        // if (this.cache[key]) {
-        //     return this.cache[key];
-        // }
-
-        const transform = new TimelineTransform(this, this.currentViewport);
-
-        this.cache[key] = transform;
-        return transform;
+        return new TimelineTransform(this, this.currentViewport);
     }
 
     private doRender() {

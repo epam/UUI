@@ -23,5 +23,5 @@ export function DemoCanvasBars(props: DemoCanvasBarsProps) {
         renderBars(transformedItems, canvasHeight, ctx, t);
     };
 
-    return <Canvas renderCanvas={ draw } canvasHeight={ canvasHeight } timelineController={ props.timelineController } />;
+    return <Canvas draw={ draw } canvasHeight={ canvasHeight } timelineController={ props.timelineController } />;
 }

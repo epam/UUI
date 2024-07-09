@@ -8,10 +8,11 @@ import styles from './TimelineScale.module.scss';
 
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
-import { Icon, useForceUpdate } from '@epam/uui-core';
+import { Icon } from '@epam/uui-core';
 import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
 import { Canvas, CanvasProps } from './Canvas';
+import { useTimelineTransform } from './useTimelineTransform';
 
 export interface TimelineScaleProps extends CanvasProps {
     isDraggable?: boolean;
@@ -23,20 +24,19 @@ const moveAmount = 0.7;
 
 export function TimelineScale({ timelineController, isDraggable, isScaleChangeOnWheel, draw: propsDraw }: TimelineScaleProps) {
     const isMouseDownRef = useRef(false);
-    const forceUpdate = useForceUpdate();
     
     const handleWindowMouseUp = useCallback(() => {
         if (isMouseDownRef.current) {
             isMouseDownRef.current = false;
-            // forceUpdate();
         }
-    }, [forceUpdate]);
+    }, []);
+
+    const timelineTransform = useTimelineTransform({ timelineController });
 
     const handleMouseDown = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
         timelineController.startDrag(e);
         isMouseDownRef.current = true;
-        // forceUpdate();
-    }, [forceUpdate, timelineController]);
+    }, [timelineController]);
 
     const handleWheel = (e: React.SyntheticEvent<HTMLCanvasElement>) => {
         timelineController.handleWheelEvent(e.nativeEvent as WheelEvent);
@@ -287,7 +287,7 @@ export function TimelineScale({ timelineController, isDraggable, isScaleChangeOn
     }, [handleWindowMouseUp]);
   
     return (
-        <div className={ styles.timelineHeader } style={ { width: timelineController.currentViewport.widthPx } }>
+        <div className={ styles.timelineHeader } style={ { width: timelineTransform.widthPx } }>
             {!isMouseDownRef.current && renderArrow('left')}
             {!isMouseDownRef.current && renderArrow('right')}
             <Canvas

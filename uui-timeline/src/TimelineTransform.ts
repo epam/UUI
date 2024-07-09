@@ -5,14 +5,6 @@ import {
 } from './helpers';
 
 export class TimelineTransform {
-    private cache: Record<string, {
-        left: number;
-        right: number;
-        leftDate: Date;
-        rightDate: Date;
-        key: string;
-    }[]>;
-
     public centerMs: number;
     public leftMs: number;
     public rightMs: number;
@@ -26,7 +18,6 @@ export class TimelineTransform {
         this.widthMs = vp.widthPx / vp.pxPerMs;
         this.leftMs = this.centerMs - this.widthMs / 2;
         this.rightMs = this.centerMs + this.widthMs / 2;
-        this.cache = {};
     }
 
     getX(date: Date, trim?: undefined | 'left' | 'right'): number {
