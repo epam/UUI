@@ -3,3 +3,27 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
+.container {
+    padding: 6px 0 6px 3px;
+
+    .header {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+
+    .content {
+        padding: 0;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+

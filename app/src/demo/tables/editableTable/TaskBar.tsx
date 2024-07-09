@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 import { TimelineTransform, TimelineController } from '@epam/uui-timeline';
-import { Text } from '@epam/uui';
+import { Badge, FlexCell, FlexRow, Text, Tooltip } from '@epam/uui';
 import { Task } from './types';
 import { resources, statuses } from './demoData';
 import { uuiDayjs } from '../../../helpers';
@@ -8,6 +8,12 @@ import { uuiDayjs } from '../../../helpers';
 import css from './TaskBar.module.scss';
 
 const getTaskColor = (status: string) => statuses.find((s) => s.id === status)?.color ?? '#e1e3eb';
+const formatDate = (date: string) => {
+    if (!date?.length) {
+        return '';
+    }
+    return uuiDayjs.dayjs(date, 'YYYY-MM-DD').format('DD.MM.YYYY');
+};
 
 export function TaskBar({ task, timelineController }: { task: Task, timelineController: TimelineController }) {
     const [coords, setCoords] = useState<{ width?: number, left?: number }>({});
@@ -58,20 +64,118 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
         return;
     }
 
+    const status = statuses.find((s) => s.id === task.status);
+    const renderTaskStatus = () => {
+        return (
+            <div>
+                <Text cx={ css.header } fontSize="14" lineHeight="18" fontWeight="600">
+                    {task.name}
+                </Text>
+                <FlexRow columnGap="12" alignItems="top" size="24">
+                    <FlexCell width="auto">
+                        <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
+                            Status:
+                        </Text>
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Badge
+                            size="18"
+                            color="neutral"
+                            icon={ () => <span className={ css.dot } style={ { backgroundColor: item.color } } /> }
+                            fill="outline"
+                            caption={ status.name }
+                        />
+                    </FlexCell>
+                </FlexRow>
+                { task.type === 'task'
+                && (
+                    <FlexRow columnGap="12" size="24" alignItems="top">
+                        <FlexCell width="auto">
+                            <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
+                                Assignee:
+                            </Text>
+                        </FlexCell>
+                        <FlexCell width="auto">
+                            <Text cx={ css.content } fontSize="12" lineHeight="18">
+                                { assignee?.fullName }
+                            </Text>
+                        </FlexCell>
+                    </FlexRow>
+                )}
+                <FlexRow columnGap="12" size="24" alignItems="top">
+                    <FlexCell width="auto">
+                        <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
+                            Start date:
+                        </Text>
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Text cx={ css.content } fontSize="12" lineHeight="18">
+                            { formatDate(task.startDate) }
+                        </Text>
+                    </FlexCell>
+                </FlexRow>
+                { task.type === 'task'
+                && (
+                    <FlexRow columnGap="12" size="24" alignItems="top">
+                        <FlexCell width="auto">
+                            <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
+                                Planned start date:
+                            </Text>
+                        </FlexCell>
+                        <FlexCell width="auto">
+                            <Text cx={ css.content } fontSize="12" lineHeight="18">
+                                { formatDate(task.exactStartDate) }
+                            </Text>
+                        </FlexCell>
+                    </FlexRow>
+                )}
+                { task.type === 'task'
+                && (
+                    <FlexRow columnGap="12" size="24" alignItems="top">
+                        <FlexCell width="auto">
+                            <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
+                                Due date:
+                            </Text>
+                        </FlexCell>
+                        <FlexCell width="auto">
+                            <Text cx={ css.content } fontSize="12" lineHeight="18">
+                                { formatDate(task.dueDate) }
+                            </Text>
+                        </FlexCell>
+                    </FlexRow>
+                )}
+                <FlexRow columnGap="12" size="24" alignItems="top">
+                    <FlexCell width="auto">
+                        <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
+                            Planned end date:
+                        </Text>
+                    </FlexCell>
+                    <FlexCell width="auto">
+                        <Text cx={ css.content } fontSize="12" lineHeight="18">
+                            { task.type === 'story' ? formatDate(task.dueDate) : (to && uuiDayjs.dayjs(to).format('DD.MM.YYYY')) }
+                        </Text>
+                    </FlexCell>
+                </FlexRow>
+            </div>
+        );
+    };
+
     return (
-        <div
-            key={ item.id }
-            style={ {
-                position: 'absolute' as any,
-                height: (item.height ?? 18) * devicePixelRatio,
-                background: item.color,
-                width: `${coords.width}px`,
-                left: 0,
-                transform: `translateX(${coords.left}px)`,
-                translate: 'transform linear', 
-            } }
-        >
-            { coords.width > 50 && <Text color="white" cx={ css.assingeeText }>{assignee?.fullName}</Text> }
-        </div>
+        <Tooltip renderContent={ renderTaskStatus } openDelay={ 500 } cx={ css.container } color="neutral">
+            <div
+                key={ item.id }
+                style={ {
+                    position: 'absolute' as any,
+                    height: item.height ?? 18,
+                    background: item.color,
+                    width: `${coords.width}px`,
+                    left: 0,
+                    transform: `translateX(${coords.left}px)`,
+                    translate: 'transform linear', 
+                } }
+            >
+                { coords.width > 50 && <Text color="white" cx={ css.assingeeText }>{assignee?.fullName}</Text> }
+            </div>
+        </Tooltip>
     );
 }
