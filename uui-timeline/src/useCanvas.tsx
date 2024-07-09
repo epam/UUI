@@ -49,10 +49,6 @@ export function useCanvas(
         };
     }, [handleRenderCanvas, handleResize, timelineController]);
 
-    useLayoutEffect(() => {
-        handleRenderCanvas(timelineController.getTransform());
-    }, deps ? [...deps] : undefined);
-
     useEffect(() => {
         handleRenderCanvas(timelineController.getTransform());
     });

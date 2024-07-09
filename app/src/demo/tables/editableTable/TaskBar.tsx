@@ -71,8 +71,8 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 <Text cx={ css.header } fontSize="14" lineHeight="18" fontWeight="600">
                     {task.name}
                 </Text>
-                <FlexRow columnGap="12" alignItems="top" size="24">
-                    <FlexCell width="auto">
+                <FlexRow columnGap="12" alignItems="center" justifyContent="start" size="24">
+                    <FlexCell width="auto" minWidth={ 100 }>
                         <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
                             Status:
                         </Text>
@@ -89,21 +89,21 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 </FlexRow>
                 { task.type === 'task'
                 && (
-                    <FlexRow columnGap="12" size="24" alignItems="top">
-                        <FlexCell width="auto">
+                    <FlexRow columnGap="12" size="24" alignItems="center" justifyContent="start">
+                        <FlexCell width="auto" minWidth={ 100 }>
                             <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
                                 Assignee:
                             </Text>
                         </FlexCell>
-                        <FlexCell width="auto">
+                        <FlexCell width="auto" textAlign="right">
                             <Text cx={ css.content } fontSize="12" lineHeight="18">
                                 { assignee?.fullName }
                             </Text>
                         </FlexCell>
                     </FlexRow>
                 )}
-                <FlexRow columnGap="12" size="24" alignItems="top">
-                    <FlexCell width="auto">
+                <FlexRow columnGap="12" size="24" alignItems="center" justifyContent="start">
+                    <FlexCell width="auto" minWidth={ 100 }>
                         <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
                             Start date:
                         </Text>
@@ -116,8 +116,8 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 </FlexRow>
                 { task.type === 'task'
                 && (
-                    <FlexRow columnGap="12" size="24" alignItems="top">
-                        <FlexCell width="auto">
+                    <FlexRow columnGap="12" size="24" alignItems="center" justifyContent="start">
+                        <FlexCell width="auto" minWidth={ 100 }>
                             <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
                                 Planned start date:
                             </Text>
@@ -131,8 +131,8 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 )}
                 { task.type === 'task'
                 && (
-                    <FlexRow columnGap="12" size="24" alignItems="top">
-                        <FlexCell width="auto">
+                    <FlexRow columnGap="12" size="24" alignItems="center" justifyContent="start">
+                        <FlexCell width="auto" minWidth={ 100 }>
                             <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
                                 Due date:
                             </Text>
@@ -144,8 +144,8 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                         </FlexCell>
                     </FlexRow>
                 )}
-                <FlexRow columnGap="12" size="24" alignItems="top">
-                    <FlexCell width="auto">
+                <FlexRow columnGap="12" size="24" alignItems="center" justifyContent="start">
+                    <FlexCell width="auto" minWidth={ 100 }>
                         <Text cx={ css.content } fontSize="12" lineHeight="18" fontWeight="600">
                             Planned end date:
                         </Text>
