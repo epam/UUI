@@ -1,8 +1,8 @@
 import React from 'react';
-import { TimelineTransform, BaseTimelineCanvasComponentProps, Canvas } from '@epam/uui-timeline';
+import { TimelineTransform, Canvas, CanvasProps } from '@epam/uui-timeline';
 import { renderBars, Item } from '@epam/uui-timeline';
 
-export interface DemoCanvasBarsProps extends BaseTimelineCanvasComponentProps {
+export interface DemoCanvasBarsProps extends CanvasProps {
     items: Item[];
 }
 

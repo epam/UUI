@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React, { useRef, useState, useLayoutEffect } from 'react';
 import cx from 'classnames';
-import { TimelineController } from './TimelineController';
+import { TimelineController } from '../index';
 import { TimelineTransform } from './TimelineTransform';
+import { useTimelineTransform } from './useTimelineTransform';
 
 export interface CanvasProps {
     canvasHeight?: number;
@@ -14,63 +15,48 @@ export interface CanvasState {
     width?: number;
 }
 
-export class Canvas<TProps extends CanvasProps, TState extends CanvasState> extends React.Component<TProps, TState> {
-    canvas: HTMLCanvasElement | null;
-    protected canvasHeight = 60;
-    constructor(props: TProps) {
-        super(props);
-        this.state = {} as Readonly<TState>;
-    }
+export function Canvas<TProps extends CanvasProps>({
+    timelineController, renderCanvas, renderOnTop, canvasHeight, className, ...restProps
+}: TProps) {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const height = canvasHeight ?? 60;
 
-    componentDidMount() {
-        this.props.timelineController.subscribe(() => this.forceUpdate());
-        this.props.timelineController.subscribe(this.handleResize);
-        this.handleRenderCanvas(this.props.timelineController.getTransform());
-    }
-
-    componentDidUpdate() {
-        this.handleRenderCanvas(this.props.timelineController.getTransform());
-    }
-
-    componentWillUnmount() {
-        this.props.timelineController.unsubscribe(this.handleRenderCanvas);
-        this.props.timelineController.unsubscribe(this.handleResize);
-    }
-
-    handleResize = (t: TimelineTransform) => {
-        if (t.widthPx !== this.state.width) {
-            this.setState((state) => ({ ...state, width: t.widthPx }));
+    const [width, setWidth] = useState(0);
+    const timelineTransform = useTimelineTransform({ timelineController });
+    
+    const handleRenderCanvas = (t: TimelineTransform) => {
+        if (!canvasRef.current) {
+            return;
         }
-    };
 
-    handleRenderCanvas = (t: TimelineTransform) => {
-        const ctx = this.canvas!.getContext('2d')!;
+        const ctx = canvasRef.current.getContext('2d')!;
         ctx.save();
         ctx.scale(devicePixelRatio, devicePixelRatio);
-        this.props.renderCanvas(ctx, t);
-        this.props.renderOnTop?.(ctx, t);
+        renderCanvas(ctx, t);
+        renderOnTop?.(ctx, t);
         ctx.restore();
     };
 
-    protected renderCanvasElement(props?: any): JSX.Element {
-        const width = this.state.width ?? this.props.timelineController.currentViewport.widthPx;
-        const height = this.props.canvasHeight ?? this.canvasHeight;
-        return (
-            <canvas
-                className={ cx(this.props.className, props && props.className) }
-                style={ { width, height } }
-                width={ width * devicePixelRatio }
-                height={ height * devicePixelRatio }
-                ref={ (c) => {
-                    props && props.ref && props.ref(c);
-                    this.canvas = c;
-                } }
-                { ...props }
-            />
-        );
-    }
+    const handleResize = React.useCallback((t: TimelineTransform) => {
+        if (t.widthPx !== width) {
+            setWidth(t.widthPx);
+        }
+    }, [width]);
 
-    render() {
-        return this.renderCanvasElement();
-    }
+    useLayoutEffect(() => {
+        handleResize(timelineTransform);
+        handleRenderCanvas(timelineTransform);
+    });
+
+    const currentWidth = width ?? timelineController.currentViewport.widthPx;
+    return (
+        <canvas
+            className={ cx(className) }
+            style={ { width: currentWidth, height } }
+            width={ currentWidth * devicePixelRatio }
+            height={ height * devicePixelRatio }
+            ref={ canvasRef }
+            { ...restProps }
+        />
+    );
 }
