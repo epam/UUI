@@ -23,7 +23,7 @@ export class Canvas<TProps extends CanvasProps, TState extends CanvasState> exte
     }
 
     componentDidMount() {
-        this.props.timelineController.subscribe(this.handleRenderCanvas);
+        this.props.timelineController.subscribe(() => this.forceUpdate());
         this.props.timelineController.subscribe(this.handleResize);
         this.handleRenderCanvas(this.props.timelineController.getTransform());
     }
