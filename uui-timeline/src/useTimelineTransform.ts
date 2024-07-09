@@ -18,7 +18,7 @@ export function useTimelineTransform({ timelineController }: UseTimelineTransfor
         timelineController.subscribe(setTimelineTransform);
 
         return () => timelineController.unsubscribe(setTimelineTransform);
-    }, [timelineController]);
+    }, [timelineController, setTimelineTransform]);
 
     return timelineTransform;
 }
