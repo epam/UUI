@@ -171,7 +171,6 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                     width: `${coords.width}px`,
                     left: 0,
                     transform: `translateX(${coords.left}px)`,
-                    translate: 'transform linear', 
                 } }
             >
                 { coords.width > 50 && <Text color="white" cx={ css.assingeeText }>{assignee?.fullName}</Text> }
