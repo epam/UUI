@@ -1,6 +1,4 @@
-import React, {
-    Fragment, useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import {
     PlateRenderElementProps,
@@ -10,9 +8,7 @@ import {
     PlatePluginComponent,
 } from '@udecode/plate-common';
 import { useFocused, useSelected } from 'slate-react';
-import {
-    Dropdown, FlexRow, Spinner,
-} from '@epam/uui';
+import { Dropdown, FlexRow } from '@epam/uui';
 import { ImageElement } from './ImageElement';
 
 import css from './ImageBlock.module.scss';
@@ -28,7 +24,7 @@ const IMAGE_STYLES = {
 
 export const Image: PlatePluginComponent<PlateRenderElementProps<Value, TImageElement>> = function ImageComp(props) {
     const {
-        editor, element, children,
+        editor, element,
     } = props;
     const ref = useRef<HTMLDivElement>(null);
     const isFocused = useFocused();
@@ -65,15 +61,6 @@ export const Image: PlatePluginComponent<PlateRenderElementProps<Value, TImageEl
         const clientWidth = ref.current?.clientWidth;
         return !clientWidth || (clientWidth === element.width);
     };
-
-    if (element.type === 'loader') {
-        return (
-            <Fragment>
-                <Spinner { ...props } cx={ css.spinner } />
-                { children }
-            </Fragment>
-        );
-    }
 
     return (
         <Dropdown
