@@ -76,7 +76,7 @@ export default function BasicDropdownMenuExample() {
             <DropdownMenuBody { ...props }>
                 <DropdownMenuButton caption="Cancel Data Loads" indent={ true } onClick={ () => {} } />
                 <DropdownMenuButton caption="Deactivate" indent={ true } onClick={ () => {} } />
-                <Tooltip content="You don't have permissions to performe this action">
+                <Tooltip content="You don't have permissions to perform this action">
                     <DropdownMenuButton isDisabled={ true } caption="Delete" icon={ DeleteIcon } onClick={ () => {} } />
                 </Tooltip>
             </DropdownMenuBody>
