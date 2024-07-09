@@ -353,7 +353,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         });
     };
 
-    public uploadFile(url: string, file: File, options: FileUploadOptions) {
+    public uploadFile(url: string, file: File, options?: FileUploadOptions) {
         const trackProgress = (event: any) => {
             const progress = +((event.loaded / event.total) * 100).toFixed(2);
             options.onProgress && options.onProgress(progress);

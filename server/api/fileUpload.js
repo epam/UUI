@@ -9,6 +9,15 @@ router.post('/uploadFileMock', function uploadFileMock(req, res) {
 
     let fileType = 'attachment';
     const pdfFileRegex = /pdf$/i;
+    const fiveMBLimit = 5000000;
+    if (file.size > fiveMBLimit) {
+        return res.status(413).json({
+            error: {
+                message: 'The file is too large.',
+            },
+        });
+    }
+
     if (file.name.search(pdfFileRegex) > -1) {
         fileType = 'iframe';
     }

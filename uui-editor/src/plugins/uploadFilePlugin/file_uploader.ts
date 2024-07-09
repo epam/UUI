@@ -9,18 +9,31 @@ import {
     KEY_INSERT_DATA,
     deleteBackward,
     insertEmptyElement,
+    insertNodes,
 } from '@udecode/plate-common';
+import { withoutSavingHistory } from '@udecode/slate';
+import { Selection } from 'slate';
 
 export type UploadType = keyof typeof UPLOAD_BLOCKS;
-
-export interface UploadFileOptions {
-    uploadFile?: UploadFile;
-}
 
 type UploadFile = (
     file: File,
     onProgress?: (progress: number) => any
 ) => Promise<FileUploadResponse>;
+
+export interface UploadFileOptions {
+    uploadFile: UploadFile;
+}
+
+type FileUploader = (
+    editor: PlateEditor,
+    files: File[],
+    overriddenAction?: UploadType,
+) => Promise<void>;
+
+export interface FileUploaderOptions {
+    uploadFiles?: FileUploader;
+}
 
 const UPLOAD_BLOCKS = {
     attachment: (file: FileUploadResponse) => ({
@@ -51,14 +64,9 @@ const upload = async (
 ): Promise<FileUploadResponse[]> => {
     const filesData: Array<FileUploadResponse> = [];
 
-    try {
-        for (const file of files) {
-            const response = await invokeUpload(file);
-            filesData.push(response);
-        }
-    } catch (e) {
-        // TODO: add error handling
-        throw new Error(e);
+    for (const file of files) {
+        const response = await invokeUpload(file);
+        filesData.push(response);
     }
 
     return filesData;
@@ -70,7 +78,6 @@ const isValidFileType = (fileType?: string) => {
 
 const buildFragments = (
     files: FileUploadResponse[],
-    overriddenAction?: UploadType,
 ) => {
     return files.map((file: FileUploadResponse) => {
         const fileType = file.type;
@@ -78,7 +85,7 @@ const buildFragments = (
             isValidFileType(fileType) ? fileType : 'attachment'
         ) as UploadType;
 
-        return UPLOAD_BLOCKS[overriddenAction || uploadType](file);
+        return UPLOAD_BLOCKS[uploadType](file);
     });
 };
 
@@ -86,29 +93,43 @@ export const createFileUploader = (options?: UploadFileOptions) =>
     async (
         editor: PlateEditor,
         files: File[],
-        overriddenAction?: UploadType,
     ) => {
         const uploadFile = options?.uploadFile;
         if (!uploadFile) return;
 
-        // show loader
-        insertEmptyElement(editor, 'loader');
-        const currentSelection = { ...editor.selection };
-        const prevSelection = { ...editor.prevSelection };
+        withoutSavingHistory(editor, () => {
+            // show loader
+            insertEmptyElement(editor, 'loader');
+        });
+
+        const currentSelection = { ...editor.selection } as Selection;
+        const prevSelection = { ...editor.prevSelection } as Selection;
+
+        const removeLoader = () => {
+            withoutSavingHistory(editor, () => {
+                // remove loader
+                editor.selection = currentSelection;
+                editor.prevSelection = prevSelection;
+                deleteBackward(editor, { unit: 'block' });
+            });
+        };
 
         // upload files
-        const responses = await upload(files, uploadFile);
+        let res;
+        try {
+            res = await upload(files, uploadFile);
+        } catch (e) {
+            return removeLoader();
+        }
 
         // build fragments
-        const fileFragments = buildFragments(responses, overriddenAction);
+        const fileFragments = buildFragments(res);
 
         // remove loader
-        editor.selection = currentSelection;
-        editor.prevSelection = prevSelection;
-        deleteBackward(editor, { unit: 'block' });
+        removeLoader();
 
         // insert blocks
-        editor.insertFragment(fileFragments);
+        insertNodes(editor, fileFragments);
     };
 
 export const useFilesUploader = (editor: PlateEditor) => {
