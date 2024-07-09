@@ -173,7 +173,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                     transform: `translateX(${coords.left}px)`,
                 } }
             >
-                { coords.width > 50 && <Text color="white" cx={ css.assingeeText }>{assignee?.fullName}</Text> }
+                { coords.width > 50 && <Text color="white" cx={ css.assingeeText }>{ task.name }</Text> }
             </div>
         </Tooltip>
     );
