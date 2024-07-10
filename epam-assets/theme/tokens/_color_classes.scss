@@ -1,0 +1,81 @@
+@mixin theme-color-classes {
+    .uui-color-primary {
+        --uui-color-5: var(--uui-primary-5);
+        --uui-color-10: var(--uui-primary-10);
+        --uui-color-20: var(--uui-primary-20);
+        --uui-color-50: var(--uui-primary-50);
+        --uui-color-60: var(--uui-primary-60);
+        --uui-color-70: var(--uui-primary-70);
+        --uui-color-contrast: var(--uui-primary-contrast);
+    }
+
+    .uui-color-secondary {
+        --uui-color-5: var(--uui-secondary-5);
+        --uui-color-10: var(--uui-secondary-10);
+        --uui-color-20: var(--uui-secondary-20);
+        --uui-color-50: var(--uui-secondary-50);
+        --uui-color-60: var(--uui-secondary-60);
+        --uui-color-70: var(--uui-secondary-70);
+        --uui-color-contrast: var(--uui-secondary-contrast);
+    }
+
+    .uui-color-accent {
+        --uui-color-5: var(--uui-accent-5);
+        --uui-color-10: var(--uui-accent-10);
+        --uui-color-20: var(--uui-accent-20);
+        --uui-color-50: var(--uui-accent-50);
+        --uui-color-60: var(--uui-accent-60);
+        --uui-color-70: var(--uui-accent-70);
+        --uui-color-contrast: var(--uui-accent-contrast);
+    }
+
+    .uui-color-info {
+        --uui-color-5: var(--uui-info-5);
+        --uui-color-10: var(--uui-info-10);
+        --uui-color-20: var(--uui-info-20);
+        --uui-color-50: var(--uui-info-50);
+        --uui-color-60: var(--uui-info-60);
+        --uui-color-70: var(--uui-info-70);
+        --uui-color-contrast: var(--uui-info-contrast);
+    }
+
+    .uui-color-success {
+        --uui-color-5: var(--uui-success-5);
+        --uui-color-10: var(--uui-success-10);
+        --uui-color-20: var(--uui-success-20);
+        --uui-color-50: var(--uui-success-50);
+        --uui-color-60: var(--uui-success-60);
+        --uui-color-70: var(--uui-success-70);
+        --uui-color-contrast: var(--uui-success-contrast);
+    }
+
+    .uui-color-warning {
+        --uui-color-5: var(--uui-warning-5);
+        --uui-color-10: var(--uui-warning-10);
+        --uui-color-20: var(--uui-warning-20);
+        --uui-color-50: var(--uui-warning-50);
+        --uui-color-60: var(--uui-warning-60);
+        --uui-color-70: var(--uui-warning-70);
+        --uui-color-contrast: var(--uui-warning-contrast);
+    }
+
+    .uui-color-error {
+        --uui-color-5: var(--uui-error-5);
+        --uui-color-10: var(--uui-error-10);
+        --uui-color-20: var(--uui-error-20);
+        --uui-color-50: var(--uui-error-50);
+        --uui-color-60: var(--uui-error-60);
+        --uui-color-70: var(--uui-error-70);
+        --uui-color-contrast: var(--uui-error-contrast);
+    }
+
+    .uui-color-critical {
+        --uui-color-5: var(--uui-critical-5);
+        --uui-color-10: var(--uui-critical-10);
+        --uui-color-20: var(--uui-critical-20);
+        --uui-color-50: var(--uui-critical-50);
+        --uui-color-60: var(--uui-critical-60);
+        --uui-color-70: var(--uui-critical-70);
+        --uui-color-contrast: var(--uui-critical-contrast);
+    }
+}

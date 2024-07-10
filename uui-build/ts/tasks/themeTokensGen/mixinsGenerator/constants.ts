@@ -11,8 +11,6 @@ export type TMainGroupConfig = {
     getInnerGroupId: (v: TVar) => string
 };
 
-export const TOKENS_MIXIN_NAME = 'theme-tokens';
-
 export const getThemeMixinsFilePath = (outMixinsPath: string, themeName: string) => {
     const themeNameNorm = themeName.toLowerCase().replaceAll('-', '_');
     return forwardSlashes(path.resolve(outMixinsPath, `_theme_${themeNameNorm}.scss`));

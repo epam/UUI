@@ -5,10 +5,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
 @mixin theme-loveship_dark {
-    @include tokens.theme-tokens;
-    --uui-font: 'Source Sans Pro', sans-serif;
-    --uui-font-mono: 'Roboto Mono', monospace;
-
     /* contrast colors */
     --uui-primary-contrast: var(--white);
 
@@ -26,6 +22,10 @@
 
     --uui-error-contrast: var(--white);
 
+    @include tokens.theme-tokens;
+    --uui-font: 'Source Sans Pro', sans-serif;
+    --uui-font-mono: 'Roboto Mono', monospace;
+
     /* shadows */
     --uui-shadow-level-1: 0 0 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
     --uui-shadow-level-2: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 22px 3px rgba(0, 0, 0, 0.26);
@@ -40,8 +40,7 @@
     /* begin color classes */
 
     .uui-color-neutral,
-    .uui-color-gray,
-    .uui-color-secondary {
+    .uui-color-gray {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
         --uui-color-20: var(--uui-secondary-20);
@@ -51,7 +50,6 @@
         --uui-color-contrast: var(--white);
     }
 
-    .uui-color-accent,
     .uui-color-grass {
         --uui-color-5: var(--grass-5);
         --uui-color-10: var(--grass-10);
@@ -62,17 +60,6 @@
         --uui-color-contrast: var(--white);
     }
 
-    .uui-color-success {
-        --uui-color-5: var(--uui-success-5);
-        --uui-color-10: var(--uui-success-10);
-        --uui-color-20: var(--uui-success-20);
-        --uui-color-50: var(--uui-success-50);
-        --uui-color-60: var(--uui-success-60);
-        --uui-color-70: var(--uui-success-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-primary,
     .uui-color-sky {
         --uui-color-5: var(--sky-5);
         --uui-color-10: var(--sky-10);
@@ -93,28 +80,7 @@
         --uui-color-contrast: var(--white);
     }
 
-    .uui-color-info {
-        --uui-color-5: var(--uui-info-5);
-        --uui-color-10: var(--uui-info-10);
-        --uui-color-20: var(--uui-info-20);
-        --uui-color-50: var(--uui-info-50);
-        --uui-color-60: var(--uui-info-60);
-        --uui-color-70: var(--uui-info-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-success {
-        --uui-color-5: var(--uui-success-5);
-        --uui-color-10: var(--uui-success-10);
-        --uui-color-20: var(--uui-success-20);
-        --uui-color-50: var(--uui-success-50);
-        --uui-color-60: var(--uui-success-60);
-        --uui-color-70: var(--uui-success-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-sun,
-    .uui-color-warning {
+    .uui-color-sun {
         --uui-color-5: var(--sun-5);
         --uui-color-10: var(--sun-10);
         --uui-color-20: var(--sun-20);
@@ -122,26 +88,6 @@
         --uui-color-60: var(--sun-60);
         --uui-color-70: var(--sun-70);
         --uui-color-contrast: var(--night700);
-    }
-
-    .uui-color-error {
-        --uui-color-5: var(--uui-error-5);
-        --uui-color-10: var(--uui-error-10);
-        --uui-color-20: var(--uui-error-20);
-        --uui-color-50: var(--uui-error-50);
-        --uui-color-60: var(--uui-error-60);
-        --uui-color-70: var(--uui-error-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-critical {
-        --uui-color-5: var(--uui-critical-5);
-        --uui-color-10: var(--uui-critical-10);
-        --uui-color-20: var(--uui-critical-20);
-        --uui-color-50: var(--uui-critical-50);
-        --uui-color-60: var(--uui-critical-60);
-        --uui-color-70: var(--uui-critical-70);
-        --uui-color-contrast: var(--white);
     }
 
     .uui-color-yellow {
