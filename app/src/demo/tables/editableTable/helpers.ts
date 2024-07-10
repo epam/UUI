@@ -1,7 +1,7 @@
 import { DropPosition, IImmutableMap, IMap, ITree, Tree, getOrderBetween } from '@epam/uui-core';
 import { Task } from './types';
 import { scheduleTasks as runScheduling, Task as SchedulingTask } from './scheduleTasks';
-import { msPerDay } from '@epam/uui-timeline';
+import { TimelineTransform, msPerDay } from '@epam/uui-timeline';
 import { Dayjs, uuiDayjs } from '../../../helpers';
 import { statuses } from './demoData';
 
@@ -513,4 +513,87 @@ export const getMinMaxDate = (tree: ITree<Task, number>) => {
     }
 
     return { from, to };
+};
+
+export const getTaskColor = (status: string) => statuses.find((s) => s.id === status)?.color ?? '#e1e3eb';
+export const formatDatePickerDate = (date: string | Date) => {
+    if (date instanceof Date) {
+        return uuiDayjs.dayjs(date).format('DD.MM.YYYY');
+    }
+
+    if (!date?.length) {
+        return '';
+    }
+
+    return uuiDayjs.dayjs(date, 'YYYY-MM-DD').format('DD.MM.YYYY');
+};
+
+export const getDueDateFromTask = (task: Task) => {
+    if (task.dueDate) {
+        return uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate();
+    }
+
+    return null;
+};
+
+export const getEstimatedTo = (task: Task) => {
+    if (task.type === 'story') {
+        return getDueDateFromTask(task);
+    }
+
+    const startDate = uuiDayjs.dayjs(task.exactStartDate, 'YYYY-MM-DD');
+    if (task.exactStartDate && task.estimate !== undefined) {
+        return startDate.add(task.estimate, 'day').toDate();
+    }
+
+    return null;
+};
+
+export const getTo = (task: Task) => {
+    const deadline = task.dueDate ? uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate() : null;
+    if (task.type === 'story') {
+        return deadline;
+    }
+
+    const startDate = uuiDayjs.dayjs(task.exactStartDate, 'YYYY-MM-DD');
+    const estimatedDueDate = task.exactStartDate && task.estimate !== undefined
+        ? startDate.add(task.estimate, 'day').toDate()
+        : null;
+
+    if (estimatedDueDate) {
+        return estimatedDueDate;
+    }
+
+    return deadline;
+};
+
+export const getTrim = (width: number, left: number, tWidth: number) => {
+    if (left < 0) {
+        return 'left';
+    }
+
+    if (left + width > tWidth) {
+        return 'right';
+    }
+
+    return undefined;
+};
+
+export const getWidth = (from: Date, to: Date, t: TimelineTransform) => {
+    const width = t.getX(to) - t.getX(from);
+    const originalLeft = t.getX(from);
+    const toX = t.getX(to, getTrim(width, originalLeft, t.widthPx));
+
+    const trimmedWidth = toX - Math.max(originalLeft, 0);
+    return Math.min(trimmedWidth, t.widthPx);
+};
+
+export const getTaskBarWidth = (from: Date, deadline: Date, estimatedTo: Date, t: TimelineTransform) => {
+    if (!deadline) {
+        return getWidth(from, estimatedTo, t);
+    }
+
+    const to = deadline.getTime() < estimatedTo.getTime() ? deadline : estimatedTo;
+
+    return getWidth(from, to, t);
 };
