@@ -31,7 +31,7 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
     useResizeObserver({
         onResize: onResize,
         observables: [document.body, timelineRef.current],
-        delay: 100,
+        delay: 150,
     });
 
     return (
