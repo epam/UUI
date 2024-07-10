@@ -6,19 +6,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
 @mixin theme-electric {
-    @include tokens.theme-tokens;
-    --uui-font: 'Source Sans Pro', sans-serif;
-    --uui-font-mono: 'Roboto Mono', monospace;
-
-    // theme specific fonts
-    --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
-
-    --gradient-1: linear-gradient(90deg, #00FFD3 0%, #00F6FF 44.22%, #B896FF 90%);
-    --gradient-2: linear-gradient(152deg, #0078C2 8.13%, #0047FF 59.98%, #8453D2 91.87%);
-    --gradient-3: linear-gradient(135deg, #1294E2 14.78%, #0A68F1 57.36%, #8453D2 95%);
-    --gradient-4: linear-gradient(315deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
-    --gradient-5: linear-gradient(90deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
-
     /* contrast colors */
     --uui-primary-contrast: var(--white);
 
@@ -36,6 +23,19 @@
 
     --uui-error-contrast: var(--white);
 
+    @include tokens.theme-tokens;
+    --uui-font: 'Source Sans Pro', sans-serif;
+    --uui-font-mono: 'Roboto Mono', monospace;
+
+    // theme specific fonts
+    --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
+
+    --gradient-1: linear-gradient(90deg, #00FFD3 0%, #00F6FF 44.22%, #B896FF 90%);
+    --gradient-2: linear-gradient(152deg, #0078C2 8.13%, #0047FF 59.98%, #8453D2 91.87%);
+    --gradient-3: linear-gradient(135deg, #1294E2 14.78%, #0A68F1 57.36%, #8453D2 95%);
+    --gradient-4: linear-gradient(315deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
+    --gradient-5: linear-gradient(90deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
+
     /* shadows */
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
@@ -50,31 +50,7 @@
     /* override variables */
 
     /* begin color classes */
-
-    .uui-color-primary,
-    .uui-color-info {
-        --uui-color-5: var(--uui-primary-5);
-        --uui-color-10: var(--uui-primary-10);
-        --uui-color-20: var(--uui-primary-20);
-        --uui-color-50: var(--uui-primary-50);
-        --uui-color-60: var(--uui-primary-60);
-        --uui-color-70: var(--uui-primary-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-accent {
-        --uui-color-5: var(--uui-accent-5);
-        --uui-color-10: var(--uui-accent-10);
-        --uui-color-20: var(--uui-accent-20);
-        --uui-color-50: var(--uui-accent-50);
-        --uui-color-60: var(--uui-accent-60);
-        --uui-color-70: var(--uui-accent-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-fire,
-    .uui-color-critical,
-    .uui-color-error {
+    .uui-color-fire {
         --uui-color-5: var(--uui-critical-5);
         --uui-color-10: var(--uui-critical-10);
         --uui-color-20: var(--uui-critical-20);
@@ -115,7 +91,6 @@
     }
 
     .uui-color-neutral,
-    .uui-color-secondary,
     .uui-color-night600 {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
@@ -136,18 +111,7 @@
         --uui-color-contrast: var(--white);
     }
 
-    .uui-color-success {
-        --uui-color-5: var(--uui-success-5);
-        --uui-color-10: var(--uui-success-10);
-        --uui-color-20: var(--uui-success-20);
-        --uui-color-50: var(--uui-success-50);
-        --uui-color-60: var(--uui-success-60);
-        --uui-color-70: var(--uui-success-70);
-        --uui-color-contrast: var(--white);
-    }
-
-    .uui-color-sun,
-    .uui-color-warning {
+    .uui-color-sun {
         --uui-color-5: var(--sun-5);
         --uui-color-10: var(--sun-10);
         --uui-color-20: var(--sun-20);
