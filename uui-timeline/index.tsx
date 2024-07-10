@@ -1,6 +1,6 @@
 export * from './src/Canvas';
 export * from './src/TimelineController';
-export * from './src/TimelineContext';
+export * from './src/draw';
 export * from './src/TimelineGrid';
 export * from './src/TimelineNav';
 export * from './src/TimelineScale';
