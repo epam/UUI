@@ -27,14 +27,7 @@
     ]
   },
   {
-    "data": {
-      "cellSizes": [
-        88.60000610351562,
-        160.79995727539062,
-        241.5999755859375,
-        411
-      ]
-    },
+    "data": {},
     "type": "table",
     "children": [
       {
@@ -338,7 +331,14 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": "As of now, we don't write such tests in UUI. But there are no technical restrictions to do it. "
+                    "text": "The majority of our components are covered by screenshot tests.  "
+                  },
+                  {
+                    "text": "Playwright",
+                    "uui-richTextEditor-code": true
+                  },
+                  {
+                    "text": " library is used for such tests."
                   }
                 ]
               }
