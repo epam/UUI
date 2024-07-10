@@ -1,5 +1,6 @@
 .assingee-text {
     margin-left: 5px;
+    margin-right: 5px;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -27,3 +28,19 @@
     border-radius: 50%;
 }
 
+.task-bar-wrapper {
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    position: absolute;
+}
+
+.task-bar {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+}
+
+.task-bar-deadline {
+    background: rgb(255 44 44 / 70%);
+}
