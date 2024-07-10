@@ -25,6 +25,8 @@ import {
 import { svc } from '../../services';
 import { demoData } from '@epam/uui-docs';
 import css from './RichTextEditorDemo.module.scss';
+import { ErrorNotification, Text } from '@epam/uui';
+import { FileUploadResponse } from '@epam/uui-core';
 
 interface SlateEditorBasicExampleState {
     value: EditorValue;
@@ -39,10 +41,13 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         this.setState({ value: value });
     };
 
-    uploadFile = (file: File, onProgress: (progress: number) => any): any => {
-        return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
-            onProgress,
-        });
+    uploadFile = (file: File): Promise<FileUploadResponse> => {
+        return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {})
+            .catch((res) => {
+                svc.uuiNotifications.show((props) =>
+                    <ErrorNotification { ...props }><Text>{ res.error.message }</Text></ErrorNotification>).catch(() => {});
+                return Promise.reject(res);
+            });
     };
 
     plugins = [
@@ -56,7 +61,7 @@ export class RichTextEditorDemo extends React.Component<any, SlateEditorBasicExa
         quotePlugin(),
         linkPlugin(),
         notePlugin(),
-        uploadFilePlugin({ uploadFile: this.uploadFile.bind(this) }),
+        uploadFilePlugin({ uploadFile: this.uploadFile }),
         attachmentPlugin(),
         imagePlugin(),
         videoPlugin(),
