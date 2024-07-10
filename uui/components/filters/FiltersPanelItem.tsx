@@ -13,7 +13,7 @@ import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
 import { MobileDropdownWrapper } from '../pickers';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
-import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete_forever-fill.svg';
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete-outline.svg';
 import css from './FiltersPanelItem.module.scss';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &

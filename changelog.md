@@ -12,13 +12,14 @@
 * [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
 * [uui-editor]: header, notes and color plugins now available for customizations
 * [TextArea]: removed maxLength prop override in cell mode
+* [DropdownSubMenu]: fixed `offset` value for `left-start` placement option
 
 
 
 # 5.8.1 - 21.06.2024
 
 **What's Fixed**
-* [LazyDataSource]: 
+* [LazyDataSource]:
   * fixed reload data on DS deps change and fixed fetching minus count on scroll up
   * fixed updating itemsMap after setItems.
 

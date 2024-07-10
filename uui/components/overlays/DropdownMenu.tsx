@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps,
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps, useDocumentDir } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
@@ -187,12 +187,15 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export function DropdownSubMenu(props: IDropdownSubMenu) {
-    const subMenuModifiers = [
+    const subMenuModifiers: DropdownProps['modifiers'] = [
         {
             name: 'offset',
             options: {
-                offset: ({ placement }: { placement: string }) => {
-                    if (placement === 'right-start') {
+                offset: ({ placement }) => {
+                    if (
+                        placement === 'right-start'
+                        || placement === 'left-start'
+                    ) {
                         return [-6, 0];
                     } else {
                         return [6, 0];

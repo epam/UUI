@@ -63,15 +63,6 @@ export const imagePlugin = (): PlatePlugin => {
                 }
             },
         },
-        plugins: [
-            {
-                key: 'loader',
-                type: 'loader',
-                isElement: true,
-                isVoid: true,
-                component: Image,
-            },
-        ],
         options: {
             bottomBarButton: ImageButton,
         },
