@@ -70,7 +70,7 @@ export const items: DocItem[] = [
     { id: 'testing-tools', name: 'Tools', component: UtGuideToolsDoc, parentId: 'testing' },
 
     { id: 'advanced', name: 'Advanced' },
-    { id: 'localization', name: 'Internationalization', component: InternationalizationDoc, parentId: 'advanced' },
+    { id: 'localization', name: 'Internationalization & RTL', component: InternationalizationDoc, parentId: 'advanced' },
     { id: 'dragAndDrop', name: 'Drag And Drop', component: DragAndDropDoc, parentId: 'advanced' },
     { id: 'lenses', name: 'Lenses', component: LensesDoc, parentId: 'advanced' },
 

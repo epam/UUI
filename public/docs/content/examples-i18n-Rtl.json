@@ -1,0 +1,25 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Along with internationalization, UUI components also support right-to-left (RTL) content direction flow."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To enable this, add the attribute "
+      },
+      {
+        "text": "dir='rtl'",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to the node where you want to change the text direction, typically the HTML node."
+      }
+    ]
+  }
+]
