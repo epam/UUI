@@ -39,8 +39,12 @@ export interface DatePickerHeaderProps extends IHasCX {
     navIconRight?: Icon;
 }
 
-const isSoberYear = (value: Dayjs) => {
-    return value.year() >= 1990 && value.year() <= 2099;
+const MIN_SOBER_YEAR = 1000;
+const MAX_SOBER_YEAR = 2200;
+
+const isYearWithinSoberRange = (value: Dayjs) => {
+    const year = value.year();
+    return year >= MIN_SOBER_YEAR && year <= MAX_SOBER_YEAR;
 };
 
 export function DatePickerHeader({
@@ -115,8 +119,8 @@ export function DatePickerHeader({
         [view, month],
     );
 
-    const disablePrev = view === 'YEAR_SELECTION' && !isSoberYear(getPrevYearsList(month));
-    const disableNext = view === 'YEAR_SELECTION' && !isSoberYear(getNextYearsList(month));
+    const disablePrev = view === 'YEAR_SELECTION' && !isYearWithinSoberRange(getPrevYearsList(month));
+    const disableNext = view === 'YEAR_SELECTION' && !isYearWithinSoberRange(getNextYearsList(month));
 
     return (
         <div className={ cx(css.container, uuiHeader.container, cx) }>
