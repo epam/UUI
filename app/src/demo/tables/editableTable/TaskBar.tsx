@@ -136,7 +136,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                         </FlexCell>
                     </FlexRow>
                 )}
-                { task.type === 'task'
+                { task.type === 'task' && task.dueDate
                 && (
                     <FlexRow columnGap="12" size="24" alignItems="center" justifyContent="start">
                         <FlexCell width="auto" minWidth={ 100 }>
