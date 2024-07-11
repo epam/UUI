@@ -1,31 +1,5 @@
-import { TimelineTransform } from '../TimelineTransform';
 import { msPerDay } from '../helpers';
-
-export interface CommonCanvasDrawProps {
-    context: CanvasRenderingContext2D;
-    canvasHeight: number;
-}
-
-export interface CanvasDrawLineProps extends CommonCanvasDrawProps {
-    x: number;
-    width?: number;
-}
-
-export interface CanvasDrawTimelineElementProps extends CommonCanvasDrawProps {
-    timelineTransform: TimelineTransform;
-}
-
-export interface CustomCanvasDrawTimelineElementProps extends CanvasDrawTimelineElementProps {
-    drawLine?: (props: CanvasDrawLineProps) => void;
-}
-
-export interface CanvasDrawHolidayProps extends CanvasDrawLineProps, CanvasDrawTimelineElementProps {
-    date: Date;
-}
-
-export interface CanvasDrawHolidaysProps extends CanvasDrawTimelineElementProps {
-    drawHolidayOrWeekend?: (props: CanvasDrawHolidayProps) => void;
-}
+import { CanvasDrawHolidayProps, CanvasDrawHolidaysProps, CanvasDrawLineProps, CanvasDrawTimelineElementProps, CustomCanvasDrawTimelineElementProps } from './types';
 
 const drawLine = ({ context, x, width, canvasHeight }: CanvasDrawLineProps) => {
     context.beginPath();
