@@ -94,6 +94,9 @@ const drawPeriodFragment = ({
     }
 };
 
+const getBottomLine = (visibility: number) => 2 + (1 - visibility) * moveAmount;
+const getTopLine = (visibility: number) => 1 - (1 - visibility) * moveAmount;
+
 const drawMinutes = ({
     context,
     timelineTransform,
@@ -109,7 +112,7 @@ const drawMinutes = ({
             text,
             x: w.left,
             width: w.right - w.left,
-            line: 2 + (1 - visibility) * moveAmount,
+            line: getBottomLine(visibility),
             isCurPeriod,
             textColor: '#525462',
             ...fonts,
@@ -131,7 +134,7 @@ const drawRemainingHours = ({ context, timelineTransform, visibility, ...fonts }
                 text,
                 x: w.left - (w.right - w.left) / 2,
                 width: w.right - w.left,
-                line: 2 + (1 - visibility) * moveAmount,
+                line: getBottomLine(visibility),
                 isCurPeriod,
                 textColor: '#525462',
                 superscript,
@@ -154,7 +157,7 @@ const drawHours = ({ context, timelineTransform, visibility, ...fonts }: CanvasD
                 text,
                 x: w.left - (w.right - w.left) / 2,
                 width: w.right - w.left,
-                line: 2 + (1 - visibility) * moveAmount,
+                line: getBottomLine(visibility),
                 isCurPeriod,
                 textColor: '#525462',
                 superscript,
@@ -185,7 +188,7 @@ const drawTopDays = ({ context, timelineTransform, visibility, ...fonts }: Canva
             text: header.toUpperCase(),
             x: w.left,
             width: w.right - w.left,
-            line: 1 - (1 - visibility) * moveAmount,
+            line: getTopLine(visibility),
             isCurPeriod,
             textColor,
             ...fonts,
@@ -209,7 +212,7 @@ const drawDays = ({ context, timelineTransform, visibility, ...fonts }: CanvasDr
             textColor,
             x: w.left,
             width: w.right - w.left,
-            line: 2 + (1 - visibility) * moveAmount,
+            line: getBottomLine(visibility),
             isCurPeriod,
             ...fonts,
         });
@@ -227,7 +230,7 @@ const drawTopMonths = ({ context, timelineTransform, visibility, ...fonts }: Can
             text: header.toUpperCase(),
             x: w.left,
             width: w.right - w.left,
-            line: 1 - (1 - visibility) * moveAmount,
+            line: getTopLine(visibility),
             isCurPeriod,
             ...fonts,
         });
@@ -245,7 +248,7 @@ const drawWeeks = ({ context, timelineTransform, visibility, ...fonts }: CanvasD
             text,
             x: w.left,
             width: w.right - w.left,
-            line: 2 + (1 - visibility) * moveAmount,
+            line: getBottomLine(visibility),
             isCurPeriod,
             ...fonts,
         });
@@ -263,7 +266,7 @@ const drawBottomMonths = ({ context, timelineTransform, visibility, ...fonts }: 
             text,
             x: w.left,
             width: w.right - w.left,
-            line: 2 + (1 - visibility) * moveAmount,
+            line: getBottomLine(visibility),
             isCurPeriod,
             ...fonts,
         });
