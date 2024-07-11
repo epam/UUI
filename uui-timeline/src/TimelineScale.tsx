@@ -9,15 +9,21 @@ import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
 import { Canvas, CanvasProps } from './Canvas';
 import { useTimelineTransform } from './useTimelineTransform';
-import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawTimelineElementProps, TimelineScaleFonts, timelineScale } from './draw';
+import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts, timelineScale } from './draw';
 
 export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     isDraggable?: boolean;
     isScaleChangeOnWheel?: boolean;
     shiftPercent?: number;
+    bottomBorderColor?: string;
+    periodTextColor?: string;
+    topDayTextColor?: string;
+    weekendTextColor?: string;
+    todayLineColor?: string;
+
     renderArrowIcon?: (direction: 'left' | 'right') => React.ReactNode;
     renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
-    drawBottomBorderScale?: (props: CanvasDrawTimelineElementProps) => void;
+    drawBottomBorderScale?: (props: CanvasDrawBottomBorderScaleProps) => void;
     drawMinutes?: (props: CanvasDrawPeriodPartProps) => void;
     drawRemainingHours?: (props: CanvasDrawPeriodPartProps) => void;
     drawHours?: (props: CanvasDrawPeriodPartProps) => void;
@@ -37,6 +43,11 @@ export function TimelineScale({
     periodFont = timelineScale.defaultFonts.periodFont,
     currentPeriodFont = timelineScale.defaultFonts.currentPeriodFont,
     meridiemFont = timelineScale.defaultFonts.meridiemFont,
+    periodTextColor = timelineScale.defaultColors.periodTextColor,
+    bottomBorderColor = timelineScale.defaultColors.bottomBorderColor,
+    topDayTextColor = timelineScale.defaultColors.topDayTextColor,
+    weekendTextColor = timelineScale.defaultColors.weekendTextColor,
+    todayLineColor = timelineScale.defaultColors.todayLineColor,
     ...props
 }: TimelineScaleProps) {
     const isMouseDownRef = useRef(false);
@@ -95,20 +106,35 @@ export function TimelineScale({
         const canvasHeight = 60;
         context.clearRect(0, 0, t.widthMs, canvasHeight);
 
-        drawBottomBorderScale({ context, canvasHeight, timelineTransform: t });
+        drawBottomBorderScale({ context, canvasHeight, timelineTransform: t, bottomBorderColor });
 
         const fonts = { currentPeriodFont, periodFont, meridiemFont };
-        const commonProps = { context, timelineTransform: t, ...fonts };
+        const commonProps = {
+            context,
+            timelineTransform: t,
+            periodTextColor,
+            ...fonts,
+        };
 
         drawPeriod({ minPxPerDay: 40000, maxPxPerDay: null, draw: drawMinutes, ...commonProps });
         drawPeriod({ minPxPerDay: 800, maxPxPerDay: 40000, draw: drawRemainingHours, ...commonProps });
         drawPeriod({ minPxPerDay: 200, maxPxPerDay: 20000, draw: drawHours, ...commonProps });
-        drawPeriod({ minPxPerDay: 200, maxPxPerDay: null, draw: drawTopDays, ...commonProps });
-        drawPeriod({ minPxPerDay: 20, maxPxPerDay: 200, draw: drawDays, ...commonProps });
+        drawPeriod({
+            minPxPerDay: 200,
+            maxPxPerDay: null,
+            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor }),
+            ...commonProps,
+        });
+        drawPeriod({
+            minPxPerDay: 20,
+            maxPxPerDay: 200,
+            draw: (props) => drawDays({ ...props, weekendTextColor, todayLineColor }),
+            ...commonProps,
+        });
         drawPeriod({ minPxPerDay: 6, maxPxPerDay: 200, draw: drawTopMonths, ...commonProps });
-        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: drawWeeks, ...commonProps });
-        drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: drawBottomMonths, ...commonProps });
-        drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: drawYears, ...commonProps });
+        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: (props) => drawWeeks({ ...props, todayLineColor }), ...commonProps });
+        drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: (props) => drawBottomMonths({ ...props, todayLineColor }), ...commonProps });
+        drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: (props) => drawYears({ ...props, todayLineColor }), ...commonProps });
     };
 
     useEffect(() => {
