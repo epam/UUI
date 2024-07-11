@@ -9,7 +9,7 @@ import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
 import { Canvas, CanvasProps } from './Canvas';
 import { useTimelineTransform } from './useTimelineTransform';
-import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts, timelineScale } from './draw';
+import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts, timelineScale, CanvasDrawTopDaysProps, CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps } from './draw';
 
 export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     isDraggable?: boolean;
@@ -27,12 +27,12 @@ export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     drawMinutes?: (props: CanvasDrawPeriodPartProps) => void;
     drawRemainingHours?: (props: CanvasDrawPeriodPartProps) => void;
     drawHours?: (props: CanvasDrawPeriodPartProps) => void;
-    drawTopDays?: (props: CanvasDrawPeriodPartProps) => void;
-    drawDays?: (props: CanvasDrawPeriodPartProps) => void;
+    drawTopDays?: (props: CanvasDrawTopDaysProps) => void;
+    drawDays?: (props: CanvasDrawDaysProps) => void;
     drawTopMonths?: (props: CanvasDrawPeriodPartProps) => void;
-    drawWeeks?: (props: CanvasDrawPeriodPartProps) => void;
-    drawBottomMonths?: (props: CanvasDrawPeriodPartProps) => void;
-    drawYears?: (props: CanvasDrawPeriodPartProps) => void;
+    drawWeeks?: (props: CanvasDrawPeriodWithTodayProps) => void;
+    drawBottomMonths?: (props: CanvasDrawPeriodWithTodayProps) => void;
+    drawYears?: (props: CanvasDrawPeriodWithTodayProps) => void;
     drawPeriod?: (props: CanvasDrawPeriodProps) => void
 }
 
