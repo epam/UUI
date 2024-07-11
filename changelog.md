@@ -1,4 +1,4 @@
-# 5.8.2 - xx.xx.2024
+# 5.8.2 - 11.07.2024
 
 **What's New**
 * [Pickers]: added current selection into `renderFooter` callback params.
