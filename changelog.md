@@ -1,17 +1,20 @@
-# 5.9.0 - xx.xx.2024
+# 5.8.2 - xx.xx.2024
 
 **What's New**
-* [Pickers]: add current selection into renderFooter callback params.
+* [Pickers]: added current selection into `renderFooter` callback params.
+* [RTE]: added possibility to customize set of available options for Header, Color and Note plugins
 
 **What's Fixed**
+* Fixed invalid mode for inline inputs 
+* [AnalyticContext]: fixed GA connection
 * [Checkbox]: fixed icon size according design
 * [RadioInput]: fixed caption line-height according design
 * [Switch]: fixed caption size & line-height according design
 * [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
-* [uui-editor]: header, notes and color plugins now available for customizations
 * [TextArea]: removed maxLength prop override in cell mode
+* [TabButton]: fixed counter color according to the design
 * [DropdownSubMenu]: fixed `offset` value for `left-start` placement option
-* [RTE]: remove loader after failed file upload
+* [RTE]: removed loader after failed file upload
 
 
 # 5.8.1 - 21.06.2024
