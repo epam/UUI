@@ -9,7 +9,9 @@ import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
 import { Canvas, CanvasProps } from './Canvas';
 import { useTimelineTransform } from './useTimelineTransform';
-import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts, timelineScale, CanvasDrawTopDaysProps, CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps } from './draw';
+import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts,
+    timelineScale, CanvasDrawTopDaysProps, CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps, CanvasDrawHeaderTodayProps,
+} from './draw';
 
 export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     isDraggable?: boolean;
@@ -34,6 +36,7 @@ export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     drawBottomMonths?: (props: CanvasDrawPeriodWithTodayProps) => void;
     drawYears?: (props: CanvasDrawPeriodWithTodayProps) => void;
     drawPeriod?: (props: CanvasDrawPeriodProps) => void
+    drawToday?: (props: CanvasDrawHeaderTodayProps) => void;
 }
 
 export function TimelineScale({
@@ -48,6 +51,18 @@ export function TimelineScale({
     topDayTextColor = timelineScale.defaultColors.topDayTextColor,
     weekendTextColor = timelineScale.defaultColors.weekendTextColor,
     todayLineColor = timelineScale.defaultColors.todayLineColor,
+    drawPeriod = timelineScale.drawPeriod,
+    drawMinutes = timelineScale.drawMinutes,
+    drawRemainingHours = timelineScale.drawRemainingHours,
+    drawHours = timelineScale.drawHours,
+    drawTopDays = timelineScale.drawTopDays,
+    drawDays = timelineScale.drawDays,
+    drawTopMonths = timelineScale.drawTopMonths,
+    drawWeeks = timelineScale.drawWeeks,
+    drawBottomMonths = timelineScale.drawBottomMonths,
+    drawYears = timelineScale.drawYears,
+    drawToday = timelineScale.drawToday,
+    drawBottomBorderScale = timelineScale.drawBottomBorderScale,
     ...props
 }: TimelineScaleProps) {
     const isMouseDownRef = useRef(false);
@@ -89,19 +104,6 @@ export function TimelineScale({
         );
     };
 
-    const drawPeriod = props.drawPeriod ?? timelineScale.drawPeriod;
-    const drawMinutes = props.drawMinutes ?? timelineScale.drawMinutes;
-    const drawRemainingHours = props.drawRemainingHours ?? timelineScale.drawRemainingHours;
-    const drawHours = props.drawHours ?? timelineScale.drawHours;
-    const drawTopDays = props.drawTopDays ?? timelineScale.drawTopDays;
-    const drawDays = props.drawDays ?? timelineScale.drawDays;
-    const drawTopMonths = props.drawTopMonths ?? timelineScale.drawTopMonths;
-    const drawWeeks = props.drawWeeks ?? timelineScale.drawWeeks;
-    const drawBottomMonths = props.drawBottomMonths ?? timelineScale.drawBottomMonths;
-    const drawYears = props.drawYears ?? timelineScale.drawYears;
-
-    const drawBottomBorderScale = props.drawBottomBorderScale ?? timelineScale.drawBottomBorderScale;
-
     const draw = (context: CanvasRenderingContext2D, t: TimelineTransform) => {
         const canvasHeight = 60;
         context.clearRect(0, 0, t.widthMs, canvasHeight);
@@ -122,19 +124,19 @@ export function TimelineScale({
         drawPeriod({
             minPxPerDay: 200,
             maxPxPerDay: null,
-            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor }),
+            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, drawToday }),
             ...commonProps,
         });
         drawPeriod({
             minPxPerDay: 20,
             maxPxPerDay: 200,
-            draw: (props) => drawDays({ ...props, weekendTextColor, todayLineColor }),
+            draw: (props) => drawDays({ ...props, weekendTextColor, todayLineColor, drawToday }),
             ...commonProps,
         });
         drawPeriod({ minPxPerDay: 6, maxPxPerDay: 200, draw: drawTopMonths, ...commonProps });
-        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: (props) => drawWeeks({ ...props, todayLineColor }), ...commonProps });
-        drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: (props) => drawBottomMonths({ ...props, todayLineColor }), ...commonProps });
-        drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: (props) => drawYears({ ...props, todayLineColor }), ...commonProps });
+        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: (props) => drawWeeks({ ...props, todayLineColor, drawToday }), ...commonProps });
+        drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: (props) => drawBottomMonths({ ...props, todayLineColor, drawToday }), ...commonProps });
+        drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: (props) => drawYears({ ...props, todayLineColor, drawToday }), ...commonProps });
     };
 
     useEffect(() => {
