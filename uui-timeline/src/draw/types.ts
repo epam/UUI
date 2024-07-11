@@ -67,6 +67,7 @@ export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps
 
 export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProps {
     todayLineColor?: string;
+    drawToday?: (props: CanvasDrawHeaderTodayProps) => void;
 }
 
 export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDrawPeriodWithTodayProps {
