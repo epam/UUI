@@ -171,23 +171,34 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     private startCall(call: ApiCall) {
-        const headers = new Headers();
-        const csrfCookie = isClientSide && getCookie('CSRF-TOKEN');
+        const fetchOptions = call.options?.fetchOptions;
+
+        const headers = new Headers(fetchOptions?.headers);
+
         headers.append('Content-Type', 'application/json');
+
+        const csrfCookie = isClientSide && getCookie('CSRF-TOKEN');
+
         if (csrfCookie) {
             headers.append('X-CSRF-Token', csrfCookie);
         }
+
         call.attemptsCount += 1;
         call.status = 'running';
         call.startedAt = new Date();
+
         const fetcher = this.props.fetch || fetch;
-        fetcher(this.props.apiServerUrl + call.url, {
-            headers,
-            method: call.method,
-            body: call.requestData && JSON.stringify(call.requestData),
-            credentials: 'include',
-            ...call.options?.fetchOptions,
-        })
+
+        fetcher(
+            this.props.apiServerUrl + call.url,
+            {
+                method: call.method,
+                body: call.requestData && JSON.stringify(call.requestData),
+                credentials: 'include',
+                ...fetchOptions,
+                headers,
+            },
+        )
             .then((response) => {
                 this.handleResponse(call, response);
             })
