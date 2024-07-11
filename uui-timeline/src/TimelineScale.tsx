@@ -5,7 +5,6 @@ import styles from './TimelineScale.module.scss';
 
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
-import { Icon } from '@epam/uui-core';
 import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
 import { Canvas, CanvasProps } from './Canvas';
@@ -16,16 +15,18 @@ export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     isDraggable?: boolean;
     isScaleChangeOnWheel?: boolean;
     shiftPercent?: number;
+    renderArrowIcon?: (direction: 'left' | 'right') => React.ReactNode;
+    renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
 }
 
 export function TimelineScale({
     timelineController,
     isDraggable,
     isScaleChangeOnWheel,
-    draw: propsDraw,
     periodFont = timelineScale.defaultFonts.periodFont,
     currentPeriodFont = timelineScale.defaultFonts.currentPeriodFont,
     meridiemFont = timelineScale.defaultFonts.meridiemFont,
+    ...props
 }: TimelineScaleProps) {
     const isMouseDownRef = useRef(false);
     
@@ -46,26 +47,31 @@ export function TimelineScale({
         timelineController.handleWheelEvent(e.nativeEvent as WheelEvent);
     };
 
+    const renderArrowIcon = (direction: 'left' | 'right') => {
+        const svg = direction === 'left' ? ArrowLeftSvg : ArrowRightSvg;
+        return <Svg svg={ svg } cx={ styles.arrowIcon } />;
+    };
+
     const renderArrow = (direction: 'left' | 'right') => {
         const handleClick = () => {
             timelineController.moveBy(direction === 'left' ? -1 : 1);
         };
 
-        const renderArrowIcon = (svg: Icon) => {
-            return <Svg svg={ svg } cx={ styles.arrowIcon } />;
-        };
-
         return (
-            <div className={ cx(styles.arrow, direction == 'left' ? styles.arrowLeft : styles.arrowRight) } onClick={ handleClick }>
-                {renderArrowIcon(direction === 'left' ? ArrowLeftSvg : ArrowRightSvg)}
+            <div
+                className={ cx(styles.arrow, direction == 'left' ? styles.arrowLeft : styles.arrowRight) }
+                onClick={ handleClick }
+            >
+                {(props.renderArrowIcon ?? renderArrowIcon)(direction)}
             </div>
         );
     };
 
     const draw = (context: CanvasRenderingContext2D, t: TimelineTransform) => {
-        context.clearRect(0, 0, t.widthMs, 60);
+        const canvasHeight = 60;
+        context.clearRect(0, 0, t.widthMs, canvasHeight);
 
-        timelineScale.drawBottomBorderScale({ context, canvasHeight: 60, timelineTransform: t });
+        timelineScale.drawBottomBorderScale({ context, canvasHeight, timelineTransform: t });
 
         const fonts = { currentPeriodFont, periodFont, meridiemFont };
         const commonProps = { context, timelineTransform: t, ...fonts };
@@ -90,13 +96,13 @@ export function TimelineScale({
   
     return (
         <div className={ styles.timelineHeader } style={ { width: timelineTransform.widthPx } }>
-            {!isMouseDownRef.current && renderArrow('left')}
-            {!isMouseDownRef.current && renderArrow('right')}
+            {!isMouseDownRef.current && (props.renderArrow ?? renderArrow)('left')}
+            {!isMouseDownRef.current && (props.renderArrow ?? renderArrow)('right')}
             <Canvas
                 className={ isMouseDownRef.current ? styles.timelineScaleGrabbing : styles.timelineScale }
                 onMouseDown={ isDraggable && handleMouseDown }
                 onWheel={ isScaleChangeOnWheel && handleWheel }
-                draw={ propsDraw ?? draw }
+                draw={ props.draw ?? draw }
                 timelineController={ timelineController }
             />
         </div>
