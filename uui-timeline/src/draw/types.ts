@@ -15,6 +15,7 @@ export interface CanvasDrawLineProps extends CommonCanvasDrawProps {
 
 export interface CanvasDrawHeaderTodayProps extends CanvasDrawProps {
     scaleBar: ScaleBar;
+    todayLineColor?: string;
 }
 
 export interface CanvasDrawTimelineHeaderProps extends CanvasDrawProps {
@@ -23,6 +24,10 @@ export interface CanvasDrawTimelineHeaderProps extends CanvasDrawProps {
 
 export interface CanvasDrawTimelineElementProps extends CommonCanvasDrawProps {
     timelineTransform: TimelineTransform;
+}
+
+export interface CanvasDrawBottomBorderScaleProps extends CanvasDrawTimelineElementProps {
+    bottomBorderColor: string;
 }
 
 export interface CustomCanvasDrawTimelineElementProps extends CanvasDrawTimelineElementProps {
@@ -57,6 +62,19 @@ export interface TimelineScaleFonts {
 
 export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps, Required<TimelineScaleFonts> {
     visibility: number;
+    periodTextColor?: string;
+}
+
+export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProps {
+    todayLineColor?: string;
+}
+
+export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDrawPeriodWithTodayProps {
+    weekendTextColor?: string;
+}
+
+export interface CanvasDrawTopDaysProps extends CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps {
+    topDayTextColor?: string;
 }
 
 export interface CanvasDrawPeriodProps extends CanvasDrawTimelineHeaderProps, Required<TimelineScaleFonts> {
