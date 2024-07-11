@@ -2,20 +2,6 @@
 
 **What's New**
 * [Pickers]: add current selection into renderFooter callback params.
-* Icons pack was updated:
-  * Icons, visual weight tweaked for:
-    * navigation-chevron_up_outline
-    * navigation-chevron_down_outline
-    * navigation-chevron_left_outline
-    * navigation-chevron_right_outline
-    * content-minus_outline
-    * notification-done_outline
-  *  Icons added
-    *  Icon file-file_csv_fill
-    *  editor-headline_h4_outline
-    *  editor-headline_h5_outline
-    *  editor-headline_h6_outline
-    *  content-person_group_outline
 
 **What's Fixed**
 * [Checkbox]: fixed icon size according design
