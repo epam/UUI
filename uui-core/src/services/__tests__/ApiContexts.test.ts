@@ -253,4 +253,41 @@ describe('ApiContext', () => {
         expect(fetchMock).toBeCalledTimes(1);
         expect(context.status).toBe('error');
     });
+
+    it('should contain user headers', async () => {
+        const fetchMock = getFetchMock(200);
+        global.fetch = fetchMock;
+        const excelContentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        const userHeaders = new Headers({
+            Accept: excelContentType,
+        });
+        const expectedHeaders = new Headers({
+            Accept: excelContentType,
+            'Content-Type': 'application/json',
+        });
+
+        await context.processRequest(
+            'path',
+            'POST',
+            testData,
+            {
+                fetchOptions: {
+                    headers: userHeaders,
+                },
+            },
+        );
+
+        expect(fetchMock).toBeCalledTimes(1);
+        /*
+            Headers content the same structure, but don't share the same reference.
+            `expect(fetchMock).toBeCalledWith` doesn't work in this case.
+            `expect(fetchMock.mock.lastCall).toEqual(expectedHeaders)` doesn't work.
+            `expect(fetchMock.mock.lastCall).toStrictEqual(expectedHeaders)` doesn't work.
+            Comparison of the headers with `toEqual` and `toStrictEqual`
+            without turning them into strings also doesn't work.
+        */
+        expect(
+            JSON.stringify(fetchMock.mock.lastCall.at(1).headers),
+        ).toBe(JSON.stringify(expectedHeaders));
+    });
 });
