@@ -9,7 +9,7 @@ import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
 import { Canvas, CanvasProps } from './Canvas';
 import { useTimelineTransform } from './useTimelineTransform';
-import { TimelineScaleFonts, timelineScale } from './draw';
+import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawTimelineElementProps, TimelineScaleFonts, timelineScale } from './draw';
 
 export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     isDraggable?: boolean;
@@ -17,6 +17,17 @@ export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
     shiftPercent?: number;
     renderArrowIcon?: (direction: 'left' | 'right') => React.ReactNode;
     renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
+    drawBottomBorderScale?: (props: CanvasDrawTimelineElementProps) => void;
+    drawMinutes?: (props: CanvasDrawPeriodPartProps) => void;
+    drawRemainingHours?: (props: CanvasDrawPeriodPartProps) => void;
+    drawHours?: (props: CanvasDrawPeriodPartProps) => void;
+    drawTopDays?: (props: CanvasDrawPeriodPartProps) => void;
+    drawDays?: (props: CanvasDrawPeriodPartProps) => void;
+    drawTopMonths?: (props: CanvasDrawPeriodPartProps) => void;
+    drawWeeks?: (props: CanvasDrawPeriodPartProps) => void;
+    drawBottomMonths?: (props: CanvasDrawPeriodPartProps) => void;
+    drawYears?: (props: CanvasDrawPeriodPartProps) => void;
+    drawPeriod?: (props: CanvasDrawPeriodProps) => void
 }
 
 export function TimelineScale({
@@ -67,23 +78,37 @@ export function TimelineScale({
         );
     };
 
+    const drawPeriod = props.drawPeriod ?? timelineScale.drawPeriod;
+    const drawMinutes = props.drawMinutes ?? timelineScale.drawMinutes;
+    const drawRemainingHours = props.drawRemainingHours ?? timelineScale.drawRemainingHours;
+    const drawHours = props.drawHours ?? timelineScale.drawHours;
+    const drawTopDays = props.drawTopDays ?? timelineScale.drawTopDays;
+    const drawDays = props.drawDays ?? timelineScale.drawDays;
+    const drawTopMonths = props.drawTopMonths ?? timelineScale.drawTopMonths;
+    const drawWeeks = props.drawWeeks ?? timelineScale.drawWeeks;
+    const drawBottomMonths = props.drawBottomMonths ?? timelineScale.drawBottomMonths;
+    const drawYears = props.drawYears ?? timelineScale.drawYears;
+
+    const drawBottomBorderScale = props.drawBottomBorderScale ?? timelineScale.drawBottomBorderScale;
+
     const draw = (context: CanvasRenderingContext2D, t: TimelineTransform) => {
         const canvasHeight = 60;
         context.clearRect(0, 0, t.widthMs, canvasHeight);
 
-        timelineScale.drawBottomBorderScale({ context, canvasHeight, timelineTransform: t });
+        drawBottomBorderScale({ context, canvasHeight, timelineTransform: t });
 
         const fonts = { currentPeriodFont, periodFont, meridiemFont };
         const commonProps = { context, timelineTransform: t, ...fonts };
-        timelineScale.drawPeriod({ minPxPerDay: 40000, maxPxPerDay: null, draw: timelineScale.drawMinutes, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 800, maxPxPerDay: 40000, draw: timelineScale.drawRemainingHours, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 200, maxPxPerDay: 20000, draw: timelineScale.drawHours, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 200, maxPxPerDay: null, draw: timelineScale.drawTopDays, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 20, maxPxPerDay: 200, draw: timelineScale.drawDays, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 6, maxPxPerDay: 200, draw: timelineScale.drawTopMonths, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: timelineScale.drawWeeks, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: timelineScale.drawBottomMonths, ...commonProps });
-        timelineScale.drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: timelineScale.drawYears, ...commonProps });
+
+        drawPeriod({ minPxPerDay: 40000, maxPxPerDay: null, draw: drawMinutes, ...commonProps });
+        drawPeriod({ minPxPerDay: 800, maxPxPerDay: 40000, draw: drawRemainingHours, ...commonProps });
+        drawPeriod({ minPxPerDay: 200, maxPxPerDay: 20000, draw: drawHours, ...commonProps });
+        drawPeriod({ minPxPerDay: 200, maxPxPerDay: null, draw: drawTopDays, ...commonProps });
+        drawPeriod({ minPxPerDay: 20, maxPxPerDay: 200, draw: drawDays, ...commonProps });
+        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 200, draw: drawTopMonths, ...commonProps });
+        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: drawWeeks, ...commonProps });
+        drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: drawBottomMonths, ...commonProps });
+        drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: drawYears, ...commonProps });
     };
 
     useEffect(() => {
