@@ -4,6 +4,14 @@ import {
     addDays, isWeekend, msPerDay, Scales,
 } from './helpers';
 
+export interface ScaleBar {
+    left: number;
+    right: number;
+    leftDate: Date;
+    rightDate: Date;
+    key: string;
+}
+
 export class TimelineTransform {
     public centerMs: number;
     public leftMs: number;
@@ -92,7 +100,7 @@ export class TimelineTransform {
         return result;
     }
 
-    getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string) {
+    getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string): ScaleBar[] {
         const fromDate = new Date(this.leftMs);
         const toDate = new Date(this.rightMs);
         const baseDate = alignStartDate(fromDate);
