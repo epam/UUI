@@ -185,7 +185,9 @@ export class ApiContext extends BaseContext implements IApiContext {
 
         const headers = new Headers(fetchOptions?.headers);
 
-        headers.append('Content-Type', 'application/json');
+        if (!headers.has('Content-Type')) {
+            headers.append('Content-Type', 'application/json');
+        }
 
         const csrfCookie = isClientSide && getCookie('CSRF-TOKEN');
 
