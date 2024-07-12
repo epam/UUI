@@ -1,4 +1,4 @@
-# 5.9.0 - xx.xx.2024
+# 5.x.x - xx.xx.2024
 
 **What's New**
 * [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function. It also takes into account the return type of the `parseResponse` function
@@ -14,7 +14,7 @@
 * [RTE]: added possibility to customize set of available options for Header, Color and Note plugins
 
 **What's Fixed**
-* Fixed invalid mode for inline inputs
+* Fixed invalid mode for inline inputs 
 * [AnalyticContext]: fixed GA connection
 * [Checkbox]: fixed icon size according design
 * [RadioInput]: fixed caption line-height according design
