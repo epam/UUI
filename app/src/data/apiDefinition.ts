@@ -1,6 +1,6 @@
 import { getDemoApi } from '@epam/uui-docs';
 import type {
-    IProcessRequest, CommonContexts, UuiContexts, ITablePreset,
+    CommonContexts, UuiContexts, ITablePreset, IProcessRequest,
 } from '@epam/uui-core';
 import { TType, TTypeRef } from '@epam/uui-docs';
 import { TDocsGenTypeSummary } from '../common/apiReference/types';
@@ -22,46 +22,66 @@ export interface GetCodeResponse {
     highlighted: string;
 }
 
-export function getApi(params: { processRequest: IProcessRequest, origin?: string, fetchOptions?: RequestInit }) {
-    const { origin = '', fetchOptions } = params;
+interface GetApiParams {
+    processRequest: IProcessRequest;
+    origin?: string;
+    fetchOptions?: RequestInit;
+}
 
-    const processRequest: IProcessRequest = (url, method, data, options) => {
+export function getApi({
+    processRequest,
+    origin = '',
+    fetchOptions,
+} : GetApiParams) {
+    const processRequestLocal = <ResponseData = unknown>(
+        // Rest operator is used to avoid duplicating parameters of `IProcessRequest` function.
+        ...requestParams: Parameters<IProcessRequest<ResponseData>>
+    ) => {
+        const [
+            url,
+            method,
+            data,
+            options,
+        ] = requestParams;
+
         const opts = fetchOptions ? { fetchOptions, ...options } : options;
-        return params.processRequest(url, method, data, opts);
+        return processRequest(url, method, data, opts) as Promise<ResponseData>;
     };
 
     return {
-        demo: getDemoApi(processRequest, origin),
+        demo: getDemoApi(processRequestLocal, origin),
         form: {
-            validateForm: <T>(formState: T) => processRequest(origin.concat('api/form/validate-form'), 'POST', formState),
+            validateForm: <FormState, ResponseData = unknown>(
+                formState: FormState,
+            ) => processRequestLocal<ResponseData>(origin.concat('api/form/validate-form'), 'POST', formState),
         },
         errors: {
-            status: (status: number) => processRequest(origin.concat(`api/error/status/${status}`), 'POST'),
-            setServerStatus: (status: number) => processRequest(origin.concat(`api//error/set-server-status/${status}`), "'POST'"),
-            mock: () => processRequest(origin.concat('api/error/mock'), 'GET'),
-            authLost: () => processRequest(origin.concat('api/error/auth-lost'), 'POST'),
+            status: (status: number) => processRequestLocal(origin.concat(`api/error/status/${status}`), 'POST'),
+            setServerStatus: (status: number) => processRequestLocal(origin.concat(`api//error/set-server-status/${status}`), "'POST'"),
+            mock: () => processRequestLocal(origin.concat('api/error/mock'), 'GET'),
+            authLost: () => processRequestLocal(origin.concat('api/error/auth-lost'), 'POST'),
         },
-        getChangelog(): Promise<any> {
-            return processRequest(origin.concat('/api/get-changelog'), 'GET');
+        getChangelog() {
+            return processRequestLocal<any>(origin.concat('/api/get-changelog'), 'GET');
         },
-        getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(origin.concat('/api/get-code'), 'POST', rq);
+        getCode(rq: GetCodeParams) {
+            return processRequestLocal<GetCodeResponse>(origin.concat('/api/get-code'), 'POST', rq);
         },
-        getProps(): Promise<any> {
-            return processRequest(origin.concat('/api/get-props/'), 'GET');
+        getProps() {
+            return processRequestLocal<any>(origin.concat('/api/get-props/'), 'GET');
         },
-        getDocsGenType(shortRef: TTypeRef): Promise<{ content: TType }> {
+        getDocsGenType(shortRef: TTypeRef) {
             const refEncoded = encodeURIComponent(shortRef);
-            return processRequest(origin.concat(`/api/docs-gen/details/${refEncoded}`), 'GET');
+            return processRequestLocal<{ content: TType }>(origin.concat(`/api/docs-gen/details/${refEncoded}`), 'GET');
         },
-        getDocsGenSummaries(): Promise<{ content: TDocsGenTypeSummary }> {
-            return processRequest(origin.concat('/api/docs-gen/summaries'), 'GET');
+        getDocsGenSummaries() {
+            return processRequestLocal<{ content: TDocsGenTypeSummary }>(origin.concat('/api/docs-gen/summaries'), 'GET');
         },
-        getDocsGenExports(): Promise<{ content: Record<string, string[]> }> {
-            return processRequest(origin.concat('/api/docs-gen/exports'), 'GET');
+        getDocsGenExports() {
+            return processRequestLocal<{ content: Record<string, string[]> }>(origin.concat('/api/docs-gen/exports'), 'GET');
         },
-        getThemeTokens(): Promise<{ content: IUuiTokensCollection['exposedTokens'] }> {
-            return processRequest(origin.concat('/api/theme-tokens'), 'GET');
+        getThemeTokens() {
+            return processRequestLocal<{ content: IUuiTokensCollection['exposedTokens'] }>(origin.concat('/api/theme-tokens'), 'GET');
         },
         presets: {
             async getPresets(): Promise<ITablePreset[]> {
