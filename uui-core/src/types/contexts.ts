@@ -193,6 +193,12 @@ export interface ApiCallOptions<ResponseData = any> {
     parseResponse?: (response: Response) => Promise<ResponseData>;
 }
 
+/*
+    Inspired by: https://stackoverflow.com/a/74376991
+    Provides suggestions for some request methods (to avoid typos) while allowing to assign any string.
+*/
+export type ProcessRequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | string & {};
+
 export interface IApiContext extends IBaseContext {
     /** Current status of api service.
      * idle - service do nothing and ready to process new requests
@@ -210,7 +216,7 @@ export interface IApiContext extends IBaseContext {
     /** Starts fetch call with providing params */
     processRequest<DataResponse = any>(
         url: string,
-        method: string,
+        method: ProcessRequestMethod,
         data?: any,
         options?: ApiCallOptions<DataResponse>,
     ): Promise<DataResponse>;
