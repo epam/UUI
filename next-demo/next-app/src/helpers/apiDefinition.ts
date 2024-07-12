@@ -1,5 +1,5 @@
 import { getDemoApi } from '@epam/uui-docs';
-import type { ApiCallOptions } from '@epam/uui-core';
+import type { IProcessRequest } from '@epam/uui-core';
 
 export interface GetCodeParams {
     path: string;
@@ -13,19 +13,21 @@ export interface GetCodeResponse {
 }
 
 export function apiDefinition(
-    processRequest: (
-        request: string,
-        requestMethod: string,
-        data?: any,
-        options?: ApiCallOptions
-    ) => any,
+    processRequest: IProcessRequest,
     origin: string = ''
 ) {
+    const processRequestLocal = <ResponseData = unknown>(
+        // Rest operator is used to avoid duplicating parameters of `IProcessRequest` function.
+        ...requestParams: Parameters<IProcessRequest<ResponseData>>
+    ) => {
+        return processRequest(...requestParams) as Promise<ResponseData>;
+    };
+
     return {
-        demo: getDemoApi(processRequest, origin),
+        demo: getDemoApi(processRequestLocal, origin),
         success: {
-            validateForm: <T>(formState: T) =>
-                processRequest(
+            validateForm: <FormState, ResponseData>(formState: FormState) =>
+                processRequestLocal<ResponseData>(
                     origin.concat('api/success/validate-form'),
                     'POST',
                     formState
@@ -33,27 +35,27 @@ export function apiDefinition(
         },
         errors: {
             status: (status: number) =>
-                processRequest(
+                processRequestLocal(
                     origin.concat(`api/error/status/${status}`),
                     'POST'
                 ),
             setServerStatus: (status: number) =>
-                processRequest(
+                processRequestLocal(
                     origin.concat(`api//error/set-server-status/${status}`),
                     'POST'
                 ),
-            mock: () => processRequest(origin.concat(`api//error/mock`), 'GET'),
+            mock: () => processRequestLocal(origin.concat(`api//error/mock`), 'GET'),
             authLost: () =>
-                processRequest(origin.concat(`api//error/auth-lost`), 'POST'),
+                processRequestLocal(origin.concat(`api//error/auth-lost`), 'POST'),
         },
-        getChangelog(): Promise<any> {
-            return processRequest(origin.concat('/api/get-changelog'), 'GET');
+        getChangelog() {
+            return processRequestLocal<any>(origin.concat('/api/get-changelog'), 'GET');
         },
-        getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(origin.concat(`/api/get-code`), 'POST', rq);
+        getCode(rq: GetCodeParams) {
+            return processRequestLocal<GetCodeResponse>(origin.concat(`/api/get-code`), 'POST', rq);
         },
-        getProps(): Promise<any> {
-            return processRequest(origin.concat(`/api/get-props/`), 'GET');
+        getProps() {
+            return processRequestLocal<any>(origin.concat(`/api/get-props/`), 'GET');
         },
     };
 }

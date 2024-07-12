@@ -48,7 +48,16 @@ export interface FileUploadResponse {
     };
 }
 
-export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
+/*
+    The same type as `IApiContext`, but with `ResponseData` set statically (on type's usage).
+    Useful for defining general `processRequest` type.
+*/
+export type IProcessRequest<ResponseData = any> = (
+    url: string,
+    method: string,
+    data?: any,
+    options?: ApiCallOptions<ResponseData>,
+) => Promise<ResponseData>;
 
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
 export interface ApiContextProps {
@@ -331,7 +340,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         return res.json();
     };
 
-    public processRequest: IProcessRequest = (url, method, data, options) => {
+    public processRequest: IApiContext['processRequest'] = (url, method, data, options) => {
         let name = url;
         if (data && data.operationName) {
             name += ' ' + data.operationName;
