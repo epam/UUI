@@ -14,6 +14,7 @@ import { ReactComponent as FigmaIcon } from '@epam/assets/icons/external_logo/fi
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as CommunicationStarOutlineIcon } from '@epam/assets/icons/communication-star-outline.svg';
 import css from './AppHeader.module.scss';
+import cx from 'classnames';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
@@ -118,7 +119,7 @@ export function AppHeader() {
                 render: () => (
                     <MainMenuCustomElement key="logo">
                         <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') }>
-                            <IconContainer icon={ LogoIcon } cx={ css.icon } />
+                            <IconContainer icon={ LogoIcon } cx={ cx(css.icon, css.logo) } />
                         </Anchor>
                     </MainMenuCustomElement>
                 ),
@@ -199,8 +200,8 @@ export function AppHeader() {
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
                                 <DropdownMenuHeader caption="Open in" />
-                                <DropdownMenuButton caption="Figma Community" href="/" target="_blank" />
-                                <DropdownMenuButton caption="EPAM Team (employee only)" href="/" target="_blank" />
+                                <DropdownMenuButton caption="Figma Community" href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7" target="_blank" />
+                                <DropdownMenuButton caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" target="_blank" />
                             </DropdownMenuBody>
                         ) }
                     />
