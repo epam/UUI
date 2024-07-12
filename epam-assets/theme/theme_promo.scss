@@ -63,7 +63,6 @@
         --uui-color-contrast: var(--uui-primary-contrast);
     }
 
-    .uui-color-neutral,
     .uui-color-gray {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
@@ -92,16 +91,6 @@
         --uui-color-60: var(--uui-warning-60);
         --uui-color-70: var(--uui-warning-70);
         --uui-color-contrast: var(--uui-warning-contrast);
-    }
-
-    .uui-color-white {
-        --uui-color-5: color-mix(in srgb, #FFFFFF 15%, transparent);
-        --uui-color-10: color-mix(in srgb, #FFFFFF 22%, transparent);
-        --uui-color-20: color-mix(in srgb, #FFFFFF 29%, transparent);
-        --uui-color-50: var(--uui-neutral-0);
-        --uui-color-60: var(--uui-neutral-10);
-        --uui-color-70: var(--uui-neutral-20);
-        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-link_button.uui-color-contrast,
