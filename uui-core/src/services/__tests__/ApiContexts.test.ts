@@ -280,17 +280,15 @@ describe('ApiContext', () => {
         );
 
         expect(fetchMock).toBeCalledTimes(1);
-        /*
-            Headers content the same structure, but don't share the same reference.
-            `expect(fetchMock).toBeCalledWith` doesn't work in this case.
-            `expect(fetchMock.mock.lastCall).toEqual(expectedHeaders)` doesn't work.
-            `expect(fetchMock.mock.lastCall).toStrictEqual(expectedHeaders)` doesn't work.
-            Comparison of the headers with `toEqual` and `toStrictEqual`
-            without turning them into strings also doesn't work.
-        */
-        expect(
-            JSON.stringify(fetchMock.mock.lastCall.at(1).headers),
-        ).toBe(JSON.stringify(expectedHeaders));
+        expect(fetchMock).toBeCalledWith(
+            'path',
+            {
+                headers: expectedHeaders,
+                method: 'POST',
+                body: JSON.stringify(testData),
+                credentials: 'include',
+            },
+        );
     });
 
     it('should contain user headers', async () => {
@@ -317,16 +315,14 @@ describe('ApiContext', () => {
         );
 
         expect(fetchMock).toBeCalledTimes(1);
-        /*
-            Headers content the same structure, but don't share the same reference.
-            `expect(fetchMock).toBeCalledWith` doesn't work in this case.
-            `expect(fetchMock.mock.lastCall).toEqual(expectedHeaders)` doesn't work.
-            `expect(fetchMock.mock.lastCall).toStrictEqual(expectedHeaders)` doesn't work.
-            Comparison of the headers with `toEqual` and `toStrictEqual`
-            without turning them into strings also doesn't work.
-        */
-        expect(
-            JSON.stringify(fetchMock.mock.lastCall.at(1).headers),
-        ).toBe(JSON.stringify(expectedHeaders));
+        expect(fetchMock).toBeCalledWith(
+            'path',
+            {
+                headers: expectedHeaders,
+                method: 'POST',
+                body: JSON.stringify(testData),
+                credentials: 'include',
+            },
+        );
     });
 });
