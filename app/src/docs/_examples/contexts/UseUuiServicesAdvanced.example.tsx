@@ -18,10 +18,10 @@ const router = new HistoryAdaptedRouter(history);
 type TApi = ReturnType<typeof apiDefinition>;
 function apiDefinition(processRequest: IProcessRequest) {
     return {
-        loadDataExample(): Promise<any> {
+        loadDataExample() {
             return processRequest('url goes here', 'GET');
         },
-        loadAppContextData(): Promise<any> {
+        loadAppContextData() {
             return processRequest('url goes here', 'GET');
         },
         // ... other api are defined here

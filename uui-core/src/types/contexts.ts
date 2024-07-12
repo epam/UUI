@@ -199,6 +199,13 @@ export interface ApiCallOptions<ResponseData = any> {
 */
 export type ProcessRequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | string & {};
 
+export type IProcessRequest = <DataResponse = any>(
+    url: string,
+    method: ProcessRequestMethod,
+    data?: any,
+    options?: ApiCallOptions<DataResponse>,
+) => Promise<DataResponse>;
+
 export interface IApiContext extends IBaseContext {
     /** Current status of api service.
      * idle - service do nothing and ready to process new requests
@@ -214,12 +221,7 @@ export interface IApiContext extends IBaseContext {
     /** Resets all errors */
     reset(): void;
     /** Starts fetch call with providing params */
-    processRequest<DataResponse = any>(
-        url: string,
-        method: ProcessRequestMethod,
-        data?: any,
-        options?: ApiCallOptions<DataResponse>,
-    ): Promise<DataResponse>;
+    processRequest: IProcessRequest;
     /** Starts file uploading using FormData */
     uploadFile(url: string, file: File, options?: FileUploadOptions): Promise<FileUploadResponse>;
     /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.

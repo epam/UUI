@@ -16,18 +16,11 @@ export function apiDefinition(
     processRequest: IProcessRequest,
     origin: string = ''
 ) {
-    const processRequestLocal = <ResponseData = unknown>(
-        // Rest operator is used to avoid duplicating parameters of `IProcessRequest` function.
-        ...requestParams: Parameters<IProcessRequest<ResponseData>>
-    ) => {
-        return processRequest(...requestParams) as Promise<ResponseData>;
-    };
-
     return {
-        demo: getDemoApi(processRequestLocal, origin),
+        demo: getDemoApi(processRequest, origin),
         success: {
-            validateForm: <FormState, ResponseData>(formState: FormState) =>
-                processRequestLocal<ResponseData>(
+            validateForm: <FormState>(formState: FormState) =>
+                processRequest(
                     origin.concat('api/success/validate-form'),
                     'POST',
                     formState
@@ -35,27 +28,27 @@ export function apiDefinition(
         },
         errors: {
             status: (status: number) =>
-                processRequestLocal(
+                processRequest(
                     origin.concat(`api/error/status/${status}`),
                     'POST'
                 ),
             setServerStatus: (status: number) =>
-                processRequestLocal(
+                processRequest(
                     origin.concat(`api//error/set-server-status/${status}`),
                     'POST'
                 ),
-            mock: () => processRequestLocal(origin.concat('api//error/mock'), 'GET'),
+            mock: () => processRequest(origin.concat('api//error/mock'), 'GET'),
             authLost: () =>
-                processRequestLocal(origin.concat('api//error/auth-lost'), 'POST'),
+                processRequest(origin.concat('api//error/auth-lost'), 'POST'),
         },
         getChangelog() {
-            return processRequestLocal<any>(origin.concat('/api/get-changelog'), 'GET');
+            return processRequest(origin.concat('/api/get-changelog'), 'GET');
         },
         getCode(rq: GetCodeParams) {
-            return processRequestLocal<GetCodeResponse>(origin.concat('/api/get-code'), 'POST', rq);
+            return processRequest<GetCodeResponse>(origin.concat('/api/get-code'), 'POST', rq);
         },
         getProps() {
-            return processRequestLocal<any>(origin.concat('/api/get-props/'), 'GET');
+            return processRequest(origin.concat('/api/get-props/'), 'GET');
         },
     };
 }

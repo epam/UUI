@@ -1,10 +1,11 @@
 import * as models from '../models';
 import {
-    LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse, IApiContext,
+    LazyDataSourceApiRequest, DataQueryFilter, LazyDataSourceApiResponse,
+    IProcessRequest,
 } from '@epam/uui-core';
 import { personDetailsApi } from './personDetails';
 
-export function getDemoApi(processRequest: IApiContext['processRequest'], origin: string = '') {
+export function getDemoApi(processRequest: IProcessRequest, origin: string = '') {
     function lazyApi<TEntity, TId>(name: string) {
         return (rq: LazyDataSourceApiRequest<TEntity, TId, DataQueryFilter<TEntity>>) =>
             processRequest<LazyDataSourceApiResponse<TEntity>>(origin.concat('/api/').concat(name), 'POST', rq);
