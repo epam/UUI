@@ -1,4 +1,4 @@
-import React, { FC, SVGProps } from 'react';
+import React, { FC, SVGProps, useEffect } from 'react';
 import { Badge, Button, FlexRow, IconContainer, LinkButton, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
 import { getCurrentTheme } from '../helpers';
 import cx from 'classnames';
@@ -10,6 +10,7 @@ import { ReactComponent as windows } from '../icons/windows.svg';
 import { ReactComponent as brushBuilder } from '../icons/brush-builder.svg';
 import { ReactComponent as actionLockIcon } from '../icons/action-lock-open.svg';
 import { ReactComponent as notificationHelpIcon } from '../icons/notification-help.svg';
+import { ReactComponent as CommunicationMailFillIcon } from '@epam/assets/icons/communication-mail-fill.svg';
 
 interface IExploreTopBlockItem {
     id: number,
@@ -29,7 +30,7 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
             + ' Lists and Tables with lazy-loading',
         footer: null,
     },
-    { id: 2, icon: { element: windows, name: 'Windows' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/' } },
+    { id: 2, icon: { element: windows, name: 'Windows' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/documents?category=components&id=accordion&mode=doc' } },
     {
         id: 3,
         icon: { element: brushBuilder, name: 'BrushBuilder' },
@@ -61,8 +62,8 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         captionBadge: { icon: OpenSourceIcon, caption: 'MIT License' },
         text: 'Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects',
         footer: [
-            { linkCaption: 'Figma Community', href: '/', color: 'accent' },
-            { linkCaption: 'Github', href: '/', color: 'accent' },
+            { linkCaption: 'Figma Community', href: 'https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7', color: 'accent' },
+            { linkCaption: 'Github', href: 'https://github.com/epam/UUI', color: 'accent' },
         ],
     }, {
         id: 1,
@@ -71,7 +72,7 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         captionBadge: null,
         text: 'Ongoing support during project live cycle. Access to a dedicated UUI team of architect, designers and developers',
         footer: [
-            { linkCaption: 'Contact Us', href: '/', color: 'primary' },
+            { linkCaption: 'Contact Us', href: 'mailto:AskUUI@epam.com', color: 'primary' },
         ],
     },
 ];
@@ -79,14 +80,52 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
 export function ExploreBenefitsBlock() {
     const theme = getCurrentTheme();
     const getThemeClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
+    const topBlockRefs: React.RefObject<HTMLDivElement>[] = topExploreBlocks.map(() => React.createRef());
+    const bottomBlockRefs: React.RefObject<HTMLDivElement>[] = bottomExploreBlocks.map(() => React.createRef());
+
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const direction = (entry.target as HTMLElement).dataset.direction;
+                    entry.target.classList.add(css[`animatedSlideIn${direction}`]);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        topBlockRefs.forEach((ref, index) => {
+            ref.current.dataset.direction = index % 2 === 0 ? 'Left' : 'Right';
+            observer.observe(ref.current);
+        });
+
+        bottomBlockRefs.forEach((ref) => {
+            ref.current.dataset.direction = 'Up';
+            observer.observe(ref.current);
+        });
+
+        return () => {
+            topBlockRefs.forEach((ref) => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
+
+            bottomBlockRefs.forEach((ref) => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
+        };
+    }, []);
 
     return (
         <div className={ css.root }>
             <div className={ css.container }>
                 <Text cx={ css.exploreHeader } fontWeight="600">Explore UUI benefits</Text>
                 <div className={ css.topBlockWrapper }>
-                    { topExploreBlocks.map((item) => (
-                        <Panel cx={ css.topBlockPanel } key={ item.id }>
+                    { topExploreBlocks.map((item, index) => (
+                        <Panel ref={ topBlockRefs[index] } cx={ css.topBlockPanel } key={ item.id }>
                             <IconContainer icon={ item.icon.element } cx={ cx(css.topBlockIcon, css[getThemeClassName(`topBlockIcon${item.icon.name}`)]) } size="18" />
                             <FlexCell cx={ css.topBlockContextWrapper }>
                                 <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
@@ -107,24 +146,25 @@ export function ExploreBenefitsBlock() {
                     )) }
                 </div>
                 <div className={ css.bottomBlockWrapper }>
-                    { bottomExploreBlocks.map((item) => (
-                        <Panel cx={ css.bottomBlockPanel } key={ item.id }>
+                    { bottomExploreBlocks.map((item, index) => (
+                        <Panel ref={ bottomBlockRefs[index] } cx={ css.bottomBlockPanel } key={ item.id }>
                             <IconContainer size="36" icon={ item.icon.element } cx={ cx(css.bottomBlockIcon, css[getThemeClassName(`bottomBlockIcon${item.icon.name}`)]) } />
                             <FlexRow cx={ css.bottomBlockCaptionWrapper }>
                                 <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
                                 { item.captionBadge
                                 && <Badge color="success" fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
-
                             </FlexRow>
-                            <Text fontSize="16" lineHeight="24" cx={ css.bottomBlockText }>{ item.text }</Text>
+                            <Text fontSize="18" lineHeight="24" cx={ css.bottomBlockText }>{ item.text }</Text>
                             { item.footer && (
                                 <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
                                     { item.footer.map((footerItem) => (
                                         <Button
                                             key={ footerItem.linkCaption }
+                                            icon={ index === 1 && CommunicationMailFillIcon }
                                             href={ footerItem.href }
+                                            fill={ index === 1 ? 'solid' : 'none' }
+                                            target="_blank"
                                             color={ footerItem.color }
-                                            fill="none"
                                             caption={ footerItem.linkCaption }
                                             onClick={ () => {
                                             } }

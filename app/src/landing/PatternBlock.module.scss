@@ -12,6 +12,20 @@
     }
 }
 
+@keyframes accordion-appears-mobile {
+    0% {
+        padding: 18px 18px 9px 18px;
+        height: auto;
+        opacity: 0;
+    }
+
+    100% {
+        padding: 18px 18px 9px 18px;
+        height: auto;
+        opacity: 1;
+    }
+}
+
 .root {
     --uui-header-gradient: linear-gradient(to right, #1294E2, #0A68F1, #8453D2);
     //
@@ -84,6 +98,7 @@
         padding-top: 21px;
         padding-bottom: 42px;
         column-gap: 15px;
+        overflow-anchor: none;
 
         .start-container {
             position: initial;
@@ -91,7 +106,7 @@
             flex-direction: column;
             flex-basis: 461px;
             overflow: hidden;
-            min-height: 600px;
+            min-height: 560px;
 
             .accordion-wrapper {
                 display: flex;
@@ -108,7 +123,7 @@
                     padding: 0;
                     height: 0;
                     opacity: 0;
-                    animation: accordion-appears 0.6s forwards;
+                    animation: accordion-appears 0.4s forwards;
                 }
 
                 .accordion-text-btn {
@@ -144,6 +159,62 @@
             justify-content: flex-start;
             flex-grow: 1;
         }
+
+        .slide {
+            width: 916px;
+            height: 562px;
+            border-radius: 6px;
+
+            &.tables {
+                &-light {
+                    background: url('../icons/slider_banners/light_themes/data-tables.png') no-repeat top/100%;
+                }
+
+                &-dark {
+                    background: url('../icons/slider_banners/dark_theme/data-tables.png') no-repeat top/100%;
+                }
+            }
+
+            &.project-planing {
+                &-light {
+                    background: url('../icons/slider_banners/light_themes/project-planning.png') no-repeat top/100%;
+                }
+
+                &-dark {
+                    background: url('../icons/slider_banners/dark_theme/project-planning.png') no-repeat top/100%;
+                }
+            }
+
+            &.forms {
+                &-light {
+                    background: url('../icons/slider_banners/light_themes/forms.png') no-repeat top/100%;
+                }
+
+                &-dark {
+                    background: url('../icons/slider_banners/dark_theme/forms.png') no-repeat top/100%;
+                }
+            }
+
+            &.rte {
+                &-light {
+                    background: url('../icons/slider_banners/light_themes/rte.png') no-repeat top/100%;
+                }
+
+                &-dark {
+                    background: url('../icons/slider_banners/dark_theme/rte.png') no-repeat top/100%;
+                }
+            }
+
+            &.visual {
+                &-light {
+                    background: url('../icons/slider_banners/light_themes/visual.png') no-repeat top/100%;
+                }
+
+                &-dark {
+                    background: url('../icons/slider_banners/dark_theme/visual.png') no-repeat top/100%;
+                }
+            }
+        }
     }
 
     @media (max-width: 1150px) {
@@ -171,9 +242,18 @@
                 .watch-all-btn {
                     max-width: initial;
                 }
+
+                .accordion-wrapper {
+                    :global(.uui-accordion-body) {
+                        padding: 0;
+                        height: 0;
+                        opacity: 0;
+                        animation: accordion-appears-mobile 0.4s forwards;
+                    }
+                }
             }
 
-            .banner {
+            .slide {
                 display: none;
             }
         }

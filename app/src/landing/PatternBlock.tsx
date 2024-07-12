@@ -1,20 +1,17 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Accordion, Button, FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, ProgressBar, Text } from '@epam/uui';
+import { Accordion, Button, FlexCell, FlexRow, FlexSpacer, LinkButton, ProgressBar, Text } from '@epam/uui';
 import cx from 'classnames';
 import css from './PatternBlock.module.scss';
-import { ReactComponent as SlideTable } from '../icons/banner.svg';
-import { ReactComponent as SlideForms } from '../icons/slider–forms.svg';
 import { ReactComponent as NavigationChevronRightOutlineIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { ReactComponent as ActionExternalLinkOutlineIcon } from '@epam/assets/icons/action-external_link-outline.svg';
 import { getCurrentTheme } from '../helpers';
 
 const accordionData = [
-    { id: 0, title: 'Filtered Table', text: 'Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs).' },
-    { id: 1, title: 'Project Planning', text: 'Project Planning Text' },
-    { id: 2, title: 'Forms', text: 'Forms Text' },
-    { id: 3, title: 'Text Editor', text: 'Text Editor Text' },
-    { id: 4, title: 'Drag and Drop', text: 'Drag and Drop Text' },
-    { id: 5, title: 'Timeline', text: 'Timeline Text' },
+    { id: 0, title: 'Data tables', text: 'Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs).', href: '/demo?id=table' },
+    { id: 1, title: 'Project Planning', text: 'Project planning table built on top of tables editing capabilities. Demo highlights in-cell inputs, drag-n-drop, tree-structured data, and more.', href: '/demo?id=editableTable' },
+    { id: 2, title: 'Forms', text: 'Full-featured set of form components – Text Inputs, Date Pickers, etc. We also provide useForm hook – to manage form state, including validation.', href: '/demo?id=form' },
+    { id: 3, title: 'Rich Text Editor', text: 'RTE is based on popular slate.js library. On top of Slate.js, we add a set of our and 3rd party plugins, UUI-styled toolbars, align edited text style to our guidelines.', href: '/demo?id=RTE' },
+    { id: 4, title: 'Visual content editing', text: 'Every component can be made draggable, and/or accept dragged items, by wrapping it with DndActor component.', href: '/demo?id=dnd' },
 ];
 
 const ACCORDION_INTERVAL = 5000;
@@ -39,7 +36,7 @@ export function PatternBlock() {
             setProgress((prev) => {
                 if (prev > 101) {
                     setAccordionValue((prevValue) => {
-                        if (prevValue === 5) {
+                        if (prevValue === accordionData.length - 1) {
                             return 0;
                         }
                         return prevValue + 1;
@@ -66,7 +63,7 @@ export function PatternBlock() {
     useLayoutEffect(() => {
         if (windowWidth > 768 && !progressID.current) {
             startProgress();
-        } else if (windowWidth < 768 && progressID.current) {
+        } else if (windowWidth <= 768 && progressID.current) {
             stopInterval();
             setProgress(0);
         }
@@ -106,20 +103,18 @@ export function PatternBlock() {
     const getSlide = () => {
         switch (accordionValue) {
             case 0: {
-                return SlideTable;
+                return theme === 'loveship_dark' ? css.tablesDark : css.tablesLight;
             } case 1: {
-                return SlideTable;
+                return theme === 'loveship_dark' ? css.projectPlaningDark : css.projectPlaningLight;
             } case 2: {
-                return SlideForms;
+                return theme === 'loveship_dark' ? css.formsDark : css.formsLight;
             } case 3: {
-                return SlideTable;
+                return theme === 'loveship_dark' ? css.rteDark : css.rteLight;
             } case 4: {
-                return SlideTable;
-            } case 5: {
-                return SlideTable;
+                return theme === 'loveship_dark' ? css.visualDark : css.visualLight;
             }
             default: {
-                return SlideTable;
+                return theme === 'loveship_dark' ? css.tablesDark : css.tablesLight;
             }
         }
     };
@@ -128,13 +123,13 @@ export function PatternBlock() {
         <div className={ css.root }>
             <FlexRow justifyContent="center" cx={ css.headerWrapper }>
                 <Text cx={ css.header }>
-                    <span className={ cx(css.headerStart, css[getHeaderClassName('headerStart')]) }>Find pattern for </span>
+                    <span className={ cx(css.headerStart, css[getHeaderClassName('headerStart')]) }>Find solution for </span>
                     <span className={ cx(css.headerEnd, css[getHeaderClassName('headerEnd')]) }>your project</span>
                 </Text>
             </FlexRow>
             <FlexRow cx={ css.container } alignItems="top">
                 <div className={ css.startContainer }>
-                    {accordionData.map((item) => (
+                    { accordionData.map((item) => (
                         <div
                             key={ item.id }
                             className={ css.accordionWrapper }
@@ -149,16 +144,33 @@ export function PatternBlock() {
                                 onValueChange={ () => onClickHandler(item.id) }
                             >
                                 <Text fontSize="16" lineHeight="24">{ item.text }</Text>
-                                <LinkButton href="/" caption="Open Example" icon={ ActionExternalLinkOutlineIcon } iconPosition="right" size="42" onClick={ () => {} } />
+                                <LinkButton
+                                    href={ item.href }
+                                    caption="Open Example"
+                                    icon={ ActionExternalLinkOutlineIcon }
+                                    iconPosition="right"
+                                    size="42"
+                                    onClick={ () => {
+                                    } }
+                                />
                             </Accordion>
                         </div>
-                    ))}
+                    )) }
                     <FlexSpacer />
                     <FlexCell width="auto" cx={ css.watchAllBtn }>
-                        <Button href="/" caption="Watch all" icon={ NavigationChevronRightOutlineIcon } iconPosition="right" fill="none" size="42" onClick={ () => {} } />
+                        <Button
+                            href="/demo"
+                            caption="Watch all"
+                            icon={ NavigationChevronRightOutlineIcon }
+                            iconPosition="right"
+                            fill="none"
+                            size="42"
+                            onClick={ () => {
+                            } }
+                        />
                     </FlexCell>
                 </div>
-                <IconContainer icon={ getSlide() } cx={ css.banner } />
+                <div className={ cx(css.slide, getSlide()) }></div>
             </FlexRow>
         </div>
     );

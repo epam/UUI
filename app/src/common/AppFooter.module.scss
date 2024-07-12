@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     flex-shrink: 0;
-    background-color: var(--uui-neutral-95);
     height: 240px;
     padding: 0 18px;
 
@@ -29,6 +28,12 @@
 
         .second-block {
             flex-basis: 50%;
+
+            .mail-button {
+                margin-top: 9px;
+                padding-inline-start: 18px;
+                padding-inline-end: 18px;
+            }
         }
     }
 
