@@ -52,7 +52,7 @@ export function AppFooter() {
                     <FlexRow columnGap={ 48 } alignItems="top">
                         <FlexCell width="auto">
                             <Text color="white" fontWeight="600" fontSize="18">Have a question?</Text>
-                            <Button cx={ css.mailButton } color="primary" caption="Contact us" icon={ CommunicationMailFillIcon } />
+                            <Button href="mailto:AskUUI@epam.com" cx={ css.mailButton } color="primary" caption="Contact us" icon={ CommunicationMailFillIcon } />
                         </FlexCell>
                         {getLinks(footerLinks.resources)}
                         {getLinks(footerLinks.links)}
