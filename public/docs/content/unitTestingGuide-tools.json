@@ -163,13 +163,7 @@
     ]
   },
   {
-    "data": {
-      "cellSizes": [
-        174.59994506835938,
-        406.3999328613281,
-        354.2000732421875
-      ]
-    },
+    "data": {},
     "type": "table",
     "children": [
       {
@@ -280,11 +274,112 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": "",
-                    "color": "#000080",
-                    "font-weight": "bold",
-                    "": null,
-                    "uui-richTextEditor-span-mark": true
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": " "
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "describe",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "renderWithContextAsync",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(<",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "Component ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "/>);\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "// ...\n",
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "    });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -351,7 +446,117 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": " "
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "text": "describe",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "const ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "res ",
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "= ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "renderHookWithContextAsync",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(useTestHook);\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "// ...\n",
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "    });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -418,7 +623,151 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "text": "describe",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "const ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "tree ",
+                    "color": "rgb(69, 131, 131)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "= ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "renderSnapshotWithContextAsync",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(<",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "Component ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "/>);\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "// ...\n",
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "        expect",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "tree",
+                    "color": "rgb(69, 131, 131)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ").",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "toMatchSnapshot",
+                    "color": "rgb(122, 122, 67)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "();\n    });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -507,6 +856,25 @@
           {
             "type": "table_cell",
             "children": [
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "See example on \"Getting Started\" page"
+                  }
+                ]
+              },
               {
                 "data": {},
                 "type": "paragraph",
@@ -697,7 +1065,196 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "Example:",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-italic": true
+                  },
+                  {
+                    "text": " "
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "describe",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "renderWithContextAsync",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(<",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "Component ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "/>);\n       ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "fireEvent",
+                    "color": "rgb(102, 14, 122)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ".",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "click",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "screen",
+                    "color": "rgb(102, 14, 122)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ".",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "getByRole",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'button'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "));\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "delayAct",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "100",
+                    "color": "rgb(0, 0, 255)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ");\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "// ...\n",
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "    });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -757,7 +1314,115 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": " ",
+                    "color": "rgb(48, 50, 64)"
+                  },
+                  {
+                    "text": " "
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "describe",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        testFunction();\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "delay",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "100",
+                    "color": "rgb(0, 0, 255)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ");\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "// ...\n",
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-italic": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "    });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -813,11 +1478,189 @@
             "type": "table_cell",
             "children": [
               {
-                "data": {},
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  }
+                ]
+              },
+              {
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "describe",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "const ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "{ ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "mockClear ",
+                    "color": "rgb(122, 122, 67)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "} = ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "mockReactPortalsForSnapshots",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "();\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "const ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "tree ",
+                    "color": "rgb(69, 131, 131)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "= ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "renderSnapshotWithContextAsync",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(<",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "Component ",
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-bold": true,
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "/>);\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "mockClear",
+                    "color": "rgb(122, 122, 67)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "();\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "expect",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "tree",
+                    "color": "rgb(69, 131, 131)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ").",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "toMatchSnapshot",
+                    "color": "rgb(122, 122, 67)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "();\n    });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -877,7 +1720,135 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": ""
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)"
+                  },
+                  {
+                    "text": " "
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "uui-richTextEditor-italic": true,
+                    "text": "describe",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example suite'",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", () => {\n    ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "it",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "'example test'",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": ", ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "async ",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "() => {\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "await ",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "renderWithContextAsync",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "(<",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "Component ",
+                    "uui-richTextEditor-bold": true,
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "uui-richTextEditor-bold": true,
+                    "text": "icon",
+                    "color": "rgb(0, 0, 255)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "uui-richTextEditor-bold": true,
+                    "text": "=",
+                    "color": "rgb(0, 128, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "{ ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "SvgMock ",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "}/>);\n        ",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "// ...\n",
+                    "uui-richTextEditor-italic": true,
+                    "color": "rgb(128, 128, 128)",
+                    "uui-richTextEditor-superscript": true
+                  },
+                  {
+                    "text": "        });\n});",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   }
                 ]
               }
@@ -943,6 +1914,31 @@
                 "data": {},
                 "type": "paragraph",
                 "children": [
+                  {
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true
+                  },
+                  {
+                    "text": " "
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "note-quote",
+                "children": [
+                  {
+                    "text": "see usage example here "
+                  },
+                  {
+                    "type": "link",
+                    "url": "https://github.com/epam/UUI/blob/main/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx",
+                    "children": [
+                      {
+                        "text": "https://github.com/epam/UUI/blob/main/uui-components/src/adaptivePanel/__tests__/adaptivePanel.test.tsx"
+                      }
+                    ]
+                  },
                   {
                     "text": ""
                   }
@@ -1011,7 +2007,8 @@
                 "type": "paragraph",
                 "children": [
                   {
-                    "text": "It's possible to pass extra options to this method in order to add global mocks for 3rd party dependencies. E.g.:"
+                    "text": "Example:",
+                    "uui-richTextEditor-italic": true
                   }
                 ]
               },
@@ -1020,41 +2017,51 @@
                 "type": "note-quote",
                 "children": [
                   {
-                    "text": "setupJsDom",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
-                  },
-                  {
-                    "text": "(",
-                    "color": "rgb(0, 0, 0)"
+                    "text": "setupJsDom(",
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   },
                   {
                     "text": "global",
-                    "uui-richTextEditor-italic": true,
                     "uui-richTextEditor-bold": true,
-                    "color": "rgb(102, 14, 122)"
+                    "color": "rgb(102, 14, 122)",
+                    "uui-richTextEditor-superscript": true
                   },
                   {
                     "text": ", { ",
-                    "color": "rgb(0, 0, 0)"
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   },
                   {
                     "text": "mockCommon3rdPartyDeps",
                     "uui-richTextEditor-bold": true,
-                    "color": "rgb(102, 14, 122)"
+                    "color": "rgb(102, 14, 122)",
+                    "uui-richTextEditor-superscript": true
                   },
                   {
                     "text": ": ",
-                    "color": "rgb(0, 0, 0)"
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
                   },
                   {
                     "text": "true ",
                     "uui-richTextEditor-bold": true,
-                    "color": "rgb(0, 0, 128)"
+                    "color": "rgb(0, 0, 128)",
+                    "uui-richTextEditor-superscript": true
                   },
                   {
                     "text": "});",
-                    "color": "rgb(0, 0, 0)"
+                    "color": "rgb(0, 0, 0)",
+                    "uui-richTextEditor-superscript": true
+                  }
+                ]
+              },
+              {
+                "data": {},
+                "type": "paragraph",
+                "children": [
+                  {
+                    "text": "It's possible to pass extra options to this method in order to add global mocks for 3rd party dependencies. E.g.:"
                   }
                 ]
               }
@@ -1070,8 +2077,8 @@
     ],
     "colSizes": [
       171,
-      399,
-      358
+      278,
+      479
     ]
   },
   {
