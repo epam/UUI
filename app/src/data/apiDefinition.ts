@@ -33,27 +33,20 @@ export function getApi({
     origin = '',
     fetchOptions,
 } : GetApiParams) {
-    const processRequestLocal = <ResponseData = unknown>(
-        // Rest operator is used to avoid duplicating parameters of `IProcessRequest` function.
-        ...requestParams: Parameters<IProcessRequest<ResponseData>>
-    ) => {
-        const [
-            url,
-            method,
-            data,
-            options,
-        ] = requestParams;
-
+    const processRequestLocal: IProcessRequest = (url, method, data, options) => {
         const opts = fetchOptions ? { fetchOptions, ...options } : options;
-        return processRequest(url, method, data, opts) as Promise<ResponseData>;
+        return processRequest(url, method, data, opts);
     };
 
     return {
         demo: getDemoApi(processRequestLocal, origin),
         form: {
-            validateForm: <FormState, ResponseData = unknown>(
-                formState: FormState,
-            ) => processRequestLocal<ResponseData>(origin.concat('api/form/validate-form'), 'POST', formState),
+            validateForm: <FormState>(formState: FormState) =>
+                processRequestLocal(
+                    origin.concat('api/form/validate-form'),
+                    'POST',
+                    formState,
+                ),
         },
         errors: {
             status: (status: number) => processRequestLocal(origin.concat(`api/error/status/${status}`), 'POST'),
@@ -62,13 +55,13 @@ export function getApi({
             authLost: () => processRequestLocal(origin.concat('api/error/auth-lost'), 'POST'),
         },
         getChangelog() {
-            return processRequestLocal<any>(origin.concat('/api/get-changelog'), 'GET');
+            return processRequestLocal(origin.concat('/api/get-changelog'), 'GET');
         },
         getCode(rq: GetCodeParams) {
             return processRequestLocal<GetCodeResponse>(origin.concat('/api/get-code'), 'POST', rq);
         },
         getProps() {
-            return processRequestLocal<any>(origin.concat('/api/get-props/'), 'GET');
+            return processRequestLocal(origin.concat('/api/get-props/'), 'GET');
         },
         getDocsGenType(shortRef: TTypeRef) {
             const refEncoded = encodeURIComponent(shortRef);
