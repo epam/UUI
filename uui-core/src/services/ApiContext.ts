@@ -2,6 +2,7 @@ import { BaseContext } from './BaseContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import {
     IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
+    ProcessRequestMethod,
 } from '../types';
 import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
@@ -54,7 +55,7 @@ export interface FileUploadResponse {
 */
 export type IProcessRequest<ResponseData = any> = (
     url: string,
-    method: string,
+    method: ProcessRequestMethod,
     data?: any,
     options?: ApiCallOptions<ResponseData>,
 ) => Promise<ResponseData>;
