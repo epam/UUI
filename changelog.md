@@ -13,7 +13,7 @@
 * [uui-editor]: header, notes and color plugins now available for customizations
 * [TextArea]: removed maxLength prop override in cell mode
 * [DropdownSubMenu]: fixed `offset` value for `left-start` placement option
-
+* [RTE]: remove loader after failed file upload
 
 
 # 5.8.1 - 21.06.2024
