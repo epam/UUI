@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
-import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch } from '@epam/uui';
+import { Panel, FlexSpacer, FlexRow, Switch, MultiSwitch, ErrorNotification, Text } from '@epam/uui';
 import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin, linkPlugin,
     iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin, superscriptPlugin,
     headerPlugin, listPlugin, placeholderPlugin, EditorValue, codeBlockPlugin } from '@epam/uui-editor';
@@ -18,10 +18,13 @@ export default function SlateEditorBasicExample() {
     const [mode, setMode] = useState<EditorMode>('form');
     const [fontSize, setFontSize] = useState<EditorFontSize>('14');
 
-    const uploadFile = (file: File, onProgress: (progress: number) => unknown): Promise<FileUploadResponse> => {
-        return svc.uuiApi.uploadFile(ORIGIN.concat('/upload/uploadFileMock'), file, {
-            onProgress,
-        });
+    const uploadFile = (file: File): Promise<FileUploadResponse> => {
+        return svc.uuiApi.uploadFile(ORIGIN.concat('/upload/uploadFileMock'), file, {})
+            .catch((res) => {
+                svc.uuiNotifications.show((props) =>
+                    <ErrorNotification { ...props }><Text>{ res.error.message }</Text></ErrorNotification>).catch(() => {});
+                return Promise.reject(res);
+            });
     };
 
     const plugins = [

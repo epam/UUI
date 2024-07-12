@@ -1,35 +1,23 @@
 import React, { useState } from 'react';
 import {
-    Panel, FlexRow, RichTextView, Switch,
+    Panel, FlexRow, RichTextView, Switch, ErrorNotification,
 } from '@epam/promo';
-import {
-    SlateEditor,
-    imagePlugin,
-    videoPlugin,
-    baseMarksPlugin,
-    linkPlugin,
-    iframePlugin,
-    quotePlugin,
-    superscriptPlugin,
-    headerPlugin,
-    listPlugin,
-    EditorValue,
-    codeBlockPlugin,
-    createSerializer,
-    createDeserializer,
-    paragraphPlugin,
-    uploadFilePlugin,
-    defaultPlugins,
-    separatorPlugin,
+import { SlateEditor, imagePlugin, videoPlugin, baseMarksPlugin, linkPlugin, iframePlugin, quotePlugin,
+    superscriptPlugin, headerPlugin, listPlugin, EditorValue, codeBlockPlugin, createSerializer, createDeserializer,
+    paragraphPlugin, uploadFilePlugin, defaultPlugins, separatorPlugin,
 } from '@epam/uui-editor';
 import { demoData } from '@epam/uui-docs';
 import css from './SlateEditorBasicExample.module.scss';
 import { svc } from '../../../services';
+import { Text } from '@epam/uui';
 
-const uploadFile = (file: File, onProgress: (progress: number) => any): any => {
-    return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {
-        onProgress,
-    });
+const uploadFile = (file: File): any => {
+    return svc.uuiApi.uploadFile('/upload/uploadFileMock', file, {})
+        .catch((res) => {
+            svc.uuiNotifications.show((props) =>
+                <ErrorNotification { ...props }><Text>{ res.error.message }</Text></ErrorNotification>).catch(() => {});
+            return Promise.reject(res);
+        });
 };
 
 const plugins = [

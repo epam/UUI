@@ -1,22 +1,35 @@
-# 5.9.0 - xx.xx.2024
+# 5.x.x - xx.xx.2024
 
 **What's New**
-* [Pickers]: add current selection into renderFooter callback params.
+* [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function. It also takes into account the return type of the `parseResponse` function
+* [ApiContext] Add suggestions for `method` parameter in `processRequest` function (to avoid typos), while allowing to pass any string value. For more details, check out `ProcessRequestMethod` type
 
 **What's Fixed**
+* [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
+
+# 5.8.2 - 11.07.2024
+
+**What's New**
+* [Pickers]: added current selection into `renderFooter` callback params.
+* [RTE]: added possibility to customize set of available options for Header, Color and Note plugins
+
+**What's Fixed**
+* Fixed invalid mode for inline inputs 
+* [AnalyticContext]: fixed GA connection
 * [Checkbox]: fixed icon size according design
 * [RadioInput]: fixed caption line-height according design
 * [Switch]: fixed caption size & line-height according design
 * [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
-* [uui-editor]: header, notes and color plugins now available for customizations
 * [TextArea]: removed maxLength prop override in cell mode
-
+* [TabButton]: fixed counter color according to the design
+* [DropdownSubMenu]: fixed `offset` value for `left-start` placement option
+* [RTE]: removed loader after failed file upload
 
 
 # 5.8.1 - 21.06.2024
 
 **What's Fixed**
-* [LazyDataSource]: 
+* [LazyDataSource]:
   * fixed reload data on DS deps change and fixed fetching minus count on scroll up
   * fixed updating itemsMap after setItems.
 
