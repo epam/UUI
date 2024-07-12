@@ -1,5 +1,5 @@
 import { getDemoApi } from '@epam/uui-docs';
-import type { ApiCallOptions } from '@epam/uui-core';
+import type { IProcessRequest } from '@epam/uui-core';
 
 export interface GetCodeParams {
     path: string;
@@ -13,18 +13,13 @@ export interface GetCodeResponse {
 }
 
 export function apiDefinition(
-    processRequest: (
-        request: string,
-        requestMethod: string,
-        data?: any,
-        options?: ApiCallOptions
-    ) => any,
+    processRequest: IProcessRequest,
     origin: string = ''
 ) {
     return {
         demo: getDemoApi(processRequest, origin),
         success: {
-            validateForm: <T>(formState: T) =>
+            validateForm: <FormState>(formState: FormState) =>
                 processRequest(
                     origin.concat('api/success/validate-form'),
                     'POST',
@@ -46,13 +41,13 @@ export function apiDefinition(
             authLost: () =>
                 processRequest(origin.concat(`api//error/auth-lost`), 'POST'),
         },
-        getChangelog(): Promise<any> {
+        getChangelog() {
             return processRequest(origin.concat('/api/get-changelog'), 'GET');
         },
-        getCode(rq: GetCodeParams): Promise<GetCodeResponse> {
-            return processRequest(origin.concat(`/api/get-code`), 'POST', rq);
+        getCode(rq: GetCodeParams) {
+            return processRequest<GetCodeResponse>(origin.concat(`/api/get-code`), 'POST', rq);
         },
-        getProps(): Promise<any> {
+        getProps() {
             return processRequest(origin.concat(`/api/get-props/`), 'GET');
         },
     };

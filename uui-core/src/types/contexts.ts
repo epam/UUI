@@ -169,7 +169,7 @@ export interface ApiCallInfo {
     dismissError(): void;
 }
 
-export interface ApiCallOptions {
+export interface ApiCallOptions<ResponseData = any> {
 
     /** Native fetch method options  */
     fetchOptions?: RequestInit;
@@ -190,8 +190,21 @@ export interface ApiCallOptions {
      * (res) => res.status === 200 ? res.json() : res.text() // parse OK response as json, and errors as text
      * (res) => res.blob() // get response as Blob object
      */
-    parseResponse?: (response: Response) => Promise<any>;
+    parseResponse?: (response: Response) => Promise<ResponseData>;
 }
+
+/*
+    Inspired by: https://stackoverflow.com/a/74376991
+    Provides suggestions for some request methods (to avoid typos) while allowing to assign any string.
+*/
+export type ProcessRequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | string & {};
+
+export type IProcessRequest = <DataResponse = any>(
+    url: string,
+    method: ProcessRequestMethod,
+    data?: any,
+    options?: ApiCallOptions<DataResponse>,
+) => Promise<DataResponse>;
 
 export interface IApiContext extends IBaseContext {
     /** Current status of api service.
@@ -208,7 +221,7 @@ export interface IApiContext extends IBaseContext {
     /** Resets all errors */
     reset(): void;
     /** Starts fetch call with providing params */
-    processRequest(url: string, method: string, data?: any, options?: ApiCallOptions): Promise<any>;
+    processRequest: IProcessRequest;
     /** Starts file uploading using FormData */
     uploadFile(url: string, file: File, options?: FileUploadOptions): Promise<FileUploadResponse>;
     /** Url to the relogin page. Used to open new browser window by this path, in case of auth lost error.
