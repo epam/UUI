@@ -5,6 +5,14 @@ const delay = (time?: number) =>
         setTimeout(resolve, time || 0);
     });
 
+const parseBlob = async (response: Response) => {
+    if (response.ok) {
+        return await response.blob();
+    }
+
+    return await response.text();
+};
+
 describe('ApiContext', () => {
     let context = new ApiContext({});
 
@@ -209,16 +217,14 @@ describe('ApiContext', () => {
             } as any);
         });
 
-        const parseResponse = (res: Response) => {
-            return res.status === 200 ? res.blob() : res.text();
-        };
-
         context = new ApiContext({ fetch: fetchMock });
         const result = await context.processRequest(
             'path',
             'POST',
             testData,
-            { parseResponse },
+            {
+                parseResponse: parseBlob,
+            },
         );
 
         expect(fetchMock).toBeCalledTimes(1);
@@ -235,17 +241,15 @@ describe('ApiContext', () => {
             } as any);
         });
 
-        const parseResponse = (res: Response) => {
-            return res.status === 200 ? res.blob() : res.text();
-        };
-
         context = new ApiContext({ fetch: fetchMock });
 
         const error = await (context.processRequest(
             'path',
             'POST',
             testData,
-            { parseResponse },
+            {
+                parseResponse: parseBlob,
+            },
         ).catch((e) => e));
 
         expect(error.call.httpStatus).toBe(500);
