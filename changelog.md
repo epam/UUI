@@ -1,3 +1,12 @@
+# 5.x.x - xx.xx.2024
+
+**What's New**
+* [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function. It also takes into account the return type of the `parseResponse` function
+* [ApiContext] Add suggestions for `method` parameter in `processRequest` function (to avoid typos), while allowing to pass any string value. For more details, check out `ProcessRequestMethod` type
+
+**What's Fixed**
+* [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
+
 # 5.8.2 - 11.07.2024
 
 **What's New**
