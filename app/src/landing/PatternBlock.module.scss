@@ -138,7 +138,7 @@
                 height: 4px;
                 width: calc(100% - 18px);
                 border-radius: calc(var(--uui-border-radius) * 3) calc(var(--uui-border-radius) * 3) 0 0;
-                background-color: transparent;
+                background-color: var(--uui-surface-highest);
             }
 
             .watch-all-btn {
@@ -207,11 +207,11 @@
 
             &.visual {
                 &-light {
-                    background: url('../icons/slider_banners/light_themes/visual.png') no-repeat top/100%;
+                    background: url('../icons/slider_banners/light_themes/drag-n-drop.png') no-repeat top/100%;
                 }
 
                 &-dark {
-                    background: url('../icons/slider_banners/dark_theme/visual.png') no-repeat top/100%;
+                    background: url('../icons/slider_banners/dark_theme/drag-n-drop.png') no-repeat top/100%;
                 }
             }
         }
