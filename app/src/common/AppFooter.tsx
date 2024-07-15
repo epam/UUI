@@ -1,18 +1,31 @@
 import * as React from 'react';
-import css from './AppFooter.module.scss';
-import {
-    FlexRow, Text, Anchor, IconContainer, FlexCell, Button,
-} from '@epam/uui';
+import { FlexRow, Text, Anchor, IconContainer, FlexCell, Button } from '@epam/uui';
+import { getCurrentTheme } from '../helpers';
 import { ReactComponent as EPAMIcon } from '../icons/EPAM.svg';
 import { ReactComponent as CommunicationMailFillIcon } from '@epam/assets/icons/communication-mail-fill.svg';
-import { getCurrentTheme } from '../helpers';
+import css from './AppFooter.module.scss';
 
 const EPAM_LINK = 'https://www.epam.com';
 
 const footerLinks = {
-    resources: { caption: 'Resources', links: [{ href: 'https://uui.epam.com/documents', name: 'Docs' }, { href: 'https://uui.epam.com/documents?category=components&id=accordion', name: 'Components' }, { href: 'https://uui.epam.com/demo', name: 'Examples' }] },
-    links: { caption: 'Links', links: [{ href: '/', name: 'Figma' }, { href: 'https://github.com/epam/UUI', name: 'GitHub' }, { href: 'https://uui.epam.com/documents?id=releaseNotes', name: 'Release notes' }] },
-    community: { caption: 'Community', links: [{ href: '/', name: 'Github Discussions' }, { href: 'https://teams.microsoft.com/l/team/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/conversations?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d', name: 'Microsoft Teams' }, { href: 'https://wearecommunity.io/communities/uui', name: 'We Are Community' }] },
+    resources: { caption: 'Resources',
+        links: [
+            { href: 'https://uui.epam.com/documents', name: 'Docs' },
+            { href: 'https://uui.epam.com/documents?category=components&id=accordion', name: 'Components' },
+            { href: 'https://uui.epam.com/demo', name: 'Examples' },
+        ] },
+    links: { caption: 'Links',
+        links: [
+            { href: 'https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7', name: 'Figma' },
+            { href: 'https://github.com/epam/UUI', name: 'GitHub' },
+            { href: 'https://uui.epam.com/documents?id=releaseNotes', name: 'Release notes' },
+        ] },
+    community: { caption: 'Community',
+        links: [
+            { href: 'https://github.com/epam/UUI/discussions', name: 'Github Discussions' },
+            { href: 'https://teams.microsoft.com/l/team/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/conversations?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d', name: 'Microsoft Teams' },
+            { href: 'https://wearecommunity.io/communities/uui', name: 'We Are Community' },
+        ] },
 };
 
 export function AppFooter() {

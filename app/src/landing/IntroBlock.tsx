@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Anchor, FlexCell, FlexRow, IconContainer, Text, FilterPickerBody, Panel, TabButton, Badge, Tooltip, Button, LabeledInput, TextInput, NumericInput, Switch, DatePicker, TimePicker, SuccessAlert } from '@epam/uui';
-import css from './IntroBlock.module.scss';
+import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import cx from 'classnames';
+import { getCurrentTheme } from '../helpers';
+import { Location } from '@epam/uui-docs';
 import { ReactComponent as BrushIcon } from '../icons/brush.svg';
 import { ReactComponent as BracketsIcon } from '../icons/brackets.svg';
 import { ReactComponent as BlurLightImage } from '../icons/intro-blur-light-theme.svg';
 import { ReactComponent as BlurDarkImage } from '../icons/intro-blur-dark-theme.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
-import { getCurrentTheme } from '../helpers';
-import cx from 'classnames';
-import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { Location } from '@epam/uui-docs';
+import css from './IntroBlock.module.scss';
 
 export function IntroBlock() {
     const theme = getCurrentTheme();
@@ -88,14 +88,14 @@ export function IntroBlock() {
                             EPAM UUI is a complete set of components, guidelines, blueprints, examples, to build your apps on top of Figma, React and TypeScript
                         </Text>
                         <FlexRow columnGap="12" cx={ css.infoBlockWrapper }>
-                            <Anchor cx={ css.infoBlock } href="/">
+                            <Anchor cx={ css.infoBlock } href="/documents?id=gettingStartedForDesigners&category=forDesigners&mode=doc">
                                 <IconContainer icon={ BrushIcon } cx={ css.infoStartIcon } />
                                 <FlexCell grow={ 1 }>
                                     <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.infoBlockHeader }>Design</Text>
                                     <Text fontSize="12" cx={ css.infoBlockText }>Start with design guidelines</Text>
                                 </FlexCell>
                             </Anchor>
-                            <Anchor cx={ css.infoBlock } href="/">
+                            <Anchor cx={ css.infoBlock } href="/documents?id=gettingStarted">
                                 <IconContainer icon={ BracketsIcon } cx={ css.infoEndIcon } />
                                 <FlexCell grow={ 1 }>
                                     <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.infoBlockHeader }>Develop</Text>

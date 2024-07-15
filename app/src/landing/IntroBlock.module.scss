@@ -226,6 +226,22 @@
         }
     }
 
+    //for hover
+    @media (min-width: 769px) {
+        .info-start-wrapper {
+            .info-start {
+                .info-block:hover, .info-block:active {
+                    transition: 300ms ease-out;
+                    border-color: #773CEC;
+
+                    &:last-of-type {
+                        border-color: var(--uui-success-50);
+                    }
+                }
+            }
+        }
+    }
+
     @media (max-width: 768px) {
         .info {
             padding-top: 24px;

@@ -1,8 +1,7 @@
 import React, { FC, SVGProps, useEffect } from 'react';
-import { Badge, Button, FlexRow, IconContainer, LinkButton, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
+import { Badge, Button, FlexRow, IconContainer, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
 import { getCurrentTheme } from '../helpers';
 import cx from 'classnames';
-import css from './ExploreBenefitsBlock.module.scss';
 import { ReactComponent as OpenSourceIcon } from '../icons/open-source.svg';
 import { ReactComponent as StarsIcon } from '../icons/stars.svg';
 import { ReactComponent as flagIcon } from '../icons/flag.svg';
@@ -11,6 +10,7 @@ import { ReactComponent as brushBuilder } from '../icons/brush-builder.svg';
 import { ReactComponent as actionLockIcon } from '../icons/action-lock-open.svg';
 import { ReactComponent as notificationHelpIcon } from '../icons/notification-help.svg';
 import { ReactComponent as CommunicationMailFillIcon } from '@epam/assets/icons/communication-mail-fill.svg';
+import css from './ExploreBenefitsBlock.module.scss';
 
 interface IExploreTopBlockItem {
     id: number,
@@ -41,7 +41,7 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
             <br />
             Allows deep customization to build your own brand UI components set on top
         </span>,
-        footer: { linkCaption: 'Open builder', href: '/' },
+        footer: { linkCaption: 'Open builder', href: '/documents?id=overview-themes&mode=doc&category=themes' },
     },
 ];
 
@@ -133,8 +133,10 @@ export function ExploreBenefitsBlock() {
                             </FlexCell>
                             { item.footer && (
                                 <FlexRow cx={ css.topBlockFooter } justifyContent="center">
-                                    <LinkButton
-                                        size="48"
+                                    <Button
+                                        rawProps={ { style: { width: '100%' } } }
+                                        fill="ghost"
+                                        size="42"
                                         caption={ item.footer.linkCaption }
                                         href={ item.footer.href }
                                         onClick={ () => {
@@ -160,6 +162,7 @@ export function ExploreBenefitsBlock() {
                                     { item.footer.map((footerItem) => (
                                         <Button
                                             key={ footerItem.linkCaption }
+                                            size="42"
                                             icon={ index === 1 && CommunicationMailFillIcon }
                                             href={ footerItem.href }
                                             fill={ index === 1 ? 'solid' : 'none' }
