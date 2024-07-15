@@ -4,8 +4,13 @@ import { createFileSync } from '../../../utils/fileUtils';
 
 import { formatVarsAsMixin } from './tokenFormatters';
 import { logFileCreated } from '../utils/fileUtils';
+import { getThemeColorClassesTemplate } from '../templates/templates';
+import path from 'path';
 
 export async function mixinsGenerator(figmaTokens: IUuiTokensCollection, outMixinsPath: string) {
+    // 1. create color classes mixin shared by all themes; this mixin depends on theme specific CSS vars.
+    createFileSync(path.resolve(outMixinsPath, '_color_classes.scss'), getThemeColorClassesTemplate());
+    // 2. create theme-specific mixins with tokens
     Object.values(figmaTokens.modes).forEach((figmaTheme) => {
         genForFigmaTheme({
             figmaTokens,
