@@ -21,6 +21,9 @@ export function TaskRow({ task, timelineController }: TaskRowProps) {
                 <TimelineGrid
                     timelineController={ timelineController }
                     canvasHeight={ canvasHeight }
+                    weekendCellColor="rgba(0,0,0,0)"
+                    todayLineColor="rgb(0 158 204)"
+                    holidayCellColor="blue"
                 />
             </div>
             <div

@@ -1,5 +1,13 @@
 import { msPerDay } from '../helpers';
-import { CanvasDrawHolidayProps, CanvasDrawHolidaysProps, CanvasDrawLineProps, CanvasDrawTimelineElementProps, CustomCanvasDrawTimelineElementProps } from './types';
+import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayOrWeekendProps, CanvasDrawHolidayProps, CanvasDrawHolidaysProps,
+    CanvasDrawLineProps, CanvasDrawWeekendProps, CustomCanvasDrawTimelineElementProps } from './types';
+
+const defaultColors = {
+    defaultLineColor: '#eee',
+    todayLineColor: '#F37B94',
+    holidayCellColor: 'rgba(249, 209, 204, 0.09)',
+    weekendCellColor: '#FBFBFB',
+};
 
 const drawLine = ({ context, x, width, canvasHeight }: CanvasDrawLineProps) => {
     context.beginPath();
@@ -9,26 +17,34 @@ const drawLine = ({ context, x, width, canvasHeight }: CanvasDrawLineProps) => {
     context.stroke();
 };
 
-const drawHoliday = ({ context, x, width, canvasHeight }: CanvasDrawLineProps) => {
-    context.fillStyle = 'rgba(249, 209, 204, 0.09)';
+const drawHoliday = ({ context, x, width, canvasHeight, holidayCellColor = defaultColors.holidayCellColor }: CanvasDrawHolidayProps) => {
+    context.fillStyle = holidayCellColor;
     context.fillRect(x, 0, width, canvasHeight);
 };
 
-const drawWeekend = ({ context, x, width, canvasHeight }: CanvasDrawLineProps) => {
-    context.fillStyle = '#FBFBFB';
+const drawWeekend = ({ context, x, width, canvasHeight, weekendCellColor = defaultColors.weekendCellColor }: CanvasDrawWeekendProps) => {
+    context.fillStyle = weekendCellColor;
     context.fillRect(x, 0, width, canvasHeight);
 };
 
-const drawHolidayOrWeekend = ({ context, x, width, canvasHeight, date, timelineTransform }: CanvasDrawHolidayProps) => {
+const drawHolidayOrWeekend = ({
+    context,
+    x,
+    width,
+    canvasHeight,
+    date,
+    timelineTransform,
+    holidayCellColor = defaultColors.holidayCellColor,
+    weekendCellColor = defaultColors.weekendCellColor,
+    ...restProps
+}: CanvasDrawHolidayOrWeekendProps) => {
     if (timelineTransform.isHoliday(date)) {
-        context.fillStyle = 'rgba(249, 209, 204, 0.09)';
-        context.fillRect(x, 0, width, canvasHeight);
+        (restProps.drawHoliday ?? drawHoliday)({ context, x, width, canvasHeight, holidayCellColor });
         return;
     }
 
     if (timelineTransform.isWeekend(date)) {
-        context.fillStyle = '#FBFBFB';
-        context.fillRect(x, 0, width, canvasHeight);
+        (restProps.drawWeekend ?? drawWeekend)({ context, x, width, canvasHeight, weekendCellColor });
     }
 };
 
@@ -52,15 +68,25 @@ const drawHours = ({ context, timelineTransform, canvasHeight, drawLine: customD
         (customDrawLine ?? drawLine)({ context, x: w.left, width, canvasHeight });
     });
 };
-const drawHolidays = ({ context, timelineTransform, canvasHeight, drawHolidayOrWeekend: customDrawHolidayOrWeekend }: CanvasDrawHolidaysProps) => {
+
+const drawHolidays = ({
+    context, timelineTransform, canvasHeight,
+    weekendCellColor = defaultColors.weekendCellColor,
+    holidayCellColor = defaultColors.holidayCellColor,
+    ...restProps
+}: CanvasDrawHolidaysProps) => {
     timelineTransform.getVisibleDays().forEach((w) => {
-        (customDrawHolidayOrWeekend ?? drawHolidayOrWeekend)({
+        (restProps.drawHolidayOrWeekend ?? drawHolidayOrWeekend)({
             context,
             timelineTransform,
             date: w.leftDate,
             x: w.left,
             width: w.right - w.left + 1,
             canvasHeight,
+            weekendCellColor,
+            holidayCellColor,
+            drawHoliday: restProps.drawHoliday ?? drawHoliday,
+            drawWeekend: restProps.drawWeekend ?? drawWeekend,
         });
     });
 };
@@ -92,8 +118,8 @@ const drawYears = ({ context, timelineTransform, canvasHeight, drawLine: customD
     });
 };
 
-const drawToday = ({ context, timelineTransform, canvasHeight }: CanvasDrawTimelineElementProps) => {
-    context.strokeStyle = '#F37B94';
+const drawToday = ({ context, timelineTransform, canvasHeight, todayLineColor = defaultColors.todayLineColor }: CanvasDrawGridTodayLineProps) => {
+    context.strokeStyle = todayLineColor;
     context.beginPath();
     context.moveTo(timelineTransform.getX(new Date()), 0);
     context.lineTo(timelineTransform.getX(new Date()), canvasHeight);
@@ -114,4 +140,6 @@ export const timelineGrid = {
     drawMonths,
     drawYears,
     drawToday,
+
+    defaultColors,
 };
