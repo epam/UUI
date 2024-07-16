@@ -9,7 +9,7 @@ import css from './TaskBar.module.scss';
 import classNames from 'classnames';
 import { formatDatePickerDate, getDueDateFromTask, getEstimatedTo, getTaskBarWidth, getTaskColor, getTo, getWidth } from './helpers';
 
-interface Coordinates {
+interface PositionConfig {
     width?: number;
     taskBarWidth?: number;
     deadlineBarWidth?: number;
@@ -17,7 +17,7 @@ interface Coordinates {
 }
 
 export function TaskBar({ task, timelineController }: { task: Task, timelineController: TimelineController }) {
-    const [coords, setCoords] = useState<Coordinates | null>(null);
+    const [positionConfig, setPositionConfig] = useState<PositionConfig | null>(null);
     const startDate = task.type === 'story' ? task.startDate : task.exactStartDate;
 
     const deadline = getDueDateFromTask(task);
@@ -35,38 +35,38 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
         height: 30,
     };
 
-    const updateCoords = useCallback((t: TimelineTransform) => {
+    const updatePosition = useCallback((t: TimelineTransform) => {
         const segment = { ...t.transformSegment(item.from, item.to) };
         const includes = segment !== undefined && item.from !== null && item.to !== null && segment.isVisible && item.opacity > 0.01;
         if (!includes) {
-            setCoords(null);
+            setPositionConfig(null);
         } else {
             const realWidth = getWidth(item.from, item.to, t);
             const taskBarWidth = getTaskBarWidth(item.from, item.deadline, item.estimatedTo, t);
             const originalLeft = t.getX(item.from);
             const left = Math.max(originalLeft, 0);
 
-            if (realWidth !== coords?.width
-                || left !== coords?.left
-                || taskBarWidth !== coords.taskBarWidth
+            if (realWidth !== positionConfig?.width
+                || left !== positionConfig?.left
+                || taskBarWidth !== positionConfig.taskBarWidth
             ) {
-                setCoords({ left, width: realWidth, taskBarWidth });
+                setPositionConfig({ left, width: realWidth, taskBarWidth });
             }
         }
-    }, [coords?.left, coords?.taskBarWidth, coords?.width, item.deadline, item.estimatedTo, item.from, item.opacity, item.to]);
+    }, [positionConfig?.left, positionConfig?.taskBarWidth, positionConfig?.width, item.deadline, item.estimatedTo, item.from, item.opacity, item.to]);
 
     useLayoutEffect(() => {
-        updateCoords(timelineController.getTransform());
-        timelineController.subscribe(updateCoords);
-        return () => timelineController.unsubscribe(updateCoords);
-    }, [timelineController, updateCoords]);
+        updatePosition(timelineController.getTransform());
+        timelineController.subscribe(updatePosition);
+        return () => timelineController.unsubscribe(updatePosition);
+    }, [timelineController, updatePosition]);
 
     const assignee = useMemo(
         () => resources.find((r) => r.id === task.assignee),
         [task.assignee],
     );
 
-    if (!coords) {
+    if (!positionConfig) {
         return;
     }
 
@@ -174,22 +174,22 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 className={ css.taskBarWrapper }
                 style={ {
                     height: item.height ?? 18,
-                    width: `${coords.width}px`,
-                    transform: `translateX(${coords.left}px)`,
+                    width: `${positionConfig.width}px`,
+                    transform: `translateX(${positionConfig.left}px)`,
                 } }
             >
                 <div
                     style={ {
                         background: item.color,
-                        width: `${coords.taskBarWidth}px`,
+                        width: `${positionConfig.taskBarWidth}px`,
                     } }
                     className={ css.taskBar }
                 >
-                    { coords.taskBarWidth > 50 && <Text color="white" cx={ css.assingeeText }>{ task.name }</Text> }
+                    { positionConfig.taskBarWidth > 50 && <Text color="white" cx={ css.assingeeText }>{ task.name }</Text> }
                 </div>
                 <div
                     className={ classNames(css.taskBar, css.taskBarDeadline) }
-                    style={ { width: `${coords.width - coords.taskBarWidth}px` } }
+                    style={ { width: `${positionConfig.width - positionConfig.taskBarWidth}px` } }
                 >
                 </div>
             </div>

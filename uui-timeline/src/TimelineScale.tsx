@@ -25,6 +25,7 @@ export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
 
     renderArrowIcon?: (direction: 'left' | 'right') => React.ReactNode;
     renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
+
     drawBottomBorderScale?: (props: CanvasDrawBottomBorderScaleProps) => void;
     drawMinutes?: (props: CanvasDrawPeriodPartProps) => void;
     drawRemainingHours?: (props: CanvasDrawPeriodPartProps) => void;
