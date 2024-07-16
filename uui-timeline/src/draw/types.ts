@@ -8,6 +8,11 @@ export interface CommonCanvasDrawProps extends CanvasDrawProps {
     canvasHeight?: number;
 }
 
+export interface CanvasDrawCellProps extends CommonCanvasDrawProps {
+    x: number;
+    width?: number;
+}
+
 export interface CanvasDrawLineProps extends CommonCanvasDrawProps {
     x: number;
     width?: number;
@@ -26,6 +31,10 @@ export interface CanvasDrawTimelineElementProps extends CommonCanvasDrawProps {
     timelineTransform: TimelineTransform;
 }
 
+export interface CanvasDrawGridTodayLineProps extends CanvasDrawTimelineElementProps {
+    todayLineColor?: string;
+}
+
 export interface CanvasDrawBottomBorderScaleProps extends CanvasDrawTimelineElementProps {
     bottomBorderColor: string;
 }
@@ -34,12 +43,26 @@ export interface CustomCanvasDrawTimelineElementProps extends CanvasDrawTimeline
     drawLine?: (props: CanvasDrawLineProps) => void;
 }
 
-export interface CanvasDrawHolidayProps extends CanvasDrawLineProps, CanvasDrawTimelineElementProps {
+export interface CanvasDrawHolidayProps extends CanvasDrawCellProps {
+    holidayCellColor?: string;
+}
+
+export interface CanvasDrawWeekendProps extends CanvasDrawCellProps {
+    weekendCellColor?: string;
+}
+
+export interface CanvasDrawHolidayOrWeekendProps extends CanvasDrawWeekendProps, CanvasDrawHolidayProps, CanvasDrawTimelineElementProps {
     date: Date;
+    drawHoliday?: (props: CanvasDrawHolidayProps) => void;
+    drawWeekend?: (props: CanvasDrawWeekendProps) => void;
 }
 
 export interface CanvasDrawHolidaysProps extends CanvasDrawTimelineElementProps {
-    drawHolidayOrWeekend?: (props: CanvasDrawHolidayProps) => void;
+    drawHolidayOrWeekend?: (props: CanvasDrawHolidayOrWeekendProps) => void;
+    drawHoliday?: (props: CanvasDrawHolidayProps) => void;
+    drawWeekend?: (props: CanvasDrawWeekendProps) => void;
+    weekendCellColor?: string;
+    holidayCellColor?: string;
 }
 
 export interface TimelineScaleFonts {

@@ -2,7 +2,8 @@ import React from 'react';
 import { TimelineTransform } from './TimelineTransform';
 import { msPerDay } from './helpers';
 import { Canvas, CanvasProps } from './Canvas';
-import { CanvasDrawLineProps, CanvasDrawTimelineElementProps, timelineGrid } from './draw';
+import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayProps, CanvasDrawLineProps, CanvasDrawTimelineElementProps,
+    CanvasDrawWeekendProps, timelineGrid } from './draw';
 
 export interface TimelineGridProps extends CanvasProps {
     drawLine?: (props: CanvasDrawLineProps) => void;
@@ -14,9 +15,15 @@ export interface TimelineGridProps extends CanvasProps {
     drawWeeks?: (props: CanvasDrawTimelineElementProps) => void;
     drawMonths?: (props: CanvasDrawTimelineElementProps) => void;
     drawYears?: (props: CanvasDrawTimelineElementProps) => void;
-    drawToday?: (props: CanvasDrawTimelineElementProps) => void;
+    drawToday?: (props: CanvasDrawGridTodayLineProps) => void;
+    drawHoliday?: (props: CanvasDrawHolidayProps) => void;
+    drawWeekend?: (props: CanvasDrawWeekendProps) => void;
+    
+    defaultLineColor?: string;
+    todayLineColor?: string;
+    weekendCellColor?: string;
+    holidayCellColor?: string;
 }
-
 export function TimelineGrid({ 
     timelineController,
     drawLine,
@@ -29,56 +36,64 @@ export function TimelineGrid({
     drawMonths,
     drawYears,
     drawToday,
+    drawWeekend,
+    drawHoliday,
+
+    defaultLineColor = timelineGrid.defaultColors.defaultLineColor,
+    todayLineColor = timelineGrid.defaultColors.todayLineColor,
+    weekendCellColor = timelineGrid.defaultColors.weekendCellColor,
+    holidayCellColor = timelineGrid.defaultColors.holidayCellColor,
     ...restProps
 }: TimelineGridProps) {
     const canvasHeight = restProps.canvasHeight ?? 60;
 
     const draw = (context: CanvasRenderingContext2D, timelineTransform: TimelineTransform) => {
         context.clearRect(0, 0, timelineTransform.widthPx, canvasHeight);
-        context.strokeStyle = '#eee';
+        context.strokeStyle = defaultLineColor;
 
         const pxPerDay = timelineTransform.pxPerMs * msPerDay;
 
         const drawProps = { context, timelineTransform, canvasHeight };
-        const customDrawProps = { ...drawProps, drawLine };
+        const options = {
+            ...drawProps,
+            drawLine: drawLine ?? timelineGrid.drawLine,
+        };
         if (pxPerDay >= 40000) {
-            const options = drawMinutes ? drawProps : customDrawProps;
             (drawMinutes ?? timelineGrid.drawMinutes)(options);
         }
 
         if (pxPerDay >= 1600) {
-            const options = drawQuoterHours ? drawProps : customDrawProps;
             (drawQuoterHours ?? timelineGrid.drawQuoterHours)(options);
         }
 
         if (pxPerDay >= 190) {
-            const options = drawHours ? drawProps : customDrawProps;
             (drawHours ?? timelineGrid.drawHours)(options);
         }
 
         if (pxPerDay > 10) {
-            const options = drawDays ? drawProps : customDrawProps;
             (drawDays ?? timelineGrid.drawDays)(options);
         }
 
-        if (pxPerDay > 2 && pxPerDay < 200) {
-            const options = drawHolidays ? drawProps : customDrawProps;
-            (drawHolidays ?? timelineGrid.drawHolidays)(options);
+        if (pxPerDay > 5 && pxPerDay < 200) {
+            (drawHolidays ?? timelineGrid.drawHolidays)({
+                ...options,
+                drawWeekend: drawWeekend ?? timelineGrid.drawWeekend,
+                drawHoliday: drawHoliday ?? timelineGrid.drawHoliday,
+                weekendCellColor,
+                holidayCellColor,
+            });
         }
 
         if (pxPerDay > 2) {
-            const options = drawWeeks ? drawProps : customDrawProps;
             (drawWeeks ?? timelineGrid.drawWeeks)(options);
         }
 
         if (pxPerDay > 0.5) {
-            const options = drawWeeks ? drawProps : customDrawProps;
             (drawMonths ?? timelineGrid.drawMonths)(options);
         }
 
-        const options = drawYears ? drawProps : customDrawProps;
         (drawYears ?? timelineGrid.drawYears)(options);
-        (drawToday ?? timelineGrid.drawToday)(drawProps);
+        (drawToday ?? timelineGrid.drawToday)({ ...drawProps, todayLineColor });
     };
 
     return (
