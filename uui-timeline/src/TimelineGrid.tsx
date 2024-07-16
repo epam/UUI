@@ -74,7 +74,7 @@ export function TimelineGrid({
             (drawDays ?? timelineGrid.drawDays)(options);
         }
 
-        if (pxPerDay > 5 && pxPerDay < 200) {
+        if (pxPerDay > 6 && pxPerDay < 200) {
             (drawHolidays ?? timelineGrid.drawHolidays)({
                 ...options,
                 drawWeekend: drawWeekend ?? timelineGrid.drawWeekend,
@@ -84,7 +84,7 @@ export function TimelineGrid({
             });
         }
 
-        if (pxPerDay > 2) {
+        if (pxPerDay > 6) {
             (drawWeeks ?? timelineGrid.drawWeeks)(options);
         }
 
