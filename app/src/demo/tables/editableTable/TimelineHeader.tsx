@@ -37,7 +37,9 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
     return (
         <div ref={ timelineRef } className={ css.timeline }>
             <div className={ css.layer } onMouseDown={ timelineController.startDrag }>
-                <TimelineScale timelineController={ timelineController } todayLineColor="rgb(0 158 204)" />
+                <TimelineScale
+                    timelineController={ timelineController }
+                />
             </div>
         </div>
     );
