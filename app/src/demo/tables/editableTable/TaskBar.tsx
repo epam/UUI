@@ -1,12 +1,12 @@
 import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
-import { TimelineTransform, TimelineController } from '@epam/uui-timeline';
+import classNames from 'classnames';
+import { TimelineTransform, TimelineController, useTimelineTransform } from '@epam/uui-timeline';
 import { Badge, FlexCell, FlexRow, Text, Tooltip } from '@epam/uui';
 import { Task } from './types';
 import { resources, statuses } from './demoData';
 import { uuiDayjs } from '../../../helpers';
 
 import css from './TaskBar.module.scss';
-import classNames from 'classnames';
 import { formatDatePickerDate, getDueDateFromTask, getEstimatedTo, getTaskBarWidth, getTaskColor, getTo, getWidth } from './helpers';
 
 interface PositionConfig {
@@ -55,11 +55,11 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
         }
     }, [positionConfig?.left, positionConfig?.taskBarWidth, positionConfig?.width, item.deadline, item.estimatedTo, item.from, item.opacity, item.to]);
 
+    const timelineTransform = useTimelineTransform({ timelineController });
+
     useLayoutEffect(() => {
-        updatePosition(timelineController.getTransform());
-        timelineController.subscribe(updatePosition);
-        return () => timelineController.unsubscribe(updatePosition);
-    }, [timelineController, updatePosition]);
+        updatePosition(timelineTransform);
+    }, [timelineTransform, updatePosition]);
 
     const assignee = useMemo(
         () => resources.find((r) => r.id === task.assignee),

@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
-import { TimelineGrid, CanvasProps } from '@epam/uui-timeline';
+import { TimelineGrid, TimelineCanvasProps } from '@epam/uui-timeline';
 import { Task } from './types';
 import { TaskBar } from './TaskBar';
 
 import css from './TaskRow.module.scss';
 
-export interface TaskRowProps extends CanvasProps {
+export interface TaskRowProps extends TimelineCanvasProps {
     task: Task;
 }
 

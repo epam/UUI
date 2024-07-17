@@ -1,11 +1,11 @@
 import React from 'react';
 import { TimelineTransform } from './TimelineTransform';
 import { msPerDay } from './helpers';
-import { Canvas, CanvasProps } from './Canvas';
+import { TimelineCanvas, TimelineCanvasProps } from './TimelineCanvas';
 import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayProps, CanvasDrawLineProps, CanvasDrawTimelineElementProps,
     CanvasDrawWeekendProps, timelineGrid } from './draw';
 
-export interface TimelineGridProps extends CanvasProps {
+export interface TimelineGridProps extends TimelineCanvasProps {
     drawLine?: (props: CanvasDrawLineProps) => void;
     drawMinutes?: (props: CanvasDrawTimelineElementProps) => void;
     drawHours?: (props: CanvasDrawTimelineElementProps) => void;
@@ -97,7 +97,7 @@ export function TimelineGrid({
     };
 
     return (
-        <Canvas
+        <TimelineCanvas
             draw={ restProps.draw ?? draw }
             canvasHeight={ canvasHeight }
             timelineController={ timelineController }
