@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Viewport, ViewportRange } from './types';
-import { getScaleByRange, msPerDay, scaleSteps } from './helpers';
+import { changeZoomStep, getScaleByRange, msPerDay, scaleSteps } from './helpers';
 import { TimelineTransform } from '../';
 import sortedIndex from 'lodash.sortedindex';
 import { isClientSide } from '@epam/uui-core';
@@ -88,9 +88,8 @@ export class TimelineController {
     }
 
     public setViewportRange(newViewportRange: ViewportRange, doAnimation: boolean) {
-        const rangeTimestamp = newViewportRange.to.getTime() - newViewportRange.from.getTime();
         const centerTimestamp = Math.floor((newViewportRange.to.getTime() + newViewportRange.from.getTime()) / 2);
-        const pxPerMs = getScaleByRange(rangeTimestamp);
+        const pxPerMs = getScaleByRange(newViewportRange, this.options);
 
         const center = new Date();
         center.setTime(centerTimestamp);
@@ -133,7 +132,7 @@ export class TimelineController {
     public handleWheelEvent = (e: WheelEvent) => {
         const vp = this.currentViewport;
         const sign = e.deltaY ? (e.deltaY < 0 ? 1 : -1) : 0;
-        const pxPerMs = this.changeZoomStep(sign);
+        const pxPerMs = changeZoomStep(sign, this.targetViewport.pxPerMs, this.options);
 
         this.setViewport(
             {
@@ -145,24 +144,6 @@ export class TimelineController {
         );
         e.preventDefault();
     };
-
-    private changeZoomStep(steps: number) {
-        const currentStep = sortedIndex(scaleSteps, this.targetViewport.pxPerMs);
-        let targetStep = currentStep + steps;
-        if (targetStep < 0) {
-            targetStep = 0;
-        }
-        if (targetStep >= scaleSteps.length) {
-            targetStep = scaleSteps.length - 1;
-        }
-        if (scaleSteps[targetStep] > this.options.maxScale) {
-            targetStep = sortedIndex(scaleSteps, this.options.maxScale);
-        }
-        if (scaleSteps[targetStep] < this.options.minScale) {
-            targetStep = sortedIndex(scaleSteps, this.options.minScale);
-        }
-        return scaleSteps[targetStep];
-    }
 
     public moveToday() {
         this.setViewport(
@@ -203,7 +184,7 @@ export class TimelineController {
 
     public zoomBy(steps: number) {
         const vp = this.targetViewport;
-        const pxPerMs = this.changeZoomStep(steps);
+        const pxPerMs = changeZoomStep(steps, this.targetViewport.pxPerMs, this.options);
 
         this.setViewport(
             {
@@ -215,7 +196,9 @@ export class TimelineController {
     }
 
     public canZoomBy(steps: number) {
-        return this.changeZoomStep(steps) != this.targetViewport.pxPerMs;
+        const pxPerMs = changeZoomStep(steps, this.targetViewport.pxPerMs, this.options);
+
+        return pxPerMs != this.targetViewport.pxPerMs;
     }
 
     public getTransform() {

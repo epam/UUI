@@ -1,4 +1,7 @@
+import sortedIndex from 'lodash.sortedindex';
+import { TimelineControllerOptions } from './TimelineController';
 import { i18n } from './i18n';
+import { ViewportRange } from './types';
 
 export const baseDate = new Date(2000, 1, 1);
 export const msPerMinute = 60 /* sec */ * 1000; /* ms */
@@ -69,32 +72,28 @@ export function getleftXforCentering(stageSegment: any, textWidth: number, paddi
     return leftX;
 }
 
-export const getScaleByRange = (range: number) => {
-    const periodToScales: Array<[number, number[]]> = [
-        [msPerYear, [scales.year, scales.yearWide]],
-        [msPerMonth, [scales.month, scales.monthWide]],
-        [msPerWeak, [scales.week, scales.weekWide]],
-        [msPerDay, [scales.day, scales.dayWide]],
-        [msPerHour, [scales.hour, scales.hourWide]],
-        [msPerMinute, [scales.minute, scales.minuteWide]],
-    ];
-
-    for (const [index, [period, [gtScale, lteScale]]] of periodToScales.entries()) {
-        if (range > period) {
-            return gtScale;
-        }
-
-        const isLastScale = index === periodToScales.length - 1;
-        if (range === period || isLastScale) {
-            return lteScale;
-        }
-
-        const [nextPeriod] = periodToScales[index + 1];
-
-        if (Math.abs(period - range) <= Math.abs(nextPeriod - range)) {
-            return lteScale;
-        }
+export const changeZoomStep = (steps: number, pxPerMs: number, options: TimelineControllerOptions) => {
+    const currentStep = sortedIndex(scaleSteps, pxPerMs);
+    let targetStep = currentStep + steps;
+    if (targetStep < 0) {
+        targetStep = 0;
     }
+    if (targetStep >= scaleSteps.length) {
+        targetStep = scaleSteps.length - 1;
+    }
+    if (scaleSteps[targetStep] > options.maxScale) {
+        targetStep = sortedIndex(scaleSteps, options.maxScale);
+    }
+    if (scaleSteps[targetStep] < options.minScale) {
+        targetStep = sortedIndex(scaleSteps, options.minScale);
+    }
+
+    return scaleSteps[targetStep];
+};
+
+export const getScaleByRange = (viewportRange: ViewportRange, options: TimelineControllerOptions) => {
+    const pxPerMs = viewportRange.widthPx / (viewportRange.to.getTime() - viewportRange.from.getTime());
+    return changeZoomStep(-1, pxPerMs, options);
 };
 
 export const months = i18n.months;
