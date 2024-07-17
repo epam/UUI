@@ -1,4 +1,4 @@
-import { CanvasProps } from '@epam/uui-timeline';
+import { TimelineCanvasProps } from '@epam/uui-timeline';
 import * as React from 'react';
 import styles from './ModuleItems.module.scss';
 
@@ -11,7 +11,7 @@ export interface Item {
     color: string;
 }
 
-export interface ModuleItemsProps extends CanvasProps {
+export interface ModuleItemsProps extends TimelineCanvasProps {
     items: Item[];
 }
 

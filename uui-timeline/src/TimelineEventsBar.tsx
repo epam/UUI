@@ -2,7 +2,7 @@ import React from 'react';
 import { TimelineController } from './TimelineController';
 import { TimelineTransform } from './TimelineTransform';
 import { getleftXforCentering } from './helpers';
-import { Canvas } from './Canvas';
+import { TimelineCanvas } from './TimelineCanvas';
 
 export interface Stage {
     eventName: string;
@@ -66,5 +66,5 @@ export function TimelineEventsBar({ stages, timelineController }: TimelineEvents
         renderTodayLine(ctx, t, canvasHeight - 2, canvasHeight);
     };
 
-    return <Canvas draw={ draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
+    return <TimelineCanvas draw={ draw } canvasHeight={ canvasHeight } timelineController={ timelineController } />;
 }

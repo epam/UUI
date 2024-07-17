@@ -4,18 +4,15 @@ import { TimelineController } from '../index';
 import { TimelineTransform } from './TimelineTransform';
 import { useTimelineTransform } from './useTimelineTransform';
 
-export interface CanvasProps {
+export interface TimelineCanvasProps {
     canvasHeight?: number;
     className?: string;
     timelineController: TimelineController;
     renderOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
     draw?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
 }
-export interface CanvasState { 
-    width?: number;
-}
 
-export function Canvas<TProps extends CanvasProps>({
+export function TimelineCanvas<TProps extends TimelineCanvasProps>({
     timelineController, draw, renderOnTop, canvasHeight, className, ...restProps
 }: TProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);

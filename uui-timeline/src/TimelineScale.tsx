@@ -7,13 +7,13 @@ import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
 import { Svg } from '@epam/uui-components';
 import { useCallback, useEffect, useRef } from 'react';
-import { Canvas, CanvasProps } from './Canvas';
+import { TimelineCanvas, TimelineCanvasProps } from './TimelineCanvas';
 import { useTimelineTransform } from './useTimelineTransform';
 import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts,
     timelineScale, CanvasDrawTopDaysProps, CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps, CanvasDrawHeaderTodayProps,
 } from './draw';
 
-export interface TimelineScaleProps extends CanvasProps, TimelineScaleFonts {
+export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFonts {
     isDraggable?: boolean;
     isScaleChangeOnWheel?: boolean;
     shiftPercent?: number;
@@ -161,7 +161,7 @@ export function TimelineScale({
         <div className={ styles.timelineHeader } style={ { width: timelineTransform.widthPx } }>
             {!isMouseDownRef.current && (props.renderArrow ?? renderArrow)('left')}
             {!isMouseDownRef.current && (props.renderArrow ?? renderArrow)('right')}
-            <Canvas
+            <TimelineCanvas
                 className={ isMouseDownRef.current ? styles.timelineScaleGrabbing : styles.timelineScale }
                 onMouseDown={ isDraggable && handleMouseDown }
                 onWheel={ isScaleChangeOnWheel && handleWheel }
