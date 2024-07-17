@@ -8,6 +8,7 @@ import {
     CanvasDrawPeriodProps,
     CanvasDrawPeriodWithTodayProps,
     CanvasDrawTopDaysProps,
+    CanvasScaleRange,
 } from './types';
 
 const defaultFonts = {
@@ -195,8 +196,7 @@ const drawHours = ({
 
 const drawToday = ({ context, scaleBar, todayLineColor = defaultColors.todayLineColor }: CanvasDrawHeaderTodayProps) => {
     if (isCurrentPeriod(scaleBar.leftDate, scaleBar.rightDate)) {
-        // context.fillStyle = todayLineColor;
-        context.fillStyle = 'pink';
+        context.fillStyle = todayLineColor;
         context.fillRect(scaleBar.left, 56, scaleBar.right - scaleBar.left, 4);
     }
 };
@@ -366,6 +366,16 @@ const drawYears = ({
     });
 };
 
+export const getMinutesScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 40000, maxPxPerDay: null });
+export const getRemainingHoursScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 800, maxPxPerDay: 40000 });
+export const getHoursScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 200, maxPxPerDay: 20000 });
+export const getTopDaysScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 200, maxPxPerDay: null });
+export const getDaysScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 20, maxPxPerDay: 200 });
+export const getTopMonthsScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 6, maxPxPerDay: 200 });
+export const getWeeksScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 6, maxPxPerDay: 20 });
+export const getBottomMonthsScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 1, maxPxPerDay: 6 });
+export const getYearsScaleRange = (): CanvasScaleRange => ({ minPxPerDay: null, maxPxPerDay: 6 });
+
 export const timelineScale = {
     drawBottomBorderScale,
     drawPeriod,
@@ -381,6 +391,15 @@ export const timelineScale = {
     drawBottomMonths,
     drawYears,
     isCurrentPeriod,
+    getMinutesScaleRange,
+    getRemainingHoursScaleRange,
+    getHoursScaleRange,
+    getTopDaysScaleRange,
+    getDaysScaleRange,
+    getTopMonthsScaleRange,
+    getWeeksScaleRange,
+    getBottomMonthsScaleRange,
+    getYearsScaleRange,
 
     defaultFonts,
     defaultColors,

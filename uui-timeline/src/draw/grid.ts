@@ -126,6 +126,14 @@ const drawToday = ({ context, timelineTransform, canvasHeight, todayLineColor = 
     context.stroke();
 };
 
+const shouldDrawMinutes = (pxPerDay: number) => pxPerDay >= 4000;
+const shouldDrawQouterHours = (pxPerDay: number) => pxPerDay >= 1600;
+const shouldDrawHours = (pxPerDay: number) => pxPerDay >= 190;
+const shouldDrawDays = (pxPerDay: number) => pxPerDay > 10;
+const shouldDrawHolidays = (pxPerDay: number) => pxPerDay > 6 && pxPerDay < 200;
+const shouldDrawWeeks = (pxPerDay: number) => pxPerDay > 6;
+const shouldDrawMonths = (pxPerDay: number) => pxPerDay > 0.5;
+
 export const timelineGrid = {
     drawLine,
     drawHoliday,
@@ -140,6 +148,14 @@ export const timelineGrid = {
     drawMonths,
     drawYears,
     drawToday,
+
+    shouldDrawMinutes,
+    shouldDrawQouterHours,
+    shouldDrawHours,
+    shouldDrawDays,
+    shouldDrawHolidays,
+    shouldDrawWeeks,
+    shouldDrawMonths,
 
     defaultColors,
 };

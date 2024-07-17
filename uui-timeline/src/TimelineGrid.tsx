@@ -58,23 +58,23 @@ export function TimelineGrid({
             ...drawProps,
             drawLine: drawLine ?? timelineGrid.drawLine,
         };
-        if (pxPerDay >= 40000) {
+        if (timelineGrid.shouldDrawMinutes(pxPerDay)) {
             (drawMinutes ?? timelineGrid.drawMinutes)(options);
         }
 
-        if (pxPerDay >= 1600) {
+        if (timelineGrid.shouldDrawQouterHours(pxPerDay)) {
             (drawQuoterHours ?? timelineGrid.drawQuoterHours)(options);
         }
 
-        if (pxPerDay >= 190) {
+        if (timelineGrid.shouldDrawHours(pxPerDay)) {
             (drawHours ?? timelineGrid.drawHours)(options);
         }
 
-        if (pxPerDay > 10) {
+        if (timelineGrid.shouldDrawDays(pxPerDay)) {
             (drawDays ?? timelineGrid.drawDays)(options);
         }
 
-        if (pxPerDay > 6 && pxPerDay < 200) {
+        if (timelineGrid.shouldDrawHolidays(pxPerDay)) {
             (drawHolidays ?? timelineGrid.drawHolidays)({
                 ...options,
                 drawWeekend: drawWeekend ?? timelineGrid.drawWeekend,
@@ -84,11 +84,11 @@ export function TimelineGrid({
             });
         }
 
-        if (pxPerDay > 6) {
+        if (timelineGrid.shouldDrawWeeks(pxPerDay)) {
             (drawWeeks ?? timelineGrid.drawWeeks)(options);
         }
 
-        if (pxPerDay > 0.5) {
+        if (timelineGrid.shouldDrawMonths(pxPerDay)) {
             (drawMonths ?? timelineGrid.drawMonths)(options);
         }
 

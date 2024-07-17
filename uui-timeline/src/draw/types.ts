@@ -83,7 +83,7 @@ export interface TimelineScaleFonts {
     currentPeriodFont?: string;
 }
 
-export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps, Required<TimelineScaleFonts> {
+export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps, TimelineScaleFonts {
     visibility: number;
     periodTextColor?: string;
 }
@@ -101,13 +101,19 @@ export interface CanvasDrawTopDaysProps extends CanvasDrawDaysProps, CanvasDrawP
     topDayTextColor?: string;
 }
 
-export interface CanvasDrawPeriodProps extends CanvasDrawTimelineHeaderProps, Required<TimelineScaleFonts> {
-    minPxPerDay: number;
-    maxPxPerDay: number;
+export interface CanvasScaleRange {
+    minPxPerDay: number | null;
+    maxPxPerDay: number | null;
+}
+
+export interface CanvasDrawPeriodProps extends
+    CanvasDrawTimelineHeaderProps,
+    TimelineScaleFonts,
+    CanvasScaleRange {
     draw: (props: CanvasDrawPeriodPartProps) => void;
 }
 
-export interface CanvasDrawPeriodFragmentProps extends CanvasDrawTimelineHeaderProps, Required<TimelineScaleFonts> {
+export interface CanvasDrawPeriodFragmentProps extends CanvasDrawTimelineHeaderProps, TimelineScaleFonts {
     text: string;
     textColor?: string;
     x: number;
