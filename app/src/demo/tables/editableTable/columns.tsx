@@ -196,7 +196,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
         {
             key: 'name',
-            caption: 'Name1',
+            caption: 'Name',
             width: 300,
             fix: 'left',
             renderCell: (props) => (
