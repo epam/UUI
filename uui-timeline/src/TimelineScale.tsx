@@ -119,25 +119,34 @@ export function TimelineScale({
             ...fonts,
         };
 
-        drawPeriod({ minPxPerDay: 40000, maxPxPerDay: null, draw: drawMinutes, ...commonProps });
-        drawPeriod({ minPxPerDay: 800, maxPxPerDay: 40000, draw: drawRemainingHours, ...commonProps });
-        drawPeriod({ minPxPerDay: 200, maxPxPerDay: 20000, draw: drawHours, ...commonProps });
+        drawPeriod({ ...timelineScale.getMinutesScaleRange(), draw: drawMinutes, ...commonProps });
+        drawPeriod({ ...timelineScale.getRemainingHoursScaleRange(), draw: drawRemainingHours, ...commonProps });
+        drawPeriod({ ...timelineScale.getHoursScaleRange(), draw: drawHours, ...commonProps });
         drawPeriod({
-            minPxPerDay: 200,
-            maxPxPerDay: null,
             draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, drawToday }),
+            ...timelineScale.getTopDaysScaleRange(),
             ...commonProps,
         });
         drawPeriod({
-            minPxPerDay: 20,
-            maxPxPerDay: 200,
             draw: (props) => drawDays({ ...props, weekendTextColor, todayLineColor, drawToday }),
+            ...timelineScale.getDaysScaleRange(),
             ...commonProps,
         });
-        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 200, draw: drawTopMonths, ...commonProps });
-        drawPeriod({ minPxPerDay: 6, maxPxPerDay: 20, draw: (props) => drawWeeks({ ...props, todayLineColor, drawToday }), ...commonProps });
-        drawPeriod({ minPxPerDay: 1, maxPxPerDay: 6, draw: (props) => drawBottomMonths({ ...props, todayLineColor, drawToday }), ...commonProps });
-        drawPeriod({ minPxPerDay: null, maxPxPerDay: 6, draw: (props) => drawYears({ ...props, todayLineColor, drawToday }), ...commonProps });
+        drawPeriod({ ...timelineScale.getTopMonthsScaleRange(), draw: drawTopMonths, ...commonProps });
+        drawPeriod({
+            draw: (props) => drawWeeks({ ...props, todayLineColor, drawToday }),
+            ...timelineScale.getWeeksScaleRange(),
+            ...commonProps,
+        });
+        drawPeriod({
+            draw: (props) => drawBottomMonths({ ...props, todayLineColor, drawToday }),
+            ...timelineScale.getBottomMonthsScaleRange(),
+            ...commonProps });
+        drawPeriod({
+            draw: (props) => drawYears({ ...props, todayLineColor, drawToday }),
+            ...timelineScale.getYearsScaleRange(),
+            ...commonProps,
+        });
     };
 
     useEffect(() => {
