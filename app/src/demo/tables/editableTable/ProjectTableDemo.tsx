@@ -135,15 +135,20 @@ export function ProjectTableDemo() {
         });
     }, [setValue]);
 
-    const timelineController = useMemo(() => {
-        const { from, to } = getMinMaxDate(treeRef.current);
+    const timelineController = useMemo(
+        () => new TimelineController({ widthPx: 0, center: new Date(), pxPerMs: 32 / msPerDay }),
+        [],
+    );
+    const prevWidthPx = usePrevious(timelineController.currentViewport?.widthPx);
 
-        const timeController = new TimelineController({ widthPx: 0, center: new Date(), pxPerMs: 32 / msPerDay });
-        if (from && to) {
-            timeController.setViewportRange({ from, to, widthPx: 0 }, false);
+    useEffect(() => {
+        if (!prevWidthPx && timelineController.currentViewport.widthPx) {
+            const { from, to } = getMinMaxDate(treeRef.current);
+            if (from && to) {
+                timelineController.setViewportRange({ from, to, widthPx: timelineController.currentViewport.widthPx }, false);
+            }
         }
-        return timeController;
-    }, []);
+    }, [timelineController, timelineController.currentViewport.widthPx, prevWidthPx]);
 
     const handleCanAcceptDrop = useCallback((params: AcceptDropParams<Task & { isTask: boolean }, Task>) => {
         if (!params.srcData.isTask || params.srcData.id === params.dstData.id) {
