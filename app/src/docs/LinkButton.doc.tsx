@@ -43,9 +43,7 @@ export class LinkButtonDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<promo.LinkButtonProps | loveship.LinkButtonProps | uui.LinkButtonProps>) => {
             const TEST_DATA = {
-                caption1Line: 'Test',
-                // eslint-disable-next-line
-                caption2Lines: (<>{'Test'}<br/>{'Test'}</>),
+                caption: 'Test',
                 icon: 'action-account-fill.svg',
             };
             docPreview.add({
@@ -53,34 +51,19 @@ export class LinkButtonDoc extends BaseDocsBlock {
                 matrix: [
                     // 1-line caption
                     {
-                        caption: { values: [TEST_DATA.caption1Line] },
+                        caption: { values: [TEST_DATA.caption] },
                         size: { examples: '*' },
                         icon: { examples: [TEST_DATA.icon, undefined] },
                         iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
                         isDropdown: { examples: '*' },
                     },
-                    // 2-line caption
-                    {
-                        caption: { values: [TEST_DATA.caption2Lines] },
-                        size: { examples: '*' },
-                        isDropdown: { examples: '*' },
-                        icon: { examples: [TEST_DATA.icon, undefined] },
-                        iconPosition: { examples: '*' },
-                    },
-                    // No caption
-                    {
-                        caption: { values: [undefined] },
-                        size: { examples: '*' },
-                        icon: { examples: [TEST_DATA.icon, undefined] },
-                        isDropdown: { examples: '*', condition: (pp, v) => !v ? !!pp.icon : true },
-                    },
                 ],
-                cellSize: '100-80',
+                cellSize: '90-50',
             });
             docPreview.add({
                 id: TLinkButtonPreview['Color Variants'],
                 matrix: {
-                    caption: { values: [TEST_DATA.caption1Line] },
+                    caption: { values: [TEST_DATA.caption] },
                     icon: { examples: [TEST_DATA.icon] },
                     isDropdown: { values: [true] },
                     color: { examples: '*' },

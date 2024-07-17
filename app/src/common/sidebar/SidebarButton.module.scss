@@ -2,16 +2,16 @@
     &:global(.uui-button-box) {
         height: 36px;
         align-items: center;
-        padding-left: 11px;
+        padding-inline-start: 11px;
         font-size: 16px;
         width: 100%;
         min-width: auto;
-        padding-right: 12px;
+        padding-inline-end: 12px;
     }
 
     :global(.uui-caption) {
         min-width: 0;
-        text-align: left;
+        text-align: start;
         flex: 1 1 auto;
         font-family: var(--uui-font);
         font-weight: 400;
@@ -23,13 +23,13 @@
 
     &.indent-12 {
         :global(.uui-caption) {
-            margin-left: 12px;
+            margin-inline-start: 12px;
         }
     }
 
     &.indent-24 {
         :global(.uui-caption) {
-            margin-left: 24px;
+            margin-inline-start: 24px;
         }
     }
 }

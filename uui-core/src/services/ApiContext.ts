@@ -1,7 +1,7 @@
 import { BaseContext } from './BaseContext';
 import { AnalyticsContext } from './AnalyticsContext';
 import {
-    IApiContext, ApiStatus, ApiRecoveryReason, ApiCallOptions, ApiCallInfo,
+    IApiContext, ApiStatus, ApiRecoveryReason, ApiCallInfo, IProcessRequest,
 } from '../types';
 import { isClientSide } from '../helpers/ssr';
 import { getCookie } from '../helpers/cookie';
@@ -47,8 +47,6 @@ export interface FileUploadResponse {
         message?: string;
     };
 }
-
-export type IProcessRequest = (url: string, method: string, data?: any, options?: ApiCallOptions) => Promise<any>;
 
 export type BlockTypes = 'attachment' | 'iframe' | 'image';
 export interface ApiContextProps {
@@ -171,23 +169,36 @@ export class ApiContext extends BaseContext implements IApiContext {
     }
 
     private startCall(call: ApiCall) {
-        const headers = new Headers();
+        const fetchOptions = call.options?.fetchOptions;
+
+        const headers = new Headers(fetchOptions?.headers);
+
+        if (!headers.has('Content-Type')) {
+            headers.append('Content-Type', 'application/json');
+        }
+
         const csrfCookie = isClientSide && getCookie('CSRF-TOKEN');
-        headers.append('Content-Type', 'application/json');
+
         if (csrfCookie) {
             headers.append('X-CSRF-Token', csrfCookie);
         }
+
         call.attemptsCount += 1;
         call.status = 'running';
         call.startedAt = new Date();
+
         const fetcher = this.props.fetch || fetch;
-        fetcher(this.props.apiServerUrl + call.url, {
-            headers,
-            method: call.method,
-            body: call.requestData && JSON.stringify(call.requestData),
-            credentials: 'include',
-            ...call.options?.fetchOptions,
-        })
+
+        fetcher(
+            this.props.apiServerUrl + call.url,
+            {
+                method: call.method,
+                body: call.requestData && JSON.stringify(call.requestData),
+                credentials: 'include',
+                ...fetchOptions,
+                headers,
+            },
+        )
             .then((response) => {
                 this.handleResponse(call, response);
             })
@@ -353,7 +364,7 @@ export class ApiContext extends BaseContext implements IApiContext {
         });
     };
 
-    public uploadFile(url: string, file: File, options: FileUploadOptions) {
+    public uploadFile(url: string, file: File, options?: FileUploadOptions) {
         const trackProgress = (event: any) => {
             const progress = +((event.loaded / event.total) * 100).toFixed(2);
             options.onProgress && options.onProgress(progress);

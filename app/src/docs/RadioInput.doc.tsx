@@ -51,7 +51,7 @@ export class RadioInputDoc extends BaseDocsBlock {
                 cellSize: w75_h40,
             });
             docPreview.add({
-                id: TRadioInputPreview['Color Variants'],
+                id: TRadioInputPreview['States'],
                 matrix: {
                     size: { values: ['18'] },
                     value: { values: [true, false] },

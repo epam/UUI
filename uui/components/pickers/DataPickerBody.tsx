@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Lens, DataSourceState, isMobile, cx,
+    Lens, DataSourceState, isMobile, cx, Overwrite,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput, SearchInputProps } from '../inputs';
@@ -11,10 +11,15 @@ import { ControlSize } from '../types';
 import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
 
-export interface DataPickerBodyProps extends PickerBodyBaseProps {
+export interface DataPickerBodyModsOverride {}
+
+interface DataPickerBodyMods {
+    searchSize?: ControlSize;
+}
+
+export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps {
     maxHeight?: number;
     editMode?: 'dropdown' | 'modal';
-    searchSize?: ControlSize;
     selectionMode?: 'single' | 'multi';
     maxWidth?: number;
 }
@@ -50,6 +55,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                                 onKeyDown={ this.searchKeyDown }
                                 size={ searchSize }
                                 debounceDelay={ this.props.searchDebounceDelay }
+                                rawProps={ { dir: 'auto' } }
                             />
                         </FlexCell>
                     </div>

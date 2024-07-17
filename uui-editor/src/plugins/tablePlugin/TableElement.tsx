@@ -5,33 +5,29 @@ import {
     withRef,
 } from '@udecode/plate-common';
 import {
-    TTableElement,
     TableProvider,
-    getTableColumnCount,
     useTableElement,
     useTableElementState,
     useTableStore,
 } from '@udecode/plate-table';
 import cx from 'classnames';
 import css from './TableElement.module.scss';
-import { DEFAULT_COL_WIDTH, EMPTY_COL_WIDTH } from './constants';
-
-const getDefaultColWidths = (columnsNumber: number) =>
-    Array.from({ length: columnsNumber }, () => DEFAULT_COL_WIDTH);
+import { EMPTY_COL_WIDTH } from './constants';
+import { TableElementType } from './types';
 
 const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ className, children, ...props }, ref) => {
     const { isSelectingCell, minColumnWidth, marginLeft } = useTableElementState();
     const { props: tableProps, colGroupProps } = useTableElement();
 
-    const element = props.element as TTableElement;
+    const element = props.element as TableElementType;
     const tableStore = useTableStore().get;
 
     const colSizeOverrides = tableStore.colSizeOverrides();
 
     const currentColSizes = useMemo(() => {
-        const sizes = !element.colSizes ? getDefaultColWidths(getTableColumnCount(element)) : element.colSizes;
-        return sizes.map((size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH);
+        return element.colSizes.map((size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH);
     }, [colSizeOverrides, element]);
+
     const tableWidth = useMemo(() => currentColSizes.reduce((acc, cur) => acc + cur, 0), [currentColSizes]);
 
     return (

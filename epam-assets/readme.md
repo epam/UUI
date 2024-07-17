@@ -2,6 +2,6 @@
 
 This package is a part of [EPAM UUI](https://github.com/epam/UUI) library.
 
-@epam/assets contains variety of assets, which are usable without React:
+`@epam/assets` contains UUI assets, such as:
 - icons set
-- SCSS and LESS styles and mixins
+- themes and their fonts 
