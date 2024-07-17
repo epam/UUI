@@ -25,24 +25,8 @@ export function AppTheme(props: { children: React.ReactNode }) {
                 return;
             }
 
-            if (isFullReloadNeeded()) {
-                window.location.reload();
-            } else {
-                applyTheme(theme, config);
-                setAppliedTheme(theme);
-            }
-
-            function isFullReloadNeeded() {
-                const isFirstInit = !appliedTheme;
-                if (!isFirstInit) {
-                    const isPrevThemeHasCustomSetting = !!(config.themesById[appliedTheme] as any)?.settings;
-                    const isNextThemeHasCustomSetting = !!(config.themesById[theme] as any)?.settings;
-                    if (isPrevThemeHasCustomSetting || isNextThemeHasCustomSetting) {
-                        // full reload is needed to correctly render components which depend on "settings.ts"
-                        return true;
-                    }
-                }
-            }
+            applyTheme(theme, config);
+            setAppliedTheme(theme);
         }
     }, [appliedTheme, config, theme]);
 

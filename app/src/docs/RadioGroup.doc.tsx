@@ -65,7 +65,7 @@ export class RadioGroupDoc extends BaseDocsBlock {
                 cellSize: w170_h70,
             });
             docPreview.add({
-                id: TRadioGroupPreview['Color Variants'],
+                id: TRadioGroupPreview['States'],
                 matrix: {
                     items: { values: [TEST_DATA.items] },
                     value: { values: [TEST_DATA.value] },

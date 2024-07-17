@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TDocConfig } from '@epam/uui-docs';
-import { ComponentEditorWrapper } from '../../componentEditor/ComponentEditor';
+import { ComponentEditorWrapper } from '../../properyEditor/PropertyEditor';
 import { TTheme } from '../../../../data';
 
 type TPropExplorerTabProps = {

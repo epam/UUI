@@ -83,6 +83,7 @@ export enum TSkin {
 
 export enum TDocContext {
     Default = 'Default',
+    Block = 'Block',
     FlexRow = 'FlexRow',
     Form = 'Form',
     PagePanel = 'PagePanel',
@@ -107,8 +108,8 @@ export type IconBase<TIcon> = {
  * Include prop in current "iteration" only when condition is met.
  * It is based on the values of parent props and current prop value which is going to be iterated.
  */
-export type TPreviewPropsItemMatrixCondition<TProps, TProp extends keyof TProps> =
-    (parentProps: { [prop in keyof TProps]?: TProps[TProp] }, thisPropValue?: unknown) => boolean;
+export type TPreviewPropsItemMatrixCondition<TProps> =
+    (parentProps: TProps, thisPropValue?: unknown) => boolean;
 
 type TPreviewPropsItemMatrixValues<TProps, TProp extends keyof TProps> = {
     /** Array of values to be directly passed to the component */
@@ -116,10 +117,10 @@ type TPreviewPropsItemMatrixValues<TProps, TProp extends keyof TProps> = {
     /**
      * exclude prop from current iteration based on the values of other props which are part of the same iteration
      */
-    condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
+    condition?: TPreviewPropsItemMatrixCondition<TProps>;
     examples?: never;
 };
-type TPreviewPropsItemMatrixExamples<TProps, TProp extends keyof TProps> = {
+type TPreviewPropsItemMatrixExamples<TProps> = {
     /**
      * Array of example names or just a "*" which means all examples.
      * NOTE: it is NOT array of example ids, because ids are numeric and thus difficult to maintain.
@@ -128,7 +129,7 @@ type TPreviewPropsItemMatrixExamples<TProps, TProp extends keyof TProps> = {
     /**
      * exclude prop from current iteration based on the values of other props which are part of the same iteration
      */
-    condition?: TPreviewPropsItemMatrixCondition<TProps, TProp>;
+    condition?: TPreviewPropsItemMatrixCondition<TProps>;
     values?: never;
 };
 
@@ -161,7 +162,7 @@ export type TPreviewPropsItemRenderCases = {
     props: Record<string, unknown>[];
     matrix: TNormalizedMatrix[];
 };
-export type TNormalizedMatrix = Record<string, { values: unknown[]; condition?: TPreviewPropsItemMatrixCondition<any, any> } >;
+export type TNormalizedMatrix = Record<string, { values: unknown[]; condition?: TPreviewPropsItemMatrixCondition<any> } >;
 
 export type TPreviewMatrix<T> = TComponentPreview<T>['matrix'];
 export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps> = {
@@ -175,8 +176,8 @@ export type TComponentPreview<TProps, TProp extends keyof TProps = keyof TProps>
      * A map of prop names to prop values/examples.
      * The component will be repeated more than once in order to render all possible combinations: all-props/all-values/all-examples.
      */
-    matrix: { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop> }
-    | { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps, prop> }[],
+    matrix: { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps> }
+    | { [prop in TProp]?: TPreviewPropsItemMatrixValues<TProps, prop> | TPreviewPropsItemMatrixExamples<TProps> }[],
     /**
      * 'width-height'
      */

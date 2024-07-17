@@ -36,8 +36,8 @@ export const normalizeTableCellElement = (editor: PlateEditor<Value>, entry: TNo
 };
 
 /** deprecate data properties */
-export const normalizeTableElement = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
-    const [node, path] = entry;
+export const normalizeTableElement = (entry: TNodeEntry): TTableElement => {
+    const [node] = entry;
     const tableNode = node as DepreactedTTableElement;
 
     if (tableNode.data) {
@@ -45,17 +45,12 @@ export const normalizeTableElement = (editor: PlateEditor<Value>, entry: TNodeEn
 
         // removing props
         if (!cellSizes) {
-            return;
+            return tableNode;
         }
 
-        const tableElement: TTableElement = { ...tableNode, data: { ...otherData } };
-
-        setNodes(
-            editor,
-            tableElement,
-            { at: path },
-        );
+        return { ...tableNode, data: { ...otherData } };
     }
+    return tableNode;
 };
 
 /** deprecate intercepting properties */
@@ -156,6 +151,25 @@ export const normalizeAttachmentElement = (editor: PlateEditor<Value>, entry: TN
         setNodes<TTableCellElement>(
             editor,
             tableAttach,
+            { at: path },
+        );
+    }
+};
+
+const WORD_TO_COLOR = {
+    critical: 'var(--uui-text-critical)',
+    warning: 'var(--uui-text-warning)',
+    success: 'var(--uui-text-success)',
+};
+
+/** deprecate color describe words */
+export const normaizeColoredText = (editor: PlateEditor<Value>, entry: TNodeEntry) => {
+    const [node, path] = entry;
+
+    if (node.color === 'warning' || node.color === 'critical' || node.color === 'success') {
+        setNodes<TTableCellElement>(
+            editor,
+            { ...node, color: WORD_TO_COLOR[node.color] },
             { at: path },
         );
     }

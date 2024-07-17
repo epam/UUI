@@ -14,17 +14,17 @@ interface TagMods {
      * @default 'neutral'
      */
     color?: 'info' | 'success' | 'warning' | 'critical' | 'neutral';
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: '18' | '24' | '30' | '36' | '42' | '48';
 }
 
 export interface TagModsOverride {}
 
 /** Represents the Core properties of the Tag component. */
 export type TagCoreProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
-    /**
-     * Defines component size.
-     * @default '36'
-     */
-    size?: '18' | '24' | '30' | '36' | '42' | '48';
     /**
      * Defines component fill style.
      * @default 'solid'

@@ -38,7 +38,7 @@ export class SwitchDoc extends BaseDocsBlock {
                 cellSize: '100-40',
             });
             docPreview.add({
-                id: TSwitchPreview['Color Variants'],
+                id: TSwitchPreview['States'],
                 matrix: {
                     value: { values: [true, false] },
                     size: { values: ['24'] },

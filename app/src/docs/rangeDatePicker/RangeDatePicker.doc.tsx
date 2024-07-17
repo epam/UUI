@@ -83,9 +83,8 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
                 disableClear: { values: [true, false], condition: (props) => !!props.value },
             };
             docPreview.add(TRangeDatePickerPreview['Size Variants'], { ...baseMatrix }, w320_h60);
-            docPreview.add(TRangeDatePickerPreview['Color Variants'], { ...baseMatrix, ...statesBaseMatrix }, w320_h60);
-            docPreview.add(TRangeDatePickerPreview.Opened, { value: { values: [TEST_DATA.value] } }, w768_h500);
-            docPreview.add(TRangeDatePickerPreview['Opened With Presets'], { value: { values: [TEST_DATA.value] }, presets: { examples: ['default'] } }, w768_h500);
+            docPreview.add(TRangeDatePickerPreview['States'], { ...baseMatrix, ...statesBaseMatrix }, w320_h60);
+            docPreview.add(TRangeDatePickerPreview.Opened, { value: { values: [TEST_DATA.value] }, presets: { examples: ['default'] } }, w768_h500);
         },
     };
 

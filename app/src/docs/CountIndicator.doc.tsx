@@ -29,13 +29,10 @@ export class CountIndicatorDoc extends BaseDocsBlock {
             });
         },
         preview: (docPreview: DocPreviewBuilder<uui.CountIndicatorProps | promo.CountIndicatorProps | loveship.CountIndicatorProps>) => {
-            const TEST_DATA = {
-                caption: '+999',
-            };
             docPreview.add({
                 id: TCountIndicatorPreview['Color Variants'],
                 matrix: {
-                    caption: { values: [TEST_DATA.caption] },
+                    caption: { values: ['9'] },
                     color: { examples: '*' },
                 },
                 cellSize: '50-40',
@@ -43,7 +40,7 @@ export class CountIndicatorDoc extends BaseDocsBlock {
             docPreview.add({
                 id: TCountIndicatorPreview['Size Variants'],
                 matrix: {
-                    caption: { values: [undefined, TEST_DATA.caption] },
+                    caption: { values: ['9', '99', '+99'] },
                     size: { examples: '*' },
                 },
                 cellSize: '60-40',

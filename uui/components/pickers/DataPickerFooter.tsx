@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { isMobile, PickerFooterProps } from '@epam/uui-core';
+import { isMobile, Overwrite, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { Switch, SwitchProps } from '../inputs';
 import { FlexCell, FlexRow, FlexRowProps, FlexSpacer } from '../layout';
@@ -7,8 +7,13 @@ import { LinkButton, LinkButtonProps } from '../buttons';
 import { SizeMod } from '../types';
 import { settings } from '../../settings';
 
-type DataPickerFooterProps<TItem, TId> = PickerFooterProps<TItem, TId> &
-SizeMod & {
+export interface DataPickerFooterModsOverride {
+}
+
+interface DataPickerFooterMods extends SizeMod {
+}
+
+type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPickerFooterModsOverride> & PickerFooterProps<TItem, TId> & {
     selectionMode: 'single' | 'multi';
 };
 
@@ -34,7 +39,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
 
     return shouldShowFooter && (
-        <FlexRow padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
+        <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
             {!isSinglePicker && (
                 <Switch
                     size={ settings.sizes.dataPickerFooter.switch[props.size] as SwitchProps['size'] }

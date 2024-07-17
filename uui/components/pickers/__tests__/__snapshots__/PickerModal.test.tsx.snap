@@ -98,6 +98,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       >
         <div
           className="container uui-input-box -clickable root uui-size-36 mode-form"
+          dir="auto"
           onFocus={[Function]}
           tabIndex={-1}
         >
@@ -113,6 +114,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             aria-invalid={false}
             autoFocus={true}
             className="uui-input"
+            dir="auto"
             inputMode="search"
             onBlur={[Function]}
             onChange={[Function]}
@@ -532,6 +534,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       >
         <div
           className="container uui-input-box -clickable root uui-size-36 mode-form"
+          dir="auto"
           onFocus={[Function]}
           tabIndex={-1}
         >
@@ -547,6 +550,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             aria-invalid={false}
             autoFocus={true}
             className="uui-input"
+            dir="auto"
             inputMode="search"
             onBlur={[Function]}
             onChange={[Function]}
@@ -1883,6 +1887,7 @@ exports[`PickerModal should open body 1`] = `
           >
             <div
               class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
+              dir="auto"
               tabindex="-1"
             >
               <div
@@ -1895,6 +1900,7 @@ exports[`PickerModal should open body 1`] = `
               <input
                 aria-invalid="false"
                 class="uui-input"
+                dir="auto"
                 inputmode="search"
                 placeholder="Type text for quick search"
                 tabindex="-1"

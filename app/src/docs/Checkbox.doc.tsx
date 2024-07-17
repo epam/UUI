@@ -42,7 +42,7 @@ export class CheckboxDoc extends BaseDocsBlock {
                 cellSize: '80-50',
             });
             docPreview.add({
-                id: TCheckboxPreview['Color Variants'],
+                id: TCheckboxPreview['States'],
                 matrix: [
                     {
                         value: { values: [true, false] },

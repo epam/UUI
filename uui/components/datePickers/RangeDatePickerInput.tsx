@@ -125,6 +125,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             className={ cx(
                 classes,
                 css.dateInputGroup,
+                'uui-range-date-picker',
                 isDisabled && uuiMod.disabled,
                 isReadonly && uuiMod.readonly,
                 isInvalid && uuiMod.invalid,

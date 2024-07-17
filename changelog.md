@@ -1,10 +1,37 @@
-# 5.*.* - **.**.2024
+# 5.x.x - xx.xx.2024
+
+**What's New**
+* [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function. It also takes into account the return type of the `parseResponse` function
+* [ApiContext] Add suggestions for `method` parameter in `processRequest` function (to avoid typos), while allowing to pass any string value. For more details, check out `ProcessRequestMethod` type
 
 **What's Fixed**
+* [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
+
+# 5.8.2 - 11.07.2024
+
+**What's New**
+* [Pickers]: added current selection into `renderFooter` callback params.
+* [RTE]: added possibility to customize set of available options for Header, Color and Note plugins
+
+**What's Fixed**
+* Fixed invalid mode for inline inputs 
+* [AnalyticContext]: fixed GA connection
 * [Checkbox]: fixed icon size according design
 * [RadioInput]: fixed caption line-height according design
 * [Switch]: fixed caption size & line-height according design
 * [PickerToggler]: changed padding for left icon, remove transparent for left/right icon in cell mode
+* [TextArea]: removed maxLength prop override in cell mode
+* [TabButton]: fixed counter color according to the design
+* [DropdownSubMenu]: fixed `offset` value for `left-start` placement option
+* [RTE]: removed loader after failed file upload
+
+
+# 5.8.1 - 21.06.2024
+
+**What's Fixed**
+* [LazyDataSource]:
+  * fixed reload data on DS deps change and fixed fetching minus count on scroll up
+  * fixed updating itemsMap after setItems.
 
 # 5.8.0 - 06.06.2024
 
@@ -74,7 +101,7 @@
 * [DatePicker][RangeDatePicker]: `renderDay` prop callback signature updated
 * [PickerInput]: added property `renderTag` which can be used for rendering custom Tags in PickerInput toggler. Exposed `PickerTogglerTag` component, which is used in `PickerInput` for default for tag rendering.
 * [PickerInput]: when using `maxItems` prop, selected values are only partially collapsed. Some(equal `maxItems` value) items remain visible, and the rest are collapsed into the "+N" view. Added tooltip with list of collapsed items to the "+N" tag
-* [DataTable]: 
+* [DataTable]:
   * isAlwaysVisible flag now makes column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.
     Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.
     Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.
@@ -88,7 +115,7 @@
   * added html serialization for `separatorPlugin`
 * [AdaptivePanel]: added property `itemsGap` to set gap between items in the AdaptivePanel. You can set any number or select a predefined value.
 * [Avatar]: added 'number' type for `size` prop
-* [LinkButton]: 
+* [LinkButton]:
   * added semantic 'accent','critical' and 'white' colors
   * 'contrast' color is deprecated and will be removed in future versions. Please use 'white' color value instead.
 * [Button]: added 'white' color
@@ -104,14 +131,14 @@
 * [ControlGroup]: removed border-radius for borders between inputs
 * [Accordion]: prevent page scrolling when open/close Accordion by space key
 * [Slider]: fixed tooltip text calculation with step="0.1" value
-* [PickerInput]: 
+* [PickerInput]:
   * fixed setting emptyValue in case of unselecting all picker items
   * don't close picker body on toggler click, if toggler has search value. Before, click on toggler leads to clearing search value
   * remove border radius for mobile view modal container
 * [FiltersPanel]: fixed focus on search after body opening and focus on PickerToggler after closing body
-* [RTE]: 
+* [RTE]:
   * fixed content jumps on editor focus
-  * fixed delayed placeholder rendering 
+  * fixed delayed placeholder rendering
 * [StatusIndicator]: style tweaks according to the design
 * [Badge]: style tweaks according to the design
 * [Tag]: style tweaks according to the design

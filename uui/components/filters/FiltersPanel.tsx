@@ -5,23 +5,37 @@ import { i18n } from '../../i18n';
 import { Button } from '../buttons';
 import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
 import {
-    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter, getOrderBetween, DataTableState, useArrayDataSource, orderBy,
+    DataRowOptions,
+    TableFiltersConfig,
+    FiltersConfig,
+    DataQueryFilter,
+    getOrderBetween,
+    DataTableState,
+    useArrayDataSource,
+    orderBy,
     PickerInputElement,
+    Overwrite,
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { ReactComponent as addIcon } from '@epam/assets/icons/action-add-outline.svg';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
 
-export interface FiltersPanelProps<TFilter> {
+export interface FiltersPanelModsOverride {}
+
+interface FiltersPanelMods {
+    /** Defines size(height) of filter panel and filters */
+    size?: '24' | '30' | '36' | '42' | '48';
+}
+
+export interface FiltersPanelProps<TFilter> extends
+    Overwrite<FiltersPanelMods, FiltersPanelModsOverride> {
     /** Filters config to get data how to render filters */
     filters: TableFiltersConfig<TFilter>[];
     /** Current state value of the table(list) */
     tableState: DataTableState;
     /** Called when state needs to be changed */
     setTableState: (newState: DataTableState) => void;
-    /** Defines size(height) of filter panel and filters */
-    size?: '24' | '30' | '36' | '42' | '48';
 }
 
 const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
