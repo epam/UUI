@@ -64,7 +64,8 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         if ((!prevDataSourceState && (dataSourceState.checked?.length || dataSourceState.selectedId != null))
             || (prevDataSourceState && (
                 !isEqual(prevDataSourceState.checked, dataSourceState.checked)
-                || dataSourceState.selectedId !== prevDataSourceState.selectedId
+                || (!(dataSourceState.selectedId == null && prevDataSourceState.selectedId == null)
+                    && dataSourceState.selectedId !== prevDataSourceState.selectedId)
             ))
         ) {
             const newValue = dataSourceStateToValue(props, dataSourceState, dataSource);
