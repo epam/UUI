@@ -5,8 +5,11 @@
 * [ApiContext] Add suggestions for `method` parameter in `processRequest` function (to avoid typos), while allowing to pass any string value. For more details, check out `ProcessRequestMethod` type
 
 **What's Fixed**
+* [FiltersPanel]: set `undefined` value instead of `null` on clear action in numeric filter.
 * [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
 * [PickerList]: Fixed updating predefined checked values in PickerList.
+* [LazyDataSource]: Fixed requesting already loaded data on scroll.
+* [Pickers]: fixed infinite updating if onValueChange is called in useEffect (React components are rendered with render from 'react-dom').
 
 # 5.8.2 - 11.07.2024
 
