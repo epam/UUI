@@ -116,6 +116,7 @@ export function TimelineScale({
             context,
             timelineTransform: t,
             periodTextColor,
+            canvasHeight,
             ...fonts,
         };
 
