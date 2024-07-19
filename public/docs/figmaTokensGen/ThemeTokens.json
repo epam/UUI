@@ -5518,6 +5518,104 @@
       }
     },
     {
+      "id": "core/semantic/accent-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-accent-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/critical-5",
       "type": "COLOR",
       "description": "",
@@ -6101,6 +6199,104 @@
               }
             ],
             "value": "#AD0000"
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/critical-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-critical-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
           }
         }
       }
@@ -6694,6 +6890,104 @@
       }
     },
     {
+      "id": "core/semantic/error-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-error-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/info-5",
       "type": "COLOR",
       "description": "",
@@ -7277,6 +7571,104 @@
               }
             ],
             "value": "#FFFFFF00"
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/info-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-info-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
           }
         }
       }
@@ -7870,6 +8262,104 @@
       }
     },
     {
+      "id": "core/semantic/primary-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-primary-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/secondary-5",
       "type": "COLOR",
       "description": "",
@@ -8453,6 +8943,104 @@
               }
             ],
             "value": "#303240"
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/secondary-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-secondary-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
           }
         }
       }
@@ -9046,6 +9634,104 @@
       }
     },
     {
+      "id": "core/semantic/success-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-success-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/white",
+                "cssVar": "--white",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF"
+          }
+        }
+      }
+    },
+    {
       "id": "core/semantic/warning-5",
       "type": "COLOR",
       "description": "",
@@ -9629,6 +10315,109 @@
               }
             ],
             "value": "#BD5800"
+          }
+        }
+      }
+    },
+    {
+      "id": "core/semantic/warning-contrast",
+      "type": "COLOR",
+      "description": "",
+      "useCases": "",
+      "cssVar": "--uui-warning-contrast",
+      "cssVarSupport": "supported",
+      "valueByTheme": {
+        "Loveship-Light": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#303240"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#303240"
+          }
+        },
+        "Loveship-Dark": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#303240"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/night/night700",
+                "cssVar": "--night700",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#474A59"
+          }
+        },
+        "Promo": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "palette/gray/gray80",
+                "cssVar": "--gray80",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#303240"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "palette/gray/gray80",
+                "cssVar": "--gray80",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#FFFFFF00"
+          }
+        },
+        "Electric": {
+          "valueChain": {
+            "alias": [
+              {
+                "id": "core/neutral/neutral-80",
+                "cssVar": "--uui-neutral-80",
+                "cssVarSupport": "supported"
+              },
+              {
+                "id": "palette/night/night800",
+                "cssVar": "--night800",
+                "cssVarSupport": "supportedExceptFigma"
+              }
+            ],
+            "value": "#303240"
+          },
+          "valueDirect": {
+            "alias": [
+              {
+                "id": "core/neutral/neutral-80",
+                "cssVar": "--uui-neutral-80",
+                "cssVarSupport": "supported"
+              }
+            ],
+            "value": "#303240"
           }
         }
       }
