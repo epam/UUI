@@ -6,6 +6,9 @@
 
 **What's Fixed**
 * [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
+* [LazyDataSource]: Fixed requesting already loaded data on scroll.
+* [LazyDataSource]: Fixed requesting already loaded data on scroll.
+* [Pickers]: fixed infinite updating if onValueChange is called in useEffect (React components are rendered with render from 'react-dom').
 
 # 5.8.2 - 11.07.2024
 
@@ -14,7 +17,7 @@
 * [RTE]: added possibility to customize set of available options for Header, Color and Note plugins
 
 **What's Fixed**
-* Fixed invalid mode for inline inputs 
+* Fixed invalid mode for inline inputs
 * [AnalyticContext]: fixed GA connection
 * [Checkbox]: fixed icon size according design
 * [RadioInput]: fixed caption line-height according design
