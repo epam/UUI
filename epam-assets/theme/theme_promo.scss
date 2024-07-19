@@ -5,23 +5,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
 @mixin theme-promo {
-    /* contrast colors */
-    --uui-primary-contrast: var(--white);
-
-    --uui-accent-contrast: var(--white);
-
-    --uui-secondary-contrast: var(--white);
-
-    --uui-critical-contrast: var(--white);
-
-    --uui-info-contrast: var(--white);
-
-    --uui-success-contrast: var(--white);
-
-    --uui-warning-contrast: var(--gray80);
-
-    --uui-error-contrast: var(--white);
-
     @include tokens.theme-tokens;
     --uui-font: 'Source Sans Pro', sans-serif;
     --uui-font-mono: 'Roboto Mono', monospace;
