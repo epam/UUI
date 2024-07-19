@@ -65,11 +65,11 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
         const clearSelection = () => {
             if (isInRangePredicate) {
                 props.onValueChange({
-                    from: null,
-                    to: null,
+                    from: undefined,
+                    to: undefined,
                 });
             } else {
-                props.onValueChange(null);
+                props.onValueChange(undefined);
             }
         };
 
