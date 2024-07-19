@@ -1,15 +1,14 @@
-# 5.x.x - xx.xx.2024
+# 5.8.3 - 19.07.2024
 
 **What's New**
-* [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function. It also takes into account the return type of the `parseResponse` function
-* [ApiContext] Add suggestions for `method` parameter in `processRequest` function (to avoid typos), while allowing to pass any string value. For more details, check out `ProcessRequestMethod` type
+* [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function
 
 **What's Fixed**
-* [FiltersPanel]: set `undefined` value instead of `null` on clear action in numeric filter.
 * [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
-* [PickerList]: Fixed updating predefined checked values in PickerList.
-* [LazyDataSource]: Fixed requesting already loaded data on scroll.
-* [Pickers]: fixed infinite updating if onValueChange is called in useEffect (React components are rendered with render from 'react-dom').
+* [FiltersPanel]: set `undefined` value instead of `null` on clear action in numeric filter.
+* [PickerList]: Fixed updating predefined checked values
+* [Pickers]: fixed infinite updating if onValueChange is called in useEffect in case of React without concurrent rendering mode
+* [LazyDataSource]: Fixed requesting already loaded data on scroll
 
 # 5.8.2 - 11.07.2024
 
