@@ -3,7 +3,7 @@ import { TimelineTransform } from './TimelineTransform';
 import { msPerDay } from './helpers';
 import { TimelineCanvas, TimelineCanvasProps } from './TimelineCanvas';
 import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayProps, CanvasDrawLineProps, CanvasDrawTimelineElementProps,
-    CanvasDrawWeekendProps, timelineGrid } from './draw';
+    CanvasDrawWeekendProps, timelineGrid, timelinePrimitives } from './draw';
 
 export interface TimelineGridProps extends TimelineCanvasProps {
     drawLine?: (props: CanvasDrawLineProps) => void;
@@ -56,7 +56,8 @@ export function TimelineGrid({
         const drawProps = { context, timelineTransform, canvasHeight };
         const options = {
             ...drawProps,
-            drawLine: drawLine ?? timelineGrid.drawLine,
+            canvasHeight,
+            drawLine: drawLine ?? timelinePrimitives.drawVerticalLine,
         };
         if (timelineGrid.shouldDrawMinutes(pxPerDay)) {
             (drawMinutes ?? timelineGrid.drawMinutes)(options);

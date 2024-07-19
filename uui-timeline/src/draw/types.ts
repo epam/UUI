@@ -4,18 +4,36 @@ export interface CanvasDrawProps {
     context: CanvasRenderingContext2D;
 }
 
-export interface CommonCanvasDrawProps extends CanvasDrawProps {
-    canvasHeight?: number;
-}
+export interface CommonCanvasDrawProps extends CanvasDrawProps {}
 
 export interface CanvasDrawCellProps extends CommonCanvasDrawProps {
     x: number;
     width?: number;
+    height?: number;
 }
 
 export interface CanvasDrawLineProps extends CommonCanvasDrawProps {
-    x: number;
     width?: number;
+    color?: string;
+}
+
+export interface CanvasDrawVerticalLineProps extends CanvasDrawLineProps {
+    x: number;
+    y1?: number;
+    y2: number;
+}
+
+export interface CanvasDrawHorizontalLineProps extends CanvasDrawLineProps {
+    x1?: number;
+    x2: number;
+    y: number;
+}
+
+export interface CanvasDrawRectangleProps extends CanvasDrawLineProps {
+    x: number;
+    y: number;
+    width?: number;
+    height: number;
 }
 
 export interface CanvasDrawHeaderTodayProps extends CanvasDrawProps {
@@ -25,10 +43,12 @@ export interface CanvasDrawHeaderTodayProps extends CanvasDrawProps {
 
 export interface CanvasDrawTimelineHeaderProps extends CanvasDrawProps {
     timelineTransform: TimelineTransform;
+    canvasHeight?: number;
 }
 
 export interface CanvasDrawTimelineElementProps extends CommonCanvasDrawProps {
     timelineTransform: TimelineTransform;
+    canvasHeight?: number;
 }
 
 export interface CanvasDrawGridTodayLineProps extends CanvasDrawTimelineElementProps {
@@ -40,7 +60,7 @@ export interface CanvasDrawBottomBorderScaleProps extends CanvasDrawTimelineElem
 }
 
 export interface CustomCanvasDrawTimelineElementProps extends CanvasDrawTimelineElementProps {
-    drawLine?: (props: CanvasDrawLineProps) => void;
+    drawLine?: (props: CanvasDrawVerticalLineProps) => void;
 }
 
 export interface CanvasDrawHolidayProps extends CanvasDrawCellProps {

@@ -1,6 +1,7 @@
 import { msPerDay } from '../helpers';
 import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayOrWeekendProps, CanvasDrawHolidayProps, CanvasDrawHolidaysProps,
-    CanvasDrawLineProps, CanvasDrawWeekendProps, CustomCanvasDrawTimelineElementProps } from './types';
+    CanvasDrawWeekendProps, CustomCanvasDrawTimelineElementProps } from './types';
+import { timelinePrimitives } from './primitives';
 
 const defaultColors = {
     defaultLineColor: '#eee',
@@ -9,29 +10,21 @@ const defaultColors = {
     weekendCellColor: '#FBFBFB',
 };
 
-const drawLine = ({ context, x, width, canvasHeight }: CanvasDrawLineProps) => {
-    context.beginPath();
-    context.moveTo(x, 0);
-    context.lineTo(x, canvasHeight);
-    context.lineWidth = width || 1;
-    context.stroke();
-};
-
-const drawHoliday = ({ context, x, width, canvasHeight, holidayCellColor = defaultColors.holidayCellColor }: CanvasDrawHolidayProps) => {
+const drawHoliday = ({ context, x, width, height, holidayCellColor = defaultColors.holidayCellColor }: CanvasDrawHolidayProps) => {
     context.fillStyle = holidayCellColor;
-    context.fillRect(x, 0, width, canvasHeight);
+    context.fillRect(x, 0, width, height);
 };
 
-const drawWeekend = ({ context, x, width, canvasHeight, weekendCellColor = defaultColors.weekendCellColor }: CanvasDrawWeekendProps) => {
+const drawWeekend = ({ context, x, width, height, weekendCellColor = defaultColors.weekendCellColor }: CanvasDrawWeekendProps) => {
     context.fillStyle = weekendCellColor;
-    context.fillRect(x, 0, width, canvasHeight);
+    context.fillRect(x, 0, width, height);
 };
 
 const drawHolidayOrWeekend = ({
     context,
     x,
     width,
-    canvasHeight,
+    height,
     date,
     timelineTransform,
     holidayCellColor = defaultColors.holidayCellColor,
@@ -39,24 +32,24 @@ const drawHolidayOrWeekend = ({
     ...restProps
 }: CanvasDrawHolidayOrWeekendProps) => {
     if (timelineTransform.isHoliday(date)) {
-        (restProps.drawHoliday ?? drawHoliday)({ context, x, width, canvasHeight, holidayCellColor });
+        (restProps.drawHoliday ?? drawHoliday)({ context, x, width, height, holidayCellColor });
         return;
     }
 
     if (timelineTransform.isWeekend(date)) {
-        (restProps.drawWeekend ?? drawWeekend)({ context, x, width, canvasHeight, weekendCellColor });
+        (restProps.drawWeekend ?? drawWeekend)({ context, x, width, height, weekendCellColor });
     }
 };
 
 const drawMinutes = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleMinutes().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight });
     });
 };
 
 const drawQuoterHours = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleQuoterHours().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight });
     });
 };
 
@@ -65,7 +58,7 @@ const drawHours = ({ context, timelineTransform, canvasHeight, drawLine: customD
     const width = pxPerHour > 100 ? 2 : 1;
 
     timelineTransform.getVisibleHours().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, width, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, width, y2: canvasHeight });
     });
 };
 
@@ -96,25 +89,25 @@ const drawDays = ({ context, timelineTransform, canvasHeight, drawLine: customDr
     const width = pxPerDay > 200 ? 2 : 1;
 
     timelineTransform.getVisibleDays().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, width, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, width, y2: canvasHeight });
     });
 };
 
 const drawWeeks = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleWeeks().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight });
     });
 };
 
 const drawMonths = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleMonths().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight });
     });
 };
 
 const drawYears = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleYears().forEach((w) => {
-        (customDrawLine ?? drawLine)({ context, x: w.left, width: 2, canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, width: 2, y2: canvasHeight });
     });
 };
 
@@ -132,10 +125,9 @@ const shouldDrawHours = (pxPerDay: number) => pxPerDay >= 190;
 const shouldDrawDays = (pxPerDay: number) => pxPerDay > 10;
 const shouldDrawHolidays = (pxPerDay: number) => pxPerDay > 6 && pxPerDay < 200;
 const shouldDrawWeeks = (pxPerDay: number) => pxPerDay > 6;
-const shouldDrawMonths = (pxPerDay: number) => pxPerDay > 0.5;
+const shouldDrawMonths = (pxPerDay: number) => pxPerDay > 0.5 && pxPerDay <= 6;
 
 export const timelineGrid = {
-    drawLine,
     drawHoliday,
     drawWeekend,
     drawHolidayOrWeekend,
