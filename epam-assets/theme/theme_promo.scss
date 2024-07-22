@@ -13,23 +13,6 @@
     --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     --font-museo-slab: 'Museo Slab', 'Roboto Slab', Arial, sans-serif;
 
-    /* contrast colors */
-    --uui-primary-contrast: var(--white);
-
-    --uui-accent-contrast: var(--white);
-
-    --uui-secondary-contrast: var(--white);
-
-    --uui-critical-contrast: var(--white);
-
-    --uui-info-contrast: var(--white);
-
-    --uui-success-contrast: var(--white);
-
-    --uui-warning-contrast: var(--gray80);
-
-    --uui-error-contrast: var(--white);
-
     /* shadows */
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
@@ -43,7 +26,6 @@
 
     /* begin color classes */
 
-    .uui-color-accent,
     .uui-color-green {
         --uui-color-5: var(--uui-accent-5);
         --uui-color-10: var(--uui-accent-10);
@@ -54,7 +36,6 @@
         --uui-color-contrast: var(--uui-accent-contrast);
     }
 
-    .uui-color-primary,
     .uui-color-blue {
         --uui-color-5: var(--uui-primary-5);
         --uui-color-10: var(--uui-primary-10);
@@ -65,8 +46,6 @@
         --uui-color-contrast: var(--uui-primary-contrast);
     }
 
-    .uui-color-secondary,
-    .uui-color-neutral,
     .uui-color-gray {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
@@ -77,7 +56,6 @@
         --uui-color-contrast: var(--uui-secondary-contrast);
     }
 
-    .uui-color-critical,
     .uui-color-red {
         --uui-color-5: var(--uui-critical-5);
         --uui-color-10: var(--uui-critical-10);
@@ -88,27 +66,6 @@
         --uui-color-contrast: var(--uui-critical-contrast);
     }
 
-    .uui-color-info {
-        --uui-color-5: var(--uui-info-5);
-        --uui-color-10: var(--uui-info-10);
-        --uui-color-20: var(--uui-info-20);
-        --uui-color-50: var(--uui-info-50);
-        --uui-color-60: var(--uui-info-60);
-        --uui-color-70: var(--uui-info-70);
-        --uui-color-contrast: var(--uui-info-contrast);
-    }
-
-    .uui-color-success {
-        --uui-color-5: var(--uui-success-5);
-        --uui-color-10: var(--uui-success-10);
-        --uui-color-20: var(--uui-success-20);
-        --uui-color-50: var(--uui-success-50);
-        --uui-color-60: var(--uui-success-60);
-        --uui-color-70: var(--uui-success-70);
-        --uui-color-contrast: var(--uui-success-contrast);
-    }
-
-    .uui-color-warning,
     .uui-color-amber {
         --uui-color-5: var(--uui-warning-5);
         --uui-color-10: var(--uui-warning-10);
@@ -117,26 +74,6 @@
         --uui-color-60: var(--uui-warning-60);
         --uui-color-70: var(--uui-warning-70);
         --uui-color-contrast: var(--uui-warning-contrast);
-    }
-
-    .uui-color-error {
-        --uui-color-5: var(--uui-error-5);
-        --uui-color-10: var(--uui-error-10);
-        --uui-color-20: var(--uui-error-20);
-        --uui-color-50: var(--uui-error-50);
-        --uui-color-60: var(--uui-error-60);
-        --uui-color-70: var(--uui-error-70);
-        --uui-color-contrast: var(--uui-error-contrast);
-    }
-
-    .uui-color-white {
-        --uui-color-5: color-mix(in srgb, #FFFFFF 15%, transparent);
-        --uui-color-10: color-mix(in srgb, #FFFFFF 22%, transparent);
-        --uui-color-20: color-mix(in srgb, #FFFFFF 29%, transparent);
-        --uui-color-50: var(--uui-neutral-0);
-        --uui-color-60: var(--uui-neutral-10);
-        --uui-color-70: var(--uui-neutral-20);
-        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-link_button.uui-color-contrast,
