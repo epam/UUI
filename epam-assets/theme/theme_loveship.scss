@@ -18,23 +18,6 @@
 
     /* end Loveship old colors */
 
-    /* contrast colors */
-    --uui-primary-contrast: var(--white);
-
-    --uui-accent-contrast: var(--white);
-
-    --uui-secondary-contrast: var(--white);
-
-    --uui-critical-contrast: var(--white);
-
-    --uui-info-contrast: var(--white);
-
-    --uui-success-contrast: var(--white);
-
-    --uui-warning-contrast: var(--night800);
-
-    --uui-error-contrast: var(--white);
-
     /* shadows */
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
@@ -48,9 +31,7 @@
 
     /* begin color classes */
 
-    .uui-color-accent,
-    .uui-color-grass,
-    .uui-color-success {
+    .uui-color-grass {
         --uui-color-5: var(--uui-accent-5);
         --uui-color-10: var(--uui-accent-10);
         --uui-color-20: var(--uui-accent-20);
@@ -60,9 +41,7 @@
         --uui-color-contrast: var(--uui-accent-contrast);
     }
 
-    .uui-color-primary,
-    .uui-color-sky,
-    .uui-color-info {
+    .uui-color-sky {
         --uui-color-5: var(--uui-primary-5);
         --uui-color-10: var(--uui-primary-10);
         --uui-color-20: var(--uui-primary-20);
@@ -72,9 +51,7 @@
         --uui-color-contrast: var(--uui-primary-contrast);
     }
 
-    .uui-color-fire,
-    .uui-color-critical,
-    .uui-color-error {
+    .uui-color-fire {
         --uui-color-5: var(--uui-critical-5);
         --uui-color-10: var(--uui-critical-10);
         --uui-color-20: var(--uui-critical-20);
@@ -82,16 +59,6 @@
         --uui-color-60: var(--uui-critical-60);
         --uui-color-70: var(--uui-critical-70);
         --uui-color-contrast: var(--uui-critical-contrast);
-    }
-
-    .uui-color-white {
-        --uui-color-5: color-mix(in srgb, #FFFFFF 15%, transparent);
-        --uui-color-10: color-mix(in srgb, #FFFFFF 22%, transparent);
-        --uui-color-20: color-mix(in srgb, #FFFFFF 29%, transparent);
-        --uui-color-50: var(--uui-neutral-0);
-        --uui-color-60: var(--uui-neutral-10);
-        --uui-color-70: var(--uui-neutral-20);
-        --uui-color-contrast: var(--uui-neutral-70);
     }
 
     .uui-color-night100 {
@@ -125,9 +92,7 @@
     }
 
     .uui-color-night600,
-    .uui-color-neutral,
-    .uui-color-gray,
-    .uui-color-secondary {
+    .uui-color-gray {
         --uui-color-5: var(--uui-secondary-5);
         --uui-color-10: var(--uui-secondary-10);
         --uui-color-20: var(--uui-secondary-20);
@@ -147,7 +112,6 @@
         --uui-color-contrast: var(--white);
     }
 
-    .uui-color-warning,
     .uui-color-sun {
         --uui-color-5: var(--uui-warning-5);
         --uui-color-10: var(--uui-warning-10);

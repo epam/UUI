@@ -97,8 +97,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
             promiseInProgressRef.current = Promise.resolve({ isUpdated: false, isOutdated: false, tree });
         }
 
-        promiseInProgressRef.current = promiseInProgressRef.current.then(() =>
-            loadMissingImpl({ tree, using, loadAllChildren, isLoadStrict, dataSourceState }));
+        promiseInProgressRef.current = promiseInProgressRef.current.then(({ tree: currentTree }) =>
+            loadMissingImpl({ tree: currentTree, using, loadAllChildren, isLoadStrict, dataSourceState }));
 
         return promiseInProgressRef.current;
     }, [loadMissingImpl]);

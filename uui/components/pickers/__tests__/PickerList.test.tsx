@@ -415,6 +415,38 @@ describe('PickerList', () => {
             });
         });
 
+        it('[valueType id] should update prechecked items', async () => {
+            const { mocks } = await setupPickerListForTest({
+                value: [2],
+                selectionMode: 'multi',
+            });
+
+            await PickerListTestObject.waitForOptionsToBeReady();
+
+            expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1']);
+
+            await PickerListTestObject.clickOptionCheckbox('A1+');
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
+            });
+
+            expect(await PickerListTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+
+            const toggler = PickerListTestObject.getPickerToggler();
+            fireEvent.click(toggler);
+
+            await PickerListTestObject.waitForOptionsToBeReady('modal');
+
+            const checkedOptions1 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+            expect(checkedOptions1).toEqual(['A1', 'A1+']);
+
+            await PickerListTestObject.clickOptionCheckbox('A1+', { editMode: 'modal' });
+            await waitFor(async () => {
+                const checkedOptions2 = await PickerListTestObject.findCheckedOptions({ editMode: 'modal' });
+                expect(checkedOptions2).toEqual(['A1']);
+            });
+        });
+
         it('[valueType entity] should select & clear several options', async () => {
             const { mocks } = await setupPickerListForTest({
                 value: undefined,
