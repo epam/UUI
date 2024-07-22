@@ -5,6 +5,7 @@ const stylelintCustomRules = path.resolve(uuiRoot, './uui-build/linting/stylelin
 
 const SCSS_COMMON_RULES = {
     // start - migrated stylistic rules
+    'scss/at-extend-no-missing-placeholder': null,
     'block-opening-brace-space-before': 'always',
     'declaration-bang-space-after': 'never',
     'declaration-bang-space-before': 'always',
