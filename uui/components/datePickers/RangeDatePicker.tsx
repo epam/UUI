@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import {
-    DropdownBodyProps, isFocusReceiverInsideFocusLock, useUuiContext,
-} from '@epam/uui-core';
+import { DropdownBodyProps, isFocusReceiverInsideFocusLock, useUuiContext } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
-import css from './RangeDatePicker.module.scss';
-import {
-    RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
-} from './types';
+import { RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
+import css from './RangeDatePicker.module.scss';
 
 const modifiers = [{
     name: 'offset',
