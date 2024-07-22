@@ -17,6 +17,16 @@
     --uui-calendar-selected_day-font: var(--uui-font);
     --uui-calendar-selected_day-font-weight: 600;
 
+    --uui-calendar-day-size: var(--uui-size);
+    --uui-calendar-day-wrapper-height: calc(var(--uui-size) - var(--uui-grid-unit));
+    --uui-calendar-day-border-width: var(--uui-border-width);
+    --uui-calendar-day-border-radius: 50%;
+    --uui-calendar-day-font-size: var(--uui-font-size);
+    --uui-calendar-day-line-height: calc(var(--uui-calendar-day-size) - var(--uui-calendar-day-border-width) * 2);
+    --uui-calendar-weekday-font-size: 12px;
+    --uui-calendar-weekday-line-height: 24px;
+    --uui-calendar-dot-size: 4px;
+
     :global(.uui-calendar-content) {
         font-family: var(--uui-calendar-font);
         font-weight: var(--uui-calendar-font-weight, normal);
@@ -26,9 +36,9 @@
         font-family: var(--uui-calendar-weekday-font);
         font-weight: var(--uui-calendar-weekday-font-weight, normal);
         color: var(--uui-calendar-weekday-caption);
-        width: 34px;
-        font-size: 12px;
-        line-height: 24px;
+        width: var(--uui-calendar-day-size);
+        font-size: var(--uui-calendar-weekday-font-size);
+        line-height: var(--uui-calendar-weekday-line-height);
         text-align: center;
     }
 
@@ -36,8 +46,8 @@
         color: var(--uui-calendar-day-text);
         text-align: center;
         padding: 0;
-        height: 36px;
-        width: 36px;
+        height: var(--uui-calendar-day-size);
+        width: var(--uui-calendar-day-size);
         display: flex;
         position: relative;
 
@@ -47,23 +57,24 @@
     }
 
     :global(.uui-calendar-day-wrapper) {
-        height: 30px;
-        width: 30px;
-        font-size: 14px;
-        line-height: 30px;
+        height: var(--uui-calendar-day-wrapper-height);
+        width: var(--uui-calendar-day-size);
+        font-size: var(--uui-calendar-day-font-size);
+        line-height: var(--uui-calendar-day-line-height);
         margin: auto;
         cursor: default;
     }
 
     :global(.uui-calendar-day) {
-        border-radius: 50%;
-        height: 36px;
-        width: 36px;
+        border-radius: var(--uui-calendar-day-border-radius);
+        height: var(--uui-calendar-day-size);
+        width: var(--uui-calendar-day-size);
         position: absolute;
         left: 0;
         top: 0;
-        line-height: 34px;
-        border: 1px solid transparent;
+        font-size: var(--uui-calendar-day-font-size);
+        line-height: var(--uui-calendar-day-line-height);
+        border: var(--uui-calendar-day-border-width) solid transparent;
         box-sizing: border-box;
     }
 
@@ -73,14 +84,14 @@
                 cursor: pointer;
 
                 :global(.uui-calendar-day) {
-                    border: 1px solid var(--uui-calendar-selected_range);
+                    border: var(--uui-calendar-day-border-width) solid var(--uui-calendar-selected_range);
                     background-color: var(--uui-calendar-selected_day-hover);
                     z-index: 1;
                 }
 
                 &:global(.uui-calendar-selected-day) {
                     :global(.uui-calendar-day) {
-                        border: 1px solid var(--uui-calendar-selected_range-hover);
+                        border: var(--uui-calendar-day-border-width) solid var(--uui-calendar-selected_range-hover);
                         background-color: var(--uui-calendar-selected_range-hover);
                     }
                 }
@@ -97,12 +108,12 @@
             :global(.uui-calendar-day)::after {
                 position: absolute;
                 content: '';
-                height: 4px;
-                width: 4px;
-                border-radius: 50%;
+                height: var(--uui-calendar-dot-size);
+                width: var(--uui-calendar-dot-size);
+                border-radius: var(--uui-calendar-day-border-radius);
                 background-color: var(--uui-calendar-selected_range);
-                bottom: 3px;
-                left: calc(50% - 2px);
+                bottom: calc(var(--uui-grid-unit) / 2);
+                left: calc(50% - var(--uui-calendar-dot-size) / 2);
             }
         }
     }
@@ -114,7 +125,7 @@
                 color: var(--uui-calendar-selected_day-text);
 
                 &::after {
-                    background-color: var(--uui-calendar-selected_day);
+                    background-color: var(--uui-calendar-selected_day-text);
                 }
             }
         }

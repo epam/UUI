@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { Dayjs } from '../../helpers/dayJsHelper';
-import {
-    IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef,
-} from '@epam/uui-core';
+import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 import css from './YearSelection.module.scss';
 
 const MONTH_ROW_LENGTH = 4;
 
 export const uuiYearSelection = {
-    container: 'uui-yearselection-container',
-    content: 'uui-yearselection-content',
-    yearContainer: 'uui-yearselection-year-container',
-    yearRow: 'uui-yearselection-year-row',
-    year: 'uui-yearselection-year',
-    currentYear: 'uui-yearselection-current-year',
+    container: 'uui-year_selection-container',
+    content: 'uui-year_selection-content',
+    yearsContainer: 'uui-year_selection-years-container',
+    yearsRow: 'uui-year_selection-years-row',
+    year: 'uui-year_selection-year',
+    currentYear: 'uui-year_selection-current-year',
 } as const;
 
 export interface YearSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
@@ -28,10 +26,10 @@ export function YearSelection(props: YearSelectionProps) {
     return (
         <div className={ cx(css.container, uuiYearSelection.container, props.cx) } { ...props.rawProps }>
             <div className={ uuiYearSelection.content }>
-                <div className={ uuiYearSelection.yearContainer }>
-                    {arrayToMatrix(getYears(props.value.year()), MONTH_ROW_LENGTH).map((yearRow, index) => (
-                        <div key={ index } className={ uuiYearSelection.yearRow }>
-                            {yearRow.map((year) => (
+                <div className={ uuiYearSelection.yearsContainer }>
+                    {arrayToMatrix(getYears(props.value.year()), MONTH_ROW_LENGTH).map((yearsRow, index) => (
+                        <div key={ index } className={ uuiYearSelection.yearsRow }>
+                            {yearsRow.map((year) => (
                                 <div
                                     key={ year }
                                     className={ cx(year === props.selectedDate.year() && uuiYearSelection.currentYear, uuiYearSelection.year) }
