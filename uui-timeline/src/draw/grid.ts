@@ -7,7 +7,7 @@ const defaultColors = {
     defaultLineColor: '#eee',
     todayLineColor: '#F37B94',
     holidayCellColor: 'rgba(249, 209, 204, 0.09)',
-    weekendCellColor: '#FBFBFB',
+    weekendCellColor: '#F5F6FA',
 };
 
 const drawHoliday = ({ context, x, width, height, holidayCellColor = defaultColors.holidayCellColor }: CanvasDrawHolidayProps) => {
@@ -75,7 +75,7 @@ const drawHolidays = ({
             date: w.leftDate,
             x: w.left,
             width: w.right - w.left + 1,
-            canvasHeight,
+            height: canvasHeight,
             weekendCellColor,
             holidayCellColor,
             drawHoliday: restProps.drawHoliday ?? drawHoliday,
@@ -123,7 +123,7 @@ const shouldDrawMinutes = (pxPerDay: number) => pxPerDay >= 4000;
 const shouldDrawQouterHours = (pxPerDay: number) => pxPerDay >= 1600;
 const shouldDrawHours = (pxPerDay: number) => pxPerDay >= 190;
 const shouldDrawDays = (pxPerDay: number) => pxPerDay > 10;
-const shouldDrawHolidays = (pxPerDay: number) => pxPerDay > 6 && pxPerDay < 200;
+const shouldDrawHolidays = (pxPerDay: number) => pxPerDay > 6;
 const shouldDrawWeeks = (pxPerDay: number) => pxPerDay > 6;
 const shouldDrawMonths = (pxPerDay: number) => pxPerDay > 0.5 && pxPerDay <= 6;
 

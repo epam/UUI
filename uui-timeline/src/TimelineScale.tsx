@@ -122,7 +122,7 @@ export function TimelineScale({
 
         drawPeriod({ ...timelineScale.getMinutesScaleRange(), draw: drawMinutes, ...commonProps });
         drawPeriod({ ...timelineScale.getRemainingHoursScaleRange(), draw: drawRemainingHours, ...commonProps });
-        drawPeriod({ ...timelineScale.getHoursScaleRange(), draw: drawHours, ...commonProps });
+        drawPeriod({ ...timelineScale.getHoursScaleRange(), draw: (...props) => drawHours(...props), ...commonProps });
         drawPeriod({
             draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, drawToday }),
             ...timelineScale.getTopDaysScaleRange(),

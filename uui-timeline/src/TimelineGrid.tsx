@@ -24,6 +24,7 @@ export interface TimelineGridProps extends TimelineCanvasProps {
     weekendCellColor?: string;
     holidayCellColor?: string;
 }
+
 export function TimelineGrid({ 
     timelineController,
     drawLine,
@@ -57,23 +58,9 @@ export function TimelineGrid({
         const options = {
             ...drawProps,
             canvasHeight,
+            height: canvasHeight,
             drawLine: drawLine ?? timelinePrimitives.drawVerticalLine,
         };
-        if (timelineGrid.shouldDrawMinutes(pxPerDay)) {
-            (drawMinutes ?? timelineGrid.drawMinutes)(options);
-        }
-
-        if (timelineGrid.shouldDrawQouterHours(pxPerDay)) {
-            (drawQuoterHours ?? timelineGrid.drawQuoterHours)(options);
-        }
-
-        if (timelineGrid.shouldDrawHours(pxPerDay)) {
-            (drawHours ?? timelineGrid.drawHours)(options);
-        }
-
-        if (timelineGrid.shouldDrawDays(pxPerDay)) {
-            (drawDays ?? timelineGrid.drawDays)(options);
-        }
 
         if (timelineGrid.shouldDrawHolidays(pxPerDay)) {
             (drawHolidays ?? timelineGrid.drawHolidays)({
@@ -83,6 +70,23 @@ export function TimelineGrid({
                 weekendCellColor,
                 holidayCellColor,
             });
+        }
+
+        if (timelineGrid.shouldDrawMinutes(pxPerDay)) {
+            (drawMinutes ?? timelineGrid.drawMinutes)(options);
+        }
+
+        if (timelineGrid.shouldDrawQouterHours(pxPerDay)
+        ) {
+            (drawQuoterHours ?? timelineGrid.drawQuoterHours)(options);
+        }
+
+        if (timelineGrid.shouldDrawHours(pxPerDay)) {
+            (drawHours ?? timelineGrid.drawHours)(options);
+        }
+
+        if (timelineGrid.shouldDrawDays(pxPerDay)) {
+            (drawDays ?? timelineGrid.drawDays)(options);
         }
 
         if (timelineGrid.shouldDrawWeeks(pxPerDay)) {
