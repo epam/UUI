@@ -246,20 +246,6 @@ export function AppHeader() {
                 priority: 2,
                 render: renderDirectionSwitcher,
             },
-            {
-                id: 'survey',
-                priority: 0,
-                render: () => (
-                    <Anchor
-                        key="survey"
-                        rawProps={ { style: { height: '60px' } } }
-                        target="_blank"
-                        href="https://forms.office.com/e/9iEvJUKdeM"
-                    >
-                        <img width="172px" height="60px" src="/static/survey_banner.png" alt="Take part in UUI survey" />
-                    </Anchor>
-                ),
-            },
             { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
         ].filter((i) => !!i);
     };
