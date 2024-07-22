@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
-import { FlexCell, PickerInput, PickerTogglerTag, PickerTogglerTagProps, Tooltip } from '@epam/uui';
+import { FlexCell, PickerInput, PickerTogglerTag, Tooltip } from '@epam/uui';
+import { PickerTogglerRenderItemParams } from '@epam/uui-components';
 import { Location } from '@epam/uui-docs';
 
-export default function PickerTogglerTagDemoExample() {
+export default function CustomPickerTogglerTagExample() {
     const svc = useUuiContext();
-    const [value, onValueChange] = useState<string[]>(['225284', '2747351', '3119841', '3119746']);
+    const [value, onValueChange] = useState<string[]>(['625144', '703448', '756135', '2950159', '4717560']);
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
@@ -23,12 +24,12 @@ export default function PickerTogglerTagDemoExample() {
         [],
     );
 
-    const renderTag = (props: PickerTogglerTagProps<Location, string>) => {
+    const renderTag = (props: PickerTogglerRenderItemParams<Location, string>) => {
         const { isCollapsed, rowProps } = props;
 
         if (isCollapsed) {
             // rendering '+ N items selected' Tag, tooltip is present here by default
-            return <PickerTogglerTag { ...props } key="collapsed" />;
+            return <PickerTogglerTag { ...props } key="collapsed" getName={ (i) => i?.name } />;
         } else {
             // rendering all other Tags with Tooltip
             const continent = rowProps?.value?.tz ? rowProps?.value?.tz.split('/')[0].concat('/') : '';
@@ -36,7 +37,7 @@ export default function PickerTogglerTagDemoExample() {
             const tooltipContent = `${continent}${country}${props.caption}`;
             return (
                 <Tooltip key={ props.rowProps?.id } content={ tooltipContent }>
-                    <PickerTogglerTag { ...props } />
+                    <PickerTogglerTag { ...props } getName={ (i) => i?.name } />
                 </Tooltip>
             );
         }

@@ -1,3 +1,8 @@
+# 5.8.4 - 22.07.2024
+
+**What's Fixed**
+* [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
+
 # 5.8.3 - 19.07.2024
 
 **What's New**
