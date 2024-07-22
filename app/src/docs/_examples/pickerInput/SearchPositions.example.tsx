@@ -25,6 +25,7 @@ export default function SearchPositionsExample() {
                     onValueChange={ onValueChange }
                     entityName="person"
                     selectionMode="multi"
+                    maxItems={ 3 }
                     searchPosition="input"
                     valueType="id"
                 />
@@ -36,6 +37,7 @@ export default function SearchPositionsExample() {
                     onValueChange={ onValueChange }
                     entityName="person"
                     selectionMode="multi"
+                    maxItems={ 3 }
                     searchPosition="none"
                     valueType="id"
                 />

@@ -31,6 +31,7 @@ export default function LazyTreePicker() {
                 selectionMode="multi"
                 valueType="id"
                 cascadeSelection="implicit"
+                maxItems={ 3 }
             />
         </FlexCell>
     );

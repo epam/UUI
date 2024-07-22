@@ -56,6 +56,7 @@ export default function LazyTreeSearch() {
                     entityName="location"
                     selectionMode="multi"
                     valueType="id"
+                    maxItems={ 3 }
                     placeholder="Flatten search results"
                 />
                 <PickerInput
@@ -65,6 +66,7 @@ export default function LazyTreeSearch() {
                     entityName="location"
                     selectionMode="multi"
                     valueType="id"
+                    maxItems={ 3 }
                     placeholder="Tree search results"
                 />
             </FlexRow>
