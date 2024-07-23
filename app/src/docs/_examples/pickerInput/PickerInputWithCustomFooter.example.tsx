@@ -38,6 +38,7 @@ export default function PickerInputWithCustomFooter() {
                     selectionMode="single"
                     valueType="id"
                     sorting={ { field: 'level', direction: 'asc' } }
+                    maxItems={ 3 }
                     renderFooter={ () => {
                         return (
                             <FlexRow padding="12">

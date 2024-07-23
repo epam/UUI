@@ -37,7 +37,13 @@ function PickerTogglerComponent<TItem extends string, TId>(
         if (!!props.renderItem) {
             return props.renderItem(itemPropsWithSize);
         }
-        return <PickerTogglerTag { ...itemPropsWithSize } />;
+
+        return (
+            <PickerTogglerTag
+                { ...itemPropsWithSize }
+                getName={ props.getName }
+            />
+        );
     };
 
     return (
@@ -46,7 +52,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ renderItem }
-            getName={ (item) => (props.getName ? props.getName(item) : item) }
+            getName={ props.getName }
             cancelIcon={ systemIcons.clear }
             dropdownIcon={ systemIcons.foldingArrow }
         />
