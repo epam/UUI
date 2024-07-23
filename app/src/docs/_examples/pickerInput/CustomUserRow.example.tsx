@@ -38,6 +38,7 @@ export default function LazyPersonsMultiPickerWithCustomUserRow() {
                 entityName="person"
                 selectionMode="multi"
                 valueType="id"
+                maxItems={ 3 }
             />
         </FlexCell>
     );

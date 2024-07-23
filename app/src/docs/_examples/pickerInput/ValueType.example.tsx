@@ -23,6 +23,7 @@ export default function ValueTypeExamplePicker() {
                 selectionMode="multi"
                 emptyValue={ [] }
                 valueType="entity"
+                maxItems={ 3 }
             />
             <Text>
                 Selected users:

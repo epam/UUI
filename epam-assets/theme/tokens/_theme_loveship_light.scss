@@ -130,6 +130,7 @@
     --uui-accent-50: var(--grass-50);
     --uui-accent-60: var(--grass-60);
     --uui-accent-70: var(--grass-70);
+    --uui-accent-contrast: var(--white);
 
     // "core/semantic/critical-"
     --uui-critical-5: var(--fire-5);
@@ -138,6 +139,7 @@
     --uui-critical-50: var(--fire-50);
     --uui-critical-60: var(--fire-60);
     --uui-critical-70: var(--fire-70);
+    --uui-critical-contrast: var(--white);
 
     // "core/semantic/error-"
     --uui-error-5: var(--fire-5);
@@ -146,6 +148,7 @@
     --uui-error-50: var(--fire-50);
     --uui-error-60: var(--fire-60);
     --uui-error-70: var(--fire-70);
+    --uui-error-contrast: var(--white);
 
     // "core/semantic/info-"
     --uui-info-5: var(--sky-5);
@@ -154,6 +157,7 @@
     --uui-info-50: var(--sky-50);
     --uui-info-60: var(--sky-60);
     --uui-info-70: var(--sky-70);
+    --uui-info-contrast: var(--white);
 
     // "core/semantic/primary-"
     --uui-primary-5: var(--sky-5);
@@ -162,6 +166,7 @@
     --uui-primary-50: var(--sky-50);
     --uui-primary-60: var(--sky-60);
     --uui-primary-70: var(--sky-70);
+    --uui-primary-contrast: var(--white);
 
     // "core/semantic/secondary-"
     --uui-secondary-5: var(--night100);
@@ -170,6 +175,7 @@
     --uui-secondary-50: var(--night600);
     --uui-secondary-60: var(--night700);
     --uui-secondary-70: var(--night800);
+    --uui-secondary-contrast: var(--white);
 
     // "core/semantic/success-"
     --uui-success-5: var(--grass-5);
@@ -178,6 +184,7 @@
     --uui-success-50: var(--grass-50);
     --uui-success-60: var(--grass-60);
     --uui-success-70: var(--grass-70);
+    --uui-success-contrast: var(--white);
 
     // "core/semantic/warning-"
     --uui-warning-5: var(--sun-5);
@@ -186,6 +193,7 @@
     --uui-warning-50: var(--sun-50);
     --uui-warning-60: var(--sun-60);
     --uui-warning-70: var(--sun-70);
+    --uui-warning-contrast: var(--night800);
 
     /********************/
     /*** Core Neutral ***/

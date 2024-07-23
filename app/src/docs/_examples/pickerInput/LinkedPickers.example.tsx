@@ -44,6 +44,7 @@ export default function ArrayLinkedPickers() {
                     entityName="City"
                     selectionMode="multi"
                     valueType="id"
+                    maxItems={ 3 }
                     filter={ { country: country?.id } } // Your filter object, which will be send to the server
                 />
             </LabeledInput>
