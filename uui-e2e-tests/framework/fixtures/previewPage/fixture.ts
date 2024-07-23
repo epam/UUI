@@ -1,8 +1,8 @@
 import { Page, test as baseTest } from '@playwright/test';
-import { mockApi } from '../mocks/apiMocks';
-import { PreviewPage } from '../pages/previewPage';
-import { stylePath, timeoutForFixture } from '../../playwright.config';
-import { TEngine } from '../types';
+import { mockApi } from '../../mocks/apiMocks';
+import { PreviewPage } from './previewPage';
+import { stylePath, timeoutForFixture } from '../../../playwright.config';
+import { TEngine } from '../../types';
 
 const test = baseTest.extend<{}, { previewPage: PreviewPage }>({
     previewPage: [

@@ -9,13 +9,13 @@ const { UUI_APP_BASE_URL, UUI_APP_BASE_URL_CI } = readEnvFile();
 
 const testTimeout = isCi ? 10000 : 50000;
 export const timeoutForFixture = isCi ? 20000 : 80000;
-const expectTimeout = 10000;
+export const expectTimeout = 10000;
 
 // The "expect" timeout for slow tests. It should not exceed "testTimeout".
 export const slowTestExpectTimeout = Math.min(expectTimeout * 3, testTimeout);
 const maxFailures = isCi ? 10 : undefined;
 const retries = isCi ? 1 : 0;
-export const screenshotSizeLimitKb = 130;
+export const screenshotSizeLimitKb = 135;
 /**
  * The fastest option (for both CI and Local) is to use default (undefined) amount of workers (which is 50% of CPU cores).
  */
@@ -31,20 +31,18 @@ const server = isCi ? {
 };
 //
 const parentDir = '';
-export const screenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/__screenshots__');
-const testMatch = `${parentDir}tests/*.e2e.ts`;
+export const previewScreenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/previewTests/__screenshots__');
 const outputDir = `${parentDir}tests/.report/results`;
 const outputFolder = `${parentDir}tests/.report/report`;
 export const outputJsonFile = `${parentDir}tests/.report/report.json`;
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}';
-export const stylePath = `${parentDir}framework/fixtures/screenshot.css`;
+export const stylePath = `${parentDir}framework/fixtures/previewPage/screenshot.css`;
 
 export default defineConfig({
     // = 1 hour (it should be sufficient to run all our tests)
     globalTimeout: 3_600_000,
     timeout: testTimeout,
     maxFailures,
-    testMatch,
     fullyParallel: true,
     forbidOnly,
     retries,
@@ -67,12 +65,29 @@ export default defineConfig({
             use: {
                 ...devices['Desktop Chrome'],
             },
+            testMatch: [
+                `${parentDir}tests/previewTests/*.e2e.ts`,
+                `${parentDir}tests/docExampleTests/*.e2e.ts`,
+            ],
         },
         {
             name: 'webkit',
             use: {
                 ...devices['Desktop Safari'],
             },
+            testMatch: [
+                `${parentDir}tests/previewTests/*.e2e.ts`,
+                `${parentDir}tests/docExampleTests/*.e2e.ts`,
+            ],
+        },
+        {
+            name: 'firefox',
+            use: {
+                ...devices['Desktop Firefox'],
+            },
+            testMatch: [
+                `${parentDir}tests/docExampleTests/*.e2e.ts`,
+            ],
         },
     ].filter(({ name }) => {
         if (UUI_TEST_PARAM_PROJECT) {

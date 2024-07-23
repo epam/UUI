@@ -94,7 +94,7 @@ function getVolumesMapArgs() {
         './tsconfig.json',
     ].reduce<string[]>((acc, from) => {
         const to = `/e2e/${from.replace('./', '')}`;
-        acc.push('-v', `${from}:${to}`);
+        acc.push('-v', `${forwardSlashes(path.resolve(from))}:${to}`);
         return acc;
     }, []).concat(['-v', `${absPathToPreviewIds}:/app/src/docs/_types/previewIds.ts`]);
 }
