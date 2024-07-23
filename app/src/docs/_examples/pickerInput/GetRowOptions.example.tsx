@@ -53,6 +53,7 @@ export default function GetRowOptionsExample() {
                     entityName="Product"
                     selectionMode="multi"
                     valueType="id"
+                    maxItems={ 3 }
                 />
             </FlexRow>
         </FlexCell>

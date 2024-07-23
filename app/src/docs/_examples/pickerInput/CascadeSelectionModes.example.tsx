@@ -46,6 +46,7 @@ export default function CascadeSelectionModesExample() {
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
+                maxItems={ 3 }
                 cascadeSelection={ cascadeSelection }
             />
         </FlexCell>

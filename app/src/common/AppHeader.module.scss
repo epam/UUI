@@ -1,15 +1,81 @@
 .root {
+    --uui-tooltip-border-radius: 3px;
+    --uui-tooltip-border: #474A59;
+
     .link-container {
         display: flex;
-        padding-left: 18px;
-        padding-right: 18px;
+        padding-left: 9px;
+        padding-right: 9px;
         align-items: center;
         min-height: 60px;
+
+        &:hover {
+            background-color: var(--uui-neutral-90);
+        }
 
         .link-caption {
             padding-left: 6px;
             color: var(--uui-main_menu-text);
             white-space: nowrap;
+        }
+    }
+
+    .git-star-container {
+        position: relative;
+        display: flex;
+        padding: 0;
+        align-items: center;
+        min-height: 60px;
+        margin-inline-start: 8px;
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            left: -6px;
+            transform: translateY(0) rotate(45deg);
+            background-color: var(--uui-main_menu-bg);
+            border: 1px solid var(--uui-tooltip-border);
+            border-top: 0 none;
+            border-inline-end: 0 none;
+            z-index: 1000;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .wrapper {
+            height: 24px;
+            display: flex;
+            padding: 3px 6px;
+            align-items: center;
+            border-radius: var(--uui-tooltip-border-radius);
+            border: 1px solid var(--uui-tooltip-border);
+            background-color: var(--uui-main_menu-bg);
+            cursor: pointer;
+            transition: 0.2s ease;
+
+            svg {
+                width: 12px;
+                height: 100%;
+                margin-inline-end: 3px;
+                fill: var(--uui-main_menu-text);
+            }
+
+            .star-caption {
+                color: var(--uui-main_menu-text);
+            }
+        }
+
+        &:hover {
+            &::after {
+                border-color: lighten(#474A59, 10%);
+            }
+
+            .wrapper {
+                border-color: lighten(#474A59, 10%);
+            }
         }
     }
 
@@ -21,8 +87,26 @@
         min-width: 320px;
     }
 
-    .git-icon, .logo-icon {
+    .icon {
+        height: 60px;
         fill: var(--uui-main_menu-text);
+        padding-inline-start: 9px;
+        padding-inline-end: 9px;
+
+        &:global(.uui-button-box):global(.uui-link_button):hover {
+            fill: var(--uui-main_menu-text);
+            background-color: var(--uui-neutral-90);
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        &.logo svg {
+            width: 168px;
+            height: 60px;
+        }
     }
 
     .theme-switcher-button:hover {
