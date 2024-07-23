@@ -18,6 +18,12 @@ type DocsQuery = {
     category?: string;
 };
 
+const redirectTo = (query: DocsQuery) =>
+    svc.uuiRouter.redirect({
+        pathname: '/documents',
+        query,
+    });
+
 async function loadApiReferenceStructure(): Promise<DocItem[]> {
     if (!svc.api) {
         throw new Error('svc.api not available');
@@ -54,18 +60,13 @@ function useItems(selectedId: string) {
     }, [apiRefItems, selectedId]);
 }
 
-const redirectTo = (query: DocsQuery) =>
-    svc.uuiRouter.redirect({
-        pathname: '/documents',
-        query,
-    });
-
 export function DocumentsPage() {
     const queryParamId: string = useQuery('id');
-    const mode = useQuery<DocsQuery['mode']>('mode') || TMode.doc;
     const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
     const theme = useQuery<DocsQuery['theme']>('theme');
     const itemsInfo = useItems(queryParamId);
+    const mode = useQuery<DocsQuery['mode']>('mode') || TMode.doc;
+    const [pageWidth, setPageWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         if (itemsInfo && !itemsInfo.PageComponent) {
@@ -75,7 +76,14 @@ export function DocumentsPage() {
 
     useEffect(() => {
         codesandboxService.getFiles();
-        return () => codesandboxService.clearFiles();
+
+        const handleResize = () => setPageWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            codesandboxService.clearFiles();
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
@@ -94,26 +102,45 @@ export function DocumentsPage() {
 
     const PageComponent = itemsInfo?.PageComponent;
 
+    const sidebarProps = {
+        queryParamId,
+        onChange,
+        items: itemsInfo?.items,
+        getSearchFields: (i: DocItem) => [i.name, ...(i.tags || [])],
+        getItemLink: (row: DataRowProps<DocItem, string>) =>
+            !row.isFoldable && {
+                pathname: '/documents',
+                query: {
+                    id: row.id,
+                    mode: (row.parentId && mode),
+                    isSkin: (row.parentId && isSkin),
+                    category: row.parentId,
+                },
+            },
+    };
+
     return (
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
-                <Sidebar<DocItem>
-                    value={ queryParamId }
-                    onValueChange={ onChange }
-                    items={ itemsInfo?.items }
-                    getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
-                    getItemLink={ (row) =>
-                        !row.isFoldable && {
-                            pathname: '/documents',
-                            query: {
-                                id: row.id,
-                                mode: (row.parentId && mode),
-                                isSkin: (row.parentId && isSkin),
-                                category: row.parentId,
-                            },
-                        } }
-                />
-                { PageComponent && <PageComponent /> }
+                { pageWidth > 768 && (
+                    <Sidebar<DocItem>
+                        value={ queryParamId }
+                        onValueChange={ onChange }
+                        items={ itemsInfo?.items }
+                        getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
+                        getItemLink={ (row) =>
+                            !row.isFoldable && {
+                                pathname: '/documents',
+                                query: {
+                                    id: row.id,
+                                    mode: (row.parentId && mode),
+                                    isSkin: (row.parentId && isSkin),
+                                    category: row.parentId,
+                                },
+                            } }
+                    />
+                ) }
+                { PageComponent && <PageComponent sidebarProps={ sidebarProps } /> }
             </FlexRow>
         </Page>
     );
