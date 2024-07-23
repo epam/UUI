@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TDocConfig } from '@epam/uui-docs';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
-import { RichTextView } from '@epam/uui';
+import { FlexCell, FlexRow, FlexSpacer, IconContainer, RichTextView, Text } from '@epam/uui';
 import { svc } from '../../../services';
 import { analyticsEvents } from '../../../analyticsEvents';
 import { TMode } from '../docsConstants';
@@ -10,15 +10,27 @@ import { PropExplorerTab } from './tabs/propExplorerTab';
 import { TabsNav } from './components/tabsNav';
 import { SkinModeToggler } from './components/skinModeToggler';
 import { QueryHelpers } from './utils/queryHelpers';
+import { DocItem } from '../../../documents/structure';
+import { Sidebar } from '../../sidebar';
+import { ReactComponent as NavigationCloseOutlineIcon } from '@epam/assets/icons/navigation-close-outline.svg';
+
 //
 import css from './BaseDocsBlock.module.scss';
+import cx from 'classnames';
 
-export abstract class BaseDocsBlock extends React.Component<any, {}> {
+type State = {
+    isOpen: boolean;
+};
+
+export abstract class BaseDocsBlock extends React.Component<any, State> {
     public static contextType = UuiContext;
     public context: UuiContexts;
 
     constructor(props: any) {
         super(props);
+        this.state = {
+            isOpen: false,
+        };
 
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
@@ -116,18 +128,52 @@ export abstract class BaseDocsBlock extends React.Component<any, {}> {
         return QueryHelpers.changeTab(mode);
     };
 
+    public handleMobSidebarBtnClick = () => {
+        this.setState((prevState) => ({
+            isOpen: !prevState.isOpen,
+        }));
+    };
+
     render() {
         const mode = QueryHelpers.getMode();
         const supportedModes = Object.values(TMode).filter((m) => this.isModeSupported(m));
+        const { queryParamId, onChange, items, getSearchFields, getItemLink } = this.props.sidebarProps;
+
         return (
-            <div className={ css.container }>
-                <TabsNav
-                    mode={ mode }
-                    supportedModes={ supportedModes }
-                    renderSkinSwitcher={ this.renderSkinSwitcher }
-                    onChangeMode={ this.handleChangeTab }
-                />
-                {this.renderTabContent(mode)}
+            <div className={ cx(css.container, this.state.isOpen && css.mobile) }>
+                { !this.state.isOpen && (
+                    <TabsNav
+                        mode={ mode }
+                        supportedModes={ supportedModes }
+                        renderSkinSwitcher={ this.renderSkinSwitcher }
+                        onChangeMode={ this.handleChangeTab }
+                        handleMobSidebarBtnClick={ this.handleMobSidebarBtnClick }
+                    />
+                ) }
+                { !this.state.isOpen && this.renderTabContent(mode)}
+                { this.state.isOpen && (
+                    <FlexCell grow={ 1 } style={ { minHeight: '100vh' } }>
+                        <FlexRow borderBottom={ true } padding="18" vPadding="24">
+                            <Text fontSize="18" fontWeight="600" lineHeight="24">Navigation</Text>
+                            <FlexSpacer />
+                            <IconContainer
+                                size={ 24 }
+                                icon={ NavigationCloseOutlineIcon }
+                                onClick={ this.handleMobSidebarBtnClick }
+                                style={ { fill: '#6C6F80' } }
+                            />
+                        </FlexRow>
+                        <FlexRow borderBottom={ true } alignItems="stretch" cx={ css.sidebar }>
+                            <Sidebar<DocItem>
+                                value={ queryParamId }
+                                onValueChange={ onChange }
+                                items={ items }
+                                getSearchFields={ getSearchFields }
+                                getItemLink={ getItemLink }
+                            />
+                        </FlexRow>
+                    </FlexCell>
+                ) }
             </div>
         );
     }

@@ -1,6 +1,7 @@
-import * as React from 'react';
-import { FlexRow, FlexSpacer, TabButton } from '@epam/uui';
+import React, { useEffect, useState } from 'react';
+import { Button, FlexRow, FlexSpacer, TabButton } from '@epam/uui';
 import { TMode } from '../../docsConstants';
+import { ReactComponent as ContentFilterListOutlineIcon } from '@epam/assets/icons/content-filter_list-outline.svg';
 import css from './tabsNav.module.scss';
 
 type TTabsNavProps = {
@@ -8,25 +9,40 @@ type TTabsNavProps = {
     supportedModes: TMode[];
     onChangeMode: (mode: TMode) => void;
     renderSkinSwitcher: () => React.ReactNode;
+    handleMobSidebarBtnClick: () => void;
+};
+
+type TabType = {
+    caption: string,
+    tooltip: string,
 };
 
 export function TabsNav(props: TTabsNavProps) {
-    const { mode, onChangeMode, renderSkinSwitcher, supportedModes } = props;
+    const { mode, onChangeMode, supportedModes } = props;
+    const [pageWidth, setPageWidth] = useState(window.innerWidth);
 
-    if (supportedModes.length === 1) {
-        return null;
-    }
+    useEffect(() => {
+        const handleResize = () => setPageWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
 
-    const allTabs = {
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    
+    const allTabs: Partial<Record<TMode, TabType>> = {
         [TMode.doc]: {
             caption: 'Documentation',
             tooltip: '',
         },
-        [TMode.propsEditor]: {
+    };
+
+    if (supportedModes.length > 1) {
+        allTabs[TMode.propsEditor] = {
             caption: 'Property Explorer',
             tooltip: '',
-        },
-    };
+        };
+    }
 
     return (
         <FlexRow
@@ -35,6 +51,15 @@ export function TabsNav(props: TTabsNavProps) {
             cx={ [css.secondaryNavigation] }
             borderBottom
         >
+            { pageWidth <= 768 && (
+                <Button
+                    rawProps={ { style: { marginInlineStart: '6px', marginInlineEnd: '12px' } } }
+                    fill="none"
+                    icon={ ContentFilterListOutlineIcon }
+                    onClick={ props.handleMobSidebarBtnClick }
+                >
+                </Button>
+            ) }
             {
                 Object.keys(allTabs).reduce<React.ReactNode[]>((acc, tm) => {
                     if (supportedModes.includes(tm as TMode) || (tm as TMode) === mode) {
@@ -54,7 +79,6 @@ export function TabsNav(props: TTabsNavProps) {
                 }, [])
             }
             <FlexSpacer />
-            {renderSkinSwitcher()}
         </FlexRow>
     );
 }
