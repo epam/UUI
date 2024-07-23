@@ -241,7 +241,6 @@ const drawHours = ({
                 ...restProps,
             });
         });
-    console.log('draw hours');
 };
 
 const drawToday = ({ context, scaleBar, todayLineColor = defaultColors.todayLineColor }: CanvasDrawHeaderTodayProps) => {
