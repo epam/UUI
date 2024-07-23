@@ -1,9 +1,10 @@
 import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
+import { cx } from '@epam/uui-core';
 import { TimelineTransform, TimelineController, useTimelineTransform } from '@epam/uui-timeline';
 import { Badge, FlexCell, FlexRow, Text, Tooltip } from '@epam/uui';
 import { Task } from './types';
-import { resources, statuses } from './demoData';
+import { resources, statusTags, statuses } from './demoData';
 import { uuiDayjs } from '../../../helpers';
 
 import css from './TaskBar.module.scss';
@@ -179,13 +180,17 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 } }
             >
                 <div
-                    style={ {
-                        background: item.color,
-                        width: `${positionConfig.taskBarWidth}px`,
-                    } }
-                    className={ css.taskBar }
+                    style={ { width: `${positionConfig.taskBarWidth}px` } }
+                    className={ cx(css.taskBar, css[`taskBarStatus${statusTags[task.status] ?? 'None'}`]) }
                 >
-                    { positionConfig.taskBarWidth > 50 && <Text color="white" cx={ css.assingeeText }>{ task.name }</Text> }
+                    { positionConfig.taskBarWidth > 50 && (
+                        <Text
+                            color={ !task.status || task.status === '1' ? 'secondary' : 'white' }
+                            cx={ css.assingeeText }
+                        >
+                            { task.name }
+                        </Text>
+                    ) }
                 </div>
                 <div
                     className={ classNames(css.taskBar, css.taskBarDeadline) }

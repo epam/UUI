@@ -17,3 +17,27 @@
     width: 10px;
     height: 10px;
 }
+
+.statusIconComplete {
+    fill: var(--uui-accent-50);
+}
+
+.statusIconInProgress {
+    fill: var(--uui-info-50);
+}
+
+.statusIconPlanned {
+    fill: var(--uui-info-20);
+}
+
+.statusIconAtRisk {
+    fill: var(--uui-critical-20);
+}
+
+.statusIconBlocked {
+    fill: #FCAA00;
+}
+
+.statusIconNone {
+    fill: var(--uui-neutral-30);
+}

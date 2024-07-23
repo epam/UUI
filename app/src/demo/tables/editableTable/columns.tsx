@@ -1,10 +1,10 @@
 import { Task, ColumnsProps } from './types';
-import { resources, statuses } from './demoData';
+import { resources, statuses, statusTags } from './demoData';
 import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
     DatePicker, DataPickerRow, PickerItem, IconContainer, 
     DataTableTimelineHeaderCell } from '@epam/uui';
-import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditableDebouncer } from '@epam/uui-core';
+import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditableDebouncer, cx } from '@epam/uui-core';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 
 import { RowKebabButton } from './RowKebabButton';
@@ -68,7 +68,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
                     size="24"
-                    renderEditor={ (props) => (
+                    renderEditor={ (editorProps) => (
                         <PickerInput
                             valueType="id"
                             placeholder="Add Status"
@@ -82,7 +82,13 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                                     renderItem={ (item) => (
                                         <PickerItem
                                             title={ item.name }
-                                            icon={ () => <IconContainer icon={ statusIcon } style={ { fill: item.color } } /> }
+                                            icon={ () => (
+                                                <IconContainer
+                                                    icon={ statusIcon } 
+                                                    style={ { marginBottom: '0' } }
+                                                    cx={ cx(css.statusIcon, css[`statusIcon${item.id ? statusTags[item.id] : 'None'}`]) }
+                                                />
+                                            ) }
                                             { ...props }
                                         />
                                     ) }
@@ -90,20 +96,23 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                             ) }
                             renderToggler={ (togglerProps) => {
                                 const row = togglerProps.selection?.[0];
-                                const fill = row?.value?.color && togglerProps.value && row?.value?.name?.includes(togglerProps.value)
-                                    ? row?.value?.color
-                                    : '#E1E3EB';
-                        
                                 return (
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
-                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill: fill, marginBottom: '0' } } cx={ css.statusIcon } /> }
+                                        isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                                        icon={ () => (
+                                            <IconContainer
+                                                icon={ statusIcon } 
+                                                style={ { marginBottom: '0' } }
+                                                cx={ cx(css.statusIcon, css[`statusIcon${row?.id ? statusTags[row?.id] : 'None'}`]) }
+                                            />
+                                        ) }
                                         iconPosition="left"
                                     />
                                 );
                             } }
-                            { ...props }
+                            { ...editorProps }
                         />
                     ) }
                     { ...props }
@@ -259,7 +268,13 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                                     renderItem={ (item) => (
                                         <PickerItem
                                             title={ item.name }
-                                            icon={ () => <IconContainer icon={ statusIcon } style={ { fill: item.color } } /> }
+                                            icon={ () => (
+                                                <IconContainer
+                                                    icon={ statusIcon } 
+                                                    style={ { marginBottom: '0' } }
+                                                    cx={ cx(css.statusIcon, css[`statusIcon${item.id ? statusTags[item.id] : 'None'}`]) }
+                                                />
+                                            ) }
                                             { ...props }
                                         />
                                     ) }
@@ -267,16 +282,18 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                             ) }
                             renderToggler={ (togglerProps) => {
                                 const row = togglerProps.selection?.[0];
-                                const fill = row?.value?.color && togglerProps.value && row?.value?.name?.includes(togglerProps.value)
-                                    ? row?.value?.color
-                                    : '#E1E3EB';
-                        
                                 return (
                                     <PickerToggler
                                         { ...props }
                                         { ...togglerProps }
                                         isDisabled={ props.rowLens.prop('type').get() === 'story' }
-                                        icon={ () => <IconContainer icon={ statusIcon } style={ { fill: fill, marginBottom: '0' } } cx={ css.statusIcon } /> }
+                                        icon={ () => (
+                                            <IconContainer
+                                                icon={ statusIcon } 
+                                                style={ { marginBottom: '0' } }
+                                                cx={ cx(css.statusIcon, css[`statusIcon${row?.id ? statusTags[row?.id] : 'None'}`]) }
+                                            />
+                                        ) }
                                         iconPosition="left"
                                     />
                                 );

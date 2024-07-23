@@ -94,3 +94,8 @@ export const statuses: Status[] = [
     { id: '4', name: 'At Risk', priority: 4, color: '#FA4B4B' },
     { id: '5', name: 'Complete', priority: 5, color: '#67A300' },
 ];
+
+export const statusTags = statuses.reduce<Record<string, string>>(
+    (acc, status) => ({ ...acc, [status.id]: status.name.replace(/ /ig, '') }),
+    {},
+);
