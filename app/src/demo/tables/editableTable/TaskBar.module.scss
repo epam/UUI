@@ -35,12 +35,36 @@
     position: absolute;
 }
 
-.task-bar {
+.taskBar {
     display: inline-block;
     position: relative;
     height: 100%;
 }
 
-.task-bar-deadline {
+.taskBarDeadline {
     background: rgb(255 44 44 / 70%);
+}
+
+.taskBarStatusComplete {
+    background: var(--uui-accent-50);
+}
+
+.taskBarStatusInProgress {
+    background: var(--uui-info-50);
+}
+
+.taskBarStatusPlanned {
+    background: var(--uui-info-20);
+}
+
+.taskBarStatusAtRisk {
+    background: var(--uui-critical-20);
+}
+
+.taskBarStatusBlocked {
+    background: #FCAA00;
+}
+
+.taskBarStatusNone {
+    background: var(--uui-neutral-30);
 }
