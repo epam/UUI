@@ -111,3 +111,6 @@ yarn --cwd uui-e2e-tests local-test-e2e-deps-install
 # 2. run the tests locally
 yarn --cwd uui-e2e-tests local-test-e2e
 ```
+
+## Misc
+Recommended way to debug tests is to use VSCode extension as described here: https://playwright.dev/docs/getting-started-vscode

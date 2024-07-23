@@ -17,7 +17,7 @@ const {
 
 type TIssues = { msg: string; exit: boolean }[];
 
-export class TestBuilderContext {
+export class PreviewTestBuilderContext {
     private seenTestNames: Set<string> = new Set();
     private onlyChromiumTests: Set<string> = new Set();
     private failedTestNames: Set<string>;
