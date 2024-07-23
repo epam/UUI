@@ -17,9 +17,9 @@ export interface ThemeBaseParams {
 }
 
 export const builtInThemes: ThemeBaseParams[] = [
+    { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
-    { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.vanilla_thunder, name: 'Vanilla Thunder' },
     { id: BuiltInTheme.promo, name: 'Promo' },
 ];

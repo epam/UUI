@@ -1,0 +1,43 @@
+.root {
+    background-color: var(--uui-surface-main);
+    padding-top: 66px;
+    padding-bottom: 66px;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        max-width: 1174px;
+        margin: 0 auto;
+        padding: 0 14px;
+
+        .faq-header {
+            text-align: center;
+            font-weight: 400;
+            font-size: 42px;
+            line-height: 48px;
+            letter-spacing: 2px;
+            color: var(--uui-text-primary);
+
+            &-electric {
+                font-size: 44px;
+                line-height: 50px;
+                font-weight: 600;
+                font-family: var(--font-museo-sans), serif;
+            }
+
+            &-promo {
+                font-size: 30px;
+                font-weight: 600;
+                line-height: 36px;
+                font-family: var(--font-museo-sans), serif;
+            }
+        }
+
+        .accordion-wrapper {
+            padding: 21px 4px 4px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 18px;
+        }
+    }
+}
