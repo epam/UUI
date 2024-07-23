@@ -12,24 +12,27 @@ import { SkinModeToggler } from './components/skinModeToggler';
 import { QueryHelpers } from './utils/queryHelpers';
 import { DocItem } from '../../../documents/structure';
 import { Sidebar } from '../../sidebar';
-import { ReactComponent as NavigationCloseOutlineIcon } from '@epam/assets/icons/navigation-close-outline.svg';
-
+import { ReactComponent as ActionAlignLeftOutlineIcon } from '@epam/assets/icons/action-align_left-outline.svg';
 //
 import css from './BaseDocsBlock.module.scss';
 import cx from 'classnames';
 
 type State = {
     isOpen: boolean;
+    isClosing: boolean;
 };
 
 export abstract class BaseDocsBlock extends React.Component<any, State> {
+    containerRef: React.RefObject<HTMLDivElement>;
     public static contextType = UuiContext;
     public context: UuiContexts;
 
     constructor(props: any) {
         super(props);
+        this.containerRef = React.createRef<HTMLDivElement>();
         this.state = {
             isOpen: false,
+            isClosing: false,
         };
 
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
@@ -49,6 +52,10 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
 
     componentDidUpdate() {
         this.redirectIfModeIsUnsupported();
+    }
+
+    componentWillUnmount() {
+        this.containerRef.current?.removeEventListener('animationend', this.animationHandler);
     }
 
     protected renderSkinSwitcher() {
@@ -128,10 +135,18 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
         return QueryHelpers.changeTab(mode);
     };
 
+    private animationHandler = () => {
+        this.setState({ isOpen: false, isClosing: false });
+    };
+
     public handleMobSidebarBtnClick = () => {
-        this.setState((prevState) => ({
-            isOpen: !prevState.isOpen,
-        }));
+        if (this.state.isOpen) {
+            this.setState({ isClosing: true });
+            this.containerRef.current?.addEventListener('animationend', this.animationHandler, { once: true });
+        } else {
+            this.containerRef.current?.removeEventListener('animationend', this.animationHandler);
+            this.setState({ isOpen: true });
+        }
     };
 
     render() {
@@ -140,7 +155,10 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
         const { queryParamId, onChange, items, getSearchFields, getItemLink } = this.props.sidebarProps;
 
         return (
-            <div className={ cx(css.container, this.state.isOpen && css.mobile) }>
+            <div
+                ref={ this.containerRef }
+                className={ cx(css.container, this.state.isOpen && css.mobile, this.state.isClosing && css.closing) }
+            >
                 { !this.state.isOpen && (
                     <TabsNav
                         mode={ mode }
@@ -150,15 +168,15 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
                         handleMobSidebarBtnClick={ this.handleMobSidebarBtnClick }
                     />
                 ) }
-                { !this.state.isOpen && this.renderTabContent(mode)}
+                { this.renderTabContent(mode) }
                 { this.state.isOpen && (
-                    <FlexCell grow={ 1 } style={ { minHeight: '100vh' } }>
+                    <FlexCell grow={ 1 } cx={ css.sidebarWrapper }>
                         <FlexRow borderBottom={ true } padding="18" vPadding="24">
                             <Text fontSize="18" fontWeight="600" lineHeight="24">Navigation</Text>
                             <FlexSpacer />
                             <IconContainer
                                 size={ 24 }
-                                icon={ NavigationCloseOutlineIcon }
+                                icon={ ActionAlignLeftOutlineIcon }
                                 onClick={ this.handleMobSidebarBtnClick }
                                 style={ { fill: '#6C6F80' } }
                             />

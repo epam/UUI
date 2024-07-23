@@ -1,3 +1,27 @@
+@keyframes sidebar-appear {
+    0% {
+        opacity: 0;
+        left: -800px;
+    }
+
+    100% {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+@keyframes sidebar-disappear {
+    0% {
+        opacity: 1;
+        left: 0;
+    }
+
+    100% {
+        opacity: 0;
+        left: -800px;
+    }
+}
+
 .container {
     box-sizing: border-box;
     height: calc(100vh - 60px);
@@ -16,6 +40,16 @@
         min-height: 100dvh;
         height: 100dvh;
         width: 100dvw;
+        transition: 0.3s ease-out;
+        animation: sidebar-appear ease-in 0.3s forwards;
+    }
+
+    &.closing {
+        animation: sidebar-disappear ease-out 0.3s forwards;
+    }
+
+    .sidebar-wrapper {
+        min-height: 100vh;
     }
 
     .sidebar {
