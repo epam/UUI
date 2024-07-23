@@ -142,3 +142,21 @@ export interface CanvasDrawPeriodFragmentProps extends CanvasDrawTimelineHeaderP
     isCurPeriod: boolean,
     superscript?: string,
 }
+
+export interface CanvasDrawBorderForTopCell extends CanvasDrawProps {
+    canvasHeight?: number;
+    scaleBar: ScaleBar;
+}
+
+export interface CanvasDrawCellBackground extends CanvasDrawProps {
+    canvasHeight?: number;
+    scaleBar: ScaleBar;
+    y?: number;
+    color?: string;
+    height?: number;
+}
+
+export interface CanvasDrawBottomGridLine extends CanvasDrawProps {
+    canvasHeight?: number;
+    scaleBar: ScaleBar;
+}
