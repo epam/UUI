@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, FlexRow, FlexSpacer, TabButton } from '@epam/uui';
 import { TMode } from '../../docsConstants';
-import { ReactComponent as ContentFilterListOutlineIcon } from '@epam/assets/icons/content-filter_list-outline.svg';
+import { ReactComponent as ActionAlignRightOutlineIcon } from '@epam/assets/icons/action-align_right-outline.svg';
 import css from './tabsNav.module.scss';
 
 type TTabsNavProps = {
@@ -55,7 +55,7 @@ export function TabsNav(props: TTabsNavProps) {
                 <Button
                     rawProps={ { style: { marginInlineStart: '6px', marginInlineEnd: '12px' } } }
                     fill="none"
-                    icon={ ContentFilterListOutlineIcon }
+                    icon={ ActionAlignRightOutlineIcon }
                     onClick={ props.handleMobSidebarBtnClick }
                 >
                 </Button>
