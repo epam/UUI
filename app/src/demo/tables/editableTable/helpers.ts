@@ -183,7 +183,7 @@ const getStartDate = (child1: Subtotals, child2: Subtotals) => {
 
 const getChildDueDate = (child: Subtotals) => {
     if (!child.dueDate) {
-        return child.hasChildren ? undefined : addTime(child.exactStartDate, child.estimate);
+        return child.hasChildren ? undefined : addTime(child.exactStartDate, child.estimate - 1);
     }
     return toTime(child.dueDate);
 };
@@ -530,7 +530,7 @@ export const formatDatePickerDate = (date: string | Date) => {
 
 export const getDueDateFromTask = (task: Task) => {
     if (task.dueDate) {
-        return uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate();
+        return uuiDayjs.dayjs(task.dueDate).toDate();
     }
 
     return null;
@@ -543,7 +543,7 @@ export const getEstimatedTo = (task: Task) => {
 
     const startDate = uuiDayjs.dayjs(task.exactStartDate, 'YYYY-MM-DD');
     if (task.exactStartDate && task.estimate !== undefined) {
-        return startDate.add(task.estimate, 'day').toDate();
+        return startDate.add(task.estimate - 1, 'day').toDate();
     }
 
     return null;
@@ -589,11 +589,13 @@ export const getWidth = (from: Date, to: Date, t: TimelineTransform) => {
 };
 
 export const getTaskBarWidth = (from: Date, deadline: Date, estimatedTo: Date, t: TimelineTransform) => {
-    if (!deadline) {
-        return getWidth(from, estimatedTo, t);
+    const actualEstimatedTo = uuiDayjs.dayjs(estimatedTo).add(1, 'day').toDate();
+    if (!deadline || deadline.getTime() < from.getTime()) {
+        return getWidth(from, actualEstimatedTo, t);
     }
 
-    const to = deadline.getTime() < estimatedTo.getTime() ? deadline : estimatedTo;
+    const actualDeadline = uuiDayjs.dayjs(deadline).add(1, 'day').startOf('day').toDate();
+    const to = actualDeadline.getTime() < actualEstimatedTo.getTime() ? actualDeadline : actualEstimatedTo;
 
     return getWidth(from, to, t);
 };
