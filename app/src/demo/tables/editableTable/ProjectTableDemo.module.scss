@@ -31,11 +31,11 @@
 }
 
 .statusIconAtRisk {
-    fill: var(--uui-critical-20);
+    fill: var(--uui-critical-50);
 }
 
 .statusIconBlocked {
-    fill: #FCAA00;
+    fill: var(--uui-warning-50);
 }
 
 .statusIconNone {

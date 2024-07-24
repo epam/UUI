@@ -2,11 +2,12 @@ import React, { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { cx } from '@epam/uui-core';
 import { TimelineTransform, TimelineController, useTimelineTransform } from '@epam/uui-timeline';
-import { Badge, FlexCell, FlexRow, Text, Tooltip } from '@epam/uui';
+import { Badge, FlexCell, FlexRow, IconContainer, Text, Tooltip } from '@epam/uui';
+import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 import { Task } from './types';
 import { resources, statusTags, statuses } from './demoData';
 import { uuiDayjs } from '../../../helpers';
-
+import statusCss from './ProjectTableDemo.module.scss';
 import css from './TaskBar.module.scss';
 import { formatDatePickerDate, getDueDateFromTask, getEstimatedTo, getTaskBarWidth, getTaskColor, getTo, getWidth } from './helpers';
 
@@ -89,9 +90,20 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                         <Badge
                             size="18"
                             color="neutral"
-                            icon={ () => <span className={ css.dot } style={ { backgroundColor: item.color } } /> }
+                            icon={ () => (
+                                <IconContainer
+                                    icon={ statusIcon } 
+                                    style={ { marginBottom: '0' } }
+                                    cx={
+                                        cx(
+                                            statusCss.statusIcon,
+                                            statusCss[`statusIcon${status.id !== undefined ? statusTags[status?.id] : 'None'}`],
+                                        )
+                                    }
+                                />
+                            ) }
                             fill="outline"
-                            caption={ status.name }
+                            caption={ status?.name ?? 'None' }
                         />
                     </FlexCell>
                 </FlexRow>
@@ -167,7 +179,8 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
             </div>
         );
     };
-
+    const deadlineWidth = positionConfig.width - positionConfig.taskBarWidth;
+    const isMissingDeadline = Math.max(deadlineWidth, 0) !== 0;
     return (
         <Tooltip renderContent={ renderTaskStatus } openDelay={ 500 } cx={ css.container } color="neutral">
             <div
@@ -181,7 +194,11 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
             >
                 <div
                     style={ { width: `${positionConfig.taskBarWidth}px` } }
-                    className={ cx(css.taskBar, css[`taskBarStatus${statusTags[task.status] ?? 'None'}`]) }
+                    className={ cx(
+                        css.taskBar,
+                        css[`taskBarStatus${statusTags[task.status] ?? 'None'}`],
+                        isMissingDeadline ? css.taskBarWithMissingDeadline : css.taskBarOnTime,
+                    ) }
                 >
                     { positionConfig.taskBarWidth > 50 && (
                         <Text
@@ -194,7 +211,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 </div>
                 <div
                     className={ classNames(css.taskBar, css.taskBarDeadline) }
-                    style={ { width: `${positionConfig.width - positionConfig.taskBarWidth}px` } }
+                    style={ { width: `${deadlineWidth}px` } }
                 >
                 </div>
             </div>
