@@ -2,7 +2,7 @@ import type { Page, Locator } from '@playwright/test';
 import { PreviewPageParams, TClip, TEngine } from '../../types';
 import { PlayWrightInterfaceName, PREVIEW_URL } from '../../constants';
 import { CdpSessionWrapper } from './cdpSessionWrapper';
-import { slowTestExpectTimeout, expectTimeout } from '../../../playwright.config';
+import { slowTestExpectTimeout } from '../../../playwright.config';
 
 export class PreviewPage {
     private readonly locators: {
@@ -40,7 +40,7 @@ export class PreviewPage {
         await this.page.waitForTimeout(30);
         const clip = await this.locators.regionScreenshotContent.boundingBox() as TClip;
         // have to increase timeout due to a strange bug in Playwright: TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
-        const res: { fullPage?: boolean; clip: TClip; timeout?: number } = { fullPage: true, clip, timeout: expectTimeout * 2 };
+        const res: { fullPage?: boolean; clip: TClip; timeout?: number } = { fullPage: true, clip };
         if (isSlow) {
             res.timeout = slowTestExpectTimeout;
         }

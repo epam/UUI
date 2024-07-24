@@ -15,7 +15,7 @@
     "local-check-issues": "cross-env UUI_TEST_PARAM_CHECK_ISSUES=true yarn local-test-e2e --list --pass-with-no-tests",
     "local-remove-obsolete-screenshots": "cross-env UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR=true yarn local-check-issues",
     "test-e2e": "ts-node scripts/cmd/cmdRunPwDocker.ts",
-    "test-e2e-chromium": "cross-env UUI_TEST_PARAM_PROJECT=chromium UUI_TEST_PARAM_ONLY_FAILED=false yarn test-e2e",
+    "test-e2e-chromium": "cross-env UUI_TEST_PARAM_PROJECT=chromium yarn test-e2e",
     "test-e2e-update": "cross-env UUI_TEST_PARAM_UPDATE_SNAPSHOTS=true yarn test-e2e",
     "test-e2e-open-report": "npx ../node_modules/playwright show-report ./tests/.report/report",
     "start-server": "yarn --cwd ../app server",
