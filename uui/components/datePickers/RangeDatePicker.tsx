@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import {
-    DropdownBodyProps, isFocusReceiverInsideFocusLock, useUuiContext,
+    DropdownBodyProps, useUuiContext,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
@@ -39,8 +39,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         }
     };
 
-    const onOpenChange = (newIsOpen: boolean, focus?: RangeDatePickerInputType) => {
-        setInFocus(newIsOpen && focus ? focus : null);
+    const onOpenChange = (newIsOpen: boolean) => {
         setIsOpen(newIsOpen);
         props.onOpenChange?.(newIsOpen);
     };
@@ -59,20 +58,11 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         }
     };
 
-    // mainly for closing body on tab
-    const onInputWrapperBlur: React.FocusEventHandler<HTMLDivElement> = (event) => {
-        if (isFocusReceiverInsideFocusLock(event)) {
-            return;
-        }
-        onOpenChange(false);
-    };
-
     const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         return (
             <DropdownContainer
                 { ...renderProps }
                 cx={ cx(css.dropdownContainer) }
-                focusLock={ false }
             >
                 <FlexRow>
                     <RangeDatePickerBody
@@ -115,12 +105,11 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                         value={ value }
                         format={ format }
                         onValueChange={ onValueChange }
-                        onBlur={ onInputWrapperBlur }
-                        onFocusInput={ (e, i) => {
-                            props.onFocus?.(e, i);
-                            onOpenChange(true, i);
+                        onFocusInput={ (e, type) => {
+                            props.onFocus?.(e, type);
+                            setInFocus(type);
                         } }
-                        onBlurInput={ props.onBlur }
+                        onBlurInput={ (e, type) => { props.onBlur?.(e, type); !isOpen && setInFocus(null); } }
                     />
                 );
             } }
