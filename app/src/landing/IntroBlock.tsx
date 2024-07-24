@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Anchor, FlexCell, FlexRow, IconContainer, Text, FilterPickerBody, Panel, TabButton, Badge, Tooltip, Button, LabeledInput, TextInput, NumericInput, Switch, DatePicker, TimePicker, SuccessAlert } from '@epam/uui';
-import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { Anchor, FlexCell, FlexRow, IconContainer, Text, FilterPickerBody, Panel, TabButton, Badge, Tooltip, Button, LabeledInput, TextInput, NumericInput, Switch, DatePicker, TimePicker, SuccessAlert, SuccessNotification } from '@epam/uui';
+import { DataQueryFilter, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import cx from 'classnames';
 import { getCurrentTheme } from '../helpers';
 import { Location } from '@epam/uui-docs';
@@ -25,6 +25,20 @@ export function IntroBlock() {
     const [switchValue, setSwitchValue] = useState(true);
     const [dateValue, setDateValue] = useState('');
     const [timeValue, setTimeValue] = useState(null);
+
+    const handleSuccess = (text: string) => {
+        svc.uuiNotifications
+            .show(
+                (props: INotification) => (
+                    <SuccessNotification { ...props }>
+                        <Text size="36" fontSize="14">
+                            { text }
+                        </Text>
+                    </SuccessNotification>
+                ),
+            )
+            .catch(() => null);
+    };
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
@@ -118,7 +132,7 @@ export function IntroBlock() {
                                     <Tooltip content="Info tooltip" placement="top">
                                         <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
-                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => {} } />
+                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Watch more clicked') } />
                                 </FlexRow>
                             </Panel>
                             <Panel background="surface-main" shadow={ true } cx={ css.componentsMiddleWrapper }>
@@ -140,7 +154,7 @@ export function IntroBlock() {
                                     </LabeledInput>
                                 </FlexRow>
                             </Panel>
-                            <SuccessAlert size="36" onClose={ () => alert('close action') } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
+                            <SuccessAlert size="36" onClose={ () => handleSuccess('onClose clicked') } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
                                 <Text size="30">Invitation sent!</Text>
                             </SuccessAlert>
                         </div>
