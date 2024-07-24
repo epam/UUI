@@ -39,8 +39,8 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
 
     const updatePosition = useCallback((t: TimelineTransform) => {
         const segment = { ...t.transformSegment(item.from, item.to) };
-        const includes = segment !== undefined && item.from !== null && item.to !== null && segment.isVisible && item.opacity > 0.01;
-        if (!includes) {
+        const isVisible = segment !== undefined && item.from !== null && item.to !== null && segment.isVisible && item.opacity > 0.01;
+        if (!isVisible) {
             setPositionConfig(null);
         } else {
             const realWidth = getWidth(item.from, item.to, t);

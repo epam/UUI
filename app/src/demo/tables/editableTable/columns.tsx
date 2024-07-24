@@ -13,6 +13,7 @@ import { TimelineController } from '@epam/uui-timeline';
 import { TimelineHeader } from './TimelineHeader';
 
 import { TaskRow } from './TaskRow';
+import { uuiDayjs } from '../../../helpers/dayJsHelper';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 const statusDataSource = new ArrayDataSource({ items: statuses });
@@ -138,7 +139,18 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (props) => (
+                        <DatePicker
+                            format="MMM D, YYYY"
+                            placeholder=""
+                            { ...props }
+                            value={ props.value ? props.value.split('T')[0] : props.value }
+                            onValueChange={ (newDueDate) => {
+                                const dueDate = uuiDayjs.dayjs(newDueDate, 'YYYY-MM-DD').endOf('day').toISOString();
+                                props.onValueChange(dueDate);
+                            } }
+                        />
+                    ) }
                     { ...props }
                 />
             ),
@@ -326,7 +338,17 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
                     renderEditor={ (editorProps) => (
-                        <DatePicker format="MMM D, YYYY" placeholder="" { ...editorProps } isDisabled={ props.rowLens.prop('type').get() === 'story' } />
+                        <DatePicker
+                            format="MMM D, YYYY"
+                            placeholder=""
+                            { ...editorProps }
+                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
+                            onValueChange={ (newDueDate) => {
+                                const dueDate = uuiDayjs.dayjs(newDueDate, 'YYYY-MM-DD').endOf('day').toISOString();
+                                editorProps.onValueChange(dueDate);
+                            } }
+                        />
                     ) }
                     { ...props }
                 />
