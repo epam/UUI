@@ -195,6 +195,11 @@
                 .bottom-block-panel:hover {
                     border: 3px solid var(--uui-success-50);
                     transition: 300ms ease-out;
+
+                    &:nth-of-type(2):hover {
+                        border-color: var(--uui-info-50);
+                    }
+
                 }
             }
         }
