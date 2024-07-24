@@ -132,6 +132,7 @@ export function IntroBlock() {
                             handleDropdown(item.id);
                             props.onClose();
                         } }
+                        isSelected={ item.id === selectedItem.id }
                     />
                 ))}
             </DropdownMenuBody>
