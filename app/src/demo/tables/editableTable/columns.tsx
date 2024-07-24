@@ -99,7 +99,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (props) => <DatePicker { ...props } /> }
                     { ...props }
                 />
             ),
@@ -111,7 +111,7 @@ export function getColumns(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (props) => <DatePicker { ...props } /> }
                     { ...props }
                 />
             ),

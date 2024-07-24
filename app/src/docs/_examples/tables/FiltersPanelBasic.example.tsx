@@ -1,17 +1,6 @@
 import React, { useMemo } from 'react';
 import { uuiDayjs } from '../../../helpers';
-import {
-    defaultPredicates,
-    rangeDatePickerPresets,
-    FiltersPanel,
-    DataTable,
-    Panel,
-    FlexRow,
-    Text,
-    Switch,
-    Badge,
-    BadgeProps,
-} from '@epam/uui';
+import { defaultPredicates, rangeDatePickerPresets, FiltersPanel, DataTable, Panel, FlexRow, Text, Switch, Badge, BadgeProps } from '@epam/uui';
 import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
@@ -82,7 +71,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
 ];
 
 export default function FiltersPanelExample() {
-    const { api } = useUuiContext();
+    const svc = useUuiContext();
 
     const filtersConfig = useMemo<TableFiltersConfig<Person>[]>(
         () => [
@@ -92,7 +81,7 @@ export default function FiltersPanelExample() {
                 title: 'Profile status',
                 type: 'multiPicker',
                 isAlwaysVisible: true,
-                dataSource: new LazyDataSource({ api: api.demo.statuses }),
+                dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
                 predicates: defaultPredicates.multiPicker,
                 showSearch: false,
                 maxCount: 3,
@@ -103,7 +92,7 @@ export default function FiltersPanelExample() {
                 title: 'Title',
                 type: 'multiPicker',
                 togglerWidth: 400,
-                dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
+                dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
             },
             {
                 field: 'salary',
@@ -159,7 +148,7 @@ export default function FiltersPanelExample() {
                 },
             },
         ],
-        [api.demo.jobTitles, api.demo.statuses],
+        [],
     );
 
     const { tableState, setTableState } = useTableState({
@@ -169,7 +158,7 @@ export default function FiltersPanelExample() {
 
     const dataSource = useLazyDataSource<Person, number, Person>(
         {
-            api: api.demo.persons,
+            api: svc.api.demo.persons,
             backgroundReload: true,
         },
         [],
