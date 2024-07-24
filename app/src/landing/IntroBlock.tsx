@@ -38,7 +38,7 @@ import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigat
 import css from './IntroBlock.module.scss';
 
 const dropdownMenuItems = [
-    { id: 1, caption: 'In Progress', color: 'info' }, { id: 2, caption: 'Draft', color: 'neutral' }, { id: 3, caption: 'Done', color: 'success' },
+    { id: 1, caption: 'Production', color: 'info' }, { id: 2, caption: 'Contributor', color: 'success' },
 ];
 
 export function IntroBlock() {
@@ -196,7 +196,7 @@ export function IntroBlock() {
                                                 indicator={ true }
                                             />
                                         ) }
-                                        placement="bottom-end"
+                                        placement="bottom-start"
                                     />
                                     <FlexSpacer />
                                     <Tooltip content="Info tooltip" placement="top">
