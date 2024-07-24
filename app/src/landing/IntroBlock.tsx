@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
-import { Anchor, FlexCell, FlexRow, IconContainer, Text, FilterPickerBody, Panel, TabButton, Badge, Tooltip, Button, LabeledInput, TextInput, NumericInput, Switch, DatePicker, TimePicker, SuccessAlert, SuccessNotification } from '@epam/uui';
-import { DataQueryFilter, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import {
+    Anchor,
+    FlexCell,
+    FlexRow,
+    IconContainer,
+    Text,
+    FilterPickerBody,
+    Panel,
+    TabButton,
+    Badge,
+    Tooltip,
+    Button,
+    LabeledInput,
+    TextInput,
+    NumericInput,
+    Switch,
+    DatePicker,
+    TimePicker,
+    SuccessAlert,
+    SuccessNotification,
+    DropdownMenuBody,
+    DropdownMenuButton,
+    Dropdown,
+    FlexSpacer,
+    BadgeProps,
+} from '@epam/uui';
+import { DataQueryFilter, DropdownBodyProps, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import cx from 'classnames';
 import { getCurrentTheme } from '../helpers';
 import { Location } from '@epam/uui-docs';
@@ -9,7 +34,12 @@ import { ReactComponent as BracketsIcon } from '../icons/brackets.svg';
 import { ReactComponent as BlurLightImage } from '../icons/intro-blur-light-theme.svg';
 import { ReactComponent as BlurDarkImage } from '../icons/intro-blur-dark-theme.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
+import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './IntroBlock.module.scss';
+
+const dropdownMenuItems = [
+    { id: 1, caption: 'In Progress', color: 'info' }, { id: 2, caption: 'Draft', color: 'neutral' }, { id: 3, caption: 'Done', color: 'success' },
+];
 
 export function IntroBlock() {
     const theme = getCurrentTheme();
@@ -19,7 +49,7 @@ export function IntroBlock() {
 
     const [value, onValueChange] = useState<string[]>(['c-AN', 'BV', '1546102']);
     const [tabValue, onTabValueChange] = useState('All');
-    const [isBadgeOpen, setIsBadgeOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(dropdownMenuItems[0]);
     const [textValue, setTextValue] = useState('');
     const [numValue, setNumValue] = useState(0);
     const [switchValue, setSwitchValue] = useState(true);
@@ -84,6 +114,30 @@ export function IntroBlock() {
         );
     };
 
+    const handleDropdown = (id: number) => {
+        setSelectedItem(dropdownMenuItems.filter((item) => item.id === id)[0]);
+    };
+
+    const statusDot = (color: string) => <span className={ css.dot } style={ { backgroundColor: `var(--uui-${color}-50)` } } />;
+
+    const renderDropdownBody = (props: DropdownBodyProps) => {
+        return (
+            <DropdownMenuBody { ...props }>
+                {dropdownMenuItems.map((item) => (
+                    <DropdownMenuButton
+                        key={ item.id }
+                        caption={ item.caption }
+                        icon={ () => statusDot(item.color) }
+                        onClick={ () => {
+                            handleDropdown(item.id);
+                            props.onClose();
+                        } }
+                    />
+                ))}
+            </DropdownMenuBody>
+        );
+    };
+
     return (
         <div className={ css.root }>
             <FlexRow cx={ css.info }>
@@ -128,7 +182,22 @@ export function IntroBlock() {
                                     <TabButton caption="New" isLinkActive={ tabValue === 'New' } onClick={ () => onTabValueChange('New') } size="60" />
                                 </FlexRow>
                                 <FlexRow cx={ css.infoComponentsInnerBlock }>
-                                    <Badge color="success" caption="Production" isDropdown={ true } fill="outline" size="30" indicator={ true } onClick={ () => setIsBadgeOpen(!isBadgeOpen) } isOpen={ isBadgeOpen } />
+                                    <Dropdown
+                                        renderBody={ renderDropdownBody }
+                                        renderTarget={ (props) => (
+                                            <Badge
+                                                { ...props }
+                                                dropdownIcon={ navigationDownIcon }
+                                                color={ selectedItem.color as BadgeProps['color'] }
+                                                fill="outline"
+                                                caption={ selectedItem.caption }
+                                                size="30"
+                                                indicator={ true }
+                                            />
+                                        ) }
+                                        placement="bottom-end"
+                                    />
+                                    <FlexSpacer />
                                     <Tooltip content="Info tooltip" placement="top">
                                         <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
