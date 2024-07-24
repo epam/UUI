@@ -42,11 +42,25 @@
 }
 
 .taskBarDeadline {
-    background: rgb(255 44 44 / 70%);
+    background: repeating-linear-gradient(135deg,
+    var(--uui-neutral-10),
+    var(--uui-critical-10) 2px,
+    var(--uui-critical-20) 0,
+    var(--uui-critical-20) 6px);
+    border-radius: 0 2px 2px 0;
+}
+
+.taskBarWithMissingDeadline {
+    border-radius: 2px 0 0 2px;
+}
+
+.taskBarOnTime {
+    border-radius: 2px 2px 2px 2px;
 }
 
 .taskBarStatusComplete {
     background: var(--uui-accent-50);
+    opacity: 0.5;
 }
 
 .taskBarStatusInProgress {
@@ -58,11 +72,11 @@
 }
 
 .taskBarStatusAtRisk {
-    background: var(--uui-critical-20);
+    background: var(--uui-critical-50);
 }
 
 .taskBarStatusBlocked {
-    background: #FCAA00;
+    background: var(--uui-warning-50);
 }
 
 .taskBarStatusNone {
