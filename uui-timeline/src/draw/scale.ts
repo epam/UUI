@@ -279,11 +279,11 @@ const drawTopDays = ({
     ...restProps
 }: CanvasDrawTopDaysProps) => {
     timelineTransform.getVisibleDays().forEach((w) => {
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
         const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getDate().toString() + ', ' + w.leftDate.getFullYear();
         const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
         const color = isHoliday ? defaultColors.weekendCellColor : timelinePrimitives.defaultColors.defaultRectangleColor;
         drawCellBackground({ context, scaleBar: w, canvasHeight, color });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         const textColor = isHoliday ? weekendTextColor : topDayTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
@@ -314,11 +314,11 @@ const drawDays = ({
     ...restProps
 }: CanvasDrawDaysProps) => {
     timelineTransform.getVisibleDays().forEach((w) => {
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
         const text = w.leftDate.getDate().toString();
         const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
         const color = isHoliday ? defaultColors.weekendCellColor : timelinePrimitives.defaultColors.defaultRectangleColor;
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight), color });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         const textColor = isHoliday ? weekendTextColor : periodTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
@@ -377,10 +377,10 @@ const drawWeeks = ({
     ...restProps
 }: CanvasDrawPeriodWithTodayProps) => {
     timelineTransform.getVisibleWeeks().forEach((w) => {
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
         const text = w.leftDate.getDate() + ' – ' + addDays(w.rightDate, -1).getDate();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight) });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         drawPeriodFragment({
             context,
@@ -409,10 +409,10 @@ const drawBottomMonths = ({
     ...restProps
 }: CanvasDrawPeriodWithTodayProps) => {
     timelineTransform.getVisibleMonths().forEach((w) => {
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
         const text = months[w.leftDate.getMonth()].toString();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight) });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         drawPeriodFragment({
             context,
@@ -441,13 +441,13 @@ const drawYears = ({
 }: CanvasDrawPeriodWithTodayProps) => {
     const isBottom = timelineTransform.getScaleVisibility(null, 1);
     timelineTransform.getVisibleYears().forEach((w) => {
-        isBottom && (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
         const text = w.leftDate.getFullYear().toString().toUpperCase();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         const textMoveAmount = isBottom ? moveAmount : topLineMoveAmount;
         const line = (visibility + isBottom) * textMoveAmount;
 
         drawCellBackground({ context, scaleBar: w, canvasHeight, height: isBottom ? canvasHeight : getCanvasVerticalCenter(canvasHeight) });
+        isBottom && (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         drawPeriodFragment({
             context,
