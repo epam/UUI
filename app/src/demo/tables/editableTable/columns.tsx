@@ -127,8 +127,17 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
-                    renderEditor={ (props) => <DatePicker format="MMM D, YYYY" placeholder="" { ...props } /> }
+                    renderEditor={ (editorProps) => (
+                        <DatePicker
+                            format="MMM D, YYYY"
+                            placeholder=""
+                            { ...editorProps }
+                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
+                        />
+                    ) }
                     { ...props }
+                    
                 />
             ),
         },
@@ -139,15 +148,18 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
-                    renderEditor={ (props) => (
+                    renderEditor={ (editorProps) => (
                         <DatePicker
                             format="MMM D, YYYY"
                             placeholder=""
-                            { ...props }
-                            value={ props.value ? props.value.split('T')[0] : props.value }
+                            { ...editorProps }
+                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
                             onValueChange={ (newDueDate) => {
-                                const dueDate = uuiDayjs.dayjs(newDueDate, 'YYYY-MM-DD').endOf('day').toISOString();
-                                props.onValueChange(dueDate);
+                                editorProps
+                                    .onValueChange(newDueDate
+                                        ? uuiDayjs.dayjs(newDueDate, 'YYYY-MM-DD').endOf('day').toISOString()
+                                        : newDueDate);
                             } }
                         />
                     ) }
@@ -325,7 +337,15 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
-                    renderEditor={ (editorProps) => <DatePicker format="MMM D, YYYY" placeholder="" { ...editorProps } isDisabled={ props.rowLens.prop('type').get() === 'story' } /> }
+                    renderEditor={ (editorProps) => (
+                        <DatePicker
+                            format="MMM D, YYYY"
+                            placeholder=""
+                            { ...editorProps }
+                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
+                        />
+                    ) }
                     { ...props }
                 />
             ),
@@ -345,8 +365,10 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                             isDisabled={ props.rowLens.prop('type').get() === 'story' }
                             value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
                             onValueChange={ (newDueDate) => {
-                                const dueDate = uuiDayjs.dayjs(newDueDate, 'YYYY-MM-DD').endOf('day').toISOString();
-                                editorProps.onValueChange(dueDate);
+                                editorProps
+                                    .onValueChange(newDueDate
+                                        ? uuiDayjs.dayjs(newDueDate, 'YYYY-MM-DD').endOf('day').toISOString()
+                                        : newDueDate);
                             } }
                         />
                     ) }
