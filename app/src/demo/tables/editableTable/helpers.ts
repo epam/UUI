@@ -187,11 +187,22 @@ const getStartDate = (child1: Subtotals, child2: Subtotals) => {
 };
 
 const getChildDueDate = (child: Subtotals) => {
+    if (child.type === 'subtotal') {
+        if (!child.dueDate) {
+            return child.hasChildren ? undefined : addEstimate(child.exactStartDate, child.estimate - 1);
+        }
+        return toTime(child.dueDate);
+    }
+
     if (!child.estimate) {
         return child.dueDate ? toTime(child.dueDate) : undefined;
     }
 
     return child.hasChildren ? undefined : addEstimate(child.exactStartDate, child.estimate - 1);
+};
+
+const getSubtotalDueDate = (subtotal: Subtotals) => {
+    return toTime(subtotal.dueDate);
 };
 
 const getDueDateForEntities = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'entity'>) => {
@@ -235,7 +246,7 @@ const getDueDateForSubtotals = (child1: Subtotals, child2: Subtotals) => {
         return getDueDateForEntityAndSubtotal(child2, child1);
     }
 
-    return formatDate(Math.max(getChildDueDate(child1), getChildDueDate(child2)));
+    return formatDate(Math.max(getSubtotalDueDate(child1), getSubtotalDueDate(child2)));
 };
 
 const getDueDate = (child1: Subtotals, child2: Subtotals) => {
