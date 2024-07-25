@@ -232,9 +232,6 @@ const drawHours = ({
             const remainingHoursVisible = timelineTransform.getScaleVisibility(minPxPerDay, maxPxPerDay);
             if (!remainingHoursVisible) {
                 drawCellBackground({ context, scaleBar: w, canvasHeight, y: getBottomCellY(canvasHeight) });
-                if ((w.leftDate.getHours() + 1) % 3 === 0) {
-                    drawBottomGridLine({ context, canvasHeight, scaleBar: w });
-                }
             }
         });
 
