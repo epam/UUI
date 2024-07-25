@@ -100,6 +100,11 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                         const sel = matrix.focusFirstElement({ previewId });
                         typeof sel === 'string' && await previewPage.focusElement(sel);
                     }
+
+                    if (matrix.clickElement) {
+                        const sel = matrix.clickElement({ previewId });
+                        typeof sel === 'string' && await previewPage.clickElement(sel);
+                    }
                     if (matrix.forcePseudoState) {
                         try {
                             await previewPage.cdpSession.cssForcePseudoState(matrix.forcePseudoState);
