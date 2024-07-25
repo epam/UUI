@@ -47,15 +47,15 @@
     var(--uui-critical-10) 2px,
     var(--uui-critical-20) 0,
     var(--uui-critical-20) 6px);
-    border-radius: 0 2px 2px 0;
+    border-radius: 0 3px 3px 0;
 }
 
 .taskBarWithMissingDeadline {
-    border-radius: 2px 0 0 2px;
+    border-radius: 3px 0 0 3px;
 }
 
 .taskBarOnTime {
-    border-radius: 2px 2px 2px 2px;
+    border-radius: 3px 3px 3px 3px;
 }
 
 .taskBarStatusComplete {

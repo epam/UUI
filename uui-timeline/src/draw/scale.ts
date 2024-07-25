@@ -28,7 +28,7 @@ const defaultColors = {
     weekendTextColor: '#ACAFBF',
     weekendCellColor: '#F5F6FA',
     todayLineColor: '#F37B94',
-    evenMonthColor: '#FFFFFF',
+    evenPeriodColor: '#FFFFFF',
 };
 
 const moveAmount = 0.7;
@@ -114,7 +114,7 @@ const drawPeriod = (
     context.restore();
 };
 
-const drawPeriodFragment = ({
+const drawPeriodText = ({
     context,
     timelineTransform,
     text,
@@ -180,7 +180,7 @@ const drawMinutes = ({
         const text = w.leftDate.getHours().toString().padStart(2, '0') + ':' + w.leftDate.getMinutes().toString().padStart(2, '0');
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getBottomCellY(canvasHeight) });
-        drawPeriodFragment({
+        drawPeriodText({
             context,
             timelineTransform,
             text,
@@ -208,7 +208,7 @@ const drawRemainingHours = ({
             const text = hoursInFormatAMPM.length === 4 ? hoursInFormatAMPM.slice(0, 1) : hoursInFormatAMPM.slice(0, 2);
             const superscript = hoursInFormatAMPM.slice(-2);
             const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-            drawPeriodFragment({
+            drawPeriodText({
                 context,
                 timelineTransform,
                 text,
@@ -245,7 +245,7 @@ const drawHours = ({
             const text = hoursInFormatAMPM.length === 4 ? hoursInFormatAMPM.slice(0, 1) : hoursInFormatAMPM.slice(0, 2);
             const superscript = hoursInFormatAMPM.slice(-2);
             const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-            drawPeriodFragment({
+            drawPeriodText({
                 context,
                 timelineTransform,
                 text,
@@ -286,7 +286,7 @@ const drawTopDays = ({
 
         const textColor = isHoliday ? weekendTextColor : topDayTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-        drawPeriodFragment({
+        drawPeriodText({
             context,
             timelineTransform,
             text: header.toUpperCase(),
@@ -321,7 +321,7 @@ const drawDays = ({
 
         const textColor = isHoliday ? weekendTextColor : periodTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-        drawPeriodFragment({
+        drawPeriodText({
             context,
             timelineTransform,
             text,
@@ -343,15 +343,13 @@ const drawTopMonths = ({
     timelineTransform.getVisibleMonths().forEach((w) => {
         const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getFullYear();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-        if (w.leftDate.getMonth() % 2 === 0) {
-            const color = w.leftDate.getMonth() % 2 === 0
-                ? timelinePrimitives.defaultColors.defaultRectangleColor
-                : defaultColors.evenMonthColor;
+        const color = w.leftDate.getMonth() % 2 === 0
+            ? timelinePrimitives.defaultColors.defaultRectangleColor
+            : defaultColors.evenPeriodColor;
 
-            drawCellBackground({ context, scaleBar: w, canvasHeight, color });
-        }
+        drawCellBackground({ context, scaleBar: w, canvasHeight, color });
 
-        drawPeriodFragment({
+        drawPeriodText({
             context,
             timelineTransform,
             text: header.toUpperCase(),
@@ -381,7 +379,7 @@ const drawWeeks = ({
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight) });
 
-        drawPeriodFragment({
+        drawPeriodText({
             context,
             timelineTransform,
             text,
@@ -412,7 +410,7 @@ const drawBottomMonths = ({
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight) });
 
-        drawPeriodFragment({
+        drawPeriodText({
             context,
             timelineTransform,
             text,
@@ -444,9 +442,22 @@ const drawYears = ({
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         const textMoveAmount = isBottom ? moveAmount : topLineMoveAmount;
         const line = (visibility + isBottom) * textMoveAmount;
+        if (isBottom) {
+            const y = canvasHeight;
+            timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1 });
+            drawCellBackground({ context, scaleBar: w, canvasHeight, height: canvasHeight });
+            (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+            timelinePrimitives.drawVerticalLine({ context, x: w.left + 0.5, y2: y - 1 });
+        } else {
+            const color = w.leftDate.getFullYear() % 2 === 0
+                ? timelinePrimitives.defaultColors.defaultRectangleColor
+                : defaultColors.evenPeriodColor;
 
-        drawCellBackground({ context, scaleBar: w, canvasHeight, height: isBottom ? canvasHeight : getCanvasVerticalCenter(canvasHeight) });
-        drawPeriodFragment({
+            drawCellBackground({ context, scaleBar: w, canvasHeight, color });
+            drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
+        }
+
+        drawPeriodText({
             context,
             timelineTransform,
             text,
@@ -457,14 +468,6 @@ const drawYears = ({
             textColor: periodTextColor,
             ...restProps,
         });
-        if (isBottom) {
-            const y = canvasHeight;
-            timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1 });
-            (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
-            timelinePrimitives.drawVerticalLine({ context, x: w.left + 0.5, y2: y - 1 });
-        } else {
-            drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
-        }
     });
 };
 
@@ -485,7 +488,7 @@ export const timelineScale = {
     drawRemainingHours,
     drawHours,
     drawToday,
-    drawPeriodFragment,
+    drawPeriodText,
     drawTopDays,
     drawDays,
     drawTopMonths,
