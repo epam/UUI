@@ -263,7 +263,7 @@ const drawHours = ({
 const drawToday = ({ context, scaleBar, todayLineColor = defaultColors.todayLineColor }: CanvasDrawHeaderTodayProps) => {
     if (isCurrentPeriod(scaleBar.leftDate, scaleBar.rightDate)) {
         context.fillStyle = todayLineColor;
-        context.fillRect(scaleBar.left, 56, scaleBar.right - scaleBar.left, 4);
+        context.fillRect(scaleBar.left + 1, 56, scaleBar.right - scaleBar.left, 4);
     }
 };
 
@@ -283,7 +283,6 @@ const drawTopDays = ({
         const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
         const color = isHoliday ? defaultColors.weekendCellColor : timelinePrimitives.defaultColors.defaultRectangleColor;
         drawCellBackground({ context, scaleBar: w, canvasHeight, color });
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         const textColor = isHoliday ? weekendTextColor : topDayTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
@@ -299,6 +298,7 @@ const drawTopDays = ({
             ...restProps,
         });
         drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
     });
 };
 
@@ -318,7 +318,6 @@ const drawDays = ({
         const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
         const color = isHoliday ? defaultColors.weekendCellColor : timelinePrimitives.defaultColors.defaultRectangleColor;
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight), color });
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         const textColor = isHoliday ? weekendTextColor : periodTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
@@ -334,6 +333,7 @@ const drawDays = ({
             ...restProps,
         });
         drawBottomGridLine({ context, canvasHeight, scaleBar: w });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
     });
 };
 
@@ -380,7 +380,6 @@ const drawWeeks = ({
         const text = w.leftDate.getDate() + ' – ' + addDays(w.rightDate, -1).getDate();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight) });
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         drawPeriodFragment({
             context,
@@ -395,6 +394,7 @@ const drawWeeks = ({
         });
 
         drawBottomGridLine({ context, canvasHeight, scaleBar: w });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
     });
 };
 
@@ -412,7 +412,6 @@ const drawBottomMonths = ({
         const text = months[w.leftDate.getMonth()].toString();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight) });
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
 
         drawPeriodFragment({
             context,
@@ -426,6 +425,7 @@ const drawBottomMonths = ({
             ...restProps,
         });
         drawBottomGridLine({ context, canvasHeight, scaleBar: w });
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
     });
 };
 
@@ -447,8 +447,6 @@ const drawYears = ({
         const line = (visibility + isBottom) * textMoveAmount;
 
         drawCellBackground({ context, scaleBar: w, canvasHeight, height: isBottom ? canvasHeight : getCanvasVerticalCenter(canvasHeight) });
-        isBottom && (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
-
         drawPeriodFragment({
             context,
             timelineTransform,
@@ -467,6 +465,7 @@ const drawYears = ({
         } else {
             drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
         }
+        isBottom && (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
     });
 };
 
