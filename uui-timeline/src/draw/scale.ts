@@ -297,8 +297,8 @@ const drawTopDays = ({
             textColor,
             ...restProps,
         });
-        drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
         (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+        drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
     });
 };
 
@@ -332,8 +332,8 @@ const drawDays = ({
             isCurPeriod,
             ...restProps,
         });
-        drawBottomGridLine({ context, canvasHeight, scaleBar: w });
         (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+        drawBottomGridLine({ context, canvasHeight, scaleBar: w });
     });
 };
 
@@ -392,9 +392,8 @@ const drawWeeks = ({
             textColor: periodTextColor,
             ...restProps,
         });
-
-        drawBottomGridLine({ context, canvasHeight, scaleBar: w });
         (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+        drawBottomGridLine({ context, canvasHeight, scaleBar: w });
     });
 };
 
@@ -424,8 +423,8 @@ const drawBottomMonths = ({
             textColor: periodTextColor,
             ...restProps,
         });
-        drawBottomGridLine({ context, canvasHeight, scaleBar: w });
         (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+        drawBottomGridLine({ context, canvasHeight, scaleBar: w });
     });
 };
 
@@ -460,12 +459,12 @@ const drawYears = ({
         });
         if (isBottom) {
             const y = canvasHeight;
-            timelinePrimitives.drawVerticalLine({ context, x: w.left + 0.5, y2: y - 1 });
             timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1 });
+            (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+            timelinePrimitives.drawVerticalLine({ context, x: w.left + 0.5, y2: y - 1 });
         } else {
             drawBorderForTopCell({ context, canvasHeight, scaleBar: w });
         }
-        isBottom && (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
     });
 };
 
