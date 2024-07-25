@@ -23,13 +23,14 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
     const startDate = task.type === 'story' ? task.startDate : task.exactStartDate;
 
     const deadline = getDueDateFromTask(task);
-
+    const to = getTo(task);
+    const estimatedTo = getEstimatedTo(task);
     const item = {
         id: task.id,
         from: startDate ? uuiDayjs.dayjs(startDate, 'YYYY-MM-DD').toDate() : null,
-        to: getTo(task),
+        to,
         deadline,
-        estimatedTo: getEstimatedTo(task),
+        estimatedTo,
         color: getTaskColor(task.status),
         minPixPerDay: 0.1,
         fillType: 'solid',
@@ -55,7 +56,9 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                 setPositionConfig({ left, width: realWidth, taskBarWidth });
             }
         }
-    }, [positionConfig?.left, positionConfig?.taskBarWidth, positionConfig?.width, item.deadline, item.estimatedTo, item.from, item.opacity, item.to]);
+    }, [
+        item.from, item.opacity, item.to, item.deadline, item.estimatedTo, positionConfig?.width, positionConfig?.left, positionConfig?.taskBarWidth,
+    ]);
 
     const timelineTransform = useTimelineTransform({ timelineController });
 

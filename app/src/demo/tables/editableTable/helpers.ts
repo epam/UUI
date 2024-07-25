@@ -85,7 +85,7 @@ export const setTaskInsertPosition = (taskToInsert: Task, relativeTask: Task | n
     return task;
 };
 
-const formatDate = (date: string | number | Dayjs | Date) => uuiDayjs.dayjs(date).format('YYYY-MM-DD');
+const formatDate = (date: string | number | Dayjs | Date) => uuiDayjs.dayjs(date).toISOString();
 
 /**
  * 1. Group by assingees
@@ -148,7 +148,12 @@ const getOrderedTasks = (tree: ITree<Task, number>, updatedValues: IImmutableMap
 };
 
 const toTime = (date: string) => uuiDayjs.dayjs(date).toDate().getTime();
-const addTime = (date: string, estimate: number) => uuiDayjs.dayjs(date).add(estimate, 'day').toDate().getTime();
+const addEstimate = (date: string, estimate: number) => uuiDayjs
+    .dayjs(date)
+    .add(estimate, 'day')
+    .endOf('day')
+    .toDate()
+    .getTime();
 
 type Subtotals = {
     type: 'entity';
@@ -182,10 +187,11 @@ const getStartDate = (child1: Subtotals, child2: Subtotals) => {
 };
 
 const getChildDueDate = (child: Subtotals) => {
-    if (!child.dueDate) {
-        return child.hasChildren ? undefined : addTime(child.exactStartDate, child.estimate - 1);
+    if (!child.estimate) {
+        return child.dueDate ? toTime(child.dueDate) : undefined;
     }
-    return toTime(child.dueDate);
+
+    return child.hasChildren ? undefined : addEstimate(child.exactStartDate, child.estimate - 1);
 };
 
 const getDueDateForEntities = (child1: ByType<Subtotals, 'entity'>, child2: ByType<Subtotals, 'entity'>) => {
@@ -207,6 +213,18 @@ const getDueDateForEntityAndSubtotal = (child1: ByType<Subtotals, 'entity'>, chi
 const getDueDateForSubtotals = (child1: Subtotals, child2: Subtotals) => {
     if (child1.type === 'entity') {
         if (child2.type === 'entity') {
+            if (child1.parentId === child2.parentId) {
+                return getDueDateForEntities(child1, child2);
+            }
+
+            if (child1.id === child2.parentId) {
+                return child2.dueDate;
+            }
+
+            if (child2.id === child1.parentId) {
+                return child1.dueDate;
+            }
+
             return getDueDateForEntities(child1, child2);
         }
 
@@ -541,23 +559,23 @@ export const getEstimatedTo = (task: Task) => {
         return getDueDateFromTask(task);
     }
 
-    const startDate = uuiDayjs.dayjs(task.exactStartDate, 'YYYY-MM-DD');
+    const startDate = uuiDayjs.dayjs(task.exactStartDate);
     if (task.exactStartDate && task.estimate !== undefined) {
-        return startDate.add(task.estimate - 1, 'day').toDate();
+        return startDate.add(task.estimate - 1, 'day').endOf('day').toDate();
     }
 
     return null;
 };
 
 export const getTo = (task: Task) => {
-    const deadline = task.dueDate ? uuiDayjs.dayjs(task.dueDate, 'YYYY-MM-DD').toDate() : null;
+    const deadline = task.dueDate ? uuiDayjs.dayjs(task.dueDate).toDate() : null;
     if (task.type === 'story') {
         return deadline;
     }
 
-    const startDate = uuiDayjs.dayjs(task.exactStartDate, 'YYYY-MM-DD');
+    const startDate = uuiDayjs.dayjs(task.exactStartDate);
     const estimatedDueDate = task.exactStartDate && task.estimate !== undefined
-        ? startDate.add(task.estimate, 'day').toDate()
+        ? startDate.add(task.estimate - 1, 'day').endOf('day').toDate()
         : null;
 
     if (estimatedDueDate) {
@@ -589,13 +607,10 @@ export const getWidth = (from: Date, to: Date, t: TimelineTransform) => {
 };
 
 export const getTaskBarWidth = (from: Date, deadline: Date, estimatedTo: Date, t: TimelineTransform) => {
-    const actualEstimatedTo = uuiDayjs.dayjs(estimatedTo).add(1, 'day').toDate();
     if (!deadline || deadline.getTime() < from.getTime()) {
-        return getWidth(from, actualEstimatedTo, t);
+        return getWidth(from, estimatedTo, t);
     }
 
-    const actualDeadline = uuiDayjs.dayjs(deadline).add(1, 'day').startOf('day').toDate();
-    const to = actualDeadline.getTime() < actualEstimatedTo.getTime() ? actualDeadline : actualEstimatedTo;
-
+    const to = deadline.getTime() < estimatedTo.getTime() ? deadline : estimatedTo;
     return getWidth(from, to, t);
 };
