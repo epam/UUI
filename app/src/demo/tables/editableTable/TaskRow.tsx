@@ -11,7 +11,7 @@ export interface TaskRowProps extends TimelineCanvasProps {
 
 export function TaskRow({ task, timelineController }: TaskRowProps) {
     const taskRowRef = useRef<HTMLDivElement>(null);
-    const canvasHeight = 36;
+    const canvasHeight = 38;
     return (
         <div ref={ taskRowRef } className={ css.taskRow }>
           
