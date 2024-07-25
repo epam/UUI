@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { TimelineController, msPerDay } from '@epam/uui-timeline';
 import { Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip, MultiSwitch } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata,
@@ -56,12 +56,6 @@ export function ProjectTableDemo() {
         { id: 'timeline', icon: TimelineViewOutlineIcon },
     ];
     const [selectedViewMode, setSelectedViewMode] = useState<ViewMode['id']>('timeline');
-    const [isPending, startTransition] = useTransition();
-    const selectView = useCallback((viewMode: ViewMode['id']) => {
-        startTransition(() => setSelectedViewMode(viewMode));
-    }, [setSelectedViewMode, startTransition]);
-
-    const prevSelectedViewMode = usePrevious(selectedViewMode);
 
     const {
         value, save, isChanged, revert, undo, canUndo, redo, canRedo, setValue, lens,
@@ -317,7 +311,6 @@ export function ProjectTableDemo() {
         );
     };
 
-    const viewMode = isPending ? prevSelectedViewMode : selectedViewMode;
     return (
         <Panel cx={ css.container }>
             <FlexRow columnGap="18" padding="24" vPadding="18" borderBottom={ true } background="surface-main">
@@ -348,7 +341,7 @@ export function ProjectTableDemo() {
 
                 <div className={ css.divider } />
 
-                { viewMode === 'timeline'
+                { selectedViewMode === 'timeline'
                 && (
                     <FlexRow columnGap="6" background="surface-main">
                         <FlexCell width="auto">
@@ -380,7 +373,7 @@ export function ProjectTableDemo() {
                     <MultiSwitch
                         items={ viewModes }
                         value={ selectedViewMode }
-                        onValueChange={ selectView }
+                        onValueChange={ setSelectedViewMode }
                     />
                 </FlexCell>
 
@@ -398,12 +391,12 @@ export function ProjectTableDemo() {
                 </FlexCell>
             </FlexRow>
 
-            { viewMode === 'timeline'
+            { selectedViewMode === 'timeline'
                 ? (
                     <TimelineMode
                         tableState={ tableState } 
                         setTableState={ setTableState }
-                        listProps={ { ...listProps, isReloading: isPending || listProps.isReloading } }
+                        listProps={ listProps }
                         rows={ rows }
                         timelineController={ timelineController }
                         dataTableFocusManager={ dataTableFocusManager }
@@ -414,7 +407,7 @@ export function ProjectTableDemo() {
                     <TableMode
                         tableState={ tableState } 
                         setTableState={ setTableState }
-                        listProps={ { ...listProps, isReloading: isPending || listProps.isReloading } }
+                        listProps={ listProps }
                         rows={ rows }
                         dataTableFocusManager={ dataTableFocusManager }
                         insertTask={ insertTask }
