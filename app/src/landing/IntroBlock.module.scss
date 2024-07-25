@@ -231,6 +231,7 @@
         .info-start-wrapper {
             .info-start {
                 .info-block:hover, .info-block:active {
+                    background-color: var(--uui-surface-main);
                     transition: 300ms ease-out;
                     border-color: #773CEC;
 

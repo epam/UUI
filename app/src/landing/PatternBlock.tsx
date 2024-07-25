@@ -7,11 +7,11 @@ import { ReactComponent as ActionExternalLinkOutlineIcon } from '@epam/assets/ic
 import css from './PatternBlock.module.scss';
 
 const accordionData = [
-    { id: 0, title: 'DATA TABLES', text: 'Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs).', href: '/demo?id=table' },
-    { id: 1, title: 'PROJECT PLANNING', text: 'Project planning table built on top of tables editing capabilities. Demo highlights in-cell inputs, drag-n-drop, tree-structured data, and more.', href: '/demo?id=editableTable' },
-    { id: 2, title: 'FORMS', text: 'Full-featured set of form components – Text Inputs, Date Pickers, etc. We also provide useForm hook – to manage form state, including validation.', href: '/demo?id=form' },
-    { id: 3, title: 'RICH TEXT EDITOR', text: 'RTE is based on popular slate.js library. On top of Slate.js, we add a set of our and 3rd party plugins, UUI-styled toolbars, align edited text style to our guidelines.', href: '/demo?id=RTE' },
-    { id: 4, title: 'DRAG n DROP', text: 'Every component can be made draggable, and/or accept dragged items, by wrapping it with DndActor component.', href: '/demo?id=dnd' },
+    { id: 0, title: 'Data Tables', text: 'Shows support for advanced filter toolbar – including predicates (in/not in/less/greater than), and user-defined filter presets (tabs).', href: '/demo?id=table' },
+    { id: 1, title: 'Project Planning', text: 'Project planning table built on top of tables editing capabilities. Demo highlights in-cell inputs, drag-n-drop, tree-structured data, and more.', href: '/demo?id=editableTable' },
+    { id: 2, title: 'Forms', text: 'Full-featured set of form components – Text Inputs, Date Pickers, etc. We also provide useForm hook – to manage form state, including validation.', href: '/demo?id=form' },
+    { id: 3, title: 'Rich Text Editor', text: 'RTE is based on popular slate.js library. On top of Slate.js, we add a set of our and 3rd party plugins, UUI-styled toolbars, align edited text style to our guidelines.', href: '/demo?id=RTE' },
+    { id: 4, title: 'Drag n Drop', text: 'Every component can be made draggable, and/or accept dragged items, by wrapping it with DndActor component.', href: '/demo?id=dnd' },
 ];
 
 const ACCORDION_INTERVAL = 5000;
