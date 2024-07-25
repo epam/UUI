@@ -618,10 +618,14 @@ export const getWidth = (from: Date, to: Date, t: TimelineTransform) => {
 };
 
 export const getTaskBarWidth = (from: Date, deadline: Date, estimatedTo: Date, t: TimelineTransform) => {
-    if (!deadline || deadline.getTime() < from.getTime()) {
+    if (!deadline) {
         return getWidth(from, estimatedTo, t);
     }
 
-    const to = deadline.getTime() < estimatedTo.getTime() ? deadline : estimatedTo;
+    let realDeadline = deadline;
+    if (deadline.getTime() < from.getTime()) {
+        realDeadline = from;
+    }
+    const to = realDeadline.getTime() < estimatedTo.getTime() ? realDeadline : estimatedTo;
     return getWidth(from, to, t);
 };

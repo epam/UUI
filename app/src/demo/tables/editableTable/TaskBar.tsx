@@ -200,7 +200,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                     className={ cx(
                         css.taskBar,
                         css[`taskBarStatus${statusTags[task.status] ?? 'None'}`],
-                        isMissingDeadline ? css.taskBarWithMissingDeadline : css.taskBarOnTime,
+                        isMissingDeadline && positionConfig.taskBarWidth ? css.taskBarWithMissingDeadline : css.taskBarOnTime,
                     ) }
                 >
                     { positionConfig.taskBarWidth > 50 && (
@@ -213,7 +213,11 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                     ) }
                 </div>
                 <div
-                    className={ classNames(css.taskBar, css.taskBarDeadline) }
+                    className={ classNames(
+                        css.taskBar,
+                        css.taskBarDeadline,
+                        isMissingDeadline && positionConfig.taskBarWidth === 0 ? css.taskBarDeadlineOnly : undefined,
+                    ) }
                     style={ { width: `${deadlineWidth}px` } }
                 >
                 </div>
