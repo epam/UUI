@@ -45,13 +45,13 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-datepicker-container fromPicker"
+            className="uui-datepicker-container uui-size-36 fromPicker"
           >
             <div
               className="root uui-datepicker-body-wrapper"
             >
               <div
-                className="container uui-datepicker-header-container"
+                className="root uui-datepicker-header-container"
               >
                 <header
                   className="uui-datepicker-header-nav"
@@ -103,7 +103,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                 </header>
               </div>
               <div
-                className="container uui-calendar-container root"
+                className="container uui-calendar-container root uui-size-36"
               >
                 <div
                   className="uui-calendar-content"
@@ -158,7 +158,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                     <div>
                       <div
                         className="uui-calendar-day-cell"
-                        tabIndex={0}
+                        tabIndex={-1}
                       />
                       <div
                         className="uui-calendar-day-cell"
@@ -640,13 +640,13 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            className="uui-datepicker-container toPicker"
+            className="uui-datepicker-container uui-size-36 toPicker"
           >
             <div
               className="root uui-datepicker-body-wrapper"
             >
               <div
-                className="container uui-datepicker-header-container"
+                className="root uui-datepicker-header-container"
               >
                 <header
                   className="uui-datepicker-header-nav"
@@ -698,7 +698,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                 </header>
               </div>
               <div
-                className="container uui-calendar-container root"
+                className="container uui-calendar-container root uui-size-36"
               >
                 <div
                   className="uui-calendar-content"
@@ -753,19 +753,19 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                     <div>
                       <div
                         className="uui-calendar-day-cell"
-                        tabIndex={0}
+                        tabIndex={-1}
                       />
                       <div
                         className="uui-calendar-day-cell"
-                        tabIndex={0}
+                        tabIndex={-1}
                       />
                       <div
                         className="uui-calendar-day-cell"
-                        tabIndex={0}
+                        tabIndex={-1}
                       />
                       <div
                         className="uui-calendar-day-cell"
-                        tabIndex={0}
+                        tabIndex={-1}
                       />
                       <div
                         className="uui-calendar-day-cell"

@@ -208,7 +208,7 @@ exports[`PickerList should open body 1`] = `
               <input
                 aria-invalid="false"
                 class="uui-input"
-                dir="auto"
+                dir="ltr"
                 inputmode="search"
                 placeholder="Type text for quick search"
                 tabindex="-1"
