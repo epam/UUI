@@ -10,6 +10,7 @@ function isRTL(char: string) {
 
 export function browserBugFixDirAuto(text: string) {
     // temporary solution to fix this issue https://github.com/whatwg/html/issues/4903
+    if (!text) return 'auto';
     for (const char of text) {
         if (isRTL(char)) return 'rtl';
         if (isLTR(char)) return 'ltr';

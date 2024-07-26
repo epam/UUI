@@ -2,13 +2,13 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container"
+  className="uui-datepicker-container uui-size-36"
 >
   <div
     className="root uui-datepicker-body-wrapper"
   >
     <div
-      className="container uui-datepicker-header-container"
+      className="root uui-datepicker-header-container"
     >
       <header
         className="uui-datepicker-header-nav"
@@ -60,7 +60,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
       </header>
     </div>
     <div
-      className="container uui-calendar-container root"
+      className="container uui-calendar-container root uui-size-36"
     >
       <div
         className="uui-calendar-content"
@@ -115,27 +115,27 @@ exports[`DataPicker should be rendered correctly 1`] = `
           <div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
+              tabIndex={-1}
             />
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
+              tabIndex={-1}
             />
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
+              tabIndex={-1}
             />
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
+              tabIndex={-1}
             />
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
+              tabIndex={-1}
             />
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
+              tabIndex={-1}
             />
             <div
               className="uui-calendar-day-cell"

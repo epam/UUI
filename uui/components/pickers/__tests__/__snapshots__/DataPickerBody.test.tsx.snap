@@ -35,7 +35,7 @@ Array [
         <input
           aria-invalid={false}
           className="uui-input"
-          dir="auto"
+          dir="ltr"
           inputMode="search"
           onBlur={[Function]}
           onChange={[Function]}
