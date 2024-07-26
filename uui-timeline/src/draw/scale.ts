@@ -65,7 +65,7 @@ const drawBorderForTopCell = ({
     color,
     width,
 }: CanvasDrawBorderForTopCell) => {
-    const y = getCanvasVerticalCenter(canvasHeight);
+    const y = getCanvasVerticalCenter(canvasHeight) - 1;
     timelinePrimitives.drawHorizontalLine({ context, x1: scaleBar.left, x2: scaleBar.right + 1, y, color, width });
     timelinePrimitives.drawVerticalLine({ context, x: scaleBar.left + + 0.5, y2: y, color, width });
 };
@@ -345,11 +345,14 @@ const drawDays = ({
     ...restProps
 }: CanvasDrawDaysProps) => {
     timelineTransform.getVisibleDays().forEach((w) => {
-        const text = w.leftDate.getDate().toString();
         const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
         const color = isHoliday ? weekendCellBackgroundColor : cellBackgroundColor;
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight), color });
 
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+        drawBottomGridLine({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
+
+        const text = w.leftDate.getDate().toString();
         const textColor = isHoliday ? weekendTextColor : periodTextColor;
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawPeriodText({
@@ -363,8 +366,6 @@ const drawDays = ({
             isCurPeriod,
             ...restProps,
         });
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
-        drawBottomGridLine({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
     });
 };
 
@@ -381,14 +382,15 @@ const drawTopMonths = ({
     ...restProps
 }: CanvasDrawPeriodPartProps) => {
     timelineTransform.getVisibleMonths().forEach((w) => {
-        const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getFullYear();
-        const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         const color = w.leftDate.getMonth() % 2 === 0
             ? cellBackgroundColor
             : evenPeriodCellBackgroundColor;
 
         drawCellBackground({ context, scaleBar: w, canvasHeight, color });
+        drawBorderForTopCell({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
 
+        const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getFullYear();
+        const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawPeriodText({
             context,
             timelineTransform,
@@ -400,7 +402,6 @@ const drawTopMonths = ({
             textColor: periodTextColor,
             ...restProps,
         });
-        drawBorderForTopCell({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
     });
 };
 
@@ -423,6 +424,8 @@ const drawWeeks = ({
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight), color: cellBackgroundColor });
 
+        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
+        drawBottomGridLine({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
         drawPeriodText({
             context,
             timelineTransform,
@@ -434,8 +437,6 @@ const drawWeeks = ({
             textColor: periodTextColor,
             ...restProps,
         });
-        (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
-        drawBottomGridLine({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
     });
 };
 
