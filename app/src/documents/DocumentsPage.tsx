@@ -70,9 +70,9 @@ export function DocumentsPage() {
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
                 { pageWidth > 768 && (
-                    <SidebarComponent docItems={ itemsInfo?.items } />
+                    <SidebarComponent />
                 ) }
-                { PageComponent && <PageComponent docItems={ itemsInfo?.items } /> }
+                { PageComponent && <PageComponent /> }
             </FlexRow>
         </Page>
     );

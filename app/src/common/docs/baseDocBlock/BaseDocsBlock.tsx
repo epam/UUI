@@ -180,7 +180,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
                             />
                         </FlexRow>
                         <FlexRow borderBottom={ true } alignItems="stretch" cx={ css.sidebar }>
-                            <SidebarComponent docItems={ this.props.docItems } />
+                            <SidebarComponent />
                         </FlexRow>
                     </FlexCell>
                 ) }
