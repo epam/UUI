@@ -349,6 +349,7 @@ export function ProjectTableDemo() {
                                 icon={ fitContent }
                                 iconPosition="left"
                                 caption="Fit content"
+                                fill="outline"
                                 onClick={ () => {
                                     const minMax = getMinMaxDate(tree);
                                     if (minMax.from && minMax.to) {
