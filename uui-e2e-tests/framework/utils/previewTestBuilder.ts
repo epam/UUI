@@ -1,12 +1,12 @@
 import { expect } from '@playwright/test';
-import { test } from '../fixtures';
+import { test } from '../fixtures/previewPage/fixture';
 import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
-import { formatTestName } from './testNameUtils';
-import { TestBuilderContext } from './testBuilderContext';
-import { screenshotsDirAbsPath } from '../../playwright.config';
+import { formatTestName } from './previewTestNameUtils';
+import { PreviewTestBuilderContext } from './previewTestBuilderContext';
+import { previewScreenshotsDirAbsPath } from '../../playwright.config';
 
-export class TestBuilder {
+export class PreviewTestBuilder {
     private cfgByComponent: Map<TComponentId, TMatrixFull[]> = new Map();
 
     skip<CompId extends TKnownCompId>(
@@ -14,14 +14,14 @@ export class TestBuilder {
         cid: CompId,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
-    ): TestBuilder {
+    ): PreviewTestBuilder {
         return this;
     }
 
     only<CompId extends TKnownCompId>(
         cid: CompId,
         matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
-    ): TestBuilder {
+    ): PreviewTestBuilder {
         return this._add(cid, matrix, true);
     }
 
@@ -32,7 +32,7 @@ export class TestBuilder {
     add<CompId extends TKnownCompId>(
         cid: CompId,
         matrix: TMatrixMinimal<TPreviewIdByComponentId[CompId]> | TMatrixMinimal<TPreviewIdByComponentId[CompId]>[],
-    ): TestBuilder {
+    ): PreviewTestBuilder {
         return this._add(cid, matrix, false);
     }
 
@@ -54,7 +54,7 @@ export class TestBuilder {
     }
 
     buildTests() {
-        const ctx: TestBuilderContext = new TestBuilderContext(screenshotsDirAbsPath);
+        const ctx: PreviewTestBuilderContext = new PreviewTestBuilderContext(previewScreenshotsDirAbsPath);
         this.cfgByComponent.forEach((matrixArr, componentId) => {
             matrixArr.forEach((matrix) => {
                 createTestsForSingleComponentId({ componentId, matrix }, ctx);
@@ -64,7 +64,7 @@ export class TestBuilder {
     }
 }
 
-function createTestsForSingleComponentId(builderParams: { componentId: TComponentId; matrix: TMatrixFull }, ctx: TestBuilderContext) {
+function createTestsForSingleComponentId(builderParams: { componentId: TComponentId; matrix: TMatrixFull }, ctx: PreviewTestBuilderContext) {
     const { componentId, matrix } = builderParams;
     const themeArr = matrix.theme || THEMES.allExceptVanillaThunder;
     const supportedSkins = matrix.skins || [];
@@ -87,6 +87,7 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                     return;
                 }
                 const testFn = matrix.only ? test.only : test;
+
                 testFn(testName, async ({ previewPage, browserName }) => {
                     if (matrix.onlyChromium) {
                         test.skip(browserName !== TEngine.chromium, `This test is "${TEngine.chromium}"-only`);
