@@ -185,7 +185,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
     const deadlineWidth = positionConfig.width - positionConfig.taskBarWidth;
     const isMissingDeadline = Math.max(deadlineWidth, 0) !== 0;
     return (
-        <Tooltip renderContent={ renderTaskStatus } openDelay={ 500 } cx={ css.container } color="neutral">
+        <Tooltip renderContent={ renderTaskStatus } openDelay={ 1000 } cx={ css.container } color="neutral">
             <div
                 key={ item.id }
                 className={ css.taskBarWrapper }
