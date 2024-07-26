@@ -28,7 +28,7 @@ const defaultColors = {
     topDayTextColor: '#2c2f3c',
     weekendTextColor: '#ACAFBF',
     weekendCellBackgroundColor: '#F5F6FA',
-    todayLineColor: '#F37B94',
+    todayLineColor: '#FBB6B6',
     evenPeriodCellBackgroundColor: '#FFFFFF',
     cellBorderColor: timelinePrimitives.defaultColors.defaultLineColor,
     cellBackgroundColor: timelinePrimitives.defaultColors.defaultRectangleColor,
@@ -68,7 +68,7 @@ const drawBorderForTopCell = ({
 }: CanvasDrawBorderForTopCell) => {
     const y = getCanvasVerticalCenter(canvasHeight) - 1;
     timelinePrimitives.drawHorizontalLine({ context, x1: scaleBar.left, x2: scaleBar.right + 1, y, color, width });
-    timelinePrimitives.drawVerticalLine({ context, x: scaleBar.left + + 0.5, y2: y, color, width });
+    timelinePrimitives.drawVerticalLine({ context, x: scaleBar.left, y2: y, color, width });
 };
 
 const drawBottomGridLine = ({
@@ -79,7 +79,7 @@ const drawBottomGridLine = ({
     canvasHeight,
 }: CanvasDrawBottomGridLine) => {
     const y = getCanvasVerticalCenter(canvasHeight);
-    timelinePrimitives.drawVerticalLine({ context, x: scaleBar.left + 0.5, y1: y, y2: canvasHeight - 2, width, color });
+    timelinePrimitives.drawVerticalLine({ context, x: scaleBar.left, y1: y, y2: canvasHeight - 1, width, color });
 };
 
 const drawCellBackground = ({
