@@ -3,9 +3,14 @@ import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayOrWeekendProps, CanvasDr
     CanvasDrawWeekendProps, CustomCanvasDrawTimelineElementProps } from './types';
 import { timelinePrimitives } from './primitives';
 
+const defaultLineWidth = {
+    todayLineWidth: 3,
+    lineWidth: 1,
+};
+
 const defaultColors = {
     defaultLineColor: '#eee',
-    todayLineColor: '#F37B94',
+    todayLineColor: '#FBB6B6',
     holidayCellColor: 'rgba(249, 209, 204, 0.09)',
     weekendCellColor: '#F5F6FA',
 };
@@ -41,21 +46,27 @@ const drawHolidayOrWeekend = ({
     }
 };
 
-const drawMinutes = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
+const drawMinutes = ({
+    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.lineWidth,
+}: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleMinutes().forEach((w) => {
-        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight, width: lineWidth });
     });
 };
 
-const drawQuoterHours = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
+const drawQuoterHours = ({
+    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.lineWidth,
+}: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleQuoterHours().forEach((w) => {
-        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight });
+        (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight, width: lineWidth });
     });
 };
 
-const drawHours = ({ context, timelineTransform, canvasHeight, drawLine: customDrawLine }: CustomCanvasDrawTimelineElementProps) => {
+const drawHours = ({
+    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth,
+}: CustomCanvasDrawTimelineElementProps) => {
     const pxPerHour = (timelineTransform.pxPerMs * msPerDay) / 24;
-    const width = pxPerHour > 100 ? 2 : 1;
+    const width = lineWidth ?? pxPerHour > 100 ? 2 : 1;
 
     timelineTransform.getVisibleHours().forEach((w) => {
         (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, width, y2: canvasHeight });
@@ -111,11 +122,18 @@ const drawYears = ({ context, timelineTransform, canvasHeight, drawLine: customD
     });
 };
 
-const drawToday = ({ context, timelineTransform, canvasHeight, todayLineColor = defaultColors.todayLineColor }: CanvasDrawGridTodayLineProps) => {
+const drawToday = ({
+    context,
+    timelineTransform,
+    canvasHeight,
+    todayLineWidth = defaultLineWidth.todayLineWidth,
+    todayLineColor = defaultColors.todayLineColor,
+}: CanvasDrawGridTodayLineProps) => {
     context.strokeStyle = todayLineColor;
     context.beginPath();
     context.moveTo(timelineTransform.getX(new Date()), 0);
     context.lineTo(timelineTransform.getX(new Date()), canvasHeight);
+    context.lineWidth = todayLineWidth;
     context.stroke();
 };
 
@@ -150,4 +168,5 @@ export const timelineGrid = {
     shouldDrawMonths,
 
     defaultColors,
+    defaultLineWidth,
 };

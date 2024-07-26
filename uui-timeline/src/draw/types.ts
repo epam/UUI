@@ -53,6 +53,7 @@ export interface CanvasDrawTimelineElementProps extends CommonCanvasDrawProps {
 
 export interface CanvasDrawGridTodayLineProps extends CanvasDrawTimelineElementProps {
     todayLineColor?: string;
+    todayLineWidth?: number;
 }
 
 export interface CanvasDrawBottomBorderScaleProps extends CanvasDrawTimelineElementProps {
@@ -61,6 +62,7 @@ export interface CanvasDrawBottomBorderScaleProps extends CanvasDrawTimelineElem
 
 export interface CustomCanvasDrawTimelineElementProps extends CanvasDrawTimelineElementProps {
     drawLine?: (props: CanvasDrawVerticalLineProps) => void;
+    lineWidth?: number;
 }
 
 export interface CanvasDrawHolidayProps extends CanvasDrawCellProps {
