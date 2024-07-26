@@ -21,13 +21,13 @@ interface IExploreTopBlockItem {
 }
 
 const topExploreBlocks: IExploreTopBlockItem[] = [
-    { id: 0, icon: { element: StarsIcon, name: 'Stars' }, caption: 'Figma components aligned with React', text: 'Guidelines, examples, do/don’s recommendations and many other useful guides for designer and developer', footer: null },
+    { id: 0, icon: { element: StarsIcon, name: 'Stars' }, caption: 'Figma components aligned with React', text: 'Boxed solution with Figma and React libraries, enabling to seamlessly integrate design with front-end and accelerate both', footer: null },
     {
         id: 1,
         icon: { element: flagIcon, name: 'Flag' },
         caption: 'Integrated solutions & front-end accelerating facilities',
-        text: 'Common services, state-management primitives: Forms with validation,'
-            + ' Lists and Tables with lazy-loading',
+        text: 'Common services, state-management facilities, complex solutions like Forms with validation,'
+            + ' Lists and Tables with lazy-loading and editing',
         footer: null,
     },
     { id: 2, icon: { element: windows, name: 'Windows' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/documents?category=components&id=accordion&mode=doc' } },
@@ -41,7 +41,7 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
             <br />
             Allows deep customization to build your own brand UI components set on top
         </span>,
-        footer: { linkCaption: 'Open builder', href: '/documents?id=overview-themes&mode=doc&category=themes' },
+        footer: { linkCaption: 'Open guide', href: '/documents?id=overview-themes&mode=doc&category=themes' },
     },
 ];
 
@@ -60,7 +60,7 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         icon: { element: actionLockIcon, name: 'Lock' },
         caption: 'Open Source',
         captionBadge: { icon: OpenSourceIcon, caption: 'MIT License' },
-        text: 'Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects',
+        text: 'Open for contribution, actively evolving, supported, and used by 50+ EPAM production projects',
         footer: [
             { linkCaption: 'Figma Community', href: 'https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7', color: 'accent' },
             { linkCaption: 'Github', href: 'https://github.com/epam/UUI', color: 'accent' },
@@ -70,7 +70,7 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         icon: { element: notificationHelpIcon, name: 'Help' },
         caption: 'Support',
         captionBadge: null,
-        text: 'Ongoing support during project live cycle. Access to a dedicated UUI team of architect, designers and developers',
+        text: 'Ongoing support during project live cycle. Access to a dedicated UUI team of architect, designers and developers on demand',
         footer: [
             { linkCaption: 'Contact Us', href: 'mailto:AskUUI@epam.com', color: 'primary' },
         ],
