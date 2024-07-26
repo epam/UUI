@@ -154,7 +154,8 @@ export function IntroBlock() {
                             web applications development
                         </Text>
                         <Text fontSize="18" lineHeight="24" fontWeight="400" color="secondary" cx={ css.introHeaderLowerText }>
-                            EPAM UUI is a complete set of components, guidelines, blueprints, examples, to build your apps on top of Figma, React and TypeScript
+                            EPAM UUI is a comprehensive suite of components, all-in-one solutions, facilities,
+                            and guidelines to build your apps on top of Figma, React and TypeScript
                         </Text>
                         <FlexRow columnGap="12" cx={ css.infoBlockWrapper }>
                             <Anchor cx={ css.infoBlock } href="/documents?id=gettingStartedForDesigners&category=forDesigners&mode=doc">
