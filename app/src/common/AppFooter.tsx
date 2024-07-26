@@ -19,12 +19,14 @@ const footerLinks = {
             { href: 'https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7', name: 'Figma' },
             { href: 'https://github.com/epam/UUI', name: 'GitHub' },
             { href: 'https://uui.epam.com/documents?id=releaseNotes', name: 'Release notes' },
+            { href: 'https://github.com/epam/UUI/blob/main/CONTRIBUTING.md', name: 'Contribution' },
         ] },
     community: { caption: 'Community',
         links: [
             { href: 'https://github.com/epam/UUI/discussions', name: 'Github Discussions' },
             { href: 'https://teams.microsoft.com/l/team/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/conversations?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d', name: 'Microsoft Teams' },
             { href: 'https://wearecommunity.io/communities/uui', name: 'We Are Community' },
+            { href: 'mailto:AskUUI@epam.com', name: 'Contact us' },
         ] },
 };
 
@@ -53,10 +55,10 @@ export function AppFooter() {
                     </Anchor>
                     <Text color="disabled" cx={ css.sponsorText }>Sponsored by EPAM Licensed under MIT License</Text>
                     <FlexRow columnGap={ 18 } cx={ css.bottomLinks }>
-                        <Anchor href="/" target="_blank">
+                        <Anchor href="https://privacy.epam.com/core/interaction/showpolicy?type=CommonPrivacyPolicy" target="_blank">
                             <Text color="white">Privacy Policy</Text>
                         </Anchor>
-                        <Anchor href="/" target="_blank">
+                        <Anchor href="https://www.epam.com/cookie-policy?_gl=1*54xs4n*_gcl_au*OTQ1MzU0OTExLjE3MTg5MDQ1NzU.*_ga*NDA2MDc0MTQwMDAzNTczMzMwMw..*_ga_WBGDS7S6W6*MTcyMjAwNzQyMS4yOS4wLjE3MjIwMDc0MjEuNjAuMC4w" target="_blank">
                             <Text color="white">Cookies Policy</Text>
                         </Anchor>
                     </FlexRow>

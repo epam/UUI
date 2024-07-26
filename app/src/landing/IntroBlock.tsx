@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
-import { Anchor, FlexCell, FlexRow, IconContainer, Text, FilterPickerBody, Panel, TabButton, Badge, Tooltip, Button, LabeledInput, TextInput, NumericInput, Switch, DatePicker, TimePicker, SuccessAlert } from '@epam/uui';
-import { DataQueryFilter, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import {
+    Anchor,
+    FlexCell,
+    FlexRow,
+    IconContainer,
+    Text,
+    FilterPickerBody,
+    Panel,
+    TabButton,
+    Badge,
+    Tooltip,
+    Button,
+    LabeledInput,
+    TextInput,
+    NumericInput,
+    Switch,
+    DatePicker,
+    TimePicker,
+    SuccessAlert,
+    SuccessNotification,
+    DropdownMenuBody,
+    DropdownMenuButton,
+    Dropdown,
+    FlexSpacer,
+    BadgeProps,
+} from '@epam/uui';
+import { DataQueryFilter, DropdownBodyProps, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import cx from 'classnames';
 import { getCurrentTheme } from '../helpers';
 import { Location } from '@epam/uui-docs';
@@ -9,7 +34,12 @@ import { ReactComponent as BracketsIcon } from '../icons/brackets.svg';
 import { ReactComponent as BlurLightImage } from '../icons/intro-blur-light-theme.svg';
 import { ReactComponent as BlurDarkImage } from '../icons/intro-blur-dark-theme.svg';
 import { ReactComponent as infoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
+import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './IntroBlock.module.scss';
+
+const dropdownMenuItems = [
+    { id: 1, caption: 'Production', color: 'info' }, { id: 2, caption: 'Contributor', color: 'success' },
+];
 
 export function IntroBlock() {
     const theme = getCurrentTheme();
@@ -19,12 +49,26 @@ export function IntroBlock() {
 
     const [value, onValueChange] = useState<string[]>(['c-AN', 'BV', '1546102']);
     const [tabValue, onTabValueChange] = useState('All');
-    const [isBadgeOpen, setIsBadgeOpen] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(dropdownMenuItems[0]);
     const [textValue, setTextValue] = useState('');
     const [numValue, setNumValue] = useState(0);
     const [switchValue, setSwitchValue] = useState(true);
     const [dateValue, setDateValue] = useState('');
     const [timeValue, setTimeValue] = useState(null);
+
+    const handleSuccess = (text: string) => {
+        svc.uuiNotifications
+            .show(
+                (props: INotification) => (
+                    <SuccessNotification { ...props }>
+                        <Text size="36" fontSize="14">
+                            { text }
+                        </Text>
+                    </SuccessNotification>
+                ),
+            )
+            .catch(() => null);
+    };
 
     const dataSource = useLazyDataSource<Location, string, DataQueryFilter<Location>>(
         {
@@ -70,6 +114,31 @@ export function IntroBlock() {
         );
     };
 
+    const handleDropdown = (id: number) => {
+        setSelectedItem(dropdownMenuItems.filter((item) => item.id === id)[0]);
+    };
+
+    const statusDot = (color: string) => <span className={ css.dot } style={ { backgroundColor: `var(--uui-${color}-50)` } } />;
+
+    const renderDropdownBody = (props: DropdownBodyProps) => {
+        return (
+            <DropdownMenuBody { ...props }>
+                {dropdownMenuItems.map((item) => (
+                    <DropdownMenuButton
+                        key={ item.id }
+                        caption={ item.caption }
+                        icon={ () => statusDot(item.color) }
+                        onClick={ () => {
+                            handleDropdown(item.id);
+                            props.onClose();
+                        } }
+                        isSelected={ item.id === selectedItem.id }
+                    />
+                ))}
+            </DropdownMenuBody>
+        );
+    };
+
     return (
         <div className={ css.root }>
             <FlexRow cx={ css.info }>
@@ -85,7 +154,8 @@ export function IntroBlock() {
                             web applications development
                         </Text>
                         <Text fontSize="18" lineHeight="24" fontWeight="400" color="secondary" cx={ css.introHeaderLowerText }>
-                            EPAM UUI is a complete set of components, guidelines, blueprints, examples, to build your apps on top of Figma, React and TypeScript
+                            EPAM UUI is a comprehensive suite of components, all-in-one solutions, facilities,
+                            and guidelines to build your apps on top of Figma, React and TypeScript
                         </Text>
                         <FlexRow columnGap="12" cx={ css.infoBlockWrapper }>
                             <Anchor cx={ css.infoBlock } href="/documents?id=gettingStartedForDesigners&category=forDesigners&mode=doc">
@@ -114,11 +184,26 @@ export function IntroBlock() {
                                     <TabButton caption="New" isLinkActive={ tabValue === 'New' } onClick={ () => onTabValueChange('New') } size="60" />
                                 </FlexRow>
                                 <FlexRow cx={ css.infoComponentsInnerBlock }>
-                                    <Badge color="success" caption="Production" isDropdown={ true } fill="outline" size="30" indicator={ true } onClick={ () => setIsBadgeOpen(!isBadgeOpen) } isOpen={ isBadgeOpen } />
+                                    <Dropdown
+                                        renderBody={ renderDropdownBody }
+                                        renderTarget={ (props) => (
+                                            <Badge
+                                                { ...props }
+                                                dropdownIcon={ navigationDownIcon }
+                                                color={ selectedItem.color as BadgeProps['color'] }
+                                                fill="outline"
+                                                caption={ selectedItem.caption }
+                                                size="30"
+                                                indicator={ true }
+                                            />
+                                        ) }
+                                        placement="bottom-start"
+                                    />
+                                    <FlexSpacer />
                                     <Tooltip content="Info tooltip" placement="top">
                                         <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
-                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => {} } />
+                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Watch more clicked') } />
                                 </FlexRow>
                             </Panel>
                             <Panel background="surface-main" shadow={ true } cx={ css.componentsMiddleWrapper }>
@@ -140,7 +225,7 @@ export function IntroBlock() {
                                     </LabeledInput>
                                 </FlexRow>
                             </Panel>
-                            <SuccessAlert size="36" onClose={ () => alert('close action') } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
+                            <SuccessAlert size="36" onClose={ () => handleSuccess('onClose clicked') } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
                                 <Text size="30">Invitation sent!</Text>
                             </SuccessAlert>
                         </div>

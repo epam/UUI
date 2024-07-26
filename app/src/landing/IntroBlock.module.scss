@@ -38,6 +38,7 @@
                 z-index: 1;
 
                 .intro-header {
+                    padding: 0;
                     font-size: 72px;
                     line-height: 72px;
                     font-weight: 700;
@@ -231,6 +232,7 @@
         .info-start-wrapper {
             .info-start {
                 .info-block:hover, .info-block:active {
+                    background-color: var(--uui-surface-main);
                     transition: 300ms ease-out;
                     border-color: #773CEC;
 
@@ -280,4 +282,10 @@
             }
         }
     }
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
 }
