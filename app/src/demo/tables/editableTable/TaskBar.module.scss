@@ -34,9 +34,10 @@
 }
 
 .taskBar {
-    display: inline-block;
     position: relative;
     height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .taskBarDeadline {
