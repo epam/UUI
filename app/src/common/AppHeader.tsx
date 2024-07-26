@@ -196,7 +196,7 @@ export function AppHeader() {
                 priority: 3,
                 render: () => (
                     <Dropdown
-                        renderTarget={ (props) => <LinkButton icon={ FigmaIcon } cx={ css.icon } size="36" { ...props } /> }
+                        renderTarget={ (props) => <LinkButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } size="30" { ...props } /> }
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
                                 <DropdownMenuHeader caption="Open in" />
