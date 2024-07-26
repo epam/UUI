@@ -108,6 +108,10 @@ export interface TimelineScaleFonts {
 export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps, TimelineScaleFonts {
     visibility: number;
     periodTextColor?: string;
+    cellBorderWidth?: number;
+    cellBorderColor?: string;
+    cellBackgroundColor?: string;
+    evenPeriodCellBackgroundColor?: string;
 }
 
 export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProps {
@@ -117,6 +121,7 @@ export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProp
 
 export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDrawPeriodWithTodayProps {
     weekendTextColor?: string;
+    weekendCellBackgroundColor?: string;
 }
 
 export interface CanvasDrawTopDaysProps extends CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps {
@@ -148,6 +153,8 @@ export interface CanvasDrawPeriodFragmentProps extends CanvasDrawTimelineHeaderP
 export interface CanvasDrawBorderForTopCell extends CanvasDrawProps {
     canvasHeight?: number;
     scaleBar: ScaleBar;
+    width?: number;
+    color?: string;
 }
 
 export interface CanvasDrawCellBackground extends CanvasDrawProps {
@@ -161,4 +168,6 @@ export interface CanvasDrawCellBackground extends CanvasDrawProps {
 export interface CanvasDrawBottomGridLine extends CanvasDrawProps {
     canvasHeight?: number;
     scaleBar: ScaleBar;
+    width?: number;
+    color?: string;
 }

@@ -22,6 +22,11 @@ export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFo
     topDayTextColor?: string;
     weekendTextColor?: string;
     todayLineColor?: string;
+    cellBorderColor?: string;
+    cellBorderWidth?: number;
+    cellBackgroundColor?: string;
+    evenPeriodCellBackgroundColor?: string;
+    weekendCellBackgroundColor?: string;
 
     renderArrowIcon?: (direction: 'left' | 'right') => React.ReactNode;
     renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
@@ -52,6 +57,12 @@ export function TimelineScale({
     topDayTextColor = timelineScale.defaultColors.topDayTextColor,
     weekendTextColor = timelineScale.defaultColors.weekendTextColor,
     todayLineColor = timelineScale.defaultColors.todayLineColor,
+    cellBorderColor = timelineScale.defaultColors.cellBorderColor,
+    cellBorderWidth = timelineScale.defaultWidth.cellBorderWidth,
+    cellBackgroundColor = timelineScale.defaultColors.cellBackgroundColor,
+    evenPeriodCellBackgroundColor = timelineScale.defaultColors.evenPeriodCellBackgroundColor,
+    weekendCellBackgroundColor = timelineScale.defaultColors.weekendCellBackgroundColor,
+
     drawPeriod = timelineScale.drawPeriod,
     drawMinutes = timelineScale.drawMinutes,
     drawRemainingHours = timelineScale.drawRemainingHours,
@@ -117,36 +128,42 @@ export function TimelineScale({
             timelineTransform: t,
             periodTextColor,
             canvasHeight,
+            cellBackgroundColor,
             ...fonts,
         };
 
-        drawPeriod({ ...timelineScale.getMinutesScaleRange(), draw: drawMinutes, ...commonProps });
+        const withGridLinesProps = { ...commonProps, cellBorderColor, cellBorderWidth };
+        drawPeriod({ ...timelineScale.getMinutesScaleRange(), draw: drawMinutes, ...withGridLinesProps });
         drawPeriod({ ...timelineScale.getRemainingHoursScaleRange(), draw: drawRemainingHours, ...commonProps });
         drawPeriod({ ...timelineScale.getHoursScaleRange(), draw: (...props) => drawHours(...props), ...commonProps });
         drawPeriod({
-            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, drawToday }),
+            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, weekendCellBackgroundColor, drawToday }),
             ...timelineScale.getTopDaysScaleRange(),
-            ...commonProps,
+            ...withGridLinesProps,
         });
         drawPeriod({
-            draw: (props) => drawDays({ ...props, weekendTextColor, todayLineColor, drawToday }),
+            draw: (props) => drawDays({ ...props, weekendTextColor, todayLineColor, weekendCellBackgroundColor, drawToday }),
             ...timelineScale.getDaysScaleRange(),
-            ...commonProps,
+            ...withGridLinesProps,
         });
-        drawPeriod({ ...timelineScale.getTopMonthsScaleRange(), draw: drawTopMonths, ...commonProps });
+        drawPeriod({
+            draw: (props) => drawTopMonths({ ...props, evenPeriodCellBackgroundColor }),
+            ...timelineScale.getTopMonthsScaleRange(),
+            ...withGridLinesProps,
+        });
         drawPeriod({
             draw: (props) => drawWeeks({ ...props, todayLineColor, drawToday }),
             ...timelineScale.getWeeksScaleRange(),
-            ...commonProps,
+            ...withGridLinesProps,
         });
         drawPeriod({
             draw: (props) => drawBottomMonths({ ...props, todayLineColor, drawToday }),
             ...timelineScale.getBottomMonthsScaleRange(),
-            ...commonProps });
+            ...withGridLinesProps });
         drawPeriod({
-            draw: (props) => drawYears({ ...props, todayLineColor, drawToday }),
+            draw: (props) => drawYears({ ...props, todayLineColor, drawToday, evenPeriodCellBackgroundColor }),
             ...timelineScale.getYearsScaleRange(),
-            ...commonProps,
+            ...withGridLinesProps,
         });
     };
 
