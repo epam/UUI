@@ -23,6 +23,8 @@ export interface TimelineGridProps extends TimelineCanvasProps {
     todayLineColor?: string;
     weekendCellColor?: string;
     holidayCellColor?: string;
+    todayLineWidth?: number;
+    lineWidth?: number;
 }
 
 export function TimelineGrid({ 
@@ -44,6 +46,8 @@ export function TimelineGrid({
     todayLineColor = timelineGrid.defaultColors.todayLineColor,
     weekendCellColor = timelineGrid.defaultColors.weekendCellColor,
     holidayCellColor = timelineGrid.defaultColors.holidayCellColor,
+    todayLineWidth = timelineGrid.defaultLineWidth.todayLineWidth,
+    lineWidth = timelineGrid.defaultLineWidth.lineWidth,
     ...restProps
 }: TimelineGridProps) {
     const canvasHeight = restProps.canvasHeight ?? 60;
@@ -55,22 +59,25 @@ export function TimelineGrid({
         const pxPerDay = timelineTransform.pxPerMs * msPerDay;
 
         const drawProps = { context, timelineTransform, canvasHeight };
-        const options = {
-            ...drawProps,
-            canvasHeight,
-            height: canvasHeight,
-            drawLine: drawLine ?? timelinePrimitives.drawVerticalLine,
-        };
 
         if (timelineGrid.shouldDrawHolidays(pxPerDay)) {
             (drawHolidays ?? timelineGrid.drawHolidays)({
-                ...options,
+                ...drawProps,
+                canvasHeight,
                 drawWeekend: drawWeekend ?? timelineGrid.drawWeekend,
                 drawHoliday: drawHoliday ?? timelineGrid.drawHoliday,
                 weekendCellColor,
                 holidayCellColor,
             });
         }
+
+        const options = {
+            ...drawProps,
+            canvasHeight,
+            height: canvasHeight,
+            drawLine: drawLine ?? timelinePrimitives.drawVerticalLine,
+            lineWidth,
+        };
 
         if (timelineGrid.shouldDrawMinutes(pxPerDay)) {
             (drawMinutes ?? timelineGrid.drawMinutes)(options);
@@ -98,7 +105,7 @@ export function TimelineGrid({
         }
 
         (drawYears ?? timelineGrid.drawYears)(options);
-        (drawToday ?? timelineGrid.drawToday)({ ...drawProps, todayLineColor });
+        (drawToday ?? timelineGrid.drawToday)({ ...drawProps, todayLineColor, todayLineWidth });
     };
 
     return (
