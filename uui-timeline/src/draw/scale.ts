@@ -497,10 +497,10 @@ const drawYears = ({
         const line = (visibility + isBottom) * textMoveAmount;
         if (isBottom) {
             const y = canvasHeight;
-            timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1 });
+            timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1, color: cellBorderColor, width: cellBorderWidth });
             drawCellBackground({ context, scaleBar: w, canvasHeight, height: canvasHeight, color: cellBackgroundColor });
             (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor });
-            timelinePrimitives.drawVerticalLine({ context, x: w.left + 0.5, y2: y - 1 });
+            timelinePrimitives.drawVerticalLine({ context, x: w.left + 0.5, y2: y - 1, color: cellBorderColor, width: cellBorderWidth });
         } else {
             const color = w.leftDate.getFullYear() % 2 === 0
                 ? cellBackgroundColor
