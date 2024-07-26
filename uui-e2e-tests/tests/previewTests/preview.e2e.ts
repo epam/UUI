@@ -1,4 +1,4 @@
-import { TestBuilder, TComponentId, SKINS } from '../framework';
+import { PreviewTestBuilder, TComponentId, SKINS } from '../../framework';
 import {
     TAccordionPreview, TAlertPreview, TAvatarStackPreview, TBadgePreview, TButtonPreview,
     TCheckboxPreview, TCountIndicatorPreview, TDatePickerPreview, TDropdownContainerPreview,
@@ -7,7 +7,7 @@ import {
     TPickerInputPreview, TRadioGroupPreview, TRadioInputPreview, TRangeDatePickerPreview,
     TSwitchPreview, TTabButtonPreview, TTagPreview, TTextAreaPreview, TTextInputPreview,
     TTextPreview, TTooltipPreview, TVerticalTabButtonPreview,
-} from '../framework/data/previewIds';
+} from '../../framework/data/previewIds';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,
@@ -16,7 +16,7 @@ const {
     multiSwitch, paginator, mainMenu, notificationCard, tooltip, dropdownContainer,
 } = TComponentId;
 
-const builder = new TestBuilder();
+const builder = new PreviewTestBuilder();
 
 builder
     .add(badge, [

@@ -186,6 +186,7 @@
         @media (min-width: 769px) {
             .top-block-wrapper {
                 .top-block-panel:hover {
+                    background-color: var(--uui-surface-main);
                     border: 3px solid var(--uui-primary-50);
                     transition: 300ms ease-out;
                 }
@@ -193,6 +194,7 @@
 
             .bottom-block-wrapper {
                 .bottom-block-panel:hover {
+                    background-color: var(--uui-surface-main);
                     border: 3px solid var(--uui-success-50);
                     transition: 300ms ease-out;
 

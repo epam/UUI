@@ -103,6 +103,15 @@
             height: 24px;
         }
 
+        &.figma-icon {
+            :global(.uui-icon):nth-of-type(2) {
+                svg {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+        }
+
         &.logo svg {
             width: 168px;
             height: 60px;
