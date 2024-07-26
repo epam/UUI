@@ -16,8 +16,8 @@ import {
 } from './types';
 
 const defaultFonts = {
-    meridiemFont: '10px Sans Semibold',
-    periodFont: '14px Sans Regular',
+    meridiemFont: 'normal normal 400 12px Source Sans Pro',
+    periodFont: 'normal normal 600 14px Source Sans Pro',
     currentPeriodFont: '14px Sans Semibold',
 };
 
@@ -171,7 +171,7 @@ const drawPeriodText = ({
 
     if (superscript) {
         context.font = meridiemFont;
-        context.fillText(superscript, left + padding + headerTextWidth + 3, (line - 1) * 24 + 20);
+        context.fillText(superscript, left + padding + headerTextWidth + (text.length === 1 ? 3 : 4), line * 24);
     }
 };
 
