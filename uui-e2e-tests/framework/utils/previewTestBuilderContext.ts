@@ -2,7 +2,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { Logger } from './logger';
 import { PLATFORM } from '../constants';
-import { getFailedTestNamesFromLastRun } from './failedTestsUtils';
 import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
 import * as console from 'console';
 import { TEngine } from '../types';
@@ -10,26 +9,21 @@ import { screenshotSizeLimitKb } from '../../playwright.config';
 
 const {
     isCi,
-    UUI_TEST_PARAM_ONLY_FAILED,
     UUI_TEST_PARAM_CHECK_ISSUES,
     UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR,
 } = readUuiSpecificEnvVariables();
 
 type TIssues = { msg: string; exit: boolean }[];
 
-export class TestBuilderContext {
+export class PreviewTestBuilderContext {
     private seenTestNames: Set<string> = new Set();
     private onlyChromiumTests: Set<string> = new Set();
-    private failedTestNames: Set<string>;
 
     constructor(private screenshotsDir: string) {
-        this.failedTestNames = getFailedTestNamesFromLastRun();
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     shouldSkipTest(testName: string) {
-        if (UUI_TEST_PARAM_ONLY_FAILED) {
-            return !this.failedTestNames.has(testName);
-        }
         return false;
     }
 
