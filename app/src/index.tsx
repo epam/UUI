@@ -9,7 +9,7 @@ import { svc } from './services';
 import App from './App';
 import { getApi, TApi, AppContext, getThemeContext } from './data';
 import { getAppRootNode } from './helpers/appRootUtils';
-import { DocItem } from './documents/structure';
+import { DocItem, items as itemsStructure } from './documents/structure';
 import { TypeRefPage } from './common';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
@@ -74,7 +74,8 @@ function UuiEnhancedApp() {
         Object.assign(svc, services);
         async function initServices() {
             const docGenExports = await svc.api.getDocsGenExports();
-            const apiRefItems = getApiRefItems(docGenExports.content);
+            const items = getApiRefItems(docGenExports.content);
+            const apiRefItems = itemsStructure.concat(items);
             const themeContext = await getThemeContext();
             services.uuiApp = { ...themeContext, apiRefItems };
 
@@ -83,7 +84,7 @@ function UuiEnhancedApp() {
             setIsLoaded(true);
         }
         initServices();
-    }, [services]);
+    }, [services, isLoaded]);
 
     if (isLoaded) {
         return (
