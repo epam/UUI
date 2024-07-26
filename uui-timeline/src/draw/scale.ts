@@ -13,6 +13,7 @@ import {
     CanvasDrawTopDaysProps,
     CanvasScaleRange,
     CanvasDrawBottomGridLine,
+    CanvasDrawWeekendHoursCell,
 } from './types';
 
 const defaultFonts = {
@@ -93,7 +94,7 @@ const drawCellBackground = ({
         context,
         x: scaleBar.left,
         y,
-        width: scaleBar.right - scaleBar.left + + 0.5,
+        width: scaleBar.right - scaleBar.left + 1,
         height,
         color,
     });
@@ -187,12 +188,16 @@ const drawMinutes = ({
     cellBorderColor = defaultColors.cellBorderColor,
     cellBorderWidth = defaultWidth.cellBorderWidth,
     cellBackgroundColor = defaultColors.cellBackgroundColor,
+    weekendCellBackgroundColor = defaultColors.weekendCellBackgroundColor,
+
     ...restProps
 }: CanvasDrawPeriodPartProps) => {
     timelineTransform.getVisibleMinutes().forEach((w) => {
+        const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
+        const color = isHoliday ? weekendCellBackgroundColor : cellBackgroundColor;
         const text = w.leftDate.getHours().toString().padStart(2, '0') + ':' + w.leftDate.getMinutes().toString().padStart(2, '0');
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-        drawCellBackground({ context, scaleBar: w, canvasHeight, y: getBottomCellY(canvasHeight), color: cellBackgroundColor });
+        drawCellBackground({ context, scaleBar: w, canvasHeight, y: getBottomCellY(canvasHeight), color });
         drawPeriodText({
             context,
             timelineTransform,
@@ -208,6 +213,87 @@ const drawMinutes = ({
     });
 };
 
+const drawHoursCells = ({
+    context,
+    scaleBar,
+    timelineTransform,
+    canvasHeight,
+    cellBackgroundColor = defaultColors.cellBackgroundColor,
+    weekendCellBackgroundColor = defaultColors.weekendCellBackgroundColor,
+}: CanvasDrawWeekendHoursCell) => {
+    const leftDate = new Date(scaleBar.leftDate);
+    leftDate.setDate(leftDate.getDate() - 1);
+    const isLeftHoliday = timelineTransform.isHoliday(leftDate) || timelineTransform.isWeekend(leftDate);
+    const isCurrentHoliday = timelineTransform.isHoliday(scaleBar.leftDate) || timelineTransform.isWeekend(scaleBar.leftDate);
+    const isRightHoliday = timelineTransform.isHoliday(scaleBar.rightDate) || timelineTransform.isWeekend(scaleBar.rightDate);
+
+    if (isLeftHoliday && isCurrentHoliday) {
+        if (isRightHoliday || scaleBar.leftDate.getHours() < 23) {
+            drawCellBackground({ context, scaleBar, canvasHeight, y: getBottomCellY(canvasHeight), color: weekendCellBackgroundColor });
+            return;
+        }
+
+        const width = (scaleBar.right - scaleBar.left) + 1;
+        const grad = context.createLinearGradient(scaleBar.left, 0, scaleBar.right + width + 1, 0);
+        grad.addColorStop(0, weekendCellBackgroundColor);
+        grad.addColorStop(1, cellBackgroundColor);
+        timelinePrimitives.drawRectangle({
+            context,
+            x: scaleBar.left,
+            y: getBottomCellY(canvasHeight),
+            width: (width * 2),
+            height: canvasHeight / 2 - 1,
+            color: grad,
+        });
+        return;
+    }
+    if (isCurrentHoliday) {
+        if (scaleBar.leftDate.getHours() >= 1) {
+            drawCellBackground({ context, scaleBar, canvasHeight, y: getBottomCellY(canvasHeight), color: weekendCellBackgroundColor });
+            return;
+        }
+
+        if (scaleBar.leftDate.getHours() === 0) {
+            const width = (scaleBar.right - scaleBar.left) + 1;
+            const grad = context.createLinearGradient(scaleBar.left - width, 0, scaleBar.right + 1, 0);
+            grad.addColorStop(0, cellBackgroundColor);
+            grad.addColorStop(1, weekendCellBackgroundColor);
+
+            timelinePrimitives.drawRectangle({
+                context,
+                x: scaleBar.left - width,
+                y: getBottomCellY(canvasHeight),
+                width: (width * 2),
+                height: canvasHeight / 2 - 1,
+                color: grad,
+            });
+        }
+
+        if (!isRightHoliday) {
+            if (scaleBar.leftDate.getHours() < 23) {
+                drawCellBackground({ context, scaleBar, canvasHeight, y: getBottomCellY(canvasHeight), color: weekendCellBackgroundColor });
+                return;
+            }
+        }
+        return;
+    }
+
+    if (isLeftHoliday) {
+        if (scaleBar.leftDate.getHours() >= 1) {
+            drawCellBackground({ context, scaleBar, canvasHeight, y: getBottomCellY(canvasHeight), color: cellBackgroundColor });
+        }
+        return;
+    }
+
+    if (isRightHoliday) {
+        if (scaleBar.leftDate.getHours() < 23) {
+            drawCellBackground({ context, scaleBar, canvasHeight, y: getBottomCellY(canvasHeight), color: cellBackgroundColor });
+        }
+        return;
+    }
+    drawCellBackground({ context, scaleBar, canvasHeight, y: getBottomCellY(canvasHeight), color: cellBackgroundColor });
+};
+
 const drawRemainingHours = ({
     context,
     timelineTransform,
@@ -215,10 +301,13 @@ const drawRemainingHours = ({
     periodTextColor = defaultColors.periodTextColor,
     canvasHeight,
     cellBackgroundColor = defaultColors.cellBackgroundColor,
+    weekendCellBackgroundColor = defaultColors.weekendCellBackgroundColor,
     ...restProps
 }: CanvasDrawPeriodPartProps) => {
     timelineTransform.getVisibleHours()
-        .forEach((w) => drawCellBackground({ context, scaleBar: w, canvasHeight, y: getBottomCellY(canvasHeight), color: cellBackgroundColor }));
+        .forEach((w) => {
+            drawHoursCells({ context, scaleBar: w, timelineTransform, canvasHeight, cellBackgroundColor, weekendCellBackgroundColor });
+        });
 
     timelineTransform.getVisibleHours()
         .filter((i) => i.leftDate.getHours() % 3 !== 0)
@@ -249,6 +338,8 @@ const drawHours = ({
     canvasHeight,
     periodTextColor = defaultColors.periodTextColor,
     cellBackgroundColor = defaultColors.cellBackgroundColor,
+    weekendCellBackgroundColor = defaultColors.weekendCellBackgroundColor,
+
     ...restProps
 }: CanvasDrawPeriodPartProps) => {
     timelineTransform.getVisibleHours()
@@ -256,7 +347,7 @@ const drawHours = ({
             const { minPxPerDay, maxPxPerDay } = timelineScale.getRemainingHoursScaleRange();
             const remainingHoursVisible = timelineTransform.getScaleVisibility(minPxPerDay, maxPxPerDay);
             if (!remainingHoursVisible) {
-                drawCellBackground({ context, scaleBar: w, canvasHeight, y: getBottomCellY(canvasHeight), color: cellBackgroundColor });
+                drawHoursCells({ context, scaleBar: w, timelineTransform, canvasHeight, cellBackgroundColor, weekendCellBackgroundColor });
             }
         });
 
@@ -559,6 +650,7 @@ export const timelineScale = {
     getWeeksScaleRange,
     getBottomMonthsScaleRange,
     getYearsScaleRange,
+    drawHoursCells,
 
     defaultFonts,
     defaultColors,

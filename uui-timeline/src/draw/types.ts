@@ -14,7 +14,7 @@ export interface CanvasDrawCellProps extends CommonCanvasDrawProps {
 
 export interface CanvasDrawLineProps extends CommonCanvasDrawProps {
     width?: number;
-    color?: string;
+    color?: string | CanvasGradient;
 }
 
 export interface CanvasDrawVerticalLineProps extends CanvasDrawLineProps {
@@ -112,6 +112,7 @@ export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps
     cellBorderColor?: string;
     cellBackgroundColor?: string;
     evenPeriodCellBackgroundColor?: string;
+    weekendCellBackgroundColor?: string;
 }
 
 export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProps {
@@ -170,4 +171,10 @@ export interface CanvasDrawBottomGridLine extends CanvasDrawProps {
     scaleBar: ScaleBar;
     width?: number;
     color?: string;
+}
+
+export interface CanvasDrawWeekendHoursCell extends CanvasDrawTimelineElementProps {
+    scaleBar: ScaleBar;
+    cellBackgroundColor?: string;
+    weekendCellBackgroundColor?: string;
 }
