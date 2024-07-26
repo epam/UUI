@@ -1,5 +1,5 @@
 import type { TComponentId, TPreviewIdByComponentId } from './data/testData';
-import type { PreviewPage } from './pages/previewPage';
+import type { PreviewPage } from './fixtures/previewPage/previewPage';
 
 export type TClip = { x: number, y: number, width: number, height: number };
 
@@ -14,6 +14,11 @@ export enum TTheme {
     loveship_dark = 'loveship_dark',
     promo = 'promo',
     vanilla_thunder = 'vanilla_thunder'
+}
+
+export interface DocExamplePageParams {
+    examplePath: string;
+    theme: TTheme;
 }
 
 export interface PreviewPageParams {

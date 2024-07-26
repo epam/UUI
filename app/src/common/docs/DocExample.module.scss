@@ -6,6 +6,21 @@
     max-width: 100%;
 }
 
+.container-footer-wrapper {
+    display: flex;
+    background-color: var(--uui-surface-main);
+
+    > .container-footer {
+        flex-grow: 1;
+    }
+
+    > a {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+    }
+}
+
 .container-footer {
     justify-content: space-between;
     background-color: var(--uui-surface-main);
@@ -16,5 +31,4 @@
     border: 1px solid var(--uui-divider);
     width: 960px;
     max-width: 100%;
-
 }

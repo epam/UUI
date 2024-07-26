@@ -1,5 +1,5 @@
 import { CDPSession, Page } from '@playwright/test';
-import { TCdpPseudoStateParams, TEngine } from '../types';
+import { TCdpPseudoStateParams, TEngine } from '../../types';
 
 /**
  * Wrapper around Chrome DevTools Protocol
