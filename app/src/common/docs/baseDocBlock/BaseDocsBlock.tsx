@@ -10,12 +10,11 @@ import { PropExplorerTab } from './tabs/propExplorerTab';
 import { TabsNav } from './components/tabsNav';
 import { SkinModeToggler } from './components/skinModeToggler';
 import { QueryHelpers } from './utils/queryHelpers';
-import { DocItem } from '../../../documents/structure';
-import { Sidebar } from '../../sidebar';
 import { ReactComponent as ActionAlignLeftOutlineIcon } from '@epam/assets/icons/action-align_left-outline.svg';
+import { SidebarComponent } from '../SidebarComponent';
+import cx from 'classnames';
 //
 import css from './BaseDocsBlock.module.scss';
-import cx from 'classnames';
 
 type State = {
     isOpen: boolean;
@@ -152,7 +151,6 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
     render() {
         const mode = QueryHelpers.getMode();
         const supportedModes = Object.values(TMode).filter((m) => this.isModeSupported(m));
-        const { queryParamId, onChange, items, getSearchFields, getItemLink } = this.props.sidebarProps;
 
         return (
             <div
@@ -182,13 +180,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
                             />
                         </FlexRow>
                         <FlexRow borderBottom={ true } alignItems="stretch" cx={ css.sidebar }>
-                            <Sidebar<DocItem>
-                                value={ queryParamId }
-                                onValueChange={ onChange }
-                                items={ items }
-                                getSearchFields={ getSearchFields }
-                                getItemLink={ getItemLink }
-                            />
+                            <SidebarComponent docItems={ this.props.docItems } />
                         </FlexRow>
                     </FlexCell>
                 ) }
