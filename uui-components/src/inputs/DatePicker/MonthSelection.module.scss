@@ -1,12 +1,12 @@
 .container {
-    &:global(.uui-monthselection-container) {
-        :global(.uui-monthselection-content) {
+    &:global(.uui-month_selection-container) {
+        :global(.uui-month_selection-content) {
             display: flex;
             flex-direction: column;
             font-size: 14px;
         }
 
-        :global(.uui-monthselection-month-container) {
+        :global(.uui-month_selection-month-container) {
             display: flex;
             flex-direction: column;
 
@@ -15,7 +15,7 @@
             }
         }
 
-        :global(.uui-monthselection-month) {
+        :global(.uui-month_selection-month) {
             display: flex;
             justify-content: center;
             align-items: center;

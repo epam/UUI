@@ -13,7 +13,7 @@ export interface DataPickerFooterModsOverride {
 interface DataPickerFooterMods extends SizeMod {
 }
 
-type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPickerFooterModsOverride> & PickerFooterProps<TItem, TId> & {
+export type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPickerFooterModsOverride> & PickerFooterProps<TItem, TId> & {
     selectionMode: 'single' | 'multi';
 };
 
@@ -39,7 +39,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
 
     return shouldShowFooter && (
-        <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
+        <FlexRow padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
             {!isSinglePicker && (
                 <Switch
                     size={ settings.sizes.dataPickerFooter.switch[props.size] as SwitchProps['size'] }

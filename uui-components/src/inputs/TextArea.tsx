@@ -5,6 +5,7 @@ import {
     CX, cx, ICanFocus,
 } from '@epam/uui-core';
 import css from './TextArea.module.scss';
+import { browserBugFixDirAuto } from '../helpers';
 
 export interface TextAreaProps
     extends IHasCX,
@@ -151,7 +152,9 @@ export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, 
                 ref={ textAreaRef }
                 onKeyDown={ props.onKeyDown }
                 tabIndex={ (state.inFocus || props.isReadonly || props.isDisabled) ? -1 : 0 }
-                dir={ props.rawProps?.dir }
+                dir={ props.rawProps?.dir === 'auto'
+                    ? browserBugFixDirAuto(props.value || props.placeholder)
+                    : props?.rawProps?.dir } // TODO: remove after browser bug fix
             />
         </div>
     );

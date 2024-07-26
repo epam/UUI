@@ -1,7 +1,18 @@
 import * as React from 'react';
 import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious } from '@epam/uui-core';
 import { PickerBodyBaseProps, PickerInputBaseProps, usePickerInput } from '@epam/uui-components';
-import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
+import {
+    DataPickerRow,
+    PickerItem,
+    DataPickerBody,
+    DataPickerFooter,
+    PickerInputProps,
+    PickerItemProps,
+    DataPickerRowProps,
+    DataPickerFooterProps,
+    DataPickerBodyProps,
+} from '../pickers';
+import { settings } from '../../settings';
 
 const pickerHeight = 300;
 
@@ -59,7 +70,7 @@ export function FilterPickerBody<TItem, TId>({
                 highlightSearchMatches={ highlightSearchMatches }
                 { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
                 dataSourceState={ dsState }
-                size="36"
+                size={ settings.sizes.filterPickerBody.pickerItem as PickerItemProps<any, any>['size'] }
                 { ...rowProps }
             />
         );
@@ -79,7 +90,7 @@ export function FilterPickerBody<TItem, TId>({
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                size="36"
+                size={ settings.sizes.filterPickerBody.dataPickerRow as DataPickerRowProps<any, any>['size'] }
                 padding="12"
                 renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
             />
@@ -87,7 +98,7 @@ export function FilterPickerBody<TItem, TId>({
     };
 
     const renderFooter = () => {
-        return <DataPickerFooter { ...getFooterProps() } size="36" />;
+        return <DataPickerFooter { ...getFooterProps() } size={ settings.sizes.filterPickerBody.dataPickerFooter as DataPickerFooterProps<any, any>['size'] } />;
     };
 
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
@@ -103,7 +114,7 @@ export function FilterPickerBody<TItem, TId>({
                     rows={ renderedDataRows }
                     maxHeight={ maxHeight }
                     maxWidth={ maxWidth }
-                    searchSize="36"
+                    searchSize={ settings.sizes.filterPickerBody.searchSize as DataPickerBodyProps['searchSize'] }
                     editMode="dropdown"
                 />
                 {renderFooter()}

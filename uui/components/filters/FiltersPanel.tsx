@@ -157,7 +157,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     const renderAddFilterToggler = useCallback((togglerProps: PickerTogglerProps) => {
         return (
             <Button
-                size={ props.size ?? '36' }
+                size={ props.size }
                 onClick={ togglerProps.onClick }
                 ref={ togglerProps.ref }
                 caption={ i18n.filterToolbar.addCaption }

@@ -1,97 +1,22 @@
 @use '../../assets/styles/index' as *;
 
-@mixin data-picker-icon-size($size) {
-    :global(.uui-folding-arrow) {
-        &:global(.uui-icon) {
-            svg {
-                height: #{$size}px;
-                width: #{$size}px;
-            }
-        }
-    }
-
-    .icon-wrapper:global(.uui-selected) {
-        @include icon-size($size);
-    }
-}
-
 .root {
+    --uui-data-picker-size: var(--uui-size);
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;
     display: flex;
     align-items: flex-start;
 
-    &.align-widgets-top {
-        &.size-24, &.size-30 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
-                margin-top: 6px;
-            }
-        }
+    &:global(.data-picker-cell).align-widgets-top {
+        div:global(.uui-checkbox) {
+            margin-top: calc(var(--uui-data-picker-size) / 2 - var(--uui-size) / 2);
 
-        &.size-36 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
-                margin-top: 9px;
-            }
-        }
-
-        &.size-42 {
-            :global(.uui-checkbox) {
-                margin-top: 12px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 9px;
-            }
-        }
-
-        &.size-48 {
-            :global(.uui-checkbox) {
-                margin-top: 15px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 12px;
-            }
-        }
-
-        &.size-60 {
-            :global(.uui-checkbox) {
-                margin-top: 21px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 18px;
-            }
         }
     }
 
     &.align-widgets-center :global(.uui-checkbox-container) {
         align-self: center;
-    }
-
-    &.size-24 {
-        @include data-picker-icon-size(12);
-    }
-
-    &.size-30 {
-        @include data-picker-icon-size(18);
-    }
-
-    &.size-36 {
-        @include data-picker-icon-size(18);
-    }
-
-    &.size-42 {
-        @include data-picker-icon-size(24);
-    }
-
-    &.size-48 {
-        @include data-picker-icon-size(24);
-    }
-
-    &.size-60 {
-        @include data-picker-icon-size(24);
     }
 
     &.padding-12 { padding: 0 12px; }
@@ -142,5 +67,5 @@
 }
 
 .selected-mark {
-    fill: var(--uui-pickerInput-selected_mark);
+    fill: var(--uui-picker_input-selected_mark);
 }

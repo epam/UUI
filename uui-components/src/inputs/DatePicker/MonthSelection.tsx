@@ -7,12 +7,12 @@ import css from './MonthSelection.module.scss';
 const MONTH_ROW_LENGTH = 3;
 
 export const uuiMonthSelection = {
-    container: 'uui-monthselection-container',
-    content: 'uui-monthselection-content',
-    monthContainer: 'uui-monthselection-month-container',
-    monthsRow: 'uui-monthselection-months-row',
-    month: 'uui-monthselection-month',
-    currentMonth: 'uui-monthselection-current-month',
+    container: 'uui-month_selection-container',
+    content: 'uui-month_selection-content',
+    monthContainer: 'uui-month_selection-month-container',
+    monthsRow: 'uui-month_selection-months-row',
+    month: 'uui-month_selection-month',
+    currentMonth: 'uui-month_selection-current-month',
 } as const;
 
 interface MonthSelectionProps extends IEditable<Dayjs>, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {

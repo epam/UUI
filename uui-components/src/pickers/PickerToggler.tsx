@@ -4,6 +4,7 @@ import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
 import css from './PickerToggler.module.scss';
+import { browserBugFixDirAuto } from '../helpers';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** Key for the component */
@@ -195,7 +196,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 value={ value || '' }
                 readOnly={ props.isReadonly || props.disableSearch }
                 onChange={ (e) => props.onValueChange?.(e.target.value) }
-                dir="auto"
+                dir={ browserBugFixDirAuto(value || placeholder) } // TODO: remove after browser bug fix
             />
         );
     };

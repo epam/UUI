@@ -2,7 +2,7 @@
 
 exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
 <div
-  className="container root size-30"
+  className="container uui-labeled-input root uui-size-30"
 >
   <div
     className="uui-label-left"
@@ -33,6 +33,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
       />
       <div
         className="uui-labeled-input-sidenote"
+        dir="auto"
       >
         Sidenote text
       </div>
@@ -69,12 +70,14 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
   >
     <div
       className="uui-invalid-message"
+      dir="auto"
       role="alert"
     >
       Test validation message
     </div>
     <div
       className="uui-labeled-input-char-counter"
+      dir="auto"
     >
       0/10
     </div>
@@ -90,6 +93,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
   >
     <div
       className="uui-labeled-input-footnote"
+      dir="auto"
     >
       Footnote text
     </div>
@@ -99,7 +103,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
 
 exports[`LabeledInput should be rendered correctly with minimum props 1`] = `
 <div
-  className="container root size-36"
+  className="container uui-labeled-input root uui-size-36"
 >
   <div
     className="uui-label-top"

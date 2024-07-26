@@ -263,7 +263,7 @@ export interface PersonDetails {
     firstName?: string;
     middleName?: string;
     lastName?: string;
-    countryId?: number | string;
+    countryId?: string;
     countries?: number[];
     city?: any;
     birthdayDate?: string;

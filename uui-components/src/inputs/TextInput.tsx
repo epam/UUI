@@ -3,6 +3,7 @@ import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
+import { browserBugFixDirAuto } from '../helpers';
 import css from './TextInput.module.scss';
 
 const ENTER = 'Enter';
@@ -101,7 +102,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         required: props.isRequired,
         'aria-invalid': props.isInvalid,
         'aria-disabled': props.isDisabled,
-        dir: props?.rawProps?.dir, //
+        dir: props?.rawProps?.dir === 'auto'
+            ? browserBugFixDirAuto(props.value || props.placeholder)
+            : props?.rawProps?.dir, // TODO: remove after browser bug fix
     });
 
     const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;

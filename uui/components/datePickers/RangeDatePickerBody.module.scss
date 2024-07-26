@@ -1,8 +1,15 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
-    --uui-rdtp_date-bg-selected: var(--uui-info-10);
-    --uui-rdtp_blocker-bg: color-mix(in srgb, var(--uui-surface-higher) 80%, transparent);
+    --uui-rdtp-date-bg-selected: var(--uui-info-10);
+    --uui-rdtp-blocker-bg: color-mix(in srgb, var(--uui-surface-higher) 80%, transparent);
+
+    --uui-rdtp-separator-width: 1px;
+    --uui-rdtp-calendar-day-top: -3px;
+    --uui-rdtp-gradient-size: 6px;
+    --uui-rdtp-day-width: 40px;
+    --uui-rdtp-selected-day-radius: 50%;
+    --uui-rdtp-margin-right: 10px;
 
     :global(.uui-calendar-days) > div:last-child {
         :global(.uui-calendar-day-cell):last-child > :global(.uui-range-datepicker-in-range) {
@@ -11,20 +18,20 @@
                     position: relative;
 
                     :global(.uui-calendar-day) {
-                        top: -3px;
+                        top: var(--uui-rdtp-calendar-day-top);
                     }
 
                     &::after {
                         background: linear-gradient(320deg, var(--uui-surface-main) 3px, transparent 0), linear-gradient(-135deg, var(--uui-surface-main) 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
-                        background-size: 6px 6px;
+                        background-size: var(--uui-rdtp-gradient-size) var(--uui-rdtp-gradient-size);
                         content: ' ';
                         display: block;
                         position: absolute;
                         bottom: 0;
                         right: 0;
-                        width: 6px;
+                        width: var(--uui-rdtp-gradient-size);
                         height: 100%;
                     }
                 }
@@ -40,20 +47,20 @@
                     position: relative;
 
                     :global(.uui-calendar-day) {
-                        top: -3px;
+                        top: var(--uui-rdtp-calendar-day-top);
                     }
 
                     &::after {
                         background: linear-gradient(45deg, var(--uui-surface-main) 3px, transparent 0), linear-gradient(135deg, var(--uui-surface-main) 3px, transparent 0);
                         background-position: left-bottom;
                         background-repeat: repeat-y;
-                        background-size: 6px 6px;
+                        background-size: var(--uui-rdtp-gradient-size) var(--uui-rdtp-gradient-size);
                         content: ' ';
                         display: block;
                         position: absolute;
                         bottom: 0;
                         left: 0;
-                        width: 6px;
+                        width: var(--uui-rdtp-gradient-size);
                         height: 100%;
                     }
                 }
@@ -63,44 +70,44 @@
 
     :global(.uui-range-datepicker-in-range) {
         &:global(.uui-calendar-day-wrapper) {
-            background-color: var(--uui-rdtp_date-bg-selected);
+            background-color: var(--uui-rdtp-date-bg-selected);
             border-radius: 0;
-            width: 40px;
+            width: var(--uui-rdtp-day-width);
         }
     }
 
     :global(.uui-range-datepicker-first-day-in-range-wrapper) {
         &:global(.uui-calendar-selected-day) {
-            border-top-left-radius: 50%;
-            border-bottom-left-radius: 50%;
+            border-top-left-radius: var(--uui-rdtp-selected-day-radius);
+            border-bottom-left-radius: var(--uui-rdtp-selected-day-radius);
         }
     }
 
     :global(.uui-range-datepicker-last-day-in-range-wrapper) {
         &:global(.uui-calendar-selected-day) {
-            border-top-right-radius: 50%;
-            border-bottom-right-radius: 50%;
-            margin-right: 10px;
+            border-top-right-radius: var(--uui-rdtp-selected-day-radius);
+            border-bottom-right-radius: var(--uui-rdtp-selected-day-radius);
+            margin-right: var(--uui-rdtp-margin-right);
         }
     }
 
     :global(.uui-range-datepicker-separator) {
         display: flex;
         flex: 0 0 auto;
-        border-left: 1px solid var(--uui-control-border);
+        border-left: var(--uui-rdtp-separator-width) solid var(--uui-control-border);
     }
 }
 
 .container {
     &.day-selection {
         .from-picker {
-            :global(.uui-datepickerheader-nav-icon-right) {
+            :global(.uui-datepicker-header-nav-icon-right) {
                 visibility: hidden;
             }
         }
 
         .to-picker {
-            :global(.uui-datepickerheader-nav-icon-left) {
+            :global(.uui-datepicker-header-nav-icon-left) {
                 visibility: hidden;
             }
         }
@@ -112,7 +119,7 @@
     }
 
     .blocker {
-        background-color: var(--uui-rdtp_blocker-bg);
+        background-color: var(--uui-rdtp-blocker-bg);
         position: absolute;
         left: 0;
         right: 0;

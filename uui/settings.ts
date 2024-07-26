@@ -1,6 +1,9 @@
-export const settings = {
+import type { Settings } from './settings.types';
+
+export const settings: Settings = {
     sizes: {
         defaults: {
+            badge: '36',
             button: '36',
             checkbox: '18',
             countIndicator: '24',
@@ -14,9 +17,12 @@ export const settings = {
             tabButton: '48',
             tag: '36',
             text: '36',
+            textArea: '36',
             textInput: '36',
             rangeDatePicker: '36',
             datePicker: '36',
+            labeledInput: '36',
+            statusIndicator: '24',
         },
         tag: {
             countIndicator: {
@@ -103,6 +109,14 @@ export const settings = {
                 48: '48',
                 60: '48',
             },
+            icon: {
+                24: '12',
+                30: '18',
+                36: '18',
+                42: '24',
+                48: '24',
+                60: '24',
+            },
         },
         dataPickerRow: { // max 60
             padding: {
@@ -117,7 +131,7 @@ export const settings = {
             switch: {
                 24: '12',
                 30: '18',
-                36: '18',
+                36: '36',
                 42: '24',
                 48: '24',
             },
@@ -138,6 +152,14 @@ export const settings = {
                 42: '18',
                 48: '18',
                 60: '18',
+            },
+            icon: {
+                24: '12',
+                30: '18',
+                36: '18',
+                42: '24',
+                48: '24',
+                60: '24',
             },
             indentUnit: {
                 24: 6,
@@ -166,6 +188,25 @@ export const settings = {
             42: { lineHeight: 24, fontSize: 16 },
             48: { lineHeight: 24, fontSize: 16 },
             60: { lineHeight: 30, fontSize: 24 },
+        },
+        filterPickerBody: {
+            pickerItem: '36',
+            dataPickerRow: '36',
+            dataPickerFooter: '36',
+            searchSize: '36',
+        },
+        labeledInput: {
+            fillIcon: ['24', '30'],
+        },
+        badge: {
+            countIndicator: {
+                18: '12',
+                24: '18',
+                30: '18',
+                36: '18',
+                42: '24',
+                48: '24',
+            },
         },
     },
 };

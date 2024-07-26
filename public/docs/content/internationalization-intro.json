@@ -1,45 +1,43 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "The default language of UUI is English. Therefore, in most cases, texts are provided by UUI users. However, some components have built-in texts, such as the 'Select All' button caption in the PickerInput footer. For this case, we have an Internationalization approach.",
-            "marks": []
-          }
-        ]
+        "text": "The default language of UUI is English. Therefore, in most cases, texts are provided by UUI users. However, some components have built-in texts, such as the 'Select All' button caption in the PickerInput footer. For this case, we have an Internationalization approach."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Each UUI package has an "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Each UUI package has an i18n variable, which contains all built-in texts from this package. Thus, to translate it, you need to import the i18n object into your project and update this object with texts in the desired language.",
-            "marks": []
-          }
-        ]
+        "text": "i18n",
+        "uui-richTextEditor-code": true
       },
       {
-        "object": "block",
-        "type": "note-quote",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "import { i18n } from '@epam/promo'\n\ni18n.pickerInput = {\n  showOnlySelectedLabel: 'translated text for this case',\n  clearSelectionButton: 'translated text for this case',\n  selectAllButton: 'translated text for this case',\n};",
-            "marks": []
-          }
-        ]
+        "text": " variable, which contains all built-in texts from this package. Thus, to translate it, you need to import the "
+      },
+      {
+        "text": "i18n",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " object into your project and update this object with texts in the desired language."
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "data": {},
+    "children": [
+      {
+        "text": "import { i18n } from '@epam/promo'\n\ni18n.pickerInput = {\n  showOnlySelectedLabel: 'translated text for this case',\n  clearSelectionButton: 'translated text for this case',\n  selectAllButton: 'translated text for this case',\n};"
       }
     ]
   }
-}
+]
