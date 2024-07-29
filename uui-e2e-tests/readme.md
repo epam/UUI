@@ -62,8 +62,8 @@ You might need to restart computer after that.
 2. Other steps are the same as for Windows (see above)
 
 ### Usage of alternative tools not mentioned in this guide
-By default, if "podman" is detected, then it is used to build/run containers; otherwise "docker" is used as fallback;
-To override the default behavior, you might explicitly specify any tool via ```.env``` file using ```UUI_DOCKER_CONTAINER_ENGINE=<cmd>``` option.
+By default, "podman" is used to build/run containers.
+To override the default behavior, you might explicitly specify any tool via `.env` file using `UUI_DOCKER_CONTAINER_ENGINE=<cmd>` option (E.g.: `UUI_DOCKER_CONTAINER_ENGINE=docker`).
 Please make sure that this tool is compatible with Docker's CLI.
 
 ## Run tests locally (via Docker)
@@ -111,3 +111,6 @@ yarn --cwd uui-e2e-tests local-test-e2e-deps-install
 # 2. run the tests locally
 yarn --cwd uui-e2e-tests local-test-e2e
 ```
+
+## Misc
+Recommended way to debug tests is to use VSCode extension as described here: https://playwright.dev/docs/getting-started-vscode
