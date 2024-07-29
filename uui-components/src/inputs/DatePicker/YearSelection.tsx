@@ -34,8 +34,10 @@ export function YearSelection(props: YearSelectionProps) {
                             {yearRow.map((year) => (
                                 <div
                                     key={ year }
+                                    tabIndex={ 0 }
                                     className={ cx(year === props.selectedDate.year() && uuiYearSelection.currentYear, uuiYearSelection.year) }
                                     onClick={ () => props.onValueChange(props.value.year(year)) }
+                                    onKeyDown={ (e) => { e.key === 'Enter' && props.onValueChange(props.value.year(year)); } }
                                 >
                                     {year}
                                 </div>
