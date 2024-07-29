@@ -22,11 +22,18 @@ export function Day(props: DayProps): JSX.Element {
     const dayNumber = props.renderDayNumber
         ? props.renderDayNumber(props.value)
         : props.value.format('D');
+
+    const selectDay = () => {
+        isPassedFilter && props.onValueChange(props.value);
+    };
+
     return (
         <div
-            onClick={ isPassedFilter ? () => props.onValueChange(props.value) : undefined }
+            onClick={ selectDay }
+            onKeyDown={ (e) => e.key === 'Enter' && selectDay() }
+            tabIndex={ 0 }
             className={ cx([
-                isPassedFilter && uuiDaySelection.clickable,
+                isPassedFilter && uuiDaySelection.clickableDay,
                 isPassedFilter && uuiMarkers.clickable,
                 isCurrent && uuiDaySelection.currentDay,
                 props.isSelected && uuiDaySelection.selectedDay,

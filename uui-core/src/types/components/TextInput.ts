@@ -1,6 +1,7 @@
 import { ICanBeReadonly, IClickable, IDisableable, IEditable, IHasCX, IHasIcon, IHasPlaceholder, IAnalyticableOnChange,
     IHasRawProps, ICanFocus, IHasTabIndex, IDropdownToggler,
 } from '../props';
+import * as React from 'react';
 
 export interface TextInputCoreProps
     extends IHasCX,
@@ -20,7 +21,7 @@ export interface TextInputCoreProps
     /** Enables accept (check) icon, and fires when the icon is clicked */
     onAccept?(): void;
     /** keydown event handler to put on the HTML input element */
-    onKeyDown?(e?: any): void;
+    onKeyDown?(e?: React.KeyboardEvent<HTMLInputElement>): void;
     /** Put focus on the element, when component is mounted */
     autoFocus?: boolean;
     /** Standard 'type' attribute to put on the HTML input element (e.g. 'password') */
