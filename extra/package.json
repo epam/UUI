@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-extra",
-  "version": "5.7.3",
+  "version": "5.7.4",
   "description": "EPAM UUI components set branded with 'loveship' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@epam/assets": "4.5.3",
-    "@epam/loveship": "5.7.3",
-    "@epam/promo": "5.7.3",
-    "@epam/uui-components": "5.7.3",
-    "@epam/uui-core": "5.7.3",
+    "@epam/loveship": "5.7.4",
+    "@epam/promo": "5.7.4",
+    "@epam/uui-components": "5.7.4",
+    "@epam/uui-core": "5.7.4",
     "@types/shallowequal": "^1.1.1",
     "immutable": "3.8.2",
     "shallowequal": "^1.1.0"
