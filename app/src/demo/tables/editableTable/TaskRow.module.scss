@@ -7,7 +7,8 @@
     /* to prevent text selection on canvases */
     user-select: none;
     border-right: 1px solid var(--uui-dt-border);
-    background: var(--uui-neutral-0);
+    background-color: var(--uui-dt-cell-bg);
+
 }
 
 .layer {
