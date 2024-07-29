@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useUuiContext } from '@epam/uui-core';
 import { FlexRow } from '@epam/uui';
 import { AppHeader, Page } from '../common';
-import { items as itemsStructure } from './structure';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TMode } from '../common/docs/docsConstants';
@@ -32,18 +31,18 @@ export function DocumentsPage() {
         });
 
     function useItems(selectedId: string) {
-        const { apiRefItems } = svc.uuiApp;
+        const { docsMenuStructure } = svc.uuiApp;
 
         return useMemo(() => {
-            if (apiRefItems) {
-                const items = itemsStructure.concat(apiRefItems);
+            if (docsMenuStructure) {
+                const items = docsMenuStructure;
                 const PageComponent = items.find((item) => item.id === selectedId)?.component;
                 return {
                     items,
                     PageComponent,
                 };
             }
-        }, [apiRefItems, selectedId]);
+        }, [docsMenuStructure, selectedId]);
     }
 
     useEffect(() => {
