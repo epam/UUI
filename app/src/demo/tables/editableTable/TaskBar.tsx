@@ -100,7 +100,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
                                     cx={
                                         cx(
                                             statusCss.statusIcon,
-                                            statusCss[`statusIcon${status.id !== undefined ? statusTags[status?.id] : 'None'}`],
+                                            statusCss[`statusIcon${status?.id !== undefined ? statusTags[status?.id] : 'None'}`],
                                         )
                                     }
                                 />
@@ -187,7 +187,7 @@ export function TaskBar({ task, timelineController }: { task: Task, timelineCont
     return (
         <Tooltip renderContent={ renderTaskStatus } openDelay={ 1000 } cx={ css.container } color="neutral">
             <div
-                key={ item.id }
+                key={ item?.id }
                 className={ css.taskBarWrapper }
                 style={ {
                     height: item.height ?? 18,
