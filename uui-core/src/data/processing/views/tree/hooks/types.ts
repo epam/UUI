@@ -34,8 +34,8 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     totalCount?: number;
 
     /**
-     * Provides a possibility to patch existing tree with some updated data out of React flow.
-     * It can be used to add subtotals or other changes to the data, based on the updating result before setting data to the form.
+     * Provides the possibility to patch an existing tree with updated data multiple times without affecting the original tree.
+     * It can be used while adding subtotals or other changes to the data, based on the update results before setting data to the form.
      * @param modifiedItems map of updated/deleted/added items, which should be applied to the existing tree.
      * @returns new tree, patched by modified items.
      */
