@@ -59,7 +59,6 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
             return (
                 <div
                     className={ uuiDaySelection.dayCell }
-                    tabIndex={ 0 }
                     key={ `day-${props.month.valueOf()}-${day && day.valueOf()}-${index}` }
                 >
                     {props.renderDay ? (
@@ -95,7 +94,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
             return (
                 <div
                     className={ uuiDaySelection.dayCell }
-                    tabIndex={ 0 }
+                    tabIndex={ -1 }
                     key={ `day-${props.month.valueOf()}-${index}` }
                 />
             );

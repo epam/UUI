@@ -29,8 +29,10 @@ export function MonthSelection(props: MonthSelectionProps): JSX.Element {
         return (
             <div
                 key={ month }
+                tabIndex={ 0 }
                 className={ cx(isSelected && uuiMonthSelection.currentMonth, uuiMonthSelection.month) }
                 onClick={ () => props.onValueChange(props.value.month(index)) }
+                onKeyDown={ (e) => { e.key === 'Enter' && props.onValueChange(props.value.month(index)); } }
             >
                 {month}
             </div>

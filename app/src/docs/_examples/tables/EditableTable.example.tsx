@@ -160,8 +160,14 @@ export default function EditableTableExample() {
                 {
                     key: 'dueDate',
                     caption: 'Due date',
-                    renderCell: (props) => <DataTableCell { ...props.rowLens.prop('dueDate').toProps() } renderEditor={ (props) => <DatePicker { ...props } /> } { ...props } />,
                     width: 150,
+                    renderCell: (props) => (
+                        <DataTableCell
+                            { ...props.rowLens.prop('dueDate').toProps() }
+                            renderEditor={ (props) => <DatePicker { ...props } /> }
+                            { ...props }
+                        />
+                    ),
                 },
                 {
                     key: 'priority',

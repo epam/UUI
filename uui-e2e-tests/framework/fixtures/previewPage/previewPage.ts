@@ -31,6 +31,10 @@ export class PreviewPage {
         await this.page.locator(selector).first().focus();
     }
 
+    async clickElement(selector: string) {
+        await this.page.locator(selector).first().click();
+    }
+
     async goto() {
         await this.page.goto(PREVIEW_URL);
     }
