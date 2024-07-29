@@ -2,6 +2,8 @@
 
 **What's New**
 * Icons pack updated
+* [DatePicker][RangeDatePicker]: improve a11y focus flow behavior. Now date picker body receive focus on open and return it back on input after close.
+
 
 **What's Fixed**
 * [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
