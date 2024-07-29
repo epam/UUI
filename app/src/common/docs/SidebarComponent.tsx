@@ -23,7 +23,7 @@ const redirectTo = (query: DocsQuery) =>
     });
 
 export function SidebarComponent() {
-    const { apiRefItems } = svc.uuiApp;
+    const { docsMenuStructure } = svc.uuiApp;
     const mode = useQuery<DocsQuery['mode']>('mode') || TMode.doc;
     const queryParamId: string = useQuery('id');
     const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
@@ -47,7 +47,7 @@ export function SidebarComponent() {
         <Sidebar<DocItem>
             value={ queryParamId }
             onValueChange={ onChange }
-            items={ apiRefItems }
+            items={ docsMenuStructure }
             getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
             getItemLink={ (row) =>
                 !row.isFoldable && {

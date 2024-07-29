@@ -74,10 +74,10 @@ function UuiEnhancedApp() {
         Object.assign(svc, services);
         async function initServices() {
             const docGenExports = await svc.api.getDocsGenExports();
-            const items = getApiRefItems(docGenExports.content);
-            const apiRefItems = itemsStructure.concat(items);
+            const apiRefItems = getApiRefItems(docGenExports.content);
+            const docsMenuStructure = itemsStructure.concat(apiRefItems);
             const themeContext = await getThemeContext();
-            services.uuiApp = { ...themeContext, apiRefItems };
+            services.uuiApp = { ...themeContext, docsMenuStructure };
 
             isProduction && services.uuiAnalytics.addListener(new GAListener(GA_CODE));
             services.uuiAnalytics.addListener(new AmplitudeListener(AMP_CODE));

@@ -5,7 +5,7 @@ import { DocItem } from '../documents/structure';
 export interface AppContext {
     themes: TTheme[],
     themesById: Record<TTheme, ThemeBaseParams | CustomThemeManifest>,
-    apiRefItems: DocItem[],
+    docsMenuStructure: DocItem[],
 }
 
 export async function getThemeContext() {
