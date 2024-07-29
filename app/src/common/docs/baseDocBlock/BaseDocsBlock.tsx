@@ -11,7 +11,7 @@ import { TabsNav } from './components/tabsNav';
 import { SkinModeToggler } from './components/skinModeToggler';
 import { QueryHelpers } from './utils/queryHelpers';
 import { ReactComponent as ActionAlignLeftOutlineIcon } from '@epam/assets/icons/action-align_left-outline.svg';
-import { SidebarComponent } from '../SidebarComponent';
+import { DocsSidebar } from '../DocsSidebar';
 import cx from 'classnames';
 //
 import css from './BaseDocsBlock.module.scss';
@@ -180,7 +180,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
                             />
                         </FlexRow>
                         <FlexRow borderBottom={ true } alignItems="stretch" cx={ css.sidebar }>
-                            <SidebarComponent />
+                            <DocsSidebar />
                         </FlexRow>
                     </FlexCell>
                 ) }

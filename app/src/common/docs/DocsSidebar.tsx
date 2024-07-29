@@ -22,7 +22,7 @@ const redirectTo = (query: DocsQuery) =>
         query,
     });
 
-export function SidebarComponent() {
+export function DocsSidebar() {
     const { docsMenuStructure } = svc.uuiApp;
     const mode = useQuery<DocsQuery['mode']>('mode') || TMode.doc;
     const queryParamId: string = useQuery('id');
