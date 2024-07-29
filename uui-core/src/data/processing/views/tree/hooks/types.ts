@@ -33,5 +33,11 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
      */
     totalCount?: number;
 
-    patch: (updated: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
+    /**
+     * Provides a possibility to patch existing tree with some updated data out of React flow.
+     * It can be used to add subtotals or other changes to the data, based on the updating result before setting data to the form.
+     * @param modifiedItems map of updated/deleted/added items, which should be applied to the existing tree.
+     * @returns new tree, patched by modified items.
+     */
+    patch: (modifiedItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
 }
