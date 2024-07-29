@@ -3,11 +3,10 @@
 exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 <div
   className="dateInputGroup uui-range-date-picker uui-disabled uui-readonly uui-invalid"
-  onBlur={[Function]}
-  onClick={[Function]}
 >
   <div
     className="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
+    onClick={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
   >
@@ -40,6 +39,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
   />
   <div
     className="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
+    onClick={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
   >
@@ -65,11 +65,10 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 exports[`RangeDataPicker should be rendered if minimum params and custom format defined 1`] = `
 <div
   className="dateInputGroup uui-range-date-picker"
-  onBlur={[Function]}
-  onClick={[Function]}
 >
   <div
     className="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
+    onClick={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
   >
@@ -98,6 +97,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
   />
   <div
     className="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
+    onClick={[Function]}
     onFocus={[Function]}
     tabIndex={-1}
   >
