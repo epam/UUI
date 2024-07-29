@@ -6,7 +6,7 @@ import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TMode } from '../common/docs/docsConstants';
 import { AppContext, type TApi, TTheme } from '../data';
-import { SidebarComponent } from '../common/docs/SidebarComponent';
+import { DocsSidebar } from '../common/docs/DocsSidebar';
 
 type DocsQuery = {
     id: string;
@@ -69,7 +69,7 @@ export function DocumentsPage() {
         <Page renderHeader={ () => <AppHeader /> }>
             <FlexRow alignItems="stretch">
                 { pageWidth > 768 && (
-                    <SidebarComponent />
+                    <DocsSidebar />
                 ) }
                 { PageComponent && <PageComponent /> }
             </FlexRow>
