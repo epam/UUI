@@ -118,10 +118,6 @@ export const groupByAssigneesAndIndex = (tasks: Task[]) => {
             return group;
         }
 
-        if (task.assignee === undefined) {
-            return group;
-        }
-
         if (!group[task.assignee]) {
             group[task.assignee] = [];
         }
@@ -436,7 +432,6 @@ export const scheduleTasks = (
 ) => {
     const patchedTree = patch(updatedItemsMap);
     const tasks: Task[] = getOrderedTasks(patchedTree, updatedItemsMap);
-
     const group = groupByAssigneesAndIndex(tasks);
 
     const getTask = (t: Task): SchedulingTask<number> => ({
