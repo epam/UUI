@@ -138,24 +138,25 @@ export function ProjectTableDemo() {
         const taskToInsert: Task = existingTask ? { ...existingTask, type: 'task' } : { id: lastId--, name: '', type: 'task' };
         const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, treeRef.current);
 
-        let parentTask = relativeTask;
-        if (position === 'inside' && relativeTask.type !== 'story') {
-            parentTask = { ...relativeTask, type: 'story' };
-        }
-
-        let prevParentTask = taskToInsert.parentId === null ? null : treeRef.current.getById(taskToInsert.parentId);
-        if (taskToInsert.parentId !== null && prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD && taskToInsert.parentId !== task.parentId) {
-            const children = treeRef.current.getItems(taskToInsert.parentId);
-            const isSomeNotMoved = children.ids.some((id) => id !== taskToInsert.id);
-            if (!isSomeNotMoved) {
-                prevParentTask = { ...prevParentTask, type: 'task' };
-            }
-        }
-
         setValue((currentValue) => {
+            let parentTask = relativeTask;
+            if (position === 'inside' && relativeTask.type !== 'story') {
+                parentTask = { ...relativeTask, type: 'story' };
+            }
+    
+            let prevParentTask = taskToInsert.parentId === null ? null : treeRef.current.getById(taskToInsert.parentId);
+            if (taskToInsert.parentId !== null && prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD && taskToInsert.parentId !== task.parentId) {
+                const children = treeRef.current.getItems(taskToInsert.parentId);
+                const isSomeNotMoved = children.ids.some((id) => id !== taskToInsert.id);
+                if (!isSomeNotMoved) {
+                    prevParentTask = { ...prevParentTask, type: 'task' };
+                }
+            }
+
             let currentItems = currentValue.items
                 .set(task.id, task)
                 .set(parentTask.id, parentTask);
+
             if (prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD) {
                 currentItems = currentItems.set(prevParentTask.id, prevParentTask);
             }
@@ -178,7 +179,9 @@ export function ProjectTableDemo() {
     }, [setValue, dataTableFocusManager]);
 
     const handleDrop = useCallback(
-        (params: DropParams<Task, Task>) => insertTask(params.position, params.dstData, params.srcData),
+        (params: DropParams<Task, Task>) => {
+            return insertTask(params.position, params.dstData, params.srcData);
+        },
         [insertTask],
     );
 
@@ -225,14 +228,14 @@ export function ProjectTableDemo() {
 
     const selectedItem = useMemo(() => {
         if (tableState.selectedId !== undefined) {
-            const item = treeRef.current.getById(tableState.selectedId);
+            const item = tree.getById(tableState.selectedId);
             if (item === NOT_FOUND_RECORD) {
                 return undefined;
             }
             return item;
         }
         return undefined;
-    }, [tableState.selectedId]);
+    }, [tableState.selectedId, tree]);
 
     const deleteSelectedItem = useCallback(() => {
         if (selectedItem === undefined) return;
