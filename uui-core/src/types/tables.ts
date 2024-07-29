@@ -102,6 +102,9 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
 
     /** Overrides rendering of the whole cell */
     renderCell?(cellProps: RenderCellProps<TItem, TId>): any;
+    /**
+     * Overrids rendering of the whole header cell.
+     */
     renderHeaderCell?(cellProps: DataTableHeaderCellProps<TItem, TId>): any;
 
     /**
@@ -255,6 +258,9 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
     renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    /**
+     * Drag'n'drop marker event handlers.
+     */
     eventHandlers?: DndEventHandlers;
 }
 
