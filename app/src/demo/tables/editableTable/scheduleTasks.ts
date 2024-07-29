@@ -1,5 +1,5 @@
 /**
- * Mutlifit algorithm implementation.
+ * Multifit algorithm implementation.
  */
 
 import { getOrderComparer } from '@epam/uui-core';
@@ -15,9 +15,7 @@ export interface Task<TId> {
 
 const orderTasks = <TId>(tasks: Task<TId>[]) => {
     const order = getOrderComparer([
-        // { direction: 'asc', field: 'parentId' },
         { direction: 'asc', field: 'startTime' },
-        // { direction: 'desc', field: 'duration' },
     ]);
     return [...tasks].sort(order);
 };

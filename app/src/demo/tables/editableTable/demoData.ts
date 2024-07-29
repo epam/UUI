@@ -63,7 +63,9 @@ export const getDemoTasks = () => {
     const byId: Record<number, Task> = {};
 
     tasks.forEach((t, index) => {
-        const prevTask = tasks[index - 1]; t.order = getOrderBetween(prevTask?.order, null); byId[t.id] = t as Task;
+        const prevTask = tasks[index - 1];
+        t.order = getOrderBetween(prevTask?.order, null);
+        byId[t.id] = t as Task;
     });
 
     tasks.forEach((t) => {
