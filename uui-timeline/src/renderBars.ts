@@ -12,8 +12,6 @@ export interface Item {
     priority?: number;
     minPixPerDay?: number;
     maxPxPerDay?: number;
-    // y: number;
-    // name?: string;
 }
 
 export function renderBars(items: Item[], canvasHeight: number, ctx: CanvasRenderingContext2D, t: TimelineTransform): void {

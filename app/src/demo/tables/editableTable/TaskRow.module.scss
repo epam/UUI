@@ -4,7 +4,6 @@
     overflow: hidden;
     height: 100%;
     width: 100%;
-    /* to prevent text selection on canvases */
     user-select: none;
     border-right: 1px solid var(--uui-dt-border);
     background-color: var(--uui-dt-cell-bg);

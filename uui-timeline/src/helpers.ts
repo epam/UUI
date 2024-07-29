@@ -9,9 +9,6 @@ export const msPerHour = 60 /* min */ * msPerMinute;
 export const msPerDay = 24 /* hour */ * msPerHour;
 export const msPerYear = 365 * msPerDay;
 
-const msPerMonth = 30 * msPerDay;
-const msPerWeak = 7 * msPerDay;
-
 export function addMs(date: Date, ms: number) {
     return new Date(date.getTime() + ms);
 }

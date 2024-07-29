@@ -1,4 +1,4 @@
-import { DropPosition, IImmutableMap, IMap, ITree, Tree, getOrderBetween } from '@epam/uui-core';
+import { DropPosition, IImmutableMap, IMap, ITree, NOT_FOUND_RECORD, Tree, getOrderBetween } from '@epam/uui-core';
 import { Task } from './types';
 import { scheduleTasks as runScheduling, Task as SchedulingTask } from './scheduleTasks';
 import { TimelineTransform, msPerDay } from '@epam/uui-timeline';
@@ -48,7 +48,25 @@ export const deleteTaskWithChildren = (taskToDelete: Task | null, tasks: IImmuta
         currentTasks = currentTasks.set(id, { ...tree.getById(id) as Task, isDeleted: true });
     });
 
-    return currentTasks;
+    let areAllDeleted = taskToBeDeleted.parentId !== null;
+    if (taskToBeDeleted.parentId !== null) {
+        const children = tree.getItems(taskToBeDeleted.parentId).ids;
+        for (const id of children) {
+            const item = tree.getById(id);
+            if (item === NOT_FOUND_RECORD) {
+                continue;
+            }
+
+            if (item.id !== taskToBeDeleted.id && !item.isDeleted) {
+                areAllDeleted = false;
+                break;
+            }
+        }
+    }
+
+    return areAllDeleted
+        ? currentTasks.set(taskToBeDeleted.parentId, { ...currentTasks.get(taskToBeDeleted.parentId), type: 'task' })
+        : currentTasks;
 };
 
 export const setTaskInsertPosition = (taskToInsert: Task, relativeTask: Task | null = null, position: DropPosition, tree: ITree<Task, number>) => {

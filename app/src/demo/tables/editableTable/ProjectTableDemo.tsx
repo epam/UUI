@@ -90,7 +90,6 @@ export function ProjectTableDemo() {
         getParentId: (i) => i.parentId,
         fixItemBetweenSortings: false,
         isDeleted: ({ isDeleted }) => isDeleted,
-        isFoldedByDefault: () => false,
     }, []);
 
     const treeRef = useRef(tree);
@@ -99,34 +98,13 @@ export function ProjectTableDemo() {
     treeRef.current = tree;
     patchRef.current = patch;
     const deleteTask = useCallback((task: Task) => {
-        setValue((currentValue) => {
-            const updatedItems = deleteTaskWithChildren(task, currentValue.items, treeRef.current);
-            let allDeleted = task.parentId === null ? false : true;
-            if (task.parentId !== null) {
-                const children = treeRef.current.getItems(task.parentId).ids;
-                for (const id of children) {
-                    const item = treeRef.current.getById(id);
-                    if (item === NOT_FOUND_RECORD) {
-                        continue;
-                    }
-
-                    if (item.id !== task.id && !item.isDeleted) {
-                        allDeleted = false;
-                        break;
-                    }
-                }
-            }
-            
-            return {
-                ...currentValue,
-                items: scheduleTasks(
-                    patchRef.current,
-                    allDeleted
-                        ? updatedItems.set(task.parentId, { ...updatedItems.get(task.parentId), type: 'task' })
-                        : updatedItems,
-                ),
-            };
-        });
+        setValue((currentValue) => ({
+            ...currentValue,
+            items: scheduleTasks(
+                patchRef.current,
+                deleteTaskWithChildren(task, currentValue.items, treeRef.current),
+            ),
+        }));
     }, [setValue]);
 
     const timelineController = useMemo(
@@ -168,8 +146,8 @@ export function ProjectTableDemo() {
         let prevParentTask = taskToInsert.parentId === null ? null : treeRef.current.getById(taskToInsert.parentId);
         if (taskToInsert.parentId !== null && prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD && taskToInsert.parentId !== task.parentId) {
             const children = treeRef.current.getItems(taskToInsert.parentId);
-            const areAllMoved = children.ids.every((id) => id === taskToInsert.id);
-            if (areAllMoved) {
+            const isSomeNotMoved = children.ids.some((id) => id !== taskToInsert.id);
+            if (!isSomeNotMoved) {
                 prevParentTask = { ...prevParentTask, type: 'task' };
             }
         }
