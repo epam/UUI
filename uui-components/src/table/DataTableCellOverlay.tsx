@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import {
-    blurFocusedElement, cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod, IHasValidationMessage,
+    blurFocusedElement, cx, ICanBeInvalid, IHasCX, TooltipCoreProps, uuiMod, IHasValidationMessage, ICanBeReadonly,
 } from '@epam/uui-core';
 import css from './DataTableCellOverlay.module.scss';
 import { DataTableSelectionContext } from './tableCellsSelection';
 import { PointerEventHandler, useContext } from 'react';
 
-export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid, IHasValidationMessage {
+export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid, IHasValidationMessage, ICanBeReadonly {
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
@@ -81,6 +81,7 @@ export function DataTableCellOverlay(props: DataTableCellOverlayProps) {
                 borderClassNames,
                 props.inFocus && uuiMod.focus,
                 props.isInvalid && uuiMod.invalid,
+                props.isReadonly && uuiMod.readonly,
             ) }
         >
             {showMarker && (
