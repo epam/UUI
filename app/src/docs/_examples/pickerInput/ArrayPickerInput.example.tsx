@@ -30,6 +30,7 @@ export default function ArrayPickerInputExample() {
                     selectionMode="multi"
                     valueType="id"
                     sorting={ { field: 'level', direction: 'asc' } }
+                    maxItems={ 3 }
                 />
                 <PickerInput
                     dataSource={ dataSource }

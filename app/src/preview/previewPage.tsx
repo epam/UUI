@@ -41,7 +41,7 @@ export function PreviewPage() {
         });
     }, []);
 
-    usePlayWrightInterface(handleNavPreview);
+    usePlayWrightInterface<TPreviewContentParams>(handleNavPreview);
     usePreviewPageBg();
 
     const key = `${theme}_${isSkin}_${componentId}_${previewId}`;
