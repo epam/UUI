@@ -65,7 +65,8 @@
         margin: 6px;
         color: var(--uui-dtp_body-text);
 
-        &:hover {
+        &:hover, &:focus {
+            outline: none;
             width: 70px;
             height: 34px;
             border: 1px solid var(--uui-dtp_body-item-border-hover);
@@ -83,7 +84,8 @@
         margin: 6px 0;
         color: var(--uui-dtp_body-text);
 
-        &:hover {
+        &:hover, &:focus {
+            outline: none;
             width: 61px;
             height: 34px;
             border: 1px solid var(--uui-dtp_body-item-border-hover);

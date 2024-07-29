@@ -191,7 +191,7 @@ builder
         },
         {
             previewId: [TRangeDatePickerPreview['Opened']],
-            focusFirstElement: () => 'input',
+            clickElement: () => 'input',
             onlyChromium: true,
         },
         {
@@ -212,7 +212,7 @@ builder
         },
         {
             previewId: [TDatePickerPreview['Opened']],
-            focusFirstElement: () => 'input',
+            clickElement: () => 'input',
             onlyChromium: true,
         },
         {
