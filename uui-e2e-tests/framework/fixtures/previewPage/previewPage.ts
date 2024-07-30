@@ -1,8 +1,6 @@
 import { expect, type Locator } from '@playwright/test';
 import { type PreviewPageParams } from '../../types';
-import { AbsPage, type IPageParams, type IScreenshotOptions } from '../shared/absPage';
-
-const stylePath = 'framework/fixtures/previewPage/screenshot.css';
+import { AbsPage, type IPageParams } from '../shared/absPage';
 
 export class PreviewPage extends AbsPage {
     private readonly locators: {
@@ -20,11 +18,6 @@ export class PreviewPage extends AbsPage {
         };
     }
 
-    async openInitialPage() {
-        await super.openInitialPage();
-        await this.page.addStyleTag({ path: stylePath });
-    }
-
     async clientRedirect(params: PreviewPageParams) {
         await super._clientRedirect<PreviewPageParams>(params);
         await this.locators.regionContentNotBusy.waitFor();
@@ -33,14 +26,10 @@ export class PreviewPage extends AbsPage {
     async expectScreenshot(
         params: { screenshotName: string, isSlowTest?: boolean },
     ) {
-        const screenshotOptions = await this.getScreenshotOptions(params.isSlowTest);
-        await expect(this.page).toHaveScreenshot(params.screenshotName, screenshotOptions);
-    }
-
-    private async getScreenshotOptions(isSlowTest?: boolean): Promise<IScreenshotOptions> {
-        return super._getScreenshotOptions({
-            isSlowTest,
+        const screenshotOptions = await super._getScreenshotOptions({
+            isSlowTest: params.isSlowTest,
             locator: this.locators.regionScreenshotContent,
         });
+        await expect(this.page).toHaveScreenshot(params.screenshotName, screenshotOptions);
     }
 }

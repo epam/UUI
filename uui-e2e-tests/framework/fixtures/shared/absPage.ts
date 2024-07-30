@@ -14,18 +14,21 @@ export interface IPageParams {
     page: Page;
     engine: TEngine;
     initialUrl: string;
+    extraStyles?: string;
 }
 
 export abstract class AbsPage {
     public readonly page: Page;
     public readonly engine: TEngine;
     public readonly initialUrl: string;
+    public readonly extraStyles?: string;
     public cdpSession: CdpSessionWrapper;
 
     protected constructor(pageParams: IPageParams) {
         this.page = pageParams.page;
         this.engine = pageParams.engine;
         this.initialUrl = pageParams.initialUrl;
+        this.extraStyles = pageParams.extraStyles;
         this.cdpSession = new CdpSessionWrapper(this.page, this.engine);
     }
 
@@ -35,6 +38,9 @@ export abstract class AbsPage {
 
     async openInitialPage(): Promise<void> {
         await this.page.goto(this.initialUrl);
+        if (this.extraStyles) {
+            await this.page.addStyleTag({ path: this.extraStyles });
+        }
     }
 
     async focusElement(selector: string) {

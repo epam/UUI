@@ -1,6 +1,6 @@
 import { expect, type Locator } from '@playwright/test';
 import { type DocExamplePageParams, TTheme } from '../../types';
-import { type IPageParams, AbsPage, type IScreenshotOptions } from '../shared/absPage';
+import { type IPageParams, AbsPage } from '../shared/absPage';
 
 export class DocExamplePage extends AbsPage {
     private readonly locators: {
@@ -14,11 +14,6 @@ export class DocExamplePage extends AbsPage {
         };
     }
 
-    async expectScreenshot(screenshotName: string) {
-        const screenshotOptions = await this.getScreenshotOptions();
-        await expect(this.page).toHaveScreenshot(screenshotName, screenshotOptions);
-    }
-
     async clientRedirect(params: { examplePath: string }) {
         await super._clientRedirect<DocExamplePageParams>({
             // As we agreed, "doc example" tests must be always run on "loveship" theme
@@ -27,9 +22,8 @@ export class DocExamplePage extends AbsPage {
         await this.locators.regionContentNotBusy.waitFor();
     }
 
-    private async getScreenshotOptions(): Promise<IScreenshotOptions> {
-        return super._getScreenshotOptions({
-            isSlowTest: false,
-        });
+    async expectScreenshot(screenshotName: string) {
+        const screenshotOptions = await super._getScreenshotOptions({ isSlowTest: false });
+        await expect(this.page).toHaveScreenshot(screenshotName, screenshotOptions);
     }
 }
