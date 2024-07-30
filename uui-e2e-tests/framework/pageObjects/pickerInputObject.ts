@@ -1,5 +1,8 @@
 import { Locator, Page, expect } from '@playwright/test';
 
+// see all key codes here: https://playwright.dev/docs/api/class-keyboard#keyboard-press
+type TKeyboardKey = 'ArrowDown' | 'Backspace' | 'Enter' | 'Escape' | 'Shift' | 'Tab' | 'Shift+Tab';
+
 export class PickerInputObject {
     private readonly locators: {
         input: Locator;
@@ -7,6 +10,8 @@ export class PickerInputObject {
             root: Locator;
             option: (params: { focused?: boolean, checked?: boolean, text?: string, has?: string }) => Locator;
             blocker: Locator;
+            search: Locator;
+            noRecords: Locator;
         }
     };
 
@@ -17,6 +22,8 @@ export class PickerInputObject {
             input,
             dropdown: {
                 root: dropdown,
+                search: dropdown.locator('input[type="search"]'),
+                noRecords: dropdown.locator('.uui-flex-row > div > .uui-text').getByText('No records found'),
                 option: (params) => {
                     let sel = 'div[role="option"]';
                     if (params.focused) {
@@ -43,23 +50,44 @@ export class PickerInputObject {
         await this.locators.input.first().focus();
     }
 
-    async openDropdown() {
+    async focusDropdownSearchInput() {
+        await this.locators.dropdown.search.first().focus();
+    }
+
+    /**
+     * Reset mouse pos to avoid unintentional hover effects
+     */
+    async resetMousePos() {
+        await this.page.mouse.move(0, 0);
+    }
+
+    async clickDropdown() {
         await this.locators.input.first().click();
+        await this.resetMousePos();
+    }
+
+    async clickOption(text: string) {
+        await this.locators.dropdown.option({ text }).click();
+        await this.resetMousePos();
     }
 
     async waitDropdownLoaderAppearsAndDisappears() {
-        await expect(this.locators.dropdown.blocker).toBeVisible();
-        await expect(this.locators.dropdown.blocker).toBeHidden();
+        await this.locators.dropdown.blocker.waitFor({ state: 'visible' });
+        await this.locators.dropdown.blocker.waitFor({ state: 'hidden' });
+    }
+
+    async waitForNoRecordsFoundMsg() {
+        await this.locators.dropdown.noRecords.waitFor({ state: 'visible' });
     }
 
     async waitDropdownDisappears() {
-        await expect(this.locators.dropdown.root).toBeHidden();
+        await this.locators.dropdown.root.waitFor({ state: 'hidden' });
     }
 
-    // see key codes here: https://playwright.dev/docs/api/class-keyboard#keyboard-press
-    async keyboardPress(key: 'ArrowDown' | 'Backspace' | 'Enter' | 'Escape', times: number = 1) {
+    async keyboardPress(key: TKeyboardKey, times: number = 1) {
         for (let i = 0; i < times; i++) {
             await this.page.keyboard.press(key);
+            await this.page.waitForTimeout(100);
         }
     }
 
@@ -67,17 +95,19 @@ export class PickerInputObject {
         await this.page.keyboard.type(text);
     }
 
-    async waitDropdownOptionFocused(text: string) {
-        await expect(this.locators.dropdown.option({ text })).toBeAttached();
+    async expectOptionInViewport(text: string) {
+        await expect(this.locators.dropdown.option({ text })).toBeInViewport({ ratio: 0.95 });
     }
 
     async waitDropdownOptionChecked(text: string) {
-        await expect(this.locators.dropdown.option({ text, focused: true, checked: true })).toBeAttached();
+        await this.locators.dropdown.option({ text, focused: true, checked: true }).waitFor({ state: 'visible' });
+    }
+
+    async waitDropdownOptionUnchecked(text: string) {
+        await this.locators.dropdown.option({ text, focused: true, checked: false }).waitFor({ state: 'attached' });
     }
 
     async waitDropdownOptionCheckedMixed(text: string) {
-        await expect(
-            this.locators.dropdown.option({ text, has: 'input[type="checkbox"][aria-checked="mixed"]' }),
-        ).toBeAttached();
+        await this.locators.dropdown.option({ text, has: 'input[type="checkbox"][aria-checked="mixed"]' }).waitFor({ state: 'attached' });
     }
 }

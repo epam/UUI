@@ -18,7 +18,7 @@ export function buildFixture<TPageWrapper extends AbsPage>(
         pageWrapper: [
             async ({ browser }, use, { project }) => {
                 const engine = project.name as TEngine;
-                const context = await browser.newContext();
+                const context = await browser.newContext({ bypassCSP: true });
                 let pageWrapper: TPageWrapper | undefined;
                 try {
                     const page = await context.newPage();

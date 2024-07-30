@@ -69,10 +69,26 @@ export abstract class AbsPage {
 
     protected async _clientRedirect<T extends object>(params: T) {
         await this.page.mouse.move(0, 0);
-        await this.page.evaluate((_params: string) => {
+        await this.page.evaluate(async (_params: string) => {
             const [p, i] = _params.split('[||||]');
             // @ts-ignore Reason: this specific code will be run in context of web page
-            (window as any)[i](p);
+            const globalObj = window as any;
+            const waitForInterface = () => {
+                return new Promise<any>((resolve) => {
+                    const get = () => globalObj[i];
+                    if (get()) {
+                        resolve(get());
+                    } else {
+                        const _intervalId = globalObj.setInterval(() => {
+                            if (get()) {
+                                globalObj.clearInterval(_intervalId);
+                                resolve(get());
+                            }
+                        }, 500);
+                    }
+                });
+            };
+            (await waitForInterface())(p);
         }, [jsonStringify(params), PlayWrightInterfaceName].join('[||||]'));
     }
 }
