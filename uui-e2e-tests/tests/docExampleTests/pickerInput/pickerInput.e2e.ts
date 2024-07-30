@@ -2,10 +2,7 @@ import { test } from '../../../framework/fixtures/docExamplePage/fixture';
 import { PickerInputObject } from '../../../framework/pageObjects/pickerInputObject';
 import { type TestInfo } from '@playwright/test';
 import { type DocExamplePage } from '../../../framework/fixtures/docExamplePage/docExamplePage';
-
-enum DocExamplePath {
-    'pickerInput/LazyTreeInput' = 'pickerInput/LazyTreeInput'
-}
+import { DocExamplePath } from '../constants';
 
 async function setupTest(
     params: { testInfo: TestInfo, examplePath: DocExamplePath, pageWrapper: DocExamplePage },
