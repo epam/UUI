@@ -1,10 +1,10 @@
 import React from 'react';
-import { FlexRow, Button } from '@epam/uui';
+import { Button } from '@epam/uui';
 import css from './Button.module.scss';
 
 export default function StyledButtonsExample() {
     return (
-        <FlexRow>
+        <div style={ { display: 'flex', flexWrap: 'wrap' } }>
             <div className={ css.column }>
                 <Button color="primary" caption="Caption" onClick={ () => null } />
                 <Button fill="outline" color="primary" caption="Caption" onClick={ () => null } />
@@ -35,6 +35,6 @@ export default function StyledButtonsExample() {
                 <Button fill="none" color="white" caption="Caption" onClick={ () => null } />
                 <Button fill="ghost" color="white" caption="Caption" onClick={ () => null } />
             </div>
-        </FlexRow>
+        </div>
     );
 }

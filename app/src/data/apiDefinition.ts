@@ -1,7 +1,5 @@
 import { getDemoApi } from '@epam/uui-docs';
-import type {
-    CommonContexts, UuiContexts, ITablePreset, IProcessRequest,
-} from '@epam/uui-core';
+import type { CommonContexts, UuiContexts, ITablePreset, IProcessRequest } from '@epam/uui-core';
 import { TType, TTypeRef } from '@epam/uui-docs';
 import { TDocsGenTypeSummary } from '../common/apiReference/types';
 import { IUuiTokensCollection } from '../sandbox/tokens/palette/types/sharedTypes';
