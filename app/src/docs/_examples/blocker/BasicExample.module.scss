@@ -4,3 +4,16 @@
     position: relative;
     border: 1px solid var(--uui-neutral-30);
 }
+
+.container {
+    width: 520px;
+    max-width: 48vw;
+
+    @media (max-width: 768px) {
+        max-width: 80vw;
+
+        .row {
+            flex-wrap: wrap;
+        }
+    }
+}
