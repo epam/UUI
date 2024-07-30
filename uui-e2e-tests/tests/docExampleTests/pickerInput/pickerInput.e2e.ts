@@ -5,9 +5,9 @@ import { DocExamplePath, setupDocExampleTest } from '../testUtils';
 test.skip(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
-        examplePath: DocExamplePath['pickerInput/LazyTreeInput'],
         pageWrapper,
         PageObjectConstructor: PickerInputObject,
+        examplePath: DocExamplePath['pickerInput/LazyTreeInput'],
     });
     // 1
     await pageObject.focusInput();
