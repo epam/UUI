@@ -102,7 +102,7 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
 
                     if (matrix.clickElement) {
                         const sel = matrix.clickElement({ previewId });
-                        typeof sel === 'string' && await previewPage.clickElement(sel);
+                        typeof sel === 'string' && await pageWrapper.clickElement(sel);
                     }
                     if (matrix.forcePseudoState) {
                         try {
