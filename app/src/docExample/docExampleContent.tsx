@@ -21,7 +21,16 @@ export function DocExampleContent(props: IDocExampleContent) {
         }
         if (Component) {
             return (
-                <FlexRow cx={ css.exampleContent } size={ null } vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
+                <FlexRow
+                    rawProps={ { tabIndex: 0 } }
+                    cx={ css.exampleContent }
+                    size={ null }
+                    vPadding="48"
+                    padding="24"
+                    borderBottom
+                    alignItems="top"
+                    columnGap="12"
+                >
                     <Component />
                 </FlexRow>
             );
