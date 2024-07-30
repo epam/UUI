@@ -7,6 +7,7 @@
 
 **What's Fixed**
 * [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
+* [DataTable]: disable column focus and hover if `isReadonly={ true }` was provided in `rowOptions` for editable table
 
 # 5.8.4 - 22.07.2024
 
