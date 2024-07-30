@@ -1,14 +1,14 @@
 {
   "version": "5.8.4",
-  "timestamp": "2024-07-29",
+  "timestamp": "2024-07-30",
   "sizes": {
     "templateApp": {
-      "css": 292014,
+      "css": 292096,
       "js": 481419
     },
     "@epam/app": {
-      "css": 1599670,
-      "js": 5109767
+      "css": 1599752,
+      "js": 5109887
     },
     "@epam/draft-rte": {
       "css": 9770,
@@ -31,8 +31,8 @@
       "js": 42552
     },
     "@epam/uui-components": {
-      "css": 22270,
-      "js": 244526
+      "css": 22319,
+      "js": 244674
     },
     "@epam/uui-core": {
       "css": 0,
@@ -55,8 +55,8 @@
       "js": 77573
     },
     "@epam/uui": {
-      "css": 273935,
-      "js": 341618
+      "css": 273977,
+      "js": 341695
     }
   }
 }

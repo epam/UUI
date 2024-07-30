@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import { test } from '../fixtures/previewPage/fixture';
 import { TEngine, TKnownCompId, TMatrixFull, TMatrixMinimal, TTheme } from '../types';
 import { TComponentId, THEMES, TPreviewIdByComponentId } from '../data/testData';
@@ -88,36 +87,38 @@ function createTestsForSingleComponentId(builderParams: { componentId: TComponen
                 }
                 const testFn = matrix.only ? test.only : test;
 
-                testFn(testName, async ({ previewPage, browserName }) => {
+                testFn(testName, async ({ pageWrapper, browserName }) => {
                     if (matrix.onlyChromium) {
                         test.skip(browserName !== TEngine.chromium, `This test is "${TEngine.chromium}"-only`);
                     }
-                    await previewPage.editPreview(pageParams);
+                    await pageWrapper.clientRedirect(pageParams);
                     if (matrix.onBeforeExpect) {
-                        await matrix.onBeforeExpect({ previewPage, previewId });
+                        await matrix.onBeforeExpect({ pageWrapper, previewId });
                     }
                     if (matrix.focusFirstElement) {
                         const sel = matrix.focusFirstElement({ previewId });
-                        typeof sel === 'string' && await previewPage.focusElement(sel);
+                        typeof sel === 'string' && await pageWrapper.focusElement(sel);
                     }
 
                     if (matrix.clickElement) {
                         const sel = matrix.clickElement({ previewId });
-                        typeof sel === 'string' && await previewPage.clickElement(sel);
+                        typeof sel === 'string' && await pageWrapper.clickElement(sel);
                     }
                     if (matrix.forcePseudoState) {
                         try {
-                            await previewPage.cdpSession.cssForcePseudoState(matrix.forcePseudoState);
+                            await pageWrapper.cdpSession.cssForcePseudoState(matrix.forcePseudoState);
                             await assert();
                         } finally {
-                            await previewPage.cdpSession.close();
+                            await pageWrapper.cdpSession.close();
                         }
                     } else {
                         await assert();
                     }
                     async function assert() {
-                        const scrOpts = await previewPage.getScreenshotOptions(matrix.slow);
-                        await expect(previewPage.page).toHaveScreenshot(screenshotName, { ...scrOpts });
+                        await pageWrapper.expectScreenshot({
+                            isSlowTest: matrix.slow,
+                            screenshotName,
+                        });
                     }
                 });
             });

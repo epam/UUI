@@ -21,7 +21,7 @@ export const MainMenuAvatar = React.forwardRef<HTMLButtonElement, MainMenuAvatar
         {props.icon && <IconContainer icon={ props.icon } />}
         {props.isDropdown && (
             <div>
-                <IconContainer size={ 18 } icon={ FoldingArrow } flipY={ props.isOpen } />
+                <IconContainer size={ 18 } icon={ FoldingArrow } flipY={ props.isOpen } cx={ css.foldingArrow } />
             </div>
         )}
     </button>
