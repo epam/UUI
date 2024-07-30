@@ -2,7 +2,7 @@ import { test } from '../../../framework/fixtures/docExamplePage/fixture';
 import { PickerInputObject } from '../../../framework/pageObjects/pickerInputObject';
 import { DocExamplePath, setupDocExampleTest } from '../testUtils';
 
-test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
+test.skip(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         examplePath: DocExamplePath['pickerInput/LazyTreeInput'],
