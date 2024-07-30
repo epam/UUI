@@ -1,70 +1,35 @@
-import type { Page, Locator } from '@playwright/test';
-import { PreviewPageParams, TClip, TEngine } from '../../types';
-import { PlayWrightInterfaceName, PREVIEW_URL } from '../../constants';
-import { CdpSessionWrapper } from './cdpSessionWrapper';
-import { slowTestExpectTimeout } from '../../../playwright.config';
+import { expect, type Locator } from '@playwright/test';
+import { type PreviewPageParams } from '../../types';
+import { AbsPage, type IPageParams } from '../shared/absPage';
 
-export class PreviewPage {
+export class PreviewPage extends AbsPage {
     private readonly locators: {
-        regionContentNotBusy: Locator;
-        regionScreenshotContent: Locator;
+        readonly regionContentNotBusy: Locator;
+        readonly regionScreenshotContent: Locator;
     };
 
-    private readonly engine: TEngine;
-    public cdpSession: CdpSessionWrapper;
-    public readonly page: Page;
-
-    constructor(params: { page: Page, engine: TEngine }) {
-        const { page, engine } = params;
-        this.page = page;
-        this.engine = engine;
-        this.cdpSession = new CdpSessionWrapper(page, engine);
-        const regionContentNotBusy = page.locator('[aria-label="Preview Content"][aria-busy="false"]');
-        const regionScreenshotContent = page.locator('[aria-label="Preview Content"][aria-busy="false"] > div');
+    constructor(params: IPageParams) {
+        super(params);
+        const regionContentNotBusy = this.page.locator('[aria-label="Preview Content"][aria-busy="false"]');
+        const regionScreenshotContent = regionContentNotBusy.locator('> div');
         this.locators = {
             regionContentNotBusy,
             regionScreenshotContent,
         };
     }
 
-    async focusElement(selector: string) {
-        await this.page.locator(selector).first().focus();
-    }
-
-    async clickElement(selector: string) {
-        await this.page.locator(selector).first().click();
-    }
-
-    async goto() {
-        await this.page.goto(PREVIEW_URL);
-    }
-
-    async getScreenshotOptions(isSlow?: boolean): Promise<{ fullPage?: boolean; clip: TClip; timeout?: number }> {
-        // in some very rare cases, the content is not fully ready, this small timeout solves the issue.
-        await this.page.waitForTimeout(30);
-        const clip = await this.locators.regionScreenshotContent.boundingBox() as TClip;
-        // have to increase timeout due to a strange bug in Playwright: TypeError: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
-        const res: { fullPage?: boolean; clip: TClip; timeout?: number } = { fullPage: true, clip };
-        if (isSlow) {
-            res.timeout = slowTestExpectTimeout;
-        }
-        return res;
-    }
-
-    async editPreview(params: PreviewPageParams) {
-        await this.page.evaluate((_params: string) => {
-            const [p, i] = _params.split('[||||]');
-            // @ts-ignore Reason: this specific code will be run in context of web page
-            (window as any)[i](p);
-        }, [jsonStringify(params), PlayWrightInterfaceName].join('[||||]'));
+    async clientRedirect(params: PreviewPageParams) {
+        await super._clientRedirect<PreviewPageParams>(params);
         await this.locators.regionContentNotBusy.waitFor();
     }
 
-    async close() {
-        await this.cdpSession.close();
+    async expectScreenshot(
+        params: { screenshotName: string, isSlowTest?: boolean },
+    ) {
+        const screenshotOptions = await super._getScreenshotOptions({
+            isSlowTest: params.isSlowTest,
+            locator: this.locators.regionScreenshotContent,
+        });
+        await expect(this.page).toHaveScreenshot(params.screenshotName, screenshotOptions);
     }
-}
-
-function jsonStringify(json: object) {
-    return JSON.stringify(json, undefined, 1);
 }

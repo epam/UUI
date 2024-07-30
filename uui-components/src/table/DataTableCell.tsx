@@ -21,6 +21,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     const ref = React.useRef<HTMLDivElement>();
     const editorRef = React.useRef<HTMLElement>();
     const isEditable = !!props.onValueChange;
+    const isReadonly = props.isReadonly ?? props.rowProps.isReadonly;
 
     const tableFocusContext = useContext<DataTableFocusContextState<TId>>(DataTableFocusContext);
 
@@ -67,6 +68,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         content = props.renderUnknown(props);
     } else if (isEditable) {
         const onFocus = () => {
+            if (isReadonly) return;
             props.rowProps.onSelect?.(props.rowProps);
             setState((currentState) => ({ ...currentState, inFocus: true }));
             tableFocusContext?.dataTableFocusManager
@@ -80,7 +82,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             onValueChange: props.onValueChange,
             isDisabled: props.isDisabled ?? props.rowProps.isDisabled,
             isInvalid: props.isInvalid ?? props.rowProps.isInvalid,
-            isReadonly: props.isReadonly ?? props.rowProps.isReadonly,
+            isReadonly: isReadonly,
             isRequired: props.isRequired ?? props.rowProps.isRequired,
             validationMessage: props.validationMessage ?? props.rowProps.validationMessage,
             onFocus,
@@ -99,6 +101,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
                     rowIndex={ row.index }
                     columnIndex={ props.index }
                     isInvalid={ props.isInvalid ?? props.rowProps.isInvalid }
+                    isReadonly={ isReadonly }
                     validationMessage={ props.validationMessage ?? props.rowProps.validationMessage }
                 />
             </div>

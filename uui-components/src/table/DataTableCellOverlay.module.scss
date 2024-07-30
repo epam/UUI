@@ -60,10 +60,12 @@
     }
 
     :global(.uui-table-cell):hover & {
-        &:not(:global(.uui-table-cell-selection-in-progress)):not(:global(.uui-focus)) {
-            z-index: 1;
-            visibility: visible;
-            border-color: var(--uui-dt-cell-border-hover);
+        &:not(&:global(.uui-readonly)) {
+            &:not(:global(.uui-table-cell-selection-in-progress)):not(:global(.uui-focus)) {
+                z-index: 1;
+                visibility: visible;
+                border-color: var(--uui-dt-cell-border-hover);
+            }
         }
     }
 
