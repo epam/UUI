@@ -30,13 +30,11 @@ const server = isCi ? {
     url: UUI_APP_BASE_URL,
 };
 //
-const parentDir = '';
 export const previewScreenshotsDirAbsPath = path.resolve(process.cwd(), 'tests/previewTests/__screenshots__');
-const outputDir = `${parentDir}tests/.report/results`;
-const outputFolder = `${parentDir}tests/.report/report`;
-export const outputJsonFile = `${parentDir}tests/.report/report.json`;
+const outputDir = 'tests/.report/results';
+const outputFolder = 'tests/.report/report';
+export const outputJsonFile = 'tests/.report/report.json';
 const snapshotPathTemplate = '{testFileDir}/__screenshots__/{platform}/{projectName}/{arg}{ext}';
-export const stylePath = `${parentDir}framework/fixtures/previewPage/screenshot.css`;
 
 export default defineConfig({
     // = 1 hour (it should be sufficient to run all our tests)
@@ -66,8 +64,8 @@ export default defineConfig({
                 ...devices['Desktop Chrome'],
             },
             testMatch: [
-                `${parentDir}tests/previewTests/*.e2e.ts`,
-                `${parentDir}tests/docExampleTests/*.e2e.ts`,
+                'tests/previewTests/*.e2e.ts',
+                'tests/docExampleTests/**/*.e2e.ts',
             ],
         },
         {
@@ -76,8 +74,8 @@ export default defineConfig({
                 ...devices['Desktop Safari'],
             },
             testMatch: [
-                `${parentDir}tests/previewTests/*.e2e.ts`,
-                `${parentDir}tests/docExampleTests/*.e2e.ts`,
+                'tests/previewTests/*.e2e.ts',
+                'tests/docExampleTests/**/*.e2e.ts',
             ],
         },
         {
@@ -86,7 +84,7 @@ export default defineConfig({
                 ...devices['Desktop Firefox'],
             },
             testMatch: [
-                `${parentDir}tests/docExampleTests/*.e2e.ts`,
+                'tests/docExampleTests/**/*.e2e.ts',
             ],
         },
     ].filter(({ name }) => {
