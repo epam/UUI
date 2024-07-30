@@ -4,10 +4,16 @@ import { TEngine } from '../../types';
 import { timeoutForFixture } from '../../../playwright.config';
 import { type AbsPage, type IPageParams } from './absPage';
 
+interface IFixtureBuilderParams<TPageWrapper> {
+    initialUrl: string;
+    PageWrapperConstructor: { new (params: IPageParams): TPageWrapper; };
+    extraStyles?: string;
+}
+
 export function buildFixture<TPageWrapper extends AbsPage>(
-    initialUrl: string,
-    PageWrapperConstructor: { new (params: IPageParams): TPageWrapper; },
+    builderParams: IFixtureBuilderParams<TPageWrapper>,
 ) {
+    const { initialUrl, PageWrapperConstructor, extraStyles } = builderParams;
     return baseTest.extend<{}, { pageWrapper: TPageWrapper }>({
         pageWrapper: [
             async ({ browser }, use, { project }) => {
@@ -17,7 +23,7 @@ export function buildFixture<TPageWrapper extends AbsPage>(
                 try {
                     const page = await context.newPage();
                     await mockApi(page);
-                    pageWrapper = new PageWrapperConstructor({ page, engine, initialUrl });
+                    pageWrapper = new PageWrapperConstructor({ page, engine, initialUrl, extraStyles });
                     await pageWrapper!.openInitialPage();
                     await page.waitForTimeout(50);
                     await use(pageWrapper!);
