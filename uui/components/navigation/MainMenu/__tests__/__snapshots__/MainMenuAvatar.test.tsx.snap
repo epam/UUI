@@ -27,7 +27,7 @@ exports[`MainMenuAvatar should be rendered correctly 2`] = `
   />
   <div>
     <div
-      className="container uui-icon uui-enabled"
+      className="container uui-icon uui-enabled foldingArrow"
       style={Object {}}
     >
       <svg
