@@ -33,23 +33,25 @@
     background-color: var(--uui-surface-main);
     border-top: 1px solid var(--uui-divider);
 
-    &.mobile {
-        z-index: 1;
-        position: fixed;
-        top: 0;
-        min-height: 100dvh;
-        height: 100dvh;
-        width: 100dvw;
-        transition: 0.3s ease-out;
-        animation: sidebar-appear ease-in 0.3s forwards;
-    }
-
-    &.closing {
-        animation: sidebar-disappear ease-out 0.3s forwards;
-    }
-
     .sidebar-wrapper {
         min-height: 100vh;
+        animation: sidebar-appear ease-in 0.3s forwards;
+
+        &.mobile {
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            min-height: 100dvh;
+            height: 100dvh;
+            width: 100dvw;
+            transition: 0.3s ease-out;
+            background-color: var(--uui-surface-main);
+            animation: sidebar-appear ease-in 0.3s forwards;
+        }
+
+        &.closing {
+            animation: sidebar-disappear ease-out 0.3s forwards;
+        }
     }
 
     .sidebar {

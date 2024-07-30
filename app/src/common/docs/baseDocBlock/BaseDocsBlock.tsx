@@ -155,20 +155,18 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
         return (
             <div
                 ref={ this.containerRef }
-                className={ cx(css.container, this.state.isOpen && css.mobile, this.state.isClosing && css.closing) }
+                className={ css.container }
             >
-                { !this.state.isOpen && (
-                    <TabsNav
-                        mode={ mode }
-                        supportedModes={ supportedModes }
-                        renderSkinSwitcher={ this.renderSkinSwitcher }
-                        onChangeMode={ this.handleChangeTab }
-                        handleMobSidebarBtnClick={ this.handleMobSidebarBtnClick }
-                    />
-                ) }
+                <TabsNav
+                    mode={ mode }
+                    supportedModes={ supportedModes }
+                    renderSkinSwitcher={ this.renderSkinSwitcher }
+                    onChangeMode={ this.handleChangeTab }
+                    handleMobSidebarBtnClick={ this.handleMobSidebarBtnClick }
+                />
                 { this.renderTabContent(mode) }
                 { this.state.isOpen && (
-                    <FlexCell grow={ 1 } cx={ css.sidebarWrapper }>
+                    <FlexCell grow={ 1 } cx={ cx(css.sidebarWrapper, this.state.isOpen && css.mobile, this.state.isClosing && css.closing) }>
                         <FlexRow borderBottom={ true } padding="18" vPadding="24">
                             <Text fontSize="18" fontWeight="600" lineHeight="24">Navigation</Text>
                             <FlexSpacer />
