@@ -1,7 +1,8 @@
 import React, {
     HTMLAttributes, ReactElement,
 } from 'react';
-import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 
 import {
     arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
