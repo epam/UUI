@@ -54,10 +54,10 @@ const drawMinutes = ({
     });
 };
 
-const drawQuoterHours = ({
+const drawQuarterHours = ({
     context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.lineWidth,
 }: CustomCanvasDrawTimelineElementProps) => {
-    timelineTransform.getVisibleQuoterHours().forEach((w) => {
+    timelineTransform.getVisibleQuarterHours().forEach((w) => {
         (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight, width: lineWidth });
     });
 };
@@ -138,7 +138,7 @@ const drawToday = ({
 };
 
 const shouldDrawMinutes = (pxPerDay: number) => pxPerDay >= 4000;
-const shouldDrawQouterHours = (pxPerDay: number) => pxPerDay >= 1600;
+const shouldDrawQuarterHours = (pxPerDay: number) => pxPerDay >= 1600;
 const shouldDrawHours = (pxPerDay: number) => pxPerDay >= 190;
 const shouldDrawDays = (pxPerDay: number) => pxPerDay > 10;
 const shouldDrawHolidays = (pxPerDay: number) => pxPerDay > 6;
@@ -150,7 +150,7 @@ export const timelineGrid = {
     drawWeekend,
     drawHolidayOrWeekend,
     drawMinutes,
-    drawQuoterHours,
+    drawQuarterHours,
     drawHours,
     drawHolidays,
     drawDays,
@@ -160,7 +160,7 @@ export const timelineGrid = {
     drawToday,
 
     shouldDrawMinutes,
-    shouldDrawQouterHours,
+    shouldDrawQuarterHours,
     shouldDrawHours,
     shouldDrawDays,
     shouldDrawHolidays,
