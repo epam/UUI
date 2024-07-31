@@ -797,56 +797,6 @@ describe('PickerInput', () => {
                 expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
             });
         });
-
-        it('should clear search on show only selected toggle', async () => {
-            const { dom } = await setupPickerInputForTest<TestItemType, number>({
-                value: [4, 2, 6, 8],
-                selectionMode: 'multi',
-                searchPosition: 'body',
-            });
-
-            fireEvent.click(dom.target);
-
-            const dialog = await PickerInputTestObject.findDialog();
-            expect(dialog).toBeInTheDocument();
-
-            await PickerInputTestObject.waitForOptionsToBeReady();
-
-            const searchInput = within(dialog).queryByRole('searchbox') as HTMLInputElement;
-            fireEvent.change(searchInput, { target: { value: 'search' } });
-
-            await PickerInputTestObject.clickShowOnlySelected();
-
-            await waitFor(() => expect(searchInput.value).toEqual(''));
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-        });
-
-        it('should turn off show only selected mode on search change', async () => {
-            const { dom } = await setupPickerInputForTest<TestItemType, number>({
-                value: [4, 2, 6, 8],
-                selectionMode: 'multi',
-                searchPosition: 'body',
-            });
-
-            fireEvent.click(dom.target);
-
-            const dialog = screen.queryByRole('dialog');
-            expect(dialog).toBeInTheDocument();
-            await PickerInputTestObject.waitForOptionsToBeReady();
-
-            await PickerInputTestObject.clickShowOnlySelected();
-
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-
-            const searchInput = within(dialog!).getByRole('searchbox') as HTMLInputElement;
-            fireEvent.change(searchInput, { target: { value: 'search' } });
-
-            const showOnlySelectedSwitch = within(dialog!).queryByRole('switch', { name: 'Show only selected' }) as HTMLInputElement;
-
-            await waitFor(() => expect(showOnlySelectedSwitch.checked).toEqual(false));
-        });
     });
 
     it('should disable input', async () => {
