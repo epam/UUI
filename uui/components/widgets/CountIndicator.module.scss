@@ -10,9 +10,10 @@
         box-sizing: border-box;
         font-family: var(--uui-count_indicator-font);
         font-weight: var(--uui-count_indicator-font-weight);
-        margin: auto;
+        margin: auto 0;
         text-align: center;
         flex-shrink: 0;
+        width: fit-content;
         //
         background-color: var(--uui-count_indicator-bg);
         border: 1px solid var(--uui-count_indicator-border);
