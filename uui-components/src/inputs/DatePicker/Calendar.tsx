@@ -3,9 +3,8 @@ import React, {
 } from 'react';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import type { Dayjs } from '../../helpers/dayJsHelper';
-
 import {
-    arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
+    arrayToMatrix, cx, IDisableable, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
 import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
@@ -14,7 +13,7 @@ import css from './Calendar.module.scss';
 /**
  * Represents the properties of the Calendar component
  */
-export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface CalendarProps<TSelection> extends IHasCX, IDisableable, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     value?: TSelection;
     onValueChange: (day: Dayjs) => void;
     renderDay?: (renderProps: DayProps) => ReactElement<Element>;
@@ -71,6 +70,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                             filter: props.filter,
                             isHoliday: props.isHoliday ? props.isHoliday(day) : isHoliday(day),
                             isSelected: isSelected(day, props.value),
+                            isDisabled: props.isDisabled,
                         })
                     ) : (
                         <Day
@@ -81,6 +81,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                             filter={ props.filter }
                             isHoliday={ props.isHoliday ? props.isHoliday(day) : isHoliday(day) }
                             isSelected={ isSelected(day, props.value) }
+                            isDisabled={ props.isDisabled }
                         />
                     )}
                 </div>
