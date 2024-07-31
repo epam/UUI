@@ -142,7 +142,7 @@ export class TimelineController {
             },
             true,
         );
-        e.preventDefault();
+        e.cancelable && e.preventDefault();
     };
 
     public moveToday() {
