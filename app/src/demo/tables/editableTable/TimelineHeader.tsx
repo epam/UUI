@@ -36,7 +36,11 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
 
     return (
         <div ref={ timelineRef } className={ css.timeline }>
-            <div className={ css.layer } onMouseDown={ timelineController.startDrag }>
+            <div
+                className={ css.layer }
+                onMouseDown={ timelineController.startDrag }
+                onWheel={ (e) => timelineController.handleWheelEvent(e.nativeEvent as WheelEvent) }
+            >
                 <TimelineScale
                     timelineController={ timelineController }
                 />
