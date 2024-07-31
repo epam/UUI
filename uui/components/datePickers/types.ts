@@ -11,7 +11,7 @@ import {
 import { IHasEditMode } from '../types';
 import { ReactElement, ReactNode } from 'react';
 import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
-import { type Dayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 
 /**
  * Represents RangeDatePicker value
