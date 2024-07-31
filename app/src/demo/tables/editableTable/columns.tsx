@@ -3,7 +3,7 @@ import { resources, statuses, statusTags } from './demoData';
 import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
     DatePicker, DataPickerRow, PickerItem, IconContainer, 
-    DataTableTimelineHeaderCell } from '@epam/uui';
+    DataTableCustomHeaderCell } from '@epam/uui';
 import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditableDebouncer, cx } from '@epam/uui-core';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 
@@ -383,9 +383,9 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             allowResizing: false,
             renderHeaderCell(props) {
                 return (
-                    <DataTableTimelineHeaderCell { ...props }>
+                    <DataTableCustomHeaderCell { ...props }>
                         <TimelineHeader timelineController={ timelineController } />
-                    </DataTableTimelineHeaderCell>
+                    </DataTableCustomHeaderCell>
                 );
             },
             renderCell(props) {

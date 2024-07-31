@@ -5,7 +5,7 @@ import { FlexCell } from '../layout';
 /**
  * Header cell props of DataTable with Timeline.
  */
-export interface DataTableTimelineHeaderCellProps<TItem, TId> extends DataTableHeaderCellProps<TItem, TId>, IHasCX {
+export interface DataTableCustomHeaderCellProps<TItem, TId> extends DataTableHeaderCellProps<TItem, TId>, IHasCX {
     /**
      * Renders custom header cell for timeline.
      * @returns Header cell content.
@@ -13,7 +13,7 @@ export interface DataTableTimelineHeaderCellProps<TItem, TId> extends DataTableH
     renderCellContent: () => React.ReactNode;
 }
 
-export function DataTableTimelineHeaderCell<TItem, TId>(props: DataTableTimelineHeaderCellProps<TItem, TId>) {
+export function DataTableCustomHeaderCell<TItem, TId>(props: DataTableCustomHeaderCellProps<TItem, TId>) {
     return (
         <FlexCell
             { ...props.column }
