@@ -74,15 +74,21 @@ export abstract class AbsPage {
             // @ts-ignore Reason: this specific code will be run in context of web page
             const globalObj = window as any;
             const waitForInterface = () => {
-                return new Promise<any>((resolve) => {
+                return new Promise<any>((resolve, reject) => {
                     const get = () => globalObj[i];
                     if (get()) {
                         resolve(get());
                     } else {
+                        const MAX_ATTEMPTS = 5;
+                        let _attempts = 0;
                         const _intervalId = globalObj.setInterval(() => {
+                            _attempts++;
                             if (get()) {
                                 globalObj.clearInterval(_intervalId);
                                 resolve(get());
+                            } else if (_attempts === MAX_ATTEMPTS) {
+                                globalObj.clearInterval(_intervalId);
+                                reject(new Error(`Unable to find window.${i} global variable after ${_attempts} attempts.`));
                             }
                         }, 500);
                     }
