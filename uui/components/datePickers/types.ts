@@ -1,7 +1,7 @@
 import {
     CommonDatePickerProps,
     IAnalyticableOnChange,
-    ICanFocus,
+    ICanFocus, IDisableable,
     IEditable,
     IHasCX,
     IHasPlaceholder,
@@ -154,7 +154,7 @@ interface RangeDatePickerProps extends
  */
 type RangeDatePickerInputType = 'from' | 'to' | null;
 
-interface CommonDatePickerBodyProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+interface CommonDatePickerBodyProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     filter?(day: Dayjs): boolean;
     presets?: RangeDatePickerPresets;
     renderDay?: (renderProps: DayProps) => React.ReactElement<Element>;
