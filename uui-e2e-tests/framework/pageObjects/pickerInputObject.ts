@@ -1,14 +1,14 @@
 import { Locator, Page, expect } from '@playwright/test';
 
 // see all key codes here: https://playwright.dev/docs/api/class-keyboard#keyboard-press
-type TKeyboardKey = 'ArrowDown' | 'Backspace' | 'Enter' | 'Escape' | 'Shift' | 'Tab' | 'Shift+Tab';
+type TKeyboardKey = 'ArrowDown' | 'Backspace' | 'Enter' | 'Escape' | 'Shift' | 'Tab' | 'Shift+Tab' | 'Space';
 
 export class PickerInputObject {
     private readonly locators: {
         input: Locator;
         dropdown: {
             root: Locator;
-            option: (params: { focused?: boolean, checked?: boolean, text?: string, has?: string }) => Locator;
+            option: (params: { focused?: boolean, checked?: boolean, text?: string, has?: string, ariaPosinset?: number }) => Locator;
             blocker: Locator;
             search: Locator;
             noRecords: Locator;
@@ -23,7 +23,7 @@ export class PickerInputObject {
             dropdown: {
                 root: dropdown,
                 search: dropdown.locator('input[type="search"]'),
-                noRecords: dropdown.locator('.uui-flex-row > div > .uui-text').getByText('No records found'),
+                noRecords: dropdown.locator('.uui-flex-row .uui-text').getByText('No records found'),
                 option: (params) => {
                     let sel = 'div[role="option"]';
                     if (params.focused) {
@@ -31,6 +31,9 @@ export class PickerInputObject {
                     }
                     if (params.checked) {
                         sel += '[aria-checked="true"]';
+                    }
+                    if (typeof params.ariaPosinset === 'number') {
+                        sel += `[aria-posinset="${params.ariaPosinset}"]`;
                     }
                     if (typeof params.has === 'string') {
                         sel += `:has(${params.has})`;
@@ -84,10 +87,12 @@ export class PickerInputObject {
         await this.locators.dropdown.root.waitFor({ state: 'hidden' });
     }
 
-    async keyboardPress(key: TKeyboardKey, times: number = 1) {
-        for (let i = 0; i < times; i++) {
-            await this.page.keyboard.press(key);
-            await this.page.waitForTimeout(100);
+    async keyboardPress(key: TKeyboardKey, times?: number, afterEach?: (index: number) => Promise<void>) {
+        for (let i = 0; i < (times || 1); i++) {
+            await this.page.keyboard.press(key, { delay: 50 });
+            if (afterEach) {
+                await afterEach(i);
+            }
         }
     }
 
@@ -97,6 +102,13 @@ export class PickerInputObject {
 
     async expectOptionInViewport(text: string) {
         await expect(this.locators.dropdown.option({ text })).toBeInViewport({ ratio: 0.95 });
+    }
+
+    /**
+     * @param pos - starts from 1
+     */
+    async expectOptionFocusedAndInViewportByPos(pos: number) {
+        await expect(this.locators.dropdown.option({ ariaPosinset: pos, focused: true })).toBeInViewport({ ratio: 0.95 });
     }
 
     async waitDropdownOptionChecked(text: string) {
