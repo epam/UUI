@@ -1,13 +1,19 @@
 # 5.8.5 - xx.xx.2024
 
 **What's New**
+* [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
 * Icons pack updated
 * [DatePicker][RangeDatePicker]: improve a11y focus flow behavior. Now date picker body receive focus on open and return it back on input after close.
+* [Mobile navigation]: in mobile mode (width <= 768px) on Components page appeared new Navigation button to show/hide sidebar. 
+* [Main landing page]: new design. 
 
 
 **What's Fixed**
 * [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
 * [DataTable]: disable column focus and hover if `isReadonly={ true }` was provided in `rowOptions` for editable table
+* [Badge]: centered all content when component has a fixed width
+* [Button]: centered all content when component has a fixed width
+* [FileUpload]: fixed error icon color to uui-error-70
 
 # 5.8.4 - 22.07.2024
 

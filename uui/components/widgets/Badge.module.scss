@@ -59,15 +59,9 @@
         padding-right: $captionPadding;
     }
 
-    &:global(.uui-indicator) {
-        :global(.uui-caption) {
-            margin-left: $dotSize + $captionPadding;
-        }
-
-        &::before {
-            width: $dotSize;
-            height: $dotSize;
-        }
+    :global(.uui-indicator) {
+        width: $dotSize;
+        height: $dotSize;
     }
 }
 
@@ -118,23 +112,18 @@
         margin-right: 3px;
     }
 
-    &:global(.uui-indicator) {
-        &::before {
-            position: absolute;
-            content: '';
-            border-radius: 50%;
-            background-color: var(--uui-badge-caption);
-        }
+    :global(.uui-indicator) {
+        display: block;
+        margin: auto 0;
+        border-radius: 50%;
+        background-color: var(--uui-badge-caption);
     }
 
     &.size-18 {
         @include badge-layout(18px, 1px);
 
-        &:global(.uui-indicator) {
-            &::before {
-                top: 5px;
-                left: 5px;
-            }
+        :global(.uui-indicator) {
+            margin-inline-start: 3px;
         }
 
         :global(.uui-caption) {
@@ -148,11 +137,8 @@
     &.size-24 {
         @include badge-layout(24px, 1px);
 
-        &:global(.uui-indicator) {
-            &::before {
-                top: 7px;
-                left: 9px;
-            }
+        :global(.uui-indicator) {
+            margin-inline-start: 7px;
         }
 
         :global(.uui-caption) {
@@ -166,11 +152,8 @@
     &.size-30 {
         @include badge-layout(30px, 1px);
 
-        &:global(.uui-indicator) {
-            &::before {
-                top: 10px;
-                left: 11px;
-            }
+        :global(.uui-indicator) {
+            margin-inline-start: 6px;
         }
 
         :global(.uui-caption) {
@@ -184,11 +167,8 @@
     &.size-36 {
         @include badge-layout(36px, 1px);
 
-        &:global(.uui-indicator) {
-            &::before {
-                top: 13px;
-                left: 15px;
-            }
+        :global(.uui-indicator) {
+            margin-inline-start: 7px;
         }
 
         :global(.uui-caption) {
@@ -209,22 +189,16 @@
             font-size: 16px;
         }
 
-        &:global(.uui-indicator) {
-            &::before {
-                top: 15px;
-                left: 17px;
-            }
+        :global(.uui-indicator) {
+            margin-inline-start: 6px;
         }
     }
 
     &.size-48 {
         @include badge-layout(48px, 1px);
 
-        &:global(.uui-indicator) {
-            &::before {
-                top: 17px;
-                left: 17px;
-            }
+        :global(.uui-indicator) {
+            margin-inline-start: 6px;
         }
 
         :global(.uui-caption) {
