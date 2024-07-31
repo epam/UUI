@@ -10,7 +10,7 @@ export interface TimelineGridProps extends TimelineCanvasProps {
     drawMinutes?: (props: CanvasDrawTimelineElementProps) => void;
     drawHours?: (props: CanvasDrawTimelineElementProps) => void;
     drawDays?: (props: CanvasDrawTimelineElementProps) => void;
-    drawQuoterHours?: (props: CanvasDrawTimelineElementProps) => void;
+    drawQuarterHours?: (props: CanvasDrawTimelineElementProps) => void;
     drawHolidays?: (props: CanvasDrawTimelineElementProps) => void;
     drawWeeks?: (props: CanvasDrawTimelineElementProps) => void;
     drawMonths?: (props: CanvasDrawTimelineElementProps) => void;
@@ -31,7 +31,7 @@ export function TimelineGrid({
     timelineController,
     drawLine,
     drawMinutes,
-    drawQuoterHours,
+    drawQuarterHours,
     drawHours,
     drawDays,
     drawHolidays,
@@ -83,9 +83,9 @@ export function TimelineGrid({
             (drawMinutes ?? timelineGrid.drawMinutes)(options);
         }
 
-        if (timelineGrid.shouldDrawQouterHours(pxPerDay)
+        if (timelineGrid.shouldDrawQuarterHours(pxPerDay)
         ) {
-            (drawQuoterHours ?? timelineGrid.drawQuoterHours)(options);
+            (drawQuarterHours ?? timelineGrid.drawQuarterHours)(options);
         }
 
         if (timelineGrid.shouldDrawHours(pxPerDay)) {

@@ -170,7 +170,7 @@ export class TimelineTransform {
         );
     }
 
-    public getVisibleQuoterHours() {
+    public getVisibleQuarterHours() {
         return this.getScaleBars(
             (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n * 15),
