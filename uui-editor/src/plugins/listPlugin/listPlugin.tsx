@@ -1,5 +1,9 @@
 import {
     PlateEditor, PlateElementProps, focusEditor, PlatePlugin,
+    KEY_DESERIALIZE_HTML,
+    traverseHtmlElements,
+    isHtmlBlockElement,
+    postCleanHtml,
 } from '@udecode/plate-common';
 import {
     ELEMENT_LI, ELEMENT_LIC, ELEMENT_OL, ELEMENT_UL, createListPlugin, getListItemEntry, toggleList,
@@ -13,6 +17,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { ListElement } from './ListElement';
 import { WithToolbarButton } from '../../implementation/Toolbars';
 import { OL_TYPE, UL_TYPE, LI_TYPE, LI_CHILD_TYPE } from './constants';
+import { cleanDocxListElementsToList } from '@udecode/plate-serializer-docx';
 
 export const listPlugin = (): PlatePlugin => createListPlugin<WithToolbarButton>({
     overrideByKey: {
@@ -43,6 +48,50 @@ export const listPlugin = (): PlatePlugin => createListPlugin<WithToolbarButton>
     },
     options: {
         bottomBarButton: ListButton,
+    },
+    inject: {
+        pluginsByKey: {
+            [KEY_DESERIALIZE_HTML]: {
+                editor: {
+                    insertData: {
+                        transformData: (data) => {
+                            const document = new DOMParser().parseFromString(
+                                data,
+                                'text/html',
+                            );
+                            const { body } = document;
+
+                            cleanDocxListElementsToList(body);
+
+                            traverseHtmlElements(body, (element) => {
+                                if (element.tagName === 'LI') {
+                                    const { childNodes } = element;
+
+                                    // replace li block children (e.g. p) by their children
+                                    const liChildren: Node[] = [];
+                                    childNodes.forEach((child) => {
+                                        if (isHtmlBlockElement(child as Element)) {
+                                            liChildren.push(...child.childNodes);
+                                        } else {
+                                            liChildren.push(child);
+                                        }
+                                    });
+
+                                    element.replaceChildren(...liChildren);
+
+                                    // TODO: recursive check on ul parents for indent
+
+                                    return false;
+                                }
+                                return true;
+                            });
+
+                            return postCleanHtml(body.innerHTML);
+                        },
+                    },
+                },
+            },
+        },
     },
 });
 
