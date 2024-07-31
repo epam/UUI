@@ -139,6 +139,7 @@ const drawPeriodText = ({
     periodFont = defaultFonts.periodFont,
     currentPeriodFont = defaultFonts.currentPeriodFont,
 }: CanvasDrawPeriodFragmentProps) => {
+    context.font = isCurPeriod ? currentPeriodFont : periodFont;
     context.fillStyle = textColor;
 
     const padding = 12;
@@ -149,10 +150,12 @@ const drawPeriodText = ({
 
     // Stick to the edges
     if (width > 120) {
-        const leftBound = 24;
-        const rightBound = timelineTransform.widthPx - 24;
+        const bound = 24;
+        const leftBound = bound;
+        const rightBound = timelineTransform.widthPx - bound;
         const isOutOfLeftBound = left < leftBound;
         const isOutOfRightBound = left + textWidth > rightBound;
+
         if (isOutOfLeftBound) {
             left = leftBound;
         }
@@ -167,7 +170,6 @@ const drawPeriodText = ({
         }
     }
 
-    context.font = isCurPeriod ? currentPeriodFont : periodFont;
     context.fillText(text, left + padding, line * 24);
 
     if (superscript) {
