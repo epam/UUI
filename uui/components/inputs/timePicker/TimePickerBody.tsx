@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
 import { IconContainer, NumericInput, TextInput } from '@epam/uui-components';
-import { type Dayjs, uuiDayjs } from '../../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../../helpers/dayJsHelper';
+import type { Dayjs } from '../../../helpers/dayJsHelper';
 import { TimePickerBodyProps } from './types';
 import { ReactComponent as ArrowIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './TimePicker.module.scss';

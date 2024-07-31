@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type Dayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import {
     IEditable, IHasCX, IHasForwardedRef, IHasRawProps, cx, uuiMarkers,
 } from '@epam/uui-core';
