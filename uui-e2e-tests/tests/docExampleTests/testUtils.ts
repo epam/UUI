@@ -20,5 +20,7 @@ export async function setupDocExampleTest<TPageObject>(params: IDocExampleTestSe
         const screenshotName = `${testInfo.title}_${stepName}.png`;
         await pageWrapper.expectScreenshot(screenshotName);
     };
+    // The timeout is increased for all doc example tests, because such tests contain many assertions.
+    testInfo.setTimeout(testInfo.timeout + 280_000);
     return { pageObject, expectScreenshot };
 }

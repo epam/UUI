@@ -69,10 +69,32 @@ export abstract class AbsPage {
 
     protected async _clientRedirect<T extends object>(params: T) {
         await this.page.mouse.move(0, 0);
-        await this.page.evaluate((_params: string) => {
+        await this.page.evaluate(async (_params: string) => {
             const [p, i] = _params.split('[||||]');
             // @ts-ignore Reason: this specific code will be run in context of web page
-            (window as any)[i](p);
+            const globalObj = window as any;
+            const waitForInterface = () => {
+                return new Promise<any>((resolve, reject) => {
+                    const get = () => globalObj[i];
+                    if (get()) {
+                        resolve(get());
+                    } else {
+                        const MAX_ATTEMPTS = 5;
+                        let _attempts = 0;
+                        const _intervalId = globalObj.setInterval(() => {
+                            _attempts++;
+                            if (get()) {
+                                globalObj.clearInterval(_intervalId);
+                                resolve(get());
+                            } else if (_attempts === MAX_ATTEMPTS) {
+                                globalObj.clearInterval(_intervalId);
+                                reject(new Error(`Unable to find window.${i} global variable after ${_attempts} attempts.`));
+                            }
+                        }, 500);
+                    }
+                });
+            };
+            (await waitForInterface())(p);
         }, [jsonStringify(params), PlayWrightInterfaceName].join('[||||]'));
     }
 }
