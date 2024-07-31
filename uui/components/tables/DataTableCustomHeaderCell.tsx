@@ -25,6 +25,7 @@ DataTableHeaderCellState
                 renderCellContent={ this.renderCellContent }
                 cx= {
                     cx(
+                        'uui-dt-vars',
                         uuiDataTableHeaderCell.uuiTableHeaderCell,
                         css.cell,
                         this.props.column.cx,
