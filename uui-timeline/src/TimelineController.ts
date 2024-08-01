@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Viewport, ViewportRange } from './types';
-import { changeZoomStep, getScaleByRange, msPerDay, scaleSteps } from './helpers';
+import { changeZoomStep, getScaleByRange, msPerDay } from './helpers';
 import { TimelineTransform } from '../';
-import sortedIndex from 'lodash.sortedindex';
 import { isClientSide } from '@epam/uui-core';
 
 type TimelineRenderHandler = (transform: TimelineTransform) => void;
@@ -23,7 +22,7 @@ interface ScaleState {
 
 export class TimelineController {
     dragStartViewport: Viewport;
-    currentViewport: Viewport;
+    _currentViewport: Viewport;
     targetViewport: Viewport;
     options: TimelineControllerOptions;
     screenMouseX = 0;
@@ -33,6 +32,7 @@ export class TimelineController {
     isFrameScheduled = false;
     scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
+    timelineTransform: TimelineTransform;
 
     onViewportChange: (newViewport: Viewport) => void;
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
@@ -61,6 +61,15 @@ export class TimelineController {
             window.addEventListener('mouseup', this.handleMouseUp);
             window.addEventListener('mouseleave', this.handleMouseLeave);
         }
+    }
+
+    get currentViewport() {
+        return this._currentViewport;
+    }
+
+    set currentViewport(newViewport: Viewport) {
+        this._currentViewport = newViewport;
+        this.timelineTransform = new TimelineTransform(this, this._currentViewport);
     }
 
     handlers: TimelineRenderHandler[] = [];
@@ -202,7 +211,7 @@ export class TimelineController {
     }
 
     public getTransform() {
-        return new TimelineTransform(this, this.currentViewport);
+        return this.timelineTransform;
     }
 
     private doRender() {

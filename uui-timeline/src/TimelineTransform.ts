@@ -111,8 +111,7 @@ export class TimelineTransform {
         const result = [];
         let n = 0;
 
-        const scaleKey = JSON.stringify({ baseDate, toDate, keyPrefix });
-        if (!this.cache.has(scaleKey) || !this.cache.get(scaleKey).length) {
+        if (!this.cache.has(keyPrefix) || !this.cache.get(keyPrefix).length) {
             while (true) {
                 const leftDate = getNthDate(baseDate, n);
                 const rightDate = getNthDate(baseDate, n + 1);
@@ -132,10 +131,10 @@ export class TimelineTransform {
                 n++;
             }
 
-            this.cache.set(scaleKey, result);
+            this.cache.set(keyPrefix, result);
         }
 
-        return this.cache.get(scaleKey);
+        return this.cache.get(keyPrefix);
     }
 
     public getVisibleMonths() {
