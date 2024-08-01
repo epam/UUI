@@ -26,7 +26,7 @@ const solidExamples: CountIndicatorProps[] = [
 
 export default function BasicCountIndicatorExample() {
     return (
-        <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(4, 40px)', gap: '6px 12px', textAlign: 'center' } }>
+        <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(4, 40px)', gap: '6px 12px', justifyItems: 'center' } }>
             { exampleNames.map((name) => <Text fontWeight="600">{ name }</Text>)}
             { solidExamples.map((item) => <CountIndicator caption={ item.caption } color={ item.color } size={ item.size } />) }
         </div>
