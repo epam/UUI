@@ -27,17 +27,19 @@ export function Day(props: DayProps): JSX.Element {
         isPassedFilter && props.onValueChange(props.value);
     };
 
+    const isDisabled = props.isDisabled || (props.filter && !props.filter(props.value));
+
     return (
         <div
             onClick={ selectDay }
             onKeyDown={ (e) => e.key === 'Enter' && selectDay() }
-            tabIndex={ 0 }
+            tabIndex={ !isDisabled ? 0 : -1 }
             className={ cx([
                 isPassedFilter && uuiDaySelection.clickableDay,
                 isPassedFilter && uuiMarkers.clickable,
                 isCurrent && uuiDaySelection.currentDay,
                 props.isSelected && uuiDaySelection.selectedDay,
-                props.filter && !props.filter(props.value) && uuiDaySelection.filteredDay,
+                isDisabled && uuiDaySelection.filteredDay,
                 props.cx,
                 uuiDaySelection.dayWrapper,
                 props.isHoliday && uuiDaySelection.holiday,
