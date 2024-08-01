@@ -19,11 +19,15 @@ type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPic
 
 function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) {
     const {
+        search,
         clearSelection,
         view,
         showSelected,
         selectionMode,
     } = props;
+
+    if (search && search?.length) return null;
+
     const size = settings.sizes.dataPickerFooter.linkButton[isMobile() ? 'mobile' : props.size] as LinkButtonProps['size'];
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;

@@ -120,6 +120,8 @@ export type PickerFooterProps<TItem, TId> = {
     disableClear?: boolean;
     /** Current selected items */
     selection: PickerBindingProps<TItem, TId>['value'];
+    /** Defines a search value */
+    search: string;
 };
 
 /**

@@ -115,8 +115,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
     };
 
     const renderFooter = () => {
-        if (dataSourceState.search?.length) return;
-
         const footerProps = getFooterProps();
 
         return props.renderFooter ? props.renderFooter(footerProps) : <DataPickerFooter { ...footerProps } size={ props.size } />;
