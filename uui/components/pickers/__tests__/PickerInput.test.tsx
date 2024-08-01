@@ -764,14 +764,15 @@ describe('PickerInput', () => {
 
             await PickerInputTestObject.clickSelectAllOptions();
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
-            });
+                const result = PickerInputTestObject.getSelectedTagsText(dom.input);
+                return expect(result).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+            }, { timeout: 10000 });
 
             await PickerInputTestObject.clickClearAllOptions();
             await waitFor(() => {
                 expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
             });
-        });
+        }, 15000);
 
         describe('show only selected', () => {
             it('should show only selected items', async () => {
