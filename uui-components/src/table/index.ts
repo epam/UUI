@@ -5,4 +5,4 @@ export * from './DataTableHeaderCell';
 export * from './DataTableCell';
 export * from './tableCellsSelection';
 export * from './tableCellsFocus';
-export * from './DataTableCustomHeaderCell';
+export * from './DataTableCellContainer';
