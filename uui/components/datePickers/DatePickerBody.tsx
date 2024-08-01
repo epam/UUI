@@ -78,6 +78,7 @@ function StatelessDatePickerBodyComp({
     onValueChange,
     onMonthChange,
     onViewChange,
+    isDisabled,
 }: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
     const selectedDate = uuiDayjs.dayjs(value);
 
@@ -124,6 +125,7 @@ function StatelessDatePickerBodyComp({
                         filter={ filter }
                         renderDay={ renderDay }
                         isHoliday={ isHoliday }
+                        isDisabled={ isDisabled }
                     />
                 );
         }
@@ -145,6 +147,7 @@ function StatelessDatePickerBodyComp({
                         onMonthChange(newValue.month);
                         onViewChange(newValue.view);
                     } }
+                    isDisabled={ isDisabled }
                 />
                 {getView()}
             </div>

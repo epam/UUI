@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
 import css from './MonthSelection.module.scss';

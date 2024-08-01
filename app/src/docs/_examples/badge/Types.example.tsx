@@ -3,10 +3,11 @@ import { Dropdown, FlexRow, Panel, Text, Badge } from '@epam/uui';
 import { ReactComponent as mediaIcon } from '@epam/assets/icons/media-play-fill-opt.2.svg';
 import { ReactComponent as doneIcon } from '@epam/assets/icons/notification-done-outline.svg';
 import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
+import css from './Types.module.scss';
 
 export default function TypesExample() {
     return (
-        <>
+        <div className={ css.container }>
             <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow columnGap="18" key="01">
                     <Badge icon={ mediaIcon } color="warning" fill="outline" caption="Video" />
@@ -23,7 +24,7 @@ export default function TypesExample() {
             </Panel>
             <Panel style={ { rowGap: '18px', padding: '12px', flex: '1 1 auto' } }>
                 <FlexRow columnGap="18" key="04">
-                    <Badge count={ 25 } color="critical" fill="solid" caption="Rejected" onClick={ () => {} } />
+                    <Badge count={ 25 } color="critical" fill="solid" caption="Rejected" onClick={ () => {} } rawProps={ { style: { flexShrink: 0 } } } />
                     <Text fontSize="14">Quick filters selection with informer</Text>
                 </FlexRow>
                 <FlexRow columnGap="18" key="05">
@@ -36,6 +37,7 @@ export default function TypesExample() {
                                 color="neutral"
                                 fill="outline"
                                 caption="In Progress"
+                                rawProps={ { style: { flexShrink: 0 } } }
                             />
                         ) }
                         placement="bottom-end"
@@ -47,6 +49,6 @@ export default function TypesExample() {
                     <Text fontSize="14">Simple attribute or label</Text>
                 </FlexRow>
             </Panel>
-        </>
+        </div>
     );
 }

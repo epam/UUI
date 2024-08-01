@@ -1,5 +1,5 @@
 import React from 'react';
-import { Blocker, Button, DatePicker, FlexCell, FlexRow, FlexSpacer, LabeledInput, NumericInput, TextInput } from '@epam/uui';
+import { Blocker, Button, DatePicker, FlexRow, FlexSpacer, LabeledInput, NumericInput, TextInput } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function AdvancedExample() {
@@ -7,8 +7,8 @@ export default function AdvancedExample() {
 
     const renderForm = () => {
         return (
-            <FlexCell minWidth={ 520 } cx={ css.form }>
-                <FlexRow columnGap="12" padding="24" vPadding="24">
+            <div className={ css.container }>
+                <FlexRow columnGap="12" padding="24" vPadding="24" cx={ css.row }>
                     <LabeledInput label="Name">
                         <TextInput isDisabled={ isLoading } value="Alex" onValueChange={ null } />
                     </LabeledInput>
@@ -29,7 +29,7 @@ export default function AdvancedExample() {
                     <Button isDisabled={ isLoading } color="accent" caption="Submit" />
                     <Button isDisabled={ isLoading } color="primary" fill="none" caption="Cancel" />
                 </FlexRow>
-            </FlexCell>
+            </div>
         );
     };
 
