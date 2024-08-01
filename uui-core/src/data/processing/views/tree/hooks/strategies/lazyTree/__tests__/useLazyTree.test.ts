@@ -8,6 +8,9 @@ import { ItemsStorage } from '../../../../ItemsStorage';
 import { RecordStatus } from '../../../../types';
 import { TreeStructure } from '../../../../treeStructure';
 
+const expectMissingIdsError = () =>
+    expect.stringContaining("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
+
 describe('useLazyTree', () => {
     let dataSourceState: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const setDataSourceState = (newDsState: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
@@ -208,6 +211,8 @@ describe('useLazyTree', () => {
     });
 
     it('should use inner itemsStatusMap if not passed to props', async () => {
+        const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
         dataSourceState.checked = ['GW'];
         const hookResult = renderHook(
             (props) => useLazyTree({
@@ -226,6 +231,7 @@ describe('useLazyTree', () => {
 
             expect(tree.isFetching).toBeFalsy();
         });
+        expect(errMock).toHaveBeenNthCalledWith(2, expectMissingIdsError());
 
         const tree = hookResult.result.current;
 
@@ -236,10 +242,11 @@ describe('useLazyTree', () => {
 
         expect(typeof tree.getItemStatus).toBe('function');
         expect(tree.getItemStatus!('GW')).toBe(NOT_FOUND_RECORD);
+        errMock.mockRestore();
     });
 
     it('should use outer itemsStatusMap if passed to props', async () => {
-        const itemsStatusMap = newMap<string, RecordStatus>({ getId });
+        const itemsStatusMap = newMap<string, RecordStatus>({});
         itemsStatusMap.set('GW', FAILED_RECORD);
 
         const hookResult = renderHook(

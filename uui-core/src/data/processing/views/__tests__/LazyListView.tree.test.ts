@@ -13,6 +13,9 @@ interface TestItem {
     childrenCount?: number;
 }
 
+const expectMissingIdsError = () =>
+    expect.stringContaining("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
+
 describe('LazyListView', () => {
     const testData: TestItem[] = [
         { id: 100 }, //  0   100
@@ -176,7 +179,6 @@ describe('LazyListView', () => {
         await act(async () => {
             rows[2].onFold?.(rows[2]);
         });
-
         hookResult.rerender({ value: { ...currentValue, visibleCount: 6 }, onValueChange: onValueChanged, props: {} });
         await waitFor(() => {
             view = hookResult.result.current;
@@ -291,7 +293,9 @@ describe('LazyListView', () => {
             ]);
         });
 
-        treeDataSource.clearCache();
+        act(() => {
+            treeDataSource.clearCache();
+        });
 
         hookResult.rerender({ value: currentValue });
         await waitFor(() => {
@@ -597,6 +601,8 @@ describe('LazyListView', () => {
         }
 
         it('should clear specific unknown record', async () => {
+            const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             const unknownId = '-10000';
             updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
 
@@ -623,6 +629,9 @@ describe('LazyListView', () => {
                     ],
                 );
             });
+
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+
             const view = hookResult.result.current;
             const unknownRow = view.getById(unknownId, -1000);
 
@@ -633,11 +642,16 @@ describe('LazyListView', () => {
             });
 
             hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+            await waitFor(() => {
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
 
-            expect(updatedValue.checked).toEqual(['BJ']);
+            errMock.mockRestore();
         });
 
         it('should clear unknown record via clearAll', async () => {
+            const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             const unknownId = '-10000';
             updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
 
@@ -671,20 +685,23 @@ describe('LazyListView', () => {
                     ],
                 );
             });
+
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+
             const view = hookResult.result.current;
             const unknownRow = view.getById(unknownId, -1000);
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(async () => {
+            act(() => {
                 view.clearAllChecked();
             });
-
-            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
 
             await waitFor(() => {
                 expect(updatedValue.checked).toEqual([]);
             });
+
+            errMock.mockRestore();
         });
     });
 
@@ -712,6 +729,8 @@ describe('LazyListView', () => {
         }
 
         it('should clear specific unknown record', async () => {
+            const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             const unknownId = '-10000';
             updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
 
@@ -738,6 +757,9 @@ describe('LazyListView', () => {
                     ],
                 );
             });
+
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+
             const view = hookResult.result.current;
             const unknownRow = view.getById(unknownId, -1000);
 
@@ -747,12 +769,17 @@ describe('LazyListView', () => {
                 unknownRow.onCheck?.(unknownRow);
             });
 
-            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+            expect(errMock).toHaveBeenNthCalledWith(6, expectMissingIdsError());
 
-            expect(updatedValue.checked).toEqual(['BJ']);
+            await waitFor(() => {
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+            errMock.mockRestore();
         });
 
         it('should clear unknown record via clearAll', async () => {
+            const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             const unknownId = '-10000';
             updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
 
@@ -786,20 +813,24 @@ describe('LazyListView', () => {
                     ],
                 );
             });
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+
             const view = hookResult.result.current;
             const unknownRow = view.getById(unknownId, -1000);
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(async () => {
+            act(() => {
                 view.clearAllChecked();
             });
 
-            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
 
             await waitFor(() => {
                 expect(updatedValue.checked).toEqual([]);
             });
+
+            errMock.mockRestore();
         });
 
         it('Cascade selection works', async () => {
@@ -1056,6 +1087,8 @@ describe('LazyListView', () => {
         }
 
         it('should clear specific unknown record', async () => {
+            const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             const unknownId = '-10000';
             updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
 
@@ -1082,6 +1115,9 @@ describe('LazyListView', () => {
                     ],
                 );
             });
+
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+
             const view = hookResult.result.current;
             const unknownRow = view.getById(unknownId, -1000);
 
@@ -1091,12 +1127,18 @@ describe('LazyListView', () => {
                 unknownRow.onCheck?.(unknownRow);
             });
 
-            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
+            expect(errMock).toHaveBeenNthCalledWith(6, expectMissingIdsError());
 
-            expect(updatedValue.checked).toEqual(['BJ']);
+            await waitFor(() => {
+                expect(updatedValue.checked).toEqual(['BJ']);
+            });
+
+            errMock.mockRestore();
         });
 
         it('should clear unknown record via clearAll', async () => {
+            const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             const unknownId = '-10000';
             updatedValue = { ...updatedValue, checked: [unknownId, 'BJ'] };
 
@@ -1130,20 +1172,23 @@ describe('LazyListView', () => {
                     ],
                 );
             });
+
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+
             const view = hookResult.result.current;
             const unknownRow = view.getById(unknownId, -1000);
 
             expect(unknownRow).toEqual(expect.objectContaining({ id: unknownId, isUnknown: true, value: undefined, isChecked: true }));
 
-            await act(async () => {
+            act(() => {
                 view.clearAllChecked();
             });
-
-            hookResult.rerender({ value: updatedValue, onValueChange: onValueChangeFn, props: {} });
 
             await waitFor(() => {
                 expect(updatedValue.checked).toEqual([]);
             });
+            expect(errMock).toHaveBeenNthCalledWith(4, expectMissingIdsError());
+            errMock.mockRestore();
         });
 
         it('Cascade selection works', async () => {
