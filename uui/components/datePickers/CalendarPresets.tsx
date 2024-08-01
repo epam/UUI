@@ -67,7 +67,7 @@ export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
         >
             <div className={ uuiPresets.header }>Presets</div>
             {getPresets(props.presets).map((item) => (
-                <LinkButton caption={ item.name } onClick={ () => props.onPresetSet(item) } size="24" />
+                <LinkButton key={ item.key } caption={ item.name } onClick={ () => props.onPresetSet(item) } size="24" />
             ))}
         </div>
     );
