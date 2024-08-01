@@ -3,6 +3,7 @@
 .root {
     &:global(.uui-presets-container) {
         padding: 24px 24px 12px;
+        align-self: start;
     }
 
     :global(.uui-presets-header) {
@@ -12,19 +13,5 @@
         line-height: 24px;
         padding-bottom: 12px;
         color: var(--uui-text-primary);
-    }
-
-    :global(.uui-presets-item) {
-        font-family: var(--uui-font);
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 18px;
-        color: var(--uui-link);
-        padding-bottom: 6px;
-
-        &:hover {
-            color: var(--uui-link-hover);
-            cursor: pointer;
-        }
     }
 }

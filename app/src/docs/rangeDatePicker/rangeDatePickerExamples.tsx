@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { uuiDayjs, type Dayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import { Day, DayProps } from '@epam/uui-components';
 import { cx } from '@epam/uui-core';
 import { IPropSamplesCreationContext } from '@epam/uui-docs';

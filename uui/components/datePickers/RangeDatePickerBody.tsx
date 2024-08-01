@@ -213,6 +213,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                                 filter={ props.filter }
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
+                                isDisabled={ view !== 'DAY_SELECTION' && activeMonth === 'to' }
                             />
                             <StatelessDatePickerBody
                                 key="date-picker-body-right"
@@ -226,6 +227,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                                 filter={ props.filter }
                                 renderDay={ props.renderDay || renderDay }
                                 isHoliday={ props.isHoliday }
+                                isDisabled={ view !== 'DAY_SELECTION' && activeMonth === 'from' }
                             />
                             {view !== 'DAY_SELECTION' && (
                                 <div

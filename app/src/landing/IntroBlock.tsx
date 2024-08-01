@@ -203,7 +203,7 @@ export function IntroBlock() {
                                     <Tooltip content="Info tooltip" placement="top">
                                         <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
-                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Watch more clicked') } />
+                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Go to the docs to see more ;)') } />
                                 </FlexRow>
                             </Panel>
                             <Panel background="surface-main" shadow={ true } cx={ css.componentsMiddleWrapper }>
@@ -225,7 +225,7 @@ export function IntroBlock() {
                                     </LabeledInput>
                                 </FlexRow>
                             </Panel>
-                            <SuccessAlert size="36" onClose={ () => handleSuccess('onClose clicked') } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
+                            <SuccessAlert size="36" onClose={ () => {} } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
                                 <Text size="30">Invitation sent!</Text>
                             </SuccessAlert>
                         </div>
