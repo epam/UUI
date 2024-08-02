@@ -4,16 +4,45 @@ import { TimelineController } from '../index';
 import { TimelineTransform } from './TimelineTransform';
 import { useTimelineTransform } from './useTimelineTransform';
 
+/**
+ * TimelineCanvas props.
+ */
 export interface TimelineCanvasProps {
+    /**
+     * Height of canvas element.
+     * @default 60
+     */
     canvasHeight?: number;
+    /**
+     * Canvas element class name.
+     */
     className?: string;
+    /**
+     * Controller of timeline.
+     */
     timelineController: TimelineController;
-    renderOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
+    /**
+     * Draw on canvas.
+     * @param ctx - canvas rendering context.
+     * @param t - current timeline position info.
+     */
     draw?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
+
+    /**
+     * Draw on canvas over elements, drawn with the `draw` function.
+     * @param ctx - canvas rendering context.
+     * @param t - current timeline position info.
+     */
+    drawOnTop?(ctx: CanvasRenderingContext2D, t: TimelineTransform): void;
 }
 
+/**
+ * Low-level Timeline compatible Canvas component. If some specific element should be drawn on Timeline canvas,
+ * current component should be used.
+ * @returns canvas element.
+ */
 export function TimelineCanvas<TProps extends TimelineCanvasProps>({
-    timelineController, draw, renderOnTop, canvasHeight, className, ...restProps
+    timelineController, draw, drawOnTop, canvasHeight, className, ...restProps
 }: TProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const alreadyRenderedRef = useRef(false);
@@ -31,7 +60,7 @@ export function TimelineCanvas<TProps extends TimelineCanvasProps>({
         ctx.save();
         ctx.scale(devicePixelRatio, devicePixelRatio);
         draw?.(ctx, t);
-        renderOnTop?.(ctx, t);
+        drawOnTop?.(ctx, t);
         ctx.restore();
     };
 

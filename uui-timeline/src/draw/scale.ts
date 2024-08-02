@@ -2,7 +2,7 @@ import { addDays, getHoursInFormatAMPM, months } from '../helpers';
 import { timelinePrimitives } from './primitives';
 import {
     CanvasDrawBorderForTopCell,
-    CanvasDrawBottomBorderScaleProps,
+    CanvasDrawScaleBottomBorderProps,
     CanvasDrawDaysProps,
     CanvasDrawHeaderTodayProps,
     CanvasDrawPeriodFragmentProps,
@@ -46,12 +46,12 @@ const isCurrentPeriod = (leftDate: Date, rightDate: Date) => new Date() >= leftD
 const getCanvasVerticalCenter = (canvasHeight: number) => canvasHeight / 2 - 1;
 const getBottomCellY = (canvasHeight: number) => getCanvasVerticalCenter(canvasHeight);
 
-const drawBottomBorderScale = ({
+const drawScaleBottomBorder = ({
     context,
     canvasHeight,
     timelineTransform,
     bottomBorderColor = defaultColors.bottomBorderColor,
-}: CanvasDrawBottomBorderScaleProps) => {
+}: CanvasDrawScaleBottomBorderProps) => {
     context.strokeStyle = bottomBorderColor;
     context.beginPath();
     context.moveTo(0, canvasHeight - 1);
@@ -628,8 +628,12 @@ export const getWeeksScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 6, max
 export const getBottomMonthsScaleRange = (): CanvasScaleRange => ({ minPxPerDay: 1, maxPxPerDay: 6 });
 export const getYearsScaleRange = (): CanvasScaleRange => ({ minPxPerDay: null, maxPxPerDay: 6 });
 
+/**
+ * Default implementations of scale draw functions/ranges and default fonts/width/colors.
+ * It is recommended to be used while overriding some specific parts of scale.
+ */
 export const timelineScale = {
-    drawBottomBorderScale,
+    drawScaleBottomBorder,
     drawPeriod,
     drawMinutes,
     drawRemainingHours,

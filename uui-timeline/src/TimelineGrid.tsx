@@ -5,28 +5,88 @@ import { TimelineCanvas, TimelineCanvasProps } from './TimelineCanvas';
 import { CanvasDrawGridTodayLineProps, CanvasDrawHolidayProps, CanvasDrawLineProps, CanvasDrawTimelineElementProps,
     CanvasDrawWeekendProps, timelineGrid, timelinePrimitives } from './draw';
 
+/**
+ * TimelineGrid props.
+ */
 export interface TimelineGridProps extends TimelineCanvasProps {
+    /**
+     * Overrides draw function for all grid lines.
+     */
     drawLine?: (props: CanvasDrawLineProps) => void;
+    /**
+     * Overrides draw minutes function.
+     */
     drawMinutes?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw hours function.
+     */
     drawHours?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw days function.
+     */
     drawDays?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw quarter hours function.
+     */
     drawQuarterHours?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw holidays function.
+     */
     drawHolidays?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw weeks function.
+     */
     drawWeeks?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw weeks function.
+     */
     drawMonths?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw years function.
+     */
     drawYears?: (props: CanvasDrawTimelineElementProps) => void;
+    /**
+     * Overrides draw today function.
+     */
     drawToday?: (props: CanvasDrawGridTodayLineProps) => void;
+    /**
+     * Overrides draw holiday function.
+     */
     drawHoliday?: (props: CanvasDrawHolidayProps) => void;
+    /**
+     * Overrides draw weekend function.
+     */
     drawWeekend?: (props: CanvasDrawWeekendProps) => void;
     
-    defaultLineColor?: string;
+    /**
+     * Overrides grid lines color.
+     */
+    regularLineColor?: string;
+    /**
+     * Overrides today line color.
+     */
     todayLineColor?: string;
+    /**
+     * Overrides weekend cell background color.
+     */
     weekendCellColor?: string;
-    holidayCellColor?: string;
+    /**
+     * Overrides holiday cell background color.
+     */
+    holidayCellColor?: string; 
+    /**
+     * Overrides today line width.
+     */
     todayLineWidth?: number;
-    lineWidth?: number;
+    /**
+     * Overrides regular line width.
+     */
+    regularLineWidth?: number;
 }
 
+/**
+ * Timeline grid, which draws years/months/weeks/days/hours/minutes on the timeline body.
+ */
 export function TimelineGrid({ 
     timelineController,
     drawLine,
@@ -42,19 +102,19 @@ export function TimelineGrid({
     drawWeekend,
     drawHoliday,
 
-    defaultLineColor = timelineGrid.defaultColors.defaultLineColor,
+    regularLineColor = timelineGrid.defaultColors.regularLineColor,
     todayLineColor = timelineGrid.defaultColors.todayLineColor,
     weekendCellColor = timelineGrid.defaultColors.weekendCellColor,
     holidayCellColor = timelineGrid.defaultColors.holidayCellColor,
     todayLineWidth = timelineGrid.defaultLineWidth.todayLineWidth,
-    lineWidth = timelineGrid.defaultLineWidth.lineWidth,
+    regularLineWidth = timelineGrid.defaultLineWidth.regularLineWidth,
     ...restProps
 }: TimelineGridProps) {
     const canvasHeight = restProps.canvasHeight ?? 60;
 
     const draw = (context: CanvasRenderingContext2D, timelineTransform: TimelineTransform) => {
         context.clearRect(0, 0, timelineTransform.widthPx, canvasHeight);
-        context.strokeStyle = defaultLineColor;
+        context.strokeStyle = regularLineColor;
 
         const pxPerDay = timelineTransform.pxPerMs * msPerDay;
 
@@ -76,7 +136,7 @@ export function TimelineGrid({
             canvasHeight,
             height: canvasHeight,
             drawLine: drawLine ?? timelinePrimitives.drawVerticalLine,
-            lineWidth,
+            lineWidth: regularLineWidth,
         };
 
         if (timelineGrid.shouldDrawMinutes(pxPerDay)) {

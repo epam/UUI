@@ -5,11 +5,11 @@ import { timelinePrimitives } from './primitives';
 
 const defaultLineWidth = {
     todayLineWidth: 3,
-    lineWidth: 1,
+    regularLineWidth: 1,
 };
 
 const defaultColors = {
-    defaultLineColor: '#eee',
+    regularLineColor: '#eee',
     todayLineColor: '#FBB6B6',
     holidayCellColor: 'rgba(249, 209, 204, 0.09)',
     weekendCellColor: '#F5F6FA',
@@ -47,7 +47,7 @@ const drawHolidayOrWeekend = ({
 };
 
 const drawMinutes = ({
-    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.lineWidth,
+    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.regularLineWidth,
 }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleMinutes().forEach((w) => {
         (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight, width: lineWidth });
@@ -55,7 +55,7 @@ const drawMinutes = ({
 };
 
 const drawQuarterHours = ({
-    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.lineWidth,
+    context, timelineTransform, canvasHeight, drawLine: customDrawLine, lineWidth = defaultLineWidth.regularLineWidth,
 }: CustomCanvasDrawTimelineElementProps) => {
     timelineTransform.getVisibleQuarterHours().forEach((w) => {
         (customDrawLine ?? timelinePrimitives.drawVerticalLine)({ context, x: w.left, y2: canvasHeight, width: lineWidth });
@@ -145,6 +145,10 @@ const shouldDrawHolidays = (pxPerDay: number) => pxPerDay > 6;
 const shouldDrawWeeks = (pxPerDay: number) => pxPerDay > 6;
 const shouldDrawMonths = (pxPerDay: number) => pxPerDay > 0.5 && pxPerDay <= 6;
 
+/**
+ * Default implementations of grid draw functions/conditions of drawing different period grids and default width/colors.
+ * It is recommended to be used while overriding some specific parts of grid.
+ */
 export const timelineGrid = {
     drawHoliday,
     drawWeekend,
