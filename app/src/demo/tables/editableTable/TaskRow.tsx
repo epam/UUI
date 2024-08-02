@@ -25,9 +25,7 @@ export function TaskRow({ task, timelineController }: TaskRowProps) {
             </div>
             <div
                 className={ css.layer }
-                onDragStart={(e) => { console.log('drag start') } }
                 onMouseDown={ (e) => {
-                    console.log('mouseDown');
                     timelineController.startDrag(e);
                 } }
             >
