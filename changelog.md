@@ -4,9 +4,23 @@
 * [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
 * Icons pack updated
 * [DatePicker][RangeDatePicker]: improve a11y focus flow behavior. Now date picker body receive focus on open and return it back on input after close.
-* [Mobile navigation]: in mobile mode (width <= 768px) on Components page appeared new Navigation button to show/hide sidebar. 
-* [Main landing page]: new design. 
-
+* [Mobile navigation]: in mobile mode (width <= 768px) on Components page appeared new Navigation button to show/hide sidebar.
+* [Main landing page]: new design.
+* [Timeline]:
+  * Added example of Timeline usage with tables.
+  * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead.
+  * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
+  * Added `useResizeObserver` hook, which provides a possibility to observe multiple elements resizing.
+  * Added `useTimelineTransform` hook, which provides a possibility to receive the latest `TimelineTransform` instance from `TimelineController`.
+  * Deprecated `TimelineScaleProps.shiftPercent`.
+  * Made `TimelineGrid` customizable. Exposed default implementations of various parts of `TimelineGrid` drawing functionality, via the `timelineGrid` library.
+  * Made `TimelineScale` customizable. Exposed default implementations of various parts of `TimelineScale` drawing functionality, via the `timelineScale` library.
+  * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
+  * Added `TimelineController.setViewportRange` function, which allows to set `Viewport` via passing right and left period of the scale.
+  * Added `renderHeaderCell` to `DataColumnProps`.
+  * Added `eventHandlers` to `DataTableCellProps`.
+  * Added `computeSubtotals` and `createFromItems` to `Tree`.
+  * Added `DataTableCellContainer` component.
 
 **What's Fixed**
 * [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
