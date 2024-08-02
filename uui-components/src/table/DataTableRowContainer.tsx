@@ -16,6 +16,10 @@ export interface DataTableRowContainerProps<TItem, TId, TFilter>
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
+    
+    /**
+     * Drag'n'drop marker event handlers.
+     */
     eventHandlers?: DndEventHandlers;
 }
 
