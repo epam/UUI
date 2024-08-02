@@ -431,6 +431,7 @@ exports[`PickerInput should render with maximum props 1`] = `
   >
     <span
       className="uui-button-box uui-enabled root uui-size-42 uui-color-neutral uui-fill-solid uui-tag"
+      role="option"
       tabIndex={-1}
     >
       <div
@@ -450,6 +451,7 @@ exports[`PickerInput should render with maximum props 1`] = `
     </span>
     <span
       className="uui-button-box uui-enabled root uui-size-42 uui-color-neutral uui-fill-solid uui-tag"
+      role="option"
       tabIndex={-1}
     >
       <div

@@ -16,13 +16,9 @@ export class PickerTestObject {
         return dialog.getAllByRole('option', params);
     }
 
-    static async findOptions(props: { busy?: boolean, editMode?: string } = {}) {
+    static async findOptions(props: { busy?: boolean, editMode?: string } = { busy: false }) {
         const dialog = within(await this.findDialog(props.editMode));
-        const params: any = {};
-        if (typeof props.busy !== 'undefined') {
-            params.busy = props.busy;
-        }
-        return await dialog.findAllByRole('option', params);
+        return await dialog.findAllByRole('option', { busy: props.busy });
     }
 
     static async findOptionsText(props: { busy?: boolean, editMode?: string } = {}) {
