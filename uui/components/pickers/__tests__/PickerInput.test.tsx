@@ -110,7 +110,7 @@ describe('PickerInput', () => {
                 searchPosition="body"
                 minBodyWidth={ 900 }
                 renderNotFound={ () => null }
-                renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
+                renderFooter={ (props) => <div>{ props as unknown as ReactNode }</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
@@ -182,7 +182,7 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
             });
-            
+
             fireEvent.click(document.body);
 
             await waitFor(() => {
@@ -797,6 +797,71 @@ describe('PickerInput', () => {
                 expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
                 expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
             });
+        });
+
+        it('should filter selected items, then clear search and verify', async () => {
+            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+                value: undefined,
+                selectionMode: 'multi',
+                searchPosition: 'body',
+                getSearchFields: (item) => [item!.level],
+            });
+
+            expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+            fireEvent.click(dom.input);
+
+            const dialog = await screen.findByRole('dialog');
+            expect(dialog).toBeInTheDocument();
+
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            // Verify that all expected options are displayed.
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'A1',
+                'A1+',
+                'A2',
+                'A2+',
+                'B1',
+                'B1+',
+                'B2',
+                'B2+',
+                'C1',
+                'C1+',
+                'C2',
+            ]);
+
+            // Click on options 'A1' and 'B1' to select them.
+            await PickerInputTestObject.clickOptionByText('A1');
+            await PickerInputTestObject.clickOptionByText('B1');
+
+            await PickerInputTestObject.clickShowOnlySelected();
+
+            // Expect that only 'A1' and 'B1' are visible after the filter is applied.
+            await waitFor(async () => expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual(['A1', 'B1']));
+
+            // Type 'A' into the search input and trigger the search.
+            const bodyInput = within(dialog).getByPlaceholderText('Search');
+            fireEvent.change(bodyInput, { target: { value: 'A' } });
+
+            // Expect that only options containing 'A' are shown after the search.
+            await waitFor(() => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBe(4));
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual(['A1', 'A1+', 'A2', 'A2+']);
+
+            // Clear the search input and verify that all options are visible again.
+            fireEvent.change(bodyInput, { target: { value: '' } });
+            await waitFor(async () => expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'A1',
+                'A1+',
+                'A2',
+                'A2+',
+                'B1',
+                'B1+',
+                'B2',
+                'B2+',
+                'C1',
+                'C1+',
+                'C2',
+            ]));
         });
     });
 
