@@ -142,16 +142,8 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             ] }
             style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
-            { props.isFirstColumn && props.addons
-                ? (
-                    <div
-                        { ...props.eventHandlers } 
-                        style={ { height: '100%' } }
-                    >
-                        {props.addons}
-                    </div>
-                ) 
-                : props.addons } 
+            {props.addons}
+
             {props.isFirstColumn ? getWrappedContent() : content}
         </FlexCell>
     );
