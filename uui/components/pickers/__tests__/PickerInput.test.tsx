@@ -799,7 +799,7 @@ describe('PickerInput', () => {
             });
         });
 
-        it('should filter selected items, then clear search and verify', async () => {
+        it('should show selected items by \'Show only selected\' click, and reset \'Show only selected\' mode by search change', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
                 value: undefined,
                 selectionMode: 'multi',
