@@ -1,6 +1,9 @@
 import { ScaleBar, TimelineTransform } from '../TimelineTransform';
 
 export interface CanvasDrawProps {
+    /**
+     * Rendering context of canvas element.
+     */
     context: CanvasRenderingContext2D;
 }
 
@@ -56,7 +59,7 @@ export interface CanvasDrawGridTodayLineProps extends CanvasDrawTimelineElementP
     todayLineWidth?: number;
 }
 
-export interface CanvasDrawBottomBorderScaleProps extends CanvasDrawTimelineElementProps {
+export interface CanvasDrawScaleBottomBorderProps extends CanvasDrawTimelineElementProps {
     bottomBorderColor: string;
 }
 
@@ -99,7 +102,7 @@ export interface TimelineScaleFonts {
      */
     periodFont?: string;
     /**
-     * Current Year/month/group of days/day/time font.
+     * Current Year/month/group of days/day/hours/minutes font.
      * @default '14px Sans Semibold'
      */
     currentPeriodFont?: string;

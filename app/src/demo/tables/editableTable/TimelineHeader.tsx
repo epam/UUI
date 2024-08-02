@@ -38,10 +38,10 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
         <div ref={ timelineRef } className={ css.timeline }>
             <div
                 className={ css.layer }
-                onMouseDown={ timelineController.startDrag }
             >
                 <TimelineScale
                     timelineController={ timelineController }
+                    isDraggable={ true }
                 />
             </div>
         </div>

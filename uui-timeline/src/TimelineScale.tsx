@@ -6,45 +6,131 @@ import styles from './TimelineScale.module.scss';
 import { ReactComponent as ArrowLeftSvg } from './arrowLeft.svg';
 import { ReactComponent as ArrowRightSvg } from './arrowRight.svg';
 import { Svg } from '@epam/uui-components';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { TimelineCanvas, TimelineCanvasProps } from './TimelineCanvas';
 import { useTimelineTransform } from './useTimelineTransform';
-import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawBottomBorderScaleProps, TimelineScaleFonts,
+import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawScaleBottomBorderProps, TimelineScaleFonts,
     timelineScale, CanvasDrawTopDaysProps, CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps, CanvasDrawHeaderTodayProps,
 } from './draw';
 
+/**
+ * Timeline scale, which draws years/months/weeks/days/hours/minutes on the timeline header.
+ */
 export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFonts {
+    /**
+     * Enables changing time period via dragging of scale.
+     */
     isDraggable?: boolean;
+    /**
+     * Enables changing time period/scale using wheel.
+     */
     isScaleChangeOnWheel?: boolean;
-    shiftPercent?: number;
+    /**
+     * Overrides bottom border color.
+     */
     bottomBorderColor?: string;
+    /**
+     * Overrides date/time text color.
+     */
     periodTextColor?: string;
+    /**
+     * Overrides day text color if day is on the top of a scale.
+     */
     topDayTextColor?: string;
+    /**
+     * Overrides weekend text color.
+     */
     weekendTextColor?: string;
+    /**
+     * Overrides bottom border line for current period (today, this week, etc).
+     */
     todayLineColor?: string;
+    /**
+     * Overrides period cell border color.
+     */
     cellBorderColor?: string;
+    /**
+     * Overrides period cell border width.
+     */
     cellBorderWidth?: number;
+    /**
+     * Overrides period cell background color.
+     */
     cellBackgroundColor?: string;
+    
+    /**
+     * Overrides cell background color of even month/year in the top position.
+     */
     evenPeriodCellBackgroundColor?: string;
+    /**
+     * Overrides weekend/holiday cell background color.
+     */
     weekendCellBackgroundColor?: string;
-
+    /**
+     * Overrides movement arrows icons.
+     * @param direction - arrow direction.
+     * @returns custom arrow icon for exact direction.
+     */
     renderArrowIcon?: (direction: 'left' | 'right') => React.ReactNode;
+    /**
+     * Overrides movement arrows.
+     * @param direction - arrow direction.
+     * @returns custom arrow for exact direction.
+     */
     renderArrow?: (direction: 'left' | 'right') => React.ReactNode;
-
-    drawBottomBorderScale?: (props: CanvasDrawBottomBorderScaleProps) => void;
+    /**
+     * Overrides bottom border of the scale.
+     */
+    drawScaleBottomBorder?: (props: CanvasDrawScaleBottomBorderProps) => void;
+    /**
+     * Overrides drawing minutes on the scale.
+     */
     drawMinutes?: (props: CanvasDrawPeriodPartProps) => void;
+    /**
+     * Overrides drawing remaining hours on the scale.
+     */
     drawRemainingHours?: (props: CanvasDrawPeriodPartProps) => void;
+    /**
+     * Overrides drawing hours on the scale.
+     */
     drawHours?: (props: CanvasDrawPeriodPartProps) => void;
+    /**
+     * Overrides drawing days on the top of the scale.
+     */
     drawTopDays?: (props: CanvasDrawTopDaysProps) => void;
+    /**
+     * Overrides drawing days on the scale.
+     */
     drawDays?: (props: CanvasDrawDaysProps) => void;
+    /**
+     * Overrides drawing months on the top of the scale.
+     */
     drawTopMonths?: (props: CanvasDrawPeriodPartProps) => void;
+    /**
+     * Overrides drawing weeks on the scale.
+     */
     drawWeeks?: (props: CanvasDrawPeriodWithTodayProps) => void;
+    /**
+     * Overrides drawing months on the bottom of the scale.
+     */
     drawBottomMonths?: (props: CanvasDrawPeriodWithTodayProps) => void;
+    /**
+     * Overrides drawing years on the scale.
+     */
     drawYears?: (props: CanvasDrawPeriodWithTodayProps) => void;
-    drawPeriod?: (props: CanvasDrawPeriodProps) => void
+    /**
+     * Overrides drawing of the period text.
+     */
+    drawPeriod?: (props: CanvasDrawPeriodProps) => void;
+    /**
+     * Overrides drawing current period on the scale.
+     */
     drawToday?: (props: CanvasDrawHeaderTodayProps) => void;
 }
 
+/**
+ * Timeline scale with periods.
+ */
 export function TimelineScale({
     timelineController,
     isDraggable,
@@ -74,22 +160,22 @@ export function TimelineScale({
     drawBottomMonths = timelineScale.drawBottomMonths,
     drawYears = timelineScale.drawYears,
     drawToday = timelineScale.drawToday,
-    drawBottomBorderScale = timelineScale.drawBottomBorderScale,
+    drawScaleBottomBorder = timelineScale.drawScaleBottomBorder,
     ...props
 }: TimelineScaleProps) {
-    const isMouseDownRef = useRef(false);
+    const [isMouseDown, setIsMouseDown] = useState(false);
     
     const handleWindowMouseUp = useCallback(() => {
-        if (isMouseDownRef.current) {
-            isMouseDownRef.current = false;
+        if (isMouseDown) {
+            setIsMouseDown(false);
         }
-    }, []);
+    }, [isMouseDown, setIsMouseDown]);
 
     const timelineTransform = useTimelineTransform({ timelineController });
 
     const handleMouseDown = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
         timelineController.startDrag(e);
-        isMouseDownRef.current = true;
+        setIsMouseDown(true);
     }, [timelineController]);
 
     const handleWheel = (e: React.SyntheticEvent<HTMLCanvasElement>) => {
@@ -120,7 +206,7 @@ export function TimelineScale({
         const canvasHeight = 60;
         context.clearRect(0, 0, t.widthMs, canvasHeight);
 
-        drawBottomBorderScale({ context, canvasHeight, timelineTransform: t, bottomBorderColor });
+        drawScaleBottomBorder({ context, canvasHeight, timelineTransform: t, bottomBorderColor });
 
         const fonts = { currentPeriodFont, periodFont, meridiemFont };
         const commonProps = {
@@ -174,13 +260,13 @@ export function TimelineScale({
             window.removeEventListener('mouseup', handleWindowMouseUp);
         };
     }, [handleWindowMouseUp]);
-  
+
     return (
         <div className={ styles.timelineHeader } style={ { width: timelineTransform.widthPx } }>
-            {!isMouseDownRef.current && (props.renderArrow ?? renderArrow)('left')}
-            {!isMouseDownRef.current && (props.renderArrow ?? renderArrow)('right')}
+            {!isMouseDown && (props.renderArrow ?? renderArrow)('left')}
+            {!isMouseDown && (props.renderArrow ?? renderArrow)('right')}
             <TimelineCanvas
-                className={ isMouseDownRef.current ? styles.timelineScaleGrabbing : styles.timelineScale }
+                className={ isMouseDown ? styles.timelineScaleGrabbing : styles.timelineScale }
                 onMouseDown={ isDraggable && handleMouseDown }
                 onWheel={ isScaleChangeOnWheel && handleWheel }
                 draw={ props.draw ?? draw }
