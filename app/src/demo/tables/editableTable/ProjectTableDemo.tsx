@@ -78,7 +78,7 @@ export function ProjectTableDemo() {
         })),
         [],
     );
-    
+
     const { tree, applyPatch, ...restProps } = useTree<Task, number>({
         type: 'sync',
         dataSourceState: tableState, 

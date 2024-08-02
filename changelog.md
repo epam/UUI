@@ -8,7 +8,7 @@
 * [Main landing page]: new design.
 * [Timeline]:
   * Added example of Timeline usage with tables.
-  * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead.
+  * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
   * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
   * Added `useResizeObserver` hook, which provides a possibility to observe multiple elements resizing.
   * Added `useTimelineTransform` hook, which provides a possibility to receive the latest `TimelineTransform` instance from `TimelineController`.
