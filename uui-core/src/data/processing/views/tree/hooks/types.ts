@@ -39,5 +39,5 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
      * @param modifiedItems map of updated/deleted/added items, which should be applied to the existing tree.
      * @returns new tree, patched by modified items.
      */
-    patch: (modifiedItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
+    applyPatch: (modifiedItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
 }

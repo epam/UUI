@@ -57,7 +57,7 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         });
     }, [tree, patch]);
 
-    const patchFn = useCallback((updated: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => {
+    const applyPatch = useCallback((updated: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => {
         const patchAfterSort = getSortedPatchByParentId(
             tree.visible,
             updated,
@@ -81,5 +81,5 @@ export function usePatchTree<TItem, TId, TFilter = any>(
         }).visible;
     }, [tree, sorting, fixItemBetweenSortings]);
 
-    return { tree: patchedTree, patch: patchFn };
+    return { tree: patchedTree, applyPatch };
 }

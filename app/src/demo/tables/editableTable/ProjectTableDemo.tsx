@@ -79,7 +79,7 @@ export function ProjectTableDemo() {
         [],
     );
     
-    const { tree, patch, ...restProps } = useTree<Task, number>({
+    const { tree, applyPatch, ...restProps } = useTree<Task, number>({
         type: 'sync',
         dataSourceState: tableState, 
         setDataSourceState: setTableState,
@@ -93,15 +93,15 @@ export function ProjectTableDemo() {
     }, []);
 
     const treeRef = useRef(tree);
-    const patchRef = useRef(patch);
+    const applyPatchRef = useRef(applyPatch);
     
     treeRef.current = tree;
-    patchRef.current = patch;
+    applyPatchRef.current = applyPatch;
     const deleteTask = useCallback((task: Task) => {
         setValue((currentValue) => ({
             ...currentValue,
             items: scheduleTasks(
-                patchRef.current,
+                applyPatchRef.current,
                 deleteTaskWithChildren(task, currentValue.items, treeRef.current),
             ),
         }));
@@ -163,7 +163,7 @@ export function ProjectTableDemo() {
 
             return {
                 ...currentValue,
-                items: scheduleTasks(patchRef.current, currentItems),
+                items: scheduleTasks(applyPatchRef.current, currentItems),
             };
         });
 
@@ -201,7 +201,7 @@ export function ProjectTableDemo() {
                 };
                 for (const [id] of nextValue) {
                     if (shouldReschedule(id)) {
-                        return scheduleTasks(patchRef.current, nextValue);
+                        return scheduleTasks(applyPatchRef.current, nextValue);
                     }
                 }
             
