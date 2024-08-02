@@ -17,6 +17,9 @@ export interface DataRowAddonsProps<TItem, TId> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
     /** Controls size. */
     size?: ControlSize | '60';
+    /**
+     * Drag'n'drop marker event handlers.
+     */
     eventHandlers?: DndEventHandlers;
 }
 
