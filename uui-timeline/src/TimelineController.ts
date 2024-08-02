@@ -96,6 +96,11 @@ export class TimelineController {
         }
     }
 
+    /**
+     * Defines current viewport via time range.
+     * @param newViewportRange - timeline period range.
+     * @param doAnimation
+     */
     public setViewportRange(newViewportRange: ViewportRange, doAnimation: boolean) {
         const centerTimestamp = Math.floor((newViewportRange.to.getTime() + newViewportRange.from.getTime()) / 2);
         const pxPerMs = getScaleByRange(newViewportRange, this.options);

@@ -30,6 +30,10 @@ const drawRectangle = ({ context, color = defaultColors.defaultRectangleColor, x
     context.closePath();
 };
 
+/**
+ * Default implementations of basic timeline components.
+ * It is recommended to be used while overriding some specific parts of timeline.
+ */
 export const timelinePrimitives = {
     drawVerticalLine,
     drawHorizontalLine,
