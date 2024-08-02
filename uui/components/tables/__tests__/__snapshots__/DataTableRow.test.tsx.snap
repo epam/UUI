@@ -37,13 +37,6 @@ exports[`DataTableRow should be rendered correctly 1`] = `
       }
     >
       <div
-        style={
-          Object {
-            "height": "100%",
-          }
-        }
-      />
-      <div
         className="contentWrapper"
         style={
           Object {
