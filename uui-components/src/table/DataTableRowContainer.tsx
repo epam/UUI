@@ -56,10 +56,11 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
 
 export const DataTableRowContainer = React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
+        const { onPointerDown, onTouchStart, ...restRawProps } = props.rawProps ?? {};
         function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
             return columns.reduce<React.ReactNode[]>((cells, column) => {
                 const idx = props.columns?.indexOf(column) || 0;
-                cells.push(props.renderCell(column, idx));
+                cells.push(props.renderCell(column, idx, { onPointerDown, onTouchStart }));
                 return cells;
             }, []);
         }
@@ -120,8 +121,8 @@ export const DataTableRowContainer = React.forwardRef(
         const minWidth = getSectionStyle(props.columns, 1).minWidth;
 
         const rawProps = {
-            ...props.rawProps,
-            style: { ...props?.rawProps?.style, minWidth },
+            ...restRawProps,
+            style: { ...restRawProps?.style, minWidth },
         };
 
         return props.link ? (
