@@ -7,7 +7,13 @@
 * [Mobile navigation]: in mobile mode (width <= 768px) on Components page appeared new Navigation button to show/hide sidebar.
 * [Main landing page]: new design.
 * [Timeline]:
-  * Added an example of Timeline usage with tables.
+  * Improved `Timeline`:
+    * Updated `Timeline` design.
+    * Added support for functional components.
+    * Introduced a low-level `TimelineCanvas` component designed to render elements on the Timeline.
+    * Enhanced customization options for `TimelineGrid` and `TimelineScale`.
+    * Exposed default implementations for timeline grid/scale drawing phases via the `timelineGrid` and `timelineScale` libraries.
+  * Added an example of Timeline usage with tables. [See demo here](https://uui.epam.com/demo?id=editableTable).
   * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
   * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
   * Added the `useResizeObserver` hook, which provides the possibility to observe multiple elements' resizing.
