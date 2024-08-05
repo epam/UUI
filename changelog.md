@@ -7,20 +7,20 @@
 * [Mobile navigation]: in mobile mode (width <= 768px) on Components page appeared new Navigation button to show/hide sidebar.
 * [Main landing page]: new design.
 * [Timeline]:
-  * Added example of Timeline usage with tables.
+  * Added an example of Timeline usage with tables.
   * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
   * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
-  * Added `useResizeObserver` hook, which provides a possibility to observe multiple elements resizing.
-  * Added `useTimelineTransform` hook, which provides a possibility to receive the latest `TimelineTransform` instance from `TimelineController`.
+  * Added the `useResizeObserver` hook, which provides the possibility to observe multiple elements' resizing.
+  * Added the `useTimelineTransform` hook, which provides the possibility to receive the latest `TimelineTransform` instance from the `TimelineController`.
   * Deprecated `TimelineScaleProps.shiftPercent`.
   * Made `TimelineGrid` customizable. Exposed default implementations of various parts of `TimelineGrid` drawing functionality, via the `timelineGrid` library.
   * Made `TimelineScale` customizable. Exposed default implementations of various parts of `TimelineScale` drawing functionality, via the `timelineScale` library.
   * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
-  * Added `TimelineController.setViewportRange` function, which allows to set `Viewport` via passing right and left period of the scale.
+  * Added the `TimelineController.setViewportRange` function, which allows setting the `Viewport` by passing the right and left periods of the scale.
   * Added `renderHeaderCell` to `DataColumnProps`.
   * Added `eventHandlers` to `DataTableCellProps`.
   * Added `computeSubtotals` and `createFromItems` to `Tree`.
-  * Added `DataTableCellContainer` component.
+  * Added the `DataTableCellContainer` component.
 
 **What's Fixed**
 * [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
