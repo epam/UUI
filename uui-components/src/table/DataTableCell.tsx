@@ -143,6 +143,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             {props.addons}
+
             {props.isFirstColumn ? getWrappedContent() : content}
         </FlexCell>
     );

@@ -118,7 +118,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isLoading: isTreeLoading,
     }, [searchTree, isTreeLoading]);
 
-    const tree = usePatchTree({
+    const { tree, applyPatch } = usePatchTree({
         tree: treeWithSelectedOnly,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
@@ -152,6 +152,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         cascadeSelection,
         showSelectedOnly,
         selectAll,
+        applyPatch,
 
         isLoading,
         isFetching,
