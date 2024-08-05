@@ -3,12 +3,12 @@
   "timestamp": "2024-07-30",
   "sizes": {
     "templateApp": {
-      "css": 287692,
-      "js": 481407
+      "css": 292096,
+      "js": 481419
     },
     "@epam/app": {
-      "css": 1592933,
-      "js": 5060656
+      "css": 1599752,
+      "js": 5109887
     },
     "@epam/draft-rte": {
       "css": 9770,
@@ -28,15 +28,15 @@
     },
     "@epam/loveship": {
       "css": 51745,
-      "js": 42557
+      "js": 42552
     },
     "@epam/uui-components": {
       "css": 22319,
-      "js": 243588
+      "js": 244674
     },
     "@epam/uui-core": {
       "css": 0,
-      "js": 338956
+      "js": 341840
     },
     "@epam/uui-db": {
       "css": 0,
@@ -52,11 +52,11 @@
     },
     "@epam/uui-timeline": {
       "css": 2254,
-      "js": 46054
+      "js": 77573
     },
     "@epam/uui": {
-      "css": 268477,
-      "js": 338698
+      "css": 273977,
+      "js": 341695
     }
   }
 }
