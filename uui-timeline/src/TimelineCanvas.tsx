@@ -37,8 +37,8 @@ export interface TimelineCanvasProps {
 }
 
 /**
- * Low-level Timeline compatible Canvas component. If some specific element should be drawn on Timeline canvas,
- * current component should be used.
+ * A low-level component designed for rendering elements on a Timeline. It serves as a fundamental building block 
+ * in the construction of more complex timeline visualizations.
  * @returns canvas element.
  */
 export function TimelineCanvas<TProps extends TimelineCanvasProps>({
