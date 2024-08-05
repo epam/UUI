@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import isEqual from 'react-fast-compare';
 import {
     DataColumnProps, DataRowProps, uuiMod, DndActorRenderParams, DndActor, uuiMarkers, DataTableRowProps, Lens, IEditable,
+    DndEventHandlers,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 
@@ -37,7 +38,7 @@ function compareProps(props: any, nextProps: any) {
 const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
     const rowLens = Lens.onEditable(props as IEditable<TItem>);
 
-    const renderCell = (column: DataColumnProps<TItem, TId>, idx: number) => {
+    const renderCell = (column: DataColumnProps<TItem, TId>, idx: number, eventHandlers?: DndEventHandlers) => {
         const renderCellCallback = column.renderCell || props.renderCell;
         const isFirstColumn = idx === 0;
         const isLastColumn = !props.columns || idx === props.columns.length - 1;
@@ -49,6 +50,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
             isFirstColumn,
             isLastColumn,
             rowLens,
+            eventHandlers,
         });
     };
 

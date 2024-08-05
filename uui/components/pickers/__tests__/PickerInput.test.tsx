@@ -110,7 +110,7 @@ describe('PickerInput', () => {
                 searchPosition="body"
                 minBodyWidth={ 900 }
                 renderNotFound={ () => null }
-                renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
+                renderFooter={ (props) => <div>{ props as unknown as ReactNode }</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
@@ -182,7 +182,7 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
             });
-            
+
             fireEvent.click(document.body);
 
             await waitFor(() => {
@@ -805,54 +805,69 @@ describe('PickerInput', () => {
             });
         });
 
-        it('should clear search on show only selected toggle', async () => {
+        it('should show selected items by \'Show only selected\' click, and reset \'Show only selected\' mode by search change', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
-                value: [4, 2, 6, 8],
+                value: undefined,
                 selectionMode: 'multi',
                 searchPosition: 'body',
+                getSearchFields: (item) => [item!.level],
             });
 
-            fireEvent.click(dom.target);
+            expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+            fireEvent.click(dom.input);
 
-            const dialog = await PickerInputTestObject.findDialog();
+            const dialog = await screen.findByRole('dialog');
             expect(dialog).toBeInTheDocument();
 
             await PickerInputTestObject.waitForOptionsToBeReady();
 
-            const searchInput = within(dialog).queryByRole('searchbox') as HTMLInputElement;
-            fireEvent.change(searchInput, { target: { value: 'search' } });
+            // Verify that all expected options are displayed.
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'A1',
+                'A1+',
+                'A2',
+                'A2+',
+                'B1',
+                'B1+',
+                'B2',
+                'B2+',
+                'C1',
+                'C1+',
+                'C2',
+            ]);
+
+            // Click on options 'A1' and 'B1' to select them.
+            await PickerInputTestObject.clickOptionByText('A1');
+            await PickerInputTestObject.clickOptionByText('B1');
 
             await PickerInputTestObject.clickShowOnlySelected();
 
-            await waitFor(() => expect(searchInput.value).toEqual(''));
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-        });
+            // Expect that only 'A1' and 'B1' are visible after the filter is applied.
+            await waitFor(async () => expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual(['A1', 'B1']));
 
-        it('should turn off show only selected mode on search change', async () => {
-            const { dom } = await setupPickerInputForTest<TestItemType, number>({
-                value: [4, 2, 6, 8],
-                selectionMode: 'multi',
-                searchPosition: 'body',
-            });
+            // Type 'A' into the search input and trigger the search.
+            const bodyInput = within(dialog).getByPlaceholderText('Search');
+            fireEvent.change(bodyInput, { target: { value: 'A' } });
 
-            fireEvent.click(dom.target);
+            // Expect that only options containing 'A' are shown after the search.
+            await waitFor(() => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBe(4));
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual(['A1', 'A1+', 'A2', 'A2+']);
 
-            const dialog = screen.queryByRole('dialog');
-            expect(dialog).toBeInTheDocument();
-            await PickerInputTestObject.waitForOptionsToBeReady();
-
-            await PickerInputTestObject.clickShowOnlySelected();
-
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-
-            const searchInput = within(dialog!).getByRole('searchbox') as HTMLInputElement;
-            fireEvent.change(searchInput, { target: { value: 'search' } });
-
-            const showOnlySelectedSwitch = within(dialog!).queryByRole('switch', { name: 'Show only selected' }) as HTMLInputElement;
-
-            await waitFor(() => expect(showOnlySelectedSwitch.checked).toEqual(false));
+            // Clear the search input and verify that all options are visible again.
+            fireEvent.change(bodyInput, { target: { value: '' } });
+            await waitFor(async () => expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'A1',
+                'A1+',
+                'A2',
+                'A2+',
+                'B1',
+                'B1+',
+                'B2',
+                'B2+',
+                'C1',
+                'C1+',
+                'C2',
+            ]));
         });
     });
 

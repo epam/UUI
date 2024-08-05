@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Viewport } from './types';
-import { msPerDay, scaleSteps } from './helpers';
-import { TimelineTransform } from '../index';
-import sortedIndex from 'lodash.sortedindex';
+import { Viewport, ViewportRange } from './types';
+import { changeZoomStep, getScaleByRange, msPerDay } from './helpers';
+import { TimelineTransform } from '../';
 import { isClientSide } from '@epam/uui-core';
 
 type TimelineRenderHandler = (transform: TimelineTransform) => void;
@@ -23,7 +22,7 @@ interface ScaleState {
 
 export class TimelineController {
     dragStartViewport: Viewport;
-    currentViewport: Viewport;
+    _currentViewport: Viewport;
     targetViewport: Viewport;
     options: TimelineControllerOptions;
     screenMouseX = 0;
@@ -33,6 +32,8 @@ export class TimelineController {
     isFrameScheduled = false;
     scalesVisibility: { [key: string]: ScaleState } = {};
     shiftPercent: number = 0.3;
+    timelineTransform: TimelineTransform;
+
     onViewportChange: (newViewport: Viewport) => void;
     constructor(viewport?: Viewport, options?: TimelineControllerOptions, onViewportChange?: (newViewport: Viewport) => void) {
         if (!viewport) {
@@ -62,6 +63,15 @@ export class TimelineController {
         }
     }
 
+    get currentViewport() {
+        return this._currentViewport;
+    }
+
+    set currentViewport(newViewport: Viewport) {
+        this._currentViewport = newViewport;
+        this.timelineTransform = new TimelineTransform(this, this._currentViewport);
+    }
+
     handlers: TimelineRenderHandler[] = [];
     public subscribe(handler: TimelineRenderHandler) {
         this.handlers.push(handler);
@@ -84,6 +94,27 @@ export class TimelineController {
         if (this.onViewportChange) {
             this.onViewportChange(newViewport);
         }
+    }
+
+    /**
+     * Defines current viewport via time range.
+     * @param newViewportRange - timeline period range.
+     * @param doAnimation
+     */
+    public setViewportRange(newViewportRange: ViewportRange, doAnimation: boolean) {
+        const centerTimestamp = Math.floor((newViewportRange.to.getTime() + newViewportRange.from.getTime()) / 2);
+        const pxPerMs = getScaleByRange(newViewportRange, this.options);
+
+        const center = new Date();
+        center.setTime(centerTimestamp);
+        this.setViewport(
+            {
+                center,
+                widthPx: this.currentViewport.widthPx,
+                pxPerMs,
+            },
+            doAnimation,
+        );
     }
 
     public setShiftPercent(shiftPercent: number) {
@@ -115,7 +146,7 @@ export class TimelineController {
     public handleWheelEvent = (e: WheelEvent) => {
         const vp = this.currentViewport;
         const sign = e.deltaY ? (e.deltaY < 0 ? 1 : -1) : 0;
-        const pxPerMs = this.changeZoomStep(sign);
+        const pxPerMs = changeZoomStep(sign, this.targetViewport.pxPerMs, this.options);
 
         this.setViewport(
             {
@@ -125,26 +156,8 @@ export class TimelineController {
             },
             true,
         );
-        e.preventDefault();
+        e.cancelable && e.preventDefault();
     };
-
-    private changeZoomStep(steps: number) {
-        const currentStep = sortedIndex(scaleSteps, this.targetViewport.pxPerMs);
-        let targetStep = currentStep + steps;
-        if (targetStep < 0) {
-            targetStep = 0;
-        }
-        if (targetStep >= scaleSteps.length) {
-            targetStep = scaleSteps.length - 1;
-        }
-        if (scaleSteps[targetStep] > this.options.maxScale) {
-            targetStep = sortedIndex(scaleSteps, this.options.maxScale);
-        }
-        if (scaleSteps[targetStep] < this.options.minScale) {
-            targetStep = sortedIndex(scaleSteps, this.options.minScale);
-        }
-        return scaleSteps[targetStep];
-    }
 
     public moveToday() {
         this.setViewport(
@@ -185,7 +198,7 @@ export class TimelineController {
 
     public zoomBy(steps: number) {
         const vp = this.targetViewport;
-        const pxPerMs = this.changeZoomStep(steps);
+        const pxPerMs = changeZoomStep(steps, this.targetViewport.pxPerMs, this.options);
 
         this.setViewport(
             {
@@ -197,15 +210,17 @@ export class TimelineController {
     }
 
     public canZoomBy(steps: number) {
-        return this.changeZoomStep(steps) != this.targetViewport.pxPerMs;
+        const pxPerMs = changeZoomStep(steps, this.targetViewport.pxPerMs, this.options);
+
+        return pxPerMs != this.targetViewport.pxPerMs;
     }
 
     public getTransform() {
-        return new TimelineTransform(this, this.currentViewport);
+        return this.timelineTransform;
     }
 
     private doRender() {
-        const transform = new TimelineTransform(this, this.currentViewport);
+        const transform = this.getTransform();
         this.handlers.forEach((h) => h && h(transform));
     }
 
@@ -216,16 +231,17 @@ export class TimelineController {
         return current;
     }
 
+    getBounds = (vp: Viewport) => ({
+        left: vp.center.getTime() - 0.5 / vp.pxPerMs,
+        right: vp.center.getTime() + 0.5 / vp.pxPerMs,
+    });
+
     private interpolateViewports(vp1: Viewport, vp2: Viewport, dt: number) {
         // We'll process interpolation not scale+center, but two points -0.5ms and 0.5.
         // This will made transition trajectory linear
-        const getBounds = (vp: Viewport) => ({
-            left: vp.center.getTime() - 0.5 / vp.pxPerMs,
-            right: vp.center.getTime() + 0.5 / vp.pxPerMs,
-        });
 
-        const vp1Bounds = getBounds(vp1);
-        const vp2Bounds = getBounds(vp2);
+        const vp1Bounds = this.getBounds(vp1);
+        const vp2Bounds = this.getBounds(vp2);
         const nextBounds = {
             left: this.interpolate(vp1Bounds.left, vp2Bounds.left, dt),
             right: this.interpolate(vp1Bounds.right, vp2Bounds.right, dt),

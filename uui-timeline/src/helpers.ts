@@ -1,4 +1,7 @@
+import sortedIndex from 'lodash.sortedindex';
+import { TimelineControllerOptions } from './TimelineController';
 import { i18n } from './i18n';
+import { ViewportRange } from './types';
 
 export const baseDate = new Date(2000, 1, 1);
 export const msPerMinute = 60 /* sec */ * 1000; /* ms */
@@ -65,6 +68,30 @@ export function getleftXforCentering(stageSegment: any, textWidth: number, paddi
 
     return leftX;
 }
+
+export const changeZoomStep = (steps: number, pxPerMs: number, options: TimelineControllerOptions) => {
+    const currentStep = sortedIndex(scaleSteps, pxPerMs);
+    let targetStep = currentStep + steps;
+    if (targetStep < 0) {
+        targetStep = 0;
+    }
+    if (targetStep >= scaleSteps.length) {
+        targetStep = scaleSteps.length - 1;
+    }
+    if (scaleSteps[targetStep] > options.maxScale) {
+        targetStep = sortedIndex(scaleSteps, options.maxScale);
+    }
+    if (scaleSteps[targetStep] < options.minScale) {
+        targetStep = sortedIndex(scaleSteps, options.minScale);
+    }
+
+    return scaleSteps[targetStep];
+};
+
+export const getScaleByRange = (viewportRange: ViewportRange, options: TimelineControllerOptions) => {
+    const pxPerMs = viewportRange.widthPx / (viewportRange.to.getTime() - viewportRange.from.getTime());
+    return changeZoomStep(-1, pxPerMs, options);
+};
 
 export const months = i18n.months;
 
