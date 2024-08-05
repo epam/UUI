@@ -69,6 +69,7 @@ export class DragGhost extends React.Component<DragGhostProps, DragGhostState> {
                     top: this.state.pointerY + this.state.ghostOffsetY,
                     pointerEvents: 'none',
                     zIndex: this.layer.zIndex,
+                    display: 'none',
                 } }
             >
                 {this.state.renderGhost()}
