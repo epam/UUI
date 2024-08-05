@@ -57,7 +57,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                         {this.props.column.caption}
                     </Text>
                 </Tooltip>
-
                 {this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
                     <IconButton
                         key="sort"
@@ -187,6 +186,10 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     );
 
     render() {
+        if (this.props.column.renderHeaderCell) {
+            return this.props.column.renderHeaderCell(this.props);
+        }
+
         return <UuiDataTableHeaderCell { ...this.props } renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent } />;
     }
 }

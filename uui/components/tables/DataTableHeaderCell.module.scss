@@ -88,6 +88,7 @@
     @include cell-size(36);
     @include cell-size(42);
     @include cell-size(48);
+    @include cell-size(60);
 
     &.padding-left-24 {
         padding-left: 24px;

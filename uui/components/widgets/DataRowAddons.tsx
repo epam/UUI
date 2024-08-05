@@ -1,5 +1,5 @@
 import React from 'react';
-import { uuiElement, uuiMarkers, DataRowProps } from '@epam/uui-core';
+import { uuiElement, uuiMarkers, DataRowProps, DndEventHandlers } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { Checkbox, CheckboxProps } from '../inputs';
 import { ControlSize } from '../types';
@@ -17,6 +17,10 @@ export interface DataRowAddonsProps<TItem, TId> {
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
     /** Controls size. */
     size?: ControlSize | '60';
+    /**
+     * Drag'n'drop marker event handlers.
+     */
+    eventHandlers?: DndEventHandlers;
 }
 
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
@@ -31,7 +35,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
 
     return (
         <>
-            {row.dnd?.srcData && <DragHandle key="dh" cx={ css.dragHandle } />}
+            {row.dnd?.srcData && <DragHandle key="dh" cx={ css.dragHandle } rawProps={ { ...props.eventHandlers } } /> }
             {row?.checkbox?.isVisible && (
                 <Checkbox
                     key="cb"

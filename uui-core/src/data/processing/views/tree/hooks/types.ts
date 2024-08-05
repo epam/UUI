@@ -1,12 +1,12 @@
 import { ITree } from '../ITree';
-import { FlattenSearchResultsConfig } from '../../../../../types';
+import { FlattenSearchResultsConfig, IImmutableMap, IMap } from '../../../../../types';
 import { CommonTreeConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
 
 /**
  * Result of the useTree hook.
  */
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
-    CommonTreeConfig<TItem, TId, TFilter>,
+    Omit<CommonTreeConfig<TItem, TId, TFilter>, 'patch'>,
     ITreeLoadingState,
     ITreeActions,
     LoadMissingRecords<TItem, TId>,
@@ -32,4 +32,12 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
      * Total count of the rows.
      */
     totalCount?: number;
+
+    /**
+     * Allows patching an existing tree with updated data multiple times without affecting the original tree.
+     * It can be used while adding subtotals or making other changes to the data, based on update results before setting data to the form.
+     * @param modifiedItems Map of updated, deleted, or added items to be applied to the existing tree.
+     * @returns A new tree patched with the modified items.
+     */
+    applyPatch: (modifiedItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
 }

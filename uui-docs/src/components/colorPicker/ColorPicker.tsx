@@ -16,6 +16,14 @@ interface ColorPickerProps extends IEditable<string> {
 export function ColorPicker(props: ColorPickerProps) {
     const { colors, onValueChange, value } = props;
 
+    const handleOnValueChange = (event: React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>, color: Color) => {
+        const isEnterKeyPress = event.type === 'keydown' && (event as React.KeyboardEvent<HTMLDivElement>).key === 'Enter';
+        const isMouseClick = event.type === 'click';
+        if (isEnterKeyPress || isMouseClick) {
+            onValueChange(color.value);
+        }
+    };
+
     const renderColor = (color: Color) => {
         const isSelectedColor = value === color.value;
         const isUnknownColor = typeof color.hex === 'undefined' || color.hex === '';
@@ -26,7 +34,8 @@ export function ColorPicker(props: ColorPickerProps) {
                     size="18"
                     cx={ css.colorItemUnknown }
                     caption={ color.value }
-                    onClick={ () => onValueChange(color.value) }
+                    onClick={ (e) => handleOnValueChange(e, color) }
+                    tabIndex={ 0 }
                 />
             );
         };
@@ -42,8 +51,10 @@ export function ColorPicker(props: ColorPickerProps) {
             return (
                 <div
                     className={ cx(css.colorItem, css.colorItemSelected, `uui-color-${color.value}`) }
-                    onClick={ () => onValueChange(color.value) }
+                    onClick={ (e) => handleOnValueChange(e, color) }
+                    onKeyDown={ (e) => handleOnValueChange(e, color) }
                     style={ style }
+                    tabIndex={ 0 }
                 />
             );
         };

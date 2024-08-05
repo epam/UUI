@@ -4,6 +4,14 @@ import {
     addDays, isWeekend, msPerDay, Scales,
 } from './helpers';
 
+export interface ScaleBar {
+    left: number;
+    right: number;
+    leftDate: Date;
+    rightDate: Date;
+    key: string;
+}
+
 export class TimelineTransform {
     public centerMs: number;
     public leftMs: number;
@@ -11,6 +19,8 @@ export class TimelineTransform {
     public widthMs: number;
     public pxPerMs: number;
     public widthPx: number;
+    private cache: Map<string, ScaleBar[]>;
+
     constructor(private controller: TimelineController, vp: Viewport) {
         this.centerMs = vp.center.getTime();
         this.widthPx = vp.widthPx;
@@ -18,6 +28,7 @@ export class TimelineTransform {
         this.widthMs = vp.widthPx / vp.pxPerMs;
         this.leftMs = this.centerMs - this.widthMs / 2;
         this.rightMs = this.centerMs + this.widthMs / 2;
+        this.cache = new Map();
     }
 
     getX(date: Date, trim?: undefined | 'left' | 'right'): number {
@@ -92,7 +103,7 @@ export class TimelineTransform {
         return result;
     }
 
-    getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string) {
+    getScaleBars(alignStartDate: (nonAligned: Date) => Date, getNthDate: (baseDate: Date, n: number) => Date, keyPrefix: string): ScaleBar[] {
         const fromDate = new Date(this.leftMs);
         const toDate = new Date(this.rightMs);
         const baseDate = alignStartDate(fromDate);
@@ -100,26 +111,30 @@ export class TimelineTransform {
         const result = [];
         let n = 0;
 
-        while (true) {
-            const leftDate = getNthDate(baseDate, n);
-            const rightDate = getNthDate(baseDate, n + 1);
+        if (!this.cache.has(keyPrefix) || !this.cache.get(keyPrefix).length) {
+            while (true) {
+                const leftDate = getNthDate(baseDate, n);
+                const rightDate = getNthDate(baseDate, n + 1);
 
-            if (leftDate > toDate) {
-                break;
+                if (leftDate > toDate) {
+                    break;
+                }
+
+                result.push({
+                    left: this.getX(leftDate),
+                    right: this.getX(rightDate) - 1,
+                    leftDate,
+                    rightDate,
+                    key: keyPrefix + n,
+                });
+
+                n++;
             }
 
-            result.push({
-                left: this.getX(leftDate),
-                right: this.getX(rightDate) - 1,
-                leftDate,
-                rightDate,
-                key: keyPrefix + n,
-            });
-
-            n++;
+            this.cache.set(keyPrefix, result);
         }
 
-        return result;
+        return this.cache.get(keyPrefix);
     }
 
     public getVisibleMonths() {
@@ -162,7 +177,7 @@ export class TimelineTransform {
         );
     }
 
-    public getVisibleQuoterHours() {
+    public getVisibleQuarterHours() {
         return this.getScaleBars(
             (baseDate) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours()),
             (baseDate, n) => new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate(), baseDate.getHours(), baseDate.getMinutes() + n * 15),
