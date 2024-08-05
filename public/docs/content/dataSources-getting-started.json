@@ -645,19 +645,20 @@
         "uui-richTextEditor-code": true
       },
       {
-        "data": {
-          "url": "/documents?id=dataSources-usage&mode=doc&skin=UUI4_promo&category=dataSources"
-        },
+        "text": " in the "
+      },
+      {
         "type": "link",
         "url": "/documents?id=dataSources-usage&mode=doc&skin=UUI4_promo&category=dataSources",
+        "target": "_blank",
         "children": [
           {
-            "text": "in the \"Usage In Components\" article"
+            "text": "Usage In Components"
           }
         ]
       },
       {
-        "text": "."
+        "text": " article."
       }
     ]
   },
