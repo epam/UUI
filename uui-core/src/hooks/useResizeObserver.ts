@@ -6,15 +6,15 @@ import { useEffect, useMemo } from 'react';
  */
 export interface UseResizeObserverProps {
     /**
-     * Handler of the resizing event, which is called when the observing target size is changed.
+     * The handler for the resizing event, called when the size of any observed elements changes.
      */
     onResize: ResizeObserverCallback;
     /**
-     * Elements, which size change should be tracked.
+     * Elements whose size changes should be tracked.
      */
     observables: Element[];
     /**
-     * Delay of onResize handler calling.
+     * Delay (in milliseconds) before calling the onResize handler.
      */
     delay?: number;
 }
