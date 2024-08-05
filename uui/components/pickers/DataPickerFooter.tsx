@@ -19,11 +19,13 @@ type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPic
 
 function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFooterProps<TItem, TId>>) {
     const {
+        search,
         clearSelection,
         view,
         showSelected,
         selectionMode,
     } = props;
+
     const size = settings.sizes.dataPickerFooter.linkButton[isMobile() ? 'mobile' : props.size] as LinkButtonProps['size'];
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;
@@ -35,8 +37,9 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const clearSingleText = i18n.pickerInput.clearSelectionButtonSingle;
     const selectAllText = i18n.pickerInput.selectAllButton;
 
-    // show always for multi picker and for single only in case if search not disabled.
-    const shouldShowFooter = isSinglePicker ? !props.disableClear : true;
+    // show always for multi picker and for single only in case if search not disabled and doesn't searching.
+    const isSearching = search && search?.length;
+    const shouldShowFooter = isSinglePicker ? !props.disableClear : !isSearching;
 
     return shouldShowFooter && (
         <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
