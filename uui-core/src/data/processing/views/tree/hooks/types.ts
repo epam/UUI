@@ -34,10 +34,10 @@ export interface UseTreeResult<TItem, TId, TFilter = any> extends
     totalCount?: number;
 
     /**
-     * Provides the possibility to patch an existing tree with updated data multiple times without affecting the original tree.
-     * It can be used while adding subtotals or other changes to the data, based on the update results before setting data to the form.
-     * @param modifiedItems map of updated/deleted/added items, which should be applied to the existing tree.
-     * @returns new tree, patched by modified items.
+     * Allows patching an existing tree with updated data multiple times without affecting the original tree.
+     * It can be used while adding subtotals or making other changes to the data, based on update results before setting data to the form.
+     * @param modifiedItems Map of updated, deleted, or added items to be applied to the existing tree.
+     * @returns A new tree patched with the modified items.
      */
     applyPatch: (modifiedItems: IMap<TId, TItem> | IImmutableMap<TId, TItem>) => ITree<TItem, TId>;
 }

@@ -20,8 +20,8 @@ export interface UseResizeObserverProps {
 }
 
 /**
- * Hook, which provides the ability to observe size changes of various elements.
- * @returns observer, which tracks size changes of observing elements.
+ * Hook that provides the ability to observe size changes of various elements.
+ * @returns An observer that tracks size changes of the observed elements.
  */
 export function useResizeObserver(props: UseResizeObserverProps) {
     const onResize = useMemo(() => {
