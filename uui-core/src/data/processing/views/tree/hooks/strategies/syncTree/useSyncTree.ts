@@ -35,6 +35,9 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         getNewItemPosition,
         isDeleted,
+        sortingSettings,
+        comparator,
+        overrideSortingSettings,
     } = props;
 
     const { itemsMap, setItems } = useItemsStorage({
@@ -56,7 +59,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
     );
 
     const sortTree = useSortTree(
-        { tree: filteredTree, sortBy, dataSourceState },
+        { tree: filteredTree, sortBy, sortingSettings, overrideSortingSettings, comparator, dataSourceState },
         [filteredTree],
     );
 
@@ -78,6 +81,9 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         fixItemBetweenSortings,
         sorting: dataSourceState.sorting,
         sortBy,
+        sortingSettings,
+        comparator,
+        overrideSortingSettings,
     });
 
     const reload = useCallback(() => {

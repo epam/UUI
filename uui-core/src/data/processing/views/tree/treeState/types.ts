@@ -1,4 +1,4 @@
-import { CascadeSelection, DataSourceState, IImmutableMap, IMap, SortConfig, SortedPatchByParentId, SortingOption, PatchOptions as PatchConfig } from '../../../../../types';
+import { CascadeSelection, DataSourceState, IImmutableMap, IMap, SortConfig, SortedPatchByParentId, PatchOptions as PatchConfig } from '../../../../../types';
 import { LazyListViewProps } from '../../types';
 import { ItemsMap } from '../ItemsMap';
 import { TreeStructure } from '../treeStructure/TreeStructure';
@@ -44,10 +44,9 @@ export interface ApplySearchOptions<TItem, TId, TFilter> {
     sortSearchByRelevance?: boolean;
 }
 
-export interface ApplySortOptions<TItem, TId, TFilter> {
+export interface ApplySortOptions<TItem, TId, TFilter> extends SortConfig<TItem> {
     getId: (item: TItem) => TId;
     sorting: DataSourceState<TFilter, TId>['sorting'];
-    sortBy?(item: TItem, sorting: SortingOption): any;
 }
 
 export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem) => number;

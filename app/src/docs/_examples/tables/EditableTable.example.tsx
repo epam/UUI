@@ -235,6 +235,8 @@ export default function EditableTableExample() {
                 })
                 .toProps(),
         }),
+        overrideSortingSettings: (sortings) => [{ sortBy: (item) => !item.name, direction: 'asc' }, ...sortings],
+
         // Changed/added/removed items are stored in value.items and applied to the dataSource via patch.
         patch: value.items.set(lastId - 1, { ...blankItem, id: lastId - 1 }), 
         // Position, new items from the patch should be placed.

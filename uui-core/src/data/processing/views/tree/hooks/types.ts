@@ -1,12 +1,12 @@
 import { ITree } from '../ITree';
-import { FlattenSearchResultsConfig } from '../../../../../types';
+import { FlattenSearchResultsConfig, PatchOptions } from '../../../../../types';
 import { CommonTreeConfig, GetItemStatus, LoadMissingRecords, ITreeActions, ITreeLoadingState } from './strategies/types';
 
 /**
  * Result of the useTree hook.
  */
 export interface UseTreeResult<TItem, TId, TFilter = any> extends
-    CommonTreeConfig<TItem, TId, TFilter>,
+    Omit<CommonTreeConfig<TItem, TId, TFilter>, keyof PatchOptions<TItem, TId>>,
     ITreeLoadingState,
     ITreeActions,
     LoadMissingRecords<TItem, TId>,
