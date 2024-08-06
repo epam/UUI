@@ -48,7 +48,7 @@ export function IntroBlock() {
     const getHeaderClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
     const BLUR = theme === 'loveship_dark' ? BlurDarkImage : BlurLightImage;
 
-    const [value, onValueChange] = useState<string[]>(['c-AN', 'BV', '1546102']);
+    const [value, onValueChange] = useState<string[]>(['BV', '1546102']);
     const [tabValue, onTabValueChange] = useState('All');
     const [selectedItem, setSelectedItem] = useState(dropdownMenuItems[0]);
     const [textValue, setTextValue] = useState('');
@@ -102,6 +102,7 @@ export function IntroBlock() {
                         return !unfoldedIds.includes(item.id);
                     } }
                     maxBodyHeight={ 320 }
+                    cascadeSelection="implicit"
                 />
             </Panel>
         );
