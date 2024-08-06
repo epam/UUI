@@ -15,22 +15,39 @@ import css from './ExploreBenefitsBlock.module.scss';
 interface IExploreTopBlockItem {
     id: number,
     icon: { element: FC<SVGProps<SVGSVGElement>>, name: string },
-    caption: string,
+    caption: React.ReactNode,
     text: React.ReactNode,
     footer: null | { linkCaption: string, href: string }
 }
 
 const topExploreBlocks: IExploreTopBlockItem[] = [
-    { id: 0, icon: { element: StarsIcon, name: 'Stars' }, caption: 'Figma components aligned with React', text: 'Boxed solution with Figma and React libraries, enabling to seamlessly integrate design with front-end and accelerate both', footer: null },
+    {
+        id: 0,
+        icon: { element: StarsIcon, name: 'Stars' },
+        caption: 'Figma components aligned with React',
+        text: 'Boxed solution with Figma and React libraries, enabling to seamlessly integrate design with front-end and accelerate both',
+        footer: null,
+    },
     {
         id: 1,
         icon: { element: flagIcon, name: 'Flag' },
-        caption: 'Integrated solutions & front-end accelerating facilities',
+        /* eslint-disable react/jsx-closing-tag-location */
+        caption: <span>
+            Integrated solutions &
+            <br />
+            front-end accelerating facilities
+        </span>,
         text: 'Common services, state-management facilities, complex solutions like Forms with validation,'
             + ' Lists and Tables with lazy-loading and editing',
         footer: null,
     },
-    { id: 2, icon: { element: windows, name: 'Windows' }, caption: '60+ rich components', text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance', footer: { linkCaption: 'See components', href: '/documents?category=components&id=accordion&mode=doc' } },
+    {
+        id: 2,
+        icon: { element: windows, name: 'Windows' },
+        caption: '60+ rich components',
+        text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance',
+        footer: { linkCaption: 'See Components', href: '/documents?category=components&id=accordion&mode=doc' },
+    },
     {
         id: 3,
         icon: { element: brushBuilder, name: 'BrushBuilder' },
@@ -41,7 +58,7 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
             <br />
             Allows deep customization to build your own brand UI components set on top
         </span>,
-        footer: { linkCaption: 'Open guide', href: '/documents?id=overview-themes&mode=doc&category=themes' },
+        footer: { linkCaption: 'Open Guide', href: '/documents?id=overview-themes&mode=doc&category=themes' },
     },
 ];
 
