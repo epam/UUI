@@ -145,8 +145,8 @@ export function ExploreBenefitsBlock() {
                         <Panel ref={ topBlockRefs[index] } cx={ css.topBlockPanel } key={ item.id }>
                             <IconContainer icon={ item.icon.element } cx={ cx(css.topBlockIcon, css[getThemeClassName(`topBlockIcon${item.icon.name}`)]) } size="18" />
                             <FlexCell cx={ css.topBlockContextWrapper }>
-                                <Text fontSize="18" lineHeight="24" fontWeight="600" cx={ css.topBlockCaption }>{ item.caption }</Text>
-                                <Text fontSize="16" lineHeight="24" cx={ css.topBlockText }>{ item.text }</Text>
+                                <Text fontSize="18" lineHeight="24" fontWeight="600">{ item.caption }</Text>
+                                <Text fontSize="16" lineHeight="24" color="secondary">{ item.text }</Text>
                             </FlexCell>
                             { item.footer && (
                                 <FlexRow cx={ css.topBlockFooter } justifyContent="center">
@@ -173,7 +173,7 @@ export function ExploreBenefitsBlock() {
                                 { item.captionBadge
                                 && <Badge color="success" fill="outline" size="24" cx={ css.bottomItemBadge } icon={ item.captionBadge.icon } caption={ item.captionBadge.caption } /> }
                             </FlexRow>
-                            <Text fontSize="18" lineHeight="24" cx={ css.bottomBlockText }>{ item.text }</Text>
+                            <Text fontSize="18" lineHeight="24" cx={ css.bottomBlockText } color="secondary">{ item.text }</Text>
                             { item.footer && (
                                 <FlexRow cx={ css.bottomBlockFooter } columnGap="6">
                                     { item.footer.map((footerItem) => (
