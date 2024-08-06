@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, DataColumnProps, IClickable, IHasCX, IHasRawProps } from '@epam/uui-core';
+import { DataColumnProps, IClickable, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { FlexCell } from '../layout';
 import css from './DataTableCellContainer.module.scss';
  
@@ -14,31 +14,25 @@ export interface DataTableCellContainerProps extends
     column: DataColumnProps;
     textAlign?: 'left' | 'center' | 'right';
     alignSelf?: string;
+    shrink?: number;
     style?: React.CSSProperties;
-    ref?: React.RefObject<HTMLDivElement> | React.RefCallback<HTMLDivElement>;
 }
  
-export function DataTableCellContainer(props: DataTableCellContainerProps) {
+export const DataTableCellContainer = React.forwardRef<HTMLDivElement, DataTableCellContainerProps>((props: DataTableCellContainerProps, ref) => {
     return (
         <FlexCell
             { ...props.column }
             minWidth={ props.column.width }
             rawProps={ props.rawProps }
-            cx={
-                cx(
-                    'uui-dt-vars',
-                    css.cell,
-                    props.column.cx,
-                    props.cx,
-                ) 
-            }
+            cx={ ['uui-dt-vars', css.cell, props.column.cx, props.cx] }
             onClick={ props.onClick }
             textAlign={ props.textAlign }
             alignSelf={ props.alignSelf }
-            ref={ props.ref }
+            shrink={ props.shrink }
+            ref={ ref }
             style={ props.style }
         >
             { props.children }
         </FlexCell>
     );
-}
+});
