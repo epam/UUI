@@ -1,15 +1,8 @@
 .cell {
-    position: relative;
-    box-sizing: border-box;
     background-clip: padding-box;
-    display: flex;
     align-items: flex-start;
     background-color: var(--uui-dt-cell-bg);
     border-width: var(--uui-dt-cell-border-width);
-
-    // Overlay borders of cell at the left and top
-    margin-left: calc(var(--uui-dt-cell-border-width) * -1);
-    //margin-top: calc(var(--uui-dt-cell-border-width) * -1);
     border-left-style: solid;
     border-right-style: solid;
     border-top-style: none;
