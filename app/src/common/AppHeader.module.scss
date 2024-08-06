@@ -106,8 +106,9 @@
         &.figma-icon {
             :global(.uui-icon):nth-of-type(2) {
                 svg {
-                    width: 12px;
-                    height: 12px;
+                    margin-inline-start: 3px;
+                    width: 18px;
+                    height: 18px;
                 }
             }
         }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Accordion, Text } from '@epam/uui';
+import { Accordion, Anchor, Text } from '@epam/uui';
 import { getCurrentTheme } from '../helpers';
 
 import css from './FaqBlock.module.scss';
@@ -10,7 +10,16 @@ const faqData = [
     { id: 1, caption: 'Can I use it to make and sell my own product?', text: 'Yes, you can do anything.' },
     { id: 3, caption: "How long I'll receive updates?", text: 'Until Armageddon. UUI is developed by a dedicated EPAM team and is used across numerous EPAM products. Therefore, we stand on solid ground.' },
     { id: 4, caption: 'Can I style UUI components according my own brand?', text: 'Of course! UUI offers powerful customization options through Themes. You can choose your own brand colors and configure component sizes as you wish. Moreover, you can create your own skin package based on UUI non-styled component core.' },
-    { id: 5, caption: 'Can UUI team assist me? For example, could you build a theme for my brand?', text: 'Certainly! We offer commercial support options. Please contact us for more information.' },
+    { id: 5,
+        caption: 'Can UUI team assist me? For example, could you build a theme for my brand?',
+        /* eslint-disable react/jsx-closing-tag-location */
+        text: <span>
+            Certainly! We offer commercial support options.
+            {' '}
+            <Anchor href="mailto:AskUUI@epam.com">Please contact</Anchor>
+            {' '}
+            us for more information.
+        </span> },
 ];
 
 export function FaqBlock() {
@@ -32,7 +41,7 @@ export function FaqBlock() {
                             value={ item.id === accordionValue }
                             onValueChange={ () => setAccordionValue(item.id) }
                         >
-                            <Text fontSize="16" lineHeight="24">{ `${item.text}` }</Text>
+                            <Text fontSize="16" lineHeight="24">{ item.text }</Text>
                         </Accordion>
                     ))}
                 </div>

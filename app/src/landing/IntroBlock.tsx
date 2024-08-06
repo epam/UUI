@@ -24,6 +24,7 @@ import {
     Dropdown,
     FlexSpacer,
     BadgeProps,
+    IconButton,
 } from '@epam/uui';
 import { DataQueryFilter, DropdownBodyProps, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import cx from 'classnames';
@@ -38,7 +39,7 @@ import { ReactComponent as navigationDownIcon } from '@epam/assets/icons/navigat
 import css from './IntroBlock.module.scss';
 
 const dropdownMenuItems = [
-    { id: 1, caption: 'Production', color: 'info' }, { id: 2, caption: 'Contributor', color: 'success' },
+    { id: 1, caption: 'Production', color: 'success' }, { id: 2, caption: 'Contributor', color: 'info' },
 ];
 
 export function IntroBlock() {
@@ -51,7 +52,7 @@ export function IntroBlock() {
     const [tabValue, onTabValueChange] = useState('All');
     const [selectedItem, setSelectedItem] = useState(dropdownMenuItems[0]);
     const [textValue, setTextValue] = useState('');
-    const [numValue, setNumValue] = useState(0);
+    const [numValue, setNumValue] = useState(1);
     const [switchValue, setSwitchValue] = useState(true);
     const [dateValue, setDateValue] = useState('');
     const [timeValue, setTimeValue] = useState(null);
@@ -201,7 +202,7 @@ export function IntroBlock() {
                                     />
                                     <FlexSpacer />
                                     <Tooltip content="Info tooltip" placement="top">
-                                        <IconContainer icon={ infoIcon } cx={ css.infoIcon } />
+                                        <IconButton color="neutral" icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
                                     <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Go to the docs to see more ;)') } />
                                 </FlexRow>
@@ -225,7 +226,7 @@ export function IntroBlock() {
                                     </LabeledInput>
                                 </FlexRow>
                             </Panel>
-                            <SuccessAlert size="36" onClose={ () => {} } actions={ [{ name: 'SEE DETAILS', action: () => null }] }>
+                            <SuccessAlert size="36" onClose={ () => {} } actions={ [{ name: 'SEE DETAILS', action: () => handleSuccess('Go to the docs to see more ;)') }] }>
                                 <Text size="30">Invitation sent!</Text>
                             </SuccessAlert>
                         </div>
