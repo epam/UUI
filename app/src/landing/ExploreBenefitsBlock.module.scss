@@ -61,8 +61,8 @@
                 display: grid;
                 grid-template-rows: subgrid;
                 grid-row: 1/4;
-                border: 3px solid var(--uui-surface-highest);
-                background-color: var(--uui-surface-highest);
+                border: 3px solid var(--uui-surface-higher);
+                background-color: var(--uui-surface-higher);
                 border-radius: calc(var(--uui-border-radius) * 3);
                 padding: 15px;
 
@@ -131,10 +131,10 @@
                 display: grid;
                 grid-template-rows: subgrid;
                 grid-row: 1/5;
-                border: 3px solid var(--uui-surface-highest);
-                background-color: var(--uui-surface-highest);
+                border: 3px solid var(--uui-surface-higher);
+                background-color: var(--uui-surface-higher);
                 border-radius: calc(var(--uui-border-radius) * 3);
-                padding: 15px;
+                padding: 27px;
 
                 .bottom-block-icon {
                     grid-row: 1;

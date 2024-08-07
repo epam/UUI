@@ -2,7 +2,6 @@ import React from 'react';
 import { DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell } from '@epam/uui';
 import { Dropdown } from '@epam/uui';
 import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
-import { ReactComponent as FigmaIcon } from '@epam/assets/icons/external_logo/figma-logo-outline-inverted.svg';
 
 export default function BasicExample() {
     const renderFirstDropdownBody = (props: DropdownBodyProps) => {
@@ -51,7 +50,7 @@ export default function BasicExample() {
         <>
             <Dropdown
                 renderBody={ (props) => renderFirstDropdownBody(props) }
-                renderTarget={ (props: IDropdownToggler) => <LinkButton icon={ FigmaIcon } size="36" { ...props } /> }
+                renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Simple" size="36" { ...props } /> }
             />
             <Dropdown
                 renderBody={ (props) => renderSecondDropdownBody(props) }

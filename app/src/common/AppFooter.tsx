@@ -26,7 +26,6 @@ const footerLinks = {
             { href: 'https://github.com/epam/UUI/discussions', name: 'Github Discussions' },
             { href: 'https://teams.microsoft.com/l/team/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/conversations?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d', name: 'Microsoft Teams' },
             { href: 'https://wearecommunity.io/communities/uui', name: 'We Are Community' },
-            { href: 'mailto:AskUUI@epam.com', name: 'Contact us' },
         ] },
 };
 

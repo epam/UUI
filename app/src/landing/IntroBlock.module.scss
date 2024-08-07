@@ -104,8 +104,8 @@
                     display: flex;
                     justify-content: center;
                     padding: 3px;
-                    border: 3px solid var(--uui-surface-highest);
-                    background-color: var(--uui-surface-highest);
+                    border: 3px solid var(--uui-surface-higher);
+                    background-color: var(--uui-surface-higher);
                     border-radius: calc(var(--uui-border-radius) * 2);
                     box-shadow: var(--uui-shadow-level-1);
                     cursor: pointer;
@@ -171,7 +171,6 @@
                         .info-icon {
                             margin-inline-start: 6px;
                             margin-inline-end: 29px;
-                            fill: var(--uui-control-icon);
                         }
                     }
                 }
@@ -285,7 +284,9 @@
 }
 
 .dot {
+    content: none;
     height: 8px;
     width: 8px;
     border-radius: 50%;
+    color: transparent;
 }
