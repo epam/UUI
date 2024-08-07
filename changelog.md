@@ -4,8 +4,7 @@
 * [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
 * Icons pack updated
 * [DatePicker][RangeDatePicker]: improve a11y focus flow behavior. Now date picker body receive focus on open and return it back on input after close.
-* [Mobile navigation]: in mobile mode (width <= 768px) on Components page appeared new Navigation button to show/hide sidebar.
-* [Main landing page]: new design.
+* [PickerInput]: made tags in multi select smaller
 * [Timeline]:
   * Improved `Timeline`:
     * Updated `Timeline` design.
@@ -29,7 +28,6 @@
   * Added the `DataTableCellContainer` component.
 
 **What's Fixed**
-* [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
 * [PickerInput]: hide basic footer while searching, not in the custom one (you be able to made it yourself if you need)
 * [DataTable]: disable column focus and hover if `isReadonly={ true }` was provided in `rowOptions` for editable table
 * [Badge]: centered all content when component has a fixed width
