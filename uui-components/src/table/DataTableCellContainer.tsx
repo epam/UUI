@@ -4,7 +4,7 @@ import { FlexCell } from '../layout';
 import css from './DataTableCellContainer.module.scss';
  
 /**
- * Header cell props of DataTable with Timeline.
+ * Props for DataTableCellContainer component.
  */
 export interface DataTableCellContainerProps extends
     IHasCX,
@@ -32,7 +32,7 @@ export interface DataTableCellContainerProps extends
      */
     style?: React.CSSProperties;
 }
- 
+
 export const DataTableCellContainer = React.forwardRef<HTMLDivElement, DataTableCellContainerProps>((props: DataTableCellContainerProps, ref) => {
     return (
         <FlexCell
