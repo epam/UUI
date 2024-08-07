@@ -3,4 +3,11 @@
     position: relative;
     box-sizing: border-box;
     margin-left: calc(var(--uui-dt-cell-border-width) * -1);
+    border-width: var(--uui-dt-cell-border-width);
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: none;
+    border-bottom-style: none;
+    border-left-color: transparent;
+    border-right-color: transparent;
 }
