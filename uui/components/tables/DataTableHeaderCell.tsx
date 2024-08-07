@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps } from '@epam/uui-core';
-import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps } from '@epam/uui-components';
+import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps, DataTableCellContainer } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
 import { DataTableHeaderCellMods } from './types';
-import { FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
@@ -133,15 +132,13 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
         const sideColumnPadding = this.props.columnsGap === '12' ? '12' : '24';
         return (
-            <FlexCell
-                { ...this.props.column }
-                minWidth={ this.props.column.width }
+            <DataTableCellContainer
+                column={ this.props.column }
                 ref={ (ref) => {
                     (props.ref as React.RefCallback<HTMLElement>)(ref);
                     (dropdownProps?.ref as React.RefCallback<HTMLElement>)?.(ref);
                 } }
                 cx={ cx(
-                    'uui-dt-vars',
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.cell,
@@ -149,7 +146,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     this.props.columnsGap && css[`column-gap-${this.props.columnsGap}`],
                     this.props.isFirstColumn && css[`first-column-${sideColumnPadding}`],
                     this.props.isLastColumn && css[`last-column-${sideColumnPadding}`],
-                    this.props.column.cx,
                     this.props.column.fix && css['pinned-' + this.props.column.fix],
                     isResizable && css.resizable,
                     props.isDraggable && css.draggable,
@@ -168,7 +164,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 { this.renderFoldAllIcon() }
                 { this.getColumnCaption() }
                 { isResizable && this.renderResizeMark(props) }
-            </FlexCell>
+            </DataTableCellContainer>
         );
     };
 
