@@ -19,9 +19,6 @@
     align-items: center;
     padding: 0 6px;
     width: 0;
-
-    // to align with cell's borders. TBD: move this to uui-components.
-    border-right: 1px solid transparent;
     background-clip: padding-box;
 
     &.column-gap-12 {

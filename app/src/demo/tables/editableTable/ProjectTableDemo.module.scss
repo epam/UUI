@@ -4,8 +4,8 @@
 }
 
 .header-cell {
-    border-left: 1px solid var(--uui-dt-border);
-    border-right: 1px solid var(--uui-dt-border);
+    border-left-color: var(--uui-dt-border);
+    border-right-color: var(--uui-dt-border);
 }
 
 .search {

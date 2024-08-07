@@ -2,13 +2,6 @@
     background-clip: padding-box;
     align-items: flex-start;
     background-color: var(--uui-dt-cell-bg);
-    border-width: var(--uui-dt-cell-border-width);
-    border-left-style: solid;
-    border-right-style: solid;
-    border-top-style: none;
-    border-bottom-style: none;
-    border-left-color: transparent;
-    border-right-color: transparent;
 
     &:first-child {
         border-left-color: transparent;
