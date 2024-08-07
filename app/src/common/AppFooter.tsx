@@ -48,7 +48,7 @@ export function AppFooter() {
     return (
         <div className={ css.root } style={ { backgroundColor: theme === 'electric' ? 'var(--uui-neutral-95)' : 'var(--uui-neutral-90)' } }>
             <div className={ css.container }>
-                <FlexCell cx={ css.firstBlock } grow={ 1 }>
+                <FlexCell cx={ css.firstBlock } width="auto" grow={ 1 }>
                     <Anchor rawProps={ { tabIndex: -1, 'aria-label': 'EPAM' } } href={ EPAM_LINK } target="_blank">
                         <IconContainer icon={ EPAMIcon } />
                     </Anchor>
@@ -62,7 +62,7 @@ export function AppFooter() {
                         </Anchor>
                     </FlexRow>
                 </FlexCell>
-                <FlexCell cx={ css.secondBlock } grow={ 1 }>
+                <FlexCell cx={ css.secondBlock } width="auto" grow={ 1 } minWidth={ 583 }>
                     <FlexRow columnGap={ 48 } alignItems="top">
                         <FlexCell width="auto">
                             <Text color="white" fontWeight="600" fontSize="18">Have a question?</Text>
