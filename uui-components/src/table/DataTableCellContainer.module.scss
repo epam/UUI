@@ -1,9 +1,10 @@
 .cell {
     display: flex;
     position: relative;
-
-    // to align with cell's borders. TBD: move this to uui-components.
-    margin-left: -1px;
-    border-left: 1px solid var(--uui-dt-border);
-    border-right: 1px solid var(--uui-dt-border);
+    box-sizing: border-box;
+    margin-left: calc(var(--uui-dt-cell-border-width) * -1);
+    border-left: var(--uui-dt-cell-border-width) solid transparent;
+    border-right: var(--uui-dt-cell-border-width) solid transparent;
+    border-top-style: none;
+    border-bottom-style: none;
 }

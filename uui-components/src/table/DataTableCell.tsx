@@ -3,9 +3,9 @@ import {
     DataTableCellProps, RenderEditorProps, uuiMod,
 } from '@epam/uui-core';
 import css from './DataTableCell.module.scss';
-import { FlexCell } from '../layout';
 import { DataTableCellOverlay } from './DataTableCellOverlay';
 import { DataTableFocusContext, DataTableFocusContextState } from './tableCellsFocus';
+import { DataTableCellContainer } from './DataTableCellContainer';
 
 interface DataTableCellState {
     inFocus: boolean;
@@ -129,22 +129,20 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     );
 
     return (
-        <FlexCell
+        <DataTableCellContainer
             ref={ ref }
-            grow={ props.column.grow }
-            width={ props.column.width }
-            minWidth={ props.column.width }
+            column={ props.column }
             textAlign={ props.isFirstColumn ? undefined : props.column.textAlign }
             alignSelf={ props.isFirstColumn ? undefined : props.column.alignSelf }
             rawProps={ { role: 'cell' } }
             cx={ [
-                uuiDataTableCellMarkers.uuiTableCell, css.cell, props.column.cx, props.cx, props.isInvalid && uuiMod.invalid, state.inFocus && uuiMod.focus,
+                uuiDataTableCellMarkers.uuiTableCell, css.cell, props.cx, props.isInvalid && uuiMod.invalid, state.inFocus && uuiMod.focus,
             ] }
             style={ !props.isFirstColumn && { justifyContent: justifyContent } }
         >
             {props.addons}
 
             {props.isFirstColumn ? getWrappedContent() : content}
-        </FlexCell>
+        </DataTableCellContainer>
     );
 }

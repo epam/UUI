@@ -382,7 +382,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             allowResizing: false,
             renderHeaderCell(props) {
                 return (
-                    <DataTableCellContainer { ...props }>
+                    <DataTableCellContainer { ...props } cx={ css.headerCell }>
                         <TimelineHeader timelineController={ timelineController } />
                     </DataTableCellContainer>
                 );
