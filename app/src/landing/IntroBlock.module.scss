@@ -118,7 +118,7 @@
 
                         & > svg {
                             width: 54px;
-                            height: auto;
+                            height: 54px;
                         }
                     }
 
@@ -129,7 +129,7 @@
 
                         & > svg {
                             width: 54px;
-                            height: auto;
+                            height: 54px;
                         }
                     }
 
@@ -210,8 +210,10 @@
 
     @media (max-width: 1165px) {
         .info {
-            .components-wrapper {
-                display: none;
+            .info-end {
+                .picker-demo-wrapper {
+                    display: none;
+                }
             }
         }
     }
@@ -219,9 +221,7 @@
     @media (max-width: 835px) {
         .info {
             .info-end {
-                .picker-demo-wrapper {
-                    display: none;
-                }
+                display: none;
             }
         }
     }
