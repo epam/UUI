@@ -235,6 +235,7 @@
         .container {
             .start-container {
                 width: 100%;
+                min-width: initial;
                 flex-grow: 1;
                 min-height: initial;
 

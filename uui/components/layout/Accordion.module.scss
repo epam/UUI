@@ -59,9 +59,8 @@
             @include icon-size(24);
 
             :global(.uui-accordion-toggle-container) {
-                min-height: 48px;
-                padding-top: 5px;
-                padding-bottom: 5px;
+                padding-top: 18px;
+                padding-bottom: 18px;
             }
 
             :global(.uui-accordion-title) {
