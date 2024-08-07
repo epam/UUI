@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Badge, FlexCell, FlexRow, LinkButton, Panel, Text } from '@epam/uui';
-import { ReactComponent as navigationIcon } from '@epam/assets/icons/common/navigation-chevron-right-12.svg';
-import { ReactComponent as notificationIcon } from '@epam/assets/icons/common/notification-done-12.svg';
+import { ReactComponent as navigationIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
+import { ReactComponent as notificationIcon } from '@epam/assets/icons/notification-done-fill.svg';
 import css from './CardExample.module.scss';
 
 export default function AttributesExample() {

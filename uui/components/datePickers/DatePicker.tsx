@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
+    DropdownBodyProps, IDropdownToggler, cx, useUuiContext, uuiMod,
 } from '@epam/uui-core';
 import { TextInput, TextInputProps } from '../inputs';
 import { EditMode } from '../types';
@@ -48,7 +48,6 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     };
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isFocusReceiverInsideFocusLock(e)) return;
         props.onBlur?.(e);
 
         if (isValidDate(inputValue, format, props.filter)) {
@@ -58,7 +57,6 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
             setInputValue(null);
             onValueChange(null);
         }
-        setBodyIsOpen(false);
     };
 
     const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
