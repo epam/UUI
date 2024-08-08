@@ -3,7 +3,8 @@
     "type": "paragraph",
     "children": [
       {
-        "text": ""
+        "text": "This example illustrates how to make a table with an expandable section.",
+        "color": "rgb(48, 50, 64)"
       }
     ]
   }
