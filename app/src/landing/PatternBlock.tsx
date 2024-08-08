@@ -124,6 +124,7 @@ export function PatternBlock() {
             <FlexRow justifyContent="center" cx={ css.headerWrapper }>
                 <Text cx={ css.header }>
                     <span className={ cx(css.headerStart, css[getHeaderClassName('headerStart')]) }>Find solution for </span>
+                    <span className={ css.brake }><br /></span>
                     <span className={ cx(css.headerEnd, css[getHeaderClassName('headerEnd')]) }>your project</span>
                 </Text>
             </FlexRow>
