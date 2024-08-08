@@ -28,7 +28,7 @@ export default function TableWithExpandableRowsExample() {
                 render: (item) => <Text color="primary">{item.id}</Text>,
                 isSortable: true,
                 isAlwaysVisible: true,
-                width: 100,
+                width: 150,
             }, {
                 key: 'name',
                 caption: 'Name',
@@ -54,7 +54,7 @@ export default function TableWithExpandableRowsExample() {
                     isFolded={ !isExpanded }
                     onFold={ (props) => setDataSourceState((current) => ({ ...current, expanded: { ...current.expanded, [props.id]: !current.expanded?.[props.id] } })) }
                 />
-                {isExpanded && <div className={ css.details }><Text>{ props.value.description ?? 'Empty'}</Text></div> }
+                {isExpanded && <div className={ css.details }><Text>{ props.value.description ?? 'No description' }</Text></div> }
             </div>
         );
     };
