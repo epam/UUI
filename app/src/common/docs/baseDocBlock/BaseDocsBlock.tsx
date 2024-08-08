@@ -10,7 +10,7 @@ import { PropExplorerTab } from './tabs/propExplorerTab';
 import { TabsNav } from './components/tabsNav';
 import { SkinModeToggler } from './components/skinModeToggler';
 import { QueryHelpers } from './utils/queryHelpers';
-import { ReactComponent as ActionAlignLeftOutlineIcon } from '@epam/assets/icons/action-align_left-outline.svg';
+import { ReactComponent as NavigationHideOutlineIcon } from '@epam/assets/icons/navigation-hide-outline.svg';
 import { DocsSidebar } from '../DocsSidebar';
 import cx from 'classnames';
 //
@@ -172,7 +172,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
                             <FlexSpacer />
                             <IconContainer
                                 size={ 24 }
-                                icon={ ActionAlignLeftOutlineIcon }
+                                icon={ NavigationHideOutlineIcon }
                                 onClick={ this.handleMobSidebarBtnClick }
                                 style={ { fill: '#6C6F80' } }
                             />
