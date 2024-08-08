@@ -39,7 +39,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
     // show always for multi picker and for single only in case if search not disabled and doesn't searching.
     const isSearching = search && search?.length;
-    const shouldShowFooter = isSinglePicker ? !props.disableClear : !isSearching;
+    const shouldShowFooter = isSinglePicker ? (!isSearching && !props.disableClear) : !isSearching;
 
     return shouldShowFooter && (
         <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
