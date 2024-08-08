@@ -7,7 +7,7 @@ import { ReactComponent as ActionExternalLinkOutlineIcon } from '@epam/assets/ic
 import css from './PatternBlock.module.scss';
 
 const accordionData = [
-    { id: 0, title: 'Data Tables', text: 'Data Table with advanced filtering, including predicates and user-defined presets. Built on top of the useTableState hook enables filter state management, with the ability to store states in the URL or a database, and supports CRUD operations.', href: '/demo?id=table' },
+    { id: 0, title: 'Data Tables', text: 'Data Table with advanced filtering, including predicates and user-defined presets. Built on top of the useTableState hook enables filter state management, with the ability to store states in the URL or a database, and supports CRUD operations.', href: '/demo?id=filteredTable&page=1&pageSize=40&presetId=-1' },
     { id: 1, title: 'Project Planning', text: 'Project planning table built on top of tables editing capabilities. Demo highlights in-cell inputs, drag-n-drop, tree-structured data, Timeline and more.', href: '/demo?id=editableTable' },
     { id: 2, title: 'Forms', text: 'Full-featured set of form components – Text Inputs, Date Pickers, Selects, etc. Form state management with useForm hook – to manage form state, including validation, undo/redo etc.', href: '/demo?id=form' },
     { id: 3, title: 'Rich Text Editor', text: 'Powerful RTE component with rich set of features, from base text formating to tables and media inserting. Extendable with plugins. Supports Markdown and HTML formats.', href: '/demo?id=RTE' },
