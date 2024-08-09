@@ -1,4 +1,12 @@
-# 5.8.5 - xx.xx.2024
+# 5.x.x - xx.xx.2024
+
+**What's New**
+
+**What's Fixed**
+* [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems.
+
+
+# 5.8.5 - 09.08.2024
 
 **What's New**
 * [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
