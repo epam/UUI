@@ -48,7 +48,7 @@
 **What's Fixed**
 * Simplify dayJs type imports to support earlier versions of Typescript
 * [DataTable]: disable column focus and hover if `isReadonly={ true }` was provided in `rowOptions` for editable table
-* [Badge]: centered badge content, move left icons closer to the caption for wide badges
+* [Badge]: center badge content, move left icons closer to the caption for wide badges
 * [FileUpload]: fixed error icon color to uui-error-70
 * [RTE]: fixed pasting lists from word
 * [Tag]: fixed cross icon size according to the design
