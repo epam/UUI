@@ -3,8 +3,39 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "This example illustrates how to make a table with an expandable section.",
+        "text": "This example illustrates how to make a table with an expandable section. To enable this functionality it is required to perform further steps:",
         "color": "rgb(48, 50, 64)"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "define a separate field for storing the `expanded` state of rows in dataSourceState;"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "define custom `renderRow` function, where the row's expanded state is observed and modified."
+              }
+            ]
+          }
+        ]
       }
     ]
   }
