@@ -32,7 +32,7 @@ export function getDemoApi(processRequest: IProcessRequest, origin: string = '')
         statuses: lazyApi<models.Status, string>('statuses'),
         managers: lazyApi<models.Manager, string>('managers'),
         persons: lazyApi<models.Person, number>('persons'),
-        personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>> & { page: number; pageSize: number }) =>
+        personsPaged: (rq: LazyDataSourceApiRequest<models.Person, number, DataQueryFilter<models.Person>>) =>
             processRequest<LazyDataSourceApiResponse<models.Person>>(origin.concat('/api/persons-paged'), 'POST', rq),
         personGroups,
         departments: lazyApi<models.Department, number>('departments'),
