@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, LinkButton, DropdownMenuHeader,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
@@ -196,7 +196,7 @@ export function AppHeader() {
                 priority: 3,
                 render: () => (
                     <Dropdown
-                        renderTarget={ (props) => <LinkButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } size="30" { ...props } /> }
+                        renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
                                 <DropdownMenuHeader caption="Open in" />
@@ -210,11 +210,7 @@ export function AppHeader() {
             {
                 id: 'git',
                 priority: 3,
-                render: () => (
-                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
-                        <IconContainer icon={ GitIcon } cx={ css.icon } />
-                    </Anchor>
-                ),
+                render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
             },
             {
                 id: 'gitStar',
