@@ -216,7 +216,7 @@ export function AppHeader() {
                 id: 'gitStar',
                 priority: 0,
                 render: () => (
-                    <Anchor cx={ css.gitStarContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="gitstar">
+                    <Anchor tabIndex={ -1 } cx={ css.gitStarContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="gitstar">
                         <div className={ css.wrapper }>
                             <IconContainer icon={ CommunicationStarOutlineIcon } />
                             <Text cx={ css.starCaption }>Star on github</Text>
