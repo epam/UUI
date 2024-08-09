@@ -104,6 +104,7 @@ export default function BasicDropdownMenuExample() {
                         { ...props }
                     />
                 ) }
+                closeOnMouseLeave="boundary"
             />
             <ControlGroup>
                 <Button size="36" caption="Action with selected" onClick={ () => {} } />
