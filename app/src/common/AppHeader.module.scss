@@ -28,6 +28,10 @@
         min-height: 60px;
         margin-inline-start: 8px;
 
+        &:focus-visible {
+            outline: none;
+        }
+
         &::after {
             content: '';
             display: block;
