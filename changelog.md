@@ -3,7 +3,7 @@
 **What's New**
 * [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
 * Icons pack updated:
-  * [Breaking change]: Icons, visual weight tweaked for the following icons. Please review the places of this icons usage, after the update:
+  * [Breaking change]: visual weight tweaked for the following icons. Please review the places of this icons usage, after the update:
     * navigation-chevron_up_outline
     * navigation-chevron_down_outline
     * navigation-chevron_left_outline
