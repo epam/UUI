@@ -5,7 +5,7 @@
     --uui-file_card-border-error: var(--uui-error-50);
     --uui-file_card-text-error: var(--uui-error-70);
     --uui-file_card-icon-default: var(--uui-icon);
-    --uui-file_card-icon-error: var(--uui-error-50);
+    --uui-file_card-icon-error: var(--uui-error-70);
     --uui-file_card-icon-doc: #2B579A;
     --uui-file_card-icon-xls: #217346;
     --uui-file_card-icon-pdf: #FA0F01;
@@ -79,6 +79,7 @@
 
         :global(.uui-icon) {
             margin-right: 3px;
+            fill: var(--uui-file_card-icon-error);
         }
     }
 

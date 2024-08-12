@@ -1118,7 +1118,7 @@
   },
   {
     "data": {},
-    "type": "uui-richTextEditor-header-2",
+    "type": "paragraph",
     "children": [
       {
         "text": "UUI contains several tools to cover common state management and data manipulation patterns. They include: "

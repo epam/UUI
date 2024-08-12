@@ -2,4 +2,16 @@
     box-sizing: border-box;
     min-height: 60px;
     background-color: var(--uui-surface-main);
+
+    button:nth-of-type(1) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    :global(.uui-icon) {
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
 }

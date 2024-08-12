@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx,
+    DndEventHandlers,
 } from '@epam/uui-core';
 import { FlexRow } from '../layout';
 import { Anchor } from '../navigation';
@@ -11,10 +12,15 @@ export interface DataTableRowContainerProps<TItem, TId, TFilter>
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
     columns?: DataColumnProps<TItem, TId, TFilter>[];
-    renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number): React.ReactNode;
+    renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number, eventHandlers?: DndEventHandlers): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
+    
+    /**
+     * Drag'n'drop marker event handlers.
+     */
+    eventHandlers?: DndEventHandlers;
 }
 
 const uuiDataTableRowCssMarkers = {
@@ -54,10 +60,11 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
 
 export const DataTableRowContainer = React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
+        const { onPointerDown, onTouchStart, ...restRawProps } = props.rawProps ?? {};
         function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
             return columns.reduce<React.ReactNode[]>((cells, column) => {
                 const idx = props.columns?.indexOf(column) || 0;
-                cells.push(props.renderCell(column, idx));
+                cells.push(props.renderCell(column, idx, { onPointerDown, onTouchStart }));
                 return cells;
             }, []);
         }
@@ -118,8 +125,8 @@ export const DataTableRowContainer = React.forwardRef(
         const minWidth = getSectionStyle(props.columns, 1).minWidth;
 
         const rawProps = {
-            ...props.rawProps,
-            style: { ...props?.rawProps?.style, minWidth },
+            ...restRawProps,
+            style: { ...restRawProps?.style, minWidth },
         };
 
         return props.link ? (

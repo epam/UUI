@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { TDocConfig } from '@epam/uui-docs';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
-import { RichTextView } from '@epam/uui';
+import { FlexCell, FlexRow, FlexSpacer, IconContainer, RichTextView, Text } from '@epam/uui';
 import { svc } from '../../../services';
 import { analyticsEvents } from '../../../analyticsEvents';
 import { TMode } from '../docsConstants';
@@ -10,15 +10,29 @@ import { PropExplorerTab } from './tabs/propExplorerTab';
 import { TabsNav } from './components/tabsNav';
 import { SkinModeToggler } from './components/skinModeToggler';
 import { QueryHelpers } from './utils/queryHelpers';
+import { ReactComponent as NavigationHideOutlineIcon } from '@epam/assets/icons/navigation-hide-outline.svg';
+import { DocsSidebar } from '../DocsSidebar';
+import cx from 'classnames';
 //
 import css from './BaseDocsBlock.module.scss';
 
-export abstract class BaseDocsBlock extends React.Component<any, {}> {
+type State = {
+    isOpen: boolean;
+    isClosing: boolean;
+};
+
+export abstract class BaseDocsBlock extends React.Component<any, State> {
+    containerRef: React.RefObject<HTMLDivElement>;
     public static contextType = UuiContext;
     public context: UuiContexts;
 
     constructor(props: any) {
         super(props);
+        this.containerRef = React.createRef<HTMLDivElement>();
+        this.state = {
+            isOpen: false,
+            isClosing: false,
+        };
 
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
@@ -37,6 +51,10 @@ export abstract class BaseDocsBlock extends React.Component<any, {}> {
 
     componentDidUpdate() {
         this.redirectIfModeIsUnsupported();
+    }
+
+    componentWillUnmount() {
+        this.containerRef.current?.removeEventListener('animationend', this.animationHandler);
     }
 
     protected renderSkinSwitcher() {
@@ -116,18 +134,54 @@ export abstract class BaseDocsBlock extends React.Component<any, {}> {
         return QueryHelpers.changeTab(mode);
     };
 
+    private animationHandler = () => {
+        this.setState({ isOpen: false, isClosing: false });
+    };
+
+    public handleMobSidebarBtnClick = () => {
+        if (this.state.isOpen) {
+            this.setState({ isClosing: true });
+            this.containerRef.current?.addEventListener('animationend', this.animationHandler, { once: true });
+        } else {
+            this.containerRef.current?.removeEventListener('animationend', this.animationHandler);
+            this.setState({ isOpen: true });
+        }
+    };
+
     render() {
         const mode = QueryHelpers.getMode();
         const supportedModes = Object.values(TMode).filter((m) => this.isModeSupported(m));
+
         return (
-            <div className={ css.container }>
+            <div
+                ref={ this.containerRef }
+                className={ css.container }
+            >
                 <TabsNav
                     mode={ mode }
                     supportedModes={ supportedModes }
                     renderSkinSwitcher={ this.renderSkinSwitcher }
                     onChangeMode={ this.handleChangeTab }
+                    handleMobSidebarBtnClick={ this.handleMobSidebarBtnClick }
                 />
-                {this.renderTabContent(mode)}
+                { this.renderTabContent(mode) }
+                { this.state.isOpen && (
+                    <FlexCell grow={ 1 } cx={ cx(css.sidebarWrapper, this.state.isOpen && css.mobile, this.state.isClosing && css.closing) }>
+                        <FlexRow borderBottom={ true } padding="18" vPadding="24">
+                            <Text fontSize="18" fontWeight="600" lineHeight="24">Navigation</Text>
+                            <FlexSpacer />
+                            <IconContainer
+                                size={ 24 }
+                                icon={ NavigationHideOutlineIcon }
+                                onClick={ this.handleMobSidebarBtnClick }
+                                style={ { fill: '#6C6F80' } }
+                            />
+                        </FlexRow>
+                        <FlexRow borderBottom={ true } alignItems="stretch" cx={ css.sidebar }>
+                            <DocsSidebar />
+                        </FlexRow>
+                    </FlexCell>
+                ) }
             </div>
         );
     }

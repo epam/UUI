@@ -70,7 +70,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         dataSourceState,
     }, [searchTree]);
 
-    const tree = usePatchTree({
+    const { tree, applyPatch } = usePatchTree({
         tree: treeWithSelectedOnly,
         patch: showSelectedOnly ? null : restProps.patch,
         isDeleted,
@@ -106,5 +106,6 @@ export function useSyncTree<TItem, TId, TFilter = any>(
         cascadeSelection,
         showSelectedOnly,
         selectAll,
+        applyPatch,
     };
 }

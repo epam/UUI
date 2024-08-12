@@ -72,7 +72,8 @@
         margin: var(--uui-dtp-month-margin);
         color: var(--uui-dtp_body-text);
 
-        &:hover {
+        &:hover, &:focus {
+            outline: none;
             width: var(--uui-dtp-month-hover-width);
             height: var(--uui-dtp-cell-hover-height);
             border: var(--uui-dtp-cell-border-width) solid var(--uui-dtp_body-item-border-hover);
@@ -90,7 +91,8 @@
         margin: var(--uui-dtp-year-margin);
         color: var(--uui-dtp_body-text);
 
-        &:hover {
+        &:hover, &:focus {
+            outline: none;
             width: var(--uui-dtp-year-hover-width);
             height: var(--uui-dtp-cell-hover-height);
             border: var(--uui-dtp-cell-border-width) solid var(--uui-dtp_body-item-border-hover);

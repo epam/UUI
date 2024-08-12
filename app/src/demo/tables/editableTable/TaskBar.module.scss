@@ -1,0 +1,87 @@
+.assingee-text {
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.container {
+    .header {
+        padding-top: 0;
+        padding-bottom: 10px;
+    }
+
+    .content {
+        padding: 0;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
+
+.dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+}
+
+.task-bar-wrapper {
+    display: flex;
+    flex-direction: row;
+    left: 0;
+    position: absolute;
+}
+
+.taskBar {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.taskBarDeadline {
+    background: repeating-linear-gradient(135deg,
+    var(--uui-neutral-10),
+    var(--uui-critical-10) 2px,
+    var(--uui-critical-20) 0,
+    var(--uui-critical-20) 6px);
+    border-radius: 0 3px 3px 0;
+}
+
+.taskBarWithMissingDeadline {
+    border-radius: 3px 0 0 3px;
+}
+
+.taskBarDeadlineOnly {
+    border-radius: 3px 3px 3px 3px;
+}
+
+.taskBarOnTime {
+    border-radius: 3px 3px 3px 3px;
+}
+
+.taskBarStatusComplete {
+    background: var(--uui-accent-50);
+    opacity: 0.5;
+}
+
+.taskBarStatusInProgress {
+    background: var(--uui-info-50);
+}
+
+.taskBarStatusPlanned {
+    background: var(--uui-info-20);
+}
+
+.taskBarStatusAtRisk {
+    background: var(--uui-critical-50);
+}
+
+.taskBarStatusBlocked {
+    background: var(--uui-warning-50);
+}
+
+.taskBarStatusNone {
+    background: var(--uui-neutral-30);
+}

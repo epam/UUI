@@ -1,6 +1,6 @@
 import { select, findEventRange, PlatePlugin, createPluginFactory } from '@udecode/plate-common';
 import { UPLOAD_PLUGIN_KEY } from './constants';
-import { FileUploaderOptions, UploadFileOptions, createFileUploader } from './file_uploader';
+import { UploadFileOptions, createFileUploader } from './file_uploader';
 import { Spinner } from '@epam/uui';
 import css from './Loader.module.scss';
 import React from 'react';
@@ -15,7 +15,7 @@ const isFilesUploadEvent = (dataTransfer: DataTransfer) => {
 };
 
 export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin => {
-    const createUploadPlugin = createPluginFactory<FileUploaderOptions>({
+    const createUploadPlugin = createPluginFactory({
         key: UPLOAD_PLUGIN_KEY,
         options: { uploadFiles: createFileUploader(uploadOptions) },
         handlers: {
@@ -57,7 +57,7 @@ export const uploadFilePlugin = (uploadOptions?: UploadFileOptions): PlatePlugin
                 isVoid: true,
                 component: (props) => (
                     <>
-                        { props.children } 
+                        { props.children }
                         <Spinner { ...props } cx={ css.loader } />
                     </>
                 ),

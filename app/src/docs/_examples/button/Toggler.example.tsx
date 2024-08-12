@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Button, FlexRow, Tooltip, PickerInput, DropdownMenuBody, DropdownMenuButton } from '@epam/uui';
+import { Button, Tooltip, PickerInput, DropdownMenuBody, DropdownMenuButton } from '@epam/uui';
 import { Dropdown } from '@epam/uui-components';
 import { useLazyDataSource, LazyDataSourceApiRequest, useUuiContext } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
@@ -15,7 +15,7 @@ export default function ButtonAsToggler() {
     const dataSource = useLazyDataSource({ api: personsApi }, []);
 
     return (
-        <FlexRow columnGap="12">
+        <div style={ { display: 'flex', flexWrap: 'wrap', gap: '12px' } }>
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props }>
@@ -38,6 +38,6 @@ export default function ButtonAsToggler() {
                 selectionMode="multi"
                 valueType="id"
             />
-        </FlexRow>
+        </div>
     );
 }

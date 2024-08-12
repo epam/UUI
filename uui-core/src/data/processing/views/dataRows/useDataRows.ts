@@ -17,7 +17,7 @@ import { isInProgress } from '../helpers';
  * `useDataRows` configuration.
  */
 export interface UseDataRowsProps<TItem, TId, TFilter = any> extends
-    CommonTreeConfig<TItem, TId, TFilter>,
+    Omit<CommonTreeConfig<TItem, TId, TFilter>, 'patch'>,
     ITreeLoadingState,
     Partial<CascadeSelectionService<TItem, TId>>,
     GetItemStatus<TId> {

@@ -2,20 +2,16 @@
 
 .root {
     --uui-calendar-presets-header: var(--uui-text-primary);
-    --uui-calendar-presets-item: var(--uui-link);
 
     --uui-calendar-presets-container-padding: 24px 24px 12px;
     --uui-calendar-presets-header-font-size: 14px;
     --uui-calendar-presets-header-line-height: 24px;
     --uui-calendar-presets-header-font-weight: 600;
     --uui-calendar-presets-header-padding-bottom: 12px;
-    --uui-calendar-presets-item-font-size: 12px;
-    --uui-calendar-presets-item-line-height: 18px;
-    --uui-calendar-presets-item-font-weight: 600;
-    --uui-calendar-presets-item-padding-bottom: 6px;
 
     &:global(.uui-presets-container) {
         padding: var(--uui-calendar-presets-container-padding);
+        align-self: start;
     }
 
     :global(.uui-presets-header) {
@@ -25,19 +21,5 @@
         font-size: var(--uui-calendar-presets-header-font-size);
         line-height: var(--uui-calendar-presets-header-line-height);
         padding-bottom: var(--uui-calendar-presets-header-padding-bottom);
-    }
-
-    :global(.uui-presets-item) {
-        color: var(--uui-calendar-presets-item);
-        font-family: var(--uui-font);
-        font-weight: var(--uui-calendar-presets-item-font-weight);
-        font-size: var(--uui-calendar-presets-item-font-size);
-        line-height: var(--uui-calendar-presets-item-line-height);
-        padding-bottom: var(--uui-calendar-presets-item-padding-bottom);
-
-        &:hover {
-            color: var(--uui-link-hover);
-            cursor: pointer;
-        }
     }
 }

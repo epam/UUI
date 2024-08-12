@@ -57,7 +57,6 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     };
 
     props.cx = [
-        'uui-dt-vars',
         'data-table-cell',
         props.cx,
         css.cell,

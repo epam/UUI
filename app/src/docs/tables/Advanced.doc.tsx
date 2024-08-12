@@ -22,6 +22,7 @@ export class AdvancedTablesDoc extends BaseDocsBlock {
                 <DocExample cx={ css.appBg } title="Table with column filters" path="./_examples/tables/ColumnFiltersTable.example.tsx" />
                 
                 <DocExample cx={ css.appBg } title="Table with pinned rows" path="./_examples/tables/TableWithPinnedRows.example.tsx" />
+                <DocExample cx={ css.appBg } title="Table with expandable rows" path="./_examples/tables/TableWithExpandableRows.example.tsx" />
             </>
         );
     }
