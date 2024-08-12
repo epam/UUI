@@ -3,7 +3,6 @@ import path from 'node:path';
 import { Logger } from './logger';
 import { PLATFORM } from '../constants';
 import { readUuiSpecificEnvVariables } from '../../scripts/envParamUtils';
-import * as console from 'console';
 import { TEngine } from '../types';
 import { screenshotSizeLimitKb } from '../../playwright.config';
 
@@ -80,21 +79,21 @@ export class PreviewTestBuilderContext {
         const numOfChromiumOnlyTests = this.onlyChromiumTests.size;
         const numOfAllEnginesTests = (this.seenTestNames.size - numOfChromiumOnlyTests);
 
-        console.log(`Total number of tests: ${numOfAllEnginesTests * 2 + numOfChromiumOnlyTests} = ${numOfAllEnginesTests} * ${numOfEngines}(engines) + ${numOfChromiumOnlyTests}(only chromium)`);
+        logInfo(`Total number of tests: ${numOfAllEnginesTests * 2 + numOfChromiumOnlyTests} = ${numOfAllEnginesTests} * ${numOfEngines}(engines) + ${numOfChromiumOnlyTests}(only chromium)`);
 
         reportObsoleteScr(obsoleteScr, issuesArr, !!UUI_TEST_PARAM_CHECK_ISSUES_REMOVE_OBSOLETE_SCR);
 
         if (issuesArr.length) {
             let shouldExit = false;
             issuesArr.forEach(({ msg, exit }) => {
-                Logger.warn(msg);
+                logWarn(msg);
                 shouldExit = shouldExit || exit;
             });
             if (shouldExit && isCi) {
                 process.exit(1);
             }
         } else {
-            Logger.info('No issues found');
+            logInfo('No issues found');
         }
     }
 }
@@ -105,4 +104,12 @@ function reportObsoleteScr(obsoleteScreenshots: string[], issuesArr: TIssues, is
         const msg = `${prefix} (${obsoleteScreenshots.length}):\n\t${obsoleteScreenshots.join('\n\t')}`;
         issuesArr.push({ msg, exit: false });
     }
+}
+
+function logInfo(msg: string) {
+    Logger.info(`[previewTests] ${msg}`);
+}
+
+function logWarn(msg: string) {
+    Logger.warn(`[previewTests] ${msg}`);
 }
