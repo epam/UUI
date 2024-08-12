@@ -23,7 +23,7 @@ export class DocExamplePage extends AbsPage {
     }
 
     async expectScreenshot(screenshotName: string) {
-        const screenshotOptions = await super._getScreenshotOptions({ isSlowTest: false });
+        const screenshotOptions = await super._getScreenshotOptions({ isSlowTest: true });
         await expect(this.page).toHaveScreenshot(screenshotName, screenshotOptions);
     }
 }

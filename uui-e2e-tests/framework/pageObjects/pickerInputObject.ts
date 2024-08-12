@@ -12,12 +12,21 @@ export class PickerInputObject {
             blocker: Locator;
             search: Locator;
             noRecords: Locator;
+            showOnlySelectedSwitch: Locator;
+            selectAll: Locator;
+            clearAll: Locator;
+            areaMultiSelectable: {
+                root: Locator,
+                allChecked: Locator,
+                allUnchecked: Locator,
+            }
         }
     };
 
     constructor(private page: Page) {
         const input = page.locator('.uui-input-box.uui-picker_toggler');
         const dropdown = page.locator('div[role="dialog"] .uui-dropdown-body');
+        const areaMultiSelectable = dropdown.locator('div[aria-multiselectable="true"]');
         this.locators = {
             input,
             dropdown: {
@@ -40,17 +49,29 @@ export class PickerInputObject {
                     }
                     const loc = dropdown.locator(sel);
                     if (typeof params.text === 'string') {
-                        return loc.getByText(params.text);
+                        return loc.getByText(params.text, { exact: true });
                     }
                     return loc;
                 },
                 blocker: dropdown.locator('.uui-blocker'),
+                showOnlySelectedSwitch: dropdown.locator('label:has(input[role="switch"])').locator('input[role="switch"]'),
+                selectAll: dropdown.locator('button').getByText('SELECT ALL'),
+                clearAll: dropdown.locator('button').getByText('CLEAR ALL'),
+                areaMultiSelectable: {
+                    root: areaMultiSelectable,
+                    allChecked: areaMultiSelectable.locator('input[type="checkbox"][aria-checked="true"]'),
+                    allUnchecked: areaMultiSelectable.locator('input[type="checkbox"][aria-checked="false"]'),
+                },
             },
         };
     }
 
     async focusInput() {
         await this.locators.input.first().focus();
+    }
+
+    async focusShowOnlySelectedSwitch() {
+        await this.locators.dropdown.showOnlySelectedSwitch.first().focus();
     }
 
     async focusDropdownSearchInput() {
@@ -64,11 +85,6 @@ export class PickerInputObject {
         await this.page.mouse.move(0, 0);
     }
 
-    async clickDropdown() {
-        await this.locators.input.first().click();
-        await this.resetMousePos();
-    }
-
     async clickOption(text: string) {
         await this.locators.dropdown.option({ text }).click();
         await this.resetMousePos();
@@ -77,6 +93,24 @@ export class PickerInputObject {
     async waitDropdownLoaderAppearsAndDisappears() {
         await this.locators.dropdown.blocker.waitFor({ state: 'visible' });
         await this.locators.dropdown.blocker.waitFor({ state: 'hidden' });
+    }
+
+    async waitForSelectAllButton() {
+        await this.locators.dropdown.selectAll.waitFor({ state: 'visible' });
+    }
+
+    async waitForAllOptionsUnchecked() {
+        const all = await this.locators.dropdown.areaMultiSelectable.allChecked.all();
+        await Promise.all(
+            all.map((i) => i.waitFor({ state: 'hidden' })),
+        );
+    }
+
+    async waitForAllOptionsChecked() {
+        const all = await this.locators.dropdown.areaMultiSelectable.allUnchecked.all();
+        await Promise.all(
+            all.map((i) => i.waitFor({ state: 'hidden' })),
+        );
     }
 
     async waitForNoRecordsFoundMsg() {
