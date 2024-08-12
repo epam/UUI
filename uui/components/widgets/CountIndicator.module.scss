@@ -22,9 +22,11 @@
         font-size: var(--uui-count_indicator-font-size);
         font-weight: var(--uui-count_indicator-font-weight);
         line-height: var(--uui-count_indicator-line-height);
-        margin: auto;
+        margin: auto 0;
         text-align: center;
         flex-shrink: 0;
+        width: fit-content;
+        //
         background-color: var(--uui-count_indicator-bg);
         color: var(--uui-count_indicator-caption);
         border: var(--uui-count_indicator-border-width) solid var(--uui-count_indicator-border);

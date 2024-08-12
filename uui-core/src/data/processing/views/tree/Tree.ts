@@ -3,7 +3,11 @@ import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceSta
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD, ROOT_ID } from './constants';
 import { FetchingHelper } from './treeStructure/helpers/FetchingHelper';
-import { ITreeNodeInfo } from './treeStructure/types';
+import { ITreeNodeInfo, ITreeParams } from './treeStructure/types';
+import { TreeStructure } from './treeStructure';
+import { ItemsMap } from './ItemsMap';
+import { ItemsAccessor } from './ItemsAccessor';
+import { newMap } from './helpers';
 
 export interface LoadOptions<TItem, TId, TFilter = any> {
     tree: ITree<TItem, TId>;
@@ -40,6 +44,15 @@ export interface ITreeLoadResult<TItem, TId> {
 }
 
 export class Tree {
+    public static createFromItems<TItem, TId>({ params, items }: {
+        params: ITreeParams<TItem, TId>,
+        items: TItem[],
+    }) {
+        const itemsMap = ItemsMap.blank<TId, TItem>(params);
+        const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap.setItems(items));
+        return TreeStructure.createFromItems({ params, items, itemsAccessor });
+    }
+
     public static getParents<TItem, TId>(id: TId, tree: ITree<TItem, TId>) {
         const parentIds: TId[] = [];
         let parentId = id;
@@ -234,5 +247,41 @@ export class Tree {
             },
             dataSourceState: { ...dataSourceState, search: null },
         });
+    }
+
+    public static computeSubtotals<TItem, TId, TSubtotals>(
+        tree: ITree<TItem, TId>,
+        get: (item: TItem, hasChildren: boolean) => TSubtotals,
+        add: (a: TSubtotals, b: TSubtotals) => TSubtotals,
+    ): IMap<TId, TSubtotals> {
+        const subtotalsMap = newMap<TId | undefined, TSubtotals>(tree.getParams());
+
+        Tree.forEach(
+            tree,
+            (item, id, parentId) => {
+                const { ids } = tree.getItems(id);
+                const hasChildren = ids.length > 0;
+                let itemSubtotals = get(item, hasChildren);
+
+                // add already computed children subtotals
+                if (subtotalsMap.has(id)) {
+                    itemSubtotals = add(itemSubtotals, subtotalsMap.get(id));
+                }
+
+                // store
+                subtotalsMap.set(id, itemSubtotals);
+
+                // add value to parent
+                let parentSubtotals: TSubtotals;
+                if (!subtotalsMap.has(parentId)) {
+                    parentSubtotals = itemSubtotals;
+                } else {
+                    parentSubtotals = add(itemSubtotals, subtotalsMap.get(parentId));
+                }
+                subtotalsMap.set(parentId, parentSubtotals);
+            },
+            { direction: 'bottom-up' },
+        );
+        return subtotalsMap;
     }
 }

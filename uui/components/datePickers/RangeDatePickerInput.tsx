@@ -46,10 +46,6 @@ export interface RangeDatePickerInputProps
     * Handles blur event on input element
    */
     onBlurInput?: (event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void;
-    /**
-   * Handles blur event on root element
-   */
-    onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
 }
 
 export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
@@ -63,7 +59,6 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     inFocus,
     format,
     onValueChange,
-    onBlur,
     onFocusInput,
     onBlurInput,
     onClick,
@@ -109,6 +104,13 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             });
         }
     };
+    
+    const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onClick(); 
+            e.preventDefault();
+        }
+    };
 
     const clearAllowed = !disableClear && inputValue.from && inputValue.to;
     return (
@@ -124,12 +126,6 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isInvalid && uuiMod.invalid,
                 inFocus && uuiMod.focus,
             ) }
-            onClick={ (event) => {
-                if (!isDisabled) {
-                    onClick?.(event);
-                }
-            } }
-            onBlur={ onBlur }
         >
             <TextInput
                 icon={ systemIcons.calendar }
@@ -145,6 +141,8 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isReadonly={ isReadonly }
                 isDropdown={ false }
                 rawProps={ rawProps?.from }
+                onClick={ onClick }
+                onKeyDown={ onInputKeyDown }
                 id={ id }
             />
             <div className={ css.separator } />
@@ -164,6 +162,8 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isReadonly={ isReadonly }
                 isDropdown={ false }
                 rawProps={ rawProps?.to }
+                onClick={ onClick }
+                onKeyDown={ onInputKeyDown }
             />
         </div>
     );

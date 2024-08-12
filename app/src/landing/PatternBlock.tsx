@@ -7,10 +7,10 @@ import { ReactComponent as ActionExternalLinkOutlineIcon } from '@epam/assets/ic
 import css from './PatternBlock.module.scss';
 
 const accordionData = [
-    { id: 0, title: 'Data Tables', text: 'Data table with advanced filtering, including predicates and user-defined presets. Built on top of the useTableState hook enables filter state management, with the ability to store states in the URL or a database, and supports CRUD operations.', href: '/demo?id=table' },
-    { id: 1, title: 'Project Planning', text: 'Project planning table built on top of tables editing capabilities. Demo highlights in-cell inputs, drag-n-drop, tree-structured data, and more.', href: '/demo?id=editableTable' },
-    { id: 2, title: 'Forms', text: 'Full-featured set of form components – Text Inputs, Date Pickers, Selects, etc. Form state management by useForm hook – to manage form state, including validation, undo/redo and etc.', href: '/demo?id=form' },
-    { id: 3, title: 'Rich Text Editor', text: 'Powerful RTE component with rich set of features from base text formating to tables and media inserting. Extendable by plugins and MD and HTMl formats support.', href: '/demo?id=RTE' },
+    { id: 0, title: 'Data Tables', text: 'Data Table with advanced filtering, including predicates and user-defined presets. Built on top of the useTableState hook enables filter state management, with the ability to store states in the URL or a database, and supports CRUD operations.', href: '/demo?id=filteredTable&page=1&pageSize=40&presetId=-1' },
+    { id: 1, title: 'Project Planning', text: 'Project planning table built on top of tables editing capabilities. Demo highlights in-cell inputs, drag-n-drop, tree-structured data, Timeline and more.', href: '/demo?id=editableTable' },
+    { id: 2, title: 'Forms', text: 'Full-featured set of form components – Text Inputs, Date Pickers, Selects, etc. Form state management with useForm hook – to manage form state, including validation, undo/redo etc.', href: '/demo?id=form' },
+    { id: 3, title: 'Rich Text Editor', text: 'Powerful RTE component with rich set of features, from base text formating to tables and media inserting. Extendable with plugins. Supports Markdown and HTML formats.', href: '/demo?id=RTE' },
     { id: 4, title: 'Drag & Drop', text: 'Built-in Drag & Drop facilities with cross browser and mobile support.', href: '/demo?id=dnd' },
 ];
 
@@ -124,6 +124,7 @@ export function PatternBlock() {
             <FlexRow justifyContent="center" cx={ css.headerWrapper }>
                 <Text cx={ css.header }>
                     <span className={ cx(css.headerStart, css[getHeaderClassName('headerStart')]) }>Find solution for </span>
+                    <span className={ css.brake }><br /></span>
                     <span className={ cx(css.headerEnd, css[getHeaderClassName('headerEnd')]) }>your project</span>
                 </Text>
             </FlexRow>

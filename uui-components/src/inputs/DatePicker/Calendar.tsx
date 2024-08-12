@@ -1,10 +1,10 @@
 import React, {
     HTMLAttributes, ReactElement,
 } from 'react';
-import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
-
+import { uuiDayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import {
-    arrayToMatrix, cx, IHasCX, IHasForwardedRef, IHasRawProps,
+    arrayToMatrix, cx, IDisableable, IHasCX, IHasForwardedRef, IHasRawProps,
 } from '@epam/uui-core';
 import { Day, DayProps } from './Day';
 import { uuiDaySelection } from './calendarConstants';
@@ -13,7 +13,7 @@ import css from './Calendar.module.scss';
 /**
  * Represents the properties of the Calendar component
  */
-export interface CalendarProps<TSelection> extends IHasCX, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface CalendarProps<TSelection> extends IHasCX, IDisableable, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     value?: TSelection;
     onValueChange: (day: Dayjs) => void;
     renderDay?: (renderProps: DayProps) => ReactElement<Element>;
@@ -59,7 +59,6 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
             return (
                 <div
                     className={ uuiDaySelection.dayCell }
-                    tabIndex={ 0 }
                     key={ `day-${props.month.valueOf()}-${day && day.valueOf()}-${index}` }
                 >
                     {props.renderDay ? (
@@ -71,6 +70,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                             filter: props.filter,
                             isHoliday: props.isHoliday ? props.isHoliday(day) : isHoliday(day),
                             isSelected: isSelected(day, props.value),
+                            isDisabled: props.isDisabled,
                         })
                     ) : (
                         <Day
@@ -81,6 +81,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                             filter={ props.filter }
                             isHoliday={ props.isHoliday ? props.isHoliday(day) : isHoliday(day) }
                             isSelected={ isSelected(day, props.value) }
+                            isDisabled={ props.isDisabled }
                         />
                     )}
                 </div>

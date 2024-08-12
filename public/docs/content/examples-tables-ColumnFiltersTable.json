@@ -3,7 +3,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "This example illustrate how to make table with filters on column. For this you need to pass filters config to the  "
+        "text": "This example illustrates how to make a table with filters on a column. For this, you need to pass filters config to the  "
       },
       {
         "text": "filters",

@@ -7,3 +7,4 @@ export * from './useUuiServices';
 export * from './useTableState/useTableState';
 export * from './useLayer';
 export * from './usePrevious';
+export * from './useResizeObserver';

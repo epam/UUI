@@ -39,8 +39,9 @@ export type TMatrixMinimal<PreviewIdArr extends TObjValues<TPreviewIdByComponent
     previewTag?: 'PseudoStateActive' | 'PseudoStateHover' | string;
     theme?: TTheme[];
     skins?: TTheme[];
-    onBeforeExpect?: (params: { previewPage: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
+    onBeforeExpect?: (params: { pageWrapper: PreviewPage, previewId: TArrItem<PreviewIdArr> }) => Promise<void>;
     focusFirstElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
+    clickElement?: (params: { previewId: TArrItem<PreviewIdArr> }) => string | boolean | undefined;
     onlyChromium?: true;
     // Chromium-only! It uses Chrome DevToolsProtocol to set certain pseudo states to all elements matching given CSS selector.
     forcePseudoState?: TCdpPseudoStateParams[];

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, LinkButton, DropdownMenuHeader,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
@@ -41,7 +41,7 @@ export function AppHeader() {
             <>
                 <BurgerButton caption="Home" link={ { pathname: '/' } } clickAnalyticsEvent={ () => sendEvent('Welcome') } />
                 <BurgerButton
-                    caption="Documents"
+                    caption="Docs"
                     link={ { pathname: '/documents', query: { id: 'overview' } } }
                     isLinkActive={ pathName === 'documents' && !category }
                     clickAnalyticsEvent={ () => sendEvent('Documents') }
@@ -129,7 +129,7 @@ export function AppHeader() {
                 priority: 3,
                 render: () => (
                     <MainMenuButton
-                        caption="Documents"
+                        caption="Docs"
                         link={ { pathname: '/documents', query: { id: 'overview' } } }
                         isLinkActive={ pathName === '/documents' && category !== 'components' && category !== 'assets' }
                         showInBurgerMenu
@@ -196,7 +196,7 @@ export function AppHeader() {
                 priority: 3,
                 render: () => (
                     <Dropdown
-                        renderTarget={ (props) => <LinkButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } size="30" { ...props } /> }
+                        renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
                                 <DropdownMenuHeader caption="Open in" />
@@ -210,17 +210,13 @@ export function AppHeader() {
             {
                 id: 'git',
                 priority: 3,
-                render: () => (
-                    <Anchor cx={ css.linkContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="git">
-                        <IconContainer icon={ GitIcon } cx={ css.icon } />
-                    </Anchor>
-                ),
+                render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
             },
             {
                 id: 'gitStar',
                 priority: 0,
                 render: () => (
-                    <Anchor cx={ css.gitStarContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="gitstar">
+                    <Anchor tabIndex={ -1 } cx={ css.gitStarContainer } href={ GIT_LINK } target="_blank" onClick={ () => sendEvent(GIT_LINK) } key="gitstar">
                         <div className={ css.wrapper }>
                             <IconContainer icon={ CommunicationStarOutlineIcon } />
                             <Text cx={ css.starCaption }>Star on github</Text>

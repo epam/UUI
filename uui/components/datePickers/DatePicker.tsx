@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dropdown } from '@epam/uui-components';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, isFocusReceiverInsideFocusLock, useUuiContext, uuiMod,
+    DropdownBodyProps, IDropdownToggler, cx, useUuiContext, uuiMod,
 } from '@epam/uui-core';
 import { TextInput, TextInputProps } from '../inputs';
 import { EditMode } from '../types';
@@ -48,7 +48,6 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     };
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (isFocusReceiverInsideFocusLock(e)) return;
         props.onBlur?.(e);
 
         if (isValidDate(inputValue, format, props.filter)) {
@@ -58,7 +57,13 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
             setInputValue(null);
             onValueChange(null);
         }
-        setBodyIsOpen(false);
+    };
+
+    const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            setBodyIsOpen(true);
+            e.preventDefault();
+        }
     };
 
     const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
@@ -66,8 +71,6 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         return (
             <TextInput
                 { ...renderProps }
-                // fixes a bug with body open, it skips unwanted prevent default
-                onClick={ () => {} }
                 isDropdown={ false }
                 cx={ cx(props.inputCx, isBodyOpen && uuiMod.focus) }
                 icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
@@ -88,9 +91,9 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 isReadonly={ props.isReadonly }
                 tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
                 onFocus={ (e) => {
-                    setBodyIsOpen(true);
                     props.onFocus?.(e);
                 } }
+                onKeyDown={ onInputKeyDown }
                 onBlur={ onBlur }
                 mode={ props.mode || defaultMode }
                 rawProps={ props.rawProps?.input }
@@ -101,10 +104,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
 
     const renderBody = (renderProps: DropdownBodyProps) => {
         return (
-            <DropdownContainer
-                { ...renderProps }
-                focusLock={ false }
-            >
+            <DropdownContainer { ...renderProps }>
                 <DatePickerBody
                     value={ value }
                     onValueChange={ onBodyValueChange }

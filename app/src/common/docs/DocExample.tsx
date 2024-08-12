@@ -9,7 +9,7 @@ import { Code } from './Code';
 import cx from 'classnames';
 import { docExampleLoader } from './docExampleLoader';
 import { TTheme } from '../../data';
-import { LinkButton } from '@epam/uui';
+import { LinkButton, FlexSpacer } from '@epam/uui';
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 import { getCurrentTheme } from '../../helpers';
 
@@ -19,6 +19,7 @@ interface DocExampleProps {
     onlyCode?: boolean;
     width?: number | 'auto';
     cx?: string;
+    disableCodesandbox?: boolean;
 }
 
 interface DocExampleState {
@@ -85,11 +86,12 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
                     {this.state.component && React.createElement(this.state.component)}
                 </FlexRow>
                 <div className={ css.containerFooterWrapper }>
-                    <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter] }>
+                    <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter] } columnGap="12">
                         <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
-                        <CodesandboxLink raw={ raw } dirPath={ dirPath } />
+                        <FlexSpacer />
+                        { !this.props.disableCodesandbox && <CodesandboxLink raw={ raw } dirPath={ dirPath } /> }
+                        <DocExampleFsBtn path={ path } theme={ theme } />
                     </FlexRow>
-                    <DocExampleFsBtn path={ path } theme={ theme } />
                 </div>
                 {this.state.showCode && this.renderCode()}
             </>
@@ -119,6 +121,7 @@ function DocExampleFsBtn(props: { path: string; theme: TTheme }) {
         <LinkButton
             target="_blank"
             icon={ PreviewIcon }
+            iconPosition="right"
             href={ href }
             caption={ LABELS.Fullscreen }
             size="36"

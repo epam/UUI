@@ -51,7 +51,6 @@ function applyBadgeMods(mods: BadgeProps) {
         `uui-size-${mods.size || settings.sizes.defaults.badge}`,
         `uui-fill-${mods.fill || DEFAULT_FILL}`,
         `uui-color-${mods.color || 'info'}`,
-        mods.indicator && mods.fill === 'outline' && 'uui-indicator',
     ];
 }
 
@@ -71,6 +70,9 @@ export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HT
             cx={ styles }
             ref={ ref }
         >
+            {(props.indicator && props.fill === 'outline') && (
+                <div className="uui-indicator"></div>
+            )}
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
                     icon={ props.icon }

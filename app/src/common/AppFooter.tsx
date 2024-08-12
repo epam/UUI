@@ -26,7 +26,6 @@ const footerLinks = {
             { href: 'https://github.com/epam/UUI/discussions', name: 'Github Discussions' },
             { href: 'https://teams.microsoft.com/l/team/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/conversations?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d', name: 'Microsoft Teams' },
             { href: 'https://wearecommunity.io/communities/uui', name: 'We Are Community' },
-            { href: 'mailto:AskUUI@epam.com', name: 'Contact us' },
         ] },
 };
 
@@ -49,7 +48,7 @@ export function AppFooter() {
     return (
         <div className={ css.root } style={ { backgroundColor: theme === 'electric' ? 'var(--uui-neutral-95)' : 'var(--uui-neutral-90)' } }>
             <div className={ css.container }>
-                <FlexCell cx={ css.firstBlock } grow={ 1 }>
+                <FlexCell cx={ css.firstBlock } width="auto" grow={ 1 }>
                     <Anchor rawProps={ { tabIndex: -1, 'aria-label': 'EPAM' } } href={ EPAM_LINK } target="_blank">
                         <IconContainer icon={ EPAMIcon } />
                     </Anchor>
@@ -63,7 +62,7 @@ export function AppFooter() {
                         </Anchor>
                     </FlexRow>
                 </FlexCell>
-                <FlexCell cx={ css.secondBlock } grow={ 1 }>
+                <FlexCell cx={ css.secondBlock } width="auto" grow={ 1 } minWidth={ 583 }>
                     <FlexRow columnGap={ 48 } alignItems="top">
                         <FlexCell width="auto">
                             <Text color="white" fontWeight="600" fontSize="18">Have a question?</Text>

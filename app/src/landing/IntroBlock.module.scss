@@ -104,8 +104,8 @@
                     display: flex;
                     justify-content: center;
                     padding: 3px;
-                    border: 3px solid var(--uui-surface-highest);
-                    background-color: var(--uui-surface-highest);
+                    border: 3px solid var(--uui-surface-higher);
+                    background-color: var(--uui-surface-higher);
                     border-radius: calc(var(--uui-border-radius) * 2);
                     box-shadow: var(--uui-shadow-level-1);
                     cursor: pointer;
@@ -118,7 +118,7 @@
 
                         & > svg {
                             width: 54px;
-                            height: auto;
+                            height: 54px;
                         }
                     }
 
@@ -129,7 +129,7 @@
 
                         & > svg {
                             width: 54px;
-                            height: auto;
+                            height: 54px;
                         }
                     }
 
@@ -171,7 +171,6 @@
                         .info-icon {
                             margin-inline-start: 6px;
                             margin-inline-end: 29px;
-                            fill: var(--uui-control-icon);
                         }
                     }
                 }
@@ -211,8 +210,10 @@
 
     @media (max-width: 1165px) {
         .info {
-            .components-wrapper {
-                display: none;
+            .info-end {
+                .picker-demo-wrapper {
+                    display: none;
+                }
             }
         }
     }
@@ -220,9 +221,7 @@
     @media (max-width: 835px) {
         .info {
             .info-end {
-                .picker-demo-wrapper {
-                    display: none;
-                }
+                display: none;
             }
         }
     }
@@ -285,7 +284,9 @@
 }
 
 .dot {
+    content: none;
     height: 8px;
     width: 8px;
     border-radius: 50%;
+    color: transparent;
 }

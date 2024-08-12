@@ -61,6 +61,10 @@
                 font-family: var(--font-museo-sans), serif;
             }
 
+            .brake {
+                display: none;
+            }
+
             &-end {
                 color: var(--uui-primary-50);
 
@@ -80,10 +84,7 @@
                     font-size: 30px;
                     line-height: 36px;
                     font-family: var(--font-museo-sans), serif;
-                    color: transparent;
-                    background: var(--uui-header-gradient);
-                    -webkit-background-clip: text;
-                    background-clip: text;
+                    color: var(--uui-primary-50);
                 }
             }
         }
@@ -105,6 +106,7 @@
             display: flex;
             flex-direction: column;
             flex-basis: 461px;
+            min-width: 461px;
             overflow: hidden;
             min-height: 560px;
 
@@ -220,8 +222,6 @@
     @media (max-width: 1150px) {
         .container {
             .start-container {
-                width: calc(280px + 18px);
-                min-width: calc(280px + 18px);
                 flex-grow: 1;
             }
 
@@ -233,9 +233,55 @@
     }
 
     @media (max-width: 768px) {
+        .header-wrapper {
+            .header {
+                text-align: center;
+                font-weight: 400;
+                font-size: 30px;
+                line-height: 36px;
+
+                &-start-electric {
+                    font-size: 30px;
+                    line-height: 36px;
+                }
+
+                &-start-promo {
+                    font-size: 30px;
+                    line-height: 36px;
+                }
+
+                .brake {
+                    display: inline;
+                }
+
+                &-end {
+                    color: var(--uui-primary-50);
+
+                    &-electric {
+                        font-weight: 600;
+                        font-size: 30px;
+                        line-height: 36px;
+                        font-family: var(--font-museo-sans), serif;
+                        color: transparent;
+                        background: var(--uui-header-gradient);
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                    }
+
+                    &-promo {
+                        font-weight: 600;
+                        font-size: 30px;
+                        line-height: 36px;
+                    }
+                }
+            }
+        }
+
+
         .container {
             .start-container {
                 width: 100%;
+                min-width: initial;
                 flex-grow: 1;
                 min-height: initial;
 

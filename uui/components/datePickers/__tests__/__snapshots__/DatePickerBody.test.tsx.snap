@@ -139,11 +139,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             />
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -156,11 +157,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
           <div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-selected-day uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -171,11 +173,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -186,11 +189,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -201,11 +205,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -216,11 +221,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -231,11 +237,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -246,11 +253,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -263,11 +271,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
           <div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -278,11 +287,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -293,11 +303,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -308,11 +319,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -323,11 +335,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -338,11 +351,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -353,11 +367,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -370,11 +385,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
           <div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -385,11 +401,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -400,11 +417,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -415,11 +433,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -430,11 +449,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -445,11 +465,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -460,11 +481,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -477,11 +499,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
           <div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -492,11 +515,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -507,11 +531,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -522,11 +547,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -537,11 +563,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -552,11 +579,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -567,11 +595,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -584,11 +613,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
           <div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"
@@ -599,11 +629,12 @@ exports[`DataPicker should be rendered correctly 1`] = `
             </div>
             <div
               className="uui-calendar-day-cell"
-              tabIndex={0}
             >
               <div
                 className="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
                 onClick={[Function]}
+                onKeyDown={[Function]}
+                tabIndex={0}
               >
                 <div
                   className="uui-calendar-day"

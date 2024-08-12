@@ -1,10 +1,45 @@
-# 5.8.5 - xx.xx.2024
+# 5.x.x - xx.xx.2024
 
 **What's New**
-* Icons pack updated
 
 **What's Fixed**
-* [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
+* [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems.
+
+
+# 5.8.5 - 09.08.2024
+
+**What's New**
+* [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
+* Icons pack updated
+* [DatePicker][RangeDatePicker]: improve a11y focus flow behavior. Now date picker body receive focus on open and return it back on input after close.
+* [PickerInput]: made tags in multi select smaller
+* [Timeline]:
+  * Improved `Timeline`:
+    * Updated `Timeline` design.
+    * Added support for functional components.
+    * Introduced a low-level `TimelineCanvas` component designed to render elements on the Timeline.
+    * Enhanced customization options for `TimelineGrid` and `TimelineScale`.
+    * Exposed default implementations for timeline grid/scale drawing phases via the `timelineGrid` and `timelineScale` libraries.
+  * Added an example of Timeline usage with tables. [See demo here](https://uui.epam.com/demo?id=editableTable).
+  * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
+  * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
+  * Added the `useResizeObserver` hook, which provides the possibility to observe multiple elements' resizing.
+  * Added the `useTimelineTransform` hook, which provides the possibility to receive the latest `TimelineTransform` instance from the `TimelineController`.
+  * Deprecated `TimelineScaleProps.shiftPercent`.
+  * Made `TimelineGrid` customizable. Exposed default implementations of various parts of `TimelineGrid` drawing functionality, via the `timelineGrid` library.
+  * Made `TimelineScale` customizable. Exposed default implementations of various parts of `TimelineScale` drawing functionality, via the `timelineScale` library.
+  * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
+  * Added the `TimelineController.setViewportRange` function, which allows setting the `Viewport` by passing the right and left periods of the scale.
+  * Added `renderHeaderCell` to `DataColumnProps`.
+  * Added `eventHandlers` to `DataTableCellProps`.
+  * Added `computeSubtotals` and `createFromItems` to `Tree`.
+  * Added the `DataTableCellContainer` component.
+
+**What's Fixed**
+* [PickerInput]: hide basic footer while searching, not in the custom one (you be able to made it yourself if you need)
+* [DataTable]: disable column focus and hover if `isReadonly={ true }` was provided in `rowOptions` for editable table
+* [Badge]: centered all content when component has a fixed width
+* [FileUpload]: fixed error icon color to uui-error-70
 
 # 5.8.4 - 22.07.2024
 

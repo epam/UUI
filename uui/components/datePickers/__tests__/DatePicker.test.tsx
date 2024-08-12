@@ -159,12 +159,12 @@ describe('DatePicker', () => {
         expect(screen.getByText('March 2024')).toBeInTheDocument();
     });
 
-    it('should open picker on field focus', async () => {
+    it('should open picker on enter press on input', async () => {
         const { dom } = await setupDatePicker({
             value: null,
         });
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-        fireEvent.focus(dom.input);
+        fireEvent.keyDown(dom.input, { key: 'Enter', code: 'Enter', charCode: 13 });
         expect(screen.getByRole('dialog')).toBeInTheDocument();
     });
 
@@ -251,7 +251,7 @@ describe('DatePicker', () => {
             },
         });
 
-        fireEvent.focus(dom.input);
+        fireEvent.click(dom.input);
 
         const holidayDay = screen.getByText('20');
         const regularDay = screen.getByText('21');

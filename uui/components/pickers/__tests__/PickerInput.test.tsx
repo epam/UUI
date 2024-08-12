@@ -110,7 +110,7 @@ describe('PickerInput', () => {
                 searchPosition="body"
                 minBodyWidth={ 900 }
                 renderNotFound={ () => null }
-                renderFooter={ (props) => <div>{props as unknown as ReactNode}</div> }
+                renderFooter={ (props) => <div>{ props as unknown as ReactNode }</div> }
                 cascadeSelection
                 dropdownHeight={ 48 }
                 minCharsToSearch={ 4 }
@@ -182,7 +182,7 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
             });
-            
+
             fireEvent.click(document.body);
 
             await waitFor(() => {
@@ -425,16 +425,16 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
 
-            PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1+');
+            PickerInputTestObject.removeSelectedTagByText(dom.target, 'A1+');
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1']);
             });
             
-            PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1');
+            PickerInputTestObject.removeSelectedTagByText(dom.target, 'A1');
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
             });
         });
 
@@ -461,16 +461,16 @@ describe('PickerInput', () => {
 
             await PickerInputTestObject.clickClearAllOptions();
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
             });
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
         });
         it('should close body on click outside', async () => {
             const { dom, mocks } = await setupPickerInputForTest({
@@ -515,7 +515,7 @@ describe('PickerInput', () => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
             });
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
-            expect(await PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            expect(await PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -525,13 +525,13 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(screen.queryByRole('dialog')).toBeNull();
             });
-            expect(await PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            expect(await PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
 
             fireEvent.click(document.body);
             await waitFor(() => {
                 expect(screen.queryByRole('dialog')).toBeNull();
             });
-            expect(await PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            expect(await PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
         });
 
         it('[valueType entity] should select & clear several options', async () => {
@@ -560,15 +560,15 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
 
-            PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1+');
+            PickerInputTestObject.removeSelectedTagByText(dom.target, 'A1+');
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1']);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1']);
             });
-            PickerInputTestObject.removeSelectedTagByText(dom.input, 'A1');
+            PickerInputTestObject.removeSelectedTagByText(dom.target, 'A1');
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
             });
         });
 
@@ -579,7 +579,7 @@ describe('PickerInput', () => {
                 getName: ({ name }) => name,
             });
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-            await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Elementary+', 'Pre-Intermediate']));
+            await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['Elementary+', 'Pre-Intermediate']));
         });
 
         it('should render entity name with \'s\' in placeholder', async () => {
@@ -620,7 +620,7 @@ describe('PickerInput', () => {
 
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Parent 2']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['Parent 2']);
         });
 
         it.each<[CascadeSelection]>(
@@ -646,7 +646,7 @@ describe('PickerInput', () => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
             });
 
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
 
@@ -684,7 +684,7 @@ describe('PickerInput', () => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
 
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Parent 2']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['Parent 2']);
 
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Parent 2', 'Child 2.1', 'Child 2.2', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 3']);
@@ -695,7 +695,7 @@ describe('PickerInput', () => {
                 // Test if checkboxes are checked/unchecked
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
             });
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['Child 2.1', 'Child 2.3']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });
@@ -719,7 +719,7 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3]);
             });
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
 
             await PickerInputTestObject.clickOptionByText('A2');
             await PickerInputTestObject.clickOptionByText('A2+');
@@ -728,7 +728,7 @@ describe('PickerInput', () => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
             });
 
-            expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', '+ 2']);
+            expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+', '+ 2']);
         });
 
         it('should disable clear', async () => {
@@ -737,22 +737,22 @@ describe('PickerInput', () => {
                 selectionMode: 'multi',
                 disableClear: false,
             });
-            await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']));
+            await waitFor(() => expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']));
             PickerInputTestObject.clearInput(result.container);
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
             });
 
             setProps({ disableClear: true, value: [2, 3] });
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+']);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1', 'A1+']);
             });
             expect(PickerInputTestObject.hasClearInputButton(result.container)).toBeFalsy();
         });
 
         it('should select all', async () => {
-            const { dom } = await setupPickerInputForTest({
-                value: [],
+            const { dom, mocks } = await setupPickerInputForTest({
+                value: undefined,
                 selectionMode: 'multi',
                 maxItems: 100,
             });
@@ -763,13 +763,20 @@ describe('PickerInput', () => {
             });
 
             await PickerInputTestObject.clickSelectAllOptions();
+
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+                // expect(within(dialog).getByText('CLEAR ALL')).toBeInTheDocument();
+            });
+
+            await waitFor(() => {
+                const result = PickerInputTestObject.getSelectedTagsText(dom.target);
+                return expect(result).toEqual(['A1', 'A1+', 'A2', 'A2+', 'B1', 'B1+', 'B2', 'B2+', 'C1', 'C1+', 'C2']);
             });
 
             await PickerInputTestObject.clickClearAllOptions();
             await waitFor(() => {
-                expect(PickerInputTestObject.getSelectedTagsText(dom.input)).toEqual([]);
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
             });
         });
 
@@ -798,54 +805,69 @@ describe('PickerInput', () => {
             });
         });
 
-        it('should clear search on show only selected toggle', async () => {
+        it('should show selected items by \'Show only selected\' click, and reset \'Show only selected\' mode by search change', async () => {
             const { dom } = await setupPickerInputForTest<TestItemType, number>({
-                value: [4, 2, 6, 8],
+                value: undefined,
                 selectionMode: 'multi',
                 searchPosition: 'body',
+                getSearchFields: (item) => [item!.level],
             });
 
-            fireEvent.click(dom.target);
+            expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+            fireEvent.click(dom.input);
 
-            const dialog = await PickerInputTestObject.findDialog();
+            const dialog = await screen.findByRole('dialog');
             expect(dialog).toBeInTheDocument();
 
             await PickerInputTestObject.waitForOptionsToBeReady();
 
-            const searchInput = within(dialog).queryByRole('searchbox') as HTMLInputElement;
-            fireEvent.change(searchInput, { target: { value: 'search' } });
+            // Verify that all expected options are displayed.
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'A1',
+                'A1+',
+                'A2',
+                'A2+',
+                'B1',
+                'B1+',
+                'B2',
+                'B2+',
+                'C1',
+                'C1+',
+                'C2',
+            ]);
+
+            // Click on options 'A1' and 'B1' to select them.
+            await PickerInputTestObject.clickOptionByText('A1');
+            await PickerInputTestObject.clickOptionByText('B1');
 
             await PickerInputTestObject.clickShowOnlySelected();
 
-            await waitFor(() => expect(searchInput.value).toEqual(''));
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-        });
+            // Expect that only 'A1' and 'B1' are visible after the filter is applied.
+            await waitFor(async () => expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual(['A1', 'B1']));
 
-        it('should turn off show only selected mode on search change', async () => {
-            const { dom } = await setupPickerInputForTest<TestItemType, number>({
-                value: [4, 2, 6, 8],
-                selectionMode: 'multi',
-                searchPosition: 'body',
-            });
+            // Type 'A' into the search input and trigger the search.
+            const bodyInput = within(dialog).getByPlaceholderText('Search');
+            fireEvent.change(bodyInput, { target: { value: 'A' } });
 
-            fireEvent.click(dom.target);
+            // Expect that only options containing 'A' are shown after the search.
+            await waitFor(() => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBe(4));
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual(['A1', 'A1+', 'A2', 'A2+']);
 
-            const dialog = screen.queryByRole('dialog');
-            expect(dialog).toBeInTheDocument();
-            await PickerInputTestObject.waitForOptionsToBeReady();
-
-            await PickerInputTestObject.clickShowOnlySelected();
-
-            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A2', 'A1', 'B1', 'B2']);
-            expect(await PickerInputTestObject.findUncheckedOptions()).toEqual([]);
-
-            const searchInput = within(dialog!).getByRole('searchbox') as HTMLInputElement;
-            fireEvent.change(searchInput, { target: { value: 'search' } });
-
-            const showOnlySelectedSwitch = within(dialog!).queryByRole('switch', { name: 'Show only selected' }) as HTMLInputElement;
-
-            await waitFor(() => expect(showOnlySelectedSwitch.checked).toEqual(false));
+            // Clear the search input and verify that all options are visible again.
+            fireEvent.change(bodyInput, { target: { value: '' } });
+            await waitFor(async () => expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'A1',
+                'A1+',
+                'A2',
+                'A2+',
+                'B1',
+                'B1+',
+                'B2',
+                'B2+',
+                'C1',
+                'C1+',
+                'C2',
+            ]));
         });
     });
 

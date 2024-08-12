@@ -13,7 +13,8 @@ exports[`PickerToggler should render with maximum props 1`] = `
     className="body uui-picker_toggler-multiline"
   >
     <span
-      className="uui-button-box uui-enabled root uui-size-42 uui-color-neutral uui-fill-solid uui-tag"
+      className="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+      role="option"
       tabIndex={-1}
     >
       <div

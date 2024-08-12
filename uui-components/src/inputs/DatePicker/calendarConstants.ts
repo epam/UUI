@@ -10,7 +10,7 @@ export const uuiDaySelection = {
     selectedDay: 'uui-calendar-selected-day',
     filteredDay: 'uui-calendar-filtered-day',
     previousMonthEmptyDay: 'uui-calendar-previous-month-empty-day',
-    clickable: 'uui-calendar-clickable-day',
+    clickableDay: 'uui-calendar-clickable-day',
     dayWrapper: 'uui-calendar-day-wrapper',
     holiday: 'uui-calendar-day-holiday',
 } as const;
