@@ -82,6 +82,12 @@
         color: var(--uui-link);
         text-decoration: underline;
 
+        &:focus-visible {
+            outline: var(--uui-focus-outline-width) solid var(--uui-outline-focus);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
         &:visited {
             color: var(--uui-link-visited);
 
