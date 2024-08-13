@@ -46,12 +46,7 @@
             }
 
             &:focus-visible {
-                border-radius: 2px;
-                box-shadow:
-                    inset 0 -2px 0 0 var(--uui-outline-focus),
-                    inset 0 2px 0 0 var(--uui-outline-focus),
-                    2px 0 0 0 var(--uui-outline-focus),
-                    -2px 0 0 0 var(--uui-outline-focus);
+                @include focus-visible-effect(2px, 2px);
             }
         }
 
