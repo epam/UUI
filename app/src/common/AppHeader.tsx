@@ -9,6 +9,7 @@ import { analyticsEvents } from '../analyticsEvents';
 import { TMode } from './docs/docsConstants';
 import { useAppThemeContext } from '../helpers/appTheme';
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
+import { ReactComponent as ThemeIcon } from '../icons/color-pallete.svg';
 import { ReactComponent as GitIcon } from '@epam/assets/icons/external_logo/github-fill.svg';
 import { ReactComponent as FigmaIcon } from '@epam/assets/icons/external_logo/figma-logo-outline-inverted.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
@@ -64,6 +65,8 @@ export function AppHeader() {
                     clickAnalyticsEvent={ () => sendEvent('Components') }
                 />
                 <BurgerButton caption="Demo" link={ { pathname: '/demo' } } isLinkActive={ pathName === '/demo' } clickAnalyticsEvent={ () => sendEvent('Demo') } />
+                <BurgerButton caption="Figma Community" href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7" isLinkActive={ pathName === 'Figma Community' } clickAnalyticsEvent={ () => sendEvent('Figma Community') } target="_blank" />
+                <BurgerButton caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" isLinkActive={ pathName === 'EPAM Team' } clickAnalyticsEvent={ () => sendEvent('EPAM Team') } target="_blank" />
             </>
         );
     };
@@ -86,7 +89,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" isDropdown={ true } />
+                    <Button { ...props } icon={ ThemeIcon } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
@@ -173,7 +176,7 @@ export function AppHeader() {
             },
             {
                 id: 'demo',
-                priority: 2,
+                priority: 1,
                 render: () => (
                     <MainMenuButton
                         caption="Demo"
@@ -187,13 +190,13 @@ export function AppHeader() {
             },
             window.location.host.includes('localhost') && {
                 id: 'Sandbox',
-                priority: 1,
+                priority: 0,
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             {
                 id: 'figma',
-                priority: 3,
+                priority: 1,
                 render: () => (
                     <Dropdown
                         renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
@@ -209,7 +212,7 @@ export function AppHeader() {
             },
             {
                 id: 'git',
-                priority: 3,
+                priority: 1,
                 render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
             },
             {
@@ -226,7 +229,7 @@ export function AppHeader() {
             },
             {
                 id: 'themeCaption',
-                priority: 2,
+                priority: 3,
                 render: () => (
                     <MainMenuButton
                         cx={ css.themeCaption }
@@ -236,10 +239,10 @@ export function AppHeader() {
                     />
                 ),
             },
-            { id: 'theme', priority: 3, render: renderThemeSwitcher },
+            { id: 'theme', priority: 5, render: renderThemeSwitcher },
             !window.location.host.includes('uui.epam.com') && {
                 id: 'direction',
-                priority: 2,
+                priority: 1,
                 render: renderDirectionSwitcher,
             },
             { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },

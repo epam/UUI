@@ -87,10 +87,6 @@
         padding-left: 24px;
     }
 
-    @media (max-width: 768px) {
-        min-width: 320px;
-    }
-
     .icon {
         height: 60px;
         fill: var(--uui-main_menu-text);
@@ -123,14 +119,40 @@
         }
     }
 
-    .theme-switcher-button:hover {
-        background-color: color-mix(in srgb, var(--white) 5%, transparent);
+    .theme-switcher-button {
+        :global(.uui-icon) {
+            display: none;
+        }
+
+        &:hover {
+            background-color: color-mix(in srgb, var(--white) 5%, transparent);
+        }
     }
+
 
     .theme-caption {
         :global(.uui-caption) {
             font-size: 14px;
         }
     }
-}
 
+    @media (max-width: 768px) {
+        min-width: 320px;
+
+        .theme-switcher-button {
+            :global(.uui-icon) {
+                display: flex;
+            }
+
+            :global(.uui-caption) {
+                display: none;
+            }
+        }
+
+        .theme-caption {
+            :global(.uui-caption) {
+                display: none;
+            }
+        }
+    }
+}
