@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader, MainMenuDropdown,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
@@ -129,7 +129,7 @@ export function AppHeader() {
             },
             {
                 id: 'documents',
-                priority: 3,
+                priority: 6,
                 render: () => (
                     <MainMenuButton
                         caption="Docs"
@@ -176,7 +176,7 @@ export function AppHeader() {
             },
             {
                 id: 'demo',
-                priority: 1,
+                priority: 3,
                 render: () => (
                     <MainMenuButton
                         caption="Demo"
@@ -192,6 +192,27 @@ export function AppHeader() {
                 id: 'Sandbox',
                 priority: 0,
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
+            },
+            {
+                id: 'moreContainer',
+                priority: 5,
+                collapsedContainer: true,
+                render: (item: { id: React.Key; }, hiddenItems: any[]) => {
+                    return (
+                        <MainMenuDropdown
+                            caption="More"
+                            key={ item.id }
+                            renderBody={ (props) => {
+                                // eslint-disable-next-line array-callback-return
+                                return hiddenItems?.map((i) => {
+                                    if (!['figma', 'git', 'gitStar', 'direction', 'themeCaption'].includes(i.id)) {
+                                        return i.render({ ...i, onClose: props.onClose });
+                                    }
+                                });
+                            } }
+                        />
+                    );
+                },
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             {
@@ -239,7 +260,7 @@ export function AppHeader() {
                     />
                 ),
             },
-            { id: 'theme', priority: 5, render: renderThemeSwitcher },
+            { id: 'theme', priority: 100498, render: renderThemeSwitcher },
             !window.location.host.includes('uui.epam.com') && {
                 id: 'direction',
                 priority: 1,
