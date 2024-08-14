@@ -144,7 +144,7 @@ export function AppHeader() {
             },
             {
                 id: 'assets',
-                priority: 6,
+                priority: 0,
                 render: () => (
                     <MainMenuButton
                         caption="Assets"
@@ -158,7 +158,7 @@ export function AppHeader() {
             },
             {
                 id: 'components',
-                priority: 5,
+                priority: 1,
                 render: () => (
                     <MainMenuButton
                         caption="Components"
@@ -177,7 +177,7 @@ export function AppHeader() {
             },
             {
                 id: 'demo',
-                priority: 0,
+                priority: 6,
                 render: () => (
                     <MainMenuButton
                         caption="Demo"
@@ -218,7 +218,7 @@ export function AppHeader() {
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             {
                 id: 'figma',
-                priority: 2,
+                priority: 5,
                 render: () => (
                     <Dropdown
                         renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
@@ -234,7 +234,7 @@ export function AppHeader() {
             },
             {
                 id: 'git',
-                priority: 1,
+                priority: 4,
                 render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
             },
             {
