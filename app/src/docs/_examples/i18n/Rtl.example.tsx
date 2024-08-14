@@ -53,6 +53,7 @@ export default function RtlExample() {
                                 id="country"
                                 placeholder={ texts[dir].countryPlaceholder }
                                 onValueChange={ (inputValue) => lens.set({ countryId: inputValue as string, city: null }) }
+                                rawProps={ { body: { dir: 'rtl' } } }
                             />
                         </LabeledInput>
                     </FlexCell>
