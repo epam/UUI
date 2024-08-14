@@ -1,76 +1,6 @@
 @use '../../assets/styles/index' as *;
 @use 'sass:math';
 
-@mixin scalable-icon-size($size, $additionalClass: '') {
-    $striped-size: strip-unit($size);
-
-    #{$additionalClass}:global(.uui-icon) {
-        svg {
-            @if ($striped-size == 18) {
-                height: 12px;
-            } @else if ($striped-size == 24) {
-                height: 18px;
-            } @else if ($striped-size == 30) {
-                height: 18px;
-            } @else if ($striped-size == 36) {
-                height: 18px;
-            } @else if ($striped-size == 42) {
-                height: 24px;
-            } @else if ($striped-size == 48) {
-                height: 24px;
-            }
-            width: inherit;
-        }
-    }
-}
-
-@mixin badge-layout($size, $borderWidth) {
-    min-height: $size;
-    min-width: $size;
-    border-radius: math.div($size, 2);
-
-    @if ($size == 18px) {
-        @include partial-calc(3px, 3px, 6px, $borderWidth);
-    } @else if ($size == 24px) {
-        @include partial-calc(3px, 6px, 8px, $borderWidth);
-    } @else if ($size == 30px) {
-        @include partial-calc(6px, 6px, 8px, $borderWidth);
-    } @else if ($size == 36px) {
-        @include partial-calc(9px, 6px, 8px, $borderWidth);
-    } @else if ($size == 42px) {
-        @include partial-calc(12px, 6px, 10px, $borderWidth);
-    } @else if ($size == 48px) {
-        @include partial-calc(12px, 6px, 12px, $borderWidth);
-    }
-
-    @include scalable-icon-size($size);
-}
-
-@mixin partial-calc($controlPadding, $captionPadding, $dotSize, $borderWidth) {
-    padding-left: $controlPadding - $borderWidth;
-    padding-right: $controlPadding - $borderWidth;
-
-    :global(.uui-icon):first-child {
-        padding-left: 3px;
-    }
-
-    :global(.uui-caption) {
-        padding-left: $captionPadding;
-        padding-right: $captionPadding;
-    }
-
-    &:global(.uui-indicator) {
-        :global(.uui-caption) {
-            margin-left: $dotSize + $captionPadding;
-        }
-
-        &::before {
-            width: $dotSize;
-            height: $dotSize;
-        }
-    }
-}
-
 .root {
     --uui-badge-bg: var(--uui-color-50);
     --uui-badge-bg-hover: var(--uui-color-60);
@@ -117,21 +47,14 @@
         }
     }
 
-    &:global(.uui-indicator) {
-        &::before {
-            position: absolute;
-            content: '';
-            border-radius: 50%;
-            background-color: var(--uui-badge-caption);
-            inset-block-start: calc((var(--uui-badge-min-height) - var(--uui-badge-dot-size) - (var(--uui-badge-border-width) * 2)) / 2);
-            inset-inline-start: calc(var(--uui-badge-horizontal-padding) + var(--uui-badge-horizontal-gap) - var(--uui-badge-border-width));
-            width: var(--uui-badge-dot-size);
-            height: var(--uui-badge-dot-size);
-        }
-
-        :global(.uui-caption) {
-            margin-inline-start: calc(var(--uui-dot-size) + var(--uui-badge-horizontal-gap));
-        }
+    :global(.uui-indicator) {
+        display: block;
+        margin: auto 0;
+        border-radius: 50%;
+        background-color: var(--uui-badge-caption);
+        width: var(--uui-badge-dot-size);
+        height: var(--uui-badge-dot-size);
+        margin-inline-start: var(--uui-badge-horizontal-gap);
     }
 
     :global(.uui-caption) {
