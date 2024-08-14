@@ -262,7 +262,10 @@
                         font-size: 42px;
                         line-height: 48px;
                         padding-bottom: 12px;
-                        max-width: 325px;
+                    }
+
+                    .intro-header-lower-text {
+                        max-width: initial;
                     }
 
                     .info-block-wrapper {
