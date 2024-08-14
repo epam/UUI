@@ -220,6 +220,16 @@
 
     @media (max-width: 835px) {
         .info {
+            .info-start-wrapper {
+                justify-content: center;
+
+                .info-start {
+                    .intro-header-lower-text {
+                        max-width: 100%;
+                    }
+                }
+            }
+
             .info-end {
                 display: none;
             }

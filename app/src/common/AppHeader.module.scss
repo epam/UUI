@@ -119,14 +119,8 @@
         }
     }
 
-    .theme-switcher-button {
-        :global(.uui-icon) {
-            display: none;
-        }
-
-        &:hover {
-            background-color: color-mix(in srgb, var(--white) 5%, transparent);
-        }
+    .theme-switcher-button:hover {
+        background-color: color-mix(in srgb, var(--white) 5%, transparent);
     }
 
 
@@ -138,16 +132,6 @@
 
     @media (max-width: 768px) {
         min-width: 354px;
-
-        .theme-switcher-button {
-            :global(.uui-icon) {
-                display: flex;
-            }
-
-            :global(.uui-caption) {
-                display: none;
-            }
-        }
 
         .theme-caption {
             :global(.uui-caption) {

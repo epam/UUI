@@ -16,6 +16,7 @@ import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notificati
 import { ReactComponent as CommunicationStarOutlineIcon } from '@epam/assets/icons/communication-star-outline.svg';
 import css from './AppHeader.module.scss';
 import cx from 'classnames';
+import { isMobile } from '@epam/uui-core';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
@@ -89,7 +90,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } icon={ ThemeIcon } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" isDropdown={ true } />
+                    <Button { ...props } icon={ isMobile(768) && ThemeIcon } caption={ !isMobile(768) && themesById[theme]?.name } fill="none" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
@@ -129,7 +130,7 @@ export function AppHeader() {
             },
             {
                 id: 'documents',
-                priority: 6,
+                priority: 8,
                 render: () => (
                     <MainMenuButton
                         caption="Docs"
@@ -143,7 +144,7 @@ export function AppHeader() {
             },
             {
                 id: 'assets',
-                priority: 2,
+                priority: 6,
                 render: () => (
                     <MainMenuButton
                         caption="Assets"
@@ -157,7 +158,7 @@ export function AppHeader() {
             },
             {
                 id: 'components',
-                priority: 2,
+                priority: 5,
                 render: () => (
                     <MainMenuButton
                         caption="Components"
@@ -176,7 +177,7 @@ export function AppHeader() {
             },
             {
                 id: 'demo',
-                priority: 3,
+                priority: 0,
                 render: () => (
                     <MainMenuButton
                         caption="Demo"
@@ -195,7 +196,7 @@ export function AppHeader() {
             },
             {
                 id: 'moreContainer',
-                priority: 5,
+                priority: 7,
                 collapsedContainer: true,
                 render: (item: { id: React.Key; }, hiddenItems: any[]) => {
                     return (
@@ -217,7 +218,7 @@ export function AppHeader() {
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             {
                 id: 'figma',
-                priority: 1,
+                priority: 2,
                 render: () => (
                     <Dropdown
                         renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
@@ -250,7 +251,7 @@ export function AppHeader() {
             },
             {
                 id: 'themeCaption',
-                priority: 3,
+                priority: 6,
                 render: () => (
                     <MainMenuButton
                         cx={ css.themeCaption }
