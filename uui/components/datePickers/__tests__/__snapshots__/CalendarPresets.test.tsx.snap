@@ -10,7 +10,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     Presets
   </div>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -22,7 +22,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -34,7 +34,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -46,7 +46,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -58,7 +58,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -70,7 +70,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -82,7 +82,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -94,7 +94,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
     onClick={[Function]}
     tabIndex={0}
     type="button"
