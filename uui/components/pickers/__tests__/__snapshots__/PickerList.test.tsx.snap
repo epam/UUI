@@ -129,7 +129,7 @@ exports[`PickerList should open body 1`] = `
         </label>
       </div>
       <button
-        class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
         tabindex="0"
         type="button"
       >
@@ -1009,7 +1009,7 @@ exports[`PickerList should render with minimum props 1`] = `
         </label>
       </div>
       <button
-        class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+        class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
         tabindex="0"
         type="button"
       >

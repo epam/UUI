@@ -8,13 +8,25 @@ import { getIconClass } from './helper';
 import css from './LinkButton.module.scss';
 
 const DEFAULT_COLOR = 'primary';
+const DEFAULT_WEIGHT = 'semibold';
+const DEFAULT_UNDERLINE_STYLE = 'none';
 
 interface LinkButtonMods {
     /**
-     * Defines component color.
+     * Defines component color
      * @default 'primary'
      */
     color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'white' | 'contrast';
+    /**
+     * Defines component font-weight
+     * @default 'semibold'
+     */
+    weight?: 'semibold' | 'regular';
+    /**
+     * Defines component underline style
+     * @default 'none'
+     */
+    underline?: 'line' | 'dashed' | 'none';
 }
 
 /** Represents the Core properties of the LinkButton component. */
@@ -40,6 +52,8 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
         `uui-size-${mods.size || settings.sizes.defaults.linkButton}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || DEFAULT_COLOR}`,
+        `uui-weight-${mods.weight || DEFAULT_WEIGHT}`,
+        `uui-underline-${mods.underline || DEFAULT_UNDERLINE_STYLE}`,
     ];
 }
 

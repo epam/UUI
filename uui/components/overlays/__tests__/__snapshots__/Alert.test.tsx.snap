@@ -27,7 +27,7 @@ exports[`Alert should render with maximum props 1`] = `
         className="actionWrapper"
       >
         <button
-          className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
+          className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none actionLink"
           onClick={[Function]}
           tabIndex={0}
           type="button"
