@@ -1,3 +1,6 @@
+// to calculate div `image holder in Accordion` height in mob view
+$aspect-ratio: 1125 / 1833;
+
 @keyframes accordion-appears {
     0% {
         padding: 0;
@@ -162,6 +165,10 @@
             flex-grow: 1;
         }
 
+        .mobile-slide {
+            display: none;
+        }
+
         .slide {
             width: 916px;
             height: 562px;
@@ -215,6 +222,27 @@
                 &-dark {
                     background: url('../icons/slider_banners/dark_theme/drag-n-drop.png') no-repeat top/100%;
                 }
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .container {
+            .start-container {
+                min-height: calc(100vw * $aspect-ratio + 540px);
+            }
+
+            .slide {
+                display: none;
+            }
+
+            .mobile-slide {
+                box-sizing: border-box;
+                display: block;
+                margin-top: 9px;
+                margin-bottom: 9px;
+                width: 100%;
+                height: 57vw;
             }
         }
     }

@@ -210,6 +210,10 @@
 
     @media (max-width: 1165px) {
         .info {
+            .info-start-wrapper {
+                justify-content: center;
+            }
+
             .info-end {
                 .picker-demo-wrapper {
                     display: none;
@@ -220,6 +224,14 @@
 
     @media (max-width: 835px) {
         .info {
+            .info-start-wrapper {
+                .info-start {
+                    .intro-header-lower-text {
+                        max-width: 100%;
+                    }
+                }
+            }
+
             .info-end {
                 display: none;
             }
@@ -262,7 +274,10 @@
                         font-size: 42px;
                         line-height: 48px;
                         padding-bottom: 12px;
-                        max-width: 325px;
+                    }
+
+                    .intro-header-lower-text {
+                        max-width: initial;
                     }
 
                     .info-block-wrapper {
