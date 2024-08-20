@@ -124,12 +124,14 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     };
 
     const clearSelection = () => {
-        view.clearAllChecked();
-
-        handleDataSourceValueChange((dsState) =>({
-            ...dsState,
-            selectedId: emptyValue as undefined,
-        }));
+        if (selectionMode === 'single') {
+            handleDataSourceValueChange((dsState) =>({
+                ...dsState,
+                selectedId: emptyValue as undefined | null,
+            }));
+        } else {
+            view.clearAllChecked();
+        }
     };
 
     const hasSelection = () => {
