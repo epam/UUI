@@ -5,6 +5,7 @@
 **What's Fixed**
 * [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems.
 * [PickerInput]: fixed opening body by pressing 'Enter' key in mobile resolution(<768px)
+* [Dropdown]: remove `mousemove` handler on component unmount
 
 
 # 5.8.5 - 09.08.2024

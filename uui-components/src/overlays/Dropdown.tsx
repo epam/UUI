@@ -58,6 +58,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         this.targetNode?.removeEventListener?.('mouseenter', this.handleMouseEnter);
         this.targetNode?.removeEventListener?.('mouseleave', this.handleMouseLeave);
         window.removeEventListener('click', this.clickOutsideHandler, true);
+        window.removeEventListener('mousemove', this.handleMouseMove);
         this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
     }
 
