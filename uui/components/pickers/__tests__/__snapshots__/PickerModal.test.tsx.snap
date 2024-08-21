@@ -1779,13 +1779,18 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     >
       <button
         aria-disabled={false}
-        className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+        className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
         onClick={[Function]}
         tabIndex={0}
         type="button"
       >
         <div
           className="uui-caption"
+          style={
+            Object {
+              "--uui-link-button-font-weight": "600",
+            }
+          }
         >
           SELECT ALL
         </div>

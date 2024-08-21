@@ -53,6 +53,8 @@ export class LinkButtonDoc extends BaseDocsBlock {
                     {
                         caption: { values: [TEST_DATA.caption] },
                         size: { examples: '*' },
+                        underline: { examples: ['solid', 'dashed', undefined] },
+                        weight: { examples: '*' },
                         icon: { examples: [TEST_DATA.icon, undefined] },
                         iconPosition: { examples: '*', condition: (pp) => !!pp.icon },
                         isDropdown: { examples: '*' },
@@ -64,6 +66,8 @@ export class LinkButtonDoc extends BaseDocsBlock {
                 id: TLinkButtonPreview['Color Variants'],
                 matrix: {
                     caption: { values: [TEST_DATA.caption] },
+                    underline: { examples: ['solid', 'dashed', undefined] },
+                    weight: { examples: '*' },
                     icon: { examples: [TEST_DATA.icon] },
                     isDropdown: { values: [true] },
                     color: { examples: '*' },

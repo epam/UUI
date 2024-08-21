@@ -44,13 +44,18 @@ exports[`DropSpot should be rendered correctly 1`] = `
           className="uui-typography uui-typography-size-14"
         >
           <button
-            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none link"
+            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
             onClick={[Function]}
             tabIndex={0}
             type="button"
           >
             <div
               className="uui-caption"
+              style={
+                Object {
+                  "--uui-link-button-font-weight": "600",
+                }
+              }
             >
               browse
             </div>
@@ -106,13 +111,18 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
           className="uui-typography uui-typography-size-14"
         >
           <button
-            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none link"
+            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
             onClick={[Function]}
             tabIndex={0}
             type="button"
           >
             <div
               className="uui-caption"
+              style={
+                Object {
+                  "--uui-link-button-font-weight": "600",
+                }
+              }
             >
               browse
             </div>
