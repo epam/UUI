@@ -7,6 +7,7 @@
 * [PickerInput]: fixed opening body by pressing 'Enter' key in mobile resolution(<768px)
 * [Dropdown]: remove `mousemove` handler on component unmount
 * [Pickers]: fixed bug when 'Clear All' button remains visible even after user clear all item by clicking on it. It was reproduced only if emptyValue=[] prop was passed.
+* [AdaptivePanel]: fixed hiding items with the same priority as last hidden collapsed container
 
 
 # 5.9.0 - 09.08.2024
