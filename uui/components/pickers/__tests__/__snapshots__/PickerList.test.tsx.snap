@@ -134,8 +134,7 @@ exports[`PickerList should open body 1`] = `
         type="button"
       >
         <div
-          class="uui-caption"
-          style="--uui-link-button-font-weight: 600;"
+          class="uui-caption uui-link-button-weight-semibold"
         >
           SHOW ALL 11
         </div>
@@ -1015,8 +1014,7 @@ exports[`PickerList should render with minimum props 1`] = `
         type="button"
       >
         <div
-          class="uui-caption"
-          style="--uui-link-button-font-weight: 600;"
+          class="uui-caption uui-link-button-weight-semibold"
         >
           SHOW ALL 11
         </div>

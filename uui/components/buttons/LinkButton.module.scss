@@ -9,6 +9,8 @@
 
     // fonts
     --uui-link-button-font: var(--uui-font);
+    --uui-link-button-font-weight-semibold: 600;
+    --uui-link-button-font-weight-regular: 400;
 
     // sizes
     --uui-link-button-min-height: var(--uui-size);
@@ -84,6 +86,14 @@
         &:global(.uui-underline-dashed) {
             text-decoration: underline dashed;
             text-underline-offset: 0.2em;
+        }
+
+        &:global(.uui-link-button-weight-semibold) {
+            font-weight: var(--uui-link-button-font-weight-semibold);
+        }
+
+        &:global(.uui-link-button-weight-regular) {
+            font-weight: var(--uui-link-button-font-weight-regular);
         }
     }
 

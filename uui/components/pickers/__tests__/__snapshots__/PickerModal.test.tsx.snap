@@ -1785,12 +1785,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         type="button"
       >
         <div
-          className="uui-caption"
-          style={
-            Object {
-              "--uui-link-button-font-weight": "600",
-            }
-          }
+          className="uui-caption uui-link-button-weight-semibold"
         >
           SELECT ALL
         </div>
