@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader, MainMenuDropdown,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader, MainMenuDropdown, BurgerGroupHeader,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
@@ -66,8 +66,11 @@ export function AppHeader() {
                     clickAnalyticsEvent={ () => sendEvent('Components') }
                 />
                 <BurgerButton caption="Demo" link={ { pathname: '/demo' } } isLinkActive={ pathName === '/demo' } clickAnalyticsEvent={ () => sendEvent('Demo') } />
-                <BurgerButton caption="Figma Community" href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7" isLinkActive={ pathName === 'Figma Community' } clickAnalyticsEvent={ () => sendEvent('Figma Community') } target="_blank" />
-                <BurgerButton caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" isLinkActive={ pathName === 'EPAM Team' } clickAnalyticsEvent={ () => sendEvent('EPAM Team') } target="_blank" />
+                <BurgerGroupHeader caption="Figma source" />
+                <BurgerButton icon={ FigmaIcon } caption="Figma Community" href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7" clickAnalyticsEvent={ () => sendEvent('Figma Community') } target="_blank" />
+                <BurgerButton icon={ FigmaIcon } caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" clickAnalyticsEvent={ () => sendEvent('EPAM Team') } target="_blank" />
+                <BurgerGroupHeader caption="Code source" />
+                <BurgerButton icon={ GitIcon } caption="Github" href={ GIT_LINK } target="_blank" />
             </>
         );
     };
@@ -130,7 +133,7 @@ export function AppHeader() {
             },
             {
                 id: 'documents',
-                priority: 8,
+                priority: 7,
                 render: () => (
                     <MainMenuButton
                         caption="Docs"
@@ -204,7 +207,6 @@ export function AppHeader() {
                             caption="More"
                             key={ item.id }
                             renderBody={ (props) => {
-                                // eslint-disable-next-line array-callback-return
                                 return hiddenItems?.map((i) => {
                                     if (!['figma', 'git', 'gitStar', 'direction', 'themeCaption'].includes(i.id)) {
                                         return i.render({ ...i, onClose: props.onClose });
