@@ -5,37 +5,37 @@
     height: 240px;
     padding: 0 18px;
 
+    .sponsor-text {
+        margin-top: 24px;
+    }
+
     .container {
         display: flex;
         flex-direction: row;
         flex-basis: 1166px;
         padding: 36px 0;
+    }
 
-        .first-block {
-            margin-top: 9px;
-            width: 50%;
-            flex-basis: 50%;
+    .first-block {
+        margin-top: 9px;
+        width: 50%;
+        flex-basis: 50%;
 
-            .sponsor-text {
-                margin-top: 60px;
-            }
-
-            .bottom-links {
-                :global(.uui-text) {
-                    padding-top: 0;
-                }
+        .bottom-links {
+            :global(.uui-text) {
+                padding-top: 0;
             }
         }
+    }
 
-        .second-block {
-            flex-basis: 50%;
-            width: 50%;
+    .second-block {
+        flex-basis: 50%;
+        width: 50%;
 
-            .mail-button {
-                margin-top: 9px;
-                padding-inline-start: 18px;
-                padding-inline-end: 18px;
-            }
+        .mail-button {
+            margin-top: 9px;
+            padding-inline-start: 18px;
+            padding-inline-end: 18px;
         }
     }
 
@@ -47,6 +47,10 @@
 
         .second-block {
             display: none;
+        }
+
+        .sponsor-text {
+            margin-top: 60px;
         }
     }
 }
