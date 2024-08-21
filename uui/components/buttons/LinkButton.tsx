@@ -5,11 +5,11 @@ import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
 import { settings } from '../../settings';
 import { getIconClass } from './helper';
+import cx from 'classnames';
 import css from './LinkButton.module.scss';
 
 const DEFAULT_COLOR = 'primary';
 const DEFAULT_WEIGHT = 'semibold';
-const DEFAULT_UNDERLINE_STYLE = 'none';
 
 interface LinkButtonMods {
     /**
@@ -17,16 +17,6 @@ interface LinkButtonMods {
      * @default 'primary'
      */
     color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'white' | 'contrast';
-    /**
-     * Defines component font-weight
-     * @default 'semibold'
-     */
-    weight?: 'semibold' | 'regular';
-    /**
-     * Defines component underline style
-     * @default 'none'
-     */
-    underline?: 'line' | 'dashed' | 'none';
 }
 
 /** Represents the Core properties of the LinkButton component. */
@@ -38,6 +28,15 @@ export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownT
      * @default '36'
      */
     size?: types.ControlSize | '42';
+    /**
+     * Defines component font-weight
+     * @default 'semibold'
+     */
+    weight?: 'semibold' | 'regular';
+    /**
+     * Defines component underline style
+     */
+    underline?: 'solid' | 'dashed';
 }
 
 export interface LinkButtonModsOverride {}
@@ -52,8 +51,6 @@ function applyLinkButtonMods(mods: LinkButtonProps) {
         `uui-size-${mods.size || settings.sizes.defaults.linkButton}`,
         ...getIconClass(mods),
         `uui-color-${mods.color || DEFAULT_COLOR}`,
-        `uui-weight-${mods.weight || DEFAULT_WEIGHT}`,
-        `uui-underline-${mods.underline || DEFAULT_UNDERLINE_STYLE}`,
     ];
 }
 
@@ -69,6 +66,11 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     }
 
     const styles = [applyLinkButtonMods(props), props.cx];
+
+    const weightMap = {
+        semibold: '600',
+        regular: '400',
+    };
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
@@ -86,7 +88,10 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
                 />
             ) }
             { props.caption && (
-                <div className={ uuiElement.caption }>
+                <div
+                    className={ cx(uuiElement.caption, props.underline && `uui-underline-${props.underline}`) }
+                    style={ { '--uui-link-button-font-weight': weightMap[props.weight || DEFAULT_WEIGHT] } as React.CSSProperties }
+                >
                     { props.caption }
                 </div>
             ) }

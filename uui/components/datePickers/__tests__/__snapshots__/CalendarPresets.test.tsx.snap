@@ -10,97 +10,137 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     Presets
   </div>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       Today
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       This Week
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       Last Week
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       This Month
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       Last Month
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       Last 3 Months
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       This Year
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary uui-weight-semibold uui-underline-none"
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
     tabIndex={0}
     type="button"
   >
     <div
       className="uui-caption"
+      style={
+        Object {
+          "--uui-link-button-font-weight": "600",
+        }
+      }
     >
       Last Year
     </div>

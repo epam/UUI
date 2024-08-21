@@ -1,51 +1,5 @@
 @use  '../../assets/styles/index' as *;
 
-@mixin underline-style($underline-type, $size) {
-    position: relative;
-
-    &::before {
-        display: block;
-        position: absolute;
-        content: '';
-        left: 0;
-        height: 1px;
-        width: 100%;
-
-        @if $size == 24 {
-            bottom: 2.5px;
-        } @else if $size == 30 {
-            bottom: 5.5px;
-        } @else if $size == 36 {
-            bottom: 8.5px;
-        } @else if $size == 42 {
-            bottom: 8.5px;
-        } @else if $size == 48 {
-            bottom: 11.5px;
-        }
-
-        @if $underline-type == 'line' {
-            background-color: var(--uui-link_btn-text);
-        } @else if $underline-type == 'dashed' {
-            border-bottom: 1px var(--uui-link_btn-text) dashed;
-        }
-    }
-
-    &:not(:first-child)::before {
-        width: calc(100% - 6px);
-        left: 6px;
-    }
-
-    &:not(:last-child)::before {
-        width: calc(100% - 6px);
-        right: 6px;
-    }
-
-    &:not(:first-child):not(:last-child)::before {
-        width: calc(100% - 12px);
-        left: 6px;
-    }
-}
-
 .root {
     // colors
     --uui-link_btn-text: var(--uui-color-50);
@@ -55,8 +9,6 @@
 
     // fonts
     --uui-link-button-font: var(--uui-font);
-    --uui-link-button-font-weight_semibold: 600;
-    --uui-link-button-font-weight_regular: 400;
 
     // sizes
     --uui-link-button-min-height: var(--uui-size);
@@ -106,64 +58,11 @@
                 background-color: transparent;
             }
         }
-
-        &:global(.uui-weight-semibold) :global(.uui-caption) {
-            font-weight: var(--uui-link-button-font-weight_semibold, normal);
-        }
-
-        &:global(.uui-weight-regular) :global(.uui-caption) {
-            font-weight: var(--uui-link-button-font-weight_regular, normal);
-        }
-
-        &:global(.uui-underline-line) {
-            &:global(.uui-size-24) :global(.uui-caption) {
-                @include underline-style(line, 24);
-            }
-
-            &:global(.uui-size-30) :global(.uui-caption) {
-                @include underline-style(line, 30);
-            }
-
-            &:global(.uui-size-36) :global(.uui-caption) {
-                @include underline-style(line, 36);
-            }
-
-            &:global(.uui-size-42) :global(.uui-caption) {
-                @include underline-style(line, 42);
-            }
-
-            &:global(.uui-size-48) :global(.uui-caption) {
-                @include underline-style(line, 48);
-            }
-        }
-
-        &:global(.uui-underline-dashed) {
-            &:global(.uui-size-24) :global(.uui-caption) {
-                @include underline-style(dashed, 24);
-            }
-
-            &:global(.uui-size-30) :global(.uui-caption) {
-                @include underline-style(dashed, 30);
-            }
-
-            &:global(.uui-size-36) :global(.uui-caption) {
-                @include underline-style(dashed, 36);
-            }
-
-            &:global(.uui-size-42) :global(.uui-caption) {
-                @include underline-style(dashed, 42);
-            }
-
-            &:global(.uui-size-48) :global(.uui-caption) {
-                @include underline-style(dashed, 48);
-            }
-        }
     }
-
-
 
     :global(.uui-caption) {
         font-family: var(--uui-link-button-font);
+        font-weight: var(--uui-link-button-font-weight, normal); // --uui-link-button-font-weight - don't delete value specified inline
         line-height: var(--uui-link-button-line-height);
         font-size: var(--uui-link-button-font-size);
         padding-top: var(--uui-link-button-caption-padding);
@@ -175,6 +74,16 @@
 
         &:not(:last-child) {
             padding-right: var(--uui-link-button-gap);
+        }
+
+        &:global(.uui-underline-solid) {
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+
+        &:global(.uui-underline-dashed) {
+            text-decoration: underline dashed;
+            text-underline-offset: 0.2em;
         }
     }
 
