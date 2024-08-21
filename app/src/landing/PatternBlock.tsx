@@ -154,6 +154,7 @@ export function PatternBlock() {
                                     onClick={ () => {
                                     } }
                                 />
+                                <div className={ cx(css.slide, css.mobileSlide, getSlide()) }></div>
                             </Accordion>
                         </div>
                     )) }
