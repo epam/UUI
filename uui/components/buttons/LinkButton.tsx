@@ -44,16 +44,6 @@ export interface LinkButtonModsOverride {}
 /** Represents the properties of the LinkButton component. */
 export interface LinkButtonProps extends LinkButtonCoreProps, Overwrite<LinkButtonMods, LinkButtonModsOverride> {}
 
-function applyLinkButtonMods(mods: LinkButtonProps) {
-    return [
-        'uui-link_button',
-        css.root,
-        `uui-size-${mods.size || settings.sizes.defaults.linkButton}`,
-        ...getIconClass(mods),
-        `uui-color-${mods.color || DEFAULT_COLOR}`,
-    ];
-}
-
 export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
     if (__DEV__ && props.color === 'contrast') {
         devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
@@ -65,12 +55,20 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
         });
     }
 
-    const styles = [applyLinkButtonMods(props), props.cx];
+    const rootStyles = [
+        'uui-link_button',
+        css.root,
+        `uui-size-${props.size || settings.sizes.defaults.linkButton}`,
+        ...getIconClass(props),
+        `uui-color-${props.color || DEFAULT_COLOR}`,
+        props.cx,
+    ];
 
-    const weightMap = {
-        semibold: '600',
-        regular: '400',
-    };
+    const captionStyles = cx(
+        uuiElement.caption,
+        props.underline && `uui-underline-${props.underline}`,
+        `uui-link-button-weight-${props.weight || DEFAULT_WEIGHT}`,
+    );
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
@@ -78,7 +76,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
         <Clickable
             { ...props }
             type="button"
-            cx={ styles }
+            cx={ rootStyles }
             ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
@@ -88,12 +86,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
                 />
             ) }
             { props.caption && (
-                <div
-                    className={ cx(uuiElement.caption, props.underline && `uui-underline-${props.underline}`) }
-                    style={ { '--uui-link-button-font-weight': weightMap[props.weight || DEFAULT_WEIGHT] } as React.CSSProperties }
-                >
-                    { props.caption }
-                </div>
+                <div className={ captionStyles }>{ props.caption }</div>
             ) }
             { props.icon && props.iconPosition === 'right' && (
                 <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
