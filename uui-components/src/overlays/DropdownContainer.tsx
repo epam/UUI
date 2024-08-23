@@ -6,6 +6,7 @@ import {
 } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
 import PopoverArrow from './PopoverArrow';
+import { ReactFocusLockProps } from 'react-focus-lock/interfaces';
 
 export interface DropdownContainerProps
     extends IHasCX,
@@ -13,7 +14,7 @@ export interface DropdownContainerProps
     IHasStyleAttrs,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     IHasForwardedRef<HTMLDivElement>,
-    IDropdownBodyProps {
+    IDropdownBodyProps, Pick<ReactFocusLockProps, 'autoFocus' | 'as' | 'shards'> {
     /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */
     width?: number | 'auto';
     /** Defines maximum width in 'px'. If 'auto' provided, will be used width of the content. */
@@ -48,14 +49,6 @@ export interface DropdownContainerProps
      * Pass any extra props to the FocusLock wrapper.
      */
     lockProps?: Record<string, any>;
-    /**
-     * Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering.
-     */
-    shards?: Array<React.RefObject<HTMLElement>>;
-    /**
-     * Pass element name if you need to change internal FocusLock div element, to any other.
-     */
-    as?: string;
     /**
      * Pass true to handle Escape key press and call props.onClose().
      * If omitted, true value will be used. It's used if focusLock=true.
@@ -113,6 +106,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...({ onKeyDown: handleEscape }), ...props.lockProps } }
                 shards={ props.shards }
+                autoFocus={ false }
                 as={ props.as }
             >
                 {renderDropdownContainer()}

@@ -1,6 +1,5 @@
 .root {
     --uui-burger_group-text: var(--uui-text-disabled);
-    --uui-burger_group-bg: var(--uui-neutral-90);
     --uui-burger_group-line: var(--uui-text-secondary);
 
     --uui-burger_group-font: var(--uui-font);
@@ -16,7 +15,7 @@
     font-weight: var(--uui-burger_group-font-weight);
     font-size: 12px;
     color: var(--uui-burger_group-text);
-    background: var(--uui-burger_group-bg);
+    background: var(--uui-burger_menu-item);
     padding: 0 14px 0 18px;
 }
 
