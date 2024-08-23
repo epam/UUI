@@ -221,7 +221,7 @@ exports[`PickerInput should open body 1`] = `
             type="button"
           >
             <div
-              class="uui-caption"
+              class="uui-caption uui-link-button-weight-semibold"
             >
               CLEAR
             </div>

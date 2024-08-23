@@ -9,7 +9,8 @@
 
     // fonts
     --uui-link-button-font: var(--uui-font);
-    --uui-link-button-font-weight: 600;
+    --uui-link-button-font-weight-semibold: 600;
+    --uui-link-button-font-weight-regular: 400;
 
     // sizes
     --uui-link-button-min-height: var(--uui-size);
@@ -46,12 +47,7 @@
             }
 
             &:focus-visible {
-                border-radius: 2px;
-                box-shadow:
-                    inset 0 -2px 0 0 var(--uui-outline-focus),
-                    inset 0 2px 0 0 var(--uui-outline-focus),
-                    2px 0 0 0 var(--uui-outline-focus),
-                    -2px 0 0 0 var(--uui-outline-focus);
+                @include focus-visible-effect(2px, 2px);
             }
         }
 
@@ -68,7 +64,7 @@
 
     :global(.uui-caption) {
         font-family: var(--uui-link-button-font);
-        font-weight: var(--uui-link-button-font-weight, normal);
+        font-weight: var(--uui-link-button-font-weight, normal); // --uui-link-button-font-weight - don't delete value specified inline
         line-height: var(--uui-link-button-line-height);
         font-size: var(--uui-link-button-font-size);
         padding-top: var(--uui-link-button-caption-padding);
@@ -80,6 +76,24 @@
 
         &:not(:last-child) {
             padding-inline-end: var(--uui-link-button-gap);
+        }
+
+        &:global(.uui-underline-solid) {
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+        }
+
+        &:global(.uui-underline-dashed) {
+            text-decoration: underline dashed;
+            text-underline-offset: 0.2em;
+        }
+
+        &:global(.uui-link-button-weight-semibold) {
+            font-weight: var(--uui-link-button-font-weight-semibold);
+        }
+
+        &:global(.uui-link-button-weight-regular) {
+            font-weight: var(--uui-link-button-font-weight-regular);
         }
     }
 

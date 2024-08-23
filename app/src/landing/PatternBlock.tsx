@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Accordion, Button, FlexCell, FlexRow, FlexSpacer, LinkButton, ProgressBar, Text } from '@epam/uui';
+import { Accordion, Button, FlexCell, FlexRow, LinkButton, ProgressBar, Text } from '@epam/uui';
 import { getCurrentTheme } from '../helpers';
 import cx from 'classnames';
 import { ReactComponent as NavigationChevronRightOutlineIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
@@ -154,10 +154,10 @@ export function PatternBlock() {
                                     onClick={ () => {
                                     } }
                                 />
+                                <div className={ cx(css.slide, css.mobileSlide, getSlide()) }></div>
                             </Accordion>
                         </div>
                     )) }
-                    <FlexSpacer />
                     <FlexCell width="auto" cx={ css.watchAllBtn }>
                         <Button
                             href="/demo"
