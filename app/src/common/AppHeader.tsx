@@ -93,7 +93,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } icon={ isMobile(768) && ThemeIcon } caption={ !isMobile(768) && themesById[theme]?.name } fill="none" isDropdown={ true } />
+                    <Button { ...props } cx={ css.themeSwitcherButton } icon={ isMobile(768) && ThemeIcon } caption={ !isMobile(768) && themesById[theme]?.name } fill="none" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
