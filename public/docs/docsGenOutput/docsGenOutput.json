@@ -41796,7 +41796,7 @@
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
-      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps {",
+      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps, Pick<ReactFocusLockProps, 'autoFocus' | 'as' | 'shards'> {",
       "    /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */",
       "    width?: number | 'auto';",
       "    /** Defines maximum width in 'px'. If 'auto' provided, will be used width of the content. */",
@@ -41831,14 +41831,6 @@
       "     * Pass any extra props to the FocusLock wrapper.",
       "     */",
       "    lockProps?: Record<string, any>;",
-      "    /**",
-      "     * Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering.",
-      "     */",
-      "    shards?: Array<React.RefObject<HTMLElement>>;",
-      "    /**",
-      "     * Pass element name if you need to change internal FocusLock div element, to any other.",
-      "     */",
-      "    as?: string;",
       "    /**",
       "     * Pass true to handle Escape key press and call props.onClose().",
       "     * If omitted, true value will be used. It's used if focusLock=true.",
@@ -42015,35 +42007,6 @@
       },
       "typeValue": {
        "raw": "Record<string, any>"
-      },
-      "required": false
-     },
-     {
-      "uid": "shards",
-      "name": "shards",
-      "comment": {
-       "raw": [
-        "Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering."
-       ]
-      },
-      "typeValue": {
-       "raw": "React.RefObject<HTMLElement>[]"
-      },
-      "required": false
-     },
-     {
-      "uid": "as",
-      "name": "as",
-      "comment": {
-       "raw": [
-        "Pass element name if you need to change internal FocusLock div element, to any other."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
       },
       "required": false
      },
@@ -42284,6 +42247,57 @@
        ]
       },
       "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "autoFocus",
+      "name": "autoFocus",
+      "comment": {
+       "raw": [
+        "enables or disables autoFocusing feature.",
+        " If enabled - will move focus inside Lock, selecting the first or autoFocusable element",
+        " If disable - will blur any focus on Lock activation.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "required": false
+     },
+     {
+      "uid": "as",
+      "name": "as",
+      "comment": {
+       "raw": [
+        "Component to use, defaults to 'div'"
+       ]
+      },
+      "typeValue": {
+       "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>"
+      },
+      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "required": false
+     },
+     {
+      "uid": "shards",
+      "name": "shards",
+      "comment": {
+       "raw": [
+        "Shards forms a scattered lock, same as `group` does, but in more \"low\" and controlled way"
+       ]
+      },
+      "typeValue": {
+       "raw": "(HTMLElement | React.RefObject<any>)[]"
+      },
+      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -42726,7 +42740,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (instance: any) => void | React.RefObject<any>"
+       "raw": "null | React.RefObject<any> | (instance: any) => void"
       },
       "from": "@epam/uui-core:DndActorRenderParams",
       "required": false
@@ -43665,7 +43679,7 @@
       "uid": "type",
       "name": "type",
       "typeValue": {
-       "raw": "'number' | 'hidden' | string & {} | 'search' | 'button' | 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'file' | 'image' | 'month' | 'password' | 'radio' | 'range' | 'reset' | 'submit' | 'tel' | 'text' | 'time' | 'url' | 'week'"
+       "raw": "'number' | 'hidden' | string & {} | 'button' | 'time' | 'image' | 'text' | 'search' | 'checkbox' | 'color' | 'date' | 'datetime-local' | 'email' | 'file' | 'month' | 'password' | 'radio' | 'range' | 'reset' | 'submit' | 'tel' | 'url' | 'week'"
       },
       "from": "@types/react:InputHTMLAttributes",
       "required": false
@@ -43973,7 +43987,7 @@
       "uid": "role",
       "name": "role",
       "typeValue": {
-       "raw": "string & {} | 'search' | 'button' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+       "raw": "string & {} | 'article' | 'button' | 'dialog' | 'figure' | 'form' | 'img' | 'link' | 'main' | 'menu' | 'menuitem' | 'option' | 'table' | 'switch' | 'search' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'directory' | 'document' | 'feed' | 'grid' | 'gridcell' | 'group' | 'heading' | 'list' | 'listbox' | 'listitem' | 'log' | 'marquee' | 'math' | 'menubar' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'tab' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
       },
       "from": "@types/react:HTMLAttributes",
       "required": false
@@ -44229,15 +44243,15 @@
        ]
       },
       "typeValue": {
-       "raw": "'search' | 'email' | 'tel' | 'text' | 'url' | 'none' | 'numeric' | 'decimal'"
+       "raw": "'text' | 'search' | 'email' | 'tel' | 'url' | 'none' | 'numeric' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "text",
         "search",
         "email",
         "tel",
-        "text",
         "url",
         "none",
         "numeric",
@@ -44458,15 +44472,15 @@
        ]
       },
       "typeValue": {
-       "raw": "boolean | 'date' | 'time' | 'true' | 'false' | 'page' | 'step' | 'location'"
+       "raw": "boolean | 'time' | 'date' | 'true' | 'false' | 'page' | 'step' | 'location'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         false,
         true,
-        "date",
         "time",
+        "date",
         "true",
         "false",
         "page",
@@ -44661,19 +44675,19 @@
        ]
       },
       "typeValue": {
-       "raw": "boolean | 'true' | 'false' | 'dialog' | 'grid' | 'listbox' | 'menu' | 'tree'"
+       "raw": "boolean | 'dialog' | 'menu' | 'true' | 'false' | 'grid' | 'listbox' | 'tree'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         false,
         true,
+        "dialog",
+        "menu",
         "true",
         "false",
-        "dialog",
         "grid",
         "listbox",
-        "menu",
         "tree"
        ]
       },
@@ -50757,14 +50771,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'input' | 'body'"
+       "raw": "'body' | 'input' | 'none'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
+        "body",
         "input",
-        "body"
+        "none"
        ]
       },
       "required": false
@@ -52557,14 +52571,14 @@
       "uid": "searchPosition",
       "name": "searchPosition",
       "typeValue": {
-       "raw": "'none' | 'input' | 'body'"
+       "raw": "'body' | 'input' | 'none'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
+        "body",
         "input",
-        "body"
+        "none"
        ]
       },
       "required": true
@@ -52731,7 +52745,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (instance: any) => void | React.RefObject<any>"
+       "raw": "null | React.RefObject<any> | (instance: any) => void"
       },
       "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
@@ -54701,15 +54715,51 @@
       "required": false
      },
      {
-      "uid": "color",
-      "name": "color",
+      "uid": "autoFocus",
+      "name": "autoFocus",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "as",
+      "name": "as",
       "typeValue": {
        "raw": "string"
       },
       "editor": {
        "type": "string"
       },
-      "from": "@types/react:HTMLAttributes",
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "cite",
+      "name": "cite",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "data",
+      "name": "data",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:AllHTMLAttributes",
       "required": false
      },
      {
@@ -54722,6 +54772,108 @@
        "type": "string"
       },
       "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "label",
+      "name": "label",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "slot",
+      "name": "slot",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:HTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "span",
+      "name": "span",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "style",
+      "name": "style",
+      "typeValue": {
+       "raw": "React.CSSProperties"
+      },
+      "from": "node_modules/react-custom-scrollbars-2/index.d.ts:ScrollbarProps",
+      "required": false
+     },
+     {
+      "uid": "summary",
+      "name": "summary",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "title",
+      "name": "title",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:HTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "pattern",
+      "name": "pattern",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:AllHTMLAttributes",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "from": "@types/react:DOMAttributes",
+      "required": false
+     },
+     {
+      "uid": "color",
+      "name": "color",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@types/react:HTMLAttributes",
       "required": false
      },
      {
@@ -54989,15 +55141,6 @@
       "required": false
      },
      {
-      "uid": "style",
-      "name": "style",
-      "typeValue": {
-       "raw": "React.CSSProperties"
-      },
-      "from": "node_modules/react-custom-scrollbars-2/index.d.ts:ScrollbarProps",
-      "required": false
-     },
-     {
       "uid": "accept",
       "name": "accept",
       "typeValue": {
@@ -55070,18 +55213,6 @@
       "required": false
      },
      {
-      "uid": "as",
-      "name": "as",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
       "uid": "async",
       "name": "async",
       "typeValue": {
@@ -55101,18 +55232,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
-      "uid": "autoFocus",
-      "name": "autoFocus",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@types/react:AllHTMLAttributes",
       "required": false
@@ -55202,18 +55321,6 @@
       "required": false
      },
      {
-      "uid": "cite",
-      "name": "cite",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
       "uid": "classID",
       "name": "classID",
       "typeValue": {
@@ -55288,18 +55395,6 @@
      {
       "uid": "crossOrigin",
       "name": "crossOrigin",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
-      "uid": "data",
-      "name": "data",
       "typeValue": {
        "raw": "string"
       },
@@ -55577,18 +55672,6 @@
       "required": false
      },
      {
-      "uid": "label",
-      "name": "label",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
       "uid": "loop",
       "name": "loop",
       "typeValue": {
@@ -55794,18 +55877,6 @@
       },
       "editor": {
        "type": "number"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
-      "uid": "pattern",
-      "name": "pattern",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
       },
       "from": "@types/react:AllHTMLAttributes",
       "required": false
@@ -56027,18 +56098,6 @@
       "required": false
      },
      {
-      "uid": "span",
-      "name": "span",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
       "uid": "src",
       "name": "src",
       "typeValue": {
@@ -56077,18 +56136,6 @@
      {
       "uid": "srcSet",
       "name": "srcSet",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@types/react:AllHTMLAttributes",
-      "required": false
-     },
-     {
-      "uid": "summary",
-      "name": "summary",
       "typeValue": {
        "raw": "string"
       },
@@ -56322,18 +56369,6 @@
       "required": false
      },
      {
-      "uid": "slot",
-      "name": "slot",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@types/react:HTMLAttributes",
-      "required": false
-     },
-     {
       "uid": "spellCheck",
       "name": "spellCheck",
       "typeValue": {
@@ -56347,18 +56382,6 @@
         "true",
         "false"
        ]
-      },
-      "from": "@types/react:HTMLAttributes",
-      "required": false
-     },
-     {
-      "uid": "title",
-      "name": "title",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
       },
       "from": "@types/react:HTMLAttributes",
       "required": false
@@ -56395,7 +56418,7 @@
       "uid": "role",
       "name": "role",
       "typeValue": {
-       "raw": "string & {} | 'search' | 'button' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'form' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'link' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+       "raw": "string & {} | 'article' | 'button' | 'dialog' | 'figure' | 'form' | 'img' | 'link' | 'main' | 'menu' | 'menuitem' | 'option' | 'table' | 'switch' | 'search' | 'checkbox' | 'radio' | 'alert' | 'alertdialog' | 'application' | 'banner' | 'cell' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'directory' | 'document' | 'feed' | 'grid' | 'gridcell' | 'group' | 'heading' | 'list' | 'listbox' | 'listitem' | 'log' | 'marquee' | 'math' | 'menubar' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'none' | 'note' | 'presentation' | 'progressbar' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'tab' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
       },
       "from": "@types/react:HTMLAttributes",
       "required": false
@@ -56639,15 +56662,15 @@
        ]
       },
       "typeValue": {
-       "raw": "'search' | 'email' | 'tel' | 'text' | 'url' | 'none' | 'numeric' | 'decimal'"
+       "raw": "'text' | 'search' | 'email' | 'tel' | 'url' | 'none' | 'numeric' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "text",
         "search",
         "email",
         "tel",
-        "text",
         "url",
         "none",
         "numeric",
@@ -56868,15 +56891,15 @@
        ]
       },
       "typeValue": {
-       "raw": "boolean | 'date' | 'time' | 'true' | 'false' | 'page' | 'step' | 'location'"
+       "raw": "boolean | 'time' | 'date' | 'true' | 'false' | 'page' | 'step' | 'location'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         false,
         true,
-        "date",
         "time",
+        "date",
         "true",
         "false",
         "page",
@@ -57071,19 +57094,19 @@
        ]
       },
       "typeValue": {
-       "raw": "boolean | 'true' | 'false' | 'dialog' | 'grid' | 'listbox' | 'menu' | 'tree'"
+       "raw": "boolean | 'dialog' | 'menu' | 'true' | 'false' | 'grid' | 'listbox' | 'tree'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         false,
         true,
+        "dialog",
+        "menu",
         "true",
         "false",
-        "dialog",
         "grid",
         "listbox",
-        "menu",
         "tree"
        ]
       },
@@ -57682,15 +57705,6 @@
        "type": "string"
       },
       "from": "@types/react:AriaAttributes",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "from": "@types/react:DOMAttributes",
       "required": false
      },
      {
@@ -61754,15 +61768,15 @@
        ]
       },
       "typeValue": {
-       "raw": "'search' | 'email' | 'tel' | 'text' | 'url' | 'none' | 'numeric' | 'decimal'"
+       "raw": "'text' | 'search' | 'email' | 'tel' | 'url' | 'none' | 'numeric' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
+        "text",
         "search",
         "email",
         "tel",
-        "text",
         "url",
         "none",
         "numeric",
@@ -63476,14 +63490,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'input' | 'body'"
+       "raw": "'body' | 'input' | 'none'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "none",
+        "body",
         "input",
-        "body"
+        "none"
        ]
       },
       "from": "@epam/uui-components:PickerInputBaseProps",
@@ -73892,37 +73906,6 @@
       "required": false
      },
      {
-      "uid": "shards",
-      "name": "shards",
-      "comment": {
-       "raw": [
-        "Pass an array of ref pointing to the nodes, which focus lock should consider and a part of it. This is a way of focus scattering."
-       ]
-      },
-      "typeValue": {
-       "raw": "React.RefObject<HTMLElement>[]"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
-      "uid": "as",
-      "name": "as",
-      "comment": {
-       "raw": [
-        "Pass element name if you need to change internal FocusLock div element, to any other."
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
       "uid": "closeOnEsc",
       "name": "closeOnEsc",
       "comment": {
@@ -74161,6 +74144,57 @@
        ]
       },
       "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "autoFocus",
+      "name": "autoFocus",
+      "comment": {
+       "raw": [
+        "enables or disables autoFocusing feature.",
+        " If enabled - will move focus inside Lock, selecting the first or autoFocusable element",
+        " If disable - will blur any focus on Lock activation.",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "required": false
+     },
+     {
+      "uid": "as",
+      "name": "as",
+      "comment": {
+       "raw": [
+        "Component to use, defaults to 'div'"
+       ]
+      },
+      "typeValue": {
+       "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>"
+      },
+      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "required": false
+     },
+     {
+      "uid": "shards",
+      "name": "shards",
+      "comment": {
+       "raw": [
+        "Shards forms a scattered lock, same as `group` does, but in more \"low\" and controlled way"
+       ]
+      },
+      "typeValue": {
+       "raw": "(HTMLElement | React.RefObject<any>)[]"
+      },
+      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -74881,14 +74915,14 @@
       "uid": "type",
       "name": "type",
       "typeValue": {
-       "raw": "'attachment' | 'iframe' | 'image'"
+       "raw": "'iframe' | 'image' | 'attachment'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "attachment",
         "iframe",
-        "image"
+        "image",
+        "attachment"
        ]
       },
       "from": "node_modules/typescript/lib/lib.dom.d.ts:Blob",
@@ -76023,6 +76057,20 @@
       "required": false
      },
      {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -76083,20 +76131,6 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
@@ -76326,6 +76360,20 @@
       "required": false
      },
      {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
       "uid": "isOpen",
       "name": "isOpen",
       "comment": {
@@ -76386,20 +76434,6 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
@@ -76666,7 +76700,7 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (instance: any) => void | React.RefObject<any>"
+       "raw": "null | React.RefObject<any> | (instance: any) => void"
       },
       "from": "@epam/uui-core:IDropdownTogglerProps",
       "required": false
@@ -77454,6 +77488,15 @@
       "     * @default '36'",
       "     */",
       "    size?: types.ControlSize | '42';",
+      "    /**",
+      "     * Defines component font-weight",
+      "     * @default 'semibold'",
+      "     */",
+      "    weight?: 'semibold' | 'regular';",
+      "    /**",
+      "     * Defines component underline style",
+      "     */",
+      "    underline?: 'solid' | 'dashed';",
       "}"
      ]
     },
@@ -77497,6 +77540,50 @@
         "36",
         "42",
         "48"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "weight",
+      "name": "weight",
+      "comment": {
+       "raw": [
+        "Defines component font-weight",
+        " @default 'semibold'"
+       ],
+       "tags": {
+        "@default": "semibold"
+       }
+      },
+      "typeValue": {
+       "raw": "'semibold' | 'regular'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "semibold",
+        "regular"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "underline",
+      "name": "underline",
+      "comment": {
+       "raw": [
+        "Defines component underline style"
+       ]
+      },
+      "typeValue": {
+       "raw": "'solid' | 'dashed'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "dashed"
        ]
       },
       "required": false
@@ -77865,6 +77952,52 @@
       "required": false
      },
      {
+      "uid": "weight",
+      "name": "weight",
+      "comment": {
+       "raw": [
+        "Defines component font-weight",
+        " @default 'semibold'"
+       ],
+       "tags": {
+        "@default": "semibold"
+       }
+      },
+      "typeValue": {
+       "raw": "'semibold' | 'regular'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "semibold",
+        "regular"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "underline",
+      "name": "underline",
+      "comment": {
+       "raw": [
+        "Defines component underline style"
+       ]
+      },
+      "typeValue": {
+       "raw": "'solid' | 'dashed'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "dashed"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonCoreProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -78136,7 +78269,7 @@
       "name": "color",
       "comment": {
        "raw": [
-        "Defines component color.",
+        "Defines component color",
         " @default 'primary'"
        ],
        "tags": {
@@ -78515,6 +78648,20 @@
       "required": false
      },
      {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -78558,20 +78705,6 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
@@ -83389,14 +83522,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'input' | 'body'"
+       "raw": "'none' | 'body' | 'input'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "none",
-        "input",
-        "body"
+        "body",
+        "input"
        ]
       },
       "from": "@epam/uui-components:PickerInputBaseProps",
@@ -87434,6 +87567,20 @@
       "required": false
      },
      {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
       "uid": "isDropdown",
       "name": "isDropdown",
       "comment": {
@@ -87511,20 +87658,6 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "link",
-      "name": "link",
-      "comment": {
-       "raw": [
-        "Link object to redirect to for SPA-redirects"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
@@ -88219,6 +88352,20 @@
       "required": false
      },
      {
+      "uid": "label",
+      "name": "label",
+      "comment": {
+       "raw": [
+        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "from": "@epam/uui-core:IHasLabel",
+      "required": false
+     },
+     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -88248,20 +88395,6 @@
        "type": "component"
       },
       "from": "@epam/uui-components:RadioInputProps",
-      "required": false
-     },
-     {
-      "uid": "label",
-      "name": "label",
-      "comment": {
-       "raw": [
-        "Component label. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in labels."
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "from": "@epam/uui-core:IHasLabel",
       "required": false
      },
      {
@@ -97157,7 +97290,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'form' | 'cell' | string & {} | 'link' | 'search' | 'alert' | 'alertdialog' | 'application' | 'article' | 'banner' | 'button' | 'checkbox' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'dialog' | 'directory' | 'document' | 'feed' | 'figure' | 'grid' | 'gridcell' | 'group' | 'heading' | 'img' | 'list' | 'listbox' | 'listitem' | 'log' | 'main' | 'marquee' | 'math' | 'menu' | 'menubar' | 'menuitem' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'note' | 'option' | 'presentation' | 'progressbar' | 'radio' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'switch' | 'tab' | 'table' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
+       "raw": "'none' | 'form' | 'cell' | string & {} | 'article' | 'button' | 'dialog' | 'figure' | 'img' | 'link' | 'main' | 'menu' | 'menuitem' | 'option' | 'table' | 'switch' | 'search' | 'alert' | 'alertdialog' | 'application' | 'banner' | 'checkbox' | 'columnheader' | 'combobox' | 'complementary' | 'contentinfo' | 'definition' | 'directory' | 'document' | 'feed' | 'grid' | 'gridcell' | 'group' | 'heading' | 'list' | 'listbox' | 'listitem' | 'log' | 'marquee' | 'math' | 'menubar' | 'menuitemcheckbox' | 'menuitemradio' | 'navigation' | 'note' | 'presentation' | 'progressbar' | 'radio' | 'radiogroup' | 'region' | 'row' | 'rowgroup' | 'rowheader' | 'scrollbar' | 'searchbox' | 'separator' | 'slider' | 'spinbutton' | 'status' | 'tab' | 'tablist' | 'tabpanel' | 'term' | 'textbox' | 'timer' | 'toolbar' | 'tooltip' | 'tree' | 'treegrid' | 'treeitem'"
       },
       "from": "@epam/uui:BaseVirtualListProps",
       "required": false
@@ -99898,6 +100031,52 @@
         "36",
         "42",
         "48"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "weight",
+      "name": "weight",
+      "comment": {
+       "raw": [
+        "Defines component font-weight",
+        " @default 'semibold'"
+       ],
+       "tags": {
+        "@default": "semibold"
+       }
+      },
+      "typeValue": {
+       "raw": "'semibold' | 'regular'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "semibold",
+        "regular"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "underline",
+      "name": "underline",
+      "comment": {
+       "raw": [
+        "Defines component underline style"
+       ]
+      },
+      "typeValue": {
+       "raw": "'solid' | 'dashed'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "dashed"
        ]
       },
       "from": "@epam/uui:LinkButtonCoreProps",
@@ -106337,6 +106516,52 @@
       "required": false
      },
      {
+      "uid": "weight",
+      "name": "weight",
+      "comment": {
+       "raw": [
+        "Defines component font-weight",
+        " @default 'semibold'"
+       ],
+       "tags": {
+        "@default": "semibold"
+       }
+      },
+      "typeValue": {
+       "raw": "'semibold' | 'regular'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "semibold",
+        "regular"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonCoreProps",
+      "required": false
+     },
+     {
+      "uid": "underline",
+      "name": "underline",
+      "comment": {
+       "raw": [
+        "Defines component underline style"
+       ]
+      },
+      "typeValue": {
+       "raw": "'solid' | 'dashed'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "solid",
+        "dashed"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonCoreProps",
+      "required": false
+     },
+     {
       "uid": "onClick",
       "name": "onClick",
       "comment": {
@@ -111071,6 +111296,17 @@
      "nameFull": "Scrollbars"
     },
     "src": "node_modules/react-custom-scrollbars-2/index.d.ts",
+    "exported": false
+   }
+  },
+  "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps": {
+   "summary": {
+    "module": "node_modules/react-focus-lock/interfaces.d.ts",
+    "typeName": {
+     "name": "ReactFocusLockProps",
+     "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
+    },
+    "src": "node_modules/react-focus-lock/interfaces.d.ts",
     "exported": false
    }
   },

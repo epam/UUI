@@ -16,7 +16,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       Today
     </div>
@@ -28,7 +28,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       This Week
     </div>
@@ -40,7 +40,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       Last Week
     </div>
@@ -52,7 +52,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       This Month
     </div>
@@ -64,7 +64,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       Last Month
     </div>
@@ -76,7 +76,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       Last 3 Months
     </div>
@@ -88,7 +88,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       This Year
     </div>
@@ -100,7 +100,7 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       Last Year
     </div>
