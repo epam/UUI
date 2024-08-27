@@ -1,6 +1,9 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
+* Uploaded new version of icons pack: 
+  * icons added: action-clock_fast-fill, action-clock_fast-outline
+  * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
 **What's Fixed**
 * [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems.
