@@ -50,7 +50,7 @@ Array [
     </div>
   </div>,
   <div
-    className="uui-flex-row root size-36 uui-picker_input-body modal undefined container align-items-center"
+    className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -117,10 +117,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -158,10 +159,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -199,10 +201,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -240,10 +243,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -281,10 +285,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -322,10 +327,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -363,10 +369,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -404,10 +411,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -445,10 +453,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -486,10 +495,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -527,10 +537,11 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 padding-24 padding-left-24 align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -606,7 +617,7 @@ Array [
 
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
 <div
-  className="uui-flex-row root size-36 uui-picker_input-body undefined undefined container align-items-center"
+  className="uui-flex-row root uui-size-36 uui-picker_input-body undefined undefined container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -617,7 +628,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
   }
 >
   <div
-    className="no-found-size-36"
+    className="noData"
     style={
       Object {
         "alignSelf": undefined,
@@ -640,7 +651,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
 
 exports[`DataPickerBody should be rendered without rows 1`] = `
 <div
-  className="uui-flex-row root size-36 uui-picker_input-body undefined undefined container align-items-center"
+  className="uui-flex-row root uui-size-36 uui-picker_input-body undefined undefined container align-items-center"
   style={
     Object {
       "columnGap": undefined,

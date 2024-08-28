@@ -5,6 +5,10 @@
     display: flex;
     flex-direction: row;
 
+    .page {
+        --uui-btn-padding: 1px;
+    }
+
     :global(.uui-caption) {
         font-family: var(--uui-pagination-font);
         font-weight: var(--uui-pagination-font-weight, normal);

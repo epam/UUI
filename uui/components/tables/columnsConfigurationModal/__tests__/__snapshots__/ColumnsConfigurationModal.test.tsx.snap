@@ -27,7 +27,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -75,10 +75,10 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 borderBottom searchArea container align-items-center"
+      className="uui-flex-row root uui-size-42 padding-24 borderBottom searchArea container align-items-center"
       style={
         Object {
-          "columnGap": "12px",
+          "columnGap": "6px",
           "rowGap": undefined,
         }
       }
@@ -159,7 +159,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-flex-row root size-24 padding-24 groupTitle container align-items-center"
+            className="uui-flex-row root uui-size-36 padding-24 groupTitle container align-items-center"
             style={
               Object {
                 "columnGap": "6px",
@@ -168,7 +168,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-14 v-padding-6 groupTitleText container"
+              className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
             >
               Displayed in table
             </div>
@@ -194,8 +194,14 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               <div
                 className="uui-accordion-toggle-container"
               >
-                <span
-                  className="subgroupTitle"
+                <div
+                  className="uui-flex-row root uui-size-24 padding-24 subgroupTitle container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": "6px",
+                      "rowGap": undefined,
+                    }
+                  }
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -203,12 +209,16 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height={18}
-                      width={18}
+                      height="18"
+                      width="18"
                     />
                   </div>
-                  Pinned to the left
-                </span>
+                  <div
+                    className="root uui-text uui-color-tertiary uui-font-weight-600 uui-font-style-normal uui-typography line-height-12 font-size-10 container"
+                  >
+                    Pinned to the left
+                  </div>
+                </div>
                 <div
                   className="container uui-icon uui-enabled arrow"
                   style={Object {}}
@@ -220,7 +230,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               role="region"
             >
               <div
-                className="uui-flex-row root size-30 groupItems container align-items-center"
+                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
                 style={
                   Object {
                     "columnGap": undefined,
@@ -229,7 +239,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root size-30 rowWrapper container align-items-center"
+                  className="uui-flex-row root uui-size-30 padding-24 rowWrapper container align-items-center"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -255,7 +265,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary grow uui-disabled"
                   >
                     <div
                       className="uui-checkbox uui-checked"
@@ -285,35 +295,33 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root size-30 pinIconButton container align-items-center"
+                    className="uui-flex-row root uui-size-30 pinIconButton container align-items-center"
                     style={
                       Object {
-                        "columnGap": undefined,
+                        "columnGap": "12px",
                         "rowGap": undefined,
                       }
                     }
                   >
-                    <span>
-                      <button
-                        aria-disabled={true}
-                        className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
-                        tabIndex={-1}
-                        type="button"
+                    <button
+                      aria-disabled={true}
+                      className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
+                      tabIndex={-1}
+                      type="button"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </button>
-                    </span>
+                        <svg
+                          className=""
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
                 <div
-                  className="uui-flex-row root size-30 rowWrapper container align-items-center"
+                  className="uui-flex-row root uui-size-30 padding-24 rowWrapper container align-items-center"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -339,7 +347,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary grow uui-disabled"
                   >
                     <div
                       className="uui-checkbox uui-checked"
@@ -369,31 +377,29 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root size-30 pinIconButton container align-items-center"
+                    className="uui-flex-row root uui-size-30 pinIconButton container align-items-center"
                     style={
                       Object {
-                        "columnGap": undefined,
+                        "columnGap": "12px",
                         "rowGap": undefined,
                       }
                     }
                   >
-                    <span>
-                      <button
-                        aria-disabled={true}
-                        className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
-                        tabIndex={-1}
-                        type="button"
+                    <button
+                      aria-disabled={true}
+                      className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
+                      tabIndex={-1}
+                      type="button"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
                       >
-                        <div
-                          className="container uui-icon uui-enabled"
-                          style={Object {}}
-                        >
-                          <svg
-                            className=""
-                          />
-                        </div>
-                      </button>
-                    </span>
+                        <svg
+                          className=""
+                        />
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -431,7 +437,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 borderTop root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 borderTop root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": "12px",

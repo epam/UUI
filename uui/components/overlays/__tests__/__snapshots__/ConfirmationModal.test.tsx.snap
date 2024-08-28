@@ -27,7 +27,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -140,7 +140,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -207,7 +207,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -312,7 +312,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": "12px",

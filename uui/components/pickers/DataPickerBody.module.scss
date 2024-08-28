@@ -3,7 +3,6 @@
 :global(.uui-picker_input-body) {
     --uui-picker_input-selected_mark: var(--uui-info-50);
     --uui-data_picker_body-no-data-vertical-padding: 20px;
-    --uui-data_picker_body-search-padding: 9px;
     //
     display: flex;
     flex-direction: column;
@@ -39,6 +38,8 @@
 }
 
 .search-wrapper {
+    --uui-data_picker_body-search-padding: 9px;
+    //
     padding: var(--uui-data_picker_body-search-padding);
 }
 
