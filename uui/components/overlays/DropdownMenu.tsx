@@ -215,7 +215,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             closeDelay={ 400 }
             placement={ dir === 'rtl' ? 'left-start' : 'right-start' }
             modifiers={ subMenuModifiers }
-            renderBody={ (dropdownProps) => <DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } /> }
+            renderBody={ (dropdownProps) => !props.isDisabled && (<DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } />) }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(css.submenuRootItem) }

@@ -50,7 +50,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
             type="button"
           >
             <div
-              className="uui-caption"
+              className="uui-caption uui-link-button-weight-semibold"
             >
               browse
             </div>
@@ -112,7 +112,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
             type="button"
           >
             <div
-              className="uui-caption"
+              className="uui-caption uui-link-button-weight-semibold"
             >
               browse
             </div>

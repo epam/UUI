@@ -2,6 +2,6 @@
 
 .root {
     &:global(.-clickable):focus-visible {
-        @include focus-visible-effect();
+        @include focus-visible-effect(2px, 2px);
     }
 }
