@@ -128,6 +128,11 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         </div>
     );
 
+    const cellStyle = {
+        ...props.style,
+        justifyContent: !props.isFirstColumn && justifyContent,
+    };
+
     return (
         <DataTableCellContainer
             ref={ ref }
@@ -138,7 +143,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
             cx={ [
                 uuiDataTableCellMarkers.uuiTableCell, css.cell, props.cx, props.isInvalid && uuiMod.invalid, state.inFocus && uuiMod.focus,
             ] }
-            style={ !props.isFirstColumn && { justifyContent: justifyContent } }
+            style={ cellStyle }
         >
             {props.addons}
 

@@ -7,6 +7,7 @@
     background-clip: padding-box;
     display: flex;
     align-items: flex-start;
+    padding: 0 var(--uui-data_picker_cell-horizontal-padding);
 
     &:global(.data-picker-cell).align-widgets-top {
         div:global(.uui-checkbox) {
@@ -18,12 +19,6 @@
     &.align-widgets-center :global(.uui-checkbox-container) {
         align-self: center;
     }
-
-    &.padding-12 { padding: 0 12px; }
-    &.padding-24 { padding: 0 24px; }
-
-    &.padding-left-12 { padding-left: 12px; }
-    &.padding-left-24 { padding-left: 24px; }
 
     &:first-child {
         border-left-color: transparent;
@@ -40,7 +35,7 @@
 
 .loading-cell {
     div[aria-busy='true'] > span {
-        margin: 0 3px 0 0;
+        margin: 0 calc(var(--uui-grid-unit) / 2) 0 0;
     }
 }
 

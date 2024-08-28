@@ -176,24 +176,6 @@
         }
     }
 
-    .uui-picker_toggler:is(.uui-size-24, .uui-size-30, .uui-size-36, .uui-size-42) {
-        .uui-tag.uui-size-inherit {
-            --uui-horizontal-gap: 3px;
-        }
-    }
-
-    .uui-picker_toggler:is(.uui-size-24, .uui-size-30, .uui-size-36) {
-        .uui-tag.uui-size-inherit {
-            --uui-horizontal-padding: 3px;
-        }
-    }
-
-    .uui-size-48.uui-picker_toggler {
-        .uui-tag.uui-size-inherit {
-            --uui-horizontal-padding: 6px;
-        }
-    }
-
     .uui-checkbox-container, .uui-radio-input-container {
         &.uui-size-18 {
             --uui-horizontal-gap: 12px;
@@ -214,19 +196,6 @@
             --uui-line-height: 24px;
             --uui-font-size: 16px;
         }
-    }
-
-    .uui-picker-body:is(.uui-size-30, .uui-size-36) .uui-switch.uui-size-inherit {
-        --uui-horizontal-gap: 12px;
-        --uui-line-height: 18px;
-        --uui-font-size: 14px;
-
-    }
-
-    .uui-picker-body:is(.uui-size-42, .uui-size-48) .uui-switch.uui-size-inherit {
-        --uui-horizontal-gap: 12px;
-        --uui-line-height: 24px;
-        --uui-font-size: 16px;
     }
 
     .uui-labeled-input {
@@ -301,6 +270,20 @@
         &.uui-size-24 {
             --uui-line-height: 22px;
             --uui-font-size: 14px;
+        }
+    }
+
+    .uui-table-header-cell {
+        &.uui-size-36 {
+            --uui-horizontal-gap: 12px;
+        }
+
+        &.uui-size-48 {
+            --uui-horizontal-gap: 12px;
+        }
+
+        &.uui-size-60 {
+            --uui-horizontal-gap: 12px;
         }
     }
 }

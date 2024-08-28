@@ -34,7 +34,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
 
         // TODO: need fix sizes, how to use variables
         return (
-            <FlexCell cx={ css[`no-found-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
+            <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                 <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
             </FlexCell>
         );

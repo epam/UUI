@@ -51,7 +51,7 @@ export default function PagedTableWithSelectAll() {
         }
         const { page, pageSize, ...stateWithoutPaging } = state;
         const allRecords = await api(stateWithoutPaging);
-        
+
         setState((current) => ({ ...current, checked: allRecords.items.map((item) => item.id) }));
     }, [api, state]);
 
@@ -91,7 +91,6 @@ export default function PagedTableWithSelectAll() {
                     value={ state.page }
                     onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
                     totalPages={ Math.ceil((listProps.totalCount ?? 0) / state.pageSize) }
-                    size="30"
                 />
                 <FlexSpacer />
             </FlexRow>

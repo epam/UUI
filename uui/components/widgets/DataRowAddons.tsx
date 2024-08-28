@@ -69,7 +69,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }
-                            size={ settings.sizes.rowAddons.icon[props.size] }
+                            size={ settings.sizes.rowAddons.icon[props.size || 'default'] }
                         />
                     )}
                 </div>

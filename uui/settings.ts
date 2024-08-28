@@ -23,6 +23,11 @@ export const settings: Settings = {
             datePicker: '36',
             labeledInput: '36',
             statusIndicator: '24',
+            dataTableCell: '36',
+            dataTableRow: '36',
+            dataTableHeaderCell: '36',
+            dataTableHeaderRow: '36',
+            paginator: '30',
         },
         tag: {
             countIndicator: {
@@ -52,11 +57,11 @@ export const settings: Settings = {
         pickerToggler: {
             tag: {
                 24: '18',
-                30: '18',
-                36: '24',
-                42: '30',
-                48: '36',
-                60: '42',
+                30: '24',
+                36: '30',
+                42: '36',
+                48: '42',
+                60: '48',
             },
         },
         dataPickerHeader: {
@@ -74,6 +79,14 @@ export const settings: Settings = {
             },
         },
         pickerItem: { // max 48, setup by row with 60????
+            columnGap: '12',
+            verticalPadding: {
+                24: '3',
+                30: '6',
+                36: '6',
+                42: '9',
+                48: '9',
+            },
             avatar: {
                 rest: {
                     24: '18',
@@ -131,7 +144,7 @@ export const settings: Settings = {
             switch: {
                 24: '12',
                 30: '18',
-                36: '36',
+                36: '18',
                 42: '24',
                 48: '24',
             },
@@ -160,6 +173,7 @@ export const settings: Settings = {
                 42: '24',
                 48: '24',
                 60: '24',
+                default: '18',
             },
             indentUnit: {
                 24: 6,
@@ -208,5 +222,101 @@ export const settings: Settings = {
                 48: '24',
             },
         },
+        dataTableHeaderCell: {
+            checkbox: {
+                36: '18',
+                48: '18',
+                60: '18',
+            },
+            columnCaption: {
+                fontSize: '14',
+                fontWeight: '400',
+                lineHeight: '30',
+                size: '30',
+                uppercase: '12',
+            },
+            iconSize: {
+                36: '18',
+                48: '18',
+                60: '18',
+            },
+            resizeMarker: {
+                default: '12',
+            },
+            leftPadding: {
+                default: '12',
+                utmost: '24',
+            },
+            rightPadding: {
+                default: '12',
+                utmost: '24',
+            },
+            tooltip: {
+                caption: {
+                    fontSize: '14',
+                    fontWeight: '600',
+                },
+                info: {
+                    fontSize: '12',
+                    fontWeight: '400',
+                },
+            },
+        },
+        dataTableHeaderRow: {
+            iconSize: {
+                36: '18',
+                48: '18',
+                60: '18',
+            },
+            truncate: ['48'],
+        },
+        dataTableCell: {
+            text: {
+                18: '18',
+                24: '24',
+                30: '30',
+                36: '36',
+                42: '42',
+                48: '48',
+                60: '48',
+            },
+            leftPadding: {
+                editable: '0',
+                default: '12',
+                utmost: '24',
+            },
+            rightPadding: {
+                editable: '0',
+                default: '12',
+                utmost: '24',
+            },
+        },
+        dataTableRow: {
+            columnsGap: {
+                default: '24',
+            },
+        },
+        dataTableColumnsConfigurationModal: {
+            columnRowSize: '30',
+            columnGap: '6',
+            padding: '24',
+            pinIconButtonGap: '12',
+            groupTitleSize: '18',
+            groupTitleFontSize: '14',
+            groupTitleFontWeight: '600',
+            subgroupTitleSize: '12',
+            subgroupTitleFontSize: '10',
+            subgroupTitleFontWeight: '600',
+            subgroupTitleIconSize: '18',
+            searchAreaSize: '42',
+            searchSize: '30',
+            noFoundTitleSize: '30',
+            noFoundTitleFontSize: '24',
+            noFoundTitleFontWeight: '600',
+            noFoundSubTitleSize: '24',
+            noFoundSubTitleFontSize: '16',
+            noFoundSubTitleFontWeight: '400',
+        },
+        paginator: {},
     },
 };

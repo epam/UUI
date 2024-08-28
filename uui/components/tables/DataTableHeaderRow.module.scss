@@ -1,14 +1,22 @@
 @use  '../../assets/styles/index' as *;
 
-.header-cell {
-    background: none;
+.root {
+    --uui-dt-header-row-config-icon-padding: 24px;
+    --uui-dt-header-row-truncate-caption-line-height: 18px;
 }
 
 :global(.config-icon) {
     position: absolute;
     height: 100%;
-    right: 24px;
+    inset-inline-end: var(--uui-dt-header-row-config-icon-padding);
     z-index: 2;
+
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-size);
+            width: inherit;
+        }
+    }
 }
 
 :global(.uui-table-header-row) {
@@ -30,7 +38,7 @@
         -webkit-line-clamp: 2;
         overflow: hidden;
         white-space: normal;
-        line-height: 18px;
+        line-height: var(--uui-dt-header-row-truncate-caption-line-height);
     }
     /* stylelint-enable */
 }

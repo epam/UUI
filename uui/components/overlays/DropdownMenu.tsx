@@ -1,13 +1,14 @@
 import React, { useRef, useContext, useState } from 'react';
 import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps, useDocumentDir,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps, useDocumentDir } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
+
 import css from './DropdownMenu.module.scss';
 
 export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {

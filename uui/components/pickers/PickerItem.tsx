@@ -59,8 +59,9 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
         <FlexCell width="auto" cx={ [css.root, 'uui-typography', cx] }>
             <FlexRow
                 size={ itemSize as FlexRowProps['size'] }
-                cx={ isMultiline && [css.multiline, css[`vertical-padding-${itemSize}`]] }
-                columnGap="12"
+                cx={ isMultiline && css.multiline }
+                columnGap={ settings.sizes.pickerItem.columnGap as FlexRowProps['columnGap'] }
+                rawProps={ { style: { '--uui-picker_item-vertical-padding': `${settings.sizes.pickerItem.verticalPadding[itemSize]}px` } as React.CSSProperties } }
             >
                 { avatarUrl && (
                     <Avatar

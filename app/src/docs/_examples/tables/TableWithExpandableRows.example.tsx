@@ -46,8 +46,6 @@ export default function TableWithExpandableRowsExample() {
             <div className={ isExpanded ? css.rowWithDetails : null }>
                 <DataTableRow
                     key={ props.rowKey }
-                    size="36"
-                    columnsGap="24"
                     { ...props }
                     indent={ (props.indent ?? 0) + 1 }
                     isFoldable={ true }

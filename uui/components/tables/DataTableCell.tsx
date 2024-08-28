@@ -3,8 +3,10 @@ import { DataTableCellProps } from '@epam/uui-core';
 import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
 import { DataRowAddons } from '../widgets';
 import { DataTableCellMods } from './types';
-import { TextPlaceholder, Text } from '../typography';
+import { TextPlaceholder, Text, TextProps } from '../typography';
 import { Tooltip } from '../overlays';
+import { settings } from '../../settings';
+
 import './variables.scss';
 import css from './DataTableCell.module.scss';
 
@@ -17,15 +19,14 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
 
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
-            // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' } cx={ css.loadingCell }>
+            <Text key="t" size={ settings.sizes.dataTableCell.text[props.size] as TextProps['size'] }>
                 <TextPlaceholder />
             </Text>
         ));
 
     props.renderUnknown = props.renderUnknown
         || (() => (
-            <Text key="t" size={ props.size !== '60' ? props.size : '48' }>
+            <Text key="t" size={ settings.sizes.dataTableCell.text[props.size] as TextProps['size'] }>
                 Unknown
             </Text>
         ));
@@ -34,39 +35,38 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
 
     const isEditable = !!props.onValueChange;
 
-    const getPaddings = () => {
-        const { rowProps, padding, columnsGap } = props;
-        const { isLoading } = rowProps;
+    const getLeftPadding = () => {
+        const { rowProps: { isLoading }, columnsGap, isFirstColumn } = props;
 
-        if (isEditable && !isLoading) {
-            return { padding: '0', sidePadding: '12' };
-        }
+        if (isFirstColumn && isEditable && !isLoading) return settings.sizes.dataTableCell.leftPadding.default;
+        if (isEditable && !isLoading) return settings.sizes.dataTableCell.leftPadding.editable;
+        if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
+        return isFirstColumn ? settings.sizes.dataTableCell.leftPadding.utmost : settings.sizes.dataTableCell.leftPadding.default;
+    };
 
-        if (padding) {
-            return { padding, sidePadding: padding };
-        }
+    const getRightPadding = () => {
+        const { rowProps: { isLoading }, columnsGap, isLastColumn } = props;
 
-        switch (columnsGap) {
-            case '12':
-                return { padding: '6', sidePadding: '12' };
-            case '24':
-                return { padding: '12', sidePadding: '24' };
-        }
-
-        return { padding: '12', sidePadding: '24' };
+        if (isEditable && !isLoading) return settings.sizes.dataTableCell.rightPadding.editable;
+        if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
+        return isLastColumn ? settings.sizes.dataTableCell.rightPadding.utmost : settings.sizes.dataTableCell.rightPadding.default;
     };
 
     props.cx = [
         'data-table-cell',
+        css.root,
         props.cx,
-        css.cell,
-        'uui-size-' + (props.size || '36'),
-        css[`padding-${getPaddings().padding}`],
-        props.isFirstColumn && css[`padding-left-${getPaddings().sidePadding}`],
-        props.isLastColumn && css[`padding-right-${getPaddings().sidePadding}`],
+        'uui-size-' + (props.size || settings.sizes.defaults.dataTableCell),
+        props.isFirstColumn && 'uui-dt-first-column',
+        props.isLastColumn && 'uui-dt-last-column',
         css[`align-widgets-${props.alignActions || 'top'}`],
         (props.border || isEditable) && 'uui-dt-vertical-cell-border',
     ];
+
+    props.style = {
+        '--uui-dt-cell-padding-start': `${getLeftPadding()}px`,
+        '--uui-dt-cell-padding-end': `${getRightPadding()}px`,
+    } as React.CSSProperties;
 
     return <UuiDataTableCell { ...props } />;
 }

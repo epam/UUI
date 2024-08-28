@@ -12,7 +12,7 @@ export const dataSourceColumns: DataColumnProps<{ name: string }, number, any>[]
             <DataTableCell
                 { ...props.rowLens.prop('name').toProps() }
                 renderEditor={ (props) => <TextInput { ...props } /> }
-                padding="12"
+                columnsGap="12"
                 { ...props }
             />
         ),
@@ -30,7 +30,7 @@ export const sortableDataSourceColumns: DataColumnProps<{ name: string }, number
             <DataTableCell
                 { ...props.rowLens.prop('name').toProps() }
                 renderEditor={ (props) => <TextInput { ...props } /> }
-                padding="12"
+                columnsGap="24"
                 { ...props }
             />
         ),

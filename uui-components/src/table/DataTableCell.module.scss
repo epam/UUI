@@ -4,11 +4,11 @@
     background-color: var(--uui-dt-cell-bg);
 
     &:first-child {
-        border-left-color: transparent;
+        border-inline-start-color: transparent;
     }
 
     &:last-child {
-        border-right-color: transparent;
+        border-inline-end-color: transparent;
     }
 }
 

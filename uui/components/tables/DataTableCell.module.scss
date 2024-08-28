@@ -1,7 +1,10 @@
 @use '../../assets/styles/index' as *;
 
-.cell {
-    --uui-data-table-cell-size: var(--uui-size);
+.root {
+    --uui-dt-cell-size: var(--uui-size);
+    //
+    padding-inline-start: var(--uui-dt-cell-padding-start);
+    padding-inline-end: var(--uui-dt-cell-padding-end);
 
     &.wrapper {
         display: flex;
@@ -10,8 +13,7 @@
 
     &:global(.data-table-cell).align-widgets-top {
         div:global(.uui-checkbox) {
-            margin-top: calc(var(--uui-data-table-cell-size) / 2 - var(--uui-size) / 2);
-
+            margin-top: calc(var(--uui-dt-cell-size) / 2 - var(--uui-size) / 2);
         }
     }
 
@@ -19,36 +21,12 @@
         align-self: center;
     }
 
-    :global(.uui-dr_addons-checkbox) {
-        padding-right: 12px;
-    }
-
-    :global(.uui-dr_addons-indent) {
-        padding-right: 12px;
-    }
-
-    &.padding-6 { padding: 0 6px; }
-    &.padding-12 { padding: 0 12px; }
-    &.padding-24 { padding: 0 24px; }
-
-    &.padding-left-12 { padding-left: 12px; }
-    &.padding-left-24 { padding-left: 24px; }
-
-    &.padding-right-12 { padding-right: 12px; }
-    &.padding-right-24 { padding-right: 24px; }
-
     &:global(.uui-invalid) {
         background-color: var(--uui-dt-cell-bg-invalid);
     }
 }
 
 :global(.uui-dt-vertical-cell-border) {
-    border-left-color: var(--uui-dt-border);
-    border-right-color: var(--uui-dt-border);
-}
-
-.loading-cell {
-    div[aria-busy='true'] > span {
-        margin: 0 3px 0 0;
-    }
+    border-inline-start-color: var(--uui-dt-border);
+    border-inline-end-color: var(--uui-dt-border);
 }

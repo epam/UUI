@@ -1,4 +1,6 @@
 .header {
+    --uui-data-picker-header-close-icon-padding: 24px;
+    //
     display: none;
     justify-content: center;
     position: relative;
@@ -15,5 +17,5 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-    right: 24px;
+    inset-inline-end: var(--uui-data-picker-header-close-icon-padding);
 }

@@ -4,8 +4,6 @@ import {
 } from '@epam/uui-core';
 
 export interface PaginatorRenderParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {
-    /** Defines component size */
-    size: '24' | '30';
     /** Array of pages that should be rendered */
     pages: PaginatorItem[];
     /** Call to go to the next page */
@@ -33,12 +31,8 @@ interface PaginatorItem {
 }
 
 export interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLElement>> {
-    /** Defines component size */
-    size: '24' | '30';
-
     /** Total number of pages */
     totalPages: number;
-
     /** Override default rendering, keeping the component behavior */
     render?(params: PaginatorRenderParams): any;
 }
@@ -142,7 +136,6 @@ export class Paginator extends React.Component<PaginatorProps> {
 
     render() {
         return this.props.render({
-            size: this.props.size,
             pages: this.getPagesView(),
             goToNext: this.goToNext,
             goToPrev: this.goToPrev,

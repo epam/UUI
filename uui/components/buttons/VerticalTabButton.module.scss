@@ -2,6 +2,6 @@
 
 .root {
     border-bottom: 0 none;
-    border-inline-start: 3px solid transparent;
+    border-inline-start: var(--uui-tab-line-width) solid transparent;
     text-align: start;
 }
