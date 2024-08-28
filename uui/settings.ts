@@ -57,11 +57,11 @@ export const settings: Settings = {
         pickerToggler: {
             tag: {
                 24: '18',
-                30: '24',
-                36: '30',
-                42: '36',
-                48: '42',
-                60: '48',
+                30: '18',
+                36: '24',
+                42: '30',
+                48: '36',
+                60: '42',
             },
         },
         dataPickerHeader: {
