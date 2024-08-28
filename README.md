@@ -1,9 +1,15 @@
 # UUI
-<img align="right" width="160" height="160"
+<img align="right" width="120" height="120"
      alt="UUI project logo"
-     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg" />
+     style="marginTop: -24px;"
+     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg" 
+      />
 
 React-based components and accelerators library built by EPAM Systems.
+<br/>
+<br/>
+<br/>     
+
 
 ## Features
 
