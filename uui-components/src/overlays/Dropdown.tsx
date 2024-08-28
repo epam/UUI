@@ -58,6 +58,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         this.targetNode?.removeEventListener?.('mouseenter', this.handleMouseEnter);
         this.targetNode?.removeEventListener?.('mouseleave', this.handleMouseLeave);
         window.removeEventListener('click', this.clickOutsideHandler, true);
+        window.removeEventListener('mousemove', this.handleMouseMove);
         this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
     }
 
@@ -118,13 +119,19 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     isClientInArea(e: MouseEvent) {
         const areaPadding = 30;
-        const {
-            y, x, height, width,
-        } = this.bodyNode.getBoundingClientRect();
+        const rect = this.bodyNode?.getBoundingClientRect();
 
-        if (y && x && width && height) {
-            return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
+        if (rect) {
+            const {
+                y, x, height, width,
+            } = rect;
+
+            if (y && x && width && height) {
+                return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
+            }
         }
+
+        return false;
     }
 
     setOpenDropdownTimer() {

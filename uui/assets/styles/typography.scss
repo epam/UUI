@@ -1,3 +1,5 @@
+@use  '../../assets/styles/effects' as *;
+
 @mixin overflow-ellipsis() {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -81,6 +83,10 @@
         align-items: center;
         color: var(--uui-link);
         text-decoration: underline;
+
+        &:focus-visible {
+            @include focus-visible-effect(2px, 2px);
+        }
 
         &:visited {
             color: var(--uui-link-visited);
