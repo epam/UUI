@@ -23,18 +23,24 @@ React-based components and accelerators library built by EPAM Systems.
 
 Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/demo) and [documentation](https://uui.epam.com/documents?id=overview&mode=doc&skin=UUI4_promo).
 
-To add UUI to an existing project, read more [here](https://uui.epam.com/documents?id=gettingStarted).
 
 ## Getting started
+To add UUI into an existing project, check out our [Getting Started](https://uui.epam.com/documents?id=gettingStarted&theme=electric) guide.
 
-We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
+For the new projects we recommend to use our custom [CRA](https://github.com/epam/UUI/tree/main/templates/uui-cra-template), [Vite](https://github.com/epam/UUI/tree/main/templates/uui-vite-template) or [Next.js](https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template) app templates for quick start
+
 
 ```sh
+#CRA 
 npx create-react-app my-app --template @epam/uui
 
-# or
+# Vite
 
-yarn create react-app my-app --template @epam/uui
+npx -- degit@latest https://github.com/epam/UUI/templates/uui-vite-template my-app
+
+# Next.js
+
+npx create-next-app --example "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template" my-app
 ```
 ## Quick Try
 
