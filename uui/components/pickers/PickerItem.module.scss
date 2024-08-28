@@ -1,29 +1,7 @@
 .root {
     .multiline {
-        &.vertical-padding-24 {
-            padding-top: 3px;
-            padding-bottom: 3px;
-        }
-
-        &.vertical-padding-30 {
-            padding-top: 6px;
-            padding-bottom: 6px;
-        }
-
-        &.vertical-padding-36 {
-            padding-top: 6px;
-            padding-bottom: 6px;
-        }
-
-        &.vertical-padding-42 {
-            padding-top: 9px;
-            padding-bottom: 9px;
-        }
-
-        &.vertical-padding-48 {
-            padding-top: 9px;
-            padding-bottom: 9px;
-        }
+        padding-top: var(--uui-picker_item-vertical-padding);
+        padding-bottom: var(--uui-picker_item-vertical-padding);
 
         .text {
             padding: 0;

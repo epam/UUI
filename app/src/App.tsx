@@ -7,8 +7,8 @@ import { SandboxPage } from './sandbox/SandboxPage';
 import { PreviewPage } from './preview/previewPage';
 import { AppTheme } from './helpers/appTheme';
 import { Snackbar } from '@epam/uui';
-import { Modals, PortalRoot, useDocumentDir } from '@epam/uui-components';
-import { DragGhost } from '@epam/uui-core';
+import { Modals, PortalRoot } from '@epam/uui-components';
+import { DragGhost, useDocumentDir } from '@epam/uui-core';
 import { getCurrentTheme } from './helpers';
 import { DocExamplePage } from './docExample/docExamplePage';
 

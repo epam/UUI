@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDocumentDir } from './useDocumentDir';
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
@@ -16,20 +17,23 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
     const resizeObserver = React.useRef<ResizeObserver>();
 
+    const isRtl = useDocumentDir() === 'rtl';
+    const rtlMultiplier = isRtl ? -1 : 1;
+
     function shouldHaveRightShadow(rootRight: UseScrollShadowsProps['root']) {
         if (!rootRight) return false;
         const { scrollLeft, clientWidth, scrollWidth } = rootRight;
-        return scrollWidth - clientWidth - scrollLeft > 1 && !horizontal.right;
+        return scrollWidth - clientWidth - scrollLeft * rtlMultiplier > 1 && !horizontal.right;
     }
 
     function shouldNotHaveRightShadow(rootRight: UseScrollShadowsProps['root']) {
         const { scrollLeft, clientWidth, scrollWidth } = rootRight;
-        return scrollWidth - clientWidth - scrollLeft <= 1 && horizontal.right;
+        return scrollWidth - clientWidth - scrollLeft * rtlMultiplier <= 1 && horizontal.right;
     }
 
     function shouldHaveLeftShadow(rootLeft: UseScrollShadowsProps['root']) {
         if (!rootLeft) return false;
-        return rootLeft.scrollLeft > 0 && !horizontal.left;
+        return rootLeft.scrollLeft * rtlMultiplier > 0 && !horizontal.left;
     }
 
     function shouldNotHaveLeftShadow(rootLeft: UseScrollShadowsProps['root']) {
@@ -72,7 +76,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
         else if (shouldHaveBottomShadow(root)) setVertical({ ...vertical, bottom: true });
         else if (shouldNotHaveBottomShadow(root)) setVertical({ ...vertical, bottom: false });
     }, [
-        root, vertical, horizontal, setVertical, setHorizontal,
+        root, vertical, horizontal, setVertical, setHorizontal, isRtl,
     ]);
 
     React.useEffect(() => {

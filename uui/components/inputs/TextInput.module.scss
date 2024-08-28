@@ -121,7 +121,7 @@
     }
 
     &.mode-cell {
-        background-color: transparent;
+        background-color: transparent !important;
         border-color: transparent;
 
         :global(.-clickable) {

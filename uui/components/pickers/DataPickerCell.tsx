@@ -67,10 +67,11 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 props.cx,
                 'data-picker-cell',
                 'uui-size-' + (props.size || settings.sizes.defaults.dataPickerCell),
-                css[`padding-${props.padding || settings.sizes.dataPickerCell.padding.default}`],
-                css[`padding-left-${props.padding || settings.sizes.dataPickerCell.paddingLeft.default}`],
                 css[`align-widgets-${props.alignActions || 'top'}`],
             ] }
+            style={ {
+                '--uui-data_picker_cell-horizontal-padding': `${props.padding || settings.sizes.dataPickerCell.padding.default}px`,
+            } as React.CSSProperties }
         >
             <DataRowAddons size={ props.size || settings.sizes.defaults.dataPickerCell as DataRowAddonsProps<any, any>['size'] } { ...props } tabIndex={ -1 } />
             {getWrappedContent()}

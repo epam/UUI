@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { Person } from '@epam/uui-docs';
 import { FlexCell } from '@epam/uui-components';
 import { DataRowOptions, LazyDataSourceApi, useTableState, useLazyDataSource } from '@epam/uui-core';
-import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/promo';
+import { DataTable, FlexRow, Paginator, FlexSpacer, Button } from '@epam/uui';
 import { svc } from '../../services';
 import { getFilters } from './filters';
 import { personColumns } from './columns';
@@ -58,7 +58,7 @@ export function DemoTablePaged() {
         rowOptions,
         getId: ({ id }) => id,
         isFoldedByDefault: () => true,
-        backgroundReload: true, 
+        backgroundReload: true,
     }, []);
 
     const view = dataSource.useView(tableState, setTableState, {});
@@ -81,7 +81,7 @@ export function DemoTablePaged() {
                     allowColumnsResizing
                     { ...listProps }
                 />
-                <FlexRow size="36" padding="12" background="gray5">
+                <FlexRow size="36" padding="12" background="surface-main">
                     <FlexCell width="auto">
                         <Button caption="Apply filter" onClick={ applyFilter } cx={ css.apply } />
                     </FlexCell>
@@ -90,7 +90,6 @@ export function DemoTablePaged() {
                         value={ tableState.page }
                         onValueChange={ (page: number) => setTableState({ ...tableState, page, scrollTo: { index: 0 } }) }
                         totalPages={ Math.ceil(listProps.totalCount / tableState.pageSize) }
-                        size="30"
                     />
                     <FlexSpacer />
                 </FlexRow>

@@ -15,6 +15,11 @@ interface TextMods {
      * @default 'primary'
      */
     color?: TextColor;
+    /**
+     * Defines text size
+     * @default '36'
+     */
+    size?: TextSize;
 }
 
 export interface TextModsOverride {}
@@ -30,11 +35,6 @@ export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
      * @default 'normal'
      */
     fontStyle?: TextFontStyle;
-    /**
-     * Defines text size
-     * @default '36'
-     */
-    size?: TextSize;
 }
 
 export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}

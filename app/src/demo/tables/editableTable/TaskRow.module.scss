@@ -5,7 +5,7 @@
     height: 100%;
     width: 100%;
     user-select: none;
-    border-right: 1px solid var(--uui-dt-border);
+    border-inline-end: 1px solid var(--uui-dt-border);
     background-color: var(--uui-dt-cell-bg);
 
 }
@@ -13,7 +13,7 @@
 .layer {
     position: absolute;
     top: 0;
-    left: 0;
+    inset-inline-start: 0;
     width: 100%;
     height: 100%;
     display: flex;

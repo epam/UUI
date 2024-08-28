@@ -3,7 +3,7 @@ import { TabButton, TabButtonProps } from './TabButton';
 import css from './VerticalTabButton.module.scss';
 
 function applyVerticalTabButtonMods() {
-    return [css.root];
+    return [css.root, 'uui-vertical-tab-button'];
 }
 
 /** Represents the properties of a VerticalTabButton component. */

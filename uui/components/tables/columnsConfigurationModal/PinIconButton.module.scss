@@ -5,12 +5,10 @@
 }
 
 .pin-toggler-icon {
-    height: 30px;
-
     :global(.uui-icon) {
         > svg {
-            width: 18px;
-            height: 18px;
+            width: var(--uui-icon-size);
+            height: var(--uui-icon-size);
         }
     }
 }

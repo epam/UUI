@@ -20,18 +20,45 @@ export interface HeaderCellContentProps extends DndActorRenderParams {
     isResizing: boolean;
 }
 
+type Dir = 'rtl' | 'ltr';
+
 interface DataTableHeaderCellState {
     isResizing: boolean;
     resizeStartX?: number;
     originalWidth?: number;
+    dir: Dir;
 }
 
-export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps> {
-    state: DataTableHeaderCellState = {
-        isResizing: false,
-    };
+export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps, DataTableHeaderCellState> {
+    observer: MutationObserver;
+
+    constructor(props: DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps) {
+        super(props);
+        this.state = {
+            dir: window?.document.dir as Dir,
+            isResizing: false,
+        };
+
+        this.observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
+                    this.setState({ dir: window?.document.dir as Dir });
+                }
+            });
+        });
+    }
+
+    componentDidMount() {
+        this.observer.observe(document?.documentElement, { attributes: true });
+    }
+
+    componentWillUnmount() {
+        this.observer.disconnect();
+    }
 
     cellRef = React.createRef<HTMLElement>();
+    isRtl = this.state?.dir === 'rtl';
+
     toggleSort = (e: React.MouseEvent) => {
         if (isEventTargetInsideClickable(e) || !this.props.column.isSortable) return;
 
@@ -78,9 +105,11 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             // How much mouse was moved after resize is started
             let widthDelta = e.clientX - this.state.resizeStartX;
 
-            // Right-pinned columns have resize handle at the left, instead of right.
-            // So moving left should increase column width, instead of decreasing as usual, and vice versa.
-            widthDelta = this.props.column.fix === 'right' ? -widthDelta : widthDelta;
+            // In RTL mode, the general behavior of widthDelta needs to be inverted.
+            // Except for right-fixed columns, where behavior remains as in LTR mode.
+            if (this.isRtl) {
+                widthDelta = -widthDelta; // Invert direction for RTL
+            }
 
             const newWidth = this.state.originalWidth + widthDelta;
             const defaultMinWidth = this.props.isFirstColumn ? 78 : 54;
