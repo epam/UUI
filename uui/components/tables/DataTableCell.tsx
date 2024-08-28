@@ -20,7 +20,7 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
             <Text key="t" size={ settings.sizes.dataTableCell.text[props.size] as TextProps['size'] }>
-                <TextPlaceholder />
+                <TextPlaceholder isNotAnimated />
             </Text>
         ));
 
