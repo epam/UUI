@@ -3,11 +3,15 @@
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
 <div
   aria-sort="none"
-  className="uui-dt-vars cell uui-table-header-cell cell size-36 first-column-24 pinned-left"
+  className="uui-dt-vars root uui-table-header-cell root uui-size-36 uui-dt-header-first-column pinned-left"
   onClick={[Function]}
   role="columnheader"
   style={
     Object {
+      "--uui-dt-header-cell-icon-size": "18px",
+      "--uui-dt-header-cell-padding-end": "12px",
+      "--uui-dt-header-cell-padding-start": "24px",
+      "--uui-dt-header-cell-resizing-marker-width": "12px",
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,
@@ -21,7 +25,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     className="captionWrapper align-undefined uui-table-header-caption-wrapper"
   >
     <div
-      className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-30 font-size-14 v-padding-0 caption font-size-14 uui-table-header-caption container"
+      className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-30 font-size-14 v-padding-0 caption uui-table-header-caption container"
     >
       Test
     </div>

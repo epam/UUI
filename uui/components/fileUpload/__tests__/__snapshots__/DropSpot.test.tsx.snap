@@ -12,7 +12,7 @@ exports[`DropSpot should be rendered correctly 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="uui-flex-row root size-24 container align-items-center"
+      className="uui-flex-row root uui-size-24 container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -74,7 +74,7 @@ exports[`DropSpot should be rendered correctly with props 1`] = `
     onDrop={[Function]}
   >
     <div
-      className="uui-flex-row root size-24 container align-items-center"
+      className="uui-flex-row root uui-size-24 container align-items-center"
       style={
         Object {
           "columnGap": undefined,

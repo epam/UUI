@@ -35,7 +35,7 @@ export function Paginator(props: PaginatorProps) {
                 if (page.type === 'spacer') {
                     return (
                         <Button
-                            cx={ cx(css.spacer) }
+                            cx={ cx(css.spacer, css.page) }
                             size={ props.size || settings.sizes.defaults.paginator as ButtonProps['size'] }
                             key={ `${index}_spacer` }
                             caption="..."
@@ -48,7 +48,7 @@ export function Paginator(props: PaginatorProps) {
                 } else {
                     return (
                         <Button
-                            cx={ cx(css[`mode-${!page.isActive && 'ghost'}`]) }
+                            cx={ cx(css[`mode-${!page.isActive && 'ghost'}`], css.page) }
                             size={ props.size || settings.sizes.defaults.paginator as ButtonProps['size'] }
                             key={ page.pageNumber }
                             caption={ page.pageNumber }
