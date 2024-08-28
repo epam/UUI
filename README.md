@@ -1,9 +1,8 @@
 # UUI
-<img align="right" width="120" height="120"
+[<img align="right" width="120" height="120"
      alt="UUI project logo"
-     style="marginTop: -24px;"
      src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg" 
-      />
+      />](https://uui.epam.com/)
 
 React-based components and accelerators library built by EPAM Systems.
 <br/>
@@ -37,7 +36,7 @@ npx create-react-app my-app --template @epam/uui
 
 yarn create react-app my-app --template @epam/uui
 ```
-## Quick start
+## Quick Try
 
 Try our pre-configured template on
     <a href="https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx" target="_blank">
@@ -47,7 +46,7 @@ Try our pre-configured template on
             height="24"
             alt="Codesandbox"
             align="center"
-            src="https://camo.githubusercontent.com/ccf186cd931b6a61cf49bd0a3aeacb2d73be7e91210453571bdcf9f5b1057173/687474703a2f2f63646e2e656d6265642e6c792f70726f7669646572732f6c6f676f732f636f646573616e64626f782e706e67"
+            src="https://github.com/user-attachments/assets/c896f380-d27f-4ebe-a1e8-b41d61cd8f52"
         />
     </a>
 
