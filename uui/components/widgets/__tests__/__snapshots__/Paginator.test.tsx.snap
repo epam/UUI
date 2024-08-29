@@ -23,7 +23,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -35,7 +35,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -47,7 +47,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -59,7 +59,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -71,7 +71,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -83,7 +83,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer"
+    className="uui-button-box uui-enabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer page"
     tabIndex={-1}
     type="button"
   >
@@ -94,7 +94,7 @@ exports[`Paginator should be rendered correctly 1`] = `
     </div>
   </button>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     onClick={[Function]}
     tabIndex={0}
     type="button"
@@ -147,7 +147,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     tabIndex={-1}
     type="button"
   >
@@ -159,7 +159,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     tabIndex={-1}
     type="button"
   >
@@ -171,7 +171,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     tabIndex={-1}
     type="button"
   >
@@ -183,7 +183,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     tabIndex={-1}
     type="button"
   >
@@ -195,7 +195,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     tabIndex={-1}
     type="button"
   >
@@ -207,7 +207,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-secondary uui-size-24 spacer page"
     tabIndex={-1}
     type="button"
   >
@@ -219,7 +219,7 @@ exports[`Paginator should be rendered correctly when disabled 1`] = `
   </button>
   <button
     aria-disabled={true}
-    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost"
+    className="uui-button-box uui-disabled container root uui-button uui-fill-ghost uui-color-primary uui-size-24 mode-ghost page"
     tabIndex={-1}
     type="button"
   >
