@@ -23,10 +23,10 @@ export class PaginatorDoc extends BaseDocsBlock {
         name: 'Paginator',
         contexts: [TDocContext.Default, TDocContext.PagePanel],
         bySkin: {
-            [TSkin.UUI]: { type: '@epam/uui-components:PaginatorProps', component: uui.Paginator },
-            [TSkin.Loveship]: { type: '@epam/uui-components:PaginatorProps', component: loveship.Paginator },
-            [TSkin.Promo]: { type: '@epam/uui-components:PaginatorProps', component: promo.Paginator },
-            [TSkin.Electric]: { type: '@epam/uui-components:PaginatorProps', component: electric.Paginator },
+            [TSkin.UUI]: { type: '@epam/uui:PaginatorProps', component: uui.Paginator },
+            [TSkin.Loveship]: { type: '@epam/uui:PaginatorProps', component: loveship.Paginator },
+            [TSkin.Promo]: { type: '@epam/uui:PaginatorProps', component: promo.Paginator },
+            [TSkin.Electric]: { type: '@epam/uui:PaginatorProps', component: electric.Paginator },
         },
         doc: (doc: DocBuilder<uui.PaginatorProps>) => {
             doc.merge('totalPages', { examples: [5, 8, { value: 10, isDefault: true }, 100, 1000] });
