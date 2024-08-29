@@ -1,5 +1,5 @@
 {
- "version": "5.8.4",
+ "version": "5.9.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -7497,6 +7497,10 @@
       "     * Drag'n'drop marker event handlers.",
       "     */",
       "    eventHandlers?: DndEventHandlers;",
+      "    /**",
+      "     * Css properties to apply to the cell.",
+      "     */",
+      "    style?: React.CSSProperties;",
       "}"
      ]
     },
@@ -7595,6 +7599,19 @@
       },
       "typeValue": {
        "raw": "DndEventHandlers"
+      },
+      "required": false
+     },
+     {
+      "uid": "style",
+      "name": "style",
+      "comment": {
+       "raw": [
+        "Css properties to apply to the cell."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.CSSProperties"
       },
       "required": false
      },
@@ -49061,8 +49078,6 @@
      "raw": "PaginatorProps",
      "print": [
       "interface PaginatorProps extends IControlled<number>, IAnalyticableOnChange<number>, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
-      "    /** Defines component size */",
-      "    size: '24' | '30';",
       "    /** Total number of pages */",
       "    totalPages: number;",
       "    /** Override default rendering, keeping the component behavior */",
@@ -49071,26 +49086,6 @@
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30"
-       ]
-      },
-      "required": true
-     },
      {
       "uid": "totalPages",
       "name": "totalPages",
@@ -49226,8 +49221,6 @@
      "raw": "PaginatorRenderParams",
      "print": [
       "interface PaginatorRenderParams extends IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
-      "    /** Defines component size */",
-      "    size: '24' | '30';",
       "    /** Array of pages that should be rendered */",
       "    pages: PaginatorItem[];",
       "    /** Call to go to the next page */",
@@ -49242,26 +49235,6 @@
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30"
-       ]
-      },
-      "required": true
-     },
      {
       "uid": "pages",
       "name": "pages",
@@ -69083,7 +69056,7 @@
       "     * Defines component size.",
       "     * @default '24'",
       "     */",
-      "    size?: '24' | '18' | '12';",
+      "    size?: '12' | '18' | '24';",
       "};"
      ]
     },
@@ -69701,6 +69674,170 @@
       "}"
      ]
     }
+   }
+  },
+  "@epam/uui:DataPickerFooterProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataPickerFooterProps",
+     "nameFull": "DataPickerFooterProps<TItem, TId>"
+    },
+    "src": "uui/components/pickers/DataPickerFooter.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DataPickerFooterProps<TItem, TId>",
+     "print": [
+      "type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPickerFooterModsOverride> & PickerFooterProps<TItem, TId> & {",
+      "    selectionMode: 'single' | 'multi';",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "view",
+      "name": "view",
+      "comment": {
+       "raw": [
+        "Instance of picker DataSource view"
+       ]
+      },
+      "typeValue": {
+       "raw": "IDataSourceView<TItem, TId, any>"
+      },
+      "typeValueRef": "@epam/uui-core:IDataSourceView",
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": true
+     },
+     {
+      "uid": "showSelected",
+      "name": "showSelected",
+      "comment": {
+       "raw": [
+        "IEditable interface for the 'Show only selected' toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "IEditable<boolean>"
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": true
+     },
+     {
+      "uid": "clearSelection",
+      "name": "clearSelection",
+      "comment": {
+       "raw": [
+        "Call to clear picker selection"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": true
+     },
+     {
+      "uid": "selectionMode",
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'single' | 'multi'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "single",
+        "multi"
+       ]
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": true
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "If true, 'Clear' button will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": false
+     },
+     {
+      "uid": "selection",
+      "name": "selection",
+      "comment": {
+       "raw": [
+        "Current selected items"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem | TId | TId[] | TItem[]"
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": true
+     },
+     {
+      "uid": "search",
+      "name": "search",
+      "comment": {
+       "raw": [
+        "Defines a search value"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui:DataPickerRowModsOverride": {
@@ -70783,7 +70920,7 @@
     "typeValue": {
      "raw": "DataTableCellMods",
      "print": [
-      "interface DataTableCellMods extends TableSizesAndPositionMods {",
+      "interface DataTableCellMods extends Omit<TableSizesAndPositionMods, 'padding'> {",
       "    border?: boolean;",
       "    /**",
       "     * Defines table columns gap size",
@@ -70850,23 +70987,6 @@
       "required": false
      },
      {
-      "uid": "padding",
-      "name": "padding",
-      "typeValue": {
-       "raw": "'0' | '12' | '24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "0",
-        "12",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TableSizesAndPositionMods",
-      "required": false
-     },
-     {
       "uid": "alignActions",
       "name": "alignActions",
       "typeValue": {
@@ -70901,13 +71021,18 @@
     "typeValue": {
      "raw": "DataTableHeaderCellMods",
      "print": [
-      "interface DataTableHeaderCellMods extends BaseRowMods {",
+      "interface DataTableHeaderCellMods {",
       "    textCase?: 'upper' | 'normal';",
       "    /**",
       "     * Defines table columns gap size",
       "     * @default '24'",
       "     * */",
       "    columnsGap?: '12' | '24';",
+      "    /**",
+      "     * Defines table header cell size",
+      "     * @default '36'",
+      "     */",
+      "    size?: DataTableMods['headerSize'];",
       "}"
      ]
     },
@@ -70954,25 +71079,51 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines table header cell size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+       "raw": "'36' | '48' | '60'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "24",
-        "30",
         "36",
-        "42",
         "48",
         "60"
        ]
       },
-      "from": "@epam/uui:BaseRowMods",
       "required": false
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui:DataTableHeaderCellModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataTableHeaderCellModsOverride",
+     "nameFull": "DataTableHeaderCellModsOverride"
+    },
+    "src": "uui/components/tables/DataTableHeaderCell.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataTableHeaderCellModsOverride",
+     "print": [
+      "interface DataTableHeaderCellModsOverride {",
+      "}"
+     ]
+    }
    }
   },
   "@epam/uui:DataTableHeaderRowMods": {
@@ -70990,13 +71141,18 @@
     "typeValue": {
      "raw": "DataTableHeaderRowMods",
      "print": [
-      "interface DataTableHeaderRowMods extends BaseRowMods {",
+      "interface DataTableHeaderRowMods {",
       "    textCase?: 'upper' | 'normal';",
       "    /**",
       "     * Defines table columns gap size",
       "     * @default '24'",
       "     * */",
       "    columnsGap?: '12' | '24';",
+      "    /**",
+      "     * Defines table header row size",
+      "     * @default '36'",
+      "     */",
+      "    size?: DataTableMods['headerSize'];",
       "}"
      ]
     },
@@ -71043,21 +71199,26 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines table header row size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+       "raw": "'36' | '48' | '60'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "24",
-        "30",
         "36",
-        "42",
         "48",
         "60"
        ]
       },
-      "from": "@epam/uui:BaseRowMods",
       "required": false
      }
     ],
@@ -71354,21 +71515,27 @@
      {
       "uid": "size",
       "name": "size",
+      "comment": {
+       "raw": [
+        "Defines table header row size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+       "raw": "'36' | '48' | '60'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "24",
-        "30",
         "36",
-        "42",
         "48",
         "60"
        ]
       },
-      "from": "@epam/uui:BaseRowMods",
+      "from": "@epam/uui:DataTableHeaderRowMods",
       "required": false
      }
     ],
@@ -71391,7 +71558,10 @@
      "raw": "DataTableMods",
      "print": [
       "interface DataTableMods {",
-      "    /** Min height of table rows and header */",
+      "    /**",
+      "     *  Min height of table rows and header",
+      "     *  @default '36'",
+      "     * */",
       "    size?: ControlSize;",
       "    /** Pass true, to turn row bottom border */",
       "    border?: boolean;",
@@ -71399,6 +71569,16 @@
       "     * @default 'normal'",
       "     * */",
       "    headerTextCase?: 'upper' | 'normal';",
+      "    /**",
+      "     * Defines table header size",
+      "     * @default '36'",
+      "     * */",
+      "    headerSize?: '36' | '48' | '60';",
+      "    /**",
+      "     * Defines table columns gap size",
+      "     * @default '24'",
+      "     * */",
+      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -71408,8 +71588,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Min height of table rows and header"
-       ]
+        "Min height of table rows and header",
+        "  @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -71465,9 +71649,79 @@
        ]
       },
       "required": false
+     },
+     {
+      "uid": "headerSize",
+      "name": "headerSize",
+      "comment": {
+       "raw": [
+        "Defines table header size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "36",
+        "48",
+        "60"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "columnsGap",
+      "name": "columnsGap",
+      "comment": {
+       "raw": [
+        "Defines table columns gap size",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "24"
+       ]
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui:DataTableModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataTableModsOverride",
+     "nameFull": "DataTableModsOverride"
+    },
+    "src": "uui/components/tables/types.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataTableModsOverride",
+     "print": [
+      "interface DataTableModsOverride {",
+      "}"
+     ]
+    }
    }
   },
   "@epam/uui:DataTableProps": {
@@ -71522,16 +71776,6 @@
       "     * Enables collapse/expand all functionality.",
       "     * */",
       "    showFoldAll?: boolean;",
-      "    /**",
-      "     * Defines table header size",
-      "     * @default '36'",
-      "     * */",
-      "    headerSize?: '36' | '48' | '60';",
-      "    /**",
-      "     * Defines table columns gap size",
-      "     * @default '24'",
-      "     * */",
-      "    columnsGap?: '12' | '24';",
       "}"
      ]
     },
@@ -71699,55 +71943,6 @@
       },
       "editor": {
        "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "headerSize",
-      "name": "headerSize",
-      "comment": {
-       "raw": [
-        "Defines table header size",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "36",
-        "48",
-        "60"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "columnsGap",
-      "name": "columnsGap",
-      "comment": {
-       "raw": [
-        "Defines table columns gap size",
-        " @default '24'"
-       ],
-       "tags": {
-        "@default": "24"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "24"
-       ]
       },
       "required": false
      },
@@ -72032,7 +72227,7 @@
      "raw": "DataTableRowMods",
      "print": [
       "interface DataTableRowMods extends TableSizesAndPositionMods {",
-      "    borderBottom?: any;",
+      "    borderBottom?: boolean;",
       "    /**",
       "     * Defines columns gap size",
       "     * @default '24'",
@@ -72046,7 +72241,10 @@
       "uid": "borderBottom",
       "name": "borderBottom",
       "typeValue": {
-       "raw": "any"
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -72955,7 +73153,10 @@
       "uid": "borderBottom",
       "name": "borderBottom",
       "typeValue": {
-       "raw": "any"
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui:DataTableRowMods",
       "required": false
@@ -82583,6 +82784,193 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:PaginatorModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PaginatorModsOverride",
+     "nameFull": "PaginatorModsOverride"
+    },
+    "src": "uui/components/widgets/Paginator.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PaginatorModsOverride",
+     "print": [
+      "interface PaginatorModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
+  "@epam/uui:PaginatorProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PaginatorProps",
+     "nameFull": "PaginatorProps"
+    },
+    "src": "uui/components/widgets/Paginator.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PaginatorProps",
+     "print": [
+      "interface PaginatorProps extends UuiPaginatorProps, Overwrite<PaginatorMods, PaginatorModsOverride> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "totalPages",
+      "name": "totalPages",
+      "comment": {
+       "raw": [
+        "Total number of pages"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PaginatorProps",
+      "required": true
+     },
+     {
+      "uid": "render",
+      "name": "render",
+      "comment": {
+       "raw": [
+        "Override default rendering, keeping the component behavior"
+       ]
+      },
+      "typeValue": {
+       "raw": "(params: PaginatorRenderParams) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:PaginatorProps",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: number) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: number | null, oldValue: number | null) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size",
+        "  @default '30'"
+       ],
+       "tags": {
+        "@default": "30"
+       }
+      },
+      "typeValue": {
+       "raw": "'24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30"
+       ]
+      },
+      "from": "@epam/uui:PaginatorMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:PanelProps": {
    "summary": {
     "module": "@epam/uui",
@@ -91315,6 +91703,47 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:Settings": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "Settings",
+     "nameFull": "Settings"
+    },
+    "src": "uui/settings.types.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "Settings",
+     "print": [
+      "interface Settings {",
+      "    /**",
+      "     * setting sizes for complex and compound components to support 'Size theming'",
+      "     */",
+      "    sizes: SizesSettings;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "sizes",
+      "name": "sizes",
+      "comment": {
+       "raw": [
+        "setting sizes for complex and compound components to support 'Size theming'"
+       ]
+      },
+      "typeValue": {
+       "raw": "SizesSettings"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:SliderProps": {
    "summary": {
     "module": "@epam/uui",
@@ -92087,6 +92516,23 @@
       "required": false
      },
      {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
       "uid": "isReadonly",
       "name": "isReadonly",
       "comment": {
@@ -92119,23 +92565,6 @@
       },
       "from": "@epam/uui-core:ICanBeRequired",
       "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
      },
      {
       "uid": "onValueChange",
@@ -94001,11 +94430,6 @@
       "     * @default 'normal'",
       "     */",
       "    fontStyle?: TextFontStyle;",
-      "    /**",
-      "     * Defines text size",
-      "     * @default '36'",
-      "     */",
-      "    size?: TextSize;",
       "}"
      ]
     },
@@ -94058,35 +94482,6 @@
        "options": [
         "normal",
         "italic"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines text size",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
        ]
       },
       "required": false
@@ -95113,36 +95508,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines text size",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:TextCoreProps",
-      "required": false
-     },
-     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -95307,6 +95672,36 @@
         "white",
         "tertiary",
         "disabled"
+       ]
+      },
+      "from": "@epam/uui:TextMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines text size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
        ]
       },
       "from": "@epam/uui:TextMods",
@@ -97620,17 +98015,6 @@
     "exported": false
    }
   },
-  "@epam/uui:BaseRowMods": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "BaseRowMods",
-     "nameFull": "BaseRowMods"
-    },
-    "src": "uui/components/tables/types.ts",
-    "exported": false
-   }
-  },
   "@epam/uui:BaseVirtualListProps": {
    "summary": {
     "module": "@epam/uui",
@@ -97853,6 +98237,17 @@
      "nameFull": "NumericInputMods"
     },
     "src": "uui/components/inputs/NumericInput.tsx",
+    "exported": false
+   }
+  },
+  "@epam/uui:PaginatorMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "PaginatorMods",
+     "nameFull": "PaginatorMods"
+    },
+    "src": "uui/components/widgets/Paginator.tsx",
     "exported": false
    }
   },
@@ -102256,36 +102651,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines text size",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:TextCoreProps",
-      "required": false
-     },
-     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -102459,6 +102824,36 @@
         "gray80",
         "tertiary",
         "disabled"
+       ]
+      },
+      "from": "@epam/promo:TextMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines text size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
        ]
       },
       "from": "@epam/promo:TextMods",
@@ -109549,36 +109944,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines text size",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "none"
-       ]
-      },
-      "from": "@epam/uui:TextCoreProps",
-      "required": false
-     },
-     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -109756,6 +110121,36 @@
         "night900",
         "tertiary",
         "disabled"
+       ]
+      },
+      "from": "@epam/loveship:TextMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines text size",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "none"
        ]
       },
       "from": "@epam/loveship:TextMods",

@@ -263,6 +263,9 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
      * Drag'n'drop marker event handlers.
      */
     eventHandlers?: DndEventHandlers;
+    /**
+     * Css properties to apply to the cell.
+     */
     style?: React.CSSProperties;
 }
 

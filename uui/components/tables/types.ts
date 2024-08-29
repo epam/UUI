@@ -57,6 +57,10 @@ export interface DataTableHeaderCellMods {
      * @default '24'
      * */
     columnsGap?: '12' | '24';
+    /**
+     * Defines table header cell size
+     * @default '36'
+     */
     size?: DataTableMods['headerSize'];
 }
 
@@ -67,5 +71,9 @@ export interface DataTableHeaderRowMods {
      * @default '24'
      * */
     columnsGap?: '12' | '24';
+    /**
+     * Defines table header row size
+     * @default '36'
+     */
     size?: DataTableMods['headerSize'];
 }
