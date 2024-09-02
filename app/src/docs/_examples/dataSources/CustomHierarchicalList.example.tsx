@@ -4,14 +4,12 @@ import {
     useArrayDataSource,
     uuiMarkers,
     uuiElement,
+    uuiMod,
 } from '@epam/uui-core';
-import {} from '@epam/promo';
 import { ReactComponent as FoldingArrow } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
-import { DataRowProps, DropdownBodyProps } from '@epam/uui-core';
-import {
-    DropdownMenuBody, DropdownMenuButton, Dropdown, IconButton,
-    Badge, Text, Panel, VirtualList, TextPlaceholder, IconContainer } from '@epam/uui';
-import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
+import css from './CustomHierarchicalList.module.scss';
+import { Text, Panel, VirtualList, TextPlaceholder, IconContainer } from '@epam/uui';
+import classNames from 'classnames';
 
 interface Task {
     id: number;
@@ -21,9 +19,9 @@ interface Task {
 }
 
 const tasks: Task[] = [
-    { id: 1, name: 'Infrastructure', tasksCount: 9 },
-    { id: 101, name: 'Devops', parentId: 1, tasksCount: 5 },
-    { id: 102, name: 'Frontend', parentId: 1, tasksCount: 2 },
+    { id: 1, name: 'Infrastructure' },
+    { id: 101, name: 'Devops', parentId: 1 },
+    { id: 102, name: 'Frontend', parentId: 1 },
     { id: 10101, name: 'GIT Repository init', parentId: 101 },
     { id: 10103, name: 'Test instances - Dev, QA, UAT', parentId: 101 },
     { id: 10102, name: 'CI - build code, publish artifacts', parentId: 101 },
@@ -70,39 +68,13 @@ const tasks: Task[] = [
     { id: 202, name: 'Integration with API', parentId: 2 },
     { id: 203, name: 'Routing', parentId: 2 },
     { id: 204, name: 'Localization', parentId: 2 },
-    { id: 2, name: 'Shared services', tasksCount: 4 },
-    { id: 3, name: 'UUI Customization', tasksCount: 4 },
-    { id: 4, name: 'Shared Components', tasksCount: 14 },
-    { id: 5, name: 'Pages Template Components', tasksCount: 6 },
-    { id: 6, name: 'Pages', tasksCount: 12 },
-    { id: 607, name: 'Admin area', parentId: 6, tasksCount: 5 },
+    { id: 2, name: 'Shared services' },
+    { id: 3, name: 'UUI Customization' },
+    { id: 4, name: 'Shared Components' },
+    { id: 5, name: 'Pages Template Components' },
+    { id: 6, name: 'Pages' },
+    { id: 607, name: 'Admin area', parentId: 6 },
 ];
-
-export interface RowKebabProps {
-    row: DataRowProps<Task, number>;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function RowKebabButton(props: RowKebabProps) {
-    const renderBody = React.useCallback((props: DropdownBodyProps) => {
-        return (
-            <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px' } } }>
-                <DropdownMenuButton
-                    caption="Add Task above"
-                    onClick={ () => {} }
-                />
-                <DropdownMenuButton
-                    caption="Add Task below"
-                    onClick={ () => {} }
-                />
-            </DropdownMenuBody>
-        );
-    }, []);
-
-    return (
-        <Dropdown renderBody={ renderBody } renderTarget={ (props) => <IconButton icon={ MoreIcon } { ...props } /> } />
-    );
-}
 
 export default function CitiesTable() {
     const [listState, setListState] = useState<DataSourceState>({
@@ -124,7 +96,7 @@ export default function CitiesTable() {
     const view = tasksDs.useView(listState, setListState, {
         getRowOptions: useCallback(
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            (item) => ({}), // can set row options here
+            (item) => ({ isSelectable: true }), // can set row options here
             [],
         ),
     });
@@ -147,14 +119,14 @@ export default function CitiesTable() {
         return (
             <div
                 key={ row.id }
-                style={ { 
-                    display: 'flex',
-                    flexDirection: 'row',
-                    width: '100%',
-                    minWidth: '100px',
-                    margin: '0',
-                    minHeight: '30px',
-                } }
+                className={
+                    classNames(
+                        uuiMarkers.clickable,
+                        row.id === listState.selectedId ? uuiMod.selected : undefined,
+                        css.row,
+                    )
+                }
+                onClick={ row.isFoldable ? (() => row.onFold(row)) : (() => row.onSelect(row)) }
             > 
                 {
                     row.indent > 0 && (
@@ -180,20 +152,6 @@ export default function CitiesTable() {
                     )
                 }
                 {content}
-                <div style={ { 
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    flexGrow: 1,
-                    flexShrink: 0,
-                    paddingInlineEnd: '12px',
-                    boxSizing: 'content-box',
-                    alignItems: 'center',
-                } }
-                >
-                    { 'tasksCount' in row.value
-                        ? <Badge size="18" color="neutral" fill="solid" caption={ row.value.tasksCount } />
-                        : <RowKebabButton row={ row } /> }
-                </div>
             </div>
         );
     });
