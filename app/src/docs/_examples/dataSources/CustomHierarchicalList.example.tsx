@@ -10,7 +10,7 @@ import { ReactComponent as FoldingArrow } from '@epam/assets/icons/navigation-ch
 import { DataRowProps, DropdownBodyProps } from '@epam/uui-core';
 import {
     DropdownMenuBody, DropdownMenuButton, Dropdown, IconButton,
-    Badge, Text, Panel, VirtualList, TextPlaceholder, IconContainer, } from '@epam/uui';
+    Badge, Text, Panel, VirtualList, TextPlaceholder, IconContainer } from '@epam/uui';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 
 interface Task {
@@ -22,8 +22,8 @@ interface Task {
 
 const tasks: Task[] = [
     { id: 1, name: 'Infrastructure', tasksCount: 9 },
-    { id: 101, name: 'Devops', parentId: 1 },
-    { id: 102, name: 'Frontend', parentId: 1 },
+    { id: 101, name: 'Devops', parentId: 1, tasksCount: 5 },
+    { id: 102, name: 'Frontend', parentId: 1, tasksCount: 2 },
     { id: 10101, name: 'GIT Repository init', parentId: 101 },
     { id: 10103, name: 'Test instances - Dev, QA, UAT', parentId: 101 },
     { id: 10102, name: 'CI - build code, publish artifacts', parentId: 101 },
@@ -75,14 +75,15 @@ const tasks: Task[] = [
     { id: 4, name: 'Shared Components', tasksCount: 14 },
     { id: 5, name: 'Pages Template Components', tasksCount: 6 },
     { id: 6, name: 'Pages', tasksCount: 12 },
-    { id: 607, name: 'Admin area', parentId: 6 },
+    { id: 607, name: 'Admin area', parentId: 6, tasksCount: 5 },
 ];
 
 export interface RowKebabProps {
     row: DataRowProps<Task, number>;
 }
 
-export function RowKebabButton({ row }: RowKebabProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function RowKebabButton(props: RowKebabProps) {
     const renderBody = React.useCallback((props: DropdownBodyProps) => {
         return (
             <DropdownMenuBody { ...props } rawProps={ { style: { maxWidth: '250px' } } }>
@@ -122,6 +123,7 @@ export default function CitiesTable() {
     // Create View according to your tableState and options
     const view = tasksDs.useView(listState, setListState, {
         getRowOptions: useCallback(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             (item) => ({}), // can set row options here
             [],
         ),
