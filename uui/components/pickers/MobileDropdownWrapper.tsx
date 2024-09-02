@@ -30,6 +30,7 @@ export const MobileDropdownWrapper: React.FC<IMobileDropdownWrapperProps> = (pro
             maxWidth={ maxWidth }
             maxHeight={ maxHeight }
             cx={ [css.container, props.cx] }
+            autoFocus={ true }
         >
             {isMobileView && <DataPickerHeader title={ props.title } close={ props.onClose } />}
 
