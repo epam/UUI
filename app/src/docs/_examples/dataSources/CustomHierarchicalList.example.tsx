@@ -128,7 +128,6 @@ export default function CitiesTable() {
             [],
         ),
     });
-
     const rows = view.getVisibleRows().map((row) => {
         let content: React.ReactNode;
         if (row.isLoading) {
@@ -201,6 +200,7 @@ export default function CitiesTable() {
 
     return (
         <Panel
+            shadow
             style={ {
                 height: '300px',
                 width: '400px',

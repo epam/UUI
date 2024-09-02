@@ -1,0 +1,38 @@
+[
+  {
+    "children": [
+      {
+        "text": "You can build a custom component based on the "
+      },
+      {
+        "text": "DataSources",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". To achieve this goal, define the view and retrieve its rows by calling "
+      },
+      {
+        "text": "getVisibleRows",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". After that, render the rows using custom row components and pass them to the "
+      },
+      {
+        "text": "VirtualList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ],
+    "type": "paragraph"
+  }
+]
