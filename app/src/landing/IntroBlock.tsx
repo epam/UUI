@@ -159,7 +159,7 @@ export function IntroBlock() {
                             EPAM UUI is a comprehensive suite of components, all-in-one solutions, facilities,
                             and guidelines to build your apps on top of Figma, React and TypeScript
                         </Text>
-                        <FlexRow columnGap="12" cx={ css.infoBlockWrapper }>
+                        <FlexRow columnGap="24" cx={ css.infoBlockWrapper }>
                             <Anchor cx={ css.infoBlock } href="/documents?id=gettingStartedForDesigners&category=forDesigners&mode=doc">
                                 <IconContainer icon={ BrushIcon } cx={ css.infoStartIcon } />
                                 <FlexCell grow={ 1 }>

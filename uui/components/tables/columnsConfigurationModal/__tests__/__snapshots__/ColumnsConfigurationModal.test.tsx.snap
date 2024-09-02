@@ -454,7 +454,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           />
         </div>
         <div
-          className="uui-caption"
+          className="uui-caption uui-link-button-weight-semibold"
         >
           Reset to Default
         </div>

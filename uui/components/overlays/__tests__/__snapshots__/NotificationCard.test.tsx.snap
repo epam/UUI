@@ -11,7 +11,7 @@ exports[`ClearNotification should be rendered correctly 1`] = `
     type="button"
   >
     <div
-      className="uui-caption"
+      className="uui-caption uui-link-button-weight-semibold"
     >
       CLOSE ALL NOTIFICATIONS
     </div>

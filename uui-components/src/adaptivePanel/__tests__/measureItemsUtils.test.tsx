@@ -78,6 +78,32 @@ describe('measureItemsUtils: measureAdaptiveItems', () => {
         });
     });
 
+    it('should hide items with the same priority as last hidden collapsedContainer', () => {
+        const testItemsWidth = {
+            1: 200,
+            2: 200,
+            3: 150,
+            container1: 200,
+            container2: 50,
+        };
+
+        const testItems = [
+            { id: 'container2', priority: 100, collapsedContainer: true },
+            { id: '1', priority: 1 },
+            { id: '2', priority: 2 },
+            { id: 'container1', priority: 2, collapsedContainer: true },
+            { id: '3', priority: 3 },
+        ] as AdaptiveItemProps[];
+
+        expect(measureAdaptiveItems(testItems, 400, testItemsWidth, 0)).toEqual({
+            displayed: [{ id: 'container2', priority: 100, collapsedContainer: true }, { id: '3', priority: 3 }],
+            hidden: [
+                { id: '1', priority: 1 }, { id: '2', priority: 2 },
+            ],
+            maxHiddenItemPriority: 2,
+        });
+    });
+
     it("if items don't have collapsed container just hide items which not fit", () => {
         expect(
             measureAdaptiveItems(items.filter((i) => !i.collapsedContainer), 400, itemsWidth, 0),

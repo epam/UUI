@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
-    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader,
+    MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader, MainMenuDropdown, BurgerGroupHeader,
 } from '@epam/uui';
 import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
@@ -9,12 +9,14 @@ import { analyticsEvents } from '../analyticsEvents';
 import { TMode } from './docs/docsConstants';
 import { useAppThemeContext } from '../helpers/appTheme';
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
+import { ReactComponent as ThemeIcon } from '../icons/color-pallete.svg';
 import { ReactComponent as GitIcon } from '@epam/assets/icons/external_logo/github-fill.svg';
 import { ReactComponent as FigmaIcon } from '@epam/assets/icons/external_logo/figma-logo-outline-inverted.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as CommunicationStarOutlineIcon } from '@epam/assets/icons/communication-star-outline.svg';
 import css from './AppHeader.module.scss';
 import cx from 'classnames';
+import { isMobile } from '@epam/uui-core';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
@@ -64,6 +66,11 @@ export function AppHeader() {
                     clickAnalyticsEvent={ () => sendEvent('Components') }
                 />
                 <BurgerButton caption="Demo" link={ { pathname: '/demo' } } isLinkActive={ pathName === '/demo' } clickAnalyticsEvent={ () => sendEvent('Demo') } />
+                <BurgerGroupHeader caption="Figma source" />
+                <BurgerButton icon={ FigmaIcon } caption="Figma Community" href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7" clickAnalyticsEvent={ () => sendEvent('Figma Community') } target="_blank" />
+                <BurgerButton icon={ FigmaIcon } caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" clickAnalyticsEvent={ () => sendEvent('EPAM Team') } target="_blank" />
+                <BurgerGroupHeader caption="Code source" />
+                <BurgerButton icon={ GitIcon } caption="Github" href={ GIT_LINK } target="_blank" />
             </>
         );
     };
@@ -86,7 +93,7 @@ export function AppHeader() {
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (
-                    <Button { ...props } cx={ css.themeSwitcherButton } caption={ themesById[theme]?.name } fill="none" isDropdown={ true } />
+                    <Button { ...props } cx={ css.themeSwitcherButton } icon={ isMobile(768) && ThemeIcon } caption={ !isMobile(768) && themesById[theme]?.name } fill="none" isDropdown={ true } />
                 ) }
                 placement="bottom-end"
                 key="Theme-switcher"
@@ -126,7 +133,7 @@ export function AppHeader() {
             },
             {
                 id: 'documents',
-                priority: 3,
+                priority: 7,
                 render: () => (
                     <MainMenuButton
                         caption="Docs"
@@ -140,7 +147,7 @@ export function AppHeader() {
             },
             {
                 id: 'assets',
-                priority: 2,
+                priority: 0,
                 render: () => (
                     <MainMenuButton
                         caption="Assets"
@@ -154,7 +161,7 @@ export function AppHeader() {
             },
             {
                 id: 'components',
-                priority: 2,
+                priority: 1,
                 render: () => (
                     <MainMenuButton
                         caption="Components"
@@ -173,7 +180,7 @@ export function AppHeader() {
             },
             {
                 id: 'demo',
-                priority: 2,
+                priority: 6,
                 render: () => (
                     <MainMenuButton
                         caption="Demo"
@@ -187,13 +194,33 @@ export function AppHeader() {
             },
             window.location.host.includes('localhost') && {
                 id: 'Sandbox',
-                priority: 1,
+                priority: 0,
                 render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
+            },
+            {
+                id: 'moreContainer',
+                priority: 7,
+                collapsedContainer: true,
+                render: (item: { id: React.Key; }, hiddenItems: any[]) => {
+                    return (
+                        <MainMenuDropdown
+                            caption="More"
+                            key={ item.id }
+                            renderBody={ (props) => {
+                                return hiddenItems?.map((i) => {
+                                    if (!['figma', 'git', 'gitStar', 'direction', 'themeCaption'].includes(i.id)) {
+                                        return i.render({ ...i, onClose: props.onClose });
+                                    }
+                                });
+                            } }
+                        />
+                    );
+                },
             },
             { id: 'flexSpacer', priority: 100500, render: () => <FlexSpacer priority={ 100500 } key="spacer" /> },
             {
                 id: 'figma',
-                priority: 3,
+                priority: 5,
                 render: () => (
                     <Dropdown
                         renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
@@ -209,7 +236,7 @@ export function AppHeader() {
             },
             {
                 id: 'git',
-                priority: 3,
+                priority: 4,
                 render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
             },
             {
@@ -226,7 +253,7 @@ export function AppHeader() {
             },
             {
                 id: 'themeCaption',
-                priority: 2,
+                priority: 6,
                 render: () => (
                     <MainMenuButton
                         cx={ css.themeCaption }
@@ -236,10 +263,10 @@ export function AppHeader() {
                     />
                 ),
             },
-            { id: 'theme', priority: 3, render: renderThemeSwitcher },
+            { id: 'theme', priority: 100498, render: renderThemeSwitcher },
             !window.location.host.includes('uui.epam.com') && {
                 id: 'direction',
-                priority: 2,
+                priority: 1,
                 render: renderDirectionSwitcher,
             },
             { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
