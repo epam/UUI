@@ -161,6 +161,9 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         shouldFetch,
         shouldLoad,
         shouldRefetch,
+        dataSourceState.topIndex,
+        dataSourceState.visibleCount,
+        filter,
     ]);
 
     const treeWithSelectedOnly = useSelectedOnlyTree({
