@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Tree-like components, such as Sidebars and Hierarchical Lists, can be built using a combination of DataSource and VirtualList. An example of a custom tree-like component is demonstrated below."
+      }
+    ]
+  }
+]

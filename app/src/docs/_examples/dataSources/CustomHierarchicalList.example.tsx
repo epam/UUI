@@ -86,7 +86,6 @@ export default function CitiesTable() {
     const tasksDs = useArrayDataSource<Task, number, unknown>(
         { 
             items: tasks,
-            isFoldedByDefault: () => false,
             getParentId: ({ parentId }) => parentId,
         },
         [],
@@ -112,10 +111,8 @@ export default function CitiesTable() {
             );
         }
         
-        const getIndent = () => {
-            return 12 + (row.indent - 1) * 24;
-        };
-    
+        const getIndent = () => (row.indent - 1) * 24;
+
         return (
             <div
                 key={ row.id }
@@ -130,7 +127,11 @@ export default function CitiesTable() {
             > 
                 {
                     row.indent > 0 && (
-                        <div key="fold" className="uui-dr_addons-indent" style={ { marginInlineStart: getIndent(), width: 18 } }>
+                        <div
+                            key="fold"
+                            className={ classNames('uui-dr_addons-indent', css.foldingArrow) }
+                            style={ { marginInlineStart: getIndent() } }
+                        >
                             {row.isFoldable && (
                                 <IconContainer
                                     rawProps={ {
@@ -140,9 +141,8 @@ export default function CitiesTable() {
                                     key="icon"
                                     icon={ FoldingArrow }
                                     cx={ [
-                                        uuiElement.foldingArrow, uuiMarkers.clickable,
+                                        uuiElement.foldingArrow, uuiMarkers.clickable, css.foldingArrowIcon,
                                     ] }
-                                    style={ { fill: 'var(--uui-icon)' } }
                                     rotate={ row.isFolded ? '90ccw' : '0' }
                                     onClick={ () => row.onFold(row) }
                                     size={ 18 }
@@ -159,10 +159,7 @@ export default function CitiesTable() {
     return (
         <Panel
             shadow
-            style={ {
-                height: '300px',
-                width: '400px',
-            } }
+            cx={ css.container }
         >
             <VirtualList
                 value={ listState }
