@@ -10,6 +10,7 @@ export class DataSourcesUsageDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="dataSources-usage-in-components" />
 
                 <DocExample title="DataSourceViewer" path="./_examples/dataSources/DataSourceViewer.code.example.tsx" onlyCode={ true } />
+                <DocExample title="Custom hierarchical list" path="./_examples/dataSources/CustomHierarchicalList.example.tsx" />
             </>
         );
     }
