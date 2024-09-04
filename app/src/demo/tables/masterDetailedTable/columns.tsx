@@ -26,6 +26,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
                 </FlexRow>
             ),
         width: 140,
+        minWidth: 90,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
     }, {
