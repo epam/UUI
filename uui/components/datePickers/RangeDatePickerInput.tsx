@@ -112,10 +112,10 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             });
         }
     };
-    
+
     const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            onClick(); 
+            onClick();
             e.preventDefault();
         }
     };
@@ -171,6 +171,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 rawProps={ rawProps?.to }
                 onClick={ onClick }
                 onKeyDown={ onInputKeyDown }
+                id={ id }
             />
         </div>
     );
