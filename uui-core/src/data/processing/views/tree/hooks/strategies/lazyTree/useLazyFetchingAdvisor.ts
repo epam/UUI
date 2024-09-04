@@ -2,8 +2,16 @@ import isEqual from 'react-fast-compare';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../../types';
 import { isQueryChanged } from './helpers';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useDepsChanged } from '../../common/useDepsChanged';
+
+export interface LazyFetchingAdvice {
+    shouldLoad: boolean;
+    shouldRefetch: boolean;
+    shouldFetch: boolean;
+    shouldReload: boolean;
+    updatedAt: number;
+}
 
 export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     dataSourceState: DataSourceState<TFilter, TId>;
@@ -11,6 +19,11 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     forceReload?: boolean;
     backgroundReload?: boolean;
     showSelectedOnly?: boolean;
+    /**
+     * Fetching function, which should be called if fetch is required.
+     * @param lazyLoadingAdvice - fetching advice.
+     */
+    onFetch?: (lazyLoadingAdvice: LazyFetchingAdvice) => void;
 }
 
 export function useLazyFetchingAdvisor<TId, TFilter = any>(
@@ -20,6 +33,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>(
         forceReload,
         backgroundReload,
         showSelectedOnly,
+        onFetch,
     }: UseLazyFetchingAdvisorProps<TId, TFilter>,
     deps: any[] = [],
 ) {
@@ -56,10 +70,33 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>(
     const shouldLoad = isFoldingChanged || moreRowsNeeded || shouldReload;
     const shouldFetch = shouldRefetch || isFoldingChanged || moreRowsNeeded;
 
+    const updatedAt = useMemo(() => Date.now(), [
+        shouldLoad,
+        shouldReload,
+        shouldFetch,
+        shouldRefetch,
+        filter,
+        showSelectedOnly,
+        dataSourceState.folded,
+        dataSourceState.topIndex,
+        dataSourceState.visibleCount,
+    ]);
+
+    useEffect(() => {
+        onFetch?.({ shouldFetch, shouldLoad, shouldReload, shouldRefetch, updatedAt });
+    }, [shouldFetch, shouldLoad, shouldRefetch, shouldReload, updatedAt]);
+
     return useMemo(() => ({
         shouldLoad,
         shouldRefetch,
         shouldFetch,
         shouldReload,
-    }), [shouldLoad, shouldRefetch, shouldFetch]);
+        updatedAt,
+    }), [
+        shouldLoad,
+        shouldRefetch,
+        shouldFetch,
+        shouldReload,
+        updatedAt,
+    ]);
 }
