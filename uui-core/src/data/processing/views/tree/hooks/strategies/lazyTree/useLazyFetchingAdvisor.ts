@@ -19,6 +19,10 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     forceReload?: boolean;
     backgroundReload?: boolean;
     showSelectedOnly?: boolean;
+    /**
+     * Fetching function, which should be called if fetch is required.
+     * @param lazyLoadingAdvice - fetching advice.
+     */
     onFetch?: (lazyLoadingAdvice: LazyFetchingAdvice) => void;
 }
 
