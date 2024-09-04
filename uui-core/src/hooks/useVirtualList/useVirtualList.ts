@@ -2,10 +2,65 @@ import * as React from 'react';
 import type { ScrollToConfig } from '../../types';
 import { useLayoutEffectSafeForSsr } from '../../ssr/useLayoutEffectSafeForSsr';
 import {
-    getRowsToFetchForScroll, getUpdatedRowsInfo, assumeHeightForScrollToIndex,
+    getRowsToFetchForScroll, assumeHeightForScrollToIndex,
     getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex, getTopIndexWithOffset,
+    getAverageRowHeight,
+    getUpdatedRowOffsets,
+    getNewEstimatedContainerHeight,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
+
+const getUpdatedRowHeights = (vli: VirtualListInfo, visibleEntries: IntersectionObserverEntry[]) => {
+    const rows = vli.rowsSelector
+        ? vli.listContainer.querySelectorAll(vli.rowsSelector)
+        : vli.listContainer.children;
+    const rowsArr = Array.from(rows);
+    const [firstNewVisibleElement] = visibleEntries;
+    const firstElementIndex = rowsArr.indexOf(firstNewVisibleElement.target);
+    const newRowHeights = [...vli.rowHeights];
+
+    const realTopIndex = (vli.value.topIndex || 0) + firstElementIndex;
+    visibleEntries.forEach((entry, index) => {
+        const { height } = entry.boundingClientRect;
+        if (!height) return;
+        newRowHeights[realTopIndex + index] = height;
+    });
+
+    return newRowHeights;
+};
+
+const getUpdatedRowsInfo1 = (
+    vli: VirtualListInfo,
+    visibleEntries: IntersectionObserverEntry[],
+): RowsInfo => {
+    if (!vli.scrollContainer
+        || !vli.listContainer
+        || vli.listOffset == null
+        || !vli.value
+    ) {
+        return {
+            rowHeights: vli.rowHeights,
+            rowOffsets: vli.rowOffsets,
+            estimatedHeight: vli.estimatedHeight,
+        };
+    }
+    const rowHeights = getUpdatedRowHeights(vli, visibleEntries);
+    const averageRowHeight = getAverageRowHeight(rowHeights);
+    const rowOffsets = getUpdatedRowOffsets({ ...vli, rowHeights, averageRowHeight });
+
+    const estimatedHeight = getNewEstimatedContainerHeight(
+        rowOffsets,
+        vli.rowsCount,
+        vli.listOffset,
+    );
+
+    return {
+        estimatedHeight,
+        rowHeights,
+        rowOffsets,
+        averageRowHeight,
+    };
+};
 
 export function useVirtualList<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>(
     props: UseVirtualListProps,
@@ -22,11 +77,11 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const [estimatedHeight, setEstimatedHeight] = React.useState<number>(0);
     const [listOffset, setListOffset] = React.useState<number>();
     const [scrolledTo, setScrolledTo] = React.useState<ScrollToConfig>(null);
+    const [visibleEntries, setVisibleEntries] = React.useState<IntersectionObserverEntry[]>([]);
     const listContainer = React.useRef<List>();
     const scrollContainer = React.useRef<ScrollContainer>();
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
-
     const virtualListInfo = React.useMemo((): VirtualListInfo => ({
         scrollContainer: scrollContainer.current,
         listContainer: listContainer.current,
@@ -53,6 +108,53 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         rowsSelector,
     ]);
 
+    const offsetY = React.useMemo(
+        () => getOffsetYForIndex(value?.topIndex, rowOffsets.current, listOffset),
+        [rowOffsets.current, listOffset, value?.topIndex],
+    );
+
+    const obs = React.useMemo(() => new IntersectionObserver(
+        (entries)=>{
+            const vEntries = entries.filter((entry) => entry.isIntersecting);
+            if (!vEntries.length) {
+                return;
+            }
+
+            setVisibleEntries(vEntries);
+        },
+        { root: virtualListInfo.listContainer },
+    ), []);
+
+    React.useEffect(() => {
+        if (!virtualListInfo.listContainer) return;
+        const rows = rowsSelector
+            ? virtualListInfo.listContainer.querySelectorAll(virtualListInfo.rowsSelector)
+            : virtualListInfo.listContainer.children;
+
+        const rowsArr = Array.from(rows);
+        rowsArr.forEach((row) => {
+            obs.observe(row);
+        });
+    }, [obs, virtualListInfo.listContainer, virtualListInfo.scrollContainer, value.topIndex, value.visibleCount]);
+
+    React.useEffect(() => {
+        return () => obs.disconnect();
+    }, []);
+
+    useLayoutEffectSafeForSsr(() => {
+        const rowsInfo = getUpdatedRowsInfo1(virtualListInfo, visibleEntries);
+        rowHeights.current = rowsInfo.rowHeights;
+        rowOffsets.current = rowsInfo.rowOffsets;
+        if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
+        if (!scrollContainer.current || !value) return;
+
+        if (value?.scrollTo !== scrolledTo && value?.scrollTo?.index != null) {
+            handleForceScrollToIndex(rowsInfo);
+        } else {
+            handleScrollOnRerender(rowsInfo);
+        }
+    }, [visibleEntries]);
+
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
         const { top: scrollContainerTop } = scrollContainer.current.getBoundingClientRect();
@@ -72,19 +174,19 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         return getRowsToFetchForScroll(virtualListInfo);
     }, [virtualListInfo]);
 
-    useLayoutEffectSafeForSsr(() => {
-        const rowsInfo = getUpdatedRowsInfo(virtualListInfo);
-        rowHeights.current = rowsInfo.rowHeights;
-        rowOffsets.current = rowsInfo.rowOffsets;
-        if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
-        if (!scrollContainer.current || !value) return;
+    // useLayoutEffectSafeForSsr(() => {
+    //     const rowsInfo = getUpdatedRowsInfo(virtualListInfo);
+    //     rowHeights.current = rowsInfo.rowHeights;
+    //     rowOffsets.current = rowsInfo.rowOffsets;
+    //     if (scrollContainer.current && value) onScroll?.(scrollContainer.current);
+    //     if (!scrollContainer.current || !value) return;
 
-        if (value?.scrollTo !== scrolledTo && value?.scrollTo?.index != null) {
-            handleForceScrollToIndex(rowsInfo);
-        } else {
-            handleScrollOnRerender(rowsInfo);
-        }
-    });
+    //     if (value?.scrollTo !== scrolledTo && value?.scrollTo?.index != null) {
+    //         handleForceScrollToIndex(rowsInfo);
+    //     } else {
+    //         handleScrollOnRerender(rowsInfo);
+    //     }
+    // });
 
     const handleForceScrollToIndex = (rowsInfo: RowsInfo) => {
         const assumedHeight = assumeHeightForScrollToIndex(value, rowsInfo.estimatedHeight, rowsInfo.averageRowHeight);
@@ -171,11 +273,6 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             scrollContainerToPosition,
             virtualListInfo,
         ],
-    );
-
-    const offsetY = React.useMemo(
-        () => getOffsetYForIndex(value?.topIndex, rowOffsets.current, listOffset),
-        [rowOffsets.current, listOffset, value?.topIndex],
     );
 
     const handleScroll = React.useCallback(() => {
