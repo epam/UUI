@@ -171,7 +171,6 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 rawProps={ rawProps?.to }
                 onClick={ onClick }
                 onKeyDown={ onInputKeyDown }
-                id={ id }
             />
         </div>
     );
