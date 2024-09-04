@@ -3,11 +3,11 @@ import { useUuiContext } from '@epam/uui-core';
 import { useMemo } from 'react';
 import { loadDocsGenType } from '../../apiReference/dataHooks';
 import { getAllIcons } from '../../../documents/iconListHelpers';
-import { AppContext, BuiltInTheme, TTheme } from '../../../data';
+import { AppContext, BuiltInTheme, ThemesList } from '../../../data';
 import { CustomThemeManifest } from '../../../data/customThemes';
 import { useAppThemeContext } from '../../../helpers/appTheme';
 
-export function getSkin(theme: TTheme, isSkin: boolean): TSkin {
+export function getSkin(theme: ThemesList, isSkin: boolean): TSkin {
     if (!isSkin) return TSkin.UUI;
 
     switch (theme) {
@@ -39,7 +39,7 @@ export function useDocBuilderGenCtx(propsOverride: TPropEditorTypeOverride[TType
     }, [propsOverride, uuiCtx.api.demo, uuiCtx.uuiNotifications]);
 }
 
-export function usePropEditorTypeOverride(themeId: TTheme, typeRef: TTypeRef | undefined): TPropEditorTypeOverride[TTypeRef] | undefined {
+export function usePropEditorTypeOverride(themeId: ThemesList, typeRef: TTypeRef | undefined): TPropEditorTypeOverride[TTypeRef] | undefined {
     const { themesById } = useAppThemeContext();
     if (typeRef && themesById) {
         const themeDetails = (themesById[themeId] as CustomThemeManifest);

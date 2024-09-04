@@ -1,30 +1,34 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
-import { TTheme } from './themes';
+import { ThemesList } from './themes';
+import { svc } from '../services';
 
 const THEME_MANIFEST_FILE = 'theme-manifest.json';
 
 export interface CustomThemeManifest {
-    id: TTheme;
+    id: ThemesList;
     name: string;
     css: string[];
+    path: string;
     settings: null | object;
     propsOverride?: TPropEditorTypeOverride;
 }
 
-interface TUuiCustomThemesLsItem {
-    customThemes: string[],
-}
-
-function getCustomThemesConfigFromLs() {
+function getCustomThemesConfigFromLs(): string[] {
     const KEY_CUSTOM_THEMES = 'uui-custom-themes';
     const customThemes = localStorage.getItem(KEY_CUSTOM_THEMES);
     if (typeof customThemes === 'string') {
         try {
-            return JSON.parse(customThemes) as TUuiCustomThemesLsItem;
+            return JSON.parse(customThemes).customThemes;
         } catch (err) {
             console.error(`Unable to parse item from localStorage (key="${KEY_CUSTOM_THEMES}")`, err);
         }
     }
+    return [];
+}
+
+function getCustomThemePathFromUrl(): string {
+    const query = svc.uuiRouter.getCurrentLink().query;
+    return query?.themePath;
 }
 
 let cache: Promise<CustomThemeManifest[]>;
@@ -35,11 +39,15 @@ export async function loadCustomThemes(): Promise<CustomThemeManifest[]> {
     return cache;
 }
 async function loadCustomThemesInternal() {
-    const { customThemes = [] } = getCustomThemesConfigFromLs() || {};
+    const customThemes = [...getCustomThemesConfigFromLs(), getCustomThemePathFromUrl()];
     const ctManifestArr: CustomThemeManifest[] = [];
     if (customThemes.length > 0) {
         const ctManifestArrLoaded = await Promise.all(
             customThemes.map(async (themeUrl) => {
+                if (!themeUrl) {
+                    return;
+                }
+
                 const themeManifestUrl = `${themeUrl}/${THEME_MANIFEST_FILE}`;
                 return fetch(themeManifestUrl)
                     .then<CustomThemeManifest>(async (r) => {
@@ -47,7 +55,7 @@ async function loadCustomThemesInternal() {
                     const { id, name, css, settings, propsOverride } = tmJson;
                     const loadedSettings = settings ? await loadSettings(convertRelUrlToAbs(settings, themeUrl)) : null;
                     await loadCssArr(css.map((cssRel) => convertRelUrlToAbs(cssRel, themeUrl)));
-                    return { id, name, css, settings: loadedSettings, propsOverride };
+                    return { id, name, path: themeUrl, css, settings: loadedSettings, propsOverride };
                 })
                     .catch<undefined>((err) => {
                     console.error(`Unable to load custom theme from "${themeManifestUrl}"`, err);
