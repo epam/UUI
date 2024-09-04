@@ -2,10 +2,10 @@ import { IThemeVar } from '../../types/sharedTypes';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme, validateActualTokenValue } from '../../utils/themeVarUtils';
 import { getBrowserTokens } from './browserTokens';
-import { TTheme } from '../../../../../data';
+import { ThemesList } from '../../../../../data';
 
 export function loadedTokensConverter(
-    params: TLoadThemeTokensParams & { rawTokens: IThemeVar[], uuiTheme: TTheme },
+    params: TLoadThemeTokensParams & { rawTokens: IThemeVar[], uuiTheme: ThemesList },
 ) {
     const { rawTokens, uuiTheme, filter, valueType } = params;
     const browserTokens = getBrowserTokens();
