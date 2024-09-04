@@ -19,7 +19,7 @@ export interface UseLazyFetchingAdvisorProps<TId, TFilter = any> {
     forceReload?: boolean;
     backgroundReload?: boolean;
     showSelectedOnly?: boolean;
-    handleLoad?: (lazyLoadingAdvice: LazyFetchingAdvice) => void;
+    onFetch?: (lazyLoadingAdvice: LazyFetchingAdvice) => void;
 }
 
 export function useLazyFetchingAdvisor<TId, TFilter = any>(
@@ -29,7 +29,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>(
         forceReload,
         backgroundReload,
         showSelectedOnly,
-        handleLoad,
+        onFetch,
     }: UseLazyFetchingAdvisorProps<TId, TFilter>,
     deps: any[] = [],
 ) {
@@ -79,7 +79,7 @@ export function useLazyFetchingAdvisor<TId, TFilter = any>(
     ]);
 
     useEffect(() => {
-        handleLoad?.({ shouldFetch, shouldLoad, shouldReload, shouldRefetch, updatedAt });
+        onFetch?.({ shouldFetch, shouldLoad, shouldReload, shouldRefetch, updatedAt });
     }, [shouldFetch, shouldLoad, shouldRefetch, shouldReload, updatedAt]);
 
     return useMemo(() => ({
