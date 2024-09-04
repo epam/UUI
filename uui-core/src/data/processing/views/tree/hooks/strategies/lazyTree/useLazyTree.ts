@@ -118,7 +118,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [showSelectedOnly, dataSourceState.checked, dataSourceState.selectedId, shouldReload]);
+    }, [showSelectedOnly, dataSourceState.checked, dataSourceState.selectedId, shouldRefetch, updatedAt]);
 
     useEffect(() => {
         if (showSelectedOnly) {
