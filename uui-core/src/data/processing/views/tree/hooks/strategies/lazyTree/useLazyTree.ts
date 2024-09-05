@@ -88,7 +88,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         return newTree.full;
     }, [loadMissingOnCheck, setTreeWithData, treeWithData]);
 
-    const { shouldRefetch, shouldLoad, shouldFetch } = useLazyFetchingAdvisor({
+    const { shouldRefetch, shouldLoad, shouldFetch, shouldReload, updatedAt } = useLazyFetchingAdvisor({
         dataSourceState,
         filter,
         forceReload: isForceReload,
@@ -118,7 +118,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
                     }
                 });
         }
-    }, [showSelectedOnly, dataSourceState.checked, dataSourceState.selectedId]);
+    }, [showSelectedOnly, dataSourceState.checked, dataSourceState.selectedId, shouldRefetch, updatedAt]);
 
     useEffect(() => {
         if (showSelectedOnly) {
@@ -161,6 +161,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         shouldFetch,
         shouldLoad,
         shouldRefetch,
+        shouldReload,
+        updatedAt,
     ]);
 
     const treeWithSelectedOnly = useSelectedOnlyTree({

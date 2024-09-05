@@ -3,12 +3,12 @@ import { useQuery } from '../helpers';
 import { docExampleLoader } from '../common/docs/docExampleLoader';
 import { DocExampleContent } from './docExampleContent';
 import { usePlayWrightInterface } from '../preview/hooks/usePlayWrightInterface';
-import { BuiltInTheme, TTheme } from '../data';
+import { BuiltInTheme, ThemesList } from '../data';
 import { svc } from '../services';
 
 interface DocExamplePageParams {
     examplePath: string;
-    theme: TTheme;
+    theme: ThemesList;
 }
 
 export function DocExamplePage() {

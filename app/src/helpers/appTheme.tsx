@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { CustomThemeManifest, loadCustomThemes } from '../data/customThemes';
-import { builtInThemes, ThemeBaseParams, TTheme } from '../data';
-import { applyTheme, changeThemeQueryParam, TAppThemeContext, TThemeConfig, useCurrentTheme } from './appThemeUtils';
+import { builtInThemes, ThemeBaseParams, ThemesList } from '../data';
+import { applyTheme, changeThemeQueryParam, TAppThemeContext, ThemesConfig, useCurrentTheme } from './appThemeUtils';
 import { useUuiContext } from '@epam/uui-core';
 
 const AppThemeContext = React.createContext<TAppThemeContext>(null);
@@ -11,7 +11,7 @@ export function useAppThemeContext() {
 
 export function AppTheme(props: { children: React.ReactNode }) {
     const { uuiRouter } = useUuiContext();
-    const [appliedTheme, setAppliedTheme] = useState<TTheme | null>(null);
+    const [appliedTheme, setAppliedTheme] = useState<ThemesList | null>(null);
     const config = useThemeConfig();
     /**
      * The query parameter "theme" is a single source of truth.
@@ -35,12 +35,13 @@ export function AppTheme(props: { children: React.ReactNode }) {
             return {
                 ...config,
                 theme,
-                toggleTheme: (nextTheme: TTheme) => {
-                    if (!config.themesById[nextTheme]) {
+                toggleTheme: (nextTheme: ThemesList) => {
+                    const nextThemeConfig = config.themesById[nextTheme];
+                    if (!nextThemeConfig) {
                         reportUnknownThemeError(theme);
                         return;
                     }
-                    changeThemeQueryParam(nextTheme, uuiRouter);
+                    changeThemeQueryParam(nextThemeConfig, uuiRouter);
                 },
             };
         }
@@ -62,7 +63,7 @@ export function AppTheme(props: { children: React.ReactNode }) {
 }
 
 function useThemeConfig() {
-    const [config, setConfig] = useState<TThemeConfig | null>(null);
+    const [config, setConfig] = useState<ThemesConfig | null>(null);
     useEffect(() => {
         let destroyed = false;
         loadListOfThemes()
@@ -86,7 +87,7 @@ function useThemeConfig() {
     return config;
 }
 
-async function loadListOfThemes(): Promise<TThemeConfig> {
+async function loadListOfThemes(): Promise<ThemesConfig> {
     const customThemesArr = await loadCustomThemes();
     const allThemes = [...builtInThemes, ...customThemesArr];
     const themesById = allThemes.reduce<Record<string, ThemeBaseParams | CustomThemeManifest>>((acc, t) => {
@@ -99,6 +100,6 @@ async function loadListOfThemes(): Promise<TThemeConfig> {
     };
 }
 
-function reportUnknownThemeError(theme: TTheme) {
+function reportUnknownThemeError(theme: ThemesList) {
     console.error(`[appTheme] Theme "${theme}" is unknown`);
 }
