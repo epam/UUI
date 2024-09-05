@@ -1,11 +1,12 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
-import { ThemesList } from './themes';
+import { ThemeId } from './themes';
 import { svc } from '../services';
 
 const THEME_MANIFEST_FILE = 'theme-manifest.json';
+const KEY_CUSTOM_THEMES = 'uui-custom-themes';
 
 export interface CustomThemeManifest {
-    id: ThemesList;
+    id: ThemeId;
     name: string;
     css: string[];
     path: string;
@@ -13,8 +14,8 @@ export interface CustomThemeManifest {
     propsOverride?: TPropEditorTypeOverride;
 }
 
-function getCustomThemesConfigFromLs(): string[] {
-    const KEY_CUSTOM_THEMES = 'uui-custom-themes';
+function getCustomThemesConfig(): string[] {
+    getCustomThemePathFromUrl();
     const customThemes = localStorage.getItem(KEY_CUSTOM_THEMES);
     if (typeof customThemes === 'string') {
         try {
@@ -26,9 +27,20 @@ function getCustomThemesConfigFromLs(): string[] {
     return [];
 }
 
-function getCustomThemePathFromUrl(): string {
-    const query = svc.uuiRouter.getCurrentLink().query;
-    return query?.themePath;
+function getCustomThemePathFromUrl() {
+    const themePath = svc.uuiRouter.getCurrentLink().query?.themePath;
+    if (themePath) {
+        const customThemes = JSON.parse(localStorage.getItem(KEY_CUSTOM_THEMES))?.customThemes || [];
+        if (!customThemes.includes(themePath)) {
+            customThemes.push(themePath);
+            localStorage.setItem(
+                'uui-custom-themes',
+                JSON.stringify({
+                    customThemes: customThemes,
+                }),
+            );
+        }
+    }
 }
 
 let cache: Promise<CustomThemeManifest[]>;
@@ -39,7 +51,7 @@ export async function loadCustomThemes(): Promise<CustomThemeManifest[]> {
     return cache;
 }
 async function loadCustomThemesInternal() {
-    const customThemes = [...getCustomThemesConfigFromLs(), getCustomThemePathFromUrl()];
+    const customThemes = getCustomThemesConfig();
     const ctManifestArr: CustomThemeManifest[] = [];
     if (customThemes.length > 0) {
         const ctManifestArrLoaded = await Promise.all(

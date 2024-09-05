@@ -1,5 +1,5 @@
 import { getQuery, useQuery } from './getQuery';
-import { BuiltInTheme, ThemeBaseParams, ThemesList } from '../data';
+import { BuiltInTheme, ThemeBaseParams, ThemeId } from '../data';
 import { getUuiThemeRoot } from './appRootUtils';
 import { settings } from '@epam/uui';
 import { CustomThemeManifest } from '../data/customThemes';
@@ -21,20 +21,20 @@ export const overrideUuiSettings = ((_defaultSettings: string) => (newSettings: 
 export type ThemeConfig = CustomThemeManifest | ThemeBaseParams;
 
 export type ThemesConfig = {
-    themes: ThemesList[];
-    themesById: Record<ThemesList, ThemeConfig>;
+    themes: ThemeId[];
+    themesById: Record<ThemeId, ThemeConfig>;
 };
-export type TAppThemeContext = ThemesConfig & { theme: ThemesList, toggleTheme: (newTheme: ThemesList) => void };
+export type TAppThemeContext = ThemesConfig & { theme: ThemeId, toggleTheme: (newTheme: ThemeId) => void };
 
 const QUERY_PARAM_THEME = 'theme';
 const LOCAL_STORAGE_THEME_ITEM_ID = 'app-theme';
 const DEFAULT_THEME = BuiltInTheme.loveship;
 
-export const getCurrentTheme = (): ThemesList => {
+export const getCurrentTheme = (): ThemeId => {
     return getQuery(QUERY_PARAM_THEME) || getInitialThemeFallback();
 };
 
-export function useCurrentTheme(config: ThemesConfig | undefined): ThemesList | undefined {
+export function useCurrentTheme(config: ThemesConfig | undefined): ThemeId | undefined {
     const { uuiRouter } = useUuiContext();
     const param = useQuery(QUERY_PARAM_THEME);
     const theme = param ? param : getInitialThemeFallback();
@@ -51,7 +51,7 @@ export function useCurrentTheme(config: ThemesConfig | undefined): ThemesList | 
     }
 }
 
-const isCustomThemeConfig = (theme: ThemeConfig): theme is CustomThemeManifest => (theme as CustomThemeManifest).path !== undefined;
+export const isCustomThemeConfig = (theme: ThemeConfig): theme is CustomThemeManifest => (theme as CustomThemeManifest).path !== undefined;
 
 export function changeThemeQueryParam(nextTheme: ThemeConfig, uuiRouter: IRouterContext) {
     const { pathname, query, ...restParams } = uuiRouter.getCurrentLink();
@@ -62,21 +62,15 @@ export function changeThemeQueryParam(nextTheme: ThemeConfig, uuiRouter: IRouter
     uuiRouter.transfer({ pathname: pathname, query: newQuery, ...restParams });
 }
 
-export function applyTheme(theme: ThemesList, config: ThemesConfig) {
-    setThemeCssClass(theme);
-    saveThemeIdToLocalStorage(theme);
-    overrideUuiSettings((config.themesById[theme] as CustomThemeManifest).settings);
-}
-
 function getInitialThemeFallback() {
     return localStorage.getItem(LOCAL_STORAGE_THEME_ITEM_ID) || DEFAULT_THEME;
 }
 
-function saveThemeIdToLocalStorage(theme: ThemesList) {
+export function saveThemeIdToLocalStorage(theme: ThemeId) {
     localStorage.setItem(LOCAL_STORAGE_THEME_ITEM_ID, theme);
 }
 
-function setThemeCssClass(theme: ThemesList) {
+export function setThemeCssClass(theme: ThemeId) {
     const themeRoot = getUuiThemeRoot();
     const currentTheme = themeRoot.classList.value.match(/uui-theme-(\S+)\s*/)[0].trim();
     themeRoot.classList.replace(currentTheme, `uui-theme-${theme}`);

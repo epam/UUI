@@ -2,10 +2,10 @@ import { IThemeVar } from '../../types/sharedTypes';
 import { svc } from '../../../../../services';
 import { loadedTokensConverter } from './loadedTokensConverter';
 import { IThemeVarUI, TLoadThemeTokensParams } from '../../types/types';
-import { ThemesList } from '../../../../../data';
+import { ThemeId } from '../../../../../data';
 
 const cache: { content: IThemeVar[] | undefined } = { content: undefined };
-export async function loadThemeTokens(params: TLoadThemeTokensParams & { uuiTheme: ThemesList }): Promise<IThemeVarUI[]> {
+export async function loadThemeTokens(params: TLoadThemeTokensParams & { uuiTheme: ThemeId }): Promise<IThemeVarUI[]> {
     if (!svc.api) {
         throw new Error('svc.api not available');
     }
