@@ -153,6 +153,7 @@
         right: 0;
         height: 100%;
         cursor: col-resize;
+        user-select: none;
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
