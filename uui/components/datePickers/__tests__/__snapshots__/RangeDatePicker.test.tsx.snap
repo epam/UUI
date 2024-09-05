@@ -49,7 +49,6 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
       aria-invalid={true}
       className="uui-input"
       disabled={true}
-      id="date"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
