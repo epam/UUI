@@ -3,10 +3,10 @@ import { useArrayDataSource } from '@epam/uui-core';
 import { FlexRow, LabeledInput, PickerInput } from '@epam/uui';
 import { TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
-import { ThemesList } from '../../../../../data';
+import { ThemeId } from '../../../../../data';
 
 type TokensSummaryProps = {
-    uuiTheme: ThemesList,
+    uuiTheme: ThemeId,
     expectedValueType: TThemeTokenValueType,
     onChangeExpectedValueType: (v: TThemeTokenValueType) => void
 };

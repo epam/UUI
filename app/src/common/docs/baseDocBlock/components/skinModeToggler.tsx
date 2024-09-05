@@ -6,13 +6,13 @@ import { TMode } from '../../docsConstants';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-help-fill-18.svg';
 //
 import css from './skinModeToggler.module.scss';
-import { ThemesList } from '../../../../data';
+import { ThemeId } from '../../../../data';
 
 const CONTROL_DESCRIPTION = 'If checked, a component from the skin-specific package will be used, according to the selected theme (for example, "@epam/loveship"). If unchecked, it will use a component from the "@epam/uui" package, only with semantic props.';
 
 type TSkinModeTogglerProps = {
     mode: TMode;
-    theme: ThemesList;
+    theme: ThemeId;
     isSkinEnabled: boolean;
     onToggleSkin: () => void;
 };
@@ -38,6 +38,6 @@ export function SkinModeToggler(props: TSkinModeTogglerProps) {
     }
 }
 
-function isSkinSupportedInTheme(theme: ThemesList): boolean {
+function isSkinSupportedInTheme(theme: ThemeId): boolean {
     return ['electric', 'loveship', 'loveship_dark', 'promo'].includes(theme);
 }

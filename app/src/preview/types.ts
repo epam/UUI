@@ -1,8 +1,8 @@
 import { TComponentPreview } from '@epam/uui-docs';
-import { ThemesList } from '../data';
+import { ThemeId } from '../data';
 
 export type TPreviewContentParams = {
-    theme: ThemesList;
+    theme: ThemeId;
     isSkin: boolean;
     componentId: string | undefined;
     previewId: string | undefined | TComponentPreview<unknown>;

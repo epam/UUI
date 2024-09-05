@@ -9,10 +9,10 @@ export enum BuiltInTheme {
 /* No restrictions on custom theme id - it can be any string */
 type CustomTheme = string;
 
-export type ThemesList = BuiltInTheme | CustomTheme;
+export type ThemeId = BuiltInTheme | CustomTheme;
 
 export interface ThemeBaseParams {
-    id: ThemesList;
+    id: ThemeId;
     name: string;
 }
 

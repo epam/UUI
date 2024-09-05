@@ -5,14 +5,14 @@ import { DataRowProps } from '@epam/uui-core';
 import { TreeListItem } from '@epam/uui-components';
 import { useQuery } from '../../helpers';
 import { TMode } from './docsConstants';
-import { ThemesList } from '../../data';
+import { ThemeId } from '../../data';
 import { svc } from '../../services';
 
 type DocsQuery = {
     id: string,
     mode?: TMode,
     isSkin?: boolean,
-    theme?: ThemesList,
+    theme?: ThemeId,
     category?: string
 };
 
