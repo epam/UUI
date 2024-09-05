@@ -1398,6 +1398,33 @@ describe('PickerInput', () => {
             });
         });
 
+        it('should not remove disabled item from selection by backspace if in case of searchPosition="input"', async () => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
+                value: [2, 3, 4],
+                selectionMode: 'multi',
+                searchPosition: 'input',
+                getRowOptions: () => ({ checkbox: { isVisible: true, isDisabled: true } }),
+            });
+
+            fireEvent.click(dom.input);
+
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
+            
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
+            });
+
+            await waitFor(() => {
+                expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([
+                    'A1',
+                    'A1+',
+                    'A2',
+                ]);
+            });
+        });
+
         it.each<[undefined | null | []]>([[[]], [undefined], [null]])
         ('should not call onValueChange on edit search with emptyValue = %s; and return emptyValue = %s on check -> uncheck', async (emptyValue) => {
             const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
