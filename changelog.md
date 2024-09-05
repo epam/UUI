@@ -40,12 +40,12 @@
     * Introduced a low-level `TimelineCanvas` component designed to render elements on the Timeline.
     * Enhanced customization options for `TimelineGrid` and `TimelineScale`.
     * Exposed default implementations for timeline grid/scale drawing phases via the `timelineGrid` and `timelineScale` libraries.
+  * [Breaking Change]: Removed `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
+  * [Breaking Change]: Removed `TimelineScaleProps.shiftPercent`.
   * Added an example of Timeline usage with tables. [See demo here](https://uui.epam.com/demo?id=editableTable).
-  * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
   * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
   * Added the `useResizeObserver` hook, which provides the possibility to observe multiple elements' resizing.
   * Added the `useTimelineTransform` hook, which provides the possibility to receive the latest `TimelineTransform` instance from the `TimelineController`.
-  * Deprecated `TimelineScaleProps.shiftPercent`.
   * Made `TimelineGrid` customizable. Exposed default implementations of various parts of `TimelineGrid` drawing functionality, via the `timelineGrid` library.
   * Made `TimelineScale` customizable. Exposed default implementations of various parts of `TimelineScale` drawing functionality, via the `timelineScale` library.
   * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
