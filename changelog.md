@@ -1,7 +1,7 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
-* Uploaded new version of icons pack: 
+* Uploaded new version of icons pack:
   * icons added: action-clock_fast-fill, action-clock_fast-outline
   * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
@@ -12,6 +12,8 @@
 * [Pickers]: fixed bug when 'Clear All' button remains visible even after user clear all item by clicking on it. It was reproduced only if emptyValue=[] prop was passed.
 * [DataTable]: disable animation for loading skeletons due to performance issues
 * [AdaptivePanel]: fixed hiding items with the same priority as last hidden collapsed container
+* [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
+* [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
 
 
 # 5.9.0 - 09.08.2024
@@ -51,12 +53,12 @@
   * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
   * Added the `TimelineController.setViewportRange` function, which allows setting the `Viewport` by passing the right and left periods of the scale.
   * Added `computeSubtotals` and `createFromItems` to `Tree`.
-* [DateTable]: 
+* [DateTable]:
   * Added `renderHeaderCell` callback to the column configuration, it's allows to provide custom render for column header.
   * Added the `DataTableCellContainer` component - base wrapper for header and column cells
 * [PickerInput]: hide picker footer while searching
 * [PickerInput]: made tags in multi select smaller
-* [Typography]: only for electric theme: 
+* [Typography]: only for electric theme:
   * H1 weight changed from 600 to 400
   * H2 weight changed from 700 to 600
 
