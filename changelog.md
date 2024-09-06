@@ -14,6 +14,7 @@
 * [AdaptivePanel]: fixed hiding items with the same priority as last hidden collapsed container
 * [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
 * [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
+* [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
 
 
 # 5.9.0 - 09.08.2024
