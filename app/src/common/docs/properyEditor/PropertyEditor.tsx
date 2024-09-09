@@ -20,10 +20,10 @@ import {
 } from './propDocUtils';
 import { useQuery } from '../../../helpers';
 import { buildPreviewRef } from '../../../preview/utils/previewLinkUtils';
-import { TTheme } from '../../../data';
+import { ThemeId } from '../../../data';
 
 export function ComponentEditorWrapper(props: {
-    theme: TTheme,
+    theme: ThemeId,
     title: string;
     isSkin: boolean;
     config: TDocConfig;
@@ -69,7 +69,7 @@ interface ComponentEditorProps {
     skin: TSkin;
     title: string;
     isSkin: boolean;
-    theme: TTheme;
+    theme: ThemeId;
     componentId: string;
     isLoaded: boolean;
     onRedirectBackToDocs: () => void;

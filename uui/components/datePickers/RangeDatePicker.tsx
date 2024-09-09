@@ -89,6 +89,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || (
                     <RangeDatePickerInput
+                        id={ props.id }
                         ref={ renderProps.ref }
                         cx={ props.inputCx }
                         onClick={ renderProps.onClick }
