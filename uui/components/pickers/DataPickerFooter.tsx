@@ -24,6 +24,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         view,
         showSelected,
         selectionMode,
+        notEnoughTokensToLoadData,
     } = props;
 
     const size = settings.sizes.dataPickerFooter.linkButton[isMobile() ? 'mobile' : props.size] as LinkButtonProps['size'];
@@ -39,9 +40,9 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
 
     // show always for multi picker and for single only in case if search not disabled and doesn't searching.
     const isSearching = search && search?.length;
-    const shouldShowFooter = isSinglePicker ? (!isSearching && !props.disableClear) : !isSearching;
+    const hideFooter = notEnoughTokensToLoadData || rowsCount === 0 || (isSinglePicker ? (isSearching && props.disableClear) : isSearching);
 
-    return shouldShowFooter && (
+    return !hideFooter && (
         <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
             {!isSinglePicker && (
                 <Switch

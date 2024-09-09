@@ -202,7 +202,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
     const shouldToggleBody = (e: React.MouseEvent<HTMLDivElement>): boolean => {
         const isInteractionDisabled = (props.isDisabled || props.isReadonly || isEventTargetInsideClickable(e));
-        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && props.minCharsToSearch);
+        const shouldOpenWithMinCharsToSearch = (inFocus && props.value && (props.minCharsToSearch && props.searchPosition === 'input'));
         const isPickerOpenWithSearchInInput = (props.isOpen && props.searchPosition === 'input' && (e.target as HTMLInputElement).tagName === 'INPUT');
         return !(isInteractionDisabled || shouldOpenWithMinCharsToSearch || isPickerOpenWithSearchInInput);
     };
@@ -259,7 +259,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
                     )}
-                    {props.isDropdown && !props?.minCharsToSearch && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
+                    {props.isDropdown
+                        && (!props?.minCharsToSearch || (props?.minCharsToSearch && props.searchPosition === 'body'))
+                        && <IconContainer icon={ props.dropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
                 </div>
             )}
         </div>

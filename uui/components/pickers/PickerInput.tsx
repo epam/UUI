@@ -196,6 +196,16 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                                 })
                             : undefined
                     }
+                    renderTypeSearchToLoadItems={
+                        props.renderTypeSearchToLoadItems
+                            ? () => props.renderTypeSearchToLoadItems({
+                                search: dataSourceState.search,
+                                minCharsToSearch: props.minCharsToSearch,
+                                searchPosition: props.searchPosition,
+                                onClose: () => toggleBodyOpening(false),
+                            })
+                            : undefined
+                    }
                 />
                 { renderFooter() }
             </MobileDropdownWrapper>
@@ -204,7 +214,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const rows = getRows();
     const renderItem = props.renderTag ? props.renderTag : null;
-
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {

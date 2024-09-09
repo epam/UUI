@@ -1,13 +1,10 @@
 import {
     CX, DataSourceState, ICanBeReadonly, ICanFocus, IDisableable, IEditable, IHasCaption, IHasIcon, IHasPlaceholder,
-    IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps, PickerFooterProps, SortingOption,
+    IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps, PickerFooterProps, PickerInputEditMode, PickerInputSearchPosition, SortingOption,
 } from '@epam/uui-core';
 import { Placement } from '@popperjs/core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { Dispatch, SetStateAction } from 'react';
-
-export type PickerInputSearchPosition = 'input' | 'body' | 'none';
-export type PickerInputEditMode = 'dropdown' | 'modal';
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
 & ICanFocus<HTMLElement> &
