@@ -2,21 +2,8 @@ import * as React from 'react';
 import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
 import {
-    ColumnsConfig,
-    DataRowProps,
-    useUuiContext,
-    uuiScrollShadows,
-    useColumnsConfig,
-    IEditable,
-    DataTableState,
-    DataTableColumnsConfigOptions,
-    DataSourceListProps,
-    DataColumnProps,
-    cx,
-    TableFiltersConfig,
-    DataTableRowProps,
-    DataTableSelectedCellData,
-    Overwrite,
+    ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
+    DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite,
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableHeaderRowProps } from './DataTableHeaderRow';
 import { DataTableRow, DataTableRowProps as UuiDataTableRowProps } from './DataTableRow';
@@ -91,8 +78,8 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         return (
             <DataTableRow
                 key={ rowProps.rowKey }
-                size={ props.size || settings.sizes.defaults.dataTableRow as UuiDataTableRowProps['size'] }
-                columnsGap={ props.columnsGap || settings.sizes.dataTableRow.columnsGap.default as DataTableRowMods['columnsGap'] }
+                size={ props.size || settings.sizes.dataTable.body.row.default as UuiDataTableRowProps['size'] }
+                columnsGap={ props.columnsGap }
                 borderBottom={ props.border }
                 { ...rowProps }
                 cx={ css.cell }
@@ -155,14 +142,14 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         columns={ columns }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                         selectAll={ props.selectAll }
-                        size={ props.headerSize || settings.sizes.defaults.dataTableHeaderRow as DataTableHeaderRowProps['size'] }
+                        size={ props.headerSize || settings.sizes.dataTable.header.row.default as DataTableHeaderRowProps['size'] }
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
                         showFoldAll={ props.showFoldAll }
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
-                        columnsGap={ props.columnsGap || settings.sizes.dataTableRow.columnsGap.default as DataTableRowMods['columnsGap'] }
+                        columnsGap={ props.columnsGap }
                     />
                     <div
                         className={ cx(uuiScrollShadows.top, {

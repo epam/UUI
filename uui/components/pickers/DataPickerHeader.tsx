@@ -17,8 +17,8 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = (props) => {
     return (
         <FlexRow alignItems="center" borderBottom cx={ css.header }>
             <Text
-                size={ settings.sizes.dataPickerHeader.text.size as TextProps['size'] }
-                fontWeight={ settings.sizes.dataPickerHeader.text.fontWeight as TextProps['fontWeight'] }
+                size={ settings.sizes.pickerInput.body.mobile.header.titleSize as TextProps['size'] }
+                cx={ css.title }
             >
                 {title}
             </Text>

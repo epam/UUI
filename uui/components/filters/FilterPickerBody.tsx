@@ -70,7 +70,7 @@ export function FilterPickerBody<TItem, TId>({
                 highlightSearchMatches={ highlightSearchMatches }
                 { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
                 dataSourceState={ dsState }
-                size={ settings.sizes.filterPickerBody.pickerItem as PickerItemProps<any, any>['size'] }
+                size={ settings.sizes.filtersPanel.pickerInput.body.default as PickerItemProps<any, any>['size'] }
                 { ...rowProps }
             />
         );
@@ -90,7 +90,7 @@ export function FilterPickerBody<TItem, TId>({
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                size={ settings.sizes.filterPickerBody.dataPickerRow as DataPickerRowProps<any, any>['size'] }
+                size={ settings.sizes.filtersPanel.pickerInput.body.default as DataPickerRowProps<any, any>['size'] }
                 padding="12"
                 renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
             />
@@ -98,7 +98,7 @@ export function FilterPickerBody<TItem, TId>({
     };
 
     const renderFooter = () => {
-        return <DataPickerFooter { ...getFooterProps() } size={ settings.sizes.filterPickerBody.dataPickerFooter as DataPickerFooterProps<any, any>['size'] } />;
+        return <DataPickerFooter { ...getFooterProps() } size={ settings.sizes.filtersPanel.pickerInput.body.default as DataPickerFooterProps<any, any>['size'] } />;
     };
 
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
@@ -114,7 +114,7 @@ export function FilterPickerBody<TItem, TId>({
                     rows={ renderedDataRows }
                     maxHeight={ maxHeight }
                     maxWidth={ maxWidth }
-                    searchSize={ settings.sizes.filterPickerBody.searchSize as DataPickerBodyProps['searchSize'] }
+                    searchSize={ settings.sizes.filtersPanel.pickerInput.body.default as DataPickerBodyProps['searchSize'] }
                     editMode="dropdown"
                 />
                 {renderFooter()}

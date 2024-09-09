@@ -3,11 +3,8 @@ interface DefaultSizes {
     button: string;
     checkbox: string;
     countIndicator: string;
-    dataPickerCell: string;
     linkButton: string;
     numericInput: string;
-    pickerToggler: string;
-    pickerItem: string;
     radioInput: string;
     switch: string;
     tabButton: string;
@@ -19,10 +16,6 @@ interface DefaultSizes {
     datePicker: string;
     labeledInput: string;
     statusIndicator: string;
-    dataTableCell: string,
-    dataTableRow: string,
-    dataTableHeaderCell: string,
-    dataTableHeaderRow: string,
     paginator: string,
 }
 
@@ -41,60 +34,80 @@ interface UppercaseTextSize {
     uppercase: string;
 }
 
-interface UtmostSize {
-    utmost: string | number;
-}
-
-interface EditableSize {
-    editable: string | number;
-}
-
-interface DefaultSize {
-    default: string | number;
-}
-
-interface MobileSize {
-    mobile: string | number;
-}
-
-interface ModalSize {
-    modal: string | number;
-}
-
 interface TagSizes {
     countIndicator: Sizes;
 }
 
-interface MobileDropdownWrapperSizes {
-    linkButton: string;
-}
-
-interface PickerInputRowSizes extends MobileSize, ModalSize {
-    padding: ModalSize & DefaultSize;
-}
-
 interface PickerInputSizes {
-    height: number;
-    width: number;
-    rowSize: PickerInputRowSizes;
+    toggler: PickerInputTogglerSizes;
+    body: PickerInputBodySizes;
 }
 
-interface PickerTogglerSizes {
+interface PickerInputTogglerDefaultSizes {
+    size: string;
+    tag: string;
+}
+
+interface PickerInputTogglerSizes {
+    defaults: PickerInputTogglerDefaultSizes;
     tag: Sizes;
 }
 
-interface DataPickerHeaderTextSizes {
-    fontWeight: string;
-    size: string;
+interface PickerInputBodySizes {
+    dropdown: PickerInputBodyDropdownSizes;
+    mobile: PickerInputBodyMobileSizes;
+    modal: PickerInputBodyModalSizes;
 }
 
-interface DataPickerHeaderSizes {
-    text: DataPickerHeaderTextSizes;
+interface PickerInputBodyDropdownSizes {
+    height: number;
+    width: number;
+    padding: string;
+    row: PickerInputBodyRowSizes;
+    footer: PickerBodyDropdownFooterSizes;
 }
 
-interface DataPickerBodySizes {
-    flexCell: DefaultSize;
-    searchInput: MobileSize,
+interface PickerInputBodyItemSizes {
+    default: string;
+    avatar: PickerItemAvatarSizes;
+    verticalPadding: Sizes;
+}
+
+interface PickerInputBodyCellSizes {
+    item: PickerInputBodyItemSizes;
+    isBoldSelectionIcon: IsBoldSizes;
+    text: Sizes;
+    icon: Sizes;
+}
+
+interface PickerInputBodyRowSizes {
+    default: string;
+    cell: PickerInputBodyCellSizes;
+}
+
+interface PickerBodyDropdownFooterSizes {
+    switch: Sizes;
+    linkButton: Sizes;
+}
+
+interface PickerInputBodyMobileSizes {
+    header: PickerBodyMobileHeaderSizes;
+    footer: PickerBodyMobileFooterSizes;
+    row: string;
+    searchInput: string;
+}
+
+interface PickerBodyMobileHeaderSizes {
+    titleSize: string;
+}
+
+interface PickerBodyMobileFooterSizes {
+    linkButton: string;
+}
+
+interface PickerInputBodyModalSizes {
+    row: string;
+    padding: string;
 }
 
 interface PickerItemAvatarSizes {
@@ -102,51 +115,26 @@ interface PickerItemAvatarSizes {
     multiline: Sizes;
 }
 
-interface PickerItemSizes {
-    avatar: PickerItemAvatarSizes;
-    columnGap: string;
-    verticalPadding: Sizes;
-}
-
-interface DataPickerCellIsBoldIcon {
+interface IsBoldSizes {
     [size: string | number]: boolean;
 }
 
-interface DataPickerCellSizes {
-    isBoldIcon: DataPickerCellIsBoldIcon;
-    padding: DefaultSize;
-    paddingLeft: DefaultSize;
-    text: Sizes;
-    icon: Sizes;
-}
-
-interface DataPickerRowSizes {
-    padding: DefaultSize;
-    dataPickerCell: DefaultSize;
-}
-
-interface DataPickerFooterSizes {
-    flexRowPadding: string;
-    switch: Sizes;
-    linkButton: Sizes & MobileSize;
-}
-
 interface RowAddonsSizes {
+    defaults: RowAddonsDefaults;
     checkbox: Sizes;
-    icon: Sizes & DefaultSize;
-    indentUnit: Sizes & DefaultSize;
-    indentWidth: Sizes & DefaultSize;
+    icon: Sizes;
+    indentUnit: Sizes;
+    indentWidth: Sizes;
+}
+
+interface RowAddonsDefaults {
+    icon: string,
+    indentUnit: number,
+    indentWidth: number,
 }
 
 interface TextSizes {
     [size: string | number]: TextSize;
-}
-
-interface FilterPickerBodySizes {
-    pickerItem: string,
-    dataPickerRow: string,
-    dataPickerFooter: string,
-    searchSize: string,
 }
 
 interface LabeledInputSizes {
@@ -157,83 +145,85 @@ interface BadgeSizes {
     countIndicator: Sizes;
 }
 
-interface DataTableHeaderCellTooltipContentSizes {
-    caption: TextSize;
-    info: TextSize;
-}
-
 interface DataTableHeaderCellSizes {
+    defaults: DataTableHeaderCellDefaults;
     checkbox: Sizes;
     columnCaption: TextSize & UppercaseTextSize;
-    iconSize: Sizes;
-    resizeMarker: DefaultSize;
-    leftPadding: DefaultSize & UtmostSize;
-    rightPadding: DefaultSize & UtmostSize;
-    tooltip: DataTableHeaderCellTooltipContentSizes;
-}
-
-interface DataTableHeaderRowSizes {
     iconSize: Sizes;
     truncate?: string[];
 }
 
-interface DataTableCellSizes {
-    text: Sizes;
-    leftPadding: EditableSize & DefaultSize & UtmostSize;
-    rightPadding: EditableSize & DefaultSize & UtmostSize;
+interface DataTableHeaderCellDefaults {
+    size: string;
+    resizeMarker: string;
+    padding: string;
+    paddingEdge: string;
 }
 
-interface DataTableRowSizes {
-    columnsGap: DefaultSize;
+interface DataTableCellSizes {
+    defaults: DataTableCellDefaults;
+    text: Sizes;
+}
+
+interface DataTableCellDefaults {
+    size: string;
+    padding: string;
+    paddingEdge: string;
 }
 
 interface DataTableColumnsConfigurationModal {
-    columnRowSize: string;
-    columnGap: string;
-    padding: string;
-    pinIconButtonGap: string;
-    groupTitleSize: string;
-    groupTitleFontSize: string;
-    groupTitleFontWeight: string;
-    subgroupTitleSize: string;
-    subgroupTitleFontSize: string;
-    subgroupTitleFontWeight: string;
-    subgroupTitleIconSize: string;
-    searchAreaSize: string;
-    searchSize: string;
-    noFoundTitleSize: string;
-    noFoundTitleFontSize: string;
-    noFoundTitleFontWeight: string;
-    noFoundSubTitleSize: string;
-    noFoundSubTitleFontSize: string;
-    noFoundSubTitleFontWeight: string;
+    columnRow: string;
+    countIndicator: string;
+    subgroupIcon: string;
+    search: string;
 }
 
-interface PaginatorSizes {}
+interface FiltersPanelPickerBodySizes {
+    default: string;
+}
+
+interface FiltersPanelPickerSizes {
+    body: FiltersPanelPickerBodySizes;
+}
+
+interface FiltersPanelSizes {
+    pickerInput: FiltersPanelPickerSizes;
+}
+
+interface DataTableHeaderRowSizes {
+    default: string;
+    cell: DataTableHeaderCellSizes;
+}
+
+interface DataTableHeaderSizes {
+    row: DataTableHeaderRowSizes;
+}
+
+interface DataTableRowSizes {
+    default: string;
+    cell: DataTableCellSizes;
+}
+
+interface DataTableBodySizes {
+    row: DataTableRowSizes;
+}
+
+interface DataTableSizes {
+    columnsConfigurationModal: DataTableColumnsConfigurationModal;
+    header: DataTableHeaderSizes;
+    body: DataTableBodySizes;
+}
 
 interface SizesSettings {
     defaults: DefaultSizes;
     tag: TagSizes;
-    mobileDropdownWrapper: MobileDropdownWrapperSizes;
     pickerInput: PickerInputSizes;
-    pickerToggler: PickerTogglerSizes;
-    dataPickerHeader: DataPickerHeaderSizes;
-    dataPickerBody: DataPickerBodySizes;
-    pickerItem: PickerItemSizes;
-    dataPickerCell: DataPickerCellSizes;
-    dataPickerRow: DataPickerRowSizes;
-    dataPickerFooter: DataPickerFooterSizes;
     rowAddons: RowAddonsSizes;
     text: TextSizes;
-    filterPickerBody: FilterPickerBodySizes;
+    filtersPanel: FiltersPanelSizes;
     labeledInput: LabeledInputSizes;
     badge: BadgeSizes;
-    dataTableHeaderCell: DataTableHeaderCellSizes;
-    dataTableHeaderRow: DataTableHeaderRowSizes;
-    dataTableCell: DataTableCellSizes;
-    dataTableRow: DataTableRowSizes;
-    dataTableColumnsConfigurationModal: DataTableColumnsConfigurationModal;
-    paginator: PaginatorSizes;
+    dataTable: DataTableSizes;
 }
 
 export interface Settings {

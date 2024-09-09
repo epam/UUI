@@ -2,7 +2,6 @@
 
 .root {
     --uui-dt-header-row-config-icon-padding: 24px;
-    --uui-dt-header-row-truncate-caption-line-height: 18px;
 }
 
 :global(.config-icon) {
@@ -28,17 +27,4 @@
 :global(.uui-table-header-row) {
     --uui-dt-row-bg: var(--uui-dt-header-row-bg);
     --uui-dt-row-bg-hover: var(--uui-dt-header-row-bg-hover);
-}
-
-.truncate {
-    /* stylelint-disable */
-    :global(.uui-table-header-caption) {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        white-space: normal;
-        line-height: var(--uui-dt-header-row-truncate-caption-line-height);
-    }
-    /* stylelint-enable */
 }

@@ -1,55 +1,110 @@
 @use '../../../assets/styles/index' as *;
 
-.main-panel {
-    height: 100%;
+.root {
+    --uui-dt-columns_config_modal-padding: 24px;
+    --uui-dt-columns_config_modal-horizontal-gap: 6px;
+    --uui-dt-columns_config_modal-search_area-min-height: 42px;
+    --uui-dt-columns_config_modal-pin_icon_button-column-gap: 12px;
+    //
+    --uui-dt-columns_config_modal-group_title-font-size: 14px;
+    --uui-dt-columns_config_modal-group_title-line-height: 18px;
+    --uui-dt-columns_config_modal-group_title-font-weight: 600;
+    //
+    --uui-dt-columns_config_modal-subgroup-min-height: 24px;
+    --uui-dt-columns_config_modal-subgroup_title-font-size: 10px;
+    --uui-dt-columns_config_modal-subgroup_title-line-height: 12px;
+    --uui-dt-columns_config_modal-subgroup_title-font-weight: 600;
+    //
+    --uui-dt-columns_config_modal-no_data_title-line-height: 30px;
+    --uui-dt-columns_config_modal-no_data_title-font-size: 24px;
+    --uui-dt-columns_config_modal-no_data_title-font-weight: 600;
+    --uui-dt-columns_config_modal-no_data_sub_title-line-height: 24px;
+    --uui-dt-columns_config_modal-no_data_sub_title-font-size: 16px;
+    --uui-dt-columns_config_modal-no_data_sub_title-font-weight: 400;
 
-    .group-title {
-        &:not(:first-child) {
-            padding-top: calc(var(--uui-grid-unit) * 2);
+    .main-panel {
+        height: 100%;
+
+        .group {
+            padding: 0 var(--uui-dt-columns_config_modal-padding);
+            column-gap: var(--uui-dt-columns_config_modal-horizontal-gap);
+
+            .group-title {
+                font-size: var(--uui-dt-columns_config_modal-group_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-group_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-group_title-font-weight);
+            }
+
+            &:not(:first-child) {
+                padding-top: calc(var(--uui-grid-unit) * 2);
+            }
         }
-    }
 
-    .group-items {
-        flex-direction: column;
-    }
+        .group-items {
+            flex-direction: column;
+        }
 
-    .no-data {
-        flex-direction: column;
-        top: calc(50% - 35px);
-        position: relative;
-    }
+        .no-data {
+            flex-direction: column;
+            top: calc(50% - 35px);
+            position: relative;
 
-    .h-divider {
-        display: block;
-        box-sizing: border-box;
-        width: 100%;
-        padding-top: var(--uui-grid-unit);
-        padding-bottom: var(--uui-grid-unit);
+            .no-data-title {
+                font-size: var(--uui-dt-columns_config_modal-no_data_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-no_data_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-no_data_title-font-weight);
+            }
 
-        &::before {
-            content: '';
-            height: 1px;
+            .no-data-sub-title {
+                font-size: var(--uui-dt-columns_config_modal-no_data_sub_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-no_data_sub_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-no_data_sub_title-font-weight);
+            }
+        }
+
+        .h-divider {
             display: block;
-            background: var(--uui-divider-light);
+            box-sizing: border-box;
+            width: 100%;
+            padding: var(--uui-grid-unit) var(--uui-dt-columns_config_modal-padding);
+
+            &::before {
+                content: '';
+                height: 1px;
+                display: block;
+                background: var(--uui-divider-light);
+            }
         }
     }
-}
 
-.search-area {
-    padding-bottom: var(--uui-grid-unit);
-}
-
-.subgroup-accordion {
-    :global(.uui-accordion-toggler):focus-visible {
-        @include focus-visible-effect(-2px, 0);
+    .search-area {
+        min-height: var(--uui-dt-columns_config_modal-search_area-min-height);
+        column-gap: var(--uui-dt-columns_config_modal-horizontal-gap);
+        padding: 0 var(--uui-dt-columns_config_modal-padding);
+        padding-bottom: var(--uui-grid-unit);
     }
 
-    .subgroup-title {
-        cursor: pointer;
-        text-transform: uppercase;
+    .subgroup-accordion {
+        :global(.uui-accordion-toggler):focus-visible {
+            @include focus-visible-effect(-2px, 0);
+        }
 
-        :global(.uui-icon) {
-            fill: var(--uui-text-tertiary);
+        .subgroup {
+            cursor: pointer;
+            text-transform: uppercase;
+            min-height: var(--uui-dt-columns_config_modal-subgroup-min-height);
+            padding: 0 var(--uui-dt-columns_config_modal-padding);
+            column-gap: var(--uui-dt-columns_config_modal-horizontal-gap);
+
+            .subgroup-title {
+                font-size: var(--uui-dt-columns_config_modal-subgroup_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-subgroup_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-subgroup_title-font-weight);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--uui-text-tertiary);
+            }
         }
     }
 }

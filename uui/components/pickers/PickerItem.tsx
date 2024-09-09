@@ -48,7 +48,7 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
         size, avatarUrl, isLoading, isDisabled, icon, cx,
     } = props;
 
-    const itemSize = size || settings.sizes.defaults.pickerItem as PickerItemProps<any, any>['size'];
+    const itemSize = size || settings.sizes.pickerInput.body.dropdown.row.cell.item.default as PickerItemProps<any, any>['size'];
     const isMultiline = !!(props.title && props.subtitle);
 
     const { search } = props.dataSourceState ?? {};
@@ -59,9 +59,8 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
         <FlexCell width="auto" cx={ [css.root, 'uui-typography', cx] }>
             <FlexRow
                 size={ itemSize as FlexRowProps['size'] }
-                cx={ isMultiline && css.multiline }
-                columnGap={ settings.sizes.pickerItem.columnGap as FlexRowProps['columnGap'] }
-                rawProps={ { style: { '--uui-picker_item-vertical-padding': `${settings.sizes.pickerItem.verticalPadding[itemSize]}px` } as React.CSSProperties } }
+                cx={ [isMultiline && css.multiline, css.columnGap] }
+                rawProps={ { style: { '--uui-picker_item-vertical-padding': `${settings.sizes.pickerInput.body.dropdown.row.cell.item.verticalPadding[itemSize]}px` } as React.CSSProperties } }
             >
                 { avatarUrl && (
                     <Avatar
@@ -89,5 +88,6 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
 }
 
 function getAvatarSize(size: PickerItemProps<any, any>['size'], isMultiline: boolean): string | number {
-    return settings.sizes.pickerItem.avatar[isMultiline ? 'multiline' : 'rest'][size];
+    console.log('ava', settings.sizes.pickerInput.body.dropdown.row.cell.item.avatar[isMultiline ? 'multiline' : 'rest'][size]);
+    return settings.sizes.pickerInput.body.dropdown.row.cell.item.avatar[isMultiline ? 'multiline' : 'rest'][size];
 }

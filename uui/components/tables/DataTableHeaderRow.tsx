@@ -13,7 +13,7 @@ import css from './DataTableHeaderRow.module.scss';
 export type DataTableHeaderRowProps = CoreDataTableHeaderRowProps & DataTableHeaderRowMods;
 export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTableHeaderRowProps>(
     uuiDataTableHeaderRow,
-    (props) => [css.root, 'uui-dt-vars', settings.sizes.dataTableHeaderRow.truncate.includes(props.size) && css.truncate],
+    () => [css.root, 'uui-dt-vars'],
     (mods) => ({
         renderCell: (props) => (
             <DataTableHeaderCell
@@ -28,7 +28,7 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
             <IconButton
                 key="configuration"
                 onClick={ mods.onConfigButtonClick }
-                cx={ ['config-icon', `uui-size-${settings.sizes.dataTableHeaderRow.iconSize[mods.size || settings.sizes.defaults.dataTableHeaderRow]}`] }
+                cx={ ['config-icon', `uui-size-${settings.sizes.dataTable.header.row.cell.iconSize[mods.size || settings.sizes.dataTable.header.row.default]}`] }
                 color="neutral"
                 icon={ ConfigIcon }
             />

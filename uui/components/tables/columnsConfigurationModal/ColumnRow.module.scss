@@ -6,10 +6,12 @@
     box-sizing: border-box;
     touch-action: auto;
     column-gap: var(--uui-horizontal-gap);
+    padding: 0 var(--uui-dt-columns_config_modal-padding);
 
     &.not-pinned:not(:hover):not(:focus-within) {
         .pin-icon-button {
             visibility: hidden;
+            column-gap: var(--uui-dt-columns_config_modal-pin_icon_button-column-gap);
         }
     }
 

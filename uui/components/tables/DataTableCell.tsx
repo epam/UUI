@@ -19,14 +19,14 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
 
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
-            <Text key="t" size={ settings.sizes.dataTableCell.text[props.size] as TextProps['size'] }>
+            <Text key="t" size={ settings.sizes.dataTable.body.row.cell.text[props.size] as TextProps['size'] }>
                 <TextPlaceholder isNotAnimated />
             </Text>
         ));
 
     props.renderUnknown = props.renderUnknown
         || (() => (
-            <Text key="t" size={ settings.sizes.dataTableCell.text[props.size] as TextProps['size'] }>
+            <Text key="t" size={ settings.sizes.dataTable.body.row.cell.text[props.size] as TextProps['size'] }>
                 Unknown
             </Text>
         ));
@@ -38,25 +38,25 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     const getLeftPadding = () => {
         const { rowProps: { isLoading }, columnsGap, isFirstColumn } = props;
 
-        if (isFirstColumn && isEditable && !isLoading) return settings.sizes.dataTableCell.leftPadding.default;
-        if (isEditable && !isLoading) return settings.sizes.dataTableCell.leftPadding.editable;
+        if (isFirstColumn && isEditable && !isLoading) return settings.sizes.dataTable.body.row.cell.defaults.padding;
+        if (isEditable && !isLoading) return '0';
         if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
-        return isFirstColumn ? settings.sizes.dataTableCell.leftPadding.utmost : settings.sizes.dataTableCell.leftPadding.default;
+        return isFirstColumn ? settings.sizes.dataTable.body.row.cell.defaults.paddingEdge : settings.sizes.dataTable.body.row.cell.defaults.padding;
     };
 
     const getRightPadding = () => {
         const { rowProps: { isLoading }, columnsGap, isLastColumn } = props;
 
-        if (isEditable && !isLoading) return settings.sizes.dataTableCell.rightPadding.editable;
+        if (isEditable && !isLoading) return '0';
         if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
-        return isLastColumn ? settings.sizes.dataTableCell.rightPadding.utmost : settings.sizes.dataTableCell.rightPadding.default;
+        return isLastColumn ? settings.sizes.dataTable.body.row.cell.defaults.paddingEdge : settings.sizes.dataTable.body.row.cell.defaults.padding;
     };
 
     props.cx = [
         'data-table-cell',
         css.root,
         props.cx,
-        'uui-size-' + (props.size || settings.sizes.defaults.dataTableCell),
+        'uui-size-' + (props.size || settings.sizes.dataTable.body.row.cell.defaults.size),
         props.isFirstColumn && 'uui-dt-first-column',
         props.isLastColumn && 'uui-dt-last-column',
         css[`align-widgets-${props.alignActions || 'top'}`],

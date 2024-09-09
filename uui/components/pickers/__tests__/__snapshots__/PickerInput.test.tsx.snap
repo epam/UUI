@@ -87,15 +87,15 @@ exports[`PickerInput should open body 1`] = `
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root uui-size-36 container align-items-center"
-                            style="column-gap: 12px; --uui-picker_item-vertical-padding: 6px;"
+                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
                               class="flexCell"
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                               >
                                 Elementary
                               </div>
@@ -131,15 +131,15 @@ exports[`PickerInput should open body 1`] = `
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root uui-size-36 container align-items-center"
-                            style="column-gap: 12px; --uui-picker_item-vertical-padding: 6px;"
+                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
                               class="flexCell"
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                               >
                                 Elementary+
                               </div>

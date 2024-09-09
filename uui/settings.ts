@@ -7,11 +7,8 @@ export const settings: Settings = {
             button: '36',
             checkbox: '18',
             countIndicator: '24',
-            dataPickerCell: '36',
             linkButton: '36',
             numericInput: '36',
-            pickerToggler: '36',
-            pickerItem: '36',
             radioInput: '18',
             switch: '18',
             tabButton: '48',
@@ -23,10 +20,6 @@ export const settings: Settings = {
             datePicker: '36',
             labeledInput: '36',
             statusIndicator: '24',
-            dataTableCell: '36',
-            dataTableRow: '36',
-            dataTableHeaderCell: '36',
-            dataTableHeaderRow: '36',
             paginator: '30',
         },
         tag: {
@@ -39,125 +32,115 @@ export const settings: Settings = {
                 48: '24',
             },
         },
-        mobileDropdownWrapper: {
-            linkButton: '48',
-        },
         pickerInput: {
-            height: 300,
-            width: 360,
-            rowSize: {
-                mobile: '48',
-                modal: '36',
-                padding: {
-                    modal: '24',
-                    default: '12',
+            toggler: {
+                defaults: {
+                    size: '36',
+                    tag: '36',
                 },
-            },
-        },
-        pickerToggler: {
-            tag: {
-                24: '18',
-                30: '18',
-                36: '24',
-                42: '30',
-                48: '36',
-                60: '42',
-            },
-        },
-        dataPickerHeader: {
-            text: {
-                fontWeight: '600',
-                size: '48',
-            },
-        },
-        dataPickerBody: {
-            flexCell: {
-                default: '36',
-            },
-            searchInput: {
-                mobile: '48',
-            },
-        },
-        pickerItem: { // max 48, setup by row with 60????
-            columnGap: '12',
-            verticalPadding: {
-                24: '3',
-                30: '6',
-                36: '6',
-                42: '9',
-                48: '9',
-            },
-            avatar: {
-                rest: {
+                tag: {
                     24: '18',
-                    30: '24',
-                    36: '30',
-                    42: '36',
-                    48: '36', // no design
-                },
-                multiline: {
-                    24: '30',
-                    30: '30',
-                    36: '36',
-                    42: '42',
-                    48: '48', // no design
+                    30: '18',
+                    36: '24',
+                    42: '30',
+                    48: '36',
+                    60: '42',
                 },
             },
-        },
-        dataPickerCell: {
-            isBoldIcon: {
-                24: true,
-            },
-            padding: {
-                default: '12',
-            },
-            paddingLeft: {
-                default: '24',
-            },
-            text: {
-                24: '24',
-                30: '30',
-                36: '36',
-                42: '42',
-                48: '48',
-                60: '48',
-            },
-            icon: {
-                24: '12',
-                30: '18',
-                36: '18',
-                42: '24',
-                48: '24',
-                60: '24',
-            },
-        },
-        dataPickerRow: { // max 60
-            padding: {
-                default: '24',
-            },
-            dataPickerCell: {
-                default: '36',
-            },
-        },
-        dataPickerFooter: {
-            flexRowPadding: '12',
-            switch: {
-                24: '12',
-                30: '18',
-                36: '18',
-                42: '24',
-                48: '24',
-            },
-            linkButton: {
-                24: '24',
-                30: '30',
-                36: '36',
-                42: '42',
-                48: '48',
-                mobile: '48',
+            body: {
+                dropdown: {
+                    height: 300,
+                    width: 360,
+                    padding: '12',
+                    row: {
+                        default: '36',
+                        cell: {
+                            text: {
+                                24: '24',
+                                30: '30',
+                                36: '36',
+                                42: '42',
+                                48: '48',
+                                60: '48',
+                            },
+                            icon: {
+                                24: '12',
+                                30: '18',
+                                36: '18',
+                                42: '24',
+                                48: '24',
+                                60: '24',
+                            },
+                            isBoldSelectionIcon: {
+                                24: true,
+                            },
+                            item: { // max 48, setup by row with 60????
+                                default: '36',
+                                verticalPadding: {
+                                    24: '3',
+                                    30: '6',
+                                    36: '9',
+                                    42: '6',
+                                    48: '9',
+                                },
+                                avatar: {
+                                    rest: {
+                                        24: '18',
+                                        30: '24',
+                                        36: '30',
+                                        42: '36',
+                                        48: '36', // no design
+                                    },
+                                    multiline: {
+                                        24: '30',
+                                        30: '30',
+                                        36: '36',
+                                        42: '42',
+                                        48: '48', // no design
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    footer: {
+                        switch: {
+                            24: '12',
+                            30: '18',
+                            36: '18',
+                            42: '24',
+                            48: '24',
+                        },
+                        linkButton: {
+                            24: '24',
+                            30: '30',
+                            36: '36',
+                            42: '42',
+                            48: '48',
+                        },
+                    },
+                },
+                mobile: {
+                    header: {
+                        titleSize: '48',
+                    },
+                    footer: {
+                        linkButton: '48',
+                    },
+                    row: '48',
+                    searchInput: '48',
+                },
+                modal: {
+                    row: '36',
+                    padding: '24',
+                },
             },
         },
         rowAddons: {
+            defaults: {
+                icon: '18',
+                indentUnit: 24,
+                indentWidth: 12,
+            },
             checkbox: {
                 24: '12',
                 30: '18',
@@ -173,7 +156,6 @@ export const settings: Settings = {
                 42: '24',
                 48: '24',
                 60: '24',
-                default: '18',
             },
             indentUnit: {
                 24: 6,
@@ -182,7 +164,6 @@ export const settings: Settings = {
                 42: 24,
                 48: 24,
                 60: 24,
-                default: 24,
             },
             indentWidth: {
                 24: 12,
@@ -191,7 +172,6 @@ export const settings: Settings = {
                 42: 24,
                 48: 24,
                 60: 24,
-                default: 12,
             },
         },
         text: {
@@ -203,11 +183,12 @@ export const settings: Settings = {
             48: { lineHeight: 24, fontSize: 16 },
             60: { lineHeight: 30, fontSize: 24 },
         },
-        filterPickerBody: {
-            pickerItem: '36',
-            dataPickerRow: '36',
-            dataPickerFooter: '36',
-            searchSize: '36',
+        filtersPanel: {
+            pickerInput: {
+                body: {
+                    default: '36',
+                },
+            },
         },
         labeledInput: {
             fillIcon: ['24', '30'],
@@ -222,101 +203,65 @@ export const settings: Settings = {
                 48: '24',
             },
         },
-        dataTableHeaderCell: {
-            checkbox: {
-                36: '18',
-                48: '18',
-                60: '18',
-            },
-            columnCaption: {
-                fontSize: '14',
-                fontWeight: '400',
-                lineHeight: '30',
-                size: '30',
-                uppercase: '12',
-            },
-            iconSize: {
-                36: '18',
-                48: '18',
-                60: '18',
-            },
-            resizeMarker: {
-                default: '12',
-            },
-            leftPadding: {
-                default: '12',
-                utmost: '24',
-            },
-            rightPadding: {
-                default: '12',
-                utmost: '24',
-            },
-            tooltip: {
-                caption: {
-                    fontSize: '14',
-                    fontWeight: '600',
-                },
-                info: {
-                    fontSize: '12',
-                    fontWeight: '400',
+        dataTable: {
+            header: {
+                row: {
+                    default: '36',
+                    cell: {
+                        defaults: {
+                            size: '36',
+                            resizeMarker: '12',
+                            padding: '12',
+                            paddingEdge: '24',
+                        },
+                        checkbox: {
+                            36: '18',
+                            48: '18',
+                            60: '18',
+                        },
+                        columnCaption: {
+                            fontSize: '14',
+                            fontWeight: '400',
+                            lineHeight: '30',
+                            size: '30',
+                            uppercase: '12',
+                        },
+                        iconSize: {
+                            36: '18',
+                            48: '18',
+                            60: '18',
+                        },
+                        truncate: ['48'],
+                    },
                 },
             },
-        },
-        dataTableHeaderRow: {
-            iconSize: {
-                36: '18',
-                48: '18',
-                60: '18',
+            body: {
+                row: {
+                    default: '36',
+                    cell: {
+                        defaults: {
+                            size: '36',
+                            padding: '12',
+                            paddingEdge: '24',
+                        },
+                        text: {
+                            18: '18',
+                            24: '24',
+                            30: '30',
+                            36: '36',
+                            42: '42',
+                            48: '48',
+                            60: '48',
+                        },
+                    },
+                },
             },
-            truncate: ['48'],
-        },
-        dataTableCell: {
-            text: {
-                18: '18',
-                24: '24',
-                30: '30',
-                36: '36',
-                42: '42',
-                48: '48',
-                60: '48',
-            },
-            leftPadding: {
-                editable: '0',
-                default: '12',
-                utmost: '24',
-            },
-            rightPadding: {
-                editable: '0',
-                default: '12',
-                utmost: '24',
+            columnsConfigurationModal: {
+                columnRow: '30',
+                countIndicator: '18',
+                subgroupIcon: '18',
+                search: '30',
             },
         },
-        dataTableRow: {
-            columnsGap: {
-                default: '24',
-            },
-        },
-        dataTableColumnsConfigurationModal: {
-            columnRowSize: '30',
-            columnGap: '6',
-            padding: '24',
-            pinIconButtonGap: '12',
-            groupTitleSize: '18',
-            groupTitleFontSize: '14',
-            groupTitleFontWeight: '600',
-            subgroupTitleSize: '12',
-            subgroupTitleFontSize: '10',
-            subgroupTitleFontWeight: '600',
-            subgroupTitleIconSize: '18',
-            searchAreaSize: '42',
-            searchSize: '30',
-            noFoundTitleSize: '30',
-            noFoundTitleFontSize: '24',
-            noFoundTitleFontWeight: '600',
-            noFoundSubTitleSize: '24',
-            noFoundSubTitleFontSize: '16',
-            noFoundSubTitleFontWeight: '400',
-        },
-        paginator: {},
     },
 };

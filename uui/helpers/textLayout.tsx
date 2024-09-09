@@ -20,7 +20,7 @@ export function getTextClasses(props: TextSettings & { size: 'none' | '18' | Con
         fontSize: props.fontSize || settings.sizes.text[props.size].fontSize,
     };
 
-    const vPadding = (+setting.size - +setting.lineHeight - (border ? 2 : 0)) / 2;
+    const vPadding = (+setting.size - +setting.lineHeight - 0) / 2;
 
     return [
         css['line-height-' + setting.lineHeight], css['font-size-' + setting.fontSize], css['v-padding-' + vPadding],

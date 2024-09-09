@@ -1,4 +1,10 @@
 .root {
+    --uui-picker_item-horizontal-gap: 12px;
+
+    .column-gap {
+        column-gap: var(--uui-picker_item-horizontal-gap);
+    }
+
     .multiline {
         padding-top: var(--uui-picker_item-vertical-padding);
         padding-bottom: var(--uui-picker_item-vertical-padding);
