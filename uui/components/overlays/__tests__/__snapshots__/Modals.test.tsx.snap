@@ -36,7 +36,12 @@ exports[`Modals should be rendered correctly with many props 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-size-48 uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
+        style={
+          Object {
+            "--uui-text-font-size": "18px",
+          }
+        }
       >
         Test header
       </div>

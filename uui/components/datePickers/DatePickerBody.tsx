@@ -23,7 +23,6 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
 
 export const uuiDatePickerBody = {
     wrapper: 'uui-datepicker-body-wrapper',
-    separator: 'uui-datepickerBody-separator',
 } as const;
 
 export const DatePickerBody = forwardRef(DatePickerBodyComp);

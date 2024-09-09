@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps, useDocumentDir,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps,
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
@@ -206,7 +206,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         },
     ];
 
-    const dir = useDocumentDir();
+    const isRtl = window?.document.dir === 'rtl';
 
     return (
         <Dropdown
@@ -214,12 +214,12 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             closeOnMouseLeave="boundary"
             openDelay={ 400 }
             closeDelay={ 400 }
-            placement={ dir === 'rtl' ? 'left-start' : 'right-start' }
+            placement={ isRtl ? 'left-start' : 'right-start' }
             modifiers={ subMenuModifiers }
             renderBody={ (dropdownProps) => !props.isDisabled && (<DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } />) }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
-                    cx={ cx(css.submenuRootItem) }
+                    cx={ cx(isRtl ? css.submenuRootItemRtl : css.submenuRootItem) }
                     icon={ systemIcons.foldingArrow }
                     iconPosition="right"
                     isDropdown={ true }

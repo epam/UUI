@@ -31,22 +31,18 @@ export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IMo
 
 const renderGroupTitle = (title: string, amount: number) => (
     <FlexRow
-        padding={ settings.sizes.dataTableColumnsConfigurationModal.padding as FlexRowProps['padding'] }
-        columnGap={ settings.sizes.dataTableColumnsConfigurationModal.columnGap as FlexRowProps['columnGap'] }
-        cx={ css.groupTitle }
+        cx={ css.group }
     >
         <Text
-            size={ settings.sizes.dataTableColumnsConfigurationModal.groupTitleSize as TextProps['size'] }
-            fontWeight={ settings.sizes.dataTableColumnsConfigurationModal.groupTitleFontWeight as TextProps['fontWeight'] }
-            lineHeight={ settings.sizes.dataTableColumnsConfigurationModal.groupTitleSize as TextProps['lineHeight'] }
-            fontSize={ settings.sizes.dataTableColumnsConfigurationModal.groupTitleFontSize as TextProps['fontSize'] }
+            size="none"
+            cx={ css.groupTitle }
         >
             {title}
         </Text>
         <CountIndicator
             caption={ amount }
             color="neutral"
-            size={ settings.sizes.dataTableColumnsConfigurationModal.groupTitleSize as CountIndicatorProps['size'] }
+            size={ settings.sizes.dataTable.columnsConfigurationModal.countIndicator as CountIndicatorProps['size'] }
         />
         <FlexSpacer />
     </FlexRow>
@@ -81,7 +77,6 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         const hasDividerAbovePinnedRight = !!(amountPinnedRight && amountUnPinned);
         const divider = (
             <FlexRow
-                padding={ settings.sizes.dataTableColumnsConfigurationModal.padding as FlexRowProps['padding'] }
                 size={ null }
                 cx={ css.hDivider }
             />
@@ -116,17 +111,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ css.modal } height="95dvh" maxHeight="95dvh">
+            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow
-                    size={ settings.sizes.dataTableColumnsConfigurationModal.searchAreaSize as FlexRowProps['size'] }
-                    columnGap={ settings.sizes.dataTableColumnsConfigurationModal.columnGap as FlexRowProps['columnGap'] }
-                    padding={ settings.sizes.dataTableColumnsConfigurationModal.padding as FlexRowProps['padding'] }
                     borderBottom={ true }
                     cx={ css.searchArea }
                 >
                     <SearchInput
-                        size={ settings.sizes.dataTableColumnsConfigurationModal.searchSize as SearchInputProps['size'] }
+                        size={ settings.sizes.dataTable.columnsConfigurationModal.search as SearchInputProps['size'] }
                         value={ searchValue }
                         onValueChange={ setSearchValue }
                         placeholder={ i18n.searchPlaceholder }
@@ -144,7 +136,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                                 { ...props }
                                 fill="none"
                                 icon={ MenuIcon }
-                                size={ settings.sizes.dataTableColumnsConfigurationModal.searchSize as ButtonProps['size'] }
+                                size={ settings.sizes.dataTable.columnsConfigurationModal.search as ButtonProps['size'] }
                                 color="secondary"
                                 isDropdown={ false }
                             />
@@ -157,20 +149,10 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                         {renderHidden()}
                         {isNoData && (
                             <FlexRow cx={ css.noData }>
-                                <Text
-                                    lineHeight={ settings.sizes.dataTableColumnsConfigurationModal.noFoundTitleSize as TextProps['lineHeight'] }
-                                    fontSize={ settings.sizes.dataTableColumnsConfigurationModal.noFoundTitleFontSize as TextProps['fontSize'] }
-                                    color="primary"
-                                    fontWeight={ settings.sizes.dataTableColumnsConfigurationModal.noFoundTitleFontWeight as TextProps['fontWeight'] }
-                                >
+                                <Text cx={ css.noDataTitle }>
                                     {i18n.noResultsFound.title}
                                 </Text>
-                                <Text
-                                    lineHeight={ settings.sizes.dataTableColumnsConfigurationModal.noFoundSubTitleSize as TextProps['lineHeight'] }
-                                    fontSize={ settings.sizes.dataTableColumnsConfigurationModal.noFoundSubTitleFontSize as TextProps['fontSize'] }
-                                    color="primary"
-                                    fontWeight={ settings.sizes.dataTableColumnsConfigurationModal.noFoundSubTitleFontWeight as TextProps['fontWeight'] }
-                                >
+                                <Text cx={ css.noDataSubTitle }>
                                     {i18n.noResultsFound.subTitle}
                                 </Text>
                             </FlexRow>
@@ -203,7 +185,7 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
         const content = (
             <FlexRow
                 cx={ css.groupItems }
-                size={ settings.sizes.dataTableColumnsConfigurationModal.columnRowSize as FlexRowProps['size'] }
+                size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
             >
                 {items.map((c) => (
                     <ColumnRow column={ c } key={ c.key } renderItem={ renderItem } />
@@ -215,21 +197,16 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
                 const toggleIcon = isOpened ? ExpandedIcon : CollapsedIcon;
                 return (
                     <FlexRow
-                        size={ `${+settings.sizes.dataTableColumnsConfigurationModal.subgroupTitleSize * 2}` as FlexRowProps['size'] }
-                        padding={ settings.sizes.dataTableColumnsConfigurationModal.padding as FlexRowProps['padding'] }
-                        columnGap={ settings.sizes.dataTableColumnsConfigurationModal.columnGap as FlexRowProps['columnGap'] }
-                        cx={ cx(css.subgroupTitle) }
+                        cx={ cx(css.subgroup) }
                     >
                         <IconContainer
-                            size={ settings.sizes.dataTableColumnsConfigurationModal.subgroupTitleIconSize }
+                            size={ settings.sizes.dataTable.columnsConfigurationModal.subgroupIcon }
                             icon={ toggleIcon }
                         />
                         <Text
                             size="none"
-                            fontWeight={ settings.sizes.dataTableColumnsConfigurationModal.subgroupTitleFontWeight as TextProps['fontWeight'] }
-                            fontSize={ settings.sizes.dataTableColumnsConfigurationModal.subgroupTitleFontSize as TextProps['fontSize'] }
-                            lineHeight={ settings.sizes.dataTableColumnsConfigurationModal.subgroupTitleSize as TextProps['lineHeight'] }
                             color="tertiary"
+                            cx={ css.subgroupTitle }
                         >
                             { title }
                         </Text>

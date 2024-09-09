@@ -20,44 +20,19 @@ export interface HeaderCellContentProps extends DndActorRenderParams {
     isResizing: boolean;
 }
 
-type Dir = 'rtl' | 'ltr';
-
 interface DataTableHeaderCellState {
     isResizing: boolean;
     resizeStartX?: number;
     originalWidth?: number;
-    dir: Dir;
 }
 
-export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps, DataTableHeaderCellState> {
-    observer: MutationObserver;
-
-    constructor(props: DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps) {
-        super(props);
-        this.state = {
-            dir: window?.document.dir as Dir,
-            isResizing: false,
-        };
-
-        this.observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
-                    this.setState({ dir: window?.document.dir as Dir });
-                }
-            });
-        });
-    }
-
-    componentDidMount() {
-        this.observer.observe(document?.documentElement, { attributes: true });
-    }
-
-    componentWillUnmount() {
-        this.observer.disconnect();
-    }
+export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableRenderProps> {
+    state: DataTableHeaderCellState = {
+        isResizing: false,
+    };
 
     cellRef = React.createRef<HTMLElement>();
-    isRtl = this.state?.dir === 'rtl';
+    isRtl = window?.document?.dir === 'rtl';
 
     toggleSort = (e: React.MouseEvent) => {
         if (isEventTargetInsideClickable(e) || !this.props.column.isSortable) return;

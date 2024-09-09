@@ -47,12 +47,24 @@ exports[`FileCard should be rendered correctly with Excel file 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
+        className="root uui-text uui-size-18 uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography fileName container"
+        style={
+          Object {
+            "--uui-text-font-size": "14px",
+            "--uui-text-line-height": "18px",
+          }
+        }
       >
         Test
       </div>
       <div
-        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
+        className="root uui-text uui-size-18 uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography container"
+        style={
+          Object {
+            "--uui-text-font-size": "14px",
+            "--uui-text-line-height": "18px",
+          }
+        }
       >
         XLS, 
         0 Bytes of 
@@ -138,12 +150,24 @@ exports[`FileCard should be rendered correctly with doc file 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
+        className="root uui-text uui-size-18 uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography fileName container"
+        style={
+          Object {
+            "--uui-text-font-size": "14px",
+            "--uui-text-line-height": "18px",
+          }
+        }
       >
         Test
       </div>
       <div
-        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
+        className="root uui-text uui-size-18 uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography container"
+        style={
+          Object {
+            "--uui-text-font-size": "14px",
+            "--uui-text-line-height": "18px",
+          }
+        }
       >
         DOC, 
         0 Bytes of 
@@ -229,12 +253,24 @@ exports[`FileCard should be rendered correctly with img file 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 fileName container"
+        className="root uui-text uui-size-18 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography fileName container"
+        style={
+          Object {
+            "--uui-text-font-size": "14px",
+            "--uui-text-line-height": "18px",
+          }
+        }
       >
         Test
       </div>
       <div
-        className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-0 container"
+        className="root uui-text uui-size-18 uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography container"
+        style={
+          Object {
+            "--uui-text-font-size": "14px",
+            "--uui-text-line-height": "18px",
+          }
+        }
       >
         GIF, 
         12.25 KB

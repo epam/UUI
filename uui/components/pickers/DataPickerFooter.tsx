@@ -26,7 +26,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         selectionMode,
     } = props;
 
-    const size = settings.sizes.dataPickerFooter.linkButton[isMobile() ? 'mobile' : props.size] as LinkButtonProps['size'];
+    const size = isMobile() ? settings.sizes.pickerInput.body.mobile.footer.linkButton as LinkButtonProps['size'] : props.size;
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;
     const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
@@ -42,10 +42,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const shouldShowFooter = isSinglePicker ? (!isSearching && !props.disableClear) : !isSearching;
 
     return shouldShowFooter && (
-        <FlexRow padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
+        <FlexRow padding={ settings.sizes.pickerInput.body.dropdown.padding as FlexRowProps['padding'] }>
             {!isSinglePicker && (
                 <Switch
-                    size={ settings.sizes.dataPickerFooter.switch[props.size] as SwitchProps['size'] }
+                    size={ settings.sizes.pickerInput.body.dropdown.footer.switch[props.size] as SwitchProps['size'] }
                     value={ showSelected.value }
                     isDisabled={ !hasSelection }
                     onValueChange={ showSelected.onValueChange }

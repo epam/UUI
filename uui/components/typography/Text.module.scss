@@ -21,11 +21,18 @@
     --uui-text-font: var(--uui-font);
     --uui-text-font-weight: 400;
     --uui-text-font-style: normal;
+    --uui-text-font-size: var(--uui-font-size);
+    --uui-text-line-height: max(var(--uui-line-height), var(--uui-text-font-size));
+    --uui-text-vertical-padding: calc((var(--uui-size) - var(--uui-text-line-height)) / 2);
     //
     font-family: var(--uui-text-font);
+    font-size: var(--uui-text-font-size);
+    line-height: var(--uui-text-line-height);
     font-weight: var(--uui-text-font-weight);
     font-style: var(--uui-text-font-style);
     color: var(--uui-text);
+    padding-top: var(--uui-text-vertical-padding);
+    padding-bottom: var(--uui-text-vertical-padding);
 
     &:global {
         &.uui-text.uui-color-white {

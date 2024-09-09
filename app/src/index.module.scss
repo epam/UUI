@@ -11,13 +11,14 @@ body {
     flex-direction: column;
     background: var(--uui-app-bg);
 
-    > div {
-        flex: 1 0 auto;
-    }
-
     &:global(.uui-theme-vanilla_thunder) {
         --font-inter: 'Inter', sans-serif;
         --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
     }
 }
+
+:global(#root) {
+    flex: 1 0 auto;
+}
+
 

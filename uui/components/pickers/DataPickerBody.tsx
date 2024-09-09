@@ -40,7 +40,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     }
 
     render() {
-        const searchSize = (isMobile() ? settings.sizes.dataPickerBody.searchInput['mobile'] : this.props.searchSize) as SearchInputProps['size'];
+        const searchSize = (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
 
         return (
             <>

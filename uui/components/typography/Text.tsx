@@ -40,23 +40,34 @@ export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
 export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}
 
 function applyTextMods(mods: TextProps) {
-    const textClasses = getTextClasses(
-        {
-            size: mods.size || (settings.sizes.defaults.text as TextSize),
-            lineHeight: mods.lineHeight,
-            fontSize: mods.fontSize,
-        },
-        false,
-    );
-
     return [
         css.root,
         'uui-text',
+        mods.size !== 'none' && `uui-size-${mods.size || settings.sizes.defaults.text}`,
         `uui-color-${mods.color || 'primary'}`,
         `uui-font-weight-${mods.fontWeight || '400'}`,
         `uui-font-style-${mods.fontStyle || 'normal'}`,
         'uui-typography',
-    ].concat(textClasses);
+    ];
 }
 
-export const Text = withMods<uuiComponents.TextProps, TextProps>(uuiComponents.Text, applyTextMods);
+export const Text = withMods<uuiComponents.TextProps, TextProps>(
+    uuiComponents.Text,
+    applyTextMods,
+    (props) => {
+        if (props.fontSize || props.lineHeight) {
+            const style: any = {};
+            props.fontSize && (style['--uui-text-font-size'] = `${props.fontSize}px`);
+            props.lineHeight && (style['--uui-text-line-height'] = `${props.lineHeight}px`);
+            return {
+                rawProps: {
+                    style: {
+                        ...style,
+                        ...props?.rawProps?.style,
+                    },
+                    ...props?.rawProps,
+                },
+            };
+        }
+    },
+);

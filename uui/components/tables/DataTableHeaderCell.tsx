@@ -45,20 +45,12 @@ export class DataTableHeaderCell<TItem, TId> extends
     };
 
     getTooltipContent = (column: DataColumnProps<TItem, TId>) => (
-        <div className={ css.cellTooltipWrapper }>
-            <Text
-                fontSize={ settings.sizes.dataTableHeaderCell.tooltip.caption.fontSize as TextProps['fontSize'] }
-                fontWeight={ settings.sizes.dataTableHeaderCell.tooltip.caption.fontWeight as TextProps['fontWeight'] }
-                cx={ css.cellTooltipText }
-            >
+        <div className={ cx(css.cellTooltipWrapper, uuiDataTableHeaderCell.uuiTableHeaderCaptionTooltip) }>
+            <Text cx={ [css.cellTooltipText, css.tooltipCaption] }>
                 { column.caption }
             </Text>
             { column.info && (
-                <Text
-                    fontSize={ settings.sizes.dataTableHeaderCell.tooltip.info.fontSize as TextProps['fontSize'] }
-                    fontWeight={ settings.sizes.dataTableHeaderCell.tooltip.info.fontWeight as TextProps['fontWeight'] }
-                    cx={ css.cellTooltipText }
-                >
+                <Text cx={ [css.cellTooltipText, css.tooltipInfo] }>
                     { column.info }
                 </Text>
             ) }
@@ -67,6 +59,12 @@ export class DataTableHeaderCell<TItem, TId> extends
 
     getColumnCaption = () => {
         const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
+        const captionCx = [
+            css.caption,
+            this.props.textCase === 'upper' && css.upperCase,
+            uuiDataTableHeaderCell.uuiTableHeaderCaption,
+            settings.sizes.dataTable.header.row.cell.truncate.includes(this.props.size) && css.truncate,
+        ];
 
         return (
             <div
@@ -81,10 +79,10 @@ export class DataTableHeaderCell<TItem, TId> extends
                 >
                     <Text
                         key="text"
-                        lineHeight={ settings.sizes.dataTableHeaderCell.columnCaption.lineHeight as TextProps['lineHeight'] }
-                        fontSize={ settings.sizes.dataTableHeaderCell.columnCaption[this.props.textCase === 'upper' ? 'uppercase' : 'fontSize'] as TextProps['fontSize'] }
-                        size={ settings.sizes.dataTableHeaderCell.columnCaption.size as TextProps['size'] }
-                        cx={ cx(css.caption, this.props.textCase === 'upper' && css.upperCase, uuiDataTableHeaderCell.uuiTableHeaderCaption) }
+                        lineHeight={ settings.sizes.dataTable.header.row.cell.columnCaption.lineHeight as TextProps['lineHeight'] }
+                        fontSize={ settings.sizes.dataTable.header.row.cell.columnCaption[this.props.textCase === 'upper' ? 'uppercase' : 'fontSize'] as TextProps['fontSize'] }
+                        size={ settings.sizes.dataTable.header.row.cell.columnCaption.size as TextProps['size'] }
+                        cx={ captionCx }
                     >
                         { this.props.column.caption }
                     </Text>
@@ -121,7 +119,7 @@ export class DataTableHeaderCell<TItem, TId> extends
         if (this.props.selectAll && this.props.isFirstColumn) {
             return (
                 <Checkbox
-                    size={ settings.sizes.dataTableHeaderCell.checkbox[this.props.size] as CheckboxProps['size'] }
+                    size={ settings.sizes.dataTable.header.row.cell.checkbox[this.props.size] as CheckboxProps['size'] }
                     { ...this.props.selectAll }
                     cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
                 />
@@ -167,19 +165,19 @@ export class DataTableHeaderCell<TItem, TId> extends
         const { columnsGap, isFirstColumn } = this.props;
 
         if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
-        return isFirstColumn ? settings.sizes.dataTableHeaderCell.leftPadding.utmost : settings.sizes.dataTableHeaderCell.leftPadding.default;
+        return isFirstColumn ? settings.sizes.dataTable.header.row.cell.defaults.paddingEdge : settings.sizes.dataTable.header.row.cell.defaults.padding;
     };
 
     getRightPadding = () => {
         const { columnsGap, isLastColumn } = this.props;
 
         if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
-        return isLastColumn ? settings.sizes.dataTableHeaderCell.rightPadding.utmost : settings.sizes.dataTableHeaderCell.rightPadding.default;
+        return isLastColumn ? settings.sizes.dataTable.header.row.cell.defaults.paddingEdge : settings.sizes.dataTable.header.row.cell.defaults.padding;
     };
 
     getResizingMarkerWidth = () => {
         const { columnsGap } = this.props;
-        return columnsGap ? +columnsGap / 2 : settings.sizes.dataTableHeaderCell.resizeMarker.default;
+        return columnsGap ? +columnsGap / 2 : settings.sizes.dataTable.header.row.cell.defaults.resizeMarker;
     };
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
@@ -187,7 +185,7 @@ export class DataTableHeaderCell<TItem, TId> extends
         const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
 
         const computeStyles = {
-            '--uui-dt-header-cell-icon-size': `${settings.sizes.dataTableHeaderCell.iconSize[this.props.size || settings.sizes.defaults.dataTableHeaderCell]}px`,
+            '--uui-dt-header-cell-icon-size': `${settings.sizes.dataTable.header.row.cell.iconSize[this.props.size || settings.sizes.dataTable.header.row.cell.defaults.size]}px`,
             '--uui-dt-header-cell-padding-start': `${this.getLeftPadding()}px`,
             '--uui-dt-header-cell-padding-end': `${this.getRightPadding()}px`,
             '--uui-dt-header-cell-resizing-marker-width': `${this.getResizingMarkerWidth()}px`,
@@ -204,7 +202,7 @@ export class DataTableHeaderCell<TItem, TId> extends
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.root,
-                    `uui-size-${this.props.size || settings.sizes.defaults.dataTableHeaderCell}`,
+                    `uui-size-${this.props.size || settings.sizes.dataTable.header.row.cell.defaults.size}`,
                     this.props.isFirstColumn && 'uui-dt-header-first-column',
                     this.props.isLastColumn && 'uui-dt-header-last-column',
                     this.props.column.fix && css['pinned-' + this.props.column.fix],

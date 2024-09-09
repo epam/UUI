@@ -34,11 +34,10 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
 
         return (
             <FlexRow
-                size={ settings.sizes.dataTableColumnsConfigurationModal.columnRowSize as FlexRowProps['size'] }
+                size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
                 cx={ wrapperClasses }
                 ref={ dndActorParams.ref }
                 rawProps={ { ...restEventHandlers } }
-                padding={ settings.sizes.dataTableColumnsConfigurationModal.padding as FlexRowProps['padding'] }
             >
                 <DragHandle
                     dragHandleIcon={ DragIndicatorIcon }
@@ -55,9 +54,8 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                     cx={ css.grow }
                 />
                 <FlexRow
-                    size={ settings.sizes.dataTableColumnsConfigurationModal.columnRowSize as FlexRowProps['size'] }
+                    size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
                     cx={ css.pinIconButton }
-                    columnGap={ settings.sizes.dataTableColumnsConfigurationModal.pinIconButtonGap as FlexRowProps['columnGap'] }
                 >
                     <PinIconButton pinPosition={ pinPosition } canUnpin={ !isPinnedAlways } onTogglePin={ togglePin } />
                 </FlexRow>

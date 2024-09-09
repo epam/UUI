@@ -24,8 +24,8 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         return (
             <DataPickerCell
                 key="name"
-                size={ this.props.size || (settings.sizes.dataPickerRow.dataPickerCell.default as PickerCellMods['size']) }
-                padding={ this.props.padding || (settings.sizes.dataPickerRow.padding.default as PickerCellMods['padding']) }
+                size={ this.props.size }
+                padding={ this.props.padding }
                 rowProps={ this.props }
                 alignActions={ this.props.alignActions || 'top' }
                 renderItem={ this.props.renderItem }
