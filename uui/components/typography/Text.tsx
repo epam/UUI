@@ -1,5 +1,4 @@
 import { Overwrite, withMods } from '@epam/uui-core';
-import { getTextClasses, TextSettings } from '../../helpers';
 import * as uuiComponents from '@epam/uui-components';
 import { settings } from '../../settings';
 import css from './Text.module.scss';
@@ -24,7 +23,11 @@ interface TextMods {
 
 export interface TextModsOverride {}
 
-export interface TextCoreProps extends uuiComponents.TextProps, TextSettings {
+export interface TextCoreProps extends uuiComponents.TextProps {
+    /** Defines text line-height */
+    lineHeight?: '12' | '18' | '24' | '30';
+    /** Defines text font-size */
+    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
     /**
      * Defines text font weight value
      * @default '400'

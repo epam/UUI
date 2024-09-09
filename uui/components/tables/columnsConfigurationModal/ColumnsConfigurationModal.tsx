@@ -11,7 +11,7 @@ import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/navigation-c
 import { FlexRow, FlexRowProps, FlexSpacer, Panel, ScrollBars } from '../../layout';
 import { Button, ButtonProps, LinkButton } from '../../buttons';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
-import { Text, TextProps } from '../../typography';
+import { Text } from '../../typography';
 import { CountIndicator, CountIndicatorProps } from '../../widgets';
 import { SearchInput, SearchInputProps } from '../../inputs';
 import { ColumnRow } from './ColumnRow';
