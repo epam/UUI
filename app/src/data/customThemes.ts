@@ -1,28 +1,44 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
-import { TTheme } from './themes';
+import { ThemeId } from './themes';
+import { svc } from '../services';
 
 const THEME_MANIFEST_FILE = 'theme-manifest.json';
+const KEY_CUSTOM_THEMES = 'uui-custom-themes';
 
 export interface CustomThemeManifest {
-    id: TTheme;
+    id: ThemeId;
     name: string;
     css: string[];
+    path: string;
     settings: null | object;
     propsOverride?: TPropEditorTypeOverride;
 }
 
-interface TUuiCustomThemesLsItem {
-    customThemes: string[],
-}
-
-function getCustomThemesConfigFromLs() {
-    const KEY_CUSTOM_THEMES = 'uui-custom-themes';
+function getCustomThemesConfig(): string[] {
+    getCustomThemePathFromUrl();
     const customThemes = localStorage.getItem(KEY_CUSTOM_THEMES);
     if (typeof customThemes === 'string') {
         try {
-            return JSON.parse(customThemes) as TUuiCustomThemesLsItem;
+            return JSON.parse(customThemes).customThemes;
         } catch (err) {
             console.error(`Unable to parse item from localStorage (key="${KEY_CUSTOM_THEMES}")`, err);
+        }
+    }
+    return [];
+}
+
+function getCustomThemePathFromUrl() {
+    const themePath = svc.uuiRouter.getCurrentLink().query?.themePath;
+    if (themePath) {
+        const customThemes = JSON.parse(localStorage.getItem(KEY_CUSTOM_THEMES))?.customThemes || [];
+        if (!customThemes.includes(themePath)) {
+            customThemes.push(themePath);
+            localStorage.setItem(
+                'uui-custom-themes',
+                JSON.stringify({
+                    customThemes: customThemes,
+                }),
+            );
         }
     }
 }
@@ -35,11 +51,15 @@ export async function loadCustomThemes(): Promise<CustomThemeManifest[]> {
     return cache;
 }
 async function loadCustomThemesInternal() {
-    const { customThemes = [] } = getCustomThemesConfigFromLs() || {};
+    const customThemes = getCustomThemesConfig();
     const ctManifestArr: CustomThemeManifest[] = [];
     if (customThemes.length > 0) {
         const ctManifestArrLoaded = await Promise.all(
             customThemes.map(async (themeUrl) => {
+                if (!themeUrl) {
+                    return;
+                }
+
                 const themeManifestUrl = `${themeUrl}/${THEME_MANIFEST_FILE}`;
                 return fetch(themeManifestUrl)
                     .then<CustomThemeManifest>(async (r) => {
@@ -47,7 +67,7 @@ async function loadCustomThemesInternal() {
                     const { id, name, css, settings, propsOverride } = tmJson;
                     const loadedSettings = settings ? await loadSettings(convertRelUrlToAbs(settings, themeUrl)) : null;
                     await loadCssArr(css.map((cssRel) => convertRelUrlToAbs(cssRel, themeUrl)));
-                    return { id, name, css, settings: loadedSettings, propsOverride };
+                    return { id, name, path: themeUrl, css, settings: loadedSettings, propsOverride };
                 })
                     .catch<undefined>((err) => {
                     console.error(`Unable to load custom theme from "${themeManifestUrl}"`, err);

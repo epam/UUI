@@ -8,7 +8,7 @@ import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
 import cx from 'classnames';
 import { docExampleLoader } from './docExampleLoader';
-import { TTheme } from '../../data';
+import { ThemeId } from '../../data';
 import { LinkButton, FlexSpacer } from '@epam/uui';
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 import { getCurrentTheme } from '../../helpers';
@@ -113,7 +113,7 @@ export class DocExample extends React.Component<DocExampleProps, DocExampleState
 const LABELS = {
     Fullscreen: 'Fullscreen',
 };
-function DocExampleFsBtn(props: { path: string; theme: TTheme }) {
+function DocExampleFsBtn(props: { path: string; theme: ThemeId }) {
     const regex = /^\.\/_examples\/(.*)\/(\w+)\.example\.tsx$/;
     const examplePath = props.path.replace(regex, '$1/$2');
     const href = `/docExample?theme=${encodeURIComponent(props.theme)}&examplePath=${encodeURIComponent(examplePath)}`;

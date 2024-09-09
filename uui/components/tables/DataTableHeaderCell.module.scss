@@ -109,6 +109,7 @@
         inset-inline-end: 0;
         height: 100%;
         cursor: col-resize;
+        user-select: none;
         width: var(--uui-dt-header-cell-resizing-marker-width);
 
         &:hover {
