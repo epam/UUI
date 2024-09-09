@@ -2,8 +2,6 @@ import * as React from 'react';
 import { DataRowProps, Overwrite } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { DataPickerCell } from './DataPickerCell';
-import { PickerCellMods } from './types';
-import { settings } from '../../settings';
 import css from './DataPickerRow.module.scss';
 
 export interface DataPickerRowModsOverride {
