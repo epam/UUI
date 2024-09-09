@@ -8,12 +8,14 @@ import {
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     renderNotFound?: () => React.ReactNode;
+    renderTypeSearchToLoadItems?: () => React.ReactNode;
     rows: React.ReactNode[];
     scheduleUpdate?: () => void;
     search: IEditable<string>;
     showSearch?: boolean | 'auto';
     fixedBodyPosition?: boolean;
     searchDebounceDelay?: number;
+    notEnoughTokensToLoadData?: boolean;
 }
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {

@@ -48,6 +48,8 @@ export type ArrayPickerProps<TId, TItem> =
 export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;
 
 export type PickerBindingValueType = 'scalar' | 'array';
+export type PickerInputSearchPosition = 'input' | 'body' | 'none';
+export type PickerInputEditMode = 'dropdown' | 'modal';
 
 export type PickerBaseOptions<TItem, TId> = {
     /** Name of the entity being selected. Affects wording like "Please select [entity]" */
@@ -73,6 +75,13 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Overrides the default 'no records found' banner.
      * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.  */
     renderNotFound?: (props: { search: string; onClose: () => void }) => ReactNode;
+
+    renderTypeSearchToLoadItems?: (props: {
+        search: string;
+        minCharsToSearch?: number;
+        searchPosition: PickerInputSearchPosition;
+        onClose: () => void;
+    }) => ReactNode;
 
     /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */
     emptyValue?: undefined | null | [];
@@ -110,7 +119,7 @@ export type PickerBaseOptions<TItem, TId> = {
 export type PickerFooterProps<TItem, TId> = {
     /** Instance of picker DataSource view */
     view: IDataSourceView<TItem, TId, any>;
-    /** IEditable interface for the 'Show only selected' toggler */
+    /** IEditable interface for the 'ShowrenderTypeSearchToLoadItems only selected' toggler */
     showSelected: IEditable<boolean>;
     /** Call to clear picker selection */
     clearSelection: () => void;
@@ -122,6 +131,7 @@ export type PickerFooterProps<TItem, TId> = {
     selection: PickerBindingProps<TItem, TId>['value'];
     /** Defines a search value */
     search: string;
+    notEnoughTokensToLoadData?: boolean;
 };
 
 /**

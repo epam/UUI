@@ -40,6 +40,18 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         );
     }
 
+    renderTypeSearchToLoadItems() {
+        if (this.props.renderTypeSearchToLoadItems) {
+            return this.props.renderTypeSearchToLoadItems();
+        }
+        // TODO: need fix sizes, how to use variables
+        return (
+            <FlexCell cx={ css[`type-search-to-load-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
+                <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
+            </FlexCell>
+        );
+    }
+
     render() {
         const searchSize = (isMobile() ? settings.sizes.dataPickerBody.searchInput['mobile'] : this.props.searchSize) as SearchInputProps['size'];
 
@@ -61,7 +73,10 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     </div>
                 )}
                 <FlexRow key="body" cx={ cx('uui-pickerInput-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
-                    { this.props.rowsCount > 0 ? (
+                    { this.props.notEnoughTokensToLoadData
+                        ? this.renderTypeSearchToLoadItems()
+                        : null }
+                    { !this.props.notEnoughTokensToLoadData && (this.props.rowsCount > 0 ? (
                         <VirtualList
                             { ...this.lens.toProps() }
                             rows={ this.props.rows }
@@ -69,7 +84,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             rowsCount={ this.props.rowsCount }
                             isLoading={ this.props.isReloading }
                         />
-                    ) : (this.renderNotFound())}
+                    ) : (this.renderNotFound()))}
                 </FlexRow>
             </>
         );

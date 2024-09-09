@@ -29,11 +29,10 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged, setShowSelected, dataSourceState, setDataSourceState,
     } = pickerInputState;
+    const searchPosition = props.searchPosition || 'input';
 
     const defaultShouldShowBody = () => {
-        const searchPosition = props.searchPosition || 'input';
         const isOpened = opened && !props.isDisabled;
-
         if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
             const isEnoughSearchLength = dataSourceState.search
                 ? dataSourceState.search.length >= props.minCharsToSearch
@@ -43,9 +42,15 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         return isOpened;
     };
 
+    const isEnoughSearchLength = () => !props.minCharsToSearch || (dataSourceState.search?.length ?? 0) >= props.minCharsToSearch;
+
     const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
-    const showSelectedOnly = !shouldShowBody() || pickerInputState.showSelected;
+    const shouldStartLoad = () => props.minCharsToSearch && searchPosition === 'body'
+        ? (isEnoughSearchLength() && shouldShowBody())
+        : shouldShowBody();
+
+    const showSelectedOnly = !shouldStartLoad() || pickerInputState.showSelected;
 
     const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showSelectedOnly }, pickerInputState);
     const {
@@ -103,12 +108,12 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
         setIsSearchChanged(false);
         setOpened(newOpened);
-        setShowSelected(false);
+        setShowSelected(!isEnoughSearchLength());
     };
 
     const toggleBodyOpening = (newOpened: boolean) => {
         if (opened === newOpened
-            || (props.minCharsToSearch && (dataSourceState.search?.length ?? 0) < props.minCharsToSearch)
+            || (getSearchPosition() !== 'body' && props.minCharsToSearch && (dataSourceState.search?.length ?? 0) < props.minCharsToSearch)
         ) {
             return;
         }
@@ -188,9 +193,19 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                         search: dataSourceState.search,
                         onClose: () => toggleBodyOpening(false),
                     })),
+            renderTypeSearchToLoadItems:
+                props.renderTypeSearchToLoadItems
+                    ? () => props.renderTypeSearchToLoadItems({
+                        search: dataSourceState.search,
+                        minCharsToSearch: props.minCharsToSearch,
+                        searchPosition: props.searchPosition,
+                        onClose: () => toggleBodyOpening(false),
+                    })
+                    : undefined,
             onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
             fixedBodyPosition: props.fixedBodyPosition,
             searchDebounceDelay: props.searchDebounceDelay,
+            notEnoughTokensToLoadData: !isEnoughSearchLength(),
         };
     };
 
@@ -247,6 +262,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onClose: handleCloseBody,
             selectionMode: props.selectionMode,
             disableClear: props.disableClear,
+            notEnoughTokensToLoadData: !isEnoughSearchLength(),
         };
     };
 
@@ -282,7 +298,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onIconClick,
             id,
         } = props;
-        const searchPosition = getSearchPosition();
         const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
         let searchValue: string | undefined = getSearchValue();
