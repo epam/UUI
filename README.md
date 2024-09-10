@@ -1,9 +1,14 @@
 # UUI
-<img align="right" width="160" height="160"
+[<img align="right" width="120" height="120"
      alt="UUI project logo"
-     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg">
+     src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/uui-logo-readme.svg" 
+      />](https://uui.epam.com/)
 
 React-based components and accelerators library built by EPAM Systems.
+<br/>
+<br/>
+<br/>     
+
 
 ## Features
 
@@ -18,20 +23,26 @@ React-based components and accelerators library built by EPAM Systems.
 
 Check out [UUI website](https://uui.epam.com) for [demo](https://uui.epam.com/demo) and [documentation](https://uui.epam.com/documents?id=overview&mode=doc&skin=UUI4_promo).
 
-To add UUI to an existing project, read more [here](https://uui.epam.com/documents?id=gettingStarted).
 
 ## Getting started
+To add UUI into an existing project, check out our [Getting Started](https://uui.epam.com/documents?id=gettingStarted&theme=electric) guide.
 
-We recommend to use our custom [UUI template](https://www.npmjs.com/package/@epam/cra-template-uui) for [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) to create React application with already configured environment.
+For the new projects we recommend to use our custom [CRA](https://github.com/epam/UUI/tree/main/templates/uui-cra-template), [Vite](https://github.com/epam/UUI/tree/main/templates/uui-vite-template) or [Next.js](https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template) app templates for quick start
+
 
 ```sh
+#CRA 
 npx create-react-app my-app --template @epam/uui
 
-# or
+# Vite
 
-yarn create react-app my-app --template @epam/uui
+npx -- degit@latest https://github.com/epam/UUI/templates/uui-vite-template my-app
+
+# Next.js
+
+npx create-next-app --example "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template" my-app
 ```
-## Quick start
+## Quick Try
 
 Try our pre-configured template on
     <a href="https://codesandbox.io/s/uui-bddgvi?file=/src/Example.tsx" target="_blank">
@@ -41,7 +52,7 @@ Try our pre-configured template on
             height="24"
             alt="Codesandbox"
             align="center"
-            src="https://camo.githubusercontent.com/ccf186cd931b6a61cf49bd0a3aeacb2d73be7e91210453571bdcf9f5b1057173/687474703a2f2f63646e2e656d6265642e6c792f70726f7669646572732f6c6f676f732f636f646573616e64626f782e706e67"
+            src="https://github.com/user-attachments/assets/c896f380-d27f-4ebe-a1e8-b41d61cd8f52"
         />
     </a>
 

@@ -1,20 +1,32 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
-* Uploaded new version of icons pack:
+
+**What's Fixed**
+* [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
+* [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
+* [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
+
+
+# 5.9.1 - 28.08.2024
+
+**What's New**
+* [LinkButton]: added `weight` and `underline` props
+* [DataTable]: disable animation for loading skeletons due to performance issues
+* [DatePickers]: added 'DDMMYYYY' format to the list of supported date formats for parsing user input
+* Uploaded new version of icons pack: 
   * icons added: action-clock_fast-fill, action-clock_fast-outline
   * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
 **What's Fixed**
-* [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems.
+* [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems
+* [DropdownMenu]: fixed error when using 2+ levels menu with closeOnMouseLeave=boundary
 * [PickerInput]: fixed opening body by pressing 'Enter' key in mobile resolution(<768px)
 * [Dropdown]: remove `mousemove` handler on component unmount
 * [Pickers]: fixed bug when 'Clear All' button remains visible even after user clear all item by clicking on it. It was reproduced only if emptyValue=[] prop was passed.
-* [DataTable]: disable animation for loading skeletons due to performance issues
 * [AdaptivePanel]: fixed hiding items with the same priority as last hidden collapsed container
-* [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
-* [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
-* [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
+* [LinkButton]: tweak focus state style according to the design
+* [Typography]: added focus for links
 
 
 # 5.9.0 - 09.08.2024
