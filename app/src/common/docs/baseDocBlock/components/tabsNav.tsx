@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, FlexRow, FlexSpacer, TabButton } from '@epam/uui';
 import { TMode } from '../../docsConstants';
-import { ReactComponent as NavigationShowOutlineIcon } from '@epam/assets/icons/navigation-show-outline.svg'; import css from './tabsNav.module.scss';
+import { ReactComponent as NavigationShowOutlineIcon } from '@epam/assets/icons/navigation-show-outline.svg';
+import css from './tabsNav.module.scss';
 
 type TTabsNavProps = {
     mode: TMode;
@@ -17,7 +18,7 @@ type TabType = {
 };
 
 export function TabsNav(props: TTabsNavProps) {
-    const { mode, onChangeMode, supportedModes } = props;
+    const { mode, onChangeMode, supportedModes, renderSkinSwitcher } = props;
     const [pageWidth, setPageWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -28,7 +29,7 @@ export function TabsNav(props: TTabsNavProps) {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    
+
     const allTabs: Partial<Record<TMode, TabType>> = {
         [TMode.doc]: {
             caption: 'Documentation',
@@ -79,6 +80,7 @@ export function TabsNav(props: TTabsNavProps) {
                 }, [])
             }
             <FlexSpacer />
+            { renderSkinSwitcher() }
         </FlexRow>
     );
 }
