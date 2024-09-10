@@ -403,6 +403,22 @@
         --uui-text: var(--night800);
     }
 
+    .uui-text.uui-color-sky {
+        --uui-text: var(--sky-70);
+    }
+
+    .uui-text.uui-color-grass {
+        --uui-text: var(--grass-70);
+    }
+
+    .uui-text.uui-color-sun {
+        --uui-text: var(--sun-70);
+    }
+
+    .uui-text.uui-color-fire {
+        --uui-text: var(--fire-70);
+    }
+
     /* Tag */
 
     .uui-tag {
