@@ -72,23 +72,23 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
             if (!isEqual(value, newValue)) {
                 handleSelectionValueChange(newValue);
             }
-        } else {
-            const { checked, selectedId } = getDataSourceState();
+        }
 
-            if (prevDataSourceState && (isEqual(prevDataSourceState.checked, dataSourceState.checked)
-                || dataSourceState.selectedId === prevDataSourceState.selectedId)
-                && (props.selectionMode === 'multi'
-                    ? ((checked?.length || dataSourceState.checked?.length) && !isEqual(dataSourceState.checked, checked))
-                    : (!isEqual(dataSourceState.selectedId, selectedId))
-                )
-            ) {
-                handleDataSourceValueChange((dsState) => ({
-                    ...dsState,
-                    ...(props.selectionMode === 'multi'
-                        ? { checked }
-                        : { selectedId }),
-                }));
-            }
+        const { checked, selectedId } = getDataSourceState();
+
+        if (prevDataSourceState && (
+            props.selectionMode === 'multi'
+                ? (isEqual(prevDataSourceState.checked, dataSourceState.checked)
+                        && (checked?.length || dataSourceState.checked?.length) && !isEqual(dataSourceState.checked, checked))
+                : ((dataSourceState.selectedId === prevDataSourceState.selectedId)
+                        && (!isEqual(dataSourceState.selectedId, selectedId)))
+        )) {
+            handleDataSourceValueChange((dsState) => ({
+                ...dsState,
+                ...(props.selectionMode === 'multi'
+                    ? { checked }
+                    : { selectedId }),
+            }));
         }
     }, [dataSourceState, value]);
 
