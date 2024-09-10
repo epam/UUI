@@ -2,7 +2,7 @@
 
 exports[`Text should be rendered correctly 1`] = `
 <div
-  className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography container"
+  className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography container"
 >
   Test
 </div>
@@ -10,7 +10,7 @@ exports[`Text should be rendered correctly 1`] = `
 
 exports[`Text should be rendered correctly 2`] = `
 <div
-  className="root uui-text uui-size-48 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography container"
+  className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography container"
   onClick={[Function]}
   style={
     Object {

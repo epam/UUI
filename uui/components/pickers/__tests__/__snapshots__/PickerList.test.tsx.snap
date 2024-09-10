@@ -159,7 +159,7 @@ exports[`PickerList should open body 1`] = `
           style="column-gap: 12px;"
         >
           <div
-            class="root uui-text uui-size-48 uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
+            class="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
             style="--uui-text-font-size: 18px;"
           >
             Please select 
@@ -266,7 +266,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Elementary
                                 </div>
@@ -310,7 +310,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Elementary+
                                 </div>
@@ -354,7 +354,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Pre-Intermediate
                                 </div>
@@ -398,7 +398,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Pre-Intermediate+
                                 </div>
@@ -442,7 +442,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Intermediate
                                 </div>
@@ -486,7 +486,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Intermediate+
                                 </div>
@@ -530,7 +530,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Upper-Intermediate
                                 </div>
@@ -574,7 +574,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Upper-Intermediate+
                                 </div>
@@ -618,7 +618,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Advanced
                                 </div>
@@ -662,7 +662,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Advanced+
                                 </div>
@@ -706,7 +706,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Proficiency
                                 </div>

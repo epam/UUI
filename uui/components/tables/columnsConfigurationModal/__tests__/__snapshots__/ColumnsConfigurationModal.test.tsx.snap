@@ -36,7 +36,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-text uui-size-48 uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
+        className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
         style={
           Object {
             "--uui-text-font-size": "18px",
@@ -173,7 +173,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography groupTitle container"
+              className="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography groupTitle container"
             >
               Displayed in table
             </div>
@@ -219,7 +219,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                   </div>
                   <div
-                    className="root uui-text uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
+                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
                   >
                     Pinned to the left
                   </div>

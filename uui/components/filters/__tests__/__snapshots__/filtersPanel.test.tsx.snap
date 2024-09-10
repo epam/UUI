@@ -39,7 +39,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
         >
           Status:
         </div>
@@ -47,7 +47,7 @@ Array [
           className="textWrapper"
         >
           <div
-            className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography selection container"
+            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography selection container"
           >
             Unknown
           </div>
@@ -100,7 +100,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
         >
           Position
         </div>
@@ -152,7 +152,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
         >
           Age
         </div>
@@ -204,7 +204,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
         >
           Hire Date
         </div>
@@ -256,7 +256,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
         >
           Exit Date
         </div>
