@@ -46,7 +46,9 @@ function applyTextMods(mods: TextProps) {
     return [
         css.root,
         'uui-text',
-        mods.size !== 'none' && `uui-size-${mods.size || settings.sizes.defaults.text}`,
+        `uui-size-${mods.size || settings.sizes.defaults.text}`,
+        (mods.size !== 'none' || mods.lineHeight) && css.lineHeight,
+        (mods.size !== 'none' || mods.fontSize) && css.fontSize,
         `uui-color-${mods.color || 'primary'}`,
         `uui-font-weight-${mods.fontWeight || '400'}`,
         `uui-font-style-${mods.fontStyle || 'normal'}`,
