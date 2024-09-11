@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     Lens, DataSourceState, isMobile, cx, Overwrite,
+    PickerEmptyBodyReason,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput, SearchInputProps } from '../inputs';
@@ -40,16 +41,23 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         );
     }
 
-    renderTypeSearchToLoadItems() {
-        if (this.props.renderTypeSearchToLoadItems) {
-            return this.props.renderTypeSearchToLoadItems();
+    renderEmpty(reason: PickerEmptyBodyReason) {
+        if (this.props.renderEmpty) {
+            return this.props.renderEmpty(reason);
         }
-        // TODO: need fix sizes, how to use variables
-        return (
-            <FlexCell cx={ css[`type-search-to-load-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
-                <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
-            </FlexCell>
-        );
+
+        if (reason === 'not-found-records') {
+            return this.renderNotFound();
+        }
+
+        if (reason === 'less-than-min-chars-to-search') {
+            return (
+                <FlexCell cx={ css[`type-search-to-load-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
+                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
+                </FlexCell>
+            );
+        }
+        return null;
     }
 
     render() {
@@ -74,7 +82,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                 )}
                 <FlexRow key="body" cx={ cx('uui-pickerInput-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
                     { this.props.notEnoughTokensToLoadData
-                        ? this.renderTypeSearchToLoadItems()
+                        ? this.renderEmpty('less-than-min-chars-to-search')
                         : null }
                     { !this.props.notEnoughTokensToLoadData && (this.props.rowsCount > 0 ? (
                         <VirtualList
@@ -84,7 +92,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             rowsCount={ this.props.rowsCount }
                             isLoading={ this.props.isReloading }
                         />
-                    ) : (this.renderNotFound()))}
+                    ) : (this.renderEmpty('not-found-records')))}
                 </FlexRow>
             </>
         );

@@ -3,12 +3,13 @@ import isEqual from 'react-fast-compare';
 
 import {
     DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile,
+    PickerEmptyBodyReason,
 } from '@epam/uui-core';
 
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     renderNotFound?: () => React.ReactNode;
-    renderTypeSearchToLoadItems?: () => React.ReactNode;
+    renderEmpty?: (reason: PickerEmptyBodyReason) => React.ReactNode;
     rows: React.ReactNode[];
     scheduleUpdate?: () => void;
     search: IEditable<string>;
