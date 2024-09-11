@@ -485,6 +485,14 @@ exports[`PickerInput should render with maximum props 1`] = `
         className=""
       />
     </div>
+    <div
+      className="container uui-icon uui-enabled uui-icon-dropdown"
+      style={Object {}}
+    >
+      <svg
+        className=""
+      />
+    </div>
   </div>
 </div>
 `;
