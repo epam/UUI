@@ -117,11 +117,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -159,11 +158,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -201,11 +199,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -243,11 +240,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -285,11 +281,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -327,11 +322,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -369,11 +363,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -411,11 +404,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -453,11 +445,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -495,11 +486,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -537,11 +527,10 @@ Array [
               }
             >
               <div
-                className="flexCell root data-picker-cell uui-size-undefined align-widgets-top"
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "undefinedpx",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,

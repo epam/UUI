@@ -66,10 +66,10 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 css.root,
                 props.cx,
                 'data-picker-cell',
-                'uui-size-' + (props.size),
+                props.size && `uui-size-${props.size}`,
                 css[`align-widgets-${props.alignActions || 'top'}`],
             ] }
-            style={ {
+            style={ props.padding && {
                 '--uui-data_picker_cell-horizontal-padding': `${props.padding}px`,
             } as React.CSSProperties }
         >

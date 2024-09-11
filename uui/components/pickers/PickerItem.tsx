@@ -88,6 +88,5 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
 }
 
 function getAvatarSize(size: PickerItemProps<any, any>['size'], isMultiline: boolean): string | number {
-    console.log('ava', settings.sizes.pickerInput.body.dropdown.row.cell.item.avatar[isMultiline ? 'multiline' : 'rest'][size]);
     return settings.sizes.pickerInput.body.dropdown.row.cell.item.avatar[isMultiline ? 'multiline' : 'rest'][size];
 }

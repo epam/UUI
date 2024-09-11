@@ -76,7 +76,7 @@ export const settings: Settings = {
                             },
                             item: { // max 48, setup by row with 60????
                                 default: '36',
-                                verticalPadding: {
+                                verticalPadding: { // TODO: try to move to size css classes, compare different components
                                     24: '3',
                                     30: '6',
                                     36: '9',
@@ -222,7 +222,6 @@ export const settings: Settings = {
                         columnCaption: {
                             fontSize: '14',
                             fontWeight: '400',
-                            lineHeight: '30',
                             size: '30',
                             uppercase: '12',
                         },

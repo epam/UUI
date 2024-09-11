@@ -79,7 +79,6 @@ export class DataTableHeaderCell<TItem, TId> extends
                 >
                     <Text
                         key="text"
-                        lineHeight={ settings.sizes.dataTable.header.row.cell.columnCaption.lineHeight as TextProps['lineHeight'] }
                         fontSize={ settings.sizes.dataTable.header.row.cell.columnCaption[this.props.textCase === 'upper' ? 'uppercase' : 'fontSize'] as TextProps['fontSize'] }
                         size={ settings.sizes.dataTable.header.row.cell.columnCaption.size as TextProps['size'] }
                         cx={ captionCx }

@@ -29,7 +29,6 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
       style={
         Object {
           "--uui-text-font-size": "14px",
-          "--uui-text-line-height": "30px",
         }
       }
     >

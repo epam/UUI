@@ -22,7 +22,7 @@ describe('DataPickerBody', () => {
         value: {},
         onValueChange: jest.fn(),
         rows: rows.map(
-            (props) => <DataPickerRow key={ props.id } renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />,
+            (props) => <DataPickerRow key={ props.id } size="36" renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />,
         ),
         search: {
             value: '',
@@ -51,6 +51,7 @@ describe('DataPickerBody', () => {
                 rows={ rows.map((props) => (
                     <DataPickerRow
                         key={ props.id }
+                        size="36"
                         renderItem={ (item: string) => <div>{item}</div> }
                         id={ props.id }
                         rowKey={ props.rowKey }
