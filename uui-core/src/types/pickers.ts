@@ -48,8 +48,17 @@ export type ArrayPickerProps<TId, TItem> =
 export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;
 
 export type PickerBindingValueType = 'scalar' | 'array';
+/**
+ * Options for positioning the search input within PickerInput.
+ */
 export type PickerInputSearchPosition = 'input' | 'body' | 'none';
+/**
+ * Options for displaying content in PickerInput.
+ */
 export type PickerInputEditMode = 'dropdown' | 'modal';
+/**
+ * Reasons for an empty PickerInput body.
+ */
 export type PickerEmptyBodyReason = 'not-found-records' | 'less-than-min-chars-to-search';
 
 export type PickerBaseOptions<TItem, TId> = {
@@ -147,6 +156,9 @@ export type PickerFooterProps<TItem, TId> = {
     selection: PickerBindingProps<TItem, TId>['value'];
     /** Defines a search value */
     search: string;
+    /**
+     * Indicates whether the search does not contain enough characters to load data.
+     */
     notEnoughTokensToLoadData?: boolean;
 };
 

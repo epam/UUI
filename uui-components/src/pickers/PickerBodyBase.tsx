@@ -9,6 +9,15 @@ import {
 export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     renderNotFound?: () => React.ReactNode;
+
+    /**
+     * Overrides the rendering of PickerBody content when it is empty for various reasons.
+     * If provided, the override should support messages for both 'not-found-records' and 'less-than-min-chars-to-search' reasons.
+     * If not provided, the `renderNotFound` method is used for the 'not-found-records' reason.
+     * @param reason - Specifies the reason why the PickerInput body is empty:
+     *   - 'not-found-records': No data was found.
+     *   - 'less-than-min-chars-to-search': The search contains fewer characters than required to start searching for data.
+     */    
     renderEmpty?: (reason: PickerEmptyBodyReason) => React.ReactNode;
     rows: React.ReactNode[];
     scheduleUpdate?: () => void;
@@ -16,6 +25,9 @@ export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<Data
     showSearch?: boolean | 'auto';
     fixedBodyPosition?: boolean;
     searchDebounceDelay?: number;
+    /**
+     * Indicates whether the search does not contain enough characters to load data.
+     */
     notEnoughTokensToLoadData?: boolean;
 }
 
