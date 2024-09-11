@@ -24,7 +24,6 @@ type PropsSubsetMock<TProps, TMockFn> = { [key in keyof TProps]?: TMockFn };
 type SetupComponentForTestReturnType<TProps, TMockFn> = Promise<{
     result: Awaited<ReturnType<typeof renderWithContextAsync>>,
     setProps: (propsToUpdate: PropsSubset<TProps>) => void,
-    setPropsAsync: (propsToUpdate: PropsSubset<TProps>) => Promise<void>,
     mocks: PropsSubsetMock<TProps, TMockFn>,
 }>;
 
@@ -89,14 +88,6 @@ export async function setupComponentForTest<TProps extends PropsAll<TProps>, TMo
         setProps: (propsToUpdate: PropsSubset<TProps>) => {
             const propsToUpdateNames = Object.keys(propsToUpdate);
             act(() => {
-                propsToUpdateNames.forEach((name) => {
-                    propsContextRef.current?.setProperty(name as keyof TProps, propsToUpdate[name as keyof TProps]);
-                });
-            });
-        },
-        setPropsAsync: async (propsToUpdate: PropsSubset<TProps>) => {
-            const propsToUpdateNames = Object.keys(propsToUpdate);
-            await act(async () => {
                 propsToUpdateNames.forEach((name) => {
                     propsContextRef.current?.setProperty(name as keyof TProps, propsToUpdate[name as keyof TProps]);
                 });

@@ -13,7 +13,7 @@ import { Item, TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, 
 type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
 async function setupPickerInputForTest<TItem = TestItemType, TId = number>(params: Partial<PickerInputComponentProps<TItem, TId>>) {
-    const { result, mocks, setProps, setPropsAsync } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
+    const { result, mocks, setProps } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
         (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 return Object.assign({
@@ -62,7 +62,6 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
 
     return {
         setProps,
-        setPropsAsync,
         result,
         mocks,
         dom: { input, container: result.container, target: result.container.firstElementChild as HTMLElement },
@@ -72,7 +71,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
 async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = TestItemType, TId = number>(
     params: Partial<PickerInputComponentProps<TItem, TId> & { valueForFirstUpdate: TItem | TId | TItem[] | TId[] }>,
 ) {
-    const { result, mocks, setProps, setPropsAsync } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
+    const { result, mocks, setProps } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
         (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 let updatesCounter = 0;
@@ -133,7 +132,6 @@ async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = Test
 
     return {
         setProps,
-        setPropsAsync,
         result,
         mocks,
         dom: { input, container: result.container, target: result.container.firstElementChild as HTMLElement },
