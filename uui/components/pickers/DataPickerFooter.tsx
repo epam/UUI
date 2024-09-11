@@ -2,10 +2,11 @@ import React, { PropsWithChildren } from 'react';
 import { isMobile, Overwrite, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { Switch, SwitchProps } from '../inputs';
-import { FlexCell, FlexRow, FlexRowProps, FlexSpacer } from '../layout';
+import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton, LinkButtonProps } from '../buttons';
 import { SizeMod } from '../types';
 import { settings } from '../../settings';
+import css from './DataPickerFooter.module.scss';
 
 export interface DataPickerFooterModsOverride {
 }
@@ -42,7 +43,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const shouldShowFooter = isSinglePicker ? (!isSearching && !props.disableClear) : !isSearching;
 
     return shouldShowFooter && (
-        <FlexRow padding={ settings.sizes.pickerInput.body.dropdown.padding as FlexRowProps['padding'] }>
+        <FlexRow cx={ css.footer }>
             {!isSinglePicker && (
                 <Switch
                     size={ settings.sizes.pickerInput.body.dropdown.footer.switch[props.size] as SwitchProps['size'] }

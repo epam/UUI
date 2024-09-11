@@ -7,6 +7,9 @@
 // --uui-dt-header-cell-resizing-marker-width
 
 .root {
+    --uui-dt-header-cell-font: var(--uui-font);
+    --uui-dt-header-cell-font-weight: 600;
+    --uui-dt-header-cell-line-height: 30px;
     --uui-dt-header-cell-height: var(--uui-size);
     --uui-dt-header-cell-caption-column-gap: 3px;
     --uui-dt-header-cell-truncate-caption-line-height: 18px;
@@ -67,6 +70,7 @@
     }
 
     .caption {
+        --uui-text-line-height: var(--uui-dt-header-cell-line-height);
         font-family: var(--uui-dt-header-cell-font);
         font-weight: var(--uui-dt-header-cell-font-weight);
         overflow: hidden;

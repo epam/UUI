@@ -204,7 +204,7 @@ exports[`PickerInput should open body 1`] = `
         </div>
       </div>
       <div
-        class="uui-flex-row root uui-size-36 padding-12 container align-items-center"
+        class="uui-flex-row root uui-size-36 footer container align-items-center"
       >
         <div
           class="flexSpacer"
