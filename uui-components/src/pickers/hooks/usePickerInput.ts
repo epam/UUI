@@ -193,9 +193,10 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                         search: dataSourceState.search,
                         onClose: () => toggleBodyOpening(false),
                     })),
-            renderTypeSearchToLoadItems:
-                props.renderTypeSearchToLoadItems
-                    ? () => props.renderTypeSearchToLoadItems({
+            renderEmpty:
+                props.renderEmpty
+                    ? (reason) => props.renderEmpty({
+                        reason,
                         search: dataSourceState.search,
                         minCharsToSearch: props.minCharsToSearch,
                         searchPosition: props.searchPosition,

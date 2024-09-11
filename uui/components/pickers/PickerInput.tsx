@@ -12,6 +12,7 @@ import {
     PickerInputElement,
     isMobile,
     Overwrite,
+    PickerEmptyBodyReason,
 } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
@@ -196,9 +197,10 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                                 })
                             : undefined
                     }
-                    renderTypeSearchToLoadItems={
-                        props.renderTypeSearchToLoadItems
-                            ? () => props.renderTypeSearchToLoadItems({
+                    renderEmpty={
+                        props.renderEmpty
+                            ? (reason: PickerEmptyBodyReason) => props.renderEmpty({
+                                reason,
                                 search: dataSourceState.search,
                                 minCharsToSearch: props.minCharsToSearch,
                                 searchPosition: props.searchPosition,

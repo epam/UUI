@@ -50,6 +50,7 @@ export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | Arr
 export type PickerBindingValueType = 'scalar' | 'array';
 export type PickerInputSearchPosition = 'input' | 'body' | 'none';
 export type PickerInputEditMode = 'dropdown' | 'modal';
+export type PickerEmptyBodyReason = 'not-found-records' | 'less-than-min-chars-to-search';
 
 export type PickerBaseOptions<TItem, TId> = {
     /** Name of the entity being selected. Affects wording like "Please select [entity]" */
@@ -76,12 +77,15 @@ export type PickerBaseOptions<TItem, TId> = {
      * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.  */
     renderNotFound?: (props: { search: string; onClose: () => void }) => ReactNode;
 
-    renderTypeSearchToLoadItems?: (props: {
-        search: string;
-        minCharsToSearch?: number;
-        searchPosition: PickerInputSearchPosition;
-        onClose: () => void;
-    }) => ReactNode;
+    renderEmpty?: (
+        props: {
+            reason: PickerEmptyBodyReason;
+            search: string;
+            minCharsToSearch?: number;
+            searchPosition: PickerInputSearchPosition;
+            onClose: () => void;
+        }
+    ) => ReactNode;
 
     /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */
     emptyValue?: undefined | null | [];
