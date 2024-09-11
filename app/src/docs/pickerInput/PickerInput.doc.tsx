@@ -22,7 +22,11 @@ export class PickerInputDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.PickerInputProps<any, any>>) => {
             doc.merge('renderToggler', { examples: renderTogglerExamples });
-            doc.merge('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] });
+            doc.merge('getRowOptions', { examples: [
+                { name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) },
+                { name: 'Disabled checkboxes', value: () => ({ isDisabled: true, checkbox: { isVisible: true, isDisabled: true } }) },
+            ], 
+            });
             doc.merge('size', { defaultValue: '36' });
             doc.setDefaultPropExample('valueType', (e) => {
                 return e.value === 'id';
