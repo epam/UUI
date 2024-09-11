@@ -6,6 +6,8 @@
 * [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
 * [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
 * [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
+* [RTE]: add `maxLength` prop
+* [RTE]: fixed serialization of empty lines in HTML, now </br> html tag is used
 
 
 # 5.9.1 - 28.08.2024
