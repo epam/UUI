@@ -7,6 +7,7 @@
     border-bottom: 0 none;
     border-inline-start: 3px solid transparent;
     cursor: pointer;
+    user-select: none;
 
     &:hover,
     &:global(.uui-selected) {
