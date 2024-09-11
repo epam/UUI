@@ -10,18 +10,77 @@ import { PickerInput, PickerInputProps } from '../PickerInput';
 import { IHasEditMode } from '../../types';
 import { Item, TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
-type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId> & { firstUpdateValue: TItem | TId | TItem[] | TId[], rewriteFirstUpdate?: boolean; };
+type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
 async function setupPickerInputForTest<TItem = TestItemType, TId = number>(params: Partial<PickerInputComponentProps<TItem, TId>>) {
+    const { result, mocks, setProps, setPropsAsync } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
+        (context): PickerInputComponentProps<TItem, TId> => {
+            if (params.selectionMode === 'single') {
+                return Object.assign({
+                    onValueChange: jest.fn().mockImplementation((newValue) => {
+                        if (typeof newValue === 'function') {
+                            const v = newValue(params.value);
+                            context.current?.setProperty('value', v);
+                        }
+                        context.current?.setProperty('value', newValue);
+                    }),
+                    dataSource: mockDataSourceAsync,
+                    disableClear: false,
+                    searchPosition: 'input',
+                    getName: (item: TestItemType) => item.level,
+                    value: params.value as TId,
+                    searchDebounceDelay: 0,
+                }, params) as PickerInputComponentProps<TItem, TId>;
+            }
+
+            return Object.assign({
+                onValueChange: jest.fn().mockImplementation((newValue) => {
+                    if (typeof newValue === 'function') {
+                        const v = newValue(params.value);
+                        context.current?.setProperty('value', v);
+                        return;
+                    }
+                    context.current?.setProperty('value', newValue);
+                }),
+                dataSource: mockDataSourceAsync,
+                disableClear: false,
+                searchPosition: 'input',
+                getName: (item: TestItemType) => item.level,
+                value: params.value as number[],
+                selectionMode: 'multi',
+                searchDebounceDelay: 0,
+            }, params) as PickerInputComponentProps<TItem, TId>;
+        },
+        (props) => (
+            <>
+                <PickerInput { ...props } />
+                <Modals />
+            </>
+        ),
+    );
+    const input = screen.queryByRole('textbox') as HTMLElement;
+
+    return {
+        setProps,
+        setPropsAsync,
+        result,
+        mocks,
+        dom: { input, container: result.container, target: result.container.firstElementChild as HTMLElement },
+    };
+}
+
+async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = TestItemType, TId = number>(
+    params: Partial<PickerInputComponentProps<TItem, TId> & { valueForFirstUpdate: TItem | TId | TItem[] | TId[] }>,
+) {
     const { result, mocks, setProps, setPropsAsync } = await setupComponentForTest<PickerInputComponentProps<TItem, TId>>(
         (context): PickerInputComponentProps<TItem, TId> => {
             if (params.selectionMode === 'single') {
                 let updatesCounter = 0;
                 return Object.assign({
                     onValueChange: jest.fn().mockImplementation((newValue) => {
-                        if (params.rewriteFirstUpdate && updatesCounter === 0) {
+                        if (updatesCounter === 0) {
                             updatesCounter++;
-                            return context.current?.setProperty('value', params.firstUpdateValue);
+                            return context.current?.setProperty('value', params.valueForFirstUpdate);
                         }
 
                         if (typeof newValue === 'function') {
@@ -42,9 +101,9 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
             let updatesCounter = 0;
             return Object.assign({
                 onValueChange: jest.fn().mockImplementation((newValue) => {
-                    if (params.rewriteFirstUpdate && updatesCounter === 0) {
+                    if (updatesCounter === 0) {
                         updatesCounter++;
-                        return context.current?.setProperty('value', params.firstUpdateValue);
+                        return context.current?.setProperty('value', params.valueForFirstUpdate);
                     }
 
                     if (typeof newValue === 'function') {
@@ -186,8 +245,7 @@ describe('PickerInput', () => {
         });
 
         it('[valueType id] should listen to value change', async () => {
-            const { dom, mocks } = await setupPickerInputForTest({
-                rewriteFirstUpdate: true,
+            const { dom, mocks } = await setupPickerInputForTestWithFirstValueChangeRewriting({
                 selectionMode: 'single',
             });
             expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
@@ -299,9 +357,8 @@ describe('PickerInput', () => {
         });
 
         it('[valueType entity] should listen to value change', async () => {
-            const { dom, mocks } = await setupPickerInputForTest({
+            const { dom, mocks } = await setupPickerInputForTestWithFirstValueChangeRewriting({
                 value: undefined,
-                rewriteFirstUpdate: true,
                 selectionMode: 'single',
                 valueType: 'entity',
             });
@@ -618,9 +675,8 @@ describe('PickerInput', () => {
         });
 
         it('[valueType id] should listen to value change', async () => {
-            const { dom, mocks } = await setupPickerInputForTest({
-                rewriteFirstUpdate: true,
-                firstUpdateValue: [4],
+            const { dom, mocks } = await setupPickerInputForTestWithFirstValueChangeRewriting({
+                valueForFirstUpdate: [4],
                 value: undefined,
                 selectionMode: 'multi',
                 valueType: 'id',
@@ -651,9 +707,8 @@ describe('PickerInput', () => {
         });
 
         it('[valueType entity] should listen to value change', async () => {
-            const { dom, mocks } = await setupPickerInputForTest({
-                rewriteFirstUpdate: true,
-                firstUpdateValue: [{ id: 4, level: 'A2', name: 'Pre-Intermediate' }],
+            const { dom, mocks } = await setupPickerInputForTestWithFirstValueChangeRewriting({
+                valueForFirstUpdate: [{ id: 4, level: 'A2', name: 'Pre-Intermediate' }],
                 value: undefined,
                 selectionMode: 'multi',
                 valueType: 'entity',
