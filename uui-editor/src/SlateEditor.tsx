@@ -18,11 +18,12 @@ import css from './SlateEditor.module.scss';
 import { useFocusEvents } from './plugins/eventEditorPlugin';
 import { isEditorValueEmpty } from './helpers';
 import { getMigratedPlateValue, isPlateValue } from './migrations';
+import { PlateProps } from '@udecode/plate-core';
 
 export interface PlateEditorProps
     extends IEditable<EditorValue>,
     IHasCX,
-    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Pick<PlateProps, 'maxLength'> {
     plugins: PlatePlugin[];
     isReadonly?: boolean;
     autoFocus?: boolean;
@@ -148,6 +149,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
             plugins={ plugins }
             onChange={ onChange }
             editorRef={ editorRef }
+            maxLength={ props.maxLength }
         >
             <div
                 ref={ composedRef }

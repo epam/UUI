@@ -6,6 +6,9 @@
 * [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
 * [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
 * [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
+* [RTE]: add `maxLength` prop
+* [RTE]: fixed serialization of empty lines in HTML, now </br> html tag is used
+* [Text]: Added missing skin colors to 'Loveship' 'light' (night900) and dark (night50, night300, night400, night500, night600, night700, night800, night900) themes.
 
 
 # 5.9.1 - 28.08.2024
