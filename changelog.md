@@ -1,6 +1,7 @@
 # 5.x.x - xx.xx.2024
 
 **What's New**
+* [PickerInput]: Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
 
 **What's Fixed**
 * [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
@@ -14,7 +15,7 @@
 * [LinkButton]: added `weight` and `underline` props
 * [DataTable]: disable animation for loading skeletons due to performance issues
 * [DatePickers]: added 'DDMMYYYY' format to the list of supported date formats for parsing user input
-* Uploaded new version of icons pack: 
+* Uploaded new version of icons pack:
   * icons added: action-clock_fast-fill, action-clock_fast-outline
   * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
