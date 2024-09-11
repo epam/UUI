@@ -73,10 +73,22 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks. */
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;
 
-    /** Overrides the default 'no records found' banner.
-     * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.  */
+    /**
+     * @deprecated in favor of `renderEmpty` method.
+     * Overrides the default 'no records found' banner.
+     * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.
+     * */
     renderNotFound?: (props: { search: string; onClose: () => void }) => ReactNode;
 
+    /**
+     * Overrides the rendering of PickerInput body content when it is empty for various reasons.
+     * If provided, the override should support messages for both 'not-found-records' and 'less-than-min-chars-to-search' reasons.
+     * If not provided, the `renderNotFound` method is used for the 'not-found-records' reason.
+     * @param props
+     * @param props.reason - Specifies the reason why the PickerInput body is empty:
+     *   - 'not-found-records': No data was found.
+     *   - 'less-than-min-chars-to-search': The search contains fewer characters than required to start searching for data.
+     */
     renderEmpty?: (
         props: {
             reason: PickerEmptyBodyReason;
