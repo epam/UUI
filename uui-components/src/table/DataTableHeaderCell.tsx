@@ -56,9 +56,6 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
         document.addEventListener('mousemove', this.onResize);
         document.addEventListener('click', this.onResizeEnd);
-
-        e.preventDefault();
-        e.stopPropagation(); // to prevent column sorting/dnd/ect. handlers while resizing
     };
 
     onResizeEnd = (e: MouseEvent) => {

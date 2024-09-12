@@ -71,6 +71,7 @@ describe('RangeDataPicker', () => {
     it('should be rendered if many params defined', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <RangeDatePicker
+                id="date"
                 format="MMM D, YYYY"
                 value={ {
                     from: null,

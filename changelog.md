@@ -1,3 +1,16 @@
+# 5.x.x - xx.xx.2024
+
+**What's New**
+
+**What's Fixed**
+* [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
+* [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
+* [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
+* [RTE]: add `maxLength` prop
+* [RTE]: fixed serialization of empty lines in HTML, now </br> html tag is used
+* [Text]: Added missing skin colors to 'Loveship' 'light' (night900) and dark (night50, night300, night400, night500, night600, night700, night800, night900) themes.
+
+
 # 5.9.1 - 28.08.2024
 
 **What's New**
@@ -45,23 +58,23 @@
     * Introduced a low-level `TimelineCanvas` component designed to render elements on the Timeline.
     * Enhanced customization options for `TimelineGrid` and `TimelineScale`.
     * Exposed default implementations for timeline grid/scale drawing phases via the `timelineGrid` and `timelineScale` libraries.
+  * [Breaking Change]: Removed `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
+  * [Breaking Change]: Removed `TimelineScaleProps.shiftPercent`.
   * Added an example of Timeline usage with tables. [See demo here](https://uui.epam.com/demo?id=editableTable).
-  * Deprecated `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
   * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
   * Added the `useResizeObserver` hook, which provides the possibility to observe multiple elements' resizing.
   * Added the `useTimelineTransform` hook, which provides the possibility to receive the latest `TimelineTransform` instance from the `TimelineController`.
-  * Deprecated `TimelineScaleProps.shiftPercent`.
   * Made `TimelineGrid` customizable. Exposed default implementations of various parts of `TimelineGrid` drawing functionality, via the `timelineGrid` library.
   * Made `TimelineScale` customizable. Exposed default implementations of various parts of `TimelineScale` drawing functionality, via the `timelineScale` library.
   * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
   * Added the `TimelineController.setViewportRange` function, which allows setting the `Viewport` by passing the right and left periods of the scale.
   * Added `computeSubtotals` and `createFromItems` to `Tree`.
-* [DateTable]: 
+* [DateTable]:
   * Added `renderHeaderCell` callback to the column configuration, it's allows to provide custom render for column header.
   * Added the `DataTableCellContainer` component - base wrapper for header and column cells
 * [PickerInput]: hide picker footer while searching
 * [PickerInput]: made tags in multi select smaller
-* [Typography]: only for electric theme: 
+* [Typography]: only for electric theme:
   * H1 weight changed from 600 to 400
   * H2 weight changed from 700 to 600
 

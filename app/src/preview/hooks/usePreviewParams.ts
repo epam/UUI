@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { TPreviewContentParams } from '../types';
 import { useQuery } from '../../helpers';
-import { BuiltInTheme, TTheme } from '../../data';
+import { BuiltInTheme, ThemeId } from '../../data';
 import { parsePreviewIdFromString } from '../utils/previewLinkUtils';
 import { useAppThemeContext } from '../../helpers/appTheme';
 
@@ -10,7 +10,7 @@ export function usePreviewParams(): TPreviewContentParams {
     const componentId: string = useQuery('componentId') || undefined;
     let previewId: string = useQuery('previewId') || undefined;
     previewId = previewId !== undefined ? String(previewId) : undefined;
-    const themeFromQuery = useQuery('theme') as TTheme || BuiltInTheme.promo;
+    const themeFromQuery = useQuery('theme') as ThemeId || BuiltInTheme.promo;
 
     const { theme, toggleTheme } = useAppThemeContext();
 

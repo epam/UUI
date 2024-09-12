@@ -93,7 +93,7 @@ export const createSerializer = (type: SerializerType = 'html') => {
         const editor = createTempEditor(htmlSerializationsWorkingPlugins);
         return (v: EditorValue) => {
             const value = initializeEditor(editor, v);
-            return serializeHtml(editor, { nodes: value });
+            return serializeHtml(editor, { nodes: value, convertNewLinesToHtmlBr: true });
         };
     } else {
         const editor = createTempEditor(mdSerializationsWorkingPlugins);
