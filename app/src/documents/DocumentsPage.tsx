@@ -5,14 +5,14 @@ import { AppHeader, Page } from '../common';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TMode } from '../common/docs/docsConstants';
-import { AppContext, type TApi, TTheme } from '../data';
+import { AppContext, type TApi, ThemeId } from '../data';
 import { DocsSidebar } from '../common/docs/DocsSidebar';
 
 type DocsQuery = {
     id: string;
     mode?: TMode;
     isSkin?: boolean;
-    theme?: TTheme;
+    theme?: ThemeId;
     category?: string;
 };
 

@@ -1,5 +1,5 @@
 import { IThemeVar, TValueByThemeValue } from './sharedTypes';
-import { TTheme } from '../../../../data';
+import { ThemeId } from '../../../../data';
 
 export enum TThemeVarUiErr {
     VAR_ABSENT= 'VAR_ABSENT',
@@ -32,7 +32,7 @@ export interface TLoadThemeTokensParams {
 export type TLoadThemeTokensResult = {
     tokens: IThemeVarUI[],
     loading: boolean,
-    uuiTheme: TTheme,
+    uuiTheme: ThemeId,
 };
 export interface TLoadThemeTokensFilter {
     path?: string,
