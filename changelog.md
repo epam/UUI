@@ -1,3 +1,11 @@
+# 5.*.* - **.**.****
+
+**What's New**
+* Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+
+**What's Fixed**
+
+
 # 5.9.2 - 12.09.2024
 
 **What's New**

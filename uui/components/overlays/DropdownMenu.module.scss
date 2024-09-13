@@ -96,22 +96,22 @@
 }
 
 .header-root {
-    @include fillColor(var(--uui-text-secondary));
-    @include itemRoot;
     cursor: default;
     height: auto;
     font-size: 12px;
     padding: 3px 12px;
+    @include fillColor(var(--uui-text-secondary));
+    @include itemRoot;
 }
 
 .item-root {
-    @include withActive;
-    @include itemRoot;
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
+    @include itemRoot;
+    @include withActive;
 
     .icon {
-        @include withActive;
         justify-content: flex-start;
+        @include withActive;
 
         svg {
             width: 18px;
@@ -120,9 +120,9 @@
     }
 
     &.link {
-        @include withActive;
         display: flex;
         align-items: center;
+        @include withActive;
 
         &:focus {
             outline: none;
@@ -142,8 +142,8 @@
     }
 
     &:global(.uui-disabled) {
-        @include fillColor(var(--uui-text-disabled)); // TODO: need possibility to override - in dark theme neutral 40
         pointer-events: none;
+        @include fillColor(var(--uui-text-disabled)); // TODO: need possibility to override - in dark theme neutral 40
 
         &:hover,
         &:focus {

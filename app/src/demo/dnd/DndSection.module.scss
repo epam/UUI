@@ -2,9 +2,10 @@
 @use '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
-    @include dnd-cursor-style();
     position: relative;
     padding: 6px 0;
+
+    @include dnd-cursor-style();
 
     .dnd-item:hover {
         box-shadow: 0 6px 12px 0 rgba(29, 30, 38, 0.1), 0 3px 6px 0 rgba(29, 30, 38, 0.1);
@@ -35,8 +36,9 @@
     }
 
     .grab-area:hover {
-        @include visibility;
         background-color: var(--uui-surface-main);
+
+        @include visibility;
     }
 
     &:global(.uui-dragged-out) {
@@ -44,8 +46,9 @@
     }
 
     :global(.uui-drag-ghost) {
-        @include visibility;
         box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
+
+        @include visibility;
     }
 }
 
