@@ -20,7 +20,7 @@
         "@epam/uui-docs": "<UUI_VERSION>",
         "react-imask": "6.0.7",
         "react-measure": "2.5.2",
-        "dayjs": "^1.10.7",
+        "dayjs": "1.11.12",
         "history": "4.10.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

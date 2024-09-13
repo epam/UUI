@@ -1,17 +1,25 @@
 @use  '../../assets/styles/index' as *;
 
 .root {
+    --uui-calendar-presets-header: var(--uui-text-primary);
+
+    --uui-calendar-presets-container-padding: 24px 24px 12px;
+    --uui-calendar-presets-header-font-size: 14px;
+    --uui-calendar-presets-header-line-height: 24px;
+    --uui-calendar-presets-header-font-weight: 600;
+    --uui-calendar-presets-header-padding-bottom: 12px;
+
     &:global(.uui-presets-container) {
-        padding: 24px 24px 12px;
+        padding: var(--uui-calendar-presets-container-padding);
         align-self: start;
     }
 
     :global(.uui-presets-header) {
+        color: var(--uui-calendar-presets-header);
         font-family: var(--uui-font);
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 24px;
-        padding-bottom: 12px;
-        color: var(--uui-text-primary);
+        font-weight: var(--uui-calendar-presets-header-font-weight);
+        font-size: var(--uui-calendar-presets-header-font-size);
+        line-height: var(--uui-calendar-presets-header-line-height);
+        padding-bottom: var(--uui-calendar-presets-header-padding-bottom);
     }
 }

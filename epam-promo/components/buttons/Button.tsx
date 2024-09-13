@@ -39,7 +39,7 @@ export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
     (props) => {
         return {
             fill: mapFill[props.fill] || mapFill.solid,
-        } as any; // TODO: need new helper to rewrite types
+        };
     },
     (props) => [
         ['42', '48'].includes(props.size) && css.uppercase,

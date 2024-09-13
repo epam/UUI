@@ -74,6 +74,7 @@ export const uuiDataTableHeaderCell = {
     uuiTableHeaderCell: 'uui-table-header-cell',
     uuiTableHeaderCaption: 'uui-table-header-caption',
     uuiTableHeaderCaptionWrapper: 'uui-table-header-caption-wrapper',
+    uuiTableHeaderCaptionTooltip: 'uui-table-header-caption-tooltip',
     uuiTableHeaderCheckbox: 'uui-table-header-checkbox',
     uuiTableHeaderSortIcon: 'uui-table-header-sort-icon',
     uuiTableHeaderFilterIcon: 'uui-table-header-filter-icon',

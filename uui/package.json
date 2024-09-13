@@ -17,7 +17,7 @@
     "@epam/uui-core": "5.9.1",
     "@popperjs/core": "2.9.0",
     "classnames": "2.2.6",
-    "dayjs": "1.10.7",
+    "dayjs": "1.11.12",
     "react-focus-lock": "2.9.2",
     "react-popper": "2.3.0"
   },

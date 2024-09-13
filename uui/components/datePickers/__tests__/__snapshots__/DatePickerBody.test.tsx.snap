@@ -2,20 +2,20 @@
 
 exports[`DataPicker should be rendered correctly 1`] = `
 <div
-  className="uui-datepicker-container"
+  className="uui-datepicker-container uui-size-36"
 >
   <div
-    className="root uui-datepickerBody-wrapper"
+    className="root uui-datepicker-body-wrapper"
   >
     <div
-      className="container uui-datepickerheader-container"
+      className="root uui-datepicker-header-container"
     >
       <header
-        className="uui-datepickerheader-header"
+        className="uui-datepicker-header-nav"
       >
         <button
           aria-disabled={false}
-          className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
+          className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepicker-header-nav-icon-left"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -30,7 +30,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
           </div>
         </button>
         <button
-          className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
+          className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepicker-header-nav-title"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -43,7 +43,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
         </button>
         <button
           aria-disabled={false}
-          className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
+          className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepicker-header-nav-icon-right"
           onClick={[Function]}
           tabIndex={0}
           type="button"
@@ -60,7 +60,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
       </header>
     </div>
     <div
-      className="container uui-calendar-container root"
+      className="container uui-calendar-container root uui-size-36"
     >
       <div
         className="uui-calendar-content"

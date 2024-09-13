@@ -30,14 +30,14 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
     const getSideNote = (sideNote: React.ReactNode): React.ReactNode => {
         return (typeof sideNote === 'string')
             ? (
-                <div className={ uuiLabeledInput.sideNote }>
+                <div dir="auto" className={ uuiLabeledInput.sideNote }>
                     {sideNote}
                 </div>
             ) : sideNote;
     };
 
     const getCharCounter = () => (
-        <div className={ uuiLabeledInput.charCounter }>
+        <div dir="auto" className={ uuiLabeledInput.charCounter }>
             { `${props.value?.length || '0'}/${props.maxLength}` }
         </div>
     );
@@ -46,7 +46,7 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
         const isCharCounterAllow = props.charCounter && props.maxLength;
         return (
             <FlexRow alignItems="top" columnGap={ 12 }>
-                <div role="alert" className={ uuiElement.invalidMessage }>
+                <div role="alert" dir="auto" className={ uuiElement.invalidMessage }>
                     {props.validationMessage}
                 </div>
                 { isCharCounterAllow && getCharCounter()}
@@ -58,7 +58,7 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
         const isCharCounterAllow = props.charCounter && props.maxLength && !props.isInvalid;
         return (
             <FlexRow alignItems="top" columnGap={ 12 }>
-                <div className={ uuiLabeledInput.footNote }>
+                <div dir="auto" className={ uuiLabeledInput.footNote }>
                     { props.footnote }
                 </div>
                 { isCharCounterAllow && getCharCounter() }
@@ -81,7 +81,7 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
                             )}
                             {isCanBeOptional && (
                                 <div className={ css.optionalFieldWrapper }>
-                                    <div className={ uuiLabeledInput.optional }>{i18n.labeledInput.optionalFieldLabel}</div>
+                                    <div dir="auto" className={ uuiLabeledInput.optional }>{i18n.labeledInput.optionalFieldLabel}</div>
                                 </div>
                             )}
                         </label>

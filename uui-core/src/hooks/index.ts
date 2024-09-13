@@ -8,3 +8,4 @@ export * from './useTableState/useTableState';
 export * from './useLayer';
 export * from './usePrevious';
 export * from './useResizeObserver';
+export * from './useDocumentDir';

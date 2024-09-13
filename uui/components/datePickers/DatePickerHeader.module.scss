@@ -1,24 +1,27 @@
-.container {
-    &:global(.uui-datepickerheader-container) {
-        :global(.uui-datepickerheader-header) {
+.root {
+    --uui-dtp_header-padding-bottom: 6px;
+
+    &:global(.uui-datepicker-header-container) {
+        :global(.uui-datepicker-header-nav) {
             display: flex;
             justify-content: space-between;
+            padding-bottom: var(--uui-dtp_header-padding-bottom);
         }
 
-        :global(.uui-datepickerheader-nav-title) {
+        :global(.uui-datepicker-header-nav-title) {
             display: flex;
             align-items: center;
         }
     }
 }
 
-*[dir='rtl'] .container :global(.uui-datepickerheader-nav-icon-left), .container[dir='rtl'] :global(.uui-datepickerheader-nav-icon-left) {
+*[dir='rtl'] .container :global(.uui-datepicker-header-nav-icon-left), .container[dir='rtl'] :global(.uui-datepicker-header-nav-icon-left) {
     svg {
         transform: rotate(180deg);
     }
 }
 
-*[dir='rtl'] .container :global(.uui-datepickerheader-nav-icon-right), .container[dir='rtl'] :global(.uui-datepickerheader-nav-icon-right) {
+*[dir='rtl'] .container :global(.uui-datepicker-header-nav-icon-right), .container[dir='rtl'] :global(.uui-datepicker-header-nav-icon-right) {
     svg {
         transform: rotate(180deg);
     }

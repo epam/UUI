@@ -1,7 +1,7 @@
 import { getQuery, useQuery } from './getQuery';
 import { BuiltInTheme, ThemeBaseParams, ThemeId } from '../data';
 import { getUuiThemeRoot } from './appRootUtils';
-import { settings } from '@epam/uui';
+import { Settings, settings } from '@epam/uui';
 import { CustomThemeManifest } from '../data/customThemes';
 import { IRouterContext, useUuiContext } from '@epam/uui-core';
 import { useEffect } from 'react';
@@ -12,7 +12,7 @@ import { useEffect } from 'react';
  */
 export const overrideUuiSettings = ((_defaultSettings: string) => (newSettings: object | undefined) => {
     if (newSettings) {
-        Object.assign(settings.sizes, (newSettings as { sizes: object }).sizes);
+        Object.assign(settings.sizes, (newSettings as Settings).sizes);
     } else {
         Object.assign(settings, JSON.parse(_defaultSettings));
     }

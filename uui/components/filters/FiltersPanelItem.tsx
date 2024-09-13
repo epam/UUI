@@ -11,7 +11,7 @@ import { MultiSwitch } from '../inputs';
 import { Text, TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
-import { MobileDropdownWrapper } from '../pickers';
+import { PickerBodyMobileView } from '../pickers';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
 import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete-outline.svg';
 import css from './FiltersPanelItem.module.scss';
@@ -141,7 +141,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const renderBody = (dropdownProps: DropdownBodyProps) => {
         const hideHeaderTitle = isPickersType && isMobileScreen;
         return isPickersType ? (
-            <MobileDropdownWrapper
+            <PickerBodyMobileView
                 { ...dropdownProps }
                 cx={ UUI_FILTERS_PANEL_ITEM_BODY }
                 title={ props.title }
@@ -156,7 +156,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     value={ getValue() }
                     onValueChange={ onValueChange }
                 />
-            </MobileDropdownWrapper>
+            </PickerBodyMobileView>
         ) : (
             <DropdownContainer cx={ UUI_FILTERS_PANEL_ITEM_BODY } { ...dropdownProps }>
                 { renderHeader(hideHeaderTitle) }

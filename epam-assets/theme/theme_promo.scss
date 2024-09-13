@@ -353,7 +353,7 @@
     /* Status Indicator */
 
     .uui-status_indicator.uui-color-white.uui-fill-outline {
-        .uui-status_indicator_dot {
+        .uui-status_indicator-dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--uui-neutral-40);
         }

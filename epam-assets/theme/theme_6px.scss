@@ -1,4 +1,5 @@
 @mixin uui-6px-grid {
+    --uui-grid-unit: 6px;
     --uui-focus-outline-width: 2px;
     --uui-focus-outline-offset: 2px;
     --uui-focus-radius: 2px;
@@ -17,7 +18,7 @@
         --uui-icon-size: 12px;
         --uui-line-height: 12px;
         --uui-font-size: 12px;
-
+        --uui-dot-size: 6px;
     }
 
     .uui-size-18 {
@@ -30,7 +31,7 @@
         --uui-icon-size: 12px;
         --uui-line-height: 12px;
         --uui-font-size: 10px;
-
+        --uui-dot-size: 6px;
     }
 
     .uui-size-24 {
@@ -43,6 +44,7 @@
         --uui-icon-size: 12px;
         --uui-line-height: 18px;
         --uui-font-size: 12px;
+        --uui-dot-size: 8px;
     }
 
     .uui-size-30 {
@@ -55,6 +57,7 @@
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
+        --uui-dot-size: 8px;
     }
 
     .uui-size-36 {
@@ -63,10 +66,11 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 6px;
-        --uui-vertical-padding: 3px;
+        --uui-vertical-padding: 3px; // update paddings change C:\Users\Siarhei_Dzeraviannik\WebstormProjects\UUI\uui\components\pickers\PickerToggler.module.scss
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
+        --uui-dot-size: 8px;
     }
 
     .uui-size-42 {
@@ -79,6 +83,7 @@
         --uui-icon-size: 18px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
+        --uui-dot-size: 10px;
     }
 
     .uui-size-48 {
@@ -91,6 +96,7 @@
         --uui-icon-size: 24px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
+        --uui-dot-size: 12px;
     }
 
     .uui-size-60 {
@@ -103,6 +109,7 @@
         --uui-icon-size: 24px;
         --uui-line-height: 24px;
         --uui-font-size: 20px;
+        --uui-dot-size: 12px;
     }
 
     .uui-input-box {
@@ -112,6 +119,14 @@
 
         &.uui-size-48 {
             --uui-horizontal-padding: 6px;
+        }
+
+        &.uui-textarea {
+            --uui-horizontal-padding: 12px;
+
+            &.uui-size-24 {
+                --uui-line-height: 12px;
+            }
         }
     }
 
@@ -161,24 +176,6 @@
         }
     }
 
-    .uui-picker_toggler:is(.uui-size-24, .uui-size-30, .uui-size-36, .uui-size-42) {
-        .uui-tag.uui-size-inherit {
-            --uui-horizontal-gap: 3px;
-        }
-    }
-
-    .uui-picker_toggler:is(.uui-size-24, .uui-size-30, .uui-size-36) {
-        .uui-tag.uui-size-inherit {
-            --uui-horizontal-padding: 3px;
-        }
-    }
-
-    .uui-size-48.uui-picker_toggler {
-        .uui-tag.uui-size-inherit {
-            --uui-horizontal-padding: 6px;
-        }
-    }
-
     .uui-checkbox-container, .uui-radio-input-container {
         &.uui-size-18 {
             --uui-horizontal-gap: 12px;
@@ -201,16 +198,92 @@
         }
     }
 
-    .uui-picker-body:is(.uui-size-30, .uui-size-36) .uui-switch.uui-size-inherit {
-        --uui-horizontal-gap: 12px;
-        --uui-line-height: 18px;
-        --uui-font-size: 14px;
+    .uui-labeled-input {
+        &.uui-size-30 {
+            --uui-icon-size: 12px;
+            --uui-font-size: 12px;
+        }
 
+        &.uui-size-42 {
+            --uui-line-height: 18px;
+            --uui-font-size: 14px;
+        }
+
+        &.uui-size-48 {
+            --uui-icon-size: 18px;
+            --uui-line-height: 18px;
+            --uui-font-size: 14px;
+        }
     }
 
-    .uui-picker-body:is(.uui-size-42, .uui-size-48) .uui-switch.uui-size-inherit {
-        --uui-horizontal-gap: 12px;
-        --uui-line-height: 24px;
-        --uui-font-size: 16px;
+    .uui-badge {
+        &.uui-size-18 {
+            --uui-font-size: 12px;
+        }
+
+        &.uui-size-24 {
+            --uui-horizontal-padding: 3px;
+            --uui-icon-size: 18px;
+            --uui-line-height: 12px;
+        }
+
+        &.uui-size-36 {
+            --uui-horizontal-padding: 9px;
+        }
+
+        &.uui-size-42 {
+            --uui-icon-size: 24px;
+        }
+    }
+
+    .uui-status_indicator {
+        &.uui-size-12 {
+            --uui-horizontal-gap: 4px;
+        }
+
+        &.uui-size-18 {
+            --uui-horizontal-gap: 6px;
+            --uui-line-height: 18px;
+            --uui-font-size: 14px;
+            --uui-dot-size: 8px;
+        }
+
+        &.uui-size-24 {
+            --uui-font-size: 14px;
+            --uui-dot-size: 10px;
+        }
+    }
+
+    .uui-count_indicator {
+        &.uui-size-12 {
+            --uui-horizontal-padding: 3px;
+            --uui-line-height: 10px;
+            --uui-font-size: 8px;
+        }
+
+        &.uui-size-18 {
+            --uui-horizontal-padding: 6px;
+            --uui-line-height: 16px;
+            --uui-font-size: 12px;
+        }
+
+        &.uui-size-24 {
+            --uui-line-height: 22px;
+            --uui-font-size: 14px;
+        }
+    }
+
+    .uui-table-header-cell {
+        &.uui-size-36 {
+            --uui-horizontal-gap: 12px;
+        }
+
+        &.uui-size-48 {
+            --uui-horizontal-gap: 12px;
+        }
+
+        &.uui-size-60 {
+            --uui-horizontal-gap: 12px;
+        }
     }
 }

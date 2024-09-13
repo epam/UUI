@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import cx from 'classnames';
 import { IHasCX } from '@epam/uui-core';
 import css from './StatusIndicator.module.scss';
+import { settings } from '../../settings';
 
 type StatusIndicatorColor = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
 
@@ -36,15 +37,15 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
             ref={ ref }
             className={ cx([
                 css.root,
-                css[`size-${props.size || 24}`],
+                `uui-size-${props.size || settings.sizes.defaults.statusIndicator}`,
                 'uui-status_indicator',
                 `uui-color-${props.color || 'neutral'}`,
                 `uui-fill-${props.fill || 'solid'}`,
                 props.cx,
             ]) }
         >
-            <div className="uui-status_indicator_dot"></div>
-            <p className="uui-status_indicator_caption">{props.caption}</p>
+            <div className="uui-status_indicator-dot"></div>
+            <p className="uui-status_indicator-caption">{props.caption}</p>
         </div>
     );
 });

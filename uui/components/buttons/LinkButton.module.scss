@@ -71,11 +71,11 @@
         padding-bottom: var(--uui-link-button-caption-padding);
 
         &:not(:first-child) {
-            padding-left: var(--uui-link-button-gap);
+            padding-inline-start: var(--uui-link-button-gap);
         }
 
         &:not(:last-child) {
-            padding-right: var(--uui-link-button-gap);
+            padding-inline-end: var(--uui-link-button-gap);
         }
 
         &:global(.uui-underline-solid) {
