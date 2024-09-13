@@ -2,10 +2,10 @@
 @use  '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
-    @include dnd-cursor-style();
     position: relative;
     width: max-content;
     margin: 1px 6px;
+    @include dnd-cursor-style();
 
     .row {
         min-height: 18px;
@@ -21,8 +21,8 @@
     }
 
     &:global(.uui-drag-ghost) {
-        @include visibility;
         box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
+        @include visibility;
     }
 }
 
