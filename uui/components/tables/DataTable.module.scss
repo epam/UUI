@@ -1,11 +1,14 @@
-.sticky-header {
-    position: sticky;
-    top: 0;
-    isolation: isolate;
-    z-index: 5;
-}
+.root {
+    --uui-dt-scroll-shadow-bottom-offset: -5px;
+    --uui-dt-scroll-shadow-height: 5px;
+    --uui-dt-scroll-shadow-background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+    --uui-dt-scroll-shadow-transition: 200ms;
 
-.table {
+    --uui-dt-sticky-header-top: 0;
+    --uui-dt-sticky-header-z-index: 5;
+
+    --uui-dt-no-results-margin-top: 30px;
+    //
     background: var(--uui-dt-bg);
 
     &:global(.-scrolled-left) {
@@ -25,15 +28,22 @@
         pointer-events: none;
         left: 0;
         right: 0;
-        bottom: -5px;
+        bottom: var(--uui-dt-scroll-shadow-bottom-offset);
     }
 
     :global(.uui-scroll-shadow-top-visible) {
         display: block;
-        height: 5px;
-        background: var(--uui-dt-top-shadow, linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 100%));
-        transition: display 200ms;
+        height: var(--uui-dt-scroll-shadow-height);
+        background: var(--uui-dt-top-shadow, var(--uui-dt-scroll-shadow-background));
+        transition: display var(--uui-dt-scroll-shadow-transition);
     }
+}
+
+.sticky-header {
+    position: sticky;
+    top: var(--uui-dt-sticky-header-top);
+    isolation: isolate;
+    z-index: var(--uui-dt-sticky-header-z-index);
 }
 
 .no-results {
@@ -45,12 +55,12 @@
     align-items: center;
     justify-content: center;
 
-    &-icon {
+    .icon {
         align-items: center;
     }
 
-    &-title {
+    .title {
         padding: 0;
-        margin-top: 30px;
+        margin-top: var(--uui-dt-no-results-margin-top);
     }
 }

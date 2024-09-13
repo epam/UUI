@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
+import cx from 'classnames';
+import { isMobile } from '@epam/uui-core';
+import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
     MainMenu, MainMenuButton, MultiSwitch, Text, FlexRow, DropdownMenuHeader, MainMenuDropdown, BurgerGroupHeader,
 } from '@epam/uui';
-import { Anchor, MainMenuCustomElement, useDocumentDir } from '@epam/uui-components';
 import { svc } from '../services';
 import { analyticsEvents } from '../analyticsEvents';
 import { TMode } from './docs/docsConstants';
 import { useAppThemeContext } from '../helpers/appTheme';
+
 import { ReactComponent as LogoIcon } from '../icons/logo.svg';
 import { ReactComponent as ThemeIcon } from '../icons/color-pallete.svg';
 import { ReactComponent as GitIcon } from '@epam/assets/icons/external_logo/github-fill.svg';
 import { ReactComponent as FigmaIcon } from '@epam/assets/icons/external_logo/figma-logo-outline-inverted.svg';
 import { ReactComponent as DoneIcon } from '@epam/assets/icons/common/notification-done-18.svg';
 import { ReactComponent as CommunicationStarOutlineIcon } from '@epam/assets/icons/communication-star-outline.svg';
+
 import css from './AppHeader.module.scss';
-import cx from 'classnames';
-import { isMobile } from '@epam/uui-core';
 
 const GIT_LINK = 'https://github.com/epam/UUI';
 
@@ -24,8 +26,8 @@ type ContentDirection = 'rtl' | 'ltr';
 
 export function AppHeader() {
     const { theme, toggleTheme, themesById } = useAppThemeContext();
-    const dir = useDocumentDir();
-    const [direction, setDirection] = useState<ContentDirection>(dir || 'ltr');
+    const dir = window?.document.dir;
+    const [direction, setDirection] = useState<string>(dir || 'ltr');
 
     const sendEvent = (link: string) => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.welcome.trusted(link));
@@ -125,7 +127,7 @@ export function AppHeader() {
                 priority: 100499,
                 render: () => (
                     <MainMenuCustomElement key="logo">
-                        <Anchor link={ { pathname: '/' } } href={ GIT_LINK } onClick={ () => sendEvent('Welcome') }>
+                        <Anchor link={ { pathname: '/' } } onClick={ () => sendEvent('Welcome') }>
                             <IconContainer icon={ LogoIcon } cx={ cx(css.icon, css.logo) } />
                         </Anchor>
                     </MainMenuCustomElement>

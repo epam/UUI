@@ -6,12 +6,13 @@ import {
 import { MonthSelection, YearSelection } from '@epam/uui-components';
 import { DatePickerHeader } from './DatePickerHeader';
 import { Calendar } from './Calendar';
-import css from './DatePickerBody.module.scss';
 import { CommonDatePickerBodyProps, ViewType } from './types';
 import {
     getNewMonth, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
 import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+import { settings } from '../../settings';
+import css from './DatePickerBody.module.scss';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
     /**
@@ -21,8 +22,7 @@ export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControl
 }
 
 export const uuiDatePickerBody = {
-    wrapper: 'uui-datepickerBody-wrapper',
-    separator: 'uui-datepickerBody-separator',
+    wrapper: 'uui-datepicker-body-wrapper',
 } as const;
 
 export const DatePickerBody = forwardRef(DatePickerBodyComp);
@@ -134,7 +134,7 @@ function StatelessDatePickerBodyComp({
     return (
         <div
             ref={ ref }
-            className={ cx(uuiDatePickerBodyBase.container, classes) }
+            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.sizes.defaults.datePicker}`, classes) }
             { ...rawProps }
         >
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>

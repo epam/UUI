@@ -67,6 +67,12 @@
     border-radius: var(--uui-dropdown_container-border-radius);
 }
 
+.submenu-root-item-rtl {
+    .icon-after {
+        transform: rotate(90deg);
+    }
+}
+
 .submenu-root-item {
     .icon-after {
         transform: rotate(-90deg);
