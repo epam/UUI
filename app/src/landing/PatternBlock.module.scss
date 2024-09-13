@@ -1,5 +1,6 @@
+@use 'sass:math';
 // to calculate div `image holder in Accordion` height in mob view
-$aspect-ratio: 1125 / 1833;
+$aspect-ratio: math.div(1125, 1833);
 
 @keyframes accordion-appears {
     0% {

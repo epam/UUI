@@ -140,9 +140,9 @@
 
     &.mode-inline {
         :global(.uui-input) {
-            @include control-inline-mode();
             padding-left: var(--uui-text_area-inline-horizontal-padding);
             padding-right: var(--uui-text_area-inline-horizontal-padding);
+            @include control-inline-mode();
 
             &:global(.uui-invalid) {
                 border-color: var(--uui-text_area-border-error);

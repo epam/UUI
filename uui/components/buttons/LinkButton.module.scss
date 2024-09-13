@@ -20,9 +20,10 @@
     --uui-link-button-icon-height: var(--uui-icon-size);
     --uui-link-button-line-height: var(--uui-line-height);
     --uui-link-button-font-size: var(--uui-font-size);
+    //
+    min-width: var(--uui-link-button-min-width);
 
     @include clickable-styles();
-    min-width: var(--uui-link-button-min-width);
 
     &:global(.uui-button-box) {
         background-color: transparent;

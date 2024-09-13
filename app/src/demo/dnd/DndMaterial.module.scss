@@ -3,10 +3,11 @@
 @use './mixins.module' as *;
 
 .drag-element {
-    @include dnd-cursor-style();
     position: relative;
     padding: 6px 0;
     margin: 0 24px;
+
+    @include dnd-cursor-style();
 
     .dnd-item {
         border: 1px solid var(--uui-divider);
@@ -37,8 +38,8 @@
     }
 
     :global(.uui-drag-ghost) {
-        @include visibility;
         box-shadow: 0 6px 18px 0 rgba(29, 30, 38, 0.05), 0 3px 12px 0 rgba(29, 30, 38, 0.05);
+        @include visibility;
     }
 }
 
