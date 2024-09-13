@@ -1,14 +1,17 @@
-# 5.x.x - xx.xx.2024
+# 5.9.2 - 12.09.2024
 
 **What's New**
+* [RTE]: added `maxLength` prop
+* [Text]: Added missing skin colors to 'Loveship' 'light' (night900) and dark (night50, night300, night400, night500, night600, night700, night800, night900) themes.
+
 
 **What's Fixed**
+* [RangeDatePicker]: fixed passing `id` prop to the first input in toggler
 * [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
-* [DataTableHeaderCell]: Fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
-* [useLazyTree]: Fixed an issue where API calls were skipped during very fast scrolling.
-* [RTE]: add `maxLength` prop
+* [DataTableHeaderCell]: fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
+* [useLazyTree]: fixed an issue where API calls were skipped during very fast scrolling.
 * [RTE]: fixed serialization of empty lines in HTML, now </br> html tag is used
-* [Text]: Added missing skin colors to 'Loveship' 'light' (night900) and dark (night50, night300, night400, night500, night600, night700, night800, night900) themes.
+* [Text]: Tweak skin specific props to be equal to their semantic analogs
 
 
 # 5.9.1 - 28.08.2024
