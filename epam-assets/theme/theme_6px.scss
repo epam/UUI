@@ -1,12 +1,13 @@
 @mixin uui-6px-grid {
-    --uui-grid-unit: 6px;
-    --uui-focus-outline-width: 2px;
-    --uui-focus-outline-offset: 2px;
-    --uui-focus-radius: 2px;
-    //--uui-border-radius: 3px; // TODO: ?????
-    --uui-tab-line-width: 3px;
-    --uui-notify-size: 6px;
-
+    & {
+        --uui-grid-unit: 6px;
+        --uui-focus-outline-width: 2px;
+        --uui-focus-outline-offset: 2px;
+        --uui-focus-radius: 2px;
+        //--uui-border-radius: 3px; // TODO: ?????
+        --uui-tab-line-width: 3px;
+        --uui-notify-size: 6px;
+    }
 
     .uui-size-12 {
         --uui-size: 12px;

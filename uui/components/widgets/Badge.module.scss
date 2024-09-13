@@ -23,18 +23,21 @@
     --uui-badge-line-height: var(--uui-line-height);
     --uui-badge-font-size: var(--uui-font-size);
     --uui-badge-additional-gap: 3px;
-    //
+
     @include clickable-styles();
-    background-color: var(--uui-badge-bg);
-    color: var(--uui-badge-caption);
-    fill: var(--uui-badge-caption); // ??? separate variable
-    border-color: var(--uui-badge-border);
-    justify-content: center;
-    min-height: var(--uui-badge-min-height);
-    min-width: var(--uui-badge-min-width);
-    border-radius: calc(var(--uui-badge-min-height) / 2);
-    padding-inline-start: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
-    padding-inline-end: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
+
+    & {
+        background-color: var(--uui-badge-bg);
+        color: var(--uui-badge-caption);
+        fill: var(--uui-badge-caption); // ??? separate variable
+        border-color: var(--uui-badge-border);
+        justify-content: center;
+        min-height: var(--uui-badge-min-height);
+        min-width: var(--uui-badge-min-width);
+        border-radius: calc(var(--uui-badge-min-height) / 2);
+        padding-inline-start: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
+        padding-inline-end: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
+    }
 
     :global(.uui-icon) {
         &:first-child {

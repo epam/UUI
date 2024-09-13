@@ -1,21 +1,21 @@
 @mixin disabled-input() {
     &.mode-form {
-        @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled), var(--uui-control-placeholder-disabled));
         cursor: default;
+        @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled), var(--uui-control-placeholder-disabled));
 
         &:hover, &:active, &:focus {
-            @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled), var(--uui-control-placeholder-disabled));
             box-shadow: none;
+            @include input-colors(var(--uui-control-bg-disabled), var(--uui-control-text-disabled), var(--uui-control-border-disabled), var(--uui-control-placeholder-disabled));
         }
     }
 
     &.mode-cell {
-        @include input-colors(transparent, var(--uui-control-text-disabled), transparent, var(--uui-control-placeholder-disabled));
         cursor: default;
+        @include input-colors(transparent, var(--uui-control-text-disabled), transparent, var(--uui-control-placeholder-disabled));
 
         &:hover, &:active, &:focus {
-            @include input-colors(transparent, var(--uui-control-text-disabled), transparent, var(--uui-control-placeholder-disabled));
             box-shadow: none;
+            @include input-colors(transparent, var(--uui-control-text-disabled), transparent, var(--uui-control-placeholder-disabled));
         }
     }
 }

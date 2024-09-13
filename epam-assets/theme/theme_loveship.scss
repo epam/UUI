@@ -5,7 +5,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
 @mixin theme-loveship {
-    @include tokens.theme-tokens;
     --uui-font: 'Source Sans Pro', sans-serif;
     --uui-font-mono: 'Roboto Mono', monospace;
 
@@ -23,11 +22,12 @@
     --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
     --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
 
-    --uui-border-radius: 3px;
+    @include tokens.theme-tokens;
 
-    /* core variables end */
 
-    /* ------------------------------------ */
+    & {
+        --uui-border-radius: 3px;
+    }
 
     /* begin color classes */
 
@@ -588,6 +588,6 @@
 }
 
 .uui-theme-loveship {
-    @include uui-6px-grid();
     @include theme-loveship();
+    @include uui-6px-grid();
 }
