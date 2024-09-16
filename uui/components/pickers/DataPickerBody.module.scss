@@ -1,8 +1,8 @@
 @use  '../../assets/styles/index' as *;
 
-:global(.uui-pickerInput-body) {
-    --uui-dt-cell-border-width: 0;
-    --uui-pickerInput-selected_mark: var(--uui-info-50);
+:global(.uui-picker_input-body) {
+    --uui-picker_input-selected_mark: var(--uui-info-50);
+    --uui-data_picker_body-no-data-vertical-padding: 20px;
     //
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
     }
 }
 
-.search-wrapper ~ .body {
+.search-wrapper ~ :global(.uui-picker_input-body) {
     &:not(.modal) {
         :global(.-scrolled-top) {
             border-top: 1px solid var(--uui-divider);
@@ -37,22 +37,15 @@
     border: 0;
 }
 
-.checkbox {
-    padding: 6px 0;
-}
-
 .search-wrapper {
-    padding: 9px 12px;
+    --uui-data_picker_body-search-padding: 9px;
+    //
+    padding: var(--uui-data_picker_body-search-padding);
 }
 
-.no-found-size-24 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.no-found-size-30, .no-found-size-36, .no-found-size-42 {
-    padding-top: 23px;
-    padding-bottom: 23px;
+.no-data {
+    padding-top: var(--uui-data_picker_body-no-data-vertical-padding);
+    padding-bottom: var(--uui-data_picker_body-no-data-vertical-padding);
 }
 
 

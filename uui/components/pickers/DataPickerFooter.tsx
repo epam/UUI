@@ -2,10 +2,11 @@ import React, { PropsWithChildren } from 'react';
 import { isMobile, Overwrite, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { Switch, SwitchProps } from '../inputs';
-import { FlexCell, FlexRow, FlexRowProps, FlexSpacer } from '../layout';
+import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton, LinkButtonProps } from '../buttons';
 import { SizeMod } from '../types';
 import { settings } from '../../settings';
+import css from './DataPickerFooter.module.scss';
 
 export interface DataPickerFooterModsOverride {
 }
@@ -13,7 +14,7 @@ export interface DataPickerFooterModsOverride {
 interface DataPickerFooterMods extends SizeMod {
 }
 
-type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPickerFooterModsOverride> & PickerFooterProps<TItem, TId> & {
+export type DataPickerFooterProps<TItem, TId> = Overwrite<DataPickerFooterMods, DataPickerFooterModsOverride> & PickerFooterProps<TItem, TId> & {
     selectionMode: 'single' | 'multi';
 };
 
@@ -27,7 +28,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         notEnoughTokensToLoadData,
     } = props;
 
-    const size = settings.sizes.dataPickerFooter.linkButton[isMobile() ? 'mobile' : props.size] as LinkButtonProps['size'];
+    const size = isMobile() ? settings.sizes.pickerInput.body.mobile.footer.linkButton as LinkButtonProps['size'] : props.size;
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;
     const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
@@ -43,10 +44,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const hideFooter = notEnoughTokensToLoadData || rowsCount === 0 || (isSinglePicker ? (isSearching && props.disableClear) : isSearching);
 
     return !hideFooter && (
-        <FlexRow size={ props.size } padding={ settings.sizes.dataPickerFooter.flexRowPadding as FlexRowProps['padding'] }>
+        <FlexRow cx={ css.footer }>
             {!isSinglePicker && (
                 <Switch
-                    size={ settings.sizes.dataPickerFooter.switch[props.size] as SwitchProps['size'] }
+                    size={ settings.sizes.pickerInput.body.dropdown.footer.switch[props.size] as SwitchProps['size'] }
                     value={ showSelected.value }
                     isDisabled={ !hasSelection }
                     onValueChange={ showSelected.onValueChange }

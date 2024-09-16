@@ -20,7 +20,7 @@ export function getColumns() {
             fix: 'left',
             isSortable: true,
             renderCell: (props) => (
-                <DataTableCell padding="12" { ...props.rowLens.prop('title').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />
+                <DataTableCell columnsGap="12" { ...props.rowLens.prop('title').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />
             ),
         }, {
             key: 'description',

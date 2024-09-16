@@ -2,7 +2,7 @@
 
 exports[`Badge should be rendered correctly 1`] = `
 <span
-  className="uui-button-box uui-enabled uui-badge root size-36 uui-fill-solid uui-color-info"
+  className="uui-button-box uui-enabled uui-badge root uui-size-36 uui-fill-solid uui-color-info"
   tabIndex={-1}
 />
 `;
@@ -10,7 +10,7 @@ exports[`Badge should be rendered correctly 1`] = `
 exports[`Badge should be rendered correctly with props 1`] = `
 <button
   aria-haspopup={true}
-  className="uui-button-box uui-enabled -clickable uui-badge root size-36 uui-fill-solid uui-color-success"
+  className="uui-button-box uui-enabled -clickable uui-badge root uui-size-36 uui-fill-solid uui-color-success"
   onClick={[Function]}
   tabIndex={0}
   type="button"

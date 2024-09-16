@@ -14,7 +14,7 @@
 .copying-marker {
     position: absolute;
     bottom: 0;
-    right: 0;
+    inset-inline-end: 0;
     width: 7px;
     height: 7px;
     cursor: crosshair;
@@ -25,7 +25,7 @@
         position: absolute;
         display: block;
         bottom: 0;
-        right: 0;
+        inset-inline-end: 0;
         width: 12px;
         height: 12px;
     }
@@ -38,8 +38,8 @@
     // if --uui-dt-cell-editor-border-width is bigger - it will inset into the cell
     top: calc(var(--uui-dt-row-border-width) * -1);
     bottom: calc(var(--uui-dt-row-border-width) * -1);
-    left: calc(var(--uui-dt-row-border-width) * -1);
-    right: calc(var(--uui-dt-row-border-width) * -1);
+    inset-inline-start: calc(var(--uui-dt-row-border-width) * -1);
+    inset-inline-end: calc(var(--uui-dt-row-border-width) * -1);
     border-width: var(--uui-dt-cell-editor-border-width);
     border-style: solid;
     border-color: transparent;
@@ -86,7 +86,7 @@
         }
 
         &:global(.uui-table-cell-selected-right) {
-            border-right-color: var(--uui-dt-cell-border-focus);
+            border-inline-end-color: var(--uui-dt-cell-border-focus);
         }
 
         &:global(.uui-table-cell-selected-bottom) {
@@ -94,18 +94,18 @@
         }
 
         &:global(.uui-table-cell-selected-left) {
-            border-left-color: var(--uui-dt-cell-border-focus);
+            border-inline-start-color: var(--uui-dt-cell-border-focus);
         }
 
         // to prevent borders to be cut, it is required to set border-{side} = 0px;
         &:global(.uui-table-cell-selected-top),
         &:global(.uui-table-cell-selected-bottom) {
             &:not(:global(.uui-table-cell-selected-right)) {
-                border-right: 0;
+                border-inline-end: 0;
             }
 
             &:not(:global(.uui-table-cell-selected-left)) {
-                border-left: 0;
+                border-inline-start: 0;
             }
         }
 

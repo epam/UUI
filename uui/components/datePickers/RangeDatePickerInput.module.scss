@@ -1,0 +1,99 @@
+@use  '../../assets/styles/index' as *;
+
+.date-input {
+    min-width: 0;
+    padding: var(--uui-rdtp-date_input-padding);
+
+    &:global(.uui-input-box) {
+        border-width: 0;
+        height: var(--uui-rdtp-date_input-height);
+    }
+}
+
+.root {
+    --uui-rdtp-bg: var(--uui-control-bg);
+    --uui-rdtp-border: var(--uui-control-border);
+    --uui-rdtp-border-hover: var(--uui-control-border-hover);
+    --uui-rdtp-border-active: var(--uui-control-border-focus);
+    --uui-rdtp-border-error: var(--uui-error-50);
+
+    --uui-rdtp-border-radius: var(--uui-border-radius);
+    --uui-rdtp-border-width: var(--uui-border-width);
+    --uui-rdtp-date_input-height: calc(var(--uui-size) - var(--uui-border-width) * 2);
+    --uui-rdtp-date_input-padding: 0 5px;
+    //
+    display: flex;
+    min-width: 0;
+    background-color: var(--uui-rdtp-bg);
+    border: var(--uui-rdtp-border-width) solid var(--uui-rdtp-border);
+    border-radius: var(--uui-rdtp-border-radius);
+
+    > :first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    > :last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .separator {
+        display: flex;
+        flex-shrink: 0;
+        background: var(--uui-rdtp-border);
+        width: var(--uui-rdtp-border-width);
+    }
+
+    &:hover {
+        border-color: var(--uui-rdtp-border-hover);
+
+        .separator {
+            background: var(--uui-rdtp-border-hover);
+        }
+
+        &:global(.uui-disabled), &:global(.uui-readonly) {
+            border-color: var(--uui-rdtp-border);
+
+            .separator {
+                background: var(--uui-rdtp-border);
+            }
+        }
+    }
+
+    &:global(.uui-focus) {
+        border-color: var(--uui-rdtp-border);
+
+        .separator {
+            background: var(--uui-rdtp-border-active);
+        }
+
+        .date-input {
+            &:hover {
+                outline: var(--uui-rdtp-border-width) solid var(--uui-rdtp-border-hover);
+            }
+
+            &:global(.uui-focus) {
+                outline: var(--uui-rdtp-border-width) solid var(--uui-rdtp-border-active);
+            }
+        }
+    }
+
+    &:global(.uui-readonly) {
+        @include readonly-input();
+
+        .date-input {
+            &:global(.uui-focus) {
+                box-shadow: none;
+            }
+        }
+    }
+
+    &:global(.uui-invalid) {
+        border-color: var(--uui-rdtp-border-error);
+
+        .separator {
+            background: var(--uui-rdtp-border-error);
+        }
+    }
+}

@@ -18,7 +18,7 @@ export default function PagedTable() {
             const isSearchChanged = currentState.search !== updatedState.search;
             const isSortingChanged = !isEqual(currentState.sorting, updatedState.sorting);
             const isPagingChanged = currentState.page !== updatedState.page || currentState.pageSize !== updatedState.pageSize;
-    
+
             if (isFilterChanged || isSearchChanged || isSortingChanged || isPagingChanged) {
                 return { ...updatedState, checked: [] };
             }
@@ -89,7 +89,6 @@ export default function PagedTable() {
                     value={ state.page }
                     onValueChange={ (newPage) => setTableState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
                     totalPages={ Math.ceil((listProps.totalCount ?? 0) / state.pageSize) }
-                    size="30"
                 />
                 <FlexSpacer />
             </FlexRow>

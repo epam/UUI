@@ -20,9 +20,10 @@
     --uui-link-button-icon-height: var(--uui-icon-size);
     --uui-link-button-line-height: var(--uui-line-height);
     --uui-link-button-font-size: var(--uui-font-size);
+    //
+    min-width: var(--uui-link-button-min-width);
 
     @include clickable-styles();
-    min-width: var(--uui-link-button-min-width);
 
     &:global(.uui-button-box) {
         background-color: transparent;
@@ -71,11 +72,11 @@
         padding-bottom: var(--uui-link-button-caption-padding);
 
         &:not(:first-child) {
-            padding-left: var(--uui-link-button-gap);
+            padding-inline-start: var(--uui-link-button-gap);
         }
 
         &:not(:last-child) {
-            padding-right: var(--uui-link-button-gap);
+            padding-inline-end: var(--uui-link-button-gap);
         }
 
         &:global(.uui-underline-solid) {

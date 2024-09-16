@@ -2,7 +2,7 @@
 
 exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 <div
-  className="dateInputGroup uui-range-date-picker uui-disabled uui-readonly uui-invalid"
+  className="uui-size-36 uui-range-date-picker root uui-disabled uui-readonly uui-invalid"
 >
   <div
     className="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
@@ -65,7 +65,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
 
 exports[`RangeDataPicker should be rendered if minimum params and custom format defined 1`] = `
 <div
-  className="dateInputGroup uui-range-date-picker"
+  className="uui-size-36 uui-range-date-picker root"
 >
   <div
     className="container uui-input-box -clickable root uui-size-36 mode-form dateInput"

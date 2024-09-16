@@ -2,9 +2,11 @@
 @use  '../../assets/styles/index' as *;
 
 @mixin tab-button-color($color, $activeColor, $backgroundColor) {
-    color: $color;
-    fill: $color;
-    background-color: $backgroundColor;
+    & {
+        color: $color;
+        fill: $color;
+        background-color: $backgroundColor;
+    }
 
     &:hover {
         color: $activeColor;
@@ -41,17 +43,21 @@
     --uui-tab_btn-font-size: var(--uui-font-size);
 
     @include clickable-styles();
+
+    & {
+        cursor: pointer;
+        padding-inline-start: var(--uui-tab_btn-padding);
+        padding-inline-end: var(--uui-tab_btn-padding);
+        bottom: -1px;
+        align-items: center;
+        font-family: var(--uui-tab_btn-font);
+        font-weight: var(--uui-tab_btn-font-weight);
+        border-bottom: var(--uui-tab-line-width) solid transparent;
+        height: var(--uui-tab_btn-height);
+        min-width: var(--uui-tab_btn-min-width);
+    }
+
     @include tab-button-color(var(--uui-tab_btn-text), var(--uui-tab_btn-text-active), transparent);
-    cursor: pointer;
-    padding-inline-start: var(--uui-tab_btn-padding);
-    padding-inline-end: var(--uui-tab_btn-padding);
-    bottom: -1px;
-    align-items: center;
-    font-family: var(--uui-tab_btn-font);
-    font-weight: var(--uui-tab_btn-font-weight);
-    border-bottom: var(--uui-tab-line-width) solid transparent;
-    height: var(--uui-tab_btn-height);
-    min-width: var(--uui-tab_btn-min-width);
 
     svg {
         height: var(--uui-tab_btn-icon-height);
@@ -105,7 +111,6 @@
                 background: var(--uui-critical-50);
                 box-shadow: 0 1px 8px 0 var(--uui-critical-50);
                 border-radius: 50%;
-                //top: calc(var(--uui-tab_btn-vertical-caption-padding) - 1px);
             }
         }
     }
