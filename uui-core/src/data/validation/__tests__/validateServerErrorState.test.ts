@@ -1,9 +1,12 @@
 import { validateServerErrorState } from '../validateServerErrorState';
-import { ICanBeInvalid } from '../../../types';
+import { ValidationState } from '../../lenses';
 
 interface IBar {
     name: string;
     age?: number;
+    location?: {
+        city?: string;
+    }
 }
 
 interface IFoo {
@@ -14,7 +17,7 @@ interface IFoo {
 }
 
 describe('validateServerErrorState', () => {
-    let serverValidation: ICanBeInvalid;
+    let serverValidation: ValidationState;
     let currentFormState: IFoo;
     let lastFormState: IFoo;
 
@@ -276,6 +279,185 @@ describe('validateServerErrorState', () => {
                         isInvalid: false,
                     },
                     nested: serverValidation.validationProps.nested,
+                },
+            });
+        });
+
+        it('should work, when removed item with error from current state', () => {
+            lastFormState = {
+                name: 'test',
+                nested: {
+                    name: 'nested changed',
+                    age: 30,
+                },
+            };
+            currentFormState = {
+                name: 'test',
+                nested: {
+                    name: 'nested',
+                },
+            };
+            serverValidation = {
+                isInvalid: true,
+                validationProps: {
+                    name: {
+                        isInvalid: false,
+                    },
+                    nested: {
+                        isInvalid: true,
+                        validationProps: {
+                            name: {
+                                isInvalid: false,
+                            },
+                        },
+                    },
+                },
+            };
+            const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
+            expect(result).toStrictEqual({
+                isInvalid: false,
+                validationProps: {
+                    name: serverValidation.validationProps.name,
+                    nested: {
+                        isInvalid: false,
+                        validationProps: {
+                            name: {
+                                isInvalid: false,
+                            },
+                        },
+                    },
+                },
+            });
+        });
+
+        it('should work recursive, when removed parent of child with error from current state', () => {
+            lastFormState = {
+                name: 'test',
+                nested: {
+                    name: 'nested',
+                    age: 30,
+                    location: {
+                        city: 'Minsk',
+                    },
+                },
+            };
+            currentFormState = {
+                name: 'test',
+                nested: {
+                    name: 'nested',
+                    age: 30,
+                },
+            };
+            serverValidation = {
+                isInvalid: true,
+                validationProps: {
+                    name: {
+                        isInvalid: false,
+                    },
+                    nested: {
+                        isInvalid: true,
+                        validationProps: {
+                            name: {
+                                isInvalid: false,
+                            },
+                            age: {
+                                isInvalid: false,
+                            },
+                            location: {
+                                isInvalid: true,
+                                validationProps: {
+                                    city: {
+                                        isInvalid: true,
+                                        validationMessage: 'Wrong city',
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            };
+            const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
+            expect(result).toStrictEqual({
+                isInvalid: false,
+                validationProps: {
+                    name: serverValidation.validationProps.name,
+                    nested: {
+                        isInvalid: false,
+                        validationProps: {
+                            age: serverValidation.validationProps.nested.validationProps.age,
+                            name: serverValidation.validationProps.nested.validationProps.name,
+                            location: {
+                                isInvalid: false,
+                                validationProps: {
+                                    city: {
+                                        isInvalid: false,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+        });
+
+        // TODO: add to validation, currently it's not supported
+        it.skip('array or object should contain error message if returned by server validation', () => {
+            lastFormState = {
+                name: 'test',
+                nested: {
+                    name: 'nested',
+                    age: 30,
+                    location: {
+                        city: 'Minsk',
+                    },
+                },
+            };
+            currentFormState = {
+                name: 'test',
+                nested: {
+                    name: 'nested',
+                    age: 30,
+                    location: {
+                        city: 'Minsk',
+                    },
+                },
+            };
+            serverValidation = {
+                isInvalid: true,
+                validationProps: {
+                    name: {
+                        isInvalid: false,
+                    },
+                    nested: {
+                        isInvalid: true,
+                        validationProps: {
+                            name: {
+                                isInvalid: false,
+                            },
+                            age: {
+                                isInvalid: false,
+                            },
+                            location: {
+                                isInvalid: true,
+                                validationMessage: 'Wrong location',
+                            },
+                        },
+                    },
+                },
+            };
+            const result = validateServerErrorState(currentFormState, lastFormState, serverValidation);
+            expect(result).toStrictEqual({
+                isInvalid: false,
+                validationProps: {
+                    name: serverValidation.validationProps.name,
+                    nested: {
+                        isInvalid: false,
+                        validationProps: {
+                            age: serverValidation.validationProps.nested.validationProps.age,
+                            name: serverValidation.validationProps.nested.validationProps.name,
+                            location: serverValidation.validationProps.nested.validationProps.location,
+                        },
+                    },
                 },
             });
         });
