@@ -29,11 +29,10 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const {
         opened, setOpened, isSearchChanged, setIsSearchChanged, setShowSelected, dataSourceState, setDataSourceState,
     } = pickerInputState;
-    const searchPosition = props.searchPosition || 'input';
 
     const defaultShouldShowBody = () => {
         const isOpened = opened && !props.isDisabled;
-        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
+        if (props.minCharsToSearch && props.editMode !== 'modal' && getSearchPosition() === 'input') {
             const isEnoughSearchLength = dataSourceState.search
                 ? dataSourceState.search.length >= props.minCharsToSearch
                 : false;
@@ -46,7 +45,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
-    const shouldStartLoad = () => props.minCharsToSearch && searchPosition === 'body'
+    const shouldStartLoad = () => props.minCharsToSearch && getSearchPosition() === 'body'
         ? (isEnoughSearchLength() && shouldShowBody())
         : shouldShowBody();
 
@@ -299,13 +298,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onIconClick,
             id,
         } = props;
-        const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
+        const forcedDisabledClear = Boolean(getSearchPosition() === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
         let searchValue: string | undefined = getSearchValue();
         if (isSingleSelect() && selectedRows[0]?.isLoading) {
             searchValue = undefined;
         }
-
+        const searchPosition = getSearchPosition();
         return {
             isSingleLine,
             maxItems,
