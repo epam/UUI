@@ -112,7 +112,8 @@ export const getRealTopIndex = ({ rowsCount, scrollContainer, rowOffsets }: Virt
 const getRealBottomIndex = ({ rowsCount, scrollContainer, rowOffsets, value: { topIndex } }: VirtualListInfo) => {
     let bottomIndex = topIndex;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
-    const containerScrollBottom = containerScrollTop + scrollContainer?.clientHeight ?? 0;
+
+    const containerScrollBottom = containerScrollTop + scrollContainer.clientHeight ?? 0;
     while (bottomIndex < rowsCount && rowOffsets[bottomIndex] < containerScrollBottom) {
         bottomIndex++;
     }
