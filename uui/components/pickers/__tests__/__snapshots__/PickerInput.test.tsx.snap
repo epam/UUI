@@ -14,7 +14,7 @@ exports[`PickerInput should open body 1`] = `
           aria-haspopup="true"
           autocomplete="no"
           class="uui-input singleInput cursorText"
-          dir="auto"
+          dir="ltr"
           placeholder="Please select "
           tabindex="-1"
           type="text"
@@ -47,7 +47,7 @@ exports[`PickerInput should open body 1`] = `
       tabindex="-1"
     >
       <div
-        class="uui-flex-row root size-36 uui-pickerInput-body dropdown single container align-items-center"
+        class="uui-flex-row root uui-size-36 uui-picker_input-body dropdown single container align-items-center"
         style="max-height: 300px;"
       >
         <div
@@ -72,9 +72,9 @@ exports[`PickerInput should open body 1`] = `
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                     role="cell"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
                   >
                     <div
                       class="contentWrapper"
@@ -87,15 +87,15 @@ exports[`PickerInput should open body 1`] = `
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root size-36 container align-items-center"
-                            style="column-gap: 12px;"
+                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
                               class="flexCell"
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                               >
                                 Elementary
                               </div>
@@ -116,9 +116,9 @@ exports[`PickerInput should open body 1`] = `
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell size-36 padding-12 padding-left-12 align-widgets-top"
+                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                     role="cell"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
                   >
                     <div
                       class="contentWrapper"
@@ -131,15 +131,15 @@ exports[`PickerInput should open body 1`] = `
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root size-36 container align-items-center"
-                            style="column-gap: 12px;"
+                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
                               class="flexCell"
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                               >
                                 Elementary+
                               </div>
@@ -204,7 +204,7 @@ exports[`PickerInput should open body 1`] = `
         </div>
       </div>
       <div
-        class="uui-flex-row root size-36 padding-12 container align-items-center"
+        class="uui-flex-row root uui-size-36 footer container align-items-center"
       >
         <div
           class="flexSpacer"
@@ -257,7 +257,7 @@ exports[`PickerInput should render icon at specific position 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -305,7 +305,7 @@ exports[`PickerInput should render icon at specific position 2`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -345,7 +345,7 @@ exports[`PickerInput should render icon at specific position 3`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -393,7 +393,7 @@ exports[`PickerInput should render input as invalid 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input singleInput cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -513,7 +513,7 @@ exports[`PickerInput should render with minimum props 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input singleInput cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -553,7 +553,7 @@ exports[`PickerInput should render with mode = cell 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -593,7 +593,7 @@ exports[`PickerInput should render with mode = form 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -633,7 +633,7 @@ exports[`PickerInput should render with mode = inline 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -673,7 +673,7 @@ exports[`PickerInput should render with mode = undefined 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}
@@ -713,7 +713,7 @@ exports[`PickerInput should support single line 1`] = `
       aria-haspopup={true}
       autoComplete="no"
       className="uui-input cursorText"
-      dir="auto"
+      dir="ltr"
       onChange={[Function]}
       placeholder="Please select "
       readOnly={false}

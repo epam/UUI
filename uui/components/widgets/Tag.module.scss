@@ -26,9 +26,12 @@
     --uui-tag-font-size: var(--uui-font-size);
 
     @include clickable-styles();
-    min-height: var(--uui-tag-min-height);
-    min-width: var(--uui-tag-min-width);
-    padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - (var(--uui-tag-border-width) * 2)) / 2) calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width)); // y
+
+    & {
+        min-height: var(--uui-tag-min-height);
+        min-width: var(--uui-tag-min-width);
+        padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - (var(--uui-tag-border-width) * 2)) / 2) calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width)); // y
+    }
 
     :global(.uui-count_indicator):not(:last-child) {
         margin-right: var(--uui-tag-horizontal-gap);

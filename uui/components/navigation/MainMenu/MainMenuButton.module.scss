@@ -4,11 +4,10 @@
     --uui-main_menu-button-font: var(--uui-font);
     --uui-main_menu-button-font-weight: 600;
     //
-
-    @include clickable-styles();
     flex-shrink: 0;
     color: var(--uui-main_menu-text);
     fill: var(--uui-main_menu-icon);
+    @include clickable-styles();
 
     :global(.uui-caption), :global(.uui-input) {
         padding: 22px 6px;

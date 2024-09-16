@@ -33,9 +33,8 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             return this.props.renderNotFound();
         }
 
-        // TODO: need fix sizes, how to use variables
         return (
-            <FlexCell cx={ css[`no-found-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
+            <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                 <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
             </FlexCell>
         );
@@ -61,7 +60,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     }
 
     render() {
-        const searchSize = (isMobile() ? settings.sizes.dataPickerBody.searchInput['mobile'] : this.props.searchSize) as SearchInputProps['size'];
+        const searchSize = (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
 
         return (
             <>

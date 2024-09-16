@@ -3,11 +3,12 @@ import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
     IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps, useDocumentDir } from '@epam/uui-components';
+import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
 import { systemIcons } from '../../icons/icons';
+
 import css from './DropdownMenu.module.scss';
 
 export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCaption, IHasIcon, ICanRedirect, IHasCX, IDisableable, IAnalyticableClick {
@@ -205,7 +206,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         },
     ];
 
-    const dir = useDocumentDir();
+    const isRtl = window?.document.dir === 'rtl';
 
     return (
         <Dropdown
@@ -213,12 +214,12 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             closeOnMouseLeave="boundary"
             openDelay={ 400 }
             closeDelay={ 400 }
-            placement={ dir === 'rtl' ? 'left-start' : 'right-start' }
+            placement={ isRtl ? 'left-start' : 'right-start' }
             modifiers={ subMenuModifiers }
             renderBody={ (dropdownProps) => !props.isDisabled && (<DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } />) }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
-                    cx={ cx(css.submenuRootItem) }
+                    cx={ cx(isRtl ? css.submenuRootItemRtl : css.submenuRootItem) }
                     icon={ systemIcons.foldingArrow }
                     iconPosition="right"
                     isDropdown={ true }

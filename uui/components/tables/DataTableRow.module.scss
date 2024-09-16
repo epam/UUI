@@ -2,8 +2,12 @@
 @use  '../../assets/styles/dnd' as *;
 
 .root {
+    --uui-dt-row-min-height: var(--uui-size);
+    //
+    min-height: var(--uui-dt-row-min-height);
+
     &:global(.uui-dt-row-border.uui-table-row) {
-        --uui-dt-row-border-width: 1px;
+        --uui-dt-row-border-width: var(--uui-border-width);
     }
 
     &:global(.-clickable) {
@@ -34,10 +38,6 @@
         @include dnd-ghost-shadow();
     }
 
-    &:global(.uui-focus) {
-        //border: 1px solid $blue;
-    }
-
     &:global(.uui-dt-row-border) {
         border-bottom-color: var(--uui-dt-border);
     }
@@ -48,11 +48,3 @@
         border-bottom-color: var(--uui-dt-border);
     }
 }
-
-// Sizes
-
-.size-24 { min-height: 24px; }
-.size-30 { min-height: 30px; }
-.size-36 { min-height: 36px; }
-.size-48 { min-height: 48px; }
-.size-60 { min-height: 60px; }

@@ -35,11 +35,9 @@ For the new projects we recommend to use our custom [CRA](https://github.com/epa
 npx create-react-app my-app --template @epam/uui
 
 # Vite
-
 npx -- degit@latest https://github.com/epam/UUI/templates/uui-vite-template my-app
 
 # Next.js
-
 npx create-next-app --example "https://github.com/epam/UUI/tree/main/templates/uui-nextjs-template/template" my-app
 ```
 ## Quick Try

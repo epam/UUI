@@ -22,7 +22,7 @@ export const productColumns: DataColumnProps<Product, number, DataQueryFilter<Pr
         width: 200,
         fix: 'left',
         isSortable: true,
-        renderCell: (props) => <DataTableCell padding="12" { ...props.rowLens.prop('Name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
+        renderCell: (props) => <DataTableCell columnsGap="12" { ...props.rowLens.prop('Name').toProps() } renderEditor={ (props) => <TextInput { ...props } /> } { ...props } />,
     }, {
         key: 'Class',
         caption: 'Class',

@@ -16,7 +16,7 @@ import {
 } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
-import { MobileDropdownWrapper } from './MobileDropdownWrapper';
+import { PickerBodyMobileView } from './PickerBodyMobileView';
 import { DataPickerBody } from './DataPickerBody';
 import { DataPickerRow, DataPickerRowProps } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
@@ -123,10 +123,12 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const getRowSize = () => {
         if (isMobile()) {
-            return settings.sizes.pickerInput.rowSize.mobile;
+            return settings.sizes.pickerInput.body.mobile.row;
         }
 
-        return props.editMode === 'modal' ? settings.sizes.pickerInput.rowSize.modal : props.size;
+        return props.editMode === 'modal'
+            ? settings.sizes.pickerInput.body.modal.row
+            : (props.size || settings.sizes.pickerInput.body.dropdown.row.default);
     };
 
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
@@ -161,7 +163,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                 { ...rowProps }
                 key={ rowProps.rowKey }
                 size={ getRowSize() as DataPickerRowProps<any, any>['size'] }
-                padding={ (props.editMode === 'modal' ? settings.sizes.pickerInput.rowSize.padding.modal : settings.sizes.pickerInput.rowSize.padding.default) as DataPickerRowProps<any, any>['padding'] }
+                padding={ (props.editMode === 'modal' ? settings.sizes.pickerInput.body.modal.padding : settings.sizes.pickerInput.body.dropdown.padding) as DataPickerRowProps<any, any>['padding'] }
                 renderItem={ (item, itemProps) => renderRowItem(item, itemProps, dsState) }
             />
         );
@@ -169,11 +171,11 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
-        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.sizes.pickerInput.height;
-        const minBodyWidth = props.minBodyWidth || settings.sizes.pickerInput.width;
+        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.sizes.pickerInput.body.dropdown.height;
+        const minBodyWidth = props.minBodyWidth || settings.sizes.pickerInput.body.dropdown.width;
 
         return (
-            <MobileDropdownWrapper
+            <PickerBodyMobileView
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
                 cx={ [props.bodyCx] }
@@ -210,7 +212,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                     }
                 />
                 { renderFooter() }
-            </MobileDropdownWrapper>
+            </PickerBodyMobileView>
         );
     };
 

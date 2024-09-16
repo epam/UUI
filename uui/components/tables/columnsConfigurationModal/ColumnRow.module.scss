@@ -2,22 +2,21 @@
 
 .row-wrapper {
     position: relative;
-    padding: 0 24px 0 0;
     width: 100%;
     box-sizing: border-box;
     touch-action: auto;
-    column-gap: 6px;
+    column-gap: var(--uui-horizontal-gap);
+    padding: 0 var(--uui-dt-columns_config_modal-padding);
 
     &.not-pinned:not(:hover):not(:focus-within) {
         .pin-icon-button {
             visibility: hidden;
+            column-gap: var(--uui-dt-columns_config_modal-pin_icon_button-column-gap);
         }
     }
 
-    .checkbox {
+    .grow {
         flex-grow: 1;
-        height: 30px;
-        align-items: center;
     }
 
     &:hover {
@@ -25,7 +24,6 @@
     }
 
     .drag-handle {
-        padding: 6px 0 6px 24px;
         opacity: 1;
         touch-action: none;
 

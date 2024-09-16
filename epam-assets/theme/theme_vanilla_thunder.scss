@@ -3,7 +3,6 @@
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 .uui-theme-vanilla_thunder {
-    @include uui-6px-grid();
     --uui-font: var(--font-inter);
     --uui-font-mono: 'Roboto Mono', monospace;
 
@@ -210,7 +209,11 @@
 
     /* core variables end */
 
-    /* ------------------------------------ */
+    /* size theme start */
+
+    @include uui-6px-grid();
+
+    /* size theme end */
 
     /* begin color classes */
 
@@ -326,6 +329,7 @@
 
     .uui-main_menu {
         --uui-main_menu-text: var(--chromatic-500);
+        --uui-main_menu-text-hover: var(--chromatic-500);
         --uui-main_menu-text-active: var(--uui-info-50);
         --uui-main_menu-bg: var(--uui-info-5);
         --uui-main_menu-hover: var(--uui-neutral-0);

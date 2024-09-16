@@ -9,6 +9,7 @@
     //
     display: flex;
     flex-wrap: wrap;
+    column-gap: 3px;
 }
 
 .loading-word {
@@ -17,19 +18,14 @@
     user-select: none;
     font-family: 'Redacted', cursive; // https://fonts.google.com/specimen/Redacted
     letter-spacing: -1px;
-    margin: 0 3px 3px 0;
     color: var(--uui-text_placeholder);
     vertical-align: 1px; // to fix vertical over-sizing of line
-
-    &:last-child {
-        margin-right: 0;
-    }
 
     &.animated-loading {
         color: transparent;
         background-clip: border-box;
         -webkit-background-clip: text;
-        
+
         &::before {
             content: '';
             position: absolute;
