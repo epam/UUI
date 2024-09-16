@@ -28,6 +28,8 @@ export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataP
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     searchLens = this.lens.prop('search');
+    getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
+
     renderNotFound() {
         if (this.props.renderNotFound) {
             return this.props.renderNotFound();
@@ -51,7 +53,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
 
         if (reason === 'less-than-min-chars-to-search') {
             return (
-                <FlexCell cx={ css[`type-search-to-load-size-${this.props.searchSize || settings.sizes.dataPickerBody.flexCell.default}`] } grow={ 1 } textAlign="center">
+                <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                     <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
                 </FlexCell>
             );
@@ -60,7 +62,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     }
 
     render() {
-        const searchSize = (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
+        const searchSize = this.getSearchSize();
 
         return (
             <>
@@ -79,7 +81,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                         </FlexCell>
                     </div>
                 )}
-                <FlexRow key="body" cx={ cx('uui-pickerInput-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
+                <FlexRow key="body" cx={ cx('uui-picker_input-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
                     { this.props.notEnoughTokensToLoadData
                         ? this.renderEmpty('less-than-min-chars-to-search')
                         : null }
