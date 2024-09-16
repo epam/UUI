@@ -22,6 +22,16 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         }, mobilePopperModifier,
     ], []);
 
+    const getSearchPosition = () => {
+        if (isMobile() && props.searchPosition !== 'none') return 'body';
+        if (props.editMode === 'modal' && props.searchPosition !== 'none') return 'body';
+        if (!props.searchPosition) {
+            return props.selectionMode === 'multi' ? 'body' : 'input';
+        } else {
+            return props.searchPosition;
+        }
+    };
+
     const pickerInputState = usePickerInputState({
         dataSourceState: { visibleCount: initialRowsVisible, checked: [] },
     });
@@ -126,16 +136,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         toggleDropdownOpening(false);
         handleDataSourceValueChange((currentState) => ({ ...currentState, search: '', selectedId: row.id }));
-    };
-
-    const getSearchPosition = () => {
-        if (isMobile() && props.searchPosition !== 'none') return 'body';
-        if (props.editMode === 'modal' && props.searchPosition !== 'none') return 'body';
-        if (!props.searchPosition) {
-            return props.selectionMode === 'multi' ? 'body' : 'input';
-        } else {
-            return props.searchPosition;
-        }
     };
 
     const getPlaceholder = () => props.placeholder ?? i18n.pickerInput.defaultPlaceholder(getEntityName());
