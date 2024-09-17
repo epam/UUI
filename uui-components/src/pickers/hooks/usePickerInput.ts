@@ -262,7 +262,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onClose: handleCloseBody,
             selectionMode: props.selectionMode,
             disableClear: props.disableClear,
-            notEnoughTokensToLoadData: !isSearchLongEnough(),
+            isSearchTooShort: !isSearchLongEnough(),
         };
     };
 

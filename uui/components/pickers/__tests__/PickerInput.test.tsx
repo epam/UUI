@@ -1461,22 +1461,20 @@ describe('PickerInput', () => {
                 </FlexCell>
             ),
             
-            renderEmpty: ({ reason }) => {
-                if (reason === 'not-found-records') {
-                    return (
-                        <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotFoundId } }>
-                            <Text>{customTextForNotFound}</Text>
-                        </FlexCell>
-                    );
-                }
-                
-                if (reason === 'less-than-min-chars-to-search') {
+            renderEmpty: ({ isSearchTooShort }) => {
+                if (isSearchTooShort) {
                     return (
                         <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotEnoughCharsInSearchId } }>
                             <Text>{customTextForNotEnoughCharsInSearch}</Text>
                         </FlexCell>
                     );
                 }
+
+                return (
+                    <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotFoundId } }>
+                        <Text>{customTextForNotFound}</Text>
+                    </FlexCell>
+                );
             },
             getSearchFields: (item) => [item!.level],
         });
