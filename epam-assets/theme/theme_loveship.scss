@@ -18,9 +18,9 @@
     /* end Loveship old colors */
 
     /* shadows */
-    --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
-    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
-    --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+    --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.05), 0 3px 6px rgba(29, 30, 38, 0.1);
+    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.05), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
+    --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 36px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.05);
 
     @include tokens.theme-tokens;
 
