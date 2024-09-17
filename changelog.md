@@ -6,6 +6,11 @@
 
 **What's Fixed**
 
+# 5.9.3 - 16.09.2024
+
+**What's Fixed**
+
+* [useForm]: fixed server validation error when a parent element of a child with an error is removed from the current state.
 
 # 5.9.2 - 12.09.2024
 
