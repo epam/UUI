@@ -56,10 +56,14 @@ export type PickerInputSearchPosition = 'input' | 'body' | 'none';
  * Options for displaying content in PickerInput.
  */
 export type PickerInputEditMode = 'dropdown' | 'modal';
+
 /**
- * Reasons for an empty PickerInput body.
+ * Picker empty body configuration.
  */
-export type PickerEmptyBodyReason = 'not-found-records' | 'less-than-min-chars-to-search';
+export interface PickerEmptyBodyProps {
+    /** Indicates that the search contains fewer characters than required to start searching for data.  */
+    isSearchTooShort?: boolean;
+}
 
 export type PickerBaseOptions<TItem, TId> = {
     /** Name of the entity being selected. Affects wording like "Please select [entity]" */
@@ -90,22 +94,19 @@ export type PickerBaseOptions<TItem, TId> = {
     renderNotFound?: (props: { search: string; onClose: () => void }) => ReactNode;
 
     /**
-     * Overrides the rendering of PickerInput body content when it is empty for various reasons.
-     * If provided, the override should support messages for both 'not-found-records' and 'less-than-min-chars-to-search' reasons.
-     * If not provided, the `renderNotFound` method is used for the 'not-found-records' reason.
-     * @param props
-     * @param props.reason - Specifies the reason why the PickerInput body is empty:
-     *   - 'not-found-records': No data was found.
-     *   - 'less-than-min-chars-to-search': The search contains fewer characters than required to start searching for data.
+     * Overrides the rendering of PickerBody content when it is empty for various reasons.
+     * If provided, the override should support messages for both reasons, no data and search is too short.
+     * If not provided, the `renderNotFound` method is used for the situation, when no data is passed or found.
+     * @param props - render empty configuration.
+     * @param props.isSearchTooShort - indicates that the search contains fewer characters than required to start searching for data.
      */
     renderEmpty?: (
         props: {
-            reason: PickerEmptyBodyReason;
             search: string;
             minCharsToSearch?: number;
             searchPosition: PickerInputSearchPosition;
             onClose: () => void;
-        }
+        } & PickerEmptyBodyProps
     ) => ReactNode;
 
     /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */
