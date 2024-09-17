@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     Lens, DataSourceState, isMobile, cx, Overwrite,
-    PickerEmptyBodyReason,
+    PickerEmptyBodyProps,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput, SearchInputProps } from '../inputs';
@@ -30,11 +30,23 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     searchLens = this.lens.prop('search');
     getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
 
-    renderNotFound() {
+    renderEmpty(props: PickerEmptyBodyProps) {
+        if (this.props.renderEmpty) {
+            return this.props.renderEmpty(props);
+        }
+
+        if (!props.isSearchTooShort) {
+            return (
+                <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
+                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
+                </FlexCell>
+            );
+        }
+
         if (this.props.renderNotFound) {
             return this.props.renderNotFound();
         }
-
+    
         return (
             <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                 <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
@@ -42,28 +54,9 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         );
     }
 
-    renderEmpty(reason: PickerEmptyBodyReason) {
-        if (this.props.renderEmpty) {
-            return this.props.renderEmpty(reason);
-        }
-
-        if (reason === 'not-found-records') {
-            return this.renderNotFound();
-        }
-
-        if (reason === 'less-than-min-chars-to-search') {
-            return (
-                <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
-                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
-                </FlexCell>
-            );
-        }
-        return null;
-    }
-
     render() {
         const searchSize = this.getSearchSize();
-
+        const { isSearchTooShort } = this.props;
         return (
             <>
                 {this.showSearch() && (
@@ -82,10 +75,10 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     </div>
                 )}
                 <FlexRow key="body" cx={ cx('uui-picker_input-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
-                    { this.props.notEnoughTokensToLoadData
-                        ? this.renderEmpty('less-than-min-chars-to-search')
+                    { isSearchTooShort
+                        ? this.renderEmpty({ isSearchTooShort })
                         : null }
-                    { !this.props.notEnoughTokensToLoadData && (this.props.rowsCount > 0 ? (
+                    { !this.props.isSearchTooShort && (this.props.rowsCount > 0 ? (
                         <VirtualList
                             { ...this.lens.toProps() }
                             rows={ this.props.rows }
@@ -93,7 +86,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             rowsCount={ this.props.rowsCount }
                             isLoading={ this.props.isReloading }
                         />
-                    ) : (this.renderEmpty('not-found-records')))}
+                    ) : (this.renderEmpty({ isSearchTooShort })))}
                 </FlexRow>
             </>
         );
