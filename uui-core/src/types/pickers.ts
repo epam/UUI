@@ -145,7 +145,7 @@ export type PickerBaseOptions<TItem, TId> = {
 export type PickerFooterProps<TItem, TId> = {
     /** Instance of picker DataSource view */
     view: IDataSourceView<TItem, TId, any>;
-    /** IEditable interface for the 'ShowrenderTypeSearchToLoadItems only selected' toggler */
+    /** IEditable interface for the 'Show only selected' toggler */
     showSelected: IEditable<boolean>;
     /** Call to clear picker selection */
     clearSelection: () => void;
@@ -160,7 +160,7 @@ export type PickerFooterProps<TItem, TId> = {
     /**
      * Indicates whether the search does not contain enough characters to load data.
      */
-    notEnoughTokensToLoadData?: boolean;
+    isSearchTooShort?: boolean;
 };
 
 /**

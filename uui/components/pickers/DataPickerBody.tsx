@@ -35,7 +35,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             return this.props.renderEmpty(props);
         }
 
-        if (!props.isSearchTooShort) {
+        if (props.isSearchTooShort) {
             return (
                 <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                     <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
