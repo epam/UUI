@@ -20,9 +20,9 @@ exports[`Modals should be rendered correctly with many props 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "300px",
+        "height": 300,
         "maxHeight": "80dvh",
-        "width": "300px",
+        "width": 300,
       }
     }
   >

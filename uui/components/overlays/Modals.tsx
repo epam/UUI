@@ -36,15 +36,9 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowProps>(
     uuiModalWindow,
     () => [css.root, css.modal],
     (props) => {
-        const normalize = (d: number | string | undefined): string | undefined => {
-            if (typeof d === 'number') {
-                return `${d}px`;
-            }
-            return d;
-        };
-        const width = normalize(props.width) || '420px';
-        const height = normalize(props.height) || 'auto';
-        const maxHeight = isMobile() ? '100dvh' : (normalize(props.maxHeight) || '80dvh');
+        const width = props.width || '420px';
+        const height = props.height || 'auto';
+        const maxHeight = isMobile() ? '100dvh' : (props.maxHeight || '80dvh');
         return {
             style: {
                 ...props.style,
