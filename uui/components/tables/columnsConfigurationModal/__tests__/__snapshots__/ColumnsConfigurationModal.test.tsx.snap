@@ -22,7 +22,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       Object {
         "height": "95dvh",
         "maxHeight": "95dvh",
-        "width": "420px",
+        "width": 560,
       }
     }
   >
@@ -244,7 +244,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root uui-size-30 rowWrapper container align-items-center"
+                  className="uui-flex-row root rowWrapper container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -270,17 +270,16 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary grow uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
                   >
                     <div
                       className="uui-checkbox uui-checked"
                     >
                       <input
                         aria-checked={true}
-                        aria-disabled={true}
+                        aria-readonly={true}
                         checked={true}
-                        disabled={true}
-                        onChange={[Function]}
+                        readOnly={true}
                         tabIndex={-1}
                         type="checkbox"
                       />
@@ -300,7 +299,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root uui-size-30 pinIconButton container align-items-center"
+                    className="uui-flex-row root pinIconButton container align-items-center"
                     style={
                       Object {
                         "columnGap": undefined,
@@ -326,7 +325,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  className="uui-flex-row root uui-size-30 rowWrapper container align-items-center"
+                  className="uui-flex-row root rowWrapper container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -352,17 +351,16 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary grow uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
                   >
                     <div
                       className="uui-checkbox uui-checked"
                     >
                       <input
                         aria-checked={true}
-                        aria-disabled={true}
+                        aria-readonly={true}
                         checked={true}
-                        disabled={true}
-                        onChange={[Function]}
+                        readOnly={true}
                         tabIndex={-1}
                         type="checkbox"
                       />
@@ -382,7 +380,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root uui-size-30 pinIconButton container align-items-center"
+                    className="uui-flex-row root pinIconButton container align-items-center"
                     style={
                       Object {
                         "columnGap": undefined,
