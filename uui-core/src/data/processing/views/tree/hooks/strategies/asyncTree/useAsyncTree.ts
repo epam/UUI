@@ -6,6 +6,7 @@ import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import {
     useItemsStorage, useDataSourceStateWithDefaults, useFilterTree, useSortTree,
     useSearchTree, useSelectedOnlyTree, usePatchTree,
+    useActualItemsMap,
 } from '../../common';
 import { UseTreeResult } from '../../types';
 
@@ -54,9 +55,12 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const [incommingTree, setIncommingTree] = useState(baseTree);
 
+    useEffect(() => {
+        setIncommingTree(TreeState.blank({ getId, getParentId, complexIds }, itemsMap, setItems));
+    }, [...deps]);
+
     const prevIsForceReload = usePrevious(isForceReload);
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
-
     const { tree: treeWithData, itemsStatusCollector, isLoaded: isTreeLoaded, isLoading, isFetching } = useLoadData({
         getId,
         complexIds,
@@ -118,8 +122,13 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isLoading: isTreeLoading,
     }, [searchTree, isTreeLoading]);
 
-    const tree = usePatchTree({
+    const treeWithNewItemsMap = useActualItemsMap({
         tree: treeWithSelectedOnly,
+        itemsMap,
+    });
+
+    const { tree, applyPatch } = usePatchTree({
+        tree: treeWithNewItemsMap,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
         getNewItemPosition,
@@ -137,7 +146,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     return {
         tree: showSelectedOnly ? tree.selectedOnly : tree.visible,
-        treeWithoutPatch: treeWithSelectedOnly.visible,
+        treeWithoutPatch: treeWithNewItemsMap.visible,
         selectionTree: tree.full,
         reload,
         totalCount,
