@@ -4,7 +4,6 @@ import { TreeState } from '../../../treeState';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { isQueryChanged } from '../lazyTree/helpers';
 import { useItemsStatusCollector } from '../../common';
-import { useDepsChanged } from '../../common/useDepsChanged';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
@@ -95,8 +94,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
     }, [api]);
 
-    const depsChanged = useDepsChanged(deps);
-
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
     const shouldLoad = (
@@ -110,6 +107,12 @@ export function useLoadData<TItem, TId, TFilter = any>(
             setLoadedTree(tree);
         }
     }, [shouldForceReload]);
+
+    useEffect(() => {
+        if (isLoaded) {
+            setIsLoaded(false);
+        }
+    }, [...deps]);
 
     useEffect(() => {
         if (shouldLoad) {
@@ -140,7 +143,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
                     setIsLoading(false);
                 });
         }
-    }, [shouldLoad, depsChanged, shouldForceReload]);
+    }, [...deps, shouldLoad, shouldForceReload]);
 
     return { tree: loadedTree, isLoading, isFetching, isLoaded, itemsStatusCollector };
 }
