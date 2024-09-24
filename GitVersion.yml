@@ -1,0 +1,48 @@
+# see https://gitversion.net/docs/reference/configuration#branch-configuration
+assembly-versioning-scheme: MajorMinorPatch
+#assembly-informational-format: '{SemVer}-{BranchName}.{env:CI_PIPELINE_ID}.{ShortSha}'
+mode: ContinuousDeployment
+next-version: 5.10.0
+increment: Patch
+branches:
+  master:
+    regex: ^main$
+    mode: ContinuousDelivery
+    tag: ''
+    increment: Minor
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: true
+    is-release-branch: true
+  develop:
+    regex: ^develop$
+    mode: ContinuousDeployment
+    tag: 'dev'
+    increment: Patch
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: true
+    tracks-release-branches: true
+    is-release-branch: false
+  qa:
+    regex: ^feature.*
+    mode: ContinuousDeployment
+    tag: 'qa'
+    increment: Patch
+    source-branches: [ 'develop', 'main' ]
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: false
+  others:
+    regex: ^fix.*|^bug.*
+    mode: ContinuousDeployment
+    tag: 'fe'
+    increment: Inherit
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+    source-branches: [ 'develop', 'main' ]
+    tracks-release-branches: false
+    is-release-branch: false
+    is-mainline: false
+ignore:
+  commits-before: 2024-08-01T00:30:00
+merge-message-formats: {}
