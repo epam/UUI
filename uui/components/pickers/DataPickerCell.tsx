@@ -71,7 +71,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 css[`align-widgets-${props.alignActions || 'top'}`],
             ] }
         >
-            <DataRowAddons { ...props } />
+            <DataRowAddons { ...props } tabIndex={ -1 } />
             {getWrappedContent()}
         </FlexCell>
     );

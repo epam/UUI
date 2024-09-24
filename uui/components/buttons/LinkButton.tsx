@@ -5,13 +5,15 @@ import * as types from '../types';
 import { systemIcons } from '../../icons/icons';
 import { settings } from '../../settings';
 import { getIconClass } from './helper';
+import cx from 'classnames';
 import css from './LinkButton.module.scss';
 
 const DEFAULT_COLOR = 'primary';
+const DEFAULT_WEIGHT = 'semibold';
 
 interface LinkButtonMods {
     /**
-     * Defines component color.
+     * Defines component color
      * @default 'primary'
      */
     color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'white' | 'contrast';
@@ -26,22 +28,21 @@ export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownT
      * @default '36'
      */
     size?: types.ControlSize | '42';
+    /**
+     * Defines component font-weight
+     * @default 'semibold'
+     */
+    weight?: 'semibold' | 'regular';
+    /**
+     * Defines component underline style
+     */
+    underline?: 'solid' | 'dashed';
 }
 
 export interface LinkButtonModsOverride {}
 
 /** Represents the properties of the LinkButton component. */
 export interface LinkButtonProps extends LinkButtonCoreProps, Overwrite<LinkButtonMods, LinkButtonModsOverride> {}
-
-function applyLinkButtonMods(mods: LinkButtonProps) {
-    return [
-        'uui-link_button',
-        css.root,
-        `uui-size-${mods.size || settings.sizes.defaults.linkButton}`,
-        ...getIconClass(mods),
-        `uui-color-${mods.color || DEFAULT_COLOR}`,
-    ];
-}
 
 export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
     if (__DEV__ && props.color === 'contrast') {
@@ -54,7 +55,20 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
         });
     }
 
-    const styles = [applyLinkButtonMods(props), props.cx];
+    const rootStyles = [
+        'uui-link_button',
+        css.root,
+        `uui-size-${props.size || settings.sizes.defaults.linkButton}`,
+        ...getIconClass(props),
+        `uui-color-${props.color || DEFAULT_COLOR}`,
+        props.cx,
+    ];
+
+    const captionStyles = cx(
+        uuiElement.caption,
+        props.underline && `uui-underline-${props.underline}`,
+        `uui-link-button-weight-${props.weight || DEFAULT_WEIGHT}`,
+    );
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
 
@@ -62,7 +76,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
         <Clickable
             { ...props }
             type="button"
-            cx={ styles }
+            cx={ rootStyles }
             ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
@@ -72,9 +86,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
                 />
             ) }
             { props.caption && (
-                <div className={ uuiElement.caption }>
-                    { props.caption }
-                </div>
+                <div className={ captionStyles }>{ props.caption }</div>
             ) }
             { props.icon && props.iconPosition === 'right' && (
                 <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />

@@ -24,6 +24,7 @@ export default function AsyncPickerInputExample() {
                 entityName="location"
                 selectionMode="multi"
                 valueType="id"
+                maxItems={ 3 }
             />
         </FlexCell>
     );

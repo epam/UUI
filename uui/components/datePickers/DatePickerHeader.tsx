@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Icon, IHasCX } from '@epam/uui-core';
+import { Icon, IDisableable, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
-import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
 import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 import { Button } from '../buttons';
@@ -24,7 +25,7 @@ interface DatePickerHeaderValue {
     month: Dayjs;
 }
 
-export interface DatePickerHeaderProps extends IHasCX {
+export interface DatePickerHeaderProps extends IHasCX, IDisableable {
     value: DatePickerHeaderValue;
     onValueChange: (value: DatePickerHeaderValue) => void;
     /*
@@ -48,7 +49,7 @@ const isYearWithinSoberRange = (value: Dayjs) => {
 };
 
 export function DatePickerHeader({
-    navIconLeft, navIconRight, value: { month, view }, onValueChange,
+    navIconLeft, navIconRight, value: { month, view }, onValueChange, isDisabled,
 }: DatePickerHeaderProps) {
     const onSetMonth = (newMonth: Dayjs) => {
         onValueChange({
@@ -130,21 +131,21 @@ export function DatePickerHeader({
                     color="secondary"
                     fill="ghost"
                     cx={ uuiHeader.navIconLeft }
-                    onClick={ () => onLeftNavigationArrow() }
+                    onClick={ !isDisabled && (() => onLeftNavigationArrow()) }
                     isDisabled={ disablePrev }
                 />
                 <Button
                     caption={ title }
                     fill="ghost"
                     cx={ uuiHeader.navTitle }
-                    onClick={ () => onCaptionClick(view) }
+                    onClick={ !isDisabled && (() => onCaptionClick(view)) }
                 />
                 <Button
                     icon={ navIconRight || RightArrowIcon }
                     color="secondary"
                     fill="ghost"
                     cx={ uuiHeader.navIconRight }
-                    onClick={ () => onRightNavigationArrow() }
+                    onClick={ !isDisabled && (() => onRightNavigationArrow()) }
                     isDisabled={ disableNext }
                 />
             </header>

@@ -12,3 +12,13 @@
     padding: 6px;
     background-color: var(--uui-info-60);
 }
+
+.size {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    & > button {
+        height: min-content;
+    }
+}

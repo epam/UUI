@@ -9,53 +9,101 @@ exports[`CalendarPresets should be rendered correctly 1`] = `
   >
     Presets
   </div>
-  <div
-    className="uui-presets-item"
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    Today
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      Today
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    This Week
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      This Week
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    Last Week
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      Last Week
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    This Month
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      This Month
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    Last Month
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      Last Month
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    Last 3 Months
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      Last 3 Months
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    This Year
-  </div>
-  <div
-    className="uui-presets-item"
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      This Year
+    </div>
+  </button>
+  <button
+    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
     onClick={[Function]}
+    tabIndex={0}
+    type="button"
   >
-    Last Year
-  </div>
+    <div
+      className="uui-caption uui-link-button-weight-semibold"
+    >
+      Last Year
+    </div>
+  </button>
 </div>
 `;

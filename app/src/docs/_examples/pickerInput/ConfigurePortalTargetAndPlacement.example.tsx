@@ -38,6 +38,7 @@ export default function ConfigurePortalTargetAndPlacement() {
                             selectionMode="multi"
                             valueType="id"
                             dropdownPlacement="right-start"
+                            maxItems={ 3 }
                             portalTarget={ portalTargetRef.current }
                         />
                     </FlexCell>

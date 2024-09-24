@@ -161,6 +161,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         cascadeSelection,
         showSelectedOnly,
         selectAll,
+        applyPatch,
 
         isLoading,
         isFetching,

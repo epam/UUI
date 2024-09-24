@@ -3,6 +3,11 @@
     height: 100%;
 }
 
+.header-cell {
+    border-left-color: var(--uui-dt-border);
+    border-right-color: var(--uui-dt-border);
+}
+
 .search {
     align-self: flex-start;
 }
@@ -16,4 +21,28 @@
     padding-left: 6px;
     width: 10px;
     height: 10px;
+}
+
+.statusIconComplete {
+    fill: var(--uui-accent-50);
+}
+
+.statusIconInProgress {
+    fill: var(--uui-info-50);
+}
+
+.statusIconPlanned {
+    fill: var(--uui-info-20);
+}
+
+.statusIconAtRisk {
+    fill: var(--uui-critical-50);
+}
+
+.statusIconBlocked {
+    fill: var(--uui-warning-50);
+}
+
+.statusIconNone {
+    fill: var(--uui-neutral-30);
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type Dayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import {
     IEditable, IHasCX, IHasForwardedRef, IHasRawProps, cx, uuiMarkers,
 } from '@epam/uui-core';
@@ -22,15 +22,24 @@ export function Day(props: DayProps): JSX.Element {
     const dayNumber = props.renderDayNumber
         ? props.renderDayNumber(props.value)
         : props.value.format('D');
+
+    const selectDay = () => {
+        isPassedFilter && props.onValueChange(props.value);
+    };
+
+    const isDisabled = props.isDisabled || (props.filter && !props.filter(props.value));
+
     return (
         <div
-            onClick={ isPassedFilter ? () => props.onValueChange(props.value) : undefined }
+            onClick={ selectDay }
+            onKeyDown={ (e) => e.key === 'Enter' && selectDay() }
+            tabIndex={ !isDisabled ? 0 : -1 }
             className={ cx([
-                isPassedFilter && uuiDaySelection.clickable,
+                isPassedFilter && uuiDaySelection.clickableDay,
                 isPassedFilter && uuiMarkers.clickable,
                 isCurrent && uuiDaySelection.currentDay,
                 props.isSelected && uuiDaySelection.selectedDay,
-                props.filter && !props.filter(props.value) && uuiDaySelection.filteredDay,
+                isDisabled && uuiDaySelection.filteredDay,
                 props.cx,
                 uuiDaySelection.dayWrapper,
                 props.isHoliday && uuiDaySelection.holiday,

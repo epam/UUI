@@ -19,7 +19,7 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
         || (() => (
             // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
             <Text key="t" size={ props.size !== '60' ? props.size : '48' } cx={ css.loadingCell }>
-                <TextPlaceholder />
+                <TextPlaceholder isNotAnimated={ true } />
             </Text>
         ));
 
@@ -57,7 +57,6 @@ export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<
     };
 
     props.cx = [
-        'uui-dt-vars',
         'data-table-cell',
         props.cx,
         css.cell,

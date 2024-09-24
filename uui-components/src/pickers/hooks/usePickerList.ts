@@ -1,9 +1,10 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { DataRowProps, UuiContext } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { usePicker } from './usePicker';
 import { usePickerListState } from './usePickerListState';
 import { UsePickerListProps } from './types';
+import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 
 interface LastUsedRec<TId> {
     id: TId;
@@ -69,7 +70,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         visibleIds: getVisibleIds(),
     });
 
-    const { dataSourceState, visibleIds } = pickerListState;
+    const { dataSourceState, setDataSourceState, visibleIds } = pickerListState;
 
     const pickerProps = { ...props, showSelectedOnly: pickerListState.showSelected };
     const picker = usePicker<TItem, TId, UsePickerListProps<TItem, TId, TProps>>(pickerProps, pickerListState);
@@ -84,6 +85,19 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         handleDataSourceValueChange,
         getRowOptions,
     } = picker;
+
+    useEffect(() => {
+        const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
+        if (prevValue !== props.value) {
+            setDataSourceState((state) =>
+                applyValueToDataSourceState(
+                    props,
+                    state,
+                    props.value,
+                    props.dataSource,
+                ));
+        }
+    }, [props.value]);
 
     const onlySelectedView = props.dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
         rowOptions: getRowOptions(),

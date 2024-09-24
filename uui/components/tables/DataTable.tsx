@@ -69,7 +69,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      * Defines table header size
      * @default '36'
      * */
-    headerSize?: '36' | '48';
+    headerSize?: '36' | '48' | '60';
 
     /**
      * Defines table columns gap size

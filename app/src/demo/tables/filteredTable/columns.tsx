@@ -24,6 +24,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
             ),
         grow: 0,
         width: 100,
+        minWidth: 90,
         isSortable: true,
     },
     {

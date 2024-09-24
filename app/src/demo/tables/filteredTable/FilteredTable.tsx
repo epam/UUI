@@ -47,12 +47,7 @@ export function FilteredTable() {
     });
 
     const api = useCallback(async (rq: LazyDataSourceApiRequest<{}>) => {
-        const result = await svc.api.demo.personsPaged({
-            ...rq,
-            filter: rq.filter || {},
-            page: rq.page,
-            pageSize: rq.pageSize,
-        });
+        const result = await svc.api.demo.personsPaged(rq);
         result.count = result.items.length;
         result.from = 0;
         return result;
@@ -67,14 +62,7 @@ export function FilteredTable() {
         [],
     );
 
-    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState, {
-        rowOptions: {
-            isSelectable: true,
-            onClick: (rowProps) => {
-                rowProps.onSelect(rowProps);
-            },
-        },
-    });
+    const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
     const searchHandler = (val: string | undefined) => tableStateApi.setTableState({
         ...tableStateApi.tableState,

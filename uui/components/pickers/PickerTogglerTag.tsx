@@ -15,7 +15,9 @@ interface PickerTogglerTagMods {
     size?: types.ControlSize;
 }
 
-export interface PickerTogglerTagProps<TItem, TId> extends Overwrite<PickerTogglerTagMods, PickerTogglerTagModsOverride>, PickerTogglerRenderItemParams<TItem, TId>, Omit<TagProps, 'size'> {}
+export interface PickerTogglerTagProps<TItem, TId> extends Overwrite<PickerTogglerTagMods, PickerTogglerTagModsOverride>, PickerTogglerRenderItemParams<TItem, TId>, Omit<TagProps, 'size'> {
+    getName: (item: TItem) => string;
+}
 
 export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<any, any>, ref: React.Ref<HTMLElement>) => {
     const tagProps = {
@@ -26,7 +28,7 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
     };
 
     if (props.isCollapsed) {
-        const collapsedRows = props.collapsedRows.map((row) => row.value?.name).join(', ');
+        const collapsedRows = props.collapsedRows.map((row) => props.getName(row.value)).join(', ');
         return (
             <Tooltip
                 key="selected"
@@ -35,10 +37,10 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
                 closeOnMouseLeave="boundary"
                 cx={ css.tooltip }
             >
-                <Tag ref={ ref } { ...tagProps } />
+                <Tag ref={ ref } rawProps={ { role: 'option' } } { ...tagProps } />
             </Tooltip>
         );
     } else {
-        return <Tag ref={ ref } { ...tagProps } />;
+        return <Tag ref={ ref } rawProps={ { role: 'option' } } { ...tagProps } />;
     }
 });

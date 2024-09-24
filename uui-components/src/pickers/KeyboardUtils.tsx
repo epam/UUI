@@ -19,7 +19,9 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             if (params.searchPosition === 'input' && !value.search && value.checked && value.checked.length > 0) {
                 const lastSelectionId = value.checked[value.checked.length - 1];
                 const lastSelection = params.listView.getById(lastSelectionId, null);
-                lastSelection.onCheck(lastSelection);
+                if (lastSelection.isCheckable) {
+                    lastSelection.onCheck(lastSelection);
+                }
             }
             break;
         }

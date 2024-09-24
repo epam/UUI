@@ -1,0 +1,13 @@
+.exampleRoot {
+    margin: 24px 0;
+    padding: 0 60px;
+    box-sizing: border-box;
+}
+
+.exampleContent {
+    background: var(--uui-surface-main);
+    border: 1px solid var(--uui-divider);
+    width: 960px;
+    max-width: 100%;
+    padding: 24px;
+}

@@ -15,6 +15,7 @@ import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
 import '@epam/promo/styles.css';
 import '@epam/loveship/styles.css';
+import '@epam/uui-docs/styles.css';
 import Example from './Example';
 import { svc, getApi } from './api';
 

@@ -1,0 +1,10 @@
+.cell {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    margin-left: calc(var(--uui-dt-cell-border-width) * -1);
+    border-left: var(--uui-dt-cell-border-width) solid transparent;
+    border-right: var(--uui-dt-cell-border-width) solid transparent;
+    border-top-style: none;
+    border-bottom-style: none;
+}

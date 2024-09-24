@@ -2,6 +2,9 @@ import { act, renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
 
+const expectMissingIdsError = () =>
+    expect.stringContaining("LazyTree: api does not returned requested items. Check that you handle 'ids' argument correctly.");
+
 describe('LazyListView - show only selected', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;
     const onValueChanged = (newValue: React.SetStateAction<DataSourceState<DataQueryFilter<LocationItem>, string>>) => {
@@ -471,6 +474,8 @@ describe('LazyListView - show only selected', () => {
     });
 
     it('should load tree after clearing checked values with showSelectedOnly = true', async () => {
+        const errMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
         const { dataSource } = getLazyLocationsDS({
             showSelectedOnly: true,
             rowOptions: { checkbox: { isVisible: true } },
@@ -510,11 +515,9 @@ describe('LazyListView - show only selected', () => {
         }, { timeout: 1000 });
 
         let view = hookResult.result.current;
-        await act(() => {
+        act(() => {
             view.clearAllChecked();
         });
-
-        hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: {} });
 
         await waitFor(() => {
             expect(currentValue).toEqual(
@@ -523,6 +526,7 @@ describe('LazyListView - show only selected', () => {
         });
 
         hookResult.rerender({ value: currentValue, onValueChange: onValueChanged, props: { showSelectedOnly: false } });
+        expect(errMock).toHaveBeenNthCalledWith(6, expectMissingIdsError());
 
         await waitFor(() => {
             view = hookResult.result.current;
@@ -531,5 +535,7 @@ describe('LazyListView - show only selected', () => {
                 { id: 'c-EU' },
             ]);
         }, { timeout: 1000 });
+
+        errMock.mockRestore();
     });
 });

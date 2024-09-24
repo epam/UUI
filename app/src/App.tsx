@@ -10,6 +10,7 @@ import { Snackbar } from '@epam/uui';
 import { Modals, PortalRoot, useDocumentDir } from '@epam/uui-components';
 import { DragGhost } from '@epam/uui-core';
 import { getCurrentTheme } from './helpers';
+import { DocExamplePage } from './docExample/docExamplePage';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/demo" Component={ DemoPage } />
                 <Route path="/sandbox" Component={ SandboxPage } />
                 <Route path="/preview" Component={ PreviewPage } />
+                <Route path="/docExample" Component={ DocExamplePage } />
             </Route>
         </Routes>
     );

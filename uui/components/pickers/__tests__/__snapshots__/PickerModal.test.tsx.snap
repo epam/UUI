@@ -682,7 +682,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -780,7 +780,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -878,7 +878,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -976,7 +976,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1074,7 +1074,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1172,7 +1172,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1270,7 +1270,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1368,7 +1368,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1466,7 +1466,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1564,7 +1564,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1662,7 +1662,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         aria-checked={false}
                         checked={false}
                         onChange={[Function]}
-                        tabIndex={0}
+                        tabIndex={-1}
                         type="checkbox"
                       />
                     </div>
@@ -1785,7 +1785,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         type="button"
       >
         <div
-          className="uui-caption"
+          className="uui-caption uui-link-button-weight-semibold"
         >
           SELECT ALL
         </div>

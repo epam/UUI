@@ -9,17 +9,17 @@ export enum BuiltInTheme {
 /* No restrictions on custom theme id - it can be any string */
 type CustomTheme = string;
 
-export type TTheme = BuiltInTheme | CustomTheme;
+export type ThemeId = BuiltInTheme | CustomTheme;
 
 export interface ThemeBaseParams {
-    id: TTheme;
+    id: ThemeId;
     name: string;
 }
 
 export const builtInThemes: ThemeBaseParams[] = [
+    { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
-    { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.vanilla_thunder, name: 'Vanilla Thunder' },
     { id: BuiltInTheme.promo, name: 'Promo' },
 ];

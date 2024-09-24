@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { type Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
+import type { Dayjs } from '../../helpers/dayJsHelper';
 import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
 
 import css from './MonthSelection.module.scss';
@@ -29,8 +30,10 @@ export function MonthSelection(props: MonthSelectionProps): JSX.Element {
         return (
             <div
                 key={ month }
+                tabIndex={ 0 }
                 className={ cx(isSelected && uuiMonthSelection.currentMonth, uuiMonthSelection.month) }
                 onClick={ () => props.onValueChange(props.value.month(index)) }
+                onKeyDown={ (e) => { e.key === 'Enter' && props.onValueChange(props.value.month(index)); } }
             >
                 {month}
             </div>

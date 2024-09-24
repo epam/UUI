@@ -16,16 +16,9 @@
 
 .cell {
     color: var(--uui-text-primary);
-    display: flex;
-    box-sizing: border-box;
     align-items: center;
     padding: 0 6px;
-    position: relative;
     width: 0;
-
-    // to align with cell's borders. TBD: move this to uui-components.
-    border-right: 1px solid transparent;
-    margin-left: -1px;
     background-clip: padding-box;
 
     &.column-gap-12 {
@@ -88,6 +81,7 @@
     @include cell-size(36);
     @include cell-size(42);
     @include cell-size(48);
+    @include cell-size(60);
 
     &.padding-left-24 {
         padding-left: 24px;
@@ -159,6 +153,7 @@
         right: 0;
         height: 100%;
         cursor: col-resize;
+        user-select: none;
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
