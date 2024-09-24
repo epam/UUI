@@ -20,6 +20,36 @@ export interface DropParams<TSrcData, TDstData> extends AcceptDropParams<TSrcDat
     position: DropPosition;
 }
 
+/**
+ * Drag'n'drop handlers.
+ */
+export interface DndEventHandlers {
+    /**
+     * Handler of an event which is fired when one or more touch points are placed on the drag marker.
+     */
+    onTouchStart?(e: React.TouchEvent): void;
+    /**
+     * Handler of an event which is fired when the device transitions from no buttons pressed to at least one button pressed on the drag marker.
+     */
+    onPointerDown?(e: React.PointerEvent): void;
+    /**
+     * Handler of an event which is fired when a pointing device is moved into the hit test boundaries of an element or one of its descendants.
+     */
+    onPointerEnter?(e: React.PointerEvent<any>): void;
+    /**
+     * Handler of an event which is fired when a pointer changes coordinates.
+     */
+    onPointerMove?(e: React.PointerEvent<any>): void;
+    /**
+     * Handler of an event which is fired when a pointing device is moved out of the hit test boundaries of the drag marker.
+     */
+    onPointerLeave?(e: React.PointerEvent<any>): void;
+    /**
+     * Handler of an event which is fired when a pointer is no longer active
+     */
+    onPointerUp?(e: React.PointerEvent<any>): void;
+}
+
 export interface DndActorRenderParams {
     /** True, if the element can be dragged. Doesn't mean that DnD is active. */
     isDraggable: boolean;
@@ -49,15 +79,7 @@ export interface DndActorRenderParams {
      * Event handlers. Component is expected to pass these events to the top element it renders.
      * As onClick event on the element will be overwritten, use DndActorProps.onClick to receive click events on the element
      */
-    eventHandlers: {
-        onTouchStart?(e: React.TouchEvent): void;
-        onPointerDown?(e: React.PointerEvent): void;
-        onPointerEnter?(e: React.PointerEvent<any>): void;
-        onPointerMove?(e: React.PointerEvent<any>): void;
-        onPointerLeave?(e: React.PointerEvent<any>): void;
-        onPointerUp?(e: React.PointerEvent<any>): void;
-    };
-
+    eventHandlers: DndEventHandlers;
     /**
      * CSS class names to add to the element.
      * Some of these markers are used by the DndActor internally, so they must be added even if no used by component itself to apply styles.

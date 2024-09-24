@@ -6,13 +6,5 @@
         "text": "Example how to assemble UUI context with react-router version 6."
       }
     ]
-  },
-  {
-    "type": "note-error",
-    "children": [
-      {
-        "text": "We strongly discourage the use of react-router 6, as it introduces too many breaking changes, and certain important features (like block and listen) are available only via unstable internal API."
-      }
-    ]
   }
 ]

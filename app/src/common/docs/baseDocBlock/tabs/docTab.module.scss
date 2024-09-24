@@ -6,3 +6,9 @@
         --uui-font-size: 24px;
     }
 }
+
+@media (max-width: 768px) {
+    .width-wrapper {
+        padding: 0 18px 18px;
+    }
+}

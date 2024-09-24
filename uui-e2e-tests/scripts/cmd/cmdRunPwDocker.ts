@@ -12,7 +12,6 @@ import path from 'node:path';
 
 const CONTAINER_ENGINE_CMD = getContainerEngineCmd();
 const {
-    UUI_TEST_PARAM_ONLY_FAILED,
     UUI_TEST_PARAM_PROJECT,
     UUI_TEST_PARAM_UPDATE_SNAPSHOTS,
 } = readUuiSpecificEnvVariables();
@@ -76,9 +75,6 @@ function getEnvParamsForDocker(): string[] {
     if (UUI_TEST_PARAM_PROJECT) {
         env.push('-e', `${ENV_UUI_PARAMS.UUI_TEST_PARAM_PROJECT}=${UUI_TEST_PARAM_PROJECT}`);
     }
-    if (UUI_TEST_PARAM_ONLY_FAILED) {
-        env.push('-e', `${ENV_UUI_PARAMS.UUI_TEST_PARAM_ONLY_FAILED}=true`);
-    }
     return env;
 }
 
@@ -94,7 +90,7 @@ function getVolumesMapArgs() {
         './tsconfig.json',
     ].reduce<string[]>((acc, from) => {
         const to = `/e2e/${from.replace('./', '')}`;
-        acc.push('-v', `${from}:${to}`);
+        acc.push('-v', `${forwardSlashes(path.resolve(from))}:${to}`);
         return acc;
     }, []).concat(['-v', `${absPathToPreviewIds}:/app/src/docs/_types/previewIds.ts`]);
 }

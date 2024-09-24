@@ -1,14 +1,12 @@
 import React from 'react';
-
-import { StartedBlock } from './StartedBlock';
-import { ContactsBlock } from './ContactsBlock';
-import { HeroBlock } from './HeroBlock';
-import { ExploreBlock } from './ExploreBlock';
-import { ReleasesBlock } from './ReleasesBlock';
 import { AppFooter, AppHeader, Page } from '../common';
 import { FlexCell } from '@epam/promo';
 import { analyticsEvents } from '../analyticsEvents';
 import { svc } from '../services';
+import { IntroBlock } from './IntroBlock';
+import { PatternBlock } from './PatternBlock';
+import { ExploreBenefitsBlock } from './ExploreBenefitsBlock';
+import { FaqBlock } from './FaqBlock';
 
 export class LandingPage extends React.Component {
     constructor(props: {}) {
@@ -27,12 +25,11 @@ export class LandingPage extends React.Component {
     render() {
         return (
             <Page renderHeader={ this.renderHeader } renderFooter={ this.renderFooter }>
-                <FlexCell width="100%">
-                    <HeroBlock />
-                    <StartedBlock />
-                    <ExploreBlock />
-                    <ReleasesBlock />
-                    <ContactsBlock />
+                <FlexCell cx="landing" width="100%">
+                    <IntroBlock />
+                    <ExploreBenefitsBlock />
+                    <PatternBlock />
+                    <FaqBlock />
                 </FlexCell>
             </Page>
         );

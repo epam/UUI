@@ -1,6 +1,6 @@
 import React from 'react';
 import { DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell } from '@epam/uui';
-import { Dropdown } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui';
 import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 
 export default function BasicExample() {

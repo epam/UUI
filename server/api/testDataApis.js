@@ -136,7 +136,7 @@ router.post('/persons-paged', async (req, res) => {
     const data = await helpers.getPersons();
     const filteredAndSorted = filterAndSort({ ...req.body, range: null }, data.persons, 'Person');
     let result;
-    if (req.body.pageNo != null || req.body.pageSize != null) {
+    if (req.body.page != null || req.body.pageSize != null) {
         const pageSize = req.body.pageSize ?? 10;
         const pageNo = req.body.page ?? 1;
         const from = pageNo - 1;

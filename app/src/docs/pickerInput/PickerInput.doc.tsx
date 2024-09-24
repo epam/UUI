@@ -22,7 +22,11 @@ export class PickerInputDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.PickerInputProps<any, any>>) => {
             doc.merge('renderToggler', { examples: renderTogglerExamples });
-            doc.merge('getRowOptions', { examples: [{ name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) }] });
+            doc.merge('getRowOptions', { examples: [
+                { name: 'Disabled rows', value: () => ({ isDisabled: true, isSelectable: false }) },
+                { name: 'Disabled checkboxes', value: () => ({ isDisabled: true, checkbox: { isVisible: true, isDisabled: true } }) },
+            ], 
+            });
             doc.merge('size', { defaultValue: '36' });
             doc.setDefaultPropExample('valueType', (e) => {
                 return e.value === 'id';
@@ -85,7 +89,7 @@ export class PickerInputDoc extends BaseDocsBlock {
                 <DocExample title="Picker with changed array of items" path="./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" />
                 <DocExample title="Linked pickers" path="./_examples/pickerInput/LinkedPickers.example.tsx" />
                 <DocExample title="Change portal target and dropdown placement" path="./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" />
-                <DocExample title="Custom toggler tag render" path="./_examples/pickerInput/PickerTogglerTagDemo.example.tsx" />
+                <DocExample title="Custom toggler tag render" path="./_examples/pickerInput/CustomPickerTogglerTag.example.tsx" />
             </>
         );
     }

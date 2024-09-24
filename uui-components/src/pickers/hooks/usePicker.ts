@@ -61,18 +61,36 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
             setShowSelected(false);
         }
 
+        const newValue = dataSourceStateToValue(props, dataSourceState, dataSource);
         if ((!prevDataSourceState && (dataSourceState.checked?.length || dataSourceState.selectedId != null))
             || (prevDataSourceState && (
                 !isEqual(prevDataSourceState.checked, dataSourceState.checked)
-                || dataSourceState.selectedId !== prevDataSourceState.selectedId
+                || (!(dataSourceState.selectedId == null && prevDataSourceState.selectedId == null)
+                    && dataSourceState.selectedId !== prevDataSourceState.selectedId)
             ))
         ) {
-            const newValue = dataSourceStateToValue(props, dataSourceState, dataSource);
             if (!isEqual(value, newValue)) {
                 handleSelectionValueChange(newValue);
             }
         }
-    }, [dataSourceState]);
+
+        const { checked, selectedId } = getDataSourceState();
+
+        if (prevDataSourceState && (
+            props.selectionMode === 'multi'
+                ? (isEqual(prevDataSourceState.checked, dataSourceState.checked)
+                        && (checked?.length || dataSourceState.checked?.length) && !isEqual(dataSourceState.checked, checked))
+                : ((dataSourceState.selectedId === prevDataSourceState.selectedId)
+                        && (!isEqual(dataSourceState.selectedId, selectedId)))
+        )) {
+            handleDataSourceValueChange((dsState) => ({
+                ...dsState,
+                ...(props.selectionMode === 'multi'
+                    ? { checked }
+                    : { selectedId }),
+            }));
+        }
+    }, [dataSourceState, value]);
 
     const getName = (i: (TItem & { name?: string }) | void) => {
         const unknownStr = 'Unknown';
@@ -123,12 +141,14 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
     };
 
     const clearSelection = () => {
-        view.clearAllChecked();
-
-        handleDataSourceValueChange((dsState) =>({
-            ...dsState,
-            selectedId: emptyValue as undefined,
-        }));
+        if (selectionMode === 'single') {
+            handleDataSourceValueChange((dsState) =>({
+                ...dsState,
+                selectedId: emptyValue as undefined | null,
+            }));
+        } else {
+            view.clearAllChecked();
+        }
     };
 
     const hasSelection = () => {
@@ -168,7 +188,6 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
 
     const toggleShowOnlySelected = (val: boolean) => {
         setShowSelected(val);
-        handleDataSourceValueChange({ ...dataSourceState, search: '' });
     };
 
     const getFooterProps = (): PickerFooterProps<TItem, TId> => ({
@@ -180,6 +199,7 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
         clearSelection,
         selectionMode,
         selection: dataSourceStateToValue<TId, TItem>(props, dataSourceState, dataSource),
+        search: pickerState.dataSourceState.search,
     });
 
     const getSelectedRows = (itemsToTake: number) => {

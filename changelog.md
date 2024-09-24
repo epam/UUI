@@ -1,3 +1,113 @@
+# 5.9.2 - 12.09.2024
+
+**What's New**
+* [RTE]: added `maxLength` prop
+* [Text]: Added missing skin colors to 'Loveship' 'light' (night900) and dark (night50, night300, night400, night500, night600, night700, night800, night900) themes.
+
+
+**What's Fixed**
+* [RangeDatePicker]: fixed passing `id` prop to the first input in toggler
+* [PickerInput]: fixed issue with clearing disabled (non-checkable) rows using backspace.
+* [DataTableHeaderCell]: fixed text selection issue that occurred when clicking on resize, without preventing the event from bubbling.
+* [useLazyTree]: fixed an issue where API calls were skipped during very fast scrolling.
+* [RTE]: fixed serialization of empty lines in HTML, now </br> html tag is used
+* [Text]: Tweak skin specific props to be equal to their semantic analogs
+
+
+# 5.9.1 - 28.08.2024
+
+**What's New**
+* [LinkButton]: added `weight` and `underline` props
+* [DataTable]: disable animation for loading skeletons due to performance issues
+* [DatePickers]: added 'DDMMYYYY' format to the list of supported date formats for parsing user input
+* Uploaded new version of icons pack: 
+  * icons added: action-clock_fast-fill, action-clock_fast-outline
+  * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
+
+**What's Fixed**
+* [DropdownMenu]: fixed disabled status of subMenu. If subMenu disabled it's won't open subMenuItems
+* [DropdownMenu]: fixed error when using 2+ levels menu with closeOnMouseLeave=boundary
+* [PickerInput]: fixed opening body by pressing 'Enter' key in mobile resolution(<768px)
+* [Dropdown]: remove `mousemove` handler on component unmount
+* [Pickers]: fixed bug when 'Clear All' button remains visible even after user clear all item by clicking on it. It was reproduced only if emptyValue=[] prop was passed.
+* [AdaptivePanel]: fixed hiding items with the same priority as last hidden collapsed container
+* [LinkButton]: tweak focus state style according to the design
+* [Typography]: added focus for links
+
+
+# 5.9.0 - 09.08.2024
+
+**What's New**
+* [Breaking change]: Typography in Electric theme h1 weight changed to 600, h2 weight changed to 400
+* Icons pack updated:
+  * [Breaking change]: visual weight tweaked for the following icons. Please review the places of this icons usage, after the update:
+    * navigation-chevron_up_outline
+    * navigation-chevron_down_outline
+    * navigation-chevron_left_outline
+    * navigation-chevron_right_outline
+    * content-minus_outline
+    * notification-done_outline
+  * Icons added
+    * Icon file-file_csv_fill
+    * editor-headline_h4_outline
+    * editor-headline_h5_outline
+    * editor-headline_h6_outline
+    * content-person_group_outline
+* [DatePicker][RangeDatePicker]: improve a11y focus flow behavior. Now date picker body receive focus on open and return it back on input after close.
+* [Timeline]:
+  * Improved `Timeline`:
+    * Updated `Timeline` design.
+    * Added support for functional components.
+    * Introduced a low-level `TimelineCanvas` component designed to render elements on the Timeline.
+    * Enhanced customization options for `TimelineGrid` and `TimelineScale`.
+    * Exposed default implementations for timeline grid/scale drawing phases via the `timelineGrid` and `timelineScale` libraries.
+  * [Breaking Change]: Removed `BaseTimelineCanvasComponent`. Use `TimelineCanvas` instead. Now, TimelineCanvas should not be extended, instead, `draw` function should be passed to the props.
+  * [Breaking Change]: Removed `TimelineScaleProps.shiftPercent`.
+  * Added an example of Timeline usage with tables. [See demo here](https://uui.epam.com/demo?id=editableTable).
+  * Added base component for universal drawing Timeline elements: `TimelineCanvas`.
+  * Added the `useResizeObserver` hook, which provides the possibility to observe multiple elements' resizing.
+  * Added the `useTimelineTransform` hook, which provides the possibility to receive the latest `TimelineTransform` instance from the `TimelineController`.
+  * Made `TimelineGrid` customizable. Exposed default implementations of various parts of `TimelineGrid` drawing functionality, via the `timelineGrid` library.
+  * Made `TimelineScale` customizable. Exposed default implementations of various parts of `TimelineScale` drawing functionality, via the `timelineScale` library.
+  * Exposed default implementations of various parts of `Timeline` drawing functionality, via the `timelinePrimitives` library.
+  * Added the `TimelineController.setViewportRange` function, which allows setting the `Viewport` by passing the right and left periods of the scale.
+  * Added `computeSubtotals` and `createFromItems` to `Tree`.
+* [DateTable]:
+  * Added `renderHeaderCell` callback to the column configuration, it's allows to provide custom render for column header.
+  * Added the `DataTableCellContainer` component - base wrapper for header and column cells
+* [PickerInput]: hide picker footer while searching
+* [PickerInput]: made tags in multi select smaller
+* [Typography]: only for electric theme:
+  * H1 weight changed from 600 to 400
+  * H2 weight changed from 700 to 600
+
+
+**What's Fixed**
+* Simplify dayJs type imports to support earlier versions of Typescript
+* [DataTable]: disable column focus and hover if `isReadonly={ true }` was provided in `rowOptions` for editable table
+* [Badge]: center badge content, move left icons closer to the caption for wide badges
+* [FileUpload]: fixed error icon color to uui-error-70
+* [RTE]: fixed pasting lists from word
+* [Tag]: fixed cross icon size according to the design
+
+
+# 5.8.4 - 22.07.2024
+
+**What's Fixed**
+* [PickerInput]: fixed '+N' toggler tag tooltip content with custom `getName` callback
+
+# 5.8.3 - 19.07.2024
+
+**What's New**
+* [ApiContext] Add `ResponseType` generic type for `processRequest` function, which defines the returned type of the function
+
+**What's Fixed**
+* [ApiContext] Combine user's headers with internal ones instead of replacing them when calling `processRequest` function
+* [FiltersPanel]: set `undefined` value instead of `null` on clear action in numeric filter.
+* [PickerList]: Fixed updating predefined checked values
+* [Pickers]: fixed infinite updating if onValueChange is called in useEffect in case of React without concurrent rendering mode
+* [LazyDataSource]: Fixed requesting already loaded data on scroll
+
 # 5.8.2 - 11.07.2024
 
 **What's New**
@@ -5,7 +115,7 @@
 * [RTE]: added possibility to customize set of available options for Header, Color and Note plugins
 
 **What's Fixed**
-* Fixed invalid mode for inline inputs 
+* Fixed invalid mode for inline inputs
 * [AnalyticContext]: fixed GA connection
 * [Checkbox]: fixed icon size according design
 * [RadioInput]: fixed caption line-height according design

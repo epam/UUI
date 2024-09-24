@@ -1,65 +1,34 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To disable the spinner, use ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "hideSpinner",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
+        "text": "To disable the spinner, use "
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "To avoid content jumps after loading, use the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "spacerHeight",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop, which set the minimum height of the content.",
-            "marks": []
-          }
-        ]
+        "text": "hideSpinner",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "To avoid content jumps after loading, use the "
+      },
+      {
+        "text": "spacerHeight",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop, which set the minimum height of the content."
       }
     ]
   }
-}
+]

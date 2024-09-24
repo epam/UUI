@@ -15,24 +15,17 @@ export class PickerInputTestObject extends PickerTestObject {
         return !!within(container).queryByRole('button', { name: 'Clear' });
     }
 
-    static getSelectedTagsText(input: HTMLElement) {
-        return this.getSelectedTags(input).map((b) => b.textContent?.trim());
+    static getSelectedTagsText(target: HTMLElement) {
+        return this.getSelectedTags(target).map((b) => b.textContent?.trim());
     }
 
-    static removeSelectedTagByText(input: HTMLElement, text: string) {
-        const tag = this.getSelectedTags(input).find((b) => b.textContent?.trim() === text);
+    static removeSelectedTagByText(target: HTMLElement, text: string) {
+        const tag = this.getSelectedTags(target).find((b) => b.textContent?.trim() === text);
         const removeTagIcon = tag?.lastElementChild;
         fireEvent.click(removeTagIcon as Element);
     }
 
-    protected static getSelectedTags(input: HTMLElement) {
-        const tags: HTMLElement[] = [];
-        let s = input;
-        while ((s = s.previousElementSibling as HTMLElement)) {
-            if (s.tagName.toLowerCase() === 'span') {
-                tags.push(s);
-            }
-        }
-        return tags.reverse();
+    protected static getSelectedTags(target: HTMLElement) {
+        return within(target).queryAllByRole('option');
     }
 }
