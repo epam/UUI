@@ -1,6 +1,5 @@
 # see https://gitversion.net/docs/reference/configuration#branch-configuration
 assembly-versioning-scheme: MajorMinorPatch
-#assembly-informational-format: '{SemVer}-{BranchName}.{env:CI_PIPELINE_ID}.{ShortSha}'
 mode: ContinuousDeployment
 next-version: 5.10.0
 increment: Patch
