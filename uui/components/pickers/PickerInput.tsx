@@ -78,6 +78,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
+    // test comment
     const dropdownRef = useRef(null);
 
     useImperativeHandle(ref, () => {
