@@ -80,6 +80,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const dropdownRef = useRef(null);
 
+    // just test
     useImperativeHandle(ref, () => {
         if (dropdownRef.current) {
             dropdownRef.current.closePickerBody = closePickerBody;
