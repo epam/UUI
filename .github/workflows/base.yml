@@ -124,6 +124,8 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.15
         with:
           additionalArguments: ${{ inputs.git-version-mode }}
+          useConfigFile: true
+          configFilePath: GitVersion.yml
 
       - name: Install Helm
         uses: azure/setup-helm@v3
