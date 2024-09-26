@@ -1,3 +1,9 @@
+# 5.9.4 - 26.09.2024
+
+**What's Fixed**
+* [useAsyncDataSource]: fixed refetching of data after deps change.
+
+
 # 5.9.2 - 12.09.2024
 
 **What's New**
@@ -20,7 +26,7 @@
 * [LinkButton]: added `weight` and `underline` props
 * [DataTable]: disable animation for loading skeletons due to performance issues
 * [DatePickers]: added 'DDMMYYYY' format to the list of supported date formats for parsing user input
-* Uploaded new version of icons pack: 
+* Uploaded new version of icons pack:
   * icons added: action-clock_fast-fill, action-clock_fast-outline
   * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
