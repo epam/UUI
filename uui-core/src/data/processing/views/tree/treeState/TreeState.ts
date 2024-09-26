@@ -390,7 +390,7 @@ export class TreeState<TItem, TId> {
     ) {
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
         const treeStructure = TreeStructure.createFromItems({ params, items: itemsMap, itemsAccessor });
-        return new TreeState(
+        return this.create(
             treeStructure,
             treeStructure,
             TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap)),
