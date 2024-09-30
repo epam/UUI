@@ -22,7 +22,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       Object {
         "height": "95dvh",
         "maxHeight": "95dvh",
-        "width": 560,
+        "width": "560",
       }
     }
   >
