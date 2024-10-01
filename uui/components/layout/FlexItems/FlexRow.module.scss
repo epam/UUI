@@ -23,7 +23,7 @@
     box-sizing: content-box;
     background-color: var(--uui-flex-row-bg);
 
-    [class*='uui-size-'] {
+    &[class*='uui-size-'] {
         min-height: var(--uui-flex-row-size);
     }
 
