@@ -1,11 +1,15 @@
 import React from 'react';
-import { withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps } from '@epam/uui-core';
+import {
+    withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps, isMobile,
+} from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
-import { isMobile } from '@epam/uui-core';
+import { settings } from '../../settings';
+
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
+
 import css from './Modals.module.scss';
 
 export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
@@ -36,15 +40,9 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowProps>(
     uuiModalWindow,
     () => [css.root, css.modal],
     (props) => {
-        const normalize = (d: number | string | undefined): string | undefined => {
-            if (typeof d === 'number') {
-                return `${d}px`;
-            }
-            return d;
-        };
-        const width = normalize(props.width) || '420px';
-        const height = normalize(props.height) || 'auto';
-        const maxHeight = isMobile() ? '100dvh' : (normalize(props.maxHeight) || '80dvh');
+        const width = props.width || settings.sizes.modal.window.defaults.width;
+        const height = props.height || 'auto';
+        const maxHeight = isMobile() ? '100dvh' : (props.maxHeight || '80dvh');
         return {
             style: {
                 ...props.style,
