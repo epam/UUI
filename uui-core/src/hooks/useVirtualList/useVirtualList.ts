@@ -7,6 +7,7 @@ import {
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
 import { usePrevious } from '../usePrevious';
+import { devLogger } from '../../helpers';
 
 export function useVirtualList<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>(
     props: UseVirtualListProps,
@@ -58,16 +59,17 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     ]);
 
     useLayoutEffectSafeForSsr(() => {
-        if (scrollContainer.current?.clientHeight
-            && prevScrollContainerClientHeight
-            && scrollContainer.current?.clientHeight !== prevScrollContainerClientHeight
-        ) {
-            ++scrollContainerHeightChangesCount.current;
-        }
-        if (scrollContainerHeightChangesCount.current > 20 && !scrollContainerHeightIsNotLimited.current) {
-            scrollContainerHeightIsNotLimited.current = true;
-            console.error(`The scroll container height is unlimited, likely because the parent container's height is set to 100%. Please ensure that the VirtualList's parent container has a defined, limited height.
-It is recommended to use viewport height (vh) units to set a relative height.`);
+        if (__DEV__) {
+            if (scrollContainer.current?.clientHeight
+                && prevScrollContainerClientHeight
+                && scrollContainer.current?.clientHeight !== prevScrollContainerClientHeight
+            ) {
+                ++scrollContainerHeightChangesCount.current;
+            }
+            if (scrollContainerHeightChangesCount.current > 20 && !scrollContainerHeightIsNotLimited.current) {
+                scrollContainerHeightIsNotLimited.current = true;
+                devLogger.warn('[VirtualList]: The scroll container height is not limited. Please ensure that the VirtualList\'s parent container has a defined, limited height.');
+            }
         }
     });
 
