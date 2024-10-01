@@ -35,7 +35,7 @@ export const FlexRow = withMods<uuiFlexRowProps, FlexRowProps>(uuiFlexRow, (prop
 
     return [
         css.root,
-        props.size !== null && 'uui-size-' + (props.size || '36'), // TODO: fix nesting height
+        props.size !== null && 'uui-size-' + (props.size || '36'),
         props.padding && css['padding-' + props.padding],
         props.vPadding && css['vPadding-' + props.vPadding],
         props.margin && css['margin-' + props.margin],
