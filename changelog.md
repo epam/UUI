@@ -2,6 +2,7 @@
 
 **What's New**
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+* [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
 
 **What's Fixed**
 
