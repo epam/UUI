@@ -113,7 +113,7 @@ const getRealBottomIndex = ({ rowsCount, scrollContainer, rowOffsets, value: { t
     let bottomIndex = topIndex;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
 
-    const containerScrollBottom = containerScrollTop + scrollContainer.clientHeight ?? 0;
+    const containerScrollBottom = containerScrollTop + scrollContainer?.clientHeight ?? 0;
     while (bottomIndex < rowsCount && rowOffsets[bottomIndex] < containerScrollBottom) {
         bottomIndex++;
     }
