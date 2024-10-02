@@ -5,6 +5,8 @@
 * [DataTable]: - `ColumnsConfigurationModal` - updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 
 **What's Fixed**
+*[VirtualList]: fixed offsets counting if rows have different height
+
 
 # 5.9.3 - 16.09.2024
 

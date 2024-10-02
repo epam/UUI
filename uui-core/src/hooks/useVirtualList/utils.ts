@@ -33,7 +33,7 @@ export const getUpdatedRowOffsets = (
     for (let n = 0; n <= rowsCount; n++) {
         newRowOffsets[n] = n === 0
             ? listOffset
-            : newRowOffsets[n - 1] + (rowHeights[n] || averageRowHeight);
+            : newRowOffsets[n - 1] + (rowHeights[n - 1] || averageRowHeight);
     }
     return newRowOffsets;
 };
