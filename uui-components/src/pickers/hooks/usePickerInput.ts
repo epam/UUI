@@ -93,13 +93,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             document.body.style.overflow = !newOpened && modals.length === 0 ? '' : 'hidden';
         }
 
-        handleDataSourceValueChange({
-            ...dataSourceState,
+        handleDataSourceValueChange((prevState) => ({
+            ...prevState,
             topIndex: 0,
             visibleCount: initialRowsVisible,
             focusedIndex: 0,
+            scrollTo: undefined,
             search: '',
-        });
+        }));
 
         setIsSearchChanged(false);
         setOpened(newOpened);
