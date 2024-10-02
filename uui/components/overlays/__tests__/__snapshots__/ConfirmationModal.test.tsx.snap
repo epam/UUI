@@ -22,7 +22,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       Object {
         "height": "auto",
         "maxHeight": "80dvh",
-        "width": "420px",
+        "width": 420,
       }
     }
   >
@@ -207,7 +207,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       Object {
         "height": "auto",
         "maxHeight": "80dvh",
-        "width": "420px",
+        "width": 420,
       }
     }
   >
