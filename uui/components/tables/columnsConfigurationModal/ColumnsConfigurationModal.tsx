@@ -111,7 +111,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh">
+            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh" width={ settings.sizes.dataTable.columnsConfigurationModal.width }>
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow
                     borderBottom={ true }

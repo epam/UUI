@@ -22,7 +22,10 @@
     // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.
     box-sizing: content-box;
     background-color: var(--uui-flex-row-bg);
-    min-height: var(--uui-flex-row-size);
+
+    &[class*='uui-size-'] {
+        min-height: var(--uui-flex-row-size);
+    }
 
     &.border-top {
         border-top: var(--uui-flex-row-border);
