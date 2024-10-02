@@ -2,7 +2,7 @@ import React from 'react';
 import { cx, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
-import { CountIndicator } from '../widgets/CountIndicator';
+import { CountIndicator, CountIndicatorProps } from '../widgets/CountIndicator';
 import { systemIcons } from '../../icons/icons';
 import { settings } from '../../settings';
 import css from './TabButton.module.scss';
@@ -36,7 +36,6 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
         css.root,
         'uui-tab-button',
         `uui-size-${props.size || settings.sizes.defaults.tabButton}`,
-        props.withNotify && css.withNotify,
         ...getIconClass(props),
         props.cx,
     ];
@@ -62,25 +61,25 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
                     onClick={ !props.isDisabled ? props.onIconClick : undefined }
                 />
             ) }
-            { props.caption && (
+            { (props.caption || props.withNotify) && (
                 <div className={ cx(uuiElement.caption) }>
                     { props.caption }
+                    { props.withNotify && <div className={ css.withNotify } /> }
                 </div>
-            ) }
-            { props.count !== undefined && props.count !== null && (
-                <CountIndicator
-                    color="neutral"
-                    size="18"
-                    caption={ props.count }
-                />
             ) }
             { props.icon && props.iconPosition === 'right' && (
                 <IconContainer icon={ props.icon } onClick={ !props.isDisabled ? props.onIconClick : undefined } />
             ) }
+            { props.count !== undefined && props.count !== null && (
+                <CountIndicator
+                    color="neutral"
+                    size={ settings.sizes.tabButton.countIndicator[props.size || settings.sizes.defaults.tabButton] as CountIndicatorProps['size'] }
+                    caption={ props.count }
+                />
+            ) }
             { props.isDropdown && (
                 <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
             )}
-
             { props.onClear && !props.isDisabled && (
                 <IconContainer cx={ uuiMarkers.clickable } icon={ ClearIcon } onClick={ props.onClear } />
             ) }

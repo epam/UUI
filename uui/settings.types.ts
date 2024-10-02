@@ -214,6 +214,10 @@ interface DataTableSizes {
     body: DataTableBodySizes;
 }
 
+interface TabButtonSizes {
+    countIndicator: Sizes;
+}
+
 interface SizesSettings {
     defaults: DefaultSizes;
     tag: TagSizes;
@@ -224,6 +228,7 @@ interface SizesSettings {
     labeledInput: LabeledInputSizes;
     badge: BadgeSizes;
     dataTable: DataTableSizes;
+    tabButton: TabButtonSizes;
 }
 
 export interface Settings {

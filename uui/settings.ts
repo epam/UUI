@@ -262,5 +262,12 @@ export const settings: Settings = {
                 search: '30',
             },
         },
+        tabButton: {
+            countIndicator: {
+                36: '18',
+                48: '18',
+                60: '18',
+            },
+        },
     },
 };

@@ -2,6 +2,7 @@
 
 **What's New**
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
 
 **What's Fixed**
 
