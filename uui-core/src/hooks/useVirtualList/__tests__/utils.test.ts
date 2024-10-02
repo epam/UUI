@@ -106,6 +106,22 @@ describe('getUpdatedRowOffsets', () => {
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
     });
+
+    it('should count proper offsets if rows have different height', () => {
+        const info = {
+            ...defaultInfo,
+            rowsCount: 3,
+            blockSize: undefined,
+            overdrawRows: undefined,
+            rowOffsets: [],
+            listOffset: 38,
+            averageRowHeight: 69,
+            rowHeights: [37, 37, 133],
+        };
+        expect(getUpdatedRowOffsets(info)).toEqual([
+            38, 75, 112, 245,
+        ]);
+    });
 });
 
 describe('getNewEstimatedContainerHeight', () => {
