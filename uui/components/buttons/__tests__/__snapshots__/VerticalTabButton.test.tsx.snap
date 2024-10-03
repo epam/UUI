@@ -11,7 +11,7 @@ exports[`VerticalTabButton should be rendered correctly 1`] = `
 exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <button
   aria-disabled={false}
-  className="uui-button-box uui-enabled -clickable root uui-tab-button uui-size-48 withNotify uui-has-left-icon uui-no-right-icon root uui-vertical-tab-button"
+  className="uui-button-box uui-enabled -clickable root uui-tab-button uui-size-48 uui-has-left-icon uui-no-right-icon root uui-vertical-tab-button"
   onClick={[Function]}
   role="tab"
   tabIndex={0}
@@ -23,6 +23,13 @@ exports[`VerticalTabButton should be rendered correctly with props 1`] = `
   >
     <svg
       className=""
+    />
+  </div>
+  <div
+    className="uui-caption"
+  >
+    <div
+      className="withNotify"
     />
   </div>
 </button>
