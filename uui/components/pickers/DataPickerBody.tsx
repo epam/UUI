@@ -35,11 +35,11 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             return 'SEARCH_TOO_SHORT';
         }
 
-        if (search && this.props.rowsCount === 0) {
+        if (search && this.props.rows.length === 0) {
             return 'NOT_FOUND';
         }
 
-        if (this.props.rowsCount === 0) {
+        if (this.props.rows.length === 0) {
             return 'NO_RECORDS';
         }
     }
