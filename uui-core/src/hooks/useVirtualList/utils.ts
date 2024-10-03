@@ -33,7 +33,7 @@ export const getUpdatedRowOffsets = (
     for (let n = 0; n <= rowsCount; n++) {
         newRowOffsets[n] = n === 0
             ? listOffset
-            : newRowOffsets[n - 1] + (rowHeights[n] || averageRowHeight);
+            : newRowOffsets[n - 1] + (rowHeights[n - 1] || averageRowHeight);
     }
     return newRowOffsets;
 };
@@ -112,6 +112,7 @@ export const getRealTopIndex = ({ rowsCount, scrollContainer, rowOffsets }: Virt
 const getRealBottomIndex = ({ rowsCount, scrollContainer, rowOffsets, value: { topIndex } }: VirtualListInfo) => {
     let bottomIndex = topIndex;
     const containerScrollTop = scrollContainer?.scrollTop ?? 0;
+
     const containerScrollBottom = containerScrollTop + scrollContainer?.clientHeight ?? 0;
     while (bottomIndex < rowsCount && rowOffsets[bottomIndex] < containerScrollBottom) {
         bottomIndex++;

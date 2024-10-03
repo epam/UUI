@@ -3,6 +3,7 @@ import { IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } 
 import { Country } from '@epam/uui-docs';
 import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput, Button, ScrollBars, ModalFooter, SuccessNotification, useForm, Text,
     Panel, FlexCell, RadioGroup, PickerInput } from '@epam/uui';
+import css from './styles.module.scss';
 
 interface Person {
     firstName?: string;
@@ -77,8 +78,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                             </FlexCell>
                         </FlexRow>
                     </Panel>
-                    <ModalFooter borderTop>
-                        <FlexSpacer />
+                    <ModalFooter borderTop cx={ css.footer }>
                         <Button color="secondary" fill="outline" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
                         <Button color="primary" caption="Confirm" onClick={ save } />
                     </ModalFooter>
