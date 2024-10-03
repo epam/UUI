@@ -1443,7 +1443,6 @@ describe('PickerInput', () => {
             getId: ({ id }) => id,
         });
 
-        const customText = 'Custom Text or Component';
         const customTextForNotFound = 'Custom Text For Not Found';
         const customTextForNotFoundId = 'test-custom-not-found-from-empty';
         const customTextForNotEnoughCharsInSearch = 'Custom Text For Not Enough Chars In Search';
@@ -1455,14 +1454,8 @@ describe('PickerInput', () => {
             minCharsToSearch: 3,
             searchPosition: 'body',
             dataSource: mockEmptyDS,
-            renderNotFound: () => (
-                <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'test-custom-not-found' } }>
-                    <Text>{customText}</Text>
-                </FlexCell>
-            ),
-            
-            renderEmpty: ({ isSearchTooShort }) => {
-                if (isSearchTooShort) {
+            renderEmpty: ({ reason }) => {
+                if (reason === 'SEARCH_TOO_SHORT') {
                     return (
                         <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotEnoughCharsInSearchId } }>
                             <Text>{customTextForNotEnoughCharsInSearch}</Text>
@@ -1496,43 +1489,6 @@ describe('PickerInput', () => {
         await waitFor(async () => {
             const notFound = within(await screen.findByRole('dialog')).getByTestId(customTextForNotFoundId);
             expect(notFound).toHaveTextContent(customTextForNotFound);
-        });
-    });
-
-    it('should render custom not found while using minCharsToSearch', async () => {
-        const mockEmptyDS = new ArrayDataSource<TestItemType, number, any>({
-            items: [],
-            getId: ({ id }) => id,
-        });
-
-        const customText = 'Custom Text or Component';
-
-        const { dom } = await setupPickerInputForTest({
-            value: undefined,
-            selectionMode: 'multi',
-            minCharsToSearch: 3,
-            searchPosition: 'body',
-            dataSource: mockEmptyDS,
-            renderNotFound: () => (
-                <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'test-custom-not-found' } }>
-                    <Text>{customText}</Text>
-                </FlexCell>
-            ),
-            getSearchFields: (item) => [item!.level],
-        });
-
-        expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-        fireEvent.click(dom.input);
-
-        const dialog = await screen.findByRole('dialog');
-        expect(dialog).toBeInTheDocument();
-
-        const bodyInput = within(dialog).getByPlaceholderText('Search');
-        fireEvent.change(bodyInput, { target: { value: 'A11' } });
-
-        await waitFor(async () => {
-            const notFound = within(await screen.findByRole('dialog')).getByTestId('test-custom-not-found');
-            expect(notFound).toHaveTextContent(customText);
         });
     });
 

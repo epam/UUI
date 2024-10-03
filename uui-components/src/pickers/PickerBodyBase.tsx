@@ -1,33 +1,15 @@
 import * as React from 'react';
 import isEqual from 'react-fast-compare';
 
-import {
-    DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile,
-    PickerEmptyBodyProps,
-} from '@epam/uui-core';
+import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui-core';
+import { PickerInputBaseProps } from './hooks/types';
 
-export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Pick<PickerInputBaseProps<any, any>, 'minCharsToSearch' | 'renderEmpty' | 'renderNotFound' | 'fixedBodyPosition' | 'searchDebounceDelay'> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
-    renderNotFound?: () => React.ReactNode;
-
-    /**
-     * Overrides the rendering of PickerBody content when it is empty for various reasons.
-     * If provided, the override should support messages for both reasons, no data and search is too short.
-     * If not provided, the `renderNotFound` method is used for the situation, when no data is passed or found.
-     * @param props - render empty configuration.
-     * @param props.isSearchTooShort - indicates that the search contains fewer characters than required to start searching for data.
-     */    
-    renderEmpty?: (props: PickerEmptyBodyProps) => React.ReactNode;
     rows: React.ReactNode[];
     scheduleUpdate?: () => void;
     search: IEditable<string>;
     showSearch?: boolean | 'auto';
-    fixedBodyPosition?: boolean;
-    searchDebounceDelay?: number;
-    /**
-     * Indicates whether the search does not contain enough characters to load data.
-     */
-    isSearchTooShort?: boolean;
 }
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {
