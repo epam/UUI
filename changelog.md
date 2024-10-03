@@ -1,7 +1,10 @@
 # 5.*.* - **.**.****
 
 **What's New**
-* [PickerInput]: Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
+* [PickerInput]: 
+  * Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
+  * Added renderEmpty prop to render custom empty block for depends on various reasons.
+  * `renderNotFonud` prop is deprecated, please
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 
 **What's Fixed**

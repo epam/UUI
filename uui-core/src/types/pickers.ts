@@ -57,12 +57,22 @@ export type PickerInputSearchPosition = 'input' | 'body' | 'none';
  */
 export type PickerInputEditMode = 'dropdown' | 'modal';
 
+/** Picker empty state reasons */
+export type PickerBodyEmptyStateReason = 'NO_RECORDS' | 'NOT_FOUND' | 'SEARCH_TOO_SHORT';
+
 /**
  * Picker empty body configuration.
  */
 export interface PickerEmptyBodyProps {
-    /** Indicates that the search contains fewer characters than required to start searching for data.  */
-    isSearchTooShort?: boolean;
+    /** Indicates the reason of empty state
+     * 'NO_RECORDS' - picker initially don't have any records
+     * 'NOT_FOUND' - there are no items according to the search value
+     * 'SEARCH_TOO_SHORT' - search length less than 'minCharToSearch' props value
+     * */
+    reason?: PickerBodyEmptyStateReason
+
+    search: string;
+    onClose: () => void;
 }
 
 export type PickerBaseOptions<TItem, TId> = {
@@ -95,19 +105,9 @@ export type PickerBaseOptions<TItem, TId> = {
 
     /**
      * Overrides the rendering of PickerBody content when it is empty for various reasons.
-     * If provided, the override should support messages for both reasons, no data and search is too short.
-     * If not provided, the `renderNotFound` method is used for the situation, when no data is passed or found.
-     * @param props - render empty configuration.
-     * @param props.isSearchTooShort - indicates that the search contains fewer characters than required to start searching for data.
+     * If not provided, deprecated `renderNotFound` method or default implementation is used.
      */
-    renderEmpty?: (
-        props: {
-            search: string;
-            minCharsToSearch?: number;
-            searchPosition: PickerInputSearchPosition;
-            onClose: () => void;
-        } & PickerEmptyBodyProps
-    ) => ReactNode;
+    renderEmpty?: (props: PickerEmptyBodyProps) => ReactNode;
 
     /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */
     emptyValue?: undefined | null | [];
