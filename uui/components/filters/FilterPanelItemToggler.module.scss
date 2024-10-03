@@ -109,10 +109,6 @@
 
         @mixin filterTogglerSize($size) {
             &:global(.size-#{$size}) {
-                @include control-vertical-layout(#{$size}px, 1px);
-                padding-left: 5px;
-                padding-right: 5px;
-
                 @if $size == 24 {
                     padding-left: 2px;
                     padding-right: 2px;
@@ -127,8 +123,12 @@
                 } @else if $size == 48 {
                     padding-left: 11px;
                     padding-right: 11px;
+                } @else {
+                    padding-left: 5px;
+                    padding-right: 5px;
                 }
 
+                @include control-vertical-layout(#{$size}px, 1px);
                 @include scalable-icon-size($size);
             }
         }

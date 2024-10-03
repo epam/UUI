@@ -15,12 +15,20 @@
     --uui-slider-font: var(--uui-font);
     --uui-slider-font-weight: 400;
 
+    --uui-slider-tooltip-font-size: 14px;
+    --uui-slider-tooltip-line-height: 14px;
+    --uui-slider-tooltip-vertical-padding: 0;
+    --uui-slider-tooltip-horizontal-padding: 10px;
+    --uui-slider-scale-number-font-size: 11px;
+    --uui-slider-scale-dot-size: 7px;
+    --uui-slider-scale-height: 6px;
+
     :global(.uui-tooltip-body) {
         background-color: var(--uui-slider-tooltip-bg);
-        padding: 0 10px;
+        padding: var(--uui-slider-tooltip-vertical-padding) var(--uui-slider-tooltip-horizontal-padding);
         color: white;
-        line-height: 24px;
-        font-size: 14px;
+        line-height: var(--uui-slider-tooltip-line-height);
+        font-size: var(--uui-slider-tooltip-font-size);
         font-family: var(--uui-slider-font);
         font-weight: var(--uui-slider-font-weight);
         box-shadow: var(--uui-slider-shadow);
@@ -31,7 +39,7 @@
     }
 
     :global(.uui-slider-scale-number) {
-        font-size: 11px;
+        font-size: var(--uui-slider-scale-number-font-size);
         font-family: var(--uui-slider-font);
         font-weight: var(--uui-slider-font-weight);
         color: var(--uui-slider-scale-text);
@@ -39,8 +47,8 @@
     }
 
     :global(.uui-slider-scale-dot) {
-        width: 7px;
-        height: 7px;
+        width: var(--uui-slider-scale-dot-size);
+        height: var(--uui-slider-scale-dot-size);
         border-radius: 50%;
         top: -1px;
     }
@@ -58,7 +66,7 @@
         }
 
         :global(.uui-slider-scale) {
-            height: 6px;
+            height: var(--uui-slider-scale-height);
         }
 
         :global(.uui-slider-handle) {

@@ -2,11 +2,18 @@
 
 .row-wrapper {
     position: relative;
-    padding: 0 24px 0 0;
     width: 100%;
     box-sizing: border-box;
     touch-action: auto;
-    column-gap: 6px;
+    column-gap: var(--uui-horizontal-gap);
+    padding: var(--uui-vertical-padding) var(--uui-dt-columns_config_modal-padding);
+
+    .pin-icon-button {
+        min-height: auto;
+        column-gap: var(--uui-dt-columns_config_modal-pin_icon_button-column-gap);
+        padding-top: var(--uui-vertical-padding);
+        padding-bottom: var(--uui-vertical-padding);
+    }
 
     &.not-pinned:not(:hover):not(:focus-within) {
         .pin-icon-button {
@@ -16,8 +23,8 @@
 
     .checkbox {
         flex-grow: 1;
-        height: 30px;
-        align-items: center;
+        padding-top: var(--uui-vertical-padding);
+        padding-bottom: var(--uui-vertical-padding);
     }
 
     &:hover {
@@ -25,9 +32,10 @@
     }
 
     .drag-handle {
-        padding: 6px 0 6px 24px;
         opacity: 1;
         touch-action: none;
+        padding-top: var(--uui-vertical-padding);
+        padding-bottom: var(--uui-vertical-padding);
 
         &.dnd-disabled {
             opacity: 0.3;

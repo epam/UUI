@@ -1,10 +1,10 @@
-.cell {
+.root {
     display: flex;
     position: relative;
     box-sizing: border-box;
-    margin-left: calc(var(--uui-dt-cell-border-width) * -1);
-    border-left: var(--uui-dt-cell-border-width) solid transparent;
-    border-right: var(--uui-dt-cell-border-width) solid transparent;
+    margin-inline-start: calc(var(--uui-dt-cell-border-width) * -1);
+    border-inline-start: var(--uui-dt-cell-border-width) solid transparent;
+    border-inline-end: var(--uui-dt-cell-border-width) solid transparent;
     border-top-style: none;
     border-bottom-style: none;
 }

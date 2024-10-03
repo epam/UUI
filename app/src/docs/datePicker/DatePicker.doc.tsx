@@ -56,17 +56,17 @@ export class DatePickerDoc extends BaseDocsBlock {
             const w180_h60: TPreviewCellSize = '180-60';
             const w320_h400: TPreviewCellSize = '320-400';
 
-            docPreview.add(TDatePickerPreview['Size Variants'], { 
+            docPreview.add(TDatePickerPreview['Size Variants'], {
                 mode: { values: ['form'] },
                 disableClear: { values: [true, false] },
                 iconPosition: { examples: '*' },
-                ...baseMatrix, 
+                ...baseMatrix,
             }, w180_h60);
 
             docPreview.add(TDatePickerPreview['States'], { mode: { values: ['form', 'inline', 'cell'] }, ...baseMatrix, ...statesBaseMatrix }, w180_h60);
 
             docPreview.add({
-                id: TDatePickerPreview['Opened'],
+                id: TDatePickerPreview.Opened,
                 matrix: { value: { values: [TEST_DATA.value] } },
                 cellSize: w320_h400,
             });

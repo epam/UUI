@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { Modifier } from 'react-popper';
 import { IDropdownToggler, DropdownBodyProps, mobilePopperModifier } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
-import { MobileDropdownWrapper } from '../../pickers';
+import { PickerBodyMobileView } from '../../pickers';
 import { SortingPanel, SortingPanelProps } from './SortingPanel';
 
 type ColumnHeaderDropdownProps = SortingPanelProps & {
@@ -31,10 +31,10 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
         <Dropdown
             renderTarget={ props.renderTarget }
             renderBody={ (dropdownProps) => (
-                <MobileDropdownWrapper width={ 280 } maxWidth="auto" title={ props.title } onClose={ closeDropdown }>
+                <PickerBodyMobileView width={ 280 } maxWidth="auto" title={ props.title } onClose={ closeDropdown }>
                     {props.isSortable && <SortingPanel sortDirection={ props.sortDirection } onSort={ props.onSort } />}
                     {props.renderFilter(dropdownProps)}
-                </MobileDropdownWrapper>
+                </PickerBodyMobileView>
             ) }
             modifiers={ popperModifiers }
             value={ props.isOpen }

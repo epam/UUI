@@ -23,7 +23,7 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
     const tagProps = {
         ...props,
         tabIndex: -1,
-        size: settings.sizes.pickerToggler.tag[props.size] as TagProps['size'],
+        size: settings.sizes.pickerInput.toggler.tag[props.size] as TagProps['size'],
         caption: props.rowProps?.isLoading ? <TextPlaceholder /> : props.caption,
     };
 

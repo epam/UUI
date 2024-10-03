@@ -2,7 +2,7 @@
 
 exports[`DataTable should be rendered correctly 1`] = `
 <div
-  className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer table uui-dt-vars"
+  className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer root uui-dt-vars"
   style={
     Object {
       "display": "flex",

@@ -2,10 +2,12 @@
 
 exports[`DataTableCell should be rendered correctly 1`] = `
 <div
-  className="uui-dt-vars cell uui-table-cell cell data-table-cell cell size-36 padding-12 align-widgets-top"
+  className="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-36 align-widgets-top"
   role="cell"
   style={
     Object {
+      "--uui-dt-cell-padding-end": "12px",
+      "--uui-dt-cell-padding-start": "12px",
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,
@@ -24,10 +26,12 @@ exports[`DataTableCell should be rendered correctly 1`] = `
 
 exports[`DataTableCell should be rendered correctly 2`] = `
 <div
-  className="uui-dt-vars cell uui-table-cell cell data-table-cell cell size-48 padding-24 padding-right-24 align-widgets-top"
+  className="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-48 uui-dt-last-column align-widgets-top"
   role="cell"
   style={
     Object {
+      "--uui-dt-cell-padding-end": "24px",
+      "--uui-dt-cell-padding-start": "12px",
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,

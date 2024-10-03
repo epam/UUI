@@ -1,10 +1,17 @@
 .header {
+    --uui-data-picker-header-close-icon-padding: 24px;
+    --uui-data-picker-header-title-font-weight: 600;
+    //
     display: none;
     justify-content: center;
     position: relative;
 
     @media screen and (max-width: 720px) {
         display: flex;
+    }
+
+    .title {
+        --uui-text-font-weight: var(--uui-data-picker-header-title-font-weight);
     }
 }
 
@@ -15,5 +22,5 @@
     bottom: 0;
     display: flex;
     justify-content: center;
-    right: 24px;
+    inset-inline-end: var(--uui-data-picker-header-close-icon-padding);
 }

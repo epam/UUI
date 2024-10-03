@@ -1,4 +1,3 @@
-import styles from './ColumnsConfigurationModal.module.scss';
 import * as React from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
@@ -9,15 +8,18 @@ import { ReactComponent as ResetIcon } from '@epam/assets/icons/navigation-refre
 import { ReactComponent as ExpandedIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 
-import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
-import { Button, LinkButton } from '../../buttons';
+import { FlexRow, FlexRowProps, FlexSpacer, Panel, ScrollBars } from '../../layout';
+import { Button, ButtonProps, LinkButton } from '../../buttons';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
 import { Text } from '../../typography';
-import { CountIndicator } from '../../widgets';
-import { SearchInput } from '../../inputs';
+import { CountIndicator, CountIndicatorProps } from '../../widgets';
+import { SearchInput, SearchInputProps } from '../../inputs';
+import { ColumnRow } from './ColumnRow';
 
 import { i18n as uuiI18n } from '../../../i18n';
-import { ColumnRow } from './ColumnRow';
+import { settings } from '../../../settings';
+
+import css from './ColumnsConfigurationModal.module.scss';
 
 export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IModal<ColumnsConfig> {
     columnsConfig?: ColumnsConfig;
@@ -28,11 +30,20 @@ export interface ColumnsConfigurationModalProps<TItem, TId, TFilter> extends IMo
 }
 
 const renderGroupTitle = (title: string, amount: number) => (
-    <FlexRow size="24" padding="24" columnGap="6" cx={ styles.groupTitle }>
-        <Text cx={ styles.groupTitleText } fontWeight="600" lineHeight="24" fontSize="14">
+    <FlexRow
+        cx={ css.group }
+    >
+        <Text
+            size="none"
+            cx={ css.groupTitle }
+        >
             {title}
         </Text>
-        <CountIndicator caption={ amount } color="neutral" size="18" />
+        <CountIndicator
+            caption={ amount }
+            color="neutral"
+            size={ settings.sizes.dataTable.columnsConfigurationModal.countIndicator as CountIndicatorProps['size'] }
+        />
         <FlexSpacer />
     </FlexRow>
 );
@@ -64,13 +75,20 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
         }
         const hasDividerBelowPinnedLeft = !!(amountPinnedLeft && amountUnPinned);
         const hasDividerAbovePinnedRight = !!(amountPinnedRight && amountUnPinned);
+        const divider = (
+            <FlexRow
+                size={ null }
+                cx={ css.hDivider }
+            />
+        );
+
         return (
             <>
                 {renderGroupTitle(i18n.displayedSectionTitle, totalAmountOfVisibleColumns)}
                 <SubGroup renderItem={ props.renderItem } title={ i18n.pinnedToTheLeftSubgroupTitle } items={ groupedColumns.displayedPinnedLeft } />
-                {hasDividerBelowPinnedLeft && <div className={ styles.hDivider } />}
+                {hasDividerBelowPinnedLeft && divider}
                 <SubGroup renderItem={ props.renderItem } title={ i18n.notPinnedSubgroupTitle } items={ groupedColumns.displayedUnpinned } />
-                {hasDividerAbovePinnedRight && <div className={ styles.hDivider } />}
+                {hasDividerAbovePinnedRight && divider}
                 <SubGroup renderItem={ props.renderItem } title={ i18n.pinnedToTheRightSubgroupTitle } items={ groupedColumns.displayedPinnedRight } />
             </>
         );
@@ -93,10 +111,18 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ styles.modal } height="95dvh" maxHeight="95dvh">
+            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh" width={ settings.sizes.dataTable.columnsConfigurationModal.width }>
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
-                <FlexRow padding="24" borderBottom={ true } columnGap="12" cx={ styles.searchArea }>
-                    <SearchInput size="30" value={ searchValue } onValueChange={ setSearchValue } placeholder={ i18n.searchPlaceholder } />
+                <FlexRow
+                    borderBottom={ true }
+                    cx={ css.searchArea }
+                >
+                    <SearchInput
+                        size={ settings.sizes.dataTable.columnsConfigurationModal.search as SearchInputProps['size'] }
+                        value={ searchValue }
+                        onValueChange={ setSearchValue }
+                        placeholder={ i18n.searchPlaceholder }
+                    />
                     <Dropdown
                         closeOnTargetClick={ true }
                         renderBody={ () => (
@@ -105,20 +131,29 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                                 <DropdownMenuButton caption={ i18n.selectAllButton } onClick={ checkAll } />
                             </DropdownMenuBody>
                         ) }
-                        renderTarget={ (props) => <Button { ...props } fill="none" icon={ MenuIcon } size="30" color="secondary" isDropdown={ false } /> }
+                        renderTarget={ (props) => (
+                            <Button
+                                { ...props }
+                                fill="none"
+                                icon={ MenuIcon }
+                                size={ settings.sizes.dataTable.columnsConfigurationModal.search as ButtonProps['size'] }
+                                color="secondary"
+                                isDropdown={ false }
+                            />
+                        ) }
                     />
                 </FlexRow>
-                <Panel background="surface-main" cx={ styles.mainPanel }>
+                <Panel background="surface-main" cx={ css.mainPanel }>
                     <ScrollBars>
                         {renderVisible()}
                         {renderHidden()}
                         {isNoData && (
-                            <FlexRow cx={ styles.noData }>
-                                <Text fontSize="24" lineHeight="30" color="primary" fontWeight="600">
-                                    {i18n.noResultsFound.text}
+                            <FlexRow cx={ css.noData }>
+                                <Text cx={ css.noDataTitle }>
+                                    {i18n.noResultsFound.title}
                                 </Text>
-                                <Text fontSize="16" lineHeight="24" color="primary">
-                                    {i18n.noResultsFound.subText}
+                                <Text cx={ css.noDataSubTitle }>
+                                    {i18n.noResultsFound.subTitle}
                                 </Text>
                             </FlexRow>
                         )}
@@ -148,7 +183,10 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
 
     if (items.length) {
         const content = (
-            <FlexRow cx={ styles.groupItems } size="30">
+            <FlexRow
+                cx={ css.groupItems }
+                size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
+            >
                 {items.map((c) => (
                     <ColumnRow column={ c } key={ c.key } renderItem={ renderItem } />
                 ))}
@@ -158,14 +196,30 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
             const renderTitle = (isOpened: boolean) => {
                 const toggleIcon = isOpened ? ExpandedIcon : CollapsedIcon;
                 return (
-                    <span className={ cx(styles.subgroupTitle) }>
-                        <IconContainer size={ 18 } icon={ toggleIcon } flipY={ false } />
-                        { title }
-                    </span>
+                    <FlexRow
+                        cx={ cx(css.subgroup) }
+                    >
+                        <IconContainer
+                            size={ settings.sizes.dataTable.columnsConfigurationModal.subgroupIcon }
+                            icon={ toggleIcon }
+                        />
+                        <Text
+                            size="none"
+                            color="tertiary"
+                            cx={ css.subgroupTitle }
+                        >
+                            { title }
+                        </Text>
+                    </FlexRow>
                 );
             };
             return (
-                <Accordion value={ isExpanded } onValueChange={ setIsExpanded } renderTitle={ renderTitle } cx={ styles.subgroupAccordion }>
+                <Accordion
+                    value={ isExpanded }
+                    onValueChange={ setIsExpanded }
+                    renderTitle={ renderTitle }
+                    cx={ css.subgroupAccordion }
+                >
                     { content }
                 </Accordion>
             );

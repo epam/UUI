@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { cx, DataColumnProps, DndActor, DndActorRenderParams } from '@epam/uui-core';
+import { cx, DataColumnProps, DndActor, DndActorRenderParams, uuiDndState } from '@epam/uui-core';
 import { FlexRow } from '../../layout';
 import { Checkbox } from '../../inputs';
 import { DropMarker } from '../../dnd';
 import { DragHandle, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import { ReactComponent as DragIndicatorIcon } from '@epam/assets/icons/common/action-drag_indicator-18.svg';
-//
-import styles from './ColumnRow.module.scss';
+
+import css from './ColumnRow.module.scss';
 
 export interface ColumnRowProps<TItem, TId, TFilter> {
     column: ColumnsConfigurationRowProps;
@@ -25,28 +25,38 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
     const data = { column, columnConfig };
 
     const renderContent = (dndActorParams: DndActorRenderParams) => {
-        const wrapperClasses = cx(styles.rowWrapper, !isPinned && styles.notPinned);
+        const wrapperClasses = cx(css.rowWrapper, !isPinned && css.notPinned, dndActorParams.isDragGhost && uuiDndState.dragGhost);
+
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
 
         const { ref, ...dndActorPropsWithoutRef } = dndActorParams;
 
         return (
-            <FlexRow size="30" cx={ wrapperClasses } ref={ dndActorParams.ref } rawProps={ { ...restEventHandlers } }>
+            <FlexRow
+                size={ null }
+                cx={ wrapperClasses }
+                ref={ dndActorParams.ref }
+                rawProps={ { ...restEventHandlers } }
+                alignItems="top"
+            >
                 <DragHandle
                     dragHandleIcon={ DragIndicatorIcon }
                     rawProps={ { onTouchStart, onPointerDown } }
                     isDisabled={ !isDndAllowed }
-                    cx={ cx(styles.dragHandle, !isDndAllowed && styles.dndDisabled) }
+                    cx={ cx(css.dragHandle, !isDndAllowed && css.dndDisabled) }
                 />
                 <Checkbox
                     key={ column.key }
                     label={ props.renderItem ? props.renderItem(props.column) : column.caption }
                     value={ isVisible }
                     onValueChange={ toggleVisibility }
-                    isDisabled={ column.isAlwaysVisible }
-                    cx={ styles.checkbox }
+                    isReadonly={ column.isAlwaysVisible }
+                    cx={ css.checkbox }
                 />
-                <FlexRow size="30" cx={ styles.pinIconButton }>
+                <FlexRow
+                    size={ null }
+                    cx={ css.pinIconButton }
+                >
                     <PinIconButton pinPosition={ pinPosition } canUnpin={ !isPinnedAlways } onTogglePin={ togglePin } />
                 </FlexRow>
                 <DropMarker { ...dndActorPropsWithoutRef } />

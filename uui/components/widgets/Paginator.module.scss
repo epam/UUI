@@ -1,31 +1,27 @@
-@mixin set-size($padding-left, $padding-right, $min-width) {
-    &:global(.uui-button-box) {
-        min-width: $min-width;
-    }
-
-    :global(.uui-caption) {
-        font-family: var(--uui-pagination-font);
-        font-weight: var(--uui-pagination-font-weight, normal);
-        font-size: 14px;
-        padding-left: $padding-left;
-        padding-right: $padding-right;
-    }
-
-    &:first-of-type {
-        margin-right: 6px;
-    }
-
-    &:last-of-type {
-        margin-left: 6px;
-    }
-}
-
 .root {
     --uui-pagination-font: var(--uui-font);
     --uui-pagination-font-weight: 400;
     //
     display: flex;
     flex-direction: row;
+
+    .page {
+        --uui-btn-padding: 1px;
+    }
+
+    :global(.uui-caption) {
+        font-family: var(--uui-pagination-font);
+        font-weight: var(--uui-pagination-font-weight, normal);
+        font-size: 14px;
+    }
+
+    > :first-child {
+        margin-inline-end: var(--uui-horizontal-gap);
+    }
+
+    > :last-child {
+        margin-inline-start: var(--uui-horizontal-gap);
+    }
 
     .spacer {
         color: var(--uui-text-primary);
@@ -37,30 +33,6 @@
         &:hover {
             color: var(--uui-primary-50);
         }
-    }
-
-    .size-24 {
-        @include set-size(2px, 2px, 24px);
-
-        &.spacer {
-            min-width: 28px;
-        }
-    }
-
-    .size-30 {
-        @include set-size(5px, 5px, 30px);
-
-        &.spacer {
-            min-width: 34px;
-        }
-    }
-
-    .navigation-size-24 {
-        @include set-size(0, 0, 24px);
-    }
-
-    .navigation-size-30 {
-        @include set-size(0, 0, 30px);
     }
 }
 

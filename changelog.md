@@ -1,3 +1,20 @@
+# 5.*.* - **.**.****
+
+**What's New**
+* Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+* [DataTable]: - `ColumnsConfigurationModal` - updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
+* [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
+
+**What's Fixed**
+*[VirtualList]: fixed offsets counting if rows have different height
+
+
+# 5.9.3 - 16.09.2024
+
+**What's Fixed**
+
+* [useForm]: fixed server validation error when a parent element of a child with an error is removed from the current state.
+
 # 5.9.2 - 12.09.2024
 
 **What's New**

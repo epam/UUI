@@ -144,7 +144,7 @@
     }
 
     &.mode-cell {
-        background-color: transparent;
+        background-color: transparent !important;
         border-color: transparent;
         border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
@@ -213,8 +213,8 @@
     }
 
     &:global(.uui-disabled) {
-        @include disabled-input();
         fill: var(--uui-picker_toggler-icon-disabled);
+        @include disabled-input();
 
         :global(.uui-input) {
             cursor: default;

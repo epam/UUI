@@ -6,7 +6,7 @@ export function validateServerErrorState<T extends any>(currentFormState: T, las
     if (serverValidation.validationProps) {
         Object.keys(serverValidation.validationProps).forEach((key) => {
             const childProps = serverValidation.validationProps[key];
-            validateItem(key, currentFormState[key as keyof typeof currentFormState], lastSentFormState[key as keyof typeof lastSentFormState], childProps, result);
+            validateItem(key, currentFormState?.[key as keyof typeof currentFormState], lastSentFormState?.[key as keyof typeof lastSentFormState], childProps, result);
         });
     } else {
         result = validateValue(currentFormState, lastSentFormState, serverValidation);

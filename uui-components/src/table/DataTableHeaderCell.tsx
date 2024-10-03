@@ -32,6 +32,8 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     };
 
     cellRef = React.createRef<HTMLElement>();
+    isRtl = window?.document?.dir === 'rtl';
+
     toggleSort = (e: React.MouseEvent) => {
         if (isEventTargetInsideClickable(e) || !this.props.column.isSortable) return;
 
@@ -75,9 +77,11 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             // How much mouse was moved after resize is started
             let widthDelta = e.clientX - this.state.resizeStartX;
 
-            // Right-pinned columns have resize handle at the left, instead of right.
-            // So moving left should increase column width, instead of decreasing as usual, and vice versa.
-            widthDelta = this.props.column.fix === 'right' ? -widthDelta : widthDelta;
+            // In RTL mode, the general behavior of widthDelta needs to be inverted.
+            // Except for right-fixed columns, where behavior remains as in LTR mode.
+            if (this.isRtl) {
+                widthDelta = -widthDelta; // Invert direction for RTL
+            }
 
             const newWidth = this.state.originalWidth + widthDelta;
             const defaultMinWidth = this.props.isFirstColumn ? 78 : 54;

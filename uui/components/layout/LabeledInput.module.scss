@@ -1,16 +1,5 @@
 @use '../../assets/styles/index' as *;
 
-@mixin label-icon-size($size) {
-    $striped-size: strip-unit($size);
-
-    &:global(.uui-icon) {
-        svg {
-            height: #{$striped-size}px;
-            width: #{$striped-size}px;
-        }
-    }
-}
-
 .root {
     --uui-labeled_input: var(--uui-text-primary);
     --uui-labeled_input-disabled: var(--uui-text-disabled);
@@ -36,6 +25,22 @@
     --uui-labeled_input-footnote-font-weight: 400;
     --uui-labeled_input-sidenote-font: var(--uui-font);
     --uui-labeled_input-sidenote-font-weight: 400;
+
+    --uui-labeled_input-font-size: var(--uui-font-size);
+    --uui-labeled_input-line-height: var(--uui-line-height);
+    --uui-labeled_input-icon-size: var(--uui-icon-size);
+    --uui-labeled_input-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-labeled_input-vertical-gap: var(--uui-vertical-gap);
+    --uui-labeled_input-sidenote-font-size: 12px;
+    --uui-labeled_input-sidenote-line-height: 18px;
+    --uui-labeled_input-footnote-font-size: 12px;
+    --uui-labeled_input-footnote-line-height: 18px;
+    --uui-labeled_input-optional-font-size: 12px;
+    --uui-labeled_input-optional-line-height: 18px;
+    --uui-labeled_input-invalid-msg-font-size: 12px;
+    --uui-labeled_input-invalid-msg-line-height: 18px;
+    --uui-labeled_input-char-counter-font-size: 12px;
+    --uui-labeled_input-char-counter-line-height: 18px;
     //
     width: 100%;
 
@@ -43,13 +48,22 @@
         @include overflow-ellipsis();
         font-family: var(--uui-labeled_input-font);
         font-weight: var(--uui-labeled_input-font-weight);
+        font-size: var(--uui-labeled_input-font-size);
+        line-height: var(--uui-labeled_input-line-height);
         color: var(--uui-labeled_input);
-        padding: 6px 0;
+        padding: calc(var(--uui-labeled_input-vertical-gap) * 2) 0;
 
         :global(.uui-labeled-input-info-icon) {
             flex-shrink: 0;
-            margin-left: 6px;
+            margin-inline-start: var(--uui-labeled_input-horizontal-gap);
             fill: var(--uui-labeled_input-info-fill);
+
+            &:global(.uui-icon) {
+                svg {
+                    height: var(--uui-labeled_input-icon-size);
+                    width: var(--uui-labeled_input-icon-size);
+                }
+            }
         }
 
         :global(.uui-labeled-input-asterisk) {
@@ -60,111 +74,55 @@
             font-family: var(--uui-labeled_input-optional-font);
             font-weight: var(--uui-labeled_input-optional-font-weight);
             font-style: var(--uui-labeled_input-optional-font-style);
-            font-size: 12px;
-            line-height: 18px;
+            font-size: var(--uui-labeled_input-optional-font-size);
+            line-height: var(--uui-labeled_input-optional-line-height);
             color: var(--uui-labeled_input-optional-text);
-            margin-left: 6px;
+            margin-inline-start: var(--uui-labeled_input-horizontal-gap);
         }
     }
 
     :global(.uui-label-left) {
         :global(.uui-label) {
-            margin-inline-end: 5px; //
+            margin-inline-end: var(--uui-labeled_input-horizontal-gap);
         }
     }
 
     :global(.uui-invalid-message) {
-        line-height: 18px;
-        font-size: 12px;
+        line-height: var(--uui-labeled_input-invalid-msg-line-height);
+        font-size: var(--uui-labeled_input-invalid-msg-font-size);
         color: var(--uui-labeled_input-error);
         font-family: var(--uui-labeled_input-invalid-msg-font);
         font-weight: var(--uui-labeled_input-invalid-msg-font-weight);
-        margin-top: 3px;
+        margin-top: var(--uui-labeled_input-vertical-gap);
     }
 
     :global(.uui-labeled-input-char-counter) {
         flex-grow: 1;
-        text-align: right;
-        line-height: 18px;
-        font-size: 12px;
+        text-align: end;
+        line-height: var(--uui-labeled_input-char-counter-line-height);
+        font-size: var(--uui-labeled_input-char-counter-font-size);
         color: var(--uui-labeled_input-char-counter);
         font-family: var(--uui-labeled_input-char-counter-font);
         font-weight: var(--uui-labeled_input-char-counter-font-weight);
-        margin-top: 3px;
+        margin-top: var(--uui-labeled_input-vertical-gap);
     }
 
     :global(.uui-labeled-input-footnote) {
-        line-height: 18px;
-        font-size: 12px;
+        line-height: var(--uui-labeled_input-footnote-line-height);
+        font-size: var(--uui-labeled_input-footnote-font-size);
         color: var(--uui-labeled_input-footnote);
         font-family: var(--uui-labeled_input-footnote-font);
         font-weight: var(--uui-labeled_input-footnote-font-weight);
-        margin-top: 3px;
+        margin-top: var(--uui-labeled_input-vertical-gap);
     }
 
     :global(.uui-labeled-input-sidenote) {
         align-self: center;
-        text-align: right;
-        line-height: 18px;
-        font-size: 12px;
+        text-align: end;
+        line-height: var(--uui-labeled_input-sidenote-line-height);
+        font-size: var(--uui-labeled_input-sidenote-font-size);
         color: var(--uui-labeled_input-sidenote);
         font-family: var(--uui-labeled_input-sidenote-font);
         font-weight: var(--uui-labeled_input-sidenote-font-weight);
-    }
-
-    // Sizes
-    &.size-24 {
-        :global(.uui-labeled-input-info-icon) {
-            @include label-icon-size(12);
-        }
-
-        :global(.uui-label) {
-            font-size: 12px;
-            line-height: 18px;
-        }
-    }
-
-    &.size-30 {
-        :global(.uui-labeled-input-info-icon) {
-            @include label-icon-size(12);
-        }
-
-        :global(.uui-label) {
-            font-size: 12px;
-            line-height: 18px;
-        }
-    }
-
-    &.size-36 {
-        :global(.uui-labeled-input-info-icon) {
-            @include label-icon-size(18);
-        }
-
-        :global(.uui-label) {
-            font-size: 14px;
-            line-height: 18px;
-        }
-    }
-
-    &.size-42 {
-        :global(.uui-labeled-input-info-icon) {
-            @include label-icon-size(18);
-        }
-
-        :global(.uui-label) {
-            font-size: 14px;
-            line-height: 18px;
-        }
-    }
-
-    &.size-48 {
-        :global(.uui-labeled-input-info-icon) {
-            @include label-icon-size(18);
-        }
-
-        :global(.uui-label) {
-            font-size: 14px;
-            line-height: 18px;
-        }
     }
 }

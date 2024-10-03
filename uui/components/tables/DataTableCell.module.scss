@@ -1,111 +1,25 @@
 @use '../../assets/styles/index' as *;
 
-@mixin data-table-icon-size($size) {
-    :global(.uui-folding-arrow) {
-        &:global(.uui-icon) {
-            svg {
-                height: #{$size}px;
-                width: #{$size}px;
-            }
-        }
-    }
-}
+.root {
+    --uui-dt-cell-size: var(--uui-size);
+    //
+    padding-inline-start: var(--uui-dt-cell-padding-start);
+    padding-inline-end: var(--uui-dt-cell-padding-end);
 
-.cell {
     &.wrapper {
         display: flex;
         align-items: flex-start;
     }
 
-    &.align-widgets-top {
-        &.size-24, &.size-30 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
-                margin-top: 6px;
-            }
+    &:global(.data-table-cell).align-widgets-top {
+        div:global(.uui-checkbox) {
+            margin-top: calc(var(--uui-dt-cell-size) / 2 - var(--uui-size) / 2);
         }
-
-        &.size-36 {
-            :global(.uui-checkbox), :global(.uui-folding-arrow) {
-                margin-top: 9px;
-            }
-        }
-
-        &.size-42 {
-            :global(.uui-checkbox) {
-                margin-top: 12px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 9px;
-            }
-        }
-
-        &.size-48 {
-            :global(.uui-checkbox) {
-                margin-top: 15px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 12px;
-            }
-        }
-
-        &.size-60 {
-            :global(.uui-checkbox) {
-                margin-top: 21px;
-            }
-
-            :global(.uui-folding-arrow) {
-                margin-top: 18px;
-            }
-        }
-    }
-
-    &.size-24 {
-        @include data-table-icon-size(12);
-    }
-
-    &.size-30 {
-        @include data-table-icon-size(18);
-    }
-
-    &.size-36 {
-        @include data-table-icon-size(18);
-    }
-
-    &.size-42 {
-        @include data-table-icon-size(24);
-    }
-
-    &.size-48 {
-        @include data-table-icon-size(24);
-    }
-
-    &.size-60 {
-        @include data-table-icon-size(24);
     }
 
     &.align-widgets-center :global(.uui-checkbox-container) {
         align-self: center;
     }
-
-    :global(.uui-dr_addons-checkbox) {
-        padding-right: 12px;
-    }
-
-    :global(.uui-dr_addons-indent) {
-        padding-right: 12px;
-    }
-
-    &.padding-6 { padding: 0 6px; }
-    &.padding-12 { padding: 0 12px; }
-    &.padding-24 { padding: 0 24px; }
-
-    &.padding-left-12 { padding-left: 12px; }
-    &.padding-left-24 { padding-left: 24px; }
-
-    &.padding-right-12 { padding-right: 12px; }
-    &.padding-right-24 { padding-right: 24px; }
 
     &:global(.uui-invalid) {
         background-color: var(--uui-dt-cell-bg-invalid);
@@ -113,12 +27,6 @@
 }
 
 :global(.uui-dt-vertical-cell-border) {
-    border-left-color: var(--uui-dt-border);
-    border-right-color: var(--uui-dt-border);
-}
-
-.loading-cell {
-    div[aria-busy='true'] > span {
-        margin: 0 3px 0 0;
-    }
+    border-inline-start-color: var(--uui-dt-border);
+    border-inline-end-color: var(--uui-dt-border);
 }

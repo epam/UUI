@@ -61,8 +61,8 @@ const TREE_SHAKEABLE_INIT = () => ({
             hiddenSectionTitle: 'Hidden in table',
             searchPlaceholder: 'Search by column name',
             noResultsFound: {
-                text: 'No results found',
-                subText: 'We can’t find any item matching your request',
+                title: 'No results found',
+                subTitle: 'We can’t find any item matching your request',
             },
             enableAtLeastOneColumnMessage: 'Please enable at least one column',
             pinColumnToTheLeftButton: 'Pin column to left',

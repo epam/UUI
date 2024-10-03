@@ -3,11 +3,11 @@ import {
     Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
-import { CountIndicator } from './CountIndicator';
+import { CountIndicator, CountIndicatorProps } from './CountIndicator';
 import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 import css from './Badge.module.scss';
 
-const DEFAULT_SIZE = '36';
 const DEFAULT_FILL = 'solid';
 
 type BadgeMods = {
@@ -48,20 +48,11 @@ function applyBadgeMods(mods: BadgeProps) {
     return [
         'uui-badge',
         css.root,
-        css['size-' + (mods.size || DEFAULT_SIZE)],
+        `uui-size-${mods.size || settings.sizes.defaults.badge}`,
         `uui-fill-${mods.fill || DEFAULT_FILL}`,
         `uui-color-${mods.color || 'info'}`,
     ];
 }
-
-const mapCountIndicatorSizes = {
-    18: '12',
-    24: '18',
-    30: '18',
-    36: '18',
-    42: '24',
-    48: '24',
-} as const;
 
 export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, BadgeProps>((props, ref) => {
     const styles = [applyBadgeMods(props), props.cx];
@@ -97,7 +88,7 @@ export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HT
                 <CountIndicator
                     key="count-indicator"
                     color={ null }
-                    size={ mapCountIndicatorSizes[props.size || DEFAULT_SIZE] }
+                    size={ settings.sizes.badge.countIndicator[props.size || settings.sizes.defaults.badge] as CountIndicatorProps['size'] }
                     caption={ props.count }
                 />
             ) }

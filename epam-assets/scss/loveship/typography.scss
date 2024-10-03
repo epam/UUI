@@ -152,9 +152,9 @@
 }
 
 @mixin typography-loveship() {
+    font-family: $font-source-sans;
+    color: $night700;
     @include typography-header();
     @include typography-block();
     @include typography-inline();
-    font-family: $font-source-sans;
-    color: $night700;
 }
