@@ -94,6 +94,7 @@
             height: var(--uui-notify-size);
             width: var(--uui-notify-size);
             background: var(--uui-critical-50);
+            box-shadow: 0 1px 8px 0 var(--uui-critical-50);
             border-radius: 50%;
         }
     }
