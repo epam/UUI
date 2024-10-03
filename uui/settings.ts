@@ -270,5 +270,12 @@ export const settings: Settings = {
                 },
             },
         },
+        tabButton: {
+            countIndicator: {
+                36: '18',
+                48: '18',
+                60: '18',
+            },
+        },
     },
 };
