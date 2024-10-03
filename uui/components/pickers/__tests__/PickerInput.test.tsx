@@ -1385,6 +1385,10 @@ describe('PickerInput', () => {
             getId: ({ id }) => id,
         });
 
+        const mockConsoleError = jest.fn();
+        const prevConsoleError = console.error;
+        console.error = mockConsoleError;
+
         const customText = 'Custom Text or Component';
 
         const { dom } = await setupPickerInputForTest({
@@ -1401,6 +1405,9 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input);
         const notFound = within(await screen.findByRole('dialog')).getByTestId('test-custom-not-found');
         expect(notFound).toHaveTextContent(customText);
+        expect(mockConsoleError).toBeCalled();
+
+        console.error = prevConsoleError;
     });
 
     it('should render message in body for not enough chars in search while using minCharsToSearch', async () => {
