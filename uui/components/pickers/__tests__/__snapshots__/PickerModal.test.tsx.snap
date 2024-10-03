@@ -20,14 +20,14 @@ exports[`PickerModal should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "700px",
+        "height": 700,
         "maxHeight": "80dvh",
-        "width": "600px",
+        "width": 600,
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -36,7 +36,12 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
+        style={
+          Object {
+            "--uui-text-font-size": "18px",
+          }
+        }
       >
         Please select
       </div>
@@ -88,7 +93,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="uui-flex-row root size-36 vPadding-24 container align-items-center"
+        className="uui-flex-row root uui-size-36 vPadding-24 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -114,7 +119,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
             aria-invalid={false}
             autoFocus={true}
             className="uui-input"
-            dir="auto"
+            dir="ltr"
             inputMode="search"
             onBlur={[Function]}
             onChange={[Function]}
@@ -129,7 +134,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
+      className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -198,10 +203,11 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -231,10 +237,11 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -253,7 +260,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               Elementary
                             </div>
@@ -281,10 +288,11 @@ exports[`PickerModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -314,10 +322,11 @@ exports[`PickerModal should be rendered correctly 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -336,7 +345,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               Elementary+
                             </div>
@@ -396,7 +405,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -456,14 +465,14 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "700px",
+        "height": 700,
         "maxHeight": "80dvh",
-        "width": "600px",
+        "width": 600,
       }
     }
   >
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -472,7 +481,12 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
+        className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
+        style={
+          Object {
+            "--uui-text-font-size": "18px",
+          }
+        }
       >
         Please select
       </div>
@@ -524,7 +538,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       }
     >
       <div
-        className="uui-flex-row root size-36 vPadding-24 container align-items-center"
+        className="uui-flex-row root uui-size-36 vPadding-24 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -550,7 +564,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
             aria-invalid={false}
             autoFocus={true}
             className="uui-input"
-            dir="auto"
+            dir="ltr"
             inputMode="search"
             onBlur={[Function]}
             onChange={[Function]}
@@ -590,7 +604,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </label>
     </div>
     <div
-      className="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
+      className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -659,10 +673,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -707,10 +722,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -729,7 +745,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               C2
                             </div>
@@ -757,10 +773,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -805,10 +822,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -827,7 +845,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               C1+
                             </div>
@@ -855,10 +873,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -903,10 +922,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -925,7 +945,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               C1
                             </div>
@@ -953,10 +973,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1001,10 +1022,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1023,7 +1045,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               B2+
                             </div>
@@ -1051,10 +1073,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1099,10 +1122,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1121,7 +1145,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               B2
                             </div>
@@ -1149,10 +1173,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1197,10 +1222,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1219,7 +1245,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               B1+
                             </div>
@@ -1247,10 +1273,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1295,10 +1322,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1317,7 +1345,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               B1
                             </div>
@@ -1345,10 +1373,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1393,10 +1422,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1415,7 +1445,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               A2+
                             </div>
@@ -1443,10 +1473,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1491,10 +1522,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1513,7 +1545,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               A2
                             </div>
@@ -1541,10 +1573,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1589,10 +1622,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1611,7 +1645,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               A1+
                             </div>
@@ -1639,10 +1673,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                 }
               >
                 <div
-                  className="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                  className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                   role="cell"
                   style={
                     Object {
+                      "--uui-data_picker_cell-horizontal-padding": "24px",
                       "alignSelf": undefined,
                       "flexBasis": "0",
                       "flexGrow": 1,
@@ -1687,10 +1722,11 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                         }
                       >
                         <div
-                          className="uui-flex-row root size-36 container align-items-center"
+                          className="uui-flex-row root uui-size-36 columnGap container align-items-center"
                           style={
                             Object {
-                              "columnGap": "12px",
+                              "--uui-picker_item-vertical-padding": "9px",
+                              "columnGap": undefined,
                               "rowGap": undefined,
                             }
                           }
@@ -1709,7 +1745,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                             }
                           >
                             <div
-                              className="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                              className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                             >
                               A1
                             </div>
@@ -1769,7 +1805,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -1847,11 +1883,12 @@ exports[`PickerModal should open body 1`] = `
         style="width: 600px; height: 700px; max-height: 80dvh;"
       >
         <div
-          class="uui-flex-row root size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
+          class="uui-flex-row root uui-size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
           style="column-gap: 12px;"
         >
           <div
-            class="root uui-text uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography line-height-24 font-size-18 v-padding-12 container"
+            class="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
+            style="--uui-text-font-size: 18px;"
           >
             Please select
           </div>
@@ -1883,7 +1920,7 @@ exports[`PickerModal should open body 1`] = `
           style="min-width: 0; flex-basis: 0px;"
         >
           <div
-            class="uui-flex-row root size-36 vPadding-24 container align-items-center"
+            class="uui-flex-row root uui-size-36 vPadding-24 container align-items-center"
           >
             <div
               class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
@@ -1900,7 +1937,7 @@ exports[`PickerModal should open body 1`] = `
               <input
                 aria-invalid="false"
                 class="uui-input"
-                dir="auto"
+                dir="ltr"
                 inputmode="search"
                 placeholder="Type text for quick search"
                 tabindex="-1"
@@ -1911,7 +1948,7 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root size-36 uui-pickerInput-body modal undefined container align-items-center"
+          class="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -1934,9 +1971,9 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
-                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 24px;"
                     >
                       <div
                         class="contentWrapper"
@@ -1949,15 +1986,15 @@ exports[`PickerModal should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                              style="--uui-picker_item-vertical-padding: 9px;"
                             >
                               <div
                                 class="flexCell"
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Elementary
                                 </div>
@@ -1978,9 +2015,9 @@ exports[`PickerModal should open body 1`] = `
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell size-36 padding-24 padding-left-24 align-widgets-top"
+                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
-                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                      style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 24px;"
                     >
                       <div
                         class="contentWrapper"
@@ -1993,15 +2030,15 @@ exports[`PickerModal should open body 1`] = `
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="uui-flex-row root size-36 container align-items-center"
-                              style="column-gap: 12px;"
+                              class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                              style="--uui-picker_item-vertical-padding: 9px;"
                             >
                               <div
                                 class="flexCell"
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography line-height-18 font-size-14 v-padding-9 text container"
+                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
                                 >
                                   Elementary+
                                 </div>
@@ -2066,7 +2103,7 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+          class="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
           style="column-gap: 12px;"
         >
           <div

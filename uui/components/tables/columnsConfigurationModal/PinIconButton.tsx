@@ -37,22 +37,18 @@ export function PinIconButton(props: IPinIconButton) {
         );
     } else {
         pinUnpinNode = (
-            <span style={ { display: 'flex', gap: '12px' } }>
+            <>
                 <Tooltip content={ i18nLocal.pinColumnToTheLeftButton } placement="bottom" color="inverted">
-                    <IconButton cx={ css.pinTogglerIcon } icon={ PinLeftIcon } onClick={ () => onTogglePin('left') } isDisabled={ isPinnedAlways } color={ undefined } />
+                    <IconButton cx={ css.pinTogglerIcon } icon={ PinLeftIcon } onClick={ () => onTogglePin('left') } isDisabled={ isPinnedAlways } />
                 </Tooltip>
                 <Tooltip content={ i18nLocal.pinColumnToTheRightButton } placement="bottom" color="inverted">
-                    <IconButton cx={ css.pinTogglerIcon } icon={ PinRightIcon } onClick={ () => onTogglePin('right') } isDisabled={ isPinnedAlways } color={ undefined } />
+                    <IconButton cx={ css.pinTogglerIcon } icon={ PinRightIcon } onClick={ () => onTogglePin('right') } isDisabled={ isPinnedAlways } />
                 </Tooltip>
-            </span>
+            </>
         );
     }
 
-    return (
-        <span>
-            { pinUnpinNode }
-        </span>
-    );
+    return pinUnpinNode;
 }
 
 function getUnpinIcon(params: { isPinnedAlways: boolean, pinPosition: TPinPosition }): Icon | undefined {

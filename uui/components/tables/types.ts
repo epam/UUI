@@ -1,11 +1,12 @@
 import { ControlSize } from '../types';
 
-interface BaseRowMods {
-    size?: ControlSize | '60';
-}
+export interface DataTableModsOverride {}
 
 export interface DataTableMods {
-    /** Min height of table rows and header */
+    /**
+     *  Min height of table rows and header
+     *  @default '36'
+     * */
     size?: ControlSize;
     /** Pass true, to turn row bottom border */
     border?: boolean;
@@ -13,6 +14,16 @@ export interface DataTableMods {
      * @default 'normal'
      * */
     headerTextCase?: 'upper' | 'normal';
+    /**
+     * Defines table header size
+     * @default '36'
+     * */
+    headerSize?: '36' | '48' | '60';
+    /**
+     * Defines table columns gap size
+     * @default '24'
+     * */
+    columnsGap?: '12' | '24';
 }
 
 interface TableSizesAndPositionMods {
@@ -22,7 +33,7 @@ interface TableSizesAndPositionMods {
 }
 
 export interface DataTableRowMods extends TableSizesAndPositionMods {
-    borderBottom?: any;
+    borderBottom?: boolean;
     /**
      * Defines columns gap size
      * @default '24'
@@ -30,7 +41,7 @@ export interface DataTableRowMods extends TableSizesAndPositionMods {
     columnsGap?: '12' | '24';
 }
 
-export interface DataTableCellMods extends TableSizesAndPositionMods {
+export interface DataTableCellMods extends Omit<TableSizesAndPositionMods, 'padding'> {
     border?: boolean;
     /**
      * Defines table columns gap size
@@ -39,20 +50,30 @@ export interface DataTableCellMods extends TableSizesAndPositionMods {
     columnsGap?: '12' | '24';
 }
 
-export interface DataTableHeaderCellMods extends BaseRowMods {
+export interface DataTableHeaderCellMods {
     textCase?: 'upper' | 'normal';
     /**
      * Defines table columns gap size
      * @default '24'
      * */
     columnsGap?: '12' | '24';
+    /**
+     * Defines table header cell size
+     * @default '36'
+     */
+    size?: DataTableMods['headerSize'];
 }
 
-export interface DataTableHeaderRowMods extends BaseRowMods {
+export interface DataTableHeaderRowMods {
     textCase?: 'upper' | 'normal';
     /**
      * Defines table columns gap size
      * @default '24'
      * */
     columnsGap?: '12' | '24';
+    /**
+     * Defines table header row size
+     * @default '36'
+     */
+    size?: DataTableMods['headerSize'];
 }

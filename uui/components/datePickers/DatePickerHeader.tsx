@@ -13,11 +13,11 @@ import {
 } from './helpers';
 
 export const uuiHeader = {
-    container: 'uui-datepickerheader-container',
-    header: 'uui-datepickerheader-header',
-    navTitle: 'uui-datepickerheader-nav-title',
-    navIconRight: 'uui-datepickerheader-nav-icon-right',
-    navIconLeft: 'uui-datepickerheader-nav-icon-left',
+    container: 'uui-datepicker-header-container',
+    headerNav: 'uui-datepicker-header-nav',
+    navTitle: 'uui-datepicker-header-nav-title',
+    navIconRight: 'uui-datepicker-header-nav-icon-right',
+    navIconLeft: 'uui-datepicker-header-nav-icon-left',
 };
 
 interface DatePickerHeaderValue {
@@ -124,8 +124,8 @@ export function DatePickerHeader({
     const disableNext = view === 'YEAR_SELECTION' && !isYearWithinSoberRange(getNextYearsList(month));
 
     return (
-        <div className={ cx(css.container, uuiHeader.container, cx) }>
-            <header className={ uuiHeader.header }>
+        <div className={ cx(css.root, uuiHeader.container, cx) }>
+            <header className={ uuiHeader.headerNav }>
                 <Button
                     icon={ navIconLeft || LeftArrowIcon }
                     color="secondary"

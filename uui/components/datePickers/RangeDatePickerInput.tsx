@@ -1,21 +1,13 @@
-import React, {
-    forwardRef, useEffect, useState,
-} from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps } from '@epam/uui-core';
+import { RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
+import { defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
-import {
-    IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps,
-} from '@epam/uui-core';
 import { TextInput, TextInputProps } from '../inputs';
-import {
-    RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
-} from './types';
 import { systemIcons } from '../../icons/icons';
 import { i18n } from '../../i18n';
-import css from './RangeDatePicker.module.scss';
-import {
-    defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat,
-} from './helpers';
 import { settings } from '../../settings';
+import css from './RangeDatePickerInput.module.scss';
 
 /**
  * Represents RangeDatePickerInputProps
@@ -125,9 +117,10 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         <div
             ref={ ref }
             className={ cx(
-                classes,
-                css.dateInputGroup,
+                `uui-size-${size || settings.sizes.defaults.rangeDatePicker}`,
                 'uui-range-date-picker',
+                classes,
+                css.root,
                 isDisabled && uuiMod.disabled,
                 isReadonly && uuiMod.readonly,
                 isInvalid && uuiMod.invalid,

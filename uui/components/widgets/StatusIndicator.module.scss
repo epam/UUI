@@ -1,78 +1,51 @@
 .root {
+    --uui-status_indicator-bg: var(--uui-color-50);
+    --uui-status_indicator-caption: var(--uui-text-primary);
+    //
+    --uui-status_indicator-font-family: var(--uui-font);
+    --uui-status_indicator-font-weight: 400;
+    // size
+    --uui-status_indicator-border-width: var(--uui-border-width);
+    --uui-status_indicator-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-status_indicator-dot-size: var(--uui-dot-size);
+    --uui-status_indicator-line-height: var(--uui-line-height);
+    --uui-status_indicator-font-size: var(--uui-font-size);
+    //
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
-    font-family: var(--uui-font);
-    font-weight: normal;
-    color: var(--uui-text-primary);
+    justify-content: start;
 
-    :global(.uui-status_indicator_dot) {
+    :global(.uui-status_indicator-dot) {
         box-sizing: border-box;
         border-radius: 50%;
-        background-color: var(--uui-color-50);
-        margin-right: 6px;
+        background-color: var(--uui-status_indicator-bg);
+        margin-inline-end: var(--uui-status_indicator-horizontal-gap);
+        width: var(--uui-status_indicator-dot-size);
+        height: var(--uui-status_indicator-dot-size);
     }
 
-    :global(.uui-status_indicator_caption) {
+    :global(.uui-status_indicator-caption) {
         padding: 0;
         margin: 0;
         font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 18px;
-    }
-
-    &:global(.uui-color-white) {
-        :global(.uui-status_indicator_dot) {
-            background-color: var(--uui-neutral-0);
-        }
+        font-family: var(--uui-status_indicator-font-family);
+        font-weight: var(--uui-status_indicator-font-weight);
+        font-size: var(--uui-status_indicator-font-size);
+        line-height: var(--uui-status_indicator-line-height);
+        color: var(--uui-status_indicator-caption);
     }
 
     &:global(.uui-color-neutral) {
-        :global(.uui-status_indicator_dot) {
-            background-color: var(--uui-neutral-60);
+        :global(.uui-status_indicator-dot) {
+            --uui-status_indicator-bg: var(--uui-neutral-60);
         }
     }
 
     &:global(.uui-fill-outline) {
-        :global(.uui-status_indicator_dot) {
-            background-color: color-mix(in srgb, var(--uui-color-50) 20%, transparent);
-            border: 1px solid var(--uui-color-50);
-        }
-
-        &:global(.uui-color-neutral) {
-            :global(.uui-status_indicator_dot) {
-                background-color: color-mix(in srgb, var(--uui-neutral-60) 20%, transparent);
-                border: 1px solid var(--uui-neutral-60);
-            }
-        }
-    }
-
-    &.size-12 {
-        :global(.uui-status_indicator_dot) {
-            margin-right: 4px;
-            width: 6px;
-            height: 6px;
-        }
-
-        :global(.uui-status_indicator_caption) {
-            font-size: 12px;
-            line-height: 12px;
-        }
-    }
-
-    &.size-18 {
-        :global(.uui-status_indicator_dot) {
-            width: 8px;
-            height: 8px;
-        }
-    }
-
-    &.size-24 {
-        :global(.uui-status_indicator_dot) {
-            width: 10px;
-            height: 10px;
+        :global(.uui-status_indicator-dot) {
+            background-color: color-mix(in srgb, var(--uui-status_indicator-bg) 20%, transparent);
+            border: var(--uui-status_indicator-border-width) solid var(--uui-status_indicator-bg);
         }
     }
 }

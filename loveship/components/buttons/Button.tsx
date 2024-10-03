@@ -54,7 +54,7 @@ export const Button = createSkinComponent<uui.ButtonProps, ButtonProps>(
     uui.Button,
     (props) => {
         return {
-            fill: mapFill[props.fill] || mapFill.solid as any,
+            fill: mapFill[props.fill] || mapFill.solid,
         };
     },
     applyButtonMods,

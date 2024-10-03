@@ -39,8 +39,8 @@
     }
 
     .close-icon {
-        @include icon-size(24);
         padding: 6px 0;
+        @include icon-size(24);
     }
 
     .main-path {

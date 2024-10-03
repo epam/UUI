@@ -33,16 +33,34 @@
 
     --uui-text_area-font: var(--uui-font);
     --uui-text_area-font-weight: 400;
+
+    --uui-text_area-min-height: var(--uui-size);
+    --uui-text_area-min-width: var(--uui-size);
+    --uui-text_area-border-width: var(--uui-border-width);
+    --uui-text_area-horizontal-padding: var(--uui-horizontal-padding);
+    --uui-text_area-inline-horizontal-padding: 5px;
+    --uui-text_area-vertical-padding: calc((var(--uui-text_area-min-height) - var(--uui-text_area-line-height) - (var(--uui-text_area-border-width) * 2)) / 2);
+    --uui-text_area-icon-height: var(--uui-icon-size);
+    --uui-text_area-line-height: var(--uui-line-height);
+    --uui-text_area-font-size: var(--uui-font-size);
     //
+    min-width: var(--uui-text_area-min-width);
+    min-height: var(--uui-text_area-min-height);
+
     :global(.uui-input) {
+        min-height: var(--uui-text_area-min-height);
+        line-height: var(--uui-text_area-line-height);
+        font-size: var(--uui-text_area-font-size);
+        padding-top: var(--uui-text_area-vertical-padding);
+        padding-bottom: var(--uui-text_area-vertical-padding);
+        padding-inline-start: calc(var(--uui-text_area-horizontal-padding) - var(--uui-text_area-border-width));
+        padding-inline-end: calc((var(--uui-text_area-horizontal-padding) * 1.5) - var(--uui-text_area-border-width));
         color: var(--uui-text_area-text);
         border-style: solid;
         border-radius: var(--uui-text_area-border-radius);
         font-family: var(--uui-text_area-font);
         font-weight: var(--uui-text_area-font-weight);
         box-sizing: border-box;
-        padding-right: 18px;
-        padding-left: 12px;
         overflow-x: hidden;  // Firefox add an extra row in textarea when overflow-x is not hidden
 
         &::placeholder {
@@ -122,9 +140,9 @@
 
     &.mode-inline {
         :global(.uui-input) {
+            padding-left: var(--uui-text_area-inline-horizontal-padding);
+            padding-right: var(--uui-text_area-inline-horizontal-padding);
             @include control-inline-mode();
-            padding-left: 5px;
-            padding-right: 5px;
 
             &:global(.uui-invalid) {
                 border-color: var(--uui-text_area-border-error);
@@ -161,58 +179,6 @@
                     color: var(--uui-text_area-placeholder-disabled);
                 }
             }
-        }
-    }
-
-    //Sizes
-    &.size-24 {
-        min-width: 24px;
-        min-height: 24px;
-
-        :global(.uui-input) {
-            @include text-size(24px, 1px);
-            min-height: 24px;
-        }
-    }
-
-    &.size-30 {
-        min-width: 30px;
-        min-height: 30px;
-
-        :global(.uui-input) {
-            @include text-size(30px, 1px);
-            min-height: 30px;
-        }
-    }
-
-    &.size-36 {
-        min-width: 36px;
-        min-height: 36px;
-
-        :global(.uui-input) {
-            @include text-size(36px, 1px);
-            min-height: 36px;
-        }
-    }
-
-    &.size-42 {
-        min-width: 42px;
-        min-height: 42px;
-
-        :global(.uui-input) {
-            @include text-size(42px, 1px);
-            min-height: 42px;
-        }
-    }
-
-
-    &.size-48 {
-        min-width: 48px;
-        min-height: 48px;
-
-        :global(.uui-input) {
-            @include text-size(48px, 1px);
-            min-height: 48px;
         }
     }
 }

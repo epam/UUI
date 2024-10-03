@@ -1,70 +1,6 @@
 @use '../../assets/styles/index' as *;
 @use 'sass:math';
 
-@mixin scalable-icon-size($size, $additionalClass: '') {
-    $striped-size: strip-unit($size);
-
-    #{$additionalClass}:global(.uui-icon) {
-        svg {
-            @if ($striped-size == 18) {
-                height: 12px;
-            } @else if ($striped-size == 24) {
-                height: 18px;
-            } @else if ($striped-size == 30) {
-                height: 18px;
-            } @else if ($striped-size == 36) {
-                height: 18px;
-            } @else if ($striped-size == 42) {
-                height: 24px;
-            } @else if ($striped-size == 48) {
-                height: 24px;
-            }
-            width: inherit;
-        }
-    }
-}
-
-@mixin badge-layout($size, $borderWidth) {
-    min-height: $size;
-    min-width: $size;
-    border-radius: math.div($size, 2);
-
-    @if ($size == 18px) {
-        @include partial-calc(3px, 3px, 6px, $borderWidth);
-    } @else if ($size == 24px) {
-        @include partial-calc(3px, 6px, 8px, $borderWidth);
-    } @else if ($size == 30px) {
-        @include partial-calc(6px, 6px, 8px, $borderWidth);
-    } @else if ($size == 36px) {
-        @include partial-calc(9px, 6px, 8px, $borderWidth);
-    } @else if ($size == 42px) {
-        @include partial-calc(12px, 6px, 10px, $borderWidth);
-    } @else if ($size == 48px) {
-        @include partial-calc(12px, 6px, 12px, $borderWidth);
-    }
-
-    @include scalable-icon-size($size);
-}
-
-@mixin partial-calc($controlPadding, $captionPadding, $dotSize, $borderWidth) {
-    padding-left: $controlPadding - $borderWidth;
-    padding-right: $controlPadding - $borderWidth;
-
-    :global(.uui-icon):first-child {
-        padding-left: 3px;
-    }
-
-    :global(.uui-caption) {
-        padding-left: $captionPadding;
-        padding-right: $captionPadding;
-    }
-
-    :global(.uui-indicator) {
-        width: $dotSize;
-        height: $dotSize;
-    }
-}
-
 .root {
     --uui-badge-bg: var(--uui-color-50);
     --uui-badge-bg-hover: var(--uui-color-60);
@@ -75,13 +11,62 @@
 
     --uui-badge-font: var(--uui-font);
     --uui-badge-font-weight: 400;
-    //
+
+    --uui-badge-min-height: var(--uui-size);
+    --uui-badge-min-width: var(--uui-size);
+    --uui-badge-dot-size: var(--uui-dot-size);
+    --uui-badge-border-width: var(--uui-border-width);
+    --uui-badge-horizontal-gap: var(--uui-horizontal-gap);
+    --uui-badge-horizontal-padding: var(--uui-horizontal-padding);
+    --uui-badge-caption-padding: calc((var(--uui-badge-min-height) - var(--uui-badge-line-height) - (var(--uui-badge-border-width) * 2)) / 2) var(--uui-horizontal-gap);
+    --uui-badge-icon-height: var(--uui-icon-size);
+    --uui-badge-line-height: var(--uui-line-height);
+    --uui-badge-font-size: var(--uui-font-size);
+    --uui-badge-additional-gap: 3px;
+
     @include clickable-styles();
-    background-color: var(--uui-badge-bg);
-    color: var(--uui-badge-caption);
-    fill: var(--uui-badge-caption); // ??? separate variable
-    border-color: var(--uui-badge-border);
-    justify-content: center;
+
+    & {
+        background-color: var(--uui-badge-bg);
+        color: var(--uui-badge-caption);
+        fill: var(--uui-badge-caption); // ??? separate variable
+        border-color: var(--uui-badge-border);
+        justify-content: center;
+        min-height: var(--uui-badge-min-height);
+        min-width: var(--uui-badge-min-width);
+        border-radius: calc(var(--uui-badge-min-height) / 2);
+        padding-inline-start: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
+        padding-inline-end: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
+    }
+
+    :global(.uui-icon) {
+        &:first-child {
+            padding-inline-start: var(--uui-badge-additional-gap);
+        }
+
+        svg {
+            height: var(--uui-badge-icon-height);
+            width: inherit;
+        }
+    }
+
+    :global(.uui-indicator) {
+        display: block;
+        margin: auto 0;
+        border-radius: 50%;
+        background-color: var(--uui-badge-caption);
+        width: var(--uui-badge-dot-size);
+        height: var(--uui-badge-dot-size);
+        margin-inline-start: var(--uui-badge-horizontal-gap);
+    }
+
+    :global(.uui-caption) {
+        padding: var(--uui-badge-caption-padding);
+        line-height: var(--uui-badge-line-height);
+        font-size: var(--uui-badge-font-size);
+        font-family: var(--uui-badge-font);
+        font-weight: var(--uui-badge-font-weight);
+    }
 
     &:global(.-clickable) {
         &:hover {
@@ -93,120 +78,18 @@
         }
     }
 
-    :global(.uui-caption) {
-        font-family: var(--uui-badge-font);
-        font-weight: var(--uui-badge-font-weight);
-    }
-
     &:global(.uui-button-box) {
-        border-width: 1px;
+        border-width: var(--uui-badge-border-width);
         border-style: solid;
 
     }
 
     &:global(.-clickable):focus-visible {
-        @include focus-visible-effect(2px, null);
+        @include focus-visible-effect(2px, null);  // todo
     }
 
     :global(.uui-count_indicator) {
-        margin-right: 3px;
-    }
-
-    :global(.uui-indicator) {
-        display: block;
-        margin: auto 0;
-        border-radius: 50%;
-        background-color: var(--uui-badge-caption);
-    }
-
-    &.size-18 {
-        @include badge-layout(18px, 1px);
-
-        :global(.uui-indicator) {
-            margin-inline-start: 3px;
-        }
-
-        :global(.uui-caption) {
-            padding-top: 2px;
-            padding-bottom: 2px;
-            line-height: 12px;
-            font-size: 12px;
-        }
-    }
-
-    &.size-24 {
-        @include badge-layout(24px, 1px);
-
-        :global(.uui-indicator) {
-            margin-inline-start: 6px;
-        }
-
-        :global(.uui-caption) {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 12px;
-            font-size: 12px;
-        }
-    }
-
-    &.size-30 {
-        @include badge-layout(30px, 1px);
-
-        :global(.uui-indicator) {
-            margin-inline-start: 6px;
-        }
-
-        :global(.uui-caption) {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            line-height: 18px;
-            font-size: 14px;
-        }
-    }
-
-    &.size-36 {
-        @include badge-layout(36px, 1px);
-
-        :global(.uui-indicator) {
-            margin-inline-start: 6px;
-        }
-
-        :global(.uui-caption) {
-            padding-top: 8px;
-            padding-bottom: 8px;
-            line-height: 18px;
-            font-size: 14px;
-        }
-    }
-
-    &.size-42 {
-        @include badge-layout(42px, 1px);
-
-        :global(.uui-caption) {
-            padding-top: 8px;
-            padding-bottom: 8px;
-            line-height: 24px;
-            font-size: 16px;
-        }
-
-        :global(.uui-indicator) {
-            margin-inline-start: 6px;
-        }
-    }
-
-    &.size-48 {
-        @include badge-layout(48px, 1px);
-
-        :global(.uui-indicator) {
-            margin-inline-start: 6px;
-        }
-
-        :global(.uui-caption) {
-            padding-top: 11px;
-            padding-bottom: 11px;
-            line-height: 24px;
-            font-size: 16px;
-        }
+        margin-inline-end: var(--uui-badge-additional-gap);
     }
 
     &:global(.uui-fill-solid) {

@@ -5,7 +5,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
 @mixin theme-loveship_dark {
-    @include tokens.theme-tokens;
     --uui-font: 'Source Sans Pro', sans-serif;
     --uui-font-mono: 'Roboto Mono', monospace;
 
@@ -14,11 +13,11 @@
     --uui-shadow-level-2: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 22px 3px rgba(0, 0, 0, 0.26);
     --uui-shadow-level-3: 0 1px 2px rgba(0, 0, 0, 0.2), 0 3px 25px 3px rgba(0, 0, 0, 0.56);
 
-    --uui-border-radius: 3px;
+    @include tokens.theme-tokens;
 
-    /* core variables end */
-
-    /* ------------------------------------ */
+    & {
+        --uui-border-radius: 3px;
+    }
 
     /* begin color classes */
 
@@ -498,7 +497,7 @@
     /* Status Indicator */
 
     .uui-status_indicator.uui-color-white.uui-fill-outline {
-        .uui-status_indicator_dot {
+        .uui-status_indicator-dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--white);
         }
@@ -506,12 +505,12 @@
 
     .uui-status_indicator.uui-color-night600,
     .uui-status_indicator.uui-color-neutral {
-        .uui-status_indicator_dot {
+        .uui-status_indicator-dot {
             background-color: var(--uui-neutral-30);
         }
 
         &.uui-fill-outline {
-            .uui-status_indicator_dot {
+            .uui-status_indicator-dot {
                 background-color: color-mix(in srgb, var(--uui-neutral-30) 20%, transparent);
                 border: 1px solid var(--uui-neutral-30);
             }
@@ -718,8 +717,8 @@
 
     /* PickerInput */
 
-    .uui-pickerInput-body {
-        --uui-pickerInput-selected_mark: var(--uui-info-60);
+    .uui-picker_input-body {
+        --uui-picker_input-selected_mark: var(--uui-info-60);
     }
 
     /* fonts */
@@ -818,6 +817,6 @@
 }
 
 .uui-theme-loveship_dark {
-    @include uui-6px-grid();
     @include theme-loveship_dark();
+    @include uui-6px-grid();
 }

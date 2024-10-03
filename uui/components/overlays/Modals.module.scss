@@ -29,8 +29,12 @@
         box-shadow: var(--uui-modals-shadow);
 
         @media (max-width: 720px) {
+            position: fixed;
+            inset-inline-start: 0;
+            inset-block-end: 0;
             min-width: 100vw;
-            border-radius: 0;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
         }
 
         :global(.uui-shadow-top)::before {
@@ -48,6 +52,12 @@
 .modal-footer {
     border-bottom-left-radius: var(--uui-modals-border-radius);
     border-bottom-right-radius: var(--uui-modals-border-radius);
+
+    @media (max-width: 720px) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+    }
 }
 
 .modal-header {

@@ -17,9 +17,15 @@
     --uui-flex-row-bg: transparent;
     --uui-flex-row-border: 1px solid var(--uui-divider);
     //
+    --uui-flex-row-size: var(--uui-size);
+    //
     // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.
     box-sizing: content-box;
     background-color: var(--uui-flex-row-bg);
+
+    &[class*='uui-size-'] {
+        min-height: var(--uui-flex-row-size);
+    }
 
     &.border-top {
         border-top: var(--uui-flex-row-border);
@@ -31,26 +37,6 @@
 
     &.top-shadow {
         @include panel-top-shadow();
-    }
-
-    &.size-24 {
-        min-height: 24px;
-    }
-
-    &.size-30 {
-        min-height: 30px;
-    }
-
-    &.size-36 {
-        min-height: 36px;
-    }
-
-    &.size-42 {
-        min-height: 42px;
-    }
-
-    &.size-48 {
-        min-height: 48px;
     }
 
     &.padding-6 {

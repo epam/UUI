@@ -4,8 +4,8 @@
 
     .link-container {
         display: flex;
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-inline-start: 9px;
+        padding-inline-end: 9px;
         align-items: center;
         min-height: 60px;
 
@@ -14,7 +14,7 @@
         }
 
         .link-caption {
-            padding-left: 6px;
+            padding-inline-start: 6px;
             color: var(--uui-main_menu-text);
             white-space: nowrap;
         }

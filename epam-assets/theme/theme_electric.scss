@@ -6,7 +6,6 @@
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
 @mixin theme-electric {
-    @include tokens.theme-tokens;
     --uui-font: 'Source Sans Pro', sans-serif;
     --uui-font-mono: 'Roboto Mono', monospace;
 
@@ -20,17 +19,15 @@
     --gradient-5: linear-gradient(90deg, #1294E2 0%, #92B4FF 46.64%, #C3A6FF 100%);
 
     /* shadows */
-    --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.15), 0 3px 6px rgba(29, 30, 38, 0.1);
-    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.1), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
-    --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 24px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.1);
+    --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.05), 0 3px 6px rgba(29, 30, 38, 0.1);
+    --uui-shadow-level-2: 0 6px 12px rgba(29, 30, 38, 0.05), 0 3px 12px rgba(29, 30, 38, 0.1), 0 0 6px rgba(29, 30, 38, 0.05);
+    --uui-shadow-level-3: 0 0 10px rgba(29, 30, 38, 0.05), 0 6px 36px rgba(29, 30, 38, 0.12), 0 9px 15px rgba(29, 30, 38, 0.05);
 
-    --uui-border-radius: 3px;
+    @include tokens.theme-tokens;
 
-    /* core variables end */
-
-    /* ------------------------------------ */
-
-    /* override variables */
+    & {
+        --uui-border-radius: 3px;
+    }
 
     /* begin color classes */
     .uui-color-fire {
@@ -319,7 +316,7 @@
     /* Status Indicator */
 
     .uui-status_indicator.uui-color-white.uui-fill-outline {
-        .uui-status_indicator_dot {
+        .uui-status_indicator-dot {
             background-color: color-mix(in srgb, var(--white) 20%, transparent);
             border: 1px solid var(--uui-neutral-40);
         }
@@ -513,6 +510,6 @@
 }
 
 .uui-theme-electric {
-    @include uui-6px-grid();
     @include theme-electric();
+    @include uui-6px-grid();
 }

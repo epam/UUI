@@ -46,16 +46,16 @@
 }
 
 .fixed-columns-section-left {
-    left: 0;
+    inset-inline-start: 0;
 
     // Compensate negative padding of cells to overlap borders
     // W/o this, we'll have additional --uui-cell-border-width pixels at the right
     // We don't have access to the --uui-cell-border-width var. Hard-coded 1px for now.
-    border-right: 1px solid transparent;
+    border-inline-end: 1px solid transparent;
 }
 
 .fixed-columns-section-right {
-    right: 0;
+    inset-inline-end: 0;
 }
 
 @mixin scroll-shadow($position) {
@@ -70,9 +70,9 @@
 }
 
 :global(.uui-scroll-shadow-left) {
-    @include scroll-shadow(left);
+    @include scroll-shadow('inset-inline-start');
 }
 
 :global(.uui-scroll-shadow-right) {
-    @include scroll-shadow(right);
+    @include scroll-shadow('inset-inline-end');
 }

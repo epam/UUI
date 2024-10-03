@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { DataTableHeaderCellProps, uuiMarkers, uuiDataTableHeaderCell, IDropdownTogglerProps, cx, DataColumnProps } from '@epam/uui-core';
-import { DataTableHeaderCell as UuiDataTableHeaderCell, HeaderCellContentProps, DataTableCellContainer } from '@epam/uui-components';
+import {
+    cx, DataColumnProps, DataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
+} from '@epam/uui-core';
+import {
+    DataTableCellContainer,
+    DataTableHeaderCell as UuiDataTableHeaderCell,
+    HeaderCellContentProps,
+} from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
 import { DataTableHeaderCellMods } from './types';
 import { IconButton } from '../buttons';
-import { Checkbox } from '../inputs';
+import { Checkbox, CheckboxProps } from '../inputs';
 import { Tooltip } from '../overlays';
-import { Text } from '../typography';
+import { Text, TextProps } from '../typography';
 import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/table-swap-outline.svg';
 import { ReactComponent as SortIcon } from '@epam/assets/icons/table-sort_asc-outline.svg';
 import { ReactComponent as SortIconDesc } from '@epam/assets/icons/table-sort_desc-outline.svg';
@@ -16,6 +22,8 @@ import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/navigat
 import { ReactComponent as FoldIcon } from '@epam/assets/icons/navigation-collapse_all-outline.svg';
 import { ReactComponent as UnfoldIcon } from '@epam/assets/icons/navigation-expand_all-outline.svg';
 import { i18n } from '../../i18n';
+import { settings } from '../../settings';
+
 import './variables.scss';
 import css from './DataTableHeaderCell.module.scss';
 
@@ -23,28 +31,45 @@ interface DataTableHeaderCellState {
     isDropdownOpen: boolean;
 }
 
-export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId> & DataTableHeaderCellMods, DataTableHeaderCellState> {
+export interface DataTableHeaderCellModsOverride {
+}
+
+export class DataTableHeaderCell<TItem, TId> extends
+    React.Component<
+    DataTableHeaderCellProps<TItem, TId> & Overwrite<DataTableHeaderCellMods,
+    DataTableHeaderCellModsOverride>,
+    DataTableHeaderCellState
+    > {
     state: DataTableHeaderCellState = {
         isDropdownOpen: null,
     };
 
-    getTextStyle = () => {
-        if (this.props.textCase === 'upper') return css.upperCase;
-        return css['font-size-14'];
-    };
-
     getTooltipContent = (column: DataColumnProps<TItem, TId>) => (
-        <div className={ css.cellTooltipWrapper }>
-            <Text fontSize="14" fontWeight="600" cx={ css.cellTooltipText }>{ column.caption }</Text>
-            { column.info && <Text fontSize="12" cx={ css.cellTooltipText }>{ column.info }</Text> }
+        <div className={ cx(css.cellTooltipWrapper, uuiDataTableHeaderCell.uuiTableHeaderCaptionTooltip) }>
+            <Text cx={ [css.cellTooltipText, css.tooltipCaption] }>
+                { column.caption }
+            </Text>
+            { column.info && (
+                <Text cx={ [css.cellTooltipText, css.tooltipInfo] }>
+                    { column.info }
+                </Text>
+            ) }
         </div>
     );
 
     getColumnCaption = () => {
         const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
+        const captionCx = [
+            css.caption,
+            this.props.textCase === 'upper' && css.upperCase,
+            uuiDataTableHeaderCell.uuiTableHeaderCaption,
+            settings.sizes.dataTable.header.row.cell.truncate.includes(this.props.size) && css.truncate,
+        ];
 
         return (
-            <div className={ cx(css.captionWrapper, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }>
+            <div
+                className={ cx(css.captionWrapper, css['align-' + this.props.column.textAlign], uuiDataTableHeaderCell.uuiTableHeaderCaptionWrapper) }
+            >
                 <Tooltip
                     placement="top"
                     color="inverted"
@@ -52,34 +77,39 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     cx={ css.cellTooltip }
                     openDelay={ 600 }
                 >
-                    <Text key="text" lineHeight="30" fontSize="14" size="30" cx={ cx(css.caption, this.getTextStyle(), uuiDataTableHeaderCell.uuiTableHeaderCaption) }>
-                        {this.props.column.caption}
+                    <Text
+                        key="text"
+                        fontSize={ settings.sizes.dataTable.header.row.cell.columnCaption[this.props.textCase === 'upper' ? 'uppercase' : 'fontSize'] as TextProps['fontSize'] }
+                        size={ settings.sizes.dataTable.header.row.cell.columnCaption.size as TextProps['size'] }
+                        cx={ captionCx }
+                    >
+                        { this.props.column.caption }
                     </Text>
                 </Tooltip>
-                {this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
+                { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
                     <IconButton
                         key="sort"
                         cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
                         color={ this.props.sortDirection ? 'neutral' : 'secondary' }
                         icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
                     />
-                )}
-                {this.props.isFilterActive && (
+                ) }
+                { this.props.isFilterActive && (
                     <IconButton
                         key="filter"
                         cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
                         color="neutral"
                         icon={ FilterIcon }
                     />
-                )}
-                {this.props.column.renderFilter && (
+                ) }
+                { this.props.column.renderFilter && (
                     <IconButton
                         key="dropdown"
                         cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
                         color="secondary"
                         icon={ this.state.isDropdownOpen ? OpenedDropdownIcon : DropdownIcon }
                     />
-                )}
+                ) }
             </div>
         );
     };
@@ -87,7 +117,11 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     renderHeaderCheckbox = () => {
         if (this.props.selectAll && this.props.isFirstColumn) {
             return (
-                <Checkbox size={ +this.props.size < 36 ? '12' : '18' } { ...this.props.selectAll } cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) } />
+                <Checkbox
+                    size={ settings.sizes.dataTable.header.row.cell.checkbox[this.props.size] as CheckboxProps['size'] }
+                    { ...this.props.selectAll }
+                    cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
+                />
             );
         }
     };
@@ -116,21 +150,46 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         }
     };
 
-    renderResizeMark = (props: HeaderCellContentProps) => {
-        const resizeMarkSize = this.props.columnsGap === '12' ? '6' : '12';
+    renderResizingMarker = (props: HeaderCellContentProps) => {
         return (
             <div
                 role="separator"
                 onMouseDown={ props.onResizeStart }
-                className={ cx(css.resizeMark, css[`resize-mark-${resizeMarkSize}`], uuiMarkers.draggable, uuiMarkers.clickable) }
+                className={ cx(css.resizingMarker, uuiMarkers.draggable, uuiMarkers.clickable) }
             />
         );
+    };
+
+    getLeftPadding = () => {
+        const { columnsGap, isFirstColumn } = this.props;
+
+        if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
+        return isFirstColumn ? settings.sizes.dataTable.header.row.cell.defaults.paddingEdge : settings.sizes.dataTable.header.row.cell.defaults.padding;
+    };
+
+    getRightPadding = () => {
+        const { columnsGap, isLastColumn } = this.props;
+
+        if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
+        return isLastColumn ? settings.sizes.dataTable.header.row.cell.defaults.paddingEdge : settings.sizes.dataTable.header.row.cell.defaults.padding;
+    };
+
+    getResizingMarkerWidth = () => {
+        const { columnsGap } = this.props;
+        return columnsGap ? +columnsGap / 2 : settings.sizes.dataTable.header.row.cell.defaults.resizeMarker;
     };
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
         const isResizable = this.props.column.allowResizing ?? this.props.allowColumnsResizing;
         const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
-        const sideColumnPadding = this.props.columnsGap === '12' ? '12' : '24';
+
+        const computeStyles = {
+            '--uui-dt-header-cell-icon-size': `${settings.sizes.dataTable.header.row.cell.iconSize[this.props.size || settings.sizes.dataTable.header.row.cell.defaults.size]}px`,
+            '--uui-dt-header-cell-padding-start': `${this.getLeftPadding()}px`,
+            '--uui-dt-header-cell-padding-end': `${this.getRightPadding()}px`,
+            '--uui-dt-header-cell-resizing-marker-width': `${this.getResizingMarkerWidth()}px`,
+        } as React.CSSProperties;
+
         return (
             <DataTableCellContainer
                 column={ this.props.column }
@@ -141,11 +200,10 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                 cx={ cx(
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
-                    css.cell,
-                    css['size-' + (this.props.size || '36')],
-                    this.props.columnsGap && css[`column-gap-${this.props.columnsGap}`],
-                    this.props.isFirstColumn && css[`first-column-${sideColumnPadding}`],
-                    this.props.isLastColumn && css[`last-column-${sideColumnPadding}`],
+                    css.root,
+                    `uui-size-${this.props.size || settings.sizes.dataTable.header.row.cell.defaults.size}`,
+                    this.props.isFirstColumn && 'uui-dt-header-first-column',
+                    this.props.isLastColumn && 'uui-dt-header-last-column',
                     this.props.column.fix && css['pinned-' + this.props.column.fix],
                     isResizable && css.resizable,
                     props.isDraggable && css.draggable,
@@ -159,11 +217,12 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
                     ...props.eventHandlers,
                 } }
+                style={ computeStyles }
             >
                 { this.renderHeaderCheckbox() }
                 { this.renderFoldAllIcon() }
                 { this.getColumnCaption() }
-                { isResizable && this.renderResizeMark(props) }
+                { isResizable && this.renderResizingMarker(props) }
             </DataTableCellContainer>
         );
     };
@@ -186,6 +245,11 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
             return this.props.column.renderHeaderCell(this.props);
         }
 
-        return <UuiDataTableHeaderCell { ...this.props } renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent } />;
+        return (
+            <UuiDataTableHeaderCell
+                { ...this.props }
+                renderCellContent={ this.props.column.renderFilter ? this.renderCellWithFilter : this.renderCellContent }
+            />
+        );
     }
 }

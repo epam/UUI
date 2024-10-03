@@ -5,7 +5,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
   className="root uui-datepicker-container"
 >
   <div
-    className="uui-flex-row root size-36 daySelection container container align-items-top"
+    className="uui-flex-row root uui-size-36 daySelection container container align-items-top"
     style={
       Object {
         "columnGap": undefined,
@@ -27,7 +27,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
       }
     >
       <div
-        className="uui-flex-row root size-36 container align-items-center"
+        className="uui-flex-row root uui-size-36 container align-items-center"
         style={
           Object {
             "columnGap": undefined,
@@ -36,7 +36,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
         }
       >
         <div
-          className="uui-flex-row root size-36 bodesWrapper container align-items-top"
+          className="uui-flex-row root uui-size-36 bodesWrapper container align-items-top"
           style={
             Object {
               "columnGap": undefined,
@@ -45,20 +45,20 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-datepicker-container fromPicker"
+            className="uui-datepicker-container uui-size-36 fromPicker"
           >
             <div
-              className="root uui-datepickerBody-wrapper"
+              className="root uui-datepicker-body-wrapper"
             >
               <div
-                className="container uui-datepickerheader-container"
+                className="root uui-datepicker-header-container"
               >
                 <header
-                  className="uui-datepickerheader-header"
+                  className="uui-datepicker-header-nav"
                 >
                   <button
                     aria-disabled={false}
-                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepicker-header-nav-icon-left"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -73,7 +73,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                     </div>
                   </button>
                   <button
-                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepicker-header-nav-title"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -86,7 +86,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   </button>
                   <button
                     aria-disabled={false}
-                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepicker-header-nav-icon-right"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -103,7 +103,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                 </header>
               </div>
               <div
-                className="container uui-calendar-container root"
+                className="container uui-calendar-container root uui-size-36"
               >
                 <div
                   className="uui-calendar-content"
@@ -671,20 +671,20 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            className="uui-datepicker-container toPicker"
+            className="uui-datepicker-container uui-size-36 toPicker"
           >
             <div
-              className="root uui-datepickerBody-wrapper"
+              className="root uui-datepicker-body-wrapper"
             >
               <div
-                className="container uui-datepickerheader-container"
+                className="root uui-datepicker-header-container"
               >
                 <header
-                  className="uui-datepickerheader-header"
+                  className="uui-datepicker-header-nav"
                 >
                   <button
                     aria-disabled={false}
-                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-left"
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepicker-header-nav-icon-left"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -699,7 +699,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                     </div>
                   </button>
                   <button
-                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepickerheader-nav-title"
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-datepicker-header-nav-title"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -712,7 +712,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   </button>
                   <button
                     aria-disabled={false}
-                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepickerheader-nav-icon-right"
+                    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-datepicker-header-nav-icon-right"
                     onClick={[Function]}
                     tabIndex={0}
                     type="button"
@@ -729,7 +729,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                 </header>
               </div>
               <div
-                className="container uui-calendar-container root"
+                className="container uui-calendar-container root uui-size-36"
               >
                 <div
                   className="uui-calendar-content"

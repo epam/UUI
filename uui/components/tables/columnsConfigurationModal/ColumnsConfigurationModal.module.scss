@@ -1,77 +1,110 @@
 @use '../../../assets/styles/index' as *;
 
-.main-panel {
-    height: 100%;
-    padding-top: 6px;
+.root {
+    --uui-dt-columns_config_modal-padding: 24px;
+    --uui-dt-columns_config_modal-horizontal-gap: 6px;
+    --uui-dt-columns_config_modal-search_area-min-height: 42px;
+    --uui-dt-columns_config_modal-pin_icon_button-column-gap: 6px;
+    //
+    --uui-dt-columns_config_modal-group_title-font-size: 14px;
+    --uui-dt-columns_config_modal-group_title-line-height: 18px;
+    --uui-dt-columns_config_modal-group_title-font-weight: 600;
+    //
+    --uui-dt-columns_config_modal-subgroup-min-height: 24px;
+    --uui-dt-columns_config_modal-subgroup_title-font-size: 10px;
+    --uui-dt-columns_config_modal-subgroup_title-line-height: 12px;
+    --uui-dt-columns_config_modal-subgroup_title-font-weight: 600;
+    //
+    --uui-dt-columns_config_modal-no_data_title-line-height: 30px;
+    --uui-dt-columns_config_modal-no_data_title-font-size: 24px;
+    --uui-dt-columns_config_modal-no_data_title-font-weight: 600;
+    --uui-dt-columns_config_modal-no_data_sub_title-line-height: 24px;
+    --uui-dt-columns_config_modal-no_data_sub_title-font-size: 16px;
+    --uui-dt-columns_config_modal-no_data_sub_title-font-weight: 400;
 
-    .group-title {
-        margin-bottom: 6px;
+    .main-panel {
+        height: 100%;
 
-        > .group-title-text {
-            padding-top: 0;
-            padding-bottom: 0;
+        .group {
+            padding: 0 var(--uui-dt-columns_config_modal-padding);
+            column-gap: var(--uui-dt-columns_config_modal-horizontal-gap);
+
+            .group-title {
+                font-size: var(--uui-dt-columns_config_modal-group_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-group_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-group_title-font-weight);
+            }
+
+            &:not(:first-child) {
+                padding-top: calc(var(--uui-grid-unit) * 2);
+            }
         }
 
-
-        > .group-title-badge {
-            top: -3px;
+        .group-items {
+            flex-direction: column;
         }
 
-        &:not(:first-child) {
-            padding-top: 12px;
+        .no-data {
+            flex-direction: column;
+            top: calc(50% - 35px);
+            position: relative;
+
+            .no-data-title {
+                font-size: var(--uui-dt-columns_config_modal-no_data_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-no_data_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-no_data_title-font-weight);
+            }
+
+            .no-data-sub-title {
+                font-size: var(--uui-dt-columns_config_modal-no_data_sub_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-no_data_sub_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-no_data_sub_title-font-weight);
+            }
         }
-    }
 
-    .group-items {
-        flex-direction: column;
-    }
-
-    .no-data {
-        flex-direction: column;
-        top: calc(50% - 35px);
-        position: relative;
-    }
-
-    .h-divider {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 6px 24px;
-
-        &::before {
-            content: '';
-            height: 1px;
+        .h-divider {
             display: block;
-            background: var(--uui-divider-light);
+            box-sizing: border-box;
+            width: 100%;
+            padding: var(--uui-grid-unit) var(--uui-dt-columns_config_modal-padding);
+
+            &::before {
+                content: '';
+                height: 1px;
+                display: block;
+                background: var(--uui-divider-light);
+            }
         }
     }
-}
 
-.search-area {
-    padding-bottom: 6px;
-}
-
-.subgroup-accordion {
-    :global(.uui-accordion-toggler):focus-visible {
-        outline: 2px solid var(--uui-outline-focus);
-        outline-offset: -2px;
-        border-radius: 0;
+    .search-area {
+        min-height: var(--uui-dt-columns_config_modal-search_area-min-height);
+        column-gap: var(--uui-dt-columns_config_modal-horizontal-gap);
+        padding: 0 var(--uui-dt-columns_config_modal-padding);
+        padding-bottom: var(--uui-grid-unit);
     }
 
-    .subgroup-title {
-        cursor: pointer;
-        padding: 3px 24px 3px 24px;
-        text-transform: uppercase;
-        color: var(--uui-text-tertiary);
-        font-family: var(--uui-font);
-        font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 0.2px;
-        display: flex;
-        align-items: center;
-        gap: 6px;
+    .subgroup-accordion {
+        :global(.uui-accordion-toggler):focus-visible {
+            @include focus-visible-effect(-2px, 0);
+        }
 
-        :global(.uui-icon) {
-            fill: var(--uui-text-tertiary);
+        .subgroup {
+            cursor: pointer;
+            text-transform: uppercase;
+            min-height: var(--uui-dt-columns_config_modal-subgroup-min-height);
+            padding: 0 var(--uui-dt-columns_config_modal-padding);
+            column-gap: var(--uui-dt-columns_config_modal-horizontal-gap);
+
+            .subgroup-title {
+                font-size: var(--uui-dt-columns_config_modal-subgroup_title-font-size);
+                line-height: var(--uui-dt-columns_config_modal-subgroup_title-line-height);
+                font-weight: var(--uui-dt-columns_config_modal-subgroup_title-font-weight);
+            }
+
+            :global(.uui-icon) {
+                fill: var(--uui-text-tertiary);
+            }
         }
     }
 }

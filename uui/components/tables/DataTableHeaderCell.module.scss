@@ -1,58 +1,36 @@
 @use '../../assets/styles/index' as *;
 
-@mixin cell-size($size) {
-    &.size-#{$size} {
-        height: #{$size}px;
+// !!! For these variables the values are set inline
+// --uui-dt-header-cell-icon-size,
+// --uui-dt-header-cell-padding-start,
+// --uui-dt-header-cell-padding-end,
+// --uui-dt-header-cell-resizing-marker-width
 
-        // icons always 18 by design
-        @include scalable-icon-size(36);
-
-        ~ :global(.config-icon) {
-            // icons always 18 by design
-            @include scalable-icon-size(36);
-        }
-    }
-}
-
-.cell {
+.root {
+    --uui-dt-header-cell-font: var(--uui-font);
+    --uui-dt-header-cell-font-weight: 600;
+    --uui-dt-header-cell-line-height: 30px;
+    --uui-dt-header-cell-height: var(--uui-size);
+    --uui-dt-header-cell-caption-column-gap: 3px;
+    --uui-dt-header-cell-truncate-caption-line-height: 18px;
+    //
     color: var(--uui-text-primary);
     align-items: center;
-    padding: 0 6px;
+    padding-inline-start: var(--uui-dt-header-cell-padding-start);
+    padding-inline-end: var(--uui-dt-header-cell-padding-end);
     width: 0;
     background-clip: padding-box;
+    height: var(--uui-dt-header-cell-height);
 
-    &.column-gap-12 {
-        padding: 0 6px;
-        column-gap: 3px;
+    .caption-wrapper {
+        column-gap: var(--uui-dt-header-cell-caption-column-gap);
+    }
 
-        .caption-wrapper {
-            column-gap: 3px;
+    :global(.uui-icon) {
+        svg {
+            height: var(--uui-dt-header-cell-icon-size);
+            width: inherit;
         }
-    }
-
-    &.column-gap-24 {
-        padding: 0 12px;
-        column-gap: 3px;
-
-        .caption-wrapper {
-            column-gap: 3px;
-        }
-    }
-
-    &.first-column-12 {
-        padding-left: 12px;
-    }
-
-    &.last-column-12 {
-        padding-right: 12px;
-    }
-
-    &.first-column-24 {
-        padding-left: 24px;
-    }
-
-    &.last-column-24 {
-        padding-right: 24px;
     }
 
     &:global(.-clickable) {
@@ -76,21 +54,6 @@
         }
     }
 
-    @include cell-size(24);
-    @include cell-size(30);
-    @include cell-size(36);
-    @include cell-size(42);
-    @include cell-size(48);
-    @include cell-size(60);
-
-    &.padding-left-24 {
-        padding-left: 24px;
-    }
-
-    &.padding-right-24 {
-        padding-right: 24px;
-    }
-
     .caption-wrapper {
         display: flex;
         overflow: hidden;
@@ -107,16 +70,18 @@
     }
 
     .caption {
+        --uui-text-line-height: var(--uui-dt-header-cell-line-height);
         font-family: var(--uui-dt-header-cell-font);
         font-weight: var(--uui-dt-header-cell-font-weight);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin: 0;
+        margin: 0; //????
     }
 
     .checkbox {
-        padding: 0 9px 0 0;
+        padding: 0;
+        padding-inline-end: var(--uui-horizontal-gap);
     }
 
     .icon {
@@ -127,7 +92,7 @@
 
     .fold-all-icon {
         display: flex;
-        padding: 0 6px 0 0;
+        padding: 0 var(--uui-horizontal-gap) 0 0;
         align-self: stretch;
 
         &:hover {
@@ -141,35 +106,23 @@
 
     .upper-case {
         text-transform: uppercase;
-        font-size: 12px;
     }
 
-    .font-size-14 {
-        font-size: 14px;
-    }
-
-    .resize-mark {
+    .resizing-marker {
         position: absolute;
-        right: 0;
+        inset-inline-end: 0;
         height: 100%;
         cursor: col-resize;
         user-select: none;
+        width: var(--uui-dt-header-cell-resizing-marker-width);
 
         &:hover {
             background-color: var(--uui-dt-cell-bg-resize);
         }
     }
 
-    .resize-mark-6 {
-        width: 6px;
-    }
-
-    .resize-mark-12 {
-        width: 12px;
-    }
-
-    &.pinned-right .resize-mark {
-        left: 0;
+    &.pinned-right .resizing-marker {
+        inset-inline-start: 0;
     }
 
     &.draggable {
@@ -203,14 +156,40 @@
     }
 }
 
+.truncate {
+    /* stylelint-disable */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* stylelint-enable */
+    overflow: hidden;
+    white-space: normal;
+    line-height: var(--uui-dt-header-cell-truncate-caption-line-height);
+}
+
 .cell-tooltip-wrapper {
+    --uui-dt-header-cell-tooltip-caption-font-size: 14px;
+    --uui-dt-header-cell-tooltip-caption-font-weight: 600;
+    --uui-dt-header-cell-tooltip-info-font-size: 12px;
+    --uui-dt-header-cell-tooltip-info-font-weight: 400;
+    //
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    row-gap: 3px;
+    row-gap: var(--uui-vertical-gap);
 
     .cell-tooltip-text {
         color: var(--uui-tooltip-text);
         padding: 0;
+    }
+
+    .tooltip-caption {
+        font-size: var(--uui-dt-header-cell-tooltip-caption-font-size);
+        font-weight: var(--uui-dt-header-cell-tooltip-caption-font-weight);
+    }
+
+    .tooltip-info {
+        font-size: var(--uui-dt-header-cell-tooltip-info-font-size);
+        font-weight: var(--uui-dt-header-cell-tooltip-info-font-weight);
     }
 }
