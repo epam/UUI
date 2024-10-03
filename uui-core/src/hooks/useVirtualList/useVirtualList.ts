@@ -6,6 +6,8 @@ import {
     getOffsetYForIndex, getScrollToCoordinate, getRealTopIndex, getTopIndexWithOffset,
 } from './utils';
 import { VirtualListInfo, UseVirtualListProps, UseVirtualListApi, RowsInfo } from './types';
+import { usePrevious } from '../usePrevious';
+import { devLogger } from '../../helpers';
 
 export function useVirtualList<List extends HTMLElement = any, ScrollContainer extends HTMLElement = any>(
     props: UseVirtualListProps,
@@ -26,6 +28,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     const scrollContainer = React.useRef<ScrollContainer>();
     const rowHeights = React.useRef<number[]>([]);
     const rowOffsets = React.useRef<number[]>([]);
+    const scrollContainerHeightChangesCount = React.useRef<number>(0);
+    const scrollContainerHeightIsNotLimited = React.useRef(false);
+    const prevScrollContainerClientHeight = usePrevious(scrollContainer.current?.clientHeight);
 
     const virtualListInfo = React.useMemo((): VirtualListInfo => ({
         scrollContainer: scrollContainer.current,
@@ -52,6 +57,21 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         estimatedHeight,
         rowsSelector,
     ]);
+
+    useLayoutEffectSafeForSsr(() => {
+        if (__DEV__) {
+            if (scrollContainer.current?.clientHeight
+                && prevScrollContainerClientHeight
+                && scrollContainer.current?.clientHeight !== prevScrollContainerClientHeight
+            ) {
+                ++scrollContainerHeightChangesCount.current;
+            }
+            if (scrollContainerHeightChangesCount.current > 20 && !scrollContainerHeightIsNotLimited.current) {
+                scrollContainerHeightIsNotLimited.current = true;
+                devLogger.warn('[VirtualList]: The scroll container height is not limited. Please ensure that the VirtualList\'s parent container has a defined, limited height.');
+            }
+        }
+    });
 
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
@@ -82,7 +102,9 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         if (value?.scrollTo !== scrolledTo && value?.scrollTo?.index != null) {
             handleForceScrollToIndex(rowsInfo);
         } else {
-            handleScrollOnRerender(rowsInfo);
+            if (!scrollContainerHeightIsNotLimited.current) {
+                handleScrollOnRerender(rowsInfo);
+            }
         }
     });
 
