@@ -5,7 +5,7 @@ import {
     CX, cx, ICanFocus,
 } from '@epam/uui-core';
 import css from './TextArea.module.scss';
-import { browserBugFixDirAuto } from '../helpers';
+import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 
 export interface TextAreaProps
     extends IHasCX,
