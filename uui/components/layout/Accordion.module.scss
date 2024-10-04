@@ -24,7 +24,8 @@
     --uui-accordion-body-font: var(--uui-font);
     --uui-accordion-body-font-weight: 400;
 
-    --uui-accordion-border-width: 1px;
+    --uui-accordion-border-width: 0;
+    --uui-accordion-divider-width: 1px;
     //
     :global(.uui-accordion-toggler) {
         font-family: var(--uui-accordion-toggler-font);
@@ -82,7 +83,7 @@
             line-height: 24px;
             letter-spacing: 0;
             background: var(--uui-accordion-bg);
-            border-top: var(--uui-accordion-border-width) solid var(--uui-accordion-body-border);
+            border-top: var(--uui-accordion-divider-width) solid var(--uui-accordion-body-border);
             border-radius: 0 0 var(--uui-accordion-border-radius) var(--uui-accordion-border-radius);
         }
 
@@ -112,7 +113,7 @@
 
     &.mode-inline {
         :global(.uui-accordion-toggler) {
-            border-bottom: var(--uui-accordion-border-width) solid var(--uui-accordion-toggler-border);
+            border-bottom: var(--uui-accordion-divider-width) solid var(--uui-accordion-toggler-border);
             fill: var(--uui-accordion-icon);
             line-height: 18px;
             font-size: 14px;
@@ -131,7 +132,7 @@
 
         :global(.uui-accordion-body) {
             padding: 1px 12px 12px;
-            border-bottom: var(--uui-accordion-border-width) solid var(--uui-accordion-toggler-border);
+            border-bottom: var(--uui-accordion-divider-width) solid var(--uui-accordion-toggler-border);
         }
 
         &:global(.uui-opened) {
