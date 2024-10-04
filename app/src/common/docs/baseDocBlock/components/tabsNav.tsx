@@ -53,11 +53,11 @@ export function TabsNav(props: TTabsNavProps) {
         >
             { pageWidth <= 768 && (
                 <Button
-                    rawProps={ { style: { marginInlineStart: '6px', marginInlineEnd: '12px' } } }
                     fill="none"
                     icon={ NavigationShowOutlineIcon }
                     onClick={ props.handleMobSidebarBtnClick }
                     size="42"
+                    cx={ css.mobSidebarBtn }
                 >
                 </Button>
             ) }

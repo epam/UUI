@@ -7,7 +7,9 @@
 
 .root {
     --uui-accordion-bg: var(--uui-surface-main);
-    --uui-accordion-border: var(--uui-divider);
+    --uui-accordion-border: transparent;
+    --uui-accordion-body-border: var(--uui-divider);
+    --uui-accordion-toggler-border: var(--uui-divider);
     --uui-accordion-text: var(--uui-text-primary);
     --uui-accordion-text-disabled: var(--uui-text-disabled);
     --uui-accordion-icon: var(--uui-icon);
@@ -21,6 +23,8 @@
     --uui-accordion-toggler-font-weight: 600;
     --uui-accordion-body-font: var(--uui-font);
     --uui-accordion-body-font-weight: 400;
+
+    --uui-accordion-border-width: 1px;
     //
     :global(.uui-accordion-toggler) {
         font-family: var(--uui-accordion-toggler-font);
@@ -47,6 +51,11 @@
 
     &.mode-block {
         border-radius: var(--uui-accordion-border-radius);
+        border: var(--uui-accordion-border-width) solid var(--uui-accordion-border);
+
+        &:hover, &:focus {
+            box-shadow: var(--uui-accordion-shadow-hovered);
+        }
 
         :global(.uui-accordion-toggler) {
             background: var(--uui-accordion-bg);
@@ -66,10 +75,6 @@
             :global(.uui-accordion-title) {
                 color: var(--uui-accordion-text);
             }
-
-            &:hover, &:focus {
-                box-shadow: var(--uui-accordion-shadow-hovered);
-            }
         }
 
         :global(.uui-accordion-body) {
@@ -77,21 +82,19 @@
             line-height: 24px;
             letter-spacing: 0;
             background: var(--uui-accordion-bg);
-            border-top: 1px solid var(--uui-accordion-border);
+            border-top: var(--uui-accordion-border-width) solid var(--uui-accordion-body-border);
             border-radius: 0 0 var(--uui-accordion-border-radius) var(--uui-accordion-border-radius);
         }
 
         &:global(.uui-opened) {
             :global(.uui-accordion-toggler) {
                 border-radius: var(--uui-accordion-border-radius) var(--uui-accordion-border-radius) 0 0;
-
-                &:hover, &:focus {
-                    border-color: var(--uui-accordion-shadow-hovered);
-                }
             }
         }
 
         &:global(.uui-disabled) {
+            pointer-events: none;
+
             :global(.uui-accordion-toggler) {
                 cursor: default;
                 fill: var(--uui-accordion-icon-disabled);
@@ -103,17 +106,13 @@
                 :global(.uui-accordion-title) {
                     color: var(--uui-accordion-text-disabled);
                 }
-
-                &:hover, &:focus {
-                    box-shadow: none;
-                }
             }
         }
     }
 
     &.mode-inline {
         :global(.uui-accordion-toggler) {
-            border-bottom: 1px solid var(--uui-accordion-border);
+            border-bottom: var(--uui-accordion-border-width) solid var(--uui-accordion-toggler-border);
             fill: var(--uui-accordion-icon);
             line-height: 18px;
             font-size: 14px;
@@ -132,7 +131,7 @@
 
         :global(.uui-accordion-body) {
             padding: 1px 12px 12px;
-            border-bottom: 1px solid var(--uui-accordion-border);
+            border-bottom: var(--uui-accordion-border-width) solid var(--uui-accordion-toggler-border);
         }
 
         &:global(.uui-opened) {
