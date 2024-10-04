@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ELEMENT_LINK, TLinkElement, unwrapLink, upsertLink } from '@udecode/plate-link';
 import { PlateEditor, getPluginType, findNode, getAboveNode } from '@udecode/plate-common';
 import { IModal } from '@epam/uui-core';
-import { FlexRow, FlexSpacer, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
+import { FlexRow, ModalWindow, ModalBlocker, ModalFooter, ModalHeader, Button, LabeledInput, TextInput } from '@epam/uui';
 
 import css from './link.module.scss';
 
@@ -51,8 +51,7 @@ export function AddLinkModal({ editor, ...modalProps }: AddLinkModalProps) {
                         />
                     </LabeledInput>
                 </FlexRow>
-                <ModalFooter borderTop>
-                    <FlexSpacer />
+                <ModalFooter borderTop cx={ css.footer }>
                     <Button
                         color="secondary"
                         fill="outline"
