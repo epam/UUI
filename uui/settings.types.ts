@@ -215,6 +215,10 @@ interface DataTableSizes {
     body: DataTableBodySizes;
 }
 
+interface TabButtonSizes {
+    countIndicator: Sizes;
+}
+
 interface ModalWindowDefaultSizes {
     width: string;
 }
@@ -238,6 +242,7 @@ interface SizesSettings {
     badge: BadgeSizes;
     dataTable: DataTableSizes;
     modal: ModalSizes;
+    tabButton: TabButtonSizes;
 }
 
 export interface Settings {

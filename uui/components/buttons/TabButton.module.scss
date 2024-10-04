@@ -35,7 +35,6 @@
     --uui-tab_btn-min-width: var(--uui-size);
     --uui-tab_btn-padding: var(--uui-horizontal-padding);
     --uui-tab_btn-gap: var(--uui-horizontal-gap);
-    --uui-tab_btn-notification-gap: 9px;
     --uui-tab_btn-horizontal-caption-padding: var(--uui-horizontal-gap);
     --uui-tab_btn-vertical-caption-padding: calc((var(--uui-tab_btn-height) - var(--uui-tab_btn-line-height)) / 2);
     --uui-tab_btn-icon-height: var(--uui-icon-size);
@@ -79,48 +78,32 @@
     }
 
     :global(.uui-caption) {
+        display: flex;
+        position: relative;
+        height: var(--uui-tab_btn-line-height);
         line-height: var(--uui-tab_btn-line-height);
         font-size: var(--uui-tab_btn-font-size);
         padding-top: var(--uui-tab_btn-vertical-caption-padding);
         padding-bottom: var(--uui-tab_btn-vertical-caption-padding);
-    }
+        padding-inline-start: var(--uui-tab_btn-horizontal-caption-padding);
+        padding-inline-end: var(--uui-tab_btn-horizontal-caption-padding);
 
-    &:global {
-        &.uui-has-left-icon {
-            :global(.uui-caption) {
-                padding-inline-start: var(--uui-tab_btn-horizontal-caption-padding);
-            }
-        }
-
-        &.uui-has-right-icon {
-            :global(.uui-caption) {
-                padding-inline-end: var(--uui-tab_btn-horizontal-caption-padding);
-            }
+        .withNotify {
+            position: relative;
+            top: calc(0px - var(--uui-notify-size) / 2);
+            height: var(--uui-notify-size);
+            width: var(--uui-notify-size);
+            background: var(--uui-critical-50);
+            box-shadow: 0 1px 8px 0 var(--uui-critical-50);
+            border-radius: 50%;
         }
     }
 
-    &.withNotify {
-        :global(.uui-caption) {
-            padding-inline-end: var(--uui-tab_btn-notification-gap);
-
-            &::after {
-                content: '';
-                position: absolute;
-                height: var(--uui-notify-size);
-                width: var(--uui-notify-size);
-                background: var(--uui-critical-50);
-                box-shadow: 0 1px 8px 0 var(--uui-critical-50);
-                border-radius: 50%;
-            }
-        }
+    :global(.uui-icon) + :global(.uui-count_indicator) {
+        margin-inline-start: var(--uui-tab_btn-gap);
     }
 
-    :global(.uui-count_indicator) {
-        margin-inline-start: calc(var(--uui-tab_btn-gap) / 2);
-        margin-inline-end: calc(var(--uui-tab_btn-gap) / 2);
-
-        ~ :global(.uui-caption) {
-            padding-inline-end: 0;
-        }
+    :global(.uui-count_indicator):not(:last-child) {
+        margin-inline-end: var(--uui-tab_btn-gap);
     }
 }

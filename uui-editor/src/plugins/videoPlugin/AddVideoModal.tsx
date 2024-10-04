@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IModal, prependHttp } from '@epam/uui-core';
-import { FlexSpacer, FlexRow, ModalBlocker, ModalHeader, ModalWindow, ModalFooter, LabeledInput, Button, TextInput } from '@epam/uui';
+import { FlexRow, ModalBlocker, ModalHeader, ModalWindow, ModalFooter, LabeledInput, Button, TextInput } from '@epam/uui';
 import css from './AddVideoModal.module.scss';
 import getVideoId from 'get-video-id';
 import { useState } from 'react';
@@ -75,8 +75,7 @@ export function AddVideoModal({ editor, success, abort, ...props }: AddVideoModa
                         />
                     </LabeledInput>
                 </FlexRow>
-                <ModalFooter borderTop>
-                    <FlexSpacer />
+                <ModalFooter borderTop cx={ css.footer }>
                     <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => abort() } />
                     <Button
                         color="primary"
