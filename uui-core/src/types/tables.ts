@@ -14,6 +14,7 @@ import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
 import { CommonDatePickerProps, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
+import { AnalyticsEvent } from './objects';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
     /** Configuration of columns at the DataTable. Used to define column visibility, width and order */
@@ -154,6 +155,8 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     onSort(dir: SortDirection): void;
     onDrop?(params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>): void;
     renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
+    analyticsSendEvent?: (analyticsEvent: AnalyticsEvent) => void;
+    getHeaderCellClickAnalyticsEvent?: (column: DataColumnProps<TItem, TId>) => AnalyticsEvent;
 }
 
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
@@ -171,6 +174,8 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
     renderConfigButton?: () => React.ReactNode;
+    analyticsSendEvent?: (analyticsEvent: AnalyticsEvent) => void;
+    getHeaderCellClickAnalyticsEvent?: (column: DataColumnProps<TItem, TId>) => AnalyticsEvent;
 }
 
 export interface DataTableColumnsConfigOptions {

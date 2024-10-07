@@ -211,7 +211,13 @@ export class DataTableHeaderCell<TItem, TId> extends
                     props.isDraggedOut && css.isDraggedOut,
                     props.isDndInProgress && css['dnd-marker-' + props.position],
                 ) }
-                onClick={ onClickEvent }
+                onClick={ (e) => {
+                    onClickEvent?.(e);
+                    if (this.props.getHeaderCellClickAnalyticsEvent) {
+                        const analyticsEvent = this.props.getHeaderCellClickAnalyticsEvent?.(this.props.column);
+                        this.props.analyticsSendEvent(analyticsEvent);
+                    }
+                } }
                 rawProps={ {
                     role: 'columnheader',
                     'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
