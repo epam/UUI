@@ -4,7 +4,7 @@ import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
 import css from './PickerToggler.module.scss';
-import { browserBugFixDirAuto } from '../helpers';
+import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** Key for the component */

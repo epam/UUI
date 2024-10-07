@@ -176,7 +176,7 @@ interface DataTableColumnsConfigurationModal {
     countIndicator: string;
     subgroupIcon: string;
     search: string;
-    width: string;
+    width: number;
 }
 
 interface FiltersPanelPickerBodySizes {
