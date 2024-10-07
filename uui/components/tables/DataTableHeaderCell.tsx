@@ -1,6 +1,14 @@
 import * as React from 'react';
 import {
-    cx, DataColumnProps, DataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
+    cx,
+    DataColumnProps,
+    DataTableHeaderCellProps,
+    IDropdownTogglerProps,
+    Overwrite,
+    UuiContext,
+    UuiContexts,
+    uuiDataTableHeaderCell,
+    uuiMarkers,
 } from '@epam/uui-core';
 import {
     DataTableCellContainer,
@@ -40,6 +48,9 @@ export class DataTableHeaderCell<TItem, TId> extends
     DataTableHeaderCellModsOverride>,
     DataTableHeaderCellState
     > {
+    public static contextType = UuiContext;
+    public context: UuiContexts;
+
     state: DataTableHeaderCellState = {
         isDropdownOpen: null,
     };
@@ -215,7 +226,7 @@ export class DataTableHeaderCell<TItem, TId> extends
                     onClickEvent?.(e);
                     if (this.props.getHeaderCellClickAnalyticsEvent) {
                         const analyticsEvent = this.props.getHeaderCellClickAnalyticsEvent?.(this.props.column);
-                        this.props.analyticsSendEvent(analyticsEvent);
+                        this.context.uuiAnalytics.sendEvent(analyticsEvent);
                     }
                 } }
                 rawProps={ {

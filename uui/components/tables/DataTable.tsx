@@ -71,7 +71,7 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & Overwrite<DataTableMods, DataTableModsOverride>>) {
-    const { uuiModals, uuiAnalytics } = useUuiContext();
+    const { uuiModals } = useUuiContext();
     const headerRef = React.useRef<HTMLDivElement>();
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
@@ -136,8 +136,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
         props.columns, config, defaultConfig, props.value, props.onValueChange, props.renderColumnsConfigurationModal,
     ]);
 
-    const analyticsSendEvent = React.useCallback((analyticsEvent:AnalyticsEvent) => uuiAnalytics.sendEvent(analyticsEvent), [uuiAnalytics]);
-
     const renderRowsContainer = React.useCallback(
         ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
             <>
@@ -154,7 +152,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
                         columnsGap={ props.columnsGap }
-                        analyticsSendEvent={ analyticsSendEvent }
                         getHeaderCellClickAnalyticsEvent={ props.getHeaderCellClickAnalyticsEvent }
                     />
                     <div

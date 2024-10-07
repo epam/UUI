@@ -155,7 +155,6 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     onSort(dir: SortDirection): void;
     onDrop?(params: DropParams<DataColumnProps<TItem, TId>, DataColumnProps<TItem, TId>>): void;
     renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
-    analyticsSendEvent?: (analyticsEvent: AnalyticsEvent) => void;
     getHeaderCellClickAnalyticsEvent?: (column: DataColumnProps<TItem, TId>) => AnalyticsEvent;
 }
 
@@ -174,7 +173,6 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
     renderConfigButton?: () => React.ReactNode;
-    analyticsSendEvent?: (analyticsEvent: AnalyticsEvent) => void;
     getHeaderCellClickAnalyticsEvent?: (column: DataColumnProps<TItem, TId>) => AnalyticsEvent;
 }
 
