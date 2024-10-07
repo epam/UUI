@@ -259,9 +259,9 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         }
         flushSync(() => {
             resetForm(newState);
+            removeUnsavedChanges();
+            unblock();
         });
-        removeUnsavedChanges();
-        unblock();
 
         if (propsRef.current.onSuccess && response) {
             propsRef.current.onSuccess(response.form, isSavedBeforeLeave);

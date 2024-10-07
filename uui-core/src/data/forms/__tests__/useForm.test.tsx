@@ -625,7 +625,7 @@ describe('useForm', () => {
 
         it('Should unblock router when form is saved', async () => {
             const saveMock = jest.fn().mockResolvedValue(true);
-            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+            const beforeLeaveMock = jest.fn().mockRejectedValue(false);
             const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
             const props = {
                 value: testData,
@@ -676,7 +676,7 @@ describe('useForm', () => {
             expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
         });
 
-        it('Should make redirect and lock form aging if  beforeLeave return "remain"', async () => {
+        it('Should make redirect and lock form aging if beforeLeave returns "remain"', async () => {
             const saveMock = jest.fn().mockResolvedValue(true);
             const beforeLeaveMock = jest.fn().mockResolvedValue('remain');
             const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
