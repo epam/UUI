@@ -260,7 +260,7 @@ export const settings: Settings = {
                 countIndicator: '18',
                 subgroupIcon: '18',
                 search: '30',
-                width: '560',
+                width: 560,
             },
         },
         modal: {
