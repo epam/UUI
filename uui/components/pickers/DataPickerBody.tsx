@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Lens, DataSourceState, isMobile, cx, Overwrite, PickerBodyEmptyStateReason, IDropdownBodyProps, devLogger,
+    Lens, DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput, SearchInputProps } from '../inputs';
@@ -29,33 +29,18 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     searchLens = this.lens.prop('search');
     getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
 
-    getEmptyReason() : PickerBodyEmptyStateReason {
-        const search = this.searchLens.get();
-        if (this.props.minCharsToSearch && search.length < this.props.minCharsToSearch) {
-            return 'SEARCH_TOO_SHORT';
-        }
-
-        if (search && this.props.rows.length === 0) {
-            return 'NOT_FOUND';
-        }
-
-        if (this.props.rows.length === 0) {
-            return 'NO_RECORDS';
-        }
-    }
-
     renderEmpty() {
-        const reason = this.getEmptyReason();
+        const search = this.searchLens.get();
 
         if (this.props.renderEmpty) {
             return this.props.renderEmpty({
-                reason: reason,
+                minCharsToSearch: this.props.minCharsToSearch,
                 onClose: this.props.onClose,
-                search: this.searchLens.get(),
+                search: search,
             });
         }
 
-        if (reason === 'SEARCH_TOO_SHORT') {
+        if (this.props.minCharsToSearch && search.length < this.props.minCharsToSearch) {
             return (
                 <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
                     <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
@@ -63,7 +48,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
             );
         }
 
-        if (reason === 'NOT_FOUND' || reason === 'NO_RECORDS') {
+        if (this.props.rows.length === 0) {
             if (this.props.renderNotFound) {
                 if (__DEV__) {
                     devLogger.warn('[PickerInput]: renderNotFound prop is deprecated. Please use renderEmpty prop instead.');
