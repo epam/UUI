@@ -57,20 +57,11 @@ export type PickerInputSearchPosition = 'input' | 'body' | 'none';
  */
 export type PickerInputEditMode = 'dropdown' | 'modal';
 
-/** Picker empty state reasons */
-export type PickerBodyEmptyStateReason = 'NO_RECORDS' | 'NOT_FOUND' | 'SEARCH_TOO_SHORT';
-
 /**
  * Picker empty body configuration.
  */
 export interface PickerEmptyBodyProps {
-    /** Indicates the reason of empty state
-     * 'NO_RECORDS' - picker initially don't have any records
-     * 'NOT_FOUND' - there are no items according to the search value
-     * 'SEARCH_TOO_SHORT' - search length less than 'minCharToSearch' props value
-     * */
-    reason?: PickerBodyEmptyStateReason
-
+    minCharsToSearch?: number;
     search: string;
     onClose: () => void;
 }
@@ -104,8 +95,10 @@ export type PickerBaseOptions<TItem, TId> = {
     renderNotFound?: (props: { search: string; onClose: () => void }) => ReactNode;
 
     /**
-     * Overrides the rendering of PickerBody content when it is empty for various reasons.
-     * If not provided, deprecated `renderNotFound` method or default implementation is used.
+     * Overrides the rendering of PickerBody content when it is empty.
+     * It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).
+     * Consider this all cases where a custom callback is provided.
+     * If not provided, default implementation is used.
      */
     renderEmpty?: (props: PickerEmptyBodyProps) => ReactNode;
 

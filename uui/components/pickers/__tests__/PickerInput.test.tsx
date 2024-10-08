@@ -1461,8 +1461,8 @@ describe('PickerInput', () => {
             minCharsToSearch: 3,
             searchPosition: 'body',
             dataSource: mockEmptyDS,
-            renderEmpty: ({ reason }) => {
-                if (reason === 'SEARCH_TOO_SHORT') {
+            renderEmpty: ({ minCharsToSearch, search }) => {
+                if (search.length < minCharsToSearch) {
                     return (
                         <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotEnoughCharsInSearchId } }>
                             <Text>{customTextForNotEnoughCharsInSearch}</Text>
