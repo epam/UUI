@@ -139,7 +139,7 @@ export const settings: Settings = {
             defaults: {
                 icon: '18',
                 indentUnit: 24,
-                indentWidth: 12,
+                indentWidth: 18,
             },
             checkbox: {
                 24: '12',
@@ -222,7 +222,7 @@ export const settings: Settings = {
                         columnCaption: {
                             fontSize: '14',
                             fontWeight: '400',
-                            size: '30',
+                            size: '18',
                             uppercase: '12',
                         },
                         iconSize: {
