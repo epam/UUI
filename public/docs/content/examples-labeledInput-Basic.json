@@ -1,1 +1,11 @@
-{"object":"value","document":{"object":"document","data":{},"nodes":[{"object":"block","type":"paragraph","data":{},"nodes":[{"object":"text","text":"Basic LabeledInput usage","marks":[]}]}]}}
+[
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Basic LabeledInput usage"
+      }
+    ]
+  }
+]
