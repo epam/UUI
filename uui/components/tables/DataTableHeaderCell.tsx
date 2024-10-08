@@ -1,6 +1,14 @@
 import * as React from 'react';
 import {
-    cx, DataColumnProps, DataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
+    cx,
+    DataColumnProps,
+    DataTableHeaderCellProps,
+    IDropdownTogglerProps,
+    Overwrite,
+    UuiContext,
+    UuiContexts,
+    uuiDataTableHeaderCell,
+    uuiMarkers,
 } from '@epam/uui-core';
 import {
     DataTableCellContainer,
@@ -40,6 +48,9 @@ export class DataTableHeaderCell<TItem, TId> extends
     DataTableHeaderCellModsOverride>,
     DataTableHeaderCellState
     > {
+    public static contextType = UuiContext;
+    public context: UuiContexts;
+
     state: DataTableHeaderCellState = {
         isDropdownOpen: null,
     };
@@ -211,7 +222,13 @@ export class DataTableHeaderCell<TItem, TId> extends
                     props.isDraggedOut && css.isDraggedOut,
                     props.isDndInProgress && css['dnd-marker-' + props.position],
                 ) }
-                onClick={ onClickEvent }
+                onClick={ (e) => {
+                    onClickEvent?.(e);
+                    if (this.props.getHeaderCellClickAnalyticsEvent) {
+                        const analyticsEvent = this.props.getHeaderCellClickAnalyticsEvent?.(this.props.column);
+                        this.context.uuiAnalytics.sendEvent(analyticsEvent);
+                    }
+                } }
                 rawProps={ {
                     role: 'columnheader',
                     'aria-sort': this.props.sortDirection === 'asc' ? 'ascending' : this.props.sortDirection ? 'descending' : 'none',
