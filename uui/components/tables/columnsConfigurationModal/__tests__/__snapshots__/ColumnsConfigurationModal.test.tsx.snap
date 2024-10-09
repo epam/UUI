@@ -324,8 +324,77 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="uui-flex-row root hDivider container align-items-center"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
+          />
+          <div
+            aria-expanded={true}
+            className="uui-accordion-container container uui-opened subgroupAccordion"
+          >
+            <div
+              className="uui-accordion-toggler uui-opened"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              tabIndex={0}
+            >
+              <div
+                className="uui-accordion-toggle-container"
+              >
                 <div
-                  className="uui-flex-row root rowWrapper container align-items-top"
+                  className="uui-flex-row root uui-size-36 subgroup container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
+                  >
+                    <svg
+                      className=""
+                      height="18"
+                      width="18"
+                    />
+                  </div>
+                  <div
+                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
+                  >
+                    Not pinned
+                  </div>
+                </div>
+                <div
+                  className="container uui-icon uui-enabled arrow"
+                  style={Object {}}
+                />
+              </div>
+            </div>
+            <div
+              className="uui-accordion-body"
+              role="region"
+            >
+              <div
+                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
+                <div
+                  className="uui-flex-row root rowWrapper notPinned container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -338,11 +407,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="dragHandle dndDisabled container uui-drag-handle uui-disabled"
+                    className="dragHandle container uui-drag-handle"
+                    onPointerDown={[Function]}
                     onTouchStart={[Function]}
                   >
                     <div
-                      className="container uui-icon uui-disabled"
+                      className="container uui-icon uui-enabled"
                       style={Object {}}
                     >
                       <svg
@@ -389,9 +459,26 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     }
                   >
                     <button
-                      aria-disabled={true}
-                      className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
-                      tabIndex={-1}
+                      aria-disabled={false}
+                      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
+                      >
+                        <svg
+                          className=""
+                        />
+                      </div>
+                    </button>
+                    <button
+                      aria-disabled={false}
+                      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                      onClick={[Function]}
+                      tabIndex={0}
                       type="button"
                     >
                       <div
