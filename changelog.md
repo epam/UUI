@@ -1,6 +1,10 @@
 # 5.*.* - **.**.****
 
 **What's New**
+* [PickerInput]: 
+  * Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
+  * Added renderEmpty prop to render custom empty block for depends on various reasons.
+  * `renderNotFonud` prop is deprecated, please
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 * [DataTable]: - `ColumnsConfigurationModal` - updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
@@ -38,7 +42,7 @@
 * [LinkButton]: added `weight` and `underline` props
 * [DataTable]: disable animation for loading skeletons due to performance issues
 * [DatePickers]: added 'DDMMYYYY' format to the list of supported date formats for parsing user input
-* Uploaded new version of icons pack: 
+* Uploaded new version of icons pack:
   * icons added: action-clock_fast-fill, action-clock_fast-outline
   * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
