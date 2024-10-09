@@ -8,7 +8,6 @@
 **What's Fixed**
 * [useAsyncDataSource]: fixed refetching of data after deps change.
 
-
 # 5.9.2 - 12.09.2024
 
 **What's New**
