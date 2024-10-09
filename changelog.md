@@ -1,3 +1,8 @@
+# 5.9.5 - 09.10.2024
+
+**What's Fixed**
+* [ArrayDataSource]: fixed initializing caches on data source creation.
+
 # 5.9.4 - 26.09.2024
 
 **What's Fixed**
