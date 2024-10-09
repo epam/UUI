@@ -15,7 +15,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
         fix: 'left',
         isSortable: true,
         justifyContent: 'space-between',
-        isAlwaysVisible: true,
+        isLocked: true,
     }, {
         key: 'profileStatus',
         caption: 'Profile Status',
