@@ -1,6 +1,9 @@
 # 5.*.* - **.**.****
 
 **What's New**
+[DataTable]:
+  * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
+  * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined. 
 * [PickerInput]: 
   * Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
   * Added renderEmpty prop to render custom empty block for depends on various reasons.
