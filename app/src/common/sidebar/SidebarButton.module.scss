@@ -1,6 +1,7 @@
 .root {
     &:global(.uui-button-box) {
-        height: 36px;
+        min-height: 36px;
+        height: auto;
         align-items: center;
         padding-inline-start: 11px;
         font-size: 16px;
@@ -19,6 +20,7 @@
         font-size: 16px;
         overflow-x: hidden;
         text-overflow: ellipsis;
+        height: auto;
     }
 
     &.indent-12 {
