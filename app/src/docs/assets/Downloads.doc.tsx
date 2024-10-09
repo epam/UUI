@@ -66,7 +66,7 @@ export class DownloadsDoc extends BaseDocsBlock {
         title, additionalInfo, link, image,
     }: any) {
         return (
-            <FlexCell minWidth={ 320 }>
+            <FlexCell key={ title } minWidth={ 320 }>
                 <FlexRow columnGap="12">
                     <IconContainer icon={ image } />
                     <FlexCell width="auto">

@@ -105,7 +105,7 @@ export function AppHeader() {
 
     const renderDirectionSwitcher = () => {
         return (
-            <FlexRow padding="12">
+            <FlexRow key="direction-switcher" padding="12">
                 <MultiSwitch value={ direction } onValueChange={ changeContentDirection } items={ [{ id: 'ltr', caption: 'LTR' }, { id: 'rtl', caption: 'RTL' }] } />
             </FlexRow>
         );
@@ -213,6 +213,7 @@ export function AppHeader() {
                                     if (!['figma', 'git', 'gitStar', 'direction', 'themeCaption'].includes(i.id)) {
                                         return i.render({ ...i, onClose: props.onClose });
                                     }
+                                    return null;
                                 });
                             } }
                         />
@@ -225,6 +226,7 @@ export function AppHeader() {
                 priority: 5,
                 render: () => (
                     <Dropdown
+                        key="figma"
                         renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
@@ -239,7 +241,7 @@ export function AppHeader() {
             {
                 id: 'git',
                 priority: 4,
-                render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
+                render: () => <MainMenuButton key="git" icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
             },
             {
                 id: 'gitStar',
