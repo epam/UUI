@@ -65,7 +65,7 @@ export default defineConfig({
             },
             testMatch: [
                 'tests/previewTests/*.e2e.ts',
-                'tests/docExampleTests/**/*.e2e.ts',
+                'tests/Integration/**/*.e2e.ts',
             ],
         },
         {
@@ -75,7 +75,7 @@ export default defineConfig({
             },
             testMatch: [
                 'tests/previewTests/*.e2e.ts',
-                'tests/docExampleTests/**/*.e2e.ts',
+                'tests/Integration/**/*.e2e.ts',
             ],
         },
         {
@@ -84,7 +84,7 @@ export default defineConfig({
                 ...devices['Desktop Firefox'],
             },
             testMatch: [
-                'tests/docExampleTests/**/*.e2e.ts',
+                'tests/Integration/**/*.e2e.ts',
             ],
         },
     ].filter(({ name }) => {

@@ -23,7 +23,7 @@
     "print-error": "ts-node scripts/cmd/cmdPrintError.ts"
   },
   "dependencies": {
-    "@playwright/test": "1.45.2",
+    "@playwright/test": "1.48.0",
     "@types/node": "*",
     "address": "2.0.2",
     "cross-env": "^7.0.3",
