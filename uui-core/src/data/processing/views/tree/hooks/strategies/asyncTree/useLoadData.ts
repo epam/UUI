@@ -7,6 +7,7 @@ import { useItemsStatusCollector } from '../../common';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
+import { useDepsChanged } from '../../common/useDepsChanged';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -93,6 +94,8 @@ export function useLoadData<TItem, TId, TFilter = any>(
             return { isUpdated: false, isOutdated: false, tree: loadingTree, error: e };
         }
     }, [api]);
+
+    const depsChanged = useDepsChanged(deps);
 
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
