@@ -1,7 +1,7 @@
 # 5.10.0 - 11.10.2024
 
 **What's New**
-[DataTable]:
+* [DataTable]:
   * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
   * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined. 
 * [DataTable]: `ColumnsConfigurationModal` updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
