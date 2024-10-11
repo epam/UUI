@@ -14,6 +14,7 @@
 * [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
 
 **What's Fixed**
+* [Form]: fixed bug when `beforeLeave` modal appears in case of redirect in `onSuccess` callback
 * [VirtualList]: fixed offsets counting if rows have different height
 * [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
 
