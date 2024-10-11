@@ -1,20 +1,21 @@
-# 5.*.* - **.**.****
+# 5.10.0 - 11.10.2024
 
 **What's New**
 [DataTable]:
   * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
   * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined. 
+* [DataTable]: `ColumnsConfigurationModal` updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 * [PickerInput]: 
   * Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
   * Added renderEmpty prop to render custom empty block for depends on various reasons.
-  * `renderNotFonud` prop is deprecated, please
+  * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
-* [DataTable]: - `ColumnsConfigurationModal` - updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
 * [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
 
 **What's Fixed**
 * [VirtualList]: fixed offsets counting if rows have different height
+* [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
 
 
 # 5.9.5 - 09.10.2024
