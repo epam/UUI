@@ -55,10 +55,6 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const [incommingTree, setIncommingTree] = useState(baseTree);
 
-    useEffect(() => {
-        setIncommingTree(TreeState.blank({ getId, getParentId, complexIds }, itemsMap, setItems));
-    }, [...deps]);
-
     const prevIsForceReload = usePrevious(isForceReload);
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
