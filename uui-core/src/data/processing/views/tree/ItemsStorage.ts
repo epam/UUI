@@ -49,7 +49,7 @@ export class ItemsStorage<TItem, TId> {
         return this._itemsMap;
     };
 
-    public getItemsMap() {
+    public getItemsMap = () => {
         return this._itemsMap;
-    }
+    };
 }
