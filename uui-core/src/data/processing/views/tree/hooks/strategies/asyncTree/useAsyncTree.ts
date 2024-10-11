@@ -6,7 +6,7 @@ import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import {
     useItemsStorage, useDataSourceStateWithDefaults, useFilterTree, useSortTree,
     useSearchTree, useSelectedOnlyTree, usePatchTree,
-    useActualItemsMap,
+    useActualItemsStorage,
 } from '../../common';
 import { UseTreeResult } from '../../types';
 
@@ -61,6 +61,11 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const prevIsForceReload = usePrevious(isForceReload);
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
+
+    useEffect(() => {
+        setIncommingTree(baseTree);
+    }, [baseTree]);
+
     const { tree: treeWithData, itemsStatusCollector, isLoaded: isTreeLoaded, isLoading, isFetching } = useLoadData({
         getId,
         complexIds,
@@ -80,6 +85,8 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         itemsStatusMap,
     }, [...deps, isForceReload, incommingTree]);
 
+    const actualTree = useActualItemsStorage({ tree: treeWithData, itemsMap, setItems });
+
     const prevIsFetching = usePrevious(isFetching);
 
     useEffect(() => {
@@ -87,7 +94,7 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
                 && prevIsFetching !== isFetching && !isFetching) {
             setIsForceReload(false);
         }
-    }, [treeWithData]);
+    }, [actualTree]);
 
     const reload = useCallback(() => {
         setIncommingTree(TreeState.blank({ getId, getParentId, complexIds }, itemsMap, setItems));
@@ -96,8 +103,8 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
 
     const isTreeLoading = !isTreeLoaded || isLoading || isFetching;
     const filteredTree = useFilterTree(
-        { tree: treeWithData, getFilter, dataSourceState, isLoading: isTreeLoading },
-        [treeWithData, isTreeLoading],
+        { tree: actualTree, getFilter, dataSourceState, isLoading: isTreeLoading },
+        [actualTree, isTreeLoading],
     );
 
     const sortTree = useSortTree(
@@ -122,9 +129,10 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
         isLoading: isTreeLoading,
     }, [searchTree, isTreeLoading]);
 
-    const treeWithNewItemsMap = useActualItemsMap({
+    const treeWithNewItemsMap = useActualItemsStorage({
         tree: treeWithSelectedOnly,
         itemsMap,
+        setItems,
     });
 
     const { tree, applyPatch } = usePatchTree({
