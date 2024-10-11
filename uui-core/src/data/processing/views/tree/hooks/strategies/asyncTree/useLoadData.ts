@@ -103,7 +103,9 @@ export function useLoadData<TItem, TId, TFilter = any>(
         !isFetching
         && !isLoaded
         && (!showSelectedOnly || (showSelectedOnly && getSelectedAndChecked(dataSourceState, patch).length))
-    ) || forceReload;
+    )
+    || forceReload
+    || depsChanged;
 
     useEffect(() => {
         if (shouldForceReload) {

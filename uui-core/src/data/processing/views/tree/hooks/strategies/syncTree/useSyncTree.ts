@@ -45,7 +45,7 @@ export function useSyncTree<TItem, TId, TFilter = any>(
 
     const fullTree = useCreateTree(
         { items, itemsMap, setItems, getId, getParentId, complexIds },
-        [...deps, items, itemsMap, triggerValue],
+        [...deps, items, itemsMap, setItems, triggerValue],
     );
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
