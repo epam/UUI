@@ -189,15 +189,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                     searchSize={ props.size }
                     editMode="dropdown"
                     selectionMode={ props.selectionMode }
-                    renderNotFound={
-                        props.renderNotFound
-                            ? () =>
-                                props.renderNotFound({
-                                    search: dataSourceState.search,
-                                    onClose: () => toggleBodyOpening(false),
-                                })
-                            : undefined
-                    }
                 />
                 { renderFooter() }
             </PickerBodyMobileView>
@@ -206,7 +197,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const rows = getRows();
     const renderItem = props.renderTag ? props.renderTag : null;
-
     return (
         <Dropdown
             renderTarget={ (dropdownProps) => {

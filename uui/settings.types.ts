@@ -176,6 +176,7 @@ interface DataTableColumnsConfigurationModal {
     countIndicator: string;
     subgroupIcon: string;
     search: string;
+    width: number;
 }
 
 interface FiltersPanelPickerBodySizes {
@@ -214,6 +215,22 @@ interface DataTableSizes {
     body: DataTableBodySizes;
 }
 
+interface TabButtonSizes {
+    countIndicator: Sizes;
+}
+
+interface ModalWindowDefaultSizes {
+    width: string;
+}
+
+interface ModalWindowSizes {
+    defaults: ModalWindowDefaultSizes;
+}
+
+interface ModalSizes {
+    window: ModalWindowSizes;
+}
+
 interface SizesSettings {
     defaults: DefaultSizes;
     tag: TagSizes;
@@ -224,6 +241,8 @@ interface SizesSettings {
     labeledInput: LabeledInputSizes;
     badge: BadgeSizes;
     dataTable: DataTableSizes;
+    modal: ModalSizes;
+    tabButton: TabButtonSizes;
 }
 
 export interface Settings {

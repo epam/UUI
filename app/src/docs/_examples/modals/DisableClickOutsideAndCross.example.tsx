@@ -1,7 +1,8 @@
 import React from 'react';
 import { IModal, useUuiContext } from '@epam/uui-core';
 import { demoData } from '@epam/uui-docs';
-import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, FlexSpacer, Panel, ScrollBars, Text, Button } from '@epam/uui';
+import { ModalBlocker, ModalFooter, ModalHeader, ModalWindow, FlexRow, Panel, ScrollBars, Text, Button } from '@epam/uui';
+import css from './styles.module.scss';
 
 function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
     return (
@@ -18,8 +19,7 @@ function ModalWithDisabledClickOutsideAndCross(props: IModal<string>) {
                             </Text>
                         </FlexRow>
                     </ScrollBars>
-                    <ModalFooter>
-                        <FlexSpacer />
+                    <ModalFooter cx={ css.footer }>
                         <Button color="secondary" fill="outline" caption="Cancel" onClick={ () => props.abort() } />
                         <Button color="primary" caption="Ok" onClick={ () => props.success('Success action') } />
                     </ModalFooter>

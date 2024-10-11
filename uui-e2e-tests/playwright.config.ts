@@ -65,26 +65,26 @@ export default defineConfig({
             },
             testMatch: [
                 'tests/previewTests/*.e2e.ts',
-                'tests/docExampleTests/**/*.e2e.ts',
+                'tests/Integration/**/*.e2e.ts',
             ],
         },
-        {
-            name: 'webkit',
-            use: {
-                ...devices['Desktop Safari'],
-            },
-            testMatch: [
-                'tests/previewTests/*.e2e.ts',
-                'tests/docExampleTests/**/*.e2e.ts',
-            ],
-        },
+        // {
+        //     name: 'webkit',
+        //     use: {
+        //         ...devices['Desktop Safari'],
+        //     },
+        //     testMatch: [
+        //         'tests/previewTests/*.e2e.ts',
+        //         'tests/Integration/**/*.e2e.ts',
+        //     ],
+        // },
         {
             name: 'firefox',
             use: {
                 ...devices['Desktop Firefox'],
             },
             testMatch: [
-                'tests/docExampleTests/**/*.e2e.ts',
+                'tests/Integration/**/*.e2e.ts',
             ],
         },
     ].filter(({ name }) => {

@@ -6,6 +6,7 @@ const TREE_SHAKEABLE_INIT = () => ({
         searchPlaceholder: 'Search',
         noRecordsMessage: 'No records found',
         noRecordsSubTitle: 'Check your spelling, or search for a different keyword',
+        typeSearchToLoadMessage: 'Type search to load items',
     },
     pickerModal: {
         headerTitle: 'Please select',

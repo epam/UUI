@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Lens, DataSourceState, isMobile, cx, Overwrite,
+    Lens, DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
 import { SearchInput, SearchInputProps } from '../inputs';
@@ -17,7 +17,7 @@ interface DataPickerBodyMods {
     searchSize?: ControlSize;
 }
 
-export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps {
+export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps, IDropdownBodyProps {
     maxHeight?: number;
     editMode?: 'dropdown' | 'modal';
     selectionMode?: 'single' | 'multi';
@@ -27,21 +27,51 @@ export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataP
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     searchLens = this.lens.prop('search');
-    renderNotFound() {
-        if (this.props.renderNotFound) {
-            return this.props.renderNotFound();
+    getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
+
+    renderEmpty() {
+        const search = this.searchLens.get();
+
+        if (this.props.renderEmpty) {
+            return this.props.renderEmpty({
+                minCharsToSearch: this.props.minCharsToSearch,
+                onClose: this.props.onClose,
+                search: search,
+            });
         }
 
-        return (
-            <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
-                <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
-            </FlexCell>
-        );
+        if (this.props.minCharsToSearch && search.length < this.props.minCharsToSearch) {
+            return (
+                <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
+                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
+                </FlexCell>
+            );
+        }
+
+        if (this.props.rows.length === 0) {
+            if (this.props.renderNotFound) {
+                if (__DEV__) {
+                    devLogger.warn('[PickerInput]: renderNotFound prop is deprecated. Please use renderEmpty prop instead.');
+                }
+
+                return this.props.renderNotFound({
+                    onClose: this.props.onClose,
+                    search: this.searchLens.get(),
+                });
+            }
+
+            // Default no record found message for 'NOT_FOUND' and "NO_RECORDS" reason
+            // TODO: make separate messages for 'NOT_FOUND' and "NO_RECORDS" reason
+            return (
+                <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
+                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
+                </FlexCell>
+            );
+        }
     }
 
     render() {
-        const searchSize = (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
-
+        const searchSize = this.getSearchSize();
         return (
             <>
                 {this.showSearch() && (
@@ -60,7 +90,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     </div>
                 )}
                 <FlexRow key="body" cx={ cx('uui-picker_input-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
-                    { this.props.rowsCount > 0 ? (
+                    { this.props.rows.length > 0 ? (
                         <VirtualList
                             { ...this.lens.toProps() }
                             rows={ this.props.rows }
@@ -68,7 +98,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                             rowsCount={ this.props.rowsCount }
                             isLoading={ this.props.isReloading }
                         />
-                    ) : (this.renderNotFound())}
+                    ) : this.renderEmpty()}
                 </FlexRow>
             </>
         );

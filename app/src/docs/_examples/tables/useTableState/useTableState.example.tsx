@@ -129,7 +129,7 @@ export default function FiltersPanelExample() {
 
     return (
         <Panel background="surface-main" shadow style={ { height: '400px' } }>
-            <FlexRow>
+            <FlexRow padding="12">
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable

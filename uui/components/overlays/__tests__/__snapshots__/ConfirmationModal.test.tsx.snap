@@ -22,7 +22,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       Object {
         "height": "auto",
         "maxHeight": "80dvh",
-        "width": "420px",
+        "width": 420,
       }
     }
   >
@@ -145,7 +145,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter footer container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -153,9 +153,6 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         }
       }
     >
-      <div
-        className="flexSpacer"
-      />
       <button
         className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
         onClick={[Function]}
@@ -207,7 +204,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       Object {
         "height": "auto",
         "maxHeight": "80dvh",
-        "width": "420px",
+        "width": 420,
       }
     }
   >
@@ -322,7 +319,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
+      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter footer container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -330,9 +327,6 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
         }
       }
     >
-      <div
-        className="flexSpacer"
-      />
       <button
         className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
         onClick={[Function]}

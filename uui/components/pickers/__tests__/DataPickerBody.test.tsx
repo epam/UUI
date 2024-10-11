@@ -36,7 +36,7 @@ describe('DataPickerBody', () => {
     });
 
     it('should be rendered without rows', async () => {
-        const tree = await renderSnapshotWithContextAsync(<DataPickerBody { ...requiredProps } rows={ [] } renderNotFound={ () => <div>Not found</div> } />);
+        const tree = await renderSnapshotWithContextAsync(<DataPickerBody { ...requiredProps } rows={ [] } renderEmpty={ () => <div>Not found</div> } />);
         expect(tree).toMatchSnapshot();
     });
 

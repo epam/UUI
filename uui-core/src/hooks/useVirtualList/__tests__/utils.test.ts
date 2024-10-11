@@ -106,6 +106,22 @@ describe('getUpdatedRowOffsets', () => {
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
     });
+
+    it('should count proper offsets if rows have different height', () => {
+        const info = {
+            ...defaultInfo,
+            rowsCount: 3,
+            blockSize: undefined,
+            overdrawRows: undefined,
+            rowOffsets: [],
+            listOffset: 38,
+            averageRowHeight: 69,
+            rowHeights: [37, 37, 133],
+        };
+        expect(getUpdatedRowOffsets(info)).toEqual([
+            38, 75, 112, 245,
+        ]);
+    });
 });
 
 describe('getNewEstimatedContainerHeight', () => {
@@ -200,18 +216,18 @@ describe('getUpdatedRowsInfo', () => {
             rowHeights: [1, 10, 20, 20, 20, 15, 10, 15],
             rowOffsets: [
                 50,
-                60,
-                80,
-                100,
-                120,
-                135,
-                145,
-                160,
-                173.875,
-                187.75,
-                201.625,
+                51,
+                61,
+                81,
+                101,
+                121,
+                136,
+                146,
+                161,
+                174.875,
+                188.75,
             ],
-            estimatedHeight: 151.625,
+            estimatedHeight: 138.75,
             averageRowHeight: 13.875,
         });
     });

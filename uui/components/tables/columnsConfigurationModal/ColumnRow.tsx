@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, uuiDndState } from '@epam/uui-core';
-import { FlexRow, FlexRowProps } from '../../layout';
+import { FlexRow } from '../../layout';
 import { Checkbox } from '../../inputs';
 import { DropMarker } from '../../dnd';
 import { DragHandle, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import { ReactComponent as DragIndicatorIcon } from '@epam/assets/icons/common/action-drag_indicator-18.svg';
-import { settings } from '../../../settings';
 
 import css from './ColumnRow.module.scss';
 
@@ -34,10 +33,11 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
 
         return (
             <FlexRow
-                size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
+                size={ null }
                 cx={ wrapperClasses }
                 ref={ dndActorParams.ref }
                 rawProps={ { ...restEventHandlers } }
+                alignItems="top"
             >
                 <DragHandle
                     dragHandleIcon={ DragIndicatorIcon }
@@ -50,11 +50,11 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                     label={ props.renderItem ? props.renderItem(props.column) : column.caption }
                     value={ isVisible }
                     onValueChange={ toggleVisibility }
-                    isDisabled={ column.isAlwaysVisible }
-                    cx={ css.grow }
+                    isReadonly={ column.isAlwaysVisible || column.isLocked }
+                    cx={ css.checkbox }
                 />
                 <FlexRow
-                    size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
+                    size={ null }
                     cx={ css.pinIconButton }
                 >
                     <PinIconButton pinPosition={ pinPosition } canUnpin={ !isPinnedAlways } onTogglePin={ togglePin } />

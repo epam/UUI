@@ -3,7 +3,7 @@ import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
 import { IconContainer } from '../layout';
-import { browserBugFixDirAuto } from '../helpers';
+import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import css from './TextInput.module.scss';
 
 const ENTER = 'Enter';
