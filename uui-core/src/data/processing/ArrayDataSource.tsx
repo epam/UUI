@@ -16,7 +16,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         super(props);
         this.setProps(props);
         const params = { getId: this.getId, complexIds: props.complexIds };
-        this.itemsStorage = new ItemsStorage({ items: [], params: params });
+        this.itemsStorage = new ItemsStorage({ items: props.items, params: params });
     }
 
     public setProps(props: ArrayDataSourceProps<TItem, TId, TFilter>) {

@@ -14,8 +14,18 @@
 * [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
 
 **What's Fixed**
-*[VirtualList]: fixed offsets counting if rows have different height
+* [VirtualList]: fixed offsets counting if rows have different height
 
+
+# 5.9.5 - 09.10.2024
+
+**What's Fixed**
+* [ArrayDataSource]: fixed initializing caches on data source creation.
+
+# 5.9.4 - 26.09.2024
+
+**What's Fixed**
+* [useAsyncDataSource]: fixed refetching of data after deps change.
 
 # 5.9.3 - 16.09.2024
 
