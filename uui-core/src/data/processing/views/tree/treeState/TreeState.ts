@@ -59,7 +59,6 @@ export class TreeState<TItem, TId> {
             dataSourceState,
         });
 
-        console.log('skip setting items', !loadedItems.length && !byParentId.size && !nodeInfoById.size);
         if (!loadedItems.length && !byParentId.size && !nodeInfoById.size) {
             if (using === undefined && treeStructure !== this.getTreeStructure('visible')) {
                 return this.withNewTreeStructures({
