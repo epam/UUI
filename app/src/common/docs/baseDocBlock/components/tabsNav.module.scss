@@ -3,15 +3,17 @@
     min-height: 60px;
     background-color: var(--uui-surface-main);
 
-    button:nth-of-type(1) {
+    .mobSidebarBtn {
         padding-left: 0;
         padding-right: 0;
-    }
+        margin-inline-start: 6px;
+        margin-inline-end: 12px;
 
-    :global(.uui-icon) {
-        svg {
-            width: 24px;
-            height: 24px;
+        :global(.uui-icon) {
+            svg {
+                width: 24px;
+                height: 24px;
+            }
         }
     }
 }

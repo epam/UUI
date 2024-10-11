@@ -11,7 +11,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 130,
         fix: 'left',
         isSortable: true,
-        isAlwaysVisible: true,
+        isLocked: true,
     },
     {
         key: 'profileStatus',
@@ -26,6 +26,7 @@ export const personColumns: DataColumnProps<Person, number>[] = [
         width: 100,
         minWidth: 90,
         isSortable: true,
+        isAlwaysVisible: true,
     },
     {
         key: 'salary',

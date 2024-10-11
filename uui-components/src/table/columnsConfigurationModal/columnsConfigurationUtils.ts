@@ -2,23 +2,27 @@ import React from 'react';
 import { AcceptDropParams, ColumnsConfig, DataColumnProps, DropPosition, getOrderBetween, IColumnConfig, orderBy } from '@epam/uui-core';
 import { ColumnsConfigurationRowProps, DndDataType, GroupedColumnsType, GroupedDataColumnProps } from './types';
 
-export function isColumnAlwaysPinned(column: DataColumnProps) {
-    return Boolean(column?.isAlwaysVisible);
+export function isColumnLocked(column: DataColumnProps) {
+    return Boolean(column?.isLocked);
 }
 
 export function canAcceptDrop(props: AcceptDropParams<DndDataType, DndDataType>, nextColumn?: DataColumnProps, prevColumn?: DataColumnProps) {
-    const { dstData } = props;
+    const { dstData, srcData } = props;
 
-    if (isColumnAlwaysPinned(dstData.column)) {
-        if (dstData.column.fix === 'left' && !isColumnAlwaysPinned(nextColumn)) { // If user try to drop column at the last isAlwaysVisible column. Allow to drop only to the end of the fixed list.
+    if (isColumnLocked(dstData.column)) {
+        if (dstData.column.fix === 'left' && !isColumnLocked(nextColumn)) { // If user try to drop column at the last isAlwaysVisible column. Allow to drop only to the end of the fixed list.
             return { bottom: true };
         }
 
-        if (dstData.column.fix === 'right' && !isColumnAlwaysPinned(prevColumn)) { // If user try to drop column at the first isAlwaysVisible. Allow to drop only to the start of the fixed list
+        if (dstData.column.fix === 'right' && !isColumnLocked(prevColumn)) { // If user try to drop column at the first isAlwaysVisible. Allow to drop only to the start of the fixed list
             return { top: true };
         }
 
         return {}; // Shouldn't drop between 2 isAlwaysVisible columns
+    }
+
+    if (srcData.column.isAlwaysVisible && dstData.columnConfig.isVisible === false) {
+        return {}; // We shouldn't move isAlwaysVisible column into 'Hidden from table' group
     }
 
     return { top: true, bottom: true };

@@ -20,9 +20,9 @@ exports[`PickerModal should be rendered correctly 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "700px",
+        "height": 700,
         "maxHeight": "80dvh",
-        "width": "600px",
+        "width": 600,
       }
     }
   >
@@ -465,9 +465,9 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     role="dialog"
     style={
       Object {
-        "height": "700px",
+        "height": 700,
         "maxHeight": "80dvh",
-        "width": "600px",
+        "width": 600,
       }
     }
   >
