@@ -294,6 +294,13 @@ export class TreeState<TItem, TId> {
         );
     }
 
+    public updateSetItems(setItems: ItemsStorage<TItem, TId>['setItems']) {
+        if (this._setItems !== setItems) {
+            this._setItems = setItems;
+        }
+        return this;
+    }
+
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }

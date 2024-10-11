@@ -4,11 +4,10 @@ import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import { useFoldingService } from '../../../../dataRows/services';
 import { useLoadData } from './useLoadData';
 import { UseTreeResult } from '../../types';
-import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector } from '../../common';
+import { useDataSourceStateWithDefaults, useSelectedOnlyTree, useItemsStorage, usePatchTree, useItemsStatusCollector, useActualItemsStorage } from '../../common';
 import { TreeState } from '../../../treeState';
 import { useLazyFetchingAdvisor } from './useLazyFetchingAdvisor';
 import { isSelectedOrCheckedChanged } from '../checked';
-import { useActualItemsMap } from '../../common';
 
 export function useLazyTree<TItem, TId, TFilter = any>(
     { flattenSearchResults = true, ...restProps }: LazyTreeProps<TItem, TId, TFilter>,
@@ -96,10 +95,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         showSelectedOnly,
     }, [...deps]);
 
-    const treeWithDataActual = useActualItemsMap({
-        tree: treeWithData,
-        itemsMap,
-    });
+    const treeWithDataActual = useActualItemsStorage({ tree: treeWithData, setItems, itemsMap });
 
     useEffect(() => {
         if (showSelectedOnly && isSelectedOrCheckedChanged(dataSourceState, prevDataSourceState)) {
@@ -171,13 +167,8 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         isLoading: isLoading || isFetching,
     }, [treeWithDataActual]);
 
-    const treeWithNewItemsMap = useActualItemsMap({
-        tree: treeWithSelectedOnly,
-        itemsMap,
-    });
-
     const { tree, applyPatch } = usePatchTree({
-        tree: treeWithNewItemsMap,
+        tree: treeWithSelectedOnly,
         patch: showSelectedOnly ? null : patch,
         isDeleted,
         getNewItemPosition,
