@@ -11,7 +11,7 @@
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 * [DataTable]: - `ColumnsConfigurationModal` - updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
-* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
+* [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 
 **What's Fixed**
 *[VirtualList]: fixed offsets counting if rows have different height
