@@ -10,6 +10,7 @@
 *[VirtualList]: fixed offsets counting if rows have different height
 
 
+
 # 5.9.3 - 16.09.2024
 
 **What's Fixed**
