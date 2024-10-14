@@ -121,6 +121,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -162,6 +163,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -203,6 +205,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -244,6 +247,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -285,6 +289,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -326,6 +331,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -367,6 +373,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -408,6 +415,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -449,6 +457,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -490,6 +499,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -531,6 +541,7 @@ Array [
                 role="cell"
                 style={
                   Object {
+                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -677,6 +688,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -716,6 +728,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -755,6 +768,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -794,6 +808,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -833,6 +848,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -872,6 +888,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -911,6 +928,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -950,6 +968,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -989,6 +1008,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -1028,6 +1048,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -1067,6 +1088,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
+                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
