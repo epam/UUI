@@ -102,12 +102,17 @@ describe('useAsyncTree', () => {
             { initialProps: {} },
         );
 
-        const tree = hookResult.result.current;
+        let tree = hookResult.result.current;
+        expect(tree.isLoading).toBeTruthy();
+
+        await waitFor(() => {
+            tree = hookResult.result.current;
+            expect(tree.isFetching).toBeFalsy();
+        });
 
         expect(tree).toEqual(expect.objectContaining({
             dataSourceState,
             setDataSourceState,
-            totalCount: 0,
             getId,
             getParentId,
             rowOptions,
@@ -193,7 +198,7 @@ describe('useAsyncTree', () => {
     });
 
     it('should use outer itemsStatusMap if passed to props', async () => {
-        const itemsStatusMap = newMap<string, RecordStatus>({ getId });
+        const itemsStatusMap = newMap<string, RecordStatus>({});
         itemsStatusMap.set('GW', FAILED_RECORD);
 
         const hookResult = renderHook(

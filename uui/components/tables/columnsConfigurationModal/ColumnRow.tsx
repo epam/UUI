@@ -50,7 +50,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                     label={ props.renderItem ? props.renderItem(props.column) : column.caption }
                     value={ isVisible }
                     onValueChange={ toggleVisibility }
-                    isReadonly={ column.isAlwaysVisible }
+                    isReadonly={ column.isAlwaysVisible || column.isLocked }
                     cx={ css.checkbox }
                 />
                 <FlexRow
