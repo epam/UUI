@@ -30,7 +30,7 @@
     "cross-spawn": "7.0.3",
     "dotenv": "^16",
     "ts-node": "10.9.1",
-    "tslib": "^2.6.2",
+    "tslib": "2.6.2",
     "typescript": "5.4.2"
   },
   "repository": {
