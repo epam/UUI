@@ -14,7 +14,9 @@ concurrency:
 jobs:
     e2e-tests:
         timeout-minutes: 60
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-latest
+        container:
+            image: mcr.microsoft.com/playwright:v1.45.2-jammy
         if: github.event.pull_request.draft == false
         steps:
             - uses: actions/checkout@v4
@@ -28,7 +30,6 @@ jobs:
             - name: 'Build'
               run: |
                   yarn
-                  yarn --cwd uui-e2e-tests local-test-e2e-deps-install
                   yarn build
                   cd server && yarn
 
