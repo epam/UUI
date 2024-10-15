@@ -18,6 +18,7 @@
     --uui-tag-min-width: var(--uui-size);
     --uui-tag-border-width: var(--uui-border-width);
     --uui-tag-horizontal-padding: var(--uui-horizontal-padding);
+    --uui-tag-vertical-padding: var(--uui-vertical-padding);
     --uui-tag-horizontal-gap: var(--uui-horizontal-gap);
     --uui-tag-caption-padding: 0 var(--uui-horizontal-gap);
     --uui-tag-count_indicator-margin-end: var(--uui-horizontal-gap);
@@ -30,11 +31,8 @@
     & {
         min-height: var(--uui-tag-min-height);
         min-width: var(--uui-tag-min-width);
-        padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - (var(--uui-tag-border-width) * 2)) / 2) calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width)); // y
-    }
-
-    :global(.uui-count_indicator):not(:last-child) {
-        margin-right: var(--uui-tag-horizontal-gap);
+        column-gap: var(--uui-tag-horizontal-gap);
+        padding: calc(var(--uui-tag-vertical-padding) - var(--uui-tag-border-width)) calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width));
     }
 
     :global(.uui-caption) {
@@ -57,10 +55,6 @@
         background-color: var(--uui-tag-bg);
         fill: var(--uui-tag-fill);
         border: var(--uui-tag-border-width) solid var(--uui-tag-border);
-
-        :global(.uui-count_indicator):not(:last-child) {
-            margin-inline-end: var(--uui-tag-count_indicator-margin-end);
-        }
 
         &:global(.-clickable) {
             &:hover, &:active {
