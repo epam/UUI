@@ -1,3 +1,8 @@
+# 5.*.* - **.**.****
+
+**What's New**
+* [Tag]: changed layout - added gaps between internal items, changed padding
+
 # 5.10.0 - 11.10.2024
 
 **What's New**
