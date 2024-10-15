@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-components",
-  "version": "5.9.2",
+  "version": "5.10.0",
   "description": "EPAM UUI Components",
   "author": "EPAM",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.9.2",
+    "@epam/uui-core": "5.10.0",
     "@popperjs/core": "2.9.0",
     "@types/classnames": "2.2.6",
     "@types/react-measure": "2.0.8",
