@@ -1,9 +1,9 @@
-@use '~@epam/assets/theme/theme_promo' as *;
+@use '~@epam/assets/theme/variables/promo' as *;
 
 .wrapper {
     &.uui-theme-promo {
         :global {
-            @include theme-promo();
+            @include promo_variables();
         }
     }
 }
