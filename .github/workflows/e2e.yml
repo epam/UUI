@@ -14,7 +14,7 @@ concurrency:
 jobs:
     e2e-tests:
         timeout-minutes: 60
-        runs-on: ubuntu:jammy
+        runs-on: ubuntu-22.04
         if: github.event.pull_request.draft == false
         steps:
             - uses: actions/checkout@v4
