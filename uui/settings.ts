@@ -55,6 +55,7 @@ export const settings: Settings = {
                     row: {
                         default: '36',
                         cell: {
+                            padding: '24',
                             text: {
                                 24: '24',
                                 30: '30',
