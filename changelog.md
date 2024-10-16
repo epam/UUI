@@ -1,3 +1,9 @@
+# 5.10.1 - 16.10.2024
+
+**What's Fixed**
+* [DataPickerRow]: fixed default values for `padding` and `size` prop
+* [TabButton]: fixed caption styles in case app apply `box-sizing: border-box` styles for all page elements.
+
 # 5.10.0 - 11.10.2024
 
 **What's New**
