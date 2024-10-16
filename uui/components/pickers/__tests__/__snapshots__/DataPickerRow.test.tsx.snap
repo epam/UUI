@@ -17,6 +17,7 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
     role="cell"
     style={
       Object {
+        "--uui-data_picker_cell-horizontal-padding": "24px",
         "alignSelf": undefined,
         "flexBasis": "0",
         "flexGrow": 1,
