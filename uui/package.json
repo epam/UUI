@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui",
-  "version": "5.10.0",
+  "version": "5.10.1",
   "description": "EPAM UUI components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,9 +12,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "5.10.0",
-    "@epam/uui-components": "5.10.0",
-    "@epam/uui-core": "5.10.0",
+    "@epam/assets": "5.10.1",
+    "@epam/uui-components": "5.10.1",
+    "@epam/uui-core": "5.10.1",
     "@popperjs/core": "2.9.0",
     "classnames": "2.2.6",
     "dayjs": "1.11.12",
