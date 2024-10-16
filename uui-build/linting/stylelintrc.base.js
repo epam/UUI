@@ -90,21 +90,5 @@ module.exports = {
                 ...SCSS_COMMON_RULES,
             },
         },
-        {
-            extends: ['stylelint-config-sass-guidelines'],
-            files: [
-                '**/epam-assets/theme/**/*.scss',
-            ],
-            rules: {
-                ...SCSS_COMMON_RULES,
-                'uui-custom-rules/theme-tokens-validation': [
-                    true,
-                    {
-                        ignoredUnknownVars: ['--font-inter', '--font-museo-sans', '--uui-btn-bg'],
-                        ignoredRedeclaredVars: ['--uui-border-radius'],
-                    },
-                ],
-            },
-        },
     ],
 };
