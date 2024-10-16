@@ -18,6 +18,10 @@ export interface ITreeItemsInfo<TId> extends ITreeNodeInfo {
      * ITree node loading/state status.
      */
     status: ITreeNodeStatus;
+    /**
+     * TBD
+     */
+    cursor?: any;
 }
 
 /**
