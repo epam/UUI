@@ -420,6 +420,9 @@ export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> {
      * Used for requesting specific items separately from the list.
      */
     ids?: TId[];
+
+    /** TBD  */
+    cursor?: any;
 }
 
 /** Defines Lazy Data Source APIs response shape */
@@ -443,6 +446,9 @@ export interface LazyDataSourceApiResponse<TItem> {
      * Total count of items which match current filter.
      */
     totalCount?: number;
+
+    /** TBD */
+    cursor?: any;
 }
 
 /** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */

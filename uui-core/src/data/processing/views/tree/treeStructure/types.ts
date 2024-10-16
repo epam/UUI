@@ -37,12 +37,17 @@ export interface ITreeNodeInfo {
      * If undefined, not all data is loaded from server.
      */
     count?: number;
+
     /**
      * Total count of the records. Usually, is returned from server on a root node fetch.
      */
     totalCount?: number;
+
     /**
      * Assumed count, got from the `getChildCount` result.
      */
     assumedCount?: number;
+
+    /** Last fetched cursor for this list */
+    cursor?: any;
 }
