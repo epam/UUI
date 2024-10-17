@@ -261,6 +261,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               Elementary
                             </div>
@@ -346,6 +347,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               Elementary+
                             </div>
@@ -746,6 +748,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               C2
                             </div>
@@ -846,6 +849,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               C1+
                             </div>
@@ -946,6 +950,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               C1
                             </div>
@@ -1046,6 +1051,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               B2+
                             </div>
@@ -1146,6 +1152,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               B2
                             </div>
@@ -1246,6 +1253,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               B1+
                             </div>
@@ -1346,6 +1354,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               B1
                             </div>
@@ -1446,6 +1455,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               A2+
                             </div>
@@ -1546,6 +1556,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               A2
                             </div>
@@ -1646,6 +1657,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               A1+
                             </div>
@@ -1746,6 +1758,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                           >
                             <div
                               className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              style={Object {}}
                             >
                               A1
                             </div>
