@@ -58,7 +58,7 @@ describe('LazyListView - cursors support', () => {
 
         const result = runDataQuery(testData, rq);
 
-        if (result.items.length === rq.range.count!) {
+        if (result.items.length > 0) {
             result.cursor = result.items[result.items.length - 1].id;
         }
 
