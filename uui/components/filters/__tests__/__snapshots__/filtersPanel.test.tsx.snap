@@ -40,6 +40,7 @@ Array [
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          style={Object {}}
         >
           Status:
         </div>
@@ -48,6 +49,7 @@ Array [
         >
           <div
             className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography selection container"
+            style={Object {}}
           >
             Unknown
           </div>
@@ -101,6 +103,7 @@ Array [
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          style={Object {}}
         >
           Position
         </div>
@@ -153,6 +156,7 @@ Array [
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          style={Object {}}
         >
           Age
         </div>
@@ -205,6 +209,7 @@ Array [
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          style={Object {}}
         >
           Hire Date
         </div>
@@ -257,6 +262,7 @@ Array [
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          style={Object {}}
         >
           Exit Date
         </div>
