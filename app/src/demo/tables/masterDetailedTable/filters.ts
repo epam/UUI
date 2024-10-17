@@ -50,6 +50,7 @@ export const getFilters = <TFilter extends Record<string, any>>(): TableFiltersC
             columnKey: 'birthDate',
             title: 'Birth Date',
             type: 'rangeDatePicker',
+            format: 'YYYY-MM-DD',
         },
     ];
 };
