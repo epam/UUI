@@ -31,7 +31,6 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const size = isMobile() ? settings.sizes.pickerInput.body.mobile.footer.linkButton as LinkButtonProps['size'] : props.size;
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;
-    const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
 
     const isSinglePicker = selectionMode === 'single';
 
@@ -39,9 +38,10 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const clearSingleText = i18n.pickerInput.clearSelectionButtonSingle;
     const selectAllText = i18n.pickerInput.selectAllButton;
 
-    // show always for multi picker and for single only in case if search not disabled and doesn't searching.
-    const isSearching = search && search?.length;
-    const hideFooter = isSearchTooShort || rowsCount === 0 || (isSinglePicker ? (isSearching && props.disableClear) : isSearching);
+    const isSearching = search?.length;
+    const hideFooter = isSearchTooShort || rowsCount === 0 || isSearching || (isSinglePicker && props.disableClear);
+
+    const showClear = !props.disableClear && (isSinglePicker ? true : (!view.selectAll || hasSelection));
 
     return !hideFooter && (
         <FlexRow cx={ css.footer }>
@@ -58,26 +58,19 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
             <FlexSpacer />
 
             <FlexCell width="auto" alignSelf="center">
-                {view.selectAll && (
+                {view.selectAll && !hasSelection && (
                     <LinkButton
                         size={ size }
-                        caption={ hasSelection ? clearAllText : selectAllText }
-                        onClick={ hasSelection ? clearSelection : () => view.selectAll.onValueChange(true) }
-                        rawProps={ {
-                            'aria-label': hasSelection ? clearAllText : selectAllText,
-                        } }
-                        isDisabled={ isEmptyRowsAndHasNoSelection }
+                        caption={ selectAllText }
+                        onClick={ () => view.selectAll.onValueChange(true) }
                     />
                 )}
-                {!view.selectAll && (
+                { showClear && (
                     <LinkButton
-                        isDisabled={ !hasSelection }
                         size={ size }
                         caption={ isSinglePicker ? clearSingleText : clearAllText }
                         onClick={ clearSelection }
-                        rawProps={ {
-                            'aria-label': isSinglePicker ? clearSingleText : clearAllText,
-                        } }
+                        isDisabled={ !hasSelection }
                     />
                 )}
             </FlexCell>
