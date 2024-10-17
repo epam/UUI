@@ -54,6 +54,9 @@ exports.simplifyPredicates = simplifyPredicates;
 function isDate(val) {
     return dayjs_1["default"](val).isValid();
 }
+
+exports.isDate = isDate;
+
 var truePredicate = function () { return true; };
 function getFilterPredicate(filter) {
     filter = simplifyPredicates(filter);
