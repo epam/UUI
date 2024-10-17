@@ -19,6 +19,12 @@ function simplifyPredicates(filter) {
         var key = keys[n];
         var condition = filter[key];
         if (condition != null && typeof condition === "object") {
+            if ('from' in condition && 'to' in condition) {
+                result[key] = {
+                    gte: condition.from,
+                    lte: condition.to
+                };
+            }
             if ('inRange' in condition) {
                 var value = condition.inRange;
                 result[key] = {
