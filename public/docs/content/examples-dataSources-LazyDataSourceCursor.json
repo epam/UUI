@@ -1,0 +1,104 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Usually, backend uses integer ranges to allow querying part of the lists. E.g.  "
+      },
+      {
+        "text": "/api/items?from=10&count=20",
+        "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "With cursor-based pagination, backend serializes some state, associated with the next item in the list. Using this info, the next part of the list can be fetched more efficiently."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can read more in this article: "
+      },
+      {
+        "type": "link",
+        "url": "https://medium.com/@nimmikrishnab/cursor-based-pagination-37f5fae9f482",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Cursor-based Pagination"
+          }
+        ]
+      },
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To use this pattern, you need to return the latest cursor value in response to the "
+      },
+      {
+        "text": "api",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback. This cursor will be passed to the "
+      },
+      {
+        "text": "api",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " request, called to fetch the next part of this list."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Note that:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "absence of cursor in response doesn't imply the end of the list. End of the list is detected when there are fewer items returned, than was requested"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "with hierarchical lists, the root and all child sub-lists has its own cursor, and they are tracked separately."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
