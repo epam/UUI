@@ -107,7 +107,8 @@ export class FetchingHelper {
             if (ids !== currentIds
                     || nodeInfo.count !== originalNodeInfo.count
                     || nodeInfo.totalCount !== originalNodeInfo.totalCount
-                    || nodeInfo.assumedCount !== originalNodeInfo.assumedCount) {
+                    || nodeInfo.assumedCount !== originalNodeInfo.assumedCount
+                    || nodeInfo.cursor !== originalNodeInfo.cursor) {
                 nodeInfoById.set(parentId, nodeInfo);
             }
 
@@ -301,7 +302,7 @@ export class FetchingHelper {
         if (missingCount === 0 || availableCount === 0 || skipRequest) {
             return {
                 ids,
-                nodeInfo: { count: childrenCount, totalCount, assumedCount: prevAssumedCount },
+                nodeInfo: { count: childrenCount, totalCount, assumedCount: prevAssumedCount, cursor: prevCursor },
                 loadedItems,
             };
         }
