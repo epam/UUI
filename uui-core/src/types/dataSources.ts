@@ -404,22 +404,48 @@ export interface LazyDataSourceApiRequest<TItem, TId = any, TFilter = {}> {
      * It is a merged result of filters from DataSourceState and LazyDataSourceProps.
      */
     filter?: TFilter;
+
     /** Sorting options, by which data should be sorted. */
     sorting?: SortingOption[];
+
     /** The search string, by which data should be searched. */
     search?: string;
+
     /** Specifies a range of the rows to be retrieved. */
     range?: LazyDataSourceApiRequestRange;
+
     /** Page number for which data should be retrieved. */
     page?: number;
+
     /** Number of items at the page. */
     pageSize?: number;
+
     /**
      * An array of item IDs to be retrieved from the API.
      * Other request options like filter, search and others should be ignored when IDs are provided.
      * Used for requesting specific items separately from the list.
      */
     ids?: TId[];
+
+    /**
+     * Cursor for cursor-based pagination.
+     *
+     * This property is used when implementing cursor-based pagination
+     * instead of traditional range-based pagination.
+     *
+     * The cursor is typically an opaque string or token that the server
+     * understands to determine the next set of items to return.
+     *
+     * If the previous API response includes a cursor, it will be passed in
+     * this property, to fetch more records.
+     *
+     * Note, that if you use cursors, you can ignore the range.from field. It would still have a
+     * valid value through - how many items are already fetched.
+     *
+     * You still need to account range.count, and return at least as much items as requested.
+     * Returning more items than range.count is supported.
+     */
+    cursor?: any;
 }
 
 /** Defines Lazy Data Source APIs response shape */
@@ -443,6 +469,21 @@ export interface LazyDataSourceApiResponse<TItem> {
      * Total count of items which match current filter.
      */
     totalCount?: number;
+
+    /**
+     * Cursor for cursor-based pagination.
+     *
+     * The cursor is typically an opaque string or token that the server
+     * understands to determine the next set of items to return.
+     *
+     * You can pass cursor of the last item in the list, usually provided by the server.
+     * In this case, this cursor will be provided to the next request, allowing to fetch the next part of the list.
+     *
+     * The absence of cursor doesn't imply the end of the list. The end of the list
+     * is determined by comparing the number of items returned with the number requested:
+     * if fewer items than requested are returned, it implies that the end of the list has been reached.
+     */
+    cursor?: any;
 }
 
 /** Defines the context of API request. E.g. parent if we require to retrieve sub-list of the tree */

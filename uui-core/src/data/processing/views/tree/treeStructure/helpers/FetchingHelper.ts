@@ -267,7 +267,13 @@ export class FetchingHelper {
         remainingRowsCount,
         loadAll,
     }: LoadItemsOptions<TItem, TId, TFilter>) {
-        const { ids: originalIds, count: childrenCount, totalCount, assumedCount: prevAssumedCount } = tree.getItems(parentId);
+        const {
+            ids: originalIds,
+            count: childrenCount,
+            totalCount,
+            assumedCount: prevAssumedCount,
+            cursor: prevCursor,
+        } = tree.getItems(parentId);
         const inputIds = byParentId.has(parentId) ? byParentId.get(parentId) ?? originalIds : originalIds;
 
         let ids = inputIds ?? [];
@@ -322,6 +328,7 @@ export class FetchingHelper {
                 range,
                 page: dataSourceState.page,
                 pageSize: dataSourceState.pageSize,
+                cursor: prevCursor,
             },
             requestContext,
         );
@@ -352,7 +359,7 @@ export class FetchingHelper {
             assumedCount = tree.getParams().getChildCount(parent);
         }
 
-        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
+        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount, cursor: response.cursor };
         if (newNodesCount !== childrenCount || assumedCount !== prevAssumedCount) {
             nodeInfo = { ...nodeInfo, count: newNodesCount, assumedCount };
         }
