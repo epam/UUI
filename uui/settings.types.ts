@@ -78,6 +78,7 @@ interface PickerInputBodyCellSizes {
     isBoldSelectionIcon: IsBoldSizes;
     text: Sizes;
     icon: Sizes;
+    padding: string;
 }
 
 interface PickerInputBodyRowSizes {
