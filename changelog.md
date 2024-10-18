@@ -1,3 +1,10 @@
+# 5.*.* - **.**.2024
+
+**What's New**
+* [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
+* [Tag]: changed layout - added gaps between internal items, changed padding
+
+
 # 5.10.2 - xx.xx.2024
 
 **What's Fixed**
@@ -22,13 +29,10 @@
   * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
-* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
 
 **What's Fixed**
 * [Form]: fixed bug when `beforeLeave` modal appears in case of redirect in `onSuccess` callback
 * [VirtualList]: fixed offsets counting if rows have different height
-* [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
-
 
 # 5.9.5 - 09.10.2024
 
