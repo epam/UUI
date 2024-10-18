@@ -41,16 +41,16 @@ export function getApi({
         form: {
             validateForm: <FormState>(formState: FormState) =>
                 processRequestLocal(
-                    origin.concat('api/form/validate-form'),
+                    origin.concat('/api/form/validate-form'),
                     'POST',
                     formState,
                 ),
         },
         errors: {
-            status: (status: number) => processRequestLocal(origin.concat(`api/error/status/${status}`), 'POST'),
-            setServerStatus: (status: number) => processRequestLocal(origin.concat(`api//error/set-server-status/${status}`), "'POST'"),
-            mock: () => processRequestLocal(origin.concat('api/error/mock'), 'GET'),
-            authLost: () => processRequestLocal(origin.concat('api/error/auth-lost'), 'POST'),
+            status: (status: number) => processRequestLocal(origin.concat(`/api/error/status/${status}`), 'POST'),
+            setServerStatus: (status: number) => processRequestLocal(origin.concat(`/api//error/set-server-status/${status}`), "'POST'"),
+            mock: () => processRequestLocal(origin.concat('/api/error/mock'), 'GET'),
+            authLost: () => processRequestLocal(origin.concat('/api/error/auth-lost'), 'POST'),
         },
         getChangelog() {
             return processRequestLocal(origin.concat('/api/get-changelog'), 'GET');

@@ -60,19 +60,16 @@ export const Text = withMods<uuiComponents.TextProps, TextProps>(
     uuiComponents.Text,
     applyTextMods,
     (props) => {
-        if (props.fontSize || props.lineHeight) {
-            const style: any = {};
-            props.fontSize && (style['--uui-text-font-size'] = `${props.fontSize}px`);
-            props.lineHeight && (style['--uui-text-line-height'] = `${props.lineHeight}px`);
-            return {
-                rawProps: {
-                    style: {
-                        ...style,
-                        ...props?.rawProps?.style,
-                    },
-                    ...props?.rawProps,
-                },
-            };
-        }
+        const style: any = props?.rawProps?.style || {};
+
+        props.fontSize && (style['--uui-text-font-size'] = `${props.fontSize}px`);
+        props.lineHeight && (style['--uui-text-line-height'] = `${props.lineHeight}px`);
+
+        return {
+            rawProps: {
+                ...props?.rawProps,
+                style: style,
+            },
+        };
     },
 );
