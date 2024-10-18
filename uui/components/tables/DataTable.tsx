@@ -3,7 +3,7 @@ import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataT
 import { useColumnsWithFilters } from '../../helpers';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
-    DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite,
+    DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite, AnalyticsEvent,
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableHeaderRowProps } from './DataTableHeaderRow';
 import { DataTableRow, DataTableRowProps as UuiDataTableRowProps } from './DataTableRow';
@@ -66,6 +66,8 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      * Enables collapse/expand all functionality.
      * */
     showFoldAll?: boolean;
+
+    getHeaderCellClickAnalyticsEvent?: (column: DataColumnProps<TItem, TId>) => AnalyticsEvent;
 }
 
 export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & Overwrite<DataTableMods, DataTableModsOverride>>) {
@@ -150,6 +152,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                         value={ { ...props.value, columnsConfig: config } }
                         onValueChange={ props.onValueChange }
                         columnsGap={ props.columnsGap }
+                        getHeaderCellClickAnalyticsEvent={ props.getHeaderCellClickAnalyticsEvent }
                     />
                     <div
                         className={ cx(uuiScrollShadows.top, {
