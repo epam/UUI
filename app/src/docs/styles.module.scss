@@ -1,13 +1,3 @@
-@use '~@epam/assets/theme/theme_promo' as *;
-
-.wrapper {
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
-}
-
 .app-bg {
     --uui-docs-bg: var(--uui-app-bg);
 }

@@ -81,9 +81,9 @@
     :global(.uui-caption) {
         display: flex;
         position: relative;
-        height: var(--uui-tab_btn-line-height);
         line-height: var(--uui-tab_btn-line-height);
         font-size: var(--uui-tab_btn-font-size);
+        text-wrap: nowrap;
         padding-top: var(--uui-tab_btn-vertical-caption-padding);
         padding-bottom: var(--uui-tab_btn-vertical-caption-padding);
         padding-inline-start: var(--uui-tab_btn-horizontal-caption-padding);
