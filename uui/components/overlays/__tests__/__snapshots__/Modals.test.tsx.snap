@@ -114,7 +114,7 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
       Object {
         "height": "auto",
         "maxHeight": "80dvh",
-        "width": "420",
+        "width": 420,
       }
     }
   >
