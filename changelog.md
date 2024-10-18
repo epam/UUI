@@ -3,6 +3,11 @@
 **What's New**
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 
+# 5.10.2 - xx.xx.2024
+
+**What's Fixed**
+* [Text]: fixed bug when passed rawProps override Text internal styles
+
 # 5.10.1 - 16.10.2024
 
 **What's Fixed**
