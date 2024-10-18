@@ -267,7 +267,7 @@ export const settings: Settings = {
         modal: {
             window: {
                 defaults: {
-                    width: '420',
+                    width: 420,
                 },
             },
         },
