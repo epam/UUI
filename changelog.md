@@ -2,6 +2,8 @@
 
 **What's New**
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
+* [Tag]: changed layout - added gaps between internal items, changed padding
+
 
 # 5.10.2 - xx.xx.2024
 
