@@ -215,7 +215,6 @@ exports[`PickerInput should open body 1`] = `
         >
           <button
             aria-disabled="true"
-            aria-label="CLEAR"
             class="uui-button-box uui-disabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
             tabindex="-1"
             type="button"
