@@ -1,5 +1,6 @@
-@use './tokens/_theme_eduverse_light' as tokens;
-@use './theme_6px' as *;
+@use './variables/tokens/_theme_eduverse_light' as tokens;
+@use './variables/6px_grid' as *;
+@use './variables/6px_grid_eduverse' as *;
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 
@@ -510,4 +511,5 @@
 .uui-theme-eduverse_light {
     @include theme-eduverse_light();
     @include uui-6px-grid();
+    @include uui-6px-grid-eduverse();
 }

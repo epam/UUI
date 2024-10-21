@@ -15,7 +15,7 @@
     --cobalt-5: #2C3A4F;
     --cobalt-10: #29405D;
     --cobalt-20: #20517F;
-    --cobalt-50: #0F98FF;
+    --cobalt-50: #0091FF;
     --cobalt-60: #40ACFF;
     --cobalt-70: #7AC5FF;
 
@@ -28,34 +28,34 @@
     --cyan-70: #A1EBEB;
 
     // "palette/electric"
-    --electric-5: #0C1A30;
-    --electric-10: #0B2650;
-    --electric-20: #133C7A;
+    --electric-5: #202339;
+    --electric-10: #0B2751;
+    --electric-20: #133D7B;
     --electric-50: #3980EB;
-    --electric-60: #4386EB;
-    --electric-70: #619CF7;
+    --electric-60: #4486EB;
+    --electric-70: #629CF7;
 
     // "palette/emerald"
-    --emerald-5: #083E17;
-    --emerald-10: #0B5B21;
-    --emerald-20: #187633;
+    --emerald-5: #093E17;
+    --emerald-10: #0C5B22;
+    --emerald-20: #197733;
     --emerald-50: #34B859;
-    --emerald-60: #32D587;
-    --emerald-70: #61EBA9;
+    --emerald-60: #33D587;
+    --emerald-70: #62EBA9;
 
     // "palette/fire"
-    --fire-5: #43091F;
-    --fire-10: #60132F;
+    --fire-5: #3A212A;
+    --fire-10: #611330;
     --fire-20: #731B3B;
     --fire-50: #EF558D;
-    --fire-60: #FA6FA1;
-    --fire-70: #FF94BB;
+    --fire-60: #FA6FA2;
+    --fire-70: #FF95BC;
 
     // "palette-additional/fuchsia"
     --fuchsia-5: #413346;
     --fuchsia-10: #51344C;
     --fuchsia-20: #713657;
-    --fuchsia-50: #EA4386;
+    --fuchsia-50: #E93D82;
     --fuchsia-60: #ED5F98;
     --fuchsia-70: #F183AF;
 
@@ -63,7 +63,7 @@
     --mint-5: #323E46;
     --mint-10: #34484B;
     --mint-20: #396258;
-    --mint-50: #4FC48C;
+    --mint-50: #4CC38A;
     --mint-60: #79D2A7;
     --mint-70: #A6E1C5;
 
@@ -92,17 +92,17 @@
     --purple-5: #3E2F4F;
     --purple-10: #4A2C5D;
     --purple-20: #68267F;
-    --purple-50: #B114D1;
+    --purple-50: #B915DA;
     --purple-60: #D34EEE;
     --purple-70: #D68AE5;
 
     // "palette/red"
-    --red-5: #440A1F;
-    --red-10: #60132F;
+    --red-5: #3A212A;
+    --red-10: #611330;
     --red-20: #731B3B;
     --red-50: #EF558D;
     --red-60: #FA6FA2;
-    --red-70: #FF94BB;
+    --red-70: #FF95BC;
 
     // "palette/sun"
     --sun-5: #3F3B3B;
@@ -118,7 +118,7 @@
     --violet-20: #573088;
     --violet-50: #8E32EB;
     --violet-60: #A55CEF;
-    --violet-70: #AE8BF4;
+    --violet-70: #40109E;
 
     // "palette-additional/yellow"
     --yellow-5: #403F40;
@@ -178,12 +178,12 @@
     --uui-primary-contrast: var(--white);
 
     // "core/semantic/secondary-"
-    --uui-secondary-5: var(--night800);
-    --uui-secondary-10: var(--night700);
-    --uui-secondary-20: var(--night600);
-    --uui-secondary-50: var(--night500);
-    --uui-secondary-60: var(--night400);
-    --uui-secondary-70: var(--night300);
+    --uui-secondary-5: var(--night100);
+    --uui-secondary-10: var(--night200);
+    --uui-secondary-20: var(--night300);
+    --uui-secondary-50: var(--night600);
+    --uui-secondary-60: var(--night700);
+    --uui-secondary-70: var(--night800);
     --uui-secondary-contrast: var(--white);
 
     // "core/semantic/success-"
@@ -202,7 +202,7 @@
     --uui-warning-50: var(--sun-50);
     --uui-warning-60: var(--sun-60);
     --uui-warning-70: var(--sun-70);
-    --uui-warning-contrast: var(--night700);
+    --uui-warning-contrast: var(--night800);
 
     /********************/
     /*** Core Neutral ***/
@@ -228,47 +228,44 @@
 
     // "core/surfaces"
     --uui-app-bg: var(--uui-neutral-90);
-    --uui-divider: var(--uui-neutral-20);
-    --uui-divider-light: var(--uui-neutral-30);
+    --uui-divider: var(--uui-neutral-50);
+    --uui-divider-light: var(--uui-neutral-60);
     --uui-overlay: #1D1E26CC;
     --uui-surface-higher: var(--uui-neutral-70);
     --uui-surface-highest: var(--uui-neutral-60);
     --uui-surface-main: var(--uui-neutral-90);
     --uui-surface-sunken: var(--uui-neutral-60);
 
-    // ""
-    --uui-border-radius: 6;
-
     // "core/controls"
     --uui-control-bg: var(--uui-surface-main);
-    --uui-control-bg-disabled: var(--uui-neutral-60);
+    --uui-control-bg-disabled: var(--uui-neutral-5);
     --uui-control-bg-hover: var(--uui-neutral-60);
     --uui-control-border: var(--uui-neutral-40);
-    --uui-control-border-disabled: var(--uui-neutral-40);
+    --uui-control-border-disabled: var(--uui-neutral-30);
     --uui-control-border-focus: var(--uui-primary-50);
-    --uui-control-border-hover: var(--uui-neutral-20);
-    --uui-control-icon: var(--uui-neutral-30);
-    --uui-control-icon-disabled: var(--uui-neutral-30);
-    --uui-control-placeholder: var(--uui-text-tertiary);
+    --uui-control-border-hover: var(--uui-neutral-60);
+    --uui-control-icon: var(--uui-neutral-50);
+    --uui-control-icon-disabled: var(--uui-neutral-50);
+    --uui-control-placeholder: var(--uui-neutral-50);
     --uui-control-placeholder-disabled: var(--uui-text-disabled);
-    --uui-control-text: var(--uui-text-primary);
+    --uui-control-text: var(--uui-neutral-95);
     --uui-control-text-disabled: var(--uui-text-tertiary);
 
     // "core/icons"
-    --uui-icon: var(--uui-neutral-10);
-    --uui-icon-active: var(--uui-neutral-5);
-    --uui-icon-disabled: var(--uui-neutral-30);
-    --uui-icon-hover: var(--uui-neutral-5);
+    --uui-icon: var(--uui-neutral-95);
+    --uui-icon-active: var(--uui-neutral-100);
+    --uui-icon-disabled: var(--uui-neutral-50);
+    --uui-icon-hover: var(--uui-neutral-100);
 
     // "core/links"
-    --uui-link: var(--uui-primary-60);
-    --uui-link-hover: var(--uui-primary-70);
+    --uui-link: var(--uui-primary-50);
+    --uui-link-hover: var(--uui-primary-60);
     --uui-link-visited: var(--purple-60);
     --uui-link-visited-hover: var(--purple-70);
 
     // "core/other"
     --uui-outline-focus: #0A68F17F;
-    --uui-skeleton: var(--uui-neutral-30);
+    --uui-skeleton: var(--uui-neutral-40);
 
     // "core/text"
     --uui-text-bg-highlight: var(--uui-warning-10);
@@ -276,9 +273,9 @@
     --uui-text-disabled: var(--uui-neutral-30);
     --uui-text-info: var(--uui-info-70);
     --uui-text-primary: var(--uui-neutral-5);
-    --uui-text-secondary: var(--uui-neutral-10);
+    --uui-text-secondary: var(--uui-neutral-70);
     --uui-text-success: var(--uui-success-70);
-    --uui-text-tertiary: var(--uui-neutral-20);
+    --uui-text-tertiary: var(--uui-neutral-60);
     --uui-text-warning: var(--uui-warning-70);
 
     @include colorClasses.theme-color-classes;
