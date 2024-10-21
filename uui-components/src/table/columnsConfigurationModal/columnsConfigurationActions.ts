@@ -12,7 +12,7 @@ export function toggleAllColumnsVisibility(props: { prevConfig: ColumnsConfig; c
         const prevCfg = prevConfig[key];
         const c = columns.find((column) => column.key === key);
         const isAlreadyToggled = value ? prevCfg.isVisible : !prevCfg.isVisible;
-        const tryingToHideAlwaysVisible = !value && c.isAlwaysVisible;
+        const tryingToHideAlwaysVisible = !value && (c.isAlwaysVisible || c.isLocked);
         const noChangeRequired = isAlreadyToggled || tryingToHideAlwaysVisible || isEmptyCaption(c.caption);
         if (noChangeRequired) {
             acc[key] = prevCfg;

@@ -294,6 +294,13 @@ export class TreeState<TItem, TId> {
         );
     }
 
+    public updateSetItems(setItems: ItemsStorage<TItem, TId>['setItems']) {
+        if (this._setItems !== setItems) {
+            this._setItems = setItems;
+        }
+        return this;
+    }
+
     private getTreeStructure(treeStructureId: TreeStructureId = 'full') {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
@@ -390,7 +397,7 @@ export class TreeState<TItem, TId> {
     ) {
         const itemsAccessor = ItemsAccessor.toItemsAccessor(itemsMap);
         const treeStructure = TreeStructure.createFromItems({ params, items: itemsMap, itemsAccessor });
-        return new TreeState(
+        return this.create(
             treeStructure,
             treeStructure,
             TreeStructure.create(params, ItemsAccessor.toItemsAccessor(itemsMap)),

@@ -77,6 +77,17 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         margin: 0; //????
+
+        &.truncate {
+            /* stylelint-disable */
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* stylelint-enable */
+            overflow: hidden;
+            white-space: normal;
+            line-height: var(--uui-dt-header-cell-truncate-caption-line-height);
+        }
     }
 
     .checkbox {
@@ -154,17 +165,6 @@
             box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
         }
     }
-}
-
-.truncate {
-    /* stylelint-disable */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    /* stylelint-enable */
-    overflow: hidden;
-    white-space: normal;
-    line-height: var(--uui-dt-header-cell-truncate-caption-line-height);
 }
 
 .cell-tooltip-wrapper {

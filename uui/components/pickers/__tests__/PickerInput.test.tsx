@@ -200,6 +200,7 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input);
 
         await PickerInputTestObject.waitForOptionsToBeReady();
+        await PickerInputTestObject.waitForLoadingComplete();
 
         expect(result.baseElement).toMatchSnapshot();
     });
@@ -1385,6 +1386,10 @@ describe('PickerInput', () => {
             getId: ({ id }) => id,
         });
 
+        const mockConsoleError = jest.fn();
+        const prevConsoleError = console.error;
+        console.error = mockConsoleError;
+
         const customText = 'Custom Text or Component';
 
         const { dom } = await setupPickerInputForTest({
@@ -1401,6 +1406,98 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input);
         const notFound = within(await screen.findByRole('dialog')).getByTestId('test-custom-not-found');
         expect(notFound).toHaveTextContent(customText);
+        expect(mockConsoleError).toBeCalled();
+
+        console.error = prevConsoleError;
+    });
+
+    it('should render message in body for not enough chars in search while using minCharsToSearch', async () => {
+        const mockEmptyDS = new ArrayDataSource<TestItemType, number, any>({
+            items: [],
+            getId: ({ id }) => id,
+        });
+
+        const customText = 'Custom Text or Component';
+
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            minCharsToSearch: 3,
+            searchPosition: 'body',
+            dataSource: mockEmptyDS,
+            renderNotFound: () => (
+                <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'test-custom-not-found' } }>
+                    <Text>{customText}</Text>
+                </FlexCell>
+            ),
+            getSearchFields: (item) => [item!.level],
+        });
+
+        expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+        fireEvent.click(dom.input);
+
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+
+        await waitFor(async () => {
+            const notFound = within(await screen.findByRole('dialog'));
+            expect(notFound.getByText('Type search to load items')).toBeInTheDocument();
+        });
+    });
+
+    it('should render custom renderEmpty', async () => {
+        const mockEmptyDS = new ArrayDataSource<TestItemType, number, any>({
+            items: [],
+            getId: ({ id }) => id,
+        });
+
+        const customTextForNotFound = 'Custom Text For Not Found';
+        const customTextForNotFoundId = 'test-custom-not-found-from-empty';
+        const customTextForNotEnoughCharsInSearch = 'Custom Text For Not Enough Chars In Search';
+        const customTextForNotEnoughCharsInSearchId = 'test-custom-not-enough-chars-from-empty';
+
+        const { dom } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            minCharsToSearch: 3,
+            searchPosition: 'body',
+            dataSource: mockEmptyDS,
+            renderEmpty: ({ minCharsToSearch, search }) => {
+                if (search.length < minCharsToSearch) {
+                    return (
+                        <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotEnoughCharsInSearchId } }>
+                            <Text>{customTextForNotEnoughCharsInSearch}</Text>
+                        </FlexCell>
+                    );
+                }
+
+                return (
+                    <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotFoundId } }>
+                        <Text>{customTextForNotFound}</Text>
+                    </FlexCell>
+                );
+            },
+            getSearchFields: (item) => [item!.level],
+        });
+
+        expect(dom.input.hasAttribute('readonly')).toBeTruthy();
+        fireEvent.click(dom.input);
+
+        const dialog = await screen.findByRole('dialog');
+        expect(dialog).toBeInTheDocument();
+
+        await waitFor(async () => {
+            const notFound = within(await screen.findByRole('dialog')).getByTestId(customTextForNotEnoughCharsInSearchId);
+            expect(notFound).toHaveTextContent(customTextForNotEnoughCharsInSearch);
+        });
+
+        const bodyInput = within(dialog).getByPlaceholderText('Search');
+        fireEvent.change(bodyInput, { target: { value: 'A11' } });
+
+        await waitFor(async () => {
+            const notFound = within(await screen.findByRole('dialog')).getByTestId(customTextForNotFoundId);
+            expect(notFound).toHaveTextContent(customTextForNotFound);
+        });
     });
 
     it('should render custom row', async () => {

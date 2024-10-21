@@ -53,11 +53,11 @@ const mockAcceptDropParams = (params: TAcceptDropParams): TAcceptDropParamsAll =
 
 describe('columnsConfigurationUtils', () => {
     describe('canAcceptDrop', () => {
-        it('should not accept drop before isAlwaysVisible fixed left columns', () => {
+        it('should not accept drop before isLocked fixed left columns', () => {
             const params = mockAcceptDropParams({
                 dstData: {
                     column: {
-                        key: '1', fix: 'left', caption: '1', isAlwaysVisible: true, width: 1,
+                        key: '1', fix: 'left', caption: '1', isLocked: true, width: 1,
                     },
                     columnConfig: { width: 1, isVisible: true, order: 'a' },
                 },
@@ -68,18 +68,18 @@ describe('columnsConfigurationUtils', () => {
                     columnConfig: { width: 2, isVisible: true, order: 'b' },
                 },
             });
-            const result = canAcceptDrop(params, { key: '100500', fix: 'left', isAlwaysVisible: true, width: 0 }); // Try to drop between 2 isAlwaysVisible columns
+            const result = canAcceptDrop(params, { key: '100500', fix: 'left', isLocked: true, width: 0 }); // Try to drop between 2 isLocked columns
             expect(result).toEqual({});
 
-            const result2 = canAcceptDrop(params, { key: '100500', width: 0 }); // Try to drop at last isAlwaysVisible columns
+            const result2 = canAcceptDrop(params, { key: '100500', width: 0 }); // Try to drop at last isLocked columns
             expect(result2).toEqual({ bottom: true });
         });
 
-        it('should not accept drop after isAlwaysVisible fixed right columns', () => {
+        it('should not accept drop after isLocked fixed right columns', () => {
             const params = mockAcceptDropParams({
                 dstData: {
                     column: {
-                        key: '1', fix: 'right', caption: '1', isAlwaysVisible: true, width: 1,
+                        key: '1', fix: 'right', caption: '1', isLocked: true, width: 1,
                     },
                     columnConfig: { width: 1, isVisible: true, order: 'a' },
                 },
@@ -90,11 +90,30 @@ describe('columnsConfigurationUtils', () => {
                     columnConfig: { width: 2, isVisible: true, order: 'b' },
                 },
             });
-            const result = canAcceptDrop(params, { key: '100500', width: 0 }, { key: '100501', fix: 'right', isAlwaysVisible: true, width: 0 }); // Try to drop between 2 isAlwaysVisible columns
+            const result = canAcceptDrop(params, { key: '100500', width: 0 }, { key: '100501', fix: 'right', isLocked: true, width: 0 }); // Try to drop between 2 isLocked columns
             expect(result).toEqual({});
 
-            const result2 = canAcceptDrop(params, { key: '100500', width: 0 }); // Try to drop at first isAlwaysVisible columns
+            const result2 = canAcceptDrop(params, { key: '100500', width: 0 }); // Try to drop at first isLocked columns
             expect(result2).toEqual({ top: true });
+        });
+
+        it('should not accept drop for isAlwaysVisible column in hidden section', () => {
+            const params = mockAcceptDropParams({
+                dstData: {
+                    column: {
+                        key: '1', fix: 'right', caption: '1', width: 1,
+                    },
+                    columnConfig: { width: 1, isVisible: false, order: 'a' },
+                },
+                srcData: {
+                    column: {
+                        key: '2', caption: '2', width: 2, isAlwaysVisible: true,
+                    },
+                    columnConfig: { width: 2, isVisible: true, order: 'b' },
+                },
+            });
+            const result = canAcceptDrop(params);
+            expect(result).toEqual({});
         });
     });
     describe('sortColumnsAndAddGroupKey', () => {

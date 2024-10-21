@@ -1,19 +1,15 @@
 import * as React from 'react';
 import isEqual from 'react-fast-compare';
 
-import {
-    DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile,
-} from '@epam/uui-core';
+import { DataSourceListProps, DataSourceState, IEditable, IHasRawProps, isMobile } from '@epam/uui-core';
+import { PickerInputBaseProps } from './hooks/types';
 
-export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Pick<PickerInputBaseProps<any, any>, 'minCharsToSearch' | 'renderEmpty' | 'renderNotFound' | 'fixedBodyPosition' | 'searchDebounceDelay'> {
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
-    renderNotFound?: () => React.ReactNode;
     rows: React.ReactNode[];
     scheduleUpdate?: () => void;
     search: IEditable<string>;
     showSearch?: boolean | 'auto';
-    fixedBodyPosition?: boolean;
-    searchDebounceDelay?: number;
 }
 
 export abstract class PickerBodyBase<TProps extends PickerBodyBaseProps> extends React.Component<TProps> {
