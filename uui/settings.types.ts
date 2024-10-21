@@ -221,7 +221,7 @@ interface TabButtonSizes {
 }
 
 interface ModalWindowDefaultSizes {
-    width: string;
+    width: number;
 }
 
 interface ModalWindowSizes {

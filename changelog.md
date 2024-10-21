@@ -2,6 +2,7 @@
 
 **What's Fixed**
 * [Text]: fixed bug when passed rawProps override Text internal styles
+* [Modals]: fixed value for default modal width
 
 # 5.10.1 - 16.10.2024
 
