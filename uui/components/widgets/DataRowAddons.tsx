@@ -27,11 +27,11 @@ export interface DataRowAddonsProps<TItem, TId> {
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;
     const getIndent = () => {
-        return (row.indent - 1) * (settings.sizes.rowAddons.indentUnit[props.size || 'default'] as number);
+        return (row.indent - 1) * ((settings.sizes.rowAddons.indentUnit[props.size] || settings.sizes.rowAddons.defaults.indentUnit) as number);
     };
 
     const getWidth = () => {
-        return settings.sizes.rowAddons.indentWidth[props.size || 'default'];
+        return settings.sizes.rowAddons.indentWidth[props.size] || settings.sizes.rowAddons.defaults.indentWidth;
     };
 
     return (
@@ -69,7 +69,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }
-                            size={ settings.sizes.rowAddons.icon[props.size || 'default'] }
+                            size={ settings.sizes.rowAddons.icon[props.size] || settings.sizes.rowAddons.defaults.icon }
                         />
                     )}
                 </div>

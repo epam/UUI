@@ -36,7 +36,7 @@ export const getColumnsConfig = <TItem, TId>(columns: DataColumnProps<TItem, TId
 
             resultConfig[column.key] = {
                 width: column.width,
-                fix: column.fix ?? (column.isAlwaysVisible ? 'left' : undefined),
+                fix: column.fix ?? (column.isLocked ? 'left' : undefined),
                 isVisible: !column.isHiddenByDefault,
                 order: order,
             };

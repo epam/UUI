@@ -24,6 +24,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             caption: 'Name',
             width: 300,
             fix: 'left',
+            isLocked: true,
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('name').toProps() }

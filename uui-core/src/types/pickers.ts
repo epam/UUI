@@ -48,6 +48,23 @@ export type ArrayPickerProps<TId, TItem> =
 export type PickerBindingProps<TItem, TId> = SinglePickerProps<TId, TItem> | ArrayPickerProps<TId, TItem>;
 
 export type PickerBindingValueType = 'scalar' | 'array';
+/**
+ * Options for positioning the search input within PickerInput.
+ */
+export type PickerInputSearchPosition = 'input' | 'body' | 'none';
+/**
+ * Options for displaying content in PickerInput.
+ */
+export type PickerInputEditMode = 'dropdown' | 'modal';
+
+/**
+ * Picker empty body configuration.
+ */
+export interface PickerEmptyBodyProps {
+    minCharsToSearch?: number;
+    search: string;
+    onClose: () => void;
+}
 
 export type PickerBaseOptions<TItem, TId> = {
     /** Name of the entity being selected. Affects wording like "Please select [entity]" */
@@ -70,9 +87,20 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks. */
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;
 
-    /** Overrides the default 'no records found' banner.
-     * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.  */
+    /**
+     * @deprecated in favor of `renderEmpty` method.
+     * Overrides the default 'no records found' banner.
+     * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.
+     * */
     renderNotFound?: (props: { search: string; onClose: () => void }) => ReactNode;
+
+    /**
+     * Overrides the rendering of PickerBody content when it is empty.
+     * It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).
+     * Consider this all cases where a custom callback is provided.
+     * If not provided, default implementation is used.
+     */
+    renderEmpty?: (props: PickerEmptyBodyProps) => ReactNode;
 
     /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */
     emptyValue?: undefined | null | [];
@@ -122,6 +150,10 @@ export type PickerFooterProps<TItem, TId> = {
     selection: PickerBindingProps<TItem, TId>['value'];
     /** Defines a search value */
     search: string;
+    /**
+     * Indicates whether the search does not contain enough characters to load data.
+     */
+    isSearchTooShort?: boolean;
 };
 
 /**
