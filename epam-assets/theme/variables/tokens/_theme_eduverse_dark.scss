@@ -238,44 +238,44 @@
 
     // "core/controls"
     --uui-control-bg: var(--uui-surface-main);
-    --uui-control-bg-disabled: var(--uui-neutral-5);
+    --uui-control-bg-disabled: var(--uui-neutral-60);
     --uui-control-bg-hover: var(--uui-neutral-60);
     --uui-control-border: var(--uui-neutral-40);
-    --uui-control-border-disabled: var(--uui-neutral-30);
-    --uui-control-border-focus: var(--uui-primary-50);
-    --uui-control-border-hover: var(--uui-neutral-60);
-    --uui-control-icon: var(--uui-neutral-50);
-    --uui-control-icon-disabled: var(--uui-neutral-50);
-    --uui-control-placeholder: var(--uui-neutral-50);
+    --uui-control-border-disabled: var(--uui-neutral-40);
+    --uui-control-border-focus: var(--uui-primary-60);
+    --uui-control-border-hover: var(--uui-neutral-20);
+    --uui-control-icon: var(--uui-neutral-30);
+    --uui-control-icon-disabled: var(--uui-neutral-30);
+    --uui-control-placeholder: var(--uui-text-tertiary);
     --uui-control-placeholder-disabled: var(--uui-text-disabled);
-    --uui-control-text: var(--uui-neutral-95);
+    --uui-control-text: var(--uui-text-primary);
     --uui-control-text-disabled: var(--uui-text-tertiary);
 
     // "core/icons"
-    --uui-icon: var(--uui-neutral-95);
-    --uui-icon-active: var(--uui-neutral-100);
-    --uui-icon-disabled: var(--uui-neutral-50);
-    --uui-icon-hover: var(--uui-neutral-100);
+    --uui-icon: var(--uui-neutral-10);
+    --uui-icon-active: var(--uui-neutral-5);
+    --uui-icon-disabled: var(--uui-neutral-30);
+    --uui-icon-hover: var(--uui-neutral-5);
 
     // "core/links"
     --uui-link: var(--uui-primary-50);
-    --uui-link-hover: var(--uui-primary-60);
+    --uui-link-hover: var(--uui-primary-70);
     --uui-link-visited: var(--purple-60);
     --uui-link-visited-hover: var(--purple-70);
 
     // "core/other"
     --uui-outline-focus: #0A68F17F;
-    --uui-skeleton: var(--uui-neutral-40);
+    --uui-skeleton: var(--uui-neutral-30);
 
     // "core/text"
-    --uui-text-bg-highlight: var(--uui-warning-10);
+    --uui-text-bg-highlight: var(--uui-warning-20);
     --uui-text-critical: var(--uui-critical-70);
     --uui-text-disabled: var(--uui-neutral-30);
     --uui-text-info: var(--uui-info-70);
     --uui-text-primary: var(--uui-neutral-5);
-    --uui-text-secondary: var(--uui-neutral-70);
+    --uui-text-secondary: var(--uui-neutral-10);
     --uui-text-success: var(--uui-success-70);
-    --uui-text-tertiary: var(--uui-neutral-60);
+    --uui-text-tertiary: var(--uui-neutral-20);
     --uui-text-warning: var(--uui-warning-70);
 
     @include colorClasses.theme-color-classes;

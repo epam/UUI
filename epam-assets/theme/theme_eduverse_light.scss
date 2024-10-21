@@ -269,6 +269,13 @@
         --uui-btn-caption: var(--uui-neutral-70);
     }
 
+    .uui-button.uui-fill-none {
+        --uui-btn-bg: var(--uui-color-5);
+        --uui-btn-border: transparent;
+        --uui-btn-border-hover: transparent;
+        --uui-btn-border-active: transparent;
+    }
+
     /* IconButton */
 
     .uui-icon_button.uui-color-neutral {
