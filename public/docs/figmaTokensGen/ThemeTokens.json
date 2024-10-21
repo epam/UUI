@@ -237,27 +237,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night50",
-                "cssVar": "--night50",
+                "id": "palette/night/night600",
+                "cssVar": "--night600",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#383B4A"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-5",
-                "cssVar": "--uui-neutral-5",
+                "id": "core/neutral/neutral-60",
+                "cssVar": "--uui-neutral-60",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#FAFAFC"
+            "value": "#6C6F80"
           }
         }
       }
@@ -591,27 +591,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night300",
-                "cssVar": "--night300",
+                "id": "palette/night/night400",
+                "cssVar": "--night400",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#6C6F80"
+            "value": "#585B69"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-30",
-                "cssVar": "--uui-neutral-30",
+                "id": "core/neutral/neutral-40",
+                "cssVar": "--uui-neutral-40",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#E1E3EB"
+            "value": "#CED0DB"
           }
         }
       }
@@ -709,27 +709,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/primary-50",
-                "cssVar": "--uui-primary-50",
+                "id": "core/semantic/primary-60",
+                "cssVar": "--uui-primary-60",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/electric/electric-50",
-                "cssVar": "--electric-50",
+                "id": "palette/electric/electric-60",
+                "cssVar": "--electric-60",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#3980EB"
+            "value": "#4486EB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/primary-50",
-                "cssVar": "--uui-primary-50",
+                "id": "core/semantic/primary-60",
+                "cssVar": "--uui-primary-60",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#009ECC"
+            "value": "#0086AD"
           }
         }
       }
@@ -827,27 +827,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night600",
-                "cssVar": "--night600",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#383B4A"
+            "value": "#ACAFBF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#6C6F80"
+            "value": "#EBEDF5"
           }
         }
       }
@@ -945,27 +945,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#474A59"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#E1E3EB"
           }
         }
       }
@@ -1063,27 +1063,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#474A59"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#E1E3EB"
           }
         }
       }
@@ -1186,27 +1186,32 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
+                "cssVarSupport": "supported"
+              },
+              {
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#474A59"
+            "value": "#ACAFBF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/text/text-tertiary",
+                "cssVar": "--uui-text-tertiary",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#6C6F80"
           }
         }
       }
@@ -1447,27 +1452,32 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-95",
-                "cssVar": "--uui-neutral-95",
+                "id": "core/text/text-primary",
+                "cssVar": "--uui-text-primary",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night950",
-                "cssVar": "--night950",
+                "id": "core/neutral/neutral-5",
+                "cssVar": "--uui-neutral-5",
+                "cssVarSupport": "supported"
+              },
+              {
+                "id": "palette/night/night50",
+                "cssVar": "--night50",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#111111"
+            "value": "#FAFAFC"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-95",
-                "cssVar": "--uui-neutral-95",
+                "id": "core/text/text-primary",
+                "cssVar": "--uui-text-primary",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#FFFFFF00"
+            "value": "#303240"
           }
         }
       }
@@ -1585,17 +1595,17 @@
                 "cssVarSupport": "supported"
               },
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night600",
-                "cssVar": "--night600",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#383B4A"
+            "value": "#ACAFBF"
           },
           "valueDirect": {
             "alias": [
@@ -1703,27 +1713,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-95",
-                "cssVar": "--uui-neutral-95",
+                "id": "core/neutral/neutral-10",
+                "cssVar": "--uui-neutral-10",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night950",
-                "cssVar": "--night950",
+                "id": "palette/night/night100",
+                "cssVar": "--night100",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#111111"
+            "value": "#E1E3EB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-95",
-                "cssVar": "--uui-neutral-95",
+                "id": "core/neutral/neutral-10",
+                "cssVar": "--uui-neutral-10",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#FFFFFF00"
+            "value": "#F5F6FA"
           }
         }
       }
@@ -1821,27 +1831,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-5",
+                "cssVar": "--uui-neutral-5",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/night/night50",
+                "cssVar": "--night50",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#000000"
+            "value": "#FAFAFC"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-5",
+                "cssVar": "--uui-neutral-5",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#000000"
+            "value": "#FAFAFC"
           }
         }
       }
@@ -1939,27 +1949,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night500",
-                "cssVar": "--night500",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#474A59"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-50",
-                "cssVar": "--uui-neutral-50",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#ACAFBF"
+            "value": "#E1E3EB"
           }
         }
       }
@@ -2057,27 +2067,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-5",
+                "cssVar": "--uui-neutral-5",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/black",
-                "cssVar": "--black",
+                "id": "palette/night/night50",
+                "cssVar": "--night50",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#000000"
+            "value": "#FAFAFC"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-100",
-                "cssVar": "--uui-neutral-100",
+                "id": "core/neutral/neutral-5",
+                "cssVar": "--uui-neutral-5",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#000000"
+            "value": "#FAFAFC"
           }
         }
       }
@@ -2333,27 +2343,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/semantic/primary-70",
+                "cssVar": "--uui-primary-70",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/electric/electric-60",
-                "cssVar": "--electric-60",
+                "id": "palette/electric/electric-70",
+                "cssVar": "--electric-70",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#4486EB"
+            "value": "#629CF7"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/primary-60",
-                "cssVar": "--uui-primary-60",
+                "id": "core/semantic/primary-70",
+                "cssVar": "--uui-primary-70",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#0086AD"
+            "value": "#006B8A"
           }
         }
       }
@@ -3927,27 +3937,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-40",
-                "cssVar": "--uui-neutral-40",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night400",
-                "cssVar": "--night400",
+                "id": "palette/night/night300",
+                "cssVar": "--night300",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#585B69"
+            "value": "#6C6F80"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-40",
-                "cssVar": "--uui-neutral-40",
+                "id": "core/neutral/neutral-30",
+                "cssVar": "--uui-neutral-30",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#CED0DB"
+            "value": "#E1E3EB"
           }
         }
       }
@@ -10763,11 +10773,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 3
+            "value": 6
           },
           "valueDirect": {
             "alias": [],
-            "value": 3
+            "value": 6
           }
         }
       }
@@ -10813,11 +10823,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E2633"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E2633"
           }
         }
       }
@@ -10963,11 +10973,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 0
+            "value": 3
           },
           "valueDirect": {
             "alias": [],
-            "value": 0
+            "value": 3
           }
         }
       }
@@ -11013,11 +11023,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 6
+            "value": 4
           },
           "valueDirect": {
             "alias": [],
-            "value": 6
+            "value": 4
           }
         }
       }
@@ -11063,11 +11073,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E2619"
+            "value": "#1D1E2633"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E2619"
+            "value": "#1D1E2633"
           }
         }
       }
@@ -11213,11 +11223,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 3
+            "value": 0
           },
           "valueDirect": {
             "alias": [],
-            "value": 3
+            "value": 0
           }
         }
       }
@@ -11263,11 +11273,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 6
+            "value": 22
           },
           "valueDirect": {
             "alias": [],
-            "value": 6
+            "value": 22
           }
         }
       }
@@ -11313,11 +11323,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E2642"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E2642"
           }
         }
       }
@@ -11363,11 +11373,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 0
+            "value": 3
           },
           "valueDirect": {
             "alias": [],
-            "value": 0
+            "value": 3
           }
         }
       }
@@ -11463,11 +11473,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 0
+            "value": 4
           },
           "valueDirect": {
             "alias": [],
-            "value": 0
+            "value": 4
           }
         }
       }
@@ -11513,11 +11523,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 12
+            "value": 2
           },
           "valueDirect": {
             "alias": [],
-            "value": 12
+            "value": 2
           }
         }
       }
@@ -11563,11 +11573,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E2619"
+            "value": "#1D1E2633"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E2619"
+            "value": "#1D1E2633"
           }
         }
       }
@@ -11713,11 +11723,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 3
+            "value": 1
           },
           "valueDirect": {
             "alias": [],
-            "value": 3
+            "value": 1
           }
         }
       }
@@ -11763,11 +11773,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 12
+            "value": 6
           },
           "valueDirect": {
             "alias": [],
-            "value": 12
+            "value": 6
           }
         }
       }
@@ -11813,11 +11823,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E2600"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E2600"
           }
         }
       }
@@ -11963,11 +11973,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 6
+            "value": 0
           },
           "valueDirect": {
             "alias": [],
-            "value": 6
+            "value": 0
           }
         }
       }
@@ -12013,11 +12023,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 15
+            "value": 25
           },
           "valueDirect": {
             "alias": [],
-            "value": 15
+            "value": 25
           }
         }
       }
@@ -12063,11 +12073,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E268E"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E260C"
+            "value": "#1D1E268E"
           }
         }
       }
@@ -12113,11 +12123,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 0
+            "value": 3
           },
           "valueDirect": {
             "alias": [],
-            "value": 0
+            "value": 3
           }
         }
       }
@@ -12213,11 +12223,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 9
+            "value": 3
           },
           "valueDirect": {
             "alias": [],
-            "value": 9
+            "value": 3
           }
         }
       }
@@ -12263,11 +12273,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 36
+            "value": 2
           },
           "valueDirect": {
             "alias": [],
-            "value": 36
+            "value": 2
           }
         }
       }
@@ -12313,11 +12323,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E261E"
+            "value": "#1D1E2633"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E261E"
+            "value": "#1D1E2633"
           }
         }
       }
@@ -12463,11 +12473,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": 6
+            "value": 1
           },
           "valueDirect": {
             "alias": [],
-            "value": 6
+            "value": 1
           }
         }
       }
@@ -12563,11 +12573,11 @@
         "Eduverse-Dark": {
           "valueChain": {
             "alias": [],
-            "value": "#1D1E2619"
+            "value": "#1D1E2600"
           },
           "valueDirect": {
             "alias": [],
-            "value": "#1D1E2619"
+            "value": "#1D1E2600"
           }
         }
       }
@@ -17591,27 +17601,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/semantic/warning-10",
-                "cssVar": "--uui-warning-10",
+                "id": "core/semantic/warning-20",
+                "cssVar": "--uui-warning-20",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/sun/sun-10",
-                "cssVar": "--sun-10",
+                "id": "palette/sun/sun-20",
+                "cssVar": "--sun-20",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#47433D"
+            "value": "#625747"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/semantic/warning-10",
-                "cssVar": "--uui-warning-10",
+                "id": "core/semantic/warning-20",
+                "cssVar": "--uui-warning-20",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#FFEDC9"
+            "value": "#FFD785"
           }
         }
       }
@@ -18181,27 +18191,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-10",
+                "cssVar": "--uui-neutral-10",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night700",
-                "cssVar": "--night700",
+                "id": "palette/night/night100",
+                "cssVar": "--night100",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#303240"
+            "value": "#E1E3EB"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-70",
-                "cssVar": "--uui-neutral-70",
+                "id": "core/neutral/neutral-10",
+                "cssVar": "--uui-neutral-10",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#474A59"
+            "value": "#F5F6FA"
           }
         }
       }
@@ -18417,27 +18427,27 @@
           "valueChain": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "cssVarSupport": "supported"
               },
               {
-                "id": "palette/night/night600",
-                "cssVar": "--night600",
+                "id": "palette/night/night200",
+                "cssVar": "--night200",
                 "cssVarSupport": "supportedExceptFigma"
               }
             ],
-            "value": "#383B4A"
+            "value": "#ACAFBF"
           },
           "valueDirect": {
             "alias": [
               {
-                "id": "core/neutral/neutral-60",
-                "cssVar": "--uui-neutral-60",
+                "id": "core/neutral/neutral-20",
+                "cssVar": "--uui-neutral-20",
                 "cssVarSupport": "supported"
               }
             ],
-            "value": "#6C6F80"
+            "value": "#EBEDF5"
           }
         }
       }

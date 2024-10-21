@@ -483,8 +483,8 @@
     "VariableID:61801:29165",
     "VariableID:62069:120720",
     "VariableID:62069:120721",
-    "VariableID:61979:44054",
     "VariableID:62069:120722",
+    "VariableID:61979:44054",
     "VariableID:61979:44055",
     "VariableID:61979:44056",
     "VariableID:61979:44057",
@@ -524,8 +524,8 @@
     "VariableID:25178:7543",
     "VariableID:25178:7544",
     "VariableID:25178:7545",
-    "VariableID:59714:23340",
     "VariableID:25178:7546",
+    "VariableID:59714:23340",
     "VariableID:57582:257821",
     "VariableID:25178:7547",
     "VariableID:25178:7548",
@@ -534,8 +534,8 @@
     "VariableID:57497:24454",
     "VariableID:57508:252108",
     "VariableID:57508:252109",
-    "VariableID:59714:23341",
     "VariableID:25178:7551",
+    "VariableID:59714:23341",
     "VariableID:25178:7552",
     "VariableID:25178:7553",
     "VariableID:25178:7554",
@@ -674,7 +674,6 @@
     "VariableID:25178:7317",
     "VariableID:25178:7318",
     "VariableID:25178:7319",
-    "VariableID:25178:7792",
     "VariableID:25178:7825",
     "VariableID:25178:7429",
     "VariableID:25178:7778",
@@ -1228,10 +1227,10 @@
     "VariableID:25178:7390",
     "VariableID:25178:7391",
     "VariableID:25178:7392",
-    "VariableID:25178:7430",
     "VariableID:25178:7393",
-    "VariableID:25178:7394",
+    "VariableID:25178:7430",
     "VariableID:25178:7431",
+    "VariableID:25178:7394",
     "VariableID:25178:7432",
     "VariableID:25178:7433",
     "VariableID:25178:7434",
@@ -1424,8 +1423,8 @@
     "VariableID:61675:22076",
     "VariableID:62172:169581",
     "VariableID:61801:22067",
-    "VariableID:25178:7368",
     "VariableID:61801:22068",
+    "VariableID:25178:7368",
     "VariableID:61801:22069",
     "VariableID:61801:22070",
     "VariableID:61801:22072",
@@ -1438,8 +1437,8 @@
     "VariableID:61801:22078",
     "VariableID:61801:22079",
     "VariableID:61801:22081",
-    "VariableID:25178:7369",
     "VariableID:61801:22082",
+    "VariableID:25178:7369",
     "VariableID:61801:22083",
     "VariableID:61801:22084",
     "VariableID:62172:169872",
@@ -1450,10 +1449,10 @@
     "VariableID:25178:7370",
     "VariableID:61801:22090",
     "VariableID:61801:22091",
-    "VariableID:61801:22092",
     "VariableID:25178:7371",
-    "VariableID:61801:22093",
+    "VariableID:61801:22092",
     "VariableID:25178:7372",
+    "VariableID:61801:22093",
     "VariableID:62172:169873",
     "VariableID:25178:7395",
     "VariableID:25178:7396",
@@ -8643,7 +8642,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151889"
+          "id": "VariableID:27513:151883"
         }
       },
       "resolvedValuesByMode": {
@@ -8679,13 +8678,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.27843138575553894,
-            "g": 0.29019609093666077,
-            "b": 0.3490196168422699,
+            "r": 0.9607843160629272,
+            "g": 0.9647058844566345,
+            "b": 0.9803921580314636,
             "a": 1
           },
-          "alias": "VariableID:27513:151889",
-          "aliasName": "core/neutral/neutral-70"
+          "alias": "VariableID:27513:151883",
+          "aliasName": "core/neutral/neutral-10"
         }
       },
       "scopes": [
@@ -8717,7 +8716,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151888"
+          "id": "VariableID:27513:151884"
         }
       },
       "resolvedValuesByMode": {
@@ -8753,13 +8752,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.9215686321258545,
+            "g": 0.929411768913269,
+            "b": 0.9607843160629272,
             "a": 1
           },
-          "alias": "VariableID:27513:151888",
-          "aliasName": "core/neutral/neutral-60"
+          "alias": "VariableID:27513:151884",
+          "aliasName": "core/neutral/neutral-20"
         }
       },
       "scopes": [
@@ -8938,7 +8937,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155658"
+          "id": "VariableID:28101:155659"
         }
       },
       "resolvedValuesByMode": {
@@ -8975,12 +8974,12 @@
         "64402:0": {
           "resolvedValue": {
             "r": 0,
-            "g": 0.5254902243614197,
-            "b": 0.6784313917160034,
+            "g": 0.41960784792900085,
+            "b": 0.5411764979362488,
             "a": 1
           },
-          "alias": "VariableID:28101:155658",
-          "aliasName": "core/semantic/primary-60"
+          "alias": "VariableID:28101:155659",
+          "aliasName": "core/semantic/primary-70"
         }
       },
       "scopes": [
@@ -9084,7 +9083,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28895:234623"
+          "id": "VariableID:27513:151883"
         }
       },
       "resolvedValuesByMode": {
@@ -9120,13 +9119,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 1,
-            "g": 1,
-            "b": 1,
-            "a": 0
+            "r": 0.9607843160629272,
+            "g": 0.9647058844566345,
+            "b": 0.9803921580314636,
+            "a": 1
           },
-          "alias": "VariableID:28895:234623",
-          "aliasName": "core/neutral/neutral-95"
+          "alias": "VariableID:27513:151883",
+          "aliasName": "core/neutral/neutral-10"
         }
       },
       "scopes": [
@@ -9157,7 +9156,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151882"
         }
       },
       "resolvedValuesByMode": {
@@ -9193,13 +9192,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 0.9803921580314636,
+            "g": 0.9803921580314636,
+            "b": 0.9882352948188782,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151882",
+          "aliasName": "core/neutral/neutral-5"
         }
       },
       "scopes": [
@@ -9230,7 +9229,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151892"
+          "id": "VariableID:27513:151882"
         }
       },
       "resolvedValuesByMode": {
@@ -9266,13 +9265,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0,
-            "g": 0,
-            "b": 0,
+            "r": 0.9803921580314636,
+            "g": 0.9803921580314636,
+            "b": 0.9882352948188782,
             "a": 1
           },
-          "alias": "VariableID:27513:151892",
-          "aliasName": "core/neutral/neutral-100"
+          "alias": "VariableID:27513:151882",
+          "aliasName": "core/neutral/neutral-5"
         }
       },
       "scopes": [
@@ -9303,7 +9302,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151887"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -9339,13 +9338,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.6745098233222961,
-            "g": 0.686274528503418,
-            "b": 0.7490196228027344,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:27513:151887",
-          "aliasName": "core/neutral/neutral-50"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -9595,7 +9594,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151885"
+          "id": "VariableID:27513:151886"
         }
       },
       "resolvedValuesByMode": {
@@ -9631,13 +9630,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.8823529481887817,
-            "g": 0.8901960849761963,
-            "b": 0.9215686321258545,
+            "r": 0.8078431487083435,
+            "g": 0.8156862854957581,
+            "b": 0.8588235378265381,
             "a": 1
           },
-          "alias": "VariableID:27513:151885",
-          "aliasName": "core/neutral/neutral-30"
+          "alias": "VariableID:27513:151886",
+          "aliasName": "core/neutral/neutral-40"
         }
       },
       "scopes": [
@@ -9668,7 +9667,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151887"
+          "id": "VariableID:25178:7123"
         }
       },
       "resolvedValuesByMode": {
@@ -9704,13 +9703,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.6745098233222961,
-            "g": 0.686274528503418,
-            "b": 0.7490196228027344,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:27513:151887",
-          "aliasName": "core/neutral/neutral-50"
+          "alias": "VariableID:25178:7123",
+          "aliasName": "core/text/text-tertiary"
         }
       },
       "scopes": [
@@ -9814,7 +9813,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28895:234623"
+          "id": "VariableID:25178:7121"
         }
       },
       "resolvedValuesByMode": {
@@ -9850,13 +9849,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 1,
-            "g": 1,
-            "b": 1,
-            "a": 0
+            "r": 0.1882352977991104,
+            "g": 0.19607843458652496,
+            "b": 0.250980406999588,
+            "a": 1
           },
-          "alias": "VariableID:28895:234623",
-          "aliasName": "core/neutral/neutral-95"
+          "alias": "VariableID:25178:7121",
+          "aliasName": "core/text/text-primary"
         }
       },
       "scopes": [
@@ -9960,7 +9959,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151887"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -9996,13 +9995,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.6745098233222961,
-            "g": 0.686274528503418,
-            "b": 0.7490196228027344,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:27513:151887",
-          "aliasName": "core/neutral/neutral-50"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -10033,7 +10032,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151887"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -10069,13 +10068,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.6745098233222961,
-            "g": 0.686274528503418,
-            "b": 0.7490196228027344,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:27513:151887",
-          "aliasName": "core/neutral/neutral-50"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -10106,7 +10105,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151886"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -10142,13 +10141,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.8078431487083435,
-            "g": 0.8156862854957581,
-            "b": 0.8588235378265381,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:27513:151886",
-          "aliasName": "core/neutral/neutral-40"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -13683,7 +13682,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155669"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -13719,13 +13718,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:28101:155669",
-          "aliasName": "core/semantic/secondary-50"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -13756,7 +13755,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155669"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -13792,13 +13791,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:28101:155669",
-          "aliasName": "core/semantic/secondary-50"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -13829,7 +13828,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155669"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -13865,13 +13864,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:28101:155669",
-          "aliasName": "core/semantic/secondary-50"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -14048,7 +14047,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151881"
+          "id": "VariableID:27513:151883"
         }
       },
       "resolvedValuesByMode": {
@@ -14084,13 +14083,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 1,
-            "g": 1,
-            "b": 1,
+            "r": 0.9607843160629272,
+            "g": 0.9647058844566345,
+            "b": 0.9803921580314636,
             "a": 1
           },
-          "alias": "VariableID:27513:151881",
-          "aliasName": "core/neutral/neutral-0"
+          "alias": "VariableID:27513:151883",
+          "aliasName": "core/neutral/neutral-10"
         }
       },
       "scopes": [
@@ -14121,7 +14120,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155670"
+          "id": "VariableID:27513:151883"
         }
       },
       "resolvedValuesByMode": {
@@ -14157,13 +14156,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.27843138575553894,
-            "g": 0.29019609093666077,
-            "b": 0.3490196168422699,
+            "r": 0.9607843160629272,
+            "g": 0.9647058844566345,
+            "b": 0.9803921580314636,
             "a": 1
           },
-          "alias": "VariableID:28101:155670",
-          "aliasName": "core/semantic/secondary-60"
+          "alias": "VariableID:27513:151883",
+          "aliasName": "core/neutral/neutral-10"
         }
       },
       "scopes": [
@@ -14194,7 +14193,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7124"
+          "id": "VariableID:27513:151885"
         }
       },
       "resolvedValuesByMode": {
@@ -14230,13 +14229,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.6745098233222961,
-            "g": 0.686274528503418,
-            "b": 0.7490196228027344,
+            "r": 0.8823529481887817,
+            "g": 0.8901960849761963,
+            "b": 0.9215686321258545,
             "a": 1
           },
-          "alias": "VariableID:25178:7124",
-          "aliasName": "core/text/text-disabled"
+          "alias": "VariableID:27513:151885",
+          "aliasName": "core/neutral/neutral-30"
         }
       },
       "scopes": [
@@ -23027,7 +23026,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151882"
+          "id": "VariableID:27513:151888"
         }
       },
       "resolvedValuesByMode": {
@@ -23063,13 +23062,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.9803921580314636,
-            "g": 0.9803921580314636,
-            "b": 0.9882352948188782,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:27513:151882",
-          "aliasName": "core/neutral/neutral-5"
+          "alias": "VariableID:27513:151888",
+          "aliasName": "core/neutral/neutral-60"
         }
       },
       "scopes": [
@@ -23903,7 +23902,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155675"
+          "id": "VariableID:28101:155676"
         }
       },
       "resolvedValuesByMode": {
@@ -23939,13 +23938,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 1,
-            "g": 0.25882354378700256,
-            "b": 0.25882354378700256,
+            "r": 0.886274516582489,
+            "g": 0.16470588743686676,
+            "b": 0.16470588743686676,
             "a": 1
           },
-          "alias": "VariableID:28101:155675",
-          "aliasName": "core/semantic/critical-50"
+          "alias": "VariableID:28101:155676",
+          "aliasName": "core/semantic/critical-60"
         }
       },
       "scopes": [
@@ -24049,7 +24048,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151885"
+          "id": "VariableID:27513:151886"
         }
       },
       "resolvedValuesByMode": {
@@ -24085,13 +24084,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.8823529481887817,
-            "g": 0.8901960849761963,
-            "b": 0.9215686321258545,
+            "r": 0.8078431487083435,
+            "g": 0.8156862854957581,
+            "b": 0.8588235378265381,
             "a": 1
           },
-          "alias": "VariableID:27513:151885",
-          "aliasName": "core/neutral/neutral-30"
+          "alias": "VariableID:27513:151886",
+          "aliasName": "core/neutral/neutral-40"
         }
       },
       "scopes": [
@@ -51438,59 +51437,6 @@
       }
     },
     {
-      "id": "VariableID:25178:7792",
-      "name": "checkbox/colors/checkbox-border-radius",
-      "description": "",
-      "type": "FLOAT",
-      "valuesByMode": {
-        "25178:0": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7790"
-        },
-        "25178:1": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7790"
-        },
-        "26302:0": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7790"
-        },
-        "64402:0": {
-          "type": "VARIABLE_ALIAS",
-          "id": "VariableID:25178:7790"
-        }
-      },
-      "resolvedValuesByMode": {
-        "25178:0": {
-          "resolvedValue": 3,
-          "alias": "VariableID:25178:7790",
-          "aliasName": "core/sizes/border-radius"
-        },
-        "25178:1": {
-          "resolvedValue": 3,
-          "alias": "VariableID:25178:7790",
-          "aliasName": "core/sizes/border-radius"
-        },
-        "26302:0": {
-          "resolvedValue": 3,
-          "alias": "VariableID:25178:7790",
-          "aliasName": "core/sizes/border-radius"
-        },
-        "64402:0": {
-          "resolvedValue": 3,
-          "alias": "VariableID:25178:7790",
-          "aliasName": "core/sizes/border-radius"
-        }
-      },
-      "scopes": [
-        "ALL_SCOPES"
-      ],
-      "hiddenFromPublishing": true,
-      "codeSyntax": {
-        "WEB": "/* UUI internal variable 'checkbox/colors/checkbox-border-radius' */"
-      }
-    },
-    {
       "id": "VariableID:25178:7793",
       "name": "text_input/sizes/text_input-border-radius",
       "description": "",
@@ -52233,10 +52179,8 @@
       "type": "COLOR",
       "valuesByMode": {
         "25178:0": {
-          "r": 1,
-          "g": 1,
-          "b": 1,
-          "a": 1
+          "type": "VARIABLE_ALIAS",
+          "id": "VariableID:25178:7106"
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
@@ -52263,7 +52207,8 @@
             "b": 1,
             "a": 1
           },
-          "alias": null
+          "alias": "VariableID:25178:7106",
+          "aliasName": "core/surfaces/surface-main"
         },
         "25178:1": {
           "resolvedValue": {
@@ -61592,7 +61537,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151882"
+          "id": "VariableID:27513:151888"
         }
       },
       "resolvedValuesByMode": {
@@ -61628,13 +61573,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.9803921580314636,
-            "g": 0.9803921580314636,
-            "b": 0.9882352948188782,
+            "r": 0.42352941632270813,
+            "g": 0.43529412150382996,
+            "b": 0.501960813999176,
             "a": 1
           },
-          "alias": "VariableID:27513:151882",
-          "aliasName": "core/neutral/neutral-5"
+          "alias": "VariableID:27513:151888",
+          "aliasName": "core/neutral/neutral-60"
         }
       },
       "scopes": [
@@ -65660,7 +65605,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155691"
+          "id": "VariableID:28101:155692"
         }
       },
       "resolvedValuesByMode": {
@@ -65697,12 +65642,12 @@
         "64402:0": {
           "resolvedValue": {
             "r": 1,
-            "g": 0.929411768913269,
-            "b": 0.7882353067398071,
+            "g": 0.843137264251709,
+            "b": 0.5215686559677124,
             "a": 1
           },
-          "alias": "VariableID:28101:155691",
-          "aliasName": "core/semantic/warning-10"
+          "alias": "VariableID:28101:155692",
+          "aliasName": "core/semantic/warning-20"
         }
       },
       "scopes": [
@@ -67599,7 +67544,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155657"
+          "id": "VariableID:28101:155658"
         }
       },
       "resolvedValuesByMode": {
@@ -67636,12 +67581,12 @@
         "64402:0": {
           "resolvedValue": {
             "r": 0,
-            "g": 0.6196078658103943,
-            "b": 0.800000011920929,
+            "g": 0.5254902243614197,
+            "b": 0.6784313917160034,
             "a": 1
           },
-          "alias": "VariableID:28101:155657",
-          "aliasName": "core/semantic/primary-50"
+          "alias": "VariableID:28101:155658",
+          "aliasName": "core/semantic/primary-60"
         }
       },
       "scopes": [
@@ -67709,7 +67654,7 @@
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151888"
+          "id": "VariableID:27513:151884"
         }
       },
       "resolvedValuesByMode": {
@@ -67745,13 +67690,13 @@
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.9215686321258545,
+            "g": 0.929411768913269,
+            "b": 0.9607843160629272,
             "a": 1
           },
-          "alias": "VariableID:27513:151888",
-          "aliasName": "core/neutral/neutral-60"
+          "alias": "VariableID:27513:151884",
+          "aliasName": "core/neutral/neutral-20"
         }
       },
       "scopes": [
@@ -75182,15 +75127,15 @@
         },
         "25178:1": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151881"
+          "id": "VariableID:56070:15457"
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151881"
+          "id": "VariableID:56070:15457"
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:27513:151881"
+          "id": "VariableID:56070:15457"
         }
       },
       "resolvedValuesByMode": {
@@ -75211,8 +75156,8 @@
             "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151881",
-          "aliasName": "core/neutral/neutral-0"
+          "alias": "VariableID:56070:15457",
+          "aliasName": "core/semantic/secondary-contrast"
         },
         "26302:0": {
           "resolvedValue": {
@@ -75221,8 +75166,8 @@
             "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151881",
-          "aliasName": "core/neutral/neutral-0"
+          "alias": "VariableID:56070:15457",
+          "aliasName": "core/semantic/secondary-contrast"
         },
         "64402:0": {
           "resolvedValue": {
@@ -75231,8 +75176,8 @@
             "b": 1,
             "a": 1
           },
-          "alias": "VariableID:27513:151881",
-          "aliasName": "core/neutral/neutral-0"
+          "alias": "VariableID:56070:15457",
+          "aliasName": "core/semantic/secondary-contrast"
         }
       },
       "scopes": [
@@ -82750,7 +82695,7 @@
         "25178:0": 0,
         "25178:1": 3,
         "26302:0": 0,
-        "64402:0": 0
+        "64402:0": 3
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -82766,7 +82711,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 0,
+          "resolvedValue": 3,
           "alias": null
         }
       },
@@ -82787,7 +82732,7 @@
         "25178:0": 3,
         "25178:1": 6,
         "26302:0": 3,
-        "64402:0": 3
+        "64402:0": 6
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -82803,7 +82748,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 3,
+          "resolvedValue": 6,
           "alias": null
         }
       },
@@ -82880,7 +82825,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.05000000074505806
+          "a": 0.20000000298023224
         }
       },
       "resolvedValuesByMode": {
@@ -82916,7 +82861,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.05000000074505806
+            "a": 0.20000000298023224
           },
           "alias": null
         }
@@ -82975,7 +82920,7 @@
         "25178:0": 3,
         "25178:1": 0,
         "26302:0": 3,
-        "64402:0": 3
+        "64402:0": 0
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -82991,7 +82936,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 3,
+          "resolvedValue": 0,
           "alias": null
         }
       },
@@ -83012,7 +82957,7 @@
         "25178:0": 6,
         "25178:1": 4,
         "26302:0": 6,
-        "64402:0": 6
+        "64402:0": 4
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83028,7 +82973,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 6,
+          "resolvedValue": 4,
           "alias": null
         }
       },
@@ -83105,7 +83050,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.10000000149011612
+          "a": 0.20000000298023224
         }
       },
       "resolvedValuesByMode": {
@@ -83141,7 +83086,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.10000000149011612
+            "a": 0.20000000298023224
           },
           "alias": null
         }
@@ -83200,7 +83145,7 @@
         "25178:0": 0,
         "25178:1": 4,
         "26302:0": 0,
-        "64402:0": 0
+        "64402:0": 4
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83216,7 +83161,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 0,
+          "resolvedValue": 4,
           "alias": null
         }
       },
@@ -83237,7 +83182,7 @@
         "25178:0": 6,
         "25178:1": 22,
         "26302:0": 6,
-        "64402:0": 6
+        "64402:0": 22
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83253,7 +83198,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 6,
+          "resolvedValue": 22,
           "alias": null
         }
       },
@@ -83274,7 +83219,7 @@
         "25178:0": 0,
         "25178:1": 3,
         "26302:0": 0,
-        "64402:0": 0
+        "64402:0": 3
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83290,7 +83235,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 0,
+          "resolvedValue": 3,
           "alias": null
         }
       },
@@ -83330,7 +83275,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.05000000074505806
+          "a": 0.25999999046325684
         }
       },
       "resolvedValuesByMode": {
@@ -83366,7 +83311,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.05000000074505806
+            "a": 0.25999999046325684
           },
           "alias": null
         }
@@ -83425,7 +83370,7 @@
         "25178:0": 3,
         "25178:1": 1,
         "26302:0": 3,
-        "64402:0": 3
+        "64402:0": 1
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83441,7 +83386,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 3,
+          "resolvedValue": 1,
           "alias": null
         }
       },
@@ -83462,7 +83407,7 @@
         "25178:0": 12,
         "25178:1": 2,
         "26302:0": 12,
-        "64402:0": 12
+        "64402:0": 2
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83478,7 +83423,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 12,
+          "resolvedValue": 2,
           "alias": null
         }
       },
@@ -83555,7 +83500,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.10000000149011612
+          "a": 0.20000000298023224
         }
       },
       "resolvedValuesByMode": {
@@ -83591,7 +83536,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.10000000149011612
+            "a": 0.20000000298023224
           },
           "alias": null
         }
@@ -83650,7 +83595,7 @@
         "25178:0": 9,
         "25178:1": 3,
         "26302:0": 9,
-        "64402:0": 9
+        "64402:0": 3
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83666,7 +83611,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 9,
+          "resolvedValue": 3,
           "alias": null
         }
       },
@@ -83687,7 +83632,7 @@
         "25178:0": 15,
         "25178:1": 25,
         "26302:0": 15,
-        "64402:0": 15
+        "64402:0": 25
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83703,7 +83648,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 15,
+          "resolvedValue": 25,
           "alias": null
         }
       },
@@ -83724,7 +83669,7 @@
         "25178:0": 0,
         "25178:1": 3,
         "26302:0": 0,
-        "64402:0": 0
+        "64402:0": 3
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83740,7 +83685,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 0,
+          "resolvedValue": 3,
           "alias": null
         }
       },
@@ -83780,7 +83725,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.05000000074505806
+          "a": 0.5600000023841858
         }
       },
       "resolvedValuesByMode": {
@@ -83816,7 +83761,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.05000000074505806
+            "a": 0.5600000023841858
           },
           "alias": null
         }
@@ -83875,7 +83820,7 @@
         "25178:0": 6,
         "25178:1": 1,
         "26302:0": 6,
-        "64402:0": 6
+        "64402:0": 1
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83891,7 +83836,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 6,
+          "resolvedValue": 1,
           "alias": null
         }
       },
@@ -83912,7 +83857,7 @@
         "25178:0": 36,
         "25178:1": 2,
         "26302:0": 36,
-        "64402:0": 36
+        "64402:0": 2
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -83928,7 +83873,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 36,
+          "resolvedValue": 2,
           "alias": null
         }
       },
@@ -84005,7 +83950,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.11999999731779099
+          "a": 0.20000000298023224
         }
       },
       "resolvedValuesByMode": {
@@ -84041,7 +83986,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.11999999731779099
+            "a": 0.20000000298023224
           },
           "alias": null
         }
@@ -84100,7 +84045,7 @@
         "25178:0": 6,
         "25178:1": 0,
         "26302:0": 6,
-        "64402:0": 6
+        "64402:0": 0
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -84116,7 +84061,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 6,
+          "resolvedValue": 0,
           "alias": null
         }
       },
@@ -84137,7 +84082,7 @@
         "25178:0": 12,
         "25178:1": 6,
         "26302:0": 12,
-        "64402:0": 12
+        "64402:0": 6
       },
       "resolvedValuesByMode": {
         "25178:0": {
@@ -84153,7 +84098,7 @@
           "alias": null
         },
         "64402:0": {
-          "resolvedValue": 12,
+          "resolvedValue": 6,
           "alias": null
         }
       },
@@ -84230,7 +84175,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.05000000074505806
+          "a": 0
         }
       },
       "resolvedValuesByMode": {
@@ -84266,7 +84211,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.05000000074505806
+            "a": 0
           },
           "alias": null
         }
@@ -84455,7 +84400,7 @@
           "r": 0.11372549086809158,
           "g": 0.11764705926179886,
           "b": 0.14901961386203766,
-          "a": 0.10000000149011612
+          "a": 0
         }
       },
       "resolvedValuesByMode": {
@@ -84491,7 +84436,7 @@
             "r": 0.11372549086809158,
             "g": 0.11764705926179886,
             "b": 0.14901961386203766,
-            "a": 0.10000000149011612
+            "a": 0
           },
           "alias": null
         }
@@ -109954,11 +109899,11 @@
         },
         "26302:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155669"
+          "id": "VariableID:28101:155670"
         },
         "64402:0": {
           "type": "VARIABLE_ALIAS",
-          "id": "VariableID:28101:155669"
+          "id": "VariableID:25178:7121"
         }
       },
       "resolvedValuesByMode": {
@@ -109984,23 +109929,23 @@
         },
         "26302:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.27843138575553894,
+            "g": 0.29019609093666077,
+            "b": 0.3490196168422699,
             "a": 1
           },
-          "alias": "VariableID:28101:155669",
-          "aliasName": "core/semantic/secondary-50"
+          "alias": "VariableID:28101:155670",
+          "aliasName": "core/semantic/secondary-60"
         },
         "64402:0": {
           "resolvedValue": {
-            "r": 0.42352941632270813,
-            "g": 0.43529412150382996,
-            "b": 0.501960813999176,
+            "r": 0.1882352977991104,
+            "g": 0.19607843458652496,
+            "b": 0.250980406999588,
             "a": 1
           },
-          "alias": "VariableID:28101:155669",
-          "aliasName": "core/semantic/secondary-50"
+          "alias": "VariableID:25178:7121",
+          "aliasName": "core/text/text-primary"
         }
       },
       "scopes": [
