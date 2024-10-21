@@ -105,7 +105,7 @@ export function AppHeader() {
 
     const renderDirectionSwitcher = () => {
         return (
-            <FlexRow key="direction-switcher" padding="12">
+            <FlexRow padding="12" key="RTL-switcher">
                 <MultiSwitch value={ direction } onValueChange={ changeContentDirection } items={ [{ id: 'ltr', caption: 'LTR' }, { id: 'rtl', caption: 'RTL' }] } />
             </FlexRow>
         );
@@ -226,7 +226,6 @@ export function AppHeader() {
                 priority: 5,
                 render: () => (
                     <Dropdown
-                        key="figma"
                         renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
@@ -235,13 +234,14 @@ export function AppHeader() {
                                 <DropdownMenuButton caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" target="_blank" />
                             </DropdownMenuBody>
                         ) }
+                        key="figma-source"
                     />
                 ),
             },
             {
                 id: 'git',
                 priority: 4,
-                render: () => <MainMenuButton key="git" icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } />,
+                render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } key="github-link" />,
             },
             {
                 id: 'gitStar',
