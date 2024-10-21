@@ -29,15 +29,15 @@
 
     // "palette/electric"
     --electric-5: #ECF1FF;
-    --electric-10: #B6D4FF;
-    --electric-20: #A1C4F5;
+    --electric-10: #B7D5FF;
+    --electric-20: #A1C4F6;
     --electric-50: #3980EB;
-    --electric-60: #286CD2;
+    --electric-60: #296CD3;
     --electric-70: #1C5DC2;
 
     // "palette/emerald"
     --emerald-5: #EDFEF3;
-    --emerald-10: #D6FCD7;
+    --emerald-10: #D6FDD7;
     --emerald-20: #B6EEB5;
     --emerald-50: #34B859;
     --emerald-60: #12A860;
@@ -45,11 +45,11 @@
 
     // "palette/fire"
     --fire-5: #FEF6F6;
-    --fire-10: #FDE1E1;
+    --fire-10: #FEDBE8;
     --fire-20: #FEC1C1;
     --fire-50: #EF558D;
     --fire-60: #C6215D;
-    --fire-70: #951041;
+    --fire-70: #961141;
 
     // "palette-additional/fuchsia"
     --fuchsia-5: #FFF7FB;
@@ -102,14 +102,14 @@
     --red-20: #FEC1C1;
     --red-50: #EF558D;
     --red-60: #C6215D;
-    --red-70: #951041;
+    --red-70: #961141;
 
     // "palette/sun"
     --sun-5: #FFFCF5;
     --sun-10: #FFEDC9;
     --sun-20: #FFDD96;
     --sun-50: #FF9A24;
-    --sun-60: #E98611;
+    --sun-60: #EA8612;
     --sun-70: #BD5800;
 
     // "palette-additional/violet"
@@ -227,17 +227,14 @@
     /************/
 
     // "core/surfaces"
-    --uui-app-bg: var(--uui-neutral-0);
-    --uui-divider: var(--uui-neutral-60);
-    --uui-divider-light: var(--uui-neutral-50);
+    --uui-app-bg: var(--uui-neutral-10);
+    --uui-divider: var(--uui-neutral-40);
+    --uui-divider-light: var(--uui-neutral-30);
     --uui-overlay: #1D1E26CC;
     --uui-surface-higher: var(--uui-neutral-10);
     --uui-surface-highest: var(--uui-neutral-20);
     --uui-surface-main: var(--uui-neutral-0);
     --uui-surface-sunken: var(--uui-neutral-20);
-
-    // ""
-    --uui-border-radius: 6;
 
     // "core/controls"
     --uui-control-bg: var(--uui-surface-main);
@@ -255,10 +252,10 @@
     --uui-control-text-disabled: var(--uui-text-tertiary);
 
     // "core/icons"
-    --uui-icon: var(--uui-neutral-60);
-    --uui-icon-active: var(--uui-neutral-80);
+    --uui-icon: var(--uui-neutral-95);
+    --uui-icon-active: var(--uui-neutral-100);
     --uui-icon-disabled: var(--uui-neutral-50);
-    --uui-icon-hover: var(--uui-neutral-70);
+    --uui-icon-hover: var(--uui-neutral-100);
 
     // "core/links"
     --uui-link: var(--uui-primary-50);
