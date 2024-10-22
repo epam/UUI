@@ -184,8 +184,8 @@
     /* Button */
 
     .uui-button {
-        --uui-btn-bg-disabled: var(--uui-neutral-50);
-        --uui-btn-border-disabled: var(--uui-neutral-50);
+        --uui-btn-bg-disabled: var(--uui-neutral-60);
+        --uui-btn-border-disabled: var(--uui-neutral-60);
 
         &.uui-fill-solid.uui-color-white {
             --uui-btn-bg-active: var(--uui-neutral-20);
@@ -225,6 +225,7 @@
             --uui-btn-border: transparent;
             --uui-btn-border-hover: transparent;
             --uui-btn-border-active: transparent;
+            --uui-btn-border-disabled: transparent;
             --uui-btn-caption: var(--uui-color-60);
 
             &.uui-color-neutral,

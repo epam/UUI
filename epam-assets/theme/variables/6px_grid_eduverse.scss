@@ -16,6 +16,10 @@
             --uui-border-width: 2px;
             --uui-border-radius: 9px;
         }
+
+        &.uui-size-60 {
+            --uui-horizontal-padding: 30px;
+        }
     }
 
     .uui-tag {
