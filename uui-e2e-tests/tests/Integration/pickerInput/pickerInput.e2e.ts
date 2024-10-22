@@ -7,7 +7,7 @@ const OPTION_TEXT = {
     FRANCE_GARGES: 'Garges-lès-GonesseEurope / France',
 };
 
-test.only(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
+test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
