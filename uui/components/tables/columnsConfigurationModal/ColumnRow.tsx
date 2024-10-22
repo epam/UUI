@@ -25,7 +25,12 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
     const data = { column, columnConfig };
 
     const renderContent = (dndActorParams: DndActorRenderParams) => {
-        const wrapperClasses = cx(css.rowWrapper, !isPinned && css.notPinned, dndActorParams.isDragGhost && uuiDndState.dragGhost);
+        const wrapperClasses = cx(
+            css.rowWrapper,
+            !isPinned && css.notPinned,
+            dndActorParams.isDragGhost && uuiDndState.dragGhost,
+            'uui-columns-config-row',
+        );
 
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
 

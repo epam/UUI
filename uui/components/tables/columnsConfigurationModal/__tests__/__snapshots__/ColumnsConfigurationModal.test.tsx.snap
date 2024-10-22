@@ -246,7 +246,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root rowWrapper container align-items-top"
+                  className="uui-flex-row root rowWrapper uui-columns-config-row container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -397,7 +397,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root rowWrapper notPinned container align-items-top"
+                  className="uui-flex-row root rowWrapper notPinned uui-columns-config-row container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
