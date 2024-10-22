@@ -212,7 +212,7 @@ exports[`PickerList should open body 1`] = `
                 dir="ltr"
                 inputmode="search"
                 placeholder="Type text for quick search"
-                tabindex="-1"
+                tabindex="0"
                 type="search"
                 value=""
               />
