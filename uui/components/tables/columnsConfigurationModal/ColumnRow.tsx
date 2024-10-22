@@ -6,9 +6,9 @@ import { DropMarker } from '../../dnd';
 import { DragHandle, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import { ReactComponent as DragIndicatorIcon } from '@epam/assets/icons/common/action-drag_indicator-18.svg';
+import { settings } from '../../../settings';
 
 import css from './ColumnRow.module.scss';
-import { settings } from '../../../settings';
 
 export interface ColumnRowProps<TItem, TId, TFilter> {
     column: ColumnsConfigurationRowProps;

@@ -69,8 +69,23 @@ export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>
                     && dataSourceState.selectedId !== prevDataSourceState.selectedId)
             ))
         ) {
-            if (!isEqual(value, newValue)) {
-                handleSelectionValueChange(newValue);
+            // For entity mode we should check only ids because external entity can be different from ds entity
+            if (props.valueType === 'entity') {
+                if (props.selectionMode === 'single') {
+                    if (props.dataSource.getId(value as TItem) !== props.dataSource.getId(newValue as TItem)) {
+                        handleSelectionValueChange(newValue);
+                    }
+                } else {
+                    const newIds = (newValue as TItem[])?.map((i) =>props.dataSource.getId(i));
+                    const prevIds = (value as TItem[])?.map((i) =>props.dataSource.getId(i));
+                    if (!isEqual(newIds, prevIds)) {
+                        handleSelectionValueChange(newValue);
+                    }
+                }
+            } else {
+                if (!isEqual(value, newValue)) {
+                    handleSelectionValueChange(newValue);
+                }
             }
         }
 
