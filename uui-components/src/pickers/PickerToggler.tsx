@@ -236,7 +236,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 !props.isReadonly && !props.isDisabled && inFocus && uuiMod.focus,
                 props.cx,
             ) }
-            tabIndex={ inFocus || props.isReadonly || props.isDisabled ? -1 : 0 }
+            tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
             onKeyDown={ props.onKeyDown }

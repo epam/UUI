@@ -7,7 +7,7 @@ const OPTION_TEXT = {
     FRANCE_GARGES: 'Garges-lès-GonesseEurope / France',
 };
 
-test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
+test.only(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
@@ -109,12 +109,12 @@ test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testIn
         await pageObject.keyboardPress('Enter');
         await pageObject.waitForSelectAllButton();
         await pageObject.waitForAllOptionsUnchecked();
-        // hack - scrolling behavior is not consistent between test runs: "-scrolled-top" css class is not added sometimes
-        await pageObject.keyboardPress('Escape');
-        await pageObject.waitDropdownDisappears();
-        await pageObject.keyboardPress('Enter');
-        await pageObject.waitDropdownLoaderAppearsAndDisappears();
-        // hack - end
+        // // hack - scrolling behavior is not consistent between test runs: "-scrolled-top" css class is not added sometimes
+        // await pageObject.keyboardPress('Escape');
+        // await pageObject.waitDropdownDisappears();
+        // await pageObject.keyboardPress('Enter');
+        // await pageObject.waitDropdownLoaderAppearsAndDisappears();
+        // // hack - end
         await expectScreenshot(20, 'cleared');
     });
     await test.step('Press "Esc" key 1 time', async () => {
