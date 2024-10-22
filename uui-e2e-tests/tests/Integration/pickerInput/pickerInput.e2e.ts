@@ -109,12 +109,12 @@ test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testIn
         await pageObject.keyboardPress('Enter');
         await pageObject.waitForSelectAllButton();
         await pageObject.waitForAllOptionsUnchecked();
-        // hack - scrolling behavior is not consistent between test runs: "-scrolled-top" css class is not added sometimes
-        await pageObject.keyboardPress('Escape');
-        await pageObject.waitDropdownDisappears();
-        await pageObject.keyboardPress('Enter');
-        await pageObject.waitDropdownLoaderAppearsAndDisappears();
-        // hack - end
+        // // hack - scrolling behavior is not consistent between test runs: "-scrolled-top" css class is not added sometimes
+        await pageObject.locators.dropdown.option({ ariaPosinset: 1 }).scrollIntoViewIfNeeded();
+        // await pageObject.waitDropdownDisappears();
+        // await pageObject.keyboardPress('Enter');
+        // await pageObject.waitDropdownLoaderAppearsAndDisappears();
+        // // hack - end
         await expectScreenshot(20, 'cleared');
     });
     await test.step('Press "Esc" key 1 time', async () => {

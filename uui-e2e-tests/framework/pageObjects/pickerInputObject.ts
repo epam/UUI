@@ -4,7 +4,7 @@ import { Locator, Page, expect } from '@playwright/test';
 type TKeyboardKey = 'ArrowDown' | 'Backspace' | 'Enter' | 'Escape' | 'Shift' | 'Tab' | 'Shift+Tab' | 'Space';
 
 export class PickerInputObject {
-    private readonly locators: {
+    public readonly locators: {
         input: Locator;
         dropdown: {
             root: Locator;
@@ -20,7 +20,7 @@ export class PickerInputObject {
                 allChecked: Locator,
                 allUnchecked: Locator,
             }
-        }
+        },
     };
 
     constructor(private page: Page) {
@@ -67,7 +67,8 @@ export class PickerInputObject {
     }
 
     async focusInput() {
-        await this.locators.input.first().focus();
+        await this.page.press('[aria-label="Doc Example Content"]', 'Tab');
+        await this.page.press('[aria-label="Doc Example Content"]', 'Tab');
     }
 
     async focusShowOnlySelectedSwitch() {
