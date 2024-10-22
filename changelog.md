@@ -1,6 +1,8 @@
 # 5.*.* - **.**.2024
 
 **What's New**
+* [Button]: added size `60` to props
+* [MultiSwitch]: added size `60` to props
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: changed layout - added gaps between internal items, changed padding
 
