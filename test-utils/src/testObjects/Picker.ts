@@ -118,12 +118,12 @@ export class PickerTestObject {
 
     static querySpinner(props: { editMode?: string } = {}) {
         const dialog = within(this.getDialog(props.editMode));
-        return dialog.queryByRole('status', { busy: false }).querySelector('.uui-blocker');
+        return dialog.queryByRole('status', { busy: false });
     }
 
     public static async waitForLoadingComplete(editMode?: string) {
         return await waitFor(() => {
-            expect(this.querySpinner({ editMode })).not.toBeInTheDocument();
+            expect(this.querySpinner({ editMode })).not.toBeNull();
         });
     }
 }

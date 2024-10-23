@@ -8,6 +8,7 @@ import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
 import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
+import { Responsive } from './responsive/Responsive';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
@@ -18,6 +19,7 @@ import { Skills } from './skills';
 import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
+import { TableColumnConfigModalTest } from './tableColConfigModal/TableColumnConfigModalTest';
 import { PalettePage } from './tokens/palette/palettePage';
 import { ReactQueryLocationsTable } from './reactQueryLocationsTable';
 import { ProjectTableDemo } from './editableTable';
@@ -35,6 +37,7 @@ export function SandboxPage() {
             { id: 'reactQueryLocationsTableDemo', name: 'React-query Loactions Demo', component: ReactQueryLocationsTable },
             { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
+            { id: 'responsive', name: 'Responsive', component: Responsive },
             { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
             { id: 'theme_electric', name: 'Theme Electric', component: ThemeElectricDemo },
             { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
@@ -42,6 +45,7 @@ export function SandboxPage() {
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
+            { id: 'TableColumnsConfigurationModal', name: 'Table ColumnsConfigModal', component: TableColumnConfigModalTest },
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
             { id: 'rtl-example', name: 'Rtl-example', component: RtlExample },

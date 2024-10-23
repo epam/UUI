@@ -1,8 +1,0 @@
-@use '../variables/6px_grid' as *;
-@use '../variables/promo' as *;
-
-.uui-theme-promo {
-    @include promo_variables();
-    @include uui-6px-grid();
-}
-
