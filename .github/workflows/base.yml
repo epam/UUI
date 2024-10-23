@@ -144,11 +144,14 @@ jobs:
         run: |
           cd ./helmchart
           # workaround to separate versioning modes for prod and non-prod
-          if [[ ${{ github.ref_name}} == "main" ]]; then
-            export helm_tag="$GITVERSION_SEMVER"
-          else
-            export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
-          fi
+          # temporary solution until we have a single versioning mode
+          # if [[ ${{ github.ref_name}} == "main" ]]; then
+          #   export helm_tag="$GITVERSION_SEMVER"
+          # else
+          #   export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
+          # fi
+          
+          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
           echo "[INFO] ${helm_tag}..."
 
           echo "[INFO] Replace Helm Chart package version..."
