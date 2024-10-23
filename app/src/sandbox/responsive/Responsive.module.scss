@@ -1,0 +1,16 @@
+@use '~@epam/assets/theme/theme_loveship' as *;
+@use '~@epam/assets/theme/theme_promo' as *;
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 240px);
+
+    &.uui-theme-loveship {
+        @include theme-loveship();
+    }
+
+    &.uui-theme-promo {
+        @include theme-promo();
+    }
+}

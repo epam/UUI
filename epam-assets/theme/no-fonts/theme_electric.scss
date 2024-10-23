@@ -1,7 +1,0 @@
-@use '../variables/6px_grid' as *;
-@use '../variables/electric' as *;
-
-.uui-theme-electric {
-    @include electric-variables();
-    @include uui-6px-grid();
-}

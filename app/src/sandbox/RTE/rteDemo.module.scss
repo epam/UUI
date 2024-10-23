@@ -1,6 +1,14 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+
 .wrapper {
     flex-grow: 1;
     margin: 24px;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
 }
 
 .icon-wrapper {

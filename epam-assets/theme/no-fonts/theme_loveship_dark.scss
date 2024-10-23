@@ -1,8 +1,0 @@
-@use '../variables/6px_grid' as *;
-@use '../variables/loveship_dark' as *;
-
-
-.uui-theme-loveship_dark {
-    @include loveship_dark_variables();
-    @include uui-6px-grid();
-}

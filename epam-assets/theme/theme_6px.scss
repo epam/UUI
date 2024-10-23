@@ -54,7 +54,7 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 6px;
-        --uui-vertical-padding: 6px;
+        --uui-vertical-padding: 3px;
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
@@ -67,7 +67,7 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 6px;
-        --uui-vertical-padding: 9px;
+        --uui-vertical-padding: 3px; // update paddings change C:\Users\Siarhei_Dzeraviannik\WebstormProjects\UUI\uui\components\pickers\PickerToggler.module.scss
         --uui-icon-size: 18px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
@@ -80,7 +80,7 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 12px;
-        --uui-vertical-padding: 9px;
+        --uui-vertical-padding: 3px;
         --uui-icon-size: 18px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
@@ -93,7 +93,7 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 12px;
-        --uui-vertical-padding: 12px;
+        --uui-vertical-padding: 3px;
         --uui-icon-size: 24px;
         --uui-line-height: 24px;
         --uui-font-size: 16px;
@@ -106,7 +106,7 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 12px;
-        --uui-vertical-padding: 18px;
+        --uui-vertical-padding: 3px;
         --uui-icon-size: 24px;
         --uui-line-height: 24px;
         --uui-font-size: 20px;
@@ -142,6 +142,7 @@
     .uui-tag {
         &.uui-size-18 {
             --uui-font-size: 12px;
+            --uui-line-height: 14px;
         }
 
         &.uui-size-24 {
@@ -152,13 +153,19 @@
             --uui-icon-size: 24px;
         }
 
+        &.uui-size-42,
+        &.uui-size-48 {
+            --uui-tag-count_indicator-margin-end: 3px;
+        }
+
+        &.uui-size-18,
         &.uui-size-24,
         &.uui-size-30,
-        &.uui-size-36,
-        &.uui-size-42 {
+        &.uui-size-36 {
             --uui-horizontal-gap: 3px;
         }
 
+        &.uui-size-18,
         &.uui-size-24,
         &.uui-size-30 {
             --uui-horizontal-padding: 3px;
@@ -166,7 +173,7 @@
 
         &.uui-size-42,
         &.uui-size-48 {
-            --uui-horizontal-padding: 9px;
+            --uui-horizontal-padding: 6px;
         }
     }
 
@@ -278,15 +285,6 @@
 
         &.uui-size-60 {
             --uui-horizontal-gap: 12px;
-        }
-    }
-
-    .uui-picker_toggler {
-        &.uui-size-30,
-        &.uui-size-36,
-        &.uui-size-42,
-        &.uui-size-48 {
-            --uui-vertical-padding: 3px;
         }
     }
 }

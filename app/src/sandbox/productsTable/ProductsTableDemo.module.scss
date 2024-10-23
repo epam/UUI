@@ -1,5 +1,12 @@
+@use '~@epam/assets/theme/theme_loveship' as *;
 
 .container {
     width: 100%;
     height: calc(100vh - 60px);
+
+    &.uui-theme-loveship {
+        :global {
+            @include theme-loveship();
+        }
+    }
 }

@@ -200,7 +200,6 @@ describe('PickerInput', () => {
         fireEvent.click(dom.input);
 
         await PickerInputTestObject.waitForOptionsToBeReady();
-        await PickerInputTestObject.waitForLoadingComplete();
 
         expect(result.baseElement).toMatchSnapshot();
     });

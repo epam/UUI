@@ -19,12 +19,6 @@ function simplifyPredicates(filter) {
         var key = keys[n];
         var condition = filter[key];
         if (condition != null && typeof condition === "object") {
-            if ('from' in condition && 'to' in condition) {
-                result[key] = {
-                    gte: condition.from,
-                    lte: condition.to
-                };
-            }
             if ('inRange' in condition) {
                 var value = condition.inRange;
                 result[key] = {
@@ -54,9 +48,6 @@ exports.simplifyPredicates = simplifyPredicates;
 function isDate(val) {
     return dayjs_1["default"](val).isValid();
 }
-
-exports.isDate = isDate;
-
 var truePredicate = function () { return true; };
 function getFilterPredicate(filter) {
     filter = simplifyPredicates(filter);
