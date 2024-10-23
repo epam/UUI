@@ -206,8 +206,6 @@ export function TimelineScale({
         const canvasHeight = 60;
         context.clearRect(0, 0, t.widthMs, canvasHeight);
 
-        drawScaleBottomBorder({ context, canvasHeight, timelineTransform: t, bottomBorderColor });
-
         const fonts = { currentPeriodFont, periodFont, meridiemFont };
         const commonProps = {
             context,
@@ -251,6 +249,8 @@ export function TimelineScale({
             ...timelineScale.getYearsScaleRange(),
             ...withGridLinesProps,
         });
+
+        drawScaleBottomBorder({ context, canvasHeight, timelineTransform: t, bottomBorderColor });
     };
 
     useEffect(() => {
