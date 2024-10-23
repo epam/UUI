@@ -213,6 +213,7 @@ export function AppHeader() {
                                     if (!['figma', 'git', 'gitStar', 'direction', 'themeCaption'].includes(i.id)) {
                                         return i.render({ ...i, onClose: props.onClose });
                                     }
+                                    return null;
                                 });
                             } }
                         />

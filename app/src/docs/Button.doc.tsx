@@ -74,7 +74,7 @@ export class ButtonDoc extends BaseDocsBlock {
                         isDropdown: { examples: '*' },
                     },
                 ],
-                cellSize: '150-60',
+                cellSize: '150-70',
             });
             const colorVariantsMatrix: TMatrixLocal = {
                 caption: { values: [TEST_DATA.caption1Line] },

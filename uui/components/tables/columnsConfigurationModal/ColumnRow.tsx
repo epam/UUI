@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { cx, DataColumnProps, DndActor, DndActorRenderParams, uuiDndState } from '@epam/uui-core';
-import { FlexRow } from '../../layout';
+import { FlexRow, FlexRowProps } from '../../layout';
 import { Checkbox } from '../../inputs';
 import { DropMarker } from '../../dnd';
 import { DragHandle, ColumnsConfigurationRowProps } from '@epam/uui-components';
 import { PinIconButton } from './PinIconButton';
 import { ReactComponent as DragIndicatorIcon } from '@epam/assets/icons/common/action-drag_indicator-18.svg';
+import { settings } from '../../../settings';
 
 import css from './ColumnRow.module.scss';
 
@@ -29,7 +30,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
             css.rowWrapper,
             !isPinned && css.notPinned,
             dndActorParams.isDragGhost && uuiDndState.dragGhost,
-            'uui-columns-config-row',
+            'uui-dt-columns-config-row',
         );
 
         const { onTouchStart, onPointerDown, ...restEventHandlers } = dndActorParams.eventHandlers;
@@ -38,7 +39,7 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
 
         return (
             <FlexRow
-                size={ null }
+                size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
                 cx={ wrapperClasses }
                 ref={ dndActorParams.ref }
                 rawProps={ { ...restEventHandlers } }

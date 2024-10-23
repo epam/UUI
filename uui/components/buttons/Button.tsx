@@ -10,7 +10,7 @@ type ButtonMods = {
      * Defines component size.
      * @default '36'
      */
-    size?: ControlSize | '18';
+    size?: '18' | ControlSize | '60';
     /**
      * Defines component fill style.
      * @default 'solid'

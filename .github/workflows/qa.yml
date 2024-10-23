@@ -3,7 +3,7 @@ name: qa
 # Controls when the action will run.
 on:
     push:
-        branches: [ feature/timeline ]
+        branches: [ themes/eduverse-theme ]
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 
