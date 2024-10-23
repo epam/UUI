@@ -1,14 +1,6 @@
-@use '~@epam/assets/theme/theme_promo' as *;
-
 .container {
     display: flex;
     flex-direction: column;
     flex: 1 1 0;
     height: calc(100vh - 60px);
-
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
 }
