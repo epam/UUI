@@ -42,6 +42,10 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     const onOpenChange = (newIsOpen: boolean) => {
         setIsOpen(newIsOpen);
         props.onOpenChange?.(newIsOpen);
+        if (!inFocus && newIsOpen) {
+            setInFocus('from');
+            targetRef.current.querySelector<HTMLInputElement>('.uui-input').focus();
+        }
     };
 
     const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
@@ -64,6 +68,10 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                 { ...renderProps }
                 cx={ cx(css.dropdownContainer) }
                 shards={ [targetRef] }
+                returnFocus={ (node) => {
+                    console.log('lock', node);
+                    return true;
+                } }
             >
                 <FlexRow>
                     <RangeDatePickerBody
