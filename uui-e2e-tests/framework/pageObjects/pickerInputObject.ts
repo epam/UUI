@@ -23,7 +23,7 @@ export class PickerInputObject {
         },
     };
 
-    constructor(private page: Page) {
+    constructor(public page: Page) {
         const input = page.locator('.uui-input-box.uui-picker_toggler');
         const dropdown = page.locator('div[role="dialog"] .uui-dropdown-body');
         const areaMultiSelectable = dropdown.locator('div[aria-multiselectable="true"]');
