@@ -1,18 +1,19 @@
 @use '../../../assets/styles/index' as *;
 
 .row-wrapper {
+    --uui-dt-columns_config_modal-row-vertical-padding: 3px;
     position: relative;
     width: 100%;
     box-sizing: border-box;
     touch-action: auto;
     column-gap: var(--uui-horizontal-gap);
-    padding: var(--uui-vertical-padding) var(--uui-dt-columns_config_modal-padding);
+    padding: var(--uui-dt-columns_config_modal-row-vertical-padding) var(--uui-dt-columns_config_modal-padding);
 
     .pin-icon-button {
         min-height: auto;
         column-gap: var(--uui-dt-columns_config_modal-pin_icon_button-column-gap);
-        padding-top: var(--uui-vertical-padding);
-        padding-bottom: var(--uui-vertical-padding);
+        padding-top: var(--uui-dt-columns_config_modal-row-vertical-padding);
+        padding-bottom: var(--uui-dt-columns_config_modal-row-vertical-padding);
     }
 
     &.not-pinned:not(:hover):not(:focus-within) {
@@ -23,8 +24,8 @@
 
     .checkbox {
         flex-grow: 1;
-        padding-top: var(--uui-vertical-padding);
-        padding-bottom: var(--uui-vertical-padding);
+        padding-top: var(--uui-dt-columns_config_modal-row-vertical-padding);
+        padding-bottom: var(--uui-dt-columns_config_modal-row-vertical-padding);
     }
 
     &:hover {
@@ -34,8 +35,8 @@
     .drag-handle {
         opacity: 1;
         touch-action: none;
-        padding-top: var(--uui-vertical-padding);
-        padding-bottom: var(--uui-vertical-padding);
+        padding-top: var(--uui-dt-columns_config_modal-row-vertical-padding);
+        padding-bottom: var(--uui-dt-columns_config_modal-row-vertical-padding);
 
         &.dnd-disabled {
             opacity: 0.3;
