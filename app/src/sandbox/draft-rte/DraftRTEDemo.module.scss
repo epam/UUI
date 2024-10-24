@@ -1,7 +1,15 @@
+@use '~@epam/assets/theme/theme_loveship' as *;
+
 .demo-wrapper {
     display: flex;
     width: 100%;
     height: calc(100vh - 60px);
+
+    &.uui-theme-loveship {
+        :global {
+            @include theme-loveship();
+        }
+    }
 }
 
 .DraftRTEDemo {

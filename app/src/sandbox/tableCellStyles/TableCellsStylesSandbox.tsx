@@ -17,6 +17,7 @@ import * as loveship from '@epam/loveship';
 import * as uui from '@epam/uui';
 import { DatePickerProps } from '@epam/uui';
 import { PickerInputBaseProps } from '@epam/uui-components';
+import css from './TableCellsStylesSandbox.module.scss';
 
 // Defined interface describe data for each row
 interface Item {
@@ -303,7 +304,7 @@ export default function TableCellsStylesSandbox() {
 
     // Render the table, passing the prepared data to it in form of getRows callback, list props (e.g. items counts)
     return (
-        <skin.Panel key={ skinName }>
+        <skin.Panel key={ skinName } cx={ [css.wrapper, skinName !== 'uui' && css[`uui-theme-${skinName}`]] }>
             <skin.FlexRow>
                 <skin.FlexCell width="auto">
                     <skin.MultiSwitch

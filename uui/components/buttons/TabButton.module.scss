@@ -54,7 +54,6 @@
         border-bottom: var(--uui-tab-line-width) solid transparent;
         height: var(--uui-tab_btn-height);
         min-width: var(--uui-tab_btn-min-width);
-        column-gap: var(--uui-tab_btn-gap);
     }
 
     @include tab-button-color(var(--uui-tab_btn-text), var(--uui-tab_btn-text-active), transparent);
@@ -98,5 +97,13 @@
             box-shadow: 0 1px 8px 0 var(--uui-critical-50);
             border-radius: 50%;
         }
+    }
+
+    :global(.uui-icon) + :global(.uui-count_indicator) {
+        margin-inline-start: var(--uui-tab_btn-gap);
+    }
+
+    :global(.uui-count_indicator):not(:last-child) {
+        margin-inline-end: var(--uui-tab_btn-gap);
     }
 }

@@ -1,0 +1,47 @@
+@use '~@epam/assets/theme/theme_promo' as *;
+@import '~@epam/promo/assets/styles/colors';
+
+.container {
+    box-sizing: border-box;
+    padding: 0 12px 44px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+
+    &.uui-theme-promo {
+        :global {
+            @include theme-promo();
+        }
+    }
+}
+
+.table-container {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+}
+
+:global(.uui-table-row) {
+    &.task-is-done {
+        --uui-dt-row-bg: var(--gray10);
+    }
+
+    .configItem {
+        visibility: hidden;
+
+        &.showButton {
+            visibility: visible;
+        }
+    }
+
+    &:hover {
+        .configItem {
+            visibility: visible;
+        }
+    }
+}
+
+.weekend-day {
+    background-color: #EBEDF5;
+}
