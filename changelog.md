@@ -1,8 +1,13 @@
-# 5.10.2 - xx.xx.2024
+# 5.10.2 - 24.10.2024
 
 **What's Fixed**
+
 * [Text]: fixed bug when passed rawProps override Text internal styles
 * [Modals]: fixed value for default modal width
+* [RangeDatePicker]: fix inputs focus behavior. Fixed bug when date cannot be selected when another picker was previously focused
+* [ColumnsConfigurationModal]: fixed vertical paddings
+* [PickerInput]: hide clear button from footer in case `props.disableClear === true`
+* [PickerInput]: fix unnecessary `onValueChange` call in case of entity mode and when provided entity was different from entity in `DataSource`.
 
 # 5.10.1 - 16.10.2024
 
