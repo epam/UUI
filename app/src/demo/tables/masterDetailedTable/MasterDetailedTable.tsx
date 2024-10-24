@@ -41,7 +41,7 @@ export function MasterDetailedTable() {
     );
 
     const pin = useCallback(
-        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) => 
+        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) =>
             __typename !== 'Person',
         [],
     );
