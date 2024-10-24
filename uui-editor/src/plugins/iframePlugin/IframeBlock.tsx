@@ -21,13 +21,15 @@ export const IframeBlock: PlatePluginComponent<{
     const isPdf = element.data?.extension === 'pdf';
     const style = element.data?.style;
 
+    const url: string = element.url || element.src as string; // element.src it's previous editor format structure
+
     return (
         // style attr needed for serialization
         <div { ...attributes }>
             <iframe
-                title={ element.url }
+                title={ url }
                 allowFullScreen={ true }
-                src={ sanitizeUrl(element.url) }
+                src={ sanitizeUrl(url) }
                 style={ style }
                 className={ cx(css.content, isSelected && uuiMod.focus, IFRAME_GLOBAL_CLASS, isPdf && PDF_GLOBAL_CLASS) }
             />

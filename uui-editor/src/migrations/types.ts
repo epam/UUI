@@ -39,6 +39,7 @@ export type DeprecatedTLinkElement = TLinkElement & {
 };
 
 export type DeprecatedTIframeElement = TIframeElement & {
+    src?: string; // removed
     data: TIframeElement['data'] & {
         src?: string; // removed
     }
