@@ -9,11 +9,16 @@
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 
 
-# 5.10.2 - xx.xx.2024
+# 5.10.2 - 24.10.2024
 
 **What's Fixed**
+
 * [Text]: fixed bug when passed rawProps override Text internal styles
 * [Modals]: fixed value for default modal width
+* [RangeDatePicker]: fix inputs focus behavior. Fixed bug when date cannot be selected when another picker was previously focused
+* [ColumnsConfigurationModal]: fixed vertical paddings
+* [PickerInput]: hide clear button from footer in case `props.disableClear === true`
+* [PickerInput]: fix unnecessary `onValueChange` call in case of entity mode and when provided entity was different from entity in `DataSource`.
 
 # 5.10.1 - 16.10.2024
 
@@ -34,10 +39,13 @@
   * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
+* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
 
 **What's Fixed**
 * [Form]: fixed bug when `beforeLeave` modal appears in case of redirect in `onSuccess` callback
 * [VirtualList]: fixed offsets counting if rows have different height
+* [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
+
 
 # 5.9.5 - 09.10.2024
 

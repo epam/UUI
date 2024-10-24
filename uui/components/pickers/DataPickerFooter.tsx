@@ -60,6 +60,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
             <FlexCell width="auto" alignSelf="center">
                 {view.selectAll && !hasSelection && (
                     <LinkButton
+                        key="SelectAll/ClearAll" // We use the same key for these buttons, because we need to leave focus on it after click, so we need to react doesn't remount it.
                         size={ size }
                         caption={ selectAllText }
                         onClick={ () => view.selectAll.onValueChange(true) }
@@ -67,6 +68,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
                 )}
                 { showClear && (
                     <LinkButton
+                        key="SelectAll/ClearAll" // We use the same key for these buttons, because we need to leave focus on it after click, so we need to react doesn't remount it. Basically it's the same button, but with different caption.
                         size={ size }
                         caption={ isSinglePicker ? clearSingleText : clearAllText }
                         onClick={ clearSelection }

@@ -1,3 +1,4 @@
+@use '~@epam/assets/theme/theme_loveship' as *;
 
 .container {
     display: flex;
@@ -6,6 +7,12 @@
     height: calc(100vh - 60px);
     width: 100%;
     overflow: hidden;
+    
+    &.uui-theme-loveship {
+        :global {
+            @include theme-loveship();
+        }
+    }
 }
 
 .sticky-footer {

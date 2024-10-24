@@ -212,7 +212,7 @@ exports[`PickerList should open body 1`] = `
                 dir="ltr"
                 inputmode="search"
                 placeholder="Type text for quick search"
-                tabindex="-1"
+                tabindex="0"
                 type="search"
                 value=""
               />
@@ -729,7 +729,29 @@ exports[`PickerList should open body 1`] = `
               aria-live="polite"
               class="container uui-blocker-container root"
               role="status"
-            />
+            >
+              <div
+                class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
+              >
+                <div
+                  class="container uui-spinner-container root uui-spinner"
+                >
+                  <div
+                    class="uui-spinner-animation"
+                  >
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-1"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-2"
+                    />
+                    <div
+                      class="uui-spinner-dot uui-spinner-dot-3"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <div
               class="uui-track-horizontal"
               style="position: absolute; height: 6px; display: none;"
