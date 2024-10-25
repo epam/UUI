@@ -8,7 +8,7 @@
     "build": "yarn build-module",
     "build-module": "ts-node -T ts/scripts/buildUuiModule.ts",
     "generate-components-api": "ts-node ts/scripts/docsGen.ts",
-    "generate-theme-tokens": "ts-node ts/scripts/themeTokensGen.ts --tokens=../public/docs/figmaTokensGen/Theme.json --out-tokens=../public/docs/figmaTokensGen/ThemeOutput.json --out-tokens-data=../public/docs/figmaTokensGen/ThemeTokens.json --out=../epam-assets/theme/tokens",
+    "generate-theme-tokens": "ts-node ts/scripts/themeTokensGen.ts --tokens=../public/docs/figmaTokensGen/Theme.json --out-tokens=../public/docs/figmaTokensGen/ThemeOutput.json --out-tokens-data=../public/docs/figmaTokensGen/ThemeTokens.json --out=../epam-assets/theme/variables/tokens",
     "compile-theme-scss": "ts-node ts/scripts/compileThemeScss.ts",
     "track-bundle-size": "ts-node ts/scripts/trackBundleSize.ts",
     "prepublish": "yarn build",
