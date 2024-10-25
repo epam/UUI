@@ -241,6 +241,11 @@ export class ApiContext extends BaseContext implements IApiContext {
                     this.resolveCall(call, result);
                 })
                 .catch((e) => {
+                    if (e?.name === 'AbortError') {
+                        this.removeFromQueue(call);
+                        return;
+                    }
+
                     /* Problem with response JSON parsing */
                     call.status = 'error';
                     this.setStatus('error');
