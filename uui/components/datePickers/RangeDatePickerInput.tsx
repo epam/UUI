@@ -46,6 +46,11 @@ export interface RangeDatePickerInputProps
     * Handles blur event on input element
    */
     onBlurInput?: (event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void;
+
+    /** Called on keyDown event.
+     Can be used to provide your own handlers.
+     */
+    onKeyDown?(e: React.KeyboardEvent<HTMLDivElement>): void;
 }
 
 export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
@@ -64,6 +69,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     onClick,
     getPlaceholder,
     filter,
+    onKeyDown,
     id,
     cx: classes,
 }, ref): JSX.Element => {
@@ -114,6 +120,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
 
     const clearAllowed = !disableClear && inputValue.from && inputValue.to;
     return (
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
             ref={ ref }
             className={ cx(
@@ -126,6 +133,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 isInvalid && uuiMod.invalid,
                 inFocus && uuiMod.focus,
             ) }
+            onKeyDown={ onKeyDown }
         >
             <TextInput
                 icon={ systemIcons.calendar }

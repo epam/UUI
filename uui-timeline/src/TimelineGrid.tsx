@@ -170,6 +170,7 @@ export function TimelineGrid({
 
     return (
         <TimelineCanvas
+            className={ restProps.className }
             draw={ restProps.draw ?? draw }
             canvasHeight={ canvasHeight }
             timelineController={ timelineController }

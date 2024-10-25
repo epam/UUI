@@ -65,6 +65,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
                 && scrollContainer.current?.clientHeight !== prevScrollContainerClientHeight
             ) {
                 ++scrollContainerHeightChangesCount.current;
+            } else {
+                scrollContainerHeightChangesCount.current = 0;
             }
             if (scrollContainerHeightChangesCount.current > 20 && !scrollContainerHeightIsNotLimited.current) {
                 scrollContainerHeightIsNotLimited.current = true;

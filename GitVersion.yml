@@ -6,12 +6,12 @@ increment: Patch
 branches:
   master:
     regex: ^main$
-    mode: ContinuousDelivery
+    mode: ContinuousDeployment
     tag: ''
     increment: Patch
     prevent-increment-of-merged-branch-version: false
     track-merge-target: true
-    is-release-branch: true
+    is-release-branch: false
   develop:
     regex: ^develop$
     mode: ContinuousDeployment

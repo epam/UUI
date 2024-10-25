@@ -5,7 +5,7 @@ exports[`PickerInput should open body 1`] = `
   <div>
     <div
       class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 mode-form"
-      tabindex="-1"
+      tabindex="0"
     >
       <div
         class="body"
