@@ -25,6 +25,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     const [isOpen, setIsOpen] = useState(false);
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(null);
 
+    const targetRef = React.useRef<HTMLDivElement>(null);
+
     const onValueChange = (newValue: RangeDatePickerValue) => {
         const fromChanged = value?.from !== newValue?.from;
         const toChanged = value?.to !== newValue?.to;
@@ -40,6 +42,10 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     const onOpenChange = (newIsOpen: boolean) => {
         setIsOpen(newIsOpen);
         props.onOpenChange?.(newIsOpen);
+        if (!inFocus && newIsOpen) {
+            setInFocus('from');
+            targetRef.current.querySelector<HTMLInputElement>('.uui-input').focus();
+        }
     };
 
     const onBodyValueChange = (newValue: RangeDatePickerBodyValue<RangeDatePickerValue>) => {
@@ -61,6 +67,11 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             <DropdownContainer
                 { ...renderProps }
                 cx={ cx(css.dropdownContainer) }
+                shards={ [targetRef] }
+                returnFocus={ (node) => {
+                    console.log('lock', node);
+                    return true;
+                } }
             >
                 <FlexRow>
                     <RangeDatePickerBody
@@ -84,15 +95,22 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         );
     };
 
+    const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
+        if (e.key === 'Escape' && isOpen) {
+            e.preventDefault();
+            onOpenChange(false);
+        }
+    };
+
     return (
         <Dropdown
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || (
                     <RangeDatePickerInput
                         id={ props.id }
-                        ref={ renderProps.ref }
+                        ref={ (node) => { (renderProps as any).ref(node); targetRef.current = node; } }
                         cx={ props.inputCx }
-                        onClick={ renderProps.onClick }
+                        onClick={ () => renderProps.toggleDropdownOpening(true) }
                         isDisabled={ props.isDisabled }
                         isInvalid={ props.isInvalid }
                         isReadonly={ props.isReadonly }
@@ -109,6 +127,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                             setInFocus(type);
                         } }
                         onBlurInput={ (e, type) => { props.onBlur?.(e, type); !isOpen && setInFocus(null); } }
+                        onKeyDown={ handleEscape }
                     />
                 );
             } }
