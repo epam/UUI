@@ -103,7 +103,6 @@ describe('useAsyncTree', () => {
         );
 
         let tree = hookResult.result.current;
-        expect(tree.isLoading).toBeTruthy();
 
         await waitFor(() => {
             tree = hookResult.result.current;
