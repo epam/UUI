@@ -58,6 +58,7 @@ export function TabsNav(props: TTabsNavProps) {
                     icon={ NavigationShowOutlineIcon }
                     onClick={ props.handleMobSidebarBtnClick }
                     size="42"
+                    cx={ css.mobSidebarBtn }
                 >
                 </Button>
             ) }

@@ -69,11 +69,14 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
      */
     isSortable?: boolean;
 
-    /** Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.
-     * Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.
-     * Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.
-     * */
+    /** Pass true to make this column always visible and forbid to hide it from columns config dialog */
     isAlwaysVisible?: boolean;
+
+    /** Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.
+     * Note, that isLocked column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.
+     * Also, if you have a few isLocked columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.
+     * */
+    isLocked?: boolean;
 
     /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */
     isHiddenByDefault?: boolean;

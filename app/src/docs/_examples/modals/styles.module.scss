@@ -1,0 +1,9 @@
+.footer {
+    justify-content: flex-end;
+
+    @media (max-width: 720px) {
+        :global(.uui-button) {
+            flex-basis: 50%;
+        }
+    }
+}

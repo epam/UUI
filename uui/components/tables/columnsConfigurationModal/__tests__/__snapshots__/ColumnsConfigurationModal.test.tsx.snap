@@ -22,7 +22,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       Object {
         "height": "95dvh",
         "maxHeight": "95dvh",
-        "width": "420px",
+        "width": 560,
       }
     }
   >
@@ -174,6 +174,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           >
             <div
               className="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography groupTitle container"
+              style={Object {}}
             >
               Displayed in table
             </div>
@@ -220,6 +221,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   </div>
                   <div
                     className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
+                    style={Object {}}
                   >
                     Pinned to the left
                   </div>
@@ -244,7 +246,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root uui-size-30 rowWrapper container align-items-center"
+                  className="uui-flex-row root rowWrapper uui-columns-config-row container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -270,17 +272,16 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary grow uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
                   >
                     <div
                       className="uui-checkbox uui-checked"
                     >
                       <input
                         aria-checked={true}
-                        aria-disabled={true}
+                        aria-readonly={true}
                         checked={true}
-                        disabled={true}
-                        onChange={[Function]}
+                        readOnly={true}
                         tabIndex={-1}
                         type="checkbox"
                       />
@@ -300,7 +301,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root uui-size-30 pinIconButton container align-items-center"
+                    className="uui-flex-row root pinIconButton container align-items-center"
                     style={
                       Object {
                         "columnGap": undefined,
@@ -325,8 +326,78 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </button>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="uui-flex-row root hDivider container align-items-center"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
+          />
+          <div
+            aria-expanded={true}
+            className="uui-accordion-container container uui-opened subgroupAccordion"
+          >
+            <div
+              className="uui-accordion-toggler uui-opened"
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              tabIndex={0}
+            >
+              <div
+                className="uui-accordion-toggle-container"
+              >
                 <div
-                  className="uui-flex-row root uui-size-30 rowWrapper container align-items-center"
+                  className="uui-flex-row root uui-size-36 subgroup container align-items-center"
+                  style={
+                    Object {
+                      "columnGap": undefined,
+                      "rowGap": undefined,
+                    }
+                  }
+                >
+                  <div
+                    className="container uui-icon uui-enabled"
+                    style={Object {}}
+                  >
+                    <svg
+                      className=""
+                      height="18"
+                      width="18"
+                    />
+                  </div>
+                  <div
+                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
+                    style={Object {}}
+                  >
+                    Not pinned
+                  </div>
+                </div>
+                <div
+                  className="container uui-icon uui-enabled arrow"
+                  style={Object {}}
+                />
+              </div>
+            </div>
+            <div
+              className="uui-accordion-body"
+              role="region"
+            >
+              <div
+                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
+                style={
+                  Object {
+                    "columnGap": undefined,
+                    "rowGap": undefined,
+                  }
+                }
+              >
+                <div
+                  className="uui-flex-row root rowWrapper notPinned uui-columns-config-row container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -339,11 +410,12 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   }
                 >
                   <div
-                    className="dragHandle dndDisabled container uui-drag-handle uui-disabled"
+                    className="dragHandle container uui-drag-handle"
+                    onPointerDown={[Function]}
                     onTouchStart={[Function]}
                   >
                     <div
-                      className="container uui-icon uui-disabled"
+                      className="container uui-icon uui-enabled"
                       style={Object {}}
                     >
                       <svg
@@ -352,17 +424,16 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </div>
                   <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary grow uui-disabled"
+                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
                   >
                     <div
                       className="uui-checkbox uui-checked"
                     >
                       <input
                         aria-checked={true}
-                        aria-disabled={true}
+                        aria-readonly={true}
                         checked={true}
-                        disabled={true}
-                        onChange={[Function]}
+                        readOnly={true}
                         tabIndex={-1}
                         type="checkbox"
                       />
@@ -382,7 +453,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root uui-size-30 pinIconButton container align-items-center"
+                    className="uui-flex-row root pinIconButton container align-items-center"
                     style={
                       Object {
                         "columnGap": undefined,
@@ -391,9 +462,26 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     }
                   >
                     <button
-                      aria-disabled={true}
-                      className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
-                      tabIndex={-1}
+                      aria-disabled={false}
+                      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                      onClick={[Function]}
+                      tabIndex={0}
+                      type="button"
+                    >
+                      <div
+                        className="container uui-icon uui-enabled"
+                        style={Object {}}
+                      >
+                        <svg
+                          className=""
+                        />
+                      </div>
+                    </button>
+                    <button
+                      aria-disabled={false}
+                      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                      onClick={[Function]}
+                      tabIndex={0}
                       type="button"
                     >
                       <div
