@@ -55,8 +55,6 @@ export abstract class AbsPage {
         params: { isSlowTest?: boolean; locator?: Locator },
     ): Promise<IScreenshotOptions> {
         const { isSlowTest, locator } = params;
-        // in some very rare cases, the content is not fully ready, this small timeout solves the issue.
-        await this.page.waitForTimeout(30);
         const res: IScreenshotOptions = { fullPage: true };
         if (locator) {
             res.clip = await locator.boundingBox() as TClip;

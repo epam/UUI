@@ -5,7 +5,7 @@ exports[`PickerInput should open body 1`] = `
   <div>
     <div
       class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 mode-form"
-      tabindex="-1"
+      tabindex="0"
     >
       <div
         class="body"
@@ -162,29 +162,7 @@ exports[`PickerInput should open body 1`] = `
             aria-live="polite"
             class="container uui-blocker-container root"
             role="status"
-          >
-            <div
-              class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
-            >
-              <div
-                class="container uui-spinner-container root uui-spinner"
-              >
-                <div
-                  class="uui-spinner-animation"
-                >
-                  <div
-                    class="uui-spinner-dot uui-spinner-dot-1"
-                  />
-                  <div
-                    class="uui-spinner-dot uui-spinner-dot-2"
-                  />
-                  <div
-                    class="uui-spinner-dot uui-spinner-dot-3"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+          />
           <div
             class="uui-track-horizontal"
             style="position: absolute; height: 6px; display: none;"
@@ -215,7 +193,6 @@ exports[`PickerInput should open body 1`] = `
         >
           <button
             aria-disabled="true"
-            aria-label="CLEAR"
             class="uui-button-box uui-disabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
             tabindex="-1"
             type="button"
@@ -480,6 +457,14 @@ exports[`PickerInput should render with maximum props 1`] = `
       role="button"
       style={Object {}}
       tabIndex={-1}
+    >
+      <svg
+        className=""
+      />
+    </div>
+    <div
+      className="container uui-icon uui-enabled uui-icon-dropdown"
+      style={Object {}}
     >
       <svg
         className=""

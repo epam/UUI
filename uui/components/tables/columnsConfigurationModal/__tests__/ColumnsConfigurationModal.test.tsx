@@ -9,7 +9,7 @@ const mockColumns: DataColumnProps[] = [
         caption: 'ID',
         render: (product: any) => <div>{product}</div>,
         isSortable: true,
-        isAlwaysVisible: true,
+        isLocked: true,
         grow: 0,
         width: 96,
     }, {

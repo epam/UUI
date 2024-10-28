@@ -22,6 +22,16 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         }, mobilePopperModifier,
     ], []);
 
+    const getSearchPosition = () => {
+        if (isMobile() && props.searchPosition !== 'none') return 'body';
+        if (props.editMode === 'modal' && props.searchPosition !== 'none') return 'body';
+        if (!props.searchPosition) {
+            return props.selectionMode === 'multi' ? 'body' : 'input';
+        } else {
+            return props.searchPosition;
+        }
+    };
+
     const pickerInputState = usePickerInputState({
         dataSourceState: { visibleCount: initialRowsVisible, checked: [] },
     });
@@ -31,17 +41,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     } = pickerInputState;
 
     const defaultShouldShowBody = () => {
-        const searchPosition = props.searchPosition || 'input';
         const isOpened = opened && !props.isDisabled;
-
-        if (props.minCharsToSearch && props.editMode !== 'modal' && searchPosition === 'input') {
-            const isEnoughSearchLength = dataSourceState.search
-                ? dataSourceState.search.length >= props.minCharsToSearch
-                : false;
-            return isEnoughSearchLength && isOpened;
+        if (props.minCharsToSearch && getSearchPosition() === 'input') {
+            return isSearchLongEnough() && isOpened;
         }
         return isOpened;
     };
+
+    const isSearchLongEnough = () => props.minCharsToSearch ? (dataSourceState.search?.length ?? 0) >= props.minCharsToSearch : true;
 
     const shouldShowBody = () => (props.shouldShowBody ?? defaultShouldShowBody)();
 
@@ -93,13 +100,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             document.body.style.overflow = !newOpened && modals.length === 0 ? '' : 'hidden';
         }
 
-        handleDataSourceValueChange({
-            ...dataSourceState,
+        handleDataSourceValueChange((prevState) => ({
+            ...prevState,
             topIndex: 0,
             visibleCount: initialRowsVisible,
             focusedIndex: 0,
+            scrollTo: undefined,
             search: '',
-        });
+        }));
 
         setIsSearchChanged(false);
         setOpened(newOpened);
@@ -107,9 +115,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     };
 
     const toggleBodyOpening = (newOpened: boolean) => {
-        if (opened === newOpened
-            || (props.minCharsToSearch && (dataSourceState.search?.length ?? 0) < props.minCharsToSearch)
-        ) {
+        if (opened === newOpened || (getSearchPosition() === 'input' && !isSearchLongEnough())) {
             return;
         }
         if (props.editMode === 'modal') {
@@ -122,16 +128,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const onSelect = (row: DataRowProps<TItem, TId>) => {
         toggleDropdownOpening(false);
         handleDataSourceValueChange((currentState) => ({ ...currentState, search: '', selectedId: row.id }));
-    };
-
-    const getSearchPosition = () => {
-        if (isMobile() && props.searchPosition !== 'none') return 'body';
-        if (props.editMode === 'modal' && props.searchPosition !== 'none') return 'body';
-        if (!props.searchPosition) {
-            return props.selectionMode === 'multi' ? 'body' : 'input';
-        } else {
-            return props.searchPosition;
-        }
     };
 
     const getPlaceholder = () => props.placeholder ?? i18n.pickerInput.defaultPlaceholder(getEntityName());
@@ -181,14 +177,10 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                 'aria-orientation': 'vertical',
                 ...props.rawProps?.body,
             },
-            renderNotFound:
-                props.renderNotFound
-                && (() =>
-                    props.renderNotFound({
-                        search: dataSourceState.search,
-                        onClose: () => toggleBodyOpening(false),
-                    })),
+            renderNotFound: props.renderNotFound,
+            renderEmpty: props.renderEmpty,
             onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
+            minCharsToSearch: props.minCharsToSearch,
             fixedBodyPosition: props.fixedBodyPosition,
             searchDebounceDelay: props.searchDebounceDelay,
         };
@@ -220,7 +212,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     }, [handleDataSourceValueChange, setOpened, setIsSearchChanged]);
 
     const getRows = () => {
-        if (!shouldShowBody()) return [];
+        if (!shouldShowBody() || !isSearchLongEnough()) return [];
 
         const preparedRows = view.getVisibleRows();
 
@@ -247,6 +239,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onClose: handleCloseBody,
             selectionMode: props.selectionMode,
             disableClear: props.disableClear,
+            isSearchTooShort: !isSearchLongEnough(),
         };
     };
 
@@ -282,14 +275,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             onIconClick,
             id,
         } = props;
-        const searchPosition = getSearchPosition();
-        const forcedDisabledClear = Boolean(searchPosition === 'body' && !selectedRowsCount);
+        const forcedDisabledClear = Boolean(getSearchPosition() === 'body' && !selectedRowsCount);
         const disableClear = forcedDisabledClear || propDisableClear;
         let searchValue: string | undefined = getSearchValue();
         if (isSingleSelect() && selectedRows[0]?.isLoading) {
             searchValue = undefined;
         }
-
+        const searchPosition = getSearchPosition();
         return {
             isSingleLine,
             maxItems,

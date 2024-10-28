@@ -3,12 +3,13 @@
 exports[`Text should be rendered correctly 1`] = `
 <div
   className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography container"
+  style={Object {}}
 >
   Test
 </div>
 `;
 
-exports[`Text should be rendered correctly 2`] = `
+exports[`Text should be rendered correctly with props 1`] = `
 <div
   className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography container"
   onClick={[Function]}
@@ -16,6 +17,7 @@ exports[`Text should be rendered correctly 2`] = `
     Object {
       "--uui-text-font-size": "24px",
       "--uui-text-line-height": "30px",
+      "marginRight": "12",
     }
   }
 >

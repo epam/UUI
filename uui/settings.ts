@@ -55,6 +55,7 @@ export const settings: Settings = {
                     row: {
                         default: '36',
                         cell: {
+                            padding: '24',
                             text: {
                                 24: '24',
                                 30: '30',
@@ -139,7 +140,7 @@ export const settings: Settings = {
             defaults: {
                 icon: '18',
                 indentUnit: 24,
-                indentWidth: 12,
+                indentWidth: 18,
             },
             checkbox: {
                 24: '12',
@@ -222,7 +223,7 @@ export const settings: Settings = {
                         columnCaption: {
                             fontSize: '14',
                             fontWeight: '400',
-                            size: '30',
+                            size: '18',
                             uppercase: '12',
                         },
                         iconSize: {
@@ -260,6 +261,21 @@ export const settings: Settings = {
                 countIndicator: '18',
                 subgroupIcon: '18',
                 search: '30',
+                width: 560,
+            },
+        },
+        modal: {
+            window: {
+                defaults: {
+                    width: 420,
+                },
+            },
+        },
+        tabButton: {
+            countIndicator: {
+                36: '18',
+                48: '18',
+                60: '18',
             },
         },
     },

@@ -8,10 +8,10 @@ describe('Text', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
+    it('should be rendered correctly with props', () => {
         const tree = renderer
             .create(
-                <Text color="primary" size="48" fontSize="24" lineHeight="30" onClick={ jest.fn }>
+                <Text color="primary" size="48" fontSize="24" lineHeight="30" onClick={ jest.fn } rawProps={ { style: { marginRight: '12' } } }>
                     Test
                 </Text>,
             )

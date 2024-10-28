@@ -6,7 +6,7 @@ import {
 import {
     canAcceptDrop,
     isColumnAlwaysHiddenInTheConfigurationModal,
-    isColumnAlwaysPinned,
+    isColumnLocked,
 } from '../columnsConfigurationUtils';
 import { DndDataType, GroupedDataColumnProps, ColumnsConfigurationRowProps, TColumnPinPosition } from '../types';
 import { groupAndFilterSortedColumns, sortColumnsAndAddGroupKey } from '../columnsConfigurationUtils';
@@ -75,7 +75,7 @@ export function useColumnsConfiguration(props: UseColumnsConfigurationProps<any,
                         };
                     });
                 };
-                const isPinnedAlways = isColumnAlwaysPinned(column);
+                const isPinnedAlways = isColumnLocked(column);
                 const fix = columnConfig.fix || (isPinnedAlways ? 'left' : undefined);
                 return {
                     ...column,

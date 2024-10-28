@@ -1,10 +1,62 @@
-# 5.*.* - **.**.****
+# 5.*.* - **.**.2024
 
 **What's New**
-* Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
-* Data Sources: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
+* [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
+* [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
+* [Tag]: changed layout - added gaps between internal items, changed padding
 
 **What's Fixed**
+* [VirtualList]: fixed estimatedHeight calculations in components with pagination
+* [RTE]: fixed working of old iframe data structure with 'src' prop
+
+
+# 5.10.2 - 24.10.2024
+
+**What's Fixed**
+
+* [Text]: fixed bug when passed rawProps override Text internal styles
+* [Modals]: fixed value for default modal width
+* [RangeDatePicker]: fix inputs focus behavior. Fixed bug when date cannot be selected when another picker was previously focused
+* [ColumnsConfigurationModal]: fixed vertical paddings
+* [PickerInput]: hide clear button from footer in case `props.disableClear === true`
+* [PickerInput]: fix unnecessary `onValueChange` call in case of entity mode and when provided entity was different from entity in `DataSource`.
+
+# 5.10.1 - 16.10.2024
+
+**What's Fixed**
+* [DataPickerRow]: fixed default values for `padding` and `size` prop
+* [TabButton]: fixed caption styles in case app apply `box-sizing: border-box` styles for all page elements.
+
+# 5.10.0 - 11.10.2024
+
+**What's New**
+* [DataTable]:
+  * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
+  * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined. 
+* [DataTable]: `ColumnsConfigurationModal` updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
+* [PickerInput]: 
+  * Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
+  * Added renderEmpty prop to render custom empty block for depends on various reasons.
+  * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
+* Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
+* [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
+* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
+
+**What's Fixed**
+* [Form]: fixed bug when `beforeLeave` modal appears in case of redirect in `onSuccess` callback
+* [VirtualList]: fixed offsets counting if rows have different height
+* [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
+
+
+# 5.9.5 - 09.10.2024
+
+**What's Fixed**
+* [ArrayDataSource]: fixed initializing caches on data source creation.
+
+# 5.9.4 - 26.09.2024
+
+**What's Fixed**
+* [useAsyncDataSource]: fixed refetching of data after deps change.
 
 # 5.9.3 - 16.09.2024
 
@@ -34,7 +86,7 @@
 * [LinkButton]: added `weight` and `underline` props
 * [DataTable]: disable animation for loading skeletons due to performance issues
 * [DatePickers]: added 'DDMMYYYY' format to the list of supported date formats for parsing user input
-* Uploaded new version of icons pack: 
+* Uploaded new version of icons pack:
   * icons added: action-clock_fast-fill, action-clock_fast-outline
   * icons updated (visual weight tweaked, icon size was slightly decreased): action-job_function-fill, action-job_function-outline, communication-mail-fill, communication-mail-outline
 
