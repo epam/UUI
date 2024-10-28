@@ -107,7 +107,8 @@ export class FetchingHelper {
             if (ids !== currentIds
                     || nodeInfo.count !== originalNodeInfo.count
                     || nodeInfo.totalCount !== originalNodeInfo.totalCount
-                    || nodeInfo.assumedCount !== originalNodeInfo.assumedCount) {
+                    || nodeInfo.assumedCount !== originalNodeInfo.assumedCount
+                    || nodeInfo.cursor !== originalNodeInfo.cursor) {
                 nodeInfoById.set(parentId, nodeInfo);
             }
 
@@ -267,7 +268,13 @@ export class FetchingHelper {
         remainingRowsCount,
         loadAll,
     }: LoadItemsOptions<TItem, TId, TFilter>) {
-        const { ids: originalIds, count: childrenCount, totalCount, assumedCount: prevAssumedCount } = tree.getItems(parentId);
+        const {
+            ids: originalIds,
+            count: childrenCount,
+            totalCount,
+            assumedCount: prevAssumedCount,
+            cursor: prevCursor,
+        } = tree.getItems(parentId);
         const inputIds = byParentId.has(parentId) ? byParentId.get(parentId) ?? originalIds : originalIds;
 
         let ids = inputIds ?? [];
@@ -295,7 +302,7 @@ export class FetchingHelper {
         if (missingCount === 0 || availableCount === 0 || skipRequest) {
             return {
                 ids,
-                nodeInfo: { count: childrenCount, totalCount, assumedCount: prevAssumedCount },
+                nodeInfo: { count: childrenCount, totalCount, assumedCount: prevAssumedCount, cursor: prevCursor },
                 loadedItems,
             };
         }
@@ -322,6 +329,7 @@ export class FetchingHelper {
                 range,
                 page: dataSourceState.page,
                 pageSize: dataSourceState.pageSize,
+                cursor: prevCursor,
             },
             requestContext,
         );
@@ -352,7 +360,7 @@ export class FetchingHelper {
             assumedCount = tree.getParams().getChildCount(parent);
         }
 
-        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount };
+        let nodeInfo = { count: childrenCount, totalCount, assumedCount: prevAssumedCount, cursor: response.cursor };
         if (newNodesCount !== childrenCount || assumedCount !== prevAssumedCount) {
             nodeInfo = { ...nodeInfo, count: newNodesCount, assumedCount };
         }

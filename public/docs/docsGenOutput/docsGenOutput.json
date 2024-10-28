@@ -1,5 +1,5 @@
 {
- "version": "5.9.0",
+ "version": "5.9.2",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -20435,6 +20435,10 @@
       "     * ITree node loading/state status.",
       "     */",
       "    status: ITreeNodeStatus;",
+      "    /**",
+      "     * Cursor to the last fetched item, if cursor-based pagination is used.",
+      "     */",
+      "    cursor?: any;",
       "}"
      ]
     },
@@ -20473,6 +20477,19 @@
        ]
       },
       "required": true
+     },
+     {
+      "uid": "cursor",
+      "name": "cursor",
+      "comment": {
+       "raw": [
+        "Cursor to the last fetched item, if cursor-based pagination is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "required": false
      },
      {
       "uid": "count",
@@ -20650,6 +20667,8 @@
       "     * Assumed count, got from the `getChildCount` result.",
       "     */",
       "    assumedCount?: number;",
+      "    /** Last fetched cursor for this list */",
+      "    cursor?: any;",
       "}"
      ]
     },
@@ -20700,6 +20719,19 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "cursor",
+      "name": "cursor",
+      "comment": {
+       "raw": [
+        "Last fetched cursor for this list"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
       },
       "required": false
      }
@@ -21356,6 +21388,25 @@
       "     * Used for requesting specific items separately from the list.",
       "     */",
       "    ids?: TId[];",
+      "    /**",
+      "     * Cursor for cursor-based pagination.",
+      "     *",
+      "     * This property is used when implementing cursor-based pagination",
+      "     * instead of traditional range-based pagination.",
+      "     *",
+      "     * The cursor is typically an opaque string or token that the server",
+      "     * understands to determine the next set of items to return.",
+      "     *",
+      "     * If the previous API response includes a cursor, it will be passed in",
+      "     * this property, to fetch more records.",
+      "     *",
+      "     * Note, that if you use cursors, you can ignore the range.from field. It would still have a",
+      "     * valid value through - how many items are already fetched.",
+      "     *",
+      "     * You still need to account range.count, and return at least as much items as requested.",
+      "     * Returning more items than range.count is supported.",
+      "     */",
+      "    cursor?: any;",
       "}"
      ]
     },
@@ -21460,6 +21511,34 @@
       },
       "typeValue": {
        "raw": "TId[]"
+      },
+      "required": false
+     },
+     {
+      "uid": "cursor",
+      "name": "cursor",
+      "comment": {
+       "raw": [
+        "Cursor for cursor-based pagination.",
+        "",
+        " This property is used when implementing cursor-based pagination",
+        " instead of traditional range-based pagination.",
+        "",
+        " The cursor is typically an opaque string or token that the server",
+        " understands to determine the next set of items to return.",
+        "",
+        " If the previous API response includes a cursor, it will be passed in",
+        " this property, to fetch more records.",
+        "",
+        " Note, that if you use cursors, you can ignore the range.from field. It would still have a",
+        " valid value through - how many items are already fetched.",
+        "",
+        " You still need to account range.count, and return at least as much items as requested.",
+        " Returning more items than range.count is supported."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
       },
       "required": false
      }
@@ -21636,6 +21715,20 @@
       "     * Total count of items which match current filter.",
       "     */",
       "    totalCount?: number;",
+      "    /**",
+      "     * Cursor for cursor-based pagination.",
+      "     *",
+      "     * The cursor is typically an opaque string or token that the server",
+      "     * understands to determine the next set of items to return.",
+      "     *",
+      "     * You can pass cursor of the last item in the list, usually provided by the server.",
+      "     * In this case, this cursor will be provided to the next request, allowing to fetch the next part of the list.",
+      "     *",
+      "     * The absence of cursor doesn't imply the end of the list. The end of the list",
+      "     * is determined by comparing the number of items returned with the number requested:",
+      "     * if fewer items than requested are returned, it implies that the end of the list has been reached.",
+      "     */",
+      "    cursor?: any;",
       "}"
      ]
     },
@@ -21700,6 +21793,29 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "cursor",
+      "name": "cursor",
+      "comment": {
+       "raw": [
+        "Cursor for cursor-based pagination.",
+        "",
+        " The cursor is typically an opaque string or token that the server",
+        " understands to determine the next set of items to return.",
+        "",
+        " You can pass cursor of the last item in the list, usually provided by the server.",
+        " In this case, this cursor will be provided to the next request, allowing to fetch the next part of the list.",
+        "",
+        " The absence of cursor doesn't imply the end of the list. The end of the list",
+        " is determined by comparing the number of items returned with the number requested:",
+        " if fewer items than requested are returned, it implies that the end of the list has been reached."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
       },
       "required": false
      }
@@ -34349,6 +34465,11 @@
       "    forceReload?: boolean;",
       "    backgroundReload?: boolean;",
       "    showSelectedOnly?: boolean;",
+      "    /**",
+      "     * Fetching function, which should be called if fetch is required.",
+      "     * @param lazyLoadingAdvice - fetching advice.",
+      "     */",
+      "    onFetch?: (lazyLoadingAdvice: LazyFetchingAdvice) => void;",
       "}"
      ]
     },
@@ -34399,6 +34520,23 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFetch",
+      "name": "onFetch",
+      "comment": {
+       "raw": [
+        "Fetching function, which should be called if fetch is required.",
+        " @param lazyLoadingAdvice - fetching advice."
+       ]
+      },
+      "typeValue": {
+       "raw": "(lazyLoadingAdvice: LazyFetchingAdvice) => void"
+      },
+      "editor": {
+       "type": "func"
       },
       "required": false
      }
@@ -94419,7 +94557,11 @@
     "typeValue": {
      "raw": "TextCoreProps",
      "print": [
-      "interface TextCoreProps extends uuiComponents.TextProps, TextSettings {",
+      "interface TextCoreProps extends uuiComponents.TextProps {",
+      "    /** Defines text line-height */",
+      "    lineHeight?: '12' | '18' | '24' | '30';",
+      "    /** Defines text font-size */",
+      "    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';",
       "    /**",
       "     * Defines text font weight value",
       "     * @default '400'",
@@ -94434,6 +94576,52 @@
      ]
     },
     "props": [
+     {
+      "uid": "lineHeight",
+      "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
+      "typeValue": {
+       "raw": "'12' | '18' | '24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "fontSize",
+      "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "24"
+       ]
+      },
+      "required": false
+     },
      {
       "uid": "fontWeight",
       "name": "fontWeight",
@@ -94574,54 +94762,6 @@
        "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "lineHeight",
-      "name": "lineHeight",
-      "comment": {
-       "raw": [
-        "Defines text line-height"
-       ]
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     },
-     {
-      "uid": "fontSize",
-      "name": "fontSize",
-      "comment": {
-       "raw": [
-        "Defines text font-size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
       "required": false
      }
     ],
@@ -95454,6 +95594,54 @@
     },
     "props": [
      {
+      "uid": "lineHeight",
+      "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
+      "typeValue": {
+       "raw": "'12' | '18' | '24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30"
+       ]
+      },
+      "from": "@epam/uui:TextCoreProps",
+      "required": false
+     },
+     {
+      "uid": "fontSize",
+      "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:TextCoreProps",
+      "required": false
+     },
+     {
       "uid": "fontWeight",
       "name": "fontWeight",
       "comment": {
@@ -95598,54 +95786,6 @@
       "required": false
      },
      {
-      "uid": "lineHeight",
-      "name": "lineHeight",
-      "comment": {
-       "raw": [
-        "Defines text line-height"
-       ]
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     },
-     {
-      "uid": "fontSize",
-      "name": "fontSize",
-      "comment": {
-       "raw": [
-        "Defines text font-size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     },
-     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -95705,80 +95845,6 @@
        ]
       },
       "from": "@epam/uui:TextMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:TextSettings": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TextSettings",
-     "nameFull": "TextSettings"
-    },
-    "src": "uui/helpers/textLayout.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TextSettings",
-     "print": [
-      "interface TextSettings {",
-      "    /** Defines text line-height */",
-      "    lineHeight?: '12' | '18' | '24' | '30';",
-      "    /** Defines text font-size */",
-      "    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "lineHeight",
-      "name": "lineHeight",
-      "comment": {
-       "raw": [
-        "Defines text line-height"
-       ]
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fontSize",
-      "name": "fontSize",
-      "comment": {
-       "raw": [
-        "Defines text font-size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24' | '14' | '16' | '10'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
-      },
       "required": false
      }
     ],
@@ -102597,6 +102663,54 @@
     },
     "props": [
      {
+      "uid": "lineHeight",
+      "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '24' | '30' | '12'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30"
+       ]
+      },
+      "from": "@epam/uui:TextCoreProps",
+      "required": false
+     },
+     {
+      "uid": "fontSize",
+      "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:TextCoreProps",
+      "required": false
+     },
+     {
       "uid": "fontWeight",
       "name": "fontWeight",
       "comment": {
@@ -102738,54 +102852,6 @@
        "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "lineHeight",
-      "name": "lineHeight",
-      "comment": {
-       "raw": [
-        "Defines text line-height"
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '30' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     },
-     {
-      "uid": "fontSize",
-      "name": "fontSize",
-      "comment": {
-       "raw": [
-        "Defines text font-size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
       "required": false
      },
      {
@@ -109890,6 +109956,54 @@
     },
     "props": [
      {
+      "uid": "lineHeight",
+      "name": "lineHeight",
+      "comment": {
+       "raw": [
+        "Defines text line-height"
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '24' | '30' | '12'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24",
+        "30"
+       ]
+      },
+      "from": "@epam/uui:TextCoreProps",
+      "required": false
+     },
+     {
+      "uid": "fontSize",
+      "name": "fontSize",
+      "comment": {
+       "raw": [
+        "Defines text font-size"
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "10",
+        "12",
+        "14",
+        "16",
+        "18",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:TextCoreProps",
+      "required": false
+     },
+     {
       "uid": "fontWeight",
       "name": "fontWeight",
       "comment": {
@@ -110031,54 +110145,6 @@
        "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
       },
       "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     },
-     {
-      "uid": "lineHeight",
-      "name": "lineHeight",
-      "comment": {
-       "raw": [
-        "Defines text line-height"
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '30' | '12'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24",
-        "30"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
-      "required": false
-     },
-     {
-      "uid": "fontSize",
-      "name": "fontSize",
-      "comment": {
-       "raw": [
-        "Defines text font-size"
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '24' | '12' | '10' | '14' | '16'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "10",
-        "12",
-        "14",
-        "16",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TextSettings",
       "required": false
      },
      {
