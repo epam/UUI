@@ -1,6 +1,7 @@
 # 5.*.* - **.**.2024
 
 **What's New**
+* [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: changed layout - added gaps between internal items, changed padding
 
