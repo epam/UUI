@@ -19,10 +19,19 @@ async function openTabMenuAndClickOption(tab: HTMLElement, optionToClick: string
     const dialog = await screen.findByRole('dialog');
     const items = within(dialog).getAllByRole('menuitem');
     const opt = items.map((item) => within(item).queryByText(optionToClick)).find((e) => !!e);
-    fireEvent.click(opt);
+    if (opt) {
+        fireEvent.mouseDown(opt);
+        fireEvent.click(opt);
+    }
 }
 async function expectPresetTabHasOptions(tab: HTMLElement, expectedOptions: string[]) {
-    fireEvent.click(within(tab).getByRole('button'));
+    const btn = within(tab).getByRole('button');
+    /** 
+     * Dropdown is closing on mousedown event.
+     * But testing-library is not firing that event while calling `fireEvent.click(elem)`.
+     */
+    fireEvent.mouseDown(btn);
+    fireEvent.click(btn);
     const dialog = await screen.findByRole('dialog');
     const items = within(dialog).getAllByRole('menuitem');
     expect(items.length).toBe(expectedOptions.length);
