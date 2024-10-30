@@ -270,16 +270,6 @@
 
     /* IconButton */
 
-    .uui-icon_button.uui-color-neutral {
-        --uui-color-5: var(--uui-secondary-5);
-        --uui-color-10: var(--uui-secondary-10);
-        --uui-color-20: var(--uui-secondary-20);
-        --uui-color-50: var(--uui-secondary-50);
-        --uui-color-60: var(--uui-secondary-60);
-        --uui-color-70: var(--uui-secondary-70);
-        --uui-color-contrast: var(--white);
-    }
-
     .uui-icon_button.uui-color-white {
         --uui-icon_btn-hover: var(--uui-neutral-20);
         --uui-icon_btn-active: var(--uui-neutral-30);
