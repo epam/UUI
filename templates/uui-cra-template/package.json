@@ -1,6 +1,6 @@
 {
   "name": "@epam/cra-template-uui",
-  "version": "5.10.2",
+  "version": "5.10.2-patch.0",
   "keywords": [
     "UUI",
     "react",
