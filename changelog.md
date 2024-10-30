@@ -5,6 +5,7 @@
 * [MultiSwitch]: added size `60` to props
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: changed layout - added gaps between internal items, changed padding
+* [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
 
 **What's Fixed**
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
