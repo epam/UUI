@@ -68,16 +68,16 @@ export default defineConfig({
                 'tests/Integration/**/*.e2e.ts',
             ],
         },
-        // {
-        //     name: 'webkit',
-        //     use: {
-        //         ...devices['Desktop Safari'],
-        //     },
-        //     testMatch: [
-        //         'tests/previewTests/*.e2e.ts',
-        //         'tests/Integration/**/*.e2e.ts',
-        //     ],
-        // },
+        {
+            name: 'webkit',
+            use: {
+                ...devices['Desktop Safari'],
+            },
+            testMatch: [
+                'tests/previewTests/*.e2e.ts',
+                'tests/Integration/**/*.e2e.ts',
+            ],
+        },
         {
             name: 'firefox',
             use: {
