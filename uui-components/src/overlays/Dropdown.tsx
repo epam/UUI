@@ -49,7 +49,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
 
         if (this.props.closeOnClickOutside !== false) {
-            window.addEventListener('click', this.clickOutsideHandler, true);
+            window.addEventListener('mousedown', this.clickOutsideHandler, true);
         }
     }
 
@@ -57,7 +57,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         window.removeEventListener('dragstart', this.clickOutsideHandler);
         this.targetNode?.removeEventListener?.('mouseenter', this.handleMouseEnter);
         this.targetNode?.removeEventListener?.('mouseleave', this.handleMouseLeave);
-        window.removeEventListener('click', this.clickOutsideHandler, true);
+        window.removeEventListener('mousedown', this.clickOutsideHandler, true);
         window.removeEventListener('mousemove', this.handleMouseMove);
         this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
     }
