@@ -92,7 +92,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             const unsubscribe = this.itemsStatusCollector.subscribe(() => {
                 forceUpdate();
             });
-            
+
             return () => {
                 unsubscribe();
             };
@@ -101,7 +101,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.trees.set(tree, reload);
-            return () => { 
+            return () => {
                 this.trees.delete(tree);
             };
         }, [tree, reload]);
@@ -113,7 +113,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { rows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
+        const { rows, allRows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
             ...cascadeSelectionService,
@@ -129,6 +129,7 @@ export class LazyDataSource<TItem = any, TId = any, TFilter = any> extends BaseD
             getById,
             getSelectedRowsCount,
             clearAllChecked,
+            allRows,
         }), [
             rows,
             listProps,

@@ -53,7 +53,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const forceUpdate = useForceUpdate();
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
-        
+
         const { items, ...props } = { ...this.props, ...options };
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -78,18 +78,18 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
                     setItemsMap(newItemsMap);
                 }
             });
-            
+
             return () => {
                 unsubscribe();
             };
         }, [this.itemsStorage]);
-                
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.itemsStatusCollector.subscribe(() => {
                 forceUpdate();
             });
-            
+
             return () => {
                 unsubscribe();
             };
@@ -98,7 +98,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.trees.set(tree, reload);
-            return () => { 
+            return () => {
                 this.trees.delete(tree);
             };
         }, [tree, reload]);
@@ -109,12 +109,12 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { rows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
+        const { rows, allRows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
             ...cascadeSelectionService,
         });
-    
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
             getVisibleRows: () => rows,
@@ -125,6 +125,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             getById,
             getSelectedRowsCount,
             clearAllChecked,
+            allRows,
         }), [
             rows,
             listProps,

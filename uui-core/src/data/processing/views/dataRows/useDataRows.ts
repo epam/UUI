@@ -287,6 +287,7 @@ export function useDataRows<TItem, TId, TFilter = any>(
     return {
         listProps,
         rows,
+        allRows: updatedRows,
         getSelectedRowsCount,
         getById,
         clearAllChecked,
