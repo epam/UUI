@@ -1,5 +1,5 @@
 {
- "version": "5.9.2",
+ "version": "5.11.0-rc.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -4911,11 +4911,13 @@
       "     * Sorting state is kept in DataSourceState.sorting",
       "     */",
       "    isSortable?: boolean;",
-      "    /** Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
-      "     * Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
-      "     * Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.",
-      "     * */",
+      "    /** Pass true to make this column always visible and forbid to hide it from columns config dialog */",
       "    isAlwaysVisible?: boolean;",
+      "    /** Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
+      "     * Note, that isLocked column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
+      "     * Also, if you have a few isLocked columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array.",
+      "     * */",
+      "    isLocked?: boolean;",
       "    /** Makes column hidden by default. User can turn it on later, via ColumnsConfiguration */",
       "    isHiddenByDefault?: boolean;",
       "    /** Info tooltip displayed in the table header */",
@@ -5119,9 +5121,25 @@
       "name": "isAlwaysVisible",
       "comment": {
        "raw": [
+        "Pass true to make this column always visible and forbid to hide it from columns config dialog"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isLocked",
+      "name": "isLocked",
+      "comment": {
+       "raw": [
         "Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
-        " Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
-        " Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array."
+        " Note, that isLocked column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
+        " Also, if you have a few isLocked columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array."
        ]
       },
       "typeValue": {
@@ -24173,12 +24191,22 @@
       "    renderRow?: (props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState) => ReactNode;",
       "    /** Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks. */",
       "    getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;",
-      "    /** Overrides the default 'no records found' banner.",
-      "     * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.  */",
+      "    /**",
+      "     * @deprecated in favor of `renderEmpty` method.",
+      "     * Overrides the default 'no records found' banner.",
+      "     * The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything.",
+      "     * */",
       "    renderNotFound?: (props: {",
       "        search: string;",
       "        onClose: () => void;",
       "    }) => ReactNode;",
+      "    /**",
+      "     * Overrides the rendering of PickerBody content when it is empty.",
+      "     * It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+      "     * Consider this all cases where a custom callback is provided.",
+      "     * If not provided, default implementation is used.",
+      "     */",
+      "    renderEmpty?: (props: PickerEmptyBodyProps) => ReactNode;",
       "    /** Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers */",
       "    emptyValue?: undefined | null | [",
       "    ];",
@@ -24308,12 +24336,35 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -24577,12 +24628,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -25447,6 +25522,74 @@
     }
    }
   },
+  "@epam/uui-core:PickerEmptyBodyProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "PickerEmptyBodyProps",
+     "nameFull": "PickerEmptyBodyProps"
+    },
+    "src": "uui-core/src/types/pickers.ts",
+    "comment": {
+     "raw": [
+      "Picker empty body configuration."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "PickerEmptyBodyProps",
+     "print": [
+      "/**",
+      " * Picker empty body configuration.",
+      " */",
+      "interface PickerEmptyBodyProps {",
+      "    minCharsToSearch?: number;",
+      "    search: string;",
+      "    onClose: () => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "search",
+      "name": "search",
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "onClose",
+      "name": "onClose",
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:PickerFilterConfig": {
    "summary": {
     "module": "@epam/uui-core",
@@ -25746,6 +25889,10 @@
       "    selection: PickerBindingProps<TItem, TId>['value'];",
       "    /** Defines a search value */",
       "    search: string;",
+      "    /**",
+      "     * Indicates whether the search does not contain enough characters to load data.",
+      "     */",
+      "    isSearchTooShort?: boolean;",
       "};"
      ]
     },
@@ -25857,9 +26004,53 @@
        "type": "string"
       },
       "required": true
+     },
+     {
+      "uid": "isSearchTooShort",
+      "name": "isSearchTooShort",
+      "comment": {
+       "raw": [
+        "Indicates whether the search does not contain enough characters to load data."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:PickerInputEditMode": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "PickerInputEditMode",
+     "nameFull": "PickerInputEditMode"
+    },
+    "src": "uui-core/src/types/pickers.ts",
+    "comment": {
+     "raw": [
+      "Options for displaying content in PickerInput."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "'dropdown' | 'modal'",
+     "print": [
+      "/**",
+      " * Options for displaying content in PickerInput.",
+      " */",
+      "type PickerInputEditMode = 'dropdown' | 'modal';"
+     ]
+    }
    }
   },
   "@epam/uui-core:PickerInputElement": {
@@ -30975,6 +31166,34 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:PickerInputSearchPosition": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "PickerInputSearchPosition",
+     "nameFull": "PickerInputSearchPosition"
+    },
+    "src": "uui-core/src/types/pickers.ts",
+    "comment": {
+     "raw": [
+      "Options for positioning the search input within PickerInput."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "'body' | 'input' | 'none'",
+     "print": [
+      "/**",
+      " * Options for positioning the search input within PickerInput.",
+      " */",
+      "type PickerInputSearchPosition = 'input' | 'body' | 'none';"
+     ]
+    }
    }
   },
   "@epam/uui-core:PickerShowSelectedOnly": {
@@ -40790,9 +41009,26 @@
       "name": "isAlwaysVisible",
       "comment": {
        "raw": [
+        "Pass true to make this column always visible and forbid to hide it from columns config dialog"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataColumnProps",
+      "required": false
+     },
+     {
+      "uid": "isLocked",
+      "name": "isLocked",
+      "comment": {
+       "raw": [
         "Makes this column locked, which means that you can't hide, unpin or reorder this column. Usually applicable for such column without which table because useless.",
-        " Note, that isAlwaysVisible column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
-        " Also, if you have a few isAlwaysVisible columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array."
+        " Note, that isLocked column should be always fixed to any side of the table, if you didn't specify `column.fix` prop for such column, 'left' value will be used by default.",
+        " Also, if you have a few isLocked columns, it's necessary to place it together in the start or end(depends on `fix` prop) of columns array."
        ]
       },
       "typeValue": {
@@ -41951,7 +42187,7 @@
     "typeValue": {
      "raw": "DropdownContainerProps",
      "print": [
-      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps, Pick<ReactFocusLockProps, 'autoFocus' | 'as' | 'shards'> {",
+      "interface DropdownContainerProps extends IHasCX, IHasChildren, IHasStyleAttrs, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IDropdownBodyProps, Pick<ReactFocusLockProps, 'autoFocus' | 'as' | 'shards' | 'returnFocus'> {",
       "    /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */",
       "    width?: number | 'auto';",
       "    /** Defines maximum width in 'px'. If 'auto' provided, will be used width of the content. */",
@@ -41972,11 +42208,6 @@
       "     * @default true",
       "     */",
       "    focusLock?: boolean;",
-      "    /**",
-      "     * Pass true to return focus into initial position on unmount.",
-      "     * If omitted, true value will be used. It's used if focusLock=true.",
-      "     * */",
-      "    returnFocus?: boolean;",
       "    /**",
       "     * Pass true to lock focus within DropdownContainer.",
       "     * If omitted, true value will be used. It's used if focusLock=true.",
@@ -42109,23 +42340,6 @@
        "tags": {
         "@default": true
        }
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "returnFocus",
-      "name": "returnFocus",
-      "comment": {
-       "raw": [
-        "Pass true to return focus into initial position on unmount.",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
       },
       "typeValue": {
        "raw": "boolean"
@@ -42424,7 +42638,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -42438,7 +42652,7 @@
       "typeValue": {
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>"
       },
-      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -42452,7 +42666,26 @@
       "typeValue": {
        "raw": "(HTMLElement | React.RefObject<any>)[]"
       },
-      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "required": false
+     },
+     {
+      "uid": "returnFocus",
+      "name": "returnFocus",
+      "comment": {
+       "raw": [
+        "if true, will return focus to the previous position on trap disable.",
+        " Optionally, can pass focus options instead of `true` to control the focus",
+        " more precisely (ie. `{ preventScroll: true }`)",
+        "",
+        " can also accept a function with the first argument equals to element focus will be returned to",
+        " in order to provide full control to the user space"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions"
+      },
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      }
     ],
@@ -49817,15 +50050,12 @@
     "typeValue": {
      "raw": "PickerBodyBaseProps",
      "print": [
-      "interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
+      "interface PickerBodyBaseProps extends DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Pick<PickerInputBaseProps<any, any>, 'minCharsToSearch' | 'renderEmpty' | 'renderNotFound' | 'fixedBodyPosition' | 'searchDebounceDelay'> {",
       "    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;",
-      "    renderNotFound?: () => React.ReactNode;",
       "    rows: React.ReactNode[];",
       "    scheduleUpdate?: () => void;",
       "    search: IEditable<string>;",
       "    showSearch?: boolean | 'auto';",
-      "    fixedBodyPosition?: boolean;",
-      "    searchDebounceDelay?: number;",
       "}"
      ]
     },
@@ -49838,17 +50068,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderNotFound",
-      "name": "renderNotFound",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
       },
       "required": false
      },
@@ -49892,28 +50111,6 @@
         true,
         "auto"
        ]
-      },
-      "required": false
-     },
-     {
-      "uid": "fixedBodyPosition",
-      "name": "fixedBodyPosition",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "searchDebounceDelay",
-      "name": "searchDebounceDelay",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
       },
       "required": false
      },
@@ -50132,6 +50329,102 @@
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderNotFound",
+      "name": "renderNotFound",
+      "comment": {
+       "raw": [
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
+        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
+      },
+      "typeValue": {
+       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "fixedBodyPosition",
+      "name": "fixedBodyPosition",
+      "comment": {
+       "raw": [
+        "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "searchDebounceDelay",
+      "name": "searchDebounceDelay",
+      "comment": {
+       "raw": [
+        "Search input debounce delay in ms. Default value is 500ms"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -50324,12 +50617,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -51416,12 +51733,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -63037,12 +63378,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -64152,12 +64517,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -64851,12 +65240,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -68146,7 +68559,7 @@
        }
       },
       "typeValue": {
-       "raw": "'18' | '36' | '48' | '24' | '30' | '42'"
+       "raw": "'18' | '36' | '48' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -68156,7 +68569,8 @@
         "30",
         "36",
         "42",
-        "48"
+        "48",
+        "60"
        ]
       },
       "from": "@epam/uui:ButtonMods",
@@ -69398,7 +69812,7 @@
     "typeValue": {
      "raw": "DataPickerBodyProps",
      "print": [
-      "interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps {",
+      "interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps, IDropdownBodyProps {",
       "    maxHeight?: number;",
       "    editMode?: 'dropdown' | 'modal';",
       "    selectionMode?: 'single' | 'multi';",
@@ -69491,18 +69905,6 @@
       "required": false
      },
      {
-      "uid": "renderNotFound",
-      "name": "renderNotFound",
-      "typeValue": {
-       "raw": "() => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerBodyBaseProps",
-      "required": false
-     },
-     {
       "uid": "rows",
       "name": "rows",
       "typeValue": {
@@ -69545,30 +69947,6 @@
         true,
         "auto"
        ]
-      },
-      "from": "@epam/uui-components:PickerBodyBaseProps",
-      "required": false
-     },
-     {
-      "uid": "fixedBodyPosition",
-      "name": "fixedBodyPosition",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:PickerBodyBaseProps",
-      "required": false
-     },
-     {
-      "uid": "searchDebounceDelay",
-      "name": "searchDebounceDelay",
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
       },
       "from": "@epam/uui-components:PickerBodyBaseProps",
       "required": false
@@ -69788,6 +70166,218 @@
       },
       "from": "@epam/uui-core:IHasRawProps",
       "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderNotFound",
+      "name": "renderNotFound",
+      "comment": {
+       "raw": [
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
+        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
+      },
+      "typeValue": {
+       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "fixedBodyPosition",
+      "name": "fixedBodyPosition",
+      "comment": {
+       "raw": [
+        "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "searchDebounceDelay",
+      "name": "searchDebounceDelay",
+      "comment": {
+       "raw": [
+        "Search input debounce delay in ms. Default value is 500ms"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-components:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "onClose",
+      "name": "onClose",
+      "comment": {
+       "raw": [
+        "Call to close the Dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "togglerWidth",
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "The width of the toggler, which can be used to adjust the body width to it"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "togglerHeight",
+      "name": "togglerHeight",
+      "comment": {
+       "raw": [
+        "The height of the toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "isOpen",
+      "name": "isOpen",
+      "comment": {
+       "raw": [
+        "Indicates that dropdown is open"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "arrowProps",
+      "name": "arrowProps",
+      "comment": {
+       "raw": [
+        "Props that should be provided to the arrow component"
+       ]
+      },
+      "typeValue": {
+       "raw": "PopperArrowProps"
+      },
+      "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
+     },
+     {
+      "uid": "placement",
+      "name": "placement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "left",
+        "right",
+        "auto",
+        "auto-start",
+        "auto-end",
+        "top",
+        "bottom",
+        "top-start",
+        "top-end",
+        "bottom-start",
+        "bottom-end",
+        "right-start",
+        "right-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "from": "@epam/uui-core:IDropdownBodyProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -69973,6 +70563,23 @@
       },
       "from": "@epam/uui-core:PickerFooterProps",
       "required": true
+     },
+     {
+      "uid": "isSearchTooShort",
+      "name": "isSearchTooShort",
+      "comment": {
+       "raw": [
+        "Indicates whether the search does not contain enough characters to load data."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerFooterProps",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -70166,14 +70773,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "center",
         "bottom",
+        "center",
         "stretch"
        ]
       },
@@ -72619,14 +73226,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "center",
         "bottom",
+        "center",
         "stretch"
        ]
       },
@@ -73774,7 +74381,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -73782,10 +74389,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -74195,24 +74802,6 @@
       "required": false
      },
      {
-      "uid": "returnFocus",
-      "name": "returnFocus",
-      "comment": {
-       "raw": [
-        "Pass true to return focus into initial position on unmount.",
-        " If omitted, true value will be used. It's used if focusLock=true."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:DropdownContainerProps",
-      "required": false
-     },
-     {
       "uid": "persistentFocus",
       "name": "persistentFocus",
       "comment": {
@@ -74460,7 +75049,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -74468,10 +75057,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -74505,7 +75094,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -74519,7 +75108,7 @@
       "typeValue": {
        "raw": "string | React.ComponentClass<Record<string, any> & { children: React.ReactNode; }, any> | React.FunctionComponent<Record<string, any> & { children: React.ReactNode; }>"
       },
-      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -74533,7 +75122,26 @@
       "typeValue": {
        "raw": "(HTMLElement | React.RefObject<any>)[]"
       },
-      "from": "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps",
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
+      "required": false
+     },
+     {
+      "uid": "returnFocus",
+      "name": "returnFocus",
+      "comment": {
+       "raw": [
+        "if true, will return focus to the previous position on trap disable.",
+        " Optionally, can pass focus options instead of `true` to control the focus",
+        " more precisely (ie. `{ preventScroll: true }`)",
+        "",
+        " can also accept a function with the first argument equals to element focus will be returned to",
+        " in order to provide full control to the user space"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean | FocusOptions | (returnTo: Element) => boolean | FocusOptions"
+      },
+      "from": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps",
       "required": false
      },
      {
@@ -74845,7 +75453,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -74853,10 +75461,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -75919,14 +76527,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "center",
         "bottom",
+        "center",
         "stretch"
        ]
       },
@@ -80699,14 +81307,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "center",
         "bottom",
+        "center",
         "stretch"
        ]
       },
@@ -81595,11 +82203,15 @@
      "raw": "MultiSwitchCoreProps<TValue>",
      "print": [
       "/** Represents the 'Core properties' for the MultiSwitch component. */",
-      "type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {",
+      "type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {",
       "    /**",
       "     * Defines an array of MultiSwitchItems.",
       "     */",
       "    items: MultiSwitchItem<TValue>[];",
+      "    /**",
+      "     * Defines component size.",
+      "     */",
+      "    size?: ControlSize | '60';",
       "};"
      ]
     },
@@ -81704,30 +82316,6 @@
       "required": true
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
       "uid": "rawProps",
       "name": "rawProps",
       "comment": {
@@ -81753,6 +82341,30 @@
        "raw": "MultiSwitchItem<TValue>[]"
       },
       "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -81883,30 +82495,6 @@
       "required": true
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
       "uid": "rawProps",
       "name": "rawProps",
       "comment": {
@@ -81933,6 +82521,31 @@
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": false
      },
      {
       "uid": "color",
@@ -83484,12 +84097,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -83992,7 +84629,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -84000,10 +84637,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -84740,14 +85377,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "center",
         "bottom",
+        "center",
         "stretch"
        ]
       },
@@ -85536,14 +86173,14 @@
        }
       },
       "typeValue": {
-       "raw": "'top' | 'center' | 'bottom' | 'stretch'"
+       "raw": "'top' | 'bottom' | 'center' | 'stretch'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "top",
-        "center",
         "bottom",
+        "center",
         "stretch"
        ]
       },
@@ -86485,12 +87122,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -87184,12 +87845,36 @@
       "name": "renderNotFound",
       "comment": {
        "raw": [
-        "Overrides the default 'no records found' banner.",
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
         " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ]
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
       },
       "typeValue": {
        "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -89898,6 +90583,10 @@
       "    * Handles blur event on input element",
       "   */",
       "    onBlurInput?: (event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void;",
+      "    /** Called on keyDown event.",
+      "     Can be used to provide your own handlers.",
+      "     */",
+      "    onKeyDown?(e: React.KeyboardEvent<HTMLDivElement>): void;",
       "}"
      ]
     },
@@ -89986,6 +90675,23 @@
       },
       "typeValue": {
        "raw": "(event: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onKeyDown",
+      "name": "onKeyDown",
+      "comment": {
+       "raw": [
+        "Called on keyDown event.",
+        "     Can be used to provide your own handlers."
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.KeyboardEvent<HTMLDivElement>) => void"
       },
       "editor": {
        "type": "func"
@@ -90644,7 +91350,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -90652,10 +91358,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -96773,7 +97479,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -96781,10 +97487,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -97126,7 +97832,7 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+       "raw": "'left' | 'right' | 'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
       },
       "editor": {
        "type": "oneOf",
@@ -97134,10 +97840,10 @@
         "left",
         "right",
         "auto",
-        "top",
-        "bottom",
         "auto-start",
         "auto-end",
+        "top",
+        "bottom",
         "top-start",
         "top-end",
         "bottom-start",
@@ -99585,7 +100291,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -99595,7 +100301,8 @@
         "30",
         "36",
         "42",
-        "48"
+        "48",
+        "60"
        ]
       },
       "from": "@epam/promo:ButtonMods",
@@ -101154,30 +101861,6 @@
       "required": true
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
       "uid": "rawProps",
       "name": "rawProps",
       "comment": {
@@ -101204,6 +101887,31 @@
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": false
      },
      {
       "uid": "color",
@@ -105987,7 +106695,7 @@
        }
       },
       "typeValue": {
-       "raw": "'36' | '48' | '18' | '24' | '30' | '42'"
+       "raw": "'36' | '48' | '18' | '24' | '30' | '42' | '60'"
       },
       "editor": {
        "type": "oneOf",
@@ -105997,7 +106705,8 @@
         "30",
         "36",
         "42",
-        "48"
+        "48",
+        "60"
        ]
       },
       "from": "@epam/loveship:ButtonMods",
@@ -107635,30 +108344,6 @@
       "required": true
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:SizeMod",
-      "required": false
-     },
-     {
       "uid": "rawProps",
       "name": "rawProps",
       "comment": {
@@ -107685,6 +108370,31 @@
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchCoreProps",
+      "required": false
      },
      {
       "uid": "color",
@@ -111760,14 +112470,14 @@
     "exported": false
    }
   },
-  "node_modules/react-focus-lock/interfaces.d.ts:ReactFocusLockProps": {
+  "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts:ReactFocusLockProps": {
    "summary": {
-    "module": "node_modules/react-focus-lock/interfaces.d.ts",
+    "module": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
     "typeName": {
      "name": "ReactFocusLockProps",
      "nameFull": "ReactFocusLockProps<ChildrenType, LockProps>"
     },
-    "src": "node_modules/react-focus-lock/interfaces.d.ts",
+    "src": "node_modules/react-focus-lock/dist/cjs/interfaces.d.ts",
     "exported": false
    }
   },
