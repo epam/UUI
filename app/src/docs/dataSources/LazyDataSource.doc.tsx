@@ -20,6 +20,7 @@ export class DataSourcesLazyDataSourceDoc extends BaseDocsBlock {
                 <DocExample title="Child count" path="./_examples/dataSources/LazyDataSourceGetChildCount.example.tsx" />
                 <DocExample title="Filter" path="./_examples/dataSources/LazyDataSourceFilter.example.tsx" />
                 <DocExample title="Flatten search results" path="./_examples/dataSources/LazyDataSourceFlattenSearchResults.example.tsx" />
+                <DocExample title="Using cursor-based pagination" path="./_examples/dataSources/LazyDataSourceCursor.example.tsx" />
             </>
         );
     }

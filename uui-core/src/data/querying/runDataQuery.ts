@@ -3,8 +3,13 @@ import { getOrderComparer } from './getOrderComparer';
 import { getFilterPredicate } from './getFilterPredicate';
 import { getSearchFilter } from './getSearchFilter';
 import { orderBy } from '../../helpers';
+import { LazyDataSourceApiResponse } from '../../types/dataSources';
 
-export function runDataQuery<TItem extends { id: any }>(allItems: TItem[], request: DataQuery<TItem> & { ids?: any[] }, searchBy?: (item: TItem) => string[]) {
+export function runDataQuery<TItem extends { id: any }>(
+    allItems: TItem[],
+    request: DataQuery<TItem> & { ids?: any[] },
+    searchBy?: (item: TItem) => string[],
+):LazyDataSourceApiResponse<TItem> {
     let items = allItems || [];
     request = request || {};
 

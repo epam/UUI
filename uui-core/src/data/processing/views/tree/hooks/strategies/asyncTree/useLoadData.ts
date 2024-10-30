@@ -7,7 +7,6 @@ import { useItemsStatusCollector } from '../../common';
 import { getSelectedAndChecked } from '../../../treeStructure';
 import { NOT_FOUND_RECORD } from '../../../constants';
 import { ItemsStatuses } from '../types';
-import { useDepsChanged } from '../../common/useDepsChanged';
 
 export interface LoadResult<TItem, TId> {
     isUpdated: boolean;
@@ -95,8 +94,6 @@ export function useLoadData<TItem, TId, TFilter = any>(
         }
     }, [api]);
 
-    const depsChanged = useDepsChanged(deps);
-
     const shouldForceReload = prevForceReload !== forceReload && forceReload;
 
     const shouldLoad = (
@@ -104,8 +101,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
         && !isLoaded
         && (!showSelectedOnly || (showSelectedOnly && getSelectedAndChecked(dataSourceState, patch).length))
     )
-    || forceReload
-    || depsChanged;
+    || forceReload;
 
     useEffect(() => {
         if (shouldForceReload) {

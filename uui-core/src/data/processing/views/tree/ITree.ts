@@ -18,6 +18,10 @@ export interface ITreeItemsInfo<TId> extends ITreeNodeInfo {
      * ITree node loading/state status.
      */
     status: ITreeNodeStatus;
+    /**
+     * Cursor to the last fetched item, if cursor-based pagination is used.
+     */
+    cursor?: any;
 }
 
 /**
