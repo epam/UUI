@@ -53,7 +53,7 @@ export class MultiSwitchDoc extends BaseDocsBlock {
                 items: [{ caption: 'A', id: 1 }, { caption: 'B', id: 2 }],
                 value: 1,
             };
-            const w120_h60: TPreviewCellSize = '120-60';
+            const w120_h60: TPreviewCellSize = '120-70';
             const w80_h50: TPreviewCellSize = '80-50';
             docPreview.add({
                 id: TMultiSwitchPreview['Size Variants'],
