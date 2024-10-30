@@ -352,6 +352,9 @@ export type IDataSourceView<TItem, TId, TFilter> = {
     clearAllChecked(): void;
 
     selectAll?: ICheckable;
+
+    // Hotfix for Learn. Will be removed in next releases
+    allRows: DataRowProps<TItem, TId>[];
 };
 
 export type DataSourceListCounts = {

@@ -11,7 +11,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
     tree: ITree<TItem, TId>;
 
     itemsStorage: ItemsStorage<TItem, TId>;
-    
+
     constructor(props: ArrayDataSourceProps<TItem, TId, TFilter>) {
         super(props);
         this.setProps(props);
@@ -52,7 +52,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             type: 'sync',
             ...restDSProps,
             ...options,
-            
+
             items,
             setItems: this.itemsStorage.setItems,
             dataSourceState: value,
@@ -66,7 +66,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.trees.set(tree, reload);
-            return () => { 
+            return () => {
                 this.trees.delete(tree);
             };
         }, [tree, reload]);
@@ -77,7 +77,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
         });
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { rows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
+        const { rows, allRows, listProps, selectAll, getById, getSelectedRowsCount, clearAllChecked } = useDataRows({
             tree,
             ...restProps,
             ...cascadeSelectionService,
@@ -93,6 +93,7 @@ export class ArrayDataSource<TItem = any, TId = any, TFilter = any> extends Base
             getById,
             getSelectedRowsCount,
             clearAllChecked,
+            allRows,
         }), [
             rows,
             listProps,
