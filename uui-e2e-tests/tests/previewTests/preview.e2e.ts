@@ -278,7 +278,7 @@ builder
             forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
         },
     ])
-    .add(verticalTabButton, [
+    .only(verticalTabButton, [
         {
             previewId: [TVerticalTabButtonPreview['States']],
         },
