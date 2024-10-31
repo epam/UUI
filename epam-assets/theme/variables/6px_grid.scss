@@ -147,6 +147,10 @@
     .uui-tag {
         &.uui-size-18 {
             --uui-font-size: 12px;
+
+            .uui-caption {
+                --uui-tag-horizontal-gap: 0;
+            }
         }
 
         &.uui-size-24 {
