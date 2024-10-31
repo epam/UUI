@@ -4,27 +4,24 @@
     border-bottom: 0 none;
     border-inline-start: var(--uui-tab-line-width) solid transparent;
     text-align: start;
+    column-gap: 0;
 
-    &.uui-tab-button.uui-vertical-tab-button {
-        column-gap: 0;
-
-        .uui-caption {
-            &:first-child {
-                padding-inline-start: 0;
-            }
-
-            &:last-child {
-                padding-inline-end: 0;
-            }
+    .uui-caption {
+        &:first-child {
+            padding-inline-start: 0;
         }
 
-        .uui-count_indicator {
-            margin-inline-start: 3px;
-            margin-inline-end: var(--uui-horizontal-gap);
+        &:last-child {
+            padding-inline-end: 0;
+        }
+    }
 
-            ~ :global(.uui-caption) {
-                padding-inline-end: 0;
-            }
+    .uui-count_indicator {
+        margin-inline-start: 3px;
+        margin-inline-end: var(--uui-horizontal-gap);
+
+        ~ :global(.uui-caption) {
+            padding-inline-end: 0;
         }
     }
 }
