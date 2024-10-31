@@ -126,7 +126,7 @@ builder
             previewId: [TNotificationCardPreview['Size Variants']],
         },
     ])
-    .only(tag, [
+    .add(tag, [
         {
             previewId: [TTagPreview['Color Variants']],
             skins: SKINS.promo_loveship_electric,
