@@ -11,7 +11,7 @@
 **What's Fixed**
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
-
+* [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
 
 # 5.10.2 - 24.10.2024
 
@@ -43,13 +43,11 @@
   * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
-* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
+* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design, changed the order of placing the icon to the left of the text and the count indicator, now the first icon then the count indicator
 
 **What's Fixed**
 * [Form]: fixed bug when `beforeLeave` modal appears in case of redirect in `onSuccess` callback
 * [VirtualList]: fixed offsets counting if rows have different height
-* [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
-
 
 # 5.9.5 - 09.10.2024
 
