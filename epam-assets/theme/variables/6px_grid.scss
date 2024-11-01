@@ -139,9 +139,18 @@
         --uui-font-size: 14px;
     }
 
+    .uui-tab-button.uui-vertical-tab-button:is(.uui-size-36, .uui-size-48, .uui-size-60) {
+        --uui-horizontal-padding: 12px;
+        --uui-horizontal-gap: 6px;
+    }
+
     .uui-tag {
         &.uui-size-18 {
             --uui-font-size: 12px;
+
+            .uui-caption {
+                --uui-tag-horizontal-gap: 0;
+            }
         }
 
         &.uui-size-24 {
