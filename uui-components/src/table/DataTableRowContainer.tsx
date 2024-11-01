@@ -56,8 +56,8 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
     grow = Math.max(grow, minGrow);
 
     return {
-        flex: `${grow} 0 ${width + 1}px`,
-        minWidth: `${width + 1}px`,
+        flex: `${grow} 0 ${width}px`,
+        minWidth: `${width}px`,
         '--uui-dt-cell-border-width': `${CELL_BORDER_WIDTH}px`,
     };
 }
