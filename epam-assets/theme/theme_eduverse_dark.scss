@@ -9,6 +9,7 @@
 @mixin theme-eduverse_dark {
     --uui-font: 'Inter', sans-serif;
     --uui-font-mono: 'Roboto Mono', monospace;
+    --font-museo-sans: 'Museo Sans', 'Source Sans Pro', Arial, sans-serif;
 
     /* shadows */
     --uui-shadow-level-1: 0 0 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -173,6 +174,11 @@
         --uui-accordion-border: var(--uui-divider-light);
         --uui-accordion-body-border: var(--uui-divider-light);
         --uui-accordion-toggler-border: var(--uui-divider-light);
+    }
+
+    .uui-accordion-toggler {
+        --uui-accordion-toggler-font: var(--font-museo-sans);
+        --uui-accordion-toggler-font-weight: 500;
     }
 
     /* FileCard */
@@ -805,25 +811,44 @@
     /* Typography */
 
     .uui-typography {
-        .uui-highlight {
-            background-color: var(--uui-warning-20);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-museo-sans);
+            letter-spacing: unset;
         }
 
         h1 {
-            font-weight: 600;
+            font-size: 64px;
+            line-height: 72px;
+            font-weight: 700;
         }
 
         h2 {
+            font-size: 36px;
+            line-height: 42px;
             font-weight: 700;
         }
 
         h3 {
-            font-weight: 600;
+            font-size: 32px;
+            line-height: 36px;
+            font-weight: 700;
         }
 
-        .hero-header {
-            font-size: 72px;
-            line-height: 72px;
+        h4 {
+            font-size: 28px;
+            line-height: 36px;
+            font-weight: 500;
+        }
+
+        h5 {
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+        }
+
+        h6 {
+            font-size: 14px;
+            line-height: 24px;
             font-weight: 700;
         }
     }
