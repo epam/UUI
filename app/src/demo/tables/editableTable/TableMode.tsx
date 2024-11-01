@@ -3,7 +3,7 @@ import { DataTable } from '@epam/uui';
 import { DataRowProps, DataSourceListProps, DataTableState, IControlled } from '@epam/uui-core';
 import { DataTableFocusManager } from '@epam/uui-components';
 import { ColumnsProps, Task } from './types';
-import { getColumnsTableMode } from './columns';
+import { getColumnsTableMode, groups } from './columns';
 
 export interface TableModeProps extends ColumnsProps {
     rows: DataRowProps<Task, any>[];
@@ -25,6 +25,7 @@ export function TableMode({
         <DataTable
             headerTextCase="upper"
             rows={ rows }
+            groups={ groups }
             columns={ columns }
             value={ tableState }
             onValueChange={ setTableState }

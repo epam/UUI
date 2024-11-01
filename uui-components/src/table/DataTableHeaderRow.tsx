@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     DataSourceState, DataColumnProps, DataTableHeaderRowProps, DropdownBodyProps, Lens, DropParams, getOrderBetween, DataTableState,
+    DataColumnGroupProps,
 } from '@epam/uui-core';
 import { DataTableRowContainer } from './DataTableRowContainer';
 import css from './DataTableHeaderRow.module.scss';
@@ -79,14 +80,29 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
         });
     };
 
+    renderGroupCell = (group: DataColumnGroupProps, idx: number, firstColumnIdx: number, lastColumnIdx: number) => {
+        const isFirstCell = firstColumnIdx === 0;
+        const isLastCell = lastColumnIdx === this.props.columns.length - 1;
+        return this.props.renderGroupCell({
+            key: `${group.key}-${idx}`,
+            group,
+            isFirstCell,
+            isLastCell,
+            value: this.props.value,
+            onValueChange: this.props.onValueChange,
+        });
+    };
+
     render() {
         return (
             <DataTableRowContainer
                 cx={ [
                     css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow,
                 ] }
+                groups={ this.props.groups }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
+                renderGroupCell={ this.renderGroupCell }
                 rawProps={ { role: 'row' } }
                 renderConfigButton={ this.props.onConfigButtonClick && this.props.renderConfigButton }
             />

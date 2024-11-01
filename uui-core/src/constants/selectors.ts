@@ -82,6 +82,13 @@ export const uuiDataTableHeaderCell = {
     uuiTableHeaderFoldAllIcon: 'uui-table-header-fold-all-icon',
 } as const;
 
+export const uuiDataTableHeaderGroupCell = {
+    uuiTableHeaderGroupCell: 'uui-table-header-group-cell',
+    uuiTableHeaderGroupCaption: 'uui-table-header-group-caption',
+    uuiTableHeaderGroupCaptionWrapper: 'uui-table-header-group-caption-wrapper',
+    uuiTableHeaderGroupCaptionTooltip: 'uui-table-header-group-caption-tooltip',
+} as const;
+
 export const uuiScrollShadows = {
     top: 'uui-scroll-shadow-top',
     topVisible: 'uui-scroll-shadow-top-visible',
