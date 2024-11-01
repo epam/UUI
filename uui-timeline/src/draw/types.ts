@@ -123,6 +123,14 @@ export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProp
     drawToday?: (props: CanvasDrawHeaderTodayProps) => void;
 }
 
+export interface CanvasDrawBottomMonthProps extends CanvasDrawPeriodWithTodayProps {
+    getBottomMonth?: (month: number) => string;
+}
+
+export interface CanvasDrawTopMonthProps extends CanvasDrawPeriodPartProps {
+    getTopMonth?: (month: number) => string;
+}
+
 export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDrawPeriodWithTodayProps {
     weekendTextColor?: string;
     weekendCellBackgroundColor?: string;
@@ -130,6 +138,7 @@ export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDr
 
 export interface CanvasDrawTopDaysProps extends CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps {
     topDayTextColor?: string;
+    getTopMonth?: (month: number) => string;
 }
 
 export interface CanvasScaleRange {

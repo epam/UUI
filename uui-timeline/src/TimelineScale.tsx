@@ -11,6 +11,8 @@ import { TimelineCanvas, TimelineCanvasProps } from './TimelineCanvas';
 import { useTimelineTransform } from './useTimelineTransform';
 import { CanvasDrawPeriodPartProps, CanvasDrawPeriodProps, CanvasDrawScaleBottomBorderProps, TimelineScaleFonts,
     timelineScale, CanvasDrawTopDaysProps, CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps, CanvasDrawHeaderTodayProps,
+    CanvasDrawTopMonthProps,
+    CanvasDrawBottomMonthProps,
 } from './draw';
 
 /**
@@ -67,6 +69,14 @@ export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFo
      */
     weekendCellBackgroundColor?: string;
     /**
+     * Overrides month text on the scale's top line. 
+     */
+    getTopMonth?(month: number): string;
+    /**
+     * Overrides month text on the scale's bottom line.
+     */
+    getBottomMonth?(month: number): string;
+    /**
      * Overrides movement arrows icons.
      * @param direction - arrow direction.
      * @returns custom arrow icon for exact direction.
@@ -105,7 +115,7 @@ export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFo
     /**
      * Overrides drawing months on the top of the scale.
      */
-    drawTopMonths?: (props: CanvasDrawPeriodPartProps) => void;
+    drawTopMonths?: (props: CanvasDrawTopMonthProps) => void;
     /**
      * Overrides drawing weeks on the scale.
      */
@@ -113,7 +123,7 @@ export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFo
     /**
      * Overrides drawing months on the bottom of the scale.
      */
-    drawBottomMonths?: (props: CanvasDrawPeriodWithTodayProps) => void;
+    drawBottomMonths?: (props: CanvasDrawBottomMonthProps) => void;
     /**
      * Overrides drawing years on the scale.
      */
@@ -148,7 +158,8 @@ export function TimelineScale({
     cellBackgroundColor = timelineScale.defaultColors.cellBackgroundColor,
     evenPeriodCellBackgroundColor = timelineScale.defaultColors.evenPeriodCellBackgroundColor,
     weekendCellBackgroundColor = timelineScale.defaultColors.weekendCellBackgroundColor,
-
+    getTopMonth = timelineScale.getTopMonth,
+    getBottomMonth = timelineScale.getBottomMonth,
     drawPeriod = timelineScale.drawPeriod,
     drawMinutes = timelineScale.drawMinutes,
     drawRemainingHours = timelineScale.drawRemainingHours,
@@ -221,7 +232,7 @@ export function TimelineScale({
         drawPeriod({ ...timelineScale.getRemainingHoursScaleRange(), draw: drawRemainingHours, ...commonProps });
         drawPeriod({ ...timelineScale.getHoursScaleRange(), draw: (...props) => drawHours(...props), ...commonProps });
         drawPeriod({
-            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, weekendCellBackgroundColor, drawToday }),
+            draw: (props) => drawTopDays({ ...props, topDayTextColor, weekendTextColor, todayLineColor, weekendCellBackgroundColor, drawToday, getTopMonth }),
             ...timelineScale.getTopDaysScaleRange(),
             ...withGridLinesProps,
         });
@@ -231,7 +242,7 @@ export function TimelineScale({
             ...withGridLinesProps,
         });
         drawPeriod({
-            draw: (props) => drawTopMonths({ ...props, evenPeriodCellBackgroundColor }),
+            draw: (props) => drawTopMonths({ ...props, evenPeriodCellBackgroundColor, getTopMonth }),
             ...timelineScale.getTopMonthsScaleRange(),
             ...withGridLinesProps,
         });
@@ -241,7 +252,7 @@ export function TimelineScale({
             ...withGridLinesProps,
         });
         drawPeriod({
-            draw: (props) => drawBottomMonths({ ...props, todayLineColor, drawToday }),
+            draw: (props) => drawBottomMonths({ ...props, todayLineColor, getBottomMonth, drawToday }),
             ...timelineScale.getBottomMonthsScaleRange(),
             ...withGridLinesProps });
         drawPeriod({
