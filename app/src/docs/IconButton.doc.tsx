@@ -30,10 +30,23 @@ export class IconButtonDoc extends BaseDocsBlock {
             [TSkin.Promo]: { type: '@epam/promo:IconButtonProps', component: promo.IconButton },
         },
         doc: (doc: DocBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+            const mapNeutralColor: Record<string, string> = {
+                loveship_dark: 'neutral-10',
+                electric: 'neutral-95',
+                vanilla_thunder: 'control-bg-hover',
+            };
+
+            const mapSecondaryColor: Record<string, string> = {
+                loveship: 'neutral-50',
+                promo: 'neutral-50',
+                loveship_dark: 'neutral-40',
+            };
+
             doc.merge('color', {
                 editorType: getColorPickerComponent({
                     ...COLOR_MAP,
-                    neutral: `var(--uui-${getCurrentTheme() === 'loveship_dark' ? 'neutral-10' : 'neutral-60'})`,
+                    neutral: `var(--uui-${!!mapNeutralColor[getCurrentTheme()] ? mapNeutralColor[getCurrentTheme()] : 'neutral-60'})`,
+                    secondary: `var(--uui-${!!mapSecondaryColor[getCurrentTheme()] ? mapSecondaryColor[getCurrentTheme()] : 'secondary-50'})`,
                 }),
             });
             doc.setDefaultPropExample('onClick', () => true);

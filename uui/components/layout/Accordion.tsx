@@ -20,14 +20,10 @@ export interface AccordionModsOverride {}
 /** Represents the properties of the Accordion component. */
 export type AccordionProps = Overwrite<AccordionMods, AccordionModsOverride> & uuiComponents.AccordionProps;
 
-const getMode = (mode: AccordionMods['mode']) => {
-    return mode || 'block';
-};
-
 function applyAccordionMods(mods: AccordionProps) {
     return [
         css.root,
-        css['mode-' + getMode(mods.mode)],
+        css[`mode-${mods.mode || 'block'}`],
         mods.padding && css['padding-' + mods.padding],
     ];
 }

@@ -23,7 +23,7 @@ const commonDefaults: FlexRowProps = {
 const rowTypesDefaults: Record<string, FlexRowProps> = {
     form: {
         ...commonDefaults,
-        spacing: '12',
+        columnGap: '12',
         alignItems: 'top',
         vPadding: '18',
         padding: '24',
@@ -31,7 +31,7 @@ const rowTypesDefaults: Record<string, FlexRowProps> = {
     panel: {
         ...commonDefaults,
         alignItems: 'center',
-        spacing: '6',
+        columnGap: '6',
         size: '36',
     },
 };

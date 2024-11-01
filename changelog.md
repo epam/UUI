@@ -1,14 +1,17 @@
 # 5.*.* - **.**.2024
 
 **What's New**
-* [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
+* [FlexRow][Breaking Change]: Only for `@epam/loveship` package. Now spacing default value works based on `columnGap` props. It shouldn't affect general cases, but previous spacing implementation require additional hack when it was needed to add negative margin value for container to remove corner paddings in multiline case. Now this hack should be removed, since `columnGap` implementation doesn't produce such bug for multiline.
+* [Button]: added size `60` to props
+* [MultiSwitch]: added size `60` to props
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: changed layout - added gaps between internal items, changed padding
+* [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
 
 **What's Fixed**
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
-
+* [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
 
 # 5.10.2 - 24.10.2024
 
@@ -40,13 +43,11 @@
   * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
 * Sass updated to the last version, warnings 'Mixed Declarations' fixed https://sass-lang.com/documentation/breaking-changes/mixed-decls/
 * [Modals]: for mobile view (width is up to 720px) by default the modal position is fixed at the bottom edge of the screen
-* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design
+* [TabButton][VerticalTabButton]: decreased paddings & gaps for all sizes according to the design, changed the order of placing the icon to the left of the text and the count indicator, now the first icon then the count indicator
 
 **What's Fixed**
 * [Form]: fixed bug when `beforeLeave` modal appears in case of redirect in `onSuccess` callback
 * [VirtualList]: fixed offsets counting if rows have different height
-* [TabButton][VerticalTabButton]: aligned with design, paddings & gaps decreased
-
 
 # 5.9.5 - 09.10.2024
 
