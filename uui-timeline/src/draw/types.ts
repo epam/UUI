@@ -43,7 +43,7 @@ export interface CanvasDrawHeaderTodayProps extends CanvasDrawProps {
     scaleBar: ScaleBar;
     canvasHeight?: number;
     todayLineColor?: string;
-    todayLineWidth?: number;
+    todayLineHeight?: number;
 }
 
 export interface CanvasDrawTimelineHeaderProps extends CanvasDrawProps {
@@ -122,7 +122,7 @@ export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps
 
 export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProps {
     todayLineColor?: string;
-    todayLineWidth: number;
+    todayLineHeight: number;
     drawToday?: (props: CanvasDrawHeaderTodayProps) => void;
 }
 

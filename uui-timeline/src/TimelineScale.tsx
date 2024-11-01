@@ -48,7 +48,7 @@ export interface TimelineScaleProps extends TimelineCanvasProps, TimelineScaleFo
     /**
      * Overrides bottom border line width for current period (today, this week, etc).
      */
-    todayLineWidth?: number;
+    todayLineHeight?: number;
     /**
      * Overrides period cell border color.
      */
@@ -147,7 +147,7 @@ export function TimelineScale({
     topDayTextColor = timelineScale.defaultColors.topDayTextColor,
     weekendTextColor = timelineScale.defaultColors.weekendTextColor,
     todayLineColor = timelineScale.defaultColors.todayLineColor,
-    todayLineWidth = timelineScale.defaultWidth.todayLineWidth,
+    todayLineHeight = timelineScale.defaultWidth.todayLineHeight,
     cellBorderColor = timelineScale.defaultColors.cellBorderColor,
     cellBorderWidth = timelineScale.defaultWidth.cellBorderWidth,
     cellBackgroundColor = timelineScale.defaultColors.cellBackgroundColor,
@@ -222,7 +222,7 @@ export function TimelineScale({
         };
 
         const withGridLinesProps = { ...commonProps, cellBorderColor, cellBorderWidth };
-        const todayProps = { todayLineColor, todayLineWidth, drawToday };
+        const todayProps = { todayLineColor, todayLineHeight, drawToday };
         drawPeriod({ ...timelineScale.getMinutesScaleRange(), draw: drawMinutes, ...withGridLinesProps });
         drawPeriod({ ...timelineScale.getRemainingHoursScaleRange(), draw: drawRemainingHours, ...commonProps });
         drawPeriod({ ...timelineScale.getHoursScaleRange(), draw: (...props) => drawHours(...props), ...commonProps });
