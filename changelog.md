@@ -7,6 +7,7 @@
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: changed layout - added gaps between internal items, changed padding
 * [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
+* [DataTable]: groups of columns.
 
 **What's Fixed**
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
@@ -35,9 +36,9 @@
 **What's New**
 * [DataTable]:
   * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
-  * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined. 
+  * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined.
 * [DataTable]: `ColumnsConfigurationModal` updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
-* [PickerInput]: 
+* [PickerInput]:
   * Added support of `minCharsToSearch` > 0 with `searchPosition = 'body'`.
   * Added renderEmpty prop to render custom empty block for depends on various reasons.
   * `renderNotFonud` prop is deprecated, please use `renderEmpty` instead
