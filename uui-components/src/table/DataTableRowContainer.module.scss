@@ -76,3 +76,13 @@
 :global(.uui-scroll-shadow-right) {
     @include scroll-shadow('inset-inline-end');
 }
+
+.groupColumnsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.groupWrapper {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,97 @@
+@use '../../assets/styles/index' as *;
+
+// !!! For these variables the values are set inline
+// --uui-dt-header-group-cell-icon-size,
+// --uui-dt-header-group-cell-padding-start,
+// --uui-dt-header-group-cell-padding-end,
+
+.root {
+    --uui-dt-header-group-cell-font: var(--uui-font);
+    --uui-dt-header-group-cell-font-weight: 600;
+    --uui-dt-header-group-cell-line-height: 30px;
+    --uui-dt-header-group-cell-height: var(--uui-size);
+    --uui-dt-header-group-cell-caption-column-gap: 3px;
+    --uui-dt-header-group-cell-truncate-caption-line-height: 18px;
+    color: var(--uui-text-primary);
+    align-items: center;
+    padding-inline-start: var(--uui-dt-header-group-cell-padding-start);
+    padding-inline-end: var(--uui-dt-header-group-cell-padding-end);
+    width: 0;
+    background-clip: padding-box;
+    min-height: var(--uui-dt-header-group-cell-height);
+
+    .caption-wrapper {
+        column-gap: var(--uui-dt-header-group-cell-caption-column-gap);
+    }
+
+    .caption-wrapper {
+        display: flex;
+        overflow: hidden;
+        flex: 1 1 0;
+        min-width: 0;
+
+        &.align-right {
+            flex-direction: row-reverse;
+        }
+
+        &.align-center {
+            justify-content: center;
+        }
+    }
+
+    .caption {
+        --uui-text-line-height: var(--uui-dt-header-group-cell-line-height);
+        font-family: var(--uui-dt-header-group-cell-font);
+        font-weight: var(--uui-dt-header-group-cell-font-weight);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 0; //????
+
+        &.truncate {
+            /* stylelint-disable */
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* stylelint-enable */
+            overflow: hidden;
+            white-space: normal;
+            line-height: var(--uui-dt-header-group-cell-truncate-caption-line-height);
+        }
+    }
+
+    .group-cell-tooltip {
+        top: 0;
+    }
+
+    .upper-case {
+        text-transform: uppercase;
+    }
+}
+
+.group-cell-tooltip-wrapper {
+    --uui-dt-header-group-cell-tooltip-caption-font-size: 14px;
+    --uui-dt-header-group-cell-tooltip-caption-font-weight: 600;
+    --uui-dt-header-group-cell-tooltip-info-font-size: 12px;
+    --uui-dt-header-group-cell-tooltip-info-font-weight: 400;
+    //
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: var(--uui-vertical-gap);
+
+    .group-cell-tooltip-text {
+        color: var(--uui-tooltip-text);
+        padding: 0;
+    }
+
+    .tooltip-caption {
+        font-size: var(--uui-dt-header-group-cell-tooltip-caption-font-size);
+        font-weight: var(--uui-dt-header-group-cell-tooltip-caption-font-weight);
+    }
+
+    .tooltip-info {
+        font-size: var(--uui-dt-header-group-cell-tooltip-info-font-size);
+        font-weight: var(--uui-dt-header-group-cell-tooltip-info-font-weight);
+    }
+}

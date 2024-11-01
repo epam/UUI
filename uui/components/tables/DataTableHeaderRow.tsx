@@ -9,6 +9,7 @@ import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableHeaderRow.module.scss';
+import { DataTableHeaderGroupCell } from './DataTableHeaderGroupCell';
 
 export type DataTableHeaderRowProps = CoreDataTableHeaderRowProps & DataTableHeaderRowMods;
 export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTableHeaderRowProps>(
@@ -21,6 +22,15 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
                 size={ mods.size }
                 textCase={ mods.textCase || 'normal' }
                 key={ props.column.key }
+                columnsGap={ mods.columnsGap }
+            />
+        ),
+        renderGroupCell: (props) => (
+            <DataTableHeaderGroupCell
+                { ...props }
+                size={ mods.size }
+                textCase={ mods.textCase || 'normal' }
+                key={ props.key }
                 columnsGap={ mods.columnsGap }
             />
         ),
