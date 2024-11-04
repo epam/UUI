@@ -31,6 +31,9 @@ export type ICanBeFixed = {
     fix?: 'left' | 'right';
 };
 
+/**
+ * Columns group configuration.
+ */
 export interface DataColumnGroupProps extends IHasCX, IClickable {
     /**
      * Unique key to identify the columns group. Used to reference columns group.
@@ -70,6 +73,9 @@ export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends 
      */
     key: string;
 
+    /**
+     * A unique identifier for a group of columns that establishes a connection between the column and the group of columns.
+     */
     group?: string;
 
     /** Column caption. Can be a plain text, or any React Component */
@@ -193,10 +199,26 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
 }
 
+/**
+ * DataTable columns group header cell props.
+ */
 export interface DataTableHeaderGroupCellProps extends IHasCX, IEditable<DataTableState> {
+    /**
+     * A unique identifier for a group.
+     */
     key: string;
+    /**
+     * Columns group configuration.
+     */
     group: DataColumnGroupProps;
+    /**
+     * Defines if first column of the group is the first one in the table header.
+     */
     isFirstCell: boolean;
+
+    /**
+     * Defines if last column of the group is the last one in the table header.
+     */
     isLastCell: boolean;
 }
 
@@ -207,6 +229,9 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
 
 export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
+    /**
+     * Columns group configuration.
+     */
     columnGroups?: DataColumnGroupProps[];
     selectAll?: ICheckable;
     /**
@@ -215,6 +240,9 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
     showFoldAll?: boolean;
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
+    /**
+     * Columns group cell render function.
+     */
     renderGroupCell?: (props: DataTableHeaderGroupCellProps) => React.ReactNode;
     renderConfigButton?: () => React.ReactNode;
 }
