@@ -5,7 +5,6 @@ import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
     DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite,
     DataColumnGroupProps,
-    useColumnGroups,
 } from '@epam/uui-core';
 import { DataTableHeaderRow, DataTableHeaderRowProps } from './DataTableHeaderRow';
 import { DataTableRow, DataTableRowProps as UuiDataTableRowProps } from './DataTableRow';
@@ -28,7 +27,8 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     /** Rows that should be rendered in table */
     rows?: DataRowProps<TItem, TId>[];
 
-    groups?: DataColumnGroupProps[];
+    /** Array of all possible column groups for the table */
+    columnGroups?: DataColumnGroupProps[];
 
     /** Array of all possible columns for the table */
     columns: DataColumnProps<TItem, TId>[];
@@ -77,7 +77,6 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const headerRef = React.useRef<HTMLDivElement>();
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
-    const { groups } = useColumnGroups(props.groups, columns);
 
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
         return (
@@ -145,7 +144,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                 <div className={ css.stickyHeader } ref={ headerRef }>
                     <DataTableHeaderRow
                         columns={ columns }
-                        groups={ groups }
+                        columnGroups={ props.columnGroups }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                         selectAll={ props.selectAll }
                         size={ props.headerSize || settings.sizes.dataTable.header.row.default as DataTableHeaderRowProps['size'] }

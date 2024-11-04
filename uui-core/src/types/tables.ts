@@ -33,33 +33,32 @@ export type ICanBeFixed = {
 
 export interface DataColumnGroupProps extends IHasCX, IClickable {
     /**
-     * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
-     * Also, used as React key for cells, header cells, and other components inside tables.
+     * Unique key to identify the columns group. Used to reference columns group.
      */
     key: string;
 
-    /** Column caption. Can be a plain text, or any React Component */
+    /** Columns group caption. Can be a plain text, or any React Component */
     caption?: React.ReactNode;
 
-    /** Aligns cell and header content horizontally */
+    /** Aligns columns group header content horizontally */
     textAlign?: 'left' | 'center' | 'right';
 
     /** Info tooltip displayed in the table header */
     info?: React.ReactNode;
 
-    /** Overrides rendering of the whole cell */
+    /** Overrides rendering of the whole columns group cell */
     renderCell?(column: DataColumnGroupProps): any;
 
-    /** Render callback for column header tooltip.
+    /** Render callback for columns group header tooltip.
      * This tooltip will appear on cell hover with 600ms delay.
      *
-     * If omitted, default implementation with column.caption + column.info will be rendered.
+     * If omitted, default implementation with columnGroup.caption + columnGroup.info will be rendered.
      * Pass `() => null` to disable tooltip rendering.
      */
     renderTooltip?(column: DataColumnGroupProps): React.ReactNode;
 
     /**
-     * Overrides rendering of the whole header cell.
+     * Overrides rendering of the whole columns group header cell.
      */
     renderHeaderCell?(cellProps: DataTableHeaderGroupCellProps): any;
 }
@@ -208,7 +207,7 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
 
 export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
-    groups?: DataColumnGroupProps[];
+    columnGroups?: DataColumnGroupProps[];
     selectAll?: ICheckable;
     /**
      * Enables collapse/expand all functionality.

@@ -13,9 +13,11 @@ export interface DataTableRowContainerProps<TItem, TId, TFilter>
     extends IClickable,
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
-    groups?: DataColumnGroupProps[];
+    /** Columns groups configuration */
+    columnGroups?: DataColumnGroupProps[];
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number, eventHandlers?: DndEventHandlers): React.ReactNode;
+    /** Columns group cell render function. */
     renderGroupCell?(group: DataColumnGroupProps, idx: number, firstColumnIdx: number, lastColumnIdx: number): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
@@ -67,14 +69,14 @@ export const DataTableRowContainer = React.forwardRef(
         const { onPointerDown, onTouchStart, ...restRawProps } = props.rawProps ?? {};
 
         function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
-            if (!props.groups) {
+            if (!props.columnGroups) {
                 return columns.map((column) => {
                     const idx = props.columns?.indexOf(column) || 0;
                     return props.renderCell(column, idx, { onPointerDown, onTouchStart });
                 });
             }
 
-            const columnsWithGroups = getGroupsWithColumns(props.groups, columns);
+            const columnsWithGroups = getGroupsWithColumns(props.columnGroups, columns);
             return columnsWithGroups.map((item, index) => {
                 if (isGroupOfColumns(item)) {
                     const firstColumnIdx = props.columns?.indexOf(item.columns[0]) || 0;

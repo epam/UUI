@@ -99,7 +99,7 @@ export class DataTableHeaderRow<TItem, TId> extends React.Component<DataTableHea
                 cx={ [
                     css.root, this.props.cx, uuiDataTableHeaderRow.uuiTableHeaderRow,
                 ] }
-                groups={ this.props.groups }
+                columnGroups={ this.props.columnGroups }
                 columns={ this.props.columns }
                 renderCell={ this.renderCell }
                 renderGroupCell={ this.renderGroupCell }
