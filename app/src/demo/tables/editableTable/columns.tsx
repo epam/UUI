@@ -3,7 +3,7 @@ import { resources, statuses, statusTags } from './demoData';
 import React from 'react';
 import { TextArea, PickerToggler, TextInput, DataTableCell, NumericInput, PickerInput,
     DatePicker, DataPickerRow, PickerItem, IconContainer, DataTableCellContainer } from '@epam/uui';
-import { ArrayDataSource, DataColumnGroupProps, DataColumnProps, DataQueryFilter, IEditableDebouncer, cx } from '@epam/uui-core';
+import { ArrayDataSource, DataColumnProps, DataQueryFilter, IEditableDebouncer, cx } from '@epam/uui-core';
 import { ReactComponent as statusIcon } from '@epam/assets/icons/common/radio-point-10.svg';
 
 import { RowKebabButton } from './RowKebabButton';
@@ -16,13 +16,6 @@ import { uuiDayjs } from '../../../helpers/dayJsHelper';
 
 const resourceDataSource = new ArrayDataSource({ items: resources });
 const statusDataSource = new ArrayDataSource({ items: statuses });
-
-export const groups: DataColumnGroupProps[] = [
-    { 
-        key: 'general',
-        caption: 'General group 1',
-    },
-];
 
 export function getColumnsTableMode(columnsProps: ColumnsProps) {
     const columns: DataColumnProps<Task, number, DataQueryFilter<Task>>[] = [
@@ -42,7 +35,6 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
         },
         {
             key: 'estimate',
-            group: 'general',
             textAlign: 'right',
             caption: 'Estimate',
             info: 'Estimate in man/days',
@@ -70,7 +62,6 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
         },
         {
             key: 'status',
-            group: 'general',
             caption: 'Status',
             width: 160,
             minWidth: 150,

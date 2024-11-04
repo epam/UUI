@@ -30,10 +30,6 @@
         flex: 1 1 0;
         min-width: 0;
 
-        &.align-right {
-            flex-direction: row-reverse;
-        }
-
         &.align-center {
             justify-content: center;
         }
