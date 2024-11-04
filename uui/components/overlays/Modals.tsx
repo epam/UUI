@@ -1,11 +1,11 @@
 import React from 'react';
+import cx from 'classnames';
 import {
     withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps, isMobile,
 } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';
 import { IconButton } from '../buttons';
-import { Text } from '../typography';
 import { settings } from '../../settings';
 
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
@@ -61,16 +61,17 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
         return (
             <FlexRow
                 padding={ this.props.padding || '24' }
-                vPadding="12"
+                size={ null }
+                vPadding="36"
                 borderBottom={ this.props.borderBottom }
                 cx={ [css.root, css.modalHeader, this.props.cx] }
                 columnGap="12"
                 rawProps={ this.props.rawProps }
             >
                 {this.props.title && (
-                    <Text size="48" fontSize="18" fontWeight="600">
+                    <div className={ cx('uui-modal-title', 'uui-typography') }>
                         {this.props.title}
-                    </Text>
+                    </div>
                 )}
                 {this.props.children}
                 {this.props.onClose && <FlexSpacer />}

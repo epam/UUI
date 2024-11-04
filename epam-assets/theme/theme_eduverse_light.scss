@@ -181,6 +181,15 @@
         --uui-accordion-toggler-font-weight: 500;
     }
 
+    /* Modals */
+
+    .uui-modal-title {
+        --uui-modals-title-font: var(--font-museo-sans);
+        --uui-modals-title-font-weight: 500;
+        --uui-modals-title-font-size: 28px;
+        --uui-modals-title-line-height: 36px;
+    }
+
     /* FileCard */
 
     .uui-file_card {
