@@ -25,7 +25,7 @@ const TableElement = withHOC(TableProvider, withRef<typeof PlateElement>(({ clas
     const colSizeOverrides = tableStore.colSizeOverrides();
 
     const currentColSizes = useMemo(() => {
-        return element.colSizes.map((size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH);
+        return element.colSizes?.map((size, index) => colSizeOverrides.get(index) || size || EMPTY_COL_WIDTH);
     }, [colSizeOverrides, element]);
 
     const tableWidth = useMemo(() => currentColSizes.reduce((acc, cur) => acc + cur, 0), [currentColSizes]);
