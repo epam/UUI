@@ -99,4 +99,18 @@
             border-radius: 50%;
         }
     }
+
+    &:not(:global(.uui-vertical-tab-button)) {
+        :global(.uui-caption) {
+            padding-bottom: calc(var(--uui-tab_btn-vertical-caption-padding) - var(--uui-tab-line-width));
+        }
+
+        :global(.uui-count_indicator) {
+            margin-bottom: calc(var(--uui-tab_btn-vertical-caption-padding) - var(--uui-tab-line-width));
+        }
+
+        :global(.uui-icon) {
+            margin-bottom: calc(0px - var(--uui-tab-line-width));
+        }
+    }
 }
