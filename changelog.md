@@ -7,6 +7,8 @@
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: changed layout - added gaps between internal items, changed padding
 * [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
+* [TimelineScale]: added bottom/top month text customisation.
+* [TimelineScale]: customisation of today line height was added.
 * [DataTable]: groups of columns.
 
 **What's Fixed**
