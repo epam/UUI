@@ -37,7 +37,7 @@ export function BasicModalExample(modalProps: IModal<string | boolean>) {
                     <ModalFooter>
                         <FlexSpacer />
                         <Button
-                            color='gray50'
+                            color='gray'
                             fill='white'
                             caption='Cancel'
                             onClick={() => modalProps.abort()}
