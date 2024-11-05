@@ -14,6 +14,8 @@ import {
     CanvasScaleRange,
     CanvasDrawBottomGridLine,
     CanvasDrawWeekendHoursCell,
+    CanvasDrawBottomMonthProps,
+    CanvasDrawTopMonthProps,
 } from './types';
 
 const defaultFonts = {
@@ -46,6 +48,8 @@ const isCurrentPeriod = (leftDate: Date, rightDate: Date) => new Date() >= leftD
 
 const getCanvasVerticalCenter = (canvasHeight: number) => canvasHeight / 2 - 1;
 const getBottomCellY = (canvasHeight: number) => getCanvasVerticalCenter(canvasHeight);
+const getTopMonth = (month: number) => months[month]?.toUpperCase() ?? '';
+const getBottomMonth = (month: number) => months[month] ?? '';
 
 const drawScaleBottomBorder = ({
     context,
@@ -398,6 +402,7 @@ const drawTopDays = ({
     todayLineColor = defaultColors.todayLineColor,
     todayLineHeight = defaultWidth.todayLineHeight,
     drawToday: customDrawToday,
+    getTopMonth: customGetMonth = getTopMonth,
     canvasHeight,
     cellBorderColor = defaultColors.cellBorderColor,
     cellBorderWidth = defaultWidth.cellBorderWidth,
@@ -406,7 +411,7 @@ const drawTopDays = ({
     ...restProps
 }: CanvasDrawTopDaysProps) => {
     timelineTransform.getVisibleDays().forEach((w) => {
-        const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getDate().toString() + ', ' + w.leftDate.getFullYear();
+        const header = customGetMonth(w.leftDate.getMonth()) + ' ' + w.leftDate.getDate().toString() + ', ' + w.leftDate.getFullYear();
         const isHoliday = timelineTransform.isWeekend(w.leftDate) || timelineTransform.isHoliday(w.leftDate);
         const color = isHoliday ? weekendCellBackgroundColor : cellBackgroundColor;
         drawCellBackground({ context, scaleBar: w, canvasHeight, color });
@@ -416,7 +421,7 @@ const drawTopDays = ({
         drawPeriodText({
             context,
             timelineTransform,
-            text: header.toUpperCase(),
+            text: header,
             x: w.left,
             width: w.right - w.left,
             line: getTopLine(visibility),
@@ -481,8 +486,9 @@ const drawTopMonths = ({
     cellBorderWidth = defaultWidth.cellBorderWidth,
     cellBackgroundColor = defaultColors.cellBackgroundColor,
     evenPeriodCellBackgroundColor = defaultColors.evenPeriodCellBackgroundColor,
+    getTopMonth: customGetMonth = getTopMonth,
     ...restProps
-}: CanvasDrawPeriodPartProps) => {
+}: CanvasDrawTopMonthProps) => {
     timelineTransform.getVisibleMonths().forEach((w) => {
         const color = w.leftDate.getMonth() % 2 === 0
             ? cellBackgroundColor
@@ -491,12 +497,12 @@ const drawTopMonths = ({
         drawCellBackground({ context, scaleBar: w, canvasHeight, color });
         drawBorderForTopCell({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
 
-        const header = months[w.leftDate.getMonth()] + ' ' + w.leftDate.getFullYear();
+        const header = customGetMonth(w.leftDate.getMonth()) + ' ' + w.leftDate.getFullYear();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawPeriodText({
             context,
             timelineTransform,
-            text: header.toUpperCase(),
+            text: header,
             x: w.left,
             width: w.right - w.left,
             line: getTopLine(visibility),
@@ -555,11 +561,11 @@ const drawBottomMonths = ({
     cellBorderColor = defaultColors.cellBorderColor,
     cellBorderWidth = defaultWidth.cellBorderWidth,
     cellBackgroundColor = defaultColors.cellBackgroundColor,
-
+    getBottomMonth: customGetMonth = getBottomMonth,
     ...restProps
-}: CanvasDrawPeriodWithTodayProps) => {
+}: CanvasDrawBottomMonthProps) => {
     timelineTransform.getVisibleMonths().forEach((w) => {
-        const text = months[w.leftDate.getMonth()].toString();
+        const text = customGetMonth(w.leftDate.getMonth()).toString();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
         drawCellBackground({ context, scaleBar: w, canvasHeight, y: getCanvasVerticalCenter(canvasHeight), color: cellBackgroundColor });
 
@@ -669,7 +675,8 @@ export const timelineScale = {
     getBottomMonthsScaleRange,
     getYearsScaleRange,
     drawHoursCells,
-
+    getTopMonth,
+    getBottomMonth,
     defaultFonts,
     defaultColors,
     defaultWidth,
