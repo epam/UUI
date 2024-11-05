@@ -19,6 +19,7 @@ import { useFocusEvents } from './plugins/eventEditorPlugin';
 import { isEditorValueEmpty } from './helpers';
 import { getMigratedPlateValue, isPlateValue } from './migrations';
 import { PlateProps } from '@udecode/plate-core';
+import isEqual from 'react-fast-compare';
 
 export interface PlateEditorProps
     extends IEditable<EditorValue>,
@@ -42,6 +43,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
     const [currentId] = useState(String(Date.now()));
     const editorRef = useRef<PlateEditor | null>(null);
     const editableWrapperRef = useRef<HTMLDivElement>();
+    const prevChangedValue = useRef(props.value);
 
     /** value */
     /** consider legacy slate to plate content migraions once. should be deprecated in the near future */
@@ -64,7 +66,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
         if (isReadonly) {
             return;
         }
-
+        prevChangedValue.current = v;
         onValueChange(v);
     }, [isReadonly, onValueChange]);
 
@@ -131,14 +133,18 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
         ? <ScrollBars cx={ css.scrollbars }>{ renderContent() }</ScrollBars>
         : renderContent();
 
-    /** force update of uncontrolled component */
+    /** force update of uncontrolled component. Danger part, because Slate component is uncontrolled by default and doesn't support value change after init.
+     * This code can produce unexpected effects and bugs, e.g. updating value in a such value doesn't call value normalizers.
+     * We just guarantee that we can apply value change from empty state to the new one, like after content loading. Try to avoid updating editor value in other cases.
+     */
     const forceUpdate = useForceUpdate();
     useEffect(() => {
-        if (isPlateValue(plateValue) && editorRef.current && editorRef.current.children !== plateValue) {
+        if (isPlateValue(plateValue) && editorRef.current && !isEqual(prevChangedValue.current, props.value)) {
             editorRef.current.children = plateValue;
+            prevChangedValue.current = props.value;
             forceUpdate();
         }
-    }, [forceUpdate, plateValue]);
+    }, [props.value]);
 
     return (
         <Plate

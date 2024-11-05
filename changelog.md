@@ -14,6 +14,7 @@
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
+* [RTE]: fixed migration of old table element data.cellSizes to the new colSizes format
 
 # 5.10.2 - 24.10.2024
 
