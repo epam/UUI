@@ -15,6 +15,14 @@
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
 * [RTE]: fixed migration of old table element data.cellSizes to the new colSizes format
+* [Anchor]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [Badge]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [Button]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [LinkButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [IconButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [MainMenuButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [TabButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [Tag]: fixed `clickAnalyticsEvent` not being sent when `href` property used
 
 # 5.10.2 - 24.10.2024
 
