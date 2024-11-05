@@ -158,16 +158,17 @@ export const tablePlugin = (): PlatePlugin<TablePLuginOptions> =>
 
                 if (isElement(node) && node.type === TABLE_TYPE) {
                     const normalized = initDefaultTableColWidth(normalizeTableElement(entry) as DeprecatedTTableCellElement);
-
                     setNodes(
                         editor,
                         normalized,
                         { at: path },
                     );
+                    return;
                 }
 
                 if (isElement(node) && (TABLE_CELL_TYPE === node.type || TABLE_CELL_TYPE === node.type)) {
                     normalizeTableCellElement(editor, entry);
+                    return;
                 }
 
                 normalizeNode(entry);

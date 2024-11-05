@@ -48,7 +48,8 @@
     "slate-history": "0.100.0",
     "slate-hyperscript": "0.100.0",
     "slate-react": "0.102.0",
-    "unified": "9.2.2"
+    "unified": "9.2.2",
+    "react-fast-compare": "3.2.2"
   },
   "devDependencies": {
     "@types/lodash.debounce": "4.0.7",
