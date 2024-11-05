@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataColumnProps, IClickable, IHasCX, IHasRawProps } from '@epam/uui-core';
+import { DataColumnGroupProps, DataColumnProps, IClickable, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { FlexCell } from '../layout';
 
 import css from './DataTableCellContainer.module.scss';
@@ -15,7 +15,7 @@ export interface DataTableCellContainerProps extends
     /**
      * DataTable column configuration.
      */
-    column: DataColumnProps;
+    column: DataColumnProps | DataColumnGroupProps;
     /**
      * CSS text-align property.
      */
@@ -38,7 +38,7 @@ export const DataTableCellContainer = React.forwardRef<HTMLDivElement, DataTable
     return (
         <FlexCell
             { ...props.column }
-            minWidth={ props.column.width }
+            minWidth={ 'width' in props.column ? props.column.width : undefined }
             rawProps={ props.rawProps }
             cx={ ['uui-dt-vars', css.root, props.column.cx, props.cx] }
             onClick={ props.onClick }
