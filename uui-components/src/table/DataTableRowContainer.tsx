@@ -2,17 +2,23 @@ import React from 'react';
 import {
     DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx,
     DndEventHandlers,
+    DataColumnGroupProps,
 } from '@epam/uui-core';
 import { FlexRow } from '../layout';
 import { Anchor } from '../navigation';
 import css from './DataTableRowContainer.module.scss';
+import { getGroupsWithColumns, isGroupOfColumns } from './columnsConfigurationModal/columnsGroupsUtils';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter>
     extends IClickable,
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLAnchorElement | HTMLDivElement | HTMLButtonElement>> {
+    /** Columns groups configuration */
+    columnGroups?: DataColumnGroupProps[];
     columns?: DataColumnProps<TItem, TId, TFilter>[];
     renderCell?(column: DataColumnProps<TItem, TId, TFilter>, idx: number, eventHandlers?: DndEventHandlers): React.ReactNode;
+    /** Columns group cell render function. */
+    renderGroupCell?(group: DataColumnGroupProps, idx: number, firstColumnIdx: number, lastColumnIdx: number): React.ReactNode;
     renderConfigButton?(): React.ReactNode;
     overlays?: React.ReactNode;
     link?: Link;
@@ -61,12 +67,40 @@ function getSectionStyle(columns: DataColumnProps[], minGrow = 0) {
 export const DataTableRowContainer = React.forwardRef(
     <TItem, TId, TFilter>(props: DataTableRowContainerProps<TItem, TId, TFilter>, ref: React.ForwardedRef<HTMLDivElement>) => {
         const { onPointerDown, onTouchStart, ...restRawProps } = props.rawProps ?? {};
+
         function renderCells(columns: DataColumnProps<TItem, TId, TFilter>[]) {
-            return columns.reduce<React.ReactNode[]>((cells, column) => {
-                const idx = props.columns?.indexOf(column) || 0;
-                cells.push(props.renderCell(column, idx, { onPointerDown, onTouchStart }));
-                return cells;
-            }, []);
+            if (!props.columnGroups) {
+                return columns.map((column) => {
+                    const idx = props.columns?.indexOf(column) || 0;
+                    return props.renderCell(column, idx, { onPointerDown, onTouchStart });
+                });
+            }
+
+            const columnsWithGroups = getGroupsWithColumns(props.columnGroups, columns);
+            return columnsWithGroups.map((item, index) => {
+                if (isGroupOfColumns(item)) {
+                    const firstColumnIdx = props.columns?.indexOf(item.columns[0]) || 0;
+                    const lastColumnIdx = props.columns?.indexOf(item.columns[item.columns.length - 1]) || 0;
+
+                    return (
+                        <div style={ getSectionStyle(item.columns) } className={ cx({ [css.section]: true, [css.groupWrapper]: true }) }>
+                            
+                            <div>{props.renderGroupCell(item.group, index, firstColumnIdx, lastColumnIdx)}</div>
+                            <div className={ css.groupColumnsWrapper }>
+                                {
+                                    item.columns.map((column) => {
+                                        const idx = props.columns?.indexOf(column) || 0;
+                                        return props.renderCell(column, idx, { onPointerDown, onTouchStart });
+                                    })
+                                }
+                            </div>
+                        </div>
+                    );
+                }
+
+                const idx = props.columns?.indexOf(item) || 0;
+                return props.renderCell(item, idx, { onPointerDown, onTouchStart });
+            });
         }
 
         function wrapFixedSection(columns: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right', hasScrollingSection: boolean) {

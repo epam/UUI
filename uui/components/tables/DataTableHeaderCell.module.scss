@@ -20,7 +20,7 @@
     padding-inline-end: var(--uui-dt-header-cell-padding-end);
     width: 0;
     background-clip: padding-box;
-    height: var(--uui-dt-header-cell-height);
+    min-height: var(--uui-dt-header-cell-height);
 
     .caption-wrapper {
         column-gap: var(--uui-dt-header-cell-caption-column-gap);
