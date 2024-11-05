@@ -3,6 +3,12 @@
 .root {
     --uui-modals-shadow: var(--uui-shadow-level-3);
     --uui-modals-bg: var(--uui-surface-main);
+    --uui-modals-title: var(--uui-text-primary);
+
+    --uui-modals-title-font: var(--uui-font);
+    --uui-modals-title-font-weight: 600;
+    --uui-modals-title-font-size: 18px;
+    --uui-modals-title-line-height: 24px;
 
     --uui-modals-border-radius: calc(var(--uui-border-radius) * 2);
 }
@@ -63,5 +69,14 @@
 .modal-header {
     border-top-left-radius: var(--uui-modals-border-radius);
     border-top-right-radius: var(--uui-modals-border-radius);
-}
 
+    :global(.uui-modal-title) {
+        font-family: var(--uui-modals-title-font);
+        font-size: var(--uui-modals-title-font-size);
+        line-height: var(--uui-modals-title-line-height);
+        font-weight: var(--uui-modals-title-font-weight);
+        color: var(--uui-modals-title);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
