@@ -149,7 +149,7 @@
             --uui-font-size: 12px;
 
             .uui-caption {
-                --uui-tag-horizontal-gap: 0;
+                --uui-tag-caption-horizontal-padding: 0;
             }
         }
 
@@ -222,10 +222,12 @@
     .uui-badge {
         &.uui-size-18 {
             --uui-font-size: 12px;
+            --uui-horizontal-padding: 6px;
+            --uui-badge-caption-horizontal-padding: 0;
+            --uui-badge-indicator-padding: 3px;
         }
 
         &.uui-size-24 {
-            --uui-horizontal-padding: 3px;
             --uui-icon-size: 18px;
             --uui-line-height: 12px;
         }
@@ -236,6 +238,19 @@
 
         &.uui-size-42 {
             --uui-icon-size: 24px;
+            --uui-horizontal-padding: 15px;
+        }
+
+        &.uui-size-48 {
+            --uui-horizontal-padding: 15px;
+        }
+
+        &.uui-size-24,
+        &.uui-size-30,
+        &.uui-size-36,
+        &.uui-size-42,
+        &.uui-size-48 {
+            --uui-horizontal-gap: 3px;
         }
     }
 
