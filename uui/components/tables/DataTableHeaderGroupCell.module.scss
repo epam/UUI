@@ -16,7 +16,7 @@
     align-items: center;
     padding-inline-start: var(--uui-dt-header-group-cell-padding-start);
     padding-inline-end: var(--uui-dt-header-group-cell-padding-end);
-    width: 0;
+    align-self: stretch;
     background-clip: padding-box;
     min-height: var(--uui-dt-header-group-cell-height);
 
