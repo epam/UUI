@@ -5,7 +5,7 @@ canvas {
 
 .timelineHeader {
     position: relative;
-    height: 61px;
+    // height: 61px;
     background-color: #FFF;
     border-top: 1px solid #EEE; // temp
 }
@@ -23,11 +23,9 @@ canvas {
 .arrow {
     display: inline-block;
     width: 36px;
-    height: 60px;
     position: absolute;
     text-align: center;
     vertical-align: middle;
-    line-height: 60px;
     margin: auto;
     color: rgba(102, 102, 102, 0.7);
     cursor: pointer;

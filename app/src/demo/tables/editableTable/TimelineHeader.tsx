@@ -42,6 +42,7 @@ export function TimelineHeader({ timelineController }: TimelineHeaderProps) {
                 <TimelineScale
                     timelineController={ timelineController }
                     isDraggable={ true }
+                    canvasHeight={ 100 }
                 />
             </div>
         </div>
