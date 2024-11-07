@@ -170,7 +170,6 @@
 
                         .info-icon {
                             margin-inline-start: 6px;
-                            margin-inline-end: 29px;
                         }
                     }
                 }
@@ -185,11 +184,11 @@
                     margin-bottom: 9px;
 
                     .middle-row-text {
-                        width: 163px;
+                        width: 156px;
                     }
 
                     .middle-row-num {
-                        width: 96px;
+                        max-width: 110px;
                     }
                 }
 
@@ -197,11 +196,11 @@
                     margin-top: 12px;
 
                     .bottom-row-date {
-                        width: 136px;
+                        width: 156px;
                     }
 
                     .bottom-row-time {
-                        width: 95px;
+                        max-width: 110px;
                     }
                 }
             }
