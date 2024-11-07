@@ -1,7 +1,8 @@
 @import '~@epam/promo/assets/styles/colors';
 
 .container {
-    height: 400px;
+    min-height: 454px;
+    max-height: 620px;
     display: flex;
     flex: 1 1 0;
     flex-direction: column;

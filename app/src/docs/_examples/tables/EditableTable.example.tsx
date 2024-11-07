@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, DataSourceState, DataTableRowProps, IImmutableMap, ItemsMap, Metadata, PatchOrdering, useArrayDataSource } from '@epam/uui-core';
 import { Button, Checkbox, FlexSpacer, DataTable, DataTableCell, DataTableRow, DatePicker, FlexCell, FlexRow, Panel, PickerInput,
     TextArea, TextInput, useForm, IconButton } from '@epam/uui';
@@ -116,10 +116,6 @@ export default function EditableTableExample() {
             return updatedState;
         });
     }, [setTableState]);
-
-    useEffect(() => {
-        dataTableFocusManager?.focusRow(lastId - 1);
-    }, [dataTableFocusManager]);
 
     // Define DataSource to use in PickerInput in the 'tags' column
     const pickerDataSource = useArrayDataSource({ items: tags }, []);
