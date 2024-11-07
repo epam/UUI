@@ -42,9 +42,6 @@ const defaultWidth = {
     todayLineHeight: 4,
 };
 
-const moveAmount = 0.7;
-const topLineMoveAmount = 0.8;
-
 const isCurrentPeriod = (leftDate: Date, rightDate: Date) => new Date() >= leftDate && new Date() <= rightDate;
 
 const getCanvasVerticalCenter = (canvasHeight: number) => canvasHeight / 2;
@@ -634,8 +631,13 @@ const drawYears = ({
     timelineTransform.getVisibleYears().forEach((w) => {
         const text = w.leftDate.getFullYear().toString().toUpperCase();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-        const textMoveAmount = isBottom ? moveAmount : topLineMoveAmount;
-        const line = (visibility + isBottom) * textMoveAmount;
+
+        const bottomAnimationThreshold = 0.4;
+        const bottomTextMoveMount = 0.74;
+        const textMoveAmount = isBottom > bottomAnimationThreshold ? bottomTextMoveMount : 1;
+        let line = (visibility + isBottom) * textMoveAmount;
+        line = isBottom < bottomAnimationThreshold ? Math.min(line, 1) : line;
+
         if (isBottom) {
             const y = canvasHeight;
             timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1, color: cellBorderColor, width: cellBorderWidth });
