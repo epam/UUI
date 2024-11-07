@@ -18,7 +18,7 @@ const formatCurrency = (value: number) => {
 };
 
 export function PersonsTableDemo() {
-    const { personColumns, summaryColumns } = React.useMemo(() => getColumns(), []);
+    const { personColumns, summaryColumns, personColumnsGroups } = React.useMemo(() => getColumns(), []);
 
     const [summary, setSummary] = React.useState<PersonsSummary & Pick<PersonsApiResponse, 'totalCount'>>({
         totalCount: undefined,
@@ -161,7 +161,7 @@ export function PersonsTableDemo() {
         [value.filter?.groupBy],
     );
     const { rows, listProps } = useDataRows(tree);
-    
+
     return (
         <div className={ cx(css.container, css.uuiThemeLoveship) }>
             <FlexRow spacing="12" padding="24" vPadding="12" borderBottom={ true }>
@@ -189,6 +189,7 @@ export function PersonsTableDemo() {
             <DataTable
                 rows={ rows }
                 columns={ personColumns as DataColumnProps<PersonTableRecord, PersonTableRecordId, any>[] }
+                columnGroups={ personColumnsGroups }
                 value={ value }
                 onValueChange={ onValueChange }
                 filters={ getFilters() }
