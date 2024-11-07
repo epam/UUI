@@ -488,6 +488,16 @@
         }
     }
 
+    /*  TubButton */
+
+    .uui-tab-button {
+        --uui-tab_btn-font-weight: 400;
+
+        .uui-count_indicator {
+            --uui-count_indicator-font-weight: 400;
+        }
+    }
+
     /* Typography */
 
     .uui-typography {
