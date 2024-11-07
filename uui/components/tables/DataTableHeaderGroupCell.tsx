@@ -115,7 +115,6 @@ export class DataTableHeaderGroupCell extends
         const computeStyles = {
             '--uui-dt-header-group-cell-padding-start': `${this.getLeftPadding()}px`,
             '--uui-dt-header-group-cell-padding-end': `${this.getRightPadding()}px`,
-            width: '100%',
         } as React.CSSProperties;
 
         return (
