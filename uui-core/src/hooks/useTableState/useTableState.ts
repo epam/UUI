@@ -1,15 +1,13 @@
 import { useCallback, useRef, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import {
-    ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
+    ColumnsConfig, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
 } from '../../types';
 import { getOrderBetween, orderBy } from '../../helpers';
 import { useUuiContext } from '../../services';
 import { stateToQueryObject, getValueFromUrl, normalizeTableStateValue, normalizeFilterConfig } from './utils';
 
 interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState = any> {
-    /** Columns configuration, can be omitted if used without tables */
-    columns?: DataColumnProps[];
     /** Filters configuration, can be omitted if you don't need filters */
     filters?: TableFiltersConfig<TFilter>[];
     /** Initial presets array */

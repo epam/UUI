@@ -122,7 +122,6 @@ export default function PresetsPanelExample() {
     }, [svc.api.presets, uuiModals]);
 
     const tableStateApi = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,

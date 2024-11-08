@@ -108,7 +108,6 @@ export default function FiltersPanelExample() {
     );
 
     const tableStateApi = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         initialPresets: initialPresets,
         onPresetCreate: api.presets.createPreset,

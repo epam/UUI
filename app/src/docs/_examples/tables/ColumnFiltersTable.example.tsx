@@ -99,7 +99,6 @@ export default function ColumnFiltersTableExample() {
     const [value, onValueChange] = useState<DataTableState>({});
 
     const { tableState, setTableState } = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         value: value,
         onValueChange: onValueChange,

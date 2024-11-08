@@ -63,7 +63,6 @@ export function PaletteTable(props: PaletteTableProps) {
     const { tableState, setTableState } = useTableState<TTokensLocalFilter>({
         onValueChange,
         filters: filtersConfig,
-        columns: defaultColumns,
         value,
     });
 
