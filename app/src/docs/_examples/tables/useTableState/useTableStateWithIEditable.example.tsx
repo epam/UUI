@@ -99,7 +99,6 @@ export default function FiltersPanelExample() {
     const tableStateApi = useTableState({
         value,
         onValueChange,
-        columns: personColumns,
         filters: filtersConfig,
     });
     const { tableState, setTableState } = tableStateApi;

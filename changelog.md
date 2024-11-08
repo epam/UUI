@@ -2,6 +2,7 @@
 
 **What's New**
 * [FlexRow][Breaking Change]: Only for `@epam/loveship` package. Now spacing default value works based on `columnGap` props. It shouldn't affect general cases, but previous spacing implementation require additional hack when it was needed to add negative margin value for container to remove corner paddings in multiline case. Now this hack should be removed, since `columnGap` implementation doesn't produce such bug for multiline.
+* [useTableState][Breaking Change]: columns prop is removed, since it's not needed now. Just remove it from `useTableState` provided props.
 * [Button]: added size `60` to props
 * [MultiSwitch]: added size `60` to props
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design

@@ -71,7 +71,7 @@ export function ProjectTasksDemo() {
     };
 
     // const { tableState, setTableState } = useTableState<any>({ columns });
-    const { tableState, setTableState } = useTableState({ columns });
+    const { tableState, setTableState } = useTableState({});
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>(
         {
