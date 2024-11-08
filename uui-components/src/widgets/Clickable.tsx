@@ -21,7 +21,7 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     const context = useUuiContext();
     const isAnchor = Boolean(props.href || props.link || props.type === 'anchor');
     const isButton = Boolean(!isAnchor && (props.onClick || props.type === 'button'));
-    const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick));
+    const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick || props.clickAnalyticsEvent));
     const getIsLinkActive = () => {
         if (props.isLinkActive !== undefined) {
             return props.isLinkActive;
