@@ -70,8 +70,7 @@ export function ProjectTasksDemo() {
         onValueChange({ ...value, items: { ...value.items, [task.id]: task } });
     };
 
-    // const { tableState, setTableState } = useTableState<any>({ columns });
-    const { tableState, setTableState } = useTableState({});
+    const { tableState, setTableState } = useTableState();
 
     const dataSource = useArrayDataSource<Task, number, DataQueryFilter<Task>>(
         {

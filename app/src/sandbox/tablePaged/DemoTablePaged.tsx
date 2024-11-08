@@ -15,7 +15,7 @@ export function DemoTablePaged() {
     const [isInfoPanelOpened, setIsInfoPanelOpened] = useState(false);
     const closeInfoPanel = useCallback(() => setIsInfoPanelOpened(false), []);
 
-    const { tableState, setTableState } = useTableState<Person>({});
+    const { tableState, setTableState } = useTableState<Person>();
 
     useEffect(() => {
         setTableState({ ...tableState, page: 1, pageSize: 100 });

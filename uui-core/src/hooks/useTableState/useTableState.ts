@@ -194,7 +194,7 @@ export interface UseTableStateHookParams<TFilter = Record<string, any>, TViewSta
     extends UseTableStateHookBaseParams<TFilter, TViewState>, Partial<IEditable<DataTableState<TFilter, TViewState>>> {}
 
 export const useTableState = <TFilter = Record<string, any>, TViewState = any>
-(params: UseTableStateHookParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
+(params?: UseTableStateHookParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
 
     const externalValue = useRef(params.value);
