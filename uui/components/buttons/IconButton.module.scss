@@ -5,6 +5,8 @@
     --uui-icon_btn-hover: var(--uui-color-60);
     --uui-icon_btn-active: var(--uui-color-70);
     --uui-icon_btn-disabled: var(--uui-icon-disabled); // from core or color class? Current - from core
+
+    --uui-icon_btn-focus-radius: var(--uui-focus-radius);
     //
     fill: var(--uui-icon_btn);
 
@@ -25,6 +27,7 @@
 
         &:focus-visible {
             @include focus-visible-effect();
+            border-radius: var(--uui-icon_btn-focus-radius);
         }
     }
 

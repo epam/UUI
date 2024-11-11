@@ -14,7 +14,7 @@
 
         :global(.-clickable) {
             &:focus-visible {
-                @include focus-visible-effect(2px, 50%);
+                @include focus-visible-effect(2px);
             }
 
             &:focus-visible, &:hover {
