@@ -1,7 +1,6 @@
 @mixin dnd-ghost-shadow() { box-shadow: var(--uui-shadow-level-3); }
 
-@mixin focus-visible-effect($offset: var(--uui-focus-outline-offset), $radius: var(--uui-focus-radius)) {
+@mixin focus-visible-effect($offset: var(--uui-focus-outline-offset)) {
     outline: var(--uui-focus-outline-width) solid var(--uui-outline-focus);
     outline-offset: $offset;
-    border-radius: $radius;
 }
