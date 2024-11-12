@@ -1,5 +1,10 @@
+.header {
+    padding-top: 6px;
+}
+
 .textBlock:not(:last-child) {
-    border-right: 1px solid var(--uui-neutral-5);
+    padding-right: 6px;
+    border-right: 1px solid var(--uui-divider);
 }
 
 .text {
