@@ -53,7 +53,8 @@
         box-sizing: border-box;
 
         :global(input[type='checkbox']):focus-visible {
-            @include focus-visible-effect(var(--uui-focus-outline-offset), inherit);
+            @include focus-visible-effect(var(--uui-focus-outline-offset));
+            border-radius: var(--uui-switch-min-height);
             width: inherit;
             height: inherit;
             position: absolute;
