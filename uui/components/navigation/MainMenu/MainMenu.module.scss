@@ -49,6 +49,6 @@
     }
 
     :global(.-clickable):focus-visible {
-        @include focus-visible-effect(-2px, 0);
+        @include focus-visible-effect(-2px);
     }
 }
