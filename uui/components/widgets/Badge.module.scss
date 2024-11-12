@@ -86,7 +86,7 @@
     }
 
     &:global(.-clickable):focus-visible {
-        @include focus-visible-effect(2px, null);  // todo
+        @include focus-visible-effect(2px);
     }
 
     &:global(.uui-fill-solid) {
