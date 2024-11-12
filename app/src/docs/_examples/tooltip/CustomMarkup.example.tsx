@@ -8,13 +8,13 @@ export default function CustomMarkupExample() {
     ];
     const renderCustomMarkup = () => (
         <>
-            <Text fontSize="14">
+            <Text fontSize="14" size="none" fontWeight="600" lineHeight="18" cx={ css.header }>
                 Copy Workload Based Revenue to Forecast
             </Text>
-            <FlexRow columnGap="12">
+            <FlexRow columnGap="6" vPadding="12">
                 {months.map((month) => (
-                    <FlexCell minWidth={ 60 } cx={ css.textBlock } key={ month }>
-                        <Text fontSize="14" lineHeight="18" cx={ css.text }>
+                    <FlexCell minWidth={ 50 } width="auto" cx={ css.textBlock } key={ month }>
+                        <Text fontSize="14" lineHeight="18" fontWeight="600" cx={ css.text }>
                             {month}
                             {' '}
                             - 22
@@ -30,7 +30,7 @@ export default function CustomMarkupExample() {
 
     return (
         <FlexRow>
-            <Tooltip maxWidth={ 380 } renderContent={ renderCustomMarkup } color="neutral" placement="right">
+            <Tooltip maxWidth={ 500 } renderContent={ renderCustomMarkup } color="neutral" placement="right">
                 <Button data-foo={ 123 } fill="outline" caption="Custom tooltip" onClick={ () => null } />
             </Tooltip>
         </FlexRow>
