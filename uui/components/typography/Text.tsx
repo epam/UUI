@@ -43,7 +43,6 @@ export interface TextCoreProps extends uuiComponents.TextProps {
 export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}
 
 function applyTextMods(mods: TextProps) {
-    console.log(css);
     return [
         css.root,
         'uui-text',
