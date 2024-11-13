@@ -18,6 +18,8 @@ interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState 
     onPresetUpdate?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
     /** Called when preset was deleted */
     onPresetDelete?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Initial visibleCount table state value */
+    initialVisibleCount?: number;
 }
 
 interface UseTableStateHookImplParams<TFilter = Record<string, any>, TViewState = any> extends UseTableStateHookBaseParams<TFilter, TViewState> {
@@ -207,7 +209,7 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
             ...value,
             filtersConfig,
             topIndex: 0,
-            visibleCount: 40,
+            visibleCount: params.initialVisibleCount || 40,
         };
     });
 
