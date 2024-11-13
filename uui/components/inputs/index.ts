@@ -8,3 +8,4 @@ export * from './TextArea';
 export * from './timePicker';
 export * from './InputAddon';
 export * from './Slider';
+export * from './Rating';

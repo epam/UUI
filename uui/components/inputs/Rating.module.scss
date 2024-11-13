@@ -1,0 +1,48 @@
+.root {
+    --uui-rating-icon-filled: var(--uui-warning-50);
+    --uui-rating-icon-empty: var(--uui-icon-disabled);
+    --uui-rating-icon-disabled: var(--uui-icon);
+
+    --uui-rating-icon-size: var(--uui-size);
+    // Colors
+    fill: var(--uui-rating-icon-filled);
+
+    svg {
+        height: var(--uui-rating-icon-size);
+        width: var(--uui-rating-icon-size);
+    }
+
+    :global(.uui-rating-star) {
+        padding: 0 1px;
+    }
+
+    :global(.uui-rating-empty-star-container) {
+        svg {
+            fill: var(--uui-rating-icon-empty);
+        }
+    }
+
+    :global(.uui-rating-filled-star-container) {
+        svg {
+            stroke-width: 0.1px;
+        }
+    }
+
+    :global(.uui-rating-filled-star-container) {
+        svg {
+            stroke: var(--uui-rating-icon-filled);
+        }
+    }
+
+    // Mods
+    &:global(.uui-disabled) {
+        :global(.uui-rating-star) {
+            fill: var(--uui-rating-icon-disabled);
+            cursor: default;
+        }
+    }
+}
+
+.tooltip {
+    pointer-events: none;
+}
