@@ -6,7 +6,7 @@ const nodeResolve = require('@rollup/plugin-node-resolve');
 const replace = require('@rollup/plugin-replace');
 const { visualizer } = require('rollup-plugin-visualizer');
 
-const postCssDynamicImport = import('rollup-plugin-postcss');
+const postCssDynamicImport = import('rollup-plugin-postcss-modules');
 //
 const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils');
 const { getTsConfigFile } = require('./utils/moduleTsConfigUtils');
