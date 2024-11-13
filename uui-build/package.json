@@ -26,7 +26,7 @@
     "magic-string": "0.30.9",
     "postcss": "8.4.38",
     "postcss-scss": "^4.0.6",
-    "rollup": "4.14.2",
+    "rollup": "4.22.4",
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-visualizer": "5.12.0",
     "sass": "^1.78.0",
