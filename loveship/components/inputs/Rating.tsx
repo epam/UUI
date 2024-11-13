@@ -13,7 +13,7 @@ interface RatingMods {
     size?: 18 | 24 | 30;
 }
 
-/** Represents the properties for the MultiSwitch component. */
+/** Represents the properties for the Rating component. */
 export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
 
 function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
@@ -25,6 +25,10 @@ function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
 
 export const Rating = createSkinComponent<uuiComponents.RatingProps, RatingProps>(
     uuiComponents.Rating,
-    () => ({ filledStarIcon: FilledStarIcon, emptyStarIcon: EmptyStarIcon, Tooltip }),
+    () => ({
+        filledStarIcon: FilledStarIcon,
+        emptyStarIcon: EmptyStarIcon,
+        Tooltip,
+    }),
     applyRatingMods,
 );

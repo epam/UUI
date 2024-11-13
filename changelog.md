@@ -11,6 +11,7 @@
 * [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
 * [TimelineScale]: added bottom/top month text customisation.
 * [TimelineScale]: customisation of today line height was added.
+* [Rating]: added to uui, removed redundant props for all packages.
 
 **What's Fixed**
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination

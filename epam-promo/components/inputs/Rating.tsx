@@ -18,7 +18,7 @@ function applyRatingMods(mods: RatingMods & uuiComponents.RatingProps) {
 }
 
 /** Represents the properties of a Rating component. */
-export interface RatingProps extends uuiComponents.RatingProps, RatingMods {}
+export interface RatingProps extends Omit<uuiComponents.RatingProps, 'filledStarIcon' | 'emptyStarIcon' | 'renderRating' | 'from' | 'to'>, RatingMods {}
 
 export const Rating = withMods<uuiComponents.RatingProps, RatingProps>(
     uuiComponents.Rating,

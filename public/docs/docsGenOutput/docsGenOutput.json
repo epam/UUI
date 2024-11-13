@@ -34931,20 +34931,6 @@
     },
     "props": [
      {
-      "uid": "columns",
-      "name": "columns",
-      "comment": {
-       "raw": [
-        "Columns configuration, can be omitted if used without tables"
-       ]
-      },
-      "typeValue": {
-       "raw": "DataColumnProps<any, any, any>[]"
-      },
-      "from": "@epam/uui-core:UseTableStateHookBaseParams",
-      "required": false
-     },
-     {
       "uid": "filters",
       "name": "filters",
       "comment": {
@@ -39042,7 +39028,7 @@
     "typeValue": {
      "raw": "BaseRatingProps<TValue>",
      "print": [
-      "interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IEditable<TValue>, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
+      "interface BaseRatingProps<TValue> extends IHasCX, IDisableable, IControlled<TValue>, ICanBeReadonly, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
       "    from?: number;",
       "    to?: number;",
       "    /**",
@@ -39143,57 +39129,6 @@
       "required": false
      },
      {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -39223,6 +39158,23 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
      },
      {
       "uid": "rawProps",
@@ -54816,57 +54768,6 @@
       "required": false
      },
      {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -54899,6 +54800,23 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
      },
      {
       "uid": "rawProps",
@@ -91498,6 +91416,446 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:RatingCoreProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RatingCoreProps",
+     "nameFull": "RatingCoreProps"
+    },
+    "src": "uui/components/inputs/Rating.tsx",
+    "comment": {
+     "raw": [
+      "Represents the 'Core properties' for the Rating component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "RatingCoreProps",
+     "print": [
+      "/** Represents the 'Core properties' for the Rating component. */",
+      "type RatingCoreProps = Omit<uuiComponents.RatingProps, 'filledStarIcon' | 'emptyStarIcon' | 'renderRating' | 'from' | 'to'>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: number) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "hideTooltip",
+      "name": "hideTooltip",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": "hint",
+      "name": "hint",
+      "typeValue": {
+       "raw": "(value: number) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": "Tooltip",
+      "name": "Tooltip",
+      "typeValue": {
+       "raw": "React.ComponentClass<TooltipProps, any> | React.FunctionComponent<TooltipProps>"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "@default 1"
+       ],
+       "tags": {
+        "@default": 1
+       }
+      },
+      "typeValue": {
+       "raw": "0.5 | 1"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        0.5,
+        1
+       ]
+      },
+      "from": "@epam/uui-components:BaseRatingProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:RatingModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RatingModsOverride",
+     "nameFull": "RatingModsOverride"
+    },
+    "src": "uui/components/inputs/Rating.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RatingModsOverride",
+     "print": [
+      "interface RatingModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
+  "@epam/uui:RatingProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RatingProps",
+     "nameFull": "RatingProps"
+    },
+    "src": "uui/components/inputs/Rating.tsx",
+    "comment": {
+     "raw": [
+      "Represents the properties for the Rating component."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RatingProps",
+     "print": [
+      "/** Represents the properties for the Rating component. */",
+      "interface RatingProps extends RatingCoreProps, Overwrite<RatingMods, RatingModsOverride> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: number) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "hideTooltip",
+      "name": "hideTooltip",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": "hint",
+      "name": "hint",
+      "typeValue": {
+       "raw": "(value: number) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": "Tooltip",
+      "name": "Tooltip",
+      "typeValue": {
+       "raw": "React.ComponentClass<TooltipProps, any> | React.FunctionComponent<TooltipProps>"
+      },
+      "from": "@epam/uui-components:RatingProps",
+      "required": false
+     },
+     {
+      "uid": "step",
+      "name": "step",
+      "comment": {
+       "raw": [
+        "@default 1"
+       ],
+       "tags": {
+        "@default": 1
+       }
+      },
+      "typeValue": {
+       "raw": "0.5 | 1"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        0.5,
+        1
+       ]
+      },
+      "from": "@epam/uui-components:BaseRatingProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.MutableRefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '18'"
+       ],
+       "tags": {
+        "@default": "18"
+       }
+      },
+      "typeValue": {
+       "raw": "18 | 24 | 30"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        18,
+        24,
+        30
+       ]
+      },
+      "from": "@epam/uui:RatingMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui:RichTextViewModsOverride": {
    "summary": {
     "module": "@epam/uui",
@@ -96632,7 +96990,7 @@
        }
       },
       "typeValue": {
-       "raw": "12 | 24"
+       "raw": "24 | 12"
       },
       "editor": {
        "type": "oneOf",
@@ -96917,7 +97275,7 @@
        }
       },
       "typeValue": {
-       "raw": "12 | 24"
+       "raw": "24 | 12"
       },
       "editor": {
        "type": "oneOf",
@@ -99102,6 +99460,17 @@
      "nameFull": "RangeDatePickerMods"
     },
     "src": "uui/components/datePickers/types.ts",
+    "exported": false
+   }
+  },
+  "@epam/uui:RatingMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "RatingMods",
+     "nameFull": "RatingMods"
+    },
+    "src": "uui/components/inputs/Rating.tsx",
     "exported": false
    }
   },
@@ -102595,57 +102964,6 @@
       "required": false
      },
      {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -102678,6 +102996,23 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
      },
      {
       "uid": "rawProps",
@@ -109183,7 +109518,7 @@
     "src": "loveship/components/inputs/Rating.tsx",
     "comment": {
      "raw": [
-      "Represents the properties for the MultiSwitch component."
+      "Represents the properties for the Rating component."
      ]
     },
     "exported": true
@@ -109193,7 +109528,7 @@
     "typeValue": {
      "raw": "RatingProps",
      "print": [
-      "/** Represents the properties for the MultiSwitch component. */",
+      "/** Represents the properties for the Rating component. */",
       "interface RatingProps extends uuiComponents.RatingProps, RatingMods {",
       "}"
      ]
@@ -109349,57 +109684,6 @@
       "required": false
      },
      {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -109432,6 +109716,23 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
      },
      {
       "uid": "rawProps",

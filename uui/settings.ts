@@ -21,6 +21,7 @@ export const settings: Settings = {
             labeledInput: '36',
             statusIndicator: '24',
             paginator: '30',
+            rating: '18',
         },
         tag: {
             countIndicator: {
