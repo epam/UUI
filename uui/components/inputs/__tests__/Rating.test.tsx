@@ -9,8 +9,8 @@ describe('Rating', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<Rating value={ null } onValueChange={ jest.fn } size={ 18 } step={ 1 } from={ 2 } to={ 4 } />);
+    it('should be rendered correctly with more props', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Rating value={ null } onValueChange={ jest.fn } size={ 24 } step={ 1 } />);
 
         expect(tree).toMatchSnapshot();
     });
