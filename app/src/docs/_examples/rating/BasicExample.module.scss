@@ -8,3 +8,7 @@
         margin-bottom: 12px;
     }
 }
+
+.redFillColor {
+    --uui-rating-icon-filled: var(--uui-critical-50);
+}

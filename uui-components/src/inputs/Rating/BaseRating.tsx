@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
-    cx, IDisableable, IEditable, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef,
+    cx, IDisableable, ICanBeReadonly, IHasCX, uuiMod, IHasRawProps, IHasForwardedRef, IControlled,
 } from '@epam/uui-core';
 import css from './BaseRating.module.scss';
 
 export interface BaseRatingProps<TValue>
     extends IHasCX,
     IDisableable,
-    IEditable<TValue>,
+    IControlled<TValue>,
     ICanBeReadonly,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     IHasForwardedRef<HTMLDivElement> {

@@ -11,6 +11,7 @@
 * [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
 * [TimelineScale]: added bottom/top month text customisation.
 * [TimelineScale]: customisation of today line height was added.
+* [Rating]: added to `@epam/uui`, removed independent components from 'skins', now reexport from `@epam/uui` is used, removed redundant(`filledStarIcon`, `emptyStarIcon`, `renderRating`, `from`, `to`) props for all packages, changed colors for empty & disabled stars for 'Promo' & 'Loveship' skins according [design](https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?node-id=18045-299767), added `icon` prop to have possibility to change default icon
 
 **What's Fixed**
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
