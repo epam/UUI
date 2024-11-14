@@ -91868,6 +91868,24 @@
       },
       "from": "@epam/uui:RatingMods",
       "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Rating icon can be changed according to your needs.",
+        "  Icon can be a React element (usually an SVG element)."
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:RatingMods",
+      "required": false
      }
     ],
     "propsFromUnion": false
