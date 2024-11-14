@@ -22,18 +22,6 @@
         }
     }
 
-    :global(.uui-rating-filled-star-container) {
-        svg {
-            stroke-width: 0.1px;
-        }
-    }
-
-    :global(.uui-rating-filled-star-container) {
-        svg {
-            stroke: var(--uui-rating-icon-filled);
-        }
-    }
-
     // Mods
     &:global(.uui-disabled) {
         :global(.uui-rating-star) {
