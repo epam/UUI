@@ -39,6 +39,11 @@ export function Preset(props: IPresetProps) {
     );
 
     const isPresetActive = props.activePresetId === props.preset.id;
+     
+    const PresetActionsDropdownComponent = useCallback(
+        () => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } />,
+        [props.preset, props.tableState, props.activePresetId],
+    );
 
     return (
         <FlexCell key={ props.preset.id } alignSelf="center" width="auto">
@@ -51,7 +56,7 @@ export function Preset(props: IPresetProps) {
                     cx={ [css.preset, isPresetActive && css.activePreset, UUI_PRESETS_PANEL_PRESET] }
                     size="60"
                     withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
-                    icon={ () => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } /> }
+                    icon={ PresetActionsDropdownComponent }
                     iconPosition="right"
                     isLinkActive={ isPresetActive }
                 />
