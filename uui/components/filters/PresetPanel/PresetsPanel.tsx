@@ -101,7 +101,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
             {
                 id: 'collapsedContainer', render: renderMoreButtonDropdown, priority: 100501, collapsedContainer: true,
             },
-            { id: 'addPreset', render: renderAddPresetButton, priority: 100501 },
+            { id: 'addPreset', render: renderAddPresetButton, priority: 100502 },
         ];
     };
 

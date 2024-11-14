@@ -89,17 +89,23 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                 { isPresetChanged && (
                     <>
                         {!isReadonlyPreset && (
-                            <DropdownMenuButton key={ `${props.preset.id}-save-in-current` } icon={ SaveInCurrentIcon } caption="Save in current" onClick={ saveInCurrentHandler } />
+                            <DropdownMenuButton key={ `${props.preset.id}-save-in-current` } icon={ SaveInCurrentIcon } caption="Save in current" onClick={ () => { dropdownProps.onClose(); saveInCurrentHandler(); } } />
                         )}
-                        <DropdownMenuButton key={ `${props.preset.id}-save-as-new` } icon={ SaveAsNewIcon } caption="Save as new" onClick={ props.addPreset } />
-                        <DropdownMenuButton key={ `${props.preset.id}-discard` } icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ discardAllChangesHandler } />
+                        <DropdownMenuButton
+                            key={ `${props.preset.id}-save-as-new` }
+                            icon={ SaveAsNewIcon }
+                            caption="Save as new"
+                            // We add setTimeout to call addPreset after dropdown will be closed, since dropdown has focus lock, and it broke autofocus on add new preset input
+                            onClick={ () => { dropdownProps.onClose(); setTimeout(() => props.addPreset(), 0); } }
+                        />
+                        <DropdownMenuButton key={ `${props.preset.id}-discard` } icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ () => { dropdownProps.onClose(); discardAllChangesHandler(); } } />
                         <DropdownMenuSplitter key="discard-splitter" />
                     </>
                 )}
                 { isRenameAvailable && (
                     <DropdownMenuButton key={ `${props.preset.id}-rename` } icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset } />
                 )}
-                <DropdownMenuButton key={ `${props.preset.id}-duplicate` } icon={ CopyIcon } caption="Duplicate" onClick={ duplicateHandler } />
+                <DropdownMenuButton key={ `${props.preset.id}-duplicate` } icon={ CopyIcon } caption="Duplicate" onClick={ () => { dropdownProps.onClose(); duplicateHandler(); } } />
                 <DropdownMenuButton key={ `${props.preset.id}-copyLink` } icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard } />
                 {!isReadonlyPreset && (
                     <>

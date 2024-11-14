@@ -17,6 +17,8 @@
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
 * [RTE]: fixed migration of old table element data.cellSizes to the new colSizes format
+* [PresetsPanel]: fixed 'Saved as new' action
+* [PresetsPanel]: Fixed preset actions dropdown close on each rerender
 * [Anchor]: fixed `clickAnalyticsEvent` not being sent when `href` property used
 * [Badge]: fixed `clickAnalyticsEvent` not being sent when `href` property used
 * [Button]: fixed `clickAnalyticsEvent` not being sent when `href` property used
