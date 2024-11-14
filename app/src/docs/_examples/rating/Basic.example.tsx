@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FlexCell } from '@epam/uui';
-import { Rating } from '@epam/promo';
+import { FlexCell, Rating } from '@epam/uui';
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
