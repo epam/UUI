@@ -14,6 +14,7 @@
 **What's Fixed**
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: Added gaps between internal items, changed padding according to design
+  [Badge]: changed gaps & paddings according design, removed padding before first icon & after counter
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
