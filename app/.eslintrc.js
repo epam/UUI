@@ -7,5 +7,6 @@ module.exports = {
         // in the future, this rule will be enabled globally (not only in "app")
         'react-hooks/exhaustive-deps': unifiedSeverity,
         ...turnOffEslintRulesToBeFixed(),
+        'no-restricted-imports': 'off',
     },
 };

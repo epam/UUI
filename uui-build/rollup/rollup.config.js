@@ -6,7 +6,7 @@ const nodeResolve = require('@rollup/plugin-node-resolve');
 const replace = require('@rollup/plugin-replace');
 const { visualizer } = require('rollup-plugin-visualizer');
 
-const postCssDynamicImport = import('rollup-plugin-postcss-modules');
+const postCssDynamicImport = import('rollup-plugin-postcss');
 //
 const { getExternalDeps } = require('./utils/moduleExtDependenciesUtils');
 const { getTsConfigFile } = require('./utils/moduleTsConfigUtils');
@@ -130,6 +130,7 @@ async function createRollupConfigForModule(options) {
                      * https://github.com/webpack/loader-utils/blob/master/lib/getHashDigest.js
                      */
                     generateScopedName: '[hash:base64:6]',
+                    localsConvention: 'camelCase',
                 },
                 autoModules: true,
                 extract: path.resolve(outDir, EXTRACTED_CSS_FILE_NAME),

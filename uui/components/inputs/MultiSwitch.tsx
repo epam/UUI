@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IEditable, IHasRawProps } from '@epam/uui-core';
 import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
-import { SizeMod } from '../types';
+import { ControlSize } from '../types';
 
 type MultiSwitchItem<TValue> = ButtonProps & {
     /**
@@ -20,11 +20,15 @@ type MultiSwitchMods = {
 };
 
 /** Represents the 'Core properties' for the MultiSwitch component. */
-export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & SizeMod & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
+export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
     /**
      * Defines an array of MultiSwitchItems.
      */
     items: MultiSwitchItem<TValue>[];
+    /**
+     * Defines component size.
+     */
+    size?: ControlSize | '60';
 };
 
 /** Represents the properties for the MultiSwitch component. */
@@ -32,15 +36,15 @@ export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & 
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
-        <ControlGroup 
-            ref={ ref } 
-            rawProps={ { 
+        <ControlGroup
+            ref={ ref }
+            rawProps={ {
                 ...props.rawProps,
                 role: 'tablist',
                 'aria-invalid': props.isInvalid,
                 'aria-required': props.isRequired,
                 'aria-disabled': props.isDisabled,
-                'aria-readonly': props.isReadonly, 
+                'aria-readonly': props.isReadonly,
             } }
         >
             {props.items.map((item, index) => (

@@ -1,15 +1,13 @@
 import { useCallback, useRef, useState } from 'react';
 import isEqual from 'react-fast-compare';
 import {
-    ColumnsConfig, DataColumnProps, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
+    ColumnsConfig, DataTableState, FiltersConfig, IEditable, ITablePreset, ITableState, TableFiltersConfig,
 } from '../../types';
 import { getOrderBetween, orderBy } from '../../helpers';
 import { useUuiContext } from '../../services';
 import { stateToQueryObject, getValueFromUrl, normalizeTableStateValue, normalizeFilterConfig } from './utils';
 
 interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState = any> {
-    /** Columns configuration, can be omitted if used without tables */
-    columns?: DataColumnProps[];
     /** Filters configuration, can be omitted if you don't need filters */
     filters?: TableFiltersConfig<TFilter>[];
     /** Initial presets array */
@@ -20,6 +18,8 @@ interface UseTableStateHookBaseParams<TFilter = Record<string, any>, TViewState 
     onPresetUpdate?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
     /** Called when preset was deleted */
     onPresetDelete?(preset: ITablePreset<TFilter, TViewState>): Promise<void>;
+    /** Initial visibleCount table state value */
+    initialVisibleCount?: number;
 }
 
 interface UseTableStateHookImplParams<TFilter = Record<string, any>, TViewState = any> extends UseTableStateHookBaseParams<TFilter, TViewState> {
@@ -196,26 +196,26 @@ export interface UseTableStateHookParams<TFilter = Record<string, any>, TViewSta
     extends UseTableStateHookBaseParams<TFilter, TViewState>, Partial<IEditable<DataTableState<TFilter, TViewState>>> {}
 
 export const useTableState = <TFilter = Record<string, any>, TViewState = any>
-(params: UseTableStateHookParams<TFilter, TViewState>): ITableState<TFilter, TViewState> => {
+(params: UseTableStateHookParams<TFilter, TViewState> = {}): ITableState<TFilter, TViewState> => {
     const context = useUuiContext();
 
-    const externalValue = useRef(params.value);
+    const externalValue = useRef(params?.value);
 
     const [tableStateValue, setTableStateValue] = useState<DataTableState<TFilter, TViewState>>(() => {
         const value = getValueFromUrl(context.uuiRouter.getCurrentLink().query);
-        const activePreset = params.initialPresets?.find((p: ITablePreset<TFilter, TViewState>) => p.id === value.presetId);
+        const activePreset = params?.initialPresets?.find((p: ITablePreset<TFilter, TViewState>) => p.id === value.presetId);
         const filtersConfig = normalizeFilterConfig(activePreset?.filtersConfig, value.filter, params?.filters);
         return {
             ...value,
             filtersConfig,
             topIndex: 0,
-            visibleCount: 40,
+            visibleCount: params?.initialVisibleCount || 40,
         };
     });
 
     const getTableStateValue = () => {
         if (params?.onValueChange) {
-            return params.value;
+            return params?.value;
         }
 
         const valueFromUrl = getValueFromUrl(context.uuiRouter.getCurrentLink().query);
@@ -241,11 +241,11 @@ export const useTableState = <TFilter = Record<string, any>, TViewState = any>
         }
     };
     const onValueChange = useCallback((update: (val: DataTableState<TFilter, TViewState>) => DataTableState<TFilter, TViewState>) => {
-        if (params.onValueChange) {
+        if (params?.onValueChange) {
             const newValue = update(externalValue.current);
             const resultValue = normalizeTableStateValue(newValue, externalValue.current, params.filters);
             externalValue.current = resultValue;
-            params.onValueChange(resultValue);
+            params?.onValueChange(resultValue);
         } else {
             setTableStateValue((currentValue) => {
                 const newValue = update(currentValue);

@@ -66,6 +66,7 @@ export interface TimelineGridProps extends TimelineCanvasProps {
      * Overrides today line color.
      */
     todayLineColor?: string;
+
     /**
      * Overrides weekend cell background color.
      */

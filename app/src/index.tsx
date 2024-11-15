@@ -15,6 +15,8 @@ import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';
 import '@epam/assets/theme/theme_loveship_dark.scss';
 import '@epam/assets/theme/theme_electric.scss';
+import '@epam/assets/theme/theme_eduverse_light.scss';
+import '@epam/assets/theme/theme_eduverse_dark.scss';
 import './index.module.scss';
 
 const router6 = createBrowserRouter([

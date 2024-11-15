@@ -27,7 +27,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
+      className="uui-flex-row root padding-24 vPadding-36 root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -36,12 +36,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
-        style={
-          Object {
-            "--uui-text-font-size": "18px",
-          }
-        }
+        className="uui-modal-title uui-typography"
       >
         Configure columns
       </div>
@@ -246,7 +241,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root rowWrapper container align-items-top"
+                  className="uui-flex-row root uui-size-30 rowWrapper uui-dt-columns-config-row container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
@@ -397,7 +392,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 }
               >
                 <div
-                  className="uui-flex-row root rowWrapper notPinned container align-items-top"
+                  className="uui-flex-row root uui-size-30 rowWrapper notPinned uui-dt-columns-config-row container align-items-top"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}

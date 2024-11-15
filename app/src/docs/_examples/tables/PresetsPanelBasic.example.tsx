@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { uuiDayjs } from '../../../helpers';
+import dayjs from 'dayjs';
 import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import {
     DataTable, Panel, FlexRow, Text, PresetsPanel, Badge, ModalBlocker, ModalWindow, ModalFooter, Button, ScrollBars,
@@ -44,7 +44,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
     }, {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{ uuiDayjs.dayjs(p.birthDate).format('MMM D, YYYY') }</Text>,
+        render: (p) => p?.birthDate && <Text>{ dayjs(p.birthDate).format('MMM D, YYYY') }</Text>,
         width: 140,
         isSortable: true,
     },
@@ -122,7 +122,6 @@ export default function PresetsPanelExample() {
     }, [svc.api.presets, uuiModals]);
 
     const tableStateApi = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
@@ -134,7 +133,7 @@ export default function PresetsPanelExample() {
 
     return (
         <Panel background="surface-main" shadow style={ { height: '400px' } }>
-            <FlexRow padding="12">
+            <FlexRow padding="12" borderBottom>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable

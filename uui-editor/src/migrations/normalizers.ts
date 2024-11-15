@@ -35,7 +35,7 @@ export const normalizeTableCellElement = (editor: PlateEditor<Value>, entry: TNo
     }
 };
 
-/** deprecate data properties */
+/** Migrate data.cellSizes to the colSizes */
 export const normalizeTableElement = (entry: TNodeEntry): TTableElement => {
     const [node] = entry;
     const tableNode = node as DepreactedTTableElement;
@@ -48,7 +48,7 @@ export const normalizeTableElement = (entry: TNodeEntry): TTableElement => {
             return tableNode;
         }
 
-        return { ...tableNode, data: { ...otherData } };
+        return { ...tableNode, colSizes: cellSizes, data: { ...otherData } };
     }
     return tableNode;
 };

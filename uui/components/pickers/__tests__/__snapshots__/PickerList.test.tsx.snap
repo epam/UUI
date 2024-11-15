@@ -155,12 +155,11 @@ exports[`PickerList should open body 1`] = `
         style="width: 600px; height: 700px; max-height: 80dvh;"
       >
         <div
-          class="uui-flex-row root uui-size-36 padding-24 vPadding-12 root modalHeader container align-items-center"
+          class="uui-flex-row root padding-24 vPadding-36 root modalHeader container align-items-center"
           style="column-gap: 12px;"
         >
           <div
-            class="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
-            style="--uui-text-font-size: 18px;"
+            class="uui-modal-title uui-typography"
           >
             Please select 
           </div>
@@ -729,29 +728,7 @@ exports[`PickerList should open body 1`] = `
               aria-live="polite"
               class="container uui-blocker-container root"
               role="status"
-            >
-              <div
-                class="uui-blocker uui-blocker-exit uui-blocker-exit-active"
-              >
-                <div
-                  class="container uui-spinner-container root uui-spinner"
-                >
-                  <div
-                    class="uui-spinner-animation"
-                  >
-                    <div
-                      class="uui-spinner-dot uui-spinner-dot-1"
-                    />
-                    <div
-                      class="uui-spinner-dot uui-spinner-dot-2"
-                    />
-                    <div
-                      class="uui-spinner-dot uui-spinner-dot-3"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+            />
             <div
               class="uui-track-horizontal"
               style="position: absolute; height: 6px; display: none;"

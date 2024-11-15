@@ -143,15 +143,9 @@ jobs:
       - name: Packaging and Uploading Helm Chart
         run: |
           cd ./helmchart
-          # workaround to separate versioning modes for prod and non-prod
-          # temporary solution until we have a single versioning mode
-          # if [[ ${{ github.ref_name}} == "main" ]]; then
-          #   export helm_tag="$GITVERSION_SEMVER"
-          # else
-          #   export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
-          # fi
-          
-          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$GITVERSION_COMMITSSINCEVERSIONSOURCE"
+          # workaround to avoid Helm chart versioning issues
+          current_timestamp=$(date +%s)
+          export helm_tag="$GITVERSION_MAJOR.$GITVERSION_MINOR.$current_timestamp"
           echo "[INFO] ${helm_tag}..."
 
           echo "[INFO] Replace Helm Chart package version..."

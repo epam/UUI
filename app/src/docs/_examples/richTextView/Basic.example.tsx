@@ -1,5 +1,5 @@
 import React from 'react';
-import { Anchor, FlexRow, LabeledInput, LinkButton, Panel, RichTextView, TextInput } from '@epam/uui';
+import { Anchor, FlexRow, LabeledInput, LinkButton, RichTextView, TextInput } from '@epam/uui';
 
 export default function BasicExample() {
     return (
@@ -157,17 +157,8 @@ export default function BasicExample() {
                 <LinkButton caption="SHARE"></LinkButton>
                 <LinkButton caption="ADD"></LinkButton>
             </FlexRow>
-            <h4>{'<Pre>'}</h4>
-            <Panel style={ { background: 'var(--uui-neutral-40)' } }>
-                <pre>
-                    {`import React from 'react';
-import css from './MyComponent.module.css';
-
-export const MyComponent = <div className={ css.myHeader }>`}
-                </pre>
-            </Panel>
             <h4>Text with size 16</h4>
-            <p className="uui-typography-16">
+            <p className="uui-typography-size-16">
                 Lorem ipsum dolor sit amet,
                 {' '}
                 <Anchor href="/">
@@ -181,7 +172,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <code>{'import { Button } from \'@epam/loveship\''}</code>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p className="uui-typography-16">
+            <p className="uui-typography-size-16">
                 Lorem ipsum dolor sit amet,
                 {' '}
                 <Anchor href="/">
@@ -196,7 +187,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
             <h4>Text with size 12</h4>
-            <p className="uui-typography-12">
+            <p className="uui-typography-size-12">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 {' '}
                 <Anchor href="/">
@@ -209,7 +200,7 @@ export const MyComponent = <div className={ css.myHeader }>`}
                 <code>{'import { Button } from \'@epam/loveship\''}</code>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <p className="uui-typography-12">
+            <p className="uui-typography-size-12">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                 {' '}
                 <Anchor href="/">

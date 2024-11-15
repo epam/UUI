@@ -1,0 +1,69 @@
+@mixin uui-6px-grid-eduverse {
+    & {
+        --uui-border-radius: 6px;
+        --uui-tab-line-width: 1px;
+    }
+
+    .uui-button {
+        &.uui-size-30,
+        &.uui-size-36,
+        &.uui-size-42 {
+            --uui-border-width: 2px;
+        }
+
+        &.uui-size-48,
+        &.uui-size-60 {
+            --uui-border-width: 2px;
+            --uui-border-radius: 9px;
+        }
+
+        &.uui-size-60 {
+            --uui-horizontal-padding: 30px;
+        }
+    }
+
+    .uui-tag {
+        &.uui-size-18,
+        &.uui-size-24,
+        &.uui-size-30,
+        &.uui-size-36,
+        &.uui-size-42,
+        &.uui-size-48 {
+            --uui-border-radius: 36px;
+        }
+
+        &.uui-size-18 {
+            --uui-horizontal-padding: 6px;
+        }
+
+        &.uui-size-24 {
+            --uui-horizontal-padding: 6px;
+        }
+
+        &.uui-size-30 {
+            --uui-horizontal-padding: 6px;
+        }
+
+        &.uui-size-36 {
+            --uui-horizontal-padding: 9px;
+        }
+
+        &.uui-size-42 {
+            --uui-horizontal-padding: 12px;
+        }
+
+        &.uui-size-48 {
+            --uui-horizontal-padding: 12px;
+        }
+    }
+
+    .uui-control-group {
+        & > .uui-button {
+            margin-right: -2px !important;
+        }
+    }
+
+    .uui-checkbox {
+        border-radius: 0;
+    }
+}

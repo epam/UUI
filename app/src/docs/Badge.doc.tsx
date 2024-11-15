@@ -103,7 +103,7 @@ export class BadgeDoc extends BaseDocsBlock {
                         iconPosition: { values: ['right'] },
                     },
                 ],
-                cellSize: '175-60',
+                cellSize: '200-60',
             });
         },
     };

@@ -2,7 +2,7 @@
 
 exports[`ControlGroup should be rendered correctly 1`] = `
 <div
-  className="container root"
+  className="container root uui-control-group"
   role="group"
 >
   <button

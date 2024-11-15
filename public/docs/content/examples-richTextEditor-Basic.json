@@ -4,7 +4,7 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Rich Text Editor is a powerful content editor, styled to match UI, and extensible to host any React component."
+        "text": "Rich Text Editor is a powerful content editor, styled to match UUI theme style, and extensible by plugins."
       }
     ]
   },
@@ -13,31 +13,33 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Rich Text Editor is based on Slate.JS — the framework to build such editors. Read more on "
+        "text": "Rich Text Editor is based on "
       },
       {
-        "data": {
-          "url": "https://docs.slatejs.org/"
-        },
+        "data": {},
         "type": "link",
         "url": "https://docs.slatejs.org/",
         "children": [
           {
-            "text": "Slate.JS"
+            "text": "Slate.js"
           }
         ]
       },
       {
-        "text": " documentation site."
-      }
-    ]
-  },
-  {
-    "data": {},
-    "type": "paragraph",
-    "children": [
+        "text": " and "
+      },
       {
-        "text": "UUI RichTextEditor is built on top of Slate to bring UUI styles, add our extensions, panels to interact with, and to wrap them with convenient API."
+        "type": "link",
+        "url": "https://platejs.org/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Plate.js"
+          }
+        ]
+      },
+      {
+        "text": " — the frameworks to build such editors."
       }
     ]
   },
@@ -46,11 +48,27 @@
     "type": "note-error",
     "children": [
       {
-        "text": "It's required to import CCS from the editor package. Please add the following code to your app entry file: \n"
+        "text": "It's required to import CCS from the editor package. Please add the following code to your app entry file: \n\n"
       },
       {
         "text": "import '@epam/uui-editor/styles.css';",
         "uui-richTextEditor-code": true
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Please note that the RTE component is uncontrolled because the UUI RTE is based on Slate.js, which is also an uncontrolled editor. \n\nAlthough the UUI implementation does have limited support for updating the editor's value from the outside, such as in cases where the value changes from empty to a new one (as might occur after loading a state from the backend), we still do not recommend relying on this mechanism and advise avoiding external updates to the editor state. \n\nAs a workaround, you can update the "
+      },
+      {
+        "text": "key",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop on the component to trigger a full remount cycle, ensuring the value is safely updated."
       }
     ]
   }

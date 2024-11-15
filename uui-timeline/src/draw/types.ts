@@ -41,7 +41,9 @@ export interface CanvasDrawRectangleProps extends CanvasDrawLineProps {
 
 export interface CanvasDrawHeaderTodayProps extends CanvasDrawProps {
     scaleBar: ScaleBar;
+    canvasHeight?: number;
     todayLineColor?: string;
+    todayLineHeight?: number;
 }
 
 export interface CanvasDrawTimelineHeaderProps extends CanvasDrawProps {
@@ -120,7 +122,16 @@ export interface CanvasDrawPeriodPartProps extends CanvasDrawTimelineHeaderProps
 
 export interface CanvasDrawPeriodWithTodayProps extends CanvasDrawPeriodPartProps {
     todayLineColor?: string;
+    todayLineHeight: number;
     drawToday?: (props: CanvasDrawHeaderTodayProps) => void;
+}
+
+export interface CanvasDrawBottomMonthProps extends CanvasDrawPeriodWithTodayProps {
+    getBottomMonth?: (month: number) => string;
+}
+
+export interface CanvasDrawTopMonthProps extends CanvasDrawPeriodPartProps {
+    getTopMonth?: (month: number) => string;
 }
 
 export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDrawPeriodWithTodayProps {
@@ -130,6 +141,7 @@ export interface CanvasDrawDaysProps extends CanvasDrawPeriodPartProps, CanvasDr
 
 export interface CanvasDrawTopDaysProps extends CanvasDrawDaysProps, CanvasDrawPeriodWithTodayProps {
     topDayTextColor?: string;
+    getTopMonth?: (month: number) => string;
 }
 
 export interface CanvasScaleRange {

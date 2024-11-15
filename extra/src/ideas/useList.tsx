@@ -111,7 +111,7 @@ function ArrayPlainList() {
 
 // Tree, table state is supplied from useTableState
 function TreeTable() {
-    const tableState = useTableState({ columns });
+    const tableState = useTableState();
 
     const list = useList<MyItem, number>({
         api: testApi,

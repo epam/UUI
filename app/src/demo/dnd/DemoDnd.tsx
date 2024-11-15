@@ -56,7 +56,8 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
     render() {
         const sortedModules = orderBy(this.state.moduleItems, ({ order }) => order);
         const sortedSections = orderBy(this.state.sectionItems, ({ order }) => order);
-        const isDesktop = window.screen?.width >= 1280;
+        const isDesktop = window.document.body.clientWidth >= 1280;
+
         return (
             <FlexRow cx={ css.root } alignItems="stretch">
                 {isDesktop && (
