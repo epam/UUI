@@ -62,7 +62,7 @@ export function AppFooter() {
                         </Anchor>
                     </FlexRow>
                 </FlexCell>
-                <FlexCell cx={ css.secondBlock } width="auto" grow={ 1 } minWidth={ 583 }>
+                <FlexCell cx={ css.secondBlock } width="auto" grow={ 1 } minWidth={ 650 }>
                     <FlexRow columnGap={ 48 } alignItems="top">
                         <FlexCell width="auto">
                             <Text color="white" fontWeight="600" fontSize="18">Have a question?</Text>

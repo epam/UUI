@@ -134,7 +134,7 @@ describe('Clickable', () => {
         expect(mockRedirect).not.toHaveBeenCalled();
     });
 
-    it('calls sendEvent when Clickable is clicked', async () => {
+    it('calls sendEvent when Clickable with onClick is clicked', async () => {
         const mockSendEvent = jest.fn();
         jest.spyOn(React, 'useContext').mockImplementation(
             () => ({
@@ -145,6 +145,42 @@ describe('Clickable', () => {
         );
         await renderWithContextAsync(<Clickable onClick={ jest.fn } clickAnalyticsEvent={ { name: 'click' } } />);
         fireEvent.click(screen.getByRole('button'));
+        expect(mockSendEvent).toHaveBeenCalledTimes(1);
+        expect(mockSendEvent).toHaveBeenCalledWith({ name: 'click' });
+    });
+
+    it('calls sendEvent when Clickable with href is clicked', async () => {
+        const mockSendEvent = jest.fn();
+        jest.spyOn(React, 'useContext').mockImplementation(
+            () => ({
+                uuiAnalytics: {
+                    sendEvent: mockSendEvent,
+                },
+            }),
+        );
+        await renderWithContextAsync(<Clickable href="#" clickAnalyticsEvent={ { name: 'click' } } />);
+        fireEvent.click(screen.getByRole('link'));
+        expect(mockSendEvent).toHaveBeenCalledTimes(1);
+        expect(mockSendEvent).toHaveBeenCalledWith({ name: 'click' });
+    });
+
+    it('calls sendEvent when Clickable with link is clicked', async () => {
+        const pathname = '#';
+        const mockRedirect = jest.fn();
+        const mockSendEvent = jest.fn();
+        const mockCreateHref = jest.fn().mockReturnValue(pathname);
+        jest.spyOn(React, 'useContext').mockImplementation(() => ({
+            uuiRouter: {
+                redirect: mockRedirect,
+                isActive: jest.fn(),
+                createHref: mockCreateHref,
+            },
+            uuiAnalytics: {
+                sendEvent: mockSendEvent,
+            },
+        }));
+        await renderWithContextAsync(<Clickable link={ { pathname } } clickAnalyticsEvent={ { name: 'click' } } />);
+        fireEvent.click(screen.getByRole('link'));
         expect(mockSendEvent).toHaveBeenCalledTimes(1);
         expect(mockSendEvent).toHaveBeenCalledWith({ name: 'click' });
     });

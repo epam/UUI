@@ -25,7 +25,6 @@ export function MasterDetailedTable() {
     const filters = useMemo(() => getFilters<PersonFilters['Person']>(), []);
 
     const tableStateApi = useTableState<PersonTableFilter>({
-        columns: personColumns,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
@@ -41,7 +40,7 @@ export function MasterDetailedTable() {
     );
 
     const pin = useCallback(
-        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) => 
+        ({ value: { __typename } }: DataRowProps<PersonTableRecord, PersonTableRecordId[]>) =>
             __typename !== 'Person',
         [],
     );

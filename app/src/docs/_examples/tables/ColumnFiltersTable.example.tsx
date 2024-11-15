@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { uuiDayjs } from '../../../helpers';
+import dayjs from 'dayjs';
 import { DataColumnProps, useLazyDataSource, useUuiContext, TableFiltersConfig, LazyDataSource, useTableState, DataTableState, getSeparatedValue } from '@epam/uui-core';
 import { Text, DataTable, Panel, FlexRow, Badge, BadgeProps } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
@@ -47,19 +47,19 @@ const personColumns: DataColumnProps<Person, number>[] = [
     }, {
         key: 'birthDate',
         caption: 'Birth date',
-        render: (p) => p?.birthDate && <Text>{uuiDayjs.dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.birthDate && <Text>{dayjs(p.birthDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     }, {
         key: 'hireDate',
         caption: 'Hire date',
-        render: (p) => p?.hireDate && <Text>{uuiDayjs.dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
+        render: (p) => p?.hireDate && <Text>{dayjs(p.hireDate).format('MMM D, YYYY')}</Text>,
         width: 120,
         isSortable: true,
     },
 ];
 
-export default function ColumnsConfigurationDataTableExample() {
+export default function ColumnFiltersTableExample() {
     const { api } = useUuiContext();
 
     const filtersConfig = useMemo<TableFiltersConfig<Person>[]>(
@@ -99,7 +99,6 @@ export default function ColumnsConfigurationDataTableExample() {
     const [value, onValueChange] = useState<DataTableState>({});
 
     const { tableState, setTableState } = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         value: value,
         onValueChange: onValueChange,

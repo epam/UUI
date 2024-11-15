@@ -85,7 +85,8 @@
         text-decoration: underline;
 
         &:focus-visible {
-            @include focus-visible-effect(2px, 2px);
+            @include focus-visible-effect(2px);
+            border-radius: var(--uui-focus-radius);
         }
 
         &:visited {

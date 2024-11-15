@@ -57,7 +57,7 @@ export class TagDoc extends BaseDocsBlock {
                     isDropdown: { examples: '*' },
                     onClear: { examples: ['callback', undefined] },
                 },
-                cellSize: '180-60',
+                cellSize: '210-60',
             });
             docPreview.add({
                 id: TTagPreview['Color Variants'],
@@ -70,7 +70,7 @@ export class TagDoc extends BaseDocsBlock {
                     fill: { examples: '*' },
                     isDisabled: { examples: '*' },
                 },
-                cellSize: '130-60',
+                cellSize: '140-60',
             });
         },
     };

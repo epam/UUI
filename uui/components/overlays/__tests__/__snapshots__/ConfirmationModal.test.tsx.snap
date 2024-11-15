@@ -27,7 +27,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
+      className="uui-flex-row root padding-24 vPadding-36 borderBottom root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -36,12 +36,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       }
     >
       <div
-        className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
-        style={
-          Object {
-            "--uui-text-font-size": "18px",
-          }
-        }
+        className="uui-modal-title uui-typography"
       >
         Test
       </div>
@@ -209,7 +204,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     }
   >
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-12 borderBottom root modalHeader container align-items-center"
+      className="uui-flex-row root padding-24 vPadding-36 borderBottom root modalHeader container align-items-center"
       style={
         Object {
           "columnGap": "12px",
@@ -218,12 +213,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       }
     >
       <div
-        className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-600 uui-font-style-normal uui-typography container"
-        style={
-          Object {
-            "--uui-text-font-size": "18px",
-          }
-        }
+        className="uui-modal-title uui-typography"
       >
         Test
       </div>

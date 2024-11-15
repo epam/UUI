@@ -91,7 +91,7 @@ describe('ApiContext', () => {
             'POST',
             testData,
         );
-        await delay(100);
+        await delay();
 
         const call = context.getActiveCalls()[0];
         expect(call.status).toEqual('scheduled');
@@ -116,7 +116,7 @@ describe('ApiContext', () => {
                 errorHandling: 'manual',
             },
         );
-        await delay(100);
+        await delay();
 
         const call = context.getActiveCalls()[0];
         expect(call.status).toEqual('scheduled');
@@ -140,7 +140,7 @@ describe('ApiContext', () => {
             'POST',
             testData,
         );
-        await delay(100);
+        await delay();
 
         const call = context.getActiveCalls()[0];
         expect(call.status).toEqual('scheduled');
@@ -166,7 +166,7 @@ describe('ApiContext', () => {
                 errorHandling: 'manual',
             },
         );
-        await delay(100);
+        await delay();
 
         const call = context.getActiveCalls()[0];
         expect(call.status).toEqual('scheduled');
@@ -426,5 +426,88 @@ describe('ApiContext', () => {
                 credentials: 'include',
             },
         );
+    });
+
+    it('should be able to cancel calls during fetch() stage', async () => {
+        const fetchMock = (url, rq: RequestInit) => {
+            return new Promise((resolve, reject) => {
+                rq.signal!.addEventListener('abort', () => {
+                    reject(new DOMException('Aborted', 'AbortError'));
+                });
+            });
+        };
+
+        global.fetch = fetchMock as any;
+
+        const abortController = new AbortController();
+
+        context.processRequest<TestData>(
+            'path',
+            'POST',
+            testData,
+            {
+                fetchOptions: {
+                    signal: abortController.signal,
+                },
+            },
+        );
+
+        await delay(1);
+
+        abortController.abort();
+
+        await delay(1);
+
+        const calls = context.getActiveCalls();
+        expect(calls.length).toEqual(0);
+
+        // If you get a promise, you expect it to be either resolved or rejected.
+        // Unfortunately, our API doesn't do either historically, as error is handled in ApiContext
+        // We need to rethink this somehow later.
+        // await expect(apiPromise).rejects.toHaveAttribute('name', 'AbortError');
+    });
+
+    it('should be able to cancel calls during json() stage', async () => {
+        const fetchMock = (url, rq: RequestInit) => {
+            return Promise.resolve({
+                ok: true,
+                json: () => {
+                    return new Promise((resolve, reject) => {
+                        rq.signal!.addEventListener('abort', () => {
+                            reject(new DOMException('Aborted', 'AbortError'));
+                        });
+                    });
+                },
+            });
+        };
+
+        global.fetch = fetchMock as any;
+
+        const abortController = new AbortController();
+
+        context.processRequest<TestData>(
+            'path',
+            'POST',
+            testData,
+            {
+                fetchOptions: {
+                    signal: abortController.signal,
+                },
+            },
+        );
+
+        await delay(1);
+
+        abortController.abort();
+
+        await delay(1);
+
+        const calls = context.getActiveCalls();
+        expect(calls.length).toEqual(0);
+
+        // If you get a promise, you expect it to be either resolved or rejected.
+        // Unfortunately, our API doesn't do either historically, as error is handled in ApiContext
+        // We need to rethink this somehow later.
+        // await expect(apiPromise).rejects.toHaveAttribute('name', 'AbortError');
     });
 });

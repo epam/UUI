@@ -1,12 +1,4 @@
-@use '~@epam/assets/theme/theme_promo' as *;
-
 .panel {
     display: flex;
     width: 100%;
-
-    &.uui-theme-promo {
-        :global {
-            @include theme-promo();
-        }
-    }
 }
