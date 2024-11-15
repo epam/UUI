@@ -1,4 +1,4 @@
-# 5.*.* - **.**.2024
+# 5.11.0 - 15.11.2024
 
 **What's New**
 * [FlexRow][Breaking Change]: Only for `@epam/loveship` package. Now spacing default value works based on `columnGap` props. It shouldn't affect general cases, but previous spacing implementation require additional hack when it was needed to add negative margin value for container to remove corner paddings in multiline case. Now this hack should be removed, since `columnGap` implementation doesn't produce such bug for multiline.
@@ -6,28 +6,22 @@
 * [useTableSate]: added `initialVisibleCount` prop
 * [Button]: added size `60` to props
 * [MultiSwitch]: added size `60` to props
-* [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
-* [Tag]: changed layout - added gaps between internal items, changed padding
 * [Data Sources]: cursor-based pagination support. More details [here](http://uui.epam.com/documents?id=dataSources-lazy-dataSource&mode=doc&category=dataSources&theme=loveship#using_cursor-based_pagination)
 * [TimelineScale]: added bottom/top month text customisation.
 * [TimelineScale]: customisation of today line height was added.
-* [Rating]: added to `@epam/uui`, removed independent components from 'skins', now reexport from `@epam/uui` is used, removed redundant(`filledStarIcon`, `emptyStarIcon`, `renderRating`, `from`, `to`) props for all packages, changed colors for empty & disabled stars for 'Promo' & 'Loveship' skins according [design](https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?node-id=18045-299767), added `icon` prop to have possibility to change default icon
+* [Rating]: added to `@epam/uui`, skin packages now use `@epam/uui` implementation. Removed redundant(`filledStarIcon`, `emptyStarIcon`, `renderRating`, `from`, `to`) props for all packages, changed colors for empty & disabled stars for 'Promo' & 'Loveship' skins according [design](https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?node-id=18045-299767), added `icon` prop to have possibility to change default icon.
 
 **What's Fixed**
+* [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
+* [Tag]: Added gaps between internal items, changed padding according to design
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
 * [RTE]: fixed migration of old table element data.cellSizes to the new colSizes format
 * [PresetsPanel]: fixed 'Saved as new' action
 * [PresetsPanel]: Fixed preset actions dropdown close on each rerender
-* [Anchor]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [Badge]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [Button]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [LinkButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [IconButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [MainMenuButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [TabButton]: fixed `clickAnalyticsEvent` not being sent when `href` property used
-* [Tag]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [Anchor, Badge, Button, LinkButton, IconButton, MainMenuButton, TabButton, Tag]: fixed `clickAnalyticsEvent` not being sent when `href` property used
+* [ApiContext]: handle aborts during response read/parse phase (.json() and alike)
 
 # 5.10.2 - 24.10.2024
 
