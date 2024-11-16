@@ -313,4 +313,15 @@
             --uui-vertical-padding: 3px;
         }
     }
+
+    .uui-alert {
+        &.uui-size-36 {
+            --uui-alert-indicator-border-width: 3px;
+            --uui-alert-gap-h: 12px;
+            --uui-alert-gap-v: 3px;
+            --uui-alert-padding-h: 9px;
+            --uui-alert-padding-v: 3px;
+            --uui-alert-caption-gap-h: 9px;
+        }
+    }
 }

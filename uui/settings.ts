@@ -3,6 +3,7 @@ import type { Settings } from './settings.types';
 export const settings: Settings = {
     sizes: {
         defaults: {
+            alert: '48',
             badge: '36',
             button: '36',
             checkbox: '18',
@@ -22,6 +23,12 @@ export const settings: Settings = {
             statusIndicator: '24',
             paginator: '30',
             rating: '18',
+        },
+        alert: {
+            action: {
+                36: '24',
+                48: '30',
+            },
         },
         tag: {
             countIndicator: {
