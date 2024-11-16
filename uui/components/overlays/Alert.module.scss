@@ -5,79 +5,99 @@
     --uui-alert-bg: var(--uui-color-10);
     --uui-alert-border: var(--uui-color-50);
     --uui-alert-icon: var(--uui-color-50);
+
+    //--uui-alert-font: var(--uui-font);
+    //--uui-alert-font-weight: var(--uui-font-weight, 400);
+
+    --uui-alert-min-height: var(--uui-size);
+    --uui-alert-min-width: 170px; // TODO: need clarify
     --uui-alert-border-radius: var(--uui-border-radius);
+    --uui-alert-border-width: 0px;
+    --uui-alert-indicator-border-width: 6px;
+    --uui-alert-gap-h: 12px;
+    --uui-alert-gap-v: 0px;
+    --uui-alert-padding-h: 18px;
+    --uui-alert-padding-v: 9px;
+    --uui-alert-caption-gap-h: 12px;
+    --uui-alert-icon-size: var(--uui-icon-size);
+    //--uui-alert-line-height: var(--uui-line-height);
+    //--uui-alert-font-size: var(--uui-font-size);
+
     //
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: var(--uui-alert-border-radius);
     background-color: var(--uui-alert-bg);
-    border-left: 6px solid var(--uui-alert-border);
+    border-width: var(--uui-alert-border-width);
+    border-inline-start: var(--uui-alert-indicator-border-width) solid var(--uui-alert-border);
+    padding-inline-start: calc(var(--uui-alert-padding-h) - var(--uui-alert-indicator-border-width));
+    padding-inline-end: var(--uui-alert-padding-h);
+    padding-top: var(--uui-alert-padding-v);
+    padding-bottom: var(--uui-alert-padding-v);
+    min-height: var(--uui-alert-min-height);
+    min-width: var(--uui-alert-min-width);
+
+    .main-path {
+        width: 100%;
+        display: flex;
+        column-gap: var(--uui-alert-gap-h);
+    }
+
+    .content-wrapper {
+        display: flex;
+        column-gap: var(--uui-alert-caption-gap-h);
+        width: 100%;
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: var(--uui-alert-gap-h);
+        row-gap: var(--uui-alert-gap-v);
+        width: 100%;
+        //font-family: var(--uui-alert-font);
+        //font-weight: var(--uui-alert-font-weight);
+        //line-height: var(--uui-alert-line-height);
+        //font-size: var(--uui-alert-font-size);
+    }
+
+    .action-wrapper {
+        display: flex;
+        align-items: center;
+        column-gap: var(--uui-alert-gap-h);
+    }
 
     :global(.uui-text) {
         color: var(--uui-alert-text);
     }
 
+    svg {
+        height: var(--uui-alert-icon-size);
+        width: inherit;
+    }
+
     .icon-wrapper {
+        height: 100%;
+
         :global(.uui-icon) {
             fill: var(--uui-alert-icon);
         }
     }
+
+    .icon {
+        min-height: calc(var(--uui-alert-min-height) - (2 * var(--uui-alert-padding-v)) - (2 * var(--uui-alert-border-width)));
+    }
+
+    .close-icon {
+        min-height: calc(var(--uui-alert-min-height) - (2 * var(--uui-alert-padding-v)) - (2 * var(--uui-alert-border-width)));
+        min-width: fit-content;
+        align-self: flex-start;
+    }
 }
 
-.alert-wrapper {
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    min-width: 170px;
-    border-radius: var(--uui-alert-border-radius);
-}
 
-.size-48 {
-    padding: 9px 18px 9px 12px;
-    min-height: 48px;
 
-    @include scalable-icon-size(48);
-}
-
-.size-36 {
-    padding: 3px 9px;
-    min-height: 36px;
-    border-left-width: 3px;
-
-    @include scalable-icon-size(36);
-}
-
-.icon-wrapper {
-    height: 100%;
-    margin-inline-end: 12px;
-}
-
-.action-wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.action-icon {
-    min-height: 30px;
-}
-
-.action-link:not(:last-child) {
-    margin-inline-end: 12px;
-}
-
-.close-icon {
-    margin-inline-start: 17px;
-    min-height: 30px;
-    min-width: fit-content;
-    align-self: flex-start;
-}
-
-.main-path {
-    width: 100%;
-    display: flex;
-}
-
-.content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-}

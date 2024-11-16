@@ -1,6 +1,11 @@
 # 5.*.* - **.**.2024
 
 **What's New**
+* [Alert]: Added support for size theming
+
+# 5.*.* - **.**.2024
+
+**What's New**
 * [FlexRow][Breaking Change]: Only for `@epam/loveship` package. Now spacing default value works based on `columnGap` props. It shouldn't affect general cases, but previous spacing implementation require additional hack when it was needed to add negative margin value for container to remove corner paddings in multiline case. Now this hack should be removed, since `columnGap` implementation doesn't produce such bug for multiline.
 * [useTableState][Breaking Change]: columns prop is removed, since it's not needed now. Just remove it from `useTableState` provided props.
 * [useTableSate]: added `initialVisibleCount` prop

@@ -1,4 +1,5 @@
 interface DefaultSizes {
+    alert: string;
     badge: string;
     button: string;
     checkbox: string;
@@ -33,6 +34,10 @@ interface TextSize {
 
 interface UppercaseTextSize {
     uppercase: string;
+}
+
+interface AlertSizes {
+    action: Sizes;
 }
 
 interface TagSizes {
@@ -235,6 +240,7 @@ interface ModalSizes {
 
 interface SizesSettings {
     defaults: DefaultSizes;
+    alert: AlertSizes;
     tag: TagSizes;
     pickerInput: PickerInputSizes;
     rowAddons: RowAddonsSizes;
