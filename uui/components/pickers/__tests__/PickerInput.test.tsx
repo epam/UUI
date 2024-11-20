@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource, CascadeSelection } from '@epam/uui-core';
+import { ArrayDataSource, CascadeSelection, LazyDataSource } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
     delayAct,
@@ -1411,13 +1411,13 @@ describe('PickerInput', () => {
         console.error = prevConsoleError;
     });
 
-    it('should render message in body for not enough chars in search while using minCharsToSearch', async () => {
-        const mockEmptyDS = new ArrayDataSource<TestItemType, number, any>({
-            items: [],
+    it('should not load items while search less than minCharsToSearch', async () => {
+        const apiMock = jest.fn().mockResolvedValue([]);
+
+        const mockEmptyDS = new LazyDataSource<TestItemType, number, any>({
+            api: apiMock,
             getId: ({ id }) => id,
         });
-
-        const customText = 'Custom Text or Component';
 
         const { dom } = await setupPickerInputForTest({
             value: undefined,
@@ -1425,11 +1425,6 @@ describe('PickerInput', () => {
             minCharsToSearch: 3,
             searchPosition: 'body',
             dataSource: mockEmptyDS,
-            renderNotFound: () => (
-                <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': 'test-custom-not-found' } }>
-                    <Text>{customText}</Text>
-                </FlexCell>
-            ),
             getSearchFields: (item) => [item!.level],
         });
 
@@ -1443,6 +1438,24 @@ describe('PickerInput', () => {
             const notFound = within(await screen.findByRole('dialog'));
             expect(notFound.getByText('Type search to load items')).toBeInTheDocument();
         });
+
+        expect(apiMock).toBeCalledTimes(0);
+
+        const bodyInput = within(dialog).getByPlaceholderText('Search');
+
+        jest.useFakeTimers();
+        fireEvent.change(bodyInput, { target: { value: '1234' } });
+        act(() => {
+            jest.runAllTimers();
+        });
+        jest.useRealTimers();
+
+        await waitFor(async () => {
+            const notFound = within(await screen.findByRole('dialog'));
+            expect(notFound.getByText('No records found')).toBeInTheDocument();
+        });
+
+        expect(apiMock).toBeCalledTimes(1);
     });
 
     it('should render custom renderEmpty', async () => {
