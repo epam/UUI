@@ -15,6 +15,7 @@ import { Resizable, ResizeHandle } from '../../implementation/Resizable';
 import { PlateImgAlign, TImageElement } from './types';
 import { Caption, CaptionTextarea } from '@udecode/plate-caption';
 import { ResizableProvider } from '@udecode/plate-resizable';
+import { useForceUpdate } from '@epam/uui-core';
 
 interface ImageElementProps extends PlateElementProps<Value, TImageElement> {
     align?: PlateImgAlign;
@@ -28,6 +29,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
     align,
     ...props
 }: ImageElementProps) => {
+    const forceUpdate = useForceUpdate();
     const { children, nodeProps } = props;
 
     const focused = useFocused();
@@ -80,6 +82,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
                             visible && css.selectedImage, // for mobile
                             nodeProps?.className,
                         ) }
+                        onLoad={ () => forceUpdate() }
                     />
                     {!readOnly && (
                         <ResizeHandle

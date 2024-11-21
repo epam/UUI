@@ -4,6 +4,7 @@
 
 **What's Fixed**
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body.
+* [RTE]: fixed image caption not being visible when RTE initially in readonly mode
 
 # 5.11.0 - 15.11.2024
 
