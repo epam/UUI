@@ -264,7 +264,6 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && this.isOpened()) {
             // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
             setTimeout(() => this.handleOpenedChange(false), 0);
-            return null;
         }
 
         // @ts-ignore
