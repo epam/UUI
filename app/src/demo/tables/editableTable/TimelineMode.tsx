@@ -31,7 +31,6 @@ export function TimelineMode({
             value={ tableState }
             onValueChange={ setTableState }
             dataTableFocusManager={ dataTableFocusManager }
-            showColumnsConfig
             allowColumnsResizing
             allowColumnsReordering
             headerSize="60"
