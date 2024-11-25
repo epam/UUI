@@ -12,7 +12,7 @@ import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
     const [value, onValueChange] = useState('on');
-    const [userType, userTypeOnValueChange] = useState(2);
+    const [userType, userTypeOnValueChange] = useState();
     const [view, setView] = useState(1);
     const [filter, setFilter] = useState(2);
 
