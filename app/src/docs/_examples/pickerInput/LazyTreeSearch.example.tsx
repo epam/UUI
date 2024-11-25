@@ -19,6 +19,7 @@ export default function LazyTreeSearch() {
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
+            selectAll: false,
         },
         [],
     );
@@ -42,6 +43,7 @@ export default function LazyTreeSearch() {
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
+            selectAll: false,
         },
         [],
     );
