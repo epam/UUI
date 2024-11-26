@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { i18n as uuiI18n } from '@epam/uui-core';
 
 const TREE_SHAKEABLE_INIT = () => ({
@@ -153,6 +154,7 @@ const TREE_SHAKEABLE_INIT = () => ({
                 subtitle: 'We are trying to recover. Please wait.',
             },
         },
+        supportLink: undefined as ReactNode,
     },
 });
 

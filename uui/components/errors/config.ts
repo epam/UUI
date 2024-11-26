@@ -26,17 +26,20 @@ export const getErrorPageConfig = () => ({
         mobileImageUrl: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages-illustrations/L_Error_500_Monochrome.svg',
         title: i18n.errorHandler.errorPageConfig.serverError.title,
         subtitle: i18n.errorHandler.errorPageConfig.serverError.subtitle,
+        supportLink: i18n.errorHandler.supportLink,
     },
     serviceUnavailable: {
         imageUrl: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages-illustrations/L_Error_503_Monochrome.svg',
         mobileImageUrl: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages-illustrations/L_Error_503_Monochrome.svg',
         title: i18n.errorHandler.errorPageConfig.serviceUnavailable.title,
         subtitle: i18n.errorHandler.errorPageConfig.serviceUnavailable.subtitle,
+        supportLink: i18n.errorHandler.supportLink,
     },
     default: {
         imageUrl: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages-illustrations/L_Empty_Monochrome.svg',
         mobileImageUrl: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/error-pages-illustrations/L_Empty_Monochrome.svg',
         title: i18n.errorHandler.errorPageConfig.default.title,
         subtitle: i18n.errorHandler.errorPageConfig.default.subtitle,
+        supportLink: i18n.errorHandler.supportLink,
     },
 });
