@@ -12,10 +12,9 @@ export enum TTheme {
     electric = 'electric',
     loveship = 'loveship',
     loveship_dark = 'loveship_dark',
-    promo = 'promo',
-    vanilla_thunder = 'vanilla_thunder',
-    eduverse_light = 'eduverse_light',
-    eduverse_dark = 'eduverse_dark'
+    promo = 'promo'
+    // eduverse_light = 'eduverse_light',
+    // eduverse_dark = 'eduverse_dark'
 }
 
 export interface DocExamplePageParams {
