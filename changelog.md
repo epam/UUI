@@ -1,6 +1,7 @@
 # 5.xx.xx - xx.xx.2024
 
 **What's New**
+* [Alert]: Added support for size theming
 * [ErrorPage]: Added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
 
 **What's Fixed**
@@ -9,11 +10,6 @@
 * [DatePicker]: fixed body close if date picker input scrolled out from view
 
 # 5.11.0 - 15.11.2024
-
-**What's New**
-* [Alert]: Added support for size theming
-
-# 5.*.* - **.**.2024
 
 **What's New**
 * [FlexRow][Breaking Change]: Only for `@epam/loveship` package. Now spacing default value works based on `columnGap` props. It shouldn't affect general cases, but previous spacing implementation require additional hack when it was needed to add negative margin value for container to remove corner paddings in multiline case. Now this hack should be removed, since `columnGap` implementation doesn't produce such bug for multiline.
