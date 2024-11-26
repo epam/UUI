@@ -3,6 +3,7 @@ import type { Settings } from './settings.types';
 export const settings: Settings = {
     sizes: {
         defaults: {
+            alert: '48',
             badge: '36',
             button: '36',
             checkbox: '18',
@@ -22,6 +23,12 @@ export const settings: Settings = {
             statusIndicator: '24',
             paginator: '30',
             rating: '18',
+        },
+        alert: {
+            action: {
+                36: '24',
+                48: '30',
+            },
         },
         tag: {
             countIndicator: {
@@ -220,6 +227,25 @@ export const settings: Settings = {
                             36: '18',
                             48: '18',
                             60: '18',
+                        },
+                        columnCaption: {
+                            fontSize: '14',
+                            fontWeight: '400',
+                            size: '18',
+                            uppercase: '12',
+                        },
+                        iconSize: {
+                            36: '18',
+                            48: '18',
+                            60: '18',
+                        },
+                        truncate: ['48'],
+                    },
+                    groupCell: {
+                        defaults: {
+                            size: '36',
+                            padding: '12',
+                            paddingEdge: '24',
                         },
                         columnCaption: {
                             fontSize: '14',

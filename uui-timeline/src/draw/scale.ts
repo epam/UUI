@@ -16,6 +16,7 @@ import {
     CanvasDrawWeekendHoursCell,
     CanvasDrawBottomMonthProps,
     CanvasDrawTopMonthProps,
+    CanvasDrawProps,
 } from './types';
 
 const defaultFonts = {
@@ -41,12 +42,9 @@ const defaultWidth = {
     todayLineHeight: 4,
 };
 
-const moveAmount = 0.7;
-const topLineMoveAmount = 0.8;
-
 const isCurrentPeriod = (leftDate: Date, rightDate: Date) => new Date() >= leftDate && new Date() <= rightDate;
 
-const getCanvasVerticalCenter = (canvasHeight: number) => canvasHeight / 2 - 1;
+const getCanvasVerticalCenter = (canvasHeight: number) => canvasHeight / 2;
 const getBottomCellY = (canvasHeight: number) => getCanvasVerticalCenter(canvasHeight);
 const getTopMonth = (month: number) => months[month]?.toUpperCase() ?? '';
 const getBottomMonth = (month: number) => months[month] ?? '';
@@ -130,6 +128,21 @@ const drawPeriod = (
     context.restore();
 };
 
+const calculateTextLine = ({
+    context,
+    text,
+    canvasHeight,
+    line,
+}: CanvasDrawProps & { canvasHeight: number, line: number, text: string }) => {
+    const { actualBoundingBoxAscent, actualBoundingBoxDescent } = context.measureText(text);
+    const headerTextHeight = Math.abs(actualBoundingBoxAscent) + Math.abs(actualBoundingBoxDescent);
+
+    const lineHeight = canvasHeight / 2;
+    const textCenter = lineHeight / 2;
+    const baseTextLine = textCenter + headerTextHeight / 2;
+    return baseTextLine + lineHeight * (line - 1);
+};
+
 const drawPeriodText = ({
     context,
     timelineTransform,
@@ -137,6 +150,7 @@ const drawPeriodText = ({
     x,
     width,
     line,
+    canvasHeight,
     isCurPeriod,
     textColor = defaultColors.periodTextColor,
     superscript,
@@ -148,7 +162,8 @@ const drawPeriodText = ({
     context.fillStyle = textColor;
 
     const padding = 12;
-    const headerTextWidth = context.measureText(text).width;
+    const { width: headerTextWidth } = context.measureText(text);
+
     const textWidth = headerTextWidth + padding * 2;
     const center = x + width / 2;
     let left = center - textWidth / 2;
@@ -175,16 +190,19 @@ const drawPeriodText = ({
         }
     }
 
-    context.fillText(text, left + padding, line * 24);
+    const textLine = calculateTextLine({ context, text, canvasHeight, line });
+
+    context.fillText(text, left + padding, textLine);
 
     if (superscript) {
         context.font = meridiemFont;
-        context.fillText(superscript, left + padding + headerTextWidth + (text.length === 1 ? 3 : 4), line * 24);
+        const superscriptTextLine = calculateTextLine({ context, text: superscript, canvasHeight, line });
+        context.fillText(superscript, left + padding + headerTextWidth + (text.length === 1 ? 3 : 4), superscriptTextLine);
     }
 };
 
-const getBottomLine = (visibility: number) => 2 + (1 - visibility) * moveAmount;
-const getTopLine = (visibility: number) => visibility * topLineMoveAmount;
+const getBottomLine = (visibility: number) => 2 + (1 - visibility) * 1;
+const getTopLine = (visibility: number) => visibility * 1;
 
 const drawMinutes = ({
     context,
@@ -214,6 +232,7 @@ const drawMinutes = ({
             line: getBottomLine(visibility),
             isCurPeriod,
             textColor: periodTextColor,
+            canvasHeight,
             ...restProps,
         });
         drawBottomGridLine({ context, canvasHeight, scaleBar: w, width: cellBorderWidth, color: cellBorderColor });
@@ -333,6 +352,7 @@ const drawRemainingHours = ({
                 isCurPeriod,
                 textColor: periodTextColor,
                 superscript,
+                canvasHeight,
                 ...restProps,
             });
         });
@@ -375,6 +395,7 @@ const drawHours = ({
                 isCurPeriod,
                 textColor: periodTextColor,
                 superscript,
+                canvasHeight,
                 ...restProps,
             });
         });
@@ -427,6 +448,7 @@ const drawTopDays = ({
             line: getTopLine(visibility),
             isCurPeriod,
             textColor,
+            canvasHeight,
             ...restProps,
         });
         (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor, todayLineHeight, canvasHeight });
@@ -471,6 +493,7 @@ const drawDays = ({
             width: w.right - w.left,
             line: getBottomLine(visibility),
             isCurPeriod,
+            canvasHeight,
             ...restProps,
         });
     });
@@ -508,6 +531,7 @@ const drawTopMonths = ({
             line: getTopLine(visibility),
             isCurPeriod,
             textColor: periodTextColor,
+            canvasHeight,
             ...restProps,
         });
     });
@@ -544,6 +568,7 @@ const drawWeeks = ({
             line: getBottomLine(visibility),
             isCurPeriod,
             textColor: periodTextColor,
+            canvasHeight,
             ...restProps,
         });
     });
@@ -578,6 +603,7 @@ const drawBottomMonths = ({
             line: getBottomLine(visibility),
             isCurPeriod,
             textColor: periodTextColor,
+            canvasHeight,
             ...restProps,
         });
         (customDrawToday ?? drawToday)({ context, scaleBar: w, todayLineColor, todayLineHeight, canvasHeight });
@@ -605,8 +631,13 @@ const drawYears = ({
     timelineTransform.getVisibleYears().forEach((w) => {
         const text = w.leftDate.getFullYear().toString().toUpperCase();
         const isCurPeriod = isCurrentPeriod(w.leftDate, w.rightDate);
-        const textMoveAmount = isBottom ? moveAmount : topLineMoveAmount;
-        const line = (visibility + isBottom) * textMoveAmount;
+
+        const bottomAnimationThreshold = 0.4;
+        const bottomTextMoveMount = 0.74;
+        const textMoveAmount = isBottom > bottomAnimationThreshold ? bottomTextMoveMount : 1;
+        let line = (visibility + isBottom) * textMoveAmount;
+        line = isBottom < bottomAnimationThreshold ? Math.min(line, 1) : line;
+
         if (isBottom) {
             const y = canvasHeight;
             timelinePrimitives.drawHorizontalLine({ context, x1: w.left, x2: w.right + 1, y: y - 1, color: cellBorderColor, width: cellBorderWidth });
@@ -631,6 +662,7 @@ const drawYears = ({
             line,
             isCurPeriod,
             textColor: periodTextColor,
+            canvasHeight,
             ...restProps,
         });
     });
