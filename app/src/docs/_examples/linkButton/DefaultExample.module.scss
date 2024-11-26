@@ -1,19 +1,16 @@
 .wrapper {
     background-color: var(--uui-surface-main);
-    display: flex;
     flex: 1 1 100%;
-    padding: 12px;
 }
 
 .components {
-    row-gap: 12px;
-    align-items: flex-end;
-    margin-right: 12px;
+    row-gap: 6px;
     min-width: 120px;
+    overflow: unset;
 }
 
-.descriptions {
-    row-gap: 12px;
-    align-items: flex-start;
-    max-width: 533px;
+.link {
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
 }

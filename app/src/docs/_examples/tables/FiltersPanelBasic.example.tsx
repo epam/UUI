@@ -152,7 +152,6 @@ export default function FiltersPanelExample() {
     );
 
     const { tableState, setTableState } = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
     });
 

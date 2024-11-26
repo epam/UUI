@@ -748,9 +748,11 @@ Array [
       },
     ],
     "colSizes": Array [
+      130,
       200,
       200,
-      200,
+      183,
+      161,
     ],
     "data": Object {},
     "type": "table",

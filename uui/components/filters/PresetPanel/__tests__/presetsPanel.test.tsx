@@ -326,7 +326,7 @@ describe('PresetsPanel', () => {
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save as new');
-        const presetInput = screen.queryByRole('textbox');
+        const presetInput = await screen.findByRole('textbox');
         expect(presetInput).toBeInTheDocument();
         fireEvent.change(presetInput, { target: { value: 'New preset' } });
         const [first, second] = await within(presetInput.parentElement).findAllByRole('button');
@@ -344,7 +344,7 @@ describe('PresetsPanel', () => {
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
         await openTabMenuAndClickOption(tabs[1], 'Save as new');
-        const presetInput = screen.queryByRole('textbox');
+        const presetInput = await screen.findByRole('textbox');
         expect(presetInput).toBeInTheDocument();
         fireEvent.change(presetInput, { target: { value: 'New preset' } });
         const [first, second] = await within(presetInput.parentElement).findAllByRole('button');

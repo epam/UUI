@@ -39,6 +39,22 @@
     font-size: 16px;
     color: var(--uui-text-primary);
     max-width: 700px;
+    margin-top: 8px;
+}
+
+:global(.uui-error-support-link) {
+    font-family: var(--uui-font);
+    font-weight: 400;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    color: var(--uui-text-primary);
+    max-width: 700px;
+    margin-top: 18px;
+
+    a {
+        text-decoration: none;
+    }
 }
 
 @media screen and (max-width: 720px) {
@@ -48,7 +64,6 @@
     }
 
     :global(.uui-error-title) {
-        font-family: var(--uui-font);
         font-weight: 400;
         font-size: 24px;
         line-height: 30px;
@@ -57,12 +72,10 @@
     }
 
     :global(.uui-error-subtitle) {
-        font-family: var(--uui-font);
-        font-weight: 400;
-        text-align: center;
-        line-height: 24px;
-        font-size: 16px;
-        color: var(--uui-text-primary);
+        max-width: 460px;
+    }
+
+    :global(.uui-error-support-link) {
         max-width: 460px;
     }
 }
