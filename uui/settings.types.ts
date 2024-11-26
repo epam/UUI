@@ -1,4 +1,5 @@
 interface DefaultSizes {
+    alert: string;
     badge: string;
     button: string;
     checkbox: string;
@@ -33,6 +34,10 @@ interface TextSize {
 
 interface UppercaseTextSize {
     uppercase: string;
+}
+
+interface AlertSizes {
+    action: Sizes;
 }
 
 interface TagSizes {
@@ -155,6 +160,19 @@ interface DataTableHeaderCellSizes {
     truncate?: string[];
 }
 
+interface DataTableHeaderGroupCellDefaults {
+    size: string;
+    padding: string;
+    paddingEdge: string;
+}
+
+interface DataTableHeaderGroupCellSizes {
+    defaults: DataTableHeaderGroupCellDefaults;
+    columnCaption: TextSize & UppercaseTextSize;
+    iconSize: Sizes;
+    truncate?: string[];
+}
+
 interface DataTableHeaderCellDefaults {
     size: string;
     resizeMarker: string;
@@ -196,6 +214,7 @@ interface FiltersPanelSizes {
 interface DataTableHeaderRowSizes {
     default: string;
     cell: DataTableHeaderCellSizes;
+    groupCell: DataTableHeaderGroupCellSizes;
 }
 
 interface DataTableHeaderSizes {
@@ -235,6 +254,7 @@ interface ModalSizes {
 
 interface SizesSettings {
     defaults: DefaultSizes;
+    alert: AlertSizes;
     tag: TagSizes;
     pickerInput: PickerInputSizes;
     rowAddons: RowAddonsSizes;
