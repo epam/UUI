@@ -180,7 +180,8 @@ export function TimelineScale({
     ...props
 }: TimelineScaleProps) {
     const [isMouseDown, setIsMouseDown] = useState(false);
-    
+    const canvasHeight = props.canvasHeight ?? 60;
+
     const handleWindowMouseUp = useCallback(() => {
         if (isMouseDown) {
             setIsMouseDown(false);
@@ -211,6 +212,10 @@ export function TimelineScale({
         return (
             <div
                 className={ cx(styles.arrow, direction == 'left' ? styles.arrowLeft : styles.arrowRight) }
+                style={ {
+                    height: `${canvasHeight}px`,
+                    lineHeight: `${canvasHeight}px`,
+                } }
                 onClick={ handleClick }
             >
                 {(props.renderArrowIcon ?? renderArrowIcon)(direction)}
@@ -219,7 +224,6 @@ export function TimelineScale({
     };
 
     const draw = (context: CanvasRenderingContext2D, t: TimelineTransform) => {
-        const canvasHeight = 60;
         context.clearRect(0, 0, t.widthMs, canvasHeight);
 
         const fonts = { currentPeriodFont, periodFont, meridiemFont };
@@ -227,8 +231,8 @@ export function TimelineScale({
             context,
             timelineTransform: t,
             periodTextColor,
-            canvasHeight,
             cellBackgroundColor,
+            canvasHeight,
             ...fonts,
         };
 
@@ -279,7 +283,7 @@ export function TimelineScale({
     }, [handleWindowMouseUp]);
 
     return (
-        <div className={ styles.timelineHeader } style={ { width: timelineTransform.widthPx } }>
+        <div className={ styles.timelineHeader } style={ { width: timelineTransform.widthPx, height: `${canvasHeight}px` } }>
             {!isMouseDown && (props.renderArrow ?? renderArrow)('left')}
             {!isMouseDown && (props.renderArrow ?? renderArrow)('right')}
             <TimelineCanvas
@@ -287,6 +291,7 @@ export function TimelineScale({
                 onMouseDown={ isDraggable && handleMouseDown }
                 onWheel={ isScaleChangeOnWheel && handleWheel }
                 draw={ props.draw ?? draw }
+                canvasHeight={ canvasHeight }
                 timelineController={ timelineController }
             />
         </div>

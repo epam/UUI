@@ -50,8 +50,7 @@
 
     // Compensate negative padding of cells to overlap borders
     // W/o this, we'll have additional --uui-cell-border-width pixels at the right
-    // We don't have access to the --uui-cell-border-width var. Hard-coded 1px for now.
-    border-inline-end: 1px solid transparent;
+    border-inline-end: var(--uui-dt-cell-border-width) solid transparent;
 }
 
 .fixed-columns-section-right {
@@ -75,4 +74,14 @@
 
 :global(.uui-scroll-shadow-right) {
     @include scroll-shadow('inset-inline-end');
+}
+
+.groupColumnsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+:global(.uui-table-column-group-wrapper) {
+    display: flex;
+    flex-direction: column;
 }
