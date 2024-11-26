@@ -1,16 +1,7 @@
-import React, { ReactNode, useMemo, useState } from 'react';
-import {
-    DataSourceState,
-    DataColumnProps,
-    useUuiContext,
-    useLazyDataSource,
-    DropdownBodyProps,
-    DataColumnGroupProps,
-} from '@epam/uui-core';
-import { Dropdown, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Text, DataTable, Panel, IconButton } from '@epam/uui';
-import { City } from '@epam/uui-docs';
-import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
-import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
+import React, { useState } from 'react';
+import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DataColumnGroupProps } from '@epam/uui-core';
+import { Text, DataTable, Panel, FlexRow, Badge, BadgeProps } from '@epam/uui';
+import { Person } from '@epam/uui-docs';
 
 import css from './TablesExamples.module.scss';
 import { TApi } from '../../../data';
@@ -19,104 +10,90 @@ export default function TableGroupedHeaderExample() {
     const svc = useUuiContext<TApi>();
     const [tableState, setTableState] = useState<DataSourceState>({});
 
-    const renderMenu = (dropdownProps: DropdownBodyProps): ReactNode => (
-        <DropdownMenuBody minWidth={ 90 } { ...dropdownProps }>
-            <DropdownMenuButton caption="Edit" icon={ PencilIcon } iconPosition="right" />
-            <DropdownMenuButton caption="Remove" />
-            <DropdownMenuSplitter />
-            <DropdownMenuButton caption="Cancel" />
-        </DropdownMenuBody>
-    );
-
     // Define columns groups array
     const columnGroups: DataColumnGroupProps[] = [
         {
-            key: 'primary',
-            caption: 'Primary info',
+            key: 'location',
+            caption: 'Location',
+            textAlign: 'center',
+        },
+        {
+            key: 'position',
+            caption: 'Position',
             textAlign: 'center',
         },
     ];
 
     // Define columns config array
-    const citiesColumns: DataColumnProps<City>[] = useMemo(
-        () => [
-            {
-                key: 'id',
-                caption: 'Id',
-                group: 'primary', // key group from columnGroups array
-                render: (city) => (
-                    <Text color="primary" fontSize="14">
-                        {city.id}
-                    </Text>
-                ),
-                isSortable: true,
-                width: 120,
-            },
-            {
-                key: 'name',
-                caption: 'Name',
-                group: 'primary', // key group from columnGroups array
-                render: (city) => (
-                    <Text color="primary" fontSize="14">
-                        {city.name}
-                    </Text>
-                ),
-                isSortable: true,
-                width: 162,
-                grow: 1,
-            },
-            {
-                key: 'countryName',
-                caption: 'Country',
-                group: 'primary', // key group from columnGroups array
-                render: (city) => (
-                    <Text color="primary" fontSize="14">
-                        {city.countryName}
-                    </Text>
-                ),
-                isSortable: true,
-                width: 128,
-                isFilterActive: (filter) => filter.country && filter.country.$in && !!filter.country.$in.length,
-            },
-            {
-                key: 'population',
-                caption: 'Population',
-                info: 'Number of this population in the country at the time of the last census.',
-                render: (city) => (
-                    <Text color="primary" fontSize="14">
-                        {city.population}
-                    </Text>
-                ),
-                width: 136,
-                isSortable: true,
-                textAlign: 'right',
-            },
-            {
-                key: 'altname',
-                caption: 'Alt. names',
-                render: (city) => <Text color="primary">{city.alternativeNames.join(', ')}</Text>,
-                info: 'Alternative city names',
-                width: 1200,
-            },
-            {
-                key: 'actions',
-                render: () => (
-                    <Dropdown
-                        renderTarget={ (props) => <IconButton icon={ MoreIcon } color="secondary" cx={ [css.configItem, props.isOpen && css.showButton] } { ...props } /> }
-                        renderBody={ (dropdownProps) => renderMenu(dropdownProps) }
-                        placement="bottom-end"
-                    />
-                ),
-                width: 54,
-                fix: 'right',
-                allowResizing: false,
-            },
-        ],
-        [],
-    );
+    const personColumns: DataColumnProps<Person, number>[] = [
+        {
+            key: 'name',
+            caption: 'Name',
+            render: (p) => <Text>{p.name}</Text>,
+            width: 130,
+            isSortable: true,
+        },
+        {
+            key: 'profileStatus',
+            caption: 'Status',
+            render: (p) => (
+                <FlexRow>
+                    <Badge size="24" indicator fill="outline" color={ p.profileStatus.toLowerCase() as BadgeProps['color'] } caption={ p.profileStatus } />
+                </FlexRow>
+            ),
+            grow: 0,
+            width: 100,
+            minWidth: 90,
+            isSortable: true,
+        },
+        {
+            key: 'countryName',
+            caption: 'Country',
+            group: 'location', // Specify group key
+            render: (p) => <Text>{p.countryName}</Text>,
+            grow: 0,
+            width: 110,
+            isSortable: true,
+        },
+        {
+            key: 'cityName',
+            caption: 'City',
+            group: 'location', // Specify group key
+            render: (p) => <Text>{p.cityName}</Text>,
+            grow: 0,
+            width: 110,
+            isSortable: true,
+        },
+        {
+            key: 'officeAddress',
+            caption: 'Office',
+            group: 'location', // Specify group key
+            render: (p) => <Text>{p.officeAddress}</Text>,
+            grow: 0,
+            width: 150,
+            isSortable: true,
+        },
+        {
+            key: 'jobTitle',
+            caption: 'Title',
+            group: 'position', // Specify group key
+            render: (r) => <Text>{r.jobTitle}</Text>,
+            width: 180,
+            isSortable: true,
+        },
+        {
+            key: 'titleLevel',
+            caption: 'Track & Level',
+            group: 'position', // Specify group key
+            render: (p) => <Text>{p.titleLevel}</Text>,
+            grow: 1,
+            width: 100,
+            isSortable: true,
+        },
+    ];
 
-    const citiesDS = useLazyDataSource<City, string, unknown>({
-        api: svc.api.demo.cities,
+    const citiesDS = useLazyDataSource<Person, number, unknown>({
+        api: svc.api.demo.persons,
         backgroundReload: true,
     }, []);
 
@@ -131,8 +108,8 @@ export default function TableGroupedHeaderExample() {
                 getRows={ view.getVisibleRows }
                 showColumnsConfig={ false }
                 columnGroups={ columnGroups }
+                columns={ personColumns }
                 headerTextCase="upper"
-                columns={ citiesColumns }
             />
         </Panel>
     );
