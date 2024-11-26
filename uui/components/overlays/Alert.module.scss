@@ -6,11 +6,8 @@
     --uui-alert-border: var(--uui-color-50);
     --uui-alert-icon: var(--uui-color-50);
 
-    //--uui-alert-font: var(--uui-font);
-    //--uui-alert-font-weight: var(--uui-font-weight, 400);
-
     --uui-alert-min-height: var(--uui-size);
-    --uui-alert-min-width: 170px; // TODO: need clarify
+    --uui-alert-min-width: 170px;
     --uui-alert-border-radius: var(--uui-border-radius);
     --uui-alert-border-width: 0px;
     --uui-alert-indicator-border-width: 6px;
@@ -20,8 +17,6 @@
     --uui-alert-padding-v: 9px;
     --uui-alert-caption-gap-h: 12px;
     --uui-alert-icon-size: var(--uui-icon-size);
-    //--uui-alert-line-height: var(--uui-line-height);
-    //--uui-alert-font-size: var(--uui-font-size);
 
     //
     box-sizing: border-box;
@@ -59,10 +54,6 @@
         column-gap: var(--uui-alert-gap-h);
         row-gap: var(--uui-alert-gap-v);
         width: 100%;
-        //font-family: var(--uui-alert-font);
-        //font-weight: var(--uui-alert-font-weight);
-        //line-height: var(--uui-alert-line-height);
-        //font-size: var(--uui-alert-font-size);
     }
 
     .action-wrapper {

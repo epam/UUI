@@ -15,6 +15,7 @@ export default function BasicAlertExample() {
                 {' '}
             </SuccessAlert>
             <WarningAlert
+                size="48"
                 onClose={ () => alert('close action') }
                 actions={ [{ name: 'ACTION 1', action: () => null }, { name: 'ACTION 2', action: () => null }] }
             >
