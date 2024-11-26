@@ -73,6 +73,12 @@ const SCSS_COMMON_RULES = {
     'scss/selector-no-redundant-nesting-selector': null,
     'scss/dollar-variable-pattern': null,
     'scss/no-global-function-names': null,
+    'length-zero-no-unit': [
+        true, {
+            ignore: ['custom-properties'],
+            ignoreFunctions: ['var', '/^--/'],
+        },
+    ],
 };
 
 module.exports = {
