@@ -2,42 +2,46 @@
 
 exports[`Alert should render with maximum props 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-success size48"
+  className="uui-alert root uui-color-success uui-size-48"
   role="alert"
 >
   <div
     className="mainPath"
   >
     <div
-      className="iconWrapper"
+      className="contentWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        className="iconWrapper"
       >
-        <svg
-          className=""
-        />
-      </div>
-    </div>
-    <div
-      className="content"
-    >
-      <div
-        className="actionWrapper"
-      >
-        <button
-          className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
+        <div
+          className="container uui-icon uui-enabled icon"
+          style={Object {}}
         >
-          <div
-            className="uui-caption uui-link-button-weight-semibold"
+          <svg
+            className=""
+          />
+        </div>
+      </div>
+      <div
+        className="content"
+      >
+        <div
+          className="actionWrapper"
+        >
+          <button
+            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
+            onClick={[Function]}
+            tabIndex={0}
+            type="button"
           >
-            ACTION 1
-          </div>
-        </button>
+            <div
+              className="uui-caption uui-link-button-weight-semibold"
+            >
+              ACTION 1
+            </div>
+          </button>
+        </div>
       </div>
     </div>
     <button
@@ -61,123 +65,143 @@ exports[`Alert should render with maximum props 1`] = `
 
 exports[`Alert should render with minimum props 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-info size48"
+  className="uui-alert root uui-color-info uui-size-48"
   role="alert"
 >
   <div
     className="mainPath"
   >
     <div
-      className="content"
-    />
+      className="contentWrapper"
+    >
+      <div
+        className="content"
+      />
+    </div>
   </div>
 </div>
 `;
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-error size48"
+  className="uui-alert root uui-color-error uui-size-48"
   role="alert"
 >
   <div
     className="mainPath"
   >
     <div
-      className="iconWrapper"
+      className="contentWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        className="iconWrapper"
       >
-        <svg
-          className=""
-        />
+        <div
+          className="container uui-icon uui-enabled icon"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
       </div>
+      <div
+        className="content"
+      />
     </div>
-    <div
-      className="content"
-    />
   </div>
 </div>
 `;
 
 exports[`HintAlert should be rendered correctly 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-info size48"
+  className="uui-alert root uui-color-info uui-size-48"
   role="alert"
 >
   <div
     className="mainPath"
   >
     <div
-      className="iconWrapper"
+      className="contentWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        className="iconWrapper"
       >
-        <svg
-          className=""
-        />
+        <div
+          className="container uui-icon uui-enabled icon"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
       </div>
+      <div
+        className="content"
+      />
     </div>
-    <div
-      className="content"
-    />
   </div>
 </div>
 `;
 
 exports[`SuccessAlert should be rendered correctly 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-success size48"
+  className="uui-alert root uui-color-success uui-size-48"
   role="alert"
 >
   <div
     className="mainPath"
   >
     <div
-      className="iconWrapper"
+      className="contentWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        className="iconWrapper"
       >
-        <svg
-          className=""
-        />
+        <div
+          className="container uui-icon uui-enabled icon"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
       </div>
+      <div
+        className="content"
+      />
     </div>
-    <div
-      className="content"
-    />
   </div>
 </div>
 `;
 
 exports[`WarningAlert should be rendered correctly 1`] = `
 <div
-  className="uui-alert root alertWrapper uui-color-warning size48"
+  className="uui-alert root uui-color-warning uui-size-48"
   role="alert"
 >
   <div
     className="mainPath"
   >
     <div
-      className="iconWrapper"
+      className="contentWrapper"
     >
       <div
-        className="container uui-icon uui-enabled actionIcon"
-        style={Object {}}
+        className="iconWrapper"
       >
-        <svg
-          className=""
-        />
+        <div
+          className="container uui-icon uui-enabled icon"
+          style={Object {}}
+        >
+          <svg
+            className=""
+          />
+        </div>
       </div>
+      <div
+        className="content"
+      />
     </div>
-    <div
-      className="content"
-    />
   </div>
 </div>
 `;
