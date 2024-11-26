@@ -43,6 +43,8 @@ export interface ErrorPageInfo {
     imageUrl?: string;
     /** Url of error image to display on error page in case of mobile layout (app width < 720px) */
     mobileImageUrl?: string;
+    /** Additional message with link to the support portal */
+    supportLink?: React.ReactNode;
 }
 
 export class UuiError extends Error {
