@@ -23,6 +23,7 @@ import { ReactQueryLocationsTable } from './reactQueryLocationsTable';
 import { ProjectTableDemo } from './editableTable';
 import { RtlExample } from './rtl/Rtl-example';
 import { DemoForm } from './rtl/form/DemoForm';
+import { RichTextEditorDemoReadonly } from './RTE-readonly/RichTextEditorDemo';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -41,7 +42,8 @@ export function SandboxPage() {
             { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
             { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
-            { id: 'RTEDemo', name: 'RTE Demo', component: RichTextEditorDemo },
+            { id: 'RTEDemo', name: 'RTE Contents', component: RichTextEditorDemo },
+            { id: 'RTE-readonly', name: 'RTE Readonly', component: RichTextEditorDemoReadonly },
             { id: 'tokens', name: 'Tokens' },
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
             { id: 'rtl-example', name: 'Rtl-example', component: RtlExample },

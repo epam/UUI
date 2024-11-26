@@ -60,17 +60,24 @@
   },
   {
     "data": {},
-    "type": "paragraph",
+    "type": "note-error",
     "children": [
       {
-        "text": "Additionally, the AdaptivePanel has an "
+        "text": "Note: If you need to add margins between items, use the "
       },
       {
         "text": "itemsGap",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " property used to define the spacing between the items within it."
+        "text": " prop on the "
+      },
+      {
+        "text": "AdaptivePanel",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " instead of applying CSS margins to each item. This is because margin values cannot be accounted when calculating the item's width and must be explicitly added."
       }
     ]
   }
