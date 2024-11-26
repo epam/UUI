@@ -122,7 +122,6 @@ export default function PresetsPanelExample() {
     }, [svc.api.presets, uuiModals]);
 
     const tableStateApi = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
@@ -134,7 +133,7 @@ export default function PresetsPanelExample() {
 
     return (
         <Panel background="surface-main" shadow style={ { height: '400px' } }>
-            <FlexRow padding="12">
+            <FlexRow padding="12" borderBottom>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable

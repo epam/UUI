@@ -17,6 +17,7 @@ interface DefaultSizes {
     labeledInput: string;
     statusIndicator: string;
     paginator: string,
+    rating: string,
 }
 
 interface Sizes {

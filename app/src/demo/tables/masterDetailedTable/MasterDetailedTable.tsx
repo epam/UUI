@@ -25,7 +25,6 @@ export function MasterDetailedTable() {
     const filters = useMemo(() => getFilters<PersonFilters['Person']>(), []);
 
     const tableStateApi = useTableState<PersonTableFilter>({
-        columns: personColumns,
         initialPresets: initialPresets,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,

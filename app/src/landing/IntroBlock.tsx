@@ -201,10 +201,10 @@ export function IntroBlock() {
                                         ) }
                                         placement="bottom-start"
                                     />
-                                    <FlexSpacer />
                                     <Tooltip content="Info tooltip" placement="top">
                                         <IconButton color="neutral" icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
+                                    <FlexSpacer />
                                     <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Go to the docs to see more ;)') } />
                                 </FlexRow>
                             </Panel>

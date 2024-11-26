@@ -52,7 +52,7 @@ export default function BasicDropdownExample() {
                                     <Badge cx={ css.badge } color="info" size="18" caption="Remote" />
                                 </FlexRow>
                                 <Text cx={ css.text } lineHeight="18" fontSize="12" color="secondary">
-                                    On vacation till 19 Aug till 26 Aug
+                                    On vacation from 19 Aug till 26 Aug
                                 </Text>
                             </Panel>
                         </FlexRow>

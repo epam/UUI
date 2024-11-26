@@ -17,9 +17,8 @@ export default function PagedTable() {
             const isFilterChanged = !isEqual(currentState.filter, updatedState.filter);
             const isSearchChanged = currentState.search !== updatedState.search;
             const isSortingChanged = !isEqual(currentState.sorting, updatedState.sorting);
-            const isPagingChanged = currentState.page !== updatedState.page || currentState.pageSize !== updatedState.pageSize;
 
-            if (isFilterChanged || isSearchChanged || isSortingChanged || isPagingChanged) {
+            if (isFilterChanged || isSearchChanged || isSortingChanged) {
                 return { ...updatedState, checked: [] };
             }
             return updatedState;

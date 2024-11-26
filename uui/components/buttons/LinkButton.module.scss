@@ -20,6 +20,7 @@
     --uui-link-button-icon-height: var(--uui-icon-size);
     --uui-link-button-line-height: var(--uui-line-height);
     --uui-link-button-font-size: var(--uui-font-size);
+    --uui-link-button-focus-radius: var(--uui-focus-radius);
     //
     min-width: var(--uui-link-button-min-width);
 
@@ -48,7 +49,8 @@
             }
 
             &:focus-visible {
-                @include focus-visible-effect(2px, 2px);
+                @include focus-visible-effect(2px);
+                border-radius: var(--uui-link-button-focus-radius);
             }
         }
 

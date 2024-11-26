@@ -108,7 +108,6 @@ export default function FiltersPanelExample() {
     );
 
     const tableStateApi = useTableState({
-        columns: personColumns,
         filters: filtersConfig,
         initialPresets: initialPresets,
         onPresetCreate: api.presets.createPreset,
@@ -129,7 +128,7 @@ export default function FiltersPanelExample() {
 
     return (
         <Panel background="surface-main" shadow style={ { height: '400px' } }>
-            <FlexRow padding="12">
+            <FlexRow padding="12" borderBottom>
                 <PresetsPanel { ...tableStateApi } />
             </FlexRow>
             <DataTable

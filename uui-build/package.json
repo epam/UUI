@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.12.0-rc.1",
+  "version": "5.11.0",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -26,8 +26,8 @@
     "magic-string": "0.30.9",
     "postcss": "8.4.38",
     "postcss-scss": "^4.0.6",
-    "rollup": "4.14.2",
-    "rollup-plugin-postcss-modules": "2.1.1",
+    "rollup": "4.22.4",
+    "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-visualizer": "5.12.0",
     "sass": "^1.78.0",
     "ts-node": "^10.9.1",
