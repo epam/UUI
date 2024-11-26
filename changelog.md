@@ -1,6 +1,7 @@
 # 5.xx.xx - xx.xx.2024
 
 **What's New**
+* [ErrorPage]: Added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
 
 **What's Fixed**
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
