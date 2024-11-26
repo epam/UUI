@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 import { init as initApm } from '@elastic/apm-rum';
 import { Router6AdaptedRouter, useUuiServices, UuiContext, IProcessRequest, GAListener } from '@epam/uui-core';
+import { i18n } from '@epam/uui';
 import { AmplitudeListener } from './analyticsEvents';
 import { svc } from './services';
 import App from './App';
@@ -18,6 +19,14 @@ import '@epam/assets/theme/theme_electric.scss';
 import '@epam/assets/theme/theme_eduverse_light.scss';
 import '@epam/assets/theme/theme_eduverse_dark.scss';
 import './index.module.scss';
+
+i18n.errorHandler.supportLink = (
+    <>
+        You can track the service availability at
+        {' '}
+        <a href={ `https://status.epam.com/?utm_source=${window.location.host}&utm_medium=ErrorPage&utm_campaign=StatusAquisitionTracking` }>status.epam.com</a>
+    </>
+);
 
 const router6 = createBrowserRouter([
     { path: '*', element: <App /> },
