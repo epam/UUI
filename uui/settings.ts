@@ -234,6 +234,25 @@ export const settings: Settings = {
                         },
                         truncate: ['48'],
                     },
+                    groupCell: {
+                        defaults: {
+                            size: '36',
+                            padding: '12',
+                            paddingEdge: '24',
+                        },
+                        columnCaption: {
+                            fontSize: '14',
+                            fontWeight: '400',
+                            size: '18',
+                            uppercase: '12',
+                        },
+                        iconSize: {
+                            36: '18',
+                            48: '18',
+                            60: '18',
+                        },
+                        truncate: ['48'],
+                    },
                 },
             },
             body: {

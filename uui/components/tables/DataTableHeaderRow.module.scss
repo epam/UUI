@@ -2,6 +2,11 @@
 
 .root {
     --uui-dt-header-row-config-icon-padding: 24px;
+
+
+    :global(.uui-table-column-group-wrapper) :global(.uui-table-header-cell) {
+        --uui-dt-header-cell-border: var(--uui-dt-border);
+    }
 }
 
 :global(.config-icon) {

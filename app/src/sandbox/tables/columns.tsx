@@ -1,60 +1,93 @@
 import * as React from 'react';
 import { Text, FlexRow } from '@epam/loveship';
-import { DataQueryFilter, DataColumnProps } from '@epam/uui-core';
+import { DataQueryFilter, DataColumnProps, DataColumnGroupProps } from '@epam/uui-core';
 import type { Person } from '@epam/uui-docs';
 import type { PersonTableRecordId } from './types';
 import type { PersonsSummary } from './types';
 
 export function getColumns() {
-    const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+    const personColumnsGroups: DataColumnGroupProps[] = [
         {
             key: 'name',
             caption: 'Name',
+        },
+        {
+            key: 'position',
+            caption: 'Position',
+        },
+        {
+            key: 'amounts',
+            caption: 'Amounts',
+            textAlign: 'right',
+        },
+    ];
+
+    const personColumns: DataColumnProps<Person, PersonTableRecordId, DataQueryFilter<Person>>[] = [
+        {
+            key: 'name',
+            group: 'name',
+            caption: 'Name',
             render: (p) => <Text>{p.name}</Text>,
             width: 250,
-            grow: 1,
             fix: 'left',
+            allowResizing: true,
+            isSortable: true,
+        }, {
+            key: 'name2',
+            group: 'name',
+            caption: 'Name2',
+            render: (p) => <Text>{p.name}</Text>,
+            width: 250,
+            fix: 'left',
+            allowResizing: true,
             isSortable: true,
         }, {
             key: 'jobTitle',
+            group: 'position',
             caption: 'Job Title',
             render: (r) => <Text>{r.jobTitle}</Text>,
             width: 200,
-            grow: 1,
+            allowResizing: true,
             isSortable: true,
             isFilterActive: (f) => !!f.jobTitle,
         }, {
             key: 'departmentName',
+            group: 'position',
             caption: 'Department',
             render: (p) => <Text>{p.departmentName}</Text>,
             width: 200,
-            grow: 1,
+            allowResizing: true,
             isSortable: true,
             isFilterActive: (f) => !!f.departmentId,
         }, {
             key: 'birthDate',
+            group: 'position',
             caption: 'Birth Date',
             render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
             width: 120,
+            allowResizing: true,
             isSortable: true,
         }, {
             key: 'hireDate',
             caption: 'Hire Date',
             render: (p) => p?.hireDate && <Text>{new Date(p.hireDate).toLocaleDateString()}</Text>,
             width: 120,
+            allowResizing: true,
             isSortable: true,
         }, {
             key: 'locationName',
             caption: 'Location',
             render: (p) => <Text>{p.locationName}</Text>,
             width: 180,
-            grow: 1,
+            allowResizing: true,
             isSortable: true,
         }, {
             key: 'salary',
+            group: 'amounts',
             caption: 'Salary',
             render: (p) => <Text color="night900">{p.salary}</Text>,
             width: 150,
+            allowResizing: true,
             isSortable: true,
             textAlign: 'right',
         }, {
@@ -72,7 +105,6 @@ export function getColumns() {
             fix: 'left',
             textAlign: 'right',
             width: 250,
-            grow: 1,
             render: (p) => (
                 <FlexRow background="night50">
                     <Text fontSize="14">
@@ -87,13 +119,13 @@ export function getColumns() {
             ),
         }, {
             key: 'jobTitle',
+            group: 'position',
             width: 200,
-            grow: 1,
             render: () => <Text fontSize="14">-</Text>,
         }, {
             key: 'departmentName',
+            group: 'position',
             width: 200,
-            grow: 1,
             render: () => (
                 <Text fontSize="14">
                     -
@@ -111,7 +143,6 @@ export function getColumns() {
             key: 'locationName',
             render: () => <Text fontSize="14">-</Text>,
             width: 180,
-            grow: 1,
         }, {
             key: 'salary',
             caption: 'Total Salary',
@@ -133,5 +164,6 @@ export function getColumns() {
     return {
         personColumns,
         summaryColumns,
+        personColumnsGroups,
     };
 }
