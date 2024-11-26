@@ -106,7 +106,7 @@ export const DataTableRowContainer = React.forwardRef(
                     const lastColumnIdx = props.columns?.indexOf(item.columns[item.columns.length - 1]) || 0;
 
                     return (
-                        <div style={ getSectionStyle(item.columns, SectionType.Group) } className={ cx({ [css.section]: true, [css.groupWrapper]: true }) }>
+                        <div style={ getSectionStyle(item.columns, SectionType.Group) } className={ cx(css.section, 'uui-table-column-group-wrapper') }>
 
                             {props.renderGroupCell(item.group, index, firstColumnIdx, lastColumnIdx)}
                             <div className={ css.groupColumnsWrapper }>

@@ -81,7 +81,7 @@
     flex-direction: row;
 }
 
-.groupWrapper {
+:global(.uui-table-column-group-wrapper) {
     display: flex;
     flex-direction: column;
 }

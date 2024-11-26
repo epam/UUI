@@ -19,6 +19,8 @@
     align-self: stretch;
     background-clip: padding-box;
     min-height: var(--uui-dt-header-group-cell-height);
+    border-bottom: 1px solid;
+    border-color: var(--uui-dt-border);
 
     .caption-wrapper {
         column-gap: var(--uui-dt-header-group-cell-caption-column-gap);
