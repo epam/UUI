@@ -155,6 +155,19 @@ interface DataTableHeaderCellSizes {
     truncate?: string[];
 }
 
+interface DataTableHeaderGroupCellDefaults {
+    size: string;
+    padding: string;
+    paddingEdge: string;
+}
+
+interface DataTableHeaderGroupCellSizes {
+    defaults: DataTableHeaderGroupCellDefaults;
+    columnCaption: TextSize & UppercaseTextSize;
+    iconSize: Sizes;
+    truncate?: string[];
+}
+
 interface DataTableHeaderCellDefaults {
     size: string;
     resizeMarker: string;
@@ -196,6 +209,7 @@ interface FiltersPanelSizes {
 interface DataTableHeaderRowSizes {
     default: string;
     cell: DataTableHeaderCellSizes;
+    groupCell: DataTableHeaderGroupCellSizes;
 }
 
 interface DataTableHeaderSizes {

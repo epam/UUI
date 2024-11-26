@@ -13,6 +13,7 @@
     --uui-dt-header-cell-height: var(--uui-size);
     --uui-dt-header-cell-caption-column-gap: 3px;
     --uui-dt-header-cell-truncate-caption-line-height: 18px;
+    --uui-dt-header-cell-border: transparent;
     //
     color: var(--uui-text-primary);
     align-items: center;
@@ -20,7 +21,8 @@
     padding-inline-end: var(--uui-dt-header-cell-padding-end);
     width: 0;
     background-clip: padding-box;
-    height: var(--uui-dt-header-cell-height);
+    min-height: var(--uui-dt-header-cell-height);
+    border-color: var(--uui-dt-header-cell-border);
 
     .caption-wrapper {
         column-gap: var(--uui-dt-header-cell-caption-column-gap);
@@ -38,7 +40,7 @@
 
         &:hover {
             background: var(--uui-dt-row-bg-hover);
-            box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
+            border-color: var(--uui-dt-border);
         }
 
         &:hover:not(:has(:global(.-clickable):hover)) {
@@ -50,7 +52,7 @@
 
     &.resizable {
         &:hover {
-            box-shadow: inset 1px 0 0 var(--uui-dt-border), inset -1px 0 0 var(--uui-dt-border);
+            border-color: var(--uui-dt-border);
         }
     }
 
