@@ -32,6 +32,7 @@ export const normalizeTableCellElement = (editor: PlateEditor<Value>, entry: TNo
             cellNode,
             { at: path },
         );
+        return;
     }
 };
 
