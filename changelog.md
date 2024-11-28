@@ -9,6 +9,7 @@
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode
 * [DatePicker]: fixed body close if date picker input scrolled out from view
+* [Modals]: prevent scrolling to the modal toggler because of focus return after modal close
 
 # 5.11.0 - 15.11.2024
 

@@ -53,7 +53,7 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
                 onClick={ handleBlockerClick }
                 aria-label="Click to close a modal"
             />
-            <FocusLock autoFocus={ false } returnFocus disabled={ props.disableFocusLock }>
+            <FocusLock autoFocus={ false } returnFocus={ { preventScroll: true } } disabled={ props.disableFocusLock }>
                 {props.children}
             </FocusLock>
         </div>
