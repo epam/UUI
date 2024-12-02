@@ -33,7 +33,6 @@ export class BadgeDoc extends BaseDocsBlock {
             [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
         doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
-            doc.setDefaultPropExample('size', ({ value }) => value === '36');
             doc.setDefaultPropExample('onClick', () => true);
             doc.merge('color', {
                 defaultValue: 'info',

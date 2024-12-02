@@ -34,6 +34,8 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
         const props = type.details?.props;
         const unresolvedProps: TTypeProp[] = [];
         props?.forEach((propParam) => {
+            console.log('propParam', propParam);
+            console.log('docBuilderGenCtx.propsOverride', docBuilderGenCtx.propsOverride);
             const prop = overrideProp(propParam, docBuilderGenCtx.propsOverride?.[propParam.name]);
             let nextProp = buildPropDetails({ prop, docs, skin: params.skin, docBuilderGenCtx });
             const isResolved = !!nextProp;
