@@ -1,5 +1,5 @@
 {
- "version": "5.11.0-rc.0",
+ "version": "5.11.1-rc.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -4867,6 +4867,210 @@
     }
    }
   },
+  "@epam/uui-core:DataColumnGroupProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataColumnGroupProps",
+     "nameFull": "DataColumnGroupProps"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "comment": {
+     "raw": [
+      "Columns group configuration."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataColumnGroupProps",
+     "print": [
+      "/**",
+      " * Columns group configuration.",
+      " */",
+      "interface DataColumnGroupProps extends IHasCX, IClickable {",
+      "    /**",
+      "     * Unique key to identify the columns group. Used to reference columns group.",
+      "     */",
+      "    key: string;",
+      "    /** Columns group caption. Can be a plain text, or any React Component */",
+      "    caption?: React.ReactNode;",
+      "    /** Aligns columns group header content horizontally */",
+      "    textAlign?: 'left' | 'center' | 'right';",
+      "    /** Info tooltip displayed in the table header */",
+      "    info?: React.ReactNode;",
+      "    /** Overrides rendering of the whole columns group cell */",
+      "    renderCell?(column: DataColumnGroupProps): any;",
+      "    /** Render callback for columns group header tooltip.",
+      "     * This tooltip will appear on cell hover with 600ms delay.",
+      "     *",
+      "     * If omitted, default implementation with columnGroup.caption + columnGroup.info will be rendered.",
+      "     * Pass `() => null` to disable tooltip rendering.",
+      "     */",
+      "    renderTooltip?(column: DataColumnGroupProps): React.ReactNode;",
+      "    /**",
+      "     * Overrides rendering of the whole columns group header cell.",
+      "     */",
+      "    renderHeaderCell?(cellProps: DataTableHeaderGroupCellProps): any;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "key",
+      "name": "key",
+      "comment": {
+       "raw": [
+        "Unique key to identify the columns group. Used to reference columns group."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Columns group caption. Can be a plain text, or any React Component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     },
+     {
+      "uid": "textAlign",
+      "name": "textAlign",
+      "comment": {
+       "raw": [
+        "Aligns columns group header content horizontally"
+       ]
+      },
+      "typeValue": {
+       "raw": "'right' | 'left' | 'center'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "right",
+        "left",
+        "center"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "info",
+      "name": "info",
+      "comment": {
+       "raw": [
+        "Info tooltip displayed in the table header"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     },
+     {
+      "uid": "renderCell",
+      "name": "renderCell",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the whole columns group cell"
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnGroupProps) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderTooltip",
+      "name": "renderTooltip",
+      "comment": {
+       "raw": [
+        "Render callback for columns group header tooltip.",
+        " This tooltip will appear on cell hover with 600ms delay.",
+        "",
+        " If omitted, default implementation with columnGroup.caption + columnGroup.info will be rendered.",
+        " Pass `() => null` to disable tooltip rendering."
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnGroupProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderHeaderCell",
+      "name": "renderHeaderCell",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the whole columns group header cell."
+       ]
+      },
+      "typeValue": {
+       "raw": "(cellProps: DataTableHeaderGroupCellProps) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DataColumnProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -4888,6 +5092,10 @@
       "     * Also, used as React key for cells, header cells, and other components inside tables.",
       "     */",
       "    key: string;",
+      "    /**",
+      "     * A unique identifier for a group of columns that establishes a connection between the column and the group of columns.",
+      "     */",
+      "    group?: string;",
       "    /** Column caption. Can be a plain text, or any React Component */",
       "    caption?: React.ReactNode;",
       "    /**",
@@ -4981,6 +5189,22 @@
        "type": "string"
       },
       "required": true
+     },
+     {
+      "uid": "group",
+      "name": "group",
+      "comment": {
+       "raw": [
+        "A unique identifier for a group of columns that establishes a connection between the column and the group of columns."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
      },
      {
       "uid": "caption",
@@ -8483,6 +8707,229 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:DataTableHeaderGroupCellProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataTableHeaderGroupCellProps",
+     "nameFull": "DataTableHeaderGroupCellProps"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "comment": {
+     "raw": [
+      "DataTable columns group header cell props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataTableHeaderGroupCellProps",
+     "print": [
+      "/**",
+      " * DataTable columns group header cell props.",
+      " */",
+      "interface DataTableHeaderGroupCellProps extends IHasCX, IEditable<DataTableState> {",
+      "    /**",
+      "     * A unique identifier for a group.",
+      "     */",
+      "    key: string;",
+      "    /**",
+      "     * Columns group configuration.",
+      "     */",
+      "    group: DataColumnGroupProps;",
+      "    /**",
+      "     * Defines if first column of the group is the first one in the table header.",
+      "     */",
+      "    isFirstCell: boolean;",
+      "    /**",
+      "     * Defines if last column of the group is the last one in the table header.",
+      "     */",
+      "    isLastCell: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "key",
+      "name": "key",
+      "comment": {
+       "raw": [
+        "A unique identifier for a group."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "group",
+      "name": "group",
+      "comment": {
+       "raw": [
+        "Columns group configuration."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps"
+      },
+      "required": true
+     },
+     {
+      "uid": "isFirstCell",
+      "name": "isFirstCell",
+      "comment": {
+       "raw": [
+        "Defines if first column of the group is the first one in the table header."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLastCell",
+      "name": "isLastCell",
+      "comment": {
+       "raw": [
+        "Defines if last column of the group is the last one in the table header."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataTableState<any, any>"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: DataTableState<any, any>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DataTableHeaderRowProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -8500,6 +8947,10 @@
      "print": [
       "interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {",
       "    columns: DataColumnProps<TItem, TId>[];",
+      "    /**",
+      "     * Columns group configuration.",
+      "     */",
+      "    columnGroups?: DataColumnGroupProps[];",
       "    selectAll?: ICheckable;",
       "    /**",
       "     * Enables collapse/expand all functionality.",
@@ -8507,6 +8958,10 @@
       "    showFoldAll?: boolean;",
       "    onConfigButtonClick?: (params: DataTableConfigModalParams) => any;",
       "    renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;",
+      "    /**",
+      "     * Columns group cell render function.",
+      "     */",
+      "    renderGroupCell?: (props: DataTableHeaderGroupCellProps) => React.ReactNode;",
       "    renderConfigButton?: () => React.ReactNode;",
       "}"
      ]
@@ -8519,6 +8974,19 @@
        "raw": "DataColumnProps<TItem, TId, any>[]"
       },
       "required": true
+     },
+     {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Columns group configuration."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]"
+      },
+      "required": false
      },
      {
       "uid": "selectAll",
@@ -8560,6 +9028,22 @@
       "name": "renderCell",
       "typeValue": {
        "raw": "(props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderGroupCell",
+      "name": "renderGroupCell",
+      "comment": {
+       "raw": [
+        "Columns group cell render function."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataTableHeaderGroupCellProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -11288,6 +11772,8 @@
       "    imageUrl?: string;",
       "    /** Url of error image to display on error page in case of mobile layout (app width < 720px) */",
       "    mobileImageUrl?: string;",
+      "    /** Additional message with link to the support portal */",
+      "    supportLink?: React.ReactNode;",
       "}"
      ]
     },
@@ -11366,6 +11852,20 @@
       "editor": {
        "type": "string"
       },
+      "required": false
+     },
+     {
+      "uid": "supportLink",
+      "name": "supportLink",
+      "comment": {
+       "raw": [
+        "Additional message with link to the support portal"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      }
     ],
@@ -40832,6 +41332,23 @@
       "required": true
      },
      {
+      "uid": "group",
+      "name": "group",
+      "comment": {
+       "raw": [
+        "A unique identifier for a group of columns that establishes a connection between the column and the group of columns."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:DataColumnProps",
+      "required": false
+     },
+     {
       "uid": "caption",
       "name": "caption",
       "comment": {
@@ -41561,7 +42078,7 @@
       "    /**",
       "     * DataTable column configuration.",
       "     */",
-      "    column: DataColumnProps;",
+      "    column: DataColumnProps | DataColumnGroupProps;",
       "    /**",
       "     * CSS text-align property.",
       "     */",
@@ -41591,7 +42108,7 @@
        ]
       },
       "typeValue": {
-       "raw": "DataColumnProps<any, any, any>"
+       "raw": "DataColumnProps<any, any, any> | DataColumnGroupProps"
       },
       "required": true
      },
@@ -71934,6 +72451,20 @@
       "required": true
      },
      {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Columns group configuration."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
       "uid": "selectAll",
       "name": "selectAll",
       "typeValue": {
@@ -71976,6 +72507,23 @@
       "name": "renderCell",
       "typeValue": {
        "raw": "(props: DataTableHeaderCellProps<any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "renderGroupCell",
+      "name": "renderGroupCell",
+      "comment": {
+       "raw": [
+        "Columns group cell render function."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataTableHeaderGroupCellProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -72424,6 +72972,8 @@
       "    getRows?(): DataRowProps<TItem, TId>[];",
       "    /** Rows that should be rendered in table */",
       "    rows?: DataRowProps<TItem, TId>[];",
+      "    /** Array of all possible column groups for the table */",
+      "    columnGroups?: DataColumnGroupProps[];",
       "    /** Array of all possible columns for the table */",
       "    columns: DataColumnProps<TItem, TId>[];",
       "    /** Render callback for the table row.",
@@ -72486,6 +73036,19 @@
       },
       "typeValue": {
        "raw": "DataRowProps<TItem, TId>[]"
+      },
+      "required": false
+     },
+     {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Array of all possible column groups for the table"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]"
       },
       "required": false
      },
@@ -74203,8 +74766,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"

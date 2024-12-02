@@ -1,59 +1,52 @@
-import type { Settings } from './settings.types';
+import { Settings } from '@epam/uui';
 
-export const settings: Settings = {
+const settings_4px: Settings = {
     sizes: {
         defaults: {
             alert: '48',
-            badge: '36',
-            button: '36',
-            checkbox: '18',
+            badge: '24',
+            button: '40',
+            checkbox: '24',
             countIndicator: '24',
-            flexRow: '36',
-            linkButton: '36',
-            numericInput: '36',
-            radioInput: '18',
-            switch: '18',
+            flexRow: '40',
+            linkButton: '40',
+            numericInput: '40',
+            radioInput: '24',
+            switch: '24',
             tabButton: '48',
-            tag: '36',
-            text: '36',
-            textArea: '36',
-            textInput: '36',
-            rangeDatePicker: '36',
-            datePicker: '36',
-            labeledInput: '36',
-            statusIndicator: '24',
-            paginator: '30',
-            rating: '18',
+            tag: '40',
+            text: '40',
+            textArea: '40',
+            textInput: '40',
+            rangeDatePicker: '40',
+            datePicker: '40',
+            labeledInput: '40',
+            statusIndicator: '40',
+            paginator: '32',
+            rating: '24',
         },
         alert: {
             action: {
-                36: '24',
-                48: '30',
+                32: '24',
+                48: '32',
             },
         },
         tag: {
             countIndicator: {
-                18: '12',
-                24: '18',
-                30: '18',
-                36: '18',
-                42: '24',
+                32: '24',
+                40: '24',
                 48: '24',
             },
         },
         pickerInput: {
             toggler: {
                 defaults: {
-                    size: '36',
-                    tag: '36',
+                    size: '40',
+                    tag: '40',
                 },
                 tag: {
-                    24: '18',
-                    30: '18',
-                    36: '24',
-                    42: '30',
-                    48: '36',
-                    60: '42',
+                    40: '32',
+                    48: '32',
                 },
             },
             body: {
@@ -62,51 +55,34 @@ export const settings: Settings = {
                     width: 360,
                     padding: '12',
                     row: {
-                        default: '36',
+                        default: '40',
                         cell: {
                             padding: '24',
                             text: {
-                                24: '24',
-                                30: '30',
-                                36: '36',
-                                42: '42',
+                                40: '40',
                                 48: '48',
-                                60: '48',
                             },
                             icon: {
-                                24: '12',
-                                30: '18',
-                                36: '18',
-                                42: '24',
+                                40: '24',
                                 48: '24',
-                                60: '24',
                             },
                             isBoldSelectionIcon: {
                                 24: true,
                             },
-                            item: { // max 48, setup by row with 60????
-                                default: '36',
-                                verticalPadding: { // TODO: try to move to size css classes, compare different components
-                                    24: '3',
-                                    30: '6',
-                                    36: '9',
-                                    42: '6',
-                                    48: '9',
+                            item: {
+                                default: '40',
+                                verticalPadding: {
+                                    40: '8',
+                                    48: '12',
                                 },
                                 avatar: {
                                     rest: {
-                                        24: '18',
-                                        30: '24',
-                                        36: '30',
-                                        42: '36',
-                                        48: '36', // no design
+                                        40: '32',
+                                        48: '32',
                                     },
                                     multiline: {
-                                        24: '30',
-                                        30: '30',
-                                        36: '36',
-                                        42: '42',
-                                        48: '48', // no design
+                                        40: '40',
+                                        48: '48',
                                     },
                                 },
                             },
@@ -114,18 +90,12 @@ export const settings: Settings = {
                     },
                     footer: {
                         switch: {
-                            24: '12',
-                            30: '18',
-                            36: '18',
-                            42: '24',
+                            40: '20',
                             48: '24',
                         },
                         linkButton: {
-                            24: '24',
-                            30: '30',
-                            36: '36',
-                            42: '42',
-                            48: '48',
+                            40: '32',
+                            48: '32',
                         },
                     },
                 },
@@ -140,124 +110,108 @@ export const settings: Settings = {
                     searchInput: '48',
                 },
                 modal: {
-                    row: '36',
+                    row: '40',
                     padding: '24',
                 },
             },
         },
         rowAddons: {
             defaults: {
-                icon: '18',
+                icon: '20',
                 indentUnit: 24,
-                indentWidth: 18,
+                indentWidth: 12,
             },
             checkbox: {
-                24: '12',
-                30: '18',
-                36: '18',
-                42: '18',
-                48: '18',
-                60: '18',
-            },
-            icon: {
-                24: '12',
-                30: '18',
-                36: '18',
-                42: '24',
+                40: '24',
                 48: '24',
                 60: '24',
             },
+            icon: {
+                40: '20',
+                48: '20',
+                60: '24',
+            },
             indentUnit: {
-                24: 6,
-                30: 12,
-                36: 12,
-                42: 24,
+                40: 24,
                 48: 24,
                 60: 24,
             },
             indentWidth: {
-                24: 12,
-                30: 18,
-                36: 18,
-                42: 24,
+                40: 24,
                 48: 24,
                 60: 24,
             },
         },
         text: {
-            18: { lineHeight: 12, fontSize: 10 },
+            20: { lineHeight: 12, fontSize: 10 },
             24: { lineHeight: 18, fontSize: 12 },
-            30: { lineHeight: 18, fontSize: 14 },
-            36: { lineHeight: 18, fontSize: 14 },
-            42: { lineHeight: 24, fontSize: 16 },
+            32: { lineHeight: 18, fontSize: 14 },
+            40: { lineHeight: 24, fontSize: 16 },
             48: { lineHeight: 24, fontSize: 16 },
             60: { lineHeight: 30, fontSize: 24 },
         },
         filtersPanel: {
             pickerInput: {
                 body: {
-                    default: '36',
+                    default: '40',
                 },
             },
         },
         labeledInput: {
-            fillIcon: ['24', '30'],
+            fillIcon: ['24', '32'],
         },
         badge: {
             countIndicator: {
-                18: '12',
-                24: '18',
-                30: '18',
-                36: '18',
-                42: '24',
+                24: '20',
+                32: '20',
                 48: '24',
             },
         },
         dataTable: {
             header: {
                 row: {
-                    default: '36',
+                    default: '40',
                     cell: {
                         defaults: {
-                            size: '36',
+                            size: '40',
                             resizeMarker: '12',
                             padding: '12',
                             paddingEdge: '24',
                         },
                         checkbox: {
-                            36: '18',
-                            48: '18',
-                            60: '18',
+                            40: '24',
+                            48: '24',
+                            60: '24',
                         },
                         columnCaption: {
                             fontSize: '14',
                             fontWeight: '400',
-                            size: '18',
+                            size: '20',
                             uppercase: '12',
                         },
                         iconSize: {
-                            36: '18',
-                            48: '18',
-                            60: '18',
+                            40: '20',
+                            48: '20',
+                            60: '20',
                         },
                         truncate: ['48'],
                     },
                     groupCell: {
                         defaults: {
-                            size: '36',
+                            size: '40',
                             padding: '12',
                             paddingEdge: '24',
                         },
                         columnCaption: {
                             fontSize: '14',
                             fontWeight: '400',
-                            size: '18',
+                            size: '20',
                             uppercase: '12',
                         },
                         iconSize: {
-                            36: '18',
-                            48: '18',
-                            60: '18',
+                            40: '20',
+                            48: '20',
+                            60: '20',
                         },
                         truncate: ['48'],
                     },
@@ -265,19 +219,17 @@ export const settings: Settings = {
             },
             body: {
                 row: {
-                    default: '36',
+                    default: '40',
                     cell: {
                         defaults: {
-                            size: '36',
+                            size: '40',
                             padding: '12',
                             paddingEdge: '24',
                         },
                         text: {
-                            18: '18',
                             24: '24',
-                            30: '30',
-                            36: '36',
-                            42: '42',
+                            32: '32',
+                            40: '40',
                             48: '48',
                             60: '48',
                         },
@@ -285,26 +237,28 @@ export const settings: Settings = {
                 },
             },
             columnsConfigurationModal: {
-                columnRow: '30',
-                countIndicator: '18',
-                subgroupIcon: '18',
-                search: '30',
+                columnRow: '40',
+                countIndicator: '20',
+                subgroupIcon: '20',
+                search: '40',
                 width: 560,
             },
         },
         modal: {
             window: {
                 defaults: {
-                    width: 420,
+                    width: 560,
                 },
             },
         },
         tabButton: {
             countIndicator: {
-                36: '18',
-                48: '18',
-                60: '18',
+                40: '24',
+                48: '24',
+                60: '24',
             },
         },
     },
 };
+
+export default settings_4px;

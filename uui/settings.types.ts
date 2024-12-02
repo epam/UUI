@@ -4,6 +4,7 @@ interface DefaultSizes {
     button: string;
     checkbox: string;
     countIndicator: string;
+    flexRow: string;
     linkButton: string;
     numericInput: string;
     radioInput: string;

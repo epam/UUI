@@ -3,7 +3,7 @@ name: qa
 # Controls when the action will run.
 on:
     push:
-        branches: [ themes/eduverse-theme ]
+        branches: [ feature/4px-grid-for-uui ]
     # Allows you to run this workflow manually from the Actions tab
     workflow_dispatch:
 

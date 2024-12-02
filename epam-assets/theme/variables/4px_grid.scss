@@ -1,0 +1,234 @@
+@mixin uui-4px-grid {
+    & {
+        --uui-grid-unit: 8px;
+        --uui-focus-outline-width: 2px;
+        --uui-focus-outline-offset: 2px;
+        --uui-focus-radius: 2px;
+        --uui-border-radius: 8px;
+        --uui-tab-line-width: 3px;
+        --uui-notify-size: 6px;
+    }
+
+    .uui-size-16 {
+        --uui-size: 16px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 4px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 3px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 12px;
+        --uui-line-height: 12px;
+        --uui-font-size: 10px;
+        --uui-dot-size: 4px;
+    }
+
+    .uui-size-20 {
+        --uui-size: 20px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 8px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 3px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 12px;
+        --uui-line-height: 18px;
+        --uui-font-size: 14px;
+        --uui-dot-size: 8px;
+    }
+
+    .uui-size-24 {
+        --uui-size: 24px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 8px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 6px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 12px;
+        --uui-line-height: 18px;
+        --uui-font-size: 14px;
+        --uui-dot-size: 8px;
+    }
+
+    .uui-size-28 {
+        --uui-size: 28px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 8px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 6px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 12px;
+        --uui-line-height: 28px;
+        --uui-font-size: 18px;
+        --uui-dot-size: 8px;
+    }
+
+    .uui-size-32 {
+        --uui-size: 32px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 4px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 20px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 20px;
+        --uui-line-height: 18px;
+        --uui-font-size: 14px;
+        --uui-dot-size: 8px;
+    }
+
+    .uui-size-40 {
+        --uui-size: 40px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 4px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 20px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 20px;
+        --uui-line-height: 18px;
+        --uui-font-size: 14px;
+        --uui-dot-size: 12px;
+    }
+
+    .uui-size-48 {
+        --uui-size: 48px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 4px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 32px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 24px;
+        --uui-line-height: 20px;
+        --uui-font-size: 16px;
+        --uui-dot-size: 12px;
+    }
+
+    .uui-size-60 {
+        --uui-size: 60px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 6px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 12px;
+        --uui-vertical-padding: 3px;
+        --uui-icon-size: 24px;
+        --uui-line-height: 24px;
+        --uui-font-size: 16px;
+        --uui-dot-size: 12px;
+    }
+
+    .uui-button {
+        --uui-btn-font-weight: 500;
+
+        &.uui-size-48 {
+            --uui-btn-border-radius: 12px;
+        }
+
+        .uui-caption:first-child {
+            padding-left: 0;
+        }
+
+        .uui-caption:last-child {
+            padding-right: 0;
+        }
+
+        &:has(.uui-icon:only-child) {
+            &.uui-size-32 {
+                --uui-horizontal-padding: 4px;
+            }
+
+            &.uui-size-40 {
+                --uui-horizontal-padding: 10px;
+            }
+
+            &.uui-size-48 {
+                --uui-horizontal-padding: 14px;
+            }
+        }
+    }
+
+    .uui-input-box {
+        &.uui-size-40 {
+            --uui-horizontal-padding: 8px;
+            --uui-horizontal-gap: 8px;
+        }
+
+        &.uui-size-48 {
+            --uui-horizontal-padding: 12px;
+            --uui-horizontal-gap: 8px;
+        }
+    }
+
+    .uui-link_button {
+        &.uui-size-16 {
+            --uui-horizontal-gap: 4px;
+            --uui-icon-size: 16px;
+            --uui-line-height: 16px;
+            --uui-font-size: 14px;
+        }
+
+        &.uui-size-20 {
+            --uui-horizontal-gap: 4px;
+            --uui-icon-size: 20px;
+            --uui-line-height: 20px;
+            --uui-font-size: 16px;
+        }
+    }
+
+    .uui-checkbox-container, .uui-radio-input-container {
+        --uui-checkbox-border-radius: 4px;
+
+        &.uui-size-20 {
+            --uui-size: 14px;
+
+            .uui-checkbox, .uui-radioinput {
+                margin: 3px;
+            }
+        }
+
+        &.uui-size-24 {
+            --uui-size: 18px;
+
+            .uui-checkbox, .uui-radioinput {
+                margin: 3px;
+            }
+        }
+
+        &.uui-size-28 {
+            --uui-size: 22px;
+
+            .uui-checkbox, .uui-radioinput {
+                margin: 3px;
+            }
+        }
+    }
+
+    .uui-tab-button {
+        &.uui-size-48 {
+            --uui-size: 50px;
+            --uui-horizontal-padding: 16px;
+            --uui-horizontal-gap: 0;
+            --uui-icon-size: 20px;
+            --uui-font-size: 14px;
+        }
+    }
+
+    .uui-count_indicator {
+        &.uui-size-20 {
+            --uui-horizontal-padding: 6px;
+            --uui-line-height: 18px;
+            --uui-font-size: 12px;
+        }
+
+        &.uui-size-24 {
+            --uui-line-height: 22px;
+            --uui-font-size: 14px;
+        }
+    }
+
+    .uui-datepicker-body-wrapper {
+        --uui-dtp_body-min-height: 310px;
+    }
+
+    .uui-badge {
+        &.uui-size-24 {
+            --uui-horizontal-gap: 4px;
+        }
+    }
+}
