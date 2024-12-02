@@ -82,14 +82,17 @@ const isValidFileType = (fileType?: string) => {
 
 const buildFragments = (
     files: FileUploadResponse[],
+    blockType?: UploadType,
 ) => {
     return files.map((file: FileUploadResponse) => {
         const fileType = file.type;
-        const uploadType = (
-            isValidFileType(fileType) ? fileType : ATTACHMENT_TYPE
-        ) as UploadType;
+        if (blockType) {
+            return UPLOAD_BLOCKS[blockType](file);
+        } else {
+            const blockTypeByFile = (isValidFileType(fileType) ? fileType : ATTACHMENT_TYPE) as UploadType;
 
-        return UPLOAD_BLOCKS[uploadType](file);
+            return UPLOAD_BLOCKS[blockTypeByFile](file);
+        }
     });
 };
 
@@ -97,6 +100,7 @@ export const createFileUploader = (options?: UploadFileOptions) =>
     async (
         editor: PlateEditor,
         files: File[],
+        blockType: UploadType,
     ) => {
         const uploadFile = options?.uploadFile;
         if (!uploadFile) return;
@@ -127,7 +131,7 @@ export const createFileUploader = (options?: UploadFileOptions) =>
         }
 
         // build fragments
-        const fileFragments = buildFragments(res);
+        const fileFragments = buildFragments(res, blockType);
 
         // remove loader
         removeLoader();
@@ -138,14 +142,14 @@ export const createFileUploader = (options?: UploadFileOptions) =>
 
 export const useFilesUploader = (editor: PlateEditor) => {
     return useCallback(
-        (files: File[], overriddenAction?: UploadType): Promise<void> => {
+        (files: File[], blockType?: UploadType): Promise<void> => {
             const callback = getPlugin<FileUploaderOptions>(editor, UPLOAD_PLUGIN_KEY)?.options.uploadFiles;
 
             if (callback) {
                 return callback(
                     editor,
                     files,
-                    overriddenAction,
+                    blockType,
                 );
             }
 
