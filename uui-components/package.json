@@ -28,7 +28,6 @@
     "react-transition-group": "4.4.5"
   },
   "peerDependencies": {
-    "prop-types": "*",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },
