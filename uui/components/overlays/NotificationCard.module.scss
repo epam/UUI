@@ -4,11 +4,12 @@
     --uui-notification_card-bg: var(--uui-surface-main);
     --uui-notification_card-border: var(--uui-color-50);
     --uui-notification_card-fill: var(--uui-color-50);
+    --uui-notification_card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
 
     --uui-notification_card-border-radius: var(--uui-border-radius);
     --uui-notification_card-border-width: 0;
     --uui-notification_card-border-top-width: 6px;
-    --uui-notification_card-shadow: var(--uui-shadow-level-2); //TODO: may change in the future
+    --uui-notification_card-icon-size: 24px;
     //
     border-style: solid;
     border-color: var(--uui-notification_card-border, transparent);
@@ -40,7 +41,13 @@
 
     .close-icon {
         padding: 6px 0;
-        @include icon-size(24);
+
+        :global(.uui-icon) {
+            svg {
+                height: var(--uui-notification_card-icon-size);
+                width: inherit;
+            }
+        }
     }
 
     .main-path {

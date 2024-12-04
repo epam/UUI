@@ -26,6 +26,8 @@
 
     --uui-accordion-border-width: 0;
     --uui-accordion-divider-width: 1px;
+    --uui-accordion-icon-size: 24px;
+    --uui-accordion-inline-icon-size: 1px;
     //
     :global(.uui-accordion-toggler) {
         font-family: var(--uui-accordion-toggler-font);
@@ -66,7 +68,12 @@
             padding: 0 18px;
             border-radius: var(--uui-accordion-border-radius);
 
-            @include icon-size(24);
+            :global(.uui-icon) {
+                svg {
+                    height: var(--uui-accordion-icon-size);
+                    width: inherit;
+                }
+            }
 
             :global(.uui-accordion-toggle-container) {
                 padding-top: 18px;
@@ -119,7 +126,12 @@
             font-size: 14px;
             padding: 8px 12px 8px;
 
-            @include icon-size(18);
+            :global(.uui-icon) {
+                svg {
+                    height: var(--uui-accordion-inline-icon-size);
+                    width: inherit;
+                }
+            }
 
             :global(.uui-accordion-toggle-container) {
                 min-height: 24px;

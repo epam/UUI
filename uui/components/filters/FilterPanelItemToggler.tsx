@@ -63,7 +63,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                 uuiElement.inputBox,
                 uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,
-                `size-${props.size || defaultSize}`,
+                `uui-size-${props.size || defaultSize}`,
                 props.cx,
             ) }
             onClick={ togglerPickerOpened }
