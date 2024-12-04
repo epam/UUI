@@ -168,7 +168,6 @@ export const tablePlugin = (): PlatePlugin<TablePLuginOptions> =>
 
                 if (isElement(node) && (TABLE_CELL_TYPE === node.type || TABLE_CELL_TYPE === node.type)) {
                     normalizeTableCellElement(editor, entry);
-                    return;
                 }
 
                 normalizeNode(entry);

@@ -1,5 +1,4 @@
 import { AnalyticsEvent, Link } from './objects';
-import * as PropTypes from 'prop-types';
 import { IModal, INotification } from './props';
 import { DndContextState, TMouseCoords } from '../services/dnd/DndContext';
 import { Lock } from '../services/LockContext';
@@ -293,20 +292,3 @@ export interface CommonContexts<TApi, TAppContext> extends UuiContexts {
     /** React router history instance */
     history?: IHistory4;
 }
-
-export const uuiContextTypes = {
-    uuiAnalytics: PropTypes.object,
-    uuiErrors: PropTypes.object,
-    uuiApi: PropTypes.object,
-    uuiModals: PropTypes.object,
-    uuiNotifications: PropTypes.object,
-    api: PropTypes.object,
-    uuiUserSettings: PropTypes.object,
-    uuiDnD: PropTypes.object,
-    uuiApp: PropTypes.object,
-    uuiRouter: PropTypes.object,
-    uuiLayout: PropTypes.object,
-    uuiLocks: PropTypes.object,
-    history: PropTypes.object,
-    uuiSkin: PropTypes.object,
-};
