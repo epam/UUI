@@ -10,7 +10,7 @@ export const slateInitialValue = [
         ],
     },
     {
-        type: 'uui-richTextEditor-header-3',
+        type: 'uui-richTextEditor-header-2',
         data: {},
         children: [
             {
@@ -24,8 +24,16 @@ export const slateInitialValue = [
         data: {},
         children: [
             {
-                text: '@epam/uui-editor package contains a full-featured Rich Text Editor, based on open-source ',
+                text: 'The ',
+            },
+            {
+                text: '@epam/uui-editor',
                 'uui-richTextEditor-span-mark': true,
+                'uui-richTextEditor-code': true,
+            },
+            {
+                'uui-richTextEditor-span-mark': true,
+                text: ' package contains a full-featured Rich Text Editor, based on open-source ',
             },
             {
                 type: 'link',
@@ -107,9 +115,7 @@ export const slateInitialValue = [
     },
     {
         type: 'uui-richTextEditor-header-3',
-        data: {
-            checked: false,
-        },
+        data: {},
         children: [
             {
                 text: 'Basic layout',
@@ -151,13 +157,13 @@ export const slateInitialValue = [
                 'uui-richTextEditor-underlined': true,
             },
             {
-                text: ' several UUI-friendly text colors: ',
+                text: ' align with several UUI-friendly text colors: ',
                 'uui-richTextEditor-span-mark': true,
             },
             {
                 text: 'red',
-                color: '#FF4E33',
                 'uui-richTextEditor-span-mark': true,
+                color: 'var(--uui-text-critical)',
             },
             {
                 text: ', ',
@@ -165,29 +171,35 @@ export const slateInitialValue = [
             },
             {
                 text: 'yellow',
-                color: '#FFA21D',
                 'uui-richTextEditor-span-mark': true,
+                color: 'var(--uui-text-warning)',
             },
             {
                 text: ', and ',
                 'uui-richTextEditor-span-mark': true,
             },
             {
-                text: 'green.',
+                text: 'green',
+                'uui-richTextEditor-span-mark': true,
+                color: 'var(--uui-text-success)',
+            },
+            {
                 color: '#9BC837',
                 'uui-richTextEditor-span-mark': true,
+                text: '.',
             },
         ],
     },
     {
-        type: 'paragraph',
+        type: 'uui-richTextEditor-header-3',
         data: {
             checked: false,
         },
         children: [
             {
-                text: 'Numbered lists:',
+                text: 'Numbered lists',
                 'uui-richTextEditor-span-mark': true,
+                'uui-richTextEditor-bold': true,
             },
         ],
     },
@@ -206,8 +218,11 @@ export const slateInitialValue = [
                         },
                         children: [
                             {
-                                text: "In edit mode, we detect  '1.' and start list automatically",
+                                text: 'In edit mode, ',
                                 'uui-richTextEditor-span-mark': true,
+                            },
+                            {
+                                text: "typing '1.' automatically starts a numbered list.",
                             },
                         ],
                     },
@@ -224,8 +239,11 @@ export const slateInitialValue = [
                         },
                         children: [
                             {
-                                text: "You can use 'tab' / 'shift/tab' to indent the list",
+                                text: "You can use 'Tab' / 'Shift+Tab' to ",
                                 'uui-richTextEditor-span-mark': true,
+                            },
+                            {
+                                text: "adjust the list's indentation level.",
                             },
                         ],
                     },
@@ -234,14 +252,15 @@ export const slateInitialValue = [
         ],
     },
     {
-        type: 'paragraph',
+        type: 'uui-richTextEditor-header-3',
         data: {
             checked: false,
         },
         children: [
             {
-                text: 'Bullet lists:',
+                text: 'Bullet lists',
                 'uui-richTextEditor-span-mark': true,
+                'uui-richTextEditor-bold': true,
             },
         ],
     },
@@ -260,8 +279,11 @@ export const slateInitialValue = [
                         },
                         children: [
                             {
-                                text: "Type '- ' to start the list",
+                                text: "Type '- ' ",
                                 'uui-richTextEditor-span-mark': true,
+                            },
+                            {
+                                text: 'to start a bullet list.',
                             },
                         ],
                     },
@@ -278,7 +300,10 @@ export const slateInitialValue = [
                         },
                         children: [
                             {
-                                text: "You can create multi-level lists with 'tab' / 'shift+tab'. Example:",
+                                text: 'Create multi-level lists using',
+                            },
+                            {
+                                text: " 'Tab' / 'Shift+Tab'. Example:",
                                 'uui-richTextEditor-span-mark': true,
                             },
                         ],
@@ -336,19 +361,44 @@ export const slateInitialValue = [
         ],
     },
     {
-        type: 'paragraph',
-        data: {
-            checked: false,
-        },
+        type: 'h5',
         children: [
             {
-                text: "There's also support 3 levels of headers, hyperlinks, superscript, and more.",
-                'uui-richTextEditor-span-mark': true,
+                text: 'Headers and Links',
+                'uui-richTextEditor-bold': true,
             },
         ],
     },
     {
-        type: 'uui-richTextEditor-header-3',
+        type: 'paragraph',
+        children: [
+            {
+                text: 'We also support three levels of headers, ',
+            },
+            {
+                type: 'link',
+                url: 'https://uui.epam.com/',
+                target: '_blank',
+                children: [
+                    {
+                        text: 'hyperlinks',
+                    },
+                ],
+            },
+            {
+                text: ', ',
+            },
+            {
+                text: 'superscript',
+                'uui-richTextEditor-superscript': true,
+            },
+            {
+                text: ', and more.',
+            },
+        ],
+    },
+    {
+        type: 'uui-richTextEditor-header-2',
         data: {
             checked: false,
         },
@@ -366,8 +416,57 @@ export const slateInitialValue = [
         },
         children: [
             {
-                text: 'Files can be dropped directly into the editor. You can embed images (align and resizing is supported):',
-                'uui-richTextEditor-span-mark': true,
+                text: 'You can embed various types of content into the editor:',
+            },
+        ],
+    },
+    {
+        type: 'uui-richTextEditor-header-3',
+        data: {
+            checked: false,
+        },
+        children: [
+            {
+                text: 'Images',
+                'uui-richTextEditor-bold': true,
+            },
+        ],
+    },
+    {
+        type: 'unordered-list',
+        children: [
+            {
+                type: 'list-item',
+                children: [
+                    {
+                        type: 'list-item-child',
+                        children: [
+                            {
+                                text: 'Embed images via the ',
+                            },
+                            {
+                                text: '"Add Image"',
+                                'uui-richTextEditor-bold': true,
+                            },
+                            {
+                                text: ' icon, drag-and-drop from your computer, or insert a direct internet address link.',
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                type: 'list-item',
+                children: [
+                    {
+                        type: 'list-item-child',
+                        children: [
+                            {
+                                text: 'Images support alignment and resizing.',
+                            },
+                        ],
+                    },
+                ],
             },
         ],
     },
@@ -383,7 +482,7 @@ export const slateInitialValue = [
         },
         url: '/static/uploads/blue-orange.jpg',
         align: 'center',
-        width: 800,
+        width: 862,
         height: 417,
         children: [
             {
@@ -393,72 +492,180 @@ export const slateInitialValue = [
         ],
         caption: [
             {
-                text: 'Image caption',
+                text: 'Picture from a file',
             },
         ],
     },
     {
         type: 'paragraph',
-        data: {
-            checked: false,
-        },
         children: [
             {
-                text: 'Video:',
-                'uui-richTextEditor-span-mark': true,
+                text: '',
+            },
+        ],
+    },
+    {
+        align: 'center',
+        url: 'https://c.files.bbci.co.uk/D8CD/production/_117310555_16.jpg',
+        width: 862,
+        type: 'image',
+        children: [
+            {
+                text: '',
+            },
+        ],
+        caption: [
+            {
+                text: 'Picture from the internet',
+            },
+        ],
+    },
+    {
+        type: 'uui-richTextEditor-header-3',
+        children: [
+            {
+                text: 'PDFs',
+                'uui-richTextEditor-bold': true,
+            },
+        ],
+    },
+    {
+        type: 'paragraph',
+        children: [
+            {
+                text: 'Embed PDFs via the ',
+            },
+            {
+                text: '"Add PDF" ',
+                'uui-richTextEditor-bold': true,
+            },
+            {
+                text: 'icon or drag-and-drop.',
             },
         ],
     },
     {
         type: 'iframe',
-        data: {},
-        url: 'https://www.youtube.com/embed/5qap5aO4i9A',
         children: [
             {
                 text: '',
-                'uui-richTextEditor-span-mark': true,
+            },
+        ],
+        data: {},
+        url: 'https://pdfobject.com/pdf/sample.pdf',
+    },
+    {
+        type: 'uui-richTextEditor-header-3',
+        children: [
+            {
+                text: 'Files',
+                'uui-richTextEditor-bold': true,
             },
         ],
     },
     {
         type: 'paragraph',
-        data: {
-            checked: false,
-        },
         children: [
             {
-                text: 'Arbitrary attachments:',
-                'uui-richTextEditor-span-mark': true,
+                text: 'Upload arbitrary files using the ',
+            },
+            {
+                text: '"Add Attachment"',
+                'uui-richTextEditor-bold': true,
+            },
+            {
+                text: ' icon. Files appear as downloadable links.',
             },
         ],
     },
     {
         type: 'attachment',
         data: {
-            path: '/static/uploads/DemoExcelAttachment.xlsx',
-            name: 'DemoExcelAttachment.xlsx',
-            size: 8669,
-            id: '100500',
+            path: '/static/uploads/blue-orange.jpg',
+            name: 'Excel.xlsx',
+            size: 8710,
+            id: 1,
             type: 'attachment',
-            fileName: 'DemoExcelAttachment.xlsx',
             extension: 'xlsx',
+            fileName: 'DemoExcelAttachment.xlsx',
         },
-        url: '/static/uploads/DemoExcelAttachment.xlsx',
+        children: [
+            {
+                text: '',
+            },
+        ],
+    },
+    {
+        type: 'attachment',
+        data: {
+            path: '/static/uploads/blue-orange.jpg',
+            name: 'Word.docx',
+            size: 11943,
+            id: 2,
+            type: 'attachment',
+            extension: 'docx',
+            fileName: 'DemoWordAttachment.docx',
+        },
+        children: [
+            {
+                text: '',
+            },
+        ],
+    },
+    {
+        type: 'attachment',
+        data: {
+            path: '/static/uploads/blue-orange.jpg',
+            name: '5mb-file.txt',
+            size: 5000000,
+            id: 4,
+            type: 'attachment',
+            extension: 'txt',
+            fileName: 'DemoTxtAttachment.txt',
+        },
+        children: [
+            {
+                text: '',
+            },
+        ],
+    },
+    {
+        type: 'uui-richTextEditor-header-3',
+        data: {
+            checked: false,
+        },
+        children: [
+            {
+                text: 'Videos',
+                'uui-richTextEditor-bold': true,
+            },
+        ],
+    },
+    {
+        type: 'paragraph',
+        children: [
+            {
+                text: 'Embed videos via the ',
+            },
+            {
+                text: '"Add Video"',
+                'uui-richTextEditor-bold': true,
+            },
+            {
+                text: ' icon.',
+            },
+        ],
+    },
+    {
+        type: 'iframe',
         children: [
             {
                 text: '',
                 'uui-richTextEditor-span-mark': true,
             },
         ],
-    },
-    {
-        type: 'paragraph',
         data: {},
-        children: [
-            {
-                text: 'You can also embed any arbitrary content, like PDF files, directly into the document, inside IFrame.',
-            },
-        ],
+        url: 'https://www.youtube.com/embed/jfKfPfyJRdk',
     },
     {
         type: 'uui-richTextEditor-header-3',
@@ -480,22 +687,12 @@ export const slateInitialValue = [
     },
     {
         type: 'table',
-        data: {},
-        colSizes: [
-            130,
-            200,
-            200,
-            183,
-            161,
-        ],
         children: [
             {
                 type: 'table_row',
-                data: {},
                 children: [
                     {
                         type: 'table_header_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -510,8 +707,6 @@ export const slateInitialValue = [
                     },
                     {
                         type: 'table_header_cell',
-                        data: {},
-                        colSpan: 2,
                         children: [
                             {
                                 type: 'paragraph',
@@ -523,10 +718,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 2,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_header_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -543,12 +739,9 @@ export const slateInitialValue = [
             },
             {
                 type: 'table_row',
-                data: {},
                 children: [
                     {
                         type: 'table_cell',
-                        data: {},
-                        rowSpan: 2,
                         children: [
                             {
                                 type: 'paragraph',
@@ -560,10 +753,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 2,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -575,10 +769,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        rowSpan: 1,
+                        colSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -590,10 +785,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        rowSpan: 1,
+                        colSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -610,14 +806,13 @@ export const slateInitialValue = [
                         ],
                     },
                 ],
+                size: 47,
             },
             {
                 type: 'table_row',
-                data: {},
                 children: [
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -629,10 +824,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -644,10 +840,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
@@ -662,17 +859,16 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                 ],
             },
             {
                 type: 'table_row',
-                data: {},
                 children: [
                     {
                         type: 'table_cell',
-                        data: {},
-                        rowSpan: 1,
                         children: [
                             {
                                 type: 'paragraph',
@@ -684,11 +880,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
-                        rowSpan: 1,
                         children: [
                             {
                                 type: 'paragraph',
@@ -700,11 +896,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
-                        rowSpan: 1,
                         children: [
                             {
                                 type: 'paragraph',
@@ -716,11 +912,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
-                        rowSpan: 1,
                         children: [
                             {
                                 type: 'paragraph',
@@ -735,20 +931,20 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                 ],
+                size: 47,
             },
             {
                 type: 'table_row',
-                data: {},
                 children: [
                     {
                         type: 'table_cell',
-                        data: {},
                         children: [
                             {
                                 type: 'paragraph',
-                                data: {},
                                 children: [
                                     {
                                         text: '',
@@ -756,11 +952,11 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 1,
+                        rowSpan: 1,
                     },
                     {
                         type: 'table_cell',
-                        data: {},
-                        colSpan: 3,
                         children: [
                             {
                                 type: 'paragraph',
@@ -772,9 +968,19 @@ export const slateInitialValue = [
                                 ],
                             },
                         ],
+                        colSpan: 3,
+                        rowSpan: 1,
                     },
                 ],
+                size: 46,
             },
+        ],
+        data: {},
+        colSizes: [
+            200,
+            154,
+            150,
+            189,
         ],
     },
     {
@@ -782,7 +988,7 @@ export const slateInitialValue = [
         data: {},
         children: [
             {
-                text: 'Placeholders:',
+                text: 'Placeholders',
             },
         ],
     },
@@ -791,7 +997,7 @@ export const slateInitialValue = [
         data: {},
         children: [
             {
-                text: 'Allows to insert ',
+                text: '',
             },
             {
                 type: 'placeholder',
@@ -806,16 +1012,7 @@ export const slateInitialValue = [
                 ],
             },
             {
-                text: " into text. Can be used for editing templates, for example for emails. Placeholders can be then replaced with real values programmatically (currently that's done by some apps in back-end code).",
-            },
-        ],
-    },
-    {
-        type: 'paragraph',
-        data: {},
-        children: [
-            {
-                text: '',
+                text: ' can be inserted into text and are useful for creating editable templates, such as emails. These placeholders can be programmatically replaced with real values (currently handled by some apps in back-end code).',
             },
         ],
     },
@@ -824,7 +1021,7 @@ export const slateInitialValue = [
         data: {},
         children: [
             {
-                text: 'Misc features',
+                text: 'Miscellaneous Features',
             },
         ],
     },
@@ -901,4 +1098,4 @@ export const slateInitialValue = [
             },
         ],
     },
-] as any;
+];
