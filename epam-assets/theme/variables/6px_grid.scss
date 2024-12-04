@@ -324,4 +324,11 @@
             --uui-alert-caption-gap-h: 9px;
         }
     }
+
+    .uui-filters-panel-item-toggler {
+        &.uui-size-24 {
+            --uui-horizontal-padding: 3px;
+            --uui-horizontal-gap: 3px;
+        }
+    }
 }

@@ -27,6 +27,14 @@ const propsOverride: TPropEditorTypeOverride = {
             },
         },
     },
+    '@epam/uui:IconButtonProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['20', '24'],
+            },
+        },
+    },
     '@epam/uui:BadgeProps': {
         size: {
             editor: {
@@ -170,7 +178,27 @@ const propsOverride: TPropEditorTypeOverride = {
             },
         },
     },
-
+    '@epam/uui:RangeDatePickerProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['40', '48'],
+            },
+        },
+    },
+    '@epam/uui:RatingProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['20', '24'],
+            },
+            comment: {
+                tags: {
+                    '@default': '20',
+                },
+            },
+        },
+    },
 };
 
 export default propsOverride;
