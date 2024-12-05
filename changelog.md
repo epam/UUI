@@ -5,6 +5,7 @@
 * [Alert]: added support for size theming
 * [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
 * [ErrorPage]: added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
+* [ErrorPage]: embed typography styles for error page texts
 
 **What's Fixed**
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
