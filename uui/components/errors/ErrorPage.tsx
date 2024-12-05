@@ -9,7 +9,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = (props) => {
 
     return (
         <div className={ cx(css.container, props.cx) }>
-            <div className="uui-error-content">
+            <div className={ cx('uui-error-content', 'uui-typography') }>
                 <img className="uui-error-image" src={ isMobileScreen && props.mobileImageUrl ? props.mobileImageUrl : props.imageUrl } alt="ERROR OCCURRED!" />
                 <div className="uui-error-title">{props.title}</div>
                 <div className="uui-error-subtitle">{props.subtitle}</div>
