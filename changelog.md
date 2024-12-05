@@ -14,6 +14,7 @@
 * [RTE]: fixed scroll to the top of the editor after editor modal windows(Add image/link/video etc.) were close
 * [RTE]: fixed error while merging cells without content
 * [RTE]: fixed bug when files added from attachment button inserted in preview mode instead of attachment block
+* [RTE]: fixed crash when removing the sole table row
 
 # 5.11.0 - 15.11.2024
 
