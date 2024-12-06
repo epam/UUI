@@ -86,6 +86,59 @@ describe('useForm', () => {
             expect(result.current.isInvalid).toBe(false);
         });
 
+        it('Should update form value with lens.update (2 immediate updates)', async () => {
+            const { result } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
+                useForm({
+                    onSave: () => Promise.resolve(),
+                    onError: () => Promise.resolve(),
+                    value: 1,
+                }));
+
+            act(() => {
+                result.current.lens.update((x) => x + 1);
+                result.current.lens.update((x) => x + 1);
+            });
+            expect(result.current.value).toBe(3);
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+
+        it('Should get actual form value form value w/o re-render.', async () => {
+            const { result } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
+                useForm({
+                    onSave: () => Promise.resolve(),
+                    onError: () => Promise.resolve(),
+                    value: 1,
+                }));
+
+            act(() => {
+                result.current.lens.set(2);
+                expect(result.current.lens.get()).toBe(2);
+                result.current.lens.set(3);
+            });
+            expect(result.current.value).toBe(3);
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+
+        it('Should update via lens.toProps()', async () => {
+            const { result } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>(() =>
+                useForm({
+                    onSave: () => Promise.resolve(),
+                    onError: () => Promise.resolve(),
+                    value: 1,
+                }));
+
+            act(() => {
+                const props = result.current.lens.toProps();
+                props.onValueChange(2);
+                props.onValueChange(3);
+            });
+            expect(result.current.value).toBe(3);
+            expect(result.current.isChanged).toBe(true);
+            expect(result.current.isInvalid).toBe(false);
+        });
+
         it('should update form value by external props.value change', async () => {
             const { result, rerender } = await renderHookWithContextAsync<UseFormProps<number>, IFormApi<number>>((props) => useForm(props), {
                 onSave: () => Promise.resolve(),
