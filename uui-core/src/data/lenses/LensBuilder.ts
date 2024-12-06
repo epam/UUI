@@ -1,40 +1,53 @@
-import { IEditable } from '../../types';
+import { IEditable, Metadata } from '../../types';
 import * as Impl from './lensesImpl';
 import { ILensImpl } from './lensesImpl';
-import { ILens, ArrayElement, IMapElement } from './types';
+import { ILens, ArrayElement, IMapElement, ValidationState } from './types';
 
+export interface LensBuilderProps<T> {
+    get(): T;
+    set(update: (current: T) => T): void;
+    getValidationState?(): ValidationState;
+    getMetadata?(): Metadata<T>;
+}
 export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused> {
-    public readonly handleValueChange: (newValue: TFocused) => void = null;
-    constructor(public readonly lens: ILensImpl<TRoot, TFocused>) {
-        this.handleValueChange = (newValue: TFocused) => {
-            this.lens.set(null, newValue);
-        };
+    constructor(
+        private props: LensBuilderProps<TRoot>,
+        private lens: ILensImpl<TRoot, TFocused> = Impl.identity() as any,
+    ) {
     }
 
     public get(): TFocused {
-        return this.lens.get(null);
+        const big = this.props.get();
+        return this.lens.get(big);
     }
 
-    public key<TId>(id: TId): LensBuilder<TRoot, IMapElement<TFocused>> {
-        return this.compose(Impl.key(id) as any, id);
+    public set(newValue: TFocused) {
+        this.props.set((current) => this.lens.set(current, newValue));
     }
 
-    public set(value: TFocused) {
-        this.lens.set(null, value);
-    }
+    // onValueChange should be bound to 'this', as it is returned from .toProps() in a separate object
+    private handleOnValueChange = (newValue: TFocused) => this.set(newValue);
 
     public update(fn: (current: TFocused) => TFocused) {
-        this.lens.set(null, fn(this.lens.get(null)));
+        this.props.set((currentRoot) => {
+            const currentFocused = this.lens.get(currentRoot);
+            const updatedFocused = fn(currentFocused);
+            const updatedRoot = this.lens.set(currentRoot, updatedFocused);
+            return updatedRoot;
+        });
     }
 
+    // We cache LensBuilder instances to not re-create handleOnValueChange, as it would break memoization
+    // in React.memo-wrapped components, which is especially critical for DataTableRow.
     public static MAX_CACHE_SIZE = 1000;
     private cache = new Map();
+
     public compose<TSmall>(lens: ILensImpl<TFocused, TSmall>, cacheKey?: any): LensBuilder<TRoot, TSmall> {
         if (cacheKey != null && this.cache.has(cacheKey)) {
             return this.cache.get(cacheKey);
         }
 
-        const result = new LensBuilder(Impl.compose(this.lens, lens));
+        const result = new LensBuilder(this.props, Impl.compose(this.lens, lens));
 
         if (cacheKey != null) {
             this.cache.set(cacheKey, result);
@@ -52,13 +65,20 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
         return this.compose(Impl.prop(name), name) as any;
     }
 
+    public key<TId>(id: TId): LensBuilder<TRoot, IMapElement<TFocused>> {
+        return this.compose(Impl.key(id) as any, id);
+    }
+
     public index(index: number): LensBuilder<TRoot, ArrayElement<TFocused>> {
         return this.compose(Impl.index(index) as any, index);
     }
 
     public onChange(fn: (oldValue: TFocused, newValue: TFocused) => TFocused): LensBuilder<TRoot, TFocused> {
         return this.compose({
-            get: (i) => i, set: fn, getValidationState: this.lens.getValidationState, getMetadata: this.lens.getMetadata as any,
+            get: (i) => i,
+            set: fn,
+            getValidationState: this.lens.getValidationState,
+            getMetadata: this.lens.getMetadata as any,
         }, fn);
     }
 
@@ -67,11 +87,15 @@ export class LensBuilder<TRoot = any, TFocused = any> implements ILens<TFocused>
     }
 
     public toProps(): IEditable<TFocused> {
-        const validationState = this.lens.getValidationState && this.lens.getValidationState(null);
-        const metadata = this.lens.getMetadata && this.lens.getMetadata(null);
+        const rootValue = this.props.get();
+        const rootValidationsState = this.props.getValidationState?.() ?? {};
+        const rootMetadata = this.props.getMetadata?.() ?? {};
+        const value = this.lens.get(rootValue);
+        const validationState = this.lens.getValidationState && this.lens.getValidationState(rootValidationsState);
+        const metadata = this.lens.getMetadata && this.lens.getMetadata(rootMetadata);
         return {
-            value: this.lens.get(null),
-            onValueChange: this.handleValueChange,
+            value,
+            onValueChange: this.handleOnValueChange,
             ...validationState,
             ...metadata,
         };
