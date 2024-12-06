@@ -14,6 +14,7 @@ import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { useEditorRef } from '@udecode/plate-common';
 import { getTableEntries, insertTableColumn, insertTableRow, deleteRow, deleteTable, unmergeTableCells, deleteColumn } from '@udecode/plate-table';
 import { TABLE_HEADER_CELL_TYPE } from './constants';
+import { temporaryFixDeleteRow } from './temporaryFixDeleteRow';
 
 function StyledRemoveTable() {
     return <RemoveTable className={ css.removeTableIcon } />;
@@ -72,7 +73,7 @@ export function TableToolbarContent({ canUnmerge }:{ canUnmerge:boolean }) {
             />
             <ToolbarButton
                 key="delete-row"
-                onClick={ () => deleteRow(editor) }
+                onClick={ temporaryFixDeleteRow(editor, () => deleteRow(editor)) }
                 icon={ RemoveRow }
             />
             <ToolbarButton

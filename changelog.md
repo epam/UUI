@@ -5,6 +5,7 @@
 * [Alert]: added support for size theming
 * [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
 * [ErrorPage]: added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
+* [ErrorPage]: embed typography styles for error page texts
 
 **What's Fixed**
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
@@ -14,6 +15,7 @@
 * [RTE]: fixed scroll to the top of the editor after editor modal windows(Add image/link/video etc.) were close
 * [RTE]: fixed error while merging cells without content
 * [RTE]: fixed bug when files added from attachment button inserted in preview mode instead of attachment block
+* [RTE]: fixed crash when removing the sole table row
 
 # 5.11.0 - 15.11.2024
 
