@@ -972,6 +972,7 @@ export const slateInitialValue = [
                         rowSpan: 1,
                     },
                 ],
+                size: 46,
             },
         ],
         data: {},
@@ -980,15 +981,6 @@ export const slateInitialValue = [
             154,
             150,
             189,
-        ],
-    },
-    {
-        type: 'uui-richTextEditor-header-3',
-        data: {},
-        children: [
-            {
-                text: '',
-            },
         ],
     },
     {
