@@ -16,6 +16,7 @@
 * [RTE]: fixed error while merging cells without content
 * [RTE]: fixed bug when files added from attachment button inserted in preview mode instead of attachment block
 * [RTE]: fixed crash when removing the sole table row
+* [Modals]: autofocus first active element on modal open. It's a temporary fix, because of bug in react-focus-lock lib(https://github.com/theKashey/react-focus-lock/issues/340). Ideally focus should move to the first active element only after 'Tab' key was pressed, we will come back to this solution when bug will be fixed.
 
 # 5.11.0 - 15.11.2024
 
