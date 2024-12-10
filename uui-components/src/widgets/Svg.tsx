@@ -6,7 +6,7 @@ import {
 
 interface ISvgProps {
     className: string;
-    fill: string;
+    fill?: string;
     height?: number | string;
     width?: number | string;
 }
@@ -27,10 +27,10 @@ export const Svg = React.forwardRef<SVGSVGElement, SvgProps>((props, ref) => {
 
     const svgProps: ISvgProps = {
         className: cx(props.cx),
-        fill: fillColor,
         ...props.rawProps,
     };
 
+    if (fillColor !== undefined) svgProps.fill = fillColor;
     if (height !== undefined) svgProps.height = height;
     if (width !== undefined) svgProps.width = width;
 
