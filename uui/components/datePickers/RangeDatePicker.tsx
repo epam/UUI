@@ -11,6 +11,7 @@ import { RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProp
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
 import css from './RangeDatePicker.module.scss';
+import { settings } from '../../settings';
 
 const modifiers = [{
     name: 'offset',
@@ -18,7 +19,7 @@ const modifiers = [{
 }];
 
 function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
-    const { value: _value, format = defaultFormat } = props;
+    const { value: _value, format = defaultFormat, size = settings.sizes.defaults.rangeDatePicker } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
     const context = useUuiContext();
@@ -68,10 +69,6 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                 { ...renderProps }
                 cx={ cx(css.dropdownContainer) }
                 shards={ [targetRef] }
-                returnFocus={ (node) => {
-                    console.log('lock', node);
-                    return true;
-                } }
             >
                 <FlexRow>
                     <RangeDatePickerBody
@@ -114,7 +111,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                         isDisabled={ props.isDisabled }
                         isInvalid={ props.isInvalid }
                         isReadonly={ props.isReadonly }
-                        size={ props.size }
+                        size={ size as RangeDatePickerProps['size'] }
                         getPlaceholder={ props.getPlaceholder }
                         disableClear={ props.disableClear }
                         rawProps={ props.rawProps }

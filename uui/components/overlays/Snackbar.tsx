@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NotificationOperation, useUuiContext } from '@epam/uui-core';
 import { SnackbarProps as UuiSnackbarProps, Snackbar as UuiSnackbar } from '@epam/uui-components';
-import { ClearNotification } from '../../index';
+import { ClearNotification } from './NotificationCard';
 import { useEffect, useReducer } from 'react';
 
 export interface SnackbarProps extends UuiSnackbarProps {}

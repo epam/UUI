@@ -20,11 +20,15 @@ import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { ReactComponent as addIcon } from '@epam/assets/icons/action-add-outline.svg';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
+import { settings } from '../../settings';
 
 export interface FiltersPanelModsOverride {}
 
 interface FiltersPanelMods {
-    /** Defines size(height) of filter panel and filters */
+    /**
+     * Defines size(height) of filter panel and filters
+     * @default '36'
+     */
     size?: '24' | '30' | '36' | '42' | '48';
 }
 
@@ -78,7 +82,7 @@ const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
 };
 
 function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFilter>) {
-    const { filters, tableState, setTableState } = props;
+    const { filters, tableState, setTableState, size = (settings.sizes.defaults.filtersPanel as FiltersPanelProps<TFilter>['size']) } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
     const pickerInputRef = useRef<PickerInputElement>(null);
@@ -157,7 +161,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
     const renderAddFilterToggler = useCallback((togglerProps: PickerTogglerProps) => {
         return (
             <Button
-                size={ props.size }
+                size={ size }
                 onClick={ togglerProps.onClick }
                 ref={ togglerProps.ref }
                 caption={ i18n.filterToolbar.addCaption }
@@ -206,7 +210,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                         key={ f.field as string }
                         autoFocus={ newFilterId === f.field }
                         removeFilter={ removeFilter }
-                        size={ props.size }
+                        size={ size }
                     />
                 </FlexCell>
             ))}
@@ -234,7 +238,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     emptyValue={ [] }
                     getRowOptions={ getRowOptions }
                     fixedBodyPosition={ true }
-                    size={ props.size }
+                    size={ size }
                     bodyCx={ UUI_FILTERS_PANEL_ADD_BUTTON_BODY }
                     ref={ pickerInputRef }
                 />

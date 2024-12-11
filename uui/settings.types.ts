@@ -5,9 +5,11 @@ interface DefaultSizes {
     checkbox: string;
     countIndicator: string;
     flexRow: string;
+    filtersPanel: string;
     linkButton: string;
     numericInput: string;
     radioInput: string;
+    richTextView: string;
     switch: string;
     tabButton: string;
     tag: string;
