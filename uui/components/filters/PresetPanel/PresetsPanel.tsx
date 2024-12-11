@@ -42,7 +42,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
         return (
             <div key="addingPresetBlock" className={ css.addPresetContainer }>
                 {!isAddingPreset ? (
-                    <Button cx={ UUI_PRESETS_PANEL_ADD_BUTTON } size="36" onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" fill="ghost" color="primary" />
+                    <Button cx={ UUI_PRESETS_PANEL_ADD_BUTTON } onClick={ setAddingPreset } caption={ i18n.presetPanel.addCaption } icon={ addIcon } iconPosition="left" fill="ghost" color="primary" />
                 ) : (
                     <PresetInput onCancel={ cancelAddingPreset } onSuccess={ props.createNewPreset } />
                 )}
