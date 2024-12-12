@@ -1,11 +1,24 @@
-# 5.xx.xx - xx.xx.2024
+# 5.12.0 - 12.12.2024
 
 **What's New**
+* [ErrorPage]: added possibility to add message with support link for error pages(`500, 503, default` errors).
+  For EPAM applications it's recommended to add following code to the root of your app to enable it:
+  ```
+    import { i18n } from '@epam/uui';
+
+    i18n.errorHandler.supportLink = (
+        <>
+            You can track the service availability at
+            {' '}
+            <a href={ `https://status.epam.com/?utm_source=${window.location.host}&utm_medium=ErrorPage&utm_campaign=StatusAquisitionTracking` }>status.epam.com</a>
+        </>
+    );   
+  ```
 * Remove 'prop-types' from UUI packages dependencies. Remove `uuiContextTypes` interface, since it was needed for already outdated React context API.
-* [Alert]: added support for size theming
 * [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
-* [ErrorPage]: added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
 * [ErrorPage]: embed typography styles for error page texts
+* [Alert]: small tweaks according to the design
+
 
 **What's Fixed**
 * [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement. 
@@ -37,7 +50,7 @@
 **What's Fixed**
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: Added gaps between internal items, changed padding according to design
-  [Badge]: changed gaps & paddings according design, removed padding before first icon & after counter
+* [Badge]: changed gaps & paddings according design, removed padding before first icon & after counter
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
