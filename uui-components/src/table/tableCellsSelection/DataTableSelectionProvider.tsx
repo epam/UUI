@@ -12,9 +12,17 @@ export interface DataTableSelectionProviderProps<TItem, TId, TFilter> extends Re
 export function DataTableSelectionProvider<TItem, TId, TFilter>({
     onCopy, rows, columns, children,
 }: DataTableSelectionProviderProps<TItem, TId, TFilter>) {
+    const rowsByIndex = useMemo(() => {
+        const rowsMap = new Map<number, DataRowProps<TItem, TId>>();
+        rows.forEach((row) => {
+            rowsMap.set(row.index, row);
+        });
+        return rowsMap;
+    }, [rows]);
+    
     const {
         selectionRange, setSelectionRange, getSelectedCells, startCell, getCellSelectionInfo,
-    } = useSelectionManager<TItem, TId, TFilter>({ rows, columns });
+    } = useSelectionManager<TItem, TId, TFilter>({ rowsByIndex, columns });
 
     useEffect(() => {
         if (!selectionRange || !onCopy) return;

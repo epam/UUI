@@ -1,6 +1,16 @@
 import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { DataSourceState, DataColumnProps, useUuiContext, useLazyDataSource, DropdownBodyProps } from '@epam/uui-core';
-import { Dropdown, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuBody, Text, DataTable, Panel, IconButton } from '@epam/uui';
+import {
+    Dropdown,
+    DropdownMenuButton,
+    DropdownMenuSplitter,
+    DropdownMenuBody,
+    Text,
+    DataTable,
+    Panel,
+    IconButton,
+    DataTableCell, TextInput,
+} from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import { ReactComponent as MoreIcon } from '@epam/assets/icons/common/navigation-more_vert-18.svg';
 import { ReactComponent as PencilIcon } from '@epam/assets/icons/common/content-edit-18.svg';
@@ -37,22 +47,28 @@ export default function CitiesTable() {
             }, {
                 key: 'name',
                 caption: 'Name',
-                render: (city) => (
-                    <Text color="primary" fontSize="14">
-                        {city.name}
-                    </Text>
+                renderCell: (props) => (
+                    <DataTableCell
+                        { ...props.rowLens.prop('name').toProps() }
+                        renderEditor={ (props) => <TextInput { ...props } /> }
+                        { ...props }
+                    />
                 ),
+                canCopy: () => true,
                 isSortable: true,
                 width: 162,
                 grow: 1,
             }, {
                 key: 'countryName',
                 caption: 'Country',
-                render: (city) => (
-                    <Text color="primary" fontSize="14">
-                        {city.countryName}
-                    </Text>
+                renderCell: (props) => (
+                    <DataTableCell
+                        { ...props.rowLens.prop('countryName').toProps() }
+                        renderEditor={ (props) => <TextInput { ...props } /> }
+                        { ...props }
+                    />
                 ),
+                canAcceptCopy: () => true,
                 isSortable: true,
                 width: 128,
                 isFilterActive: (filter) => filter.country && filter.country.$in && !!filter.country.$in.length,
@@ -122,6 +138,7 @@ export default function CitiesTable() {
                 // Spread ListProps and provide getVisibleRows function from view to DataTable component.
                 // getRows function will be called every time when table will need more rows.
                 { ...view.getListProps() }
+                onCopy={ () => {} }
                 getRows={ view.getVisibleRows }
                 showColumnsConfig={ false }
                 headerTextCase="upper"
