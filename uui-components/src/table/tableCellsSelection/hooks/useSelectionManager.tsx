@@ -7,27 +7,28 @@ import {
     getCell, getCellPosition, getStartCell, getNormalizedLimits,
 } from './helpers';
 
-export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
+export const useSelectionManager = <TItem, TId, TFilter>({ rowsByIndex, columns }: SelectionManagerProps<TItem, TId>): SelectionManager<TItem> => {
     const [selectionRange, setSelectionRange] = useState<DataTableSelectionRange>(null);
 
     const startCell = useMemo(
-        () => getStartCell<TItem, TId, TFilter>(selectionRange, rows, columns),
+        () => getStartCell<TItem, TId, TFilter>(selectionRange, rowsByIndex, columns),
         [
-            selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rows, columns,
+            selectionRange?.startColumnIndex, selectionRange?.startRowIndex, rowsByIndex, columns,
         ],
     );
 
     const canBeSelected = useCallback(
         (rowIndex: number, columnIndex: number, { copyFrom, copyTo }: CopyOptions) => {
-            const cell = getCell(rowIndex, columnIndex, rows, columns);
+            const cell = getCell(rowIndex, columnIndex, rowsByIndex, columns);
+
             if (!startCell && copyTo) return false;
-            if (copyFrom) return !!cell.column.canCopy?.(cell);
+            if (copyFrom) {
+                return !!cell.column.canCopy?.(cell);
+            }
 
             return !!cell.column.canAcceptCopy?.(startCell, cell);
         },
-        [
-            startCell, columns, rows,
-        ],
+        [startCell, columns, rowsByIndex],
     );
 
     const shouldSelectCell = useCallback(
@@ -53,7 +54,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
         for (let rowIndex = startRow; rowIndex <= endRow; rowIndex++) {
             for (let columnIndex = startColumn; columnIndex <= endColumn; columnIndex++) {
                 if (shouldSelectCell(rowIndex, columnIndex)) {
-                    const cell = getCell(rowIndex, columnIndex, rows, columns);
+                    const cell = getCell(rowIndex, columnIndex, rowsByIndex, columns);
                     selectedCells.push(cell);
                 }
             }
@@ -61,7 +62,7 @@ export const useSelectionManager = <TItem, TId, TFilter>({ rows, columns }: Sele
 
         return selectedCells;
     }, [
-        selectionRange, columns, shouldSelectCell, rows,
+        selectionRange, columns, shouldSelectCell, rowsByIndex,
     ]);
 
     const getCellSelectionInfo = useCallback(
