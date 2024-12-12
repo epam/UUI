@@ -6,7 +6,7 @@
   ```
     import { i18n } from '@epam/uui';
 
-    i18n.errorHandler.supportLink = (
+    i18n.errorHandler.supportMessage = (
         <>
             You can track the service availability at
             {' '}
