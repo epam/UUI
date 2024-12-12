@@ -1,0 +1,32 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To create column groups in the table header, provide the group configuration using the "
+      },
+      {
+        "text": "columnGroups",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. For each column to be grouped, specify the "
+      },
+      {
+        "text": "group",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " field with the corresponding group key."
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "This is preview version of header groups functionality with limited support of some DataTable features, like columns reordering, resizing and columns configuration via modal."
+      }
+    ]
+  }
+]

@@ -11,9 +11,10 @@ import { ReactComponent as ChatIcon } from '@epam/assets/icons/communication-cha
 import css from './BasicExample.module.scss';
 
 export default function BasicExample() {
-    const [value, onValueChange] = useState(null);
-    const [view, setView] = useState(null);
-    const [filter, setFilter] = useState(null);
+    const [value, onValueChange] = useState('on');
+    const [userType, userTypeOnValueChange] = useState();
+    const [view, setView] = useState(1);
+    const [filter, setFilter] = useState(2);
 
     return (
         <FlexCell width="auto" cx={ css.container }>
@@ -28,8 +29,8 @@ export default function BasicExample() {
                 items={ [
                     { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ userType }
+                onValueChange={ userTypeOnValueChange }
             />
             <Text>With Grey border</Text>
             <MultiSwitch
@@ -38,16 +39,16 @@ export default function BasicExample() {
                     { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
                 color="secondary"
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ userType }
+                onValueChange={ userTypeOnValueChange }
             />
             <Text>Disabled</Text>
             <MultiSwitch
                 items={ [
                     { id: 1, caption: 'Mentee' }, { id: 2, caption: 'Mentor' }, { id: 3, caption: 'Coordinator' },
                 ] }
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ userType }
+                onValueChange={ userTypeOnValueChange }
                 isDisabled
             />
             <Text>Icon only</Text>

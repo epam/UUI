@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-core",
-  "version": "5.11.1-alpha.0",
+  "version": "5.11.1-rc.0",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
@@ -24,7 +24,6 @@
     "react-popper": "2.3.0"
   },
   "peerDependencies": {
-    "prop-types": "*",
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
   },

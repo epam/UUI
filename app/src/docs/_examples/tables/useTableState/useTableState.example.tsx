@@ -64,7 +64,7 @@ const initialPresets: ITablePreset[] = [
         name: 'Red status',
         order: 'a',
         filter: {
-            profileStatusId: 1,
+            profileStatusId: [1],
         },
         isReadonly: true,
     },
