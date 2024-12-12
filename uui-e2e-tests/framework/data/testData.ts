@@ -143,7 +143,7 @@ export type TPreviewIdByComponentId = {
 };
 
 export const THEMES = {
-    allExceptVanillaThunder: Object.values(TTheme).filter((t) => t !== TTheme.vanilla_thunder),
+    allExceptVanillaThunder: Object.values(TTheme),
 };
 
 /**

@@ -15,7 +15,7 @@ export default function TypesTooltipExample() {
 
     return (
         <div className={ css.container }>
-            <Tooltip content="Compact" placement="bottom">
+            <Tooltip content="Compact">
                 <Button icon={ copyIcon } caption="Copy" fill="outline" color="primary" cx={ css.firstColumn } onClick={ () => null } />
             </Tooltip>
 
@@ -23,12 +23,12 @@ export default function TypesTooltipExample() {
                 <RichTextView>
                     <span className={ css.permissionText }>Permissions</span>
                 </RichTextView>
-                <Tooltip content="Default tooltip. Can be inside as one row as 3 rows of text" placement="bottom">
+                <Tooltip content="Default tooltip. Can be inside as one row as 3 rows of text">
                     <IconContainer icon={ infoIcon } cx={ css.iconBlue } />
                 </Tooltip>
             </FlexRow>
 
-            <Tooltip content={ renderTypesMarkup() } placement="bottom" color="neutral">
+            <Tooltip content={ renderTypesMarkup() } color="neutral">
                 <Button icon={ plusIcon } onClick={ () => null } cx={ css.firstColumn } />
             </Tooltip>
 

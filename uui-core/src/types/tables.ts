@@ -31,12 +31,52 @@ export type ICanBeFixed = {
     fix?: 'left' | 'right';
 };
 
+/**
+ * Columns group configuration.
+ */
+export interface DataColumnGroupProps extends IHasCX, IClickable {
+    /**
+     * Unique key to identify the columns group. Used to reference columns group.
+     */
+    key: string;
+
+    /** Columns group caption. Can be a plain text, or any React Component */
+    caption?: React.ReactNode;
+
+    /** Aligns columns group header content horizontally */
+    textAlign?: 'left' | 'center' | 'right';
+
+    /** Info tooltip displayed in the table header */
+    info?: React.ReactNode;
+
+    /** Overrides rendering of the whole columns group cell */
+    renderCell?(column: DataColumnGroupProps): any;
+
+    /** Render callback for columns group header tooltip.
+     * This tooltip will appear on cell hover with 600ms delay.
+     *
+     * If omitted, default implementation with columnGroup.caption + columnGroup.info will be rendered.
+     * Pass `() => null` to disable tooltip rendering.
+     */
+    renderTooltip?(column: DataColumnGroupProps): React.ReactNode;
+
+    /**
+     * Overrides rendering of the whole columns group header cell.
+     */
+    renderHeaderCell?(cellProps: DataTableHeaderGroupCellProps): any;
+}
+
 export interface DataColumnProps<TItem = any, TId = any, TFilter = any> extends ICanBeFixed, IHasCX, IClickable, IHasRawProps<HTMLDivElement>, Attributes {
     /**
      * Unique key to identify the column. Used to reference columns, e.g. in ColumnsConfig.
      * Also, used as React key for cells, header cells, and other components inside tables.
      */
     key: string;
+
+    /**
+     * A unique identifier for a group of columns that establishes a connection between the column and the group of columns.
+     */
+    group?: string;
 
     /** Column caption. Can be a plain text, or any React Component */
     caption?: React.ReactNode;
@@ -159,6 +199,29 @@ export interface DataTableHeaderCellProps<TItem = any, TId = any> extends IEdita
     renderFilter?: (dropdownProps: IDropdownBodyProps) => React.ReactNode;
 }
 
+/**
+ * DataTable columns group header cell props.
+ */
+export interface DataTableHeaderGroupCellProps extends IHasCX, IEditable<DataTableState> {
+    /**
+     * A unique identifier for a group.
+     */
+    key: string;
+    /**
+     * Columns group configuration.
+     */
+    group: DataColumnGroupProps;
+    /**
+     * Defines if first column of the group is the first one in the table header.
+     */
+    isFirstCell: boolean;
+
+    /**
+     * Defines if last column of the group is the last one in the table header.
+     */
+    isLastCell: boolean;
+}
+
 export type DataTableConfigModalParams = IEditable<DataSourceState> & {
     /** Array of all table columns */
     columns: DataColumnProps[];
@@ -166,6 +229,10 @@ export type DataTableConfigModalParams = IEditable<DataSourceState> & {
 
 export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {
     columns: DataColumnProps<TItem, TId>[];
+    /**
+     * Columns group configuration.
+     */
+    columnGroups?: DataColumnGroupProps[];
     selectAll?: ICheckable;
     /**
      * Enables collapse/expand all functionality.
@@ -173,6 +240,10 @@ export interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditab
     showFoldAll?: boolean;
     onConfigButtonClick?: (params: DataTableConfigModalParams) => any;
     renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;
+    /**
+     * Columns group cell render function.
+     */
+    renderGroupCell?: (props: DataTableHeaderGroupCellProps) => React.ReactNode;
     renderConfigButton?: () => React.ReactNode;
 }
 

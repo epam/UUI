@@ -1,3 +1,26 @@
+# 5.xx.xx - xx.xx.2024
+
+**What's New**
+* Remove 'prop-types' from UUI packages dependencies. Remove `uuiContextTypes` interface, since it was needed for already outdated React context API.
+* [Alert]: added support for size theming
+* [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
+* [ErrorPage]: added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
+* [ErrorPage]: embed typography styles for error page texts
+
+**What's Fixed**
+* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement. 
+  Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
+* [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
+* [RTE]: fixed image caption not being visible when RTE initially in readonly mode
+* [DatePicker]: fixed body close if date picker input scrolled out from view
+* [Modals]: prevent scrolling to the modal toggler because of focus return after modal close
+* [RTE]: fixed scroll to the top of the editor after editor modal windows(Add image/link/video etc.) were close
+* [RTE]: fixed error while merging cells without content
+* [RTE]: fixed bug when files added from attachment button inserted in preview mode instead of attachment block
+* [RTE]: fixed crash when removing the sole table row
+* [Svg]: don't set fill attribute if it's not provided
+* [Modals]: autofocus first active element on modal open. It's a temporary fix, because of bug in react-focus-lock lib(https://github.com/theKashey/react-focus-lock/issues/340). Ideally focus should move to the first active element only after 'Tab' key was pressed, we will come back to this solution when bug will be fixed.
+
 # 5.11.0 - 15.11.2024
 
 **What's New**

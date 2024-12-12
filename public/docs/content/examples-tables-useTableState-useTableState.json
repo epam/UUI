@@ -13,5 +13,26 @@
         "text": " hook for table with filtration on columns and saving it to the presets. "
       }
     ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "By default, table state value stored in URL, if you want to store it somewhere else, look at "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=useTableState&mode=doc&category=tables#disable_url_storing_and_handle_state_manually",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "this"
+          }
+        ]
+      },
+      {
+        "text": " example."
+      }
+    ]
   }
 ]

@@ -135,7 +135,7 @@ export function ProjectTableDemo() {
     }, []);
 
     const insertTask = useCallback((position: DropPosition, relativeTask: Task | null = null, existingTask: Task | null = null) => {
-        const taskToInsert: Task = existingTask ? { ...existingTask, type: 'task' } : { id: lastId--, name: '', type: 'task' };
+        const taskToInsert: Task = existingTask ? { ...existingTask, type: 'task' } : { id: lastId--, name: '', type: 'task', parentId: null };
         const task: Task = setTaskInsertPosition(taskToInsert, relativeTask, position, treeRef.current);
 
         setValue((currentValue) => {
@@ -153,9 +153,11 @@ export function ProjectTableDemo() {
                 }
             }
 
-            let currentItems = currentValue.items
-                .set(task.id, task)
-                .set(parentTask.id, parentTask);
+            let currentItems = currentValue.items.set(task.id, task);
+
+            if (parentTask) {
+                currentValue.items.set(parentTask.id, parentTask);
+            }
 
             if (prevParentTask !== null && prevParentTask !== NOT_FOUND_RECORD) {
                 currentItems = currentItems.set(prevParentTask.id, prevParentTask);
