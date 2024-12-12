@@ -8,6 +8,8 @@
 * [ErrorPage]: embed typography styles for error page texts
 
 **What's Fixed**
+* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement. 
+  Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode
 * [DatePicker]: fixed body close if date picker input scrolled out from view
