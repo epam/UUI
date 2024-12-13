@@ -1,8 +1,14 @@
 import { DataColumnProps, DataRowProps, DataTableSelectedCellData } from '@epam/uui-core';
 import { DataTableSelectionRange } from '../types';
 
-export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows: DataRowProps<TItem, TId>[], columns: DataColumnProps<TItem, TId>[]) => {
-    const row = rows[rowIndex];
+export const getCell = <TItem, TId>(
+    rowIndex: number,
+    columnIndex: number,
+    rowsByIndex: Map<number,
+    DataRowProps<TItem, TId>>,
+    columns: DataColumnProps<TItem, TId>[],
+) => {
+    const row = rowsByIndex.get(rowIndex);
     const column = columns[columnIndex];
 
     if (!row || !column) {
@@ -13,7 +19,7 @@ export const getCell = <TItem, TId>(rowIndex: number, columnIndex: number, rows:
 
 export const getStartCell = <TItem, TId, TFilter>(
     selectionRange: DataTableSelectionRange | null,
-    rows: DataRowProps<TItem, TId>[],
+    rowsByIndex: Map<number, DataRowProps<TItem, TId>>,
     columns: DataColumnProps<TItem, TId>[],
 ): DataTableSelectedCellData<TItem, TId, TFilter> | null => {
     if (selectionRange === null) {
@@ -21,7 +27,7 @@ export const getStartCell = <TItem, TId, TFilter>(
     }
 
     const { startRowIndex, startColumnIndex } = selectionRange;
-    return getCell(startRowIndex, startColumnIndex, rows, columns);
+    return getCell(startRowIndex, startColumnIndex, rowsByIndex, columns);
 };
 
 export const getNormalizedLimits = (startIndex: number, endIndex: number) => (startIndex < endIndex ? [startIndex, endIndex] : [endIndex, startIndex]);

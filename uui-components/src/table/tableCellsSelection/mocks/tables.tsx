@@ -2,7 +2,7 @@ import React from 'react';
 import { DataColumnProps, DataRowProps } from '@epam/uui-core';
 
 type Row = { salary: number; age: number; name: string; phone: string };
-export const rowsMock: DataRowProps<Row, number>[] = [
+const rowsMock: DataRowProps<Row, number>[] = [
     {
         id: 1,
         rowKey: '1',
@@ -10,21 +10,24 @@ export const rowsMock: DataRowProps<Row, number>[] = [
         value: {
             age: 10, salary: 1000, name: 'first', phone: 'some phone 1',
         },
-    }, {
+    },
+    {
         id: 2,
         rowKey: '2',
         index: 1,
         value: {
             age: 20, salary: 2000, name: 'second', phone: 'some phone 2',
         },
-    }, {
+    },
+    {
         id: 3,
         rowKey: '3',
         index: 2,
         value: {
             age: 30, salary: 3000, name: 'third', phone: 'some phone 3',
         },
-    }, {
+    },
+    {
         id: 4,
         rowKey: '4',
         index: 3,
@@ -33,6 +36,16 @@ export const rowsMock: DataRowProps<Row, number>[] = [
         },
     },
 ];
+
+const getRowsByIndex = (rows: DataRowProps<Row, number>[]) => {
+    const rowsMap = new Map<number, DataRowProps<Row, number>>();
+    rows.forEach((row) => {
+        rowsMap.set(row.index, row);
+    });
+    return rowsMap;
+};
+
+export const rowsByIndexMock = getRowsByIndex(rowsMock);
 
 export const columnsMock: DataColumnProps<Row, number>[] = [
     {

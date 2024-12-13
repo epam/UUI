@@ -1,7 +1,7 @@
 import {
     getCell, getCellPosition, getStartCell, getNormalizedLimits,
 } from '../hooks/helpers';
-import { rowsMock, columnsMock } from '../mocks';
+import { rowsByIndexMock, columnsMock } from '../mocks';
 
 describe('getNormalizedLimits', () => {
     it('should return normalized limits', () => {
@@ -13,37 +13,37 @@ describe('getNormalizedLimits', () => {
 
 describe('getCell', () => {
     it('should get cell by coordinates', () => {
-        const { row, column } = getCell(1, 1, rowsMock, columnsMock);
+        const { row, column } = getCell(1, 1, rowsByIndexMock, columnsMock);
         const expectedColumn = columnsMock[1];
-        const expectedRow = rowsMock[1];
+        const expectedRow = rowsByIndexMock.get(1);
 
         expect(column).toEqual(expectedColumn);
         expect(row).toEqual(expectedRow);
     });
 
     it('should return null if out of range', () => {
-        expect(getCell(rowsMock.length, 1, rowsMock, columnsMock)).toBeNull();
-        expect(getCell(1, columnsMock.length, rowsMock, columnsMock)).toBeNull();
+        expect(getCell(rowsByIndexMock.size, 1, rowsByIndexMock, columnsMock)).toBeNull();
+        expect(getCell(1, columnsMock.length, rowsByIndexMock, columnsMock)).toBeNull();
     });
 });
 
 describe('getStartCell', () => {
     it('should find a cell to copy from by coordinates', () => {
         const copyCellColumn = 0;
-        const copyCellRow = 1;
+        const copyCellRowIndex = 1;
         const expectedColumn = columnsMock[copyCellColumn];
-        const expectedRow = rowsMock[copyCellRow];
+        const expectedRow = rowsByIndexMock.get(copyCellRowIndex);
         const selectionRange = {
-            startColumnIndex: copyCellColumn, startRowIndex: copyCellRow, endColumnIndex: 1, endRowIndex: 2,
+            startColumnIndex: copyCellColumn, startRowIndex: copyCellRowIndex, endColumnIndex: 1, endRowIndex: 2,
         };
 
-        const { column, row } = getStartCell(selectionRange, rowsMock, columnsMock);
+        const { column, row } = getStartCell(selectionRange, rowsByIndexMock, columnsMock);
         expect(column).toEqual(expectedColumn);
         expect(row).toEqual(expectedRow);
     });
 
     it('should return null if no cell was selected', () => {
-        expect(getStartCell(null, rowsMock, columnsMock)).toBeNull();
+        expect(getStartCell(null, rowsByIndexMock, columnsMock)).toBeNull();
     });
 });
 
