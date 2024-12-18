@@ -24,6 +24,7 @@ import { ProjectTableDemo } from './editableTable';
 import { RtlExample } from './rtl/Rtl-example';
 import { DemoForm } from './rtl/form/DemoForm';
 import { RichTextEditorDemoReadonly } from './RTE-readonly/RichTextEditorDemo';
+import { PerformanceTestPage } from './perfomance-stand/PerformanceTestPage';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -48,6 +49,7 @@ export function SandboxPage() {
             { parentId: 'tokens', id: 'tokensPalette', name: 'Palette', component: PalettePage },
             { id: 'rtl-example', name: 'Rtl-example', component: RtlExample },
             { id: 'rtl-form', name: 'Rtl-Form', component: DemoForm },
+            { id: 'performanceStand', name: 'Performance stand', component: PerformanceTestPage },
         ],
         [],
     );
