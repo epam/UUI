@@ -1,5 +1,4 @@
-import React, { SetStateAction, useCallback, useMemo, useState } from 'react';
-import isEqual from 'react-fast-compare';
+import React, { useCallback, useMemo, useState } from 'react';
 import { DataColumnProps, useLazyDataSource, DataSourceState, LazyDataSourceApiRequest, useUuiContext, LazyDataSourceApi } from '@epam/uui-core';
 import { DataTable, Panel, Text, Paginator, FlexRow, FlexSpacer } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
@@ -10,20 +9,6 @@ export default function PagedTable() {
     const [state, setState] = useState<DataSourceState>({
         page: 1, pageSize: 10,
     });
-
-    const setTableState = useCallback((newState: SetStateAction<DataSourceState>) => {
-        setState((currentState) => {
-            const updatedState = typeof newState === 'function' ? newState(currentState) : newState;
-            const isFilterChanged = !isEqual(currentState.filter, updatedState.filter);
-            const isSearchChanged = currentState.search !== updatedState.search;
-            const isSortingChanged = !isEqual(currentState.sorting, updatedState.sorting);
-
-            if (isFilterChanged || isSearchChanged || isSortingChanged) {
-                return { ...updatedState, checked: [] };
-            }
-            return updatedState;
-        });
-    }, []);
 
     const columns: DataColumnProps<Person>[] = useMemo(
         () => [
@@ -67,9 +52,10 @@ export default function PagedTable() {
             },
         },
         backgroundReload: true,
+        selectAll: false,
     }, []);
 
-    const view = dataSource.useView(state, setTableState, {});
+    const view = dataSource.useView(state, setState, {});
     const listProps = view.getListProps();
 
     return (
@@ -78,7 +64,7 @@ export default function PagedTable() {
                 { ...listProps }
                 getRows={ view.getVisibleRows }
                 value={ state }
-                onValueChange={ setTableState }
+                onValueChange={ setState }
                 columns={ columns }
                 headerTextCase="upper"
             />
@@ -86,7 +72,7 @@ export default function PagedTable() {
                 <FlexSpacer />
                 <Paginator
                     value={ state.page }
-                    onValueChange={ (newPage) => setTableState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
+                    onValueChange={ (newPage) => setState({ ...state, page: newPage, scrollTo: { index: 0 } }) }
                     totalPages={ Math.ceil((listProps.totalCount ?? 0) / state.pageSize) }
                 />
                 <FlexSpacer />
