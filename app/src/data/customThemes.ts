@@ -1,4 +1,5 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
+import { Settings } from '@epam/uui';
 import { ThemeId } from './themes';
 import { svc } from '../services';
 
@@ -10,7 +11,7 @@ export interface CustomThemeManifest {
     name: string;
     css: string[];
     path: string;
-    settings: null | object;
+    settings: null | Settings;
     propsOverride?: TPropEditorTypeOverride;
 }
 
@@ -87,7 +88,7 @@ async function loadCustomThemesInternal() {
 async function loadSettings(url: string) {
     try {
         const result = await fetch(url);
-        return (await result.json()) as object;
+        return (await result.json()) as Settings;
     } catch (err) {
         console.error(`Unable to load settings from: "${url}"`, err);
     }

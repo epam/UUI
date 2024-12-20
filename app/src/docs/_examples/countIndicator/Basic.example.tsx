@@ -1,34 +1,25 @@
 import React from 'react';
 import { CountIndicatorProps, CountIndicator, Text } from '@epam/uui';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
 
 const exampleNames = ['Neutral', 'White', 'Info', 'Success', 'Warning', 'Negative'];
+const captions = ['0', '1', '5', '+99', '123', '2'];
+const colors: CountIndicatorProps['color'][] = ['neutral', 'white', 'info', 'success', 'warning', 'critical'];
 
-const solidExamples: CountIndicatorProps[] = [
-    { caption: '0', color: 'neutral', size: '12' },
-    { caption: '1', color: 'white', size: '12' },
-    { caption: '5', color: 'info', size: '12' },
-    { caption: '+99', color: 'success', size: '12' },
-    { caption: '123', color: 'warning', size: '12' },
-    { caption: '2', color: 'critical', size: '12' },
-    { caption: '0', color: 'neutral', size: '18' },
-    { caption: '1', color: 'white', size: '18' },
-    { caption: '5', color: 'info', size: '18' },
-    { caption: '+99', color: 'success', size: '18' },
-    { caption: '123', color: 'warning', size: '18' },
-    { caption: '2', color: 'critical', size: '18' },
-    { caption: '0', color: 'neutral', size: '24' },
-    { caption: '1', color: 'white', size: '24' },
-    { caption: '5', color: 'info', size: '24' },
-    { caption: '+99', color: 'success', size: '24' },
-    { caption: '123', color: 'warning', size: '24' },
-    { caption: '2', color: 'critical', size: '24' },
-];
+export default function BasicCountIndicatorExample(props: ExampleProps) {
+    const sizes = getAllPropValues('size', false, props) as Array<CountIndicatorProps['size']>;
+    const solidExamples: CountIndicatorProps[] = sizes?.flatMap((size) =>
+        captions.map((caption, index) => ({
+            caption,
+            color: colors[index],
+            size,
+        })));
 
-export default function BasicCountIndicatorExample() {
     return (
-        <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gridTemplateRows: 'repeat(4, 40px)', gap: '6px 12px', justifyItems: 'center' } }>
-            { exampleNames.map((name) => <Text fontWeight="600">{ name }</Text>)}
-            { solidExamples.map((item) => <CountIndicator caption={ item.caption } color={ item.color } size={ item.size } />) }
+        <div style={ { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '18px 12px', justifyItems: 'center' } }>
+            { exampleNames.map((name) => <Text size="none" fontWeight="600">{ name }</Text>)}
+            { solidExamples?.map((item, index) => <CountIndicator key={ index } caption={ item.caption } color={ item.color } size={ item.size } />) }
         </div>
     );
 }
