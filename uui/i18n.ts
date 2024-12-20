@@ -154,7 +154,7 @@ const TREE_SHAKEABLE_INIT = () => ({
                 subtitle: 'We are trying to recover. Please wait.',
             },
         },
-        supportLink: undefined as ReactNode,
+        supportMessage: undefined as ReactNode,
     },
 });
 

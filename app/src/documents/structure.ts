@@ -61,7 +61,7 @@ export const items: DocItem[] = [
 
     { id: 'themes', name: 'Themes' },
     { id: 'overview-themes', name: 'Overview', component: ThemingOverview, parentId: 'themes' },
-    { id: 'tokens', name: 'Tokens', component: Tokens, parentId: 'themes' },
+    { id: 'tokens', name: 'Tokens', component: Tokens, parentId: 'themes', tags: ['colors', 'variables'] },
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },

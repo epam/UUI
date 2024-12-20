@@ -22,7 +22,7 @@ import '@epam/assets/theme/theme_eduverse_light.scss';
 import '@epam/assets/theme/theme_eduverse_dark.scss';
 import './index.module.scss';
 
-i18n.errorHandler.supportLink = (
+i18n.errorHandler.supportMessage = (
     <>
         You can track the service availability at
         {' '}
