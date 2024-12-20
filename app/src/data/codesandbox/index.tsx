@@ -10,14 +10,24 @@ import {
     DragGhost,
 } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
+import { Settings, settings } from '@epam/uui';
+import { settings_override } from './settings';
 import '@epam/uui-components/styles.css';
 // eslint-disable-next-line import/no-unresolved
 import '@epam/uui/styles.css';
 import '@epam/promo/styles.css';
 import '@epam/loveship/styles.css';
+/* eslint-disable */
+"<UUI_CURRENT_THEME_IMPORT>"
 import '@epam/uui-docs/styles.css';
 import Example from './Example';
 import { svc, getApi } from './api';
+/* eslint-enable */
+
+settings.sizes = {
+    ...settings.sizes,
+    ...(settings_override as Settings).sizes,
+};
 
 type TApi = ReturnType<typeof getApi>;
 

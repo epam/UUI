@@ -1,15 +1,20 @@
 import React from 'react';
-import { Button } from '@epam/uui';
+import { Button, ButtonProps } from '@epam/uui';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
+
 import css from './Button.module.scss';
 
-export default function SizeExample() {
+export default function SizeExample(props: ExampleProps) {
+    const sizes = getAllPropValues('size', true, props) as ButtonProps['size'][];
+
     return (
         <div className={ css.size }>
-            <Button color="primary" size="48" caption="Caption" />
-            <Button color="primary" size="42" caption="Caption" />
-            <Button color="primary" size="36" caption="Caption" />
-            <Button color="primary" size="30" caption="Caption" />
-            <Button color="primary" size="24" caption="Caption" />
+            {
+                sizes?.map((size) => (
+                    <Button key={ `size-${size}` } color="primary" size={ size } caption="Caption" />
+                ))
+            }
         </div>
     );
 }
