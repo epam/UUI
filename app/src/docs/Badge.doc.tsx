@@ -113,7 +113,7 @@ export class BadgeDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="badge-descriptions" />
                 {this.renderSectionTitle('Overview')}
                 <DocExample title="Types" path="./_examples/badge/Types.example.tsx" />
-                <DocExample title="Color variants" path="./_examples/badge/Colors.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Color variants" path="./_examples/badge/Colors.example.tsx" />
                 <DocExample title="Styles" path="./_examples/badge/Styles.example.tsx" />
                 <DocExample config={ this.getConfig() } title="Sizes" path="./_examples/badge/Size.example.tsx" />
                 {this.renderSectionTitle('Examples')}
