@@ -199,6 +199,45 @@ const propsOverride: TPropEditorTypeOverride = {
             },
         },
     },
+    '@epam/uui:PaginatorProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['24', '32'],
+            },
+            comment: {
+                tags: {
+                    '@default': '24',
+                },
+            },
+        },
+    },
+    '@epam/uui:StatusIndicatorProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['20', '24', '28'],
+            },
+            comment: {
+                tags: {
+                    '@default': '24',
+                },
+            },
+        },
+    },
+    '@epam/uui:TagProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['32', '40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
 };
 
 export default propsOverride;

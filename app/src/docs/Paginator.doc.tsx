@@ -87,6 +87,7 @@ export class PaginatorDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="paginator-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/paginator/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Size" path="./_examples/paginator/Size.example.tsx" />
             </>
         );
     }

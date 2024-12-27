@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { TextInput } from '@epam/uui';
+import { TextInput, TextInputProps } from '@epam/uui';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
 
-export default function SizeExample() {
+export default function SizeExample(props: ExampleProps) {
     const [value, onValueChange] = useState(null);
+    const sizes = getAllPropValues('size', true, props) as TextInputProps['size'][];
 
     return (
         <>
-            <TextInput size="48" value={ value } onValueChange={ onValueChange } placeholder="Size 48px" />
-            <TextInput size="42" value={ value } onValueChange={ onValueChange } placeholder="Size 42px" />
-            <TextInput size="36" value={ value } onValueChange={ onValueChange } placeholder="Size 36px" />
-            <TextInput size="30" value={ value } onValueChange={ onValueChange } placeholder="Size 30px" />
-            <TextInput size="24" value={ value } onValueChange={ onValueChange } placeholder="Size 24px" />
+            { sizes.map((size) => (
+                <TextInput
+                    key={ size }
+                    size={ size }
+                    value={ value }
+                    onValueChange={ onValueChange }
+                    placeholder={ `Size ${size}px` }
+                />
+            )) }
         </>
     );
 }

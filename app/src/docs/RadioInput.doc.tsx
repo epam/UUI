@@ -68,7 +68,7 @@ export class RadioInputDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="radioInput-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/radioInput/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Basic" path="./_examples/radioInput/Basic.example.tsx" />
                 <DocExample title="RadioInput Group" path="./_examples/radioInput/Group.example.tsx" />
             </>
         );
