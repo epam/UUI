@@ -35,7 +35,7 @@ const settings_4px: Settings = {
         },
         tag: {
             countIndicator: {
-                32: '24',
+                32: '20',
                 40: '24',
                 48: '24',
             },

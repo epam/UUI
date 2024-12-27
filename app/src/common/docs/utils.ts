@@ -1,13 +1,15 @@
 import {
-    IDocBuilderGenCtx, OneOfEditor, TPropEditorTypeOverride, TSkin, TTypeProp, TTypeRef,
+    IDocBuilderGenCtx, OneOfEditor, overrideProp, TDocConfig, TPropEditorTypeOverride, TSkin, TTypeProp, TTypeRef,
 } from '@epam/uui-docs';
 import { useUuiContext } from '@epam/uui-core';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { loadDocsGenType } from '../apiReference/dataHooks';
 import { getAllIcons } from '../../documents/iconListHelpers';
 import { AppContext, BuiltInTheme, ThemeId } from '../../data';
 import { CustomThemeManifest } from '../../data/customThemes';
 import { useAppThemeContext } from '../../helpers/appTheme';
+import prism from 'prismjs';
+import { svc } from '../../services';
 
 export function getSkin(theme: ThemeId, isSkin: boolean): TSkin {
     if (!isSkin) return TSkin.UUI;
@@ -48,6 +50,58 @@ export function usePropEditorTypeOverride(themeId: ThemeId, typeRef: TTypeRef | 
         return themeDetails?.propsOverride?.[typeRef];
     }
 }
+
+export const useExampleProps = (
+    config: TDocConfig | undefined,
+    type: TTypeRef | undefined,
+    theme: ThemeId,
+    propsOverride: TPropEditorTypeOverride[TTypeRef] | undefined,
+) => {
+    const [exampleProps, setExampleProps] = useState<Record<string, TTypeProp>>();
+
+    useEffect(() => {
+        if (config && type) {
+            const loadExampleProps = async () => {
+                const { content: { details } } = await loadDocsGenType(type);
+                const initialProps = details.props;
+
+                const updatedProps: Record<string, TTypeProp> = initialProps.reduce((prev, current) => {
+                    const newProp = propsOverride && propsOverride[current.name] ? overrideProp(current, propsOverride[current.name]) : current;
+                    return { ...prev, [current.name]: newProp };
+                }, {});
+
+                setExampleProps(updatedProps);
+            };
+
+            loadExampleProps().catch(console.error);
+        }
+    }, [config, type, theme, propsOverride]);
+
+    return exampleProps;
+};
+
+export const useCode = (path: string, raw: string | undefined, exampleProps: Record<string, TTypeProp> | undefined, config: TDocConfig | undefined) => {
+    const [code, setCode] = useState<string>();
+
+    useEffect(() => {
+        if (raw && exampleProps) {
+            const newRaw = generateNewRawString(raw, exampleProps);
+            const highlightedCode = prism.highlight(newRaw, prism.languages.ts, 'typescript');
+            setCode(highlightedCode);
+        }
+    }, [exampleProps, raw]);
+
+    useEffect(() => {
+        if (!config) {
+            svc.api.getCode({ path }).then((r) => {
+                const highlightedCode = prism.highlight(r.raw, prism.languages.ts, 'typescript');
+                setCode(highlightedCode);
+            });
+        }
+    }, [config, path]);
+
+    return code;
+};
 
 export function generateNewRawString(initialRaw: string, props: Record<string, TTypeProp>) {
     // Remove the import statement

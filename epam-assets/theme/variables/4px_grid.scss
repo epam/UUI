@@ -45,7 +45,7 @@
         --uui-icon-size: 12px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
-        --uui-dot-size: 8px;
+        --uui-dot-size: 10px;
     }
 
     .uui-size-28 {
@@ -58,7 +58,7 @@
         --uui-icon-size: 12px;
         --uui-line-height: 28px;
         --uui-font-size: 18px;
-        --uui-dot-size: 8px;
+        --uui-dot-size: 12px;
     }
 
     .uui-size-32 {
@@ -67,7 +67,7 @@
         --uui-horizontal-gap: 4px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 20px;
-        --uui-vertical-padding: 3px;
+        --uui-vertical-padding: 6px;
         --uui-icon-size: 20px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
@@ -80,7 +80,7 @@
         --uui-horizontal-gap: 4px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 20px;
-        --uui-vertical-padding: 3px;
+        --uui-vertical-padding: 8px;
         --uui-icon-size: 20px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
@@ -93,7 +93,7 @@
         --uui-horizontal-gap: 4px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 32px;
-        --uui-vertical-padding: 3px;
+        --uui-vertical-padding: 12px;
         --uui-icon-size: 24px;
         --uui-line-height: 20px;
         --uui-font-size: 16px;
@@ -209,7 +209,7 @@
         &.uui-size-48 {
             --uui-size: 50px;
             --uui-horizontal-padding: 16px;
-            --uui-horizontal-gap: 0;
+            --uui-horizontal-gap: 4px;
             --uui-icon-size: 20px;
             --uui-font-size: 14px;
         }
