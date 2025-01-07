@@ -1,3 +1,8 @@
+# 5.12.2 - xx.xx.2024
+**What's New**
+* [MainMenuAvatar]: added `RawProps` prop
+
+
 # 5.12.1 - 17.12.2024
 **What's Fixed**
 * Revert '[Svg]: don't set fill attribute if it's not provided' change from 5.12.0 version. Because it turned out that many users relied on the previous behavior where the fill attribute was cleared by default. If you need to render icon with built-in fill, please look at this issue comment - https://github.com/epam/UUI/issues/2684#issuecomment-2548751434
