@@ -32,7 +32,20 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "For a quick start, you can use our theme template, which includes comments to guide you through. "
+        "text": "For a quick start, you can copy our theme "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/8040caa5586d451f1d5f1abf9645753dd7c0f9da/epam-assets/theme/customThemeTemplate.css",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "template"
+          }
+        ]
+      },
+      {
+        "text": ", which includes comments to guide you through. "
       }
     ]
   },
