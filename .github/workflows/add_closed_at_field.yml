@@ -7,7 +7,7 @@ on:
 
 jobs:
     update-task-created_at:
-        name: : Update closed_at issue field
+        name: Update closed_at issue field
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
