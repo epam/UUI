@@ -3,7 +3,7 @@ name: Update created_at field
 on:
     issues:
         types:
-            - added_to_project
+            - opened
 
 jobs:
     update-task-created_at:
@@ -21,6 +21,6 @@ jobs:
               with:
                   project-url: https://github.com/orgs/epam/projects/14
                   github-token: ${{ secrets.UUI_CI_SECRET }}
-                  item-id: ${{ github.event.issue.project_id }}
+                  item-id: ${{ github.event.issue.added_to_project.project_id }}
                   field-keys: created_at
                   field-values: ${{ github.event.issue.created_at }}
