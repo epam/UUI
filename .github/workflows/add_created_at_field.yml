@@ -1,0 +1,26 @@
+name: Update created_at field
+
+on:
+    issues:
+        types:
+            - added_to_project
+
+jobs:
+    update-task-created_at:
+        name: Update created_at issue field
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+#            -   uses: monry/actions-get-project-item-id@v2
+#                with:
+#                    github-token: ${{ secrets.UUI_CI_SECRET }}
+#                    project-id: 'PVT_kwDOABhCKs4AKwip'
+#                    issue-id: ${{ github.event.issue.node_id }}
+#                id: project_task_id
+            - uses: titoportas/update-project-fields@v0.1.0
+              with:
+                  project-url: https://github.com/orgs/epam/projects/14
+                  github-token: ${{ secrets.UUI_CI_SECRET }}
+                  item-id: ${{ github.event.issue.project_id }}
+                  field-keys: created_at
+                  field-values: ${{ github.event.issue.created_at }}
