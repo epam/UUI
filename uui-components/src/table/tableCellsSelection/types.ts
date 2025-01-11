@@ -10,7 +10,7 @@ export interface DataTableSelectionRange {
 }
 
 export interface SelectionManagerProps<TItem, TId> {
-    rows: DataRowProps<TItem, TId>[];
+    rowsByIndex: Map<number, DataRowProps<TItem, TId>>;
     columns: DataColumnProps<TItem, TId>[];
 }
 

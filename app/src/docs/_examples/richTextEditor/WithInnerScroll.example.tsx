@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FileUploadResponse, useUuiContext } from '@epam/uui-core';
-import { ErrorNotification, Panel } from '@epam/promo';
+import { ErrorNotification, FlexRow } from '@epam/promo';
 import { SlateEditor, defaultPlugins, imagePlugin, videoPlugin, attachmentPlugin, toDoListPlugin, baseMarksPlugin,
     linkPlugin, iframePlugin, notePlugin, separatorPlugin, uploadFilePlugin, tablePlugin, quotePlugin, colorPlugin,
     superscriptPlugin, headerPlugin, listPlugin, placeholderPlugin, EditorValue, codeBlockPlugin,
@@ -56,7 +56,7 @@ export default function WithInnerScrollExample() {
     ];
 
     return (
-        <Panel rawProps={ { style: { width: '100%', height: '350px' } } }>
+        <FlexRow rawProps={ { style: { width: '100%', height: '350px' } } }>
             <SlateEditor
                 value={ value }
                 onValueChange={ setValue }
@@ -68,6 +68,6 @@ export default function WithInnerScrollExample() {
                 fontSize="14"
                 scrollbars
             />
-        </Panel>
+        </FlexRow>
     );
 }
