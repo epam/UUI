@@ -116,7 +116,7 @@ export const componentsStructure = orderBy(
         { id: 'tables', name: 'Data Tables', parentId: 'components', tags: ['table'] },
         { id: 'tablesOverview', name: 'Overview', component: TablesOverviewDoc, parentId: 'tables', order: 1, tags: ['tables', 'dataTable'] },
         { id: 'tree', name: 'Tree', component: TreeDoc, parentId: 'components', tags: ['tree', 'virtualList', 'dataSources'] },
-        { id: 'editableTables', name: 'Editable Tables', component: EditableTablesDoc, parentId: 'tables', order: 2, tags: ['tables', 'dataTable'] },
+        { id: 'editableTables', name: 'Editable', component: EditableTablesDoc, parentId: 'tables', order: 2, tags: ['tables', 'dataTable'] },
         { id: 'advancedTables', name: 'Advanced', component: AdvancedTablesDoc, parentId: 'tables', order: 3, tags: ['tables', 'dataTable'] },
         { id: 'useTableState', name: 'useTableState', component: useTableStateDoc, parentId: 'tables', order: 4, tags: ['tables', 'dataTable'] },
         { id: 'filtersPanel', name: 'Filters Panel', component: FiltersPanelDoc, parentId: 'tables', order: 5, tags: ['tables', 'dataTable'] },

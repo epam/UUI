@@ -6,7 +6,7 @@ import {
 
 interface ISvgProps {
     className: string;
-    fill: string;
+    fill?: string;
     height?: number | string;
     width?: number | string;
 }

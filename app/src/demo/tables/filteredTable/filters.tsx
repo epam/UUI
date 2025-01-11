@@ -25,7 +25,8 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             ),
             predicates: defaultPredicates.multiPicker,
             showSearch: false,
-        }, {
+        },
+        {
             field: 'countryId',
             columnKey: 'countryName',
             title: 'Country',
@@ -47,39 +48,45 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
                     ) }
                 />
             ),
-        }, {
+        },
+        {
             field: 'jobTitleId',
             columnKey: 'jobTitle',
             title: 'Title',
             type: 'multiPicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
-        }, {
+        },
+        {
             field: 'departmentId',
             columnKey: 'departmentName',
             title: 'Department',
             type: 'singlePicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.departments }),
             predicates: [{ predicate: 'eq', name: 'is' }, { predicate: 'neq', name: 'is not' }],
-        }, {
+        },
+        {
             field: 'officeId',
             columnKey: 'officeAddress',
             title: 'Office',
             type: 'singlePicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.offices }),
-        }, {
+        },
+        {
             field: 'managerId',
             columnKey: 'managerName',
             title: 'Manager',
             type: 'multiPicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.managers }),
-        }, {
+        },
+        {
             field: 'cityId',
             columnKey: 'cityName',
             title: 'City',
             type: 'multiPicker',
             getName: (item) => `${item.name} (${item.countryName})`,
             dataSource: new LazyDataSource({ api: svc.api.demo.cities }),
-        }, {
+        },
+        {
             field: 'workload',
             columnKey: 'workload',
             title: 'Workload',
@@ -89,18 +96,21 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
                 { predicate: 'eq', name: '=' }, { predicate: 'neq', name: '≠' }, { predicate: 'lte', name: '≤' }, { predicate: 'gte', name: '≥' },
             ],
             showSearch: false,
-        }, {
+        },
+        {
             field: 'salary',
             columnKey: 'salary',
             title: 'Salary',
             type: 'numeric',
             predicates: defaultPredicates.numeric,
-        }, {
+        },
+        {
             field: 'hireDate',
             columnKey: 'hireDate',
             title: 'Hire Date',
             type: 'datePicker',
-        }, {
+        },
+        {
             field: 'birthDate',
             columnKey: 'birthDate',
             title: 'Birth Date',

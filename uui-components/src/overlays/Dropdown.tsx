@@ -219,12 +219,22 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
-    private getPlacement = (placement: Placement): Placement => {
+    private getPlacement = (placement: Placement = 'bottom-start'): Placement => {
         if (window.document?.dir === 'rtl') {
-            if (!placement) return 'bottom-end';
             return placement.replace('start', 'end') as Placement;
         }
         return placement;
+    };
+
+    private getOppositePlacement = (placement: Placement): Placement => {
+        const placementDirection = placement.split('-')[0];
+        switch (placementDirection) {
+            case 'bottom': return placement.replace('bottom', 'top') as Placement;
+            case 'top': return placement.replace('top', 'bottom') as Placement;
+            case 'left': return placement.replace('left', 'right') as Placement;
+            case 'right': return placement.replace('right', 'left') as Placement;
+            default: return placement;
+        }
     };
 
     private renderTarget(targetProps: ReferenceChildrenProps) {
@@ -319,9 +329,16 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                     rootBoundary: 'viewport',
                     boundary: this.props.boundaryElement,
                 },
-            }, {
+            },
+            {
                 name: 'hide',
                 enabled: true,
+            },
+            {
+                name: 'flip',
+                options: {
+                    fallbackPlacements: [this.getOppositePlacement(this.getPlacement(this.props.placement)), 'auto'],
+                },
             },
         ];
 
@@ -334,7 +351,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
                 <Reference>{(targetProps) => this.renderTarget(targetProps)}</Reference>
                 {shouldShowBody && (
                     <Portal target={ this.props.portalTarget }>
-                        <Popper placement={ this.getPlacement(this.props.placement) || 'bottom-start' } strategy="fixed" modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }>
+                        <Popper placement={ this.getPlacement(this.props.placement) } strategy="fixed" modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }>
                             {this.renderDropdownBody}
                         </Popper>
                     </Portal>

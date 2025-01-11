@@ -1,13 +1,38 @@
-# 5.xx.xx - xx.xx.2024
+# 5.12.2 - xx.xx.2024
+**What's New**
+* [MainMenuAvatar]: added `RawProps` prop
+
+
+# 5.12.1 - 17.12.2024
+**What's Fixed**
+* Revert '[Svg]: don't set fill attribute if it's not provided' change from 5.12.0 version. Because it turned out that many users relied on the previous behavior where the fill attribute was cleared by default. If you need to render icon with built-in fill, please look at this issue comment - https://github.com/epam/UUI/issues/2684#issuecomment-2548751434
+
+
+# 5.12.0 - 12.12.2024
 
 **What's New**
+* [ErrorPage]: added possibility to add message with support link for error pages(`500, 503, default` errors).
+  For EPAM applications it's recommended to add following code to the root of your app to enable it:
+  ```
+    import { i18n } from '@epam/uui';
+
+    i18n.errorHandler.supportMessage = (
+        <>
+            You can track the service availability at
+            {' '}
+            <a href={ `https://status.epam.com/?utm_source=${window.location.host}&utm_medium=ErrorPage&utm_campaign=StatusAquisitionTracking` }>status.epam.com</a>
+        </>
+    );   
+  ```
 * Remove 'prop-types' from UUI packages dependencies. Remove `uuiContextTypes` interface, since it was needed for already outdated React context API.
-* [Alert]: added support for size theming
 * [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
-* [ErrorPage]: added field for additional message with support link (it works with `500, 503, default` errors), added support link for the site
 * [ErrorPage]: embed typography styles for error page texts
+* [Alert]: small tweaks according to the design
+
 
 **What's Fixed**
+* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement. 
+  Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode
 * [DatePicker]: fixed body close if date picker input scrolled out from view
@@ -16,6 +41,8 @@
 * [RTE]: fixed error while merging cells without content
 * [RTE]: fixed bug when files added from attachment button inserted in preview mode instead of attachment block
 * [RTE]: fixed crash when removing the sole table row
+* [Svg]: don't set fill attribute if it's not provided
+* [Modals]: autofocus first active element on modal open. It's a temporary fix, because of bug in react-focus-lock lib(https://github.com/theKashey/react-focus-lock/issues/340). Ideally focus should move to the first active element only after 'Tab' key was pressed, we will come back to this solution when bug will be fixed.
 
 # 5.11.0 - 15.11.2024
 
@@ -33,7 +60,7 @@
 **What's Fixed**
 * [TabButton][VerticalTabButton]: decreased paddings, added gaps `3px` between internal items for all sizes according to design
 * [Tag]: Added gaps between internal items, changed padding according to design
-  [Badge]: changed gaps & paddings according design, removed padding before first icon & after counter
+* [Badge]: changed gaps & paddings according design, removed padding before first icon & after counter
 * [VirtualList]: fixed estimatedHeight calculations in components with pagination
 * [RTE]: fixed working of old iframe data structure with 'src' prop
 * [VerticalTabButton]: reverted paddings & gaps to previous values for all sizes
@@ -64,7 +91,7 @@
 
 **What's New**
 * [DataTable]:
-  * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
+  * [Breaking change]: reworked `isAlwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
   * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined.
 * [DataTable]: `ColumnsConfigurationModal` updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 * [PickerInput]:
