@@ -5,7 +5,7 @@ import { ExampleProps } from '../types';
 import { getAllPropValues } from '../utils';
 
 export default function BasicExample(props: ExampleProps) {
-    const [value] = useState<number| string>('99+');
+    const [value] = useState<number | string>('99+');
     const colors = getAllPropValues('color', false, props) as TagProps['color'][];
 
     return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './AppFooterDemo.module.scss';
-import { FlexRow } from '@epam/promo';
+import { FlexRow } from '@epam/uui';
 import { DemoItem } from '../../demo/structure';
 import { DemoToolbar } from './demoToolbar/DemoToolbar';
 
