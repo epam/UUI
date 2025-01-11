@@ -22,13 +22,13 @@ export default function BasicTextInputExample() {
             <LabeledInput htmlFor="005" label="With optional label" isOptional={ true }>
                 <TextInput id="005" value={ value } isInvalid={ !value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
-            <LabeledInput htmlFor="006" label="With sideNote" sidenote={ <Badge color="warning" fill="solid" caption="Condition" size="18" /> }>
+            <LabeledInput htmlFor="006" label="With sideNote" sidenote={ <Badge color="warning" fill="solid" caption="Condition" size="24" /> }>
                 <TextInput id="006" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>
             <LabeledInput
                 htmlFor="007"
                 label="With left sideNote"
-                sidenote={ <LinkButton caption="More Details" link={ { pathname: '/' } } size="30" rawProps={ { style: { flexGrow: '100' } } } /> }
+                sidenote={ <LinkButton caption="More Details" link={ { pathname: '/' } } size="24" rawProps={ { style: { flexGrow: '100' } } } /> }
             >
                 <TextInput id="007" value={ value } onValueChange={ onValueChange } placeholder="Please type text" />
             </LabeledInput>

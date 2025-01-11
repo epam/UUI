@@ -22,7 +22,7 @@ export interface PositionType {
     direction: 'bot-left' | 'bot-right' | 'top-left' | 'top-right' | 'top-center' | 'bot-center';
 }
 
-interface Position { 
+interface Position {
     id: PositionType['direction'];
     name: string;
 }
@@ -36,7 +36,7 @@ export default function NotificationContextExample() {
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             Success notification
                         </Text>
                     </SuccessNotification>
@@ -62,7 +62,7 @@ export default function NotificationContextExample() {
                             },
                         ] }
                     >
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             Warning notification with some buttons
                         </Text>
                     </WarningNotification>
@@ -74,7 +74,7 @@ export default function NotificationContextExample() {
                     .show(
                         (props: INotification) => (
                             <SuccessNotification { ...props }>
-                                <Text size="36" fontSize="14">
+                                <Text fontSize="14">
                                     It`s Ok!
                                 </Text>
                             </SuccessNotification>
@@ -99,7 +99,7 @@ export default function NotificationContextExample() {
                             },
                         ] }
                     >
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             Error notification with looooooooong looooooong text about lorem ispum dolor
                         </Text>
                     </ErrorNotification>

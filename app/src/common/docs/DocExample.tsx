@@ -10,7 +10,6 @@ import { Code } from './Code';
 import { docExampleLoader } from './docExampleLoader';
 import { ThemeId } from '../../data';
 import { generateNewRawString, getSkin, useCode, useExampleProps, usePropEditorTypeOverride } from './utils';
-import { QueryHelpers } from './baseDocBlock/utils/queryHelpers';
 
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 
@@ -53,8 +52,7 @@ export function DocExample(props: DocExampleProps) {
     const [component, setComponent] = useState<{ elementType: any }>();
     const [raw, setRaw] = useState<string>();
     const { theme } = useAppThemeContext();
-    const isSkin = QueryHelpers.isSkin();
-    const skin = getSkin(theme, isSkin);
+    const skin = getSkin(theme, true);
     const type = props?.config?.bySkin[skin]?.type;
     const propsOverride = usePropEditorTypeOverride(theme, type);
     const exampleProps = useExampleProps(props.config, type, theme, propsOverride);
@@ -92,7 +90,6 @@ export function DocExample(props: DocExampleProps) {
         const dirPath = props.path.split('/').slice(0, -1);
         const codesandboxRaw = (props.config && raw && exampleProps) ? generateNewRawString(raw, exampleProps) : raw;
 
-        console.log('config', props.config, exampleProps, codesandboxRaw);
         if (props.config && (!exampleProps || !codesandboxRaw)) {
             return null;
         }

@@ -3,10 +3,22 @@
 .container {
     display: flex;
 
+    &:global(.uui-flex-row)[class*='uui-size-'] {
+        --uui-size: 36px;
+    }
+
+    &[class*='uui-size-'] {
+        --uui-size: 36px;
+    }
+
     .item {
         padding-left: 18px;
         padding-right: 18px;
         color: var(--uui-neutral-0) !important;
+
+        &:global(.uui-button-box) {
+            --uui-size: 36px;
+        }
 
         &:hover {
             background-color: var(--uui-neutral-90);
@@ -28,7 +40,7 @@
             content: '';
             position: absolute;
             height: 100%;
-            border-right: thin solid var(--icon-color);
+            border-right: thin solid var(--uui-icon);
         }
     }
 }
