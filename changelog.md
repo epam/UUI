@@ -1,6 +1,10 @@
-# 5.12.2 - xx.xx.2024
+# 5.xx.xx - xx.xx.2024
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
+
+
+**What's Fixed**
+* [useForm]: reset serverValidationState by valid form save action
 
 
 # 5.12.1 - 17.12.2024
