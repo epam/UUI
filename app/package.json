@@ -41,7 +41,7 @@
     "lodash.assign": "4.2.0",
     "prismjs": "^1.19.0",
     "qhistory": "1.0.3",
-    "react": "^18.2.0",
+    "react": "18.3.1",
     "react-dom": "^18.2.0",
     "react-fast-compare": "^3.2.2",
     "react-imask": "6.0.7",
