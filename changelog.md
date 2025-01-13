@@ -1,6 +1,7 @@
 # 5.12.2 - xx.xx.2024
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
+* [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
 
 
 # 5.12.1 - 17.12.2024
