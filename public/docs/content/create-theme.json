@@ -45,7 +45,20 @@
         ]
       },
       {
-        "text": ", which includes comments to guide you through. "
+        "text": ", which includes comments to guide you through.Additionally, you can experiment with theme creation using our preconfigured "
+      },
+      {
+        "type": "link",
+        "url": "https://codesandbox.io/p/sandbox/sharp-firefly-69wggz?file=%2Fsrc%2FcustomThemeTemplate.css%3A11%2C30",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "CodeSandbox"
+          }
+        ]
+      },
+      {
+        "text": "."
       }
     ]
   },
