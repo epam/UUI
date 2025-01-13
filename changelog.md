@@ -2,6 +2,9 @@
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
 
+**What's Fixed**
+* [DropdownMenuButton]: fixed cropping of icons located to the right of the text
+
 
 # 5.12.1 - 17.12.2024
 **What's Fixed**
