@@ -8,7 +8,6 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
   href=""
   onClick={[Function]}
   rel="noopener noreferrer"
-  role="menuitem"
   tabIndex={0}
   target="_blank"
 >
@@ -31,7 +30,6 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
 exports[`MainMenuButton should be rendered correctly with minimum props 1`] = `
 <span
   className="uui-button-box uui-enabled root type-primary"
-  role="menuitem"
   tabIndex={-1}
 />
 `;

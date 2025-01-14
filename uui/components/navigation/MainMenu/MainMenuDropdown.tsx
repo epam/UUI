@@ -14,7 +14,6 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                         caption={ this.props.caption }
                         { ...props }
                         rawProps={ {
-                            role: undefined,
                             'aria-haspopup': undefined,
                             ...this.props.rawProps,
                         } }
