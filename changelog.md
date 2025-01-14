@@ -1,6 +1,8 @@
 # 5.xx.xx - xx.xx.2024
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
+* [MainMenuButton]: removed unnecessary `role` attribute
+* [MainMenuButton]: removed unnecessary `aria-haspopup` attribute when used as a target in `MainMenuDropdown` component
 
 
 **What's Fixed**
