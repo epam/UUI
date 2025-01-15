@@ -9,6 +9,8 @@
 
 **What's Fixed**
 * [useForm]: reset serverValidationState by valid form save action
+* [DropdownMenuButton]: fixed cropping of icons located to the right of the text
+* [PresetsPanel]: added scroll to `More` dropdown
 
 
 # 5.12.1 - 17.12.2024
