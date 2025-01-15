@@ -40,6 +40,7 @@ export class DropdownContainerDoc extends BaseDocsBlock {
             doc.merge('maxWidth', { examples: ['auto', 100, 500], editorType: 'NumEditor' });
             doc.merge('maxHeight', { examples: ['auto', 100, 500], editorType: 'NumEditor' });
             doc.merge('lockProps', { editorType: 'JsonEditor' });
+            doc.merge('returnFocus', { examples: [{ value: true, isDefault: true }, false] });
             doc.merge('arrowProps', {
                 editorType: 'MultiUnknownEditor',
                 examples: [{ name: '{ ref: { current: null }, style: {} }', value: { ref: { current: null }, style: {} } }],

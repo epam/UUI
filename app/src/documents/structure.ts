@@ -6,7 +6,7 @@ import {
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
     DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, OverviewDoc,
-    ThemingOverview, Tokens, AccessibilityDoc, UtGuideGettingStartedDoc, LensesDoc,
+    ThemingOverview, Tokens, AccessibilityDoc, UtGuideGettingStartedDoc, LensesDoc, CreateThemeDoc,
 } from '../docs';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
 import { componentsStructure } from './structureComponents';
@@ -60,8 +60,9 @@ export const items: DocItem[] = [
     { id: 'lockContextDoc', name: 'Lock Context', component: LockContextDoc, parentId: 'contexts', tags: ['contexts'] },
 
     { id: 'themes', name: 'Themes' },
-    { id: 'overview-themes', name: 'Overview', component: ThemingOverview, parentId: 'themes' },
-    { id: 'tokens', name: 'Tokens', component: Tokens, parentId: 'themes', tags: ['colors', 'variables'] },
+    { id: 'overviewThemes', name: 'Overview', component: ThemingOverview, parentId: 'themes' },
+    { id: 'tokens', name: 'Variables', component: Tokens, parentId: 'themes', tags: ['colors', 'variables, tokens'] },
+    { id: 'createTheme', name: 'Create Theme', component: CreateThemeDoc, parentId: 'themes' },
 
     { id: 'testing', name: 'Testing' },
     { id: 'testing-basics', name: 'Basics', component: UtGuideBasicsDoc, parentId: 'testing' },
