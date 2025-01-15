@@ -13,10 +13,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                     <MainMenuButton
                         caption={ this.props.caption }
                         { ...props }
-                        rawProps={ {
-                            'aria-haspopup': undefined,
-                            ...this.props.rawProps,
-                        } }
+                        rawProps={ this.props.rawProps }
                         isLinkActive={ this.props.isLinkActive }
                         isDropdown
                     />
