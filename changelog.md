@@ -1,6 +1,7 @@
 # 5.xx.xx - xx.xx.2024
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
+* [MainMenuButton] Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
 
 
 **What's Fixed**
