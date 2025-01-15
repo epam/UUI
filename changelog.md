@@ -3,7 +3,7 @@
 * [MainMenuAvatar]: added `RawProps` prop
 * [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
 * [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
-
+* [MainMenuButton] Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
 
 **What's Fixed**
 * [useForm]: reset serverValidationState by valid form save action
