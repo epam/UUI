@@ -1,8 +1,7 @@
 # 5.xx.xx - xx.xx.2024
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
-* [MainMenuButton]: removed unnecessary `role` attribute
-* [MainMenuButton]: removed unnecessary `aria-haspopup` attribute when used as a target in `MainMenuDropdown` component
+* [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
 
 
 **What's Fixed**

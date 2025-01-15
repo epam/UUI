@@ -3,7 +3,6 @@
 exports[`MainMenuButton should be rendered correctly 1`] = `
 <a
   aria-expanded={false}
-  aria-haspopup={true}
   className="uui-button-box uui-enabled -clickable uui-anchor root type-primary"
   href=""
   onClick={[Function]}
