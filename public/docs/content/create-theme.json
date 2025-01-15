@@ -1,0 +1,167 @@
+[
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Note, this is the draft version of this doc. Feel free to "
+      },
+      {
+        "type": "link",
+        "url": "mailto:AskUUI@epam.com",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "contact us"
+          }
+        ]
+      },
+      {
+        "text": " if you need any assistance or consultations."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To create a custom theme, you need to define a set of css variables and import them into your application."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For a quick start, you can copy our theme "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/blob/8040caa5586d451f1d5f1abf9645753dd7c0f9da/epam-assets/theme/customThemeTemplate.css",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "template"
+          }
+        ]
+      },
+      {
+        "text": ", which includes comments to guide you through.Additionally, you can experiment with theme creation using our preconfigured "
+      },
+      {
+        "type": "link",
+        "url": "https://codesandbox.io/p/sandbox/sharp-firefly-69wggz?file=%2Fsrc%2FcustomThemeTemplate.css%3A11%2C30",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "CodeSandbox"
+          }
+        ]
+      },
+      {
+        "text": "."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Theme file consist big amount of variables, but it is not required to define or modify all variables upfront. We recommend starting with the "
+      },
+      {
+        "text": "\"Required\" section",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ", which covers the base colors of your brand. Afterward, you can proceed with advanced customization of core and component variables, as needed. For more information about the types of variables and their purposes, refer to the "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=overviewThemes&mode=doc&category=themes",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Overview"
+          }
+        ]
+      },
+      {
+        "text": " and "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tokens&mode=doc&category=themes",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Tokens"
+          }
+        ]
+      },
+      {
+        "text": " pages."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Once your "
+      },
+      {
+        "text": "myTheme.css",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " file is ready, import it into your project and apply the theme CSS class to the root element of your application:"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "1. Import Theme to the root of your app(e.g., index.tsx):",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "index.tsx\n",
+        "color": "rgb(48, 50, 64)",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": "\nimport 'myTheme.css';",
+        "color": "rgb(48, 50, 64)"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "2. Add theme class to the body:",
+        "uui-richTextEditor-bold": true
+      }
+    ]
+  },
+  {
+    "type": "note-quote",
+    "children": [
+      {
+        "text": "index.html",
+        "uui-richTextEditor-bold": true,
+        "color": "rgb(48, 50, 64)"
+      },
+      {
+        "text": "\n\n<body class=\"uui-theme-myTheme\">",
+        "color": "rgb(48, 50, 64)"
+      }
+    ]
+  }
+]

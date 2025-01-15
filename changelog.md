@@ -2,6 +2,7 @@
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
 * [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
+* [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
 
 
 **What's Fixed**
