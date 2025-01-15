@@ -2,9 +2,10 @@
 
 exports[`MainMenuButton should be rendered correctly 1`] = `
 <a
+  aria-current="page"
   aria-expanded={false}
   aria-haspopup={true}
-  className="uui-button-box uui-enabled -clickable uui-anchor root type-primary"
+  className="uui-button-box uui-enabled uui-active -clickable uui-anchor root type-primary"
   href=""
   onClick={[Function]}
   rel="noopener noreferrer"
