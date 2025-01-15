@@ -17,7 +17,7 @@ export interface IDropdownMenuItemProps extends IDropdownTogglerProps, IHasCapti
     indent?: boolean;
 }
 
-export interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock'> {
+export interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock' | 'maxHeight'> {
     closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];
     minWidth?: number;
 }
