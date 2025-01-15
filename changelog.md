@@ -1,9 +1,11 @@
 # 5.12.2 - xx.xx.2024
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
+* [DropdownMenuBody]: added `maxHeight` prop
 
 **What's Fixed**
 * [DropdownMenuButton]: fixed cropping of icons located to the right of the text
+* [PresetsPanel]: added scroll to `More` dropdown
 
 
 # 5.12.1 - 17.12.2024
