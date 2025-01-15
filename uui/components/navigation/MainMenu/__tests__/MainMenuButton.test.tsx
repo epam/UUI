@@ -15,6 +15,7 @@ describe('MainMenuButton', () => {
                 type="primary"
                 target="_blank"
                 link={ { pathname: '/' } }
+                isLinkActive
                 isDropdown
                 isOpen={ false }
                 collapseToMore
