@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getAsyncLocationsDS } from '../../__tests__/mocks';
 import { ItemsMap } from '../tree/ItemsMap';
-import { act } from 'react-dom/test-utils';
+import { act } from '@epam/uui-test-utils';
 import { PatchOrdering } from '../tree';
 import { AsyncListViewProps } from '../types';
 

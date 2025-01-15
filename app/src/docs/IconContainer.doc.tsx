@@ -24,6 +24,7 @@ export class IconContainerDoc extends BaseDocsBlock {
                 { value: { fill: 'tomato' }, name: '{ fill: \'tomato\' }' },
                 { value: { fill: 'green' }, name: '{ fill: \'green\' }' },
             ] });
+            doc.merge('size', { editorType: 'StringEditor' });
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
             doc.setDefaultPropExample('onClick', () => true);
         },

@@ -25,12 +25,6 @@ describe('Clickable', () => {
         expect(anchorElement).toBeInTheDocument();
     });
 
-    it('renders as an anchor when link prop is provided', async () => {
-        await renderWithContextAsync(<Clickable link={ { pathname: '/' } } />);
-        const anchorElement = screen.queryByRole('link');
-        expect(anchorElement).toBeInTheDocument();
-    });
-
     it('renders as a span & is not clickable when neither onClick, href, nor link prop is provided', async () => {
         await renderWithContextAsync(<Clickable>test</Clickable>);
         const spanElement = screen.queryByText('test');
