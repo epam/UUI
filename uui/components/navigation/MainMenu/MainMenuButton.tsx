@@ -27,8 +27,6 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
         <Clickable
             { ...clickableProps }
             rawProps={ {
-                role: 'menuitem',
-                'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
                 'aria-current': props.isLinkActive
                     ? 'page'

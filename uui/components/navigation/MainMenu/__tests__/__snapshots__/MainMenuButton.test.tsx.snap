@@ -4,12 +4,10 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
 <a
   aria-current="page"
   aria-expanded={false}
-  aria-haspopup={true}
   className="uui-button-box uui-enabled uui-active -clickable uui-anchor root type-primary"
   href=""
   onClick={[Function]}
   rel="noopener noreferrer"
-  role="menuitem"
   tabIndex={0}
   target="_blank"
 >
@@ -32,7 +30,6 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
 exports[`MainMenuButton should be rendered correctly with minimum props 1`] = `
 <span
   className="uui-button-box uui-enabled root type-primary"
-  role="menuitem"
   tabIndex={-1}
 />
 `;
