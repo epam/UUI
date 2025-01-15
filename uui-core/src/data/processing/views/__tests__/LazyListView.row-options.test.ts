@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getLazyLocationsDS } from '../../__tests__/mocks';
-import { act } from 'react-dom/test-utils';
+import { act } from '@epam/uui-test-utils';
 
 describe('LazyListView - row options', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;
@@ -507,7 +507,7 @@ describe('LazyListView - row options', () => {
         });
 
         it('should pin rows if pin function is specified at rowOptions', async () => {
-            const rowOptions = { pin: (item) => item.id === 'c-AF' };
+            const rowOptions = { pin: (item: any) => item.id === 'c-AF' };
 
             const { dataSource } = getLazyLocationsDS({
                 rowOptions,
@@ -1069,7 +1069,7 @@ describe('LazyListView - row options', () => {
         });
 
         it('should pin rows if pin function is specified at getRowOptions', async () => {
-            const getRowOptions = () => ({ pin: (item) => item.id === 'c-AF' });
+            const getRowOptions = () => ({ pin: (item: any) => item.id === 'c-AF' });
 
             const { dataSource } = getLazyLocationsDS({
                 getRowOptions,
