@@ -30,6 +30,9 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
                 role: 'menuitem',
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
+                'aria-current': props.isLinkActive
+                    ? 'page'
+                    : undefined,
                 ...props.rawProps,
             } }
             cx={ [
