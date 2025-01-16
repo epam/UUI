@@ -8,6 +8,7 @@
 
 
 **What's Fixed**
+* [PickerInput]: show 'N selected' instead of '+N' tag if maxItems=0
 * [useForm]: reset serverValidationState by valid form save action
 * [DropdownMenuButton]: fixed cropping of icons located to the right of the text
 * [PresetsPanel]: added scroll to `More` dropdown
