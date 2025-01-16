@@ -3,7 +3,7 @@ import { TTokensDocGroupCfg } from './types';
 export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     {
         title: 'Semantic',
-        description: 'Defines semantic palette. These tokens are used widely in many UUI components, to apply colors according their role. These tokens can also be utilized directly in application code, in accordance with their designated roles.',
+        description: 'Defines semantic palette. These variables are used widely in many UUI components, to apply colors according their role. These variables can also be utilized directly in application code, in accordance with their designated roles.',
         subgroupsHeader: [
             'light highlights and backgrounds',
             'light component backgrounds',
@@ -63,27 +63,27 @@ export const TOKENS_DOC_CONFIG: TTokensDocGroupCfg[] = [
     },
     {
         title: 'Surfaces',
-        description: 'Tokens for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
+        description: 'Variables for different types of surfaces: from the background of the application and section colors to dividers and overlays.',
         items: ('core/surfaces/'),
     },
     {
         title: 'Text',
-        description: 'Tokens for text and typography.',
+        description: 'Variables for text and typography.',
         items: ('core/text/'),
     },
     {
         title: 'Links',
-        description: 'Tokens for links.',
+        description: 'Variables for links.',
         items: ('core/links/'),
     },
     {
         title: 'Icons',
-        description: 'Tokens for icons.',
+        description: 'Variables for icons.',
         items: ('core/icons/'),
     },
     {
         title: 'Other',
-        description: 'Other tokens.',
+        description: 'Other variables.',
         items: ('core/other/'),
     },
     {
