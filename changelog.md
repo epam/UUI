@@ -2,11 +2,15 @@
 **What's New**
 * [MainMenuAvatar]: added `RawProps` prop
 * [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
+* [MainMenuButton]: Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
 * [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
-* [MainMenuButton] Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
+* [DropdownMenuBody]: added `maxHeight` prop
+
 
 **What's Fixed**
 * [useForm]: reset serverValidationState by valid form save action
+* [DropdownMenuButton]: fixed cropping of icons located to the right of the text
+* [PresetsPanel]: added scroll to `More` dropdown
 
 
 # 5.12.1 - 17.12.2024

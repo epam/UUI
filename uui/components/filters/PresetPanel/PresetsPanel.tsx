@@ -3,10 +3,10 @@ import { i18n } from '../../../i18n';
 import {
     DataTableState, IHasRawProps, IPresetsApi, ITablePreset, orderBy,
 } from '@epam/uui-core';
-import { AdaptiveItemProps, AdaptivePanel, ScrollBars } from '@epam/uui-components';
+import { AdaptiveItemProps, AdaptivePanel } from '@epam/uui-components';
 import css from './PresetsPanel.module.scss';
 import { Button } from '../../buttons';
-import { FlexCell, FlexRow } from '../../layout';
+import { FlexCell, FlexRow, ScrollBars } from '../../layout';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton } from '../../overlays';
 import { Preset } from './Preset';
 import { PresetInput } from './PresetInput';
@@ -65,7 +65,7 @@ export function PresetsPanel(props: PresetsPanelProps) {
                     </FlexRow>
                 ) }
                 renderBody={ (propsBody) => (
-                    <DropdownMenuBody minWidth={ 230 } { ...propsBody }>
+                    <DropdownMenuBody minWidth={ 230 } maxHeight={ 300 } { ...propsBody }>
                         <ScrollBars>
                             {hiddenItems.map((hiddenItem) => (
                                 <DropdownMenuButton
