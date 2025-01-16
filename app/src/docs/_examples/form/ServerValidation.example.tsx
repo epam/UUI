@@ -50,7 +50,7 @@ export default function ServerValidationExample() {
                 <SuccessNotification { ...props }>
                     <Text>Form saved</Text>
                 </SuccessNotification>
-            )),
+            )).catch(() => {}),
         getMetadata: () => ({
             props: {
                 email: { isRequired: true },

@@ -765,7 +765,7 @@ describe('useForm', () => {
             expect(result.current.isChanged).toEqual(true);
         });
 
-        it('Should keep server error notification until field is changed', async () => {
+        it('Should keep server error notification until field is changed and reset it by save', async () => {
             const serverResponse: FormSaveResponse<IAdvancedFoo> = {
                 validation: {
                     isInvalid: true,
@@ -808,6 +808,11 @@ describe('useForm', () => {
             act(() => result.current.lens.prop('deep').prop('inner').set('correct'));
             expect(result.current.lens.prop('deep').prop('inner').toProps().isInvalid).toBe(false);
             expect(result.current.lens.prop('deep').prop('inner').toProps().validationProps).toBeUndefined();
+
+            await act(async () => handleSave(result.current.save));
+
+            expect(result.current.lens.prop('deep').prop('inner').toProps().isInvalid).toBe(false);
+            expect(result.current.serverValidationState).toBe(undefined);
         });
 
         it('Should keep only validationProps tree with validationMessage in the end', async () => {

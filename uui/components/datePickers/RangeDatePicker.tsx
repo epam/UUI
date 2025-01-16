@@ -69,6 +69,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                 { ...renderProps }
                 cx={ cx(css.dropdownContainer) }
                 shards={ [targetRef] }
+                returnFocus={ true }
             >
                 <FlexRow>
                     <RangeDatePickerBody
