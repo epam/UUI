@@ -40,6 +40,10 @@ interface AlertSizes {
     action: Sizes;
 }
 
+interface NotificationCardSizes {
+    action: string;
+}
+
 interface TagSizes {
     countIndicator: Sizes;
 }
@@ -255,6 +259,7 @@ interface ModalSizes {
 interface SizesSettings {
     defaults: DefaultSizes;
     alert: AlertSizes;
+    notificationCard: NotificationCardSizes;
     tag: TagSizes;
     pickerInput: PickerInputSizes;
     rowAddons: RowAddonsSizes;
