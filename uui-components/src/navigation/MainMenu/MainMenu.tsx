@@ -202,7 +202,13 @@ export class MainMenu extends React.Component<MainMenuProps, MainMenuState> {
                 className={ cx(this.props.cx, uuiMainMenu.container, css.container, this.props.isTransparent && uuiMainMenu.transparent) }
                 { ...this.props.rawProps }
             >
-                <AdaptivePanel items={ this.props.items || this.getMenuItems() } cx={ css.itemsContainer } />
+                <AdaptivePanel
+                    items={ this.props.items || this.getMenuItems() }
+                    cx={ css.itemsContainer }
+                    rawProps={ {
+                        role: 'list',
+                    } }
+                />
                 {this.renderServerBadge()}
             </nav>
         );
