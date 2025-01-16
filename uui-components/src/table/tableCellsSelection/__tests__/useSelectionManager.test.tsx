@@ -1,5 +1,4 @@
-import { act } from 'react-dom/test-utils';
-import { renderHook } from '@epam/uui-test-utils';
+import { renderHook, act } from '@epam/uui-test-utils';
 import { useSelectionManager } from '../hooks';
 import { columnsMock, rowsByIndexMock } from '../mocks';
 

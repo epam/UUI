@@ -232,7 +232,7 @@ export function AppHeader() {
                 priority: 5,
                 render: () => (
                     <Dropdown
-                        renderTarget={ (props) => <MainMenuButton icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
+                        renderTarget={ (props) => <MainMenuButton rawProps={ { 'aria-label': 'Figma source' } } icon={ FigmaIcon } cx={ cx(css.icon, css.figmaIcon) } { ...props } /> }
                         renderBody={ (props) => (
                             <DropdownMenuBody { ...props }>
                                 <DropdownMenuHeader caption="Open in" />
@@ -247,7 +247,7 @@ export function AppHeader() {
             {
                 id: 'git',
                 priority: 4,
-                render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } key="github-link" />,
+                render: () => <MainMenuButton icon={ GitIcon } href={ GIT_LINK } target="_blank" cx={ cx(css.icon) } key="github-link" rawProps={ { 'aria-label': 'Github repo' } } />,
             },
             {
                 id: 'gitStar',
@@ -279,7 +279,7 @@ export function AppHeader() {
                 priority: 1,
                 render: renderDirectionSwitcher,
             },
-            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu key="globalMenu" /> },
+            { id: 'globalMenu', priority: 100500, render: () => <GlobalMenu rawProps={ { 'aria-label': 'Global Menu' } } key="globalMenu" /> },
         ].filter((i) => !!i);
     };
 
