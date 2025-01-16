@@ -3,35 +3,31 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "Tokens are reusable variables that can represent design properties like colors, fonts, or spacing. In CSS, tokens are represented with CSS Custom Properties (aka CSS Variables)."
-      }
-    ],
-    "data": {}
-  },
-  {
-    "type": "paragraph",
-    "data": {},
-    "children": [
-      {
-        "text": "UUI visuals are based on a set of tokens, named \"Core Tokens\", described below."
+        "text": "Theme variables represent design properties such as colors, fonts, or spacing. In CSS, these variables are implemented using CSS Custom Properties (aka CSS Variables)."
       }
     ]
   },
   {
     "type": "paragraph",
-    "data": {},
     "children": [
       {
-        "text": "Each Theme defines its own values for all Core Tokens."
+        "text": "UUI visuals are built on a set of theme variables, with the \"Core Variables\" group forming the foundation, as described below."
       }
     ]
   },
   {
     "type": "paragraph",
-    "data": {},
     "children": [
       {
-        "text": "Core Tokens are not just for customizing UUI - we recommend apps built on UUI to utilize these tokens for styling their own components. This practice facilitates support for multiple themes, aids in crafting more readable and semantic CSS code, and enables quick reaction to changes in brand guidelines."
+        "text": "Each theme uses the same set of variables but assigns different values to them. You can switch the theme in header on this site to see how the variables on this page adapt to the selected theme."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "These variables are not limited to customizing UUI components. We recommend using them to style your own application components and visual elements. This approach ensures consistency across multiple themes (e.g., light/dark mode), promotes more readable and semantic CSS code, and enables quick adaptation to changes in brand guidelines."
       }
     ]
   }

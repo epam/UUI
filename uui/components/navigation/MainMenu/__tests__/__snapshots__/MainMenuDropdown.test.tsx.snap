@@ -3,10 +3,8 @@
 exports[`MainMenuDropdown should be rendered correctly 1`] = `
 <button
   aria-expanded={false}
-  aria-haspopup={true}
   className="uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
-  role="menuitem"
   tabIndex={0}
   type="button"
 >
@@ -29,10 +27,8 @@ exports[`MainMenuDropdown should be rendered correctly 1`] = `
 exports[`MainMenuDropdown should be rendered correctly with minimum props 1`] = `
 <button
   aria-expanded={false}
-  aria-haspopup={true}
   className="uui-button-box uui-enabled -clickable root type-primary"
   onClick={[Function]}
-  role="menuitem"
   tabIndex={0}
   type="button"
 >

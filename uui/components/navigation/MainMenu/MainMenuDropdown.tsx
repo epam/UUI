@@ -10,7 +10,13 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
         return (
             <Dropdown
                 renderTarget={ (props) => (
-                    <MainMenuButton caption={ this.props.caption } { ...props } rawProps={ this.props.rawProps } isLinkActive={ this.props.isLinkActive } isDropdown />
+                    <MainMenuButton
+                        caption={ this.props.caption }
+                        { ...props }
+                        rawProps={ this.props.rawProps }
+                        isLinkActive={ this.props.isLinkActive }
+                        isDropdown
+                    />
                 ) }
                 renderBody={ (props) => {
                     const handleEscape = (e: React.KeyboardEvent<HTMLElement>) => {
