@@ -27,9 +27,9 @@ export interface ThemeBaseParams extends Partial<CustomThemeManifest> {
 export const builtInThemes: ThemeBaseParams[] = [
     { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
-    { id: BuiltInTheme.loveship_4px, name: 'Loveship Light 4px', settings: settings_4px, propsOverride: propsOverride_4px },
+    { id: BuiltInTheme.loveship_4px, name: 'Loveship Light 4px', settings: settings_4px, propsOverride: propsOverride_4px, devOnly: true, css: null },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
-    { id: BuiltInTheme.loveship_dark_4px, name: 'Loveship Dark 4px', settings: settings_4px, propsOverride: propsOverride_4px },
+    { id: BuiltInTheme.loveship_dark_4px, name: 'Loveship Dark 4px', settings: settings_4px, propsOverride: propsOverride_4px, devOnly: true, css: null },
     { id: BuiltInTheme.vanilla_thunder, name: 'Vanilla Thunder' },
     { id: BuiltInTheme.promo, name: 'Promo' },
     { id: BuiltInTheme.eduverse_light, name: 'Eduverse Light' },

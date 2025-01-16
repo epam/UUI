@@ -72,6 +72,8 @@
                     padding: 0 11px;
                     text-align: center;
                     white-space: nowrap;
+                    font-size: 10px;
+                    line-height: 12px;
                 }
 
                 &:hover {
@@ -124,13 +126,13 @@
             .info-box {
                 padding-bottom: 18px;
 
-                .info-title {
-                    margin-bottom: 18px;
+                .preview-icon {
+                    margin-right: 12px;
+                    fill: var(--uui-icon);
+                }
 
-                    .preview-icon {
-                        margin-right: 12px;
-                        fill: var(--uui-icon);
-                    }
+                .topMargin {
+                    margin-top: 18px;
                 }
             }
 
