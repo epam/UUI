@@ -39,7 +39,7 @@ export const childrenExamples = [
             <MainMenuButton caption="Skill Matrices" collapseToMore priority={ 1 } estimatedWidth={ 139 } showInBurgerMenu key="skill" href="/" />,
             <FlexSpacer priority={ 100500 } key="spacer" />,
             <MainMenuButton caption="Tools" type="secondary" isDropdown priority={ 4 } estimatedWidth={ 113 } key="tool" />,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" />,
+            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
         ],
         name: 'Grow',
         isDefault: true,
@@ -57,8 +57,9 @@ export const childrenExamples = [
                 avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
                 priority={ 100 }
                 estimatedWidth={ 84 }
+                rawProps={ { 'aria-label': 'Avatar' } }
             />,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" />,
+            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
         ],
         name: 'Learn',
     },
@@ -71,7 +72,7 @@ export const childrenExamples = [
             <MainMenuButton caption="Demos" priority={ 2 } collapseToMore estimatedWidth={ 72 } showInBurgerMenu key="demos" />,
             <MainMenuButton caption="Tests" priority={ 1 } collapseToMore estimatedWidth={ 62 } showInBurgerMenu key="tests" />,
             <FlexSpacer priority={ 100500 } key="spacer" />,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" />,
+            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
         ],
         name: 'UI',
     },
@@ -96,7 +97,7 @@ export const childrenExamples = [
                     />
                 </div>
             </MainMenuCustomElement>,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" />,
+            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
         ],
         name: 'Heroes',
     },
@@ -146,7 +147,7 @@ const renderAvatar = () => {
         <Dropdown
             key="avatar"
             renderTarget={ (props) => (
-                <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" isDropdown { ...props } />
+                <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" isDropdown { ...props } rawProps={ { 'aria-label': 'Avatar' } } />
             ) }
             renderBody={ (props) => (
                 <DropdownMenuBody { ...props }>
@@ -171,9 +172,9 @@ const items: AdaptiveItemProps[] = [
     { id: 'trainingCatalog', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Training Catalog" /> },
     { id: 'requests', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Requests" /> },
     { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-    { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" icon={ HelpIcon } /> },
+    { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } /> },
     { id: 'avatar', priority: 2, render: renderAvatar },
-    { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } /> },
+    { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } /> },
 ];
 export const itemsExamples = [
     {
@@ -217,13 +218,14 @@ export const itemsExamples = [
                         key={ p.id }
                         avatarUrl={ ALL_AVATARS[0] }
                         estimatedWidth={ 84 }
+                        rawProps={ { 'aria-label': 'Avatar' } }
                     />
                 ),
             },
             {
                 id: 'global-menu',
                 priority: 100,
-                render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } />,
+                render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
             },
         ],
     },

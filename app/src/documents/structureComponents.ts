@@ -93,7 +93,7 @@ export const componentsStructure = orderBy(
         { id: 'statusIndicator', name: 'Status Indicator', component: StatusIndicatorDoc, parentId: 'components' },
         { id: 'labeledInput', name: 'Labeled Input', component: LabeledInputDoc, parentId: 'components' },
         { id: 'linkButton', name: 'Link Button', component: LinkButtonDoc, parentId: 'components' },
-        { id: 'mainMenu', name: 'Main Menu', component: MainMenuDoc, parentId: 'components' },
+        { id: 'mainMenu', name: 'Main Menu', component: MainMenuDoc, parentId: 'components', tags: ['MainMenu'] },
         { id: 'modals', name: 'Modals', component: ModalsDoc, parentId: 'components' },
         { id: 'multiSwitch', name: 'MultiSwitch', component: MultiSwitchDoc, parentId: 'components' },
         { id: 'notificationCard', name: 'Notification Card', component: NotificationCardDoc, parentId: 'components' },
