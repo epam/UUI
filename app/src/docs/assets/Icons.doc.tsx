@@ -8,8 +8,10 @@ import { copyTextToClipboard } from '../../helpers';
 import { svc } from '../../services';
 import { IconBase } from '@epam/uui-docs';
 import { ReactComponent as NotificationCheckFillIcon } from '@epam/assets/icons/notification-check-fill.svg';
+import { useAppThemeContext } from '../../helpers/appTheme';
 
 const SIZE_LIST: ControlSize[] = ['24', '30', '36', '42', '48'];
+const THEMES_6PX = ['electric', 'loveship', 'loveship_dark', 'vanilla_thunder', 'promo', 'eduverse_light', 'eduverse_dark'];
 
 type ControlSize = '24' | '30' | '36' | '42' | '48';
 
@@ -20,7 +22,6 @@ interface IconsPageState {
     controlSize: ControlSize;
     topIndex: number;
     visibleCount: number;
-    isLocked: boolean;
 }
 
 export function IconsDoc() {
@@ -31,8 +32,8 @@ export function IconsDoc() {
         controlSize: '36',
         topIndex: 0,
         visibleCount: 100500,
-        isLocked: true,
     });
+    const { theme } = useAppThemeContext();
 
     const allIcons: IconBase<Icon>[] = getAllIcons<Icon>();
 
@@ -55,9 +56,8 @@ export function IconsDoc() {
         return (
             <Panel cx={ css.iconCard }>
                 <FlexRow padding="24" vPadding="48" borderBottom cx={ css.infoBox }>
-                    {renderPreviewIcon()} 
+                    {renderPreviewIcon()}
                 </FlexRow>
-                {renderControlSize()}
                 <FlexRow padding="24" vPadding="48" borderBottom cx={ css.iconCardDemo }>
                     {renderDemo()}
                 </FlexRow>
@@ -65,6 +65,26 @@ export function IconsDoc() {
                     {renderImport()}
                 </FlexRow>
             </Panel>
+        );
+    };
+
+    const renderControlSize = () => {
+        if (!THEMES_6PX.includes(theme)) {
+            return null;
+        }
+
+        return (
+            <>
+                <Text cx={ css.topMargin } fontSize="16" lineHeight="30" fontWeight="600">
+                    Control size:
+                </Text>
+                <MultiSwitch
+                    size="30"
+                    items={ SIZE_LIST.map((size, index) => ({ id: index, caption: size })) }
+                    value={ SIZE_LIST.indexOf(state.controlSize) ?? 3 }
+                    onValueChange={ (newSize: number) => setState({ ...state, controlSize: SIZE_LIST[newSize] }) }
+                />
+            </>
         );
     };
 
@@ -76,15 +96,7 @@ export function IconsDoc() {
                     {state.currentIcon.name}
                 </Text>
             </FlexRow>
-            <Text fontSize="16" lineHeight="30" fontWeight="600">
-                Control size
-            </Text>
-            <MultiSwitch
-                size="30"
-                items={ SIZE_LIST.map((size, index) => ({ id: index, caption: size })) }
-                value={ SIZE_LIST.indexOf(state.controlSize) ?? 3 }
-                onValueChange={ (newSize: number) => setState({ ...state, controlSize: SIZE_LIST[newSize] }) }
-            />
+            { renderControlSize() }
         </FlexCell>
     );
 
@@ -110,48 +122,29 @@ export function IconsDoc() {
 
     const renderDemo = () => {
         const icon = state.selectedIcon.icon;
+        const size = THEMES_6PX.includes(theme) ? state.controlSize : undefined;
         return (
             <FlexCell width="100%">
                 <FlexRow size="24" columnGap="12">
                     <FlexCell width="auto" shrink={ 0 }>
-                        <IconButton size={ state.controlSize as any } onClick={ () => {} } icon={ icon } />
+                        <IconButton size={ size as any } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
-                        <Button size={ state.controlSize } onClick={ () => {} } icon={ icon } />
+                        <Button size={ size } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
-                        <Button caption="Click" size={ state.controlSize } onClick={ () => {} } icon={ icon } />
+                        <Button caption="Click" size={ size } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                     <FlexCell width="auto" shrink={ 0 }>
-                        <LinkButton caption="Click" size={ state.controlSize } onClick={ () => {} } icon={ icon } />
+                        <LinkButton caption="Click" size={ size } onClick={ () => {} } icon={ icon } />
                     </FlexCell>
                 </FlexRow>
                 <FlexRow size="24" vPadding="24">
-                    <TextInput value="Some text" size={ state.controlSize } onValueChange={ () => {} } icon={ icon } />
+                    <TextInput value="Some text" size={ size } onValueChange={ () => {} } icon={ icon } />
                 </FlexRow>
             </FlexCell>
         );
     };
-
-    const renderControlSize = () => (
-        <div className={ cx(css.controlSizeWrapper, { [css.hideControlSize]: state.isLocked, [css.showControlSize]: !state.isLocked }) }>
-            <FlexRow padding="24" vPadding="24" columnGap="12" size="24" borderBottom cx={ css.controlSizeContent }>
-                <FlexCell width="auto">
-                    <Text fontWeight="600" size="24" fontSize="14">
-                        Control size:
-                    </Text>
-                </FlexCell>
-                <FlexCell width="auto">
-                    <MultiSwitch
-                        size="24"
-                        items={ SIZE_LIST.map((size) => ({ id: size, caption: size })) }
-                        value={ state.controlSize }
-                        onValueChange={ (newValue: ControlSize) => setState({ ...state, controlSize: newValue }) }
-                    />
-                </FlexCell>
-            </FlexRow>
-        </div>
-    );
 
     const renderItem = (item: IconBase<Icon>) => {
         return (
@@ -162,11 +155,10 @@ export function IconsDoc() {
                     ...state,
                     currentIcon: item,
                     selectedIcon: item,
-                    isLocked: true,
                 }) }
             >
                 <IconContainer cx={ css.itemIcon } icon={ item.icon } />
-                <Text size="18" color="secondary" cx={ css.itemName }>
+                <Text size="none" color="secondary" cx={ css.itemName }>
                     {item.name}
                 </Text>
             </div>
@@ -179,7 +171,7 @@ export function IconsDoc() {
                 <div className={ css.unsuccessfulSearch }>
                     <Text fontSize="16" lineHeight="24" cx={ css.unsuccessfulSearchText }>
                         Unfortunately, we did not find
-                        <span> 
+                        <span>
                             {' '}
                             {state.search}
                             {' '}

@@ -13,6 +13,7 @@ export interface CustomThemeManifest {
     path: string;
     settings: null | Settings;
     propsOverride?: TPropEditorTypeOverride;
+    devOnly?: boolean;
 }
 
 function getCustomThemesConfig(): string[] {
