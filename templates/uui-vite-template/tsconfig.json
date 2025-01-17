@@ -10,7 +10,7 @@
         "strict": true,
         "strictNullChecks": false,
         "skipLibCheck": true,
-        "target": "ES6",
+        "target": "ES2016",
         "rootDir": ".",
         "types": [
             "vitest/globals",
