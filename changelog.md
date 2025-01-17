@@ -12,6 +12,7 @@
 * [useForm]: reset serverValidationState by valid form save action
 * [DropdownMenuButton]: fixed cropping of icons located to the right of the text
 * [PresetsPanel]: added scroll to `More` dropdown
+* [NotificationCard]: changed size of actions from '36' to '30'
 
 
 # 5.12.1 - 17.12.2024
