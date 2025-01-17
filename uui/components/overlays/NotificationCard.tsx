@@ -9,7 +9,7 @@ import {
     IHasRawProps,
     useUuiContext,
 } from '@epam/uui-core';
-import { IconButton, LinkButton } from '../buttons';
+import { IconButton, LinkButton, LinkButtonProps } from '../buttons';
 import { i18n } from '../../i18n';
 import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
 import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
@@ -17,6 +17,7 @@ import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-err
 import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help-fill.svg';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import css from './NotificationCard.module.scss';
+import { settings } from '../../settings';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     /** Defines NotificationAction name. */
@@ -54,28 +55,40 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
     }, []);
 
     return (
-        <div role="alert" className={ cx('uui-notification_card', props.color && `uui-color-${props.color}`, css.root, props.cx) } ref={ notificationCardNode } { ...props.rawProps }>
+        <div
+            role="alert"
+            className={ cx('uui-notification_card', props.color && `uui-color-${props.color}`, css.root, props.cx) }
+            ref={ notificationCardNode }
+            { ...props.rawProps }
+        >
             <div className={ css.mainPath }>
-                {props.icon && (
+                { props.icon && (
                     <div className={ css.iconWrapper }>
                         <IconContainer size={ 24 } icon={ props.icon } />
                     </div>
-                )}
+                ) }
                 <div className={ css.content }>
-                    {props.children}
-                    {props.actions && (
+                    { props.children }
+                    { props.actions && (
                         <div className={ css.actionWrapper }>
-                            {props.actions.map((action) => (
-                                <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size="36" rawProps={ action.rawProps } />
-                            ))}
+                            { props.actions.map((action) => (
+                                <LinkButton
+                                    key={ action.name }
+                                    caption={ action.name }
+                                    onClick={ action.action }
+                                    cx={ css.actionLink }
+                                    size={ settings.sizes.notificationCard.action as LinkButtonProps['size'] }
+                                    rawProps={ action.rawProps }
+                                />
+                            )) }
                         </div>
-                    )}
+                    ) }
                 </div>
-                {props.onClose && (
+                { props.onClose && (
                     <div className={ css.closeWrapper }>
                         <IconButton icon={ CrossIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />
                     </div>
-                )}
+                ) }
             </div>
         </div>
     );
