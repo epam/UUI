@@ -22,7 +22,7 @@
     "dayjs": "1.11.12",
     "react-custom-scrollbars-2": "^4.5.0",
     "react-fast-compare": "^3.2.2",
-    "react-focus-lock": "2.13.2",
+    "react-focus-lock": "2.13.5",
     "react-measure": "2.5.2",
     "react-popper": "2.3.0",
     "react-transition-group": "4.4.5"
