@@ -11,6 +11,7 @@
 * [useForm]: reset serverValidationState by valid form save action
 * [DropdownMenuButton]: fixed cropping of icons located to the right of the text
 * [PresetsPanel]: added scroll to `More` dropdown
+* [NotificationCard]: changed size of actions from '36' to '30'
 * [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
 * [MainMenuButton]: Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
 
