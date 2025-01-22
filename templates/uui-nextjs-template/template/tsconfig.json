@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "rootDir": ".",
-    "target": "es6",
+    "target": "ES2021",
     "lib": [
       "dom",
       "dom.iterable",

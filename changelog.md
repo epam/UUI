@@ -1,5 +1,6 @@
 # 5.xx.xx - xx.xx.2024
 **What's New**
+* Update UUI packages JS target from ES6 to ES2021
 * [MainMenuAvatar]: added `RawProps` prop
 * [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
 * [DropdownMenuBody]: added `maxHeight` prop
