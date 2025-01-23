@@ -1,7 +1,18 @@
 import { ReactNode } from 'react';
-import { IAnalyticableOnChange, ICanBeInvalid, IDisableable, IEditable, IHasPlaceholder, IHasCX, IDropdownTogglerProps } from './props';
+import {
+    IAnalyticableOnChange,
+    ICanBeInvalid,
+    IDisableable,
+    IEditable,
+    IHasPlaceholder,
+    IHasCX,
+    IDropdownTogglerProps,
+    ICanFocus, ICanBeReadonly, IHasIcon, IHasRawProps,
+} from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
+import { Placement } from '@popperjs/core';
+import { CX } from './objects';
 
 /**
  * PickerInput element API. Is used to describe ref to the PickerInput component.
@@ -134,6 +145,95 @@ export type PickerBaseOptions<TItem, TId> = {
     /** Component ref */
     ref?: React.Ref<PickerInputElement>;
 };
+
+export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
+& ICanFocus<HTMLElement> &
+IHasPlaceholder &
+IDisableable &
+ICanBeReadonly &
+IHasIcon & {
+    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
+    editMode?: PickerInputEditMode;
+
+    /** Maximum number of tags to display in input, before collapsing to "N items selected" mode */
+    maxItems?: number;
+
+    /** Minimum width of dropdown body */
+    minBodyWidth?: number;
+
+    /** Prevents selected items tags to occupy multiple lines  */
+    isSingleLine?: boolean;
+
+    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    dropdownPlacement?: Placement;
+
+    /**
+     *  Defines where search field is:
+     * 'input' - try to place search inside the toggler (default for single-select),
+     * 'body' - put search inside the dropdown (default for multi-select)
+     * 'none' - disables search completely
+     *
+     * Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'
+     */
+    searchPosition?: PickerInputSearchPosition;
+
+    /** Disallow to clear Picker value (cross icon) */
+    disableClear?: boolean;
+
+    /**
+     * Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.
+     * By default search triggers after input value is changed.
+     *
+     * Note: defined minCharsToSearch isn't compatible with searchPosition=body.
+     */
+    minCharsToSearch?: number;
+
+    /** Overrides default height of the dropdown body */
+    dropdownHeight?: number;
+
+    /** Sets focus to component when it's mounted */
+    autoFocus?: boolean;
+
+    /** HTML attributes to put directly to the PickerInput parts */
+    rawProps?: {
+        /** HTML attributes to put directly to the input element */
+        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /** HTML attributes to put directly to the body root element */
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+    };
+
+    /** Adds custom footer to the dropdown body */
+    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;
+
+    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */
+    fixedBodyPosition?: boolean;
+
+    /**
+     * Node of portal target, where to render the dropdown body.
+     * By default, will be used global portal node.
+     */
+    portalTarget?: HTMLElement;
+
+    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */
+    inputCx?: CX;
+    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */
+    bodyCx?: CX;
+
+    /**
+     * Enables highlighting of the items' text with search-matching results.
+     * */
+    highlightSearchMatches?: boolean;
+
+    /** Search input debounce delay in ms. Default value is 500ms */
+    searchDebounceDelay?: number;
+
+    /** HTML ID attribute for the input in toggler */
+    id?: string;
+};
+
+export interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
+    onClose: () => void;
+}
 
 export type PickerFooterProps<TItem, TId> = {
     /** Instance of picker DataSource view */

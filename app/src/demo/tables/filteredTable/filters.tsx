@@ -70,6 +70,7 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             title: 'Office',
             type: 'singlePicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.offices }),
+            minCharsToSearch: 1,
         },
         {
             field: 'managerId',

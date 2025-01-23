@@ -39,13 +39,13 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const selectAllText = i18n.pickerInput.selectAllButton;
 
     const isSearching = search?.length;
-    const hideFooter = isSearchTooShort || rowsCount === 0 || isSearching || (isSinglePicker && props.disableClear);
+    const hideFooter = (rowsCount === 0 && !hasSelection) || isSearching || (isSinglePicker && props.disableClear);
 
     const showClear = !props.disableClear && (isSinglePicker ? true : (!view.selectAll || hasSelection));
 
     return !hideFooter && (
         <FlexRow cx={ css.footer }>
-            {!isSinglePicker && (
+            {!isSinglePicker && !isSearchTooShort && ( // Show this switch only for multi mode and when some rows rendered
                 <Switch
                     size={ settings.sizes.pickerInput.body.dropdown.footer.switch[props.size] as SwitchProps['size'] }
                     value={ showSelected.value }

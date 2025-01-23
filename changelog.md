@@ -1,13 +1,16 @@
 # 5.xx.xx - xx.xx.2024
 **What's New**
 * Update UUI packages JS target from ES6 to ES2021
+* `PickerInputBaseProps` interface was moved from @epam/uui-components to '@epam/uui-core' package
 * [MainMenuAvatar]: added `RawProps` prop
 * [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
 * [DropdownMenuBody]: added `maxHeight` prop
+* [FiltersPanel]: add 'minCharsToSearch' and 'renderFooter' props for picker filter configuration
 
 
 **What's Fixed**
 * [PickerInput]: show 'N selected' instead of '+N' tag if maxItems=0
+* [PickerInput/FiltersPickerInput]: always show picker footer if picker has some selection
 * [useForm]: reset serverValidationState by valid form save action
 * [DropdownMenuButton]: fixed cropping of icons located to the right of the text
 * [PresetsPanel]: added scroll to `More` dropdown
