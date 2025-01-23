@@ -38,6 +38,7 @@ export const DataTableCellContainer = React.forwardRef<HTMLDivElement, DataTable
     return (
         <FlexCell
             { ...props.column }
+            key={ props.column.key }
             minWidth={ 'width' in props.column ? props.column.width : undefined }
             rawProps={ props.rawProps }
             cx={ ['uui-dt-vars', css.root, props.column.cx, props.cx] }
