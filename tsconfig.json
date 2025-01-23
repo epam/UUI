@@ -4,7 +4,7 @@
     "module": "ES2022",
     "moduleResolution": "Bundler",
     "esModuleInterop": true,
-    "target": "ES6",
+    "target": "ES2021",
     "declaration": false,
     "declarationMap": false,
     "noImplicitAny": true,
