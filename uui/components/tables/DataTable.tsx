@@ -81,11 +81,11 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
         return (
             <DataTableRow
-                key={ rowProps.rowKey }
                 size={ props.size || settings.sizes.dataTable.body.row.default as UuiDataTableRowProps['size'] }
                 columnsGap={ props.columnsGap }
                 borderBottom={ props.border }
                 { ...rowProps }
+                key={ rowProps.rowKey }
                 cx={ css.cell }
             />
         );
