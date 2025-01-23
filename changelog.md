@@ -14,6 +14,7 @@
 * [NotificationCard]: changed size of actions from '36' to '30'
 * [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
 * [MainMenuButton]: Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
+* [DataTableRow]: fixed `ref` prop
 
 
 # 5.12.1 - 17.12.2024
