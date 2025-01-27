@@ -13,6 +13,7 @@ import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, Sortin
 import { DataRowProps, DataRowOptions } from './dataRows';
 import { Placement } from '@popperjs/core';
 import { CX } from './objects';
+import { DropdownProps } from './components';
 
 /**
  * PickerInput element API. Is used to describe ref to the PickerInput component.
@@ -231,9 +232,7 @@ IHasIcon & {
     id?: string;
 };
 
-export interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId> {
-    onClose: () => void;
-}
+interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId>, Pick<DropdownProps, 'onClose'> {}
 
 export type PickerFooterProps<TItem, TId> = {
     /** Instance of picker DataSource view */
