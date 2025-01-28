@@ -15,7 +15,6 @@ import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
 import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
-import TableCellsStylesSandbox from './tableCellStyles/TableCellsStylesSandbox';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
 import { RichTextEditorDemo } from './RTE/rteDemo';
 import { PalettePage } from './tokens/palette/palettePage';
@@ -41,7 +40,6 @@ export function SandboxPage() {
             { id: 'theme_electric', name: 'Theme Electric', component: ThemeElectricDemo },
             { id: 'DemoTablePaged', name: 'Table with paging', component: DemoTablePaged },
             { id: 'SkillsBatteryPopover', name: 'Skills', component: Skills },
-            { id: 'TableCellsStylesSandbox', name: 'Table Cells/Rows styles', component: TableCellsStylesSandbox },
             { id: 'AdaptivePanel', name: 'Adaptive panel', component: AdaptivePanelDemo },
             { id: 'RTEDemo', name: 'RTE Contents', component: RichTextEditorDemo },
             { id: 'RTE-readonly', name: 'RTE Readonly', component: RichTextEditorDemoReadonly },
