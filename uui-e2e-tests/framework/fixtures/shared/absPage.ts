@@ -36,8 +36,8 @@ export abstract class AbsPage {
         await this.cdpSession.close();
     }
 
-    async openInitialPage(): Promise<void> {
-        await this.page.goto(this.initialUrl);
+    async openInitialPage(url?: string): Promise<void> {
+        await this.page.goto(url || this.initialUrl);
         if (this.extraStyles) {
             await this.page.addStyleTag({ path: this.extraStyles });
         }

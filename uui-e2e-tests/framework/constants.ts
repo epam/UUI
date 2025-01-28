@@ -2,7 +2,7 @@ import { PlaywrightTestOptions } from '@playwright/test';
 
 export const PLATFORM = 'linux';
 export const PREVIEW_URL = '/preview';
-export const DOC_EXAMPLE_URL = '/docExample';
+export const DOC_EXAMPLE_URL = '/';
 export const PlayWrightInterfaceName = '_uui_playwright_interface';
 
 /*
