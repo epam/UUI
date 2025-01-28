@@ -7,16 +7,21 @@ export enum DocExamplePath {
 
 interface IDocExampleTestSetup<TPageObject> {
     testInfo: TestInfo,
-    examplePath: DocExamplePath,
+    examplePath?: DocExamplePath,
     pageWrapper: DocExamplePage,
+    testUrl?: string;
     PageObjectConstructor: new (page: Page) => TPageObject
 }
 
 export async function setupDocExampleTest<TPageObject>(params: IDocExampleTestSetup<TPageObject>) {
-    const { pageWrapper, testInfo, examplePath, PageObjectConstructor } = params;
+    const { pageWrapper, testInfo, examplePath, testUrl, PageObjectConstructor } = params;
     // The timeout is increased for all doc example tests, because such tests contain many assertions.
     testInfo.setTimeout(testInfo.timeout * 3);
-    await pageWrapper.clientRedirect({ examplePath });
+    if (params.testUrl) {
+        await pageWrapper.clientRedirectTo(testUrl!);
+    } else {
+        await pageWrapper.clientRedirectToExample({ examplePath: examplePath! });
+    }
     const expectScreenshot = async (stepNumber: number, stepName: string) => {
         const stepNumberPadded = numberWithLeadingZeros(stepNumber, 2);
         const screenshotName = `${testInfo.title}_step-${stepNumberPadded}-${stepName}.png`;
