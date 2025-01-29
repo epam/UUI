@@ -1,5 +1,215 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PickerInput Body Open/Close should open body 1`] = `
+<body>
+  <div>
+    <div
+      class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 mode-form"
+      tabindex="0"
+    >
+      <div
+        class="body"
+      >
+        <input
+          aria-haspopup="true"
+          autocomplete="no"
+          class="uui-input singleInput cursorText"
+          dir="ltr"
+          placeholder="Please select "
+          tabindex="-1"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="uui-picker_toggler-actions"
+      >
+        <div
+          class="container uui-icon uui-enabled uui-icon-dropdown"
+        >
+          <svg
+            class="flipY"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    aria-hidden="false"
+    class="uui-popper"
+    data-placement="bottom-start"
+    role="dialog"
+    style="z-index: 2000;"
+  >
+    <div
+      class="uui-dropdown-body -lock-focus root container container"
+      style="min-width: 360px; max-width: 360px;"
+      tabindex="-1"
+    >
+      <div
+        class="uui-flex-row root uui-size-36 uui-picker_input-body dropdown single container align-items-center"
+        style="max-height: 300px;"
+      >
+        <div
+          class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+          style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+        >
+          <div
+            aria-orientation="vertical"
+            style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+          >
+            <div
+              class="listContainer"
+              style="min-height: 2px;"
+            >
+              <div
+                style="margin-top: 0px;"
+              >
+                <div
+                  aria-posinset="1"
+                  aria-selected="false"
+                  class="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
+                  role="option"
+                >
+                  <div
+                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                    role="cell"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
+                  >
+                    <div
+                      class="contentWrapper"
+                    >
+                      <div
+                        class="renderItem"
+                      >
+                        <div
+                          class="flexCell root uui-typography"
+                          style="min-width: 0; flex-basis: auto;"
+                        >
+                          <div
+                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            style="--uui-picker_item-vertical-padding: 9px;"
+                          >
+                            <div
+                              class="flexCell"
+                              style="min-width: 0; flex-basis: auto;"
+                            >
+                              <div
+                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              >
+                                Elementary
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  aria-posinset="2"
+                  aria-selected="false"
+                  class="uui-flex-row pickerRow container -clickable align-items-center"
+                  role="option"
+                >
+                  <div
+                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                    role="cell"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
+                  >
+                    <div
+                      class="contentWrapper"
+                    >
+                      <div
+                        class="renderItem"
+                      >
+                        <div
+                          class="flexCell root uui-typography"
+                          style="min-width: 0; flex-basis: auto;"
+                        >
+                          <div
+                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            style="--uui-picker_item-vertical-padding: 9px;"
+                          >
+                            <div
+                              class="flexCell"
+                              style="min-width: 0; flex-basis: auto;"
+                            >
+                              <div
+                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography text container"
+                              >
+                                Elementary+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="flexSpacer"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-busy="false"
+            aria-label=""
+            aria-live="polite"
+            class="container uui-blocker-container root"
+            role="status"
+          />
+          <div
+            class="uui-track-horizontal"
+            style="position: absolute; height: 6px; display: none;"
+          >
+            <div
+              class="uui-thumb-horizontal"
+            />
+          </div>
+          <div
+            class="uui-track-vertical"
+            style="position: absolute; width: 6px; display: none;"
+          >
+            <div
+              class="uui-thumb-vertical"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="uui-flex-row root uui-size-36 footer container align-items-center"
+      >
+        <div
+          class="flexSpacer"
+        />
+        <div
+          class="flexCell"
+          style="min-width: 0; flex-basis: auto; align-self: center;"
+        >
+          <button
+            aria-disabled="true"
+            class="uui-button-box uui-disabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+            tabindex="-1"
+            type="button"
+          >
+            <div
+              class="uui-caption uui-link-button-weight-semibold"
+            >
+              CLEAR
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
 exports[`PickerInput should open body 1`] = `
 <body>
   <div>
