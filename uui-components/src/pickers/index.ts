@@ -4,7 +4,6 @@ export * from './KeyboardUtils';
 export * from './PickerToggler';
 export * from './DataPickerRow';
 export type {
-    PickerInputBaseProps,
     PickerListBaseProps,
     PickerModalOptions,
     PickerModalArrayProps,

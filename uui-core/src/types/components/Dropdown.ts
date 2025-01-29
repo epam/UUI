@@ -15,7 +15,7 @@ export interface DropdownProps extends Partial<IControlled<boolean>>, IHasForwar
     renderTarget: (props: IDropdownTogglerProps) => React.ReactNode;
     /** Render callback for the dropdown body */
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
-    /** Called when dropdown was closed */
+    /** Call to close the dropdown body */
     onClose?: () => void;
     /** Disable dropdown opening */
     isNotUnfoldable?: boolean;
