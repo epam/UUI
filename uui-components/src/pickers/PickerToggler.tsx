@@ -74,11 +74,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
-        if (props.isReadonly) return false;
-        else if (props.isOpen && props.searchPosition === 'input') return false;
-        else if (props.minCharsToSearch && inFocus) return false;
-        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
-        else return false;
+        if (props.pickerMode === 'single' && props.searchPosition !== 'input' && props.selection?.length > 0) {
+            return true;
+        }
+        return false;
     };
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
