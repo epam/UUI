@@ -371,14 +371,21 @@ describe('PickerInput', () => {
 
     describe('Body Open/Close', () => {
         it('should open body', async () => {
-            const { dom, result } = await setupPickerInputForTest<Item, number>({
+            const { dom, result, mocks } = await setupPickerInputForTest<Item, number>({
                 value: undefined,
                 selectionMode: 'single',
                 dataSource: mockSmallDataSourceAsync,
                 getName: ({ name }) => name,
             });
 
+            // should not call api or onValueChange on mount
+            expect(mocks.onValueChange).not.toBeCalled();
+            expect(mockDataSourceAsync.api).not.toBeCalled();
+
             fireEvent.click(dom.input);
+
+            // should call onValueChange on open
+            expect(mocks.onValueChange).not.toBeCalled();
 
             await PickerInputTestObject.waitForOptionsToBeReady();
             await PickerInputTestObject.waitForLoadingComplete();
@@ -1830,5 +1837,45 @@ describe('PickerInput', () => {
                 expect(showOnlySelectedSwitch).not.toBeInTheDocument();
             });
         });
+    });
+
+    it('should properly handle datasoruce change', async () => {
+        const { dom, mocks, setProps } = await setupPickerInputForTest({
+            value: undefined,
+            selectionMode: 'multi',
+            dataSource: mockSmallDataSourceAsync,
+        });
+
+        fireEvent.click(dom.input);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+        await PickerInputTestObject.clickOptionCheckbox('A1');
+
+        await waitFor(() => {
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
+        });
+        expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1']);
+
+        fireEvent.click(document.body); // close picker
+        await waitFor(() => {
+            expect(screen.queryByRole('dialog')).toBeNull();
+        });
+
+        // change datasource
+        setProps({
+            dataSource: mockDataSourceAsync,
+        });
+
+        expect(mocks.onValueChange).toHaveBeenCalledTimes(1); // should not call onValueChange on ds change;
+
+        fireEvent.click(dom.input);
+        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1']);
+
+        await PickerInputTestObject.clickOptionCheckbox('B1');
+        await waitFor(() => {
+            expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 6]);
+        });
+        expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'B1']);
     });
 });
