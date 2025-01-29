@@ -1815,4 +1815,151 @@ describe('PickerInput', () => {
             });
         });
     });
+
+    describe('Picker footer tests', () => {
+        describe('single mode', () => {
+            it('should clear selection by clear button', async () => {
+                const { dom, mocks } = await setupPickerInputForTest({
+                    value: 1, // Initial selected values
+                    selectionMode: 'single',
+                });
+
+                fireEvent.click(dom.input);
+                const dialog = await screen.findByRole('dialog');
+                expect(dialog).toBeInTheDocument();
+
+                const clearButton = within(dialog).getByRole('button', { name: 'CLEAR' });
+                expect(clearButton).toBeInTheDocument();
+
+                fireEvent.click(clearButton);
+                await waitFor(() => {
+                    expect(mocks.onValueChange).toHaveBeenCalledWith(undefined);
+                });
+            });
+
+            it('should not render "Show only selected" switch in single mode', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: undefined,
+                    selectionMode: 'single',
+                });
+
+                fireEvent.click(dom.input);
+                const dialog = await screen.findByRole('dialog');
+                expect(dialog).toBeInTheDocument();
+
+                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
+                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
+            });
+
+            it('should remove Clear button if disableClear = true', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: undefined,
+                    selectionMode: 'single',
+                    disableClear: true,
+                });
+
+                fireEvent.click(dom.input);
+                const dialog = screen.getByRole('dialog');
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR' });
+                expect(clearAllButton).not.toBeInTheDocument();
+            });
+
+            it('should render clear button if there is no visible rows, but picker has some selection', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: 2,
+                    selectionMode: 'single',
+                    searchPosition: 'body',
+                    minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
+                });
+
+                fireEvent.click(dom.input);
+                const dialog = screen.getByRole('dialog');
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR' });
+                expect(clearAllButton).toBeInTheDocument();
+            });
+        });
+
+        describe('multi mode', () => {
+            it('should remove Clear All button if disableClear = true', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: undefined,
+                    selectionMode: 'multi',
+                    disableClear: true,
+                });
+
+                fireEvent.click(dom.target);
+                const dialog = screen.getByRole('dialog');
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
+                expect(clearAllButton).not.toBeInTheDocument();
+            });
+
+            it('should not render footer while searching', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: undefined,
+                    selectionMode: 'multi',
+                    searchPosition: 'body',
+                });
+
+                fireEvent.click(dom.target);
+                const dialog = screen.getByRole('dialog');
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+                const bodyInput = within(dialog).getByPlaceholderText('Search');
+                fireEvent.change(bodyInput, { target: { value: 'A1+' } });
+
+                await waitFor(() => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBe(1)); // check that search is active
+
+                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
+                expect(clearAllButton).not.toBeInTheDocument();
+
+                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
+                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
+            });
+
+            it('should not render footer if there is no selection and no visible rows', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: undefined,
+                    selectionMode: 'multi',
+                    searchPosition: 'body',
+                    minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
+                });
+                fireEvent.click(dom.target);
+
+                const dialog = screen.getByRole('dialog');
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
+                expect(clearAllButton).not.toBeInTheDocument();
+
+                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
+                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
+            });
+
+            it('should render clear all button if there is no visible rows, but picker has some selection', async () => {
+                const { dom } = await setupPickerInputForTest({
+                    value: [2, 3],
+                    selectionMode: 'multi',
+                    searchPosition: 'body',
+                    minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
+                });
+
+                fireEvent.click(dom.target);
+
+                const dialog = screen.getByRole('dialog');
+                expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
+                expect(clearAllButton).toBeInTheDocument();
+
+                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
+                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
+            });
+        });
+    });
 });

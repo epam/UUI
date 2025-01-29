@@ -3,7 +3,7 @@ import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
     IDropdownToggler, IHasValidationMessage,
 } from './props';
-import { PickerBaseOptions } from './pickers';
+import { PickerInputBaseProps } from './pickers';
 import { DataRowProps } from './dataRows';
 import { FilterPredicateName } from './dataQuery';
 import { DndActorRenderParams, DndEventHandlers, DropParams } from './dnd';
@@ -423,7 +423,7 @@ type FilterConfigBase<TFilter> = {
     togglerWidth?: number;
 };
 
-export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & {
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & {
     /** Type of the filter */
     type: 'singlePicker' | 'multiPicker';
     /**
