@@ -74,7 +74,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
-        if (props.pickerMode === 'single' && props.searchPosition !== 'input') {
+        if (props.pickerMode === 'single' && props.searchPosition !== 'input' && props.selection?.length > 0) {
             return true;
         }
         return false;
