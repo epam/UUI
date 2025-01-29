@@ -1,6 +1,6 @@
 @use '../scss/loveship/font-faces';
 @use 'variables/4px_grid' as *;
-@use 'variables/loveship' as *;
+@use 'variables/loveship_4px' as *;
 
 .uui-theme-loveship_4px {
     @include loveship-variables();
