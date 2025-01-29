@@ -56,7 +56,7 @@ export interface DropdownProps extends Partial<IControlled<boolean>>, IHasForwar
     closeOnClickOutside?: boolean;
     /** Defined when to close dropdown in case of openOnHover={ true }
      * toggler — dropdown will be closed when a mouse leaves the target component
-     * boundary — will not to close the dropdown when a mouse is on target or in 30px around target area
+     * boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area
      * false — will not close dropdown by mouse move event
      * @default 'toggler'
      * */
