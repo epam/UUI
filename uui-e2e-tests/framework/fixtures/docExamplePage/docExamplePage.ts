@@ -24,7 +24,6 @@ export class DocExamplePage extends AbsPage {
 
     async clientRedirectTo(url: string) {
         await this.openInitialPage(url);
-        await this.locators.regionContentNotBusy.waitFor();
     }
 
     async expectScreenshot(screenshotName: string) {

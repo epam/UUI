@@ -61,7 +61,7 @@
                     "type": "list-item-child",
                     "children": [
                       {
-                        "text": "boundary — will not to close the dropdown when a mouse is on target or in 30px around target area"
+                        "text": "boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area"
                       }
                     ]
                   }

@@ -7,12 +7,11 @@ const OPTION_TEXT = {
     FRANCE_GARGES: 'Garges-lès-GonesseEurope / France',
 };
 
-test.only(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
+test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
         PageObjectConstructor: PickerInputObject,
-        // testUrl: "/docExample?theme=loveship&examplePath=pickerInput%2FLazyTreeInput",
         examplePath: DocExamplePath['pickerInput/LazyTreeInput'],
     });
     await test.step('Put focus on the picker input field', async () => {
