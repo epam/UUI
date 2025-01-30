@@ -1,0 +1,7 @@
+@use 'variables/4px_grid' as *;
+@use 'variables/nature_4px' as *;
+
+.uui-theme-nature_4px {
+    @include nature-variables();
+    @include uui-4px-grid();
+}

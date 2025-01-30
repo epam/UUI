@@ -1,8 +1,0 @@
-@use '../scss/loveship/font-faces';
-@use 'variables/4px_grid' as *;
-@use 'variables/loveship_dark' as *;
-
-.uui-theme-loveship_dark_4px {
-    @include loveship_dark_variables();
-    @include uui-4px-grid();
-}
