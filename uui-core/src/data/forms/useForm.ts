@@ -71,6 +71,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             newState = updateValidationStates(newState);
             if (!newState.validationState.isInvalid) {
                 newState.isInProgress = true;
+                newState.serverValidationState = undefined; // reset serverValidationState if valid form is saving
                 savePromise = propsRef.current
                     .onSave(formState.current.form)
                     .then((response) =>

@@ -37,7 +37,7 @@ export default function MainMenuResponsiveExample() {
             <Dropdown
                 key="avatar"
                 renderTarget={ (props) => (
-                    <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" isDropdown { ...props } />
+                    <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" rawProps={ { 'aria-label': 'User avatar' } } isDropdown { ...props } />
                 ) }
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props }>
@@ -118,10 +118,10 @@ export default function MainMenuResponsiveExample() {
                 ),
             },
             { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-            { id: 'pinIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ PinIcon } onClick={ () => {} } /> },
-            { id: 'helpIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ HelpIcon } onClick={ () => {} } /> },
+            { id: 'pinIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ PinIcon } rawProps={ { 'aria-label': 'Pin' } } onClick={ () => {} } /> },
+            { id: 'helpIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } onClick={ () => {} } /> },
             { id: 'avatar', priority: 9, render: renderAvatar },
-            { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } /> },
+            { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } /> },
         ];
     };
 

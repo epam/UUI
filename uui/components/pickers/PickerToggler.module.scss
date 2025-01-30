@@ -207,6 +207,14 @@
     &:global(.uui-readonly) {
         @include readonly-input();
 
+        :global(.uui-placeholder) {
+            &:global(.uui-input) {
+                &::placeholder {
+                    color: var(--uui-picker_toggler-text); // we store selected value in placeholder, so it should have the same style as input value if .uui-placeholder is set
+                }
+            }
+        }
+
         :global(.uui-icon-dropdown), :global(.uui-icon-cancel) {
             visibility: hidden;
         }

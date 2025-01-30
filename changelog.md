@@ -1,3 +1,26 @@
+# 5.xx.xx - xx.xx.2024
+**What's New**
+* Update UUI packages JS target from ES6 to ES2021
+* `PickerInputBaseProps` interface was moved from @epam/uui-components to '@epam/uui-core' package
+* [MainMenuAvatar]: added `RawProps` prop
+* [CountIndicator]: text size increased for prop 'size' 12px from 8px to 10px
+* [DropdownMenuBody]: added `maxHeight` prop
+* [FiltersPanel]: add 'minCharsToSearch' and 'renderFooter' props for picker filter configuration
+
+
+**What's Fixed**
+* [PickerInput]: show 'N selected' instead of '+N' tag if maxItems=0
+* [PickerInput/FiltersPickerInput]: always show picker footer if picker has some selection
+* [useForm]: reset serverValidationState by valid form save action
+* [DropdownMenuButton]: fixed cropping of icons located to the right of the text
+* [PresetsPanel]: added scroll to `More` dropdown
+* [NotificationCard]: changed size of actions from '36' to '30'
+* [MainMenuButton]: removed unnecessary `role` and `aria-haspopup` attributes ([#2733](https://github.com/epam/UUI/pull/2733))
+* [MainMenuButton]: Add `aria-current` attribute with value `page` for active links ([#2734](https://github.com/epam/UUI/pull/2734))
+* [DataTableRow]: fixed `ref` prop
+* [PickerInput]: fixed toggler selected value styles in case of single mode, searchPosition !== input and minCharsToSearch > 0 and for case with readonly=true and searchPosition !== input.
+
+
 # 5.12.1 - 17.12.2024
 **What's Fixed**
 * Revert '[Svg]: don't set fill attribute if it's not provided' change from 5.12.0 version. Because it turned out that many users relied on the previous behavior where the fill attribute was cleared by default. If you need to render icon with built-in fill, please look at this issue comment - https://github.com/epam/UUI/issues/2684#issuecomment-2548751434
@@ -86,7 +109,7 @@
 
 **What's New**
 * [DataTable]:
-  * [Breaking change]: reworked `isAwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
+  * [Breaking change]: reworked `isAlwaysVisible` column configuration prop. Now it's not make column fixed by default and doesn't forbid to unpin or reorder, it's only disallow to hide this column from table. If you need previous behavior, please use `isLocked` prop.
   * Added `isLocked` prop for column configuration. If `true` value provided, makes this column locked, which means that you can't hide, unpin or reorder this column. This column should always be pined.
 * [DataTable]: `ColumnsConfigurationModal` updated modal width from 420px to 560px according design, 'disabled' state for locked columns is changed to 'readonly', added vertical paddings to multiline column names.
 * [PickerInput]:
