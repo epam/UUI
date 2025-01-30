@@ -43,16 +43,6 @@
     <!-- CookiePro Cookies Consent Notice end for uui.epam.com -->
     <% } %>
 
-    <% if (process.env.NODE_ENV === 'development') { %>
-    <!-- CookiePro Cookies Consent Notice start for uui.epam.com development -->
-    <script type="text/javascript" src=https://cookie-cdn.cookiepro.com/consent/0194a705-dff9-7c5a-97ef-98eecb725050-test/OtAutoBlock.js ></script>
-    <script src=https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js  type="text/javascript" charset="UTF-8" data-domain-script="0194a705-dff9-7c5a-97ef-98eecb725050-test" ></script>
-    <script type="text/javascript">
-        function OptanonWrapper() { }
-    </script>
-    <!-- CookiePro Cookies Consent Notice end for uui.epam.com development -->
-    <% } %>
-
     <% if (process.env.NODE_ENV === 'production') { %>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
