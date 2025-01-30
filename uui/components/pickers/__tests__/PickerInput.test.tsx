@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { ArrayDataSource, CascadeSelection, LazyDataSource } from '@epam/uui-core';
+import { ArrayDataSource, CascadeSelection, LazyDataSource, PickerInputSearchPosition } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
     delayAct,
@@ -258,7 +258,7 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            
+
             await waitFor(() => {
                 expect(screen.queryByText('C2')).not.toBeInTheDocument();
             });
@@ -304,7 +304,7 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
             });
-        
+
             const optionC2 = await screen.findByText('C2');
             fireEvent.click(optionC2);
             await waitFor(() => {
@@ -372,7 +372,7 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            
+
             await waitFor(() => {
                 expect(screen.queryByText('C2')).not.toBeInTheDocument();
             });
@@ -447,7 +447,7 @@ describe('PickerInput', () => {
 
             // Check parent
             await PickerInputTestObject.clickOptionByText('Parent 2');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith(2);
             });
@@ -551,7 +551,7 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
@@ -570,7 +570,7 @@ describe('PickerInput', () => {
             await waitFor(() => {
                 expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual(['A1']);
             });
-            
+
             PickerInputTestObject.removeSelectedTagByText(dom.target, 'A1');
             await waitFor(() => {
                 expect(PickerInputTestObject.getSelectedTagsText(dom.target)).toEqual([]);
@@ -587,7 +587,7 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
@@ -620,7 +620,7 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
@@ -644,7 +644,7 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
@@ -658,7 +658,7 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    
+
             // double click should be performed to check, if on blur selection is still present
             fireEvent.click(document.body);
             await waitFor(() => {
@@ -686,7 +686,7 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
@@ -694,11 +694,11 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            
+
             fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([4, 2]);
             });
@@ -718,7 +718,7 @@ describe('PickerInput', () => {
             expect(screen.getByRole('dialog')).toBeInTheDocument();
 
             await PickerInputTestObject.clickOptionCheckbox('A1');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([{
                     id: 2,
@@ -730,7 +730,7 @@ describe('PickerInput', () => {
 
             fireEvent.click(window.document.body);
             expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-            
+
             fireEvent.click(dom.input);
             expect(screen.getByRole('dialog')).toBeInTheDocument();
             await act(async () => {
@@ -874,7 +874,7 @@ describe('PickerInput', () => {
                 // Test if checkboxes are checked/unchecked
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2.1, 2.3]);
             });
-            
+
             expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['Child 2.1', 'Child 2.3']);
             expect(await PickerInputTestObject.findUncheckedOptions()).toEqual(['Parent 1', 'Parent 2', 'Child 2.2', 'Parent 3']);
         });
@@ -897,7 +897,7 @@ describe('PickerInput', () => {
             await PickerInputTestObject.clickOptionCheckbox('Parent 2');
             // Unfold parent
             await PickerInputTestObject.clickOptionUnfold('Parent 2');
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2]);
             });
@@ -941,7 +941,7 @@ describe('PickerInput', () => {
 
             await PickerInputTestObject.clickOptionByText('A2');
             await PickerInputTestObject.clickOptionByText('A2+');
-          
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 3, 4, 5]);
             });
@@ -1591,7 +1591,7 @@ describe('PickerInput', () => {
     });
 
     describe('keyboard navigation', () => {
-        let btn;
+        let btn: Element;
         function addFocusableElementBefore() {
             const btnEl = document.createElement('button');
             document.body.prepend(btnEl);
@@ -1602,7 +1602,7 @@ describe('PickerInput', () => {
             btn = addFocusableElementBefore();
         });
 
-        const testInputFocus = async (selectionMode, searchPosition?) => {
+        const testInputFocus = async (selectionMode: 'single' | 'multi', searchPosition?: PickerInputSearchPosition) => {
             const user = userEvent.setup();
             const { dom } = await setupPickerInputForTest({
                 value: undefined,
@@ -1650,7 +1650,7 @@ describe('PickerInput', () => {
             });
 
             fireEvent.keyDown(dom.input, { key: 'ArrowDown', code: 'ArrowDown', charCode: 40 });
-    
+
             await waitFor(async () => {
                 const dialog = await screen.findByRole('dialog');
                 const focusedItem = dialog.querySelector('.uui-focus');
@@ -1658,7 +1658,7 @@ describe('PickerInput', () => {
             });
 
             fireEvent.keyDown(dom.input, { key: 'ArrowUp', code: 'ArrowUp', charCode: 38 });
-            
+
             await waitFor(async () => {
                 const dialog = await screen.findByRole('dialog');
                 const focusedItem = dialog.querySelector('.uui-focus');
@@ -1714,7 +1714,7 @@ describe('PickerInput', () => {
             await PickerInputTestObject.waitForOptionsToBeReady();
 
             fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenCalledWith([2, 3]);
             });
@@ -1738,7 +1738,7 @@ describe('PickerInput', () => {
             await PickerInputTestObject.waitForOptionsToBeReady();
 
             fireEvent.keyDown(dom.input, { key: 'Backspace', code: 'Backspace', charCode: 8 });
-            
+
             await waitFor(() => {
                 expect(mocks.onValueChange).toHaveBeenCalledTimes(0);
             });
