@@ -101,7 +101,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...({ onKeyDown: handleEscape }), ...props.lockProps } }
                 shards={ props.shards }
-                autoFocus={ false }
+                autoFocus={ props.autoFocus || true }
                 as={ props.as }
             >
                 {renderDropdownContainer()}

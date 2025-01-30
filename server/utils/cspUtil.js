@@ -31,7 +31,7 @@ function getCspHeaderValue(isDevServer) {
             "connect-src 'self'",
             isDevServer && CUSTOM_THEME_ASSETS.LOCAL,
             CUSTOM_THEME_ASSETS.CLOUDFLARE_PAGES,
-            'https://*.epam.com https://*.amplitude.com/ wss://menu.epam.com/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com',
+            'https://*.epam.com https://*.amplitude.com/ wss://menu.epam.com/ https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://cookie-cdn.cookiepro.com https://geolocation.onetrust.com/',
         ),
         'frame-src *; ',
         'img-src * data: ; ',
@@ -39,7 +39,7 @@ function getCspHeaderValue(isDevServer) {
             "script-src 'self'",
             "'unsafe-inline'",
             isDevServer && "'unsafe-eval'",
-            'https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/ https://*.amplitude.com',
+            'https://*.epam.com https://www.googletagmanager.com/ https://www.google-analytics.com/ https://*.amplitude.com https://cookie-cdn.cookiepro.com',
         ),
     );
 }
