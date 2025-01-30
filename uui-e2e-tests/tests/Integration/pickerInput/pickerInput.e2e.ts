@@ -128,7 +128,7 @@ test('pickerInput/LazyTreeInput/Keyboard', async ({ pageWrapper }, testInfo) => 
     });
 });
 
-test.only('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) => {
+test('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
