@@ -15,7 +15,7 @@ jobs:
     # Call all jobs from base.yml
     uses: ./.github/workflows/base.yml
     secrets:
-      BASE_HELMCHART_VERSION: ${{ secrets.BASE_HELMCHART_VERSION }}
+      BASE_HELMCHART_VERSION: ${{ secrets.BASE_HELMCHART_VERSION_NONPROD }}
       BASE_HELMCHART_NAME: ${{ secrets.BASE_HELMCHART_NAME }}
       WFI_PROVIDER: ${{ secrets.WFI_PROVIDER }}
       WFI_SA: ${{ secrets.WFI_SA }}
