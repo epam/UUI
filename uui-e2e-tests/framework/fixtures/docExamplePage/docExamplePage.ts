@@ -14,12 +14,16 @@ export class DocExamplePage extends AbsPage {
         };
     }
 
-    async clientRedirect(params: { examplePath: string }) {
+    async clientRedirectToExample(params: { examplePath: string }) {
         await super._clientRedirect<DocExamplePageParams>({
             // As we agreed, "doc example" tests must be always run on "loveship" theme
             theme: TTheme.loveship, ...params,
         });
         await this.locators.regionContentNotBusy.waitFor();
+    }
+
+    async clientRedirectTo(url: string) {
+        await this.openInitialPage(url);
     }
 
     async expectScreenshot(screenshotName: string) {
