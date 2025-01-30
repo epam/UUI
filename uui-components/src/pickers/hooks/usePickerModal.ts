@@ -1,11 +1,9 @@
 import { useMemo, useEffect } from 'react';
-import { DataSourceState, IHasCaption, IModal, Lens, PickerBaseProps, PickerFooterProps } from '@epam/uui-core';
+import { DataSourceState, IModal, Lens, PickerFooterProps } from '@epam/uui-core';
 import { usePicker } from './usePicker';
 import { usePickerModalState } from './usePickerModalState';
-import { PickerModalOptions, UsePickerModalProps } from './types';
+import { UsePickerModalProps } from './types';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
-
-type PickerProps<TItem, TId> = PickerBaseProps<TItem, TId> & IModal<any> & IHasCaption & PickerModalOptions<TItem, TId>;
 
 const initialStateValues: DataSourceState = {
     topIndex: 0,
@@ -22,15 +20,13 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
 
     const { dataSourceState, selection, setSelection } = pickerListState;
 
-    const pickerProps: PickerProps<TItem, TId> = {
-        ...props,
-        showSelectedOnly: pickerListState.showSelected,
-        value: selection,
-        onValueChange: setSelection,
-    } as PickerProps<TItem, TId>;
-
-    const picker = usePicker<TItem, TId, PickerProps<TItem, TId>>(
-        pickerProps,
+    const picker = usePicker<TItem, TId>(
+        {
+            ...props,
+            showSelectedOnly: pickerListState.showSelected,
+            value: selection as any,
+            onValueChange: setSelection,
+        },
         pickerListState,
     );
     const {

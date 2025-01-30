@@ -510,8 +510,8 @@ describe('PickerInput', () => {
             expect(within(dialog).queryByPlaceholderText('Search')).not.toBeInTheDocument();
         });
 
-        it('should search items', async () => {
-            const { dom } = await setupPickerInputForTest<TestItemType, number>({
+        it('should search items and check founded items', async () => {
+            const { dom, mocks } = await setupPickerInputForTest<TestItemType, number>({
                 value: undefined,
                 selectionMode: 'multi',
                 searchPosition: 'body',
@@ -551,6 +551,12 @@ describe('PickerInput', () => {
                 'A2',
                 'A2+',
             ]);
+
+            await PickerInputTestObject.clickOptionCheckbox('A1+');
+            await waitFor(() => {
+                expect(mocks.onValueChange).toHaveBeenLastCalledWith([3]);
+            });
+            expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1+']);
         });
 
         it('should open dialog only when minCharsToSearch is reached if search in input', async () => {
