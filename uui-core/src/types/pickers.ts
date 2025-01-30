@@ -255,21 +255,10 @@ export type PickerFooterProps<TItem, TId> = {
     isSearchTooShort?: boolean;
 };
 
-/**
- * Show selected rows only in Picker.
- */
-export interface PickerShowSelectedOnly {
-    /**
-     * Enables/disables selected rows only in Picker.
-     */
-    showSelectedOnly?: boolean;
-}
-
 export type PickerBaseProps<TItem, TId> =
 PickerBaseOptions<TItem, TId>
 & PickerBindingProps<TItem, TId>
-& IAnalyticableOnChange<any>
-& PickerShowSelectedOnly;
+& IAnalyticableOnChange<any>;
 
 /**
  * Component can be used as Toggler control for pickers.

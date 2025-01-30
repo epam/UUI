@@ -56,7 +56,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const showSelectedOnly = !shouldLoadList() || pickerInputState.showSelected;
 
-    const picker = usePicker<TItem, TId, UsePickerInputProps<TItem, TId, TProps>>({ ...props, showSelectedOnly }, pickerInputState);
+    const picker = usePicker<TItem, TId>({ ...props, showSelectedOnly }, pickerInputState);
     const {
         context,
         view,
