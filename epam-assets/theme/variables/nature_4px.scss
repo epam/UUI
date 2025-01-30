@@ -1,20 +1,20 @@
-@use 'tokens/_theme_loveship_light_4px.scss' as tokens;
+@use 'tokens/theme_nature_light_4px' as tokens;
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
 /*  Name convention  */
 /* --uui-'component name or group of components name'-'styled part name'-'states(optional)'-'hover/active/focus(optional)' */
 
-@mixin loveship-variables {
+@mixin nature-variables {
     --uui-font: 'Lexend', serif;
     --uui-font-mono: 'Roboto Mono', monospace;
 
-    /* Loveship old colors */
+    /* Nature old colors */
     --uui-color-night100-800: #D3D7E9;
     --uui-color-night100-900: #B1B9D8;
 
     --uui-color-night700-800: #30323D;
     --uui-color-night700-900: #1A1B20;
 
-    /* end Loveship old colors */
+    /* end Nature old colors */
 
     /* shadows */
     --uui-shadow-level-1: 0 0 3px rgba(29, 30, 38, 0.05), 0 3px 6px rgba(29, 30, 38, 0.1);
