@@ -31,17 +31,9 @@ const getDataSourceExamples = (ctx: IDocBuilderGenCtx) => {
         || new LazyDataSource({
             api: (request, context) => {
                 const { search } = request;
-                if (search && context.parentId) { // >1 level, search
-                    return Promise.resolve({ items: context.parent.children });
-                } else if (search) {
-                    const tree = ctx.demoApi.locationsSearch({ ...request, search });
-                    return tree;
-                }
-
-                const filter = { parentId: context?.parentId };
-                return ctx.demoApi.locations({ ...request, filter });
+                const filter = search ? {} : { parentId: context?.parentId };
+                return ctx.demoApi.locations({ ...request, search, filter });
             },
-            flattenSearchResults: false,
             getId: (i) => i.id,
             getParentId: (i) => i.parentId,
             getChildCount: (l) => l.childCount,
