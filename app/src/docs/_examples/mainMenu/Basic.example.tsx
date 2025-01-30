@@ -49,7 +49,7 @@ export default function MainMenuBasicExample() {
             <Dropdown
                 key="avatar"
                 renderTarget={ (props) => (
-                    <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" isDropdown { ...props } />
+                    <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" rawProps={ { 'aria-label': 'User avatar' } } isDropdown { ...props } />
                 ) }
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props }>
@@ -76,9 +76,9 @@ export default function MainMenuBasicExample() {
             { id: 'trainingCatalog', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Training Catalog" /> },
             { id: 'requests', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Requests" /> },
             { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-            { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" icon={ HelpIcon } /> },
+            { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" rawProps={ { 'aria-label': 'Help' } } icon={ HelpIcon } /> },
             { id: 'avatar', priority: 2, render: renderAvatar },
-            { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } /> },
+            { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu rawProps={ { 'aria-label': 'Global Menu' } } key={ p.id } /> },
         ];
     };
 

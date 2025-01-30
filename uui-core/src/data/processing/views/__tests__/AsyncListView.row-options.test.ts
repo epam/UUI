@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@epam/uui-test-utils';
 import { DataQueryFilter, DataRowProps, DataSourceState, IDataSourceView } from '../../../../types';
 import { LocationItem, getAsyncLocationsDS } from '../../__tests__/mocks';
-import { act } from 'react-dom/test-utils';
+import { act } from '@epam/uui-test-utils';
 
 describe('AsyncListView - row options', () => {
     let currentValue: DataSourceState<DataQueryFilter<LocationItem>, string>;

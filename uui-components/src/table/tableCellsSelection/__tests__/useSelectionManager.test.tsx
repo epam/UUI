@@ -1,12 +1,11 @@
-import { act } from 'react-dom/test-utils';
-import { renderHook } from '@epam/uui-test-utils';
+import { renderHook, act } from '@epam/uui-test-utils';
 import { useSelectionManager } from '../hooks';
-import { columnsMock, rowsMock } from '../mocks';
+import { columnsMock, rowsByIndexMock } from '../mocks';
 
 describe('useSelectioManager', () => {
     describe('selectRange', () => {
         it('should select some range', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             const newSelectionRange = {
                 startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 1, isCopying: true,
             };
@@ -26,7 +25,7 @@ describe('useSelectioManager', () => {
 
     describe('startCell', () => {
         it('should return cell to copy from', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             const newSelectionRange = {
                 startColumnIndex: 1, startRowIndex: 1, endColumnIndex: 1, endRowIndex: 5, isCopying: true,
             };
@@ -35,7 +34,7 @@ describe('useSelectioManager', () => {
             });
 
             const expectedColumn = columnsMock[newSelectionRange.startColumnIndex];
-            const expectedRow = rowsMock[newSelectionRange.startRowIndex];
+            const expectedRow = rowsByIndexMock.get(newSelectionRange.startRowIndex);
 
             expect(result.current.selectionRange).toEqual(newSelectionRange);
             expect(result.current.startCell).toBeDefined();
@@ -45,7 +44,7 @@ describe('useSelectioManager', () => {
             expect(row).toEqual(expectedRow);
         });
         it('should null if selection range was not set', () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
 
             expect(result.current.selectionRange).toBeNull();
             expect(result.current.startCell).toBeNull();
@@ -54,7 +53,7 @@ describe('useSelectioManager', () => {
 
     describe('getSelectedCells', () => {
         it('should return selected range', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             const newSelectionRange = {
                 startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 1, endRowIndex: 3, isCopying: true,
             };
@@ -63,17 +62,17 @@ describe('useSelectioManager', () => {
             });
 
             expect(result.current.getSelectedCells()).toEqual([
-                { column: columnsMock[0], row: rowsMock[0] },
-                { column: columnsMock[1], row: rowsMock[0] },
-                { column: columnsMock[1], row: rowsMock[1] },
-                { column: columnsMock[0], row: rowsMock[2] },
-                { column: columnsMock[1], row: rowsMock[2] },
-                { column: columnsMock[1], row: rowsMock[3] },
+                { column: columnsMock[0], row: rowsByIndexMock.get(0) },
+                { column: columnsMock[1], row: rowsByIndexMock.get(0) },
+                { column: columnsMock[1], row: rowsByIndexMock.get(1) },
+                { column: columnsMock[0], row: rowsByIndexMock.get(2) },
+                { column: columnsMock[1], row: rowsByIndexMock.get(2) },
+                { column: columnsMock[1], row: rowsByIndexMock.get(3) },
             ]);
         });
 
         it('should return null if selected range', () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             expect(result.current.getSelectedCells()).toEqual([]);
         });
     });
@@ -83,7 +82,7 @@ describe('useSelectioManager', () => {
             startColumnIndex: 0, startRowIndex: 0, endColumnIndex: 2, endRowIndex: 3, isCopying: true,
         };
         it('should render borders for start cell', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             act(() => {
                 result.current.setSelectionRange(selectionRange);
             });
@@ -101,7 +100,7 @@ describe('useSelectioManager', () => {
         });
 
         it('should render border for cell near border', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             act(() => {
                 result.current.setSelectionRange(selectionRange);
             });
@@ -130,7 +129,7 @@ describe('useSelectioManager', () => {
         });
 
         it('should not render borders for cell inside the area of selection', async () => {
-            const { result } = renderHook(() => useSelectionManager({ rows: rowsMock, columns: columnsMock }));
+            const { result } = renderHook(() => useSelectionManager({ rowsByIndex: rowsByIndexMock, columns: columnsMock }));
             act(() => {
                 result.current.setSelectionRange(selectionRange);
             });

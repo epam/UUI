@@ -74,11 +74,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
-        if (props.isReadonly) return false;
-        else if (props.isOpen && props.searchPosition === 'input') return false;
-        else if (props.minCharsToSearch && inFocus) return false;
-        else if (props.pickerMode === 'single' && props.selection && props.selection.length > 0) return true;
-        else return false;
+        if (props.pickerMode === 'single' && props.searchPosition !== 'input' && props.selection?.length > 0) {
+            return true;
+        }
+        return false;
     };
 
     const blur = (e?: React.FocusEvent<HTMLElement>) => {
@@ -147,7 +146,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         if (props.selectedRowsCount > maxItems) {
             const collapsedTagProps = props.renderItem?.({
                 key: 'collapsed',
-                caption: i18n.pickerToggler.createItemValue(props.selectedRowsCount - maxItems, ''),
+                caption: maxItems > 0
+                    ? `+ ${props.selectedRowsCount - maxItems}`
+                    : i18n.pickerToggler.collapsedItemsTagName(props.selectedRowsCount),
                 isCollapsed: true,
                 isDisabled: areAllDisabled,
                 onClear: null,

@@ -26,7 +26,7 @@ export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataP
 
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
-    searchLens = this.lens.prop('search');
+    searchLens = this.lens.prop('search').default('');
     getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
 
     renderEmpty() {
