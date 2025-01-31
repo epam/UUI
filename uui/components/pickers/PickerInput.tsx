@@ -1,17 +1,10 @@
 import React, { useImperativeHandle, useRef } from 'react';
-import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerInputBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
+import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import {
-    DataRowProps,
-    DataSourceListProps,
-    DataSourceState,
-    DropdownBodyProps,
-    IDropdownToggler,
-    IEditableDebouncer,
-    PickerInputElement,
-    isMobile,
-    Overwrite,
+import { 
+    DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer,
+    PickerInputElement, isMobile, Overwrite, PickerInputBaseProps, 
 } from '@epam/uui-core';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
@@ -32,6 +25,9 @@ export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInpu
      * If omitted, default `PickerTogglerTag` component will be rendered
      */
     renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;
+
+    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
+    renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 };
 
 function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {

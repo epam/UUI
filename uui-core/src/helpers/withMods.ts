@@ -58,7 +58,11 @@ export function withMods<TSource, TResult>(
     } else {
         // Any other type of component. E.g. React.memo.
         // Wrap it in another functional component
-        wrappedComponent = (props: TResult) => React.createElement(Component, applyMods(props));
+        wrappedComponent = forwardRef<any, Readonly<TResult>>((props: TResult, ref) => {
+            const resultProps = applyMods(props);
+            (resultProps as any).ref = ref;
+            return React.createElement(Component, resultProps);
+        });
     }
 
     wrappedComponent.displayName = `${Component?.displayName || Component?.name || 'unknown'} (withMods)`;

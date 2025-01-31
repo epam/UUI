@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM"],
     "esModuleInterop": true,
     "target": "ES2022",
     "module": "Node16",
