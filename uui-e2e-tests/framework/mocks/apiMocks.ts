@@ -5,6 +5,7 @@ const ORIGINS_TO_ABORT = [
     'https://api.amplitude.com',
     'https://apm-sandbox.cloudapp.epam.com',
     'https://menu.epam.com',
+    'https://cookie-cdn.cookiepro.com',
 ];
 
 const PATH_TO_ABORT = [
