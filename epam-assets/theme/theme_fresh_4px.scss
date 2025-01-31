@@ -1,0 +1,7 @@
+@use 'variables/4px_grid' as *;
+@use 'variables/fresh_4px' as *;
+
+.uui-theme-fresh_4px {
+    @include fresh-variables();
+    @include uui-4px-grid();
+}
