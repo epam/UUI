@@ -33,6 +33,9 @@ export const settings: Settings = {
                 48: '30',
             },
         },
+        notificationCard: {
+            action: '30',
+        },
         tag: {
             countIndicator: {
                 18: '12',

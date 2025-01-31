@@ -79,19 +79,19 @@ jobs:
               run: |
                   echo ${{ github.event.pull_request.number }} > ./${{ env.PR_NUM_ARTIFACT }}
             - name: 'Upload artifact (pr number)'
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ env.PR_NUM_ARTIFACT }}
                   path: ./${{ env.PR_NUM_ARTIFACT }}
                   retention-days: 1 # minimum retention
             - name: 'Upload artifact (report 1 content)'
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: ${{ env.REPORT_1_ARTIFACT }}
                   path: ${{ env.REPORT_1_PATH }}
                   retention-days: 1 # minimum retention
             -   name: 'Upload artifact (report 2 content)'
-                uses: actions/upload-artifact@v3
+                uses: actions/upload-artifact@v4
                 with:
                     name: ${{ env.REPORT_2_ARTIFACT }}
                     path: ${{ env.REPORT_2_PATH }}
