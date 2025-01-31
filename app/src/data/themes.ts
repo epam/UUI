@@ -7,7 +7,7 @@ export enum BuiltInTheme {
     loveship = 'loveship',
     loveship_dark = 'loveship_dark',
     promo = 'promo',
-    nature_4px = 'nature_4px',
+    fresh_4px = 'fresh_4px',
     vanilla_thunder = 'vanilla_thunder',
     eduverse_light = 'eduverse_light',
     eduverse_dark = 'eduverse_dark'
@@ -27,7 +27,7 @@ export const builtInThemes: ThemeBaseParams[] = [
     { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
-    { id: BuiltInTheme.nature_4px, name: 'Nature Light 4px', settings: settings_4px, propsOverride: propsOverride_4px, devOnly: true, css: null },
+    { id: BuiltInTheme.fresh_4px, name: 'Fresh Light 4px', settings: settings_4px, propsOverride: propsOverride_4px, devOnly: true, css: null },
     { id: BuiltInTheme.promo, name: 'Promo' },
     { id: BuiltInTheme.vanilla_thunder, name: 'Vanilla Thunder' },
     { id: BuiltInTheme.eduverse_light, name: 'Eduverse Light' },

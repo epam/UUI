@@ -33,6 +33,9 @@ const settings_4px: Settings = {
                 48: '32',
             },
         },
+        notificationCard: {
+            action: '32',
+        },
         tag: {
             countIndicator: {
                 32: '20',
