@@ -1,7 +1,8 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods, Overwrite, devLogger } from '@epam/uui-core';
-import css from './IconButton.module.scss';
 import { systemIcons } from '../../icons/icons';
+
+import css from './IconButton.module.scss';
 
 interface IconButtonMods {
     /**

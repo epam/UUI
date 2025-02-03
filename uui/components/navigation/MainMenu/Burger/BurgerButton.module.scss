@@ -8,6 +8,8 @@
 
     --uui-burger_btn-font: var(--uui-font);
     --uui-burger_btn-font-weight: 400;
+
+    --uui-burger_btn-icon-size: 18px;
     //
     padding: 0 24px;
     background: none;
@@ -60,10 +62,13 @@
     }
 
     &.hasIcon {
-        @include icon-layout(24px);
-
         :global(.uui-icon) {
             padding: 0 12px 0 20px;
+
+            svg {
+                height: var(--uui-burger_btn-icon-size);
+                width: inherit;
+            }
         }
     }
 }

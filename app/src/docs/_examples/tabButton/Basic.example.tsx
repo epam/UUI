@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
-import { TabButton, FlexRow, FlexCell } from '@epam/uui';
+import { TabButton, FlexRow, FlexCell, TabButtonProps } from '@epam/uui';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
 
-export default function BasicTabButtonExample() {
+const routes = ['Main', 'Home', 'Tools', 'Options'];
+
+export default function BasicTabButtonExample(props: ExampleProps) {
     const [value, onValueChange] = useState('Home');
+    const sizes = getAllPropValues('size', false, props) as TabButtonProps['size'][];
 
     return (
         <FlexCell grow={ 1 }>
-            <FlexRow borderBottom>
-                <TabButton caption="Main" isLinkActive={ value === 'Main' } onClick={ () => onValueChange('Main') } size="36" />
-                <TabButton caption="Home" isLinkActive={ value === 'Home' } onClick={ () => onValueChange('Home') } size="36" />
-                <TabButton caption="Tools" isLinkActive={ value === 'Tools' } onClick={ () => onValueChange('Tools') } count={ 18 } size="36" />
-                <TabButton caption="Options" isLinkActive={ value === 'Options' } onClick={ () => onValueChange('Options') } withNotify={ true } size="36" />
-            </FlexRow>
-            <FlexRow borderBottom>
-                <TabButton caption="Main" isLinkActive={ value === 'Main' } onClick={ () => onValueChange('Main') } size="48" />
-                <TabButton caption="Home" isLinkActive={ value === 'Home' } onClick={ () => onValueChange('Home') } size="48" />
-                <TabButton caption="Tools" isLinkActive={ value === 'Tools' } onClick={ () => onValueChange('Tools') } count={ 18 } size="48" />
-                <TabButton caption="Options" isLinkActive={ value === 'Options' } onClick={ () => onValueChange('Options') } withNotify={ true } size="48" />
-            </FlexRow>
-            <FlexRow borderBottom>
-                <TabButton caption="Main" isLinkActive={ value === 'Main' } onClick={ () => onValueChange('Main') } size="60" />
-                <TabButton caption="Home" isLinkActive={ value === 'Home' } onClick={ () => onValueChange('Home') } size="60" />
-                <TabButton caption="Tools" isLinkActive={ value === 'Tools' } onClick={ () => onValueChange('Tools') } count={ 18 } size="60" />
-                <TabButton caption="Options" isLinkActive={ value === 'Options' } onClick={ () => onValueChange('Options') } withNotify={ true } size="60" />
-            </FlexRow>
+            { sizes.map((size) => (
+                <FlexRow key={ size } borderBottom>
+                    { routes.map((route) => (
+                        <TabButton
+                            key={ route }
+                            caption={ route }
+                            isLinkActive={ value === route }
+                            onClick={ () => onValueChange(route) }
+                            count={ route === 'Tools' ? 18 : undefined } // pseudocode - random number, to show the count badge
+                            withNotify={ route === 'Options' } // pseudocode - to show the notification mark
+                            size={ size }
+                        />
+                    )) }
+                </FlexRow>
+            )) }
         </FlexCell>
     );
 }

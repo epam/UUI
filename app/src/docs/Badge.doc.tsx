@@ -33,7 +33,6 @@ export class BadgeDoc extends BaseDocsBlock {
             [TSkin.Electric]: { type: '@epam/electric:BadgeProps', component: electric.Badge },
         },
         doc: (doc: DocBuilder<uui.BadgeProps | promo.BadgeProps | loveship.BadgeProps | electric.BadgeProps>) => {
-            doc.setDefaultPropExample('size', ({ value }) => value === '36');
             doc.setDefaultPropExample('onClick', () => true);
             doc.merge('color', {
                 defaultValue: 'info',
@@ -114,9 +113,9 @@ export class BadgeDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="badge-descriptions" />
                 {this.renderSectionTitle('Overview')}
                 <DocExample title="Types" path="./_examples/badge/Types.example.tsx" />
-                <DocExample title="Color variants" path="./_examples/badge/Colors.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Color variants" path="./_examples/badge/Colors.example.tsx" />
                 <DocExample title="Styles" path="./_examples/badge/Styles.example.tsx" />
-                <DocExample title="Sizes" path="./_examples/badge/Size.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Sizes" path="./_examples/badge/Size.example.tsx" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Attributes" path="./_examples/badge/Attributes.example.tsx" />
                 <DocExample title="Dropdown" path="./_examples/badge/Dropdown.example.tsx" />

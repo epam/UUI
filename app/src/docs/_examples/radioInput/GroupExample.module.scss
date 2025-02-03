@@ -1,6 +1,7 @@
 .container {
-    height: 120px;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    row-gap: 8px;
 }

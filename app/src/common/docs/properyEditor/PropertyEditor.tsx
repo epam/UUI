@@ -8,7 +8,7 @@ import {
     PropDocUnknown, TDocContext, DocBuilder,
 } from '@epam/uui-docs';
 import { PropertyEditorView } from './view/PropertyEditorView';
-import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from './utils';
+import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from '../utils';
 import { PropSamplesCreationContext } from './view/PropSamplesCreationContext';
 import {
     buildExamplesAndFindById,
