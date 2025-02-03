@@ -1,12 +1,13 @@
-import { DocItem } from '../../documents/structure';
-import { Sidebar } from '../sidebar';
 import React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { TreeListItem } from '@epam/uui-components';
+import { DocItem } from '../../documents/structure';
+import { Sidebar } from '../sidebar';
 import { useQuery } from '../../helpers';
 import { TMode } from './docsConstants';
 import { ThemeId } from '../../data';
 import { svc } from '../../services';
+import { useAppThemeContext } from '../../helpers/appTheme';
 
 type DocsQuery = {
     id: string,
@@ -27,7 +28,7 @@ export function DocsSidebar() {
     const mode = useQuery<DocsQuery['mode']>('mode') || TMode.doc;
     const queryParamId: string = useQuery('id');
     const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
-    const theme = useQuery<DocsQuery['theme']>('theme');
+    const { theme } = useAppThemeContext();
 
     const onChange = (row: DataRowProps<TreeListItem, string>) => {
         if (row.parentId === 'components') {
@@ -57,6 +58,7 @@ export function DocsSidebar() {
                         mode: (row.parentId && mode),
                         isSkin: (row.parentId && isSkin),
                         category: row.parentId,
+                        theme,
                     },
                 } }
         />

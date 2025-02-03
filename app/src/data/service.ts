@@ -1,10 +1,28 @@
 import { getParameters } from 'codesandbox/lib/api/define';
 import { CodesandboxFilesRecord, FilesRecord, getCodesandboxConfig } from './codesandbox/getCodesandboxConfig';
 import { svc } from '../services';
+import { ThemeBaseParams, ThemeId } from './themes';
+import { CustomThemeManifest } from './customThemes';
 
-const CodesandboxFiles: Record<string, string | { path: string, placeholders: Record<string, string> }> = {
-    'index.html': '../data/codesandbox/index.html',
-    'index.tsx': '../data/codesandbox/index.tsx',
+const CodesandboxFiles: Record<string, string | { path: string, placeholders: Record<string, string | ((arg: ThemeBaseParams | CustomThemeManifest) => string)> }> = {
+    'index.html': {
+        path: '../data/codesandbox/index.html',
+        placeholders: {
+            '<CURRENT_THEME>': (theme: ThemeBaseParams) => theme.id,
+        },
+    },
+    'index.tsx': {
+        path: '../data/codesandbox/index.tsx',
+        placeholders: {
+            '"<UUI_CURRENT_THEME_IMPORT>"': (theme) => `import '@epam/assets/css/theme/theme_${theme.id}.css';`,
+        },
+    },
+    'settings.ts': {
+        path: '../data/codesandbox/settings.ts',
+        placeholders: {
+            '"<UUI_SETTINGS_OVERRIDE>"': (theme) => theme.settings ? JSON.stringify(theme.settings.sizes, null, 4) : '{}',
+        },
+    },
     'package.json': {
         path: '../data/codesandbox/package.json',
         placeholders: {
@@ -23,7 +41,7 @@ class CodesandboxService {
         this.files = {};
     }
 
-    public getFiles(): Promise<void> {
+    public getFiles(current_theme: string, themesById: Record<ThemeId, ThemeBaseParams | CustomThemeManifest>): Promise<void> {
         if (!svc.api) {
             throw new Error('svc.api isn\'t available');
         }
@@ -33,7 +51,7 @@ class CodesandboxService {
             Object.keys(CodesandboxFiles).map((name) => {
                 const params = CodesandboxFiles[name];
                 let path: string;
-                let placeholders: Record<string, string>;
+                let placeholders: Record<string, string | ((arg: ThemeBaseParams | CustomThemeManifest) => string)>;
                 if (typeof params === 'string') {
                     path = params;
                 } else {
@@ -44,7 +62,10 @@ class CodesandboxService {
                 return svcApi.getCode({ path }).then((file) => {
                     if (placeholders) {
                         file.raw = Object.keys(placeholders).reduce((acc, phName) => {
-                            return file.raw.replace(new RegExp(phName, 'g'), placeholders[phName]);
+                            const placeholder = placeholders[phName];
+                            const replaceValue = typeof placeholder === 'function' ? placeholder(themesById[current_theme]) : placeholder;
+
+                            return file.raw.replace(new RegExp(phName, 'g'), replaceValue);
                         }, file.raw);
                     }
                     return file;
@@ -53,11 +74,12 @@ class CodesandboxService {
         )
             .then((data) => data.map((file) => file.raw))
             .then(([
-                indexHTML, indexTSX, packageJSON, tsConfigJSON, api, globalTypings, env,
+                indexHTML, indexTSX, settingsTS, packageJSON, tsConfigJSON, api, globalTypings, env,
             ]) => {
                 Object.assign(this.files, {
                     indexHTML,
                     indexTSX,
+                    settingsTS,
                     packageJSON,
                     tsConfigJSON,
                     api,

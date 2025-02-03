@@ -16,7 +16,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -79,7 +79,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -132,7 +132,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -185,7 +185,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -238,7 +238,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"

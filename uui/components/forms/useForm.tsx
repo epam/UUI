@@ -27,7 +27,7 @@ export function useForm<T>(props: UseFormProps<T>) {
                     ] }
                 >
                     <RichTextView>
-                        <Text size="36">{i18n.form.notifications.unsavedChangesMessage}</Text>
+                        <Text>{i18n.form.notifications.unsavedChangesMessage}</Text>
                     </RichTextView>
                 </WarningNotification>
             ),

@@ -83,12 +83,12 @@ export class LinkButtonDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Overview')}
                 <DocExample title="Link Button" path="./_examples/linkButton/Default.example.tsx" />
 
-                <DocExample title="Sizes" path="./_examples/linkButton/Size.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Sizes" path="./_examples/linkButton/Size.example.tsx" />
 
                 <DocExample title="Icon Positions" path="./_examples/linkButton/IconPosition.example.tsx" />
 
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Secondary action in small footer" path="./_examples/common/Card.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Secondary action in small footer" path="./_examples/common/Card.example.tsx" />
 
                 <DocExample title="Sorting" path="./_examples/linkButton/Sorting.example.tsx" />
             </>

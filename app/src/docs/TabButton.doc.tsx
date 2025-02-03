@@ -85,7 +85,7 @@ export class TabButtonDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="tab-button-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/tabButton/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Basic" path="./_examples/tabButton/Basic.example.tsx" />
             </>
         );
     }
