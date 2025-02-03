@@ -1,3 +1,10 @@
+# 5.xx.x - xx.xx.2025
+**What's New**
+
+
+**What's Fixed**
+* [RTE]: add scroll into placeholders list menu
+
 # 5.13.0 - 30.01.2025
 **What's New**
 * Update UUI packages JS target from `ES6` to `ES2021`
