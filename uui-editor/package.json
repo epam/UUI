@@ -64,7 +64,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
+  "gitHead": "17bd43e504dfc01c40511436025e451a1ba6bf93",
   "publishConfig": {
     "directory": "build"
   }
