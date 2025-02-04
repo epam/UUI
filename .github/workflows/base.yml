@@ -64,10 +64,9 @@ jobs:
                 **/yarn.lock
       - name: build
         run: |
-          echo "NODE_ENV=${{ inputs.env }}"
           yarn
           yarn generate-components-api
-          yarn build
+          REACT_APP_ENV_NAME=${{ inputs.env }} yarn build
           cd server && yarn
 
       - name: test
