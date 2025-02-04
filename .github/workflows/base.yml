@@ -16,6 +16,9 @@ on:
       git-version-mode:
         required: true
         type: string
+      env:
+        required: true
+        type: string
     secrets:
       ARTIFACTORY_REGISTRY_URL:
         required: true
@@ -61,6 +64,7 @@ jobs:
                 **/yarn.lock
       - name: build
         run: |
+          echo "NODE_ENV=${{ inputs.env }}"
           yarn
           yarn generate-components-api
           yarn build
