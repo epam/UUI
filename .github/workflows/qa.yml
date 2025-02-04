@@ -28,3 +28,4 @@ jobs:
       # TODO: After migrating prod environment we can use the same image name for prod and non-prod
       image-name: ui-qa
       git-version-mode: ''
+      env: 'qa'
