@@ -81,7 +81,7 @@ export class TextInputDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="textInput-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/textInput/Basic.example.tsx" />
-                <DocExample title="Size" path="./_examples/textInput/Size.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Size" path="./_examples/textInput/Size.example.tsx" />
                 <DocExample title="Action" path="./_examples/textInput/Action.example.tsx" />
             </>
         );

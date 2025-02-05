@@ -15,18 +15,25 @@
     --uui-filters_toggler-font: var(--uui-font);
     --uui-filters_toggler-font-weight: 400;
 
+    --uui-filters_toggler-min-height: var(--uui-size);
+    --uui-filters_toggler-border-width: var(--uui-border-width);
+    --uui-filters_toggler-horizontal-padding: calc(var(--uui-horizontal-padding) - var(--uui-filters_toggler-border-width));
+    --uui-filters_toggler-caption-horizontal-padding: var(--uui-horizontal-gap);
+    --uui-filters_toggler-icon-size: var(--uui-icon-size);
+
     &:global(.uui-input-box) {
         box-sizing: border-box;
         min-width: 40px;
+        min-height: var(--uui-filters_toggler-min-height);
         position: relative;
         display: flex;
         outline: none;
-        border: 1px solid var(--uui-filters_toggler-border);
+        border: var(--uui-filters_toggler-border-width) solid var(--uui-filters_toggler-border);
         border-radius: var(--uui-filters_toggler-border-radius);
         background-color: var(--uui-filters_toggler-bg);
         box-shadow: var(--uui-filters_toggler-shadow);
-        padding-left: 6px;
-        padding-right: 6px;
+        padding-left: var(--uui-filters_toggler-horizontal-padding);
+        padding-right: var(--uui-filters_toggler-horizontal-padding);
 
         &:global(.-clickable):hover {
             cursor: pointer;
@@ -107,36 +114,11 @@
             }
         }
 
-        @mixin filterTogglerSize($size) {
-            &:global(.size-#{$size}) {
-                @if $size == 24 {
-                    padding-left: 2px;
-                    padding-right: 2px;
-
-                    .title-wrapper {
-                        padding-left: 3px;
-                        padding-right: 3px;
-                    }
-                } @else if $size == 42 {
-                    padding-left: 11px;
-                    padding-right: 11px;
-                } @else if $size == 48 {
-                    padding-left: 11px;
-                    padding-right: 11px;
-                } @else {
-                    padding-left: 5px;
-                    padding-right: 5px;
-                }
-
-                @include control-vertical-layout(#{$size}px, 1px);
-                @include scalable-icon-size($size);
+        :global(.uui-icon) {
+            svg {
+                height: var(--uui-filters_toggler-icon-size);
+                width: inherit;
             }
         }
-
-        @include filterTogglerSize(24);
-        @include filterTogglerSize(30);
-        @include filterTogglerSize(36);
-        @include filterTogglerSize(42);
-        @include filterTogglerSize(48);
     }
 }

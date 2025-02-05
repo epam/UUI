@@ -30,7 +30,6 @@ export class DatePickerDoc extends BaseDocsBlock {
             [TSkin.Electric]: { type: '@epam/uui:DatePickerProps', component: electric.DatePicker },
         },
         doc: (doc: DocBuilder<uui.DatePickerProps>) => {
-            doc.merge('size', { defaultValue: '36' });
             doc.merge('format', { examples: ['MM/DD/YYYY', 'MMM D, YYYY', 'DD.MM.YYYY', 'YYYY-MM-DD'], defaultValue: 'MMM D, YYYY', editorType: 'StringWithExamplesEditor' });
             doc.merge('value', { examples: ['', '2020-09-03'] });
             doc.merge('isHoliday', { examples: [{ name: 'without Holidays', value: () => false }] });

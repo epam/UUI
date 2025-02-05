@@ -36,7 +36,7 @@ export function ErrorHandler(props: ErrorHandlerProps) {
             } else {
                 uuiNotifications.show((notificationProps: INotification) => (
                     <ErrorNotification { ...notificationProps }>
-                        <Text size="36">
+                        <Text>
                             {c.responseData && c.responseData.errorMessage}
                         </Text>
                     </ErrorNotification>
@@ -54,7 +54,7 @@ export function ErrorHandler(props: ErrorHandlerProps) {
                 <ModalWindow>
                     <ModalHeader borderBottom title={ title } />
                     <Spinner cx={ css.recoverySpinner } />
-                    <FlexRow padding="24" cx={ css.recoveryMessage }>
+                    <FlexRow cx={ css.recoveryMessage }>
                         <FlexCell grow={ 1 }>
                             <RichTextView>{subtitle}</RichTextView>
                             { isAuthLost && (

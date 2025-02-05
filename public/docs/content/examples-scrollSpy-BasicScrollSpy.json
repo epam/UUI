@@ -1,374 +1,201 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "The most common Scroll Spy usage is a sidebar navigation. "
+      },
+      {
+        "text": "For a ScrollSpy to recognize blocks correctly,",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "you may need to take",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "four",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "simple steps:",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "type": "ordered-list",
+    "data": {},
+    "children": [
+      {
+        "type": "list-item",
         "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "text",
-            "text": "The most common Scroll Spy usage is a sidebar navigation. ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "For a ScrollSpy to recognize blocks correctly",
-            "marks": [
+            "type": "list-item-child",
+            "data": {},
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ",",
-            "marks": [
+                "text": "Provide a ref on a wrapper node via "
+              },
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "you may need to take",
-            "marks": [
+                "text": "setRef",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "four",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "simple steps:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
+                "text": " callback."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "ordered-list",
+        "type": "list-item",
         "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
+            "type": "list-item-child",
             "data": {},
-            "nodes": [
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Provide a ref on a wrapper node via ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "setRef",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " callback.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "Provide an array of ids via "
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Provide an array of ids via ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "elements",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " ",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-italic",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": "prop.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": "elements",
+                "uui-richTextEditor-code": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Add anchors with appropriate ids for navigation links. ",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
+                "text": " ",
+                "uui-richTextEditor-italic": true
+              },
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Add ",
-                    "marks": []
-                  },
-                  {
-                    "object": "text",
-                    "text": "data-spy",
-                    "marks": [
-                      {
-                        "object": "mark",
-                        "type": "uui-richTextEditor-code",
-                        "data": {}
-                      }
-                    ]
-                  },
-                  {
-                    "object": "text",
-                    "text": " attribute to the elements which will be treated as anchors. E.g., by pressing on a navigation link on the example below, the page is scrolled to the provided anchor.",
-                    "marks": []
-                  }
-                ]
+                "text": "prop."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
+        "type": "list-item",
         "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "text",
-            "text": "The output of the component (either a hook or a higher-order component) is a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "currentActive",
-            "marks": [
+            "type": "list-item-child",
+            "data": {},
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
+                "text": "Add anchors with appropriate ids for navigation links. "
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "data": {},
+        "children": [
           {
-            "object": "text",
-            "text": " ",
-            "marks": [
+            "type": "list-item-child",
+            "data": {},
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
+                "text": "Add "
+              },
+              {
+                "text": "data-spy",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " attribute to the elements which will be treated as anchors. E.g., by pressing on a navigation link on the example below, the page is scrolled to the provided anchor."
               }
             ]
-          },
-          {
-            "object": "text",
-            "text": "element id. The ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "scrollToElement",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " function to manually scroll to an element",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": ", ",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-italic",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": "where you can provide a desired id and get navigated there (or to the root of the wrapper when not provided). ",
-            "marks": []
           }
         ]
       }
     ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "The output of the component (either a hook or a higher-order component) is a "
+      },
+      {
+        "text": "currentActive",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " ",
+        "uui-richTextEditor-italic": true
+      },
+      {
+        "text": "element id. The "
+      },
+      {
+        "text": "scrollToElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function to manually scroll to an element"
+      },
+      {
+        "text": ", ",
+        "uui-richTextEditor-italic": true
+      },
+      {
+        "text": "where you can provide a desired id and get navigated there (or to the root of the wrapper when not provided). "
+      }
+    ]
   }
-}
+]

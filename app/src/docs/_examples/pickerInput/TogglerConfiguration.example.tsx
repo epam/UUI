@@ -15,7 +15,7 @@ export default function PickerTogglerConfigurationExample() {
     const dataSource = useLazyDataSource({ api: loadCities }, []);
 
     return (
-        <FlexCell width={ 300 } cx={ css.container }>
+        <FlexCell width={ 490 } cx={ css.container }>
             <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="city" selectionMode="multi" valueType="id" maxItems={ 3 } />
 
             <PickerInput dataSource={ dataSource } value={ value } onValueChange={ onValueChange } entityName="city" selectionMode="multi" valueType="id" isSingleLine={ true } />

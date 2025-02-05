@@ -26,8 +26,8 @@ export class StatusIndicatorDoc extends BaseDocsBlock {
             <>
                 {this.renderSectionTitle('Examples')}
                 <EditableDocContent fileName="statusIndicator-descriptions" />
-                <DocExample title="Sizes example" path="./_examples/statusIndicator/Sizes.example.tsx" />
-                <DocExample title="Fill & Colors example" path="./_examples/statusIndicator/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Sizes example" path="./_examples/statusIndicator/Sizes.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Fill & Colors example" path="./_examples/statusIndicator/Basic.example.tsx" />
                 <DocExample title="Uses in Table example" path="./_examples/statusIndicator/WithTable.example.tsx" />
                 <DocExample title="Dropdown example" path="./_examples/statusIndicator/Dropdown.example.tsx" />
             </>

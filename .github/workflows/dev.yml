@@ -15,14 +15,17 @@ jobs:
     # Call all jobs from base.yml
     uses: ./.github/workflows/base.yml
     secrets:
-      REGISTRY_URL: ${{ secrets.REGISTRY_URL }}
-      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
-      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-      COMMON_HELMCHART_NAME: ${{ secrets.COMMON_HELMCHART_NAME }}
-      COMMON_HELMCHART_VERSION: ${{ secrets.COMMON_HELMCHART_VERSION_NONPROD }}
+      BASE_HELMCHART_VERSION: ${{ secrets.BASE_HELMCHART_VERSION_NONPROD }}
+      BASE_HELMCHART_NAME: ${{ secrets.BASE_HELMCHART_NAME }}
+      WFI_PROVIDER: ${{ secrets.WFI_PROVIDER }}
+      WFI_SA: ${{ secrets.WFI_SA }}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      ARTIFACTORY_REGISTRY_URL: ${{ secrets.ARTIFACTORY_REGISTRY_URL }}
+      ARTIFACTORY_AUTH2_USER: ${{ secrets.ARTIFACTORY_AUTH2_USER }}
       APP_NAME_BASE: ${{ secrets.APP_NAME_DEV }}
     with:
       values-file: values.dev.yaml
       # TODO: After migrating prod environment we can use the same image name for prod and non-prod
-      image-name: ui-nonprod
+      image-name: ui-dev
       git-version-mode: ''
+      env: 'dev'

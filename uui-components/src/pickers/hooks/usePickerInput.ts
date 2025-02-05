@@ -248,12 +248,11 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     const getSearchValue = (): string | null => {
         // only for selectionMode = 'single': we're getting current value and put it into search, and when search changed we turn value to dataSourceState.search
         if (props.selectionMode === 'single' && !isSearchChanged && (props.value !== undefined && props.value !== null)) {
-            if (props.valueType === 'id') {
-                return getName(props?.dataSource.getById(props.value as TId));
-            }
             if (props.valueType === 'entity') {
                 return getName(props.value as TItem);
             }
+
+            return getName(props?.dataSource.getById(props.value as TId));
         }
         return dataSourceState.search;
     };

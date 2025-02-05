@@ -16,7 +16,7 @@ export default function BasicExample() {
                     </Text>
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
-                    <FlexRow columnGap="12">
+                    <FlexRow columnGap="12" vPadding="18">
                         <Button color="primary" size="30" caption="Some Action" onClick={ () => null } />
                         <Button color="secondary" fill="outline" size="30" caption="Cancel" onClick={ () => null } />
                     </FlexRow>
@@ -37,7 +37,7 @@ export default function BasicExample() {
                     </Text>
                 </FlexCell>
                 <FlexCell alignSelf="flex-start">
-                    <FlexRow columnGap="12">
+                    <FlexRow columnGap="12" vPadding="18">
                         <Button color="primary" size="30" caption="Some Action" onClick={ () => null } />
                         <Button color="secondary" fill="outline" size="30" caption="Cancel" onClick={ () => null } />
                     </FlexRow>

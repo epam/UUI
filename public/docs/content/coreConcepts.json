@@ -375,8 +375,8 @@
           },
           {
             "text": "?: ",
-            "color": "#000000",
-            "uui-richTextEditor-span-mark": true
+            "uui-richTextEditor-span-mark": true,
+            "color": "#000000"
           },
           {
             "text": "CX",
@@ -384,22 +384,17 @@
             "uui-richTextEditor-span-mark": true
           },
           {
-            "text": " ",
-            "color": "#000000",
-            "uui-richTextEditor-span-mark": true
-          },
-          {
-            "text": "} ",
-            "color": "#000000",
-            "uui-richTextEditor-span-mark": true
+            "text": " } ",
+            "uui-richTextEditor-span-mark": true,
+            "color": "#000000"
           },
           {
             "text": "— "
           },
           {
             "text": "\"",
-            "color": "#000000",
-            "uui-richTextEditor-span-mark": true
+            "uui-richTextEditor-span-mark": true,
+            "color": "#000000"
           },
           {
             "text": "CX\" means \"Classes\" here. It's a short-cut to the "

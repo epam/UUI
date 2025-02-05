@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--uui-example-repeat), 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 6px 18px;
     justify-items: center;

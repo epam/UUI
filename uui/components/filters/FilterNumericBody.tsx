@@ -105,7 +105,6 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                         <NumericInput
                             value={ value?.from ?? null }
                             onValueChange={ rangeValueHandler('from') }
-                            size="36"
                             placeholder="Min"
                             formatOptions={ { maximumFractionDigits: 2 } }
                         />
@@ -114,7 +113,6 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                         <NumericInput
                             value={ value?.to ?? null }
                             onValueChange={ rangeValueHandler('to') }
-                            size="36"
                             placeholder="Max"
                             formatOptions={ { maximumFractionDigits: 2 } }
                             isInvalid={ isWrongRange(value?.from, value?.to) }
@@ -138,7 +136,6 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                     <NumericInput
                         value={ typeof props.value === 'number' ? props.value : null }
                         onValueChange={ props.onValueChange }
-                        size="36"
                         placeholder="Enter a number"
                         formatOptions={ { maximumFractionDigits: 2 } }
                     />

@@ -13,14 +13,15 @@
     --uui-tag-font-weight: 400;
 
     // sizes
-    --uui-tag-border-radius: var(--uui-border-radius);
     --uui-tag-min-height: var(--uui-size);
     --uui-tag-min-width: var(--uui-size);
     --uui-tag-border-width: var(--uui-border-width);
+    --uui-tag-border-radius: var(--uui-border-radius);
     --uui-tag-horizontal-padding: var(--uui-horizontal-padding);
     --uui-tag-vertical-padding: var(--uui-vertical-padding);
     --uui-tag-horizontal-gap: var(--uui-horizontal-gap);
-    --uui-tag-caption-padding: 0 var(--uui-horizontal-gap);
+    --uui-tag-caption-horizontal-padding: var(--uui-horizontal-gap);
+    --uui-tag-caption-vertical-padding: calc((var(--uui-tag-min-height) - var(--uui-tag-line-height) - var(--uui-tag-border-width) * 2) / 2);
     --uui-tag-count_indicator-margin-end: var(--uui-horizontal-gap);
     --uui-tag-icon-height: var(--uui-icon-size);
     --uui-tag-line-height: var(--uui-line-height);
@@ -32,13 +33,20 @@
         min-height: var(--uui-tag-min-height);
         min-width: var(--uui-tag-min-width);
         column-gap: var(--uui-tag-horizontal-gap);
-        padding: calc(var(--uui-tag-vertical-padding) - var(--uui-tag-border-width)) calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width));
+        padding-inline-start: calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width));
+        padding-inline-end: calc(var(--uui-tag-horizontal-padding) - var(--uui-tag-border-width));
     }
 
     :global(.uui-caption) {
         font-size: var(--uui-tag-font-size);
+        font-family: var(--uui-tag-font);
+        font-weight: var(--uui-tag-font-weight);
+        color: var(--uui-tag-caption);
         line-height: var(--uui-tag-line-height);
-        padding: 0 var(--uui-tag-horizontal-gap);
+        padding-top: var(--uui-tag-caption-vertical-padding);
+        padding-bottom: var(--uui-tag-caption-vertical-padding);
+        padding-inline-start: var(--uui-tag-caption-horizontal-padding);
+        padding-inline-end: var(--uui-tag-caption-horizontal-padding);
     }
 
     &:global(.uui-button-box) {
@@ -66,12 +74,6 @@
             &:focus-visible {
                 @include focus-visible-effect();
             }
-        }
-
-        :global(.uui-caption) {
-            font-family: var(--uui-tag-font);
-            font-weight: var(--uui-tag-font-weight);
-            color: var(--uui-tag-caption);
         }
     }
 

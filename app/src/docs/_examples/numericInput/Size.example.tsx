@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { NumericInput } from '@epam/uui';
+import { NumericInput, NumericInputProps } from '@epam/uui';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
 
-export default function SizeExample() {
+export default function SizeExample(props: ExampleProps) {
     const [value, onValueChange] = useState(null);
+    const sizes = getAllPropValues('size', true, props) as NumericInputProps['size'][];
 
     return (
         <>
-            <NumericInput size="42" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size="36" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size="30" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
-            <NumericInput size="24" value={ value } onValueChange={ onValueChange } min={ -10 } max={ 10 } />
+            {
+                sizes.map((size) =>
+                    (
+                        <NumericInput
+                            key={ size }
+                            size={ size }
+                            value={ value }
+                            onValueChange={ onValueChange }
+                            min={ -10 }
+                            max={ 10 }
+                        />
+                    ))
+            }
         </>
     );
 }
