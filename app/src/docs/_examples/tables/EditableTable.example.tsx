@@ -171,7 +171,7 @@ export default function EditableTableExample() {
                     renderCell: (props) => (
                         <DataTableCell
                             { ...props.rowLens.prop('priority').toProps() }
-                            renderEditor={ (props) => <PickerInput { ...props } selectionMode="single" dataSource={ pickerDataSource } /> }
+                            renderEditor={ (props) => <PickerInput { ...props } selectionMode="single" valueType="id" dataSource={ pickerDataSource } /> }
                             { ...props }
                         />
                     ),
