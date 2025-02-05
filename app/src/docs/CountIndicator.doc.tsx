@@ -53,7 +53,7 @@ export class CountIndicatorDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="countIndicator-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/countIndicator/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Basic" path="./_examples/countIndicator/Basic.example.tsx" />
             </>
         );
     }

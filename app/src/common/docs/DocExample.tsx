@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import cx from 'classnames';
+import { TDocConfig } from '@epam/uui-docs';
+import { LinkButton, FlexSpacer } from '@epam/uui';
 import { Switch, FlexRow } from '@epam/promo';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
-import type { FilesRecord } from '../../data/codesandbox/getCodesandboxConfig';
-import css from './DocExample.module.scss';
 import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
-import cx from 'classnames';
 import { docExampleLoader } from './docExampleLoader';
 import { ThemeId } from '../../data';
-import { LinkButton, FlexSpacer } from '@epam/uui';
+import { generateNewRawString, getSkin, useCode, useExampleProps, usePropEditorTypeOverride } from './utils';
+
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
-import { getCurrentTheme } from '../../helpers';
+
+import css from './DocExample.module.scss';
+import { useAppThemeContext } from '../../helpers/appTheme';
+
+const EXAMPLES_PATH_PREFIX = './_examples';
+
+const LABELS = {
+    Fullscreen: 'Fullscreen',
+};
 
 interface DocExampleProps {
     path: string;
@@ -20,103 +29,13 @@ interface DocExampleProps {
     width?: number | 'auto';
     cx?: string;
     disableCodesandbox?: boolean;
+    config?: TDocConfig;
 }
 
-interface DocExampleState {
-    showCode: boolean;
-    component?: any;
-    code?: string;
-    raw?: string;
-    stylesheets?: FilesRecord;
-}
-
-const EXAMPLES_PATH_PREFIX = './_examples';
-
-export class DocExample extends React.Component<DocExampleProps, DocExampleState> {
-    componentDidMount(): void {
-        const { path, onlyCode } = this.props;
-
-        if (!onlyCode) {
-            const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
-            docExampleLoader({ path: exPathRelative }).then((component) => {
-                this.setState({ component });
-            });
-        }
-
-        svc.api
-            .getCode({ path })
-            .then((r) => this.setState({ code: r.highlighted, raw: r.raw }));
-    }
-
-    state: DocExampleState = {
-        showCode: false,
-        stylesheets: {},
-    };
-
-    private getDescriptionFileName(): string {
-        // Files are stored here: "public/docs/content"
-        const name = this.props.path
-            .replace(new RegExp(/\.example.tsx|\./g), '')
-            .replace(/\//g, '-')
-            .replace(/^-/, '');
-
-        // next line removes leading underscore
-        // i.e. "_examples-alert-Basic.json" -> "examples-alert-Basic.json"
-        return name.substring(1);
-    }
-
-    private onSwitchValueChange = (val: boolean) => {
-        this.setState({ showCode: val });
-    };
-
-    private renderCode(): React.ReactNode {
-        return (
-            <Code codeAsHtml={ this.state.code } />
-        );
-    }
-
-    private renderPreview() {
-        const { raw } = this.state;
-        const { path } = this.props;
-        const dirPath = path.split('/').slice(0, -1);
-        const theme = getCurrentTheme();
-        return (
-            <>
-                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
-                    {this.state.component && React.createElement(this.state.component)}
-                </FlexRow>
-                <div className={ css.containerFooterWrapper }>
-                    <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter] } columnGap="12">
-                        <Switch value={ this.state.showCode } onValueChange={ this.onSwitchValueChange } label="View code" />
-                        <FlexSpacer />
-                        { !this.props.disableCodesandbox && <CodesandboxLink raw={ raw } dirPath={ dirPath } /> }
-                        <DocExampleFsBtn path={ path } theme={ theme } />
-                    </FlexRow>
-                </div>
-                {this.state.showCode && this.renderCode()}
-            </>
-        );
-    }
-
-    render() {
-        return (
-            <div className={ cx(css.container, this.props.cx) }>
-                <EditableDocContent title={ this.props.title } fileName={ this.getDescriptionFileName() } />
-                <div className={ css.previewContainer } style={ { width: this.props.width } }>
-                    {this.props.onlyCode ? this.renderCode() : this.renderPreview()}
-                </div>
-            </div>
-        );
-    }
-}
-
-const LABELS = {
-    Fullscreen: 'Fullscreen',
-};
-function DocExampleFsBtn(props: { path: string; theme: ThemeId }) {
+const DocExampleFsBtn: React.FC<{ path: string; theme: ThemeId }> = ({ path, theme }) => {
     const regex = /^\.\/_examples\/(.*)\/(\w+)\.example\.tsx$/;
-    const examplePath = props.path.replace(regex, '$1/$2');
-    const href = `/docExample?theme=${encodeURIComponent(props.theme)}&examplePath=${encodeURIComponent(examplePath)}`;
+    const examplePath = path.replace(regex, '$1/$2');
+    const href = `/docExample?theme=${encodeURIComponent(theme)}&examplePath=${encodeURIComponent(examplePath)}`;
     return (
         <LinkButton
             target="_blank"
@@ -124,7 +43,81 @@ function DocExampleFsBtn(props: { path: string; theme: ThemeId }) {
             iconPosition="right"
             href={ href }
             caption={ LABELS.Fullscreen }
-            size="36"
         />
+    );
+};
+
+export function DocExample(props: DocExampleProps) {
+    const [showCode, setShowCode] = useState(false);
+    const [component, setComponent] = useState<{ elementType: any }>();
+    const [raw, setRaw] = useState<string>();
+    const { theme } = useAppThemeContext();
+    const skin = getSkin(theme, true);
+    const type = props?.config?.bySkin[skin]?.type;
+    const propsOverride = usePropEditorTypeOverride(theme, type);
+    const exampleProps = useExampleProps(props.config, type, theme, propsOverride);
+    const code = useCode(props.path, raw, exampleProps, props.config);
+
+    useEffect(() => {
+        const { path, onlyCode } = props;
+
+        if (!onlyCode) {
+            const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
+            docExampleLoader({ path: exPathRelative }).then((elementType) => {
+                setComponent({ elementType });
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        const { path } = props;
+
+        svc.api.getCode({ path }).then((r) => {
+            setRaw(r.raw);
+        });
+    }, []);
+
+    const getDescriptionFileName = (): string => {
+        const name = props.path.replace(new RegExp(/\.example.tsx|\./g), '').replace(/\//g, '-').replace(/^-/, '');
+        return name.substring(1);
+    };
+
+    const renderCode = (): React.ReactNode => {
+        return code && <Code codeAsHtml={ code } />;
+    };
+
+    const renderPreview = () => {
+        const dirPath = props.path.split('/').slice(0, -1);
+        const codesandboxRaw = (props.config && raw && exampleProps) ? generateNewRawString(raw, exampleProps) : raw;
+
+        if (props.config && (!exampleProps || !codesandboxRaw)) {
+            return null;
+        }
+
+        return (
+            <>
+                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
+                    {component && React.createElement(component.elementType, { propDocs: exampleProps })}
+                </FlexRow>
+                <div className={ css.containerFooterWrapper }>
+                    <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter] } columnGap="12">
+                        <Switch value={ showCode } onValueChange={ setShowCode } label="View code" />
+                        <FlexSpacer />
+                        {!props.disableCodesandbox && <CodesandboxLink raw={ codesandboxRaw } dirPath={ dirPath } />}
+                        <DocExampleFsBtn path={ props.path } theme={ theme } />
+                    </FlexRow>
+                </div>
+                {showCode && renderCode()}
+            </>
+        );
+    };
+
+    return (
+        <div className={ cx(css.container, props.cx) }>
+            <EditableDocContent title={ props.title } fileName={ getDescriptionFileName() } />
+            <div className={ css.previewContainer } style={ { width: props.width } }>
+                {props.onlyCode ? renderCode() : renderPreview()}
+            </div>
+        </div>
     );
 }

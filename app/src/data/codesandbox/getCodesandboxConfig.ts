@@ -11,6 +11,10 @@ export const getCodesandboxConfig = (content: string, stylesheets: FilesRecord, 
         isBinary: false,
         content: initialFiles.indexTSX,
     },
+    'settings.ts': {
+        isBinary: false,
+        content: initialFiles.settingsTS,
+    },
     'package.json': {
         isBinary: false,
         content: initialFiles.packageJSON,

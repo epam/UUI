@@ -16,6 +16,7 @@
     --uui-badge-min-width: var(--uui-size);
     --uui-badge-dot-size: var(--uui-dot-size);
     --uui-badge-border-width: var(--uui-border-width);
+    --uui-badge-border-border-radius: calc(var(--uui-badge-min-height) / 2);
     --uui-badge-horizontal-gap: var(--uui-horizontal-gap);
     --uui-badge-horizontal-padding: var(--uui-horizontal-padding);
     --uui-badge-caption-horizontal-padding: var(--uui-horizontal-gap);
@@ -35,7 +36,7 @@
         justify-content: center;
         min-height: var(--uui-badge-min-height);
         min-width: var(--uui-badge-min-width);
-        border-radius: calc(var(--uui-badge-min-height) / 2);
+        border-radius: var(--uui-badge-border-border-radius);
         padding-inline-start: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
         padding-inline-end: calc(var(--uui-badge-horizontal-padding) - var(--uui-badge-border-width));
         column-gap: var(--uui-badge-horizontal-gap);

@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-db",
-  "version": "5.13.0",
+  "version": "5.14.0-beta.0",
   "description": "UUI - client-side relational state cache",
   "author": "EPAM",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.13.0",
+    "@epam/uui-core": "5.14.0-beta.0",
     "@types/lodash.countby": "4.6.6",
     "@types/lodash.filter": "4.6.6",
     "@types/lodash.foreach": "4.5.6",
@@ -54,7 +54,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
+  "gitHead": "17bd43e504dfc01c40511436025e451a1ba6bf93",
   "publishConfig": {
     "directory": "build"
   }

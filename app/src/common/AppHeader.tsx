@@ -82,16 +82,22 @@ export function AppHeader() {
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
-                        { Object.values(themesById).map(({ id, name }) => (
-                            <DropdownMenuButton
-                                key={ id }
-                                caption={ name }
-                                icon={ theme === id && DoneIcon }
-                                isActive={ theme === id }
-                                iconPosition="right"
-                                onClick={ () => toggleTheme(id) }
-                            />
-                        )) }
+                        { Object.values(themesById).map(({ id, name, devOnly }) => {
+                            if (window.location.host.includes('uui.epam.com') && devOnly) {
+                                return null;
+                            }
+
+                            return (
+                                <DropdownMenuButton
+                                    key={ id }
+                                    caption={ name }
+                                    icon={ theme === id && DoneIcon }
+                                    isActive={ theme === id }
+                                    iconPosition="right"
+                                    onClick={ () => toggleTheme(id) }
+                                />
+                            );
+                        }) }
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (

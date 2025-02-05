@@ -12,9 +12,11 @@
     --uui-file_card-icon-mov: #5214CC;
     --uui-file_card-icon-img: #E67E17;
 
-    --uui-file_card-border-radius: var(--uui-border-radius);
-
     --uui-file_card-font-error: var(--uui-font);
+
+    --uui-file_card-border-radius: var(--uui-border-radius);
+    --uui-file_card-icon-size: 18px;
+
 
     &:global(.uui-file_card) {
         box-sizing: border-box;
@@ -87,6 +89,11 @@
         min-width: 18px;
         flex-basis: 0;
 
-        @include icon-size(18);
+        :global(.uui-icon) {
+            svg {
+                height: var(--uui-file_card-icon-size);
+                width: inherit;
+            }
+        }
     }
 }

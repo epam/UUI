@@ -93,8 +93,8 @@ export class Timeline extends React.Component {
                 </div>
                 <div className={ css.nav }>
                     <TimelineNav timelineController={ this.timelineController } />
-                    <Button fill="white" size="30" caption="Zoom to day" cx={ css.zoomButton } onClick={ this.handleZoomToDay } />
-                    <Button fill="white" size="30" caption="Zoom to month" cx={ css.zoomButton } onClick={ this.handleZoomToMonth } />
+                    <Button fill="white" caption="Zoom to day" cx={ css.zoomButton } onClick={ this.handleZoomToDay } />
+                    <Button fill="white" caption="Zoom to month" cx={ css.zoomButton } onClick={ this.handleZoomToMonth } />
                 </div>
             </div>
         );

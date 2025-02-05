@@ -72,7 +72,7 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
     }
 }
 
-function overrideProp(prop: TTypeProp, propOverride: TPropEditorTypeOverride[TTypeRef][string] | undefined): TTypeProp {
+export function overrideProp(prop: TTypeProp, propOverride: TPropEditorTypeOverride[TTypeRef][string] | undefined): TTypeProp {
     if (propOverride) {
         if (prop.editor) {
             const t = prop.editor.type;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
     LinkButton, FlexRow, FlexCell,
-} from '@epam/promo';
+} from '@epam/uui';
 import { DemoItem } from '../../../demo/structure';
 import { ReactComponent as BackIcon } from '@epam/assets/icons/common/navigation-back-18.svg';
 import { ReactComponent as ExternalLinkIcon } from '@epam/assets/icons/common/action-external_link-18.svg';
