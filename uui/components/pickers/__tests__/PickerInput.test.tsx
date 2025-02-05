@@ -627,6 +627,40 @@ describe('PickerInput', () => {
 
             expect(apiMock).toBeCalledTimes(1);
         });
+
+        it.each(['id', 'entity'])('should use selected value as a search value for single select and search in input', async (valueType) => {
+            const { dom } = await setupPickerInputForTest({
+                value: undefined,
+                selectionMode: 'single',
+                searchPosition: 'input',
+                valueType: valueType as PickerInputProps<any, any>['valueType'],
+            });
+
+            expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
+            fireEvent.click(dom.input);
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+            const optionC2 = await screen.findByText('C2');
+            fireEvent.click(optionC2);
+            await waitFor(() => {
+                expect(dom.input.getAttribute('value')?.trim()).toEqual('C2');
+            });
+
+            await userEvent.type(dom.input, '{backspace}'); // remove 1 char to apply value to search
+
+            await waitFor(() => {
+                expect(dom.input.getAttribute('value')?.trim()).toEqual('C');
+            });
+
+            expect(screen.getByRole('dialog')).toBeInTheDocument();
+            await PickerInputTestObject.waitForOptionsToBeReady();
+
+            expect(await PickerInputTestObject.findOptionsText({ busy: false })).toEqual([
+                'C1',
+                'C1+',
+                'C2',
+            ]);
+        });
     });
 
     describe('Selection', () => {
