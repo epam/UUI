@@ -1,18 +1,18 @@
 import { test } from '../../../framework/fixtures/docExamplePage/fixture';
 import { PickerInputObject } from '../../../framework/pageObjects/pickerInputObject';
-import { DocExamplePath, setupDocExampleTest } from '../testUtils';
+import { setupDocExampleTest } from '../testUtils';
 
 const OPTION_TEXT = {
     FRANCE_EUROPE: 'FranceEurope',
     FRANCE_GARGES: 'Garges-lès-GonesseEurope / France',
 };
 
-test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testInfo) => {
+test('pickerInput/LazyTreeInput', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
         PageObjectConstructor: PickerInputObject,
-        examplePath: DocExamplePath['pickerInput/LazyTreeInput'],
+        examplePath: 'pickerInput/LazyTreeInput',
     });
     await test.step('Put focus on the picker input field', async () => {
         await pageObject.focusInput();
@@ -125,5 +125,44 @@ test(DocExamplePath['pickerInput/LazyTreeInput'], async ({ pageWrapper }, testIn
     await test.step('Focus outer element by pressing "Shift+Tab" key 1 time', async () => {
         await pageObject.keyboardPress('Shift+Tab');
         await expectScreenshot(22, 'focus-outside');
+    });
+});
+
+test('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) => {
+    const { pageObject, expectScreenshot } = await setupDocExampleTest({
+        testInfo,
+        pageWrapper,
+        PageObjectConstructor: PickerInputObject,
+        examplePath: 'pickerInput/LazyTreeInput',
+    });
+    await test.step('Put focus on the picker input field', async () => {
+        await pageWrapper.page.setViewportSize({ width: 640, height: 900 });
+        await pageObject.locators.input.click();
+        await expectScreenshot(1, 'open-mobile-view');
+    });
+    await test.step('Type "france" into the search field', async () => {
+        await pageObject.focusDropdownSearchInput();
+        await pageObject.keyboardType('france');
+        await pageObject.waitDropdownLoaderAppearsAndDisappears();
+        await expectScreenshot(2, 'search-results');
+    });
+
+    await test.step('Click on the "France" option', async () => {
+        await pageObject.clickOption(OPTION_TEXT.FRANCE_EUROPE);
+        await pageObject.waitDropdownOptionChecked(OPTION_TEXT.FRANCE_EUROPE);
+        await expectScreenshot(3, 'option-france-checked');
+    });
+
+    await test.step('Press "Backspace" key 6 times(Clear search)', async () => {
+        await pageObject.focusDropdownSearchInput();
+        await pageObject.keyboardPress('Backspace', 6);
+        await pageObject.waitDropdownOptionCheckedMixed('Europe');
+        await expectScreenshot(4, 'option-europe-checked-mixed');
+    });
+
+    await test.step('Press "Done" button', async () => {
+        await pageObject.locators.dropdown.done.click();
+        await pageObject.waitDropdownDisappears();
+        await expectScreenshot(5, 'body-closed-after-done-click');
     });
 });
