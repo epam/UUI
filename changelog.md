@@ -4,6 +4,7 @@
 
 **What's Fixed**
 * [RTE]: add scroll into placeholders list menu
+* [Dropdown]: fixed modal immediate close if it was open from DropdownMenu
 
 # 5.13.0 - 30.01.2025
 **What's New**

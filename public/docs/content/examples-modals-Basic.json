@@ -1,21 +1,11 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Basic usage example with ModalContext API.",
-            "marks": []
-          }
-        ]
+        "text": "Basic usage example with ModalContext API."
       }
     ]
   }
-}
+]
