@@ -1,7 +1,7 @@
 import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-type LinkButtonMods = {
+type LinkButtonMods = Pick<uui.LinkButtonProps, 'size'> & {
     /**
      * Defines component color.
      * @default 'blue'

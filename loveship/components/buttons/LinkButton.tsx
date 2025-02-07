@@ -3,7 +3,7 @@ import * as uui from '@epam/uui';
 
 type LinkButtonColor = 'sky' | 'grass' | 'fire' | 'night100' | 'night600' | uui.LinkButtonProps['color'];
 
-type LinkButtonMods = {
+type LinkButtonMods = Pick<uui.LinkButtonProps, 'size'> & {
     /**
      * Defines component color.
      * @default 'sky'
