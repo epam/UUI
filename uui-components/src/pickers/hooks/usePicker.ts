@@ -6,8 +6,15 @@ import {
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { PickerState } from './types';
 
-export function usePicker<TItem, TId, TProps extends PickerBaseProps<TItem, TId>>(
-    props: TProps,
+type UsePickerProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
+    /**
+     * Enables/disables selected rows only in Picker.
+     */
+    showSelectedOnly?: boolean;
+};
+
+export function usePicker<TItem, TId>(
+    props: UsePickerProps<TItem, TId>,
     pickerState: PickerState,
 ) {
     const context = useContext(UuiContext);
