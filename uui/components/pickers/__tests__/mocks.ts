@@ -7,14 +7,9 @@ export type TestItemType = {
     name: string;
 };
 
-export type Item = {
-    id: number;
-    name: string;
-};
-
-const smallDataSet: Item[] = [
-    { id: 2, name: 'Elementary' },
-    { id: 3, name: 'Elementary+' },
+const smallDataSet: TestItemType[] = [
+    { id: 2, level: 'A1', name: 'Elementary' },
+    { id: 3, level: 'A1+', name: 'Elementary+' },
 ];
 
 export const languageLevels: TestItemType[] = [
@@ -64,7 +59,7 @@ export const mockSmallDataSource = new ArrayDataSource({
     items: smallDataSet,
 });
 
-export const mockSmallDataSourceAsync = new AsyncDataSource<Item, number>({
+export const mockSmallDataSourceAsync = new AsyncDataSource<TestItemType, number>({
     api: async () => {
         await delay(50);
         return smallDataSet;
@@ -72,10 +67,10 @@ export const mockSmallDataSourceAsync = new AsyncDataSource<Item, number>({
 });
 
 export const mockDataSourceAsync = new AsyncDataSource({
-    api: async () => {
+    api: jest.fn().mockImplementation(async () => {
         await delay(50);
         return languageLevels;
-    },
+    }),
 });
 
 export const mockTreeLikeDataSourceAsync = new AsyncDataSource<TestTreeItem, number, any>({

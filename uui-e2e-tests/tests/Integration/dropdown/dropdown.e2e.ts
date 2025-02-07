@@ -1,14 +1,19 @@
 import { expect } from '@playwright/test';
 import { test } from '../../../framework/fixtures/docExamplePage/fixture';
 import { DropdownObject } from '../../../framework/pageObjects/dropdownObject';
-import { DocExamplePath, setupDocExampleTest } from '../testUtils';
+import { setupDocExampleTest } from '../testUtils';
+
+enum testPageUrl {
+    'Dropdown / Scrolling behavior' = '/preview?theme=loveship&isSkin=true&componentId=dropdown&previewId=json%3A%7B"id"%3A""%2C"context"%3A"Default"%2C"matrix"%3A%7B%7D%7D',
+    'Dropdown / Boundary mode' = '/preview?theme=loveship&isSkin=true&componentId=dropdown&previewId=json%3A%7B%22id%22%3A%22%22%2C%22context%22%3A%22Default%22%2C%22matrix%22%3A%7B%22openOnHover%22%3A%7B%22examples%22%3A%5B%22true%22%5D%7D%2C%22closeOnMouseLeave%22%3A%7B%22examples%22%3A%5B%22boundary%22%5D%7D%7D%7D'
+}
 
 test('Dropdown / Boundary mode', async ({ pageWrapper }, testInfo) => {
     const { pageObject } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
         PageObjectConstructor: DropdownObject,
-        testUrl: DocExamplePath['Dropdown / Boundary mode'],
+        testUrl: testPageUrl['Dropdown / Boundary mode'],
     });
 
     await pageObject.waitForContentLoad();
@@ -39,7 +44,7 @@ test('Dropdown / Scrolling behavior', async ({ pageWrapper }, testInfo) => {
         testInfo,
         pageWrapper,
         PageObjectConstructor: DropdownObject,
-        testUrl: DocExamplePath['Dropdown / Scrolling behavior'],
+        testUrl: testPageUrl['Dropdown / Scrolling behavior'],
     });
 
     await pageObject.waitForContentLoad();
