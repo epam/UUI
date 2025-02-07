@@ -2,7 +2,7 @@ import { createSkinComponent } from '@epam/uui-core';
 import { EpamPrimaryColor } from '../types';
 import * as uui from '@epam/uui';
 
-interface IconButtonMods {
+interface IconButtonMods extends Pick<uui.LinkButtonProps, 'size'> {
     /**
      * Defines component color.
      * @default 'gray60'

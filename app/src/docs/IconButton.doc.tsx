@@ -52,7 +52,7 @@ export class IconButtonDoc extends BaseDocsBlock {
             doc.setDefaultPropExample('onClick', () => true);
             doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
         },
-        preview: (docPreview: DocPreviewBuilder<promo.IconButtonProps | loveship.IconButtonProps| uui.IconButtonProps>) => {
+        preview: (docPreview: DocPreviewBuilder<promo.IconButtonProps | loveship.IconButtonProps | uui.IconButtonProps>) => {
             const TEST_DATA = {
                 icon: 'action-account-fill.svg',
                 dropdownIcon: 'navigation-chevron_down-outline.svg',

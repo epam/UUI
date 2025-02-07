@@ -9,15 +9,14 @@ type CountIndicatorMods = {
      * Defines component color.
      */
     color: 'neutral' | 'white' | 'info' | 'success' | 'warning' | 'critical';
-};
-
-export type CountIndicatorCoreProps = IHasCaption & IHasCX & {
     /**
      * Defines component size.
      * @default '24'
      */
     size?: '12' | '18' | '24';
 };
+
+export type CountIndicatorCoreProps = IHasCaption & IHasCX;
 
 export type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;
 
