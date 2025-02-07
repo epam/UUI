@@ -96,6 +96,10 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             toggleDropdownOpening(true);
         } else if (event.key === IDropdownControlKeys.ENTER && onClick) {
             onClick(event);
+            // Fix bug when click event is triggered after Enter key.
+            // Tricky case when modal window is opened from dropdown menu and click on modal header cross is triggered, that leads to modal close.
+            // https://github.com/epam/UUI/issues/2754
+            event.preventDefault();
         }
     };
 
