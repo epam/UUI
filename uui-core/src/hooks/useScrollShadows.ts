@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { getDir } from '../helpers';
 
 interface UseScrollShadowsProps {
     root?: HTMLElement;
@@ -16,7 +17,7 @@ export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShad
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
     const resizeObserver = React.useRef<ResizeObserver>();
 
-    const isRtl = window?.document.dir === 'rtl';
+    const isRtl = getDir() === 'rtl';
     const rtlMultiplier = isRtl ? -1 : 1;
 
     function shouldHaveRightShadow(rootRight: UseScrollShadowsProps['root']) {
