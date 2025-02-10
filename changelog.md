@@ -1,4 +1,4 @@
-# 5.13.1 - 30.01.2025
+# 5.13.1 - 10.02.2025
 
 **What's Fixed**
 * Fixed usage of window reference for SSR
