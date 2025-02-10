@@ -1,3 +1,7 @@
+# 5.13.1 - 30.01.2025
+**What's Fixed**
+* Fixed usage of window reference for SSR
+
 # 5.13.0 - 30.01.2025
 **What's New**
 * Update UUI packages JS target from `ES6` to `ES2021`

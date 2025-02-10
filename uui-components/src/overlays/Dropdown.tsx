@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
 import { FreeFocusInside } from 'react-focus-lock';
-import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps } from '@epam/uui-core';
+import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps, getDir } from '@epam/uui-core';
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
 import { Placement } from '@popperjs/core';
@@ -220,7 +220,7 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
     };
 
     private getPlacement = (placement: Placement = 'bottom-start'): Placement => {
-        if (window.document?.dir === 'rtl') {
+        if (getDir() === 'rtl') {
             return placement.replace('start', 'end') as Placement;
         }
         return placement;

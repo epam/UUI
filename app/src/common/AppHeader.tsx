@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import { isMobile } from '@epam/uui-core';
+import { getDir, isMobile } from '@epam/uui-core';
 import { Anchor, MainMenuCustomElement } from '@epam/uui-components';
 import {
     Burger, BurgerButton, Button, Dropdown, DropdownMenuBody, DropdownMenuButton, FlexSpacer, GlobalMenu, IconContainer,
@@ -26,7 +26,7 @@ type ContentDirection = 'rtl' | 'ltr';
 
 export function AppHeader() {
     const { theme, toggleTheme, themesById } = useAppThemeContext();
-    const dir = window?.document.dir;
+    const dir = getDir();
     const [direction, setDirection] = useState<string>(dir || 'ltr');
 
     const sendEvent = (link: string) => {

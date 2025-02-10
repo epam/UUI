@@ -3,7 +3,7 @@ process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 
 const fs = require('fs-extra');
-const logger = require('../utils/loggerUtils');
+const { logger } = require('../utils/loggerUtils');
 
 const modulesNameMap = {
     'epam-assets': 'assets',
