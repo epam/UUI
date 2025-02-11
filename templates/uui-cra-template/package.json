@@ -1,6 +1,6 @@
 {
   "name": "@epam/cra-template-uui",
-  "version": "5.14.0-beta.1",
+  "version": "5.13.1",
   "keywords": [
     "UUI",
     "react",
@@ -21,5 +21,5 @@
     "template",
     "template.json"
   ],
-  "gitHead": "17bd43e504dfc01c40511436025e451a1ba6bf93"
+  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698"
 }

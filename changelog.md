@@ -4,7 +4,13 @@
 
 **What's Fixed**
 * [RTE]: add scroll into placeholders list menu
+
+# 5.13.1 - 10.02.2025
+
+**What's Fixed**
+* Fixed usage of window reference for SSR
 * [Dropdown]: fixed modal immediate close if it was open from DropdownMenu
+
 
 # 5.13.0 - 30.01.2025
 **What's New**
