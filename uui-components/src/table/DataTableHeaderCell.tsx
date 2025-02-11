@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    AcceptDropParams, DataColumnProps, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isEventTargetInsideClickable, SortDirection,
+    AcceptDropParams, DataColumnProps, getDir, DndActor, DataTableHeaderCellProps, DndActorRenderParams, isEventTargetInsideClickable, SortDirection,
 } from '@epam/uui-core';
 
 interface DataTableRenderProps {
@@ -32,7 +32,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     };
 
     cellRef = React.createRef<HTMLElement>();
-    isRtl = window?.document?.dir === 'rtl';
+    isRtl = getDir() === 'rtl';
 
     toggleSort = (e: React.MouseEvent) => {
         if (isEventTargetInsideClickable(e) || !this.props.column.isSortable) return;

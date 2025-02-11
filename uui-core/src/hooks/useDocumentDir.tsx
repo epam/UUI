@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
+import { getDir, HTMLDir } from '../helpers';
 
-type Dir = 'rtl' | 'ltr';
-
-export function useDocumentDir(): Dir {
-    const [dir, setDir] = useState<Dir>(window?.document.dir as Dir);
+export function useDocumentDir(): HTMLDir {
+    const [dir, setDir] = useState<HTMLDir>(getDir());
 
     useEffect(() => {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
-                    setDir(window?.document.dir as Dir);
+                    setDir(getDir());
                 }
             });
         });

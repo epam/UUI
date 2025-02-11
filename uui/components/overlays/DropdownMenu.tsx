@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState } from 'react';
 import {
     cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps,
+    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps, getDir,
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
@@ -210,7 +210,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
         },
     ];
 
-    const isRtl = window?.document.dir === 'rtl';
+    const isRtl = getDir() === 'rtl';
 
     return (
         <Dropdown
