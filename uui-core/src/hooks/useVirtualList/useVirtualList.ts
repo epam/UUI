@@ -110,6 +110,15 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         }
     });
 
+    useLayoutEffectSafeForSsr(() => {
+        const maxBottomIndex = Math.ceil(rowsCount / blockSize) * blockSize;
+        console.log('vl rowsCount', rowsCount);
+        if (virtualListInfo.value?.topIndex + virtualListInfo.value?.visibleCount > maxBottomIndex) {
+            const newTopIndex = maxBottomIndex - blockSize;
+            onValueChange({ ...value, topIndex: newTopIndex, visibleCount: blockSize });
+        }
+    }, [rowsCount]);
+
     const handleForceScrollToIndex = (rowsInfo: RowsInfo) => {
         const assumedHeight = assumeHeightForScrollToIndex(value, rowsInfo.estimatedHeight, rowsInfo.averageRowHeight);
         const estimatedHeightToSet = rowsCount >= value.scrollTo.index

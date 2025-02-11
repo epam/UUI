@@ -4,6 +4,7 @@
 
 **What's Fixed**
 * [RTE]: add scroll into placeholders list menu
+* [PickerInput]: fixed bug when empty list appears in case topIndex + visibleCount was greater than total rows count
 
 # 5.13.1 - 10.02.2025
 

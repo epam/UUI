@@ -19,7 +19,7 @@ describe('DataPickerBody', () => {
     const view = hookResult.result.current;
     const rows = view.getVisibleRows();
     const requiredProps: DataPickerBodyProps = {
-        value: {},
+        value: { topIndex: 0 },
         onValueChange: jest.fn(),
         rows: rows.map(
             (props) => <DataPickerRow key={ props.id } size="36" renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />,
