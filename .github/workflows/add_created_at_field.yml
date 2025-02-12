@@ -7,6 +7,7 @@ on:
 
 jobs:
     update-task-created_at:
+        if: contains( github.event.issue.labels.*.name, 'Figma') != true
         name: Update created_at issue field
         runs-on: ubuntu-latest
         steps:
