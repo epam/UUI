@@ -30,6 +30,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                     { ...props.rowLens.prop('name').toProps() }
                     renderEditor={ (props) => <TextInput { ...props } /> }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -44,19 +45,21 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                     { ...props.rowLens.prop('estimate').toProps() }
                     renderEditor={ (props) => (
                         <IEditableDebouncer
-                            { ...props }
+                            value={ props.value }
+                            onValueChange={ props.onValueChange }
                             render={ (editableProps) => {
                                 return (
                                     <NumericInput
                                         { ...props }
-                                        formatOptions={ { maximumFractionDigits: 1 } }
                                         { ...editableProps }
+                                        formatOptions={ { maximumFractionDigits: 1 } }
                                     />
                                 );
                             } }
                         />    
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -68,17 +71,21 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
+                    isReadonly={ true }
                     size="24"
                     renderEditor={ (editorProps) => (
                         <PickerInput
+                            { ...editorProps }
                             valueType="id"
                             placeholder="Add Status"
                             dataSource={ statusDataSource }
                             selectionMode="single"
                             minBodyWidth={ 150 }
+                            isReadonly={ props.rowLens.prop('type').get() === 'story' }
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
+                                    key={ props.key }
                                     padding="12"
                                     renderItem={ (item) => (
                                         <PickerItem
@@ -91,6 +98,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                                                 />
                                             ) }
                                             { ...props }
+                                            key={ props.key }
                                         />
                                     ) }
                                 />
@@ -99,9 +107,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                                 const row = togglerProps.selection?.[0];
                                 return (
                                     <PickerToggler
-                                        { ...props }
                                         { ...togglerProps }
-                                        isDisabled={ props.rowLens.prop('type').get() === 'story' }
                                         icon={ () => (
                                             <IconContainer
                                                 icon={ statusIcon } 
@@ -113,10 +119,10 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                                     />
                                 );
                             } }
-                            { ...editorProps }
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -137,6 +143,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                     
                 />
             ),
@@ -164,6 +171,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -184,11 +192,13 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
+                                    key={ props.key }
                                     renderItem={ (item) => (
                                         <PickerItem
                                             title={ item.name }
                                             subtitle={ item.fullName }
                                             { ...props }
+                                            key={ props.key }
                                         />
                                     ) }
                                 />
@@ -198,6 +208,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -208,7 +219,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
             grow: 1,
             allowResizing: false,
             renderCell: (props) => (
-                <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } />
+                <DataTableCell { ...props.rowLens.prop('description').toProps() } renderEditor={ (props) => <TextArea { ...props } autoSize={ true } /> } { ...props } key={ props.key } />
             ),
         },
         {
@@ -237,6 +248,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                     { ...props.rowLens.prop('name').toProps() }
                     renderEditor={ (props) => <TextInput { ...props } /> }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -249,22 +261,25 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('estimate').toProps() }
+                    isReadonly={ props.rowLens.prop('type').get() === 'story' }
                     renderEditor={ (editorProps) => (
                         <IEditableDebouncer
-                            { ...editorProps }
+                            value={ editorProps.value }
+                            onValueChange={ editorProps.onValueChange }
                             render={ (editableProps) => {
                                 return (
                                     <NumericInput
                                         { ...editorProps }
-                                        formatOptions={ { maximumFractionDigits: 1 } }
                                         { ...editableProps }
-                                        isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                                        formatOptions={ { maximumFractionDigits: 1 } }
+                                        isReadonly={ props.rowLens.prop('type').get() === 'story' }
                                     />
                                 );
                             } }
                         />    
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -277,6 +292,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                 <DataTableCell
                     { ...props.rowLens.prop('status').toProps() }
                     size="24"
+                    isReadonly={ props.rowLens.prop('type').get() === 'story' }
                     renderEditor={ (editorProps) => (
                         <PickerInput
                             valueType="id"
@@ -284,13 +300,16 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                             dataSource={ statusDataSource }
                             selectionMode="single"
                             minBodyWidth={ 150 }
-                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            isReadonly={ props.rowLens.prop('type').get() === 'story' }
                             renderRow={ (props) => (
                                 <DataPickerRow
                                     { ...props }
+                                    key={ props.key }
                                     padding="12"
                                     renderItem={ (item) => (
                                         <PickerItem
+                                            { ...props }
+                                            key={ props.key }
                                             title={ item.name }
                                             icon={ () => (
                                                 <IconContainer
@@ -299,7 +318,6 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                                                     cx={ cx(css.statusIcon, css[`statusIcon${item.id ? statusTags[item.id] : 'None'}`]) }
                                                 />
                                             ) }
-                                            { ...props }
                                         />
                                     ) }
                                 />
@@ -308,9 +326,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                                 const row = togglerProps.selection?.[0];
                                 return (
                                     <PickerToggler
-                                        { ...props }
                                         { ...togglerProps }
-                                        isDisabled={ props.rowLens.prop('type').get() === 'story' }
                                         icon={ () => (
                                             <IconContainer
                                                 icon={ statusIcon } 
@@ -326,6 +342,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -337,16 +354,18 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('startDate').toProps() }
+                    isReadonly={ props.rowLens.prop('type').get() === 'story' }
                     renderEditor={ (editorProps) => (
                         <DatePicker
                             format="MMM D, YYYY"
                             placeholder=""
                             { ...editorProps }
-                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            isReadonly={ props.rowLens.prop('type').get() === 'story' }
                             value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -357,12 +376,13 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             renderCell: (props) => (
                 <DataTableCell
                     { ...props.rowLens.prop('dueDate').toProps() }
+                    isReadonly={ props.rowLens.prop('type').get() === 'story' }
                     renderEditor={ (editorProps) => (
                         <DatePicker
                             format="MMM D, YYYY"
                             placeholder=""
                             { ...editorProps }
-                            isDisabled={ props.rowLens.prop('type').get() === 'story' }
+                            isReadonly={ props.rowLens.prop('type').get() === 'story' }
                             value={ editorProps.value ? editorProps.value.split('T')[0] : editorProps.value }
                             onValueChange={ (newDueDate) => {
                                 editorProps
@@ -373,6 +393,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
                         />
                     ) }
                     { ...props }
+                    key={ props.key }
                 />
             ),
         },
@@ -390,7 +411,7 @@ export function getColumnsTimelineMode(columnsProps: ColumnsProps & { timelineCo
             },
             renderCell(props) {
                 return (
-                    <TaskRow task={ props.rowLens.toProps().value } timelineController={ timelineController } />
+                    <TaskRow key={ props.key } task={ props.rowLens.toProps().value } timelineController={ timelineController } />
                 );
             },
         },

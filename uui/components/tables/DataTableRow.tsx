@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
 import {
-    withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps as CoreDataTableRowProps,
+    withMods, DataTableCellProps, DataTableRowProps as CoreDataTableRowProps,
 } from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
 import { DataTableRowMods } from './types';
@@ -18,7 +18,7 @@ export const renderCell = (props: DataTableCellProps) => {
     return <DataTableCell { ...props } key={ props.key } size={ mods.size } columnsGap={ mods.columnsGap } />;
 };
 
-export const renderDropMarkers = (props: DndActorRenderParams) => <DropMarker { ...props } enableBlocker={ true } />;
+export const renderDropMarkers: DataTableRowProps['renderDropMarkers'] = ({ ref, ...props }) => <DropMarker { ...props } enableBlocker={ true } />;
 
 export const propsMods = { renderCell, renderDropMarkers };
 
