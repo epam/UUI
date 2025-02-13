@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    LinkButton, FlexRow, FlexCell,
+    LinkButton, FlexRow, FlexCell, SuccessNotification, Text,
 } from '@epam/uui';
 import { DemoItem } from '../../../demo/structure';
 import { ReactComponent as BackIcon } from '@epam/assets/icons/common/navigation-back-18.svg';
@@ -8,9 +8,11 @@ import { ReactComponent as ExternalLinkIcon } from '@epam/assets/icons/common/ac
 import { ReactComponent as FullScreenIcon } from '@epam/assets/icons/common/media-fullscreen-18.svg';
 import { ReactComponent as DescriptionIcon } from '@epam/assets/icons/common/action-eye-18.svg';
 import { analyticsEvents } from '../../../analyticsEvents';
-import { useDemoDescriptionEditor } from './useDemoDescriptionEditor';
-import { useUuiContext } from '@epam/uui-core';
+import { INotification, useUuiContext } from '@epam/uui-core';
 import css from './DemoToolbar.module.scss';
+import { svc } from '../../../services';
+import { DescriptionModal } from './DescriptionModal';
+import { EditorValue } from '@epam/uui-editor';
 
 interface AppFooterContentDemoProps {
     demoItem: DemoItem;
@@ -20,7 +22,6 @@ interface AppFooterContentDemoProps {
 
 export function DemoToolbar(props: AppFooterContentDemoProps) {
     const { demoItem, onOpenFullScreen, isFullScreenSupported } = props;
-    const demoItemName = demoItem.name;
 
     const { uuiRouter } = useUuiContext();
 
@@ -34,13 +35,55 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
         </FlexCell>
     );
 
-    const demoDescription = useDemoDescriptionEditor(demoItemName);
+    const svcContext = useUuiContext();
+    const showSuccess = async () => {
+        return svcContext.uuiNotifications
+            .show(
+                (props: INotification) => (
+                    <SuccessNotification { ...props }>
+                        <Text size="36" fontSize="14">
+                            Description has been updated.
+                        </Text>
+                    </SuccessNotification>
+                ),
+                { position: 'bot-left', duration: 1 },
+            );
+    };
+
+    async function saveDocContentByDemoName(demoItemName: string, content: EditorValue) {
+        const itemNameNormalized = demoItemName.replace(/\s/g, '');
+
+        const docFileName = `demo-${itemNameNormalized}-description`;
+        await svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
+            name: docFileName,
+            content: content || null,
+        });
+    }
+
+    function getDemoDescriptionFileName(demoItemName: string) {
+        const itemNameNormalized = demoItemName.replace(/\s/g, '');
+        return `demo-${itemNameNormalized}-description`;
+    }
+
+    async function loadDocContentByDemoName(demoItemName: string) {
+        const docFileName = getDemoDescriptionFileName(demoItemName);
+        const res = await svc.uuiApi.processRequest('/api/get-doc-content', 'POST', { name: docFileName });
+        return res.content;
+    }
+
+    const openModal = async () => {
+        const content = await loadDocContentByDemoName(demoItem.name);
+        const newContent = await svc.uuiModals.show<EditorValue>((props) =>
+            <DescriptionModal demoItemName={ demoItem.name } modalProps={ props } value={ content } />).catch(() => {});
+        await saveDocContentByDemoName(demoItem.name, newContent as EditorValue);
+        await showSuccess().catch(() => {});
+    };
 
     return (
         <FlexRow cx={ css.container }>
             <LinkButton cx={ css.item } icon={ BackIcon } caption="Back to demos" onClick={ handleBack } />
             {renderDivider()}
-            <LinkButton cx={ css.item } icon={ DescriptionIcon } caption="Description" onClick={ demoDescription.openModal } />
+            <LinkButton cx={ css.item } icon={ DescriptionIcon } caption="Description" onClick={ openModal } />
             {renderDivider()}
             <LinkButton
                 cx={ css.item }
