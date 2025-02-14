@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import { DataQueryFilter, DataSourceState, useLazyDataSource } from '@epam/uui-core';
 import { DataSourceViewer } from '@epam/uui-docs';
