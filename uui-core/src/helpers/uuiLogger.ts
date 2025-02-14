@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 enum MsgLevel {
     error = 'error',
     warn = 'warn',

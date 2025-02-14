@@ -13,8 +13,10 @@ export function createStore<TState, TActions>(initialState: TState, reducers: Re
 
     function dispatch(action: Action<any>) {
         const reducer = (reducers as any)[action.name as any];
+        // eslint-disable-next-line no-console
         console.log(`Dispatching ${action.name}. Payload: ${JSON.stringify(action.payload)}`);
         const newState = reducer(action.payload)(state);
+        // eslint-disable-next-line no-console
         console.log(`State changed: ${JSON.stringify(state)} => ${JSON.stringify(newState)}`);
         state = newState;
     }
