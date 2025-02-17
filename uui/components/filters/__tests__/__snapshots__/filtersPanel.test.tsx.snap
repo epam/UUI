@@ -39,7 +39,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Status:
@@ -48,7 +48,7 @@ Array [
           className="textWrapper"
         >
           <div
-            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography selection container"
+            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline selection container"
             style={Object {}}
           >
             Unknown
@@ -102,7 +102,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Position
@@ -155,7 +155,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Age
@@ -208,7 +208,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Hire Date
@@ -261,7 +261,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Exit Date

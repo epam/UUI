@@ -1,14 +1,6 @@
 @use  '../../assets/styles/effects' as *;
 
-@mixin overflow-ellipsis() {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.uui-typography {
-    font-family: var(--uui-font);
-    color: var(--uui-text-primary);
-
+@mixin typography-elements {
     .hero-header, h1, h2, h3, h4, h5, h6 {
         margin: 0;
     }
@@ -166,6 +158,17 @@
     .uui-highlight {
         background-color: var(--uui-warning-10);
     }
+}
+
+.uui-typography {
+    font-family: var(--uui-font);
+    color: var(--uui-text-primary);
+
+    @include typography-elements;
+}
+
+.uui-typography-inline {
+    @include typography-elements;
 }
 
 .uui-typography-size-12 {
