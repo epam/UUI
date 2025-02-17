@@ -168,7 +168,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             }
           >
             <div
-              className="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography groupTitle container"
+              className="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline groupTitle container"
               style={Object {}}
             >
               Displayed in table
@@ -215,7 +215,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                   </div>
                   <div
-                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
+                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
                     style={Object {}}
                   >
                     Pinned to the left
@@ -366,7 +366,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     />
                   </div>
                   <div
-                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography subgroupTitle container"
+                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
                     style={Object {}}
                   >
                     Not pinned

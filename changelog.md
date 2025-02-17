@@ -3,6 +3,7 @@
 
 
 **What's Fixed**
+* [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles
 * [RTE]: add scroll into placeholders list menu
 * [PickerInput]: fixed bug when empty list appears in case topIndex + visibleCount was greater than total rows count
 
