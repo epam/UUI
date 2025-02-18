@@ -5,9 +5,9 @@ import {
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
-import { Switch } from '../inputs/Switch';
+import { Switch } from '../inputs';
 import { IconButton } from '../buttons';
-import { systemIcons } from '../../icons/icons';
+import { settings } from '../../index';
 
 import css from './DropdownMenu.module.scss';
 
@@ -162,7 +162,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             { isSelected && (
                 <>
                     <FlexSpacer />
-                    <IconContainer icon={ systemIcons.accept } cx={ css.selectedMark } />
+                    <IconContainer icon={ settings.dropdownMenu.icons.acceptIcon } cx={ css.selectedMark } />
                 </>
             ) }
         </FlexRow>
@@ -224,7 +224,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(isRtl ? css.submenuRootItemRtl : css.submenuRootItem) }
-                    icon={ systemIcons.foldingArrow }
+                    icon={ settings.dropdownMenu.icons.dropdownIcon }
                     iconPosition="right"
                     isDropdown={ true }
                     toggleDropdownOpening={ toggleDropdownOpening }

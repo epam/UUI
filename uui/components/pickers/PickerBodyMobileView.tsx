@@ -1,14 +1,15 @@
 import React, { ReactNode } from 'react';
 import { IDropdownBodyProps, IHasCX, IHasRawProps, isMobile } from '@epam/uui-core';
-import { LinkButton, LinkButtonProps } from '../buttons';
+import { LinkButton } from '../buttons';
 import { ControlSize } from '../types';
 import { DataPickerHeader } from './DataPickerHeader';
 import { DropdownContainer } from '../overlays';
 import { i18n } from '../../i18n';
-import { settings } from '../../settings';
+import { settings } from '../../index';
+
 import css from './PickerBodyMobileView.module.scss';
 
-interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
+export interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
     children: ReactNode;
     size?: ControlSize;
     title?: string;
@@ -36,7 +37,14 @@ export const PickerBodyMobileView: React.FC<IMobileDropdownWrapperProps> = (prop
 
             {props.children}
 
-            {isMobileView && <LinkButton caption={ i18n.pickerInput.doneButton } onClick={ () => props.onClose?.() } cx={ css.done } size={ settings.sizes.pickerInput.body.mobile.footer.linkButton as LinkButtonProps['size'] } />}
+            {isMobileView && (
+                <LinkButton
+                    caption={ i18n.pickerInput.doneButton }
+                    onClick={ () => props.onClose?.() }
+                    cx={ css.done }
+                    size={ settings.pickerInput.sizes.body.mobileFooterLinkButton }
+                />
+            )}
         </DropdownContainer>
     );
 };

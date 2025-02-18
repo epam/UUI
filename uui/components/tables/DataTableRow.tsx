@@ -1,12 +1,10 @@
 import * as React from 'react';
+import { withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps as CoreDataTableRowProps } from '@epam/uui-core';
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
-import {
-    withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps as CoreDataTableRowProps,
-} from '@epam/uui-core';
 import { DataTableCell } from './DataTableCell';
-import { DataTableRowMods } from './types';
 import { DropMarker } from '../dnd';
-import { settings } from '../../settings';
+import { DataTableRowMods } from './types';
+import { settings } from '../../index';
 
 import './variables.scss';
 import css from './DataTableRow.module.scss';
@@ -28,7 +26,7 @@ export const DataTableRow = withMods<CoreDataTableRowProps, DataTableRowProps>(
     uuiDataTableRow,
     ({ borderBottom = true, size }) => {
         return [
-            css.root, 'uui-dt-vars', borderBottom && 'uui-dt-row-border', `uui-size-${size || settings.sizes.dataTable.body.row.default}`,
+            css.root, 'uui-dt-vars', borderBottom && 'uui-dt-row-border', `uui-size-${size || settings.dataTable.sizes.body.defaultRow}`,
         ];
     },
     () => propsMods,

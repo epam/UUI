@@ -5,7 +5,8 @@ import * as types from '../types';
 import { Tag, TagProps } from '../widgets';
 import { Tooltip } from '../overlays';
 import { TextPlaceholder } from '../typography';
-import { settings } from '../../settings';
+import { settings } from '../../index';
+
 import css from './PickerTogglerTag.module.scss';
 
 export interface PickerTogglerTagModsOverride {}
@@ -23,7 +24,7 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
     const tagProps = {
         ...props,
         tabIndex: -1,
-        size: settings.sizes.pickerInput.toggler.tag[props.size] as TagProps['size'],
+        size: settings.pickerInput.sizes.toggler.tagMap[props.size],
         caption: props.rowProps?.isLoading ? <TextPlaceholder /> : props.caption,
     };
 

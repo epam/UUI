@@ -2,9 +2,9 @@ import React from 'react';
 import { TimePickerBody } from '../timePicker';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import MockDate from 'mockdate';
-import { systemIcons } from '../../../icons/icons';
+import { settings } from '../../../settings';
 
-const arrowIcon = systemIcons.foldingArrow;
+const arrowIcon = settings.iconButton.icons.dropdownIcon;
 
 beforeEach(() => {
     MockDate.set(new Date('2020-12-09T01:02:03+00:00'));

@@ -1,7 +1,8 @@
+import deepmerge from 'deepmerge';
 import { getQuery, useQuery } from './getQuery';
 import { BuiltInTheme, ThemeBaseParams, ThemeId } from '../data';
 import { getUuiThemeRoot } from './appRootUtils';
-import { Settings, settings } from '@epam/uui';
+import { settings } from '@epam/uui';
 import { CustomThemeManifest } from '../data/customThemes';
 import { IRouterContext, useUuiContext } from '@epam/uui-core';
 import { useEffect } from 'react';
@@ -10,13 +11,12 @@ import { useEffect } from 'react';
  * Override settings. Pass undefined in order to reset to default settings.
  * @param newSettings
  */
-export const overrideUuiSettings = ((_defaultSettings: string) => (newSettings: object | undefined) => {
-    if (newSettings) {
-        Object.assign(settings.sizes, (newSettings as Settings).sizes);
-    } else {
-        Object.assign(settings, JSON.parse(_defaultSettings));
-    }
-})(JSON.stringify(settings));
+const defaultSettings = { ...settings };
+
+export const overrideUuiSettings = (newSettings: object | undefined) => {
+    const merged = deepmerge(defaultSettings, newSettings ?? {});
+    Object.assign(settings, merged);
+};
 
 export type ThemeConfig = CustomThemeManifest | ThemeBaseParams;
 

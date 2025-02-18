@@ -2,9 +2,10 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IDisableable, IDropdownTogglerProps, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
 import { IconContainer, FlexRow } from '@epam/uui-components';
-import { systemIcons } from '../../icons/icons';
 import { Text } from '../typography';
 import { UUI_FILTERS_PANEL_ITEM_TOGGLER } from './constants';
+import { settings } from '../../index';
+
 import css from './FilterPanelItemToggler.module.scss';
 
 const defaultSize = '36';
@@ -84,7 +85,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                     )
                 }
             </FlexRow>
-            {!props.isDisabled && <IconContainer icon={ systemIcons.foldingArrow } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
+            {!props.isDisabled && <IconContainer icon={ settings.filtersPanel.icons.itemDropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
         </FlexRow>
     );
 });

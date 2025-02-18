@@ -1,9 +1,7 @@
 import { Icon, Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { Tooltip } from '../overlays';
-import { settings } from '../../settings';
-
-import { ReactComponent as FilledStarIcon } from '../../icons/star-filled.svg';
+import { settings } from '../../index';
 
 import css from './Rating.module.scss';
 
@@ -30,7 +28,7 @@ export interface RatingProps extends RatingCoreProps, Overwrite<RatingMods, Rati
 function applyRatingMods(mods: RatingProps) {
     return [
         css.root,
-        `uui-size-${mods.size || settings.sizes.defaults.rating}`,
+        `uui-size-${mods.size || settings.rating.sizes.default}`,
     ];
 }
 
@@ -38,8 +36,8 @@ export const Rating = withMods<uuiComponents.RatingProps, RatingProps>(
     uuiComponents.Rating,
     applyRatingMods,
     (props) => ({
-        filledStarIcon: props.icon || FilledStarIcon,
-        emptyStarIcon: props.icon || FilledStarIcon,
+        filledStarIcon: props.icon || settings.rating.icons.filledRatingIcon,
+        emptyStarIcon: props.icon || settings.rating.icons.emptyRatingIcon,
         Tooltip,
     }),
 );

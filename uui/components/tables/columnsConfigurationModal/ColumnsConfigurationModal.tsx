@@ -3,21 +3,17 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { ColumnsConfig, cx, DataColumnProps, IModal } from '@epam/uui-core';
 import { Accordion, ColumnsConfigurationRowProps, IconContainer, useColumnsConfiguration } from '@epam/uui-components';
-import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
-import { ReactComponent as ResetIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
-import { ReactComponent as ExpandedIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
-import { ReactComponent as CollapsedIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
 
-import { FlexRow, FlexRowProps, FlexSpacer, Panel, ScrollBars } from '../../layout';
-import { Button, ButtonProps, LinkButton } from '../../buttons';
+import { FlexRow, FlexSpacer, Panel, ScrollBars } from '../../layout';
+import { Button, LinkButton } from '../../buttons';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, ModalBlocker, ModalFooter, ModalHeader, ModalWindow, Tooltip } from '../../overlays';
 import { Text } from '../../typography';
-import { CountIndicator, CountIndicatorProps } from '../../widgets';
-import { SearchInput, SearchInputProps } from '../../inputs';
+import { CountIndicator } from '../../widgets';
+import { SearchInput } from '../../inputs';
 import { ColumnRow } from './ColumnRow';
 
 import { i18n as uuiI18n } from '../../../i18n';
-import { settings } from '../../../settings';
+import { settings } from '../../../index';
 
 import css from './ColumnsConfigurationModal.module.scss';
 
@@ -42,7 +38,7 @@ const renderGroupTitle = (title: string, amount: number) => (
         <CountIndicator
             caption={ amount }
             color="neutral"
-            size={ settings.sizes.dataTable.columnsConfigurationModal.countIndicator as CountIndicatorProps['size'] }
+            size={ settings.dataTable.sizes.columnsConfigurationModal.countIndicator }
         />
         <FlexSpacer />
     </FlexRow>
@@ -111,14 +107,14 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh" width={ settings.sizes.dataTable.columnsConfigurationModal.width }>
+            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh" width={ settings.dataTable.sizes.columnsConfigurationModal.width }>
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow
                     borderBottom={ true }
                     cx={ css.searchArea }
                 >
                     <SearchInput
-                        size={ settings.sizes.dataTable.columnsConfigurationModal.search as SearchInputProps['size'] }
+                        size={ settings.dataTable.sizes.columnsConfigurationModal.searchInput }
                         value={ searchValue }
                         onValueChange={ setSearchValue }
                         placeholder={ i18n.searchPlaceholder }
@@ -135,8 +131,8 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                             <Button
                                 { ...props }
                                 fill="none"
-                                icon={ MenuIcon }
-                                size={ settings.sizes.dataTable.columnsConfigurationModal.search as ButtonProps['size'] }
+                                icon={ settings.dataTable.icons.columnsConfigurationModal.menuIcon }
+                                size={ settings.dataTable.sizes.columnsConfigurationModal.menuButton }
                                 color="secondary"
                                 isDropdown={ false }
                             />
@@ -160,7 +156,11 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
                     </ScrollBars>
                 </Panel>
                 <ModalFooter borderTop>
-                    <LinkButton icon={ ResetIcon } caption={ i18n.resetToDefaultButton } onClick={ reset } />
+                    <LinkButton
+                        icon={ settings.dataTable.icons.columnsConfigurationModal.resetIcon }
+                        caption={ i18n.resetToDefaultButton }
+                        onClick={ reset }
+                    />
                     <FlexSpacer />
                     <Button fill="none" color="secondary" caption={ i18n.cancelButton } onClick={ close } />
                     {!hasAnySelectedColumns ? (
@@ -185,7 +185,7 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
         const content = (
             <FlexRow
                 cx={ css.groupItems }
-                size={ settings.sizes.dataTable.columnsConfigurationModal.columnRow as FlexRowProps['size'] }
+                size={ settings.dataTable.sizes.columnsConfigurationModal.columnRow }
             >
                 {items.map((c) => (
                     <ColumnRow column={ c } key={ c.key } renderItem={ renderItem } />
@@ -194,13 +194,13 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
         );
         if (isCollapsible) {
             const renderTitle = (isOpened: boolean) => {
-                const toggleIcon = isOpened ? ExpandedIcon : CollapsedIcon;
+                const toggleIcon = settings.dataTable.icons.columnsConfigurationModal[isOpened ? 'expandedIcon' : 'collapsedIcon'];
                 return (
                     <FlexRow
                         cx={ cx(css.subgroup) }
                     >
                         <IconContainer
-                            size={ settings.sizes.dataTable.columnsConfigurationModal.subgroupIcon }
+                            size={ settings.dataTable.sizes.columnsConfigurationModal.subgroupIcon }
                             icon={ toggleIcon }
                         />
                         <Text

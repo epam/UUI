@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { DataRowProps, DataSourceState, Icon, Overwrite } from '@epam/uui-core';
-import { AvatarProps, IconContainer } from '@epam/uui-components';
-import { FlexCell, FlexRow, FlexRowProps } from '../layout';
-import { Text, TextPlaceholder, TextProps } from '../typography';
+import { IconContainer } from '@epam/uui-components';
+import { FlexCell, FlexRow } from '../layout';
+import { Text, TextPlaceholder } from '../typography';
 import { Avatar } from '../widgets';
 import { getHighlightedSearchMatches } from './highlight';
-import { settings } from '../../settings';
+import { settings } from '../../index';
+
 import css from './PickerItem.module.scss';
 
 export interface PickerItemModsOverride {}
@@ -48,7 +49,7 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
         size, avatarUrl, isLoading, isDisabled, icon, cx,
     } = props;
 
-    const itemSize = size || settings.sizes.pickerInput.body.dropdown.row.cell.item.default as PickerItemProps<any, any>['size'];
+    const itemSize = size || settings.pickerInput.sizes.body.defaultItem;
     const isMultiline = !!(props.title && props.subtitle);
 
     const { search } = props.dataSourceState ?? {};
@@ -58,26 +59,26 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
     return (
         <FlexCell width="auto" cx={ [css.root, 'uui-typography', cx] }>
             <FlexRow
-                size={ itemSize as FlexRowProps['size'] }
+                size={ itemSize }
                 cx={ [isMultiline && css.multiline, css.columnGap] }
-                rawProps={ { style: { '--uui-picker_item-vertical-padding': `${settings.sizes.pickerInput.body.dropdown.row.cell.item.verticalPadding[itemSize]}px` } as React.CSSProperties } }
+                rawProps={ { style: { '--uui-picker_item-vertical-padding': `${settings.pickerInput.sizes.body.itemVerticalPaddingMap[itemSize]}px` } as React.CSSProperties } }
             >
                 { avatarUrl && (
                     <Avatar
                         isLoading={ isLoading }
                         img={ avatarUrl }
-                        size={ getAvatarSize(itemSize, isMultiline).toString() as AvatarProps['size'] }
+                        size={ getAvatarSize(itemSize, isMultiline) }
                     />
                 ) }
                 { icon && <IconContainer icon={ icon } /> }
                 <FlexCell width="auto">
                     { title && (
-                        <Text size={ itemSize as TextProps['size'] } cx={ css.text } color={ isDisabled ? 'disabled' : 'primary' }>
+                        <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'disabled' : 'primary' }>
                             { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : title }
                         </Text>
                     ) }
                     { subtitle && (
-                        <Text size={ itemSize as TextProps['size'] } color={ isDisabled ? 'disabled' : 'secondary' } cx={ css.text }>
+                        <Text size={ itemSize } color={ isDisabled ? 'disabled' : 'secondary' } cx={ css.text }>
                             { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : subtitle }
                         </Text>
                     ) }
@@ -87,6 +88,6 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
     );
 }
 
-function getAvatarSize(size: PickerItemProps<any, any>['size'], isMultiline: boolean): string | number {
-    return settings.sizes.pickerInput.body.dropdown.row.cell.item.avatar[isMultiline ? 'multiline' : 'rest'][size];
+function getAvatarSize(size: PickerItemProps<unknown, unknown>['size'], isMultiline: boolean) {
+    return settings.pickerInput.sizes.body[isMultiline ? 'itemAvatarMultilineMap' : 'itemAvatarMap'][size];
 }

@@ -1,6 +1,7 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { systemIcons } from '../../icons/icons';
+import { settings } from '../../index';
+
 import css from './Accordion.module.scss';
 
 interface AccordionMods {
@@ -29,5 +30,5 @@ function applyAccordionMods(mods: AccordionProps) {
 }
 
 export const Accordion = withMods<uuiComponents.AccordionProps, AccordionProps>(uuiComponents.Accordion, applyAccordionMods, (mods) => ({
-    dropdownIcon: mods.dropdownIcon !== null && systemIcons.foldingArrow,
+    dropdownIcon: mods.dropdownIcon !== null && settings.accordion.icons.dropdownIcon,
 }));

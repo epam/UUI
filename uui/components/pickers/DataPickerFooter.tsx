@@ -1,11 +1,12 @@
 import React, { PropsWithChildren } from 'react';
 import { isMobile, Overwrite, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
-import { Switch, SwitchProps } from '../inputs';
+import { Switch } from '../inputs';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
-import { LinkButton, LinkButtonProps } from '../buttons';
+import { LinkButton } from '../buttons';
 import { SizeMod } from '../types';
-import { settings } from '../../settings';
+import { settings } from '../../index';
+
 import css from './DataPickerFooter.module.scss';
 
 export interface DataPickerFooterModsOverride {
@@ -28,7 +29,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         isSearchTooShort,
     } = props;
 
-    const size = isMobile() ? settings.sizes.pickerInput.body.mobile.footer.linkButton as LinkButtonProps['size'] : props.size;
+    const size = isMobile() ? settings.pickerInput.sizes.body.mobileFooterLinkButton : props.size;
     const hasSelection = view.getSelectedRowsCount() > 0;
     const rowsCount = view.getListProps().rowsCount;
 
@@ -47,7 +48,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
         <FlexRow cx={ css.footer }>
             {!isSinglePicker && !isSearchTooShort && ( // Show this switch only for multi mode and when some rows rendered
                 <Switch
-                    size={ settings.sizes.pickerInput.body.dropdown.footer.switch[props.size] as SwitchProps['size'] }
+                    size={ settings.pickerInput.sizes.body.footerSwitchMap[props.size] }
                     value={ showSelected.value }
                     isDisabled={ !hasSelection }
                     onValueChange={ showSelected.onValueChange }

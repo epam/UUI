@@ -3,8 +3,8 @@ import { cx, DataColumnGroupProps, DataTableHeaderGroupCellProps, Overwrite, uui
 import { DataTableCellContainer, HeaderCellContentProps } from '@epam/uui-components';
 import { DataTableHeaderCellMods } from './types';
 import { Tooltip } from '../overlays';
-import { Text, TextProps } from '../typography';
-import { settings } from '../../settings';
+import { Text } from '../typography';
+import { settings } from '../../index';
 
 import './variables.scss';
 import css from './DataTableHeaderGroupCell.module.scss';
@@ -36,7 +36,7 @@ export class DataTableHeaderGroupCell extends
             css.caption,
             this.props.textCase === 'upper' && css.upperCase,
             uuiDataTableHeaderGroupCell.uuiTableHeaderGroupCaption,
-            settings.sizes.dataTable.header.row.groupCell.truncate.includes(this.props.size) && css.truncate,
+            this.props.size >= '48' && css.truncate,
         ];
 
         return (
@@ -52,8 +52,8 @@ export class DataTableHeaderGroupCell extends
                 >
                     <Text
                         key="text"
-                        fontSize={ settings.sizes.dataTable.header.row.groupCell.columnCaption[this.props.textCase === 'upper' ? 'uppercase' : 'fontSize'] as TextProps['fontSize'] }
-                        size={ settings.sizes.dataTable.header.row.groupCell.columnCaption.size as TextProps['size'] }
+                        fontSize={ settings.dataTable.sizes.header[this.props.textCase === 'upper' ? 'groupCellCaptionUppercase' : 'groupCellCaptionFontSize'] }
+                        size={ settings.dataTable.sizes.header.groupCellCaptionSize }
                         cx={ captionCx }
                     >
                         { this.props.group.caption }
@@ -67,14 +67,14 @@ export class DataTableHeaderGroupCell extends
         const { columnsGap, isFirstCell } = this.props;
 
         if (columnsGap) return isFirstCell ? columnsGap : +columnsGap / 2;
-        return isFirstCell ? settings.sizes.dataTable.header.row.groupCell.defaults.paddingEdge : settings.sizes.dataTable.header.row.groupCell.defaults.padding;
+        return isFirstCell ? settings.dataTable.sizes.header.defaultGroupCellPaddingEdge : settings.dataTable.sizes.header.defaultGroupCellPadding;
     };
 
     getRightPadding = () => {
         const { columnsGap, isLastCell } = this.props;
 
         if (columnsGap) return isLastCell ? columnsGap : +columnsGap / 2;
-        return isLastCell ? settings.sizes.dataTable.header.row.groupCell.defaults.paddingEdge : settings.sizes.dataTable.header.row.groupCell.defaults.padding;
+        return isLastCell ? settings.dataTable.sizes.header.defaultGroupCellPaddingEdge : settings.dataTable.sizes.header.defaultGroupCellPadding;
     };
 
     renderCellContent = (props: HeaderCellContentProps) => {
@@ -92,7 +92,7 @@ export class DataTableHeaderGroupCell extends
                 cx={ cx(
                     uuiDataTableHeaderGroupCell.uuiTableHeaderGroupCell,
                     css.root,
-                    `uui-size-${this.props.size || settings.sizes.dataTable.header.row.groupCell.defaults.size}`,
+                    `uui-size-${this.props.size || settings.dataTable.sizes.header.defaultGroupCell}`,
                     this.props.isFirstCell && 'uui-dt-header-first-column',
                     this.props.isLastCell && 'uui-dt-header-last-column',
                 ) }
@@ -123,7 +123,7 @@ export class DataTableHeaderGroupCell extends
                 cx={ cx(
                     uuiDataTableHeaderGroupCell.uuiTableHeaderGroupCell,
                     css.root,
-                    `uui-size-${this.props.size || settings.sizes.dataTable.header.row.groupCell.defaults.size}`,
+                    `uui-size-${this.props.size || settings.dataTable.sizes.header.defaultGroupCell}`,
                     this.props.isFirstCell && 'uui-dt-header-first-column',
                     this.props.isLastCell && 'uui-dt-header-last-column',
                 ) }

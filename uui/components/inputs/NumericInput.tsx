@@ -1,9 +1,9 @@
 import { withMods, Overwrite } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputProps } from '@epam/uui-components';
 import { EditMode, IHasEditMode } from '../types';
-import { systemIcons } from '../../icons/icons';
+import { settings } from '../../index';
+
 import textInputCss from './TextInput.module.scss';
-import { settings } from '../../settings';
 import css from './NumericInput.module.scss';
 
 const DEFAULT_MODE = EditMode.FORM;
@@ -22,7 +22,7 @@ function applyNumericInputMods(mods: NumericInputMods) {
     return [
         textInputCss.root,
         css.root,
-        `uui-size-${mods.size || settings.sizes.defaults.numericInput}`,
+        `uui-size-${mods.size || settings.numericInput.sizes.default}`,
         textInputCss['mode-' + (mods.mode || DEFAULT_MODE)],
     ];
 }
@@ -35,8 +35,8 @@ export const NumericInput = withMods<uuiNumericInputProps, NumericInputProps>(
     applyNumericInputMods,
     (props) => {
         return {
-            upIcon: systemIcons.foldingArrow,
-            downIcon: systemIcons.foldingArrow,
+            upIcon: settings.numericInput.icons.arrowIcon,
+            downIcon: settings.numericInput.icons.arrowIcon,
             align: props.align ?? (props.mode === 'cell' ? 'right' : 'left'),
             disableArrows: props.disableArrows ?? props.mode === 'cell',
         };
