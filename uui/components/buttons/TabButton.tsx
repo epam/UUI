@@ -2,9 +2,9 @@ import React from 'react';
 import { cx, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
-import { CountIndicator, CountIndicatorProps } from '../widgets/CountIndicator';
-import { systemIcons } from '../../icons/icons';
-import { settings } from '../../settings';
+import { CountIndicator } from '../widgets';
+import { settings } from '../../index';
+
 import css from './TabButton.module.scss';
 
 type TabButtonMods = {
@@ -35,13 +35,13 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
     const styles = [
         css.root,
         'uui-tab-button',
-        `uui-size-${props.size || settings.sizes.defaults.tabButton}`,
+        `uui-size-${props.size || settings.tabButton.sizes.default}`,
         ...getIconClass(props),
         props.cx,
     ];
 
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
-    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.tabButton.icons.dropdownIcon;
+    const ClearIcon = props.clearIcon ? props.clearIcon : settings.tabButton.icons.clearIcon;
 
     return (
         <Clickable
@@ -73,7 +73,7 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
             { props.count !== undefined && props.count !== null && (
                 <CountIndicator
                     color="neutral"
-                    size={ settings.sizes.tabButton.countIndicator[props.size || settings.sizes.defaults.tabButton] as CountIndicatorProps['size'] }
+                    size={ settings.tabButton.sizes.countIndicatorMap[props.size || settings.tabButton.sizes.default] }
                     caption={ props.count }
                 />
             ) }

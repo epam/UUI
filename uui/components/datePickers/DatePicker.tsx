@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Dropdown } from '@epam/uui-components';
 import {
     DropdownBodyProps, IDropdownToggler, cx, useUuiContext, uuiMod,
 } from '@epam/uui-core';
+import { Dropdown } from '@epam/uui-components';
 import { TextInput, TextInputProps } from '../inputs';
 import { EditMode } from '../types';
-import { systemIcons } from '../../icons/icons';
 import { DropdownContainer } from '../overlays';
+import { DatePickerBody } from './DatePickerBody';
 import { DatePickerProps } from './types';
 import {
     defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
-import { DatePickerBody } from './DatePickerBody';
-import { settings } from '../../settings';
+import { settings } from '../../index';
 
 const defaultMode = EditMode.FORM;
 const modifiers = [{
@@ -21,7 +20,7 @@ const modifiers = [{
 }];
 
 export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
-    const { format = defaultFormat, value, size = settings.sizes.defaults.datePicker } = props;
+    const { format = defaultFormat, value, size = settings.datePicker.sizes.default } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
@@ -73,7 +72,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 { ...renderProps }
                 isDropdown={ false }
                 cx={ cx(props.inputCx, isBodyOpen && uuiMod.focus) }
-                icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
+                icon={ props.mode !== EditMode.CELL ? settings.datePicker.icons.input.calendarIcon : undefined }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
                 size={ size as TextInputProps['size'] }

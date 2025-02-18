@@ -14,6 +14,10 @@ interface TextMods {
      * @default '36'
      */
     size?: TextSize;
+    /** Defines text line-height */
+    lineHeight?: '12' | '18' | '24' | '30';
+    /** Defines text font-size */
+    fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
 }
 
 /** Represents the properties of a Text component. */

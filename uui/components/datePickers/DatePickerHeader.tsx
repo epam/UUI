@@ -2,15 +2,13 @@ import * as React from 'react';
 import { Icon, IDisableable, IHasCX } from '@epam/uui-core';
 import cx from 'classnames';
 import css from './DatePickerHeader.module.scss';
-import { uuiDayjs } from '../../helpers/dayJsHelper';
-import type { Dayjs } from '../../helpers/dayJsHelper';
-import { ReactComponent as LeftArrowIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
-import { ReactComponent as RightArrowIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
+import { uuiDayjs, Dayjs } from '../../helpers/dayJsHelper';
 import { Button } from '../buttons';
 import { ViewType } from './types';
 import {
     getPrevMonth, getPrevYear, getPrevYearsList, getNextMonth, getNextYear, getNextYearsList,
 } from './helpers';
+import { settings } from '../../index';
 
 export const uuiHeader = {
     container: 'uui-datepicker-header-container',
@@ -127,7 +125,7 @@ export function DatePickerHeader({
         <div className={ cx(css.root, uuiHeader.container, cx) }>
             <header className={ uuiHeader.headerNav }>
                 <Button
-                    icon={ navIconLeft || LeftArrowIcon }
+                    icon={ navIconLeft || settings.datePicker.icons.body.prevIcon }
                     color="secondary"
                     fill="ghost"
                     cx={ uuiHeader.navIconLeft }
@@ -141,7 +139,7 @@ export function DatePickerHeader({
                     onClick={ !isDisabled && (() => onCaptionClick(view)) }
                 />
                 <Button
-                    icon={ navIconRight || RightArrowIcon }
+                    icon={ navIconRight || settings.datePicker.icons.body.nextIcon }
                     color="secondary"
                     fill="ghost"
                     cx={ uuiHeader.navIconRight }

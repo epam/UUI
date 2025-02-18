@@ -1,20 +1,20 @@
 import React from 'react';
-import { IconContainer, PickerModalArrayProps, PickerModalOptions, PickerModalScalarProps, handleDataSourceKeyboard, usePickerModal } from '@epam/uui-components';
 import { DataRowProps, DataSourceState, IHasCaption, PickerBaseOptions } from '@epam/uui-core';
+import { IconContainer, PickerModalArrayProps, PickerModalOptions, PickerModalScalarProps, handleDataSourceKeyboard, usePickerModal } from '@epam/uui-components';
 import { DataPickerRow } from './DataPickerRow';
 import { Text } from '../typography';
-import { i18n } from '../../i18n';
 import { FlexRow, FlexCell, FlexSpacer } from '../layout';
 import {
     ModalBlocker, ModalWindow, ModalHeader, ModalFooter,
 } from '../overlays';
 import { LinkButton, Button } from '../buttons';
-import { ReactComponent as SearchIcon } from '../../icons/pictures/search-with-background.svg';
-
-import css from './PickerModal.module.scss';
 import { SearchInput, Switch } from '../inputs';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerItem } from './PickerItem';
+import { i18n } from '../../i18n';
+import { settings } from '../../index';
+
+import css from './PickerModal.module.scss';
 
 export type PickerModalProps<TItem, TId> = PickerBaseOptions<TItem, TId> &
 IHasCaption &
@@ -98,7 +98,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             props.renderNotFound({ search: dataSourceState.search, onClose: () => props.success(null) })
         ) : (
             <div className={ css.noFoundModalContainer }>
-                <IconContainer cx={ css.noFoundModalContainerIcon } icon={ SearchIcon } />
+                <IconContainer cx={ css.noFoundModalContainerIcon } icon={ settings.pickerInput.icons.body.modalNotFoundSearchIcon } />
                 <Text cx={ css.noFoundModalContainerText } fontWeight="600" fontSize="16" lineHeight="24" color="primary" size="36">
                     {i18n.dataPickerBody.noRecordsMessage}
                 </Text>

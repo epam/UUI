@@ -18,9 +18,8 @@ import {
 } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
-import { ReactComponent as addIcon } from '@epam/assets/icons/action-add-outline.svg';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
-import { settings } from '../../settings';
+import { settings } from '../../index';
 
 export interface FiltersPanelModsOverride {}
 
@@ -82,7 +81,7 @@ const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
 };
 
 function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFilter>) {
-    const { filters, tableState, setTableState, size = (settings.sizes.defaults.filtersPanel as FiltersPanelProps<TFilter>['size']) } = props;
+    const { filters, tableState, setTableState, size = (settings.filtersPanel.sizes.default) } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
     const pickerInputRef = useRef<PickerInputElement>(null);
@@ -165,7 +164,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                 onClick={ togglerProps.onClick }
                 ref={ togglerProps.ref }
                 caption={ i18n.filterToolbar.addCaption }
-                icon={ addIcon }
+                icon={ settings.filtersPanel.icons.addFilterIcon }
                 iconPosition="left"
                 fill="ghost"
                 color="primary"

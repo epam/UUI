@@ -1,9 +1,10 @@
-import css from './CalendarPresets.module.scss';
 import * as React from 'react';
 import {
     IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
+
+import css from './CalendarPresets.module.scss';
 
 export const uuiPresets = {
     container: 'uui-presets-container',

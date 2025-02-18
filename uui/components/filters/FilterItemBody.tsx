@@ -1,8 +1,8 @@
 import React from 'react';
+import { IFilterItemBodyProps } from '@epam/uui-core';
 import { FilterPickerBody } from './FilterPickerBody';
 import { FilterDatePickerBody } from './FilterDatePickerBody';
 import { FilterRangeDatePickerBody } from './FilterRangeDatePickerBody';
-import { IFilterItemBodyProps } from '@epam/uui-core';
 import { FilterNumericBody } from './FilterNumericBody';
 
 export function FilterItemBody(props: IFilterItemBodyProps<any>) {

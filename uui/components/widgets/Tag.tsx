@@ -3,9 +3,9 @@ import {
     Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement, uuiMarkers,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
-import { CountIndicator, CountIndicatorProps } from './CountIndicator';
-import { systemIcons } from '../../icons/icons';
-import { settings } from '../../settings';
+import { CountIndicator } from './CountIndicator';
+import { settings } from '../../index';
+
 import css from './Tag.module.scss';
 
 interface TagMods {
@@ -46,7 +46,7 @@ export interface TagProps extends TagCoreProps, Overwrite<TagMods, TagModsOverri
 function applyTagMods(props: TagProps) {
     return [
         css.root,
-        `uui-size-${props.size || settings.sizes.defaults.tag as TagProps['size']}`,
+        `uui-size-${props.size || settings.tag.sizes.default}`,
         `uui-color-${props.color || 'neutral'}`,
         `uui-fill-${props.fill || 'solid'}`,
         'uui-tag',
@@ -56,8 +56,8 @@ function applyTagMods(props: TagProps) {
 export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TagProps>((props, ref) => {
     const styles = [applyTagMods(props), props.cx];
 
-    const ClearIcon = props.clearIcon ? props.clearIcon : systemIcons.clear;
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
+    const ClearIcon = props.clearIcon ? props.clearIcon : settings.tag.icons.clearIcon;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.tag.icons.dropdownIcon;
 
     return (
         <Clickable
@@ -84,7 +84,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             { props.count !== undefined && props.count !== null && (
                 <CountIndicator
                     color={ (!props.color || props.color === 'neutral') ? 'white' : props.color }
-                    size={ settings.sizes.tag.countIndicator[(props.size || settings.sizes.defaults.tag) as TagProps['size']] as CountIndicatorProps['size'] }
+                    size={ settings.tag.sizes.countIndicatorMap[(props.size || settings.tag.sizes.default)] }
                     caption={ props.count }
                 />
             ) }

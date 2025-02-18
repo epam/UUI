@@ -1,14 +1,10 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IHasChildren, IHasCX, Icon, IHasRawProps } from '@epam/uui-core';
+import { IHasChildren, IHasCX, Icon, IHasRawProps, Overwrite } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
-import { IconButton, LinkButton, LinkButtonProps } from '../buttons';
-import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
-import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
-import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
-import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-info-fill.svg';
-import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
-import { settings } from '../../settings';
+import { IconButton, LinkButton } from '../buttons';
+
+import { settings } from '../../index';
 
 import css from './Alert.module.scss';
 
@@ -28,6 +24,8 @@ interface AlertMods {
     color: 'info' | 'success' | 'warning' | 'error';
 }
 
+export interface AlertModsOverride {}
+
 export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** List of actions to display in the alert. Each action has name and 'action' callback */
     actions?: AlertNotificationAction[];
@@ -43,7 +41,7 @@ export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React
 }
 
 /** Represents the properties of the Alert component. */
-export interface AlertProps extends AlertCoreProps, AlertMods {}
+export interface AlertProps extends AlertCoreProps, Overwrite<AlertMods, AlertModsOverride> {}
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
     <div
@@ -55,7 +53,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                 css.root,
                 props.color && `uui-color-${props.color}`,
                 props.cx,
-                `uui-size-${props.size || settings.sizes.defaults.alert}`,
+                `uui-size-${props.size || settings.alert.sizes.default}`,
             )
         }
         { ...props.rawProps }
@@ -72,21 +70,27 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) =
                     {props.actions && (
                         <div className={ css.actionWrapper }>
                             {props.actions.map((action) => (
-                                <LinkButton caption={ action.name } onClick={ action.action } key={ action.name } cx={ css.actionLink } size={ settings.sizes.alert.action[props.size || settings.sizes.defaults.alert] as LinkButtonProps['size'] } />
+                                <LinkButton
+                                    caption={ action.name }
+                                    onClick={ action.action }
+                                    key={ action.name }
+                                    cx={ css.actionLink }
+                                    size={ settings.alert.sizes.actionMap[props.size || settings.alert.sizes.default] }
+                                />
                             ))}
                         </div>
                     )}
                 </div>
             </div>
-            {props.onClose && <IconButton icon={ CrossIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />}
+            {props.onClose && <IconButton icon={ settings.alert.icons.closeIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />}
         </div>
     </div>
 ));
 
-export const WarningAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ WarningIcon } color="warning" ref={ ref } { ...props } />);
+export const WarningAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.warningIcon } color="warning" ref={ ref } { ...props } />);
 
-export const SuccessAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ SuccessIcon } color="success" ref={ ref } { ...props } />);
+export const SuccessAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.successIcon } color="success" ref={ ref } { ...props } />);
 
-export const HintAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ HintIcon } color="info" ref={ ref } { ...props } />);
+export const HintAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.infoIcon } color="info" ref={ ref } { ...props } />);
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ ErrorIcon } color="error" ref={ ref } { ...props } />);
+export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.errorIcon } color="error" ref={ ref } { ...props } />);

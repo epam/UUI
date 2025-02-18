@@ -1,37 +1,44 @@
 import React from 'react';
-import { uuiElement, uuiMarkers, DataRowProps, DndEventHandlers } from '@epam/uui-core';
-import { IconContainer, DragHandle } from '@epam/uui-components';
-import { Checkbox, CheckboxProps } from '../inputs';
-import { ControlSize } from '../types';
-import { settings } from '../../settings';
-import { ReactComponent as FoldingArrow } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import cx from 'classnames';
+import { uuiElement, uuiMarkers, DataRowProps, DndEventHandlers, Overwrite } from '@epam/uui-core';
+import { IconContainer, DragHandle } from '@epam/uui-components';
+import { Checkbox } from '../inputs';
+import { ControlSize } from '../types';
+import { settings } from '../../index';
+
 import css from './DataRowAddons.module.scss';
 
-/**
- * Props of DataRowAddons.
- */
-export interface DataRowAddonsProps<TItem, TId> {
+interface DataRowAddonsMods {
+    /** Controls size. */
+    size?: ControlSize | '60';
+}
+
+export interface DataRowAddonsModsOverride {}
+
+interface DataRowAddonsCoreProps<TItem, TId> {
     /** DataRowProps object for the row where an addon is placed. */
     rowProps: DataRowProps<TItem, TId>;
     /** HTML tabIndex attribute to set on the cell. */
     tabIndex?: React.HTMLAttributes<HTMLElement>['tabIndex'];
-    /** Controls size. */
-    size?: ControlSize | '60';
     /**
      * Drag'n'drop marker event handlers.
      */
     eventHandlers?: DndEventHandlers;
 }
 
+/**
+ * Props of DataRowAddons.
+ */
+export interface DataRowAddonsProps<TItem, TId> extends DataRowAddonsCoreProps<TItem, TId>, Overwrite<DataRowAddonsMods, DataRowAddonsModsOverride> {}
+
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;
     const getIndent = () => {
-        return (row.indent - 1) * ((settings.sizes.rowAddons.indentUnit[props.size] || settings.sizes.rowAddons.defaults.indentUnit) as number);
+        return (row.indent - 1) * ((settings.rowAddons.sizes.indentUnitMap[props.size] || settings.rowAddons.sizes.defaultIndentUnit));
     };
 
     const getWidth = () => {
-        return settings.sizes.rowAddons.indentWidth[props.size] || settings.sizes.rowAddons.defaults.indentWidth;
+        return settings.rowAddons.sizes.indentWidthMap[props.size] || settings.rowAddons.sizes.defaultIndentWidth;
     };
 
     return (
@@ -42,7 +49,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                     key="cb"
                     cx="uui-dr_addons-checkbox"
                     tabIndex={ props.tabIndex }
-                    size={ settings.sizes.rowAddons.checkbox[props.size] as CheckboxProps['size'] }
+                    size={ settings.rowAddons.sizes.checkboxMap[props.size] }
                     value={ row.isChecked }
                     indeterminate={ !row.isChecked && row.isChildrenChecked }
                     onValueChange={ () => row.onCheck?.(row) }
@@ -63,13 +70,13 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                                 role: 'button',
                             } }
                             key="icon"
-                            icon={ FoldingArrow }
+                            icon={ settings.rowAddons.icons.foldingIcon }
                             cx={ [
                                 uuiElement.foldingArrow, uuiMarkers.clickable, css.iconContainer,
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }
-                            size={ settings.sizes.rowAddons.icon[props.size] || settings.sizes.rowAddons.defaults.icon }
+                            size={ settings.rowAddons.sizes.iconMap[props.size] || settings.rowAddons.sizes.defaultIcon }
                         />
                     )}
                 </div>
