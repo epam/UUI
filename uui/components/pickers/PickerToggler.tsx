@@ -2,16 +2,17 @@ import * as React from 'react';
 import { Overwrite } from '@epam/uui-core';
 import { PickerToggler as UuiPickerToggler, PickerTogglerProps as UuiPickerTogglerProps } from '@epam/uui-components';
 import { PickerTogglerTag, PickerTogglerTagProps } from './PickerTogglerTag';
-import * as types from '../types';
-import { settings } from '../../index';
+import type { IHasEditMode } from '../types';
+import { EditMode } from '../types';
+import { settings } from '../../settings';
 
 import css from './PickerToggler.module.scss';
 
-const defaultMode = types.EditMode.FORM;
+const defaultMode = EditMode.FORM;
 
 export interface PickerTogglerModsOverride {}
 
-export interface PickerTogglerMods extends types.IHasEditMode {
+export interface PickerTogglerMods extends IHasEditMode {
     /**
      * Defines component size
      * @default 36

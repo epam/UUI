@@ -5,7 +5,7 @@ import { FlexCell, FlexRow } from '../layout';
 import { Text, TextPlaceholder } from '../typography';
 import { Avatar } from '../widgets';
 import { getHighlightedSearchMatches } from './highlight';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './PickerItem.module.scss';
 

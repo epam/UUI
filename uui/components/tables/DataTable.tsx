@@ -12,10 +12,10 @@ import { Text } from '../typography';
 import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
 import { DataRowsContainer } from './DataRowsContainer';
-import { DataTableMods, DataTableModsOverride, DataTableRowMods } from './types';
+import type { DataTableMods, DataTableModsOverride, DataTableRowMods } from './types';
 
 import { i18n } from '../../i18n';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTable.module.scss';

@@ -8,7 +8,7 @@ import { ViewType } from './types';
 import {
     getPrevMonth, getPrevYear, getPrevYearsList, getNextMonth, getNextYear, getNextYearsList,
 } from './helpers';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 export const uuiHeader = {
     container: 'uui-datepicker-header-container',

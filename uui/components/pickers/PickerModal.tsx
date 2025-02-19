@@ -12,7 +12,7 @@ import { SearchInput, Switch } from '../inputs';
 import { DataPickerBody } from './DataPickerBody';
 import { PickerItem } from './PickerItem';
 import { i18n } from '../../i18n';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './PickerModal.module.scss';
 

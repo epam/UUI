@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from '../typography';
 import { IconButton } from '../buttons';
 import { FlexRow } from '../layout';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './DataPickerHeader.module.scss';
 

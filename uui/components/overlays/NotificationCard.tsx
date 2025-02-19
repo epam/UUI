@@ -11,7 +11,7 @@ import {
 } from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './NotificationCard.module.scss';
 

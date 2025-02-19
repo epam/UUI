@@ -1,6 +1,6 @@
 import { devLogger, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
-import { settings } from '../../../index';
+import { settings } from '../../../settings';
 
 import css from './FlexRow.module.scss';
 

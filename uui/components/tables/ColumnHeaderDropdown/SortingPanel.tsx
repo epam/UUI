@@ -3,7 +3,7 @@ import { cx, SortDirection } from '@epam/uui-core';
 import { FlexCell } from '../../layout';
 import { DropdownMenuButton } from '../../overlays';
 import { i18n } from '../../../i18n';
-import { settings } from '../../../index';
+import { settings } from '../../../settings';
 
 import css from './SortingPanel.module.scss';
 

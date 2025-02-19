@@ -1,7 +1,7 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods, Overwrite } from '@epam/uui-core';
-import { ControlSize } from '../types';
-import { settings } from '../../index';
+import type { ControlSize } from '../types';
+import { settings } from '../../settings';
 import css from './Button.module.scss';
 
 type ButtonMods = {

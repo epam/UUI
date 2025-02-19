@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { cx, DataColumnGroupProps, DataTableHeaderGroupCellProps, Overwrite, uuiDataTableHeaderGroupCell } from '@epam/uui-core';
 import { DataTableCellContainer, HeaderCellContentProps } from '@epam/uui-components';
-import { DataTableHeaderCellMods } from './types';
+import type { DataTableHeaderCellMods } from './types';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableHeaderGroupCell.module.scss';

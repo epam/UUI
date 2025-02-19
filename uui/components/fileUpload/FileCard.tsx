@@ -7,7 +7,7 @@ import { FlexCell, FlexRow } from '../layout';
 import { IconButton } from '../buttons';
 import { Text } from '../typography';
 import { Tooltip } from '../overlays';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './FileCard.module.scss';
 

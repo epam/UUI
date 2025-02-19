@@ -4,7 +4,7 @@ import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, O
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
 import * as types from '../types';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './LinkButton.module.scss';
 

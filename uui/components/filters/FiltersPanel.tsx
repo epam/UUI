@@ -19,7 +19,7 @@ import {
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 export interface FiltersPanelModsOverride {}
 

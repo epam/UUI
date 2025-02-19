@@ -7,8 +7,8 @@ import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import { ControlSize } from '../types';
-import { settings } from '../../index';
+import type { ControlSize } from '../types';
+import { settings } from '../../settings';
 
 import css from './DataPickerBody.module.scss';
 

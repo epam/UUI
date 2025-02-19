@@ -1,7 +1,7 @@
 import { CalendarProps, Calendar as uuiCalendar } from '@epam/uui-components';
 import { withMods } from '@epam/uui-core';
 import { Dayjs } from '../../helpers/dayJsHelper';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Calendar.module.scss';
 

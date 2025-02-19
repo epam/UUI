@@ -4,8 +4,8 @@ import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { TextPlaceholder, Text } from '../typography';
 import { DataRowAddons } from '../widgets';
 import { FlexCell } from '../layout';
-import { PickerCellMods, PickerCellModsOverride } from './types';
-import { settings } from '../../index';
+import type { PickerCellMods, PickerCellModsOverride } from './types';
+import { settings } from '../../settings';
 
 import css from './DataPickerCell.module.scss';
 

@@ -5,7 +5,7 @@ import {
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 
-import { settings } from '../../index';
+import { settings } from '../../settings';
 import css from './Badge.module.scss';
 
 const DEFAULT_FILL = 'solid';

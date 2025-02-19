@@ -1,6 +1,6 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods, Overwrite, devLogger } from '@epam/uui-core';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './IconButton.module.scss';
 

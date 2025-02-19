@@ -1,7 +1,7 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps as uuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './TextArea.module.scss';
 

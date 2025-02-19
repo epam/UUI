@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import cx from 'classnames';
-import { IHasCX, Overwrite } from '@epam/uui-core';
-import { settings } from '../../index';
+import type { IHasCX, Overwrite } from '@epam/uui-core';
+import { settings } from '../../settings';
 
 import css from './StatusIndicator.module.scss';
 

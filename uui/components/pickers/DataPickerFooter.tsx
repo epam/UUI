@@ -4,8 +4,8 @@ import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
 import { FlexCell, FlexRow, FlexSpacer } from '../layout';
 import { LinkButton } from '../buttons';
-import { SizeMod } from '../types';
-import { settings } from '../../index';
+import type { SizeMod } from '../types';
+import { settings } from '../../settings';
 
 import css from './DataPickerFooter.module.scss';
 

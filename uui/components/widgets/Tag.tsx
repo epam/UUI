@@ -4,7 +4,7 @@ import {
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Tag.module.scss';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions, Overwrite } from '@epam/uui-core';
 import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './TextInput.module.scss';
 

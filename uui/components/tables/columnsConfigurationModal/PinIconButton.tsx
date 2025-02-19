@@ -1,11 +1,12 @@
 import * as React from 'react';
+import type { Icon } from '@epam/uui-core';
+import { cx } from '@epam/uui-core';
 import { IconButton } from '../../buttons';
 import { Tooltip } from '../../overlays';
 import { i18n } from '../../../i18n';
-import { cx, Icon } from '@epam/uui-core';
+import { settings } from '../../../settings';
 
 import css from './PinIconButton.module.scss';
-import { settings } from '../../../index';
 
 type TPinPosition = 'left' | 'right' | undefined;
 interface IPinIconButton {

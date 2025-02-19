@@ -4,8 +4,8 @@ import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-component
 import { IconButton } from '../buttons';
 import { DataTableHeaderCell } from './DataTableHeaderCell';
 import { DataTableHeaderGroupCell } from './DataTableHeaderGroupCell';
-import { DataTableHeaderRowMods } from './types';
-import { settings } from '../../index';
+import type { DataTableHeaderRowMods } from './types';
+import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableHeaderRow.module.scss';

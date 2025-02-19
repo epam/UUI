@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious, PickerInputBaseProps } from '@epam/uui-core';
 import { PickerBodyBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 const pickerHeight = 300;
 

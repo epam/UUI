@@ -13,7 +13,7 @@ import { DataPickerRow } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem } from './PickerItem';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 export interface PickerInputModsOverride {}
 

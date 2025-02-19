@@ -11,7 +11,7 @@ import {
     getNewMonth, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
 import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './DatePickerBody.module.scss';
 
