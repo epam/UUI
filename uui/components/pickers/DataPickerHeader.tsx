@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, TextProps } from '../typography';
+import { Text } from '../typography';
 import { IconButton } from '../buttons';
 import { FlexRow } from '../layout';
 import { settings } from '../../settings';
-import { ReactComponent as CloseIcon } from '@epam/assets/icons/navigation-close-outline.svg';
+
 import css from './DataPickerHeader.module.scss';
 
 interface DataPickerHeaderProps {
@@ -17,12 +17,16 @@ const DataPickerHeaderImpl: React.FC<DataPickerHeaderProps> = (props) => {
     return (
         <FlexRow alignItems="center" borderBottom cx={ css.header }>
             <Text
-                size={ settings.sizes.pickerInput.body.mobile.header.titleSize as TextProps['size'] }
+                size={ settings.pickerInput.sizes.body.mobileHeaderTitleSize }
                 cx={ css.title }
             >
                 {title}
             </Text>
-            <IconButton icon={ CloseIcon } onClick={ () => props.close?.() } cx={ css.close } />
+            <IconButton
+                icon={ settings.pickerInput.icons.body.pickerBodyMobileHeaderCloseIcon }
+                onClick={ () => props.close?.() }
+                cx={ css.close }
+            />
         </FlexRow>
     );
 };
