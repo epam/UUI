@@ -54,7 +54,7 @@ function applyTextMods(mods: TextProps) {
         `uui-color-${mods.color || 'primary'}`,
         `uui-font-weight-${mods.fontWeight || '400'}`,
         `uui-font-style-${mods.fontStyle || 'normal'}`,
-        'uui-typography',
+        'uui-typography-inline',
     ];
 }
 

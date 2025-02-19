@@ -43,7 +43,6 @@ function getSourceMapTransform({ type, moduleName, moduleFolderName }) {
                 } else if (relativeSourcePath.indexOf('../') === 0) {
                     return PREFIX + forwardSlashes(path.join('./build', relativeSourcePath));
                 } else {
-                    console.log(relativeSourcePath);
                     return relativeSourcePath;
                 }
             }

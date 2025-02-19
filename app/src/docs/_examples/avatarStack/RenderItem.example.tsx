@@ -10,7 +10,7 @@ const avatarsArray = Array(10)
 export default function BasicExample() {
     const renderItem = (url: string) => {
         const handleClick = () => {
-            console.log('handleClick');
+
         };
 
         return (
