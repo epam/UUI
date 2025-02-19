@@ -64,6 +64,9 @@ export interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable
      */
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
 
+    /**
+     * Focus manipulation manager in tables.
+     */
     dataTableFocusManager?: DataTableFocusManager<TId>;
 
     /**
