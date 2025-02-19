@@ -25,7 +25,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     className="captionWrapper align-undefined uui-table-header-caption-wrapper"
   >
     <div
-      className="root uui-text uui-size-18 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography caption uui-table-header-caption container"
+      className="root uui-text uui-size-18 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline caption uui-table-header-caption container"
       style={
         Object {
           "--uui-text-font-size": "14px",
