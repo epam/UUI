@@ -13,7 +13,7 @@ import { SearchInput } from '../../inputs';
 import { ColumnRow } from './ColumnRow';
 
 import { i18n as uuiI18n } from '../../../i18n';
-import { settings } from '../../../index';
+import { settings } from '../../../settings';
 
 import css from './ColumnsConfigurationModal.module.scss';
 

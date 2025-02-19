@@ -2,8 +2,8 @@ import React from 'react';
 import { cx, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, uuiMarkers, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
-import { CountIndicator } from '../widgets';
-import { settings } from '../../index';
+import { CountIndicator } from '../widgets/CountIndicator';
+import { settings } from '../../settings';
 
 import css from './TabButton.module.scss';
 

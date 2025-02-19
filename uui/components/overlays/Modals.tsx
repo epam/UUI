@@ -6,7 +6,7 @@ import {
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
 import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';
 import { IconButton } from '../buttons';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Modals.module.scss';
 

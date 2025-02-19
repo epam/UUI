@@ -3,8 +3,7 @@ import cx from 'classnames';
 import { IHasChildren, IHasCX, Icon, IHasRawProps, Overwrite } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { IconButton, LinkButton } from '../buttons';
-
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Alert.module.scss';
 

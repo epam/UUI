@@ -1,7 +1,7 @@
 import { Icon, Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { Tooltip } from '../overlays';
-import { settings } from '../../index';
+import { Tooltip } from '../overlays/Tooltip';
+import { settings } from '../../settings';
 
 import css from './Rating.module.scss';
 

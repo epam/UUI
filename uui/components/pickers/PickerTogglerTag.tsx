@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { PickerTogglerRenderItemParams } from '@epam/uui-components';
 import { Overwrite } from '@epam/uui-core';
-import * as types from '../types';
-import { Tag, TagProps } from '../widgets';
+import type { ControlSize } from '../types';
+import { Tag, TagProps } from '../widgets/Tag';
 import { Tooltip } from '../overlays';
 import { TextPlaceholder } from '../typography';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './PickerTogglerTag.module.scss';
 
@@ -13,7 +13,7 @@ export interface PickerTogglerTagModsOverride {}
 
 interface PickerTogglerTagMods {
     /** Defines component size */
-    size?: types.ControlSize;
+    size?: ControlSize;
 }
 
 export interface PickerTogglerTagProps<TItem, TId> extends Overwrite<PickerTogglerTagMods, PickerTogglerTagModsOverride>, PickerTogglerRenderItemParams<TItem, TId>, Omit<TagProps, 'size'> {

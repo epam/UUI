@@ -7,7 +7,7 @@ import { uuiDayjs } from '../../helpers/dayJsHelper';
 import { RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
 
 import { i18n } from '../../i18n';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './RangeDatePickerInput.module.scss';
 

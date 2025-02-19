@@ -3,8 +3,8 @@ import { withMods, DataTableCellProps, DndActorRenderParams, DataTableRowProps a
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
 import { DataTableCell } from './DataTableCell';
 import { DropMarker } from '../dnd';
-import { DataTableRowMods } from './types';
-import { settings } from '../../index';
+import type { DataTableRowMods } from './types';
+import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableRow.module.scss';

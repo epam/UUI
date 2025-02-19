@@ -1,7 +1,7 @@
 import { withMods, Overwrite } from '@epam/uui-core';
 import { NumericInput as uuiNumericInput, NumericInputProps as uuiNumericInputProps } from '@epam/uui-components';
 import { EditMode, IHasEditMode } from '../types';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import textInputCss from './TextInput.module.scss';
 import css from './NumericInput.module.scss';

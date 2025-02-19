@@ -5,9 +5,9 @@ import {
 } from '@epam/uui-core';
 import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
-import { Switch } from '../inputs';
+import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './DropdownMenu.module.scss';
 

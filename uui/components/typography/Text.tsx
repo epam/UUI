@@ -1,6 +1,7 @@
-import { Overwrite, withMods } from '@epam/uui-core';
+import type { Overwrite } from '@epam/uui-core';
+import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Text.module.scss';
 

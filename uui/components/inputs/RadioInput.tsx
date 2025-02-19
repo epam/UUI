@@ -1,6 +1,6 @@
 import { withMods } from '@epam/uui-core';
 import { RadioInput as uuiRadioInput, RadioInputProps as uuiRadioInputProps } from '@epam/uui-components';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './RadioInput.module.scss';
 

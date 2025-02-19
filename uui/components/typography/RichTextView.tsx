@@ -1,6 +1,7 @@
 import * as uuiComponents from '@epam/uui-components';
-import { Overwrite, withMods } from '@epam/uui-core';
-import { settings } from '../../index';
+import type { Overwrite } from '@epam/uui-core';
+import { withMods } from '@epam/uui-core';
+import { settings } from '../../settings';
 
 interface RichTextViewMods {
     /**

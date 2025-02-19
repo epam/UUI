@@ -1,7 +1,7 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { Tooltip } from '../overlays/Tooltip';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './LabeledInput.module.scss';
 

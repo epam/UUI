@@ -4,7 +4,7 @@ import { IDisableable, IDropdownTogglerProps, IHasCX, uuiElement, uuiMarkers, uu
 import { IconContainer, FlexRow } from '@epam/uui-components';
 import { Text } from '../typography';
 import { UUI_FILTERS_PANEL_ITEM_TOGGLER } from './constants';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './FilterPanelItemToggler.module.scss';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import { Overwrite } from '@epam/uui-core';
+import type { Overwrite } from '@epam/uui-core';
 import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps as UuiPaginatorProps } from '@epam/uui-components';
 import { Button } from '../buttons';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Paginator.module.scss';
 

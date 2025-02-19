@@ -45,9 +45,9 @@ import { ReactComponent as FilledStarIcon } from './icons/star-filled.svg';
 import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-with-background.svg';
 
 import { CSSProperties } from 'react';
-import { Icon } from '@epam/uui-core';
-import { AvatarProps } from '@epam/uui-components';
-import {
+import type { Icon } from '@epam/uui-core';
+import type { AvatarProps } from '@epam/uui-components';
+import type {
     AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
     DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps, DataTableCellProps,
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,

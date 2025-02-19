@@ -1,6 +1,6 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './Accordion.module.scss';
 

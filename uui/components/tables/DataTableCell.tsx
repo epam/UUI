@@ -2,10 +2,10 @@ import * as React from 'react';
 import { DataTableCellProps as UuiCoreDataTableCellProps, Overwrite } from '@epam/uui-core';
 import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
 import { DataRowAddons } from '../widgets';
-import { DataTableCellMods } from './types';
+import type { DataTableCellMods } from './types';
 import { TextPlaceholder, Text } from '../typography';
 import { Tooltip } from '../overlays';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableCell.module.scss';

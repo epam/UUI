@@ -5,7 +5,7 @@ import { ControlSize } from '../types';
 import { DataPickerHeader } from './DataPickerHeader';
 import { DropdownContainer } from '../overlays';
 import { i18n } from '../../i18n';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import css from './PickerBodyMobileView.module.scss';
 

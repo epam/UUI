@@ -11,7 +11,7 @@ import { DatePickerProps } from './types';
 import {
     defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 const defaultMode = EditMode.FORM;
 const modifiers = [{

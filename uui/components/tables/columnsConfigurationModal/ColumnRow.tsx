@@ -5,7 +5,7 @@ import { FlexRow } from '../../layout';
 import { Checkbox } from '../../inputs';
 import { DropMarker } from '../../dnd';
 import { PinIconButton } from './PinIconButton';
-import { settings } from '../../../index';
+import { settings } from '../../../settings';
 
 import css from './ColumnRow.module.scss';
 

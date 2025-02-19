@@ -3,8 +3,8 @@ import cx from 'classnames';
 import { uuiElement, uuiMarkers, DataRowProps, DndEventHandlers, Overwrite } from '@epam/uui-core';
 import { IconContainer, DragHandle } from '@epam/uui-components';
 import { Checkbox } from '../inputs';
-import { ControlSize } from '../types';
-import { settings } from '../../index';
+import type { ControlSize } from '../types';
+import { settings } from '../../settings';
 
 import css from './DataRowAddons.module.scss';
 

@@ -8,14 +8,14 @@ import {
     HeaderCellContentProps,
 } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
-import { DataTableHeaderCellMods } from './types';
+import type { DataTableHeaderCellMods } from './types';
 import { IconButton } from '../buttons';
 import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
 
 import { i18n } from '../../i18n';
-import { settings } from '../../index';
+import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableHeaderCell.module.scss';
