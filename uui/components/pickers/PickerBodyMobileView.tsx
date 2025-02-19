@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { IDropdownBodyProps, IHasCX, IHasRawProps, isMobile } from '@epam/uui-core';
+import type { IDropdownBodyProps, IHasCX, IHasRawProps } from '@epam/uui-core';
+import { isMobile } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
-import { ControlSize } from '../types';
 import { DataPickerHeader } from './DataPickerHeader';
 import { DropdownContainer } from '../overlays';
 import { i18n } from '../../i18n';
@@ -10,13 +10,35 @@ import { settings } from '../../settings';
 import css from './PickerBodyMobileView.module.scss';
 
 export interface IMobileDropdownWrapperProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
+    /**
+     * Children of the dropdown container.
+     */
     children: ReactNode;
-    size?: ControlSize;
+    /**
+     * Title of the dropdown container.
+     */
     title?: string;
+    /**
+     * Callback for keyboard events.
+     */
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
+    /**
+     * Whether to lock focus on the dropdown container.
+     */
     focusLock?: boolean;
+    /**
+     * Width of the dropdown container.
+     */
     width?: number | 'auto';
+    /**
+     * Maximum width of the dropdown container.
+     * @default 'auto'
+     */
     maxWidth?: number | 'auto';
+    /**
+     * Maximum height of the dropdown container.
+     * @default 'auto'
+     */
     maxHeight?: number;
 }
 
