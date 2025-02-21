@@ -78,12 +78,6 @@ function calculateDiff(oldData: IFigmaVarCollection, newData: IFigmaVarCollectio
                 }
             });
 
-            // if (newItem.id === 'VariableID:25178:7182') {
-            //     console.log('new', newItem);
-            //     console.log('old', oldItem);
-            //     console.log('diff', diff.diff);
-            // }
-
             if (Object.keys(diff.diff).length > 0) {
                 changes[newItem.id] = diff;
             }
