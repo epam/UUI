@@ -97,7 +97,7 @@ function applyChanges(data: IFigmaVarCollection, changes: Record<string, DiffEle
 
     if (changes['modes']) {
         if (!Object.keys(data.modes).some((mode) => Object.keys(newJson.modes).includes(mode))) {
-            console.error('There is no the same theme_id in the new json to apply changes. Check the ids of themes, probably it is needed to change them manually');
+            console.error('There is no the same theme_id(mods array) in the new json to apply changes. Check the ids of themes, probably it is needed to change them manually');
             throw new Error('There is no the same theme id(mods array) in the new json to apply changes. Check the ids of themes, probably it is needed to change them manually');
         }
 
