@@ -30,7 +30,6 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
         pickerListState,
     );
     const {
-        context,
         view,
         getEntityName,
         getName,
@@ -75,7 +74,6 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
     };
 
     return {
-        context,
         selection,
         dataSourceState,
         dataSourceStateLens,
