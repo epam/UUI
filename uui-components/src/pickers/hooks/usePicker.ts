@@ -238,7 +238,6 @@ export function usePicker<TItem, TId>(
     };
 
     return {
-        context,
         dataSourceState,
         getName,
         getPluralName,

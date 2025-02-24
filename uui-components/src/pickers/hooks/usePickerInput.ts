@@ -1,7 +1,7 @@
-import React, { useMemo, useEffect, useCallback } from 'react';
+import React, { useMemo, useEffect, useCallback, useContext } from 'react';
 import { Modifier } from 'react-popper';
 import {
-    DataRowProps, isMobile, mobilePopperModifier, Lens, PickerFooterProps, DataSourceState,
+    DataRowProps, isMobile, mobilePopperModifier, Lens, PickerFooterProps, DataSourceState, UuiContext,
 } from '@epam/uui-core';
 import { PickerTogglerProps } from '../PickerToggler';
 import { PickerBodyBaseProps } from '../PickerBodyBase';
@@ -15,6 +15,8 @@ import { UsePickerInputProps } from './types';
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
 
 export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TItem, TId, TProps>) {
+    const context = useContext(UuiContext);
+
     const popperModifiers: Modifier<any>[] = useMemo(() => [
         {
             name: 'offset',
@@ -58,7 +60,6 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const picker = usePicker<TItem, TId>({ ...props, showSelectedOnly }, pickerInputState);
     const {
-        context,
         view,
         handleDataSourceValueChange,
         getEntityName,
