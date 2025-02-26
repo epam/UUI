@@ -1,7 +1,6 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods, Overwrite } from '@epam/uui-core';
-import { ControlSize } from '../types';
-import { systemIcons } from '../../icons/icons';
+import type { ControlSize } from '../types';
 import { settings } from '../../settings';
 import css from './Button.module.scss';
 
@@ -36,7 +35,7 @@ function applyButtonMods(mods: ButtonProps) {
         'uui-button',
         `uui-fill-${mods.fill || 'solid'}`,
         `uui-color-${mods.color || 'primary'}`,
-        `uui-size-${mods.size || settings.sizes.defaults.button}`,
+        `uui-size-${mods.size || settings.button.sizes.default}`,
     ];
 }
 
@@ -45,8 +44,8 @@ export const Button = withMods<uuiComponents.ButtonProps, ButtonProps>(
     applyButtonMods,
     () => {
         return {
-            dropdownIcon: systemIcons.foldingArrow,
-            clearIcon: systemIcons.clear,
+            dropdownIcon: settings.button.icons.dropdownIcon,
+            clearIcon: settings.button.icons.clearIcon,
         };
     },
 );
