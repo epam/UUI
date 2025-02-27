@@ -8,8 +8,9 @@ import { SearchInput, SearchInputProps } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import { ControlSize } from '../types';
+import type { ControlSize } from '../types';
 import { settings } from '../../settings';
+
 import css from './DataPickerBody.module.scss';
 import isEqual from 'react-fast-compare';
 
@@ -37,7 +38,7 @@ export function DataPickerBody(props:DataPickerBodyProps) {
     const prevProps = usePrevious(props);
 
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
-    
+
     const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -96,7 +97,7 @@ export function DataPickerBody(props:DataPickerBodyProps) {
         }
     };
 
-    const searchSize = isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput as SearchInputProps['size'] : props.searchSize;
+    const searchSize = isMobile() ? settings.pickerInput.sizes.body.mobileSearchInput as SearchInputProps['size'] : props.searchSize;
     return (
         <>
             {showSearch && (

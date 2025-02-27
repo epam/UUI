@@ -1,8 +1,9 @@
 import React, { forwardRef } from 'react';
 import cx from 'classnames';
-import { IHasCX } from '@epam/uui-core';
-import css from './StatusIndicator.module.scss';
+import type { IHasCX, Overwrite } from '@epam/uui-core';
 import { settings } from '../../settings';
+
+import css from './StatusIndicator.module.scss';
 
 type StatusIndicatorColor = 'neutral' | 'info' | 'success' | 'warning' | 'critical';
 
@@ -13,6 +14,8 @@ type StatusIndicatorMods = {
      */
     color?: StatusIndicatorColor;
 };
+
+export interface StatusIndicatorModsOverride {}
 
 export type StatusIndicatorCoreProps = IHasCX & {
     /**
@@ -29,7 +32,7 @@ export type StatusIndicatorCoreProps = IHasCX & {
     caption: string;
 };
 
-export type StatusIndicatorProps = StatusIndicatorCoreProps & StatusIndicatorMods;
+export type StatusIndicatorProps = StatusIndicatorCoreProps & Overwrite<StatusIndicatorMods, StatusIndicatorModsOverride>;
 
 export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
     return (
@@ -37,7 +40,7 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
             ref={ ref }
             className={ cx([
                 css.root,
-                `uui-size-${props.size || settings.sizes.defaults.statusIndicator}`,
+                `uui-size-${props.size || settings.statusIndicator.sizes.default}`,
                 'uui-status_indicator',
                 `uui-color-${props.color || 'neutral'}`,
                 `uui-fill-${props.fill || 'solid'}`,

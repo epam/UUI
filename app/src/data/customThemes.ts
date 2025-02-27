@@ -1,5 +1,5 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
-import { Settings } from '@epam/uui';
+import { Settings, PartialSettings } from '@epam/uui';
 import { ThemeId } from './themes';
 import { svc } from '../services';
 
@@ -11,7 +11,7 @@ export interface CustomThemeManifest {
     name: string;
     css: string[];
     path: string;
-    settings: null | Settings;
+    settings: null | PartialSettings;
     propsOverride?: TPropEditorTypeOverride;
     devOnly?: boolean;
 }

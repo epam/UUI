@@ -8,8 +8,6 @@ import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout'
 import { IconButton } from '../buttons';
 import { settings } from '../../settings';
 
-import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
-
 import css from './Modals.module.scss';
 
 export const ModalBlocker = withMods<ModalBlockerProps, ModalBlockerProps>(uuiModalBlocker, () => [css.modalBlocker]);
@@ -40,9 +38,9 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowProps>(
     uuiModalWindow,
     () => [css.root, css.modal],
     (props) => {
-        const width = props.width || settings.sizes.modal.window.defaults.width;
+        const width = props.width || settings.modal.sizes.defaultWidth;
         const height = props.height || 'auto';
-        const maxHeight = isMobile() ? '100dvh' : (props.maxHeight || '80dvh');
+        const maxHeight = isMobile() ? settings.modal.sizes.defaultMobileMaxHeight : (props.maxHeight || settings.modal.sizes.defaultMaxHeight);
         return {
             style: {
                 ...props.style,
@@ -60,7 +58,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
     render() {
         return (
             <FlexRow
-                padding={ this.props.padding || '24' }
+                padding={ this.props.padding || settings.modal.sizes.defaultHeaderPadding }
                 size={ null }
                 vPadding="36"
                 borderBottom={ this.props.borderBottom }
@@ -77,7 +75,7 @@ export class ModalHeader extends React.Component<ModalHeaderProps> {
                 {this.props.onClose && <FlexSpacer />}
                 {this.props.onClose && (
                     <FlexCell shrink={ 0 } width="auto">
-                        <IconButton rawProps={ { 'aria-label': 'Close modal' } } icon={ CrossIcon } onClick={ this.props.onClose } />
+                        <IconButton rawProps={ { 'aria-label': 'Close modal' } } icon={ settings.modal.icons.closeIcon } onClick={ this.props.onClose } />
                     </FlexCell>
                 )}
             </FlexRow>
@@ -91,15 +89,15 @@ export class ModalFooter extends React.Component<ModalFooterProps> {
     render() {
         return (
             <FlexRow
-                columnGap={ this.props.columnGap || '12' }
+                columnGap={ this.props.columnGap || settings.modal.sizes.defaultFooterColumnGap }
                 cx={ [
                     css.root,
                     css.modalFooter,
                     this.props.cx,
                 ] }
                 borderTop={ this.props.borderTop }
-                padding={ this.props.padding || '24' }
-                vPadding={ this.props.vPadding || '24' }
+                padding={ this.props.padding || settings.modal.sizes.defaultFooterPadding }
+                vPadding={ this.props.vPadding || settings.modal.sizes.defaultFooterVPadding }
                 rawProps={ this.props.rawProps }
             >
                 {this.props.children}

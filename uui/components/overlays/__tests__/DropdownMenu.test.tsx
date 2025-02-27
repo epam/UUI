@@ -3,9 +3,9 @@ import {
     DropdownMenuBody, DropdownMenuButton, DropdownSubMenu, DropdownMenuSplitter, DropdownMenuHeader,
 } from '../';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
-import { systemIcons } from '../../../icons/icons';
+import { settings } from '../../../settings';
 
-const { accept: icon } = systemIcons;
+const icon = settings.dropdownMenu.icons.dropdownIcon;
 
 describe('DropdownMenu', () => {
     it('should be rendered DropdownMenuBody correctly', async () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IAdaptiveItem, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
-import { CountIndicator } from '../../widgets';
+import { CountIndicator } from '../../widgets/CountIndicator';
 import { ReactComponent as SvgTriangle } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import css from './MainMenuButton.module.scss';
 

@@ -7,11 +7,12 @@ import { Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
+import { RangeDatePickerInput } from './RangeDatePickerInput';
 import { RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
 import { defaultFormat, defaultRangeValue } from './helpers';
-import { RangeDatePickerInput } from './RangeDatePickerInput';
-import css from './RangeDatePicker.module.scss';
 import { settings } from '../../settings';
+
+import css from './RangeDatePicker.module.scss';
 
 const modifiers = [{
     name: 'offset',
@@ -19,7 +20,7 @@ const modifiers = [{
 }];
 
 function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
-    const { value: _value, format = defaultFormat, size = settings.sizes.defaults.rangeDatePicker } = props;
+    const { value: _value, format = defaultFormat, size = settings.rangeDatePicker.sizes.default } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
     const context = useUuiContext();
