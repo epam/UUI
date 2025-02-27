@@ -33,7 +33,6 @@ Array [
           />
         </div>
         <input
-          aria-invalid={false}
           className="uui-input"
           dir="ltr"
           inputMode="search"

@@ -1,10 +1,9 @@
 import React, { useMemo, useEffect, useCallback, useContext } from 'react';
 import { Modifier } from 'react-popper';
 import {
-    DataRowProps, isMobile, mobilePopperModifier, Lens, PickerFooterProps, DataSourceState, UuiContext,
+    DataRowProps, isMobile, mobilePopperModifier, Lens, PickerFooterProps, DataSourceState, UuiContext, IHasRawProps,
 } from '@epam/uui-core';
 import { PickerTogglerProps } from '../PickerToggler';
-import { PickerBodyBaseProps } from '../PickerBodyBase';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 import { handleDataSourceKeyboard } from '../KeyboardUtils';
 import { i18n } from '../../i18n';
@@ -169,7 +168,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         );
     };
 
-    const getPickerBodyProps = (rows: DataRowProps<TItem, TId>[]): Omit<PickerBodyBaseProps, 'rows'> => {
+    const getPickerBodyProps = (rows: DataRowProps<TItem, TId>[]) => {
         return {
             value: getDataSourceState(),
             onValueChange: handleDataSourceValueChange,
@@ -179,10 +178,10 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                 'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
                 'aria-orientation': 'vertical',
                 ...props.rawProps?.body,
-            },
+            } as IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'],
             renderNotFound: props.renderNotFound,
             renderEmpty: props.renderEmpty,
-            onKeyDown: (e) => handlePickerInputKeyboard(rows, e),
+            onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => handlePickerInputKeyboard(rows, e),
             minCharsToSearch: props.minCharsToSearch,
             fixedBodyPosition: props.fixedBodyPosition,
             searchDebounceDelay: props.searchDebounceDelay,
