@@ -1,5 +1,4 @@
 export * from './bindingHelpers';
-export * from './PickerBodyBase';
 export * from './KeyboardUtils';
 export * from './PickerToggler';
 export * from './DataPickerRow';

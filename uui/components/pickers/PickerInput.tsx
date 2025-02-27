@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, useRef } from 'react';
-import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
+import { PickerTogglerRenderItemParams, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { 
@@ -9,7 +9,7 @@ import {
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { PickerBodyMobileView } from './PickerBodyMobileView';
-import { DataPickerBody } from './DataPickerBody';
+import { DataPickerBody, DataPickerBodyProps } from './DataPickerBody';
 import { DataPickerRow, DataPickerRowProps } from './DataPickerRow';
 import { DataPickerFooter } from './DataPickerFooter';
 import { PickerItem, PickerItemProps } from './PickerItem';
@@ -164,7 +164,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         );
     };
 
-    const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
+    const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<DataPickerBodyProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
         const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.sizes.pickerInput.body.dropdown.height;
         const minBodyWidth = props.minBodyWidth || settings.sizes.pickerInput.body.dropdown.width;

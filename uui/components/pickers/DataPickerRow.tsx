@@ -19,27 +19,25 @@ export interface DataPickerRowProps<TItem, TId> extends Overwrite<DataPickerRowM
     renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
 }
 
-export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProps<TItem, TId>> {
-    renderContent = () => {
+export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>) {
+    const renderContent = () => {
         return (
             <DataPickerCell
                 key="name"
-                size={ this.props.size || (settings.sizes.pickerInput.body.dropdown.row.default as PickerCellMods['size']) }
-                padding={ this.props.padding || (settings.sizes.pickerInput.body.dropdown.row.cell.padding as PickerCellMods['padding']) }
-                rowProps={ this.props }
-                alignActions={ this.props.alignActions || 'top' }
-                renderItem={ this.props.renderItem }
+                size={ props.size || (settings.sizes.pickerInput.body.dropdown.row.default as PickerCellMods['size']) }
+                padding={ props.padding || (settings.sizes.pickerInput.body.dropdown.row.cell.padding as PickerCellMods['padding']) }
+                rowProps={ props }
+                alignActions={ props.alignActions || 'top' }
+                renderItem={ props.renderItem }
             />
         );
     };
 
-    render() {
-        return (
-            <UUIDataPickerRow
-                { ...this.props }
-                cx={ [css.pickerRow, this.props.cx] }
-                renderContent={ this.renderContent }
-            />
-        );
-    }
+    return (
+        <UUIDataPickerRow
+            { ...props }
+            cx={ [css.pickerRow, props.cx] }
+            renderContent={ renderContent }
+        />
+    );
 }

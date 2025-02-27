@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious, PickerInputBaseProps } from '@epam/uui-core';
-import { PickerBodyBaseProps, usePickerInput } from '@epam/uui-components';
+import { usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps, PickerItemProps, DataPickerRowProps, DataPickerFooterProps, DataPickerBodyProps } from '../pickers';
 import { settings } from '../../settings';
 
@@ -93,7 +93,7 @@ export function FilterPickerBody<TItem, TId>({
         return props.renderFooter ? props.renderFooter(footerProps) : <DataPickerFooter { ...footerProps } size={ settings.sizes.filtersPanel.pickerInput.body.default as DataPickerFooterProps<any, any>['size'] } />;
     };
 
-    const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
+    const renderBody = (bodyProps: DataSourceListProps & Omit<DataPickerBodyProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((props) => renderRow(props, dataSourceState));
         const maxHeight = isMobile() ? document.documentElement.clientHeight : props.maxBodyHeight || pickerHeight;
         const maxWidth = isMobile() ? undefined : 360;
