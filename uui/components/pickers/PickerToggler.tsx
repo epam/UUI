@@ -1,17 +1,18 @@
 import * as React from 'react';
-import * as types from '../types';
 import { Overwrite } from '@epam/uui-core';
-import { PickerToggler as UuiPickerToggler, PickerTogglerProps } from '@epam/uui-components';
+import { PickerToggler as UuiPickerToggler, PickerTogglerProps as UuiPickerTogglerProps } from '@epam/uui-components';
 import { PickerTogglerTag, PickerTogglerTagProps } from './PickerTogglerTag';
-import { systemIcons } from '../../icons/icons';
+import type { IHasEditMode } from '../types';
+import { EditMode } from '../types';
 import { settings } from '../../settings';
+
 import css from './PickerToggler.module.scss';
 
-const defaultMode = types.EditMode.FORM;
+const defaultMode = EditMode.FORM;
 
 export interface PickerTogglerModsOverride {}
 
-export interface PickerTogglerMods extends types.IHasEditMode {
+export interface PickerTogglerMods extends IHasEditMode {
     /**
      * Defines component size
      * @default 36
@@ -19,21 +20,23 @@ export interface PickerTogglerMods extends types.IHasEditMode {
     size?: '24' | '30' | '36' | '42' | '48';
 }
 
+export type PickerTogglerProps<TItem, TId> = UuiPickerTogglerProps<TItem, TId> & Overwrite<PickerTogglerMods, PickerTogglerModsOverride>;
+
 function applyPickerTogglerMods(mods: PickerTogglerMods) {
     return [
         css.root,
         'uui-picker_toggler',
-        `uui-size-${mods.size || settings.sizes.pickerInput.toggler.defaults.size}`,
+        `uui-size-${mods.size || settings.pickerInput.sizes.toggler.default}`,
         css['mode-' + (mods.mode || defaultMode)],
     ];
 }
 
 function PickerTogglerComponent<TItem extends string, TId>(
-    props: PickerTogglerProps<TItem, TId> & Overwrite<PickerTogglerMods, PickerTogglerModsOverride>,
+    props: PickerTogglerProps<TItem, TId>,
     ref: React.ForwardedRef<HTMLElement>,
 ): JSX.Element {
     const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
-        const itemPropsWithSize = { ...itemProps, size: (props.size || settings.sizes.pickerInput.toggler.defaults.tag) as PickerTogglerMods['size'] };
+        const itemPropsWithSize = { ...itemProps, size: props.size || settings.pickerInput.sizes.toggler.defaultTag };
         if (!!props.renderItem) {
             return props.renderItem(itemPropsWithSize);
         }
@@ -53,8 +56,8 @@ function PickerTogglerComponent<TItem extends string, TId>(
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ renderItem }
             getName={ props.getName }
-            cancelIcon={ systemIcons.clear }
-            dropdownIcon={ systemIcons.foldingArrow }
+            cancelIcon={ settings.pickerInput.icons.toggler.clearIcon }
+            dropdownIcon={ settings.pickerInput.icons.toggler.dropdownIcon }
         />
     );
 }

@@ -7,7 +7,7 @@ import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownCon
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
-import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 
 import css from './DropdownMenu.module.scss';
 
@@ -162,7 +162,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             { isSelected && (
                 <>
                     <FlexSpacer />
-                    <IconContainer icon={ systemIcons.accept } cx={ css.selectedMark } />
+                    <IconContainer icon={ settings.dropdownMenu.icons.acceptIcon } cx={ css.selectedMark } />
                 </>
             ) }
         </FlexRow>
@@ -224,7 +224,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(isRtl ? css.submenuRootItemRtl : css.submenuRootItem) }
-                    icon={ systemIcons.foldingArrow }
+                    icon={ settings.dropdownMenu.icons.dropdownIcon }
                     iconPosition="right"
                     isDropdown={ true }
                     toggleDropdownOpening={ toggleDropdownOpening }

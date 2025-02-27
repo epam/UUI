@@ -1,6 +1,7 @@
 import { devLogger, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
 import { FlexRow as uuiFlexRow } from '@epam/uui-components';
 import { settings } from '../../../settings';
+
 import css from './FlexRow.module.scss';
 
 export type RowMods = {
@@ -36,7 +37,7 @@ export const FlexRow = withMods<uuiFlexRowProps, FlexRowProps>(uuiFlexRow, (prop
 
     return [
         css.root,
-        props.size !== null && 'uui-size-' + (props.size || settings.sizes.defaults.flexRow),
+        props.size !== null && 'uui-size-' + (props.size || settings.flexRow.sizes.default),
         props.padding && css['padding-' + props.padding],
         props.vPadding && css['vPadding-' + props.vPadding],
         props.margin && css['margin-' + props.margin],
