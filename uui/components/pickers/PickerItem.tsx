@@ -2,7 +2,7 @@ import * as React from 'react';
 import { DataRowProps, DataSourceState, Icon, Overwrite } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
-import { Text, TextPlaceholder } from '../typography';
+import { Text } from '../typography';
 import { Avatar } from '../widgets';
 import { getHighlightedSearchMatches } from './highlight';
 import { settings } from '../../settings';
@@ -49,7 +49,7 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
         size, avatarUrl, isLoading, isDisabled, icon, cx,
     } = props;
 
-    const itemSize = size || settings.pickerInput.sizes.body.defaultItem;
+    const itemSize = size || settings.pickerInput.sizes.body.row;
     const isMultiline = !!(props.title && props.subtitle);
 
     const { search } = props.dataSourceState ?? {};
@@ -74,12 +74,12 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
                 <FlexCell width="auto">
                     { title && (
                         <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'disabled' : 'primary' }>
-                            { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : title }
+                            { title }
                         </Text>
                     ) }
                     { subtitle && (
                         <Text size={ itemSize } color={ isDisabled ? 'disabled' : 'secondary' } cx={ css.text }>
-                            { isLoading ? <TextPlaceholder wordsCount={ 2 } /> : subtitle }
+                            { subtitle }
                         </Text>
                     ) }
                 </FlexCell>

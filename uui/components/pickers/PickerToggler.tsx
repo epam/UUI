@@ -36,7 +36,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
     ref: React.ForwardedRef<HTMLElement>,
 ): JSX.Element {
     const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
-        const itemPropsWithSize = { ...itemProps, size: props.size || settings.pickerInput.sizes.toggler.defaultTag };
+        const itemPropsWithSize = { ...itemProps, size: props.size || settings.pickerInput.sizes.toggler.tag };
         if (!!props.renderItem) {
             return props.renderItem(itemPropsWithSize);
         }

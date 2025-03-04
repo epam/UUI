@@ -115,7 +115,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ props.size || settings.pickerInput.sizes.body.defaultFooter } />;
+            : <DataPickerFooter { ...footerProps } size={ props.size || settings.pickerInput.sizes.body.row } />;
     };
 
     const getRowSize = () => {
@@ -123,9 +123,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             return settings.pickerInput.sizes.body.mobileRow;
         }
 
-        return props.editMode === 'modal'
-            ? settings.pickerInput.sizes.body.modalRow
-            : (props.size || settings.pickerInput.sizes.body.defaultRow);
+        return props.size || settings.pickerInput.sizes.body.row;
     };
 
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
@@ -160,7 +158,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                 { ...rowProps }
                 key={ rowProps.rowKey }
                 size={ getRowSize() }
-                padding={ props.editMode === 'modal' ? settings.pickerInput.sizes.body.modalPadding : settings.pickerInput.sizes.body.padding }
+                padding={ props.editMode === 'dropdown' ? settings.pickerInput.sizes.body.padding : undefined }
                 renderItem={ (item, itemProps) => renderRowItem(item, itemProps, dsState) }
             />
         );
@@ -168,7 +166,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
-        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.pickerInput.sizes.body.maxHeight;
+        const bodyHeight = props.dropdownHeight || settings.pickerInput.sizes.body.maxHeight;
         const minBodyWidth = props.minBodyWidth || settings.pickerInput.sizes.body.minWidth;
 
         return (

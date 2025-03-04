@@ -15,16 +15,10 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
   tabIndex={-1}
 >
   <div
-    className="uui-flex-row itemRoot container -clickable align-items-center"
+    className="itemRoot"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="menuitem"
-    style={
-      Object {
-        "columnGap": undefined,
-        "rowGap": undefined,
-      }
-    }
     tabIndex={0}
   >
     <div
@@ -50,16 +44,10 @@ exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
     </span>
   </div>
   <div
-    className="uui-flex-row submenuRootItem itemRoot container -clickable align-items-center"
+    className="submenuRootItem itemRoot"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="menuitem"
-    style={
-      Object {
-        "columnGap": undefined,
-        "rowGap": undefined,
-      }
-    }
     tabIndex={0}
   >
     <div

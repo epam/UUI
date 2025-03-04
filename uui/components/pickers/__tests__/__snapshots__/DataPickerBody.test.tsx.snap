@@ -50,13 +50,11 @@ Array [
     </div>
   </div>,
   <div
-    className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
+    className="root uui-flex-row uui-picker_input-body modal undefined uui-size-36"
     style={
       Object {
-        "columnGap": undefined,
         "maxHeight": 800,
         "maxWidth": undefined,
-        "rowGap": undefined,
       }
     }
   >
@@ -106,22 +104,17 @@ Array [
             }
           >
             <div
+              aria-checked={null}
               aria-posinset={3}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -148,22 +141,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={4}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -190,22 +178,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={5}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -232,22 +215,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={6}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -274,22 +252,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={7}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -316,22 +289,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={8}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -358,22 +326,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={9}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -400,22 +363,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={10}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -442,22 +400,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={11}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -484,22 +437,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={12}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -526,22 +474,17 @@ Array [
               </div>
             </div>
             <div
+              aria-checked={null}
               aria-posinset={13}
-              className="uui-flex-row pickerRow container align-items-center"
+              aria-selected={null}
+              className="root pickerRow"
               role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
             >
               <div
                 className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -617,13 +560,11 @@ Array [
 
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
 <div
-  className="uui-flex-row root uui-size-36 uui-picker_input-body undefined undefined container align-items-center"
+  className="root uui-flex-row uui-picker_input-body undefined undefined uui-size-36"
   style={
     Object {
-      "columnGap": undefined,
       "maxHeight": undefined,
       "maxWidth": undefined,
-      "rowGap": undefined,
     }
   }
 >
@@ -673,22 +614,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
           }
         >
           <div
+            aria-checked={null}
             aria-posinset={3}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -713,22 +649,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={4}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -753,22 +684,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={5}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -793,22 +719,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={6}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -833,22 +754,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={7}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -873,22 +789,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={8}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -913,22 +824,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={9}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -953,22 +859,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={10}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -993,22 +894,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={11}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -1033,22 +929,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={12}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -1073,22 +964,17 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             </div>
           </div>
           <div
+            aria-checked={null}
             aria-posinset={13}
-            className="uui-flex-row pickerRow container align-items-center"
+            aria-selected={null}
+            className="root pickerRow"
             role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
           >
             <div
               className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -1161,13 +1047,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
 
 exports[`DataPickerBody should be rendered without rows 1`] = `
 <div
-  className="uui-flex-row root uui-size-36 uui-picker_input-body undefined undefined container align-items-center"
+  className="root uui-flex-row uui-picker_input-body undefined undefined uui-size-36"
   style={
     Object {
-      "columnGap": undefined,
       "maxHeight": undefined,
       "maxWidth": undefined,
-      "rowGap": undefined,
     }
   }
 >

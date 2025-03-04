@@ -44,14 +44,13 @@ import { ReactComponent as FileIcon } from '@epam/assets/icons/file-file-fill.sv
 import { ReactComponent as FilledStarIcon } from './icons/star-filled.svg';
 import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-with-background.svg';
 
-import { CSSProperties } from 'react';
 import type { Icon } from '@epam/uui-core';
 import type { AvatarProps } from '@epam/uui-components';
 import type {
     AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
-    DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps, DataTableCellProps,
+    DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
-    DataPickerBodyProps, DataPickerRowProps, PickerItemProps, DataPickerFooterProps,
+    DataPickerRowProps, PickerItemProps, DataPickerFooterProps,
     LabeledInputProps, NumericInputProps, PickerTogglerProps, PickerTogglerTagProps,
     TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps, RatingProps, RichTextViewProps,
     DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps, TextInputProps, DataPickerCellProps,
@@ -59,20 +58,6 @@ import type {
 
 type Sizes<S extends string | number | symbol, T> = {
     [size in S]: T;
-};
-
-export const fileIcons = {
-    docIcon: DocIcon,
-    exelIcon: ExelIcon,
-    pdfIcon: PdfIcon,
-    imgIcon: ImgIcon,
-    videoIcon: VideoIcon,
-    tableIcon: TableIcon,
-    textIcon: TextIcon,
-    mailIcon: MailIcon,
-    fileIcon: FileIcon,
-    closeIcon: CrossIcon,
-    errorIcon: ErrorIcon,
 };
 
 interface AccordionIcons {
@@ -108,19 +93,19 @@ interface AlertSettings {
 }
 
 const alertSettings: AlertSettings = {
-    sizes: {
-        default: '48',
-        actionMap: {
-            36: '24',
-            48: '30',
-        },
-    },
     icons: {
         closeIcon: CrossIcon,
         infoIcon: FillInfoIcon,
         successIcon: SuccessIcon,
         warningIcon: WarningIcon,
         errorIcon: ErrorIcon,
+    },
+    sizes: {
+        default: '48',
+        actionMap: {
+            36: '24',
+            48: '30',
+        },
     },
 };
 
@@ -229,6 +214,9 @@ interface DataTableIcons {
         foldIcon: Icon;
         unfoldIcon: Icon;
     };
+    body: {
+        foldingIcon: Icon,
+    };
     columnsConfigurationModal: {
         dragIndicator: Icon;
         lockIcon: Icon;
@@ -245,37 +233,19 @@ interface DataTableSizes {
     columnsConfigurationModal: {
         columnRow: FlexRowProps['size'];
         countIndicator: CountIndicatorProps['size'];
-        subgroupIcon: string;
         menuButton: ButtonProps['size'];
         searchInput: SearchInputProps['size'];
-        width: number;
     };
     header: {
-        defaultRow: DataTableHeaderRowProps['size'];
-        defaultCell: DataTableHeaderCellProps<unknown, unknown>['size'];
-        defaultResizeMarker: string;
-        defaultCellPadding: string;
-        defaultCellPaddingEdge: string;
-        defaultGroupCell: string;
-        defaultGroupCellPadding: string;
-        defaultGroupCellPaddingEdge: string;
-        cellCheckboxMap: Sizes<DataTableHeaderCellProps<unknown, unknown>['size'], CheckboxProps['size']>;
-        cellIconMap: Sizes<DataTableHeaderCellProps<unknown, unknown>['size'], string>;
-        captionFontSize: TextProps['fontSize'];
-        captionFontWeight: string | number;
-        captionSize: TextProps['size'];
-        captionUppercase: TextProps['fontSize'];
-        groupCellCaptionFontSize: TextProps['fontSize'];
-        groupCellCaptionFontWeight: string | number;
-        groupCellCaptionSize: TextProps['size'];
-        groupCellCaptionUppercase: TextProps['fontSize'];
+        row: DataTableHeaderRowProps['size'];
+        iconMap: Sizes<DataTableHeaderCellProps<unknown, unknown>['size'], string>;
     };
     body: {
-        defaultRow: DataTableRowProps['size'];
-        defaultCell: string;
-        defaultCellPadding: string;
-        defaultCellPaddingEdge: string;
-        cellTextMap: Sizes<DataTableCellProps<unknown, unknown, unknown>['size'], TextProps['size']>;
+        row: DataTableRowProps['size'];
+        checkboxMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], CheckboxProps['size']>;
+        iconMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], number | string>;
+        indentUnitMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], number>;
+        indentWidthMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], number>;
     };
 }
 
@@ -298,6 +268,9 @@ const dataTableSettings: DataTableSettings = {
             foldIcon: FoldIcon,
             unfoldIcon: UnfoldIcon,
         },
+        body: {
+            foldingIcon: DropdownIcon,
+        },
         columnsConfigurationModal: {
             dragIndicator: DragIndicatorIcon,
             lockIcon: LockIcon,
@@ -311,54 +284,53 @@ const dataTableSettings: DataTableSettings = {
     },
     sizes: {
         header: {
-            defaultRow: '36',
-            defaultCell: '36',
-            defaultResizeMarker: '12',
-            defaultCellPadding: '12',
-            defaultCellPaddingEdge: '24',
-            defaultGroupCell: '36',
-            defaultGroupCellPadding: '12',
-            defaultGroupCellPaddingEdge: '24',
-            cellCheckboxMap: {
+            row: '36',
+            iconMap: {
                 36: '18',
                 48: '18',
                 60: '18',
             },
-            cellIconMap: {
-                36: '18',
-                48: '18',
-                60: '18',
-            },
-            captionFontSize: '14',
-            captionFontWeight: '400',
-            captionSize: '18',
-            captionUppercase: '12',
-            groupCellCaptionFontSize: '14',
-            groupCellCaptionFontWeight: '400',
-            groupCellCaptionSize: '18',
-            groupCellCaptionUppercase: '12',
         },
         body: {
-            defaultRow: '36',
-            defaultCell: '36',
-            defaultCellPadding: '12',
-            defaultCellPaddingEdge: '24',
-            cellTextMap: {
-                24: '24',
-                30: '30',
-                36: '36',
-                42: '42',
-                48: '48',
-                60: '48',
+            row: '36',
+            checkboxMap: {
+                24: '12',
+                30: '18',
+                36: '18',
+                42: '18',
+                48: '18',
+                60: '18',
+            },
+            iconMap: {
+                24: '12',
+                30: '18',
+                36: '18',
+                42: '24',
+                48: '24',
+                60: '24',
+            },
+            indentUnitMap: {
+                24: 6,
+                30: 12,
+                36: 12,
+                42: 24,
+                48: 24,
+                60: 24,
+            },
+            indentWidthMap: {
+                24: 12,
+                30: 18,
+                36: 18,
+                42: 24,
+                48: 24,
+                60: 24,
             },
         },
         columnsConfigurationModal: {
             columnRow: '30',
             countIndicator: '18',
-            subgroupIcon: '18',
             menuButton: '30',
             searchInput: '30',
-            width: 560,
         },
     },
 };
@@ -468,14 +440,6 @@ interface FiltersPanelIcons {
 
 interface FiltersPanelSizes {
     default: FiltersPanelProps<unknown>['size'];
-    pickerInput: {
-        body: {
-            searchInput: DataPickerBodyProps['searchSize'];
-            row: DataPickerRowProps<unknown, unknown>['size'];
-            rowItem: PickerItemProps<unknown, unknown>['size'];
-            footer: DataPickerFooterProps<unknown, unknown>['size'];
-        };
-    };
 }
 
 interface FiltersPanelSettings {
@@ -490,14 +454,6 @@ const filtersPanelSettings: FiltersPanelSettings = {
     },
     sizes: {
         default: '36',
-        pickerInput: {
-            body: {
-                searchInput: '36',
-                row: '36',
-                rowItem: '36',
-                footer: '36',
-            },
-        },
     },
 };
 
@@ -543,12 +499,12 @@ interface LinkButtonIcons {
 
 interface LinkButtonSizes {
     default: LinkButtonProps['size'];
-    defaultWeight: LinkButtonProps['weight'];
 }
 
 interface LinkButtonSettings {
     icons: LinkButtonIcons;
     sizes: LinkButtonSizes;
+    weight: LinkButtonProps['weight'];
 }
 
 const linkButtonSettings: LinkButtonSettings = {
@@ -557,8 +513,8 @@ const linkButtonSettings: LinkButtonSettings = {
     },
     sizes: {
         default: '36',
-        defaultWeight: 'semibold',
     },
+    weight: 'semibold',
 };
 
 interface ModalIcons {
@@ -566,13 +522,10 @@ interface ModalIcons {
 }
 
 interface ModalSizes {
-    defaultWidth: number;
-    defaultMaxHeight: CSSProperties['height'];
-    defaultMobileMaxHeight: CSSProperties['height'];
-    defaultHeaderPadding: FlexRowProps['padding'];
-    defaultFooterColumnGap: FlexRowProps['columnGap'];
-    defaultFooterPadding: FlexRowProps['padding'];
-    defaultFooterVPadding: FlexRowProps['vPadding'];
+    headerPadding: FlexRowProps['padding'];
+    footerColumnGap: FlexRowProps['columnGap'];
+    footerPadding: FlexRowProps['padding'];
+    footerVPadding: FlexRowProps['vPadding'];
 }
 
 interface ModalSettings {
@@ -585,13 +538,10 @@ const modalSettings: ModalSettings = {
         closeIcon: CrossIcon,
     },
     sizes: {
-        defaultWidth: 420,
-        defaultMaxHeight: '80dvh',
-        defaultMobileMaxHeight: '100dvh',
-        defaultHeaderPadding: '24',
-        defaultFooterColumnGap: '12',
-        defaultFooterPadding: '24',
-        defaultFooterVPadding: '24',
+        headerPadding: '24',
+        footerColumnGap: '12',
+        footerPadding: '24',
+        footerVPadding: '24',
     },
 };
 
@@ -671,50 +621,40 @@ const paginatorSettings: PaginatorSettings = {
     },
 };
 
+type SelectIconType = Icon | ((size: DataPickerCellProps<unknown, unknown>['size']) => Icon);
+
 interface PickerInputIcons {
     toggler: {
         clearIcon: Icon;
         dropdownIcon: Icon;
     },
     body: {
-        selectIcon: Icon;
-        boldSelectIcon: Icon;
+        selectIcon: SelectIconType;
         pickerBodyMobileHeaderCloseIcon: Icon;
         modalNotFoundSearchIcon: Icon;
     }
 }
 
-interface IsBoldSizes {
-    [size: string | number]: boolean;
-}
-
 interface PickerInputSizes {
     toggler: {
         default: PickerTogglerProps<unknown, unknown>['size'];
-        defaultTag: PickerTogglerTagProps<unknown, unknown>['size'];
+        tag: PickerTogglerTagProps<unknown, unknown>['size'];
         tagMap: Sizes<PickerTogglerTagProps<unknown, unknown>['size'], TagProps['size']>;
     };
     body: {
         maxHeight: number;
         minWidth: number;
         padding: DataPickerRowProps<unknown, unknown>['padding'];
-        defaultRow: DataPickerCellProps<unknown, unknown>['size'];
-        defaultItem: PickerItemProps<unknown, unknown>['size'];
-        defaultFooter: DataPickerFooterProps<unknown, unknown>['size'];
+        row: DataPickerCellProps<unknown, unknown>['size'];
         itemAvatarMap: Sizes<PickerItemProps<unknown, unknown>['size'], AvatarProps['size']>;
         itemAvatarMultilineMap: Sizes<PickerItemProps<unknown, unknown>['size'], AvatarProps['size']>;
         itemVerticalPaddingMap: Sizes<PickerItemProps<unknown, unknown>['size'], string>;
-        cellIsBoldSelectionIcon: IsBoldSizes;
-        cellTextMap: Sizes<DataPickerCellProps<unknown, unknown>['size'], TextProps['size']>;
-        cellIconMap: Sizes<DataPickerCellProps<unknown, unknown>['size'], string>;
-        cellPadding: DataPickerCellProps<unknown, unknown>['padding'];
+        selectIconMap: Sizes<DataPickerCellProps<unknown, unknown>['size'], string>;
         footerSwitchMap: Sizes<DataPickerFooterProps<unknown, unknown>['size'], SwitchProps['size']>;
         mobileHeaderTitleSize: TextProps['size'];
         mobileFooterLinkButton: LinkButtonProps['size'];
         mobileRow: DataPickerRowProps<unknown, unknown>['size'];
         mobileSearchInput: SearchInputProps['size'];
-        modalRow: DataPickerRowProps<unknown, unknown>['size'];
-        modalPadding: DataPickerRowProps<unknown, unknown>['padding'];
     };
 }
 
@@ -730,8 +670,7 @@ const pickerInputSettings: PickerInputSettings = {
             dropdownIcon: DropdownIcon,
         },
         body: {
-            selectIcon: CheckIcon,
-            boldSelectIcon: BoldSelectIcon,
+            selectIcon: (size: DataPickerCellProps<unknown, unknown>['size']) => size < '30' ? BoldSelectIcon : CheckIcon,
             pickerBodyMobileHeaderCloseIcon: CrossIcon,
             modalNotFoundSearchIcon: NotFoundSearchIcon,
         },
@@ -739,7 +678,7 @@ const pickerInputSettings: PickerInputSettings = {
     sizes: {
         toggler: {
             default: '36',
-            defaultTag: '36',
+            tag: '36',
             tagMap: {
                 24: '18',
                 30: '18',
@@ -752,8 +691,7 @@ const pickerInputSettings: PickerInputSettings = {
             maxHeight: 300,
             minWidth: 360,
             padding: '12',
-            defaultRow: '36',
-            defaultItem: '36',
+            row: '36',
             itemAvatarMap: {
                 24: '18',
                 30: '24',
@@ -775,25 +713,13 @@ const pickerInputSettings: PickerInputSettings = {
                 42: '6',
                 48: '9',
             },
-            cellIsBoldSelectionIcon: {
-                24: true,
-            },
-            cellTextMap: {
-                24: '24',
-                30: '30',
-                36: '36',
-                42: '42',
-                48: '48',
-            },
-            cellIconMap: {
+            selectIconMap: {
                 24: '12',
                 30: '18',
                 36: '18',
                 42: '24',
                 48: '24',
             },
-            cellPadding: '24',
-            defaultFooter: '36',
             footerSwitchMap: {
                 24: '12',
                 30: '18',
@@ -805,8 +731,6 @@ const pickerInputSettings: PickerInputSettings = {
             mobileFooterLinkButton: '48',
             mobileRow: '48',
             mobileSearchInput: '48',
-            modalRow: '36',
-            modalPadding: '24',
         },
     },
 };
@@ -894,68 +818,6 @@ interface RichTextViewSettings {
 const richTextViewSettings: RichTextViewSettings = {
     sizes: {
         default: '14',
-    },
-};
-
-interface RowAddonsIcons {
-    foldingIcon: Icon;
-}
-
-interface RowAddonsSizes {
-    defaultIcon: number | string;
-    defaultIndentUnit: number;
-    defaultIndentWidth: number;
-    checkboxMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], CheckboxProps['size']>;
-    iconMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], number | string>;
-    indentUnitMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], number>;
-    indentWidthMap: Sizes<DataRowAddonsProps<unknown, unknown>['size'], number>;
-}
-
-interface RowAddonsSettings {
-    icons: RowAddonsIcons;
-    sizes: RowAddonsSizes;
-}
-
-const rowAddonsSettings: RowAddonsSettings = {
-    icons: {
-        foldingIcon: DropdownIcon,
-    },
-    sizes: {
-        defaultIcon: '18',
-        defaultIndentUnit: 24,
-        defaultIndentWidth: 18,
-        checkboxMap: {
-            24: '12',
-            30: '18',
-            36: '18',
-            42: '18',
-            48: '18',
-            60: '18',
-        },
-        iconMap: {
-            24: '12',
-            30: '18',
-            36: '18',
-            42: '24',
-            48: '24',
-            60: '24',
-        },
-        indentUnitMap: {
-            24: 6,
-            30: 12,
-            36: 12,
-            42: 24,
-            48: 24,
-            60: 24,
-        },
-        indentWidthMap: {
-            24: 12,
-            30: 18,
-            36: 18,
-            42: 24,
-            48: 24,
-            60: 24,
-        },
     },
 };
 
@@ -1129,7 +991,6 @@ export const settings = {
     rangeDatePicker: rangeDatePickerSettings,
     rating: ratingSettings,
     richTextView: richTextViewSettings,
-    rowAddons: rowAddonsSettings,
     statusIndicator: statusIndicatorSettings,
     switch: switchSettings,
     tabButton: tabButtonSettings,

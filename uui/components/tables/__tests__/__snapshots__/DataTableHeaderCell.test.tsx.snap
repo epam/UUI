@@ -9,9 +9,9 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
   style={
     Object {
       "--uui-dt-header-cell-icon-size": "18px",
-      "--uui-dt-header-cell-padding-end": "12px",
-      "--uui-dt-header-cell-padding-start": "24px",
-      "--uui-dt-header-cell-resizing-marker-width": "12px",
+      "--uui-dt-header-cell-padding-end": "var(--uui-dt-header-cell-padding)",
+      "--uui-dt-header-cell-padding-start": "var(--uui-dt-header-cell-padding-edge)",
+      "--uui-dt-header-cell-resizing-marker-width": "var(--uui-resize-marker-width)",
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,
@@ -25,12 +25,7 @@ exports[`DataTableHeaderCell should be rendered correctly 1`] = `
     className="captionWrapper align-undefined uui-table-header-caption-wrapper"
   >
     <div
-      className="root uui-text uui-size-18 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline caption uui-table-header-caption container"
-      style={
-        Object {
-          "--uui-text-font-size": "14px",
-        }
-      }
+      className="caption uui-table-header-caption uui-typography-inline"
     >
       Test
     </div>

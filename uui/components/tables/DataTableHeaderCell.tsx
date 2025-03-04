@@ -51,12 +51,13 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
 
     getColumnCaption = () => {
         const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
-        const captionCx = [
+        const captionCx = cx([
             css.caption,
             this.props.textCase === 'upper' && css.upperCase,
             uuiDataTableHeaderCell.uuiTableHeaderCaption,
+            'uui-typography-inline',
             this.props.size >= '48' && css.truncate,
-        ];
+        ]);
 
         return (
             <div
@@ -69,14 +70,9 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     cx={ css.cellTooltip }
                     openDelay={ 600 }
                 >
-                    <Text
-                        key="text"
-                        fontSize={ settings.dataTable.sizes.header[this.props.textCase === 'upper' ? 'captionUppercase' : 'captionFontSize'] }
-                        size={ settings.dataTable.sizes.header.captionSize }
-                        cx={ captionCx }
-                    >
+                    <div key="text" className={ captionCx }>
                         { this.props.column.caption }
-                    </Text>
+                    </div>
                 </Tooltip>
                 { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
                     <IconButton
@@ -110,7 +106,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         if (this.props.selectAll && this.props.isFirstColumn) {
             return (
                 <Checkbox
-                    size={ settings.dataTable.sizes.header.cellCheckboxMap[this.props.size] }
+                    size={ settings.dataTable.sizes.body.checkboxMap[this.props.size] }
                     { ...this.props.selectAll }
                     cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
                 />
@@ -155,20 +151,20 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
     getLeftPadding = () => {
         const { columnsGap, isFirstColumn } = this.props;
 
-        if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
-        return isFirstColumn ? settings.dataTable.sizes.header.defaultCellPaddingEdge : settings.dataTable.sizes.header.defaultCellPadding;
+        if (columnsGap) return isFirstColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-header-cell-padding${isFirstColumn ? '-edge' : ''})`;
     };
 
     getRightPadding = () => {
         const { columnsGap, isLastColumn } = this.props;
 
-        if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
-        return isLastColumn ? settings.dataTable.sizes.header.defaultCellPaddingEdge : settings.dataTable.sizes.header.defaultCellPadding;
+        if (columnsGap) return isLastColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-header-cell-padding${isLastColumn ? '-edge' : ''})`;
     };
 
     getResizingMarkerWidth = () => {
         const { columnsGap } = this.props;
-        return columnsGap ? +columnsGap / 2 : settings.dataTable.sizes.header.defaultResizeMarker;
+        return columnsGap ? `${+columnsGap / 2}px` : 'var(--uui-resize-marker-width)';
     };
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
@@ -176,10 +172,10 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
         const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
 
         const computeStyles = {
-            '--uui-dt-header-cell-icon-size': `${settings.dataTable.sizes.header.cellIconMap[this.props.size || settings.dataTable.sizes.header.defaultCell]}px`,
-            '--uui-dt-header-cell-padding-start': `${this.getLeftPadding()}px`,
-            '--uui-dt-header-cell-padding-end': `${this.getRightPadding()}px`,
-            '--uui-dt-header-cell-resizing-marker-width': `${this.getResizingMarkerWidth()}px`,
+            '--uui-dt-header-cell-icon-size': `${settings.dataTable.sizes.header.iconMap[this.props.size || settings.dataTable.sizes.header.row]}px`,
+            '--uui-dt-header-cell-padding-start': this.getLeftPadding(),
+            '--uui-dt-header-cell-padding-end': this.getRightPadding(),
+            '--uui-dt-header-cell-resizing-marker-width': this.getResizingMarkerWidth(),
         } as React.CSSProperties;
 
         return (
@@ -193,7 +189,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.root,
-                    `uui-size-${this.props.size || settings.dataTable.sizes.header.defaultCell}`,
+                    `uui-size-${this.props.size || settings.dataTable.sizes.header.row}`,
                     this.props.isFirstColumn && 'uui-dt-header-first-column',
                     this.props.isLastColumn && 'uui-dt-header-last-column',
                     this.props.column.fix && css['pinned-' + this.props.column.fix],

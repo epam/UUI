@@ -5,11 +5,10 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
   className="root uui-datepicker-container"
 >
   <div
-    className="uui-flex-row root uui-size-36 daySelection container container align-items-top"
+    className="root uui-flex-row daySelection container uui-size-36 alignItems"
     style={
       Object {
-        "columnGap": undefined,
-        "rowGap": undefined,
+        "--uui-flex-row-align-items": "top",
       }
     }
   >
@@ -27,20 +26,14 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
       }
     >
       <div
-        className="uui-flex-row root uui-size-36 container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="root uui-flex-row uui-size-36"
+        style={Object {}}
       >
         <div
-          className="uui-flex-row root uui-size-36 bodesWrapper container align-items-top"
+          className="root uui-flex-row bodesWrapper uui-size-36 alignItems"
           style={
             Object {
-              "columnGap": undefined,
-              "rowGap": undefined,
+              "--uui-flex-row-align-items": "top",
             }
           }
         >
