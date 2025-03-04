@@ -166,7 +166,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
         const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
-        const bodyHeight = props.dropdownHeight || settings.pickerInput.sizes.body.maxHeight;
+        const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.pickerInput.sizes.body.maxHeight;
         const minBodyWidth = props.minBodyWidth || settings.pickerInput.sizes.body.minWidth;
 
         return (
