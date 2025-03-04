@@ -55,18 +55,18 @@ export class DndModule extends React.Component<DndModuleProps> {
                     return (
                         <div ref={ props.ref } { ...props.eventHandlers } className={ cx(css.dragElement, props.classNames) }>
                             <div className={ css.dndItem }>
-                                <FlexRow cx={ css.item } size="48" padding="12" columnGap="12">
+                                <FlexRow cx={ css.item } size="48" padding="18" columnGap="12">
                                     <DragHandle cx={ [css.dragHandle] } />
                                     <IconContainer
                                         icon={ item.isCompleted ? CompleteIcon : ScheduleIcon }
                                         cx={ cx(css.moduleIcon, item.isCompleted ? [css.completeIcon, css.iconGreen] : [css.scheduleIcon, css.iconGray50]) }
                                     />
                                     <FlexCell width="auto">
-                                        <Text size="18" fontSize="14" lineHeight="18">
+                                        <Text size="24" fontSize="14" lineHeight="18">
                                             {item.name}
                                         </Text>
                                         <Text
-                                            size="18"
+                                            size="24"
                                             fontSize="12"
                                             lineHeight="18"
                                             color="secondary"

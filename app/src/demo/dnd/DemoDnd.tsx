@@ -64,7 +64,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
                     <>
                         <Panel background="surface-main" shadow>
                             <FlexCell minWidth={ 282 }>
-                                <FlexRow padding="18" borderBottom>
+                                <FlexRow padding="24" borderBottom>
                                     <Text size="48" fontWeight="600">
                                         Modules
                                     </Text>

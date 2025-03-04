@@ -90,15 +90,18 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
                     </div>
                 )}
                 <FlexRow key="body" cx={ cx('uui-picker_input-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
-                    { this.props.rows.length > 0 ? (
-                        <VirtualList
-                            { ...this.lens.toProps() }
-                            rows={ this.props.rows }
-                            rawProps={ this.props.rawProps }
-                            rowsCount={ this.props.rowsCount }
-                            isLoading={ this.props.isReloading }
-                        />
-                    ) : this.renderEmpty()}
+                    { this.props.rows.length === 0 && this.props.value.topIndex === 0
+                        // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
+                        // we fix this state on next render and shouldn't show empty state.
+                        ? this.renderEmpty() : (
+                            <VirtualList
+                                { ...this.lens.toProps() }
+                                rows={ this.props.rows }
+                                rawProps={ this.props.rawProps }
+                                rowsCount={ this.props.rowsCount }
+                                isLoading={ this.props.isReloading }
+                            />
+                        )}
                 </FlexRow>
             </>
         );

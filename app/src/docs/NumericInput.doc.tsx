@@ -93,7 +93,7 @@ export class NumericInputDoc extends BaseDocsBlock {
                 {this.renderSectionTitle('Examples')}
                 <DocExample title="Basic" path="./_examples/numericInput/Basic.example.tsx" />
                 <DocExample title="Formatting options" path="./_examples/numericInput/Formatting.example.tsx" />
-                <DocExample title="Size" path="./_examples/numericInput/Size.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Size" path="./_examples/numericInput/Size.example.tsx" />
             </>
         );
     }

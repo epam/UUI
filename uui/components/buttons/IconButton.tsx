@@ -1,7 +1,8 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods, Overwrite, devLogger } from '@epam/uui-core';
-import css from './IconButton.module.scss';
 import { systemIcons } from '../../icons/icons';
+
+import css from './IconButton.module.scss';
 
 interface IconButtonMods {
     /**
@@ -9,15 +10,15 @@ interface IconButtonMods {
      * @default 'neutral'
      */
     color?: 'info' | 'success' | 'error' | 'primary' | 'accent' | 'critical' | 'warning' | 'secondary' | 'neutral' | 'white';
-}
 
-/** Represents the Core properties of the IconButton component. */
-export type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'> & {
     /**
      * Defines component size.
      */
     size?: '18' | '24' | '30' | '36';
-};
+}
+
+/** Represents the Core properties of the IconButton component. */
+export type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'>;
 
 export interface IconButtonModsOverride {}
 

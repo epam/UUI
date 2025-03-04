@@ -79,7 +79,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
         );
     }
 
-    private getConfig = () => {
+    getConfig = () => {
         return (this.constructor as unknown as { config: TDocConfig })?.config;
     };
 

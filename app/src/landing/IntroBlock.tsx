@@ -195,7 +195,7 @@ export function IntroBlock() {
                                                 color={ selectedItem.color as BadgeProps['color'] }
                                                 fill="outline"
                                                 caption={ selectedItem.caption }
-                                                size="30"
+                                                size="24"
                                                 indicator={ true }
                                             />
                                         ) }
@@ -205,30 +205,30 @@ export function IntroBlock() {
                                         <IconButton color="neutral" icon={ infoIcon } cx={ css.infoIcon } />
                                     </Tooltip>
                                     <FlexSpacer />
-                                    <Button fill="outline" caption="Watch more" size="30" onClick={ () => handleSuccess('Go to the docs to see more ;)') } />
+                                    <Button fill="outline" caption="Watch more" onClick={ () => handleSuccess('Go to the docs to see more ;)') } />
                                 </FlexRow>
                             </Panel>
                             <Panel background="surface-main" shadow={ true } cx={ css.componentsMiddleWrapper }>
                                 <FlexRow columnGap="12" cx={ css.middleRow }>
-                                    <LabeledInput label="Task Name" size="30">
-                                        <TextInput cx={ css.middleRowText } size="30" placeholder="Enter a text" value={ textValue } onValueChange={ setTextValue } />
+                                    <LabeledInput label="Task Name">
+                                        <TextInput cx={ css.middleRowText } placeholder="Enter a text" value={ textValue } onValueChange={ setTextValue } />
                                     </LabeledInput>
-                                    <LabeledInput label="Contributors" size="30">
-                                        <NumericInput cx={ css.middleRowNum } size="30" value={ numValue } onValueChange={ setNumValue } />
+                                    <LabeledInput label="Contributors">
+                                        <NumericInput cx={ css.middleRowNum } value={ numValue } onValueChange={ setNumValue } />
                                     </LabeledInput>
                                 </FlexRow>
                                 <Switch label="Interview required" value={ switchValue } onValueChange={ setSwitchValue } />
                                 <FlexRow cx={ css.bottomRow } columnGap="12">
-                                    <LabeledInput label="Interview Date" size="30">
-                                        <DatePicker inputCx={ css.bottomRowDate } size="30" value={ dateValue } onValueChange={ setDateValue } placeholder="Select Date" />
+                                    <LabeledInput label="Interview Date">
+                                        <DatePicker inputCx={ css.bottomRowDate } value={ dateValue } onValueChange={ setDateValue } placeholder="Select Date" />
                                     </LabeledInput>
-                                    <LabeledInput label="Interview Time" size="30">
-                                        <TimePicker inputCx={ css.bottomRowTime } size="30" value={ timeValue } onValueChange={ setTimeValue } />
+                                    <LabeledInput label="Interview Time">
+                                        <TimePicker inputCx={ css.bottomRowTime } value={ timeValue } onValueChange={ setTimeValue } />
                                     </LabeledInput>
                                 </FlexRow>
                             </Panel>
-                            <SuccessAlert size="36" onClose={ () => {} } actions={ [{ name: 'SEE DETAILS', action: () => handleSuccess('Go to the docs to see more ;)') }] }>
-                                <Text size="30">Invitation sent!</Text>
+                            <SuccessAlert onClose={ () => {} } actions={ [{ name: 'SEE DETAILS', action: () => handleSuccess('Go to the docs to see more ;)') }] }>
+                                <Text size="none">Invitation sent!</Text>
                             </SuccessAlert>
                         </div>
                     </div>

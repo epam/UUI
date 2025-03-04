@@ -16,7 +16,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -39,7 +39,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Status:
@@ -48,7 +48,7 @@ Array [
           className="textWrapper"
         >
           <div
-            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography selection container"
+            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline selection container"
             style={Object {}}
           >
             Unknown
@@ -79,7 +79,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -102,7 +102,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Position
@@ -132,7 +132,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -155,7 +155,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Age
@@ -185,7 +185,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -208,7 +208,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Hire Date
@@ -238,7 +238,7 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable size-36 container -clickable align-items-center"
+      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -261,7 +261,7 @@ Array [
         }
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography title container"
+          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
           style={Object {}}
         >
           Exit Date

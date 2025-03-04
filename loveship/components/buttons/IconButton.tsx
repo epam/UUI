@@ -4,7 +4,7 @@ import { EpamAdditionalColor, EpamPrimaryColor } from '../types';
 
 type IconButtonColor = EpamPrimaryColor | EpamAdditionalColor | 'white' | 'night500' | 'night600' | uui.IconButtonProps['color'];
 
-type IconButtonMods = {
+type IconButtonMods = Pick<uui.IconButtonProps, 'size'> & {
     /**
      * Defines component color.
      * @default 'night600'

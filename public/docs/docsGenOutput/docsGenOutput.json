@@ -1,5 +1,5 @@
 {
- "version": "5.11.0-rc.0",
+ "version": "5.12.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -4867,6 +4867,210 @@
     }
    }
   },
+  "@epam/uui-core:DataColumnGroupProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataColumnGroupProps",
+     "nameFull": "DataColumnGroupProps"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "comment": {
+     "raw": [
+      "Columns group configuration."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataColumnGroupProps",
+     "print": [
+      "/**",
+      " * Columns group configuration.",
+      " */",
+      "interface DataColumnGroupProps extends IHasCX, IClickable {",
+      "    /**",
+      "     * Unique key to identify the columns group. Used to reference columns group.",
+      "     */",
+      "    key: string;",
+      "    /** Columns group caption. Can be a plain text, or any React Component */",
+      "    caption?: React.ReactNode;",
+      "    /** Aligns columns group header content horizontally */",
+      "    textAlign?: 'left' | 'center' | 'right';",
+      "    /** Info tooltip displayed in the table header */",
+      "    info?: React.ReactNode;",
+      "    /** Overrides rendering of the whole columns group cell */",
+      "    renderCell?(column: DataColumnGroupProps): any;",
+      "    /** Render callback for columns group header tooltip.",
+      "     * This tooltip will appear on cell hover with 600ms delay.",
+      "     *",
+      "     * If omitted, default implementation with columnGroup.caption + columnGroup.info will be rendered.",
+      "     * Pass `() => null` to disable tooltip rendering.",
+      "     */",
+      "    renderTooltip?(column: DataColumnGroupProps): React.ReactNode;",
+      "    /**",
+      "     * Overrides rendering of the whole columns group header cell.",
+      "     */",
+      "    renderHeaderCell?(cellProps: DataTableHeaderGroupCellProps): any;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "key",
+      "name": "key",
+      "comment": {
+       "raw": [
+        "Unique key to identify the columns group. Used to reference columns group."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Columns group caption. Can be a plain text, or any React Component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     },
+     {
+      "uid": "textAlign",
+      "name": "textAlign",
+      "comment": {
+       "raw": [
+        "Aligns columns group header content horizontally"
+       ]
+      },
+      "typeValue": {
+       "raw": "'right' | 'left' | 'center'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "right",
+        "left",
+        "center"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "info",
+      "name": "info",
+      "comment": {
+       "raw": [
+        "Info tooltip displayed in the table header"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "required": false
+     },
+     {
+      "uid": "renderCell",
+      "name": "renderCell",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the whole columns group cell"
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnGroupProps) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderTooltip",
+      "name": "renderTooltip",
+      "comment": {
+       "raw": [
+        "Render callback for columns group header tooltip.",
+        " This tooltip will appear on cell hover with 600ms delay.",
+        "",
+        " If omitted, default implementation with columnGroup.caption + columnGroup.info will be rendered.",
+        " Pass `() => null` to disable tooltip rendering."
+       ]
+      },
+      "typeValue": {
+       "raw": "(column: DataColumnGroupProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderHeaderCell",
+      "name": "renderHeaderCell",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the whole columns group header cell."
+       ]
+      },
+      "typeValue": {
+       "raw": "(cellProps: DataTableHeaderGroupCellProps) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "onClick",
+      "name": "onClick",
+      "comment": {
+       "raw": [
+        "Called when component is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e?: any) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IClickable",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DataColumnProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -4888,6 +5092,10 @@
       "     * Also, used as React key for cells, header cells, and other components inside tables.",
       "     */",
       "    key: string;",
+      "    /**",
+      "     * A unique identifier for a group of columns that establishes a connection between the column and the group of columns.",
+      "     */",
+      "    group?: string;",
       "    /** Column caption. Can be a plain text, or any React Component */",
       "    caption?: React.ReactNode;",
       "    /**",
@@ -4981,6 +5189,22 @@
        "type": "string"
       },
       "required": true
+     },
+     {
+      "uid": "group",
+      "name": "group",
+      "comment": {
+       "raw": [
+        "A unique identifier for a group of columns that establishes a connection between the column and the group of columns."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
      },
      {
       "uid": "caption",
@@ -8483,6 +8707,229 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:DataTableHeaderGroupCellProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DataTableHeaderGroupCellProps",
+     "nameFull": "DataTableHeaderGroupCellProps"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "comment": {
+     "raw": [
+      "DataTable columns group header cell props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataTableHeaderGroupCellProps",
+     "print": [
+      "/**",
+      " * DataTable columns group header cell props.",
+      " */",
+      "interface DataTableHeaderGroupCellProps extends IHasCX, IEditable<DataTableState> {",
+      "    /**",
+      "     * A unique identifier for a group.",
+      "     */",
+      "    key: string;",
+      "    /**",
+      "     * Columns group configuration.",
+      "     */",
+      "    group: DataColumnGroupProps;",
+      "    /**",
+      "     * Defines if first column of the group is the first one in the table header.",
+      "     */",
+      "    isFirstCell: boolean;",
+      "    /**",
+      "     * Defines if last column of the group is the last one in the table header.",
+      "     */",
+      "    isLastCell: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "key",
+      "name": "key",
+      "comment": {
+       "raw": [
+        "A unique identifier for a group."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": true
+     },
+     {
+      "uid": "group",
+      "name": "group",
+      "comment": {
+       "raw": [
+        "Columns group configuration."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps"
+      },
+      "required": true
+     },
+     {
+      "uid": "isFirstCell",
+      "name": "isFirstCell",
+      "comment": {
+       "raw": [
+        "Defines if first column of the group is the first one in the table header."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLastCell",
+      "name": "isLastCell",
+      "comment": {
+       "raw": [
+        "Defines if last column of the group is the last one in the table header."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataTableState<any, any>"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: DataTableState<any, any>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DataTableHeaderRowProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -8500,6 +8947,10 @@
      "print": [
       "interface DataTableHeaderRowProps<TItem = any, TId = any> extends IEditable<DataTableState>, IHasCX, DataTableColumnsConfigOptions {",
       "    columns: DataColumnProps<TItem, TId>[];",
+      "    /**",
+      "     * Columns group configuration.",
+      "     */",
+      "    columnGroups?: DataColumnGroupProps[];",
       "    selectAll?: ICheckable;",
       "    /**",
       "     * Enables collapse/expand all functionality.",
@@ -8507,6 +8958,10 @@
       "    showFoldAll?: boolean;",
       "    onConfigButtonClick?: (params: DataTableConfigModalParams) => any;",
       "    renderCell?: (props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode;",
+      "    /**",
+      "     * Columns group cell render function.",
+      "     */",
+      "    renderGroupCell?: (props: DataTableHeaderGroupCellProps) => React.ReactNode;",
       "    renderConfigButton?: () => React.ReactNode;",
       "}"
      ]
@@ -8519,6 +8974,19 @@
        "raw": "DataColumnProps<TItem, TId, any>[]"
       },
       "required": true
+     },
+     {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Columns group configuration."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]"
+      },
+      "required": false
      },
      {
       "uid": "selectAll",
@@ -8560,6 +9028,22 @@
       "name": "renderCell",
       "typeValue": {
        "raw": "(props: DataTableHeaderCellProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderGroupCell",
+      "name": "renderGroupCell",
+      "comment": {
+       "raw": [
+        "Columns group cell render function."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataTableHeaderGroupCellProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -10655,7 +11139,7 @@
       "    renderTarget: (props: IDropdownTogglerProps) => React.ReactNode;",
       "    /** Render callback for the dropdown body */",
       "    renderBody: (props: DropdownBodyProps) => React.ReactNode;",
-      "    /** Called when dropdown was closed */",
+      "    /** Call to close the dropdown body */",
       "    onClose?: () => void;",
       "    /** Disable dropdown opening */",
       "    isNotUnfoldable?: boolean;",
@@ -10756,7 +11240,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {
@@ -11288,6 +11772,8 @@
       "    imageUrl?: string;",
       "    /** Url of error image to display on error page in case of mobile layout (app width < 720px) */",
       "    mobileImageUrl?: string;",
+      "    /** Additional message with link to the support portal */",
+      "    supportLink?: React.ReactNode;",
       "}"
      ]
     },
@@ -11366,6 +11852,20 @@
       "editor": {
        "type": "string"
       },
+      "required": false
+     },
+     {
+      "uid": "supportLink",
+      "name": "supportLink",
+      "comment": {
+       "raw": [
+        "Additional message with link to the support portal"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      }
     ],
@@ -15850,7 +16350,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -16020,6 +16520,43 @@
        "type": "component"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Adds custom footer to the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerInputFooterProps<any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -24517,9 +25054,9 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any>",
      "print": [
-      "type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly;"
+      "type PickerBaseProps<TItem, TId> = PickerBaseOptions<TItem, TId> & PickerBindingProps<TItem, TId> & IAnalyticableOnChange<any>;"
      ]
     },
     "props": [
@@ -24957,23 +25494,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
       "required": false
      },
      {
@@ -25605,7 +26125,7 @@
     "typeValue": {
      "raw": "PickerFilterConfig<TFilter>",
      "print": [
-      "type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerBaseOptions<any, any>, 'dataSource' | 'getName' | 'renderRow'> & {",
+      "type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & {",
       "    /** Type of the filter */",
       "    type: 'singlePicker' | 'multiPicker';",
       "    /**",
@@ -25784,6 +26304,43 @@
        "type": "component"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Adds custom footer to the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerInputFooterProps<any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -26023,6 +26580,1131 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:PickerInputBaseProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "PickerInputBaseProps",
+     "nameFull": "PickerInputBaseProps<TItem, TId>"
+    },
+    "src": "uui-core/src/types/pickers.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
+     "print": [
+      "type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {",
+      "    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */",
+      "    editMode?: PickerInputEditMode;",
+      "    /** Maximum number of tags to display in input, before collapsing to \"N items selected\" mode */",
+      "    maxItems?: number;",
+      "    /** Minimum width of dropdown body */",
+      "    minBodyWidth?: number;",
+      "    /** Prevents selected items tags to occupy multiple lines  */",
+      "    isSingleLine?: boolean;",
+      "    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */",
+      "    dropdownPlacement?: Placement;",
+      "    /**",
+      "     *  Defines where search field is:",
+      "     * 'input' - try to place search inside the toggler (default for single-select),",
+      "     * 'body' - put search inside the dropdown (default for multi-select)",
+      "     * 'none' - disables search completely",
+      "     *",
+      "     * Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'",
+      "     */",
+      "    searchPosition?: PickerInputSearchPosition;",
+      "    /** Disallow to clear Picker value (cross icon) */",
+      "    disableClear?: boolean;",
+      "    /**",
+      "     * Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+      "     * By default search triggers after input value is changed.",
+      "     *",
+      "     * Note: defined minCharsToSearch isn't compatible with searchPosition=body.",
+      "     */",
+      "    minCharsToSearch?: number;",
+      "    /** Overrides default height of the dropdown body */",
+      "    dropdownHeight?: number;",
+      "    /** Sets focus to component when it's mounted */",
+      "    autoFocus?: boolean;",
+      "    /** HTML attributes to put directly to the PickerInput parts */",
+      "    rawProps?: {",
+      "        /** HTML attributes to put directly to the input element */",
+      "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /** HTML attributes to put directly to the body root element */",
+      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "    };",
+      "    /** Adds custom footer to the dropdown body */",
+      "    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;",
+      "    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */",
+      "    fixedBodyPosition?: boolean;",
+      "    /**",
+      "     * Node of portal target, where to render the dropdown body.",
+      "     * By default, will be used global portal node.",
+      "     */",
+      "    portalTarget?: HTMLElement;",
+      "    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */",
+      "    inputCx?: CX;",
+      "    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */",
+      "    bodyCx?: CX;",
+      "    /**",
+      "     * Enables highlighting of the items' text with search-matching results.",
+      "     * */",
+      "    highlightSearchMatches?: boolean;",
+      "    /** Search input debounce delay in ms. Default value is 500ms */",
+      "    searchDebounceDelay?: number;",
+      "    /** HTML ID attribute for the input in toggler */",
+      "    id?: string;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "entityName",
+      "name": "entityName",
+      "comment": {
+       "raw": [
+        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "entityPluralName",
+      "name": "entityPluralName",
+      "comment": {
+       "raw": [
+        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "dataSource",
+      "name": "dataSource",
+      "comment": {
+       "raw": [
+        "Datasource to get data for the picker"
+       ]
+      },
+      "typeValue": {
+       "raw": "IDataSource<TItem, TId, any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": true
+     },
+     {
+      "uid": "getName",
+      "name": "getName",
+      "comment": {
+       "raw": [
+        "A pure function that gets entity name from entity object.",
+        "     Default: (item) => item.name."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderRow",
+      "name": "renderRow",
+      "comment": {
+       "raw": [
+        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "getRowOptions",
+      "name": "getRowOptions",
+      "comment": {
+       "raw": [
+        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderNotFound",
+      "name": "renderNotFound",
+      "comment": {
+       "raw": [
+        "@deprecated in favor of `renderEmpty` method.",
+        " Overrides the default 'no records found' banner.",
+        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
+       ],
+       "tags": {
+        "@deprecated": "in favor of"
+       }
+      },
+      "typeValue": {
+       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "renderEmpty",
+      "name": "renderEmpty",
+      "comment": {
+       "raw": [
+        "Overrides the rendering of PickerBody content when it is empty.",
+        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
+        " Consider this all cases where a custom callback is provided.",
+        " If not provided, default implementation is used."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "emptyValue",
+      "name": "emptyValue",
+      "comment": {
+       "raw": [
+        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | []"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "sortBy",
+      "name": "sortBy",
+      "comment": {
+       "raw": [
+        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, sorting: SortingOption<any>) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "sorting",
+      "name": "sorting",
+      "comment": {
+       "raw": [
+        "Defines sorting to pass to the DataSource"
+       ]
+      },
+      "typeValue": {
+       "raw": "SortingOption<any>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "cascadeSelection",
+      "name": "cascadeSelection",
+      "comment": {
+       "raw": [
+        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
+        " - false: All nodes are selected independently (default).",
+        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
+        " - 'implicit': Selecting a parent node means that all children are considered checked.",
+        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
+        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
+        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
+        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean | 'implicit' | 'explicit'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        false,
+        true,
+        "implicit",
+        "explicit"
+       ]
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "isFoldedByDefault",
+      "name": "isFoldedByDefault",
+      "comment": {
+       "raw": [
+        "You can return true for all, or some items to fold them."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "getSearchFields",
+      "name": "getSearchFields",
+      "comment": {
+       "raw": [
+        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string[]"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "ref",
+      "name": "ref",
+      "comment": {
+       "raw": [
+        "Component ref"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "selectionMode",
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'single'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "single"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": "valueType",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TId) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: any, oldValue: any) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "placeholder",
+      "name": "placeholder",
+      "comment": {
+       "raw": [
+        "Placeholder to display when empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": "icon",
+      "name": "icon",
+      "comment": {
+       "raw": [
+        "Icon can be a React element (usually an SVG element)"
+       ]
+      },
+      "typeValue": {
+       "raw": "Icon"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "iconPosition",
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Position of the icon (left of right)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'right' | 'left'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "right",
+        "left"
+       ]
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "onIconClick",
+      "name": "onIconClick",
+      "comment": {
+       "raw": [
+        "Click handler for the icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IHasIcon",
+      "required": false
+     },
+     {
+      "uid": "editMode",
+      "name": "editMode",
+      "comment": {
+       "raw": [
+        "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
+       ]
+      },
+      "typeValue": {
+       "raw": "'dropdown' | 'modal'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "dropdown",
+        "modal"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "maxItems",
+      "name": "maxItems",
+      "comment": {
+       "raw": [
+        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "minBodyWidth",
+      "name": "minBodyWidth",
+      "comment": {
+       "raw": [
+        "Minimum width of dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "isSingleLine",
+      "name": "isSingleLine",
+      "comment": {
+       "raw": [
+        "Prevents selected items tags to occupy multiple lines"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "dropdownPlacement",
+      "name": "dropdownPlacement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'auto' | 'auto-start' | 'auto-end' | 'top' | 'bottom' | 'right' | 'left' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto",
+        "auto-start",
+        "auto-end",
+        "top",
+        "bottom",
+        "right",
+        "left",
+        "top-start",
+        "top-end",
+        "bottom-start",
+        "bottom-end",
+        "right-start",
+        "right-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "searchPosition",
+      "name": "searchPosition",
+      "comment": {
+       "raw": [
+        "Defines where search field is:",
+        " 'input' - try to place search inside the toggler (default for single-select),",
+        " 'body' - put search inside the dropdown (default for multi-select)",
+        " 'none' - disables search completely",
+        "",
+        " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
+       ]
+      },
+      "typeValue": {
+       "raw": "'input' | 'body' | 'none'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "input",
+        "body",
+        "none"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value (cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "dropdownHeight",
+      "name": "dropdownHeight",
+      "comment": {
+       "raw": [
+        "Overrides default height of the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "autoFocus",
+      "name": "autoFocus",
+      "comment": {
+       "raw": [
+        "Sets focus to component when it's mounted"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "HTML attributes to put directly to the PickerInput parts"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Adds custom footer to the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "fixedBodyPosition",
+      "name": "fixedBodyPosition",
+      "comment": {
+       "raw": [
+        "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "portalTarget",
+      "name": "portalTarget",
+      "comment": {
+       "raw": [
+        "Node of portal target, where to render the dropdown body.",
+        " By default, will be used global portal node."
+       ]
+      },
+      "typeValue": {
+       "raw": "HTMLElement"
+      },
+      "required": false
+     },
+     {
+      "uid": "inputCx",
+      "name": "inputCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "required": false
+     },
+     {
+      "uid": "bodyCx",
+      "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "required": false
+     },
+     {
+      "uid": "highlightSearchMatches",
+      "name": "highlightSearchMatches",
+      "comment": {
+       "raw": [
+        "Enables highlighting of the items' text with search-matching results."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "searchDebounceDelay",
+      "name": "searchDebounceDelay",
+      "comment": {
+       "raw": [
+        "Search input debounce delay in ms. Default value is 500ms"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID attribute for the input in toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "valueType_2",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "entity"
+       ]
+      },
+      "from": "@epam/uui-core:SinglePickerProps",
+      "required": true
+     },
+     {
+      "uid": "value_2",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange_2",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TItem) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "selectionMode_3",
+      "name": "selectionMode",
+      "comment": {
+       "raw": [
+        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
+       ]
+      },
+      "typeValue": {
+       "raw": "'multi'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "multi"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": "valueType_3",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'id'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "id"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": false
+     },
+     {
+      "uid": "value_3",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TId[]"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange_3",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TId[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "valueType_4",
+      "name": "valueType",
+      "comment": {
+       "raw": [
+        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'entity'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "entity"
+       ]
+      },
+      "from": "@epam/uui-core:ArrayPickerProps",
+      "required": true
+     },
+     {
+      "uid": "value_4",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "TItem[]"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange_4",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: TItem[]) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     }
+    ],
+    "propsFromUnion": true
    }
   },
   "@epam/uui-core:PickerInputEditMode": {
@@ -31186,7 +32868,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "'body' | 'input' | 'none'",
+     "raw": "'input' | 'body' | 'none'",
      "print": [
       "/**",
       " * Options for positioning the search input within PickerInput.",
@@ -31194,58 +32876,6 @@
       "type PickerInputSearchPosition = 'input' | 'body' | 'none';"
      ]
     }
-   }
-  },
-  "@epam/uui-core:PickerShowSelectedOnly": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "PickerShowSelectedOnly",
-     "nameFull": "PickerShowSelectedOnly"
-    },
-    "src": "uui-core/src/types/pickers.ts",
-    "comment": {
-     "raw": [
-      "Show selected rows only in Picker."
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "PickerShowSelectedOnly",
-     "print": [
-      "/**",
-      " * Show selected rows only in Picker.",
-      " */",
-      "interface PickerShowSelectedOnly {",
-      "    /**",
-      "     * Enables/disables selected rows only in Picker.",
-      "     */",
-      "    showSelectedOnly?: boolean;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
    }
   },
   "@epam/uui-core:Position": {
@@ -32733,6 +34363,43 @@
       "required": false
      },
      {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Adds custom footer to the dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerInputFooterProps<any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:PickerInputBaseProps",
+      "required": false
+     },
+     {
+      "uid": "minCharsToSearch",
+      "name": "minCharsToSearch",
+      "comment": {
+       "raw": [
+        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
+        " By default search triggers after input value is changed.",
+        "",
+        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:PickerInputBaseProps",
+      "required": false
+     },
+     {
       "uid": "type",
       "name": "type",
       "comment": {
@@ -33134,15 +34801,15 @@
        ]
       },
       "typeValue": {
-       "raw": "'search' | 'numeric' | 'text' | 'none' | 'tel' | 'url' | 'email' | 'decimal'"
+       "raw": "'search' | 'none' | 'numeric' | 'text' | 'tel' | 'url' | 'email' | 'decimal'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "search",
+        "none",
         "numeric",
         "text",
-        "none",
         "tel",
         "url",
         "email",
@@ -33663,7 +35330,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {
@@ -40832,6 +42499,23 @@
       "required": true
      },
      {
+      "uid": "group",
+      "name": "group",
+      "comment": {
+       "raw": [
+        "A unique identifier for a group of columns that establishes a connection between the column and the group of columns."
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:DataColumnProps",
+      "required": false
+     },
+     {
       "uid": "caption",
       "name": "caption",
       "comment": {
@@ -41561,7 +43245,7 @@
       "    /**",
       "     * DataTable column configuration.",
       "     */",
-      "    column: DataColumnProps;",
+      "    column: DataColumnProps | DataColumnGroupProps;",
       "    /**",
       "     * CSS text-align property.",
       "     */",
@@ -41591,7 +43275,7 @@
        ]
       },
       "typeValue": {
-       "raw": "DataColumnProps<any, any, any>"
+       "raw": "DataColumnProps<any, any, any> | DataColumnGroupProps"
       },
       "required": true
      },
@@ -50316,7 +52000,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -50375,7 +52059,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -50392,1171 +52076,11 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      }
     ],
     "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:PickerInputBaseProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "PickerInputBaseProps",
-     "nameFull": "PickerInputBaseProps<TItem, TId>"
-    },
-    "src": "uui-components/src/pickers/hooks/types.ts",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; }",
-     "print": [
-      "type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {",
-      "    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */",
-      "    editMode?: PickerInputEditMode;",
-      "    /** Maximum number of tags to display in input, before collapsing to \"N items selected\" mode */",
-      "    maxItems?: number;",
-      "    /** Minimum width of dropdown body */",
-      "    minBodyWidth?: number;",
-      "    /** Prevents selected items tags to occupy multiple lines  */",
-      "    isSingleLine?: boolean;",
-      "    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */",
-      "    dropdownPlacement?: Placement;",
-      "    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */",
-      "    renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;",
-      "    /**",
-      "      *  Defines where search field is:",
-      "      * 'input' - try to place search inside the toggler (default for single-select),",
-      "      * 'body' - put search inside the dropdown (default for multi-select)",
-      "      * 'none' - disables search completely",
-      "      *",
-      "      * Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'",
-      "      */",
-      "    searchPosition?: PickerInputSearchPosition;",
-      "    /** Disallow to clear Picker value (cross icon) */",
-      "    disableClear?: boolean;",
-      "    /**",
-      "     * Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
-      "     * By default search triggers after input value is changed.",
-      "     *",
-      "     * Note: defined minCharsToSearch isn't compatible with searchPosition=body.",
-      "     */",
-      "    minCharsToSearch?: number;",
-      "    /** Overrides default height of the dropdown body */",
-      "    dropdownHeight?: number;",
-      "    /** Sets focus to component when it's mounted */",
-      "    autoFocus?: boolean;",
-      "    /** HTML attributes to put directly to the PickerInput parts */",
-      "    rawProps?: {",
-      "        /** HTML attributes to put directly to the input element */",
-      "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /** HTML attributes to put directly to the body root element */",
-      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "    };",
-      "    /** Adds custom footer to the dropdown body */",
-      "    renderFooter?: (props: PickerInputFooterProps<TItem, TId>) => React.ReactNode;",
-      "    /** Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter. */",
-      "    fixedBodyPosition?: boolean;",
-      "    /**",
-      "     * Node of portal target, where to render the dropdown body.",
-      "     * By default, will be used global portal node.",
-      "     */",
-      "    portalTarget?: HTMLElement;",
-      "    /** CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details */",
-      "    inputCx?: CX;",
-      "    /** CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details */",
-      "    bodyCx?: CX;",
-      "    /**",
-      "     * Enables highlighting of the items' text with search-matching results.",
-      "     * */",
-      "    highlightSearchMatches?: boolean;",
-      "    /** Search input debounce delay in ms. Default value is 500ms */",
-      "    searchDebounceDelay?: number;",
-      "    /** HTML ID attribute for the input in toggler */",
-      "    id?: string;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "entityName",
-      "name": "entityName",
-      "comment": {
-       "raw": [
-        "Name of the entity being selected. Affects wording like \"Please select [entity]\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "entityPluralName",
-      "name": "entityPluralName",
-      "comment": {
-       "raw": [
-        "Plural name of the entity being selected. Affects wording like \"X [entities] selected\""
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "dataSource",
-      "name": "dataSource",
-      "comment": {
-       "raw": [
-        "Datasource to get data for the picker"
-       ]
-      },
-      "typeValue": {
-       "raw": "IDataSource<TItem, TId, any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": true
-     },
-     {
-      "uid": "getName",
-      "name": "getName",
-      "comment": {
-       "raw": [
-        "A pure function that gets entity name from entity object.",
-        "     Default: (item) => item.name."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "renderRow",
-      "name": "renderRow",
-      "comment": {
-       "raw": [
-        "Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState<Record<string, any>, any>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "getRowOptions",
-      "name": "getRowOptions",
-      "comment": {
-       "raw": [
-        "Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, index: number) => DataRowOptions<TItem, TId>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "renderNotFound",
-      "name": "renderNotFound",
-      "comment": {
-       "raw": [
-        "@deprecated in favor of `renderEmpty` method.",
-        " Overrides the default 'no records found' banner.",
-        " The 'search' callback parameter allows to distinguish cases when there's no records at all, and when current search doesn't find anything."
-       ],
-       "tags": {
-        "@deprecated": "in favor of"
-       }
-      },
-      "typeValue": {
-       "raw": "(props: { search: string; onClose: () => void; }) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "renderEmpty",
-      "name": "renderEmpty",
-      "comment": {
-       "raw": [
-        "Overrides the rendering of PickerBody content when it is empty.",
-        " It's used for different empty reasons, like: no record find, no record at all, there is not enough search length to start loading(minCharsToSearch prop provided).",
-        " Consider this all cases where a custom callback is provided.",
-        " If not provided, default implementation is used."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerEmptyBodyProps) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "emptyValue",
-      "name": "emptyValue",
-      "comment": {
-       "raw": [
-        "Defines which value is to set on clear. E.g. you can put an empty array instead of null for empty multi-select Pickers"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | []"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "sortBy",
-      "name": "sortBy",
-      "comment": {
-       "raw": [
-        "Defines how items should be sorted. By default, items are shown in order they are provided to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem, sorting: SortingOption<any>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "filter",
-      "name": "filter",
-      "comment": {
-       "raw": [
-        "Additional filter to apply to the DataSource. Can be used to limit selection somehow, w/o re-building the DataSource. E.g. in the linked pickers scenario."
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "sorting",
-      "name": "sorting",
-      "comment": {
-       "raw": [
-        "Defines sorting to pass to the DataSource"
-       ]
-      },
-      "typeValue": {
-       "raw": "SortingOption<any>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "cascadeSelection",
-      "name": "cascadeSelection",
-      "comment": {
-       "raw": [
-        "Controls how the selection (checking items) of a parent node affects the selection of its all children, and vice versa.",
-        " - false: All nodes are selected independently (default).",
-        " - true or 'explicit': Selecting a parent node explicitly selects all its children. Unchecking the last parent's child unchecks its parent.",
-        " - 'implicit': Selecting a parent node means that all children are considered checked.",
-        "   The user sees all these nodes as checked on the UI, but only the selected parent is visible in the PickerInput tags, and only the checked",
-        "   parent is present in the Picker's value or DataSourceState.checked array. When the user unchecks the first child of such a parent,",
-        "   its parents become unchecked and all children but the unchecked one become checked, making children's selection explicit. If the last",
-        "   unchecked child gets checked, all children from the checked are removed, returning to the implicit state when only the parent is checked."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean | 'implicit' | 'explicit'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        false,
-        true,
-        "implicit",
-        "explicit"
-       ]
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "isFoldedByDefault",
-      "name": "isFoldedByDefault",
-      "comment": {
-       "raw": [
-        "You can return true for all, or some items to fold them."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => boolean"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "getSearchFields",
-      "name": "getSearchFields",
-      "comment": {
-       "raw": [
-        "Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field."
-       ]
-      },
-      "typeValue": {
-       "raw": "(item: TItem) => string[]"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "ref",
-      "name": "ref",
-      "comment": {
-       "raw": [
-        "Component ref"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: PickerInputElement | null) => void | React.RefObject<PickerInputElement>"
-      },
-      "from": "@epam/uui-core:PickerBaseOptions",
-      "required": false
-     },
-     {
-      "uid": "selectionMode",
-      "name": "selectionMode",
-      "comment": {
-       "raw": [
-        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
-       ]
-      },
-      "typeValue": {
-       "raw": "'single'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "single"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": true
-     },
-     {
-      "uid": "valueType",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": false
-     },
-     {
-      "uid": "isInvalid",
-      "name": "isInvalid",
-      "comment": {
-       "raw": [
-        "True if component contains invalid input"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeInvalid",
-      "required": false
-     },
-     {
-      "uid": "isDisabled",
-      "name": "isDisabled",
-      "comment": {
-       "raw": [
-        "Disable editing, and visually de-emphasize value of the component"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDisableable",
-      "required": false
-     },
-     {
-      "uid": "isReadonly",
-      "name": "isReadonly",
-      "comment": {
-       "raw": [
-        "Disable editing. Unlike isDisabled, keep component's value readable."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeReadonly",
-      "required": false
-     },
-     {
-      "uid": "isRequired",
-      "name": "isRequired",
-      "comment": {
-       "raw": [
-        "Marks that component's value is required and shouldn't be empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanBeRequired",
-      "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TId) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "getValueChangeAnalyticsEvent",
-      "name": "getValueChangeAnalyticsEvent",
-      "comment": {
-       "raw": [
-        "Given a value, returns an analytics event to send when component is edited.",
-        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: any, oldValue: any) => AnalyticsEvent"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
-      "required": false
-     },
-     {
-      "uid": "onFocus",
-      "name": "onFocus",
-      "comment": {
-       "raw": [
-        "Called when component gets input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "onBlur",
-      "name": "onBlur",
-      "comment": {
-       "raw": [
-        "Called when component looses input focus"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.FocusEvent<HTMLElement, Element>) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:ICanFocus",
-      "required": false
-     },
-     {
-      "uid": "placeholder",
-      "name": "placeholder",
-      "comment": {
-       "raw": [
-        "Placeholder to display when empty"
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-core:IHasPlaceholder",
-      "required": false
-     },
-     {
-      "uid": "icon",
-      "name": "icon",
-      "comment": {
-       "raw": [
-        "Icon can be a React element (usually an SVG element)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "iconPosition",
-      "name": "iconPosition",
-      "comment": {
-       "raw": [
-        "Position of the icon (left of right)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'right' | 'left'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "right",
-        "left"
-       ]
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "onIconClick",
-      "name": "onIconClick",
-      "comment": {
-       "raw": [
-        "Click handler for the icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "() => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IHasIcon",
-      "required": false
-     },
-     {
-      "uid": "editMode",
-      "name": "editMode",
-      "comment": {
-       "raw": [
-        "dropdown (default) - show selection in dropdown; modal - opens modal window to select items"
-       ]
-      },
-      "typeValue": {
-       "raw": "'dropdown' | 'modal'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "dropdown",
-        "modal"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "maxItems",
-      "name": "maxItems",
-      "comment": {
-       "raw": [
-        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "minBodyWidth",
-      "name": "minBodyWidth",
-      "comment": {
-       "raw": [
-        "Minimum width of dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "isSingleLine",
-      "name": "isSingleLine",
-      "comment": {
-       "raw": [
-        "Prevents selected items tags to occupy multiple lines"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "dropdownPlacement",
-      "name": "dropdownPlacement",
-      "comment": {
-       "raw": [
-        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'right' | 'left' | 'top' | 'bottom' | 'auto' | 'auto-start' | 'auto-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'right-start' | 'right-end' | 'left-start' | 'left-end'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "right",
-        "left",
-        "top",
-        "bottom",
-        "auto",
-        "auto-start",
-        "auto-end",
-        "top-start",
-        "top-end",
-        "bottom-start",
-        "bottom-end",
-        "right-start",
-        "right-end",
-        "left-start",
-        "left-end"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "renderToggler",
-      "name": "renderToggler",
-      "comment": {
-       "raw": [
-        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "searchPosition",
-      "name": "searchPosition",
-      "comment": {
-       "raw": [
-        "Defines where search field is:",
-        " 'input' - try to place search inside the toggler (default for single-select),",
-        " 'body' - put search inside the dropdown (default for multi-select)",
-        " 'none' - disables search completely",
-        "",
-        " Note: 'searchPosition' cannot be 'input' if 'editMode' is 'modal'"
-       ]
-      },
-      "typeValue": {
-       "raw": "'body' | 'input' | 'none'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "body",
-        "input",
-        "none"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disallow to clear Picker value (cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "minCharsToSearch",
-      "name": "minCharsToSearch",
-      "comment": {
-       "raw": [
-        "Minimum characters to type, before search will trigger. If input characters number is less then 'minCharsToSearch', it will disable opening dropdown body.",
-        " By default search triggers after input value is changed.",
-        "",
-        " Note: defined minCharsToSearch isn't compatible with searchPosition=body."
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "dropdownHeight",
-      "name": "dropdownHeight",
-      "comment": {
-       "raw": [
-        "Overrides default height of the dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "autoFocus",
-      "name": "autoFocus",
-      "comment": {
-       "raw": [
-        "Sets focus to component when it's mounted"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "HTML attributes to put directly to the PickerInput parts"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderFooter",
-      "name": "renderFooter",
-      "comment": {
-       "raw": [
-        "Adds custom footer to the dropdown body"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerInputFooterProps<TItem, TId>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "fixedBodyPosition",
-      "name": "fixedBodyPosition",
-      "comment": {
-       "raw": [
-        "Disables moving the dropdown body, when togglers is moved. Used in filters panel, to prevent filter selection to 'jump' after adding a filter."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "portalTarget",
-      "name": "portalTarget",
-      "comment": {
-       "raw": [
-        "Node of portal target, where to render the dropdown body.",
-        " By default, will be used global portal node."
-       ]
-      },
-      "typeValue": {
-       "raw": "HTMLElement"
-      },
-      "required": false
-     },
-     {
-      "uid": "inputCx",
-      "name": "inputCx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on input-part component. See https://github.com/JedWatson/classnames#usage for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
-      "uid": "bodyCx",
-      "name": "bodyCx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on body-part component. See https://github.com/JedWatson/classnames#usage for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "required": false
-     },
-     {
-      "uid": "highlightSearchMatches",
-      "name": "highlightSearchMatches",
-      "comment": {
-       "raw": [
-        "Enables highlighting of the items' text with search-matching results."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "searchDebounceDelay",
-      "name": "searchDebounceDelay",
-      "comment": {
-       "raw": [
-        "Search input debounce delay in ms. Default value is 500ms"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
-      },
-      "required": false
-     },
-     {
-      "uid": "id",
-      "name": "id",
-      "comment": {
-       "raw": [
-        "HTML ID attribute for the input in toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "valueType_2",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'entity'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "entity"
-       ]
-      },
-      "from": "@epam/uui-core:SinglePickerProps",
-      "required": true
-     },
-     {
-      "uid": "value_2",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TItem"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "onValueChange_2",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TItem) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "selectionMode_3",
-      "name": "selectionMode",
-      "comment": {
-       "raw": [
-        "If 'single' provided - only one item is selected. In case of 'multi' - multiple items are selected"
-       ]
-      },
-      "typeValue": {
-       "raw": "'multi'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "multi"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": true
-     },
-     {
-      "uid": "valueType_3",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'id'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "id"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": false
-     },
-     {
-      "uid": "value_3",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TId[]"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "onValueChange_3",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TId[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "valueType_4",
-      "name": "valueType",
-      "comment": {
-       "raw": [
-        "Defines what to use in value/onValueChange: 'id' - item id (TId). 'entity' - the item itself (TItem)"
-       ]
-      },
-      "typeValue": {
-       "raw": "'entity'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "entity"
-       ]
-      },
-      "from": "@epam/uui-core:ArrayPickerProps",
-      "required": true
-     },
-     {
-      "uid": "value_4",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "The current value of component"
-       ]
-      },
-      "typeValue": {
-       "raw": "TItem[]"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     },
-     {
-      "uid": "onValueChange_4",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "Called when value needs to be changed (usually due to user interaction)"
-       ]
-      },
-      "typeValue": {
-       "raw": "(newValue: TItem[]) => void"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-core:IControlled",
-      "required": true
-     }
-    ],
-    "propsFromUnion": true
    }
   },
   "@epam/uui-components:PickerListBaseProps": {
@@ -51572,7 +52096,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
      "print": [
       "type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {",
       "    /**",
@@ -52031,23 +52555,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
       "required": false
      },
      {
@@ -62793,7 +63300,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {
@@ -63199,7 +63706,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; }",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & TProps & { toggleModalOpening?(opened: boolean): void; shouldShowBody?(): boolean; }",
      "print": [
       "type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {",
       "    toggleModalOpening?(opened: boolean): void;",
@@ -63645,23 +64152,6 @@
       "required": false
      },
      {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
-      "required": false
-     },
-     {
       "uid": "onFocus",
       "name": "onFocus",
       "comment": {
@@ -63782,7 +64272,7 @@
         "modal"
        ]
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63799,7 +64289,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63816,7 +64306,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63833,7 +64323,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63867,24 +64357,7 @@
         "left-end"
        ]
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "renderToggler",
-      "name": "renderToggler",
-      "comment": {
-       "raw": [
-        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63911,7 +64384,7 @@
         "none"
        ]
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63928,7 +64401,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63948,7 +64421,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63965,7 +64438,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63982,7 +64455,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -63996,7 +64469,7 @@
       "typeValue": {
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64013,7 +64486,7 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64030,7 +64503,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64045,7 +64518,7 @@
       "typeValue": {
        "raw": "HTMLElement"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64060,7 +64533,7 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64075,7 +64548,7 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64092,7 +64565,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64109,7 +64582,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64126,7 +64599,7 @@
       "editor": {
        "type": "string"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -64341,7 +64814,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps",
      "print": [
       "type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};"
      ]
@@ -64781,23 +65254,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
       "required": false
      },
      {
@@ -70119,7 +70575,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -70178,7 +70634,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -70195,7 +70651,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -71934,6 +72390,20 @@
       "required": true
      },
      {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Columns group configuration."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
       "uid": "selectAll",
       "name": "selectAll",
       "typeValue": {
@@ -71976,6 +72446,23 @@
       "name": "renderCell",
       "typeValue": {
        "raw": "(props: DataTableHeaderCellProps<any, any>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DataTableHeaderRowProps",
+      "required": false
+     },
+     {
+      "uid": "renderGroupCell",
+      "name": "renderGroupCell",
+      "comment": {
+       "raw": [
+        "Columns group cell render function."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataTableHeaderGroupCellProps) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -72424,6 +72911,8 @@
       "    getRows?(): DataRowProps<TItem, TId>[];",
       "    /** Rows that should be rendered in table */",
       "    rows?: DataRowProps<TItem, TId>[];",
+      "    /** Array of all possible column groups for the table */",
+      "    columnGroups?: DataColumnGroupProps[];",
       "    /** Array of all possible columns for the table */",
       "    columns: DataColumnProps<TItem, TId>[];",
       "    /** Render callback for the table row.",
@@ -72486,6 +72975,19 @@
       },
       "typeValue": {
        "raw": "DataRowProps<TItem, TId>[]"
+      },
+      "required": false
+     },
+     {
+      "uid": "columnGroups",
+      "name": "columnGroups",
+      "comment": {
+       "raw": [
+        "Array of all possible column groups for the table"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataColumnGroupProps[]"
       },
       "required": false
      },
@@ -75147,7 +75649,7 @@
     "typeValue": {
      "raw": "DropdownMenuContainerProps",
      "print": [
-      "interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock'> {",
+      "interface DropdownMenuContainerProps extends VPanelProps, IHasChildren, DropdownBodyProps, Pick<DropdownContainerProps, 'focusLock' | 'maxHeight'> {",
       "    closeOnKey?: React.KeyboardEvent<HTMLElement>['key'];",
       "    minWidth?: number;",
       "}"
@@ -75433,6 +75935,27 @@
       },
       "editor": {
        "type": "bool"
+      },
+      "from": "@epam/uui-components:DropdownContainerProps",
+      "required": false
+     },
+     {
+      "uid": "maxHeight",
+      "name": "maxHeight",
+      "comment": {
+       "raw": [
+        "Defines maxHeight in 'px'. If 'auto' provided, will be used height of the content."
+       ]
+      },
+      "typeValue": {
+       "raw": "number | 'auto'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "auto"
+       ],
+       "scalarTypeOption": "number"
       },
       "from": "@epam/uui-components:DropdownContainerProps",
       "required": false
@@ -79200,7 +79723,7 @@
      "raw": "MainMenuAvatarProps",
      "print": [
       "/** Represents the properties of the MainMenuAvatar component. */",
-      "interface MainMenuAvatarProps extends IClickable, IAdaptiveItem, IDropdownToggler, IHasCX {",
+      "interface MainMenuAvatarProps extends IClickable, IAdaptiveItem, IDropdownToggler, IHasCX, IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {",
       "    avatarUrl?: string;",
       "    icon?: Icon;",
       "}"
@@ -79353,6 +79876,20 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      }
     ],
@@ -83866,7 +84403,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; } | Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; } | Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; } | Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; }",
+     "raw": "Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; } | Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; } | Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; } | Omit<PickerInputMods, never> & PickerInputModsOverride & IHasEditMode & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & { editMode?: PickerInputEditMode | undefined; maxItems?: number | undefined; minBodyWidth?: number | undefined; isSingleLine?: boolean | undefined; dropdownPlacement?: Placement | undefined; searchPosition?: PickerInputSearchPosition | undefined; disableClear?: boolean | undefined; minCharsToSearch?: number | undefined; dropdownHeight?: number | undefined; autoFocus?: boolean | undefined; rawProps?: { input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; } | undefined; renderFooter?: ((props: PickerInputFooterProps<TItem, TId>) => React.ReactNode) | undefined; fixedBodyPosition?: boolean | undefined; portalTarget?: HTMLElement | undefined; inputCx?: ClassValue; bodyCx?: ClassValue; highlightSearchMatches?: boolean | undefined; searchDebounceDelay?: number | undefined; id?: string | undefined; } & { renderTag?: ((props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element) | undefined; renderToggler?: ((props: PickerTogglerProps<TItem, TId>) => React.ReactNode) | undefined; }",
      "print": [
       "type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInputModsOverride> & IHasEditMode & PickerInputBaseProps<TItem, TId> & {",
       "    /**",
@@ -83874,6 +84411,8 @@
       "     * If omitted, default `PickerTogglerTag` component will be rendered",
       "     */",
       "    renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;",
+      "    /** Replaces default 'toggler' - an input to which Picker attaches dropdown */",
+      "    renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;",
       "};"
      ]
     },
@@ -84364,23 +84903,6 @@
       "required": false
      },
      {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
-      "required": false
-     },
-     {
       "uid": "onFocus",
       "name": "onFocus",
       "comment": {
@@ -84501,7 +85023,7 @@
         "modal"
        ]
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84518,7 +85040,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84535,7 +85057,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84552,7 +85074,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84586,24 +85108,7 @@
         "left-end"
        ]
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "renderToggler",
-      "name": "renderToggler",
-      "comment": {
-       "raw": [
-        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84620,17 +85125,17 @@
        ]
       },
       "typeValue": {
-       "raw": "'none' | 'body' | 'input'"
+       "raw": "'none' | 'input' | 'body'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "none",
-        "body",
-        "input"
+        "input",
+        "body"
        ]
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84647,7 +85152,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84667,7 +85172,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84684,7 +85189,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84701,7 +85206,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84715,7 +85220,7 @@
       "typeValue": {
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84732,7 +85237,7 @@
       "editor": {
        "type": "component"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84749,7 +85254,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84764,7 +85269,7 @@
       "typeValue": {
        "raw": "HTMLElement"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84779,7 +85284,7 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84794,7 +85299,7 @@
        "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84811,7 +85316,7 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84828,7 +85333,7 @@
       "editor": {
        "type": "number"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84845,7 +85350,7 @@
       "editor": {
        "type": "string"
       },
-      "from": "@epam/uui-components:PickerInputBaseProps",
+      "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
      },
      {
@@ -84862,6 +85367,22 @@
       },
       "editor": {
        "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderToggler",
+      "name": "renderToggler",
+      "comment": {
+       "raw": [
+        "Replaces default 'toggler' - an input to which Picker attaches dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: PickerTogglerProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "required": false
      },
@@ -86814,7 +87335,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & PickerShowSelectedOnly & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
+     "raw": "Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
      "print": [
       "type PickerListProps<TItem, TId> = Overwrite<PickerListMods, PickerListModsOverride> & IHasPlaceholder & PickerModalOptions<TItem, TId> & {",
       "    renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;",
@@ -87386,23 +87907,6 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IAnalyticableOnChange",
-      "required": false
-     },
-     {
-      "uid": "showSelectedOnly",
-      "name": "showSelectedOnly",
-      "comment": {
-       "raw": [
-        "Enables/disables selected rows only in Picker."
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:PickerShowSelectedOnly",
       "required": false
      },
      {
@@ -97851,7 +98355,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {
@@ -98204,7 +98708,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {
@@ -103895,7 +104399,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {
@@ -110865,7 +111369,7 @@
       "name": "onClose",
       "comment": {
        "raw": [
-        "Called when dropdown was closed"
+        "Call to close the dropdown body"
        ]
       },
       "typeValue": {

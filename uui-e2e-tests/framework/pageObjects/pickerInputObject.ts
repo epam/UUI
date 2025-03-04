@@ -15,6 +15,7 @@ export class PickerInputObject {
             showOnlySelectedSwitch: Locator;
             selectAll: Locator;
             clearAll: Locator;
+            done: Locator;
             areaMultiSelectable: {
                 root: Locator,
                 allChecked: Locator,
@@ -57,6 +58,7 @@ export class PickerInputObject {
                 showOnlySelectedSwitch: dropdown.locator('label:has(input[role="switch"])').locator('input[role="switch"]'),
                 selectAll: dropdown.locator('button').getByText('SELECT ALL'),
                 clearAll: dropdown.locator('button').getByText('CLEAR ALL'),
+                done: dropdown.locator('button').getByText('DONE'), // Visible only in mobile view
                 areaMultiSelectable: {
                     root: areaMultiSelectable,
                     allChecked: areaMultiSelectable.locator('input[type="checkbox"][aria-checked="true"]'),

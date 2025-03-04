@@ -423,4 +423,30 @@ describe('useVirtualList', () => {
         expect(onValueChange).toBeCalledTimes(4);
         expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 80, visibleCount: 40 });
     });
+
+    it('should change topIndex and visibleCount to last visible block, if topIndex + visibleCount greater than maximum rowCount', async () => {
+        let value = { topIndex: 120, visibleCount: 20 } as VirtualListState;
+        const onValueChange = jest.fn().mockImplementation((newValue) => {
+            value = newValue;
+        });
+
+        const { result } = await renderHookWithContextAsync(useVirtualList, {
+            value,
+            onValueChange,
+            rowsCount: 65,
+        });
+
+        await renderWithContextAsync(
+            <VirtualListContainer
+                scrollContainerRef={ result.current.scrollContainerRef }
+                listContainerRef={ result.current.listContainerRef }
+                estimatedHeight={ result.current.estimatedHeight }
+            />,
+        );
+
+        expect(result.current.scrollContainerRef.current).toBeInTheDocument();
+        expect(result.current.listContainerRef.current).toBeInTheDocument();
+
+        expect(onValueChange).toHaveBeenLastCalledWith({ topIndex: 60, visibleCount: 20 }); // last visible block
+    });
 });

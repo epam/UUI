@@ -275,8 +275,7 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
+                    "uui-richTextEditor-italic": true
                   },
                   {
                     "text": " "
@@ -290,13 +289,13 @@
                   {
                     "text": "describe",
                     "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "(",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "'example suite'",
@@ -306,19 +305,19 @@
                   },
                   {
                     "text": ", () => {\n    ",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "it",
                     "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "(",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "'example test'",
@@ -328,8 +327,8 @@
                   },
                   {
                     "text": ", ",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "async ",
@@ -339,8 +338,8 @@
                   },
                   {
                     "text": "() => {\n        ",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "await ",
@@ -351,13 +350,13 @@
                   {
                     "text": "renderWithContextAsync",
                     "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "(<",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "Component ",
@@ -367,8 +366,8 @@
                   },
                   {
                     "text": "/>);\n        ",
-                    "color": "rgb(0, 0, 0)",
-                    "uui-richTextEditor-superscript": true
+                    "uui-richTextEditor-superscript": true,
+                    "color": "rgb(0, 0, 0)"
                   },
                   {
                     "text": "// ...\n",
@@ -447,8 +446,7 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
+                    "uui-richTextEditor-italic": true
                   },
                   {
                     "text": " "
@@ -624,8 +622,7 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
+                    "uui-richTextEditor-italic": true
                   }
                 ]
               },
@@ -1066,7 +1063,6 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "color": "rgb(0, 0, 0)",
                     "uui-richTextEditor-italic": true
                   },
                   {
@@ -1315,15 +1311,10 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
+                    "uui-richTextEditor-italic": true
                   },
                   {
-                    "text": " ",
-                    "color": "rgb(48, 50, 64)"
-                  },
-                  {
-                    "text": " "
+                    "text": "  "
                   }
                 ]
               },
@@ -1482,8 +1473,7 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
+                    "uui-richTextEditor-italic": true
                   }
                 ]
               },
@@ -1721,8 +1711,7 @@
                 "children": [
                   {
                     "text": "Example:",
-                    "uui-richTextEditor-italic": true,
-                    "color": "rgb(0, 0, 0)"
+                    "uui-richTextEditor-italic": true
                   },
                   {
                     "text": " "

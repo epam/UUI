@@ -16,6 +16,9 @@ on:
       git-version-mode:
         required: true
         type: string
+      env:
+        required: true
+        type: string
     secrets:
       ARTIFACTORY_REGISTRY_URL:
         required: true
@@ -63,7 +66,7 @@ jobs:
         run: |
           yarn
           yarn generate-components-api
-          yarn build
+          REACT_APP_ENV_NAME=${{ inputs.env }} yarn build
           cd server && yarn
 
       - name: test

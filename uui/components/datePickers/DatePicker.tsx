@@ -21,7 +21,7 @@ const modifiers = [{
 }];
 
 export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
-    const { format = defaultFormat, value } = props;
+    const { format = defaultFormat, value, size = settings.sizes.defaults.datePicker } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
@@ -76,7 +76,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
-                size={ props.size || settings.sizes.defaults.datePicker as TextInputProps['size'] }
+                size={ size as TextInputProps['size'] }
                 value={ inputValue || undefined }
                 onValueChange={ (v) => {
                     setInputValue(v || '');

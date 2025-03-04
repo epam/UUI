@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
+import { useUuiContext } from '@epam/uui-core';
 import { useDocBuilderGen } from '@epam/uui-docs';
-import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from '../../common/docs/properyEditor/utils';
+import { getSkin, useDocBuilderGenCtx, usePropEditorTypeOverride } from '../../common';
 import { RenderCase } from './renderCase/renderCase';
 import { PreviewLayout } from './previewLayout';
 import { TPreviewContentParams } from '../types';
 import { ERRORS } from '../constants';
 import { buildRenderCaseArr, getConfigByComponentId } from './previewContentUtils';
 import { formatPreviewIdToString } from '../utils/previewLinkUtils';
-import { useUuiContext } from '@epam/uui-core';
 import { MatrixSummary } from './matrixSummary/matrixSummary';
 
 export function PreviewContent(props: { params: TPreviewContentParams }) {

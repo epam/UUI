@@ -1,7 +1,7 @@
 import { createSkinComponent } from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-type CountIndicatorMods = {
+type CountIndicatorMods = Pick<uui.CountIndicatorProps, 'size'> & {
     /** Defines component color. */
     color: 'gray' | 'white' | 'blue' | 'green' | 'amber' | 'red' | uui.CountIndicatorProps['color'];
 };

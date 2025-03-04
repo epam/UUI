@@ -38,7 +38,7 @@ export function AppHeader() {
         window.document.dir = value;
     };
 
-    const renderBurger = () => {
+    const renderBurger = ({ onClose }: { onClose: () => void }) => {
         const category = svc.uuiRouter.getCurrentLink().query.category;
         const pathName = svc.uuiRouter.getCurrentLink().pathname;
         return (
@@ -49,12 +49,14 @@ export function AppHeader() {
                     link={ { pathname: '/documents', query: { id: 'overview' } } }
                     isLinkActive={ pathName === 'documents' && !category }
                     clickAnalyticsEvent={ () => sendEvent('Documents') }
+                    onClick={ () => onClose() }
                 />
                 <BurgerButton
                     caption="Assets"
                     link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
                     isLinkActive={ pathName === '/documents' && category === 'assets' }
                     clickAnalyticsEvent={ () => sendEvent('Assets') }
+                    onClick={ () => onClose() }
                 />
                 <BurgerButton
                     caption="Components"
@@ -66,13 +68,40 @@ export function AppHeader() {
                     } }
                     isLinkActive={ pathName === '/documents' && category === 'components' }
                     clickAnalyticsEvent={ () => sendEvent('Components') }
+                    onClick={ () => onClose() }
                 />
-                <BurgerButton caption="Demo" link={ { pathname: '/demo' } } isLinkActive={ pathName === '/demo' } clickAnalyticsEvent={ () => sendEvent('Demo') } />
+                <BurgerButton 
+                    caption="Demo"
+                    onClick={ () => onClose() }
+                    link={ { pathname: '/demo' } }
+                    isLinkActive={ pathName === '/demo' }
+                    clickAnalyticsEvent={ () => sendEvent('Demo') }
+                />
                 <BurgerGroupHeader caption="Figma source" />
-                <BurgerButton icon={ FigmaIcon } caption="Figma Community" href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7" clickAnalyticsEvent={ () => sendEvent('Figma Community') } target="_blank" />
-                <BurgerButton icon={ FigmaIcon } caption="EPAM Team (employee only)" href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6" clickAnalyticsEvent={ () => sendEvent('EPAM Team') } target="_blank" />
+                <BurgerButton
+                    icon={ FigmaIcon }
+                    onClick={ () => onClose() }
+                    caption="Figma Community"
+                    href="https://www.figma.com/community/file/1380452603479283689/epam-uui-v5-7"
+                    clickAnalyticsEvent={ () => sendEvent('Figma Community') }
+                    target="_blank"
+                />
+                <BurgerButton
+                    icon={ FigmaIcon }
+                    onClick={ () => onClose() }
+                    caption="EPAM Team (employee only)"
+                    href="https://www.figma.com/design/M5Njgc6SQJ3TPUccp5XHQx/UUI-Components?m=auto&t=qiBDEE9slwMV4paI-6"
+                    clickAnalyticsEvent={ () => sendEvent('EPAM Team') }
+                    target="_blank"
+                />
                 <BurgerGroupHeader caption="Code source" />
-                <BurgerButton icon={ GitIcon } caption="Github" href={ GIT_LINK } target="_blank" />
+                <BurgerButton
+                    onClick={ () => onClose() }
+                    icon={ GitIcon }
+                    caption="Github"
+                    href={ GIT_LINK }
+                    target="_blank"
+                />
             </>
         );
     };
@@ -82,16 +111,22 @@ export function AppHeader() {
             <Dropdown
                 renderBody={ (props) => (
                     <DropdownMenuBody { ...props } rawProps={ { style: { width: '180px', padding: '6px 0', marginTop: '3px' } } }>
-                        { Object.values(themesById).map(({ id, name }) => (
-                            <DropdownMenuButton
-                                key={ id }
-                                caption={ name }
-                                icon={ theme === id && DoneIcon }
-                                isActive={ theme === id }
-                                iconPosition="right"
-                                onClick={ () => toggleTheme(id) }
-                            />
-                        )) }
+                        { Object.values(themesById).map(({ id, name, devOnly }) => {
+                            if (window.location.host.includes('uui.epam.com') && devOnly) {
+                                return null;
+                            }
+
+                            return (
+                                <DropdownMenuButton
+                                    key={ id }
+                                    caption={ name }
+                                    icon={ theme === id && DoneIcon }
+                                    isActive={ theme === id }
+                                    iconPosition="right"
+                                    onClick={ () => toggleTheme(id) }
+                                />
+                            );
+                        }) }
                     </DropdownMenuBody>
                 ) }
                 renderTarget={ (props) => (

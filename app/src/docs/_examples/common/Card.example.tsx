@@ -22,9 +22,9 @@ export default function AttributesExample() {
                     </FlexRow>
                 </FlexRow>
                 <FlexRow alignItems="center" columnGap="6">
-                    <Badge color="success" size="18" fill="outline" icon={ notificationIcon } caption="Available" />
-                    <Badge color="info" size="18" fill="outline" caption="Bench" />
-                    <Badge color="warning" size="18" fill="outline" caption="Remote" />
+                    <Badge color="success" size="24" fill="outline" icon={ notificationIcon } caption="Available" />
+                    <Badge color="info" size="24" fill="outline" caption="Bench" />
+                    <Badge color="warning" size="24" fill="outline" caption="Remote" />
                 </FlexRow>
             </div>
             <div className={ css.divider } />
