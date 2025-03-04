@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { PickerModalTestObject, act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor } from '@epam/uui-test-utils';
 import { PickerModal, PickerModalProps } from '../PickerModal';
-import { Item, mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
+import { mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
 import { Button, Modals } from '@epam/uui-components';
 import { CascadeSelection, UuiContext } from '@epam/uui-core';
 
@@ -117,7 +117,7 @@ describe('PickerModal', () => {
     });
 
     it('should open body', async () => {
-        const { dom, result } = await setupPickerModalForTest<Item, number>({
+        const { dom, result } = await setupPickerModalForTest<TestItemType, number>({
             selectionMode: 'single',
             dataSource: mockSmallDataSourceAsync,
             getName: ({ name }) => name,

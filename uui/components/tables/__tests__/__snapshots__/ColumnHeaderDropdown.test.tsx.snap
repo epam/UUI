@@ -61,16 +61,10 @@ Array [
         }
       >
         <div
-          className="uui-flex-row itemRoot uui-active container -clickable align-items-center"
+          className="itemRoot uui-active -clickable"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="menuitem"
-          style={
-            Object {
-              "columnGap": undefined,
-              "rowGap": undefined,
-            }
-          }
           tabIndex={0}
         >
           <button
@@ -94,16 +88,10 @@ Array [
           </div>
         </div>
         <div
-          className="uui-flex-row itemRoot container -clickable align-items-center"
+          className="itemRoot -clickable"
           onClick={[Function]}
           onKeyDown={[Function]}
           role="menuitem"
-          style={
-            Object {
-              "columnGap": undefined,
-              "rowGap": undefined,
-            }
-          }
           tabIndex={0}
         >
           <button

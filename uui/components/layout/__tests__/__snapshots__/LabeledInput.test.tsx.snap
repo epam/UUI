@@ -60,13 +60,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
     </div>
   </div>
   <div
-    className="uui-flex-row container align-items-top"
-    style={
-      Object {
-        "columnGap": "12px",
-        "rowGap": undefined,
-      }
-    }
+    className="invalidSectionWrapper"
   >
     <div
       className="uui-invalid-message"
@@ -83,13 +77,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
     </div>
   </div>
   <div
-    className="uui-flex-row container align-items-top"
-    style={
-      Object {
-        "columnGap": "12px",
-        "rowGap": undefined,
-      }
-    }
+    className="footnoteSectionWrapper"
   >
     <div
       className="uui-labeled-input-footnote"

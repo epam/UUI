@@ -6,8 +6,8 @@ exports[`DataTableCell should be rendered correctly 1`] = `
   role="cell"
   style={
     Object {
-      "--uui-dt-cell-padding-end": "12px",
-      "--uui-dt-cell-padding-start": "12px",
+      "--uui-dt-cell-padding-end": "var(--uui-dt-cell-padding)",
+      "--uui-dt-cell-padding-start": "var(--uui-dt-cell-padding)",
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,
@@ -30,8 +30,8 @@ exports[`DataTableCell should be rendered correctly 2`] = `
   role="cell"
   style={
     Object {
-      "--uui-dt-cell-padding-end": "24px",
-      "--uui-dt-cell-padding-start": "12px",
+      "--uui-dt-cell-padding-end": "var(--uui-dt-cell-padding-edge)",
+      "--uui-dt-cell-padding-start": "var(--uui-dt-cell-padding)",
       "alignSelf": undefined,
       "flexBasis": "150px",
       "flexGrow": undefined,

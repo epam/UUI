@@ -7,6 +7,7 @@
         --uui-border-radius: 8px;
         --uui-tab-line-width: 3px;
         --uui-notify-size: 6px;
+        --uui-resize-marker-width: 12px;
     }
 
     .uui-size-16 {
@@ -236,5 +237,9 @@
         &.uui-size-24 {
             --uui-horizontal-gap: 4px;
         }
+    }
+
+    .uui-columns-config-modal {
+        --uui-dt-columns_config_modal-subgroup_icon: 20px;
     }
 }

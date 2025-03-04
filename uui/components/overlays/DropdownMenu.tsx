@@ -1,13 +1,30 @@
 import React, { useRef, useContext, useState } from 'react';
 import {
-    cx, withMods, uuiMod, UuiContext, IHasChildren, VPanelProps, IHasIcon, ICanRedirect, IHasCaption, IDisableable,
-    IAnalyticableClick, IHasCX, IClickable, DropdownBodyProps, IDropdownTogglerProps, DropdownProps, getDir,
+    cx,
+    withMods,
+    uuiMod,
+    UuiContext,
+    IHasChildren,
+    VPanelProps,
+    IHasIcon,
+    ICanRedirect,
+    IHasCaption,
+    IDisableable,
+    IAnalyticableClick,
+    IHasCX,
+    IClickable,
+    DropdownBodyProps,
+    IDropdownTogglerProps,
+    DropdownProps,
+    getDir,
+    uuiMarkers,
+    isEventTargetInsideClickable,
 } from '@epam/uui-core';
-import { Text, FlexRow, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
+import { Text, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
-import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 
 import css from './DropdownMenu.module.scss';
 
@@ -87,7 +104,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         if (isDisabled || !onClick) return;
-        onClick(event);
+        !isEventTargetInsideClickable(event) && onClick(event);
         context.uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
     };
 
@@ -132,7 +149,14 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
 
     const isAnchor = Boolean(link || href);
 
-    const itemClassNames = cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled, isActive && uuiMod.active, isOpen && uuiMod.opened);
+    const itemClassNames = cx(
+        props.cx,
+        css.itemRoot,
+        isDisabled && uuiMod.disabled,
+        isActive && uuiMod.active,
+        isOpen && uuiMod.opened,
+        (!isDisabled && onClick) && uuiMarkers.clickable,
+    );
 
     return isAnchor ? (
         <Anchor
@@ -148,24 +172,22 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             { getMenuButtonContent() }
         </Anchor>
     ) : (
-        <FlexRow
-            rawProps={ {
-                tabIndex: isDisabled ? -1 : 0,
-                role: 'menuitem',
-                onKeyDown: isDisabled ? null : handleOpenDropdown,
-            } }
-            cx={ itemClassNames }
-            onClick={ handleClick }
+        <div
+            tabIndex={ isDisabled ? -1 : 0 }
+            role="menuitem"
+            onKeyDown={ isDisabled ? null : handleOpenDropdown }
+            className={ itemClassNames }
+            onClick={ handleClick } // update flex row data
             ref={ ref }
         >
             { getMenuButtonContent() }
             { isSelected && (
                 <>
                     <FlexSpacer />
-                    <IconContainer icon={ systemIcons.accept } cx={ css.selectedMark } />
+                    <IconContainer icon={ settings.dropdownMenu.icons.acceptIcon } cx={ css.selectedMark } />
                 </>
             ) }
-        </FlexRow>
+        </div>
     );
 });
 
@@ -224,7 +246,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton
                     cx={ cx(isRtl ? css.submenuRootItemRtl : css.submenuRootItem) }
-                    icon={ systemIcons.foldingArrow }
+                    icon={ settings.dropdownMenu.icons.dropdownIcon }
                     iconPosition="right"
                     isDropdown={ true }
                     toggleDropdownOpening={ toggleDropdownOpening }
@@ -261,15 +283,22 @@ export function DropdownMenuSwitchButton(props: IDropdownMenuSwitchButton) {
     };
 
     return (
-        <FlexRow
-            cx={ cx(props.cx, css.itemRoot, isDisabled && uuiMod.disabled) }
+        <div
+            className={ cx(
+                props.cx,
+                css.itemRoot,
+                isDisabled && uuiMod.disabled,
+                (!isDisabled || onValueChange) && uuiMarkers.clickable,
+            ) }
             onClick={ () => onHandleValueChange(!isSelected) }
-            rawProps={ { role: 'menuitem', onKeyDown: handleKeySelect, tabIndex: isDisabled ? -1 : 0 } }
+            role="menuitem"
+            onKeyDown={ handleKeySelect }
+            tabIndex={ isDisabled ? -1 : 0 }
         >
             { icon && <IconContainer icon={ icon } cx={ css.iconBefore } /> }
             <Text>{ caption }</Text>
             <FlexSpacer />
             <Switch value={ isSelected } tabIndex={ -1 } onValueChange={ onHandleValueChange } />
-        </FlexRow>
+        </div>
     );
 }

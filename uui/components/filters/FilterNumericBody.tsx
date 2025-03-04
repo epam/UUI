@@ -1,10 +1,11 @@
 import React from 'react';
+import { DropdownBodyProps, isMobile } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import { NumericInput } from '../inputs';
-import { DropdownBodyProps, isMobile } from '@epam/uui-core';
 import { FlexCell, FlexRow } from '../layout';
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
+
 import css from './FilterNumericBody.module.scss';
 
 interface INumericRangeValue {

@@ -29,6 +29,4 @@ export interface ModalHeaderCoreProps extends IHasChildren, IHasCX, IHasRawProps
 }
 
 export interface ModalFooterCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
-    /** Pass true to enable the top border of ModalFooter */
-    borderTop?: boolean;
 }

@@ -1,7 +1,7 @@
 import * as uuiCore from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export interface RowMods extends Omit<uui.RowMods, 'spacing' | 'background'> {
+export interface RowMods extends Omit<uui.FlexRowMods, 'spacing' | 'background'> {
     /**
      * @default 'none'
      */

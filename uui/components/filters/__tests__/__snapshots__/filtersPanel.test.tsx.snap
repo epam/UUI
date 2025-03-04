@@ -16,27 +16,19 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
+      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       style={
         Object {
-          "columnGap": undefined,
           "maxWidth": "300px",
-          "rowGap": undefined,
         }
       }
       tabIndex={0}
     >
       <div
-        className="uui-flex-row titleWrapper container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="titleWrapper"
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
@@ -79,27 +71,19 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
+      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       style={
         Object {
-          "columnGap": undefined,
           "maxWidth": "400px",
-          "rowGap": undefined,
         }
       }
       tabIndex={0}
     >
       <div
-        className="uui-flex-row titleWrapper container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="titleWrapper"
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
@@ -132,27 +116,19 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
+      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       style={
         Object {
-          "columnGap": undefined,
           "maxWidth": "300px",
-          "rowGap": undefined,
         }
       }
       tabIndex={0}
     >
       <div
-        className="uui-flex-row titleWrapper container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="titleWrapper"
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
@@ -185,27 +161,19 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
+      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       style={
         Object {
-          "columnGap": undefined,
           "maxWidth": "auto",
-          "rowGap": undefined,
         }
       }
       tabIndex={0}
     >
       <div
-        className="uui-flex-row titleWrapper container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="titleWrapper"
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
@@ -238,27 +206,19 @@ Array [
     }
   >
     <div
-      className="uui-flex-row uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36 container -clickable align-items-center"
+      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
       style={
         Object {
-          "columnGap": undefined,
           "maxWidth": "auto",
-          "rowGap": undefined,
         }
       }
       tabIndex={0}
     >
       <div
-        className="uui-flex-row titleWrapper container align-items-center"
-        style={
-          Object {
-            "columnGap": undefined,
-            "rowGap": undefined,
-          }
-        }
+        className="titleWrapper"
       >
         <div
           className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"

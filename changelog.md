@@ -1,5 +1,6 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
+* [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
 
 
 **What's Fixed**

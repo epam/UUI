@@ -21,19 +21,14 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     style={
       Object {
         "height": "auto",
-        "maxHeight": "80dvh",
+        "maxHeight": "var(--uui-modals-max-height)",
         "width": 420,
       }
     }
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 borderBottom root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalHeader borderBottom"
+      style={Object {}}
     >
       <div
         className="uui-modal-title uui-typography"
@@ -140,13 +135,8 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter footer container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalFooter footer"
+      style={Object {}}
     >
       <button
         className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
@@ -198,19 +188,14 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     style={
       Object {
         "height": "auto",
-        "maxHeight": "80dvh",
+        "maxHeight": "var(--uui-modals-max-height)",
         "width": 420,
       }
     }
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 borderBottom root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalHeader borderBottom"
+      style={Object {}}
     >
       <div
         className="uui-modal-title uui-typography"
@@ -309,13 +294,8 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter footer container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalFooter footer"
+      style={Object {}}
     >
       <button
         className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
