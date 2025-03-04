@@ -60,8 +60,8 @@
     }
 
     &.vPadding {
-        padding-top: calc(var(--uui-flex-row-padding) / 2);
-        padding-bottom: calc(var(--uui-flex-row-padding) / 2);
+        padding-top: calc(var(--uui-flex-row-v-padding) / 2);
+        padding-bottom: calc(var(--uui-flex-row-v-padding) / 2);
     }
 
     &.column-gap {
