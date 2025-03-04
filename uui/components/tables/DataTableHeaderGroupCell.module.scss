@@ -11,7 +11,12 @@
     --uui-dt-header-group-cell-line-height: 30px;
     --uui-dt-header-group-cell-height: var(--uui-size);
     --uui-dt-header-group-cell-caption-column-gap: 3px;
+    --uui-dt-header-group-cell-font-size: 14px;
+    --uui-dt-header-group-cell-upprcase-font-size: 12px;
     --uui-dt-header-group-cell-truncate-caption-line-height: 18px;
+    --uui-dt-header-group-cell-padding: var(--uui-dt-header-padding);
+    --uui-dt-header-group-cell-padding-edge: var(--uui-dt-header-padding-edge);
+    //
     color: var(--uui-text-primary);
     align-items: center;
     padding-inline-start: var(--uui-dt-header-group-cell-padding-start);
@@ -38,9 +43,10 @@
     }
 
     .caption {
-        --uui-text-line-height: var(--uui-dt-header-group-cell-line-height);
         font-family: var(--uui-dt-header-group-cell-font);
         font-weight: var(--uui-dt-header-group-cell-font-weight);
+        font-size: var(--uui-dt-header-group-cell-font-size);
+        line-height: var(--uui-dt-header-group-cell-line-height);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -56,14 +62,15 @@
             white-space: normal;
             line-height: var(--uui-dt-header-group-cell-truncate-caption-line-height);
         }
+
+        &.upper-case {
+            text-transform: uppercase;
+            font-size: var(--uui-dt-header-group-cell-upprcase-font-size);
+        }
     }
 
     .group-cell-tooltip {
         top: 0;
-    }
-
-    .upper-case {
-        text-transform: uppercase;
     }
 }
 

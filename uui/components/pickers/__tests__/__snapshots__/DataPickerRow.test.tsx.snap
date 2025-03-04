@@ -2,22 +2,17 @@
 
 exports[`DataPickerRow should be rendered correctly 1`] = `
 <div
+  aria-checked={null}
   aria-posinset={2}
-  className="uui-flex-row pickerRow container align-items-center"
+  aria-selected={null}
+  className="root pickerRow"
   role="option"
-  style={
-    Object {
-      "columnGap": undefined,
-      "rowGap": undefined,
-    }
-  }
 >
   <div
     className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
     role="cell"
     style={
       Object {
-        "--uui-data_picker_cell-horizontal-padding": "24px",
         "alignSelf": undefined,
         "flexBasis": "0",
         "flexGrow": 1,
@@ -45,24 +40,19 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
 
 exports[`DataPickerRow should be rendered correctly 2`] = `
 <div
+  aria-checked={null}
   aria-posinset={2}
   aria-selected={true}
-  className="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
+  className="root uui-focus -clickable pickerRow"
   onClick={[Function]}
   role="option"
-  style={
-    Object {
-      "columnGap": undefined,
-      "rowGap": undefined,
-    }
-  }
 >
   <div
     className="flexCell root data-picker-cell uui-size-48 align-widgets-top"
     role="cell"
     style={
       Object {
-        "--uui-data_picker_cell-horizontal-padding": "24px",
+        "--uui-data_picker-horizontal-padding": "24px",
         "alignSelf": undefined,
         "flexBasis": "0",
         "flexGrow": 1,

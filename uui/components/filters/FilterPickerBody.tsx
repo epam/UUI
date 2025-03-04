@@ -60,7 +60,7 @@ export function FilterPickerBody<TItem, TId>({
                 highlightSearchMatches={ highlightSearchMatches }
                 { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
                 dataSourceState={ dsState }
-                size={ settings.filtersPanel.sizes.pickerInput.body.rowItem }
+                size={ settings.pickerInput.sizes.body.row }
                 { ...rowProps }
             />
         );
@@ -80,7 +80,7 @@ export function FilterPickerBody<TItem, TId>({
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                size={ settings.filtersPanel.sizes.pickerInput.body.row }
+                size={ settings.pickerInput.sizes.body.row }
                 padding="12"
                 renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
             />
@@ -92,7 +92,7 @@ export function FilterPickerBody<TItem, TId>({
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ settings.filtersPanel.sizes.pickerInput.body.footer } />;
+            : <DataPickerFooter { ...footerProps } size={ settings.pickerInput.sizes.body.row } />;
     };
 
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
@@ -108,7 +108,7 @@ export function FilterPickerBody<TItem, TId>({
                     rows={ renderedDataRows }
                     maxHeight={ maxHeight }
                     maxWidth={ maxWidth }
-                    searchSize={ settings.filtersPanel.sizes.pickerInput.body.searchInput }
+                    searchSize={ settings.pickerInput.sizes.body.row }
                     editMode="dropdown"
                 />
                 {renderFooter()}

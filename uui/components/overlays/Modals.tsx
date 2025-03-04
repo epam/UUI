@@ -1,10 +1,16 @@
 import React from 'react';
 import cx from 'classnames';
 import {
-    withMods, ModalFooterCoreProps, ModalWindowProps as uuiModalWindowProps, ModalBlockerProps, ModalHeaderCoreProps, isMobile,
+    withMods,
+    ModalFooterCoreProps,
+    ModalWindowProps as uuiModalWindowProps,
+    ModalBlockerProps,
+    ModalHeaderCoreProps,
+    isMobile,
+    Overwrite,
 } from '@epam/uui-core';
 import { ModalBlocker as uuiModalBlocker, ModalWindow as uuiModalWindow } from '@epam/uui-components';
-import { FlexRow, FlexSpacer, RowMods, FlexCell, FlexRowProps } from '../layout';
+import { FlexSpacer, FlexCell } from '../layout';
 import { IconButton } from '../buttons';
 import { settings } from '../../settings';
 
@@ -38,9 +44,9 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowProps>(
     uuiModalWindow,
     () => [css.root, css.modal],
     (props) => {
-        const width = props.width || settings.modal.sizes.defaultWidth;
+        const width = props.width;
         const height = props.height || 'auto';
-        const maxHeight = isMobile() ? settings.modal.sizes.defaultMobileMaxHeight : (props.maxHeight || settings.modal.sizes.defaultMaxHeight);
+        const maxHeight = isMobile() ? 'var(--uui-modals-mobile-max-height)' : (props.maxHeight || 'var(--uui-modals-max-height)');
         return {
             style: {
                 ...props.style,
@@ -52,56 +58,95 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowProps>(
     },
 );
 
-export interface ModalHeaderProps extends RowMods, ModalHeaderCoreProps {}
-
-export class ModalHeader extends React.Component<ModalHeaderProps> {
-    render() {
-        return (
-            <FlexRow
-                padding={ this.props.padding || settings.modal.sizes.defaultHeaderPadding }
-                size={ null }
-                vPadding="36"
-                borderBottom={ this.props.borderBottom }
-                cx={ [css.root, css.modalHeader, this.props.cx] }
-                columnGap="12"
-                rawProps={ this.props.rawProps }
-            >
-                {this.props.title && (
-                    <div className={ cx('uui-modal-title', 'uui-typography') }>
-                        {this.props.title}
-                    </div>
-                )}
-                {this.props.children}
-                {this.props.onClose && <FlexSpacer />}
-                {this.props.onClose && (
-                    <FlexCell shrink={ 0 } width="auto">
-                        <IconButton rawProps={ { 'aria-label': 'Close modal' } } icon={ settings.modal.icons.closeIcon } onClick={ this.props.onClose } />
-                    </FlexCell>
-                )}
-            </FlexRow>
-        );
-    }
+export interface ModalHeaderMods {
+    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    columnGap?: number | '6' | '12' | '18' | '24' | '36';
+    /** Defines horizontal row padding */
+    padding?: '6' | '12' | '18' | '24';
+    /** Defines vertical row padding */
+    vPadding?: '12' | '18' | '24' | '36' | '48';
+    /** Pass true, to enable row bottom border */
+    borderBottom?: boolean;
 }
 
-export interface ModalFooterProps extends FlexRowProps, ModalFooterCoreProps {}
+export interface ModalHeaderModsOverride {}
 
-export class ModalFooter extends React.Component<ModalFooterProps> {
-    render() {
-        return (
-            <FlexRow
-                columnGap={ this.props.columnGap || settings.modal.sizes.defaultFooterColumnGap }
-                cx={ [
-                    css.root,
-                    css.modalFooter,
-                    this.props.cx,
-                ] }
-                borderTop={ this.props.borderTop }
-                padding={ this.props.padding || settings.modal.sizes.defaultFooterPadding }
-                vPadding={ this.props.vPadding || settings.modal.sizes.defaultFooterVPadding }
-                rawProps={ this.props.rawProps }
-            >
-                {this.props.children}
-            </FlexRow>
-        );
-    }
+export interface ModalHeaderProps extends ModalHeaderCoreProps, Overwrite<ModalHeaderMods, ModalHeaderModsOverride> {}
+
+export function ModalHeader(props: ModalHeaderProps) {
+    const style = {
+        ...(props.columnGap && { '--uui-modals-header-column-gap': `${props.columnGap}px` }),
+        ...(props.padding && { '--uui-modals-header-padding': `${props.padding}px` }),
+        ...(props.vPadding && { '--uui-modals-header-vertical-padding': `${props.vPadding}px` }),
+    };
+    
+    return (
+        <div
+            className={ cx(
+                css.root,
+                css.modalHeader,
+                props.borderBottom && css.borderBottom,
+                props.cx,
+            ) }
+            { ...props.rawProps }
+            style={ {
+                ...props.rawProps?.style,
+                ...style,
+            } }
+        >
+            {props.title && (
+                <div className={ cx('uui-modal-title', 'uui-typography') }>
+                    {props.title}
+                </div>
+            )}
+            {props.children}
+            {props.onClose && <FlexSpacer />}
+            {props.onClose && (
+                <FlexCell shrink={ 0 } width="auto">
+                    <IconButton rawProps={ { 'aria-label': 'Close modal' } } icon={ settings.modal.icons.closeIcon } onClick={ props.onClose } />
+                </FlexCell>
+            )}
+        </div>
+    );
+}
+
+export interface ModalFooterMods {
+    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    columnGap?: number | '6' | '12' | '18' | '24' | '36';
+    /** Defines horizontal row padding */
+    padding?: '6' | '12' | '18' | '24';
+    /** Defines vertical row padding */
+    vPadding?: '12' | '18' | '24' | '36' | '48';
+    /** Pass true, to enable row top border */
+    borderTop?: boolean;
+}
+
+export interface ModalFooterModsOverride {}
+
+export interface ModalFooterProps extends ModalFooterCoreProps, Overwrite<ModalFooterMods, ModalFooterModsOverride> {}
+
+export function ModalFooter(props: ModalFooterProps) {
+    const style = {
+        ...(props.columnGap && { '--uui-modals-footer-column-gap': `${props.columnGap}px` }),
+        ...(props.padding && { '--uui-modals-footer-padding': `${props.padding}px` }),
+        ...(props.vPadding && { '--uui-modals-footer-vertical-padding': `${props.vPadding}px` }),
+    };
+
+    return (
+        <div
+            className={ cx(
+                css.root,
+                css.modalFooter,
+                props.borderTop && css.borderTop,
+                props.cx,
+            ) }
+            { ...props.rawProps }
+            style={ { 
+                ...props.rawProps?.style,
+                ...style,
+            } }
+        >
+            {props.children}
+        </div>
+    );
 }

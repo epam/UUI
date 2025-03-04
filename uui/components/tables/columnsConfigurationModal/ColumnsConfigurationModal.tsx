@@ -107,7 +107,7 @@ export function ColumnsConfigurationModal<TItem, TId, TFilter>(props: ColumnsCon
 
     return (
         <ModalBlocker { ...modalProps }>
-            <ModalWindow cx={ css.root } height="95dvh" maxHeight="95dvh" width={ settings.dataTable.sizes.columnsConfigurationModal.width }>
+            <ModalWindow cx={ [css.root, 'uui-columns-config-modal'] } height="95dvh" maxHeight="95dvh">
                 <ModalHeader title={ i18n.configureColumnsTitle } onClose={ close } />
                 <FlexRow
                     borderBottom={ true }
@@ -200,7 +200,6 @@ function SubGroup(props: { items: ColumnsConfigurationRowProps[]; renderItem: (c
                         cx={ cx(css.subgroup) }
                     >
                         <IconContainer
-                            size={ settings.dataTable.sizes.columnsConfigurationModal.subgroupIcon }
                             icon={ toggleIcon }
                         />
                         <Text

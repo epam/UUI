@@ -1,6 +1,9 @@
 import * as React from 'react';
-import { DataRowProps, uuiMod } from '@epam/uui-core';
-import { FlexRow } from '../layout';
+import { isEventTargetInsideClickable, uuiMarkers, uuiMod } from '@epam/uui-core';
+import type { DataRowProps } from '@epam/uui-core';
+import cx from 'classnames';
+
+import css from './DataPickerRow.module.scss';
 
 interface DataPickerRowProps<TItem, TId> extends DataRowProps<TItem, TId> {
     renderContent: () => React.ReactNode;
@@ -26,21 +29,24 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         const clickHandler = this.props.onClick || this.props.onSelect || this.props.onFold || this.props.onCheck;
 
         return (
-            <FlexRow
-                onClick={ clickHandler && (() => clickHandler(this.props)) }
-                rawProps={ {
-                    role: 'option',
-                    'aria-busy': this.props.isLoading,
-                    'aria-posinset': this.props.index + 1,
-                    ...(this.props.checkbox?.isVisible && { 'aria-checked': this.props.isChecked }),
-                    ...(this.props.isSelectable && { 'aria-selected': this.props.isSelected }),
-                    ...this.props.rawProps,
-                } }
+            <div
+                onClick={ clickHandler && ((e) => !isEventTargetInsideClickable(e) && clickHandler(this.props)) }
+                role="option"
+                aria-busy={ this.props.isLoading }
+                aria-posinset={ this.props.index + 1 }
+                aria-checked={ this.props.checkbox?.isVisible ? this.props.isChecked : null }
+                aria-selected={ this.props.isSelectable ? this.props.isSelected : null }
+                { ...this.props.rawProps }
                 ref={ this.rowNode }
-                cx={ [clickHandler && this.props.isFocused && uuiMod.focus, this.props.cx] }
+                className={ cx(
+                    css.root,
+                    clickHandler && this.props.isFocused && uuiMod.focus,
+                    clickHandler && uuiMarkers.clickable,
+                    this.props.cx,
+                ) }
             >
                 {this.props.renderContent()}
-            </FlexRow>
+            </div>
         );
     }
 }

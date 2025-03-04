@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cx, DataColumnGroupProps, DataTableHeaderGroupCellProps, Overwrite, uuiDataTableHeaderGroupCell } from '@epam/uui-core';
-import { DataTableCellContainer, HeaderCellContentProps } from '@epam/uui-components';
+import { DataTableCellContainer } from '@epam/uui-components';
 import type { DataTableHeaderCellMods } from './types';
 import { Tooltip } from '../overlays';
 import { Text } from '../typography';
@@ -32,12 +32,13 @@ export class DataTableHeaderGroupCell extends
 
     getColumnCaption = () => {
         const renderTooltip = this.props.group.renderTooltip || this.getTooltipContent;
-        const captionCx = [
+        const captionCx = cx(
             css.caption,
             this.props.textCase === 'upper' && css.upperCase,
             uuiDataTableHeaderGroupCell.uuiTableHeaderGroupCaption,
+            'uui-typography-inline',
             this.props.size >= '48' && css.truncate,
-        ];
+        );
 
         return (
             <div
@@ -50,14 +51,9 @@ export class DataTableHeaderGroupCell extends
                     cx={ css.groupCellTooltip }
                     openDelay={ 600 }
                 >
-                    <Text
-                        key="text"
-                        fontSize={ settings.dataTable.sizes.header[this.props.textCase === 'upper' ? 'groupCellCaptionUppercase' : 'groupCellCaptionFontSize'] }
-                        size={ settings.dataTable.sizes.header.groupCellCaptionSize }
-                        cx={ captionCx }
-                    >
+                    <div key="text" className={ captionCx }>
                         { this.props.group.caption }
-                    </Text>
+                    </div>
                 </Tooltip>
             </div>
         );
@@ -66,45 +62,15 @@ export class DataTableHeaderGroupCell extends
     getLeftPadding = () => {
         const { columnsGap, isFirstCell } = this.props;
 
-        if (columnsGap) return isFirstCell ? columnsGap : +columnsGap / 2;
-        return isFirstCell ? settings.dataTable.sizes.header.defaultGroupCellPaddingEdge : settings.dataTable.sizes.header.defaultGroupCellPadding;
+        if (columnsGap) return isFirstCell ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-header-group-cell-padding${isFirstCell ? '-edge' : ''})`;
     };
 
     getRightPadding = () => {
         const { columnsGap, isLastCell } = this.props;
 
-        if (columnsGap) return isLastCell ? columnsGap : +columnsGap / 2;
-        return isLastCell ? settings.dataTable.sizes.header.defaultGroupCellPaddingEdge : settings.dataTable.sizes.header.defaultGroupCellPadding;
-    };
-
-    renderCellContent = (props: HeaderCellContentProps) => {
-        const computeStyles = {
-            '--uui-dt-header-group-cell-padding-start': `${this.getLeftPadding()}px`,
-            '--uui-dt-header-group-cell-padding-end': `${this.getRightPadding()}px`,
-        } as React.CSSProperties;
-
-        return (
-            <DataTableCellContainer
-                column={ this.props.group }
-                ref={ (ref) => {
-                    (props.ref as React.RefCallback<HTMLElement>)(ref);
-                } }
-                cx={ cx(
-                    uuiDataTableHeaderGroupCell.uuiTableHeaderGroupCell,
-                    css.root,
-                    `uui-size-${this.props.size || settings.dataTable.sizes.header.defaultGroupCell}`,
-                    this.props.isFirstCell && 'uui-dt-header-first-column',
-                    this.props.isLastCell && 'uui-dt-header-last-column',
-                ) }
-                rawProps={ {
-                    role: 'columnheader',
-                    ...props.eventHandlers,
-                } }
-                style={ computeStyles }
-            >
-                { this.getColumnCaption() }
-            </DataTableCellContainer>
-        );
+        if (columnsGap) return isLastCell ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-header-group-cell-padding${isLastCell ? '-edge' : ''})`;
     };
 
     render() {
@@ -113,8 +79,8 @@ export class DataTableHeaderGroupCell extends
         }
 
         const computeStyles = {
-            '--uui-dt-header-group-cell-padding-start': `${this.getLeftPadding()}px`,
-            '--uui-dt-header-group-cell-padding-end': `${this.getRightPadding()}px`,
+            '--uui-dt-header-group-cell-padding-start': this.getLeftPadding(),
+            '--uui-dt-header-group-cell-padding-end': this.getRightPadding(),
         } as React.CSSProperties;
 
         return (
@@ -123,7 +89,7 @@ export class DataTableHeaderGroupCell extends
                 cx={ cx(
                     uuiDataTableHeaderGroupCell.uuiTableHeaderGroupCell,
                     css.root,
-                    `uui-size-${this.props.size || settings.dataTable.sizes.header.defaultGroupCell}`,
+                    `uui-size-${this.props.size || settings.dataTable.sizes.header.row}`,
                     this.props.isFirstCell && 'uui-dt-header-first-column',
                     this.props.isLastCell && 'uui-dt-header-last-column',
                 ) }
