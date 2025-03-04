@@ -57,7 +57,7 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
         await svc.uuiApi.processRequest('/api/save-doc-content', 'POST', {
             name: docFileName,
             content: content || null,
-        });
+        }).then(() => { showSuccess().catch(() => {}); });
     }
 
     function getDemoDescriptionFileName(demoItemName: string) {
@@ -73,10 +73,10 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
 
     const openModal = async () => {
         const content = await loadDocContentByDemoName(demoItem.name);
-        const newContent = await svc.uuiModals.show<EditorValue>((props) =>
-            <DescriptionModal demoItemName={ demoItem.name } modalProps={ props } value={ content } />).catch(() => {});
-        await saveDocContentByDemoName(demoItem.name, newContent as EditorValue);
-        await showSuccess().catch(() => {});
+        svc.uuiModals.show<EditorValue>((props) =>
+            <DescriptionModal demoItemName={ demoItem.name } modalProps={ props } value={ content } />).then((newContent) => {
+            saveDocContentByDemoName(demoItem.name, newContent as EditorValue);
+        }).catch(() => {});
     };
 
     return (

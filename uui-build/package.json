@@ -8,6 +8,7 @@
     "build": "yarn build-module",
     "build-module": "ts-node -T ts/scripts/buildUuiModule.ts",
     "generate-components-api": "ts-node ts/scripts/docsGen.ts",
+    "mergeFigmaVariables": "ts-node ts/scripts/mergeFigmaVariables.ts",
     "generate-theme-tokens": "ts-node ts/scripts/themeTokensGen.ts --tokens=../public/docs/figmaTokensGen/Theme.json --out-tokens=../public/docs/figmaTokensGen/ThemeOutput.json --out-tokens-data=../public/docs/figmaTokensGen/ThemeTokens.json --out=../epam-assets/theme/variables/tokens",
     "compile-theme-scss": "ts-node ts/scripts/compileThemeScss.ts",
     "track-bundle-size": "ts-node ts/scripts/trackBundleSize.ts",
@@ -31,7 +32,9 @@
     "rollup-plugin-visualizer": "5.12.0",
     "sass": "1.78.0",
     "ts-node": "10.9.1",
-    "tslib": "2.6.2"
+    "tslib": "2.6.2",
+    "react-fast-compare": "3.2.2",
+    "deepmerge": "4.3.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.23.10",

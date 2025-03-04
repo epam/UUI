@@ -62,7 +62,5 @@ function PickerTogglerComponent<TItem extends string, TId>(
     );
 }
 
-export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
-    props: PickerTogglerProps<TItem, TId> & PickerTogglerMods,
-    ref: React.ForwardedRef<HTMLElement>
-) => JSX.Element;
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as
+    <TItem, TId>(props: PickerTogglerProps<TItem, TId> & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof PickerTogglerComponent>;
