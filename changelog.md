@@ -1,3 +1,12 @@
+# 5.xx.x - xx.xx.2025
+**What's New**
+
+
+**What's Fixed**
+* [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles
+* [RTE]: add scroll into placeholders list menu
+* [PickerInput]: fixed bug when empty list appears in case topIndex + visibleCount was greater than total rows count
+
 # 5.13.1 - 10.02.2025
 
 **What's Fixed**

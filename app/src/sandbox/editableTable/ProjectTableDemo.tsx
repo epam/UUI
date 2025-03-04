@@ -213,7 +213,6 @@ export function ProjectTableDemo() {
         [insertTask],
     );
 
-    // console.log(value.items);
     const { rows, listProps } = useDataRows({
         tree,
         ...restProps,

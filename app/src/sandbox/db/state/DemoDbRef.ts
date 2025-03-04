@@ -1,7 +1,7 @@
 import { DemoDb, blankDemoDb, DemoDbTables } from './DemoDb';
 import { PersonEmploymentGroup } from '@epam/uui-docs';
 import { LazyDataSourceApiResponse } from '@epam/uui-core';
-import { DbRef, DbSaveResponse, DbPatch } from '@epam/uui-db';
+import { DbRef, DbSaveResponse } from '@epam/uui-db';
 import { svc } from '../../../services';
 
 export class DemoDbRef extends DbRef<DemoDbTables, DemoDb> {
@@ -9,8 +9,7 @@ export class DemoDbRef extends DbRef<DemoDbTables, DemoDb> {
         super(blankDemoDb);
     }
 
-    protected savePatch(patch: DbPatch<DemoDbTables>): Promise<DbSaveResponse<DemoDbTables>> {
-        console.log('DemoDbRef - savePatch', patch);
+    protected savePatch(): Promise<DbSaveResponse<DemoDbTables>> {
         return Promise.resolve({ submit: {} });
     }
 

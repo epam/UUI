@@ -3,6 +3,8 @@
 .root {
     --uui-main_menu-button-font: var(--uui-font);
     --uui-main_menu-button-font-weight: 600;
+
+    --uui-main_menu-button-icon-size: 24px;
     //
     flex-shrink: 0;
     color: var(--uui-main_menu-text);
@@ -35,11 +37,21 @@
     }
 
     &.type-primary {
-        @include icon-layout(36px);
+        :global(.uui-icon) {
+            svg {
+                height: var(--uui-main_menu-button-icon-size);
+                width: inherit;
+            }
+        }
     }
 
     &.type-secondary {
-        @include icon-layout(36px);
+        :global(.uui-icon) {
+            svg {
+                height: var(--uui-main_menu-button-icon-size);
+                width: inherit;
+            }
+        }
     }
 
     &:global(.-clickable) {

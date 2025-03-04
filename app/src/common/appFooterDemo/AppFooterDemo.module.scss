@@ -10,5 +10,9 @@
         overflow-x: auto;
         width: 100%;
         margin: 0 auto;
+
+        &:global(.uui-flex-row) {
+            --uui-size: 36px;
+        }
     }
 }

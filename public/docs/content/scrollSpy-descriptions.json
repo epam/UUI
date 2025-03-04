@@ -1,190 +1,105 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "Scroll Spy is a UI element helping to define and control anchors on your page. "
+      },
+      {
+        "text": "Some common cases where",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "a",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "text": "scroll spy can be applied:",
+        "font-size": "12pt",
+        "font-family": null,
+        "background-color": null,
+        "font-weight": "400",
+        "font-style": null,
+        "font-variant": "normal",
+        "text-decoration": "none",
+        "vertical-align": "baseline",
+        "white-space": "pre-wrap",
+        "": null,
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "data": {},
+    "children": [
+      {
+        "type": "list-item",
         "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "text",
-            "text": "Scroll Spy is a UI element helping to define and control anchors on your page. ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "Some common cases where",
-            "marks": [
+            "type": "list-item-child",
+            "data": {},
+            "children": [
               {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "a",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "scroll spy can be applied",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": ":",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {
-                    "font-size": "12pt",
-                    "font-family": null,
-                    "color": "#303240",
-                    "background-color": null,
-                    "font-weight": "400",
-                    "font-style": null,
-                    "font-variant": "normal",
-                    "text-decoration": "none",
-                    "vertical-align": "baseline",
-                    "white-space": "pre-wrap",
-                    "": null
-                  }
-                }
+                "text": "Navigation menu."
               }
             ]
           }
         ]
       },
       {
-        "object": "block",
-        "type": "unordered-list",
+        "type": "list-item",
         "data": {},
-        "nodes": [
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
+            "type": "list-item-child",
             "data": {},
-            "nodes": [
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Navigation menu.",
-                    "marks": []
-                  }
-                ]
+                "text": "Pages that preserve the last viewed place and recover it when the user returns to the page."
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "data": {},
+        "children": [
           {
-            "object": "block",
-            "type": "list-item",
+            "type": "list-item-child",
             "data": {},
-            "nodes": [
+            "children": [
               {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Pages that preserve the last viewed place and recover it when the user returns to the page.",
-                    "marks": []
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "block",
-            "type": "list-item",
-            "data": {},
-            "nodes": [
-              {
-                "object": "block",
-                "type": "list-item-child",
-                "data": {},
-                "nodes": [
-                  {
-                    "object": "text",
-                    "text": "Sidebar navigation, showing currently viewed section.",
-                    "marks": []
-                  }
-                ]
+                "text": "Sidebar navigation, showing currently viewed section."
               }
             ]
           }
@@ -192,4 +107,4 @@
       }
     ]
   }
-}
+]

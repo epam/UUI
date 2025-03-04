@@ -61,7 +61,7 @@ export class CheckboxDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="checkbox-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/checkbox/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Basic" path="./_examples/checkbox/Basic.example.tsx" />
                 <DocExample title="Checkbox Group" path="./_examples/checkbox/Group.example.tsx" />
             </>
         );

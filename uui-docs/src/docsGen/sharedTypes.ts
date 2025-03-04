@@ -69,14 +69,17 @@ export type TOneOfItemType = string | number | boolean | null | {
     negative: boolean;
     base10Value: string;
 };
+
+export type OneOfEditor = {
+    type: TPropEditorType.oneOf,
+    options: TOneOfItemType[],
+    scalarTypeOption?: TPropEditorType.string | TPropEditorType.number
+};
+
 export type TPropEditor =
     { type: TPropEditorType.string } |
     { type: TPropEditorType.bool } |
     { type: TPropEditorType.number } |
     { type: TPropEditorType.func } |
     { type: TPropEditorType.component } |
-    {
-        type: TPropEditorType.oneOf,
-        options: TOneOfItemType[],
-        scalarTypeOption?: TPropEditorType.string | TPropEditorType.number
-    };
+    OneOfEditor;

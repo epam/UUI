@@ -4,7 +4,7 @@ import React from 'react';
 import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
-
+import { ScrollBars } from '@epam/uui';
 import {
     PlateEditor, createPluginFactory, getPluginOptions, insertElements, PlatePlugin, AnyObject,
 } from '@udecode/plate-common';
@@ -48,27 +48,30 @@ export function PlaceholderButton({ editor }: IPlaceholderButton): any {
 
     const renderDropdownBody = () => {
         return (
-            <div className={ css.dropdownContainer }>
-                { params.items.map((i) => (
-                    <div
-                        className={ css.dropdownItem }
-                        key={ i.name }
-                        onMouseDown={ (event) => {
-                            event.preventDefault();
-                            insertElements(
-                                editor,
-                                {
-                                    data: i,
-                                    type: 'placeholder',
-                                    children: [{ text: '' }],
-                                },
-                            );
-                        } }
-                    >
-                        { i.name }
-                    </div>
-                )) }
-            </div>
+            <ScrollBars>
+                <div className={ css.dropdownContainer }>
+                    { params.items.map((i) => (
+                        <div
+                            className={ css.dropdownItem }
+                            key={ i.name }
+                            onMouseDown={ (event) => {
+                                event.preventDefault();
+                                insertElements(
+                                    editor,
+                                    {
+                                        data: i,
+                                        type: 'placeholder',
+                                        children: [{ text: '' }],
+                                    },
+                                );
+                            } }
+                        >
+                            { i.name }
+                        </div>
+                    )) }
+                </div>
+            </ScrollBars>
+
         );
     };
 

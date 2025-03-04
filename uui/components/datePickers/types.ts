@@ -32,6 +32,7 @@ export interface DatePickerModsOverride {}
 type DatePickerMods = {
     /**
      * Defines component size.
+     * @default '36'
      */
     size?: '24' | '30' | '36' | '42' | '48';
 };

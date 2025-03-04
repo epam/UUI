@@ -55,7 +55,7 @@ export class SwitchDoc extends BaseDocsBlock {
             <>
                 <EditableDocContent fileName="switch-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/switch/Basic.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Basic" path="./_examples/switch/Basic.example.tsx" />
             </>
         );
     }

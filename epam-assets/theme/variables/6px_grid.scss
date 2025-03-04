@@ -15,7 +15,7 @@
         --uui-horizontal-gap: 6px;
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 6px;
-        --uui-vertical-padding: 3px;
+        --uui-vertical-padding: 3px; // remove - discuss
         --uui-icon-size: 12px;
         --uui-line-height: 12px;
         --uui-font-size: 12px;
@@ -149,7 +149,7 @@
             --uui-font-size: 12px;
 
             .uui-caption {
-                --uui-tag-horizontal-gap: 0;
+                --uui-tag-caption-horizontal-padding: 0;
             }
         }
 
@@ -322,6 +322,13 @@
             --uui-alert-padding-h: 9px;
             --uui-alert-padding-v: 3px;
             --uui-alert-caption-gap-h: 9px;
+        }
+    }
+
+    .uui-filters-panel-item-toggler {
+        &.uui-size-24 {
+            --uui-horizontal-padding: 3px;
+            --uui-horizontal-gap: 3px;
         }
     }
 }

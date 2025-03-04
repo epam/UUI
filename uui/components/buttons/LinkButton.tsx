@@ -17,17 +17,18 @@ interface LinkButtonMods {
      * @default 'primary'
      */
     color?: 'primary' | 'secondary' | 'accent' | 'critical' | 'white' | 'contrast';
+
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: types.ControlSize | '42';
 }
 
 /** Represents the Core properties of the LinkButton component. */
 export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
-    /**
-     * Defines component size.
-     * @default '36'
-     */
-    size?: types.ControlSize | '42';
     /**
      * Defines component font-weight
      * @default 'semibold'

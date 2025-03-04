@@ -118,6 +118,7 @@ function iterateFolder(folder) {
                 const fileName = path.basename(folder);
                 const newFilePath = getNewFilePath(path.dirname(folder), fileName);
                 fs.writeFileSync(newFilePath, result.data);
+                // eslint-disable-next-line no-console
                 console.log(`file ${folder} has been optimized`);
             });
         }
