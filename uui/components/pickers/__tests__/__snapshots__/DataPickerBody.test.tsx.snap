@@ -3,7 +3,7 @@
 exports[`DataPickerBody should be rendered with maximum props 1`] = `
 Array [
   <div
-    className="searchWrapper"
+    className="searchWrapper uui-picker_input-body-search"
   >
     <div
       className=""
@@ -107,11 +107,11 @@ Array [
               aria-checked={null}
               aria-posinset={3}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -144,11 +144,11 @@ Array [
               aria-checked={null}
               aria-posinset={4}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -181,11 +181,11 @@ Array [
               aria-checked={null}
               aria-posinset={5}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -218,11 +218,11 @@ Array [
               aria-checked={null}
               aria-posinset={6}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -255,11 +255,11 @@ Array [
               aria-checked={null}
               aria-posinset={7}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -292,11 +292,11 @@ Array [
               aria-checked={null}
               aria-posinset={8}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -329,11 +329,11 @@ Array [
               aria-checked={null}
               aria-posinset={9}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -366,11 +366,11 @@ Array [
               aria-checked={null}
               aria-posinset={10}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -403,11 +403,11 @@ Array [
               aria-checked={null}
               aria-posinset={11}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -440,11 +440,11 @@ Array [
               aria-checked={null}
               aria-posinset={12}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -477,11 +477,11 @@ Array [
               aria-checked={null}
               aria-posinset={13}
               aria-selected={null}
-              className="root pickerRow"
+              className="root pickerRow uui-picker_input-row"
               role="option"
             >
               <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                 role="cell"
                 style={
                   Object {
@@ -617,11 +617,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={3}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -652,11 +652,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={4}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -687,11 +687,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={5}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -722,11 +722,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={6}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -757,11 +757,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={7}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -792,11 +792,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={8}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -827,11 +827,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={9}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -862,11 +862,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={10}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -897,11 +897,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={11}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -932,11 +932,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={12}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {
@@ -967,11 +967,11 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
             aria-checked={null}
             aria-posinset={13}
             aria-selected={null}
-            className="root pickerRow"
+            className="root pickerRow uui-picker_input-row"
             role="option"
           >
             <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
               role="cell"
               style={
                 Object {

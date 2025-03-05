@@ -238,11 +238,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="1"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -253,7 +253,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -265,7 +265,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Elementary
                                 </div>
@@ -282,11 +282,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="2"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -297,7 +297,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -309,7 +309,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Elementary+
                                 </div>
@@ -326,11 +326,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="3"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -341,7 +341,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -353,7 +353,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Pre-Intermediate
                                 </div>
@@ -370,11 +370,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="4"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -385,7 +385,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -397,7 +397,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Pre-Intermediate+
                                 </div>
@@ -414,11 +414,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="5"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -429,7 +429,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -441,7 +441,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Intermediate
                                 </div>
@@ -458,11 +458,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="6"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -473,7 +473,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -485,7 +485,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Intermediate+
                                 </div>
@@ -502,11 +502,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="7"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -517,7 +517,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -529,7 +529,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Upper-Intermediate
                                 </div>
@@ -546,11 +546,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="8"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -561,7 +561,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -573,7 +573,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Upper-Intermediate+
                                 </div>
@@ -590,11 +590,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="9"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -605,7 +605,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -617,7 +617,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Advanced
                                 </div>
@@ -634,11 +634,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="10"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -649,7 +649,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -661,7 +661,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Advanced+
                                 </div>
@@ -678,11 +678,11 @@ exports[`PickerList should open body 1`] = `
                   <div
                     aria-posinset="11"
                     aria-selected="false"
-                    class="root -clickable pickerRow"
+                    class="root -clickable pickerRow uui-picker_input-row"
                     role="option"
                   >
                     <div
-                      class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                      class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                       role="cell"
                       style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker-horizontal-padding: 24px;"
                     >
@@ -693,7 +693,7 @@ exports[`PickerList should open body 1`] = `
                           class="renderItem"
                         >
                           <div
-                            class="flexCell root uui-typography"
+                            class="flexCell root uui-picker_input-item uui-typography"
                             style="min-width: 0; flex-basis: auto;"
                           >
                             <div
@@ -705,7 +705,7 @@ exports[`PickerList should open body 1`] = `
                                 style="min-width: 0; flex-basis: auto;"
                               >
                                 <div
-                                  class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                  class="title uui-size-36"
                                 >
                                   Proficiency
                                 </div>
