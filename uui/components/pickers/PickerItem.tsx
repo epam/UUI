@@ -1,8 +1,8 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { DataRowProps, DataSourceState, Icon, Overwrite } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
-import { Text } from '../typography';
 import { Avatar } from '../widgets';
 import { getHighlightedSearchMatches } from './highlight';
 import { settings } from '../../settings';
@@ -46,7 +46,7 @@ export interface PickerItemProps<TItem, TId> extends Overwrite<PickerItemMods, P
 export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
     const {
         highlightSearchMatches = true,
-        size, avatarUrl, isLoading, isDisabled, icon, cx,
+        size, avatarUrl, isLoading, isDisabled, icon,
     } = props;
 
     const itemSize = size || settings.pickerInput.sizes.body.row;
@@ -57,7 +57,7 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
     const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(props.subtitle, search) : props.subtitle;
 
     return (
-        <FlexCell width="auto" cx={ [css.root, 'uui-picker_input-item', 'uui-typography', cx] }>
+        <FlexCell width="auto" cx={ [css.root, 'uui-picker_input-item', 'uui-typography', props.cx] }>
             <FlexRow
                 size={ itemSize }
                 cx={ [isMultiline && css.multiline, css.columnGap] }
@@ -73,14 +73,14 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
                 { icon && <IconContainer icon={ icon } /> }
                 <FlexCell width="auto">
                     { title && (
-                        <Text size={ itemSize } cx={ css.text } color={ isDisabled ? 'disabled' : 'primary' }>
+                        <div className={ cx(css.title, isDisabled && css.disabled, `uui-size-${itemSize}`) }>
                             { title }
-                        </Text>
+                        </div>
                     ) }
                     { subtitle && (
-                        <Text size={ itemSize } color={ isDisabled ? 'disabled' : 'secondary' } cx={ css.text }>
+                        <div className={ cx(css.subtitle, isDisabled && css.disabled, `uui-size-${itemSize}`) }>
                             { subtitle }
-                        </Text>
+                        </div>
                     ) }
                 </FlexCell>
             </FlexRow>
