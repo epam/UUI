@@ -589,11 +589,8 @@
         background-color: var(--uui-primary-60);
 
         .uui-picker_input-item {
-            .uui-text.uui-typography-inline {
-                &.uui-color-primary, &.uui-color-secondary {
-                    --uui-text: var(--uui-neutral-0);
-                }
-            }
+            --uui-picker_item-title: var(--uui-neutral-0);
+            --uui-picker_item-subtitle: var(--uui-neutral-0);
         }
 
         .uui-picker_input-cell-select_icon {
