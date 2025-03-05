@@ -4,7 +4,9 @@
 * [ModalHeader][Breaking Change]: vertical padding props changed behavior to use direct size of padding instead divided by 2. Type changed from `'12' | '18' | '24' | '36' | '48'` to `'6' | '9' | '12' | '18' | '24'`.
 * [ModalFooter][Breaking Change]: vertical padding props changed behavior to use direct size of padding instead divided by 2. Type changed from `'12' | '18' | '24' | '36' | '48'` to `'6' | '9' | '12' | '18' | '24'`.
 
+# 5.13.2 - 4.03.2025
 **What's Fixed**
+* Fixed PickerInput and PickerToggler component typings for React 19
 * [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles
 * [RTE]: add scroll into placeholders list menu
 * [PickerInput]: fixed bug when empty list appears in case topIndex + visibleCount was greater than total rows count
