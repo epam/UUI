@@ -575,4 +575,29 @@
             font-weight: 700;
         }
     }
+
+    .uui-picker_input-body-search {
+        --uui-data_picker_body-search-padding: 12px;
+    }
+
+    .uui-picker_input-row {
+        margin: 0 12px;
+        border-radius: 4px;
+    }
+
+    [aria-selected='true'], [aria-selected='true'].uui-focus {
+        background-color: var(--uui-primary-60);
+
+        .uui-picker_input-item {
+            .uui-text.uui-typography-inline {
+                &.uui-color-primary, &.uui-color-secondary {
+                    --uui-text: var(--uui-neutral-0);
+                }
+            }
+        }
+
+        .uui-picker_input-cell-select_icon {
+            display: none;
+        }
+    }
 }

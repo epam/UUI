@@ -39,7 +39,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
                 {props.renderItem(props.rowProps.value, props.rowProps)}
                 <FlexSpacer />
                 {(props.rowProps.isChildrenSelected || props.rowProps.isSelected) && (
-                    <div className={ cx(css.iconWrapper, uuiMod.selected) }>
+                    <div className={ cx(css.iconWrapper, 'uui-picker_input-cell-select_icon', uuiMod.selected) }>
                         <IconContainer
                             size={ settings.pickerInput.sizes.body.selectIconMap[props.size] }
                             icon={ SelectIcon }
