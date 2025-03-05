@@ -1,6 +1,13 @@
 .header {
-    --uui-data-picker-header-close-icon-padding: 24px;
+    --uui-data-picker-header-title: var(--uui-text-primary);
+    --uui-data-picker-header-title-font: var(--uui-font);
+    --uui-data-picker-header-title-font-style: normal;
+    --uui-data-picker-header-title-font-size: 16px;
+    --uui-data-picker-header-title-line-height: 24px;
     --uui-data-picker-header-title-font-weight: 600;
+    --uui-data-picker-header-title-vertical-pading: 12px;
+
+    --uui-data-picker-header-close-icon-padding: 24px;
     //
     display: none;
     justify-content: center;
@@ -11,7 +18,14 @@
     }
 
     .title {
-        --uui-text-font-weight: var(--uui-data-picker-header-title-font-weight);
+        color: var(--uui-data-picker-header-title);
+        font-family: var(--uui-data-picker-header-title-font);
+        font-size: var(--uui-data-picker-header-title-font-size);
+        line-height: var(--uui-data-picker-header-title-line-height);
+        font-style: var(--uui-data-picker-header-title-font-style);
+        font-weight: var(--uui-data-picker-header-title-font-weight);
+        padding-bottom: var(--uui-data-picker-header-title-vertical-pading);
+        padding-top: var(--uui-data-picker-header-title-vertical-pading);
     }
 }
 

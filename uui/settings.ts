@@ -651,7 +651,6 @@ interface PickerInputSizes {
         itemVerticalPaddingMap: Sizes<PickerItemProps<unknown, unknown>['size'], string>;
         selectIconMap: Sizes<DataPickerCellProps<unknown, unknown>['size'], string>;
         footerSwitchMap: Sizes<DataPickerFooterProps<unknown, unknown>['size'], SwitchProps['size']>;
-        mobileHeaderTitleSize: TextProps['size'];
         mobileFooterLinkButton: LinkButtonProps['size'];
         mobileRow: DataPickerRowProps<unknown, unknown>['size'];
         mobileSearchInput: SearchInputProps['size'];
@@ -727,7 +726,6 @@ const pickerInputSettings: PickerInputSettings = {
                 42: '24',
                 48: '24',
             },
-            mobileHeaderTitleSize: '48',
             mobileFooterLinkButton: '48',
             mobileRow: '48',
             mobileSearchInput: '48',

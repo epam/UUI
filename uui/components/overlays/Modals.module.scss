@@ -66,11 +66,11 @@
 
     --uui-modals-footer-column-gap: 12px;
     --uui-modals-footer-padding: 24px;
-    --uui-modals-footer-vertical-padding: 24px;
+    --uui-modals-footer-vertical-padding: 12px;
     //
     border-bottom-left-radius: var(--uui-modals-border-radius);
     border-bottom-right-radius: var(--uui-modals-border-radius);
-    padding: calc(var(--uui-modals-footer-vertical-padding) / 2) var(--uui-modals-footer-padding);
+    padding: var(--uui-modals-footer-vertical-padding) var(--uui-modals-footer-padding);
     column-gap: var(--uui-modals-footer-column-gap);
 
     @media (max-width: 720px) {
@@ -88,11 +88,11 @@
 
     --uui-modals-header-column-gap: 12px;
     --uui-modals-header-padding: 24px;
-    --uui-modals-header-vertical-padding: 36px;
+    --uui-modals-header-vertical-padding: 18px;
     //
     border-top-left-radius: var(--uui-modals-border-radius);
     border-top-right-radius: var(--uui-modals-border-radius);
-    padding: calc(var(--uui-modals-header-vertical-padding) / 2) var(--uui-modals-header-padding);
+    padding: var(--uui-modals-header-vertical-padding) var(--uui-modals-header-padding);
     column-gap: var(--uui-modals-header-column-gap);
 
     &.border-bottom {

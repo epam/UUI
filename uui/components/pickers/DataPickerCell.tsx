@@ -70,6 +70,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
             cx={ [
                 css.root,
                 props.cx,
+                'uui-picker_input-cell',
                 'data-picker-cell',
                 props.size && `uui-size-${props.size}`,
                 css[`align-widgets-${props.alignActions || 'top'}`],
