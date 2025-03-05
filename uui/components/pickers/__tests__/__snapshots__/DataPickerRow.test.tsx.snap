@@ -5,11 +5,11 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   aria-checked={null}
   aria-posinset={2}
   aria-selected={null}
-  className="root pickerRow"
+  className="root pickerRow uui-picker_input-row"
   role="option"
 >
   <div
-    className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+    className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
     role="cell"
     style={
       Object {
@@ -43,12 +43,12 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
   aria-checked={null}
   aria-posinset={2}
   aria-selected={true}
-  className="root uui-focus -clickable pickerRow"
+  className="root uui-focus -clickable pickerRow uui-picker_input-row"
   onClick={[Function]}
   role="option"
 >
   <div
-    className="flexCell root data-picker-cell uui-size-48 align-widgets-top"
+    className="flexCell root uui-picker_input-cell data-picker-cell uui-size-48 align-widgets-top"
     role="cell"
     style={
       Object {
@@ -73,7 +73,7 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
           className="flexSpacer"
         />
         <div
-          className="iconWrapper uui-selected"
+          className="iconWrapper uui-picker_input-cell-select_icon uui-selected"
         >
           <div
             aria-label="Selected"
