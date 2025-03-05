@@ -64,7 +64,7 @@ export interface ModalHeaderMods {
     /** Defines horizontal row padding */
     padding?: '6' | '12' | '18' | '24';
     /** Defines vertical row padding */
-    vPadding?: '12' | '18' | '24' | '36' | '48';
+    vPadding?: '6' | '9' | '12' | '18' | '24';
     /** Pass true, to enable row bottom border */
     borderBottom?: boolean;
 }
@@ -116,7 +116,7 @@ export interface ModalFooterMods {
     /** Defines horizontal row padding */
     padding?: '6' | '12' | '18' | '24';
     /** Defines vertical row padding */
-    vPadding?: '12' | '18' | '24' | '36' | '48';
+    vPadding?: '6' | '9' | '12' | '18' | '24';
     /** Pass true, to enable row top border */
     borderTop?: boolean;
 }

@@ -76,7 +76,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         return (
             <>
                 {this.showSearch() && (
-                    <div key="search" className={ css.searchWrapper }>
+                    <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                         <FlexCell grow={ 1 }>
                             <SearchInput
                                 ref={ this.searchRef }

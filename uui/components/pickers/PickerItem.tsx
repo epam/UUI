@@ -57,7 +57,7 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
     const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(props.subtitle, search) : props.subtitle;
 
     return (
-        <FlexCell width="auto" cx={ [css.root, 'uui-typography', cx] }>
+        <FlexCell width="auto" cx={ [css.root, 'uui-picker_input-item', 'uui-typography', cx] }>
             <FlexRow
                 size={ itemSize }
                 cx={ [isMultiline && css.multiline, css.columnGap] }

@@ -1,7 +1,8 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
 * [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
-
+* [ModalHeader][Breaking Change]: vertical padding props changed behavior to use direct size of padding instead divided by 2. Type changed from `'12' | '18' | '24' | '36' | '48'` to `'6' | '9' | '12' | '18' | '24'`.
+* [ModalFooter][Breaking Change]: vertical padding props changed behavior to use direct size of padding instead divided by 2. Type changed from `'12' | '18' | '24' | '36' | '48'` to `'6' | '9' | '12' | '18' | '24'`.
 
 **What's Fixed**
 * [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles

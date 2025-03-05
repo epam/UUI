@@ -37,7 +37,7 @@ export class DataPickerRow<TItem, TId> extends React.Component<DataPickerRowProp
         return (
             <UUIDataPickerRow
                 { ...this.props }
-                cx={ [css.pickerRow, this.props.cx] }
+                cx={ [css.pickerRow, 'uui-picker_input-row', this.props.cx] }
                 renderContent={ this.renderContent }
             />
         );

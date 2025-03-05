@@ -4,7 +4,7 @@ import {
     PickerInputElement, isMobile, Overwrite, PickerInputBaseProps,
 } from '@epam/uui-core';
 import { PickerTogglerRenderItemParams, PickerBodyBaseProps, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
-import { Dropdown } from '../overlays/Dropdown';
+import { Dropdown } from '../overlays';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { PickerBodyMobileView } from './PickerBodyMobileView';
@@ -173,7 +173,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             <PickerBodyMobileView
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
-                cx={ [props.bodyCx] }
+                cx={ [props.bodyCx, 'uui-picker_input-body-wrapper'] }
                 onKeyDown={ bodyProps.onKeyDown }
                 width={ bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth }
                 focusLock={ getSearchPosition() === 'body' }
