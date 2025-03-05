@@ -46,7 +46,7 @@ const library = [
 ];
 
 const assets = {
-    fonts: 'https://epam.sharepoint.com/:u:/r/sites/EPAMUII3/Shared%20Documents/General/UUI%20fonts/Fonts_UUI4.7z?csf=1&web=1&e=3VU4QA',
+    fonts: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EdBLCnbjyTFDmOgAGlz48XIB_j8RiVNE9bYS_1AEa_KjeA?e=8cAJWd',
     logos: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Logotypes_UUI4.7z',
     icons: 'https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/UUI4/Icons_UUI4.7z',
     illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
