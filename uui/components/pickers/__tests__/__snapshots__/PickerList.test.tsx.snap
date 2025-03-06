@@ -155,7 +155,7 @@ exports[`PickerList should open body 1`] = `
         style="width: 600px; height: 700px; max-height: var(--uui-modals-max-height);"
       >
         <div
-          class="root modalHeader"
+          class="root modalHeader uui-modal-header"
         >
           <div
             class="uui-modal-title uui-typography"
@@ -748,8 +748,7 @@ exports[`PickerList should open body 1`] = `
           </div>
         </div>
         <div
-          class="root modalFooter"
-          style="--uui-modals-footer-padding: 24px; --uui-modals-footer-vertical-padding: 24px;"
+          class="root modalFooter uui-modal-footer"
         >
           <div
             class="flexSpacer"
