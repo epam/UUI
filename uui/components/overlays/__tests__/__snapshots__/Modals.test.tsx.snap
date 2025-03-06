@@ -27,13 +27,8 @@ exports[`Modals should be rendered correctly with many props 1`] = `
     }
   >
     <div
-      className="root modalHeader borderBottom"
-      style={
-        Object {
-          "--uui-modals-header-padding": "6px",
-          "--uui-modals-header-vertical-padding": "12px",
-        }
-      }
+      className="root modalHeader uui-modal-header borderBottom"
+      style={Object {}}
     >
       <div
         className="uui-modal-title uui-typography"
@@ -75,13 +70,8 @@ exports[`Modals should be rendered correctly with many props 1`] = `
       </div>
     </div>
     <div
-      className="root modalFooter"
-      style={
-        Object {
-          "--uui-modals-footer-padding": "18px",
-          "--uui-modals-footer-vertical-padding": "24px",
-        }
-      }
+      className="root modalFooter uui-modal-footer borderTop"
+      style={Object {}}
     />
   </div>
 </div>
@@ -114,11 +104,11 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
     }
   >
     <div
-      className="root modalHeader"
+      className="root modalHeader uui-modal-header"
       style={Object {}}
     />
     <div
-      className="root modalFooter"
+      className="root modalFooter uui-modal-footer"
       style={Object {}}
     />
   </div>

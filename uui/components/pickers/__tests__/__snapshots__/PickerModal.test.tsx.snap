@@ -27,7 +27,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="root modalHeader"
+      className="root modalHeader uui-modal-header"
       style={Object {}}
     >
       <div
@@ -378,13 +378,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root modalFooter"
-      style={
-        Object {
-          "--uui-modals-footer-padding": "24px",
-          "--uui-modals-footer-vertical-padding": "24px",
-        }
-      }
+      className="root modalFooter uui-modal-footer"
+      style={Object {}}
     >
       <div
         className="flexSpacer"
@@ -445,7 +440,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
     }
   >
     <div
-      className="root modalHeader"
+      className="root modalHeader uui-modal-header"
       style={Object {}}
     >
       <div
@@ -1688,13 +1683,8 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </div>
     </div>
     <div
-      className="root modalFooter"
-      style={
-        Object {
-          "--uui-modals-footer-padding": "24px",
-          "--uui-modals-footer-vertical-padding": "24px",
-        }
-      }
+      className="root modalFooter uui-modal-footer"
+      style={Object {}}
     >
       <button
         aria-disabled={false}
@@ -1766,7 +1756,7 @@ exports[`PickerModal should open body 1`] = `
         style="width: 600px; height: 700px; max-height: var(--uui-modals-max-height);"
       >
         <div
-          class="root modalHeader"
+          class="root modalHeader uui-modal-header"
         >
           <div
             class="uui-modal-title uui-typography"
@@ -1985,8 +1975,7 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="root modalFooter"
-          style="--uui-modals-footer-padding: 24px; --uui-modals-footer-vertical-padding: 24px;"
+          class="root modalFooter uui-modal-footer"
         >
           <div
             class="flexSpacer"
