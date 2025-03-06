@@ -1,4 +1,5 @@
-# 5.13.2 - 4.03.2025
+# 5.13.2 - 04.03.2025
+
 **What's Fixed**
 * Fixed PickerInput and PickerToggler component typings for React 19
 * [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles
