@@ -362,7 +362,8 @@ interface DatePickerIcons {
 }
 
 interface DatePickerSizes {
-    default: DatePickerProps['size'];
+    input: DatePickerProps['size'];
+    body: DatePickerProps['size'];
 }
 
 interface DatePickerSettings {
@@ -381,7 +382,8 @@ const datePickerSettings: DatePickerSettings = {
         },
     },
     sizes: {
-        default: '36',
+        body: '36',
+        input: '36',
     },
 };
 
@@ -521,27 +523,13 @@ interface ModalIcons {
     closeIcon: Icon;
 }
 
-interface ModalSizes {
-    headerPadding: FlexRowProps['padding'];
-    footerColumnGap: FlexRowProps['columnGap'];
-    footerPadding: FlexRowProps['padding'];
-    footerVPadding: FlexRowProps['vPadding'];
-}
-
 interface ModalSettings {
     icons: ModalIcons;
-    sizes: ModalSizes;
 }
 
 const modalSettings: ModalSettings = {
     icons: {
         closeIcon: CrossIcon,
-    },
-    sizes: {
-        headerPadding: '24',
-        footerColumnGap: '12',
-        footerPadding: '24',
-        footerVPadding: '24',
     },
 };
 
@@ -763,6 +751,7 @@ interface RangeDatePickerIcons {
 
 interface RangeDatePickerSizes {
     default: RangeDatePickerProps['size'];
+    preset: LinkButtonProps['size'];
 }
 
 interface RangeDatePickerSettings {
@@ -778,6 +767,7 @@ const rangeDatePickerSettings: RangeDatePickerSettings = {
     },
     sizes: {
         default: '36',
+        preset: '24',
     },
 };
 
