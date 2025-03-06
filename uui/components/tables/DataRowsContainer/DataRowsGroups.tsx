@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { DataRowProps } from '@epam/uui-core';
-import css from './DataRowsContainer.module.scss';
 import { getChildrenAndRest } from './utils';
+
+import css from './DataRowsContainer.module.scss';
 
 interface DataRowsGroupProps<TItem, TId> {
     row: DataRowProps<TItem, TId>;

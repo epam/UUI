@@ -105,6 +105,9 @@
 }
 
 .item-root {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
     @include fillColor(var(--uui-icon), var(--uui-text-primary));
     @include itemRoot;
     @include withActive;

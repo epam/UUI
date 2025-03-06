@@ -1,8 +1,7 @@
 import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
-import { ReactComponent as Check } from '@epam/assets/icons/notification-done-outline.svg';
-import { ReactComponent as PartlySelect } from '@epam/assets/icons/content-minus-outline.svg';
 import { settings } from '../../settings';
+
 import css from './Checkbox.module.scss';
 
 interface CheckboxMods {
@@ -26,18 +25,16 @@ export interface CheckboxProps extends uuiComponents.CheckboxProps, Overwrite<Ch
 function applyCheckboxMods(mods: CheckboxMods) {
     return [
         css.root,
-        `uui-size-${mods.size || settings.sizes.defaults.checkbox}`,
+        `uui-size-${mods.size || settings.checkbox.sizes.default}`,
         css['mode-' + (mods.mode || 'form')],
         'uui-color-primary',
     ];
 }
 
 const applyUUICheckboxProps = (props: CheckboxProps) => {
-    const defaultIcon = Check;
-    const defaultIndeterminateIcon = PartlySelect;
     return {
-        icon: props.icon ? props.icon : defaultIcon,
-        indeterminateIcon: props.indeterminateIcon ? props.indeterminateIcon : defaultIndeterminateIcon,
+        icon: props.icon ? props.icon : settings.checkbox.icons.checkIcon,
+        indeterminateIcon: props.indeterminateIcon ? props.indeterminateIcon : settings.checkbox.icons.indeterminateIcon,
     };
 };
 

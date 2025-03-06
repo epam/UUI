@@ -42,12 +42,12 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
     style="z-index: 2000;"
   >
     <div
-      class="uui-dropdown-body -lock-focus root container container"
+      class="uui-dropdown-body -lock-focus root container uui-picker_input-body-wrapper container"
       style="min-width: 360px; max-width: 360px;"
       tabindex="-1"
     >
       <div
-        class="uui-flex-row root uui-size-36 uui-picker_input-body dropdown single container align-items-center"
+        class="root uui-flex-row uui-picker_input-body dropdown single uui-size-36"
         style="max-height: 300px;"
       >
         <div
@@ -68,13 +68,13 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                 <div
                   aria-posinset="1"
                   aria-selected="false"
-                  class="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
+                  class="root uui-focus -clickable pickerRow uui-picker_input-row"
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                    class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                     role="cell"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <div
                       class="contentWrapper"
@@ -83,11 +83,11 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                         class="renderItem"
                       >
                         <div
-                          class="flexCell root uui-typography"
+                          class="flexCell root uui-picker_input-item uui-typography"
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            class="root uui-flex-row columnGap uui-size-36"
                             style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
@@ -95,7 +95,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                class="title uui-size-36"
                               >
                                 Elementary
                               </div>
@@ -112,13 +112,13 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                 <div
                   aria-posinset="2"
                   aria-selected="false"
-                  class="uui-flex-row pickerRow container -clickable align-items-center"
+                  class="root -clickable pickerRow uui-picker_input-row"
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                    class="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
                     role="cell"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <div
                       class="contentWrapper"
@@ -127,11 +127,11 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                         class="renderItem"
                       >
                         <div
-                          class="flexCell root uui-typography"
+                          class="flexCell root uui-picker_input-item uui-typography"
                           style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                            class="root uui-flex-row columnGap uui-size-36"
                             style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
@@ -139,7 +139,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                               style="min-width: 0; flex-basis: auto;"
                             >
                               <div
-                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                                class="title uui-size-36"
                               >
                                 Elementary+
                               </div>
@@ -182,7 +182,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
         </div>
       </div>
       <div
-        class="uui-flex-row root uui-size-36 footer container align-items-center"
+        class="root uui-flex-row footer uui-size-36"
       >
         <div
           class="flexSpacer"

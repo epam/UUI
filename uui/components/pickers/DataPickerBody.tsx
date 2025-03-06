@@ -3,12 +3,13 @@ import {
     Lens, DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger,
 } from '@epam/uui-core';
 import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
-import { SearchInput, SearchInputProps } from '../inputs';
+import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import { ControlSize } from '../types';
+import type { ControlSize } from '../types';
 import { settings } from '../../settings';
+
 import css from './DataPickerBody.module.scss';
 
 export interface DataPickerBodyModsOverride {}
@@ -27,7 +28,7 @@ export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataP
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     searchLens = this.lens.prop('search').default('');
-    getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
+    getSearchSize = () => (isMobile() ? settings.pickerInput.sizes.body.mobileSearchInput : this.props.searchSize);
 
     renderEmpty() {
         const search = this.searchLens.get();
@@ -75,7 +76,7 @@ export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
         return (
             <>
                 {this.showSearch() && (
-                    <div key="search" className={ css.searchWrapper }>
+                    <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                         <FlexCell grow={ 1 }>
                             <SearchInput
                                 ref={ this.searchRef }
