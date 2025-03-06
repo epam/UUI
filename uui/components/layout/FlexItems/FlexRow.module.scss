@@ -20,11 +20,22 @@
     --uui-flex-row-size: var(--uui-size);
     //
     // If we have an "border-box" value here, an size-24 row with a bottom border, will have 23px min-height.
+    display: flex;
+    flex: 0 0 auto;
     box-sizing: content-box;
     background-color: var(--uui-flex-row-bg);
+    align-items: center;
+
+    &.align-items {
+        align-items: var(--uui-flex-row-align-items);
+    }
 
     &[class*='uui-size-'] {
         min-height: var(--uui-flex-row-size);
+    }
+
+    .justify-content {
+        justify-content: var(--uui-flex-row-justity-content);
     }
 
     &.border-top {
@@ -39,58 +50,26 @@
         @include panel-top-shadow();
     }
 
-    &.padding-6 {
-        padding-left: 6px;
-        padding-right: 6px;
+    &.padding {
+        padding-left: var(--uui-flex-row-padding);
+        padding-right: var(--uui-flex-row-padding);
     }
 
-    &.padding-12 {
-        padding-left: 12px;
-        padding-right: 12px;
+    &.margin {
+        margin: var(--uui-flex-row-margin);
     }
 
-    &.padding-18 {
-        padding-left: 18px;
-        padding-right: 18px;
+    &.vPadding {
+        padding-top: calc(var(--uui-flex-row-v-padding) / 2);
+        padding-bottom: calc(var(--uui-flex-row-v-padding) / 2);
     }
 
-    &.padding-24 {
-        padding-left: 24px;
-        padding-right: 24px;
+    &.column-gap {
+        column-gap: var(--uui-flex-row-column-gap);
     }
 
-    &.margin-24 {
-        margin: 24px;
-    }
-
-    &.margin-12 {
-        margin: 12px;
-    }
-
-
-    &.vPadding-12 {
-        padding-top: 6px;
-        padding-bottom: 6px;
-    }
-
-    &.vPadding-18 {
-        padding-top: 9px;
-        padding-bottom: 9px;
-    }
-
-    &.vPadding-24 {
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
-
-    &.vPadding-36 {
-        padding-top: 18px;
-        padding-bottom: 18px;
-    }
-
-    &.vPadding-48 {
-        padding-top: 24px;
-        padding-bottom: 24px;
+    &.row-gap {
+        row-gap: var(--uui-flex-row-row-gap);
     }
 
     &.spacing-6 {

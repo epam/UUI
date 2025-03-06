@@ -12,7 +12,11 @@
     --uui-dt-header-cell-line-height: 30px;
     --uui-dt-header-cell-height: var(--uui-size);
     --uui-dt-header-cell-caption-column-gap: 3px;
+    --uui-dt-header-cell-font-size: 14px;
+    --uui-dt-header-cell-upprcase-font-size: 12px;
     --uui-dt-header-cell-truncate-caption-line-height: 18px;
+    --uui-dt-header-cell-padding: var(--uui-dt-padding);
+    --uui-dt-header-cell-padding-edge: var(--uui-dt-padding-edge);
     --uui-dt-header-cell-border: transparent;
     //
     color: var(--uui-text-primary);
@@ -72,9 +76,10 @@
     }
 
     .caption {
-        --uui-text-line-height: var(--uui-dt-header-cell-line-height);
         font-family: var(--uui-dt-header-cell-font);
         font-weight: var(--uui-dt-header-cell-font-weight);
+        font-size: var(--uui-dt-header-cell-font-size);
+        line-height: var(--uui-dt-header-cell-line-height);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -89,6 +94,11 @@
             overflow: hidden;
             white-space: normal;
             line-height: var(--uui-dt-header-cell-truncate-caption-line-height);
+        }
+
+        &.upper-case {
+            text-transform: uppercase;
+            font-size: var(--uui-dt-header-cell-upprcase-font-size);
         }
     }
 
@@ -115,10 +125,6 @@
 
     .cell-tooltip {
         top: 0;
-    }
-
-    .upper-case {
-        text-transform: uppercase;
     }
 
     .resizing-marker {

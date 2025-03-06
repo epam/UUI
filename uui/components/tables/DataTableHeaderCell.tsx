@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    cx, DataColumnProps, DataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
+    cx, DataColumnProps, DataTableHeaderCellProps as UuiCoreDataTableHeaderCellProps, IDropdownTogglerProps, Overwrite, uuiDataTableHeaderCell, uuiMarkers,
 } from '@epam/uui-core';
 import {
     DataTableCellContainer,
@@ -8,19 +8,12 @@ import {
     HeaderCellContentProps,
 } from '@epam/uui-components';
 import { ColumnHeaderDropdown } from './ColumnHeaderDropdown';
-import { DataTableHeaderCellMods } from './types';
+import type { DataTableHeaderCellMods } from './types';
 import { IconButton } from '../buttons';
-import { Checkbox, CheckboxProps } from '../inputs';
+import { Checkbox } from '../inputs';
 import { Tooltip } from '../overlays';
-import { Text, TextProps } from '../typography';
-import { ReactComponent as DefaultSortIcon } from '@epam/assets/icons/table-swap-outline.svg';
-import { ReactComponent as SortIcon } from '@epam/assets/icons/table-sort_asc-outline.svg';
-import { ReactComponent as SortIconDesc } from '@epam/assets/icons/table-sort_desc-outline.svg';
-import { ReactComponent as FilterIcon } from '@epam/assets/icons/content-filtration-fill.svg';
-import { ReactComponent as DropdownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
-import { ReactComponent as OpenedDropdownIcon } from '@epam/assets/icons/navigation-chevron_up-outline.svg';
-import { ReactComponent as FoldIcon } from '@epam/assets/icons/navigation-collapse_all-outline.svg';
-import { ReactComponent as UnfoldIcon } from '@epam/assets/icons/navigation-expand_all-outline.svg';
+import { Text } from '../typography';
+
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 
@@ -34,12 +27,11 @@ interface DataTableHeaderCellState {
 export interface DataTableHeaderCellModsOverride {
 }
 
-export class DataTableHeaderCell<TItem, TId> extends
-    React.Component<
-    DataTableHeaderCellProps<TItem, TId> & Overwrite<DataTableHeaderCellMods,
-    DataTableHeaderCellModsOverride>,
-    DataTableHeaderCellState
-    > {
+export interface DataTableHeaderCellProps<TItem, TId> extends
+    UuiCoreDataTableHeaderCellProps<TItem, TId>,
+    Overwrite<DataTableHeaderCellMods, DataTableHeaderCellModsOverride> {}
+
+export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHeaderCellProps<TItem, TId>, DataTableHeaderCellState> {
     state: DataTableHeaderCellState = {
         isDropdownOpen: null,
     };
@@ -59,12 +51,13 @@ export class DataTableHeaderCell<TItem, TId> extends
 
     getColumnCaption = () => {
         const renderTooltip = this.props.column.renderTooltip || this.getTooltipContent;
-        const captionCx = [
+        const captionCx = cx([
             css.caption,
             this.props.textCase === 'upper' && css.upperCase,
             uuiDataTableHeaderCell.uuiTableHeaderCaption,
-            settings.sizes.dataTable.header.row.cell.truncate.includes(this.props.size) && css.truncate,
-        ];
+            'uui-typography-inline',
+            this.props.size >= '48' && css.truncate,
+        ]);
 
         return (
             <div
@@ -77,21 +70,16 @@ export class DataTableHeaderCell<TItem, TId> extends
                     cx={ css.cellTooltip }
                     openDelay={ 600 }
                 >
-                    <Text
-                        key="text"
-                        fontSize={ settings.sizes.dataTable.header.row.cell.columnCaption[this.props.textCase === 'upper' ? 'uppercase' : 'fontSize'] as TextProps['fontSize'] }
-                        size={ settings.sizes.dataTable.header.row.cell.columnCaption.size as TextProps['size'] }
-                        cx={ captionCx }
-                    >
+                    <div key="text" className={ captionCx }>
                         { this.props.column.caption }
-                    </Text>
+                    </div>
                 </Tooltip>
                 { this.props.column.isSortable && (!this.props.column.renderFilter || this.props.sortDirection) && (
                     <IconButton
                         key="sort"
                         cx={ cx(css.icon, css.sortIcon, this.props.sortDirection && css.sortIconActive, uuiDataTableHeaderCell.uuiTableHeaderSortIcon) }
                         color={ this.props.sortDirection ? 'neutral' : 'secondary' }
-                        icon={ this.props.sortDirection === 'desc' ? SortIconDesc : this.props.sortDirection === 'asc' ? SortIcon : DefaultSortIcon }
+                        icon={ settings.dataTable.icons.header[this.props.sortDirection === 'desc' ? 'descSortIcon' : this.props.sortDirection === 'asc' ? 'ascSortIcon' : 'defaultSortIcon'] }
                     />
                 ) }
                 { this.props.isFilterActive && (
@@ -99,7 +87,7 @@ export class DataTableHeaderCell<TItem, TId> extends
                         key="filter"
                         cx={ cx(css.icon, !this.props.sortDirection && css.filterIcon, uuiDataTableHeaderCell.uuiTableHeaderFilterIcon) }
                         color="neutral"
-                        icon={ FilterIcon }
+                        icon={ settings.dataTable.icons.header.filterIcon }
                     />
                 ) }
                 { this.props.column.renderFilter && (
@@ -107,7 +95,7 @@ export class DataTableHeaderCell<TItem, TId> extends
                         key="dropdown"
                         cx={ cx(css.icon, css.dropdownIcon, uuiDataTableHeaderCell.uuiTableHeaderDropdownIcon) }
                         color="secondary"
-                        icon={ this.state.isDropdownOpen ? OpenedDropdownIcon : DropdownIcon }
+                        icon={ settings.dataTable.icons.header[this.state.isDropdownOpen ? 'openedDropdownIcon' : 'dropdownIcon'] }
                     />
                 ) }
             </div>
@@ -118,7 +106,7 @@ export class DataTableHeaderCell<TItem, TId> extends
         if (this.props.selectAll && this.props.isFirstColumn) {
             return (
                 <Checkbox
-                    size={ settings.sizes.dataTable.header.row.cell.checkbox[this.props.size] as CheckboxProps['size'] }
+                    size={ settings.dataTable.sizes.body.checkboxMap[this.props.size] }
                     { ...this.props.selectAll }
                     cx={ cx(css.checkbox, uuiDataTableHeaderCell.uuiTableHeaderCheckbox) }
                 />
@@ -138,7 +126,7 @@ export class DataTableHeaderCell<TItem, TId> extends
                     <IconButton
                         color="secondary"
                         cx={ cx(css.icon, css.foldAllIcon, uuiDataTableHeaderCell.uuiTableHeaderFoldAllIcon) }
-                        icon={ this.props.areAllFolded ? UnfoldIcon : FoldIcon }
+                        icon={ settings.dataTable.icons.header[this.props.areAllFolded ? 'unfoldIcon' : 'foldIcon'] }
                         onClick={ this.props.onFoldAll }
                         rawProps={ {
                             'aria-label': this.props.areAllFolded ? 'Expand All' : 'Collapse All',
@@ -163,20 +151,20 @@ export class DataTableHeaderCell<TItem, TId> extends
     getLeftPadding = () => {
         const { columnsGap, isFirstColumn } = this.props;
 
-        if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
-        return isFirstColumn ? settings.sizes.dataTable.header.row.cell.defaults.paddingEdge : settings.sizes.dataTable.header.row.cell.defaults.padding;
+        if (columnsGap) return isFirstColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-header-cell-padding${isFirstColumn ? '-edge' : ''})`;
     };
 
     getRightPadding = () => {
         const { columnsGap, isLastColumn } = this.props;
 
-        if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
-        return isLastColumn ? settings.sizes.dataTable.header.row.cell.defaults.paddingEdge : settings.sizes.dataTable.header.row.cell.defaults.padding;
+        if (columnsGap) return isLastColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-header-cell-padding${isLastColumn ? '-edge' : ''})`;
     };
 
     getResizingMarkerWidth = () => {
         const { columnsGap } = this.props;
-        return columnsGap ? +columnsGap / 2 : settings.sizes.dataTable.header.row.cell.defaults.resizeMarker;
+        return columnsGap ? `${+columnsGap / 2}px` : 'var(--uui-resize-marker-width)';
     };
 
     renderCellContent = (props: HeaderCellContentProps, dropdownProps?: IDropdownTogglerProps) => {
@@ -184,10 +172,10 @@ export class DataTableHeaderCell<TItem, TId> extends
         const onClickEvent = !props.isResizing && (!this.props.column.renderFilter ? props.toggleSort : dropdownProps?.onClick);
 
         const computeStyles = {
-            '--uui-dt-header-cell-icon-size': `${settings.sizes.dataTable.header.row.cell.iconSize[this.props.size || settings.sizes.dataTable.header.row.cell.defaults.size]}px`,
-            '--uui-dt-header-cell-padding-start': `${this.getLeftPadding()}px`,
-            '--uui-dt-header-cell-padding-end': `${this.getRightPadding()}px`,
-            '--uui-dt-header-cell-resizing-marker-width': `${this.getResizingMarkerWidth()}px`,
+            '--uui-dt-header-cell-icon-size': `${settings.dataTable.sizes.header.iconMap[this.props.size || settings.dataTable.sizes.header.row]}px`,
+            '--uui-dt-header-cell-padding-start': this.getLeftPadding(),
+            '--uui-dt-header-cell-padding-end': this.getRightPadding(),
+            '--uui-dt-header-cell-resizing-marker-width': this.getResizingMarkerWidth(),
         } as React.CSSProperties;
 
         return (
@@ -201,7 +189,7 @@ export class DataTableHeaderCell<TItem, TId> extends
                     uuiDataTableHeaderCell.uuiTableHeaderCell,
                     (this.props.column.isSortable || this.props.isDropdown) && uuiMarkers.clickable,
                     css.root,
-                    `uui-size-${this.props.size || settings.sizes.dataTable.header.row.cell.defaults.size}`,
+                    `uui-size-${this.props.size || settings.dataTable.sizes.header.row}`,
                     this.props.isFirstColumn && 'uui-dt-header-first-column',
                     this.props.isLastColumn && 'uui-dt-header-last-column',
                     this.props.column.fix && css['pinned-' + this.props.column.fix],

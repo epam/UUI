@@ -2,6 +2,7 @@ import React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { VirtualListRenderRowsParams } from '../../layout';
 import { DataRowsGroups } from './DataRowsGroups';
+
 import css from './DataRowsContainer.module.scss';
 
 export interface DataRowsContainerProps<TItem, TId, List extends HTMLDivElement = any> extends VirtualListRenderRowsParams<List> {

@@ -1,9 +1,17 @@
-import { devLogger, FlexRowProps as uuiFlexRowProps, withMods } from '@epam/uui-core';
-import { FlexRow as uuiFlexRow } from '@epam/uui-components';
+import React, { forwardRef } from 'react';
+import {
+    devLogger,
+    FlexRowProps as uuiFlexRowProps,
+    isEventTargetInsideClickable,
+    uuiMarkers,
+    cx, Overwrite,
+} from '@epam/uui-core';
+
 import { settings } from '../../../settings';
+
 import css from './FlexRow.module.scss';
 
-export type RowMods = {
+export interface FlexRowMods {
     /** Defines row size */
     size?: null | '24' | '30' | '36' | '42' | '48';
     /** Pass true, to enable row top border */
@@ -20,30 +28,69 @@ export type RowMods = {
     topShadow?: boolean;
     /** Defines vertical row padding */
     vPadding?: '12' | '18' | '24' | '36' | '48';
+    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    columnGap?: number | '6' | '12' | '18' | '24' | '36';
+    /** Flexbox row gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
+    rowGap?: number | '6' | '12' | '18' | '24' | '36';
     /** Defines row background */
     background?: 'surface-main';
-};
+}
+
+export interface FlexRowModsOverride {}
 
 /** Represents the properties of the FlexRow component. */
-export interface FlexRowProps extends uuiFlexRowProps, RowMods {}
+export interface FlexRowProps extends uuiFlexRowProps, Overwrite<FlexRowMods, FlexRowModsOverride> {}
 
-export const FlexRow = withMods<uuiFlexRowProps, FlexRowProps>(uuiFlexRow, (props) => {
+export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => {
     if (__DEV__) {
         if (props.spacing) {
             devLogger.warn('[FlexRow]: The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.');
         }
     }
 
-    return [
+    const classNames = cx([
         css.root,
-        props.size !== null && 'uui-size-' + (props.size || settings.sizes.defaults.flexRow),
-        props.padding && css['padding-' + props.padding],
-        props.vPadding && css['vPadding-' + props.vPadding],
-        props.margin && css['margin-' + props.margin],
+        'uui-flex-row',
+        props.onClick && uuiMarkers.clickable,
+        props.cx,
+        props.size !== null && 'uui-size-' + (props.size || settings.flexRow.sizes.default),
+        props.alignItems && css.alignItems,
+        props.justifyContent && css.justifyContent,
+        props.padding && css.padding,
+        props.vPadding && css.vPadding,
+        props.margin && css.margin,
         props.topShadow && css.topShadow,
         props.borderBottom && css.borderBottom,
         props.borderTop && css.borderTop,
+        props.columnGap && css.columnGap,
+        props.rowGap && css.rowGap,
         props.spacing && css['spacing-' + props.spacing],
         props.background && css[`uui-${props.background}`],
-    ];
+    ]);
+
+    const style = {
+        ...(props.alignItems && { '--uui-flex-row-align-items': props.alignItems }),
+        ...(props.justifyContent && { '--uui-flex-row-justify-content': props.justifyContent }),
+        ...(props.columnGap && { '--uui-flex-row-column-gap': `${props.columnGap}px` }),
+        ...(props.rowGap && { '--uui-flex-row-row-gap': `${props.rowGap}px` }),
+        ...(props.padding && { '--uui-flex-row-padding': `${props.padding}px` }),
+        ...(props.vPadding && { '--uui-flex-row-v-padding': `${props.vPadding}px` }),
+        ...(props.margin && { '--uui-flex-row-margin': `${props.margin}px` }),
+        ...(props.spacing && { '--uui-flex-row-spacing': `${props.spacing}px` }),
+    };
+
+    return (
+        <div
+            ref={ ref }
+            onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
+            className={ classNames }
+            { ...props.rawProps }
+            style={ {
+                ...style,
+                ...props.rawProps?.style,
+            } }
+        >
+            {props.children}
+        </div>
+    );
 });

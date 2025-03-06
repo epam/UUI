@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
 import cx from 'classnames';
-import { IHasCaption, IHasCX } from '@epam/uui-core';
+import type { IHasCaption, IHasCX, Overwrite } from '@epam/uui-core';
 import { settings } from '../../settings';
+
 import css from './CountIndicator.module.scss';
 
 type CountIndicatorMods = {
@@ -16,9 +17,11 @@ type CountIndicatorMods = {
     size?: '12' | '18' | '24';
 };
 
+export interface CountIndicatorModsOverride {}
+
 export type CountIndicatorCoreProps = IHasCaption & IHasCX;
 
-export type CountIndicatorProps = CountIndicatorCoreProps & CountIndicatorMods;
+export type CountIndicatorProps = CountIndicatorCoreProps & Overwrite<CountIndicatorMods, CountIndicatorModsOverride>;
 
 export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((props, ref) => {
     return (
@@ -27,7 +30,7 @@ export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((p
             className={ cx([
                 css.root,
                 'uui-count_indicator',
-                `uui-size-${props.size || settings.sizes.defaults.countIndicator}`,
+                `uui-size-${props.size || settings.countIndicator.sizes.default}`,
                 props.color && `uui-color-${props.color}`,
                 props.cx,
             ]) }

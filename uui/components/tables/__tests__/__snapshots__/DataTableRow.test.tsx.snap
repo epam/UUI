@@ -2,13 +2,11 @@
 
 exports[`DataTableRow should be rendered correctly 1`] = `
 <div
-  className="uui-flex-row container uui-table-row-container uui-table-row root uui-dt-vars uui-dt-row-border uui-size-36 container align-items-center"
+  className="container uui-table-row-container uui-table-row root uui-dt-vars uui-dt-row-border uui-size-36"
   role="row"
   style={
     Object {
-      "columnGap": undefined,
       "minWidth": "95px",
-      "rowGap": undefined,
     }
   }
 >
@@ -27,8 +25,8 @@ exports[`DataTableRow should be rendered correctly 1`] = `
       role="cell"
       style={
         Object {
-          "--uui-dt-cell-padding-end": "24px",
-          "--uui-dt-cell-padding-start": "24px",
+          "--uui-dt-cell-padding-end": "var(--uui-dt-cell-padding-edge)",
+          "--uui-dt-cell-padding-start": "var(--uui-dt-cell-padding-edge)",
           "alignSelf": undefined,
           "flexBasis": "96px",
           "flexGrow": 0,

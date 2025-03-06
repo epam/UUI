@@ -6,7 +6,7 @@ import {
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
 import { PickerInput, PickerInputProps } from '../PickerInput';
-import { Item, TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
+import { TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
 type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
@@ -371,7 +371,7 @@ describe('PickerInput', () => {
 
     describe('Body Open/Close', () => {
         it('should open body', async () => {
-            const { dom, result, mocks } = await setupPickerInputForTest<Item, number>({
+            const { dom, result, mocks } = await setupPickerInputForTest<TestItemType, number>({
                 value: undefined,
                 selectionMode: 'single',
                 dataSource: mockSmallDataSourceAsync,

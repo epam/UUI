@@ -1,7 +1,7 @@
 import { ControlSize } from '../types';
 
 export interface PickerCellMods {
-    size?: ControlSize | '60';
+    size?: ControlSize;
     padding?: '0' | '12' | '24';
     alignActions?: 'top' | 'center';
 }

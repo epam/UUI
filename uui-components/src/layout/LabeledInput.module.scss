@@ -28,3 +28,17 @@
         flex-grow: 1;
     }
 }
+
+.invalid-section-wrapper {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
+    column-gap: 12px;
+}
+
+.footnote-section-wrapper {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: flex-start;
+    column-gap: 12px;
+}

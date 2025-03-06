@@ -2,6 +2,8 @@
 
 .root {
     --uui-dt-cell-size: var(--uui-size);
+    --uui-dt-cell-padding: var(--uui-dt-padding);
+    --uui-dt-cell-padding-edge: var(--uui-dt-padding-edge);
     //
     padding-inline-start: var(--uui-dt-cell-padding-start);
     padding-inline-end: var(--uui-dt-cell-padding-end);

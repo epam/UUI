@@ -1,7 +1,7 @@
 import React from 'react';
 import { Accordion } from '../Accordion';
 import { renderer } from '@epam/uui-test-utils';
-import { systemIcons } from '../../../icons/icons';
+import { settings } from '../../../settings';
 
 describe('Accordion', () => {
     it('should be rendered correctly', () => {
@@ -14,7 +14,7 @@ describe('Accordion', () => {
             <Accordion
                 title="Test title"
                 mode="inline"
-                dropdownIcon={ systemIcons.foldingArrow }
+                dropdownIcon={ settings.accordion.icons.dropdownIcon }
                 padding="18"
                 isDisabled={ true }
             />,

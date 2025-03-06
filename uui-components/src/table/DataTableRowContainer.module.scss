@@ -18,6 +18,7 @@
 .container {
     position: relative;
     display: flex;
+    flex: 0 0 auto;
     align-items: stretch;
     background: var(--uui-dt-row-bg);
 }

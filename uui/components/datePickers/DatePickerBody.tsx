@@ -12,6 +12,7 @@ import {
 } from './helpers';
 import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 import { settings } from '../../settings';
+
 import css from './DatePickerBody.module.scss';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
@@ -134,7 +135,7 @@ function StatelessDatePickerBodyComp({
     return (
         <div
             ref={ ref }
-            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.sizes.defaults.datePicker}`, classes) }
+            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.datePicker.sizes.default}`, classes) }
             { ...rawProps }
         >
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>

@@ -1,13 +1,15 @@
 import React from 'react';
-import { ApiCallInfo, IHasCX, INotification, useUuiContext, useUuiError, UuiRecoveryErrorInfo, IHasChildren, ErrorPageInfo, UuiError } from '@epam/uui-core';
-import { FlexCell, ModalBlocker, ModalHeader, Spinner, ErrorNotification, RichTextView, Anchor } from '../';
-import { ModalWindow } from '../overlays';
-import { FlexRow } from '../layout';
-import { Text } from '../typography';
-
+import type { ApiCallInfo, IHasCX, INotification, UuiRecoveryErrorInfo, IHasChildren, ErrorPageInfo } from '@epam/uui-core';
+import { useUuiContext, useUuiError, UuiError } from '@epam/uui-core';
 import { ErrorCatch } from '@epam/uui-components';
+import { FlexCell, FlexRow } from '../layout';
+import { ModalWindow, ModalBlocker, ModalHeader, ErrorNotification } from '../overlays';
+import { Anchor } from '../navigation';
+import { Spinner } from '../widgets';
+import { Text, RichTextView } from '../typography';
 import { getErrorPageConfig, getRecoveryMessageConfig } from './config';
 import { ErrorPage } from './ErrorPage';
+
 import css from './ErrorHandler.module.scss';
 
 export interface ErrorHandlerProps extends IHasCX, IHasChildren {

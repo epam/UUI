@@ -2,12 +2,14 @@
 
 .root {
     --uui-data-picker-size: var(--uui-size);
+    --uui-data_picker-horizontal-padding: 12px;
+    //
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;
     display: flex;
     align-items: flex-start;
-    padding: 0 var(--uui-data_picker_cell-horizontal-padding);
+    padding: 0 var(--uui-data_picker-horizontal-padding);
 
     &:global(.data-picker-cell).align-widgets-top {
         div:global(.uui-checkbox) {

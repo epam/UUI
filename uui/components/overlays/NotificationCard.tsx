@@ -9,15 +9,11 @@ import {
     IHasRawProps,
     useUuiContext,
 } from '@epam/uui-core';
-import { IconButton, LinkButton, LinkButtonProps } from '../buttons';
+import { IconButton, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
-import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
-import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
-import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
-import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help-fill.svg';
-import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
-import css from './NotificationCard.module.scss';
 import { settings } from '../../settings';
+
+import css from './NotificationCard.module.scss';
 
 interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTMLButtonElement>> {
     /** Defines NotificationAction name. */
@@ -77,7 +73,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                                     caption={ action.name }
                                     onClick={ action.action }
                                     cx={ css.actionLink }
-                                    size={ settings.sizes.notificationCard.action as LinkButtonProps['size'] }
+                                    size={ settings.notificationCard.sizes.action }
                                     rawProps={ action.rawProps }
                                 />
                             )) }
@@ -86,7 +82,7 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                 </div>
                 { props.onClose && (
                     <div className={ css.closeWrapper }>
-                        <IconButton icon={ CrossIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />
+                        <IconButton icon={ settings.notificationCard.icons.closeIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />
                     </div>
                 ) }
             </div>
@@ -95,19 +91,19 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
 });
 
 export const WarningNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
-    <NotificationCard icon={ WarningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ settings.notificationCard.icons.warningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const SuccessNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
-    <NotificationCard icon={ SuccessIcon } color="success" { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ settings.notificationCard.icons.successIcon } color="success" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const HintNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
-    <NotificationCard icon={ HintIcon } color="info" { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ settings.notificationCard.icons.hintIcon } color="info" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
-    <NotificationCard icon={ ErrorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
+    <NotificationCard icon={ settings.notificationCard.icons.errorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
 ));
 
 export function ClearNotification() {
