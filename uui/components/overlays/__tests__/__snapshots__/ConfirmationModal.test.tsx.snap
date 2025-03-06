@@ -27,7 +27,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="root modalHeader borderBottom"
+      className="root modalHeader uui-modal-header borderBottom"
       style={Object {}}
     >
       <div
@@ -135,7 +135,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root modalFooter footer"
+      className="root modalFooter uui-modal-footer footer"
       style={Object {}}
     >
       <button
@@ -194,7 +194,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
     }
   >
     <div
-      className="root modalHeader borderBottom"
+      className="root modalHeader uui-modal-header borderBottom"
       style={Object {}}
     >
       <div
@@ -294,7 +294,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
       </div>
     </div>
     <div
-      className="root modalFooter footer"
+      className="root modalFooter uui-modal-footer footer"
       style={Object {}}
     >
       <button

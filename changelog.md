@@ -1,8 +1,8 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
 * [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
-* [ModalHeader][Breaking Change]: vertical padding props changed behavior to use direct size of padding instead divided by 2. Type changed from `'12' | '18' | '24' | '36' | '48'` to `'6' | '9' | '12' | '18' | '24'`.
-* [ModalFooter][Breaking Change]: vertical padding props changed behavior to use direct size of padding instead divided by 2. Type changed from `'12' | '18' | '24' | '36' | '48'` to `'6' | '9' | '12' | '18' | '24'`.
+* [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
+* [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
 
 # 5.13.2 - 4.03.2025
 **What's Fixed**

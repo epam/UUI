@@ -106,11 +106,6 @@ exports[`DataPicker should be rendered correctly 1`] = `
         </div>
         <div
           className="uui-calendar-days"
-          style={
-            Object {
-              "height": 216,
-            }
-          }
         >
           <div>
             <div

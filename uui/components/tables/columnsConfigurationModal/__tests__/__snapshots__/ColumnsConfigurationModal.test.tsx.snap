@@ -27,7 +27,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
     }
   >
     <div
-      className="root modalHeader"
+      className="root modalHeader uui-modal-header"
       style={Object {}}
     >
       <div
@@ -469,7 +469,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="root modalFooter borderTop"
+      className="root modalFooter uui-modal-footer borderTop"
       style={Object {}}
     >
       <button

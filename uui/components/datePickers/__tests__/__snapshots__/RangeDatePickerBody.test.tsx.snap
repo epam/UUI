@@ -142,11 +142,6 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   </div>
                   <div
                     className="uui-calendar-days"
-                    style={
-                      Object {
-                        "height": 180,
-                      }
-                    }
                   >
                     <div>
                       <div
@@ -768,11 +763,6 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                   </div>
                   <div
                     className="uui-calendar-days"
-                    style={
-                      Object {
-                        "height": 180,
-                      }
-                    }
                   >
                     <div>
                       <div

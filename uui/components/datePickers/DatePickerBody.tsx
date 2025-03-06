@@ -135,7 +135,7 @@ function StatelessDatePickerBodyComp({
     return (
         <div
             ref={ ref }
-            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.datePicker.sizes.default}`, classes) }
+            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.datePicker.sizes.body}`, classes) }
             { ...rawProps }
         >
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>

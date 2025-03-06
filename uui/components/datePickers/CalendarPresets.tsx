@@ -5,6 +5,7 @@ import {
 import { LinkButton } from '../buttons';
 
 import css from './CalendarPresets.module.scss';
+import { settings } from '../../settings';
 
 export const uuiPresets = {
     container: 'uui-presets-container',
@@ -68,7 +69,12 @@ export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
         >
             <div className={ uuiPresets.header }>Presets</div>
             {getPresets(props.presets).map((item) => (
-                <LinkButton key={ item.key } caption={ item.name } onClick={ () => props.onPresetSet(item) } size="24" />
+                <LinkButton
+                    key={ item.key }
+                    caption={ item.name }
+                    onClick={ () => props.onPresetSet(item) }
+                    size={ settings.rangeDatePicker.sizes.preset }
+                />
             ))}
         </div>
     );
