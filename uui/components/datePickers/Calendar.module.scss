@@ -27,6 +27,10 @@
     --uui-calendar-weekday-line-height: 24px;
     --uui-calendar-dot-size: 4px;
 
+    :global(.uui-calendar-days) {
+        height: calc(var(--uui-calendar-day-size) * 6);
+    }
+
     :global(.uui-calendar-content) {
         font-family: var(--uui-calendar-font);
         font-weight: var(--uui-calendar-font-weight, normal);

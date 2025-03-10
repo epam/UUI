@@ -59,12 +59,6 @@ export const ModalWindow = withMods<uuiModalWindowProps, ModalWindowProps>(
 );
 
 export interface ModalHeaderMods {
-    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
-    columnGap?: number | '6' | '12' | '18' | '24' | '36';
-    /** Defines horizontal row padding */
-    padding?: '6' | '12' | '18' | '24';
-    /** Defines vertical row padding */
-    vPadding?: '6' | '9' | '12' | '18' | '24';
     /** Pass true, to enable row bottom border */
     borderBottom?: boolean;
 }
@@ -74,24 +68,18 @@ export interface ModalHeaderModsOverride {}
 export interface ModalHeaderProps extends ModalHeaderCoreProps, Overwrite<ModalHeaderMods, ModalHeaderModsOverride> {}
 
 export function ModalHeader(props: ModalHeaderProps) {
-    const style = {
-        ...(props.columnGap && { '--uui-modals-header-column-gap': `${props.columnGap}px` }),
-        ...(props.padding && { '--uui-modals-header-padding': `${props.padding}px` }),
-        ...(props.vPadding && { '--uui-modals-header-vertical-padding': `${props.vPadding}px` }),
-    };
-    
     return (
         <div
             className={ cx(
                 css.root,
                 css.modalHeader,
+                'uui-modal-header',
                 props.borderBottom && css.borderBottom,
                 props.cx,
             ) }
             { ...props.rawProps }
             style={ {
                 ...props.rawProps?.style,
-                ...style,
             } }
         >
             {props.title && (
@@ -111,12 +99,6 @@ export function ModalHeader(props: ModalHeaderProps) {
 }
 
 export interface ModalFooterMods {
-    /** Flexbox column gap property [Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-gap-row-gap-column-gap) */
-    columnGap?: number | '6' | '12' | '18' | '24' | '36';
-    /** Defines horizontal row padding */
-    padding?: '6' | '12' | '18' | '24';
-    /** Defines vertical row padding */
-    vPadding?: '6' | '9' | '12' | '18' | '24';
     /** Pass true, to enable row top border */
     borderTop?: boolean;
 }
@@ -126,24 +108,18 @@ export interface ModalFooterModsOverride {}
 export interface ModalFooterProps extends ModalFooterCoreProps, Overwrite<ModalFooterMods, ModalFooterModsOverride> {}
 
 export function ModalFooter(props: ModalFooterProps) {
-    const style = {
-        ...(props.columnGap && { '--uui-modals-footer-column-gap': `${props.columnGap}px` }),
-        ...(props.padding && { '--uui-modals-footer-padding': `${props.padding}px` }),
-        ...(props.vPadding && { '--uui-modals-footer-vertical-padding': `${props.vPadding}px` }),
-    };
-
     return (
         <div
             className={ cx(
                 css.root,
                 css.modalFooter,
+                'uui-modal-footer',
                 props.borderTop && css.borderTop,
                 props.cx,
             ) }
             { ...props.rawProps }
             style={ { 
                 ...props.rawProps?.style,
-                ...style,
             } }
         >
             {props.children}
