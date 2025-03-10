@@ -76,7 +76,8 @@ const settings_4px = {
     },
     datePicker: {
         sizes: {
-            default: '40',
+            body: '48',
+            input: '40',
         },
     },
     flexRow: {
@@ -172,6 +173,7 @@ const settings_4px = {
     rangeDatePicker: {
         sizes: {
             default: '40',
+            preset: '32',
         },
     },
     rating: {

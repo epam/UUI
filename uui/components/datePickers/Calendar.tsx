@@ -6,7 +6,7 @@ import { settings } from '../../settings';
 import css from './Calendar.module.scss';
 
 export function applyDateSelectionMods() {
-    return [css.root, `uui-size-${settings.datePicker.sizes.default}`];
+    return [css.root, `uui-size-${settings.datePicker.sizes.body}`];
 }
 
 export const Calendar = withMods<CalendarProps<Dayjs>, CalendarProps<Dayjs>>(uuiCalendar, applyDateSelectionMods);
