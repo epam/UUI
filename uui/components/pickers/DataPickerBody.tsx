@@ -103,7 +103,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
             return settings.pickerInput.sizes.body.mobileRow;
         }
 
-        return props.size || settings.pickerInput.sizes.body.defaultRow;
+        return props.size || settings.pickerInput.sizes.body.row;
     };
 
     const renderRow = (row: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
