@@ -42,8 +42,8 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                padding={ settings.pickerInput.sizes.body.modalPadding }
-                size={ settings.pickerInput.sizes.body.modalRow }
+                padding={ settings.pickerInput.sizes.body.padding }
+                size={ settings.pickerInput.sizes.body.row }
                 flattenSearchResults={ view.getConfig().flattenSearchResults }
                 getName={ getName }
             />
@@ -132,7 +132,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     rows={ dataRows }
                     renderRow={ renderRow }
                     renderEmpty={ renderNotFound }
-                    size={ settings.pickerInput.sizes.body.modalRow }
+                    size={ settings.pickerInput.sizes.body.row }
                     cx={ css.body }
                 />
                 <ModalFooter>
