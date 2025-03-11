@@ -2,13 +2,11 @@
 
 exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 <div
-  className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
   role="row"
   style={
     Object {
-      "columnGap": undefined,
       "minWidth": "0px",
-      "rowGap": undefined,
     }
   }
 >
@@ -27,13 +25,11 @@ exports[`DataTableHeaderRow should be rendered correctly 1`] = `
 
 exports[`DataTableHeaderRow should be rendered correctly 2`] = `
 <div
-  className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
+  className="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
   role="row"
   style={
     Object {
-      "columnGap": undefined,
       "minWidth": "0px",
-      "rowGap": undefined,
     }
   }
 >

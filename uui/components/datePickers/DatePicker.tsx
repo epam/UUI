@@ -20,7 +20,7 @@ const modifiers = [{
 }];
 
 export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
-    const { format = defaultFormat, value, size = settings.datePicker.sizes.default } = props;
+    const { format = defaultFormat, value, size = settings.datePicker.sizes.input } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);

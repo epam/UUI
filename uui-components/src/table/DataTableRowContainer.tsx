@@ -1,13 +1,11 @@
 import React from 'react';
 import {
     DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx,
-    DndEventHandlers,
-    DataColumnGroupProps,
+    DndEventHandlers, DataColumnGroupProps, isEventTargetInsideClickable,
 } from '@epam/uui-core';
-import { FlexRow } from '../layout';
 import { Anchor } from '../navigation';
-import css from './DataTableRowContainer.module.scss';
 import { getGroupsWithColumns, isGroupOfColumns } from './columnsConfigurationModal/columnsGroupsUtils';
+import css from './DataTableRowContainer.module.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter>
     extends IClickable,
@@ -200,16 +198,19 @@ export const DataTableRowContainer = React.forwardRef(
                 {getRowContent()}
             </Anchor>
         ) : (
-            <FlexRow
-                onClick={ props.onClick }
-                cx={ [
-                    css.container, uuiDataTableRowCssMarkers.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx,
-                ] }
-                rawProps={ rawProps }
+            <div
+                onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
+                className={ cx(
+                    css.container,
+                    uuiDataTableRowCssMarkers.uuiTableRowContainer,
+                    props.onClick && uuiMarkers.clickable,
+                    props.cx,
+                ) }
+                { ...rawProps }
                 ref={ ref }
             >
                 {getRowContent()}
-            </FlexRow>
+            </div>
         );
     },
 ) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement;

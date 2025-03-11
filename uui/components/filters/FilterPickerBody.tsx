@@ -69,7 +69,7 @@ export function FilterPickerBody<TItem, TId>({
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ settings.filtersPanel.sizes.pickerInput.body.footer } />;
+            : <DataPickerFooter { ...footerProps } size={ settings.pickerInput.sizes.body.row } />;
     };
 
     const renderBody = () => {
@@ -93,7 +93,7 @@ export function FilterPickerBody<TItem, TId>({
                     rows={ rows }
                     maxHeight={ maxHeight }
                     maxWidth={ maxWidth }
-                    searchSize={ settings.filtersPanel.sizes.pickerInput.body.searchInput }
+                    searchSize={ settings.pickerInput.sizes.body.row }
                     showSearch={ props.showSearch ?? true }
                     getName={ getName }
                     value={ dataSourceState }

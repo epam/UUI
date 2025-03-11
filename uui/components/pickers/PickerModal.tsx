@@ -135,7 +135,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     size={ settings.pickerInput.sizes.body.modalRow }
                     cx={ css.body }
                 />
-                <ModalFooter padding="24" vPadding="24">
+                <ModalFooter>
                     {props.renderFooter ? props.renderFooter(getFooterProps()) : renderFooter()}
                 </ModalFooter>
             </ModalWindow>

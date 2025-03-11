@@ -24,14 +24,14 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
 
     props.renderPlaceholder = props.renderPlaceholder
         || (() => (
-            <Text key="t" size={ settings.dataTable.sizes.body.cellTextMap[props.size] }>
+            <Text key="t" size={ props.size }>
                 <TextPlaceholder isNotAnimated />
             </Text>
         ));
 
     props.renderUnknown = props.renderUnknown
         || (() => (
-            <Text key="t" size={ settings.dataTable.sizes.body.cellTextMap[props.size] }>
+            <Text key="t" size={ props.size }>
                 Unknown
             </Text>
         ));
@@ -43,25 +43,25 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     const getLeftPadding = () => {
         const { rowProps: { isLoading }, columnsGap, isFirstColumn } = props;
 
-        if (isFirstColumn && isEditable && !isLoading) return settings.dataTable.sizes.body.defaultCellPadding;
-        if (isEditable && !isLoading) return '0';
-        if (columnsGap) return isFirstColumn ? columnsGap : +columnsGap / 2;
-        return isFirstColumn ? settings.dataTable.sizes.body.defaultCellPaddingEdge : settings.dataTable.sizes.body.defaultCellPadding;
+        if (isFirstColumn && isEditable && !isLoading) return 'var(--uui-dt-cell-padding)';
+        if (isEditable && !isLoading) return '0px';
+        if (columnsGap) return isFirstColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-cell-padding${isFirstColumn ? '-edge' : ''})`;
     };
 
     const getRightPadding = () => {
         const { rowProps: { isLoading }, columnsGap, isLastColumn } = props;
 
-        if (isEditable && !isLoading) return '0';
-        if (columnsGap) return isLastColumn ? columnsGap : +columnsGap / 2;
-        return isLastColumn ? settings.dataTable.sizes.body.defaultCellPaddingEdge : settings.dataTable.sizes.body.defaultCellPadding;
+        if (isEditable && !isLoading) return '0px';
+        if (columnsGap) return isLastColumn ? `${columnsGap}px` : `${+columnsGap / 2}px`;
+        return `var(--uui-dt-cell-padding${isLastColumn ? '-edge' : ''})`;
     };
 
     props.cx = [
         'data-table-cell',
         css.root,
         props.cx,
-        'uui-size-' + (props.size || settings.dataTable.sizes.body.defaultCell),
+        'uui-size-' + (props.size || settings.dataTable.sizes.body.row),
         props.isFirstColumn && 'uui-dt-first-column',
         props.isLastColumn && 'uui-dt-last-column',
         css[`align-widgets-${props.alignActions || 'top'}`],
@@ -69,8 +69,8 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     ];
 
     props.style = {
-        '--uui-dt-cell-padding-start': `${getLeftPadding()}px`,
-        '--uui-dt-cell-padding-end': `${getRightPadding()}px`,
+        '--uui-dt-cell-padding-start': getLeftPadding(),
+        '--uui-dt-cell-padding-end': getRightPadding(),
     } as React.CSSProperties;
 
     return <UuiDataTableCell { ...props } />;

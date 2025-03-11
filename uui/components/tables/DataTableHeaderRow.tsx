@@ -37,7 +37,7 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
             <IconButton
                 key="configuration"
                 onClick={ mods.onConfigButtonClick }
-                cx={ ['config-icon', `uui-size-${settings.dataTable.sizes.header.cellIconMap[mods.size || settings.dataTable.sizes.header.defaultRow]}`] }
+                cx={ ['config-icon', `uui-size-${settings.dataTable.sizes.header.iconMap[mods.size || settings.dataTable.sizes.header.row]}`] }
                 color="neutral"
                 icon={ settings.dataTable.icons.header.configIcon }
             />

@@ -36,7 +36,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
     ref: React.ForwardedRef<HTMLElement>,
 ): JSX.Element {
     const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
-        const itemPropsWithSize = { ...itemProps, size: props.size || settings.pickerInput.sizes.toggler.defaultTag };
+        const itemPropsWithSize = { ...itemProps, size: props.size || settings.pickerInput.sizes.toggler.tag };
         if (!!props.renderItem) {
             return props.renderItem(itemPropsWithSize);
         }
@@ -62,7 +62,5 @@ function PickerTogglerComponent<TItem extends string, TId>(
     );
 }
 
-export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
-    props: PickerTogglerProps<TItem, TId> & PickerTogglerMods,
-    ref: React.ForwardedRef<HTMLElement>
-) => JSX.Element;
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as
+    <TItem, TId>(props: PickerTogglerProps<TItem, TId> & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof PickerTogglerComponent>;

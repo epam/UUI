@@ -20,6 +20,10 @@
     --uui-filters_toggler-horizontal-padding: calc(var(--uui-horizontal-padding) - var(--uui-filters_toggler-border-width));
     --uui-filters_toggler-caption-horizontal-padding: var(--uui-horizontal-gap);
     --uui-filters_toggler-icon-size: var(--uui-icon-size);
+    //
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
 
     &:global(.uui-input-box) {
         box-sizing: border-box;
@@ -56,6 +60,8 @@
         .title-wrapper {
             font-family: var(--uui-filters_toggler-font);
             font-weight: var(--uui-filters_toggler-font-weight, normal);
+            display: flex;
+            align-items: center;
             flex: 1 1 auto;
             min-width: 0;
             outline: none;

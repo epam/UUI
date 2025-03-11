@@ -6,8 +6,11 @@ const path = require('path');
 const { sortBy } = require('lodash');
 
 router.post('/get-demo-doc-content', (req, res) => {
-    const docContentPath = path.join(__dirname, '../../public/rte_contents/', `${req.body.name}`);
-
+    const contentDir = path.join(__dirname, '../../public/rte_contents/');
+    const docContentPath = path.resolve(contentDir, `${req.body.name}`);
+    if (!docContentPath.startsWith(contentDir)) {
+        res.send(null);
+    }
     if (!fs.existsSync(docContentPath)) {
         res.send(null);
     } else {

@@ -59,8 +59,8 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         return (
             <DataPickerCell
                 key="name"
-                size={ props.size || settings.pickerInput.sizes.body.defaultRow }
-                padding={ props.padding || settings.pickerInput.sizes.body.cellPadding }
+                size={ props.size || settings.pickerInput.sizes.body.row }
+                padding={ props.padding || settings.pickerInput.sizes.body.padding }
                 rowProps={ props }
                 alignActions={ props.alignActions || 'top' }
                 renderItem={ renderRowItem }
@@ -71,7 +71,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
     return (
         <UUIDataPickerRow
             { ...props }
-            cx={ [css.pickerRow, props.cx] }
+            cx={ [css.pickerRow, 'uui-picker_input-row', props.cx] }
             renderContent={ renderContent }
         />
     );

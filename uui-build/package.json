@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.13.2-rc.0",
+  "version": "5.13.2",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -8,6 +8,7 @@
     "build": "yarn build-module",
     "build-module": "ts-node -T ts/scripts/buildUuiModule.ts",
     "generate-components-api": "ts-node ts/scripts/docsGen.ts",
+    "mergeFigmaVariables": "ts-node ts/scripts/mergeFigmaVariables.ts",
     "generate-theme-tokens": "ts-node ts/scripts/themeTokensGen.ts --tokens=../public/docs/figmaTokensGen/Theme.json --out-tokens=../public/docs/figmaTokensGen/ThemeOutput.json --out-tokens-data=../public/docs/figmaTokensGen/ThemeTokens.json --out=../epam-assets/theme/variables/tokens",
     "compile-theme-scss": "ts-node ts/scripts/compileThemeScss.ts",
     "track-bundle-size": "ts-node ts/scripts/trackBundleSize.ts",
@@ -22,10 +23,12 @@
     "@svgr/rollup": "6.5.1",
     "chalk": "4.1.2",
     "cross-spawn": "7.0.3",
+    "deepmerge": "4.3.1",
     "fs-extra": "11.2.0",
     "magic-string": "0.30.9",
     "postcss": "8.4.38",
     "postcss-scss": "4.0.6",
+    "react-fast-compare": "3.2.2",
     "rollup": "4.22.4",
     "rollup-plugin-postcss": "4.0.2",
     "rollup-plugin-visualizer": "5.12.0",

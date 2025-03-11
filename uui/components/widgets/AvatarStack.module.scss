@@ -4,7 +4,7 @@
     --uui-avatar_stack-font: var(--uui-font);
     --uui-avatar_stack-font-weight: 600;
     //
-    :global(.avatars) {
+    :global(.uui-avatars) {
         padding-right: 12px;
 
         &>* {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataPickerCellProps as UuiCoreDataPickerCellProps, uuiMod, cx, Overwrite } from '@epam/uui-core';
+import { DataPickerCellProps as UuiCoreDataPickerCellProps, uuiMod, cx, Overwrite, Icon } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { TextPlaceholder, Text } from '../typography';
 import { DataRowAddons } from '../widgets';
@@ -19,29 +19,29 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
     if (props.rowProps.isLoading) {
         content = (
             // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
-            <Text key="t" size={ settings.pickerInput.sizes.body.cellTextMap[props.size] } cx={ css.loadingCell }>
+            <Text key="t" size={ props.size } cx={ css.loadingCell }>
                 <TextPlaceholder />
             </Text>
         );
     } else if (props.rowProps.isUnknown) {
         content = (
-            <Text key="t" size={ settings.pickerInput.sizes.body.cellTextMap[props.size] }>
+            <Text key="t" size={ props.size }>
                 Unknown
             </Text>
         );
     } else {
-        const SelectIcon = settings.pickerInput.sizes.body.cellIsBoldSelectionIcon[props.size]
-            ? settings.pickerInput.icons.body.boldSelectIcon
-            : settings.pickerInput.icons.body.selectIcon;
+        const SelectIcon = (typeof settings.pickerInput.icons.body.selectIcon === 'function'
+            ? settings.pickerInput.icons.body.selectIcon(props.size)
+            : settings.pickerInput.icons.body.selectIcon) as Icon;
 
         content = (
             <div key={ `${props.rowProps.id}` } className={ css.renderItem }>
                 {props.renderItem(props.rowProps.value, props.rowProps)}
                 <FlexSpacer />
                 {(props.rowProps.isChildrenSelected || props.rowProps.isSelected) && (
-                    <div className={ cx(css.iconWrapper, uuiMod.selected) }>
+                    <div className={ cx(css.iconWrapper, 'uui-picker_input-cell-select_icon', uuiMod.selected) }>
                         <IconContainer
-                            size={ settings.pickerInput.sizes.body.cellIconMap[props.size] }
+                            size={ settings.pickerInput.sizes.body.selectIconMap[props.size] }
                             icon={ SelectIcon }
                             cx={ props.rowProps.isChildrenSelected ? css.iconDefault : css.selectedMark }
                             rawProps={ { 'aria-label': props.rowProps.isChildrenSelected
@@ -70,12 +70,13 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
             cx={ [
                 css.root,
                 props.cx,
+                'uui-picker_input-cell',
                 'data-picker-cell',
                 props.size && `uui-size-${props.size}`,
                 css[`align-widgets-${props.alignActions || 'top'}`],
             ] }
             style={ props.padding && {
-                '--uui-data_picker_cell-horizontal-padding': `${props.padding}px`,
+                '--uui-data_picker-horizontal-padding': `${props.padding}px`,
             } as React.CSSProperties }
         >
             <DataRowAddons size={ props.size } { ...props } tabIndex={ -1 } />

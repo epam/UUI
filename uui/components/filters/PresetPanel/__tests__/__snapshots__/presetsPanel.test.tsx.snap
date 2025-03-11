@@ -15,11 +15,10 @@ exports[`PresetsPanel should render with minimum props 1`] = `
   }
 >
   <div
-    className="uui-flex-row root presetsWrapper container align-items-center"
+    className="root uui-flex-row presetsWrapper columnGap"
     style={
       Object {
-        "columnGap": "12px",
-        "rowGap": undefined,
+        "--uui-flex-row-column-gap": "12px",
       }
     }
   >
@@ -27,22 +26,16 @@ exports[`PresetsPanel should render with minimum props 1`] = `
       className="mainWrapper"
     >
       <div
-        className="uui-flex-row container align-items-center"
+        className="itemsWrapper"
         style={
           Object {
             "columnGap": undefined,
-            "rowGap": undefined,
           }
         }
       >
         <div
-          className="uui-flex-row root uui-size-36 container align-items-center"
-          style={
-            Object {
-              "columnGap": undefined,
-              "rowGap": undefined,
-            }
-          }
+          className="root uui-flex-row uui-size-36"
+          style={Object {}}
         >
           <div
             className="divider"

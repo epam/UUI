@@ -21,19 +21,14 @@ exports[`Modals should be rendered correctly with many props 1`] = `
     style={
       Object {
         "height": 300,
-        "maxHeight": "80dvh",
+        "maxHeight": "var(--uui-modals-max-height)",
         "width": 300,
       }
     }
   >
     <div
-      className="uui-flex-row root padding-6 vPadding-36 borderBottom root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalHeader uui-modal-header borderBottom"
+      style={Object {}}
     >
       <div
         className="uui-modal-title uui-typography"
@@ -75,13 +70,8 @@ exports[`Modals should be rendered correctly with many props 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 padding-18 vPadding-24 root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalFooter uui-modal-footer borderTop"
+      style={Object {}}
     />
   </div>
 </div>
@@ -108,28 +98,18 @@ exports[`Modals should be rendered correctly with minimum props 1`] = `
     style={
       Object {
         "height": "auto",
-        "maxHeight": "80dvh",
-        "width": 420,
+        "maxHeight": "var(--uui-modals-max-height)",
+        "width": undefined,
       }
     }
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalHeader uui-modal-header"
+      style={Object {}}
     />
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalFooter uui-modal-footer"
+      style={Object {}}
     />
   </div>
 </div>
