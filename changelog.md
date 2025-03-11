@@ -1,5 +1,12 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
+Pickers rework:
+  Breaking changes:
+    - DataPickerRow getName is required
+    - renderRow type is changed, first param now PickerRenderRowParams
+  - DataPickerRow now has default renderItem impl
+  - 
+  
 
 
 **What's Fixed**

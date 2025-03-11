@@ -1,19 +1,18 @@
-import React, { useImperativeHandle, useRef } from 'react';
-import {
-    DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, IDropdownToggler, IEditableDebouncer,
-    PickerInputElement, isMobile, Overwrite, PickerInputBaseProps,
+import React, { useContext, useImperativeHandle, useMemo, useRef } from 'react';
+import { 
+    DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
+    PickerInputBaseProps, UuiContext, mobilePopperModifier, 
 } from '@epam/uui-core';
 import { PickerTogglerRenderItemParams, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
 import { PickerModal } from './PickerModal';
 import { PickerToggler, PickerTogglerMods } from './PickerToggler';
 import { PickerBodyMobileView } from './PickerBodyMobileView';
-import { DataPickerBody, DataPickerBodyProps } from './DataPickerBody';
-import { DataPickerRow } from './DataPickerRow';
+import { DataPickerBody } from './DataPickerBody';
 import { DataPickerFooter } from './DataPickerFooter';
-import { PickerItem } from './PickerItem';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { settings } from '../../settings';
+import { Modifier } from 'react-popper';
 
 export interface PickerInputModsOverride {}
 
@@ -30,7 +29,16 @@ export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInpu
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 };
 
-function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...props }: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {
+function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {
+    const context = useContext(UuiContext);
+
+    const popperModifiers: Modifier<any>[] = useMemo(() => [
+        {
+            name: 'offset',
+            options: { offset: [0, 6] },
+        }, mobilePopperModifier,
+    ], []);
+
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
         context.uuiModals
@@ -41,7 +49,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                     { ...modalProps }
                     caption={ getPlaceholder() }
                     initialValue={ props.value as any }
-                    renderRow={ renderRow }
                     selectionMode={ props.selectionMode }
                     valueType={ props.valueType }
                 />
@@ -54,8 +61,6 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
 
     const {
         view,
-        context,
-        popperModifiers,
         getName,
         getPlaceholder,
         handleSelectionValueChange,
@@ -64,8 +69,8 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
         handleTogglerSearchChange,
         toggleBodyOpening,
         dataSourceState,
+        handleDataSourceValueChange,
         getFooterProps,
-        getPickerBodyProps,
         getListProps,
         shouldShowBody,
         getSearchPosition,
@@ -91,6 +96,8 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             mode: props.mode ? props.mode : EditMode.FORM,
         };
     };
+
+    const rows = getRows();
 
     const renderTarget = (targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) => {
         const renderTargetFn = props.renderToggler || ((props) => <PickerToggler { ...props } />);
@@ -118,82 +125,48 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
             : <DataPickerFooter { ...footerProps } size={ props.size || settings.pickerInput.sizes.body.defaultFooter } />;
     };
 
-    const getRowSize = () => {
-        if (isMobile()) {
-            return settings.pickerInput.sizes.body.mobileRow;
-        }
-
-        return props.editMode === 'modal'
-            ? settings.pickerInput.sizes.body.modalRow
-            : (props.size || settings.pickerInput.sizes.body.defaultRow);
-    };
-
-    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
-        if (!search) return;
-
-        return path
-            .map(({ value }) => getName(value))
-            .filter(Boolean)
-            .join(' / ');
-    };
-
-    const renderRowItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        const { flattenSearchResults } = view.getConfig();
-
-        return (
-            <PickerItem
-                title={ getName(item) }
-                size={ getRowSize() }
-                dataSourceState={ dsState }
-                highlightSearchMatches={ highlightSearchMatches }
-                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dataSourceState) } : {}) }
-                { ...rowProps }
-            />
-        );
-    };
-
-    const renderRow = (rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        return props.renderRow ? (
-            props.renderRow(rowProps, dsState)
-        ) : (
-            <DataPickerRow
-                { ...rowProps }
-                key={ rowProps.rowKey }
-                size={ getRowSize() }
-                padding={ props.editMode === 'modal' ? settings.pickerInput.sizes.body.modalPadding : settings.pickerInput.sizes.body.padding }
-                renderItem={ (item, itemProps) => renderRowItem(item, itemProps, dsState) }
-            />
-        );
-    };
-
-    const renderBody = (bodyProps: DropdownBodyProps & DataSourceListProps & Omit<DataPickerBodyProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
-        const renderedDataRows = rows.map((row) => renderRow(row, dataSourceState));
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
         const bodyHeight = isMobile() ? document.documentElement.clientHeight : props.dropdownHeight || settings.pickerInput.sizes.body.maxHeight;
         const minBodyWidth = props.minBodyWidth || settings.pickerInput.sizes.body.minWidth;
+
+        const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => handlePickerInputKeyboard(rows, e);
 
         return (
             <PickerBodyMobileView
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
                 cx={ [props.bodyCx] }
-                onKeyDown={ bodyProps.onKeyDown }
-                width={ bodyProps.togglerWidth > minBodyWidth ? bodyProps.togglerWidth : minBodyWidth }
+                onKeyDown={ onKeyDown }
+                width={ dropdownProps.togglerWidth > minBodyWidth ? dropdownProps.togglerWidth : minBodyWidth }
                 focusLock={ getSearchPosition() === 'body' }
             >
                 <DataPickerBody
-                    { ...bodyProps }
-                    rows={ renderedDataRows }
+                    { ...dropdownProps }
+                    { ...getListProps() }
+                    showSearch={ getSearchPosition() === 'body' }
+                    getName={ getName }
+                    value={ dataSourceState }
+                    onValueChange={ handleDataSourceValueChange }
+                    rows={ rows }
                     maxHeight={ bodyHeight }
                     searchSize={ props.size }
-                    editMode="dropdown"
                     selectionMode={ props.selectionMode }
+                    renderNotFound={ props.renderNotFound }
+                    renderEmpty={ props.renderEmpty }
+                    renderRow={ props.renderRow }
+                    onKeyDown={ onKeyDown }
+                    minCharsToSearch={ props.minCharsToSearch }
+                    fixedBodyPosition={ props.fixedBodyPosition }
+                    searchDebounceDelay={ props.searchDebounceDelay }
+                    rawProps={ props.rawProps?.body }
+                    highlightSearchMatches={ props.highlightSearchMatches }
+                    flattenSearchResults={ view.getConfig().flattenSearchResults }
                 />
                 { renderFooter() }
             </PickerBodyMobileView>
         );
     };
 
-    const rows = getRows();
     const renderItem = props.renderTag ? props.renderTag : null;
     return (
         <Dropdown
@@ -201,7 +174,7 @@ function PickerInputComponent<TItem, TId>({ highlightSearchMatches = true, ...pr
                 const targetProps = getTogglerProps();
                 return renderTarget({ ...dropdownProps, ...targetProps, renderItem });
             } }
-            renderBody={ (bodyProps) => renderBody({ ...bodyProps, ...getPickerBodyProps(rows), ...getListProps() }, rows) }
+            renderBody={ (bodyProps) => renderBody(bodyProps) }
             value={ shouldShowBody() }
             onValueChange={ !props.isDisabled && toggleBodyOpening }
             placement={ props.dropdownPlacement }

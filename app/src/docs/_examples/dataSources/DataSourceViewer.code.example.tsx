@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/uui';
-import { FlexRow, PickerItem } from '@epam/uui';
+import { FlexRow } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
 
 interface Props<TItem, TId> extends IEditable<DataSourceState> {
@@ -15,23 +15,14 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
     const { value, onValueChange, dataSource, exampleTitle, selectAll: showSelectAll } = props;
     const view = dataSource.useView(value, onValueChange);
 
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
-        return (
-            <PickerItem
-                title={ props.getName?.(item) ?? (item as { name: string }).name }
-                size="36"
-                { ...rowProps }
-            />
-        );
-    };
-
     const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
         return (
             <DataPickerRow
                 { ...rowProps }
+                getName={ (item) => props.getName?.(item) ?? (item as { name: string }).name }
                 key={ rowProps.rowKey }
                 padding="12"
-                renderItem={ renderItem }
+                size="36"
             />
         );
     };

@@ -7,8 +7,7 @@ export type {
     PickerModalOptions,
     PickerModalArrayProps,
     PickerModalScalarProps,
-    UsePickerInputProps,
     UsePickerListProps,
     UsePickerModalProps,
 } from './hooks';
-export { usePicker, usePickerInput, usePickerList, usePickerModal } from './hooks';
+export { usePickerApi, usePickerInput, usePickerList, usePickerModal, useShowSelected } from './hooks';

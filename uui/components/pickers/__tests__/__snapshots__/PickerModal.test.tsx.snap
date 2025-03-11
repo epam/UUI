@@ -129,7 +129,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
+      className="uui-flex-row root uui-size-36 uui-picker_input-body container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -152,6 +152,8 @@ exports[`PickerModal should be rendered correctly 1`] = `
         }
       >
         <div
+          aria-multiselectable={null}
+          aria-orientation="vertical"
           style={
             Object {
               "WebkitOverflowScrolling": "touch",
@@ -596,7 +598,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
       </label>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
+      className="uui-flex-row root uui-size-36 uui-picker_input-body container align-items-center"
       style={
         Object {
           "columnGap": undefined,
@@ -619,6 +621,8 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         }
       >
         <div
+          aria-multiselectable={null}
+          aria-orientation="vertical"
           style={
             Object {
               "WebkitOverflowScrolling": "touch",
@@ -1950,13 +1954,14 @@ exports[`PickerModal should open body 1`] = `
           </div>
         </div>
         <div
-          class="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
+          class="uui-flex-row root uui-size-36 uui-picker_input-body container align-items-center"
         >
           <div
             class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
             style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
           >
             <div
+              aria-orientation="vertical"
               style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
             >
               <div

@@ -1,8 +1,16 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, isMobile, PickerFilterConfig, usePrevious, PickerInputBaseProps } from '@epam/uui-core';
-import { usePickerInput } from '@epam/uui-components';
-import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps, DataPickerBodyProps } from '../pickers';
+import {
+    DropdownBodyProps,
+    isMobile,
+    PickerFilterConfig,
+    usePrevious,
+    PickerInputBaseProps,
+    DataSourceState,
+} from '@epam/uui-core';
+import { handleDataSourceKeyboard, usePickerApi, useShowSelected } from '@epam/uui-components';
+import { DataPickerBody, DataPickerFooter } from '../pickers';
 import { settings } from '../../settings';
+import { useState } from 'react';
 
 const pickerHeight = 300;
 
@@ -16,19 +24,23 @@ export function FilterPickerBody<TItem, TId>({
 }: FilterPickerBodyProps<TItem, TId>) {
     const props = { ...restProps, highlightSearchMatches };
 
-    const shouldShowBody = () => props.isOpen;
+    const [dsState, setDsState] = useState<DataSourceState>({
+        focusedIndex: 0,
+        topIndex: 0,
+        visibleCount: 20,
+        checked: [],
+    });
+
+    const { showSelected, setShowSelected } = useShowSelected({ dataSourceState: dsState });
 
     const {
         view,
         getName,
-        isSingleSelect,
-        getRows,
         dataSourceState,
-        getFooterProps,
-        getPickerBodyProps,
         getListProps,
         handleDataSourceValueChange,
-    } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, shouldShowBody });
+        clearSelection,
+    } = usePickerApi<TItem, TId>({ ...props, dataSourceState: dsState, setDataSourceState: setDsState, showSelectedOnly: showSelected });
 
     const prevValue = usePrevious(props.value);
     const prevOpened = usePrevious(props.isOpen);
@@ -42,81 +54,62 @@ export function FilterPickerBody<TItem, TId>({
         }
     }, [props.value]);
 
-    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
-        if (!search) return;
-
-        return path
-            .map(({ value }) => getName(value))
-            .filter(Boolean)
-            .join(' / ');
-    };
-
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState?: DataSourceState) => {
-        const { flattenSearchResults } = view.getConfig();
-
-        return (
-            <PickerItem
-                title={ getName(item) }
-                highlightSearchMatches={ highlightSearchMatches }
-                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dsState) } : {}) }
-                dataSourceState={ dsState }
-                size={ settings.filtersPanel.sizes.pickerInput.body.rowItem }
-                { ...rowProps }
-            />
-        );
-    };
-
-    const onSelect = (row: DataRowProps<TItem, TId>) => {
-        handleDataSourceValueChange((currentDataSourceState) => ({ ...currentDataSourceState, search: '', selectedId: row.id }));
-    };
-
-    const renderRow = (rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        if (rowProps.isSelectable && isSingleSelect() && props.editMode !== 'modal') {
-            rowProps.onSelect = onSelect;
-        }
-        return props.renderRow ? (
-            props.renderRow(rowProps, dataSourceState)
-        ) : (
-            <DataPickerRow
-                { ...rowProps }
-                key={ rowProps.rowKey }
-                size={ settings.filtersPanel.sizes.pickerInput.body.row }
-                padding="12"
-                renderItem={ (item, itemProps) => renderItem(item, itemProps, dsState) }
-            />
-        );
-    };
-
     const renderFooter = () => {
-        const footerProps = getFooterProps();
+        const footerProps = {
+            view,
+            showSelected: {
+                value: showSelected,
+                onValueChange: setShowSelected,
+            },
+            clearSelection,
+            selectionMode: props.selectionMode,
+            selection: props.value,
+            search: dataSourceState.search,
+        };
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
             : <DataPickerFooter { ...footerProps } size={ settings.filtersPanel.sizes.pickerInput.body.footer } />;
     };
 
-    const renderBody = (bodyProps: DataSourceListProps & Omit<DataPickerBodyProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {
-        const renderedDataRows = rows.map((props) => renderRow(props, dataSourceState));
+    const renderBody = () => {
+        const rows = view.getVisibleRows();
         const maxHeight = isMobile() ? document.documentElement.clientHeight : props.maxBodyHeight || pickerHeight;
         const maxWidth = isMobile() ? undefined : 360;
+
+        const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => handleDataSourceKeyboard({
+            value: dataSourceState,
+            onValueChange: handleDataSourceValueChange,
+            listView: view,
+            searchPosition: 'body',
+            rows,
+        }, e);
 
         return (
             <>
                 <DataPickerBody
-                    { ...bodyProps }
+                    { ...getListProps() }
                     selectionMode={ props.selectionMode }
-                    rows={ renderedDataRows }
+                    rows={ rows }
                     maxHeight={ maxHeight }
                     maxWidth={ maxWidth }
                     searchSize={ settings.filtersPanel.sizes.pickerInput.body.searchInput }
-                    editMode="dropdown"
+                    showSearch={ props.showSearch ?? true }
+                    getName={ getName }
+                    value={ dataSourceState }
+                    onValueChange={ handleDataSourceValueChange }
+                    renderRow={ props.renderRow }
+                    onKeyDown={ onKeyDown }
+                    minCharsToSearch={ props.minCharsToSearch }
+                    searchDebounceDelay={ props.searchDebounceDelay }
+                    rawProps={ props.rawProps?.body }
+                    highlightSearchMatches={ props.highlightSearchMatches }
+                    flattenSearchResults={ view.getConfig().flattenSearchResults }
                 />
                 {renderFooter()}
             </>
         );
     };
 
-    const rows = getRows();
-
-    return renderBody({ ...getPickerBodyProps(rows), ...getListProps(), showSearch: props.showSearch ?? true }, rows);
+    return renderBody();
 }
