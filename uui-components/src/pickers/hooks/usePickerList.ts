@@ -1,8 +1,7 @@
-import { useContext, useEffect, useMemo } from 'react';
-import { DataRowProps, UuiContext } from '@epam/uui-core';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { DataRowProps, DataSourceState, UuiContext } from '@epam/uui-core';
 import { i18n } from '../../i18n';
-import { usePicker } from './usePicker';
-import { usePickerListState } from './usePickerListState';
+import { usePickerApi } from './usePickerApi';
 import { UsePickerListProps } from './types';
 import { applyValueToDataSourceState, dataSourceStateToValue } from '../bindingHelpers';
 
@@ -15,6 +14,27 @@ interface LastUsedRec<TId> {
 
 export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TItem, TId, TProps>) {
     const context = useContext(UuiContext);
+
+    const [dsState, setDsState] = useState<DataSourceState>({
+        focusedIndex: 0,
+        topIndex: 0,
+        visibleCount: 20,
+        checked: [],
+    });
+
+    const picker = usePickerApi<TItem, TId>({ ...props, dataSourceState: dsState, setDataSourceState: setDsState });
+    const {
+        view,
+        getEntityName,
+        getPluralName,
+        dataSourceState,
+        handleDataSourceValueChange,
+        isSingleSelect,
+        getName,
+        getSelectedRows,
+        getRowOptions,
+    } = picker;
+
     const sessionStartTime = useMemo(() => new Date().getTime(), []);
 
     const getMaxTotalItems = () => props.maxTotalItems || 50;
@@ -62,34 +82,22 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
 
         visibleIds = addDistinct(visibleIds, [...lastUsedUds, ...(props.defaultIds || [])], maxDefaultItems);
 
-        return visibleIds;
+        return visibleIds || [];
     };
 
-    const pickerListState = usePickerListState<TId>({
-        dataSourceState: { visibleCount: maxDefaultItems },
-        visibleIds: getVisibleIds(),
-    });
+    const visibleIds = getVisibleIds();
 
-    const { dataSourceState, setDataSourceState, visibleIds } = pickerListState;
-
-    const pickerProps = { ...props, showSelectedOnly: pickerListState.showSelected };
-    const picker = usePicker<TItem, TId>(pickerProps, pickerListState);
-    const {
-        view,
-        getEntityName,
-        getPluralName,
-        getDataSourceState,
-        isSingleSelect,
-        getName,
-        getSelectedRows,
-        handleDataSourceValueChange,
-        getRowOptions,
-    } = picker;
+    useEffect(() => {
+        handleDataSourceValueChange({
+            ...dataSourceState,
+            visibleCount: maxDefaultItems,
+        });
+    }, [maxDefaultItems]);
 
     useEffect(() => {
         const prevValue = dataSourceStateToValue(props, dataSourceState, props.dataSource);
         if (prevValue !== props.value) {
-            setDataSourceState((state) =>
+            handleDataSourceValueChange((state) =>
                 applyValueToDataSourceState(
                     props,
                     state,
@@ -99,7 +107,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
         }
     }, [props.value]);
 
-    const onlySelectedView = props.dataSource.useView(getDataSourceState(), handleDataSourceValueChange, {
+    const onlySelectedView = props.dataSource.useView(dataSourceState, handleDataSourceValueChange, {
         rowOptions: getRowOptions(),
         getSearchFields: props.getSearchFields || ((item: TItem) => [getName(item)]),
         ...(props.isFoldedByDefault ? { isFoldedByDefault: props.isFoldedByDefault } : {}),
@@ -142,8 +150,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     };
 
     const sortRows = (rows: DataRowProps<TItem, TId>[]) => {
-        const dsState = getDataSourceState();
-        const sorting = dsState.sorting?.[0];
+        const sorting = dataSourceState.sorting?.[0];
 
         if (!sorting || (!props.sortBy && !sorting.field)) {
             return rows;

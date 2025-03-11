@@ -49,7 +49,7 @@ Array [
     </div>
   </div>,
   <div
-    className="uui-flex-row root uui-size-36 uui-picker_input-body modal undefined container align-items-center"
+    className="uui-flex-row root uui-size-36 uui-picker_input-body container align-items-center"
     style={
       Object {
         "columnGap": undefined,
@@ -72,6 +72,8 @@ Array [
       }
     >
       <div
+        aria-multiselectable={null}
+        aria-orientation="vertical"
         style={
           Object {
             "WebkitOverflowScrolling": "touch",
@@ -105,7 +107,7 @@ Array [
             }
           >
             <div
-              aria-posinset={3}
+              aria-posinset={1}
               className="uui-flex-row pickerRow container align-items-center"
               role="option"
               style={
@@ -120,7 +122,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -136,8 +138,218 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      A1
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            A1
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={2}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            A1+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="flexSpacer"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              aria-posinset={3}
+              className="uui-flex-row pickerRow container align-items-center"
+              role="option"
+              style={
+                Object {
+                  "columnGap": undefined,
+                  "rowGap": undefined,
+                }
+              }
+            >
+              <div
+                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+                role="cell"
+                style={
+                  Object {
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
+                    "alignSelf": undefined,
+                    "flexBasis": "0",
+                    "flexGrow": 1,
+                    "flexShrink": undefined,
+                    "minWidth": 0,
+                    "textAlign": undefined,
+                  }
+                }
+              >
+                <div
+                  className="contentWrapper"
+                >
+                  <div
+                    className="renderItem"
+                  >
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            A2
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -162,7 +374,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -178,8 +390,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      A1+
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            A2+
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -204,7 +458,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -220,8 +474,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      A2
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            B1
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -246,7 +542,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -262,8 +558,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      A2+
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            B1+
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -288,7 +626,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -304,8 +642,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      B1
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            B2
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -330,7 +710,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -346,8 +726,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      B1+
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            B2+
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -372,7 +794,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -388,8 +810,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      B2
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            C1
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -414,7 +878,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -430,8 +894,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      B2+
+                    <div
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            C1+
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -456,7 +962,7 @@ Array [
                 role="cell"
                 style={
                   Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
+                    "--uui-data_picker_cell-horizontal-padding": "12px",
                     "alignSelf": undefined,
                     "flexBasis": "0",
                     "flexGrow": 1,
@@ -472,92 +978,50 @@ Array [
                   <div
                     className="renderItem"
                   >
-                    <div>
-                      C1
-                    </div>
                     <div
-                      className="flexSpacer"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              aria-posinset={12}
-              className="uui-flex-row pickerRow container align-items-center"
-              role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
-            >
-              <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-                role="cell"
-                style={
-                  Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div
-                  className="contentWrapper"
-                >
-                  <div
-                    className="renderItem"
-                  >
-                    <div>
-                      C1+
-                    </div>
-                    <div
-                      className="flexSpacer"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              aria-posinset={13}
-              className="uui-flex-row pickerRow container align-items-center"
-              role="option"
-              style={
-                Object {
-                  "columnGap": undefined,
-                  "rowGap": undefined,
-                }
-              }
-            >
-              <div
-                className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-                role="cell"
-                style={
-                  Object {
-                    "--uui-data_picker_cell-horizontal-padding": "24px",
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
-              >
-                <div
-                  className="contentWrapper"
-                >
-                  <div
-                    className="renderItem"
-                  >
-                    <div>
-                      C2
+                      className="flexCell root uui-typography"
+                      style={
+                        Object {
+                          "alignSelf": undefined,
+                          "flexBasis": "auto",
+                          "flexGrow": undefined,
+                          "flexShrink": undefined,
+                          "minWidth": 0,
+                          "textAlign": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                        style={
+                          Object {
+                            "--uui-picker_item-vertical-padding": "9px",
+                            "columnGap": undefined,
+                            "rowGap": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="flexCell"
+                          style={
+                            Object {
+                              "alignSelf": undefined,
+                              "flexBasis": "auto",
+                              "flexGrow": undefined,
+                              "flexShrink": undefined,
+                              "minWidth": 0,
+                              "textAlign": undefined,
+                            }
+                          }
+                        >
+                          <div
+                            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                            style={Object {}}
+                          >
+                            C2
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className="flexSpacer"
@@ -616,7 +1080,7 @@ Array [
 
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
 <div
-  className="uui-flex-row root uui-size-36 uui-picker_input-body undefined undefined container align-items-center"
+  className="uui-flex-row root uui-size-36 uui-picker_input-body container align-items-center"
   style={
     Object {
       "columnGap": undefined,
@@ -639,6 +1103,8 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
     }
   >
     <div
+      aria-multiselectable={null}
+      aria-orientation="vertical"
       style={
         Object {
           "WebkitOverflowScrolling": "touch",
@@ -672,7 +1138,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
           }
         >
           <div
-            aria-posinset={3}
+            aria-posinset={1}
             className="uui-flex-row pickerRow container align-items-center"
             role="option"
             style={
@@ -687,7 +1153,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -703,7 +1169,219 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          A1
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="flexSpacer"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-posinset={2}
+            className="uui-flex-row pickerRow container align-items-center"
+            role="option"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
+          >
+            <div
+              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              role="cell"
+              style={
+                Object {
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
+                  "alignSelf": undefined,
+                  "flexBasis": "0",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": 0,
+                  "textAlign": undefined,
+                }
+              }
+            >
+              <div
+                className="contentWrapper"
+              >
+                <div
+                  className="renderItem"
+                >
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          A1+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="flexSpacer"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-posinset={3}
+            className="uui-flex-row pickerRow container align-items-center"
+            role="option"
+            style={
+              Object {
+                "columnGap": undefined,
+                "rowGap": undefined,
+              }
+            }
+          >
+            <div
+              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
+              role="cell"
+              style={
+                Object {
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
+                  "alignSelf": undefined,
+                  "flexBasis": "0",
+                  "flexGrow": 1,
+                  "flexShrink": undefined,
+                  "minWidth": 0,
+                  "textAlign": undefined,
+                }
+              }
+            >
+              <div
+                className="contentWrapper"
+              >
+                <div
+                  className="renderItem"
+                >
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          A2
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -727,7 +1405,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -743,7 +1421,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          A2+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -767,7 +1489,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -783,7 +1505,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          B1
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -807,7 +1573,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -823,7 +1589,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          B1+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -847,7 +1657,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -863,7 +1673,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          B2
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -887,7 +1741,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -903,7 +1757,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          B2+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -927,7 +1825,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -943,7 +1841,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          C1
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -967,7 +1909,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -983,7 +1925,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
+                  <div
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          C1+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -1007,7 +1993,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
               role="cell"
               style={
                 Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
+                  "--uui-data_picker_cell-horizontal-padding": "12px",
                   "alignSelf": undefined,
                   "flexBasis": "0",
                   "flexGrow": 1,
@@ -1023,87 +2009,51 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
                 <div
                   className="renderItem"
                 >
-                  <div />
                   <div
-                    className="flexSpacer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            aria-posinset={12}
-            className="uui-flex-row pickerRow container align-items-center"
-            role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
-          >
-            <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-              role="cell"
-              style={
-                Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
-            >
-              <div
-                className="contentWrapper"
-              >
-                <div
-                  className="renderItem"
-                >
-                  <div />
-                  <div
-                    className="flexSpacer"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            aria-posinset={13}
-            className="uui-flex-row pickerRow container align-items-center"
-            role="option"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
-          >
-            <div
-              className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-              role="cell"
-              style={
-                Object {
-                  "--uui-data_picker_cell-horizontal-padding": "24px",
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
-            >
-              <div
-                className="contentWrapper"
-              >
-                <div
-                  className="renderItem"
-                >
-                  <div />
+                    className="flexCell root uui-typography"
+                    style={
+                      Object {
+                        "alignSelf": undefined,
+                        "flexBasis": "auto",
+                        "flexGrow": undefined,
+                        "flexShrink": undefined,
+                        "minWidth": 0,
+                        "textAlign": undefined,
+                      }
+                    }
+                  >
+                    <div
+                      className="uui-flex-row root uui-size-36 columnGap container align-items-center"
+                      style={
+                        Object {
+                          "--uui-picker_item-vertical-padding": "9px",
+                          "columnGap": undefined,
+                          "rowGap": undefined,
+                        }
+                      }
+                    >
+                      <div
+                        className="flexCell"
+                        style={
+                          Object {
+                            "alignSelf": undefined,
+                            "flexBasis": "auto",
+                            "flexGrow": undefined,
+                            "flexShrink": undefined,
+                            "minWidth": 0,
+                            "textAlign": undefined,
+                          }
+                        }
+                      >
+                        <div
+                          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
+                          style={Object {}}
+                        >
+                          C2
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div
                     className="flexSpacer"
                   />
@@ -1160,7 +2110,7 @@ exports[`DataPickerBody should be rendered with minimum props 1`] = `
 
 exports[`DataPickerBody should be rendered without rows 1`] = `
 <div
-  className="uui-flex-row root uui-size-36 uui-picker_input-body undefined undefined container align-items-center"
+  className="uui-flex-row root uui-size-36 uui-picker_input-body container align-items-center"
   style={
     Object {
       "columnGap": undefined,

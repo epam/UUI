@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Person } from '@epam/uui-docs';
-import { DataRowProps, DataSourceState, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
+import { PickerRenderRowParams, DataSourceState, LazyDataSourceApiRequest, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import { PickerInput, DataPickerRow, PickerItem, FlexCell } from '@epam/uui';
 
 export default function LazyPersonsMultiPickerWithCustomUserRow() {
@@ -18,7 +18,7 @@ export default function LazyPersonsMultiPickerWithCustomUserRow() {
         [],
     );
 
-    const renderUserRow = (props: DataRowProps<Person, number>, dsState: DataSourceState) => (
+    const renderUserRow = (props: PickerRenderRowParams<Person, number>, dsState: DataSourceState) => (
         <DataPickerRow
             { ...props }
             key={ props.rowKey }

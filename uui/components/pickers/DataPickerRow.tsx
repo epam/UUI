@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { DataRowProps, Overwrite } from '@epam/uui-core';
+import { DataRowProps, DataSourceState, FlattenSearchResultsConfig, Overwrite } from '@epam/uui-core';
 import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
 import { DataPickerCell } from './DataPickerCell';
 import { settings } from '../../settings';
 
 import css from './DataPickerRow.module.scss';
+import { PickerItem } from './PickerItem';
+import type { PickerInputProps } from './PickerInput';
 
 export interface DataPickerRowModsOverride {
 }
@@ -15,11 +17,44 @@ interface DataPickerRowMods {
     alignActions?: 'top' | 'center';
 }
 
-export interface DataPickerRowProps<TItem, TId> extends Overwrite<DataPickerRowMods, DataPickerRowModsOverride>, DataRowProps<TItem, TId> {
-    renderItem(item: TItem, rowProps: DataRowProps<TItem, TId>): React.ReactNode;
+export interface DataPickerRowProps<TItem, TId> extends Overwrite<DataPickerRowMods, DataPickerRowModsOverride>, DataRowProps<TItem, TId>,
+    Pick<PickerInputProps<TItem, TId>, 'renderRow' | 'highlightSearchMatches' | 'getName'>, FlattenSearchResultsConfig {
+    renderItem?: (item: TItem, rowProps: DataRowProps<TItem, TId>, dataSourceState?: DataSourceState) => React.ReactNode;
+    /** DataSourceState of the Picker.
+     * Usually provided via renderRow callback params
+     * */
+    dataSourceState?: DataSourceState;
+    /** A pure function that gets entity name from entity object */
+    getName: (item: TItem) => string;
 }
 
 export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>) {
+    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
+        if (!search) return;
+
+        return path
+            .map(({ value }) => props.getName(value))
+            .filter(Boolean)
+            .join(' / ');
+    };
+
+    const renderRowItem = (item: TItem, rowProps: DataRowProps<TItem, TId>) => {
+        if (props.renderItem) {
+            return props.renderItem(item, rowProps, props.dataSourceState);
+        }
+
+        return (
+            <PickerItem
+                title={ props.getName(item) }
+                size={ props.size }
+                dataSourceState={ props.dataSourceState }
+                highlightSearchMatches={ props.highlightSearchMatches }
+                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps, props.value) } : {}) }
+                { ...rowProps }
+            />
+        );
+    };
+
     const renderContent = () => {
         return (
             <DataPickerCell
@@ -28,7 +63,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
                 padding={ props.padding || settings.pickerInput.sizes.body.cellPadding }
                 rowProps={ props }
                 alignActions={ props.alignActions || 'top' }
-                renderItem={ props.renderItem }
+                renderItem={ renderRowItem }
             />
         );
     };
