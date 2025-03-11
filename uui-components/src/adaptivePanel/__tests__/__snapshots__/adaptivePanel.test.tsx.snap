@@ -5,11 +5,10 @@ exports[`AdaptivePanel should render no items provided 1`] = `
   className="mainWrapper"
 >
   <div
-    className="uui-flex-row container align-items-center"
+    className="itemsWrapper"
     style={
       Object {
         "columnGap": undefined,
-        "rowGap": undefined,
       }
     }
   />
@@ -21,11 +20,10 @@ exports[`AdaptivePanel should render some items 1`] = `
   className="mainWrapper"
 >
   <div
-    className="uui-flex-row container align-items-center"
+    className="itemsWrapper"
     style={
       Object {
         "columnGap": undefined,
-        "rowGap": undefined,
       }
     }
   >
@@ -58,11 +56,10 @@ exports[`AdaptivePanel should render some items with itemsGap 1`] = `
   className="mainWrapper"
 >
   <div
-    className="uui-flex-row container align-items-center"
+    className="itemsWrapper"
     style={
       Object {
-        "columnGap": "6px",
-        "rowGap": undefined,
+        "columnGap": 6,
       }
     }
   >

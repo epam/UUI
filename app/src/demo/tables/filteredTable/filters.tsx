@@ -16,11 +16,9 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             renderRow: (props) => (
                 <DataPickerRow
                     { ...props }
-                    padding="12"
-                    size="36"
                     alignItems="center"
                     key={ props.rowKey }
-                    renderItem={ (item: any) => <FlexRow size="36"><Badge size="24" fill="outline" indicator color={ item.name.toLowerCase() as BadgeProps['color'] } caption={ item.name } /></FlexRow> }
+                    renderItem={ (item: any) => <FlexRow><Badge size="24" fill="outline" indicator color={ item.name.toLowerCase() as BadgeProps['color'] } caption={ item.name } /></FlexRow> }
                 />
             ),
             predicates: defaultPredicates.multiPicker,
@@ -35,8 +33,6 @@ export const getFilters = (): TableFiltersConfig<Person>[] => {
             renderRow: (props, dataSourceState) => (
                 <DataPickerRow
                     { ...props }
-                    size="36"
-                    padding="12"
                     key={ props.rowKey }
                     renderItem={ (item: Country, rowProps) => (
                         <PickerItem

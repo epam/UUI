@@ -1,8 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IHasCX, IHasRawProps } from '@epam/uui-core';
+import type { IHasCX, IHasRawProps } from '@epam/uui-core';
 import { Avatar } from './Avatar';
-import { FlexRow } from '../layout';
 import css from './AvatarStack.module.scss';
 
 export interface AvatarStackProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
@@ -21,8 +20,8 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
     const firstElements = avatarsCount && urlArray.length > avatarsCount ? urlArray.slice(0, avatarsCount) : urlArray;
     const styleObj = { '--overlap': `-${+avatarSize / 4}px` } as object;
     return (
-        <FlexRow cx={ props.cx } ref={ ref } rawProps={ props.rawProps }>
-            <FlexRow rawProps={ { role: 'group', style: styleObj } } cx={ cx('avatars', css.container, css['avatar-' + direction]) }>
+        <div className={ cx(props.cx, css.root) } ref={ ref } { ...props.rawProps }>
+            <div role="group" style={ styleObj } className={ cx('uui-avatars', css.container, css['avatar-' + direction]) }>
                 {firstElements.map((avatar, index) => {
                     return renderItem ? (
                         <React.Fragment key={ index }>{renderItem(avatar)}</React.Fragment>
@@ -30,8 +29,8 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
                         <Avatar key={ index } size={ avatarSize } img={ avatar } alt="avatar" />
                     );
                 })}
-            </FlexRow>
+            </div>
             <div className="avatarsCount">{avatarsCount && urlArray.length > avatarsCount ? '+' + (urlArray.length - avatarsCount) : null}</div>
-        </FlexRow>
+        </div>
     );
 });

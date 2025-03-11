@@ -67,7 +67,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     const captionStyles = cx(
         uuiElement.caption,
         props.underline && `uui-underline-${props.underline}`,
-        `uui-link-button-weight-${props.weight || settings.linkButton.sizes.defaultWeight}`,
+        `uui-link-button-weight-${props.weight || settings.linkButton.weight}`,
     );
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.linkButton.icons.dropdownIcon;

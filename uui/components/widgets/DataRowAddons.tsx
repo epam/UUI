@@ -34,11 +34,11 @@ export interface DataRowAddonsProps<TItem, TId> extends DataRowAddonsCoreProps<T
 export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>) {
     const row = props.rowProps;
     const getIndent = () => {
-        return (row.indent - 1) * ((settings.rowAddons.sizes.indentUnitMap[props.size] || settings.rowAddons.sizes.defaultIndentUnit));
+        return (row.indent - 1) * settings.dataTable.sizes.body.indentUnitMap[props.size || settings.dataTable.sizes.body.row];
     };
 
     const getWidth = () => {
-        return settings.rowAddons.sizes.indentWidthMap[props.size] || settings.rowAddons.sizes.defaultIndentWidth;
+        return settings.dataTable.sizes.body.indentWidthMap[props.size || settings.dataTable.sizes.body.row];
     };
 
     return (
@@ -49,7 +49,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                     key="cb"
                     cx="uui-dr_addons-checkbox"
                     tabIndex={ props.tabIndex }
-                    size={ settings.rowAddons.sizes.checkboxMap[props.size] }
+                    size={ settings.dataTable.sizes.body.checkboxMap[props.size] }
                     value={ row.isChecked }
                     indeterminate={ !row.isChecked && row.isChildrenChecked }
                     onValueChange={ () => row.onCheck?.(row) }
@@ -70,13 +70,13 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
                                 role: 'button',
                             } }
                             key="icon"
-                            icon={ settings.rowAddons.icons.foldingIcon }
+                            icon={ settings.dataTable.icons.body.foldingIcon }
                             cx={ [
                                 uuiElement.foldingArrow, uuiMarkers.clickable, css.iconContainer,
                             ] }
                             rotate={ row.isFolded ? '90ccw' : '0' }
                             onClick={ () => row.onFold(row) }
-                            size={ settings.rowAddons.sizes.iconMap[props.size] || settings.rowAddons.sizes.defaultIcon }
+                            size={ settings.dataTable.sizes.body.iconMap[props.size || settings.dataTable.sizes.body.row] }
                         />
                     )}
                 </div>

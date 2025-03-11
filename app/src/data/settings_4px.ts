@@ -36,59 +36,48 @@ const settings_4px = {
     dataTable: {
         sizes: {
             header: {
-                defaultRow: '40',
-                defaultCell: '40',
-                defaultResizeMarker: '12',
-                defaultCellPadding: '12',
-                defaultCellPaddingEdge: '24',
-                cellCheckboxMap: {
-                    40: '24',
-                    48: '24',
-                    60: '24',
-                },
-                captionFontSize: '14',
-                captionFontWeight: '400',
-                captionSize: '20',
-                captionUppercase: '12',
-                cellIconMap: {
+                row: '40',
+                iconMap: {
                     40: '20',
                     48: '20',
                     60: '20',
                 },
-                defaultGroupCell: '40',
-                defaultGroupCellPadding: '12',
-                defaultGroupCellPaddingEdge: '24',
-                groupCellCaptionFontSize: '14',
-                groupCellCaptionFontWeight: '400',
-                groupCellCaptionSize: '20',
-                groupCellCaptionUppercase: '12',
             },
             body: {
-                defaultRow: '40',
-                defaultCell: '40',
-                defaultCellPadding: '12',
-                defaultCellPaddingEdge: '24',
-                cellTextMap: {
-                    24: '24',
-                    32: '32',
-                    40: '40',
-                    48: '48',
-                    60: '48',
+                row: '40',
+                checkboxMap: {
+                    40: '24',
+                    48: '24',
+                    60: '24',
+                },
+                iconMap: {
+                    40: '20',
+                    48: '20',
+                    60: '24',
+                },
+                indentUnitMap: {
+                    40: 24,
+                    48: 24,
+                    60: 24,
+                },
+                indentWidthMap: {
+                    40: 24,
+                    48: 24,
+                    60: 24,
                 },
             },
             columnsConfigurationModal: {
                 columnRow: '40',
                 countIndicator: '20',
-                subgroupIcon: '20',
-                searchButton: '40',
+                menuButton: '40',
                 searchInput: '40',
-                width: 560,
             },
         },
     },
     datePicker: {
         sizes: {
-            default: '40',
+            body: '48',
+            input: '40',
         },
     },
     flexRow: {
@@ -99,14 +88,6 @@ const settings_4px = {
     filtersPanel: {
         sizes: {
             default: '40',
-            pickerInput: {
-                body: {
-                    searchInput: '40',
-                    row: '40',
-                    rowItem: '40',
-                    footer: '40',
-                },
-            },
         },
     },
     labeledInput: {
@@ -121,7 +102,10 @@ const settings_4px = {
     },
     modal: {
         sizes: {
-            defaultWidth: 560,
+            headerPadding: '24',
+            footerColumnGap: '16',
+            footerPadding: '24',
+            footerVPadding: '32',
         },
     },
     notificationCard: {
@@ -143,7 +127,7 @@ const settings_4px = {
         sizes: {
             toggler: {
                 defaultSize: '40',
-                defaultTag: '40',
+                tag: '40',
                 tagMap: {
                     40: '32',
                     48: '32',
@@ -153,24 +137,7 @@ const settings_4px = {
                 maxHeight: 300,
                 minWidth: 360,
                 padding: '12',
-                defaultRow: '40',
-                cellPadding: '24',
-                cellIsBoldSelectionIcon: {
-                    24: true,
-                },
-                cellTextMap: {
-                    40: '40',
-                    48: '48',
-                },
-                cellIconMap: {
-                    40: '24',
-                    48: '24',
-                },
-                defaultItem: '40',
-                itemVerticalPaddingMap: {
-                    40: '8',
-                    48: '12',
-                },
+                row: '40',
                 itemAvatarMap: {
                     40: '32',
                     48: '32',
@@ -179,7 +146,14 @@ const settings_4px = {
                     40: '40',
                     48: '48',
                 },
-                defaultFooter: '40',
+                itemVerticalPaddingMap: {
+                    40: '8',
+                    48: '12',
+                },
+                selectIconMap: {
+                    40: '24',
+                    48: '24',
+                },
                 footerSwitchMap: {
                     40: '20',
                     48: '24',
@@ -188,8 +162,6 @@ const settings_4px = {
                 mobileFooterLinkButton: '48',
                 mobileRow: '48',
                 mobileSearchInput: '48',
-                modalRow: '40',
-                modalPadding: '24',
             },
         },
     },
@@ -201,6 +173,7 @@ const settings_4px = {
     rangeDatePicker: {
         sizes: {
             default: '40',
+            preset: '32',
         },
     },
     rating: {
@@ -211,33 +184,6 @@ const settings_4px = {
     richTextView: {
         sizes: {
             default: '14',
-        },
-    },
-    rowAddons: {
-        sizes: {
-            defaultIcon: '20',
-            defaultIndentUnit: 24,
-            defaultIndentWidth: 12,
-            checkboxMap: {
-                40: '24',
-                48: '24',
-                60: '24',
-            },
-            iconMap: {
-                40: '20',
-                48: '20',
-                60: '24',
-            },
-            indentUnitMap: {
-                40: 24,
-                48: 24,
-                60: 24,
-            },
-            indentWidthMap: {
-                40: 24,
-                48: 24,
-                60: 24,
-            },
         },
     },
     statusIndicator: {

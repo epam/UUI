@@ -20,7 +20,7 @@ import { settings } from '../../settings';
 import './variables.scss';
 import css from './DataTable.module.scss';
 
-export interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
+interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
     /** Callback to get rows that will be rendered in table */
     getRows?(): DataRowProps<TItem, TId>[];
 
@@ -86,7 +86,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
         return (
             <DataTableRow
-                size={ props.size || settings.dataTable.sizes.body.defaultRow }
+                size={ props.size || settings.dataTable.sizes.body.row }
                 columnsGap={ props.columnsGap }
                 borderBottom={ props.border }
                 { ...rowProps }
@@ -152,7 +152,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                         columnGroups={ props.columnGroups }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                         selectAll={ props.selectAll }
-                        size={ props.headerSize || settings.dataTable.sizes.header.defaultRow }
+                        size={ props.headerSize || settings.dataTable.sizes.header.row }
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }

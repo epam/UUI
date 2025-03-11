@@ -1,14 +1,13 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { IDisableable, IDropdownTogglerProps, IHasCX, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
-import { IconContainer, FlexRow } from '@epam/uui-components';
+import type { IDisableable, IDropdownTogglerProps, IHasCX } from '@epam/uui-core';
+import { isEventTargetInsideClickable, uuiElement, uuiMarkers, uuiMod } from '@epam/uui-core';
+import { IconContainer } from '@epam/uui-components';
 import { Text } from '../typography';
 import { UUI_FILTERS_PANEL_ITEM_TOGGLER } from './constants';
 import { settings } from '../../settings';
 
 import css from './FilterPanelItemToggler.module.scss';
-
-const defaultSize = '36';
 
 export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable, IHasCX {
     selection?: React.ReactNode[];
@@ -23,7 +22,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled) return;
         e.preventDefault();
-        props.onClick?.();
+        !isEventTargetInsideClickable(e) && props.onClick?.();
     };
 
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
@@ -50,27 +49,24 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
     ));
 
     return (
-        <FlexRow
-            { ...props }
-            rawProps={ {
-                style: { maxWidth: `${props.maxWidth ? props.maxWidth + 'px' : 'auto'}` },
-                role: 'button',
-                tabIndex: props.isDisabled ? -1 : 0,
-                onKeyDown: onKeyDownHandler,
-            } }
-            cx={ cx(
+        <div
+            style={ { maxWidth: `${props.maxWidth ? props.maxWidth + 'px' : 'auto'}` } }
+            role="button"
+            tabIndex= { props.isDisabled ? -1 : 0 }
+            onKeyDown={ onKeyDownHandler }
+            className={ cx(
                 UUI_FILTERS_PANEL_ITEM_TOGGLER,
                 css.root,
                 uuiElement.inputBox,
                 uuiMarkers.clickable,
                 props.isOpen && uuiMod.opened,
-                `uui-size-${props.size || defaultSize}`,
+                `uui-size-${props.size || settings.pickerInput.sizes.toggler.default}`,
                 props.cx,
             ) }
             onClick={ togglerPickerOpened }
             ref={ ref }
         >
-            <FlexRow cx={ css.titleWrapper }>
+            <div className={ css.titleWrapper }>
                 <Text size={ props.size } cx={ css.title }>{getTitle}</Text>
                 {
                     props.selection && (
@@ -84,8 +80,8 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                         </div>
                     )
                 }
-            </FlexRow>
+            </div>
             {!props.isDisabled && <IconContainer icon={ settings.filtersPanel.icons.itemDropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
-        </FlexRow>
+        </div>
     );
 });

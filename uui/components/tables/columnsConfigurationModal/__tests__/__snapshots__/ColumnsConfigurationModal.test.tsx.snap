@@ -16,24 +16,19 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
   />
   <div
     aria-modal={true}
-    className="uui-modal-window root modal root container"
+    className="uui-modal-window root modal root uui-columns-config-modal container"
     role="dialog"
     style={
       Object {
         "height": "95dvh",
         "maxHeight": "95dvh",
-        "width": 560,
+        "width": undefined,
       }
     }
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalHeader uui-modal-header"
+      style={Object {}}
     >
       <div
         className="uui-modal-title uui-typography"
@@ -75,13 +70,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 borderBottom searchArea container align-items-center"
-      style={
-        Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
-        }
-      }
+      className="root uui-flex-row searchArea uui-size-36 borderBottom"
+      style={Object {}}
     >
       <div
         className="container uui-input-box -clickable root uui-size-30 mode-form"
@@ -159,13 +149,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
           }
         >
           <div
-            className="uui-flex-row root uui-size-36 group container align-items-center"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
+            className="root uui-flex-row group uui-size-36"
+            style={Object {}}
           >
             <div
               className="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline groupTitle container"
@@ -196,13 +181,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 className="uui-accordion-toggle-container"
               >
                 <div
-                  className="uui-flex-row root uui-size-36 subgroup container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
+                  className="root uui-flex-row subgroup uui-size-36"
+                  style={Object {}}
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -210,8 +190,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height="18"
-                      width="18"
                     />
                   </div>
                   <div
@@ -232,24 +210,18 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               role="region"
             >
               <div
-                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
-                style={
-                  Object {
-                    "columnGap": undefined,
-                    "rowGap": undefined,
-                  }
-                }
+                className="root uui-flex-row groupItems uui-size-30"
+                style={Object {}}
               >
                 <div
-                  className="uui-flex-row root uui-size-30 rowWrapper uui-dt-columns-config-row container align-items-top"
+                  className="root uui-flex-row rowWrapper uui-dt-columns-config-row uui-size-30 alignItems"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
                   onPointerUp={[Function]}
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "--uui-flex-row-align-items": "top",
                     }
                   }
                 >
@@ -296,13 +268,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root pinIconButton container align-items-center"
-                    style={
-                      Object {
-                        "columnGap": undefined,
-                        "rowGap": undefined,
-                      }
-                    }
+                    className="root uui-flex-row pinIconButton"
+                    style={Object {}}
                   >
                     <button
                       aria-disabled={true}
@@ -325,13 +292,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            className="uui-flex-row root hDivider container align-items-center"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
+            className="root uui-flex-row hDivider"
+            style={Object {}}
           />
           <div
             aria-expanded={true}
@@ -347,13 +309,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 className="uui-accordion-toggle-container"
               >
                 <div
-                  className="uui-flex-row root uui-size-36 subgroup container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
+                  className="root uui-flex-row subgroup uui-size-36"
+                  style={Object {}}
                 >
                   <div
                     className="container uui-icon uui-enabled"
@@ -361,8 +318,6 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                   >
                     <svg
                       className=""
-                      height="18"
-                      width="18"
                     />
                   </div>
                   <div
@@ -383,24 +338,18 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
               role="region"
             >
               <div
-                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
-                style={
-                  Object {
-                    "columnGap": undefined,
-                    "rowGap": undefined,
-                  }
-                }
+                className="root uui-flex-row groupItems uui-size-30"
+                style={Object {}}
               >
                 <div
-                  className="uui-flex-row root uui-size-30 rowWrapper notPinned uui-dt-columns-config-row container align-items-top"
+                  className="root uui-flex-row rowWrapper notPinned uui-dt-columns-config-row uui-size-30 alignItems"
                   onPointerEnter={[Function]}
                   onPointerLeave={[Function]}
                   onPointerMove={[Function]}
                   onPointerUp={[Function]}
                   style={
                     Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
+                      "--uui-flex-row-align-items": "top",
                     }
                   }
                 >
@@ -448,13 +397,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                     </div>
                   </label>
                   <div
-                    className="uui-flex-row root pinIconButton container align-items-center"
-                    style={
-                      Object {
-                        "columnGap": undefined,
-                        "rowGap": undefined,
-                      }
-                    }
+                    className="root uui-flex-row pinIconButton"
+                    style={Object {}}
                   >
                     <button
                       aria-disabled={false}
@@ -525,13 +469,8 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 borderTop root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      className="root modalFooter uui-modal-footer borderTop"
+      style={Object {}}
     >
       <button
         className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"

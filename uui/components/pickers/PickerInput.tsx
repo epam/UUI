@@ -1,7 +1,7 @@
 import React, { useContext, useImperativeHandle, useMemo, useRef } from 'react';
-import { 
+import {
     DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
-    PickerInputBaseProps, UuiContext, mobilePopperModifier, 
+    PickerInputBaseProps, UuiContext, mobilePopperModifier,
 } from '@epam/uui-core';
 import { PickerTogglerRenderItemParams, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
@@ -122,7 +122,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ props.size || settings.pickerInput.sizes.body.defaultFooter } />;
+            : <DataPickerFooter { ...footerProps } size={ props.size || settings.pickerInput.sizes.body.row } />;
     };
 
     const renderBody = (dropdownProps: DropdownBodyProps) => {
@@ -135,7 +135,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
             <PickerBodyMobileView
                 title={ props.entityName }
                 onClose={ () => toggleBodyOpening(false) }
-                cx={ [props.bodyCx] }
+                cx={ [props.bodyCx, 'uui-picker_input-body-wrapper'] }
                 onKeyDown={ onKeyDown }
                 width={ dropdownProps.togglerWidth > minBodyWidth ? dropdownProps.togglerWidth : minBodyWidth }
                 focusLock={ getSearchPosition() === 'body' }
@@ -186,7 +186,5 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
     );
 }
 
-export const PickerInput = React.forwardRef(PickerInputComponent) as <TItem, TId>(
-    props: PickerInputProps<TItem, TId>,
-    ref: React.ForwardedRef<PickerInputElement>
-) => JSX.Element;
+export const PickerInput = React.forwardRef(PickerInputComponent) as
+    <TItem, TId>(props: PickerInputProps<TItem, TId> & { ref?: React.ForwardedRef<PickerInputElement> }) => ReturnType<typeof PickerInputComponent>;
