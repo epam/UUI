@@ -51,7 +51,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         return (
             <PickerItem
                 title={ getName(item) }
-                size="36"
                 dataSourceState={ dsState }
                 { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dataSourceState) } : {}) }
                 { ...rowProps }
@@ -67,7 +66,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                 { ...rowProps }
                 key={ rowProps.rowKey }
                 padding="24"
-                size="36"
                 renderItem={ (item, itemProps) => renderItem(item, itemProps, dataSourceState) }
             />
         );
@@ -99,10 +97,10 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         ) : (
             <div className={ css.noFoundModalContainer }>
                 <IconContainer cx={ css.noFoundModalContainerIcon } icon={ settings.pickerInput.icons.body.modalNotFoundSearchIcon } />
-                <Text cx={ css.noFoundModalContainerText } fontWeight="600" fontSize="16" lineHeight="24" color="primary" size="36">
+                <Text cx={ css.noFoundModalContainerText } fontWeight="600" fontSize="16" lineHeight="24" color="primary">
                     {i18n.dataPickerBody.noRecordsMessage}
                 </Text>
-                <Text cx={ css.noFoundModalContainerText } fontSize="12" lineHeight="18" color="primary" size="36">
+                <Text cx={ css.noFoundModalContainerText } fontSize="12" lineHeight="18" color="primary">
                     {i18n.dataPickerBody.noRecordsSubTitle}
                 </Text>
             </div>
@@ -139,7 +137,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     {!isSingleSelect() && (
                         <Switch
                             cx={ css.switch }
-                            size="18"
+                            size={ settings.pickerInput.sizes.body.footerSwitchMap[settings.pickerInput.sizes.body.row] }
                             { ...getFooterProps().showSelected }
                             isDisabled={ view.getSelectedRowsCount() < 1 }
                             label="Show only selected"

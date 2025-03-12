@@ -35,7 +35,7 @@ export const accordionExamples = [
                 <Text size="36">{LONG_TEXT}</Text>
                 <FlexRow columnGap="6">
                     <FlexSpacer />
-                    <Button color="secondary" caption="Cancel" onClick={ () => {} } />
+                    <Button fill="outline" color="secondary" caption="Cancel" onClick={ () => {} } />
                     <Button color="primary" caption="Accept" onClick={ () => {} } />
                 </FlexRow>
             </React.Fragment>
