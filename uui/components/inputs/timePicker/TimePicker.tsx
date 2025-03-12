@@ -110,7 +110,7 @@ export function TimePicker(props: TimePickerProps) {
             <TextInput
                 { ...inputProps }
                 onClick={ null }
-                size={ props.size || '36' }
+                size={ props.size }
                 isDisabled={ props.isDisabled }
                 isReadonly={ props.isReadonly }
                 isInvalid={ props.isInvalid }

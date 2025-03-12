@@ -13,7 +13,7 @@ const componentAsDemoContent = (
         <FlexRow columnGap="12">
             <FlexSpacer />
             <Button fill="outline" color="secondary" caption="Cancel" onClick={ () => {} } />
-            <Button color="accent" caption="Accept" onClick={ () => {} } />
+            <Button caption="Accept" onClick={ () => {} } />
         </FlexRow>
     </>
 );

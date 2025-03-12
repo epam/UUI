@@ -70762,8 +70762,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -77769,7 +77773,10 @@
      "raw": "FlexRowMods",
      "print": [
       "interface FlexRowMods {",
-      "    /** Defines row size */",
+      "    /**",
+      "     *  Defines row size",
+      "     *  @default '36'",
+      "     */",
       "    size?: null | '24' | '30' | '36' | '42' | '48';",
       "    /** Pass true, to enable row top border */",
       "    borderTop?: boolean;",
@@ -77800,8 +77807,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines row size"
-       ]
+        "Defines row size",
+        "  @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
@@ -78201,8 +78212,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines row size"
-       ]
+        "Defines row size",
+        "  @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
@@ -80305,8 +80320,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -83772,10 +83791,6 @@
       "     * Defines an array of MultiSwitchItems.",
       "     */",
       "    items: MultiSwitchItem<TValue>[];",
-      "    /**",
-      "     * Defines component size.",
-      "     */",
-      "    size?: ControlSize | '60';",
       "};"
      ]
     },
@@ -83905,33 +83920,30 @@
        "raw": "MultiSwitchItem<TValue>[]"
       },
       "required": true
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60"
-       ]
-      },
-      "required": false
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui:MultiSwitchModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "MultiSwitchModsOverride",
+     "nameFull": "MultiSwitchModsOverride"
+    },
+    "src": "uui/components/inputs/MultiSwitch.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MultiSwitchModsOverride",
+     "print": [
+      "interface MultiSwitchModsOverride {",
+      "}"
+     ]
+    }
    }
   },
   "@epam/uui:MultiSwitchProps": {
@@ -83955,7 +83967,7 @@
      "raw": "MultiSwitchProps<TValue>",
      "print": [
       "/** Represents the properties for the MultiSwitch component. */",
-      "type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;"
+      "type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & Overwrite<MultiSwitchMods, MultiSwitchModsOverride>;"
      ]
     },
     "props": [
@@ -84087,31 +84099,6 @@
       "required": true
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:MultiSwitchCoreProps",
-      "required": false
-     },
-     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -84131,6 +84118,35 @@
        "options": [
         "primary",
         "secondary"
+       ]
+      },
+      "from": "@epam/uui:MultiSwitchMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
        ]
       },
       "from": "@epam/uui:MultiSwitchMods",
@@ -85536,8 +85552,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -88323,8 +88343,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -99290,8 +99314,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -102773,8 +102801,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines row size"
-       ]
+        "Defines row size",
+        "  @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
@@ -104194,31 +104226,6 @@
       },
       "from": "@epam/uui:MultiSwitchCoreProps",
       "required": true
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:MultiSwitchCoreProps",
-      "required": false
      },
      {
       "uid": "color",
@@ -109055,8 +109062,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines row size"
-       ]
+        "Defines row size",
+        "  @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"
@@ -110330,31 +110341,6 @@
       "required": true
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42' | '60'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:MultiSwitchCoreProps",
-      "required": false
-     },
-     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -111230,8 +111216,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines row size"
-       ]
+        "Defines row size",
+        "  @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "null | '36' | '48' | '24' | '30' | '42'"

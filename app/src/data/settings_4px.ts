@@ -1,10 +1,9 @@
 const settings_4px = {
     alert: {
         sizes: {
-            default: '48',
+            default: '56',
             actionMap: {
-                32: '24',
-                48: '32',
+                56: '24',
             },
         },
     },
@@ -67,7 +66,7 @@ const settings_4px = {
                 },
             },
             columnsConfigurationModal: {
-                columnRow: '40',
+                columnRow: '32',
                 countIndicator: '20',
                 menuButton: '40',
                 searchInput: '40',
@@ -82,7 +81,7 @@ const settings_4px = {
     },
     flexRow: {
         sizes: {
-            default: '40',
+            default: '32',
         },
     },
     filtersPanel: {
