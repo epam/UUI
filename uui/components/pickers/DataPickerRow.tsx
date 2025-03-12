@@ -7,7 +7,7 @@ import css from './DataPickerRow.module.scss';
 import { PickerItem } from './PickerItem';
 import type { PickerInputProps } from './PickerInput';
 import { Text, TextPlaceholder } from '../typography';
-import { FlexCell, FlexRow } from '../layout';
+import { FlexCell } from '../layout';
 import { DataRowAddons } from '../widgets';
 
 export interface DataPickerRowModsOverride {
@@ -69,7 +69,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
                 size={ props.size }
                 dataSourceState={ props.dataSourceState }
                 highlightSearchMatches={ props.highlightSearchMatches }
-                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps, props.value) } : {}) }
+                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps, props.dataSourceState) } : {}) }
                 { ...rowProps }
             />
         );
@@ -80,13 +80,13 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
 
         if (props.isLoading) {
             content = (
-                <Text key="t" size={ props.size }>
+                <Text size={ props.size }>
                     <TextPlaceholder />
                 </Text>
             );
         } else if (props.isUnknown) {
             content = (
-                <Text key="t" size={ props.size }>
+                <Text size={ props.size }>
                     Unknown
                 </Text>
             );
@@ -96,7 +96,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
                 : settings.pickerInput.icons.body.selectIcon) as Icon;
 
             content = (
-                <FlexRow key={ `${props.id}` } cx={ css.content }>
+                <>
                     {renderRowItem(props.value, props)}
                     <FlexSpacer />
                     {(props.isChildrenSelected || props.isSelected) && (
@@ -111,7 +111,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
                             />
                         </div>
                     )}
-                </FlexRow>
+                </>
             );
         }
 
