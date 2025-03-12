@@ -108,7 +108,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
     );
 
     const renderSuccessfulContent = () => (
-        <Text size="18" fontSize="14" lineHeight="18" color="tertiary">
+        <Text size="none" fontSize="14" lineHeight="18" color="tertiary">
             {fileExtension && `${fileExtension.toUpperCase()}, `}
             {isLoading && formatBytes((size / 100) * progress, 2, false) + i18n.fileCard.fileSizeProgress}
             {formatBytes(size)}
@@ -130,7 +130,7 @@ export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, 
             <FlexRow alignItems="top" columnGap="6">
                 {fileExtension && getIcon(fileExtension)}
                 <FlexCell width="100%">
-                    <Text size="18" fontSize="14" lineHeight="18" color={ (progress < 100 || error?.isError) ? 'tertiary' : 'primary' } cx={ css.fileName }>
+                    <Text size="none" fontSize="14" lineHeight="18" color={ (progress < 100 || error?.isError) ? 'tertiary' : 'primary' } cx={ css.fileName }>
                         {fileName}
                     </Text>
                     {error?.isError ? renderErrorContent() : renderSuccessfulContent()}

@@ -8,6 +8,7 @@ import css from './LabeledInput.module.scss';
 interface LabeledInputMods {
     /**
      * Defines component size.
+     * @default '36'
      */
     size?: '24' | '30' | '36' | '42' | '48';
 }

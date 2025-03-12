@@ -17,6 +17,7 @@
 
     & {
         --uui-border-radius: 3px;
+        scrollbar-color: var(--uui-neutral-40) transparent;
     }
 
     /* begin color classes */
@@ -596,5 +597,9 @@
         .uui-picker_input-row-select_icon {
             display: none;
         }
+    }
+
+    .uui-timepicker-container > .uui-timepicker-item .uui-timepicker-input.uui-input-box {
+        width: 40px;
     }
 }
