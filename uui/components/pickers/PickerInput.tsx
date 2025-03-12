@@ -45,8 +45,8 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
             .show((modalProps) => (
                 <PickerModal<TItem, TId>
                     { ...restProps }
-                    rawProps={ rawProps?.body }
                     { ...modalProps }
+                    rawProps={ rawProps?.body }
                     caption={ getPlaceholder() }
                     initialValue={ props.value as any }
                     selectionMode={ props.selectionMode }

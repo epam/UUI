@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import {
     DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger, DataSourceListProps, IEditable,
-    IHasRawProps, usePrevious, DataRowProps, IHasCX, FlattenSearchResultsConfig,
+    IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
 } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
 import { SearchInput, SearchInputProps } from '../inputs';
@@ -23,7 +23,7 @@ interface DataPickerBodyMods {
 
 export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>,
     Pick<PickerInputProps<TItem, TId>, 'size' | 'renderRow' | 'highlightSearchMatches' | 'getName' | 'minCharsToSearch' | 'renderEmpty' | 'renderNotFound' | 'fixedBodyPosition' | 'searchDebounceDelay'>,
-    FlattenSearchResultsConfig, DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps, IHasCX {
+    FlattenSearchResultsConfig, DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
     maxHeight?: number;
     selectionMode?: 'single' | 'multi';
     maxWidth?: number;
@@ -116,7 +116,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                 { ...pickerRowProps }
                 key={ row.rowKey }
                 size={ getRowSize() }
-                padding={ settings.pickerInput.sizes.body.padding }
                 flattenSearchResults={ props.flattenSearchResults }
                 highlightSearchMatches={ highlightSearchMatches }
                 dataSourceState={ dsState }

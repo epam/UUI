@@ -42,7 +42,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                padding={ settings.pickerInput.sizes.body.padding }
                 size={ settings.pickerInput.sizes.body.row }
                 flattenSearchResults={ view.getConfig().flattenSearchResults }
                 getName={ getName }
@@ -90,7 +89,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
 
     return (
         <ModalBlocker { ...props }>
-            <ModalWindow width={ 600 } height={ 700 }>
+            <ModalWindow width={ 600 } height={ 700 } cx={ css.body }>
                 <ModalHeader title={ props.caption || i18n.pickerModal.headerTitle } onClose={ () => props.abort() } />
                 <FlexCell cx={ css.subHeaderWrapper }>
                     <FlexRow vPadding="24">
@@ -133,7 +132,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                     renderRow={ renderRow }
                     renderEmpty={ renderNotFound }
                     size={ settings.pickerInput.sizes.body.row }
-                    cx={ css.body }
                 />
                 <ModalFooter>
                     {props.renderFooter ? props.renderFooter(getFooterProps()) : renderFooter()}

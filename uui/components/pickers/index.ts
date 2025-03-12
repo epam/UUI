@@ -2,7 +2,6 @@ export * from './DataPickerBody';
 export * from './DataPickerFooter';
 export * from './DataPickerHeader';
 export * from './DataPickerRow';
-export * from './DataPickerCell';
 export * from './PickerBodyMobileView';
 export * from './PickerInput';
 export * from './PickerItem';
