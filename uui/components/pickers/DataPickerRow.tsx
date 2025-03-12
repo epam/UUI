@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { DataRowProps, DataSourceState, FlattenSearchResultsConfig, Overwrite } from '@epam/uui-core';
-import { DataPickerRow as UUIDataPickerRow } from '@epam/uui-components';
-import { DataPickerCell } from './DataPickerCell';
+import { cx, DataRowProps, DataSourceState, FlattenSearchResultsConfig, Icon, isEventTargetInsideClickable, Overwrite, uuiMarkers, uuiMod } from '@epam/uui-core';
+import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { settings } from '../../settings';
 
 import css from './DataPickerRow.module.scss';
 import { PickerItem } from './PickerItem';
 import type { PickerInputProps } from './PickerInput';
+import { Text, TextPlaceholder } from '../typography';
+import { FlexCell, FlexRow } from '../layout';
+import { DataRowAddons } from '../widgets';
 
 export interface DataPickerRowModsOverride {
 }
@@ -29,6 +31,21 @@ export interface DataPickerRowProps<TItem, TId> extends Overwrite<DataPickerRowM
 }
 
 export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>) {
+    const rowNode = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        if (props.onFocus) {
+            rowNode.current?.addEventListener('mouseenter', handleMouseEnter);
+        }
+        return () => {
+            rowNode.current?.removeEventListener('mouseenter', handleMouseEnter);
+        };
+    }, [props.onFocus]);
+
+    const handleMouseEnter = () => {
+        props.onFocus && props.onFocus(props.index);
+    };
+
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
         if (!search) return;
 
@@ -54,25 +71,89 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
             />
         );
     };
-
+    
     const renderContent = () => {
+        let content: React.ReactNode;
+
+        if (props.isLoading) {
+            content = (
+                <Text key="t" size={ props.size }>
+                    <TextPlaceholder />
+                </Text>
+            );
+        } else if (props.isUnknown) {
+            content = (
+                <Text key="t" size={ props.size }>
+                    Unknown
+                </Text>
+            );
+        } else {
+            const SelectIcon = (typeof settings.pickerInput.icons.body.selectIcon === 'function'
+                ? settings.pickerInput.icons.body.selectIcon(props.size)
+                : settings.pickerInput.icons.body.selectIcon) as Icon;
+
+            content = (
+                <FlexRow key={ `${props.id}` } cx={ css.content }>
+                    {renderRowItem(props.value, props)}
+                    <FlexSpacer />
+                    {(props.isChildrenSelected || props.isSelected) && (
+                        <div className={ cx(css.iconWrapper, 'uui-picker_input-row-select_icon', uuiMod.selected) }>
+                            <IconContainer
+                                size={ settings.pickerInput.sizes.body.selectIconMap[props.size] }
+                                icon={ SelectIcon }
+                                cx={ props.isChildrenSelected ? css.iconDefault : css.selectedMark }
+                                rawProps={ { 'aria-label': props.isChildrenSelected
+                                    ? 'Child is selected'
+                                    : 'Selected' } }
+                            />
+                        </div>
+                    )}
+                </FlexRow>
+            );
+        }
+
         return (
-            <DataPickerCell
-                key="name"
-                size={ props.size || settings.pickerInput.sizes.body.row }
-                padding={ props.padding || settings.pickerInput.sizes.body.padding }
-                rowProps={ props }
-                alignActions={ props.alignActions || 'top' }
-                renderItem={ renderRowItem }
-            />
+            <FlexCell
+                grow={ 1 }
+                width={ 0 }
+                minWidth={ 0 }
+                cx={ css.rowContent }
+            >
+                <DataRowAddons size={ props.size } rowProps={ props } tabIndex={ -1 } />
+                <div className={ css.contentWrapper }>
+                    {content}
+                </div>
+            </FlexCell>
         );
     };
 
+    const clickHandler = props.onClick || props.onSelect || props.onFold || props.onCheck;
+
     return (
-        <UUIDataPickerRow
-            { ...props }
-            cx={ [css.pickerRow, 'uui-picker_input-row', props.cx] }
-            renderContent={ renderContent }
-        />
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+        <div
+            onClick={ clickHandler && ((e) => !isEventTargetInsideClickable(e) && clickHandler(props)) }
+            role="option"
+            aria-busy={ props.isLoading }
+            aria-posinset={ props.index + 1 }
+            aria-checked={ props.checkbox?.isVisible ? props.isChecked : null }
+            aria-selected={ props.isSelectable ? props.isSelected : null }
+            ref={ rowNode }
+            className={ cx(
+                css.pickerRow,
+                'uui-picker_input-row',
+                props.size && `uui-size-${props.size || settings.pickerInput.sizes.body.row}`,
+                css[`align-widgets-${props.alignActions || 'top'}`],
+                clickHandler && props.isFocused && uuiMod.focus,
+                clickHandler && uuiMarkers.clickable,
+                props.cx,
+            ) }
+            style={ props.padding && {
+                '--uui-data_picker-horizontal-padding': `${props.padding}px`,
+            } as React.CSSProperties }
+            { ...props.rawProps }
+        >
+            {renderContent()}
+        </div>
     );
 }
