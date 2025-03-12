@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui-core';
+import { IEditable, IHasRawProps, Overwrite } from '@epam/uui-core';
 import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
 import { ControlSize } from '../types';
@@ -11,13 +11,20 @@ type MultiSwitchItem<TValue> = ButtonProps & {
     id: TValue;
 };
 
-type MultiSwitchMods = {
+interface MultiSwitchMods {
     /**
      * Defines component color.
      * @default 'primary'
      */
     color?: 'primary' | 'secondary';
-};
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: ControlSize | '60';
+}
+
+export interface MultiSwitchModsOverride {}
 
 /** Represents the 'Core properties' for the MultiSwitch component. */
 export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
@@ -25,14 +32,10 @@ export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<Reac
      * Defines an array of MultiSwitchItems.
      */
     items: MultiSwitchItem<TValue>[];
-    /**
-     * Defines component size.
-     */
-    size?: ControlSize | '60';
 };
 
 /** Represents the properties for the MultiSwitch component. */
-export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;
+export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & Overwrite<MultiSwitchMods, MultiSwitchModsOverride>;
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (

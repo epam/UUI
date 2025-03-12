@@ -1,31 +1,36 @@
 import React from 'react';
-import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert } from '@epam/uui';
+import { Alert, FlexCell, Text, SuccessAlert, WarningAlert, ErrorAlert, HintAlert, AlertProps } from '@epam/uui';
 import css from './BasicExample.module.scss';
 import { ReactComponent as AccountIcon } from '@epam/assets/icons/common/action-account-24.svg';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
 
-export default function BasicAlertExample() {
+export default function BasicAlertExample(props: ExampleProps) {
+    const sizes = getAllPropValues('size', false, props) as AlertProps['size'];
+    const textSize = sizes.includes('36') ? '30' : 'none'; // to support 4px grid themes
+
     return (
         <FlexCell cx={ css.container } grow={ 1 }>
             <SuccessAlert>
                 {' '}
-                <Text size="30"> Success notification </Text>
+                <Text size={ textSize }> Success notification </Text>
                 {' '}
             </SuccessAlert>
             <WarningAlert>
                 {' '}
-                <Text size="30"> Warning notification </Text>
+                <Text size={ textSize }> Warning notification </Text>
                 {' '}
             </WarningAlert>
             <ErrorAlert>
                 {' '}
-                <Text size="30"> Error notification </Text>
+                <Text size={ textSize }> Error notification </Text>
                 {' '}
             </ErrorAlert>
             <HintAlert
                 onClose={ () => alert('close action') }
                 actions={ [{ name: 'ACTION 1', action: () => null }, { name: 'ACTION 2', action: () => null }] }
             >
-                <Text size="30"> Hint notification with actions </Text>
+                <Text size={ textSize }> Hint notification with actions </Text>
             </HintAlert>
 
             <Alert
@@ -34,7 +39,7 @@ export default function BasicAlertExample() {
                 onClose={ () => alert('close action') }
                 actions={ [{ name: 'ACTION 1', action: () => null }, { name: 'ACTION 2', action: () => null }] }
             >
-                <Text size="30">Custom Alert notification with actions </Text>
+                <Text size={ textSize }>Custom Alert notification with actions </Text>
             </Alert>
         </FlexCell>
     );

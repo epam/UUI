@@ -1,7 +1,6 @@
 import React, { FC, SVGProps, useEffect } from 'react';
-import { Badge, Button, FlexRow, IconContainer, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
-import { getCurrentTheme } from '../helpers';
 import cx from 'classnames';
+import { Badge, Button, FlexRow, IconContainer, Panel, Text, ButtonProps, FlexCell } from '@epam/uui';
 import { ReactComponent as OpenSourceIcon } from '../icons/open-source.svg';
 import { ReactComponent as StarsIcon } from '../icons/stars.svg';
 import { ReactComponent as flagIcon } from '../icons/flag.svg';
@@ -23,14 +22,14 @@ interface IExploreTopBlockItem {
 const topExploreBlocks: IExploreTopBlockItem[] = [
     {
         id: 0,
-        icon: { element: StarsIcon, name: 'Stars' },
+        icon: { element: StarsIcon, name: 'stars' },
         caption: 'Figma components aligned with React',
         text: 'Boxed solution with Figma and React libraries, enabling to seamlessly integrate design with front-end and accelerate both',
         footer: null,
     },
     {
         id: 1,
-        icon: { element: flagIcon, name: 'Flag' },
+        icon: { element: flagIcon, name: 'flag' },
         /* eslint-disable react/jsx-closing-tag-location */
         caption: <span>
             Integrated solutions &
@@ -43,14 +42,14 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
     },
     {
         id: 2,
-        icon: { element: windows, name: 'Windows' },
+        icon: { element: windows, name: 'windows' },
         caption: '60+ rich components',
         text: 'Rich set of components: from buttons to data tables, that meets WCAG 2.0 Level AA conformance',
         footer: { linkCaption: 'See Components', href: '/documents?category=components&id=accordion&mode=doc' },
     },
     {
         id: 3,
-        icon: { element: brushBuilder, name: 'BrushBuilder' },
+        icon: { element: brushBuilder, name: 'brushBuilder' },
         caption: 'Themization',
         /* eslint-disable react/jsx-closing-tag-location */
         text: <span>
@@ -74,7 +73,7 @@ interface IExploreBottomBlockItem {
 const bottomExploreBlocks: IExploreBottomBlockItem[] = [
     {
         id: 0,
-        icon: { element: actionLockIcon, name: 'Lock' },
+        icon: { element: actionLockIcon, name: 'lock' },
         caption: 'Open Source',
         captionBadge: { icon: OpenSourceIcon, caption: 'MIT License' },
         text: 'Open for contribution, actively evolving, supported, and used by 50+ EPAM production projects',
@@ -84,7 +83,7 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
         ],
     }, {
         id: 1,
-        icon: { element: notificationHelpIcon, name: 'Help' },
+        icon: { element: notificationHelpIcon, name: 'help' },
         caption: 'Support',
         captionBadge: null,
         text: 'Ongoing support during project live cycle. Access to a dedicated UUI team of architect, designers and developers on demand',
@@ -95,8 +94,6 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
 ];
 
 export function ExploreBenefitsBlock() {
-    const theme = getCurrentTheme();
-    const getThemeClassName = (baseClass: string) => !!theme && theme === 'loveship_dark' ? `${baseClass}LoveshipDark` : `${baseClass}${theme.charAt(0).toUpperCase() + theme.slice(1)}`;
     const topBlockRefs: React.RefObject<HTMLDivElement>[] = topExploreBlocks.map(() => React.createRef());
     const bottomBlockRefs: React.RefObject<HTMLDivElement>[] = bottomExploreBlocks.map(() => React.createRef());
 
@@ -143,7 +140,7 @@ export function ExploreBenefitsBlock() {
                 <div className={ css.topBlockWrapper }>
                     { topExploreBlocks.map((item, index) => (
                         <Panel ref={ topBlockRefs[index] } cx={ css.topBlockPanel } key={ item.id }>
-                            <IconContainer icon={ item.icon.element } cx={ cx(css.topBlockIcon, css[getThemeClassName(`topBlockIcon${item.icon.name}`)]) } size="18" />
+                            <IconContainer icon={ item.icon.element } cx={ cx(css.topBlockIcon, css[item.icon.name]) } size="18" />
                             <FlexCell cx={ css.topBlockContextWrapper }>
                                 <Text fontSize="18" lineHeight="24" fontWeight="600">{ item.caption }</Text>
                                 <Text fontSize="16" lineHeight="24" color="secondary">{ item.text }</Text>
@@ -167,7 +164,7 @@ export function ExploreBenefitsBlock() {
                 <div className={ css.bottomBlockWrapper }>
                     { bottomExploreBlocks.map((item, index) => (
                         <Panel ref={ bottomBlockRefs[index] } cx={ css.bottomBlockPanel } key={ item.id }>
-                            <IconContainer size="36" icon={ item.icon.element } cx={ cx(css.bottomBlockIcon, css[getThemeClassName(`bottomBlockIcon${item.icon.name}`)]) } />
+                            <IconContainer size="36" icon={ item.icon.element } cx={ cx(css.bottomBlockIcon, css[item.icon.name]) } />
                             <FlexRow cx={ css.bottomBlockCaptionWrapper }>
                                 <Text fontSize="24" lineHeight="30" fontWeight="600" cx={ css.bottomBlockCaption }>{ item.caption }</Text>
                                 { item.captionBadge

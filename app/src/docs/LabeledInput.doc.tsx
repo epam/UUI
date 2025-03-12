@@ -29,7 +29,6 @@ export class LabeledInputDoc extends BaseDocsBlock {
         doc: (doc: DocBuilder<uui.LabeledInputProps>) => {
             doc.merge('value', { examples: ['Some simple text'] });
             doc.merge('Tooltip', { examples: [{ value: uui.Tooltip, name: 'Tooltip', isDefault: true }], isRequired: true });
-            doc.merge('size', { defaultValue: '36' });
             doc.merge('labelPosition', { defaultValue: 'top' });
             doc.merge('children', {
                 examples: [
