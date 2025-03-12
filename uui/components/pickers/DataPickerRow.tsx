@@ -21,6 +21,9 @@ interface DataPickerRowMods {
 
 export interface DataPickerRowProps<TItem, TId> extends Overwrite<DataPickerRowMods, DataPickerRowModsOverride>, DataRowProps<TItem, TId>,
     Pick<PickerInputProps<TItem, TId>, 'renderRow' | 'highlightSearchMatches' | 'getName'>, FlattenSearchResultsConfig {
+    /** Render callback for part of the content part of the row - between left addons and right select icon.
+     * If omitted, default `PickerItem` component will be rendered.
+     */
     renderItem?: (item: TItem, rowProps: DataRowProps<TItem, TId>, dataSourceState?: DataSourceState) => React.ReactNode;
     /** DataSourceState of the Picker.
      * Usually provided via renderRow callback params
