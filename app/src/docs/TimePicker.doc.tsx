@@ -22,7 +22,6 @@ export class TimePickerDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.TimePickerProps>) => {
             doc.merge('minutesStep', { examples: [5, 10, 15] });
-            doc.merge('size', { defaultValue: '36' });
             doc.merge('mode', { defaultValue: 'form' });
             doc.merge('value', {
                 editorType: 'JsonEditor',

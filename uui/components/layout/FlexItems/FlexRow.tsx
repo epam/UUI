@@ -12,7 +12,10 @@ import { settings } from '../../../settings';
 import css from './FlexRow.module.scss';
 
 export interface FlexRowMods {
-    /** Defines row size */
+    /**
+     *  Defines row size
+     *  @default '36'
+     */
     size?: null | '24' | '30' | '36' | '42' | '48';
     /** Pass true, to enable row top border */
     borderTop?: boolean;

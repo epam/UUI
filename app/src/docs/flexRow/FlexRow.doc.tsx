@@ -16,23 +16,13 @@ export class FlexRowDoc extends BaseDocsBlock {
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:FlexRowProps', component: uui.FlexRow },
             [TSkin.Electric]: { type: '@epam/uui:FlexRowProps', component: electric.FlexRow },
-            [TSkin.Loveship]: {
-                type: '@epam/loveship:FlexRowProps',
-                component: loveship.FlexRow,
-                doc: (doc: DocBuilder<loveship.FlexRowProps>) => {
-                    doc.merge('size', { defaultValue: '36' });
-                },
-            },
-            [TSkin.Promo]: {
-                type: '@epam/promo:FlexRowProps',
-                component: promo.FlexRow,
-                doc: (doc: DocBuilder<promo.FlexRowProps>) => {
-                    doc.merge('size', { defaultValue: '36' });
-                },
-            },
+            [TSkin.Loveship]: { type: '@epam/loveship:FlexRowProps', component: loveship.FlexRow },
+            [TSkin.Promo]: { type: '@epam/promo:FlexRowProps', component: promo.FlexRow },
         },
         doc: (doc: DocBuilder<uui.FlexRowProps | loveship.FlexRowProps | promo.FlexRowProps>) => {
             doc.merge('children', { examples: flexRowChildren });
+            doc.merge('alignItems', { examples: ['normal', 'stretch', 'center', 'start', 'end', 'flex-start', 'flex-end', 'self-start', 'self-end', 'baseline', 'first baseline', 'last baseline', 'safe center', 'unsafe center'], editorType: 'StringWithExamplesEditor' });
+            doc.merge('justifyContent', { examples: ['normal', 'flex-start', 'flex-end', 'center', 'space-between', 'space-around', 'space-evenly', 'stretch', 'start', 'end', 'left', 'right', 'safe center', 'unsafe center'], editorType: 'StringWithExamplesEditor' });
         },
     };
 
