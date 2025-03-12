@@ -5,12 +5,11 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
   aria-checked={null}
   aria-posinset={2}
   aria-selected={null}
-  className="root pickerRow uui-picker_input-row"
+  className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
   role="option"
 >
   <div
-    className="flexCell root uui-picker_input-cell data-picker-cell uui-size-36 align-widgets-top"
-    role="cell"
+    className="flexCell rowContent"
     style={
       Object {
         "alignSelf": undefined,
@@ -26,7 +25,8 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
       className="contentWrapper"
     >
       <div
-        className="renderItem"
+        className="root uui-flex-row content uui-size-36"
+        style={Object {}}
       >
         <div />
         <div
@@ -43,16 +43,19 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
   aria-checked={null}
   aria-posinset={2}
   aria-selected={true}
-  className="root uui-focus -clickable pickerRow uui-picker_input-row"
+  className="pickerRow uui-picker_input-row uui-size-48 align-widgets-top uui-focus -clickable"
   onClick={[Function]}
   role="option"
+  style={
+    Object {
+      "--uui-data_picker-horizontal-padding": "24px",
+    }
+  }
 >
   <div
-    className="flexCell root uui-picker_input-cell data-picker-cell uui-size-48 align-widgets-top"
-    role="cell"
+    className="flexCell rowContent"
     style={
       Object {
-        "--uui-data_picker-horizontal-padding": "24px",
         "alignSelf": undefined,
         "flexBasis": "0",
         "flexGrow": 1,
@@ -66,14 +69,15 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       className="contentWrapper"
     >
       <div
-        className="renderItem"
+        className="root uui-flex-row content uui-size-36"
+        style={Object {}}
       >
         <div />
         <div
           className="flexSpacer"
         />
         <div
-          className="iconWrapper uui-picker_input-cell-select_icon uui-selected"
+          className="iconWrapper uui-picker_input-row-select_icon uui-selected"
         >
           <div
             aria-label="Selected"

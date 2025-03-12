@@ -29,7 +29,6 @@ export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Ove
     maxWidth?: number;
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
     rows: DataRowProps<TItem, TId>[];
-    scheduleUpdate?: () => void;
     showSearch?: boolean | 'auto';
     /** A pure function that gets entity name from entity object */
     getName: (item: TItem) => string;

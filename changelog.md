@@ -432,7 +432,7 @@ Pickers rework:
 **What's Fixed**
 
 * [TabButton, VerticalTabButton]: set 18 icon size for all button sizes according to design
-* [DataPickerHeader]: changed close icon to match design
+* [DataPickerMobileHeader]: changed close icon to match design
 * [DataTableHeaderCell]: set 18 size for all icons by design
 
 # 5.7.0 - 25.03.2024

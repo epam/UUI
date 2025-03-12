@@ -1438,7 +1438,7 @@ describe('PickerInput', () => {
             btn = addFocusableElementBefore();
         });
 
-        const testInputFocus = async (selectionMode, searchPosition?) => {
+        const testInputFocus = async (selectionMode: PickerInputProps<any, any>['selectionMode'], searchPosition?: PickerInputProps<any, any>['searchPosition']) => {
             const user = userEvent.setup();
             const { dom } = await setupPickerInputForTest({
                 value: undefined,

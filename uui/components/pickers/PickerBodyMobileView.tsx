@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import type { IDropdownBodyProps, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { isMobile } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
-import { DataPickerHeader } from './DataPickerHeader';
+import { DataPickerMobileHeader } from './DataPickerMobileHeader';
 import { DropdownContainer } from '../overlays';
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
@@ -55,7 +55,7 @@ export const PickerBodyMobileView: React.FC<IMobileDropdownWrapperProps> = (prop
             cx={ [css.container, props.cx] }
             autoFocus={ true }
         >
-            {isMobileView && <DataPickerHeader title={ props.title } close={ props.onClose } />}
+            {isMobileView && <DataPickerMobileHeader title={ props.title } close={ props.onClose } />}
 
             {props.children}
 
