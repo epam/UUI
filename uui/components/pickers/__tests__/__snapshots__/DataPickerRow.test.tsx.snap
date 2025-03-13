@@ -24,15 +24,10 @@ exports[`DataPickerRow should be rendered correctly 1`] = `
     <div
       className="contentWrapper"
     >
+      <div />
       <div
-        className="root uui-flex-row content uui-size-36"
-        style={Object {}}
-      >
-        <div />
-        <div
-          className="flexSpacer"
-        />
-      </div>
+        className="flexSpacer"
+      />
     </div>
   </div>
 </div>
@@ -68,28 +63,23 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
     <div
       className="contentWrapper"
     >
+      <div />
       <div
-        className="root uui-flex-row content uui-size-36"
-        style={Object {}}
+        className="flexSpacer"
+      />
+      <div
+        className="iconWrapper uui-picker_input-row-select_icon uui-selected"
       >
-        <div />
         <div
-          className="flexSpacer"
-        />
-        <div
-          className="iconWrapper uui-picker_input-row-select_icon uui-selected"
+          aria-label="Selected"
+          className="container uui-icon uui-enabled selectedMark"
+          style={Object {}}
         >
-          <div
-            aria-label="Selected"
-            className="container uui-icon uui-enabled selectedMark"
-            style={Object {}}
-          >
-            <svg
-              className=""
-              height="24"
-              width="24"
-            />
-          </div>
+          <svg
+            className=""
+            height="24"
+            width="24"
+          />
         </div>
       </div>
     </div>
