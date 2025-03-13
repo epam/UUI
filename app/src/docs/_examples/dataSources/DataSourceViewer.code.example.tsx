@@ -22,7 +22,6 @@ export function DataSourceViewer<TItem, TId>(props: Props<TItem, TId>) {
                 getName={ (item) => props.getName?.(item) ?? (item as { name: string }).name }
                 key={ rowProps.rowKey }
                 padding="12"
-                size="36"
             />
         );
     };
