@@ -41,12 +41,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
 
     const searchRef = useRef<HTMLInputElement>(null);
 
-    // useEffect(() => {
-    //     if (showSearch && !isMobile()) {
-    //         searchRef.current?.focus({ preventScroll: true });
-    //     }
-    // }, [showSearch]);
-
     useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
             props.scheduleUpdate?.();
