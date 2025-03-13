@@ -7,7 +7,9 @@
   * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
   * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
   * [DataPickerRow]: added default implementation of `renderItem` callback
-  
+
+**What's Fixed**
+* [NumericInput]: added right margin for arrows
 
 # 5.13.2 - 4.03.2025
 **What's Fixed**
