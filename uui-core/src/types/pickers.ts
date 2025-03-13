@@ -78,6 +78,13 @@ export interface PickerEmptyBodyProps {
     onClose: () => void;
 }
 
+export interface PickerRenderRowParams<TItem, TId> extends DataRowProps<TItem, TId> {
+    /** A pure function that gets entity name from entity object.
+     Default: (item) => item.name.
+     */
+    getName: (item: TItem) => string;
+}
+
 export type PickerBaseOptions<TItem, TId> = {
     /** Name of the entity being selected. Affects wording like "Please select [entity]" */
     entityName?: string;
@@ -94,7 +101,7 @@ export type PickerBaseOptions<TItem, TId> = {
     getName?: (item: TItem) => string;
 
     /** Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc. */
-    renderRow?: (props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState) => ReactNode;
+    renderRow?: (props: PickerRenderRowParams<TItem, TId>, dataSourceState: DataSourceState) => ReactNode;
 
     /** Gets options for each row. Allow to make rows non-selectable, as well as many other tweaks. */
     getRowOptions?: (item: TItem, index: number) => DataRowOptions<TItem, TId>;

@@ -53,7 +53,7 @@ import type {
     DataPickerRowProps, PickerItemProps, DataPickerFooterProps,
     LabeledInputProps, NumericInputProps, PickerTogglerProps, PickerTogglerTagProps,
     TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps, RatingProps, RichTextViewProps,
-    DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps, TextInputProps, DataPickerCellProps,
+    DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps, TextInputProps,
 } from './components';
 
 type Sizes<S extends string | number | symbol, T> = {
@@ -609,7 +609,7 @@ const paginatorSettings: PaginatorSettings = {
     },
 };
 
-type SelectIconType = Icon | ((size: DataPickerCellProps<unknown, unknown>['size']) => Icon);
+type SelectIconType = Icon | ((size: DataPickerRowProps<unknown, unknown>['size']) => Icon);
 
 interface PickerInputIcons {
     toggler: {
@@ -632,12 +632,11 @@ interface PickerInputSizes {
     body: {
         maxHeight: number;
         minWidth: number;
-        padding: DataPickerRowProps<unknown, unknown>['padding'];
-        row: DataPickerCellProps<unknown, unknown>['size'];
+        row: DataPickerRowProps<unknown, unknown>['size'];
         itemAvatarMap: Sizes<PickerItemProps<unknown, unknown>['size'], AvatarProps['size']>;
         itemAvatarMultilineMap: Sizes<PickerItemProps<unknown, unknown>['size'], AvatarProps['size']>;
         itemVerticalPaddingMap: Sizes<PickerItemProps<unknown, unknown>['size'], string>;
-        selectIconMap: Sizes<DataPickerCellProps<unknown, unknown>['size'], string>;
+        selectIconMap: Sizes<DataPickerRowProps<unknown, unknown>['size'], string>;
         footerSwitchMap: Sizes<DataPickerFooterProps<unknown, unknown>['size'], SwitchProps['size']>;
         mobileFooterLinkButton: LinkButtonProps['size'];
         mobileRow: DataPickerRowProps<unknown, unknown>['size'];
@@ -657,7 +656,7 @@ const pickerInputSettings: PickerInputSettings = {
             dropdownIcon: DropdownIcon,
         },
         body: {
-            selectIcon: (size: DataPickerCellProps<unknown, unknown>['size']) => size < '30' ? BoldSelectIcon : CheckIcon,
+            selectIcon: (size: DataPickerRowProps<unknown, unknown>['size']) => size < '30' ? BoldSelectIcon : CheckIcon,
             pickerBodyMobileHeaderCloseIcon: CrossIcon,
             modalNotFoundSearchIcon: NotFoundSearchIcon,
         },
@@ -677,7 +676,6 @@ const pickerInputSettings: PickerInputSettings = {
         body: {
             maxHeight: 300,
             minWidth: 360,
-            padding: '12',
             row: '36',
             itemAvatarMap: {
                 24: '18',

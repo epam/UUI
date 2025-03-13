@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
-import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
+import { PickerInput, DataPickerRow } from '../pickers';
 import {
     DataRowOptions,
     TableFiltersConfig,
@@ -229,7 +229,6 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                                 props.onCheck && props.onCheck(row);
                                 setNewFilterId(row.value.field);
                             } }
-                            renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                         />
                     ) }
                     getName={ (i) => i.title }

@@ -76,7 +76,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
                         No options available
                     </Text>
                 ))}
-            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled }, dataSourceState))}
+            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled, getName }, dataSourceState))}
             {showPicker
                 && renderToggler(
                     {

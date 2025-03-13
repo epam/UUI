@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataRowProps, DataSourceState, IHasCaption, PickerBaseOptions } from '@epam/uui-core';
+import { IHasCaption, PickerBaseOptions, PickerRenderRowParams } from '@epam/uui-core';
 import { IconContainer, PickerModalArrayProps, PickerModalOptions, PickerModalScalarProps, handleDataSourceKeyboard, usePickerModal } from '@epam/uui-components';
 import { DataPickerRow } from './DataPickerRow';
 import { Text } from '../typography';
@@ -10,7 +10,6 @@ import {
 import { LinkButton, Button } from '../buttons';
 import { SearchInput, Switch } from '../inputs';
 import { DataPickerBody } from './DataPickerBody';
-import { PickerItem } from './PickerItem';
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 
@@ -27,7 +26,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         selection,
         dataSourceStateLens,
         dataSourceState,
-        getDataSourceState,
         getName,
         clearSelection,
         getRows,
@@ -37,36 +35,16 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         handleDataSourceValueChange,
     } = usePickerModal<TItem, TId>(props);
 
-    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
-        if (!search) return;
-
-        return path
-            .map(({ value }) => getName(value))
-            .filter(Boolean)
-            .join(' / ');
-    };
-
-    const renderItem = (item: TItem, rowProps: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
-        const { flattenSearchResults } = view.getConfig();
-        return (
-            <PickerItem
-                title={ getName(item) }
-                dataSourceState={ dsState }
-                { ...(flattenSearchResults ? { subtitle: getSubtitle(rowProps, dataSourceState) } : {}) }
-                { ...rowProps }
-            />
-        );
-    };
-
-    const renderRow = (rowProps: DataRowProps<TItem, TId>) => {
+    const renderRow = (rowProps: PickerRenderRowParams<TItem, TId>) => {
         return props.renderRow ? (
             props.renderRow(rowProps, dataSourceState)
         ) : (
             <DataPickerRow
                 { ...rowProps }
                 key={ rowProps.rowKey }
-                padding="24"
-                renderItem={ (item, itemProps) => renderItem(item, itemProps, dataSourceState) }
+                size={ settings.pickerInput.sizes.body.row }
+                flattenSearchResults={ view.getConfig().flattenSearchResults }
+                getName={ getName }
             />
         );
     };
@@ -108,11 +86,10 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     };
 
     const dataRows = getRows();
-    const rows = dataRows.map((row) => renderRow(row));
 
     return (
         <ModalBlocker { ...props }>
-            <ModalWindow width={ 600 } height={ 700 }>
+            <ModalWindow width={ 600 } height={ 700 } cx={ css.body }>
                 <ModalHeader title={ props.caption || i18n.pickerModal.headerTitle } onClose={ () => props.abort() } />
                 <FlexCell cx={ css.subHeaderWrapper }>
                     <FlexRow vPadding="24">
@@ -121,7 +98,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                             onKeyDown={ (e) =>
                                 handleDataSourceKeyboard(
                                     {
-                                        value: getDataSourceState(),
+                                        value: dataSourceState,
                                         onValueChange: handleDataSourceValueChange,
                                         listView: view,
                                         rows: dataRows,
@@ -147,13 +124,14 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                 </FlexCell>
                 <DataPickerBody
                     { ...getListProps() }
-                    value={ getDataSourceState() }
+                    value={ dataSourceState }
                     onValueChange={ handleDataSourceValueChange }
-                    search={ dataSourceStateLens.prop('search').toProps() }
                     showSearch={ false }
-                    rows={ rows }
-                    renderNotFound={ renderNotFound }
-                    editMode="modal"
+                    getName={ getName }
+                    rows={ dataRows }
+                    renderRow={ renderRow }
+                    renderEmpty={ renderNotFound }
+                    size={ settings.pickerInput.sizes.body.row }
                 />
                 <ModalFooter>
                     {props.renderFooter ? props.renderFooter(getFooterProps()) : renderFooter()}
