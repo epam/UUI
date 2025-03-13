@@ -49,6 +49,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
       <div
         class="root uui-flex-row uui-picker_input-body uui-size-36"
         style="max-height: 300px;"
+        tabindex="-1"
       >
         <div
           class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -79,32 +80,28 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                       class="contentWrapper"
                     >
                       <div
-                        class="root uui-flex-row content uui-size-36"
+                        class="flexCell root uui-picker_input-item uui-typography"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          class="flexCell root uui-picker_input-item uui-typography"
-                          style="min-width: 0; flex-basis: auto;"
+                          class="root uui-flex-row columnGap uui-size-36"
+                          style="--uui-picker_item-vertical-padding: 9px;"
                         >
                           <div
-                            class="root uui-flex-row columnGap uui-size-36"
-                            style="--uui-picker_item-vertical-padding: 9px;"
+                            class="flexCell"
+                            style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="flexCell"
-                              style="min-width: 0; flex-basis: auto;"
+                              class="title uui-size-36"
                             >
-                              <div
-                                class="title uui-size-36"
-                              >
-                                Elementary
-                              </div>
+                              Elementary
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="flexSpacer"
-                        />
                       </div>
+                      <div
+                        class="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
@@ -122,32 +119,28 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                       class="contentWrapper"
                     >
                       <div
-                        class="root uui-flex-row content uui-size-36"
+                        class="flexCell root uui-picker_input-item uui-typography"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          class="flexCell root uui-picker_input-item uui-typography"
-                          style="min-width: 0; flex-basis: auto;"
+                          class="root uui-flex-row columnGap uui-size-36"
+                          style="--uui-picker_item-vertical-padding: 9px;"
                         >
                           <div
-                            class="root uui-flex-row columnGap uui-size-36"
-                            style="--uui-picker_item-vertical-padding: 9px;"
+                            class="flexCell"
+                            style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="flexCell"
-                              style="min-width: 0; flex-basis: auto;"
+                              class="title uui-size-36"
                             >
-                              <div
-                                class="title uui-size-36"
-                              >
-                                Elementary+
-                              </div>
+                              Elementary+
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="flexSpacer"
-                        />
                       </div>
+                      <div
+                        class="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
