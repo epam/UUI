@@ -1,6 +1,12 @@
 @use  '../../assets/styles/index' as *;
 
 .picker-row {
+    --uui-data-picker-size: var(--uui-size);
+    --uui-data_picker-horizontal-padding: 12px;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    //
     &:global(.uui-focus) {
         background-color: var(--uui-surface-higher);
     }
@@ -8,4 +14,48 @@
     &:global(.-clickable) {
         cursor: pointer;
     }
+
+    &.align-widgets-top {
+        div:global(.uui-checkbox) {
+            margin-top: calc(var(--uui-data-picker-size) / 2 - var(--uui-size) / 2);
+
+        }
+    }
+
+    &.align-widgets-center :global(.uui-checkbox-container) {
+        align-self: center;
+    }
+}
+
+.row-content {
+    position: relative;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 var(--uui-data_picker-horizontal-padding);
+}
+
+.icon-container {
+    fill: var(--uui-icon);
+}
+
+.content-wrapper {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-default {
+    fill: var(--uui-icon);
+}
+
+.selected-mark {
+    fill: var(--uui-picker_input-selected_mark);
 }
