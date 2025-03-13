@@ -66,7 +66,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         return (
             <PickerItem
                 title={ props.getName(item) }
-                size={ props.size }
+                size={ props.size || settings.pickerInput.sizes.body.row }
                 dataSourceState={ props.dataSourceState }
                 highlightSearchMatches={ props.highlightSearchMatches }
                 { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps, props.dataSourceState) } : {}) }
