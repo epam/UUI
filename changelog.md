@@ -3,12 +3,10 @@
 * [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
 * [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
 * [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
-Pickers rework:
-  Breaking changes:
-    - DataPickerRow getName is required
-    - renderRow type is changed, first param now PickerRenderRowParams
-  - DataPickerRow now has default renderItem impl
-  - 
+* [PickerInput]: 
+  * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
+  * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
+  * [DataPickerRow]: added default implementation of `renderItem` callback
   
 
 # 5.13.2 - 4.03.2025
