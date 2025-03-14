@@ -25,7 +25,11 @@ export interface FlexRowMods {
     margin?: '12' | '24';
     /** Defines horizontal row padding */
     padding?: '6' | '12' | '18' | '24';
-    /** Defines row spacing */
+    /**
+     * @deprecated
+     * The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.
+     * Defines row spacing
+     * */
     spacing?: '6' | '12' | '18';
     /** Pass true, to show a top shadow */
     topShadow?: boolean;
@@ -67,8 +71,8 @@ export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => 
         props.borderTop && css.borderTop,
         props.columnGap && css.columnGap,
         props.rowGap && css.rowGap,
-        props.spacing && css['spacing-' + props.spacing],
-        props.background && css[`uui-${props.background}`],
+        props.spacing && css.spacing,
+        props.background && css[`uui-bg-${props.background}`],
     ]);
 
     const style = {
