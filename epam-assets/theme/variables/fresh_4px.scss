@@ -356,27 +356,27 @@
 
     /* FlexRow */
 
-    .uui-flex-row.uui-color-none {
+    .uui-flex-row.uui-bg-none {
         --uui-flex-row-bg: transparent;
     }
 
-    .uui-flex-row.uui-color-white {
+    .uui-flex-row.uui-bg-white {
         --uui-flex-row-bg: var(--white);
     }
 
-    .uui-flex-row.uui-color-night50 {
+    .uui-flex-row.uui-bg-night50 {
         --uui-flex-row-bg: var(--night50);
     }
 
-    .uui-flex-row.uui-color-night100 {
+    .uui-flex-row.uui-bg-night100 {
         --uui-flex-row-bg: var(--night100);
     }
 
-    .uui-panel.uui-color-white {
+    .uui-panel.uui-bg-white {
         --uui-panel-bg: var(--white);
     }
 
-    .uui-panel.uui-color-night50 {
+    .uui-panel.uui-bg-night50 {
         --uui-panel-bg: var(--night50);
     }
 
