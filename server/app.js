@@ -34,6 +34,8 @@ app.use((req, res, next) => {
 
 app.use(actuator({ basePath: '/actuator' }));
 
+app.use(require('prerender-node').set('prerenderToken', 'PSjlB6ddWhrpcD05f4rF'));
+
 app.use('/upload', fileUploadApi);
 app.use('/api', api);
 
