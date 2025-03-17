@@ -30,7 +30,7 @@ function UuiEnhancedApp() {
         <UuiContext.Provider value={services}>
             <ErrorHandler>
                 <Router history={history}>
-                    <Route> <Menu /> </Route>
+                    <Route component={Menu} />
                     <Route path="/" component={MainPage} />
                 </Router>
                 <Snackbar />
