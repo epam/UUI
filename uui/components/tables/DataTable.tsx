@@ -12,7 +12,7 @@ import { Text } from '../typography';
 import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
 import { DataRowsContainer } from './DataRowsContainer';
-import type { DataTableMods, DataTableModsOverride, DataTableRowMods } from './types';
+import type { DataTableMods, DataTableRowMods } from './types';
 
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
@@ -74,6 +74,8 @@ interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTa
      * */
     showFoldAll?: boolean;
 }
+
+export interface DataTableModsOverride {}
 
 export interface DataTableProps<TItem, TId> extends React.PropsWithChildren<DataTableCoreProps<TItem, TId> & Overwrite<DataTableMods, DataTableModsOverride>> {}
 

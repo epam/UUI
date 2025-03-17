@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withMods, DataTableCellProps, DataTableRowProps as CoreDataTableRowProps } from '@epam/uui-core';
+import { withMods, DataTableCellProps, DataTableRowProps as CoreDataTableRowProps, Overwrite } from '@epam/uui-core';
 import { DataTableRow as uuiDataTableRow } from '@epam/uui-components';
 import { DataTableCell } from './DataTableCell';
 import { DropMarker } from '../dnd';
@@ -20,7 +20,9 @@ export const renderDropMarkers: DataTableRowProps['renderDropMarkers'] = ({ ref,
 
 export const propsMods = { renderCell, renderDropMarkers };
 
-export type DataTableRowProps = CoreDataTableRowProps & DataTableRowMods;
+export interface DataTableRowModsOverride {}
+
+export type DataTableRowProps = CoreDataTableRowProps & Overwrite<DataTableRowMods, DataTableRowModsOverride>;
 
 export const DataTableRow = withMods<CoreDataTableRowProps, DataTableRowProps>(
     uuiDataTableRow,
