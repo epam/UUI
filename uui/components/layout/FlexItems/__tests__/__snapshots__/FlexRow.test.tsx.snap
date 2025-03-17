@@ -9,7 +9,7 @@ exports[`FlexRow should be rendered correctly 1`] = `
 
 exports[`FlexRow should be rendered correctly with props 1`] = `
 <div
-  className="root uui-flex-row -clickable some class uui-size-24 alignItems justifyContent padding vPadding margin topShadow borderBottom borderTop columnGap rowGap uui-surface-main"
+  className="root uui-flex-row -clickable some class uui-size-24 alignItems justifyContent padding vPadding margin topShadow borderBottom borderTop columnGap rowGap uui-bg-surface-main"
   id="123"
   onClick={[Function]}
   style={
