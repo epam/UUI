@@ -2,7 +2,6 @@ import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
 import '@epam/assets/theme/theme_loveship.scss';
 import './index.module.scss';
-import logo from './icons/logo.svg';
 //
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -14,7 +13,7 @@ import {
     useUuiServices,
     UuiContext,
 } from '@epam/uui-core';
-import { MainMenu, MainMenuButton } from '@epam/uui';
+import { Menu } from './common/Menu';
 import { ErrorHandler } from '@epam/uui';
 import { Modals, Snackbar } from '@epam/uui-components';
 import { svc } from './services';
@@ -31,16 +30,7 @@ function UuiEnhancedApp() {
         <UuiContext.Provider value={services}>
             <ErrorHandler>
                 <Router history={history}>
-                    <Route>
-                        <MainMenu appLogoUrl={logo}>
-                            <MainMenuButton
-                                caption="Home"
-                                link={{ pathname: '/' }}
-                                priority={1}
-                                estimatedWidth={72}
-                            />
-                        </MainMenu>
-                    </Route>
+                    <Route> <Menu /> </Route>
                     <Route path="/" component={MainPage} />
                 </Router>
                 <Snackbar />
