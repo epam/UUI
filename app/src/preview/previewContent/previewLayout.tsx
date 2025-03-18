@@ -86,7 +86,7 @@ export function PreviewLayout(props: IPreviewLayout) {
 function getPreviewRegionAttrs(isLoaded: boolean) {
     return {
         'aria-busy': !isLoaded,
-        'aria-label': 'Preview Content',
+        'aria-label': 'Page Content',
         role: 'region',
     };
 }

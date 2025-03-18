@@ -1,8 +1,8 @@
 import { expect, type Locator } from '@playwright/test';
-import { type DocExamplePageParams, TTheme } from '../../types';
 import { type IPageParams, AbsPage } from '../shared/absPage';
+import { Link } from '@epam/uui-core';
 
-export class DocExamplePage extends AbsPage {
+export class IntegrationTestPage extends AbsPage {
     private readonly locators: {
         readonly regionContentNotBusy: Locator;
     };
@@ -10,20 +10,13 @@ export class DocExamplePage extends AbsPage {
     constructor(params: IPageParams) {
         super(params);
         this.locators = {
-            regionContentNotBusy: this.page.locator('[aria-label="Doc Example Content"][aria-busy="false"]'),
+            regionContentNotBusy: this.page.locator('[aria-label="Page Content"][aria-busy="false"]'),
         };
     }
 
-    async clientRedirectToExample(params: { examplePath: string }) {
-        await super._clientRedirect<DocExamplePageParams>({
-            // As we agreed, "doc example" tests must be always run on "loveship" theme
-            theme: TTheme.loveship, ...params,
-        });
+    async clientRedirectTo(link: Link) {
+        await super._clientRedirect(link);
         await this.locators.regionContentNotBusy.waitFor();
-    }
-
-    async clientRedirectTo(url: string) {
-        await this.openInitialPage(url);
     }
 
     async expectScreenshot(screenshotName: string) {
