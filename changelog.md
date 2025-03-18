@@ -10,6 +10,7 @@
 
 **What's Fixed**
 * [NumericInput]: added right margin for arrows
+* [MultiSwitch]: fixed `isReadonly` prop
 
 # 5.13.2 - 4.03.2025
 **What's Fixed**

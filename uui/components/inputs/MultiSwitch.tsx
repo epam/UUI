@@ -56,7 +56,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                     { ...item }
                     isDisabled={ props.isDisabled }
                     key={ index + '-' + item.id }
-                    onClick={ () => props.onValueChange(item.id) }
+                    onClick={ !props.isReadonly && (() => props.onValueChange(item.id)) }
                     fill={ props.value === item.id ? 'solid' : 'outline' }
                     color={ props.color }
                     size={ props.size }
