@@ -6,6 +6,7 @@
     "module": "Node16",
     "moduleResolution": "Node16",
     "strict": true,
+    "jsx": "react",
     "preserveConstEnums": true,
     "noEmit": true,
     "rootDir": "../.",
