@@ -19,7 +19,7 @@ export const screenshotSizeLimitKb = 135;
 /**
  * The fastest option (for both CI and Local) is to use default (undefined) amount of workers (which is 50% of CPU cores).
  */
-const workers = isCi ? undefined : undefined;
+const workers: any = isCi ? undefined : undefined;
 const forbidOnly = isCi;
 const trace = (isCi ? 'retry-with-trace' : 'retain-on-failure') as TraceMode;
 const server = isCi ? {
