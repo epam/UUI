@@ -1,8 +1,9 @@
 import {
+    DataRowProps,
     DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps,
     PickerFooterProps, SortingOption,
 } from '@epam/uui-core';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface UsePickerInputStateProps extends UsePickerStateProps {}
 
@@ -24,7 +25,7 @@ export interface PickerState {
     setShowSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {
+export type PickerListBaseProps<TItem, TId> = Omit<PickerBaseProps<TItem, TId>, 'renderRow'> & {
     /**
      * Number of default items to show initially, when nothing is selected.
      * @default 10
@@ -47,6 +48,9 @@ export type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId
     settingsKey?: string;
 
     sortBy?(item: TItem, sorting: SortingOption): string;
+
+    /** Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc. */
+    renderRow?: (props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState, part: 'list' | 'modal') => ReactNode;
 };
 
 export type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};
