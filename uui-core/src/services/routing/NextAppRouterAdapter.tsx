@@ -21,7 +21,7 @@ const blockNavigationEvent = 'blockNavigation';
 
 export class NextAppRouterAdapter implements IRouterContext {
     private isBlockRun: boolean;
-    private pathaname?: string;
+    private pathname?: string;
     private searchParams?: ReadonlySearchParams;
 
     constructor(private router: TNextAppRouter) {
@@ -32,14 +32,14 @@ export class NextAppRouterAdapter implements IRouterContext {
         pathname: string,
         searchParams: ReadonlySearchParams,
     ): void {
-        this.pathaname = pathname;
+        this.pathname = pathname;
         this.searchParams = searchParams;
     }
 
     public getCurrentLink(): Link {
-        return this.pathaname
+        return this.pathname
             ? parseQuery({
-                pathname: this.pathaname,
+                pathname: this.pathname,
                 query: paramsToQuery(this.searchParams),
             })
             : {
