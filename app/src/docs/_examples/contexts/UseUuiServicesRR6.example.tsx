@@ -1,6 +1,5 @@
 // Note: please remove @ts-nocheck comment in real app, it's here only because it's our local code example.
 // @ts-nocheck
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { render } from 'react-dom';
 import { UuiContext, useUuiServices, DragGhost, Router6AdaptedRouter } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
@@ -10,7 +9,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Route, RouterProvider } from 'react-router';
 import React from 'react';
 
-const MyApp = () => {
+function MyApp() {
     return (
         <ErrorHandler>
             <Route path="/" Component={ MyPage } />
@@ -19,10 +18,10 @@ const MyApp = () => {
             <DragGhost />
         </ErrorHandler>
     );
-};
+}
 
 const router6 = createBrowserRouter([
-    { path: '*', element: '<MyApp />' },
+    { path: '*', element: <MyApp /> },
 ]);
 const router = new Router6AdaptedRouter(router6);
 
