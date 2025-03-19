@@ -1,7 +1,6 @@
 import {
-    DataRowProps,
     DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps,
-    PickerFooterProps, SortingOption,
+    PickerFooterProps, PickerRenderRowParams, SortingOption,
 } from '@epam/uui-core';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
@@ -50,7 +49,7 @@ export type PickerListBaseProps<TItem, TId> = Omit<PickerBaseProps<TItem, TId>, 
     sortBy?(item: TItem, sorting: SortingOption): string;
 
     /** Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc. */
-    renderRow?: (props: DataRowProps<TItem, TId>, dataSourceState: DataSourceState, part: 'list' | 'modal') => ReactNode;
+    renderRow?: (props: PickerRenderRowParams<TItem, TId>, dataSourceState: DataSourceState, part: 'list' | 'modal') => ReactNode;
 };
 
 export type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};
