@@ -73,7 +73,7 @@ export function usePickerList<TItem, TId, TProps>(props: UsePickerListProps<TIte
     const { dataSourceState, setDataSourceState, visibleIds } = pickerListState;
 
     const pickerProps = { ...props, showSelectedOnly: pickerListState.showSelected };
-    const picker = usePicker<TItem, TId>(pickerProps, pickerListState);
+    const picker = usePicker<TItem, TId>(pickerProps as any, pickerListState); // temporary any, till merge with dev
     const {
         view,
         getEntityName,

@@ -14,11 +14,10 @@ export interface PickerListModsOverride {}
 interface PickerListMods extends SizeMod {}
 
 export type PickerListProps<TItem, TId> = Overwrite<PickerListMods, PickerListModsOverride> &
-IHasPlaceholder &
-PickerModalOptions<TItem, TId> & {
+IHasPlaceholder & PickerModalOptions<TItem, TId> & PickerListBaseProps<TItem, TId> & {
     renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;
     noOptionsMessage?: React.ReactNode;
-} & PickerListBaseProps<TItem, TId>;
+};
 
 export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     const {
@@ -35,7 +34,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
         getModalTogglerCaption,
     } = usePickerList<TItem, TId, PickerListProps<TItem, TId>>(props);
 
-    const defaultRenderRow = (row: DataRowProps<TItem, TId>) => {
+    const defaultListRenderRow = (row: DataRowProps<TItem, TId>) => {
         return <PickerListItem getName={ (item) => getName(item) } { ...row } key={ row.rowKey } />;
     };
 
@@ -45,6 +44,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
                 <PickerModal<TItem, TId>
                     { ...modalProps }
                     { ...props }
+                    renderRow={ (rowProps, dsState) => props.renderRow(rowProps, dsState, 'modal') }
                     caption={ props.placeholder || `Please select ${getEntityName() ? getEntityName() : ''}` }
                     initialValue={ props.value as any }
                     selectionMode={ props.selectionMode }
@@ -65,7 +65,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     const rows = buildRowsList();
     const showPicker = viewProps.totalCount == null || viewProps.totalCount > getMaxDefaultItems();
     const renderToggler = props.renderModalToggler || defaultRenderToggler;
-    const renderRow = props.renderRow || defaultRenderRow;
+    const renderRow = props.renderRow || defaultListRenderRow;
 
     return (
         <div className={ cx('uui-picker-list', css.root) }>
@@ -75,7 +75,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
                         No options available
                     </Text>
                 ))}
-            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled }, dataSourceState))}
+            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled }, dataSourceState, 'list'))}
             {showPicker
                 && renderToggler(
                     {
