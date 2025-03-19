@@ -490,6 +490,11 @@ path-to-regexp@0.1.7:
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
+prerender-node@3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/prerender-node/-/prerender-node-3.8.0.tgz#446061cded637994abdb56e2b06b9acc6a9c048f"
+  integrity sha512-MJcdr/RePzCaYw30XQ2H64rXAkGuHDGitHmx2D1OPsNxEDMho5ha8GfwJVLxstPdj49vgerwZqnsE+2M/4Ov2A==
+
 prismjs@1.29.0:
   version "1.29.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"

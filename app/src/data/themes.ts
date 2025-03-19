@@ -27,7 +27,7 @@ export const builtInThemes: ThemeBaseParams[] = [
     { id: BuiltInTheme.electric, name: 'Electric' },
     { id: BuiltInTheme.loveship, name: 'Loveship Light' },
     { id: BuiltInTheme.loveship_dark, name: 'Loveship Dark' },
-    { id: BuiltInTheme.fresh_4px, name: 'Fresh Light 4px', settings: settings_4px, propsOverride: propsOverride_4px, devOnly: true, css: null },
+    { id: BuiltInTheme.fresh_4px, name: 'Fresh Light 4px', settings: settings_4px, propsOverride: propsOverride_4px, css: null },
     { id: BuiltInTheme.promo, name: 'Promo' },
     { id: BuiltInTheme.vanilla_thunder, name: 'Vanilla Thunder' },
     { id: BuiltInTheme.eduverse_light, name: 'Eduverse Light' },
