@@ -15,8 +15,7 @@
     "express-fileupload": "^1.1.6",
     "lodash": "4.17.21",
     "morgan": "1.10.0",
-    "prismjs": "1.29.0",
-    "prerender-node": "3.8.0"
+    "prismjs": "1.29.0"
   },
   "devDependencies": {
     "@types/chance": "^1.1.0"
