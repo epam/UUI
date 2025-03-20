@@ -12,7 +12,7 @@ export interface PickerListItemProps<TItem, TId> extends DataRowProps<TItem, TId
     getName(item: TItem): string;
 }
 
-export function PickerListItem<TItem, TId>(props: PickerListItemProps<TItem, TId>) {
+export function PickerListRow<TItem, TId>(props: PickerListItemProps<TItem, TId>) {
     let label: any;
 
     if (props.isLoading) {

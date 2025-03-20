@@ -4,7 +4,7 @@ import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, O
 import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
 import { SizeMod } from '../types';
 import { Text } from '../typography';
-import { PickerListItem } from './PickerListItem';
+import { PickerListRow } from './PickerListRow';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
 
@@ -31,12 +31,11 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
         getSelectedIdsArray,
         buildRowsList,
         getMaxDefaultItems,
-        dataSourceState,
         getModalTogglerCaption,
     } = usePickerList<TItem, TId, PickerListProps<TItem, TId>>(props);
 
     const defaultListRenderRow = (row: DataRowProps<TItem, TId>) => {
-        return <PickerListItem getName={ (item) => getName(item) } { ...row } key={ row.rowKey } />;
+        return <PickerListRow getName={ (item) => getName(item) } { ...row } key={ row.rowKey } />;
     };
 
     const handleShowPicker = () => {
@@ -45,7 +44,6 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
                 <PickerModal<TItem, TId>
                     { ...modalProps }
                     { ...props }
-                    renderRow={ (rowProps, dsState) => props.renderRow(rowProps, dsState, 'modal') }
                     caption={ props.placeholder || `Please select ${getEntityName() ? getEntityName() : ''}` }
                     initialValue={ props.value as any }
                     selectionMode={ props.selectionMode }
@@ -66,7 +64,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
     const rows = buildRowsList();
     const showPicker = viewProps.totalCount == null || viewProps.totalCount > getMaxDefaultItems();
     const renderToggler = props.renderModalToggler || defaultRenderToggler;
-    const renderRow = props.renderRow || defaultListRenderRow;
+    const renderRow = props.renderListRow || defaultListRenderRow;
 
     return (
         <div className={ cx('uui-picker-list', css.root) }>
@@ -76,7 +74,7 @@ export function PickerList<TItem, TId>(props: PickerListProps<TItem, TId>) {
                         No options available
                     </Text>
                 ))}
-            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled, getName }, dataSourceState, 'list'))}
+            {rows.map((row) => renderRow({ ...row, isDisabled: props.isDisabled }))}
             {showPicker
                 && renderToggler(
                     {

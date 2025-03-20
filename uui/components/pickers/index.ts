@@ -6,7 +6,7 @@ export * from './PickerBodyMobileView';
 export * from './PickerInput';
 export * from './PickerItem';
 export * from './PickerList';
-export * from './PickerListItem';
+export * from './PickerListRow';
 export * from './PickerModal';
 export * from './PickerToggler';
 export * from './PickerTogglerTag';
