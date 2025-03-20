@@ -1,5 +1,3 @@
-export interface DataTableModsOverride {}
-
 export type DataTableControlSize = '24' | '30' | '36' | '42' | '48';
 
 export interface DataTableMods {

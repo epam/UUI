@@ -13,17 +13,11 @@ export const flexRowChildren = [
     }, {
         name: 'Text, TextInput, Button',
         value: (
-            <React.Fragment>
-                <FlexCell grow={ 1 }>
-                    <Text>Name:</Text>
-                </FlexCell>
-                <FlexCell grow={ 1 }>
-                    <TextInput value="Rebecca" onValueChange={ null } />
-                </FlexCell>
-                <FlexCell grow={ 1 }>
-                    <Button fill="solid" caption="Submit" />
-                </FlexCell>
-            </React.Fragment>
+            <>
+                <FlexCell width={ 100 }><Text>Name:</Text></FlexCell>
+                <TextInput value="Rebecca" onValueChange={ null } />
+                <FlexCell width={ 100 }><Button fill="solid" caption="Submit" /></FlexCell>
+            </>
         ),
     },
 ];

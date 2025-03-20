@@ -44,7 +44,7 @@ export interface NumericInputProps
     disableArrows?: boolean;
 
     /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */
-    align?: 'left' | 'right';
+    align?: 'left' | 'center' | 'right';
 
     /**
      * Turns off locale-based formatting, standard Number.toString() is used instead
@@ -209,7 +209,12 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
         >
             <input
                 type="number"
-                className={ cx(uuiElement.input, props.inputCx, props.align === 'right' && css.alignRight, isPlaceholderColored && uuiElement.valueInPlaceholder) }
+                className={ cx(
+                    uuiElement.input,
+                    props.inputCx,
+                    css[`align-${props.align}`],
+                    isPlaceholderColored && uuiElement.valueInPlaceholder,
+                ) }
                 disabled={ props.isDisabled }
                 readOnly={ props.isReadonly }
                 tabIndex={ inFocus || props.isReadonly || props.isDisabled ? -1 : 0 }
