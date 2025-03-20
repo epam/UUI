@@ -1,6 +1,6 @@
 import {
     DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps,
-    PickerFooterProps, PickerRenderRowParams, SortingOption,
+    PickerFooterProps, DataRowProps, SortingOption,
 } from '@epam/uui-core';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
@@ -24,7 +24,7 @@ export interface PickerState {
     setShowSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-export type PickerListBaseProps<TItem, TId> = Omit<PickerBaseProps<TItem, TId>, 'renderRow'> & {
+export type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {
     /**
      * Number of default items to show initially, when nothing is selected.
      * @default 10
@@ -48,8 +48,12 @@ export type PickerListBaseProps<TItem, TId> = Omit<PickerBaseProps<TItem, TId>, 
 
     sortBy?(item: TItem, sorting: SortingOption): string;
 
-    /** Allow to customize how each selectable row is rendered. Can be used to add subtitles, avatars, etc. */
-    renderRow?: (props: PickerRenderRowParams<TItem, TId>, dataSourceState: DataSourceState, part: 'list' | 'modal') => ReactNode;
+    /** Render callback for list row.
+     * For modal row, use renderRow prop.
+     *
+     * If omitted, PickerListRow component will be rendered.
+     */
+    renderListRow?: (props: DataRowProps<TItem, TId>) => ReactNode;
 };
 
 export type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};

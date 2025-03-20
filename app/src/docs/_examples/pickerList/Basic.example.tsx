@@ -14,7 +14,7 @@ export default function BasicPickerListExample() {
     );
 
     return (
-        <PickerList<Country, string>
+        <PickerList
             dataSource={ locationsDataSource }
             value={ countries }
             onValueChange={ setCountries }
