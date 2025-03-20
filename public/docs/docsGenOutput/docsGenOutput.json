@@ -1,5 +1,5 @@
 {
- "version": "5.13.2",
+ "version": "5.13.3-beta.2",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -50437,7 +50437,7 @@
       "    /** Turn off up/down (increase/decrease) buttons */",
       "    disableArrows?: boolean;",
       "    /** Align text inside the component. Useful for tables (in cell-mode) - to align numbers in table column */",
-      "    align?: 'left' | 'right';",
+      "    align?: 'left' | 'center' | 'right';",
       "    /**",
       "     * Turns off locale-based formatting, standard Number.toString() is used instead",
       "     * @default false",
@@ -50595,13 +50595,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'right' | 'left'"
+       "raw": "'right' | 'left' | 'center'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "right",
-        "left"
+        "left",
+        "center"
        ]
       },
       "required": false
@@ -73712,7 +73713,7 @@
      "name": "DataTableModsOverride",
      "nameFull": "DataTableModsOverride"
     },
-    "src": "uui/components/tables/types.ts",
+    "src": "uui/components/tables/DataTable.tsx",
     "exported": true
    },
    "details": {
@@ -74455,6 +74456,27 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:DataTableRowModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "DataTableRowModsOverride",
+     "nameFull": "DataTableRowModsOverride"
+    },
+    "src": "uui/components/tables/DataTableRow.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DataTableRowModsOverride",
+     "print": [
+      "interface DataTableRowModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:DataTableRowProps": {
    "summary": {
     "module": "@epam/uui",
@@ -74470,7 +74492,7 @@
     "typeValue": {
      "raw": "DataTableRowProps",
      "print": [
-      "type DataTableRowProps = CoreDataTableRowProps & DataTableRowMods;"
+      "type DataTableRowProps = CoreDataTableRowProps & Overwrite<DataTableRowMods, DataTableRowModsOverride>;"
      ]
     },
     "props": [
@@ -75206,15 +75228,55 @@
       "required": false
      },
      {
-      "uid": "borderBottom",
-      "name": "borderBottom",
+      "uid": "padding",
+      "name": "padding",
       "typeValue": {
-       "raw": "boolean"
+       "raw": "'0' | '12' | '24'"
       },
       "editor": {
-       "type": "bool"
+       "type": "oneOf",
+       "options": [
+        "0",
+        "12",
+        "24"
+       ]
       },
-      "from": "@epam/uui:DataTableRowMods",
+      "from": "@epam/uui:TableSizesAndPositionMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
+      "required": false
+     },
+     {
+      "uid": "alignActions",
+      "name": "alignActions",
+      "typeValue": {
+       "raw": "'top' | 'center'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "center"
+       ]
+      },
+      "from": "@epam/uui:TableSizesAndPositionMods",
       "required": false
      },
      {
@@ -75243,55 +75305,15 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
+      "uid": "borderBottom",
+      "name": "borderBottom",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
+       "raw": "boolean"
       },
       "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
+       "type": "bool"
       },
-      "from": "@epam/uui:TableSizesAndPositionMods",
-      "required": false
-     },
-     {
-      "uid": "padding",
-      "name": "padding",
-      "typeValue": {
-       "raw": "'0' | '12' | '24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "0",
-        "12",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:TableSizesAndPositionMods",
-      "required": false
-     },
-     {
-      "uid": "alignActions",
-      "name": "alignActions",
-      "typeValue": {
-       "raw": "'top' | 'center'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "top",
-        "center"
-       ]
-      },
-      "from": "@epam/uui:TableSizesAndPositionMods",
+      "from": "@epam/uui:DataTableRowMods",
       "required": false
      }
     ],
@@ -77786,7 +77808,11 @@
       "    margin?: '12' | '24';",
       "    /** Defines horizontal row padding */",
       "    padding?: '6' | '12' | '18' | '24';",
-      "    /** Defines row spacing */",
+      "    /**",
+      "     * @deprecated",
+      "     * The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.",
+      "     * Defines row spacing",
+      "     * */",
       "    spacing?: '6' | '12' | '18';",
       "    /** Pass true, to show a top shadow */",
       "    topShadow?: boolean;",
@@ -77909,7 +77935,9 @@
       "name": "spacing",
       "comment": {
        "raw": [
-        "Defines row spacing"
+        "@deprecated",
+        " The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.",
+        " Defines row spacing"
        ]
       },
       "typeValue": {
@@ -78237,11 +78265,11 @@
       "required": false
      },
      {
-      "uid": "borderTop",
-      "name": "borderTop",
+      "uid": "borderBottom",
+      "name": "borderBottom",
       "comment": {
        "raw": [
-        "Pass true, to enable row top border"
+        "Pass true, to enable row bottom border"
        ]
       },
       "typeValue": {
@@ -78254,11 +78282,11 @@
       "required": false
      },
      {
-      "uid": "borderBottom",
-      "name": "borderBottom",
+      "uid": "borderTop",
+      "name": "borderTop",
       "comment": {
        "raw": [
-        "Pass true, to enable row bottom border"
+        "Pass true, to enable row top border"
        ]
       },
       "typeValue": {
@@ -78296,7 +78324,9 @@
       "name": "spacing",
       "comment": {
        "raw": [
-        "Defines row spacing"
+        "@deprecated",
+        " The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.",
+        " Defines row spacing"
        ]
       },
       "typeValue": {
@@ -84777,13 +84807,14 @@
        ]
       },
       "typeValue": {
-       "raw": "'left' | 'right'"
+       "raw": "'left' | 'right' | 'center'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
         "left",
-        "right"
+        "right",
+        "center"
        ]
       },
       "from": "@epam/uui-components:NumericInputProps",
@@ -102908,7 +102939,9 @@
       "name": "spacing",
       "comment": {
        "raw": [
-        "Defines row spacing"
+        "@deprecated",
+        " The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.",
+        " Defines row spacing"
        ]
       },
       "typeValue": {
