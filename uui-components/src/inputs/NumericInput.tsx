@@ -212,7 +212,7 @@ export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>(
                 className={ cx(
                     uuiElement.input,
                     props.inputCx,
-                    css[`align-${props.align}`],
+                    props.align && css[`align-${props.align}`],
                     isPlaceholderColored && uuiElement.valueInPlaceholder,
                 ) }
                 disabled={ props.isDisabled }

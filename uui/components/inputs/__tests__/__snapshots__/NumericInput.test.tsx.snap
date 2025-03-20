@@ -8,7 +8,7 @@ exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input"
+    className="uui-input align-left"
     inputMode="numeric"
     max={50}
     min={0}
@@ -55,7 +55,7 @@ exports[`NumericInput snapshots should be rendered with minimum props 1`] = `
   tabIndex={-1}
 >
   <input
-    className="uui-input"
+    className="uui-input align-left"
     inputMode="numeric"
     max={50}
     min={0}
