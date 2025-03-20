@@ -11,7 +11,7 @@
   * [Breaking Change]: `renderRow` prop now affects only modal rows 
   * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
   * added `renderListRow` callback to customize list row without affecting row in modal
-
+* [NumericInput]: added `center` value for `align` prop
 
 **What's Fixed**
 * [NumericInput]: added right margin for arrows
