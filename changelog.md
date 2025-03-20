@@ -7,6 +7,11 @@
   * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
   * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
   * [DataPickerRow]: added default implementation of `renderItem` callback
+* [PickerList]:
+  * [Breaking Change]: `renderRow` prop now affects only modal rows 
+  * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
+  * added `renderListRow` callback to customize list row without affecting row in modal
+
 
 **What's Fixed**
 * [NumericInput]: added right margin for arrows
