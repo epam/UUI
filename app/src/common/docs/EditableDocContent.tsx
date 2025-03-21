@@ -14,6 +14,7 @@ import { ReactComponent as AnchorIcon } from '@epam/assets/icons/common/action-e
 export interface EditableDocContentProps {
     fileName: string;
     title?: string;
+    id?: string;
 }
 
 interface EditableDocContentState {
@@ -22,7 +23,7 @@ interface EditableDocContentState {
 }
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
-    titleRef: RefObject<HTMLDivElement> = createRef();
+    titleRef: RefObject<HTMLHeadingElement> = createRef();
     abortController: AbortController;
 
     state: EditableDocContentState = {
@@ -95,14 +96,26 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
 
     render() {
         const { isLoading } = this.state;
+        const titleId = this.props.id;
+
         return (
-            <div className={ css.wrapper }>
+            <article className={ css.wrapper }>
                 {this.props.title && (
                     <FlexRow columnGap="6" cx={ css.titleRow }>
-                        <div id={ this.props.title.split(' ').join('_').toLowerCase() } className={ css.title } ref={ this.titleRef }>
+                        <h3
+                            id={ titleId }
+                            className={ css.title }
+                            ref={ this.titleRef }
+                        >
                             {this.props.title}
-                        </div>
-                        <IconButton cx={ css.anchor } icon={ AnchorIcon } color="primary" href={ `#${this.props.title.split(' ').join('_').toLowerCase()}` } />
+                        </h3>
+                        <IconButton
+                            cx={ css.anchor }
+                            icon={ AnchorIcon }
+                            color="primary"
+                            href={ `#${titleId}` }
+                            aria-label={ `Link to ${this.props.title} section` }
+                        />
                     </FlexRow>
                 )}
                 <IEditableDebouncer
@@ -122,7 +135,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
                     ) }
                 />
                 <Blocker isEnabled={ isLoading } />
-            </div>
+            </article>
         );
     }
 }
