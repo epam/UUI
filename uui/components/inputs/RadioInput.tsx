@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import { RadioInput as uuiRadioInput, RadioInputProps as uuiRadioInputProps } from '@epam/uui-components';
 import { settings } from '../../settings';
 
@@ -12,8 +12,10 @@ type RadioInputMods = {
     size?: '12' | '18';
 };
 
+export interface RadioInputModsOverride {}
+
 /** Represents the properties of a RadioInput component. */
-export type RadioInputProps = RadioInputMods & uuiRadioInputProps;
+export interface RadioInputProps extends uuiRadioInputProps, Overwrite<RadioInputMods, RadioInputModsOverride> {}
 
 function applyRadioInputMods(mods: RadioInputProps) {
     return [
