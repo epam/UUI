@@ -17,6 +17,13 @@
         border: 0;
     }
 
+    &.isHidden {
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border-top: 0;
+    }
+
     /* Highly opinionated - make comments stand out and more readable // YakovZh */
     :global {
         .token {

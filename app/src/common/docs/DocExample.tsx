@@ -32,7 +32,7 @@ interface DocExampleProps {
     config?: TDocConfig;
 }
 
-const DocExampleFsBtn: React.FC<{ path: string; theme: ThemeId }> = ({ path, theme }) => {
+function DocExampleFsBtn({ path, theme }: { path: string; theme: ThemeId }) {
     const regex = /^\.\/_examples\/(.*)\/(\w+)\.example\.tsx$/;
     const examplePath = path.replace(regex, '$1/$2');
     const href = `/docExample?theme=${encodeURIComponent(theme)}&examplePath=${encodeURIComponent(examplePath)}`;
@@ -45,7 +45,7 @@ const DocExampleFsBtn: React.FC<{ path: string; theme: ThemeId }> = ({ path, the
             caption={ LABELS.Fullscreen }
         />
     );
-};
+}
 
 export function DocExample(props: DocExampleProps) {
     const [showCode, setShowCode] = useState(false);
@@ -83,7 +83,7 @@ export function DocExample(props: DocExampleProps) {
     };
 
     const renderCode = (): React.ReactNode => {
-        return code && <Code codeAsHtml={ code } />;
+        return code && <Code isVisible={ showCode } codeAsHtml={ code } />;
     };
 
     const renderPreview = () => {
@@ -95,29 +95,62 @@ export function DocExample(props: DocExampleProps) {
         }
 
         return (
-            <>
-                <FlexRow size={ null } vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
+            <div>
+                <FlexRow
+                    size={ null }
+                    vPadding="48"
+                    padding="24"
+                    borderBottom
+                    alignItems="top"
+                    columnGap="12"
+                    rawProps={ { role: 'region', 'aria-label': 'Example preview' } }
+                >
                     {component && React.createElement(component.elementType, { propDocs: exampleProps })}
                 </FlexRow>
-                <div className={ css.containerFooterWrapper }>
-                    <FlexRow padding="12" vPadding="12" cx={ [css.containerFooter] } columnGap="12">
-                        <Switch value={ showCode } onValueChange={ setShowCode } label="View code" />
+                <footer>
+                    <FlexRow
+                        padding="12"
+                        vPadding="12"
+                        cx={ [css.containerFooter] }
+                        columnGap="12"
+                        rawProps={ { role: 'toolbar', 'aria-label': 'Documentation example controls' } }
+                    >
+                        <Switch
+                            value={ showCode }
+                            onValueChange={ setShowCode }
+                            label="View code"
+                            aria-label="Toggle code visibility"
+                        />
                         <FlexSpacer />
                         {!props.disableCodesandbox && <CodesandboxLink raw={ codesandboxRaw } dirPath={ dirPath } />}
                         <DocExampleFsBtn path={ props.path } theme={ theme } />
                     </FlexRow>
-                </div>
-                {showCode && renderCode()}
-            </>
+                </footer>
+                { renderCode()}
+            </div>
         );
     };
 
     return (
-        <div className={ cx(css.container, props.cx) }>
-            <EditableDocContent title={ props.title } fileName={ getDescriptionFileName() } />
-            <div className={ css.previewContainer } style={ { width: props.width } }>
+        <section
+            className={ cx(css.container, props.cx) }
+            aria-labelledby={ `example-title-${getDescriptionFileName()}` }
+            itemScope
+            itemType="http://schema.org/SoftwareApplication"
+        >
+            <EditableDocContent
+                title={ props.title }
+                fileName={ getDescriptionFileName() }
+                id={ `example-title-${getDescriptionFileName()}` }
+            />
+            <div
+                className={ css.previewContainer }
+                style={ { width: props.width } }
+                role="region"
+                aria-label="Example preview"
+            >
                 {props.onlyCode ? renderCode() : renderPreview()}
             </div>
-        </div>
+        </section>
     );
 }
