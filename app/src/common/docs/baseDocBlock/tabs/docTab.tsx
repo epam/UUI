@@ -23,7 +23,7 @@ export function DocTab(props: TDocTabProps) {
         }
         return (
             <RichTextView>
-                <h1>{props.title}</h1>
+                <h1 itemProp="name">{props.title}</h1>
             </RichTextView>
         );
     }, [props.title, props.renderDocTitle]);
@@ -39,10 +39,18 @@ export function DocTab(props: TDocTabProps) {
             const docsGenType = skinSpecific?.type;
             if (docsGenType) {
                 return (
-                    <>
-                        { props.renderSectionTitle('Api') }
-                        <TypeRefSection showCode={ true } typeRef={ docsGenType } />
-                    </>
+                    <section
+                        aria-labelledby="api-section-title"
+                        itemScope
+                        itemType="http://schema.org/APIReference"
+                    >
+                        <h2 id="api-section-title" itemProp="name">
+                            {props.renderSectionTitle('Api')}
+                        </h2>
+                        <div itemProp="description">
+                            <TypeRefSection showCode={ true } typeRef={ docsGenType } />
+                        </div>
+                    </section>
                 );
             }
         }
