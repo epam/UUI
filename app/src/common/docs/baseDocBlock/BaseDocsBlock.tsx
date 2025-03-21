@@ -36,7 +36,26 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
 
         const { category, id } = svc.uuiRouter.getCurrentLink().query;
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
+        this.addCanonicalLinkTag();
     }
+
+    addCanonicalLinkTag = () => {
+        const existingCanonicalLink = document.querySelector('link[rel="canonical"]');
+        if (!existingCanonicalLink) {
+            const canonicalLink = document.createElement('link');
+            canonicalLink.setAttribute('rel', 'canonical');
+            const currentLink = svc.uuiRouter.getCurrentLink();
+            canonicalLink.setAttribute('href', svc.uuiRouter.createHref({
+                ...currentLink,
+                query: {
+                    ...currentLink.query,
+                    theme: 'loveship',
+                    isSkin: false,
+                },
+            }));
+            document.head.appendChild(canonicalLink);
+        }
+    };
 
     abstract title: string;
     abstract renderContent(): React.ReactNode;
