@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDocsGenForType } from './dataHooks';
 import { Code } from '../docs/Code';
 import { TsComment } from './components/TsComment';
@@ -15,6 +15,8 @@ export function TypeRefPage() {
 
     const items: { title?: string, node: React.ReactNode }[] = [];
     const comment = docsGenType?.summary?.comment;
+    const title = docsGenType?.summary?.typeName.nameFull;
+
     if (comment?.raw?.length) {
         items.push({
             title: 'Description',
@@ -37,7 +39,10 @@ export function TypeRefPage() {
         }
     }
 
-    const title = docsGenType?.summary?.typeName.nameFull;
+    useEffect(() => {
+        document.title = title ? `${title} | UUI` : 'UUI';
+    }, [title]);
+
     return (
         <Layout title={ title }>
             {items}
