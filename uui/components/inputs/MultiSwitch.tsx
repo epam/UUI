@@ -4,11 +4,11 @@ import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
 import { ControlSize } from '../types';
 
-type MultiSwitchItem<TValue> = ButtonProps & {
+type MultiSwitchItem = ButtonProps & {
     /**
      * Defines the id of MultiSwitchItem.
      */
-    id: TValue;
+    id: any;
 };
 
 interface MultiSwitchMods {
@@ -31,7 +31,7 @@ export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<Reac
     /**
      * Defines an array of MultiSwitchItems.
      */
-    items: MultiSwitchItem<TValue>[];
+    items: MultiSwitchItem[];
 };
 
 /** Represents the properties for the MultiSwitch component. */
