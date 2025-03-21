@@ -72,7 +72,7 @@
         }
     }
 
-    &.uui-bg-surface-main {
+    :global(.uui-flexRow-bg-surface-main) {
         --uui-flex-row-bg: var(--uui-surface-main);
     }
 }
