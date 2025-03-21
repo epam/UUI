@@ -72,7 +72,7 @@ export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => 
         props.columnGap && css.columnGap,
         props.rowGap && css.rowGap,
         props.spacing && css.spacing,
-        props.background && css[`uui-bg-${props.background}`],
+        props.background && `uui-flex-row-bg-${props.background}`,
     ]);
 
     const style = {
