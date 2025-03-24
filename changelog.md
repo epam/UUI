@@ -16,6 +16,7 @@
 **What's Fixed**
 * [NumericInput]: added right margin for arrows
 * [MultiSwitch]: fixed `isReadonly` prop
+* [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
 
 # 5.13.2 - 04.03.2025
 **What's Fixed**
