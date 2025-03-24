@@ -1,5 +1,5 @@
 {
- "version": "5.12.1",
+ "version": "5.13.3-rc.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -11180,7 +11180,7 @@
       "    closeOnClickOutside?: boolean;",
       "    /** Defined when to close dropdown in case of openOnHover={ true }",
       "     * toggler — dropdown will be closed when a mouse leaves the target component",
-      "     * boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+      "     * boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
       "     * false — will not close dropdown by mouse move event",
       "     * @default 'toggler'",
       "     * */",
@@ -11460,7 +11460,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
@@ -12909,8 +12909,8 @@
       "     * Called when form is unmounted, but user still have unsaved changes.",
       "     * Accepts a Promise<boolean | 'remain'> to be returned.",
       "     * If promise resolves to true - save procedure is performed.",
-      "     * If promise resolves to false - localStorage will be cleaned.",
-      "     * If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.",
+      "     * If promise resolves to false - save action will not be called, form will be unblocked.",
+      "     * If promise resolves to 'remain' - form will be remained in the same state - blocked and not saved.",
       "     * The common use-case is to show a modal with \"Save Changes?\" dialog",
       "     * Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it.",
       "     */",
@@ -13017,8 +13017,8 @@
         "Called when form is unmounted, but user still have unsaved changes.",
         " Accepts a Promise<boolean | 'remain'> to be returned.",
         " If promise resolves to true - save procedure is performed.",
-        " If promise resolves to false - localStorage will be cleaned.",
-        " If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.",
+        " If promise resolves to false - save action will not be called, form will be unblocked.",
+        " If promise resolves to 'remain' - form will be remained in the same state - blocked and not saved.",
         " The common use-case is to show a modal with \"Save Changes?\" dialog",
         " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
        ]
@@ -13178,6 +13178,26 @@
      }
     ],
     "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:HTMLDir": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "HTMLDir",
+     "nameFull": "HTMLDir"
+    },
+    "src": "uui-core/src/helpers/getDir.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "'rtl' | 'ltr'",
+     "print": [
+      "type HTMLDir = 'rtl' | 'ltr';"
+     ]
+    }
    }
   },
   "@epam/uui-core:IAdaptiveItem": {
@@ -35441,7 +35461,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
@@ -36215,8 +36235,8 @@
         "Called when form is unmounted, but user still have unsaved changes.",
         " Accepts a Promise<boolean | 'remain'> to be returned.",
         " If promise resolves to true - save procedure is performed.",
-        " If promise resolves to false - localStorage will be cleaned.",
-        " If promise resolves to 'remain' - localStorage remain as was and changes in form not saves.",
+        " If promise resolves to false - save action will not be called, form will be unblocked.",
+        " If promise resolves to 'remain' - form will be remained in the same state - blocked and not saved.",
         " The common use-case is to show a modal with \"Save Changes?\" dialog",
         " Skins usually implement this as default behavior. To prevent it, you can pass null to this prop to override it."
        ]
@@ -52096,9 +52116,9 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; }",
      "print": [
-      "type PickerListBaseProps<TItem, TId> = Exclude<PickerBaseProps<TItem, TId>, 'cascadeSelection'> & {",
+      "type PickerListBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & {",
       "    /**",
       "     * Number of default items to show initially, when nothing is selected.",
       "     * @default 10",
@@ -52117,6 +52137,12 @@
       "    /** If provided, top picks will be automatically adjusted based on last user selection, and stored as user setting under provided key */",
       "    settingsKey?: string;",
       "    sortBy?(item: TItem, sorting: SortingOption): string;",
+      "    /** Render callback for list row.",
+      "     * For modal row, use renderRow prop.",
+      "     *",
+      "     * If omitted, PickerListRow component will be rendered.",
+      "     */",
+      "    renderListRow?: (props: DataRowProps<TItem, TId>) => ReactNode;",
       "};"
      ]
     },
@@ -52624,6 +52650,25 @@
       },
       "editor": {
        "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderListRow",
+      "name": "renderListRow",
+      "comment": {
+       "raw": [
+        "Render callback for list row.",
+        " For modal row, use renderRow prop.",
+        "",
+        " If omitted, PickerListRow component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "required": false
      },
@@ -63411,7 +63456,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
@@ -64814,7 +64859,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } & TProps",
+     "raw": "PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & TProps | PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & TProps",
      "print": [
       "type UsePickerListProps<TItem, TId, TProps> = PickerListBaseProps<TItem, TId> & TProps & {};"
      ]
@@ -65326,6 +65371,26 @@
       },
       "editor": {
        "type": "string"
+      },
+      "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderListRow",
+      "name": "renderListRow",
+      "comment": {
+       "raw": [
+        "Render callback for list row.",
+        " For modal row, use renderRow prop.",
+        "",
+        " If omitted, PickerListRow component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "from": "@epam/uui-components:PickerListBaseProps",
       "required": false
@@ -69994,13 +70059,7 @@
     "typeValue": {
      "raw": "CountIndicatorCoreProps",
      "print": [
-      "type CountIndicatorCoreProps = IHasCaption & IHasCX & {",
-      "    /**",
-      "     * Defines component size.",
-      "     * @default '24'",
-      "     */",
-      "    size?: '12' | '18' | '24';",
-      "};"
+      "type CountIndicatorCoreProps = IHasCaption & IHasCX;"
      ]
     },
     "props": [
@@ -70032,31 +70091,6 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '24'"
-       ],
-       "tags": {
-        "@default": "24"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24"
-       ]
-      },
       "required": false
      }
     ],
@@ -70113,32 +70147,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '24'"
-       ],
-       "tags": {
-        "@default": "24"
-       }
-      },
-      "typeValue": {
-       "raw": "'12' | '18' | '24'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "12",
-        "18",
-        "24"
-       ]
-      },
-      "from": "@epam/uui:CountIndicatorCoreProps",
-      "required": false
-     },
-     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -70162,6 +70170,32 @@
       },
       "from": "@epam/uui:CountIndicatorMods",
       "required": true
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '24'"
+       ],
+       "tags": {
+        "@default": "24"
+       }
+      },
+      "typeValue": {
+       "raw": "'12' | '18' | '24'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "12",
+        "18",
+        "24"
+       ]
+      },
+      "from": "@epam/uui:CountIndicatorMods",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -74705,8 +74739,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines component size."
-       ]
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -76628,8 +76666,12 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines size(height) of filter panel and filters"
-       ]
+        "Defines size(height) of filter panel and filters",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
       },
       "typeValue": {
        "raw": "'36' | '48' | '24' | '30' | '42'"
@@ -77404,12 +77446,7 @@
      "raw": "IconButtonCoreProps",
      "print": [
       "/** Represents the Core properties of the IconButton component. */",
-      "type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'> & {",
-      "    /**",
-      "     * Defines component size.",
-      "     */",
-      "    size?: '18' | '24' | '30' | '36';",
-      "};"
+      "type IconButtonCoreProps = Omit<uuiComponents.IconButtonProps, 'size'>;"
      ]
     },
     "props": [
@@ -77641,28 +77678,6 @@
        "type": "bool"
       },
       "from": "@epam/uui-components:IconButtonProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36"
-       ]
-      },
       "required": false
      }
     ],
@@ -77947,29 +77962,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'18' | '36' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36"
-       ]
-      },
-      "from": "@epam/uui:IconButtonCoreProps",
-      "required": false
-     },
-     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -77997,6 +77989,29 @@
         "secondary",
         "accent",
         "white"
+       ]
+      },
+      "from": "@epam/uui:IconButtonMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'18' | '36' | '24' | '30'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "18",
+        "24",
+        "30",
+        "36"
        ]
       },
       "from": "@epam/uui:IconButtonMods",
@@ -78889,11 +78904,6 @@
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /**",
-      "     * Defines component size.",
-      "     * @default '36'",
-      "     */",
-      "    size?: types.ControlSize | '42';",
-      "    /**",
       "     * Defines component font-weight",
       "     * @default 'semibold'",
       "     */",
@@ -78919,33 +78929,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
       },
       "required": false
      },
@@ -79329,34 +79312,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:LinkButtonCoreProps",
-      "required": false
-     },
-     {
       "uid": "weight",
       "name": "weight",
       "comment": {
@@ -79693,6 +79648,34 @@
         "accent",
         "white",
         "contrast"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
        ]
       },
       "from": "@epam/uui:LinkButtonMods",
@@ -86512,7 +86495,7 @@
      "name": "PickerListItemProps",
      "nameFull": "PickerListItemProps<TItem, TId>"
     },
-    "src": "uui/components/pickers/PickerListItem.tsx",
+    "src": "uui/components/pickers/PickerListRow.tsx",
     "exported": true
    },
    "details": {
@@ -87335,12 +87318,12 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; }",
+     "raw": "Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType?: 'id' | undefined; } & IEditable<TId> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & PickerBaseOptions<TItem, TId> & { selectionMode: 'single'; valueType: 'entity'; } & IEditable<TItem> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType?: 'id' | undefined; emptyValue?: [] | null | undefined; } & IEditable<TId[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; } | Omit<PickerListMods, never> & PickerListModsOverride & IHasPlaceholder & PickerModalOptions<TItem, TId> & PickerBaseOptions<TItem, TId> & { selectionMode: 'multi'; valueType: 'entity'; emptyValue?: [] | null | undefined; } & IEditable<TItem[]> & IAnalyticableOnChange<any> & { maxDefaultItems?: number | undefined; maxTotalItems?: number | undefined; defaultIds?: TId[] | undefined; settingsKey?: string | undefined; sortBy?(item: TItem, sorting: SortingOption<any>): string; renderListRow?: ((props: DataRowProps<TItem, TId>) => React.ReactNode) | undefined; } & { renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode; noOptionsMessage?: React.ReactNode; }",
      "print": [
-      "type PickerListProps<TItem, TId> = Overwrite<PickerListMods, PickerListModsOverride> & IHasPlaceholder & PickerModalOptions<TItem, TId> & {",
+      "type PickerListProps<TItem, TId> = Overwrite<PickerListMods, PickerListModsOverride> & IHasPlaceholder & PickerModalOptions<TItem, TId> & PickerListBaseProps<TItem, TId> & {",
       "    renderModalToggler?(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]): React.ReactNode;",
       "    noOptionsMessage?: React.ReactNode;",
-      "} & PickerListBaseProps<TItem, TId>;"
+      "};"
      ]
     },
     "props": [
@@ -87451,26 +87434,6 @@
        "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "renderModalToggler",
-      "name": "renderModalToggler",
-      "typeValue": {
-       "raw": "(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "noOptionsMessage",
-      "name": "noOptionsMessage",
-      "typeValue": {
-       "raw": "React.ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
       "required": false
      },
      {
@@ -87981,6 +87944,46 @@
        "type": "string"
       },
       "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderListRow",
+      "name": "renderListRow",
+      "comment": {
+       "raw": [
+        "Render callback for list row.",
+        " For modal row, use renderRow prop.",
+        "",
+        " If omitted, PickerListRow component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DataRowProps<TItem, TId>) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:PickerListBaseProps",
+      "required": false
+     },
+     {
+      "uid": "renderModalToggler",
+      "name": "renderModalToggler",
+      "typeValue": {
+       "raw": "(props: IClickable & IHasCaption & IDisableable, selection: DataRowProps<TItem, TId>[]) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "noOptionsMessage",
+      "name": "noOptionsMessage",
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      },
      {
@@ -98466,7 +98469,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
@@ -98819,7 +98822,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
@@ -101298,7 +101301,7 @@
         "24"
        ]
       },
-      "from": "@epam/uui:CountIndicatorCoreProps",
+      "from": "@epam/uui:CountIndicatorMods",
       "required": false
      },
      {
@@ -101976,29 +101979,6 @@
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '18' | '24' | '30'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "18",
-        "24",
-        "30",
-        "36"
-       ]
-      },
-      "from": "@epam/uui:IconButtonCoreProps",
-      "required": false
-     },
-     {
       "uid": "color",
       "name": "color",
       "comment": {
@@ -102036,6 +102016,34 @@
        ]
       },
       "from": "@epam/promo:IconButtonMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonMods",
       "required": false
      }
     ],
@@ -102080,34 +102088,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "from": "@epam/uui:LinkButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
       },
       "from": "@epam/uui:LinkButtonCoreProps",
       "required": false
@@ -102423,6 +102403,34 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonMods",
       "required": false
      },
      {
@@ -104510,7 +104518,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
@@ -107425,7 +107433,7 @@
         "24"
        ]
       },
-      "from": "@epam/uui:CountIndicatorCoreProps",
+      "from": "@epam/uui:CountIndicatorMods",
       "required": false
      },
      {
@@ -108144,7 +108152,7 @@
         "36"
        ]
       },
-      "from": "@epam/uui:IconButtonCoreProps",
+      "from": "@epam/uui:IconButtonMods",
       "required": false
      },
      {
@@ -108232,34 +108240,6 @@
       },
       "editor": {
        "type": "component"
-      },
-      "from": "@epam/uui:LinkButtonCoreProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
       },
       "from": "@epam/uui:LinkButtonCoreProps",
       "required": false
@@ -108575,6 +108555,34 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:LinkButtonMods",
       "required": false
      },
      {
@@ -111480,7 +111488,7 @@
        "raw": [
         "Defined when to close dropdown in case of openOnHover={ true }",
         " toggler — dropdown will be closed when a mouse leaves the target component",
-        " boundary — will not to close the dropdown when a mouse is on target or in 30px around target area",
+        " boundary — will not immediately close the dropdown when the mouse is within 30px around of the body area",
         " false — will not close dropdown by mouse move event",
         " @default 'toggler'"
        ],
