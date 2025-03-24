@@ -93,15 +93,6 @@
                 padding-bottom: 0;
                 color: var(--uui-filters_toggler-text);
 
-                div {
-                    display: inline-block;
-                    margin-right: 3px;
-
-                    :nth-last-child {
-                        margin-right: 0;
-                    }
-                }
-
                 & + span {
                     color: var(--uui-filters_toggler-text);
                 }
@@ -110,7 +101,6 @@
             .postfix {
                 padding-top: 0;
                 padding-bottom: 0;
-                padding-left: 6px;
                 overflow: visible;
                 color: var(--uui-filters_toggler-text);
             }
