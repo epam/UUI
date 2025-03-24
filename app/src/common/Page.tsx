@@ -31,7 +31,9 @@ export function Page(props: PageProps) {
     useEffect(() => {
         const pageId = services.uuiRouter.getCurrentLink().query.id;
         const pageName = getPageName(pageId);
-        document.title = pageName ? `${pageName} | UUI` : 'UUI';
+        if (!document.title) {
+            document.title = pageName ? `${pageName} | UUI` : 'UUI';
+        }
     }, [services.uuiRouter.getCurrentLink().search]);
 
     return (
