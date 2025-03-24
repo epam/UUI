@@ -31,6 +31,27 @@ export function DocumentsPage() {
             query,
         });
 
+    const addCanonicalLinkTag = () => {
+        const existingCanonicalLink = document.querySelector('link[rel="canonical"]');
+        const currentLink = svc.uuiRouter.getCurrentLink();
+
+        if (existingCanonicalLink) {
+            existingCanonicalLink.remove();
+        }
+
+        const canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        canonicalLink.setAttribute('href', 'https://uui.epam.com' + svc.uuiRouter.createHref({
+            ...currentLink,
+            query: {
+                ...currentLink.query,
+                theme: 'loveship',
+                isSkin: false,
+            },
+        }));
+        document.head.appendChild(canonicalLink);
+    };
+
     function useItems(selectedId: string) {
         const { docsMenuStructure } = svc.uuiApp;
 
@@ -50,7 +71,12 @@ export function DocumentsPage() {
         if (itemsInfo && !itemsInfo.PageComponent) {
             redirectTo({ id: itemsInfo.items[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
         }
+        addCanonicalLinkTag();
     }, [itemsInfo]);
+
+    useEffect(() => {
+        addCanonicalLinkTag();
+    }, [queryParamId]);
 
     useEffect(() => {
         codesandboxService.getFiles(theme, themesById);
