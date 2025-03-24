@@ -3,7 +3,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-:global(.-draggable) {
+.-draggable {
     touch-action: none;
     user-select: none;
 }
