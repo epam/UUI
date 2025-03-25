@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 

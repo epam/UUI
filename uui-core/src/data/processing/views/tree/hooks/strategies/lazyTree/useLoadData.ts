@@ -40,7 +40,7 @@ export function useLoadData<TItem, TId, TFilter = any>(
 ) {
     const { api, filter, isFolded, cascadeSelection } = props;
 
-    const promiseInProgressRef = useRef<Promise<LoadResult<TItem, TId>>>();
+    const promiseInProgressRef = useRef<Promise<LoadResult<TItem, TId>>>(undefined);
 
     const loadMissingImpl = useCallback(async ({
         using,

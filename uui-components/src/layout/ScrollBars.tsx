@@ -14,7 +14,7 @@ export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, 
      *
      * If omitted, default uui implementation with flex container will be rendered.
      */
-    renderView?: (props: any) => React.ReactElement;
+    renderView?: (props: any) => React.ReactElement<any>;
 }
 
 export interface PositionValues extends positionValues {
@@ -37,7 +37,7 @@ enum uuiScrollbars {
 export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, cx: outerCx, ...props
 }, ref) => {
-    const bars = useRef<ScrollbarsApi>();
+    const bars = useRef<ScrollbarsApi>(undefined);
 
     useImperativeHandle(ref, () => bars.current, [bars.current]);
 

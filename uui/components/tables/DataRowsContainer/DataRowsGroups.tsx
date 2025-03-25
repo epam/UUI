@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, type JSX } from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { getChildrenAndRest } from './utils';
 
@@ -23,7 +23,7 @@ function DataRowsGroup<TItem, TId>({
     renderRow,
     top = 1,
 }: DataRowsGroupProps<TItem, TId>) {
-    const rowRef = useRef<HTMLDivElement>();
+    const rowRef = useRef<HTMLDivElement>(undefined);
     const childrenPinnedTop = row.isPinned ? (top + (rowRef.current?.clientHeight ?? 0)) : top;
     return ( 
         <div className={ css.group } key={ row.rowKey }>

@@ -7,7 +7,7 @@ import { TestStubAdaptedRouter } from '../mocks/TestStubAdaptedRouter';
 
 export { renderer };
 
-export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => ReactElement;
+export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => ReactElement<any>;
 
 /**
  * Creates a component which wraps given children with default UUI context provider.
@@ -20,9 +20,11 @@ export const getDefaultUUiContextWrapper = () => {
         const { services } = useUuiServices({ router });
         Object.assign(testUuiCtx, services);
         return (
-            <UuiContext.Provider value={ services }>
-                { children }
-            </UuiContext.Provider>
+            (
+                <UuiContext value={ services }>
+                    { children }
+                </UuiContext>
+            )
         );
     };
     return {
@@ -63,7 +65,7 @@ export async function renderHookWithContextAsync<TProps, TResult>(hook: (props: 
  * @param [options]
  * @param [options.wrapper]
  */
-export const renderSnapshotWithContextAsync = async (reactElement: ReactElement, options?: { wrapper?: CustomWrapperType }) => {
+export const renderSnapshotWithContextAsync = async (reactElement: ReactElement<any>, options?: { wrapper?: CustomWrapperType }) => {
     const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const result = renderer.create(React.createElement(wrapper, { children: reactElement }));
     await delayAct();
@@ -77,7 +79,7 @@ export const renderSnapshotWithContextAsync = async (reactElement: ReactElement,
  * @param [options]
  * @param [options.wrapper]
  */
-export const renderWithContextAsync = async (reactElement: ReactElement, options?: { wrapper?: CustomWrapperType }) => {
+export const renderWithContextAsync = async (reactElement: ReactElement<any>, options?: { wrapper?: CustomWrapperType }) => {
     const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const result = render(reactElement, { wrapper });
     await delayAct();

@@ -57,7 +57,7 @@ describe('withMods', () => {
 
         const Modded = withMods(Original, () => 'class-from-mods');
 
-        const ref: React.RefObject<HTMLDivElement> = { current: null };
+        const ref: React.RefObject<HTMLDivElement | null> = { current: null };
 
         render(<Modded ref={ ref } />);
 
@@ -72,7 +72,7 @@ describe('withMods', () => {
     it('forwardRef on class component', () => {
         const Modded = withMods(ClassComponent, () => 'test-class', () => ({ caption: 'mod' }));
 
-        const ref: React.RefObject<HTMLDivElement> = { current: null };
+        const ref: React.RefObject<HTMLDivElement | null> = { current: null };
 
         render(<Modded ref={ ref } cx="my-class" />);
 
@@ -86,7 +86,7 @@ describe('withMods', () => {
     it('forwardRef on class component (no props)', () => {
         const Modded = withMods(ClassComponent);
 
-        const ref: React.RefObject<HTMLDivElement> = { current: null };
+        const ref: React.RefObject<HTMLDivElement | null> = { current: null };
 
         render(<Modded ref={ ref } />);
 

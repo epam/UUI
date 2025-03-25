@@ -12,9 +12,11 @@ function UuiContextDefaultWrapper({ children }) {
     const { services } = useUuiServices({ router });
     Object.assign(testUuiCtx, services);
     return (
-        <UuiContext.Provider value={ services }>
-            { children }
-        </UuiContext.Provider>
+        (
+            <UuiContext value={ services }>
+                { children }
+            </UuiContext>
+        )
     );
 }
 async function renderSnapshot(reactElement: any) {

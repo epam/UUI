@@ -30,9 +30,11 @@ function UuiEnhancedApp() {
     Object.assign(svc, services);
 
     return (
-        <UuiContext.Provider value={ services }>
-            <RouterProvider router={ router6 } />
-        </UuiContext.Provider>
+        (
+            <UuiContext value={ services }>
+                <RouterProvider router={ router6 } />
+            </UuiContext>
+        )
     );
 }
 

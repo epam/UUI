@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { useContext, useImperativeHandle, useMemo, useRef, type JSX } from 'react';
 import {
     DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
     PickerInputBaseProps, UuiContext, mobilePopperModifier,

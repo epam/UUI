@@ -4,6 +4,8 @@ import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
 import { ControlSize } from '../types';
 
+import type { JSX } from 'react';
+
 type MultiSwitchItem = ButtonProps & {
     /**
      * Defines the id of MultiSwitchItem.
@@ -67,4 +69,4 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
     );
 }
 
-export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) => JSX.Element;
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>) => JSX.Element;

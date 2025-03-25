@@ -69,13 +69,11 @@ function Providers({ children }: ProviderProps) {
         router: router,
         apiDefinition,
     });
-    return (
-        <UuiContext.Provider value={services}>{children}</UuiContext.Provider>
-    );
+    return (<UuiContext value={services}>{children}</UuiContext>);
 }
 
 const customRender = (
-    ui: ReactElement,
+    ui: ReactElement<any>,
     options?: Omit<RenderOptions, 'wrapper'>
 ) =>
     render(ui, {
