@@ -6,7 +6,7 @@ import { settings } from '../../settings';
 import css from './DataPickerRow.module.scss';
 import { PickerItem } from './PickerItem';
 import type { PickerInputProps } from './PickerInput';
-import { Text, TextPlaceholder } from '../typography';
+import { Text } from '../typography';
 import { FlexCell } from '../layout';
 import { DataRowAddons } from '../widgets';
 
@@ -81,7 +81,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         if (props.isLoading) {
             content = (
                 <Text size={ props.size }>
-                    <TextPlaceholder />
+                    { settings.pickerInput.renderPlaceholder() }
                 </Text>
             );
         } else if (props.isUnknown) {
