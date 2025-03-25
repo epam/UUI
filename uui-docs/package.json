@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-docs",
-  "version": "5.13.3-beta.5",
+  "version": "5.13.3-beta.6",
   "description": "EPAM UUI Documentation infrastructure",
   "author": "EPAM",
   "license": "MIT",
@@ -12,11 +12,11 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "5.13.3-beta.5",
-    "@epam/promo": "5.13.3-beta.5",
-    "@epam/uui": "5.13.3-beta.5",
-    "@epam/uui-components": "5.13.3-beta.5",
-    "@epam/uui-core": "5.13.3-beta.5",
+    "@epam/assets": "5.13.3-beta.6",
+    "@epam/promo": "5.13.3-beta.6",
+    "@epam/uui": "5.13.3-beta.6",
+    "@epam/uui-components": "5.13.3-beta.6",
+    "@epam/uui-core": "5.13.3-beta.6",
     "@types/classnames": "2.2.6",
     "classnames": "^2.2.6"
   },
