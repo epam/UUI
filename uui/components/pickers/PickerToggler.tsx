@@ -8,6 +8,8 @@ import { settings } from '../../settings';
 
 import css from './PickerToggler.module.scss';
 
+import type { JSX } from 'react';
+
 const defaultMode = EditMode.FORM;
 
 export interface PickerTogglerModsOverride {}
@@ -63,4 +65,4 @@ function PickerTogglerComponent<TItem extends string, TId>(
 }
 
 export const PickerToggler = React.forwardRef(PickerTogglerComponent) as
-    <TItem, TId>(props: PickerTogglerProps<TItem, TId> & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof PickerTogglerComponent>;
+    <TItem, TId>(props: PickerTogglerProps<TItem, TId>) => ReturnType<typeof PickerTogglerComponent>;

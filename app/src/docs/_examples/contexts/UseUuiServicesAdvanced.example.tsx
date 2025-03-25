@@ -56,16 +56,18 @@ function UuiEnhancedApp() {
 
     if (isLoaded) {
         return (
-            <UuiContext.Provider value={ services }>
-                <ErrorHandler>
-                    <Router history={ history }>
-                        Your App component
-                    </Router>
-                </ErrorHandler>
-                <Snackbar />
-                <Modals />
-                <DragGhost />
-            </UuiContext.Provider>
+            (
+                <UuiContext value={ services }>
+                    <ErrorHandler>
+                        <Router history={ history }>
+                            Your App component
+                        </Router>
+                    </ErrorHandler>
+                    <Snackbar />
+                    <Modals />
+                    <DragGhost />
+                </UuiContext>
+            )
         );
     }
     return null;

@@ -6,6 +6,8 @@ import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import css from './TextInput.module.scss';
 
+import type { JSX } from 'react';
+
 const ENTER = 'Enter';
 const ESCAPE = 'Escape';
 
@@ -27,7 +29,7 @@ export interface TextInputProps extends TextInputCoreProps {
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
     const context = useUuiContext();
     const [inFocus, setInFocus] = React.useState<boolean>(false);
-    const inputElement = React.useRef<HTMLInputElement>();
+    const inputElement = React.useRef<HTMLInputElement>(undefined);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Android does not support maxLength

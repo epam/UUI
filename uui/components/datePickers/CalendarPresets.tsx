@@ -60,7 +60,7 @@ const getPresets = (presets: RangeDatePickerPresets) => {
     })).sort((a, b) => a.order - b.order);
 };
 
-export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
+export function CalendarPresets(props: CalendarPresetsProps) {
     return (
         <div
             ref={ props.forwardedRef }

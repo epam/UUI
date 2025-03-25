@@ -48,8 +48,8 @@ export interface PickerTogglerProps<TItem = any, TId = any>
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
-    const toggleContainer = React.useRef<HTMLDivElement>();
-    const inputContainer = React.useRef<HTMLInputElement>();
+    const toggleContainer = React.useRef<HTMLDivElement>(undefined);
+    const inputContainer = React.useRef<HTMLInputElement>(undefined);
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
@@ -270,7 +270,4 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     );
 }
 
-export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
-    props: PickerTogglerProps<TItem, TId>,
-    ref: React.ForwardedRef<HTMLElement>
-) => JSX.Element;
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>) => ReturnType<typeof PickerTogglerComponent>;

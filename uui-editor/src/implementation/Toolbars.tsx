@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment, useMemo, type JSX } from 'react';
 import { useEditorRef, PlateEditor, WithPlatePlugin, Value, PluginOptions } from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
 import { FloatingToolbar } from './PositionedToolbar';

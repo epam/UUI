@@ -9,7 +9,7 @@ interface ISlidingPanelProps {
     isVisible: boolean;
     position: 'left' | 'right';
     width: number;
-    children: ReactElement;
+    children: ReactElement<any>;
 }
 
 interface CustomCssProperties extends CSSProperties {

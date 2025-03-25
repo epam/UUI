@@ -48,10 +48,12 @@ export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<T
     const children = isLoaded ? propsChildren : '';
 
     return (
-        <UuiContext.Provider value={ services }>
-            {children}
-            <DragGhost />
-        </UuiContext.Provider>
+        (
+            <UuiContext value={ services }>
+                {children}
+                <DragGhost />
+            </UuiContext>
+        )
     );
 }
 

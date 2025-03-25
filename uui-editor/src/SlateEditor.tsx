@@ -42,7 +42,7 @@ export interface PlateEditorProps
 export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, ref) => {
     const [currentId] = useState(String(Date.now()));
     const editorRef = useRef<PlateEditor | null>(null);
-    const editableWrapperRef = useRef<HTMLDivElement>();
+    const editableWrapperRef = useRef<HTMLDivElement>(undefined);
     const prevChangedValue = useRef(props.value);
 
     /** value */
@@ -104,7 +104,6 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
                 editableWrapperRef.current.classList.add(uuiMod.focus);
             }
         }
-        return editableWrapperRef;
     }, [props.autoFocus, props.isReadonly]);
     const composedRef = useComposedRef(autoFocusRef, ref);
 
