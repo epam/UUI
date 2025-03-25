@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataPickerCellProps as UuiCoreDataPickerCellProps, uuiMod, cx, Overwrite, Icon } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
-import { TextPlaceholder, Text } from '../typography';
+import { Text } from '../typography';
 import { DataRowAddons } from '../widgets';
 import { FlexCell } from '../layout';
 import type { PickerCellMods, PickerCellModsOverride } from './types';
@@ -20,7 +20,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
         content = (
             // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
             <Text key="t" size={ props.size } cx={ css.loadingCell }>
-                <TextPlaceholder />
+                { settings.pickerInput.renderPlaceholder() }
             </Text>
         );
     } else if (props.rowProps.isUnknown) {
