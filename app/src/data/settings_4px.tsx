@@ -1,3 +1,7 @@
+import React from 'react';
+import { ReactComponent as CircleLoaderIcon } from '@epam/assets/icons/loaders/circle-loader.svg';
+import { FlexRow, IconContainer } from '@epam/uui';
+
 const settings_4px = {
     alert: {
         sizes: {
@@ -21,6 +25,13 @@ const settings_4px = {
         sizes: {
             default: '40',
         },
+    },
+    blocker: {
+        renderSpinner: () => (
+            <FlexRow rawProps={ { style: { height: '100%' } } } justifyContent="center" alignItems="center">
+                <IconContainer size={ 48 } icon={ CircleLoaderIcon } />
+            </FlexRow>
+        ),
     },
     checkbox: {
         sizes: {
@@ -123,6 +134,7 @@ const settings_4px = {
         },
     },
     pickerInput: {
+        renderPlaceholder: () => 'Loading...',
         sizes: {
             toggler: {
                 defaultSize: '40',

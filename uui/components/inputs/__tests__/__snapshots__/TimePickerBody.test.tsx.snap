@@ -29,7 +29,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
         tabIndex={-1}
       >
         <input
-          className="uui-input uui-value-in-placeholder"
+          className="uui-input align-undefined uui-value-in-placeholder"
           inputMode="numeric"
           max={12}
           min={1}
@@ -93,7 +93,7 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
         tabIndex={-1}
       >
         <input
-          className="uui-input uui-value-in-placeholder"
+          className="uui-input align-undefined uui-value-in-placeholder"
           inputMode="numeric"
           max={59}
           min={0}
@@ -211,7 +211,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
         tabIndex={-1}
       >
         <input
-          className="uui-input uui-value-in-placeholder"
+          className="uui-input align-undefined uui-value-in-placeholder"
           inputMode="numeric"
           max={12}
           min={0}
@@ -275,7 +275,7 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
         tabIndex={-1}
       >
         <input
-          className="uui-input uui-value-in-placeholder"
+          className="uui-input align-undefined uui-value-in-placeholder"
           inputMode="numeric"
           max={59}
           min={0}
