@@ -31,7 +31,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-function PickerTogglerComponent<TItem extends string, TId>(
+function PickerTogglerComponent<TItem, TId>(
     props: PickerTogglerProps<TItem, TId>,
     ref: React.ForwardedRef<HTMLElement>,
 ): JSX.Element {
@@ -44,6 +44,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
         return (
             <PickerTogglerTag
                 { ...itemPropsWithSize }
+                key={ itemProps.rowProps.id as string }
                 getName={ props.getName }
             />
         );
