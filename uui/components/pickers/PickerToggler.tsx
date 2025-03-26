@@ -44,7 +44,7 @@ function PickerTogglerComponent<TItem, TId>(
         return (
             <PickerTogglerTag
                 { ...itemPropsWithSize }
-                key={ itemProps.rowProps.id as string }
+                key={ itemProps.rowProps?.id as string }
                 getName={ props.getName }
             />
         );
