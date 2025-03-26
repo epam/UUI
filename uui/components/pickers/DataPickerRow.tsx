@@ -49,8 +49,8 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         props.onFocus && props.onFocus(props.index);
     };
 
-    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
-        if (!search) return;
+    const getSubtitle = ({ path }: DataRowProps<TItem, TId>) => {
+        if (!props.dataSourceState?.search) return;
 
         return path
             .map(({ value }) => props.getName(value))
@@ -69,7 +69,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
                 size={ props.size || settings.pickerInput.sizes.body.row }
                 dataSourceState={ props.dataSourceState }
                 highlightSearchMatches={ props.highlightSearchMatches }
-                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps, props.dataSourceState) } : {}) }
+                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps) } : {}) }
                 { ...rowProps }
             />
         );

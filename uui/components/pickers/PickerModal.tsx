@@ -44,6 +44,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                 key={ rowProps.rowKey }
                 size={ settings.pickerInput.sizes.body.row }
                 flattenSearchResults={ view.getConfig().flattenSearchResults }
+                dataSourceState={ dataSourceState }
                 getName={ getName }
             />
         );
