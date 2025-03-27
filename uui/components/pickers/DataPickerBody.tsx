@@ -135,6 +135,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                             size={ searchSize }
                             debounceDelay={ props.searchDebounceDelay }
                             rawProps={ { dir: 'auto' } }
+                            autoFocus={ true }
                         />
                     </FlexCell>
                 </div>
