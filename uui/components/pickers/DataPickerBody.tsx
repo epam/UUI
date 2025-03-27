@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
     DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger, DataSourceListProps, IEditable,
     IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
@@ -38,8 +38,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
     const prevProps = usePrevious(props);
 
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
-
-    const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
@@ -127,7 +125,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
                         <SearchInput
-                            ref={ searchRef }
                             placeholder={ i18n.dataPickerBody.searchPlaceholder }
                             value={ props.value.search }
                             onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
