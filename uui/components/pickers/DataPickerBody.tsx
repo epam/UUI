@@ -14,6 +14,7 @@ import css from './DataPickerBody.module.scss';
 import isEqual from 'react-fast-compare';
 import { DataPickerRow } from './DataPickerRow';
 import type { PickerInputProps } from './PickerInput';
+import { AutoFocusInside } from 'react-focus-lock';
 
 export interface DataPickerBodyModsOverride {}
 
@@ -36,7 +37,6 @@ export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Ove
 
 export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...props }:DataPickerBodyProps<TItem, TId>) {
     const prevProps = usePrevious(props);
-
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
 
     useEffect(() => {
@@ -124,16 +124,17 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
             {showSearch && (
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
-                        <SearchInput
-                            placeholder={ i18n.dataPickerBody.searchPlaceholder }
-                            value={ props.value.search }
-                            onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
-                            onKeyDown={ searchKeyDown }
-                            size={ searchSize }
-                            debounceDelay={ props.searchDebounceDelay }
-                            rawProps={ { dir: 'auto' } }
-                            autoFocus={ true }
-                        />
+                        <AutoFocusInside>
+                            <SearchInput
+                                placeholder={ i18n.dataPickerBody.searchPlaceholder }
+                                value={ props.value.search }
+                                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
+                                onKeyDown={ searchKeyDown }
+                                size={ searchSize }
+                                debounceDelay={ props.searchDebounceDelay }
+                                rawProps={ { dir: 'auto' } }
+                            />
+                        </AutoFocusInside>
                     </FlexCell>
                 </div>
             )}
