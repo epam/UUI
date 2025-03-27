@@ -42,13 +42,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
     const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        // We isn't focus input by autoFocus prop, because it's not working in case on new filter creation in FilterPanel component
-        if (searchRef.current) {
-            searchRef.current.focus();
-        }
-    }, []);
-
-    useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
             props.scheduleUpdate?.();
         }
@@ -142,6 +135,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                             size={ searchSize }
                             debounceDelay={ props.searchDebounceDelay }
                             rawProps={ { dir: 'auto' } }
+                            autoFocus={ true }
                         />
                     </FlexCell>
                 </div>
