@@ -60,7 +60,7 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
             {row.indent > 0 && (
                 <div
                     key="fold"
-                    className={ cx('uui-dr_addons-indent', `uui-size-${props.size}`) }
+                    className={ cx('uui-dr_addons-indent', `uui-size-${props.size || settings.dataTable.sizes.body.row}`) }
                     style={ { marginInlineStart: getIndent(), width: getWidth() } }
                 >
                     {row.isFoldable && (
