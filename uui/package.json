@@ -18,7 +18,7 @@
     "@popperjs/core": "2.9.0",
     "classnames": "2.2.6",
     "dayjs": "1.11.12",
-    "react-focus-lock": "2.13.5",
+    "react-focus-lock": "2.13.6",
     "react-popper": "2.3.0",
     "react-fast-compare": "3.2.2"
   },
