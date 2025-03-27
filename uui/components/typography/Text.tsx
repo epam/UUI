@@ -37,6 +37,8 @@ interface TextMods {
     fontStyle?: TextFontStyle;
 }
 
+export interface TextCoreProps extends uuiComponents.TextProps {}
+
 export interface TextModsOverride {}
 
 export interface TextProps extends uuiComponents.TextProps, Overwrite<TextMods, TextModsOverride> {}
