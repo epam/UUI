@@ -14,7 +14,7 @@ import css from './DataPickerBody.module.scss';
 import isEqual from 'react-fast-compare';
 import { DataPickerRow } from './DataPickerRow';
 import type { PickerInputProps } from './PickerInput';
-import { AutoFocusInside } from 'react-focus-lock';
+import { MoveFocusInside } from 'react-focus-lock';
 
 export interface DataPickerBodyModsOverride {}
 
@@ -124,7 +124,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
             {showSearch && (
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
-                        <AutoFocusInside>
+                        <MoveFocusInside>
                             <SearchInput
                                 placeholder={ i18n.dataPickerBody.searchPlaceholder }
                                 value={ props.value.search }
@@ -134,7 +134,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                                 debounceDelay={ props.searchDebounceDelay }
                                 rawProps={ { dir: 'auto' } }
                             />
-                        </AutoFocusInside>
+                        </MoveFocusInside>
                     </FlexCell>
                 </div>
             )}
