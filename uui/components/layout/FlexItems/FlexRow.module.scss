@@ -24,7 +24,7 @@
         min-height: var(--uui-flex-row-size);
     }
 
-    .justify-content {
+    &.justify-content {
         justify-content: var(--uui-flex-row-justify-content);
     }
 
@@ -72,7 +72,7 @@
         }
     }
 
-    &.uui-bg-surface-main {
+    :global(.uui-flexRow-bg-surface-main) {
         --uui-flex-row-bg: var(--uui-surface-main);
     }
 }

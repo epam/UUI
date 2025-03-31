@@ -25,11 +25,6 @@ interface TextMods {
     lineHeight?: '12' | '18' | '24' | '30';
     /** Defines text font-size */
     fontSize?: '10' | '12' | '14' | '16' | '18' | '24';
-}
-
-export interface TextModsOverride {}
-
-export interface TextCoreProps extends uuiComponents.TextProps {
     /**
      * Defines text font weight value
      * @default '400'
@@ -42,7 +37,11 @@ export interface TextCoreProps extends uuiComponents.TextProps {
     fontStyle?: TextFontStyle;
 }
 
-export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}
+export interface TextCoreProps extends uuiComponents.TextProps {}
+
+export interface TextModsOverride {}
+
+export interface TextProps extends uuiComponents.TextProps, Overwrite<TextMods, TextModsOverride> {}
 
 function applyTextMods(mods: TextProps) {
     return [

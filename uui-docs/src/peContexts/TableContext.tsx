@@ -63,7 +63,7 @@ export function TableContext(contextProps: DemoComponentProps) {
             caption: 'Component',
             renderCell: (props) => (
                 <DataTableCell
-                    { ...props.rowLens.prop('id').toProps() }
+                    { ...props.rowLens.prop('demoField').toProps() }
                     renderEditor={ (props) => <DemoComponent { ...props } { ...contextProps.props } /> }
                     { ...props }
                 />
@@ -100,7 +100,7 @@ export function TableContext(contextProps: DemoComponentProps) {
             caption: 'Component',
             renderCell: (props) => (
                 <DataTableCell
-                    { ...props.rowLens.prop('id').toProps() }
+                    { ...props.rowLens.prop('demoField2').toProps() }
                     renderEditor={ (props) => <DemoComponent { ...props } { ...contextProps.props } /> }
                     { ...props }
                 />
