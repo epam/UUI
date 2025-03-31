@@ -46,7 +46,6 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
 
     componentDidMount() {
         this.redirectIfModeIsUnsupported();
-        document.title = this.title ? `${this.title} | UUI` : 'UUI';
     }
 
     componentDidUpdate() {
