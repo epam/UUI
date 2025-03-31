@@ -22,7 +22,6 @@ export {
     renderHookWithContextAsync,
     renderWithContextAsync,
     getDefaultUUiContextWrapper,
-    renderer, // re-export of react-test-renderer
 } from './src/rendering/renderingWithContextUtils';
 export type { CustomWrapperType } from './src/rendering/renderingWithContextUtils';
 // setup

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Accordion } from '../Accordion';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { settings } from '../../../settings';
 
 describe('Accordion', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Accordion title="Test title" />).toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Accordion title="Test title" />);
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly with props', () => {
-        const tree = renderer.create(
+    it('should be rendered correctly with props', async () => {
+        const tree = await renderSnapshotWithContextAsync(
             <Accordion
                 title="Test title"
                 mode="inline"
@@ -18,7 +18,7 @@ describe('Accordion', () => {
                 padding="18"
                 isDisabled={ true }
             />,
-        ).toJSON();
+        );
         expect(tree).toMatchSnapshot();
     });
 });

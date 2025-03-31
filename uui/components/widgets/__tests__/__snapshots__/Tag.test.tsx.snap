@@ -1,46 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tag should be rendered correctly 1`] = `
-<span
-  className="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
-  tabIndex={-1}
-/>
+<DocumentFragment>
+  <span
+    class="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+    tabindex="-1"
+  />
+</DocumentFragment>
 `;
 
 exports[`Tag should be rendered correctly with props 1`] = `
-<button
-  className="uui-button-box uui-enabled -clickable root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
-  onClick={[Function]}
-  tabIndex={0}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled -clickable"
-    onClick={[Function]}
-    style={Object {}}
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled -clickable root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+    tabindex="0"
+    type="button"
   >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="uui-caption"
-  >
-    Test badge
-  </div>
-  <div
-    className="root uui-count_indicator uui-size-18 uui-color-white"
-  >
-    12
-  </div>
-  <div
-    className="container uui-icon uui-enabled -clickable -clickable"
-    onClick={[Function]}
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-</button>
+    <div
+      class="container uui-icon uui-enabled -clickable"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <div
+      class="uui-caption"
+    >
+      Test badge
+    </div>
+    <div
+      class="root uui-count_indicator uui-size-18 uui-color-white"
+    >
+      12
+    </div>
+    <div
+      class="container uui-icon uui-enabled -clickable -clickable"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </button>
+</DocumentFragment>
 `;

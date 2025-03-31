@@ -1,14 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Panel should be rendered correctly 1`] = `
-<div
-  className="uui-panel root container"
-/>
+<DocumentFragment>
+  <div
+    class="uui-panel root container"
+  />
+</DocumentFragment>
 `;
 
 exports[`Panel should be rendered correctly with props 1`] = `
-<div
-  className="uui-panel root shadow margin-24 container -clickable"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <div
+    class="uui-panel root shadow margin-24 container -clickable"
+  />
+</DocumentFragment>
 `;

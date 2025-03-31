@@ -1,169 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataPickerBody should be rendered with maximum props 1`] = `
-Array [
+<DocumentFragment>
   <div
-    className="searchWrapper uui-picker_input-body-search"
+    class="searchWrapper uui-picker_input-body-search"
   >
     <div
-      className=""
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "0",
-          "flexGrow": 1,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
+      class=""
+      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
     >
       <div
-        className="container uui-input-box -clickable root uui-size-48 mode-form"
-        dir="auto"
-        onFocus={[Function]}
-        tabIndex={-1}
+        data-autofocus-inside="true"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
-        >
-          <svg
-            className=""
-          />
-        </div>
-        <input
-          className="uui-input"
-          dir="ltr"
-          inputMode="search"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          placeholder="Search"
-          tabIndex={0}
-          type="search"
-          value=""
-        />
-      </div>
-    </div>
-  </div>,
-  <div
-    className="root uui-flex-row uui-picker_input-body uui-size-36"
-    style={
-      Object {
-        "maxHeight": 800,
-        "maxWidth": undefined,
-      }
-    }
-    tabIndex={-1}
-  >
-    <div
-      className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
-    >
-      <div
-        aria-multiselectable={null}
-        aria-orientation="vertical"
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "display": "flex",
-            "flex": "1 1 auto",
-            "flexDirection": "column",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      >
-        <div
-          className="listContainer"
-          style={
-            Object {
-              "minHeight": "0px",
-            }
-          }
+          class="container uui-input-box -clickable uui-focus root uui-size-48 mode-form"
+          dir="auto"
+          tabindex="-1"
         >
           <div
-            style={
-              Object {
-                "marginTop": 0,
-              }
-            }
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+          <input
+            class="uui-input"
+            dir="ltr"
+            inputmode="search"
+            placeholder="Search"
+            tabindex="0"
+            type="search"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="root uui-flex-row uui-picker_input-body uui-size-36"
+    style="max-height: 800px;"
+    tabindex="-1"
+  >
+    <div
+      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+    >
+      <div
+        aria-orientation="vertical"
+        style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+      >
+        <div
+          class="listContainer"
+          style="min-height: 7px;"
+        >
+          <div
+            style="margin-top: 0px;"
           >
             <div
-              aria-checked={null}
-              aria-posinset={1}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="1"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           A1
                         </div>
@@ -171,70 +90,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={2}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="2"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           A1+
                         </div>
@@ -242,70 +128,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={3}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="3"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           A2
                         </div>
@@ -313,70 +166,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={4}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="4"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           A2+
                         </div>
@@ -384,70 +204,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={5}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="5"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           B1
                         </div>
@@ -455,70 +242,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={6}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="6"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           B1+
                         </div>
@@ -526,70 +280,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={7}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="7"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           B2
                         </div>
@@ -597,70 +318,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={8}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="8"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           B2+
                         </div>
@@ -668,70 +356,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={9}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="9"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           C1
                         </div>
@@ -739,70 +394,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={10}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="10"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           C1+
                         </div>
@@ -810,70 +432,37 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
             </div>
             <div
-              aria-checked={null}
-              aria-posinset={11}
-              aria-selected={null}
-              className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              aria-posinset="11"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
               role="option"
             >
               <div
-                className="flexCell rowContent"
-                style={
-                  Object {
-                    "alignSelf": undefined,
-                    "flexBasis": "0",
-                    "flexGrow": 1,
-                    "flexShrink": undefined,
-                    "minWidth": 0,
-                    "textAlign": undefined,
-                  }
-                }
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="contentWrapper"
+                  class="contentWrapper"
                 >
                   <div
-                    className="flexCell root uui-picker_input-item uui-typography"
-                    style={
-                      Object {
-                        "alignSelf": undefined,
-                        "flexBasis": "auto",
-                        "flexGrow": undefined,
-                        "flexShrink": undefined,
-                        "minWidth": 0,
-                        "textAlign": undefined,
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="root uui-flex-row columnGap uui-size-36"
-                      style={
-                        Object {
-                          "--uui-picker_item-vertical-padding": "9px",
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="flexCell"
-                        style={
-                          Object {
-                            "alignSelf": undefined,
-                            "flexBasis": "auto",
-                            "flexGrow": undefined,
-                            "flexShrink": undefined,
-                            "minWidth": 0,
-                            "textAlign": undefined,
-                          }
-                        }
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          className="title uui-size-36"
+                          class="title uui-size-36"
                         >
                           C2
                         </div>
@@ -881,7 +470,7 @@ Array [
                     </div>
                   </div>
                   <div
-                    className="flexSpacer"
+                    class="flexSpacer"
                   />
                 </div>
               </div>
@@ -893,946 +482,509 @@ Array [
         aria-busy="false"
         aria-label=""
         aria-live="polite"
-        className="container uui-blocker-container root"
+        class="container uui-blocker-container root"
         role="status"
-        style={
-          Object {
-            "minHeight": undefined,
-          }
-        }
       />
       <div
-        className="uui-track-horizontal"
-        style={
-          Object {
-            "display": "none",
-            "height": 6,
-            "position": "absolute",
-          }
-        }
+        class="uui-track-horizontal"
+        style="position: absolute; height: 6px; display: none;"
       >
         <div
-          className="uui-thumb-horizontal"
+          class="uui-thumb-horizontal"
         />
       </div>
       <div
-        className="uui-track-vertical"
-        style={
-          Object {
-            "display": "none",
-            "position": "absolute",
-            "width": 6,
-          }
-        }
+        class="uui-track-vertical"
+        style="position: absolute; width: 6px; display: none;"
       >
         <div
-          className="uui-thumb-vertical"
+          class="uui-thumb-vertical"
         />
       </div>
     </div>
-  </div>,
-]
+  </div>
+</DocumentFragment>
 `;
 
 exports[`DataPickerBody should be rendered with minimum props 1`] = `
-<div
-  className="root uui-flex-row uui-picker_input-body uui-size-36"
-  style={
-    Object {
-      "maxHeight": undefined,
-      "maxWidth": undefined,
-    }
-  }
-  tabIndex={-1}
->
+<DocumentFragment>
   <div
-    className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-    style={
-      Object {
-        "display": "flex",
-        "height": "100%",
-        "overflow": "hidden",
-        "position": "relative",
-        "width": "100%",
-      }
-    }
+    class="root uui-flex-row uui-picker_input-body uui-size-36"
+    tabindex="-1"
   >
     <div
-      aria-multiselectable={null}
-      aria-orientation="vertical"
-      style={
-        Object {
-          "WebkitOverflowScrolling": "touch",
-          "bottom": 0,
-          "display": "flex",
-          "flex": "1 1 auto",
-          "flexDirection": "column",
-          "left": 0,
-          "marginBottom": 0,
-          "marginRight": 0,
-          "overflow": "scroll",
-          "position": "relative",
-          "right": 0,
-          "top": 0,
-        }
-      }
+      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
     >
       <div
-        className="listContainer"
-        style={
-          Object {
-            "minHeight": "0px",
-          }
-        }
+        aria-orientation="vertical"
+        style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
       >
         <div
-          style={
-            Object {
-              "marginTop": 0,
-            }
-          }
+          class="listContainer"
+          style="min-height: NaNpx;"
         >
           <div
-            aria-checked={null}
-            aria-posinset={1}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
+            style="margin-top: 0px;"
           >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="1"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        A1
+                        <div
+                          class="title uui-size-36"
+                        >
+                          A1
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={2}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="2"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        A1+
+                        <div
+                          class="title uui-size-36"
+                        >
+                          A1+
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={3}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="3"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        A2
+                        <div
+                          class="title uui-size-36"
+                        >
+                          A2
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={4}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="4"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        A2+
+                        <div
+                          class="title uui-size-36"
+                        >
+                          A2+
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={5}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="5"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        B1
+                        <div
+                          class="title uui-size-36"
+                        >
+                          B1
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={6}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="6"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        B1+
+                        <div
+                          class="title uui-size-36"
+                        >
+                          B1+
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={7}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="7"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        B2
+                        <div
+                          class="title uui-size-36"
+                        >
+                          B2
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={8}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="8"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        B2+
+                        <div
+                          class="title uui-size-36"
+                        >
+                          B2+
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={9}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="9"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        C1
+                        <div
+                          class="title uui-size-36"
+                        >
+                          C1
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={10}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="10"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        C1+
+                        <div
+                          class="title uui-size-36"
+                        >
+                          C1+
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
-          </div>
-          <div
-            aria-checked={null}
-            aria-posinset={11}
-            aria-selected={null}
-            className="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
-            role="option"
-          >
             <div
-              className="flexCell rowContent"
-              style={
-                Object {
-                  "alignSelf": undefined,
-                  "flexBasis": "0",
-                  "flexGrow": 1,
-                  "flexShrink": undefined,
-                  "minWidth": 0,
-                  "textAlign": undefined,
-                }
-              }
+              aria-posinset="11"
+              class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+              role="option"
             >
               <div
-                className="contentWrapper"
+                class="flexCell rowContent"
+                style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
               >
                 <div
-                  className="flexCell root uui-picker_input-item uui-typography"
-                  style={
-                    Object {
-                      "alignSelf": undefined,
-                      "flexBasis": "auto",
-                      "flexGrow": undefined,
-                      "flexShrink": undefined,
-                      "minWidth": 0,
-                      "textAlign": undefined,
-                    }
-                  }
+                  class="contentWrapper"
                 >
                   <div
-                    className="root uui-flex-row columnGap uui-size-36"
-                    style={
-                      Object {
-                        "--uui-picker_item-vertical-padding": "9px",
-                      }
-                    }
+                    class="flexCell root uui-picker_input-item uui-typography"
+                    style="min-width: 0; flex-basis: auto;"
                   >
                     <div
-                      className="flexCell"
-                      style={
-                        Object {
-                          "alignSelf": undefined,
-                          "flexBasis": "auto",
-                          "flexGrow": undefined,
-                          "flexShrink": undefined,
-                          "minWidth": 0,
-                          "textAlign": undefined,
-                        }
-                      }
+                      class="root uui-flex-row columnGap uui-size-36"
+                      style="--uui-picker_item-vertical-padding: 9px;"
                     >
                       <div
-                        className="title uui-size-36"
+                        class="flexCell"
+                        style="min-width: 0; flex-basis: auto;"
                       >
-                        C2
+                        <div
+                          class="title uui-size-36"
+                        >
+                          C2
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div
+                    class="flexSpacer"
+                  />
                 </div>
-                <div
-                  className="flexSpacer"
-                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      aria-busy="false"
-      aria-label=""
-      aria-live="polite"
-      className="container uui-blocker-container root"
-      role="status"
-      style={
-        Object {
-          "minHeight": undefined,
-        }
-      }
-    />
-    <div
-      className="uui-track-horizontal"
-      style={
-        Object {
-          "display": "none",
-          "height": 6,
-          "position": "absolute",
-        }
-      }
-    >
       <div
-        className="uui-thumb-horizontal"
+        aria-busy="false"
+        aria-label=""
+        aria-live="polite"
+        class="container uui-blocker-container root"
+        role="status"
       />
-    </div>
-    <div
-      className="uui-track-vertical"
-      style={
-        Object {
-          "display": "none",
-          "position": "absolute",
-          "width": 6,
-        }
-      }
-    >
       <div
-        className="uui-thumb-vertical"
-      />
+        class="uui-track-horizontal"
+        style="position: absolute; height: 6px; display: none;"
+      >
+        <div
+          class="uui-thumb-horizontal"
+        />
+      </div>
+      <div
+        class="uui-track-vertical"
+        style="position: absolute; width: 6px; display: none;"
+      >
+        <div
+          class="uui-thumb-vertical"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DataPickerBody should be rendered without rows 1`] = `
-<div
-  className="root uui-flex-row uui-picker_input-body uui-size-36"
-  style={
-    Object {
-      "maxHeight": undefined,
-      "maxWidth": undefined,
-    }
-  }
-  tabIndex={-1}
->
-  <div>
-    Not found
+<DocumentFragment>
+  <div
+    class="root uui-flex-row uui-picker_input-body uui-size-36"
+    tabindex="-1"
+  >
+    <div>
+      Not found
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

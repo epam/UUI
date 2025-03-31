@@ -46,7 +46,7 @@ function PickerTogglerComponent<TItem, TId>(
         return (
             <PickerTogglerTag
                 { ...itemPropsWithSize }
-                key={ itemProps.rowProps?.id as string }
+                key={ itemProps.isCollapsed ? 'collapsed_tag' : itemProps.rowProps?.id as string }
                 getName={ props.getName }
             />
         );
