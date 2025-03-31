@@ -28,28 +28,28 @@ export function setupJsDom(global, options = {}) {
     const elementPrototypeMock = {
         scrollTo: () => {},
     };
-    const consoleMock = (() => {
-        const consoleErrorPrev = global.console.error;
-        const error = (/** @type {[any]} */ ...args) => {
-            const [first] = args;
-            const ignorePatterns = ['Warning: validateDOMNesting(...):'];
-            if (typeof first === 'string') {
-                const shouldIgnore = ignorePatterns.some((p) => first.indexOf(p) !== -1);
-                if (shouldIgnore) {
-                    return;
-                }
-            }
-            consoleErrorPrev.apply(global, args);
-        };
-        return {
-            error,
-        };
-    })();
+    // const consoleMock = (() => {
+    //     const consoleErrorPrev = global.console.error;
+    //     const error = (/** @type {[any]} */ ...args) => {
+    //         const [first] = args;
+    //         const ignorePatterns = ['Warning: validateDOMNesting(...):'];
+    //         if (typeof first === 'string') {
+    //             const shouldIgnore = ignorePatterns.some((p) => first.indexOf(p) !== -1);
+    //             if (shouldIgnore) {
+    //                 return;
+    //             }
+    //         }
+    //         consoleErrorPrev.apply(global, args);
+    //     };
+    //     return {
+    //         error,
+    //     };
+    // })();
 
     Object.assign(global, globalMock);
     Object.assign(global.navigator, navigatorMock);
     Object.assign(global.Element.prototype, elementPrototypeMock);
-    Object.assign(global.console, consoleMock);
+    // Object.assign(global.console, consoleMock);
 
     if (mockCommon3rdPartyDeps) {
         enableMockForCommon3rdPartyDeps();

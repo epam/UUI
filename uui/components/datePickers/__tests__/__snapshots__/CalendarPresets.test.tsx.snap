@@ -1,109 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CalendarPresets should be rendered correctly 1`] = `
-<div
-  className="uui-presets-container root"
->
+<DocumentFragment>
   <div
-    className="uui-presets-header"
+    class="uui-presets-container root"
   >
-    Presets
+    <div
+      class="uui-presets-header"
+    >
+      Presets
+    </div>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        Today
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        This Week
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        Last Week
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        This Month
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        Last Month
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        Last 3 Months
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        This Year
+      </div>
+    </button>
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
+    >
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        Last Year
+      </div>
+    </button>
   </div>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      Today
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      This Week
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      Last Week
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      This Month
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      Last Month
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      Last 3 Months
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      This Year
-    </div>
-  </button>
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-24 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
-    >
-      Last Year
-    </div>
-  </button>
-</div>
+</DocumentFragment>
 `;

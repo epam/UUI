@@ -142,7 +142,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
         if (props.selectedRowsCount > maxItems) {
             const collapsedTagProps = props.renderItem?.({
-                key: 'collapsed',
                 caption: maxItems > 0
                     ? `+ ${props.selectedRowsCount - maxItems}`
                     : i18n.pickerToggler.collapsedItemsTagName(props.selectedRowsCount),

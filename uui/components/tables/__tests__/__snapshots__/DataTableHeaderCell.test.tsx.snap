@@ -1,34 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTableHeaderCell should be rendered correctly 1`] = `
-<div
-  aria-sort="none"
-  className="uui-dt-vars root uui-table-header-cell root uui-size-36 uui-dt-header-first-column pinned-left"
-  onClick={[Function]}
-  role="columnheader"
-  style={
-    Object {
-      "--uui-dt-header-cell-icon-size": "18px",
-      "--uui-dt-header-cell-padding-end": "var(--uui-dt-header-cell-padding)",
-      "--uui-dt-header-cell-padding-start": "var(--uui-dt-header-cell-padding-edge)",
-      "--uui-dt-header-cell-resizing-marker-width": "var(--uui-resize-marker-width)",
-      "alignSelf": undefined,
-      "flexBasis": "150px",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": "150px",
-      "textAlign": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="captionWrapper align-undefined uui-table-header-caption-wrapper"
+    aria-sort="none"
+    class="uui-dt-vars root uui-table-header-cell root uui-size-36 uui-dt-header-first-column pinned-left"
+    role="columnheader"
+    style="min-width: 150px; flex-basis: 150px; --uui-dt-header-cell-icon-size: 18px; --uui-dt-header-cell-padding-start: var(--uui-dt-header-cell-padding-edge); --uui-dt-header-cell-padding-end: var(--uui-dt-header-cell-padding); --uui-dt-header-cell-resizing-marker-width: var(--uui-resize-marker-width);"
   >
     <div
-      className="caption uui-table-header-caption uui-typography-inline"
+      class="captionWrapper align-undefined uui-table-header-caption-wrapper"
     >
-      Test
+      <div
+        class="caption uui-table-header-caption uui-typography-inline"
+      >
+        Test
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

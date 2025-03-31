@@ -1,15 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AvatarRow should be rendered correctly 1`] = `
-<div
-  className="avatarRow"
->
-  <img
-    className="avatar avatarContent size-42"
-    height="42"
-    onError={[Function]}
-    src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-    width="42"
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="avatarRow"
+  >
+    <img
+      class="avatar avatarContent size-42"
+      height="42"
+      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+      width="42"
+    />
+  </div>
+</DocumentFragment>
 `;

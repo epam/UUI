@@ -1,120 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RangeDataPicker should be rendered if many params defined 1`] = `
-<div
-  className="uui-size-36 uui-range-date-picker root uui-disabled uui-readonly uui-invalid"
-  onKeyDown={[Function]}
->
+<DocumentFragment>
   <div
-    className="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
-    onClick={[Function]}
-    onFocus={[Function]}
-    tabIndex={-1}
+    class="uui-size-36 uui-range-date-picker root uui-disabled uui-readonly uui-invalid"
   >
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
+      tabindex="-1"
     >
-      <svg
-        className=""
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
+      <input
+        aria-disabled="true"
+        aria-invalid="true"
+        class="uui-input"
+        disabled=""
+        id="date"
+        placeholder=""
+        readonly=""
+        tabindex="-1"
+        type="text"
+        value=""
       />
     </div>
-    <input
-      aria-disabled={true}
-      aria-invalid={true}
-      className="uui-input"
-      disabled={true}
-      id="date"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      readOnly={true}
-      tabIndex={-1}
-      type="text"
-      value=""
+    <div
+      class="separator"
     />
+    <div
+      class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
+      tabindex="-1"
+    >
+      <input
+        aria-disabled="true"
+        aria-invalid="true"
+        class="uui-input"
+        disabled=""
+        placeholder=""
+        readonly=""
+        tabindex="-1"
+        type="text"
+        value=""
+      />
+    </div>
   </div>
-  <div
-    className="separator"
-  />
-  <div
-    className="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
-    onClick={[Function]}
-    onFocus={[Function]}
-    tabIndex={-1}
-  >
-    <input
-      aria-disabled={true}
-      aria-invalid={true}
-      className="uui-input"
-      disabled={true}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder=""
-      readOnly={true}
-      tabIndex={-1}
-      type="text"
-      value=""
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`RangeDataPicker should be rendered if minimum params and custom format defined 1`] = `
-<div
-  className="uui-size-36 uui-range-date-picker root"
-  onKeyDown={[Function]}
->
+<DocumentFragment>
   <div
-    className="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
-    onClick={[Function]}
-    onFocus={[Function]}
-    tabIndex={-1}
+    class="uui-size-36 uui-range-date-picker root"
   >
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      class="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
+      tabindex="-1"
     >
-      <svg
-        className=""
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
+      <input
+        class="uui-input"
+        placeholder="From:"
+        tabindex="0"
+        type="text"
+        value=""
       />
     </div>
-    <input
-      className="uui-input"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder="From:"
-      tabIndex={0}
-      type="text"
-      value=""
+    <div
+      class="separator"
     />
+    <div
+      class="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
+      tabindex="-1"
+    >
+      <input
+        class="uui-input"
+        placeholder="To:"
+        tabindex="0"
+        type="text"
+        value=""
+      />
+    </div>
   </div>
-  <div
-    className="separator"
-  />
-  <div
-    className="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
-    onClick={[Function]}
-    onFocus={[Function]}
-    tabIndex={-1}
-  >
-    <input
-      className="uui-input"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      placeholder="To:"
-      tabIndex={0}
-      type="text"
-      value=""
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;

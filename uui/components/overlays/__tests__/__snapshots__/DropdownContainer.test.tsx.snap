@@ -1,43 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropdownContainer should be rendered correctly 1`] = `
-<div
-  className="uui-dropdown-body -lock-focus root vPadding-18 padding-24 container"
-  style={
-    Object {
-      "maxHeight": undefined,
-      "maxWidth": 300,
-      "minHeight": 600,
-      "minWidth": 300,
-    }
-  }
-  tabIndex={-1}
->
-  <button
-    className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-    tabIndex={-1}
-    type="button"
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="uui-dropdown-body -lock-focus root vPadding-18 padding-24 container"
+    style="min-width: 300px; min-height: 600px; max-width: 300px;"
+    tabindex="-1"
+  >
+    <button
+      class="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+      tabindex="-1"
+      type="button"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`DropdownContainer should be rendered correctly with minimum props 1`] = `
-<div
-  className="uui-dropdown-body -lock-focus root container"
-  style={
-    Object {
-      "maxHeight": undefined,
-      "maxWidth": undefined,
-      "minHeight": undefined,
-      "minWidth": undefined,
-    }
-  }
-  tabIndex={-1}
->
-  <button
-    className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-    tabIndex={-1}
-    type="button"
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="uui-dropdown-body -lock-focus root container"
+    tabindex="-1"
+  >
+    <button
+      class="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+      tabindex="-1"
+      type="button"
+    />
+  </div>
+</DocumentFragment>
 `;

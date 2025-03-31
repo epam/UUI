@@ -1,261 +1,173 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
-Array [
+<DocumentFragment>
   <div
-    className=""
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "auto",
-        "flexGrow": undefined,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    class=""
+    style="min-width: 0; flex-basis: auto;"
   >
     <div
-      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
-      onClick={[Function]}
-      onKeyDown={[Function]}
+      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       role="button"
-      style={
-        Object {
-          "maxWidth": "300px",
-        }
-      }
-      tabIndex={0}
+      style="max-width: 300px;"
+      tabindex="0"
     >
       <div
-        className="titleWrapper"
+        class="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
         >
           Status:
         </div>
         <div
-          className="textWrapper"
+          class="textWrapper"
         >
           <div
-            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline selection container"
-            style={Object {}}
+            class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline selection container"
           >
             Unknown
           </div>
         </div>
       </div>
       <div
-        className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        class="container uui-icon uui-enabled uui-icon-dropdown"
       >
         <svg
-          className=""
+          class=""
         />
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    className=""
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "auto",
-        "flexGrow": undefined,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    class=""
+    style="min-width: 0; flex-basis: auto;"
   >
     <div
-      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
-      onClick={[Function]}
-      onKeyDown={[Function]}
+      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       role="button"
-      style={
-        Object {
-          "maxWidth": "400px",
-        }
-      }
-      tabIndex={0}
+      style="max-width: 400px;"
+      tabindex="0"
     >
       <div
-        className="titleWrapper"
+        class="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
         >
           Position
         </div>
       </div>
       <div
-        className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        class="container uui-icon uui-enabled uui-icon-dropdown"
       >
         <svg
-          className=""
+          class=""
         />
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    className=""
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "auto",
-        "flexGrow": undefined,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    class=""
+    style="min-width: 0; flex-basis: auto;"
   >
     <div
-      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
-      onClick={[Function]}
-      onKeyDown={[Function]}
+      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       role="button"
-      style={
-        Object {
-          "maxWidth": "300px",
-        }
-      }
-      tabIndex={0}
+      style="max-width: 300px;"
+      tabindex="0"
     >
       <div
-        className="titleWrapper"
+        class="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
         >
           Age
         </div>
       </div>
       <div
-        className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        class="container uui-icon uui-enabled uui-icon-dropdown"
       >
         <svg
-          className=""
+          class=""
         />
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    className=""
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "auto",
-        "flexGrow": undefined,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    class=""
+    style="min-width: 0; flex-basis: auto;"
   >
     <div
-      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
-      onClick={[Function]}
-      onKeyDown={[Function]}
+      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       role="button"
-      style={
-        Object {
-          "maxWidth": "auto",
-        }
-      }
-      tabIndex={0}
+      style="max-width: auto;"
+      tabindex="0"
     >
       <div
-        className="titleWrapper"
+        class="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
         >
           Hire Date
         </div>
       </div>
       <div
-        className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        class="container uui-icon uui-enabled uui-icon-dropdown"
       >
         <svg
-          className=""
+          class=""
         />
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    className=""
-    style={
-      Object {
-        "alignSelf": undefined,
-        "flexBasis": "auto",
-        "flexGrow": undefined,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    class=""
+    style="min-width: 0; flex-basis: auto;"
   >
     <div
-      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
-      onClick={[Function]}
-      onKeyDown={[Function]}
+      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
       role="button"
-      style={
-        Object {
-          "maxWidth": "auto",
-        }
-      }
-      tabIndex={0}
+      style="max-width: auto;"
+      tabindex="0"
     >
       <div
-        className="titleWrapper"
+        class="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
         >
           Exit Date
         </div>
       </div>
       <div
-        className="container uui-icon uui-enabled uui-icon-dropdown"
-        style={Object {}}
+        class="container uui-icon uui-enabled uui-icon-dropdown"
       >
         <svg
-          className=""
+          class=""
         />
       </div>
     </div>
-  </div>,
+  </div>
   <button
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-filters-panel-add-button"
-    onClick={[Function]}
-    tabIndex={0}
+    class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-filters-panel-add-button"
+    tabindex="0"
     type="button"
   >
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      class="container uui-icon uui-enabled"
     >
       <svg
-        className=""
+        class=""
       />
     </div>
     <div
-      className="uui-caption"
+      class="uui-caption"
     >
       Add filter
     </div>
-  </button>,
-]
+  </button>
+</DocumentFragment>
 `;

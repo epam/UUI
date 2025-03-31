@@ -1,47 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AvatarStack should be rendered correctly 1`] = `
-<div
-  className="root root"
->
+<DocumentFragment>
   <div
-    className="uui-avatar_stack-avatars container avatar-right"
-    role="group"
-    style={
-      Object {
-        "--overlap": "-9px",
-      }
-    }
+    class="root root"
   >
-    <img
-      alt="avatar"
-      className="avatar"
-      height="36"
-      onError={[Function]}
-      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-      width="36"
-    />
-    <img
-      alt="avatar"
-      className="avatar"
-      height="36"
-      onError={[Function]}
-      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-      width="36"
-    />
-    <img
-      alt="avatar"
-      className="avatar"
-      height="36"
-      onError={[Function]}
-      src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-      width="36"
-    />
+    <div
+      class="uui-avatar_stack-avatars container avatar-right"
+      role="group"
+      style="--overlap: -9px;"
+    >
+      <img
+        alt="avatar"
+        class="avatar"
+        height="36"
+        src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+        width="36"
+      />
+      <img
+        alt="avatar"
+        class="avatar"
+        height="36"
+        src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+        width="36"
+      />
+      <img
+        alt="avatar"
+        class="avatar"
+        height="36"
+        src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+        width="36"
+      />
+    </div>
+    <div
+      class="uui-avatar_stack-count"
+    >
+      +2
+    </div>
   </div>
-  <div
-    className="uui-avatar_stack-count"
-  >
-    +2
-  </div>
-</div>
+</DocumentFragment>
 `;

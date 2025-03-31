@@ -1,207 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alert should render with maximum props 1`] = `
-<div
-  className="uui-alert root uui-color-success uui-size-48"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-alert root uui-color-success uui-size-48"
+    role="alert"
   >
     <div
-      className="contentWrapper"
+      class="mainPath"
     >
       <div
-        className="iconWrapper"
+        class="contentWrapper"
       >
         <div
-          className="container uui-icon uui-enabled icon"
-          style={Object {}}
+          class="iconWrapper"
+        >
+          <div
+            class="container uui-icon uui-enabled icon"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </div>
+        <div
+          class="content"
+        >
+          <div
+            class="actionWrapper"
+          >
+            <button
+              class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="uui-caption uui-link-button-weight-semibold"
+              >
+                ACTION 1
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <button
+        class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+        tabindex="0"
+        type="button"
+      >
+        <div
+          class="container uui-icon uui-enabled"
         >
           <svg
-            className=""
+            class=""
           />
         </div>
-      </div>
-      <div
-        className="content"
-      >
-        <div
-          className="actionWrapper"
-        >
-          <button
-            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-no-left-icon uui-no-right-icon uui-color-primary actionLink"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <div
-              className="uui-caption uui-link-button-weight-semibold"
-            >
-              ACTION 1
-            </div>
-          </button>
-        </div>
-      </div>
+      </button>
     </div>
-    <button
-      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-      onClick={[Function]}
-      tabIndex={0}
-      type="button"
-    >
-      <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-    </button>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Alert should render with minimum props 1`] = `
-<div
-  className="uui-alert root uui-color-info uui-size-48"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-alert root uui-color-info uui-size-48"
+    role="alert"
   >
     <div
-      className="contentWrapper"
+      class="mainPath"
     >
       <div
-        className="content"
-      />
+        class="contentWrapper"
+      >
+        <div
+          class="content"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ErrorAlert should be rendered correctly 1`] = `
-<div
-  className="uui-alert root uui-color-error uui-size-48"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-alert root uui-color-error uui-size-48"
+    role="alert"
   >
     <div
-      className="contentWrapper"
+      class="mainPath"
     >
       <div
-        className="iconWrapper"
+        class="contentWrapper"
       >
         <div
-          className="container uui-icon uui-enabled icon"
-          style={Object {}}
+          class="iconWrapper"
         >
-          <svg
-            className=""
-          />
+          <div
+            class="container uui-icon uui-enabled icon"
+          >
+            <svg
+              class=""
+            />
+          </div>
         </div>
+        <div
+          class="content"
+        />
       </div>
-      <div
-        className="content"
-      />
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`HintAlert should be rendered correctly 1`] = `
-<div
-  className="uui-alert root uui-color-info uui-size-48"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-alert root uui-color-info uui-size-48"
+    role="alert"
   >
     <div
-      className="contentWrapper"
+      class="mainPath"
     >
       <div
-        className="iconWrapper"
+        class="contentWrapper"
       >
         <div
-          className="container uui-icon uui-enabled icon"
-          style={Object {}}
+          class="iconWrapper"
         >
-          <svg
-            className=""
-          />
+          <div
+            class="container uui-icon uui-enabled icon"
+          >
+            <svg
+              class=""
+            />
+          </div>
         </div>
+        <div
+          class="content"
+        />
       </div>
-      <div
-        className="content"
-      />
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`SuccessAlert should be rendered correctly 1`] = `
-<div
-  className="uui-alert root uui-color-success uui-size-48"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-alert root uui-color-success uui-size-48"
+    role="alert"
   >
     <div
-      className="contentWrapper"
+      class="mainPath"
     >
       <div
-        className="iconWrapper"
+        class="contentWrapper"
       >
         <div
-          className="container uui-icon uui-enabled icon"
-          style={Object {}}
+          class="iconWrapper"
         >
-          <svg
-            className=""
-          />
+          <div
+            class="container uui-icon uui-enabled icon"
+          >
+            <svg
+              class=""
+            />
+          </div>
         </div>
+        <div
+          class="content"
+        />
       </div>
-      <div
-        className="content"
-      />
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`WarningAlert should be rendered correctly 1`] = `
-<div
-  className="uui-alert root uui-color-warning uui-size-48"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-alert root uui-color-warning uui-size-48"
+    role="alert"
   >
     <div
-      className="contentWrapper"
+      class="mainPath"
     >
       <div
-        className="iconWrapper"
+        class="contentWrapper"
       >
         <div
-          className="container uui-icon uui-enabled icon"
-          style={Object {}}
+          class="iconWrapper"
         >
-          <svg
-            className=""
-          />
+          <div
+            class="container uui-icon uui-enabled icon"
+          >
+            <svg
+              class=""
+            />
+          </div>
         </div>
+        <div
+          class="content"
+        />
       </div>
-      <div
-        className="content"
-      />
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

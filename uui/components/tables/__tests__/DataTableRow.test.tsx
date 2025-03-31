@@ -1,30 +1,28 @@
 import React from 'react';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { DataTableRow } from '../DataTableRow';
-import { renderer } from '@epam/uui-test-utils';
 
 describe('DataTableRow', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer
-            .create(
-                <DataTableRow
-                    id="test"
-                    index={ 1 }
-                    rowKey="testRowKey"
-                    columns={ [
-                        {
-                            key: 'id',
-                            caption: 'ID',
-                            render: (product) => <div>{product}</div>,
-                            isSortable: true,
-                            isAlwaysVisible: true,
-                            grow: 0,
-                            shrink: 0,
-                            width: 96,
-                        },
-                    ] }
-                />,
-            )
-            .toJSON();
-        expect(tree).toMatchSnapshot();
+    it('should be rendered correctly', async () => {
+        const node = await renderSnapshotWithContextAsync(
+            <DataTableRow
+                id="test"
+                index={ 1 }
+                rowKey="testRowKey"
+                value={ { name: 'Test Product' } }
+                columns={ [
+                    {
+                        key: 'id',
+                        caption: 'ID',
+                        render: (product) => <div>{product.name}</div>,
+                        isSortable: true,
+                        isAlwaysVisible: true,
+                        grow: 0,
+                        width: 96,
+                    },
+                ] }
+            />,
+        );
+        expect(node).toMatchSnapshot();
     });
 });
