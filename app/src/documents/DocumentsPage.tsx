@@ -19,9 +19,9 @@ type DocsQuery = {
 
 export function DocumentsPage() {
     const svc = useUuiContext<TApi, AppContext>();
-    const queryParamId: string = useQuery('id');
+    const selectedDocId: string = useQuery('id');
     const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
-    const itemsInfo = useItems(queryParamId);
+    const docsStructure = svc.uuiApp.docsMenuStructure;
     const [pageWidth, setPageWidth] = useState(window.innerWidth);
     const { theme, themesById } = useAppThemeContext();
 
@@ -52,31 +52,22 @@ export function DocumentsPage() {
         document.head.appendChild(canonicalLink);
     };
 
-    function useItems(selectedId: string) {
-        const { docsMenuStructure } = svc.uuiApp;
-
-        return useMemo(() => {
-            if (docsMenuStructure) {
-                const items = docsMenuStructure;
-                const PageComponent = items.find((item) => item.id === selectedId)?.component;
-                return {
-                    items,
-                    PageComponent,
-                };
-            }
-        }, [docsMenuStructure, selectedId]);
-    }
-
-    useEffect(() => {
-        if (itemsInfo && !itemsInfo.PageComponent) {
-            redirectTo({ id: itemsInfo.items[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
+    const selectedDoc = useMemo(() => {
+        if (docsStructure) {
+            return docsStructure.find((item) => item.id === selectedDocId);
         }
-        addCanonicalLinkTag();
-    }, [itemsInfo]);
+    }, [docsStructure, selectedDocId]);
+
+    useEffect(() => {
+        if (docsStructure && !selectedDoc.component) {
+            redirectTo({ id: docsStructure[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
+        }
+    }, [docsStructure]);
 
     useEffect(() => {
         addCanonicalLinkTag();
-    }, [queryParamId]);
+        document.title = selectedDoc.name ? `${selectedDoc.name} | UUI` : 'UUI';
+    }, [selectedDocId, selectedDoc]);
 
     useEffect(() => {
         codesandboxService.getFiles(theme, themesById);
@@ -90,7 +81,7 @@ export function DocumentsPage() {
         };
     }, []);
 
-    const PageComponent = itemsInfo?.PageComponent;
+    const PageComponent = selectedDoc?.component;
 
     return (
         <Page renderHeader={ () => <AppHeader /> }>
