@@ -58,6 +58,7 @@ export const uuiMarkers = {
     lockFocus: '-lock-focus',
     clickable: '-clickable',
     draggable: '-draggable',
+    hasValue: 'uui-has-value',
     scrolledLeft: '-scrolled-left',
     scrolledRight: '-scrolled-right',
     scrolledTop: '-scrolled-top',
