@@ -45,16 +45,19 @@ import { ReactComponent as FilledStarIcon } from './icons/star-filled.svg';
 import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-with-background.svg';
 
 import type { Icon } from '@epam/uui-core';
-import type { AvatarProps } from '@epam/uui-components';
+import type { AvatarProps, BlockerProps } from '@epam/uui-components';
 import type {
     AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
     DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
-    DataPickerRowProps, PickerItemProps, DataPickerFooterProps,
-    LabeledInputProps, NumericInputProps, PickerTogglerProps, PickerTogglerTagProps,
-    TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps, RatingProps, RichTextViewProps,
-    DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps, TextInputProps,
+    DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
+    PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
+    RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
+    TextInputProps,
 } from './components';
+import { Spinner } from './components/widgets/Spinner';
+import { TextPlaceholder } from './components/typography/TextPlaceholder';
+import React from 'react';
 
 type Sizes<S extends string | number | symbol, T> = {
     [size in S]: T;
@@ -252,9 +255,11 @@ interface DataTableSizes {
 interface DataTableSettings {
     icons: DataTableIcons;
     sizes: DataTableSizes;
+    renderPlaceholder?: () => React.ReactNode;
 }
 
 const dataTableSettings: DataTableSettings = {
+    renderPlaceholder: () => <TextPlaceholder isNotAnimated />,
     icons: {
         emptyTable: EmptyTableIcon,
         header: {
@@ -647,9 +652,11 @@ interface PickerInputSizes {
 interface PickerInputSettings {
     icons: PickerInputIcons;
     sizes: PickerInputSizes;
+    renderPlaceholder?: () => React.ReactNode;
 }
 
 const pickerInputSettings: PickerInputSettings = {
+    renderPlaceholder: () => <TextPlaceholder />,
     icons: {
         toggler: {
             clearIcon: CrossIcon,
@@ -952,11 +959,20 @@ const textInputSettings: TextInputSettings = {
     },
 };
 
+interface BlockerSettings {
+    renderSpinner?: BlockerProps['renderSpinner']
+}
+
+const blockerSettings: BlockerSettings = {
+    renderSpinner: () => <Spinner />,
+};
+
 export const settings = {
     accordion: accordionSettings,
     alert: alertSettings,
     badge: badgeSettings,
     button: buttonSettings,
+    blocker: blockerSettings,
     checkbox: checkboxSettings,
     countIndicator: countIndicatorSettings,
     dataTable: dataTableSettings,

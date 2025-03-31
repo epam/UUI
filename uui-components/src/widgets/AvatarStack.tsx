@@ -21,7 +21,7 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
     const styleObj = { '--overlap': `-${+avatarSize / 4}px` } as object;
     return (
         <div className={ cx(props.cx, css.root) } ref={ ref } { ...props.rawProps }>
-            <div role="group" style={ styleObj } className={ cx('uui-avatars', css.container, css['avatar-' + direction]) }>
+            <div role="group" style={ styleObj } className={ cx('uui-avatar_stack-avatars', css.container, css['avatar-' + direction]) }>
                 {firstElements.map((avatar, index) => {
                     return renderItem ? (
                         <React.Fragment key={ index }>{renderItem(avatar)}</React.Fragment>
@@ -30,7 +30,7 @@ export const AvatarStack = React.forwardRef<HTMLDivElement, AvatarStackProps>((p
                     );
                 })}
             </div>
-            <div className="avatarsCount">{avatarsCount && urlArray.length > avatarsCount ? '+' + (urlArray.length - avatarsCount) : null}</div>
+            <div className="uui-avatar_stack-count">{avatarsCount && urlArray.length > avatarsCount ? '+' + (urlArray.length - avatarsCount) : null}</div>
         </div>
     );
 });
