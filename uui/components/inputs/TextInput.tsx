@@ -22,7 +22,7 @@ function applyTextInputMods(mods: CoreTextInputProps & TextInputMods) {
     return [
         css.root,
         `uui-size-${mods.size || settings.textInput.sizes.default}`,
-        css['mode-' + (mods.mode || DEFAULT_MODE)],
+        'uui-control-mode-' + (mods.mode || DEFAULT_MODE),
     ];
 }
 

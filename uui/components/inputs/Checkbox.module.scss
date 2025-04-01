@@ -149,7 +149,7 @@
         }
     }
 
-    &.mode-cell {
+    &:global(.uui-control-mode-cell) {
         justify-content: center;
     }
 }
