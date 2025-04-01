@@ -82,7 +82,7 @@ export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((pr
         'uui-typography',
         props.cx,
         css.container,
-        css['mode-' + (props.mode || 'form')],
+        'uui-control-mode-' + (props.mode || 'form'),
         props.isReadonly && uuiMod.readonly,
         props.scrollbars && css.withScrollbars,
         props.fontSize === '16' ? 'uui-typography-size-16' : 'uui-typography-size-14',

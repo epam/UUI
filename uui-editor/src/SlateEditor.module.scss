@@ -51,43 +51,45 @@
     :focus-visible {
         outline: none;
     }
-}
 
-.mode-form {
-    background-color: var(--uui-surface-main);
-    border-color: var(--uui-control-border);
-    border-style: solid;
 
-    &:hover {
-        border-color: var(--uui-control-border-hover);
-    }
-
-    &:global(.uui-focus) {
-        border-color: var(--uui-primary-50);
-    }
-
-    &:global(.uui-readonly) {
+    &:global(.uui-control-mode-form) {
+        background-color: var(--uui-surface-main);
         border-color: var(--uui-control-border);
+        border-style: solid;
+
+        &:hover {
+            border-color: var(--uui-control-border-hover);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--uui-primary-50);
+        }
+
+        &:global(.uui-readonly) {
+            border-color: var(--uui-control-border);
+        }
     }
-}
 
-.mode-inline {
-    background-color: transparent;
-    border-color: transparent;
-    border-style: solid;
-
-    &:hover {
-        border-color: var(--uui-control-border-hover);
-    }
-
-    &:global(.uui-focus) {
-        border-color: var(--uui-primary-50);
-    }
-
-    &:global(.uui-readonly) {
+    &:global(.uui-control-mode-inline) {
+        background-color: transparent;
         border-color: transparent;
+        border-style: solid;
+
+        &:hover {
+            border-color: var(--uui-control-border-hover);
+        }
+
+        &:global(.uui-focus) {
+            border-color: var(--uui-primary-50);
+        }
+
+        &:global(.uui-readonly) {
+            border-color: transparent;
+        }
     }
 }
+
 
 .scrollbars {
     height: 100%;
