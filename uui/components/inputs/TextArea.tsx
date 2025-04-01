@@ -22,7 +22,7 @@ function applyTextAreaMods(mods: TextAreaMods) {
         css.root,
         'uui-textarea',
         'uui-size-' + (mods.size || settings.textArea.sizes.default),
-        css['mode-' + (mods.mode || DEFAULT_MODE)],
+        'uui-control-mode-' + (mods.mode || DEFAULT_MODE),
     ];
 }
 
