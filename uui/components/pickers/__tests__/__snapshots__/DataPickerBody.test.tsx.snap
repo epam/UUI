@@ -19,7 +19,7 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable root uui-size-48 mode-form"
+        className="container uui-input-box -clickable root uui-size-48 uui-control-mode-form"
         dir="auto"
         onFocus={[Function]}
         tabIndex={-1}
