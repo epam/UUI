@@ -7,15 +7,15 @@ import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import type { ControlSize } from '../types';
 import { settings } from '../../settings';
+import type { PickerInputProps } from './PickerInput';
 
 import css from './DataPickerBody.module.scss';
 
 export interface DataPickerBodyModsOverride {}
 
 interface DataPickerBodyMods {
-    searchSize?: ControlSize;
+    searchSize?: PickerInputProps<any, any>['size'];
 }
 
 export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps, IDropdownBodyProps {
@@ -28,7 +28,11 @@ export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataP
 export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
     lens = Lens.onEditableComponent<DataSourceState>(this);
     searchLens = this.lens.prop('search').default('');
-    getSearchSize = () => (isMobile() ? settings.pickerInput.sizes.body.mobileSearchInput : this.props.searchSize);
+    getSearchSize = () => (
+        isMobile()
+            ? settings.pickerInput.sizes.body.mobileSearchInput
+            : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: this.props.searchSize })
+    );
 
     renderEmpty() {
         const search = this.searchLens.get();
