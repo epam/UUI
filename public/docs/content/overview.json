@@ -353,5 +353,24 @@
         "text": "Currently, UUI run by a team of 10 dedicated engineers, based on 10 years of experience, runs 50 EPAM internal projects, and several projects for EPAM customers. It's free and open-source."
       }
     ]
+  },
+  {
+    "data": {},
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Discover UUI's history, key features, and development process by watching the video below"
+      }
+    ]
+  },
+  {
+    "data": {},
+    "type": "iframe",
+    "children": [
+      {
+        "text": ""
+      }
+    ],
+    "url": "https://www.youtube.com/embed/kAxgz54XbPQ"
   }
 ]
