@@ -1,49 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTableCell should be rendered correctly 1`] = `
-<div
-  className="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-36 align-widgets-top"
-  role="cell"
-  style={
-    Object {
-      "--uui-dt-cell-padding-end": "12px",
-      "--uui-dt-cell-padding-start": "12px",
-      "alignSelf": undefined,
-      "flexBasis": "150px",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "justifyContent": undefined,
-      "minWidth": "150px",
-      "textAlign": undefined,
-    }
-  }
->
-  <div>
-    Test
+<DocumentFragment>
+  <div
+    class="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-36 uui-dt-first-column uui-dt-last-column align-widgets-top"
+    role="cell"
+    style="min-width: 150px; flex-basis: 150px; --uui-dt-cell-padding-start: var(--uui-dt-cell-padding-edge); --uui-dt-cell-padding-end: var(--uui-dt-cell-padding-edge);"
+  >
+    <div
+      class="dragHandle container uui-drag-handle noIcon"
+    />
+    <div
+      class="contentWrapper"
+    >
+      <div>
+        Test
+      </div>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
-exports[`DataTableCell should be rendered correctly 2`] = `
-<div
-  className="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-48 uui-dt-last-column align-widgets-top"
-  role="cell"
-  style={
-    Object {
-      "--uui-dt-cell-padding-end": "24px",
-      "--uui-dt-cell-padding-start": "12px",
-      "alignSelf": undefined,
-      "flexBasis": "150px",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "justifyContent": undefined,
-      "minWidth": "150px",
-      "textAlign": undefined,
-    }
-  }
->
-  <div>
-    Test
+exports[`DataTableCell should be rendered correctly with additional props 1`] = `
+<DocumentFragment>
+  <div
+    class="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-48 uui-dt-first-column uui-dt-last-column align-widgets-top"
+    role="cell"
+    style="min-width: 150px; flex-basis: 150px; --uui-dt-cell-padding-start: var(--uui-dt-cell-padding-edge); --uui-dt-cell-padding-end: var(--uui-dt-cell-padding-edge);"
+  >
+    <div
+      class="dragHandle container uui-drag-handle noIcon"
+    />
+    <div
+      class="contentWrapper"
+    >
+      <div>
+        Test
+      </div>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
+import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import { i18n } from '../../i18n';
-import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
 import {
     FlexSpacer, FlexRow, FlexCell,
 } from '../layout';
 import { LinkButton } from '../buttons';
 import { Text } from '../typography';
 import { DatePickerProps } from '../datePickers';
-import { DatePickerBody } from '../datePickers/DatePickerBody';
+import { DatePickerBody } from '../datePickers';
 
 /**
  * Represents the properties of the FiterDatePicker

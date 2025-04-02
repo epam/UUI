@@ -7,6 +7,7 @@
         --uui-border-radius: 8px;
         --uui-tab-line-width: 3px;
         --uui-notify-size: 6px;
+        --uui-resize-marker-width: 12px;
     }
 
     .uui-size-16 {
@@ -42,7 +43,7 @@
         --uui-vertical-gap: 3px;
         --uui-horizontal-padding: 6px;
         --uui-vertical-padding: 3px;
-        --uui-icon-size: 12px;
+        --uui-icon-size: 16px;
         --uui-line-height: 18px;
         --uui-font-size: 14px;
         --uui-dot-size: 10px;
@@ -96,6 +97,19 @@
         --uui-vertical-padding: 12px;
         --uui-icon-size: 24px;
         --uui-line-height: 20px;
+        --uui-font-size: 16px;
+        --uui-dot-size: 12px;
+    }
+
+    .uui-size-56 {
+        --uui-size: 56px;
+        --uui-border-width: 1px;
+        --uui-horizontal-gap: 4px;
+        --uui-vertical-gap: 3px;
+        --uui-horizontal-padding: 32px;
+        --uui-vertical-padding: 16px;
+        --uui-icon-size: 24px;
+        --uui-line-height: 24px;
         --uui-font-size: 16px;
         --uui-dot-size: 12px;
     }
@@ -236,5 +250,16 @@
         &.uui-size-24 {
             --uui-horizontal-gap: 4px;
         }
+    }
+
+    .uui-columns-config-modal {
+        --uui-dt-columns_config_modal-subgroup_icon: 20px;
+    }
+
+    .uui-alert {
+        --uui-alert-padding-v: 16px;
+        --uui-alert-padding-h: 16px;
+        font-size: 16px;
+        line-height: 24px;
     }
 }

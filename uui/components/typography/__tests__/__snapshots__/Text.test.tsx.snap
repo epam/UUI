@@ -1,26 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Text should be rendered correctly 1`] = `
-<div
-  className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
-  style={Object {}}
->
-  Test
-</div>
+<DocumentFragment>
+  <div
+    class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
+  >
+    Test
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Text should be rendered correctly with props 1`] = `
-<div
-  className="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
-  onClick={[Function]}
-  style={
-    Object {
-      "--uui-text-font-size": "24px",
-      "--uui-text-line-height": "30px",
-      "marginRight": "12",
-    }
-  }
->
-  Test
-</div>
+<DocumentFragment>
+  <div
+    class="root uui-text uui-size-48 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
+    style="--uui-text-font-size: 24px; --uui-text-line-height: 30px;"
+  >
+    Test
+  </div>
+</DocumentFragment>
 `;

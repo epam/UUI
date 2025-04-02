@@ -1,55 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BurgerSearch should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
-  onFocus={[Function]}
-  tabIndex={-1}
->
+<DocumentFragment>
   <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+    class="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
+    tabindex="-1"
   >
-    <svg
-      className=""
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <input
+      class="uui-input"
+      tabindex="0"
+      type="text"
+      value=""
     />
   </div>
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
-    type="text"
-    value=""
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`BurgerSearch should be rendered correctly 2`] = `
-<div
-  className="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
-  onFocus={[Function]}
-  tabIndex={-1}
->
+<DocumentFragment>
   <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+    class="container uui-input-box -clickable searchInput uui-main_menu-burger-search"
+    tabindex="-1"
   >
-    <svg
-      className=""
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <input
+      class="uui-input"
+      tabindex="0"
+      type="text"
+      value=""
     />
   </div>
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
-    type="text"
-    value=""
-  />
-</div>
+</DocumentFragment>
 `;

@@ -101,7 +101,7 @@ export function dataSourceStateToValue<TId, TItem>(props: any, dsState: DataSour
 
 export function applyValueToDataSourceState<TId, TItem>(
     props: any,
-    dsState: DataSourceState<any, TItem>,
+    dsState: DataSourceState<any, TId>,
     value: any,
     dataSource: IDataSource<TItem, TId, any>,
 ): DataSourceState<TItem, any> {

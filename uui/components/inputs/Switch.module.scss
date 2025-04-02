@@ -107,11 +107,11 @@
     :global(.uui-checked) {
         &:global(.uui-switch-body) {
             background-color: var(--uui-switch-bg-checked);
-            border: 1px solid var(--uui-switch-border-checked);
+            border: var(--uui-switch-border-width) solid var(--uui-switch-border-checked);
         }
 
         :global(.uui-switch-toggler) {
-            border: 1px solid var(--uui-switch-toggler-border-checked);
+            border: var(--uui-switch-border-width) solid var(--uui-switch-toggler-border-checked);
         }
     }
 
@@ -125,7 +125,7 @@
 
         :global(.uui-switch-body) {
             background-color: var(--uui-switch-bg-disabled);
-            border: 1px solid var(--uui-switch-border-disabled);
+            border: var(--uui-switch-border-width) solid var(--uui-switch-border-disabled);
         }
 
         & :global(.uui-switch-toggler),
@@ -138,7 +138,7 @@
         :global(.uui-checked) {
             &:global(.uui-switch-body) {
                 background-color: var(--uui-switch-bg-checked-disabled);
-                border: 1px solid var(--uui-switch-border-checked-disabled);
+                border: var(--uui-switch-border-width) solid var(--uui-switch-border-checked-disabled);
             }
 
             :global(.uui-switch-toggler) {

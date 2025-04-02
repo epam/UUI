@@ -27,7 +27,7 @@ function UuiEnhancedApp() {
     const { services } = useUuiServices({ router });
     Object.assign(svc, services);
     return (
-        <UuiContext.Provider value={services}>
+        (<UuiContext value={services}>
             <ErrorHandler>
                 <Router history={history}>
                     <Route component={Menu} />
@@ -37,7 +37,7 @@ function UuiEnhancedApp() {
                 <Modals />
                 <DragGhost />
             </ErrorHandler>
-        </UuiContext.Provider>
+        </UuiContext>)
     );
 }
 

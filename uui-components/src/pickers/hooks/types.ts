@@ -1,14 +1,8 @@
 import {
-    DataRowProps,
     DataSourceState, IEditable, IHasCaption, IHasRawProps, IModal, PickerBaseOptions, PickerBaseProps,
-    PickerFooterProps, PickerInputBaseProps, SortingOption,
+    PickerFooterProps, DataRowProps, SortingOption,
 } from '@epam/uui-core';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
-
-export type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
-    toggleModalOpening?(opened: boolean): void;
-    shouldShowBody?(): boolean;
-};
 
 export interface UsePickerInputStateProps extends UsePickerStateProps {}
 

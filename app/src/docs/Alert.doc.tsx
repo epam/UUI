@@ -7,6 +7,7 @@ import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TSkin } from '@
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../common';
 import { TAlertPreview } from './_types/previewIds';
 import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
+import { getCurrentTheme } from '../helpers';
 
 export class AlertDoc extends BaseDocsBlock {
     title = 'Alert';
@@ -23,10 +24,20 @@ export class AlertDoc extends BaseDocsBlock {
         doc: (doc: DocBuilder<loveship.AlertProps | promo.AlertProps>) => {
             doc.setDefaultPropExample('color', (_, index) => index === 0);
             doc.merge('children', {
-                examples: [
-                    { name: 'Short', value: <uui.Text size="30">Notification Text</uui.Text>, isDefault: true },
-                    { name: 'Long', value: <uui.Text size="30">Notification with some buttons and long long long long long long long long long long long text</uui.Text> },
-                ],
+                examples: (ctx) => {
+                    const size = ctx.getSelectedProps().size;
+                    if (size === '36' || size === '48') {
+                        return [
+                            { name: 'Short', value: <uui.Text size="30">Notification Text</uui.Text>, isDefault: true },
+                            { name: 'Long', value: <uui.Text size="30">Notification with some buttons and long long long long long long long long long long long text</uui.Text> },
+                        ]; // 6px examples
+                    } else {
+                        return [
+                            { name: 'Short', value: <uui.Text size="none">Notification Text</uui.Text>, isDefault: true },
+                            { name: 'Long', value: <uui.Text size="none">Notification with some buttons and long long long long long long long long long long long text</uui.Text> },
+                        ]; // 4px examples
+                    }
+                },
             });
             doc.merge('actions', {
                 examples: [
@@ -84,12 +95,15 @@ export class AlertDoc extends BaseDocsBlock {
     };
 
     renderContent() {
+        const theme = getCurrentTheme();
+        const shouldShowSizeExample = !theme.includes('fresh');
+
         return (
             <>
                 <EditableDocContent fileName="alert-descriptions" />
                 {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/alert/Basic.example.tsx" />
-                <DocExample title="Sizes" path="./_examples/alert/Sizes.example.tsx" />
+                <DocExample config={ this.getConfig() } title="Basic" path="./_examples/alert/Basic.example.tsx" />
+                { shouldShowSizeExample && <DocExample config={ this.getConfig() } title="Sizes" path="./_examples/alert/Sizes.example.tsx" /> }
             </>
         );
     }

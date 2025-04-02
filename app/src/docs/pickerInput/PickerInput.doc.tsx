@@ -27,7 +27,6 @@ export class PickerInputDoc extends BaseDocsBlock {
                 { name: 'Disabled checkboxes', value: () => ({ isDisabled: true, checkbox: { isVisible: true, isDisabled: true } }) },
             ], 
             });
-            doc.merge('size', { defaultValue: '36' });
             doc.setDefaultPropExample('valueType', (e) => {
                 return e.value === 'id';
             });

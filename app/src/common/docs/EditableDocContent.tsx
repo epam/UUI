@@ -23,7 +23,7 @@ interface EditableDocContentState {
 }
 
 export class EditableDocContent extends React.Component<EditableDocContentProps, EditableDocContentState> {
-    titleRef: RefObject<HTMLHeadingElement> = createRef();
+    titleRef: RefObject<HTMLHeadingElement | null> = createRef();
     abortController: AbortController;
 
     state: EditableDocContentState = {

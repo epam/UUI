@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Clickable should render with minimum props 1`] = `
-<span
-  className="uui-button-box uui-enabled"
-  tabIndex={-1}
-/>
+<DocumentFragment>
+  <span
+    class="uui-button-box uui-enabled"
+    tabindex="-1"
+  />
+</DocumentFragment>
 `;

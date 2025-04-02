@@ -7,8 +7,6 @@ import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
-    /** Key for the component */
-    key: string;
     /** DataRowProps object of the rendered item */
     rowProps?: DataRowProps<TItem, TId>;
     /** Indicates that tag is collapsed rest selected items, like '+N items selected' */
@@ -48,8 +46,8 @@ export interface PickerTogglerProps<TItem = any, TId = any>
 function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
-    const toggleContainer = React.useRef<HTMLDivElement>();
-    const inputContainer = React.useRef<HTMLInputElement>();
+    const toggleContainer = React.useRef<HTMLDivElement>(undefined);
+    const inputContainer = React.useRef<HTMLInputElement>(undefined);
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
@@ -128,7 +126,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             }
 
             const tagProps = {
-                key: row?.id as string,
                 rowProps: row,
                 caption: row.isLoading ? null : props.getName(row.value),
                 isCollapsed: false,
@@ -145,7 +142,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
 
         if (props.selectedRowsCount > maxItems) {
             const collapsedTagProps = props.renderItem?.({
-                key: 'collapsed',
                 caption: maxItems > 0
                     ? `+ ${props.selectedRowsCount - maxItems}`
                     : i18n.pickerToggler.collapsedItemsTagName(props.selectedRowsCount),
@@ -270,7 +266,4 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     );
 }
 
-export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(
-    props: PickerTogglerProps<TItem, TId>,
-    ref: React.ForwardedRef<HTMLElement>
-) => JSX.Element;
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>) => ReturnType<typeof PickerTogglerComponent>;

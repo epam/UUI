@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 export function useMemoWithDestructor<T>(create: () => T, update: (instance: T) => void, destroy: (value: T) => any, deps: any[]) {
-    const ref = useRef<T>();
+    const ref = useRef<T>(undefined);
     const prevDeps = useRef(deps);
 
     const isDepsChanged = prevDeps.current.length !== deps.length || prevDeps.current.some((devVal, index) => devVal !== deps[index]);

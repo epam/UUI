@@ -15,7 +15,7 @@ export interface IScrollSpyApi {
 }
 
 export function useScrollSpy(props?: IScrollSpyProps): IScrollSpyApi {
-    const ref: MutableRefObject<HTMLElement> = useRef();
+    const ref: MutableRefObject<HTMLElement> = useRef(undefined);
     const [observedNodes, setObservedNodes] = useState<HTMLElement[]>([]);
     const [currentActive, setCurrentActive] = useState<string>(props.initialActive || (Array.isArray(props.elements) && props.elements.length > 0 && props.elements[0]));
 

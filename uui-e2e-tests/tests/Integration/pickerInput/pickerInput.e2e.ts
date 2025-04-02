@@ -1,4 +1,4 @@
-import { test } from '../../../framework/fixtures/docExamplePage/fixture';
+import { test } from '../../../framework/fixtures/integrationTestPage/fixture';
 import { PickerInputObject } from '../../../framework/pageObjects/pickerInputObject';
 import { setupDocExampleTest } from '../testUtils';
 
@@ -12,7 +12,7 @@ test('pickerInput/LazyTreeInput', async ({ pageWrapper }, testInfo) => {
         testInfo,
         pageWrapper,
         PageObjectConstructor: PickerInputObject,
-        examplePath: 'pickerInput/LazyTreeInput',
+        testUrl: '/docExample?theme=loveship&examplePath=pickerInput%2FLazyTreeInput',
     });
     await test.step('Put focus on the picker input field', async () => {
         await pageObject.focusInput();
@@ -133,8 +133,9 @@ test('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) 
         testInfo,
         pageWrapper,
         PageObjectConstructor: PickerInputObject,
-        examplePath: 'pickerInput/LazyTreeInput',
+        testUrl: '/docExample?theme=loveship&examplePath=pickerInput%2FLazyTreeInput',
     });
+
     await test.step('Put focus on the picker input field', async () => {
         await pageWrapper.page.setViewportSize({ width: 640, height: 900 });
         await pageObject.locators.input.click();

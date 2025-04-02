@@ -17,6 +17,7 @@ export interface TimePickerModsOverride {}
 interface TimePickerMods {
     /**
      * Defines component size.
+     * @default '36'
      */
     size?: '24' | '30' | '36' | '42' | '48';
 }

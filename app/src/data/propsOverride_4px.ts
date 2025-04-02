@@ -5,11 +5,11 @@ const propsOverride: TPropEditorTypeOverride = {
         size: {
             editor: {
                 type: TPropEditorType.oneOf,
-                options: ['40', '48'],
+                options: ['56'],
             },
             comment: {
                 tags: {
-                    '@default': '40',
+                    '@default': '56',
                 },
             },
         },
@@ -100,7 +100,33 @@ const propsOverride: TPropEditorTypeOverride = {
             },
         },
     },
+    '@epam/uui:CheckboxGroupProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['20', '24', '28'],
+            },
+            comment: {
+                tags: {
+                    '@default': '24',
+                },
+            },
+        },
+    },
     '@epam/uui:RadioInputProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['20', '24', '28'],
+            },
+            comment: {
+                tags: {
+                    '@default': '24',
+                },
+            },
+        },
+    },
+    '@epam/uui:RadioGroupProps': {
         size: {
             editor: {
                 type: TPropEditorType.oneOf,
@@ -230,6 +256,84 @@ const propsOverride: TPropEditorTypeOverride = {
             editor: {
                 type: TPropEditorType.oneOf,
                 options: ['32', '40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
+    '@epam/uui:DataTableProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['32', '40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
+    '@epam/uui:LabeledInputProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
+    '@epam/uui:TextPlaceholderProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
+    '@epam/uui:FlexRowProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['24', '32', '40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
+    '@epam/uui:TimePickerProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
+    '@epam/uui:MultiSwitchProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['40', '48'],
             },
             comment: {
                 tags: {

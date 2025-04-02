@@ -112,8 +112,10 @@ export function DbDemo() {
     const demoDbRef = React.useMemo(() => new DemoDbRef(), []);
 
     return (
-        <DbContext.Provider value={ demoDbRef }>
-            <DbDemoImpl />
-        </DbContext.Provider>
+        (
+            <DbContext value={ demoDbRef }>
+                <DbDemoImpl />
+            </DbContext>
+        )
     );
 }

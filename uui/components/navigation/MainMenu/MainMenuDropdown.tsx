@@ -30,7 +30,7 @@ export class MainMenuDropdown extends React.Component<MainMenuDropdownProps> {
                             <div className={ cx(css.dropdownBody, 'uui-main_menu-dropdown') }>
                                 {this.props.renderBody
                                     ? this.props.renderBody({ ...props })
-                                    : React.Children.map<React.ReactElement, React.ReactElement>(this.props.children as React.ReactElement[], (item) => {
+                                    : React.Children.map<React.ReactElement<any>, React.ReactElement<any>>(this.props.children as React.ReactElement<any>[], (item) => {
                                         if (!item) return item;
                                         return React.createElement(item.type, {
                                             ...item.props,

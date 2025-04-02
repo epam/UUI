@@ -30,7 +30,7 @@ function MyApp(props: MyAppProps<AppContextType>) {
     const { isChangingRoute } = useIsChangingRoute(router);
 
     return (
-        <UuiContext.Provider value={services}>
+        (<UuiContext value={services}>
             <MyAppView
                 isChangingRoute={isChangingRoute}
                 {...{
@@ -38,7 +38,7 @@ function MyApp(props: MyAppProps<AppContextType>) {
                     pageProps,
                 }}
             />
-        </UuiContext.Provider>
+        </UuiContext>)
     );
 }
 

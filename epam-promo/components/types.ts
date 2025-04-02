@@ -93,7 +93,10 @@ export interface FontMod {
 }
 
 export interface RowSizeMod {
-    /** Defines the size of a row. */
+    /**
+     *  Defines the size of a row.
+     *  @default '36'
+     */
     size?: RowSize;
 }
 

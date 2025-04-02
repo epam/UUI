@@ -1,10 +1,10 @@
 import React from 'react';
-import { renderer } from '@epam/uui-test-utils';
+import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { Blocker } from '../Blocker';
 
 describe('Blocker', () => {
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<Blocker isEnabled />).toJSON();
+    it('should be rendered correctly', async () => {
+        const tree = await renderSnapshotWithContextAsync(<Blocker isEnabled />);
         expect(tree).toMatchSnapshot();
     });
 });

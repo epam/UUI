@@ -1,15 +1,58 @@
 .root {
+    --uui-picker_item-title: var(--uui-text-primary);
+    --uui-picker_item-title-font: var(--uui-font);
+    --uui-picker_item-title-font-style: normal;
+    --uui-picker_item-title-font-weight: 400;
+    --uui-picker_item-title-font-size: var(--uui-font-size);
+    --uui-picker_item-title-line-height: var(--uui-line-height);
+    --uui-picker_item-title-vertical-padding: calc((var(--uui-size) - var(--uui-line-height)) / 2);
+
+    --uui-picker_item-subtitle: var(--uui-text-secondary);
+    --uui-picker_item-subtitle-font: var(--uui-font);
+    --uui-picker_item-subtitle-font-style: normal;
+    --uui-picker_item-subtitle-font-weight: 400;
+    --uui-picker_item-subtitle-font-size: var(--uui-font-size);
+    --uui-picker_item-subtitle-line-height: var(--uui-line-height);
+
     --uui-picker_item-horizontal-gap: 12px;
 
     .column-gap {
         column-gap: var(--uui-picker_item-horizontal-gap);
     }
 
+    .title {
+        color: var(--uui-picker_item-title);
+        font-family: var(--uui-picker_item-title-font);
+        font-style: var(--uui-picker_item-title-font-style);
+        font-weight: var(--uui-picker_item-title-font-weight);
+        font-size: var(--uui-picker_item-title-font-size);
+        line-height: var(--uui-picker_item-title-line-height);
+        padding-bottom: var(--uui-picker_item-title-vertical-padding);
+        padding-top: var(--uui-picker_item-title-vertical-padding);
+    }
+
+    .subtitle {
+        color: var(--uui-picker_item-subtitle);
+        font-family: var(--uui-picker_item-subtitle-font);
+        font-style: var(--uui-picker_item-subtitle-font-style);
+        font-weight: var(--uui-picker_item-subtitle-font-weight);
+        font-size: var(--uui-picker_item-subtitle-font-size);
+        line-height: var(--uui-picker_item-subtitle-line-height);
+        padding: 0;
+    }
+
+    .disabled {
+        &.title, &.subtitle {
+            --uui-picker_item-title: var(--uui-text-disabled);
+            --uui-picker_item-subtitle: var(--uui-text-disabled);
+        }
+    }
+
     .multiline {
         padding-top: var(--uui-picker_item-vertical-padding);
         padding-bottom: var(--uui-picker_item-vertical-padding);
 
-        .text {
+        .title {
             padding: 0;
         }
     }

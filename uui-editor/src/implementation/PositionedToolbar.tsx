@@ -19,7 +19,7 @@ interface ToolbarProps {
 }
 
 export function FloatingToolbar(props: ToolbarProps): any {
-    const ref = useRef<HTMLElement | null>();
+    const ref = useRef<HTMLElement | null>(undefined);
     const editor = useEditorState(); // TODO: use useEditorRef
     const inFocus = useEventEditorSelectors.focus() === editor.id;
     const zIndex = useLayer()?.zIndex;
@@ -85,7 +85,7 @@ export function FloatingToolbar(props: ToolbarProps): any {
     );
 }
 
-const getDefaultBoundingClientRect = () => ({
+const getDefaultBoundingClientRect = () => (({
     width: 0,
     height: 0,
     x: 0,
@@ -94,7 +94,7 @@ const getDefaultBoundingClientRect = () => ({
     left: -9999,
     right: 9999,
     bottom: 9999,
-}) as DOMRect;
+}) as DOMRect);
 
 /**
  * Get bounding client rect of the window selection

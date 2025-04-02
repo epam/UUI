@@ -1,15 +1,14 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, Overwrite } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
-import * as types from '../types';
-import { systemIcons } from '../../icons/icons';
-import { settings } from '../../settings';
 import { getIconClass } from './helper';
-import cx from 'classnames';
+import * as types from '../types';
+import { settings } from '../../settings';
+
 import css from './LinkButton.module.scss';
 
 const DEFAULT_COLOR = 'primary';
-const DEFAULT_WEIGHT = 'semibold';
 
 interface LinkButtonMods {
     /**
@@ -59,7 +58,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     const rootStyles = [
         'uui-link_button',
         css.root,
-        `uui-size-${props.size || settings.sizes.defaults.linkButton}`,
+        `uui-size-${props.size || settings.linkButton.sizes.default}`,
         ...getIconClass(props),
         `uui-color-${props.color || DEFAULT_COLOR}`,
         props.cx,
@@ -68,10 +67,10 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
     const captionStyles = cx(
         uuiElement.caption,
         props.underline && `uui-underline-${props.underline}`,
-        `uui-link-button-weight-${props.weight || DEFAULT_WEIGHT}`,
+        `uui-link-button-weight-${props.weight || settings.linkButton.weight}`,
     );
 
-    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : systemIcons.foldingArrow;
+    const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.linkButton.icons.dropdownIcon;
 
     return (
         <Clickable

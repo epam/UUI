@@ -2,8 +2,8 @@ import React from 'react';
 import { renderHook, renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 import { ArrayDataSource } from '@epam/uui-core';
 import { DataPickerBody, DataPickerBodyProps } from '../DataPickerBody';
-import { DataPickerRow } from '../DataPickerRow';
 
+type LanguageLevel = { id: number; level: string };
 const languageLevels = [
     { id: 2, level: 'A1' }, { id: 3, level: 'A1+' }, { id: 4, level: 'A2' }, { id: 5, level: 'A2+' }, { id: 6, level: 'B1' }, { id: 7, level: 'B1+' }, { id: 8, level: 'B2' }, { id: 9, level: 'B2+' }, { id: 10, level: 'C1' }, { id: 11, level: 'C1+' }, { id: 12, level: 'C2' },
 ];
@@ -18,16 +18,11 @@ describe('DataPickerBody', () => {
     );
     const view = hookResult.result.current;
     const rows = view.getVisibleRows();
-    const requiredProps: DataPickerBodyProps = {
+    const requiredProps: DataPickerBodyProps<LanguageLevel, number> = {
         value: { topIndex: 0 },
         onValueChange: jest.fn(),
-        rows: rows.map(
-            (props) => <DataPickerRow key={ props.id } size="36" renderItem={ (item: string) => <div>{item}</div> } id={ props.id } rowKey={ props.rowKey } index={ props.id } value="" />,
-        ),
-        search: {
-            value: '',
-            onValueChange: jest.fn(),
-        },
+        getName: (item) => item.level,
+        rows: rows,
     };
 
     it('should be rendered with minimum props', async () => {
@@ -44,21 +39,10 @@ describe('DataPickerBody', () => {
         const tree = await renderSnapshotWithContextAsync(
             <DataPickerBody
                 { ...requiredProps }
-                editMode="modal"
                 showSearch="auto"
                 maxHeight={ 800 }
                 searchSize="48"
-                rows={ rows.map((props) => (
-                    <DataPickerRow
-                        key={ props.id }
-                        size="36"
-                        renderItem={ (item: string) => <div>{item}</div> }
-                        id={ props.id }
-                        rowKey={ props.rowKey }
-                        index={ props.id }
-                        value={ props.value?.level }
-                    />
-                )) }
+                rows={ rows }
                 onKeyDown={ jest.fn }
                 rowsCount={ 7 }
                 totalCount={ 11 }

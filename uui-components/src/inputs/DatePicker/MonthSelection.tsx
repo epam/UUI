@@ -5,6 +5,8 @@ import { IEditable, IHasCX, arrayToMatrix, cx, IHasRawProps, IHasForwardedRef } 
 
 import css from './MonthSelection.module.scss';
 
+import type { JSX } from 'react';
+
 const MONTH_ROW_LENGTH = 3;
 
 export const uuiMonthSelection = {

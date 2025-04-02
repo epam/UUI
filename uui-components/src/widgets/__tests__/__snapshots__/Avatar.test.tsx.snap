@@ -1,22 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Avatar should be rendered correctly 1`] = `
-<img
-  className="avatar"
-  height="36"
-  onError={[Function]}
-  src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-  width="36"
-/>
+<DocumentFragment>
+  <img
+    class="avatar"
+    height="36"
+    src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+    width="36"
+  />
+</DocumentFragment>
 `;
 
 exports[`Avatar should be rendered correctly with props 1`] = `
-<img
-  alt="Test avatar"
-  className="avatar"
-  height="36"
-  onError={[Function]}
-  src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg"
-  width="36"
-/>
+<DocumentFragment>
+  <img
+    alt="Test avatar"
+    class="avatar"
+    height="36"
+    src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg"
+    width="36"
+  />
+</DocumentFragment>
 `;

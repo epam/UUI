@@ -1,38 +1,43 @@
 import * as React from 'react';
-import { IEditable, IHasRawProps } from '@epam/uui-core';
+import { IEditable, IHasRawProps, Overwrite } from '@epam/uui-core';
 import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
 import { ControlSize } from '../types';
 
-type MultiSwitchItem<TValue> = ButtonProps & {
+import type { JSX } from 'react';
+
+type MultiSwitchItem = ButtonProps & {
     /**
      * Defines the id of MultiSwitchItem.
      */
-    id: TValue;
+    id: any;
 };
 
-type MultiSwitchMods = {
+interface MultiSwitchMods {
     /**
      * Defines component color.
      * @default 'primary'
      */
     color?: 'primary' | 'secondary';
-};
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: ControlSize | '60';
+}
+
+export interface MultiSwitchModsOverride {}
 
 /** Represents the 'Core properties' for the MultiSwitch component. */
 export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
     /**
      * Defines an array of MultiSwitchItems.
      */
-    items: MultiSwitchItem<TValue>[];
-    /**
-     * Defines component size.
-     */
-    size?: ControlSize | '60';
+    items: MultiSwitchItem[];
 };
 
 /** Represents the properties for the MultiSwitch component. */
-export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & MultiSwitchMods;
+export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & Overwrite<MultiSwitchMods, MultiSwitchModsOverride>;
 
 function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
@@ -53,7 +58,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
                     { ...item }
                     isDisabled={ props.isDisabled }
                     key={ index + '-' + item.id }
-                    onClick={ () => props.onValueChange(item.id) }
+                    onClick={ !props.isReadonly && (() => props.onValueChange(item.id)) }
                     fill={ props.value === item.id ? 'solid' : 'outline' }
                     color={ props.color }
                     size={ props.size }
@@ -64,4 +69,4 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: Reac
     );
 }
 
-export const MultiSwitch = React.forwardRef(MultiSwitchComponent);
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>) => JSX.Element;

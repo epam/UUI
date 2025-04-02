@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FlexSpacer should be rendered correctly 1`] = `
-<div
-  className="flexSpacer"
-/>
+<DocumentFragment>
+  <div
+    class="flexSpacer"
+  />
+</DocumentFragment>
 `;

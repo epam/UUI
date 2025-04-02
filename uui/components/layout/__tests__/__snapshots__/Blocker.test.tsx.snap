@@ -1,38 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Blocker should be rendered correctly 1`] = `
-<div
-  aria-busy="true"
-  aria-label="Loading"
-  aria-live="polite"
-  className="container uui-blocker-container root"
-  role="status"
-  style={
-    Object {
-      "minHeight": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="uui-blocker"
+    aria-busy="true"
+    aria-label="Loading"
+    aria-live="polite"
+    class="container uui-blocker-container root"
+    role="status"
   >
     <div
-      className="container uui-spinner-container root uui-spinner"
+      class="uui-blocker"
     >
       <div
-        className="uui-spinner-animation"
+        class="container uui-spinner-container root uui-spinner"
       >
         <div
-          className="uui-spinner-dot uui-spinner-dot-1"
-        />
-        <div
-          className="uui-spinner-dot uui-spinner-dot-2"
-        />
-        <div
-          className="uui-spinner-dot uui-spinner-dot-3"
-        />
+          class="uui-spinner-animation"
+        >
+          <div
+            class="uui-spinner-dot uui-spinner-dot-1"
+          />
+          <div
+            class="uui-spinner-dot uui-spinner-dot-2"
+          />
+          <div
+            class="uui-spinner-dot uui-spinner-dot-3"
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

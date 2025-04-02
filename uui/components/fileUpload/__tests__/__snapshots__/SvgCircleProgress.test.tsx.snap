@@ -1,26 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SvgCircleProgress should be rendered correctly 1`] = `
-<svg
-  className="root"
-  height={30}
-  width={30}
->
-  <circle
-    cx={15}
-    cy={15}
-    fill="transparent"
-    r={6}
-    strokeDasharray={37.69911184307752}
-    strokeDashoffset={24.504422698000386}
-    strokeWidth={12}
-  />
-  <circle
-    cx={15}
-    cy={15}
-    fill="transparent"
-    r={14}
-    strokeWidth={1}
-  />
-</svg>
+<DocumentFragment>
+  <svg
+    class="root"
+    height="30"
+    width="30"
+  >
+    <circle
+      cx="15"
+      cy="15"
+      fill="transparent"
+      r="6"
+      stroke-dasharray="37.69911184307752"
+      stroke-dashoffset="24.504422698000386"
+      stroke-width="12"
+    />
+    <circle
+      cx="15"
+      cy="15"
+      fill="transparent"
+      r="14"
+      stroke-width="1"
+    />
+  </svg>
+</DocumentFragment>
 `;

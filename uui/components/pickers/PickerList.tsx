@@ -1,4 +1,5 @@
 import React from 'react';
+import cx from 'classnames';
 import { DataRowProps, IClickable, IDisableable, IHasCaption, IHasPlaceholder, Overwrite } from '@epam/uui-core';
 import { PickerListBaseProps, PickerModalOptions, usePickerList } from '@epam/uui-components';
 import { SizeMod } from '../types';
@@ -6,8 +7,8 @@ import { Text } from '../typography';
 import { PickerListRow } from './PickerListRow';
 import { PickerModal } from './PickerModal';
 import { LinkButton } from '../buttons';
+
 import css from './PickerList.module.scss';
-import cx from 'classnames';
 
 export interface PickerListModsOverride {}
 

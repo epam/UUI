@@ -69,8 +69,8 @@ export class PickerInputObject {
     }
 
     async focusInput() {
-        await this.page.press('[aria-label="Doc Example Content"]', 'Tab');
-        await this.page.press('[aria-label="Doc Example Content"]', 'Tab');
+        await this.page.press('[aria-label="Page Content"]', 'Tab');
+        await this.page.press('[aria-label="Page Content"]', 'Tab');
     }
 
     async focusShowOnlySelectedSwitch() {

@@ -1,5 +1,24 @@
-# 5.13.2 - 04.03.2025
+# 5.xx.x - xx.xx.2025
+**What's New**
+* [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
+* [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
+* [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
+* [PickerInput]: 
+  * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
+  * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
+  * [DataPickerRow]: added default implementation of `renderItem` callback
+* [PickerList]:
+  * [Breaking Change]: `renderRow` prop now affects only modal rows 
+  * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
+  * added `renderListRow` callback to customize list row without affecting row in modal
+* [NumericInput]: added `center` value for `align` prop
 
+**What's Fixed**
+* [NumericInput]: added right margin for arrows
+* [MultiSwitch]: fixed `isReadonly` prop
+* [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
+
+# 5.13.2 - 04.03.2025
 **What's Fixed**
 * Fixed PickerInput and PickerToggler component typings for React 19
 * [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles
@@ -420,7 +439,7 @@
 **What's Fixed**
 
 * [TabButton, VerticalTabButton]: set 18 icon size for all button sizes according to design
-* [DataPickerHeader]: changed close icon to match design
+* [DataPickerMobileHeader]: changed close icon to match design
 * [DataTableHeaderCell]: set 18 size for all icons by design
 
 # 5.7.0 - 25.03.2024

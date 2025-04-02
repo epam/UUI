@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from '../Avatar';
-import { render, renderer, screen, fireEvent } from '@epam/uui-test-utils';
+import { render, screen, fireEvent } from '@epam/uui-test-utils';
 
 describe('Avatar', () => {
     it('should show stub if image is not reachable', () => {
@@ -26,14 +26,12 @@ describe('Avatar', () => {
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<Avatar img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="36" />).toJSON();
-        expect(tree).toMatchSnapshot();
+        const { asFragment } = render(<Avatar img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="36" />);
+        expect(asFragment()).toMatchSnapshot();
     });
 
     it('should be rendered correctly with props', () => {
-        const tree = renderer
-            .create(<Avatar img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="36" alt="Test avatar" isLoading={ true } />)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
+        const { asFragment } = render(<Avatar img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" size="36" alt="Test avatar" isLoading={ true } />);
+        expect(asFragment()).toMatchSnapshot();
     });
 });

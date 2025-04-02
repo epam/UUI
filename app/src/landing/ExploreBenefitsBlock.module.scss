@@ -75,40 +75,6 @@
                     height: 48px;
                     margin-bottom: 6px;
                     border-radius: calc(var(--uui-border-radius) * 2);
-
-                    &-stars {
-                        background-color: #FFFFF0;
-
-                        &-electric, &-loveship, &-promo {
-                            background-color: #FFFFF0;
-                        }
-
-                        &-loveship-dark {
-                            background-color: #403F40;
-                        }
-                    }
-
-                    &-flag {
-                        &-electric, &-loveship, &-promo, &-loveship-dark {
-                            background-color: var(--uui-critical-10);
-                        }
-                    }
-
-                    &-windows {
-                        &-electric, &-loveship, &-promo, &-loveship-dark {
-                            background-color: var(--uui-success-10);
-                        }
-                    }
-
-                    &-brush-builder {
-                        &-electric, &-loveship, &-promo {
-                            background-color: #DBCCFA;
-                        }
-
-                        &-loveship-dark {
-                            background-color: #443166;
-                        }
-                    }
                 }
 
                 .top-block-context-wrapper {
@@ -147,18 +113,6 @@
             width: 84px;
             height: 84px;
             border-radius: calc(var(--uui-border-radius) * 2);
-
-            &-lock {
-                &-electric, &-loveship, &-promo, &-loveship-dark {
-                    background-color: var(--uui-accent-10);
-                }
-            }
-
-            &-help {
-                &-electric, &-loveship, &-promo, &-loveship-dark {
-                    background-color: var(--uui-primary-10);
-                }
-            }
         }
 
         .bottom-block-caption-wrapper {
@@ -244,5 +198,47 @@
                 }
             }
         }
+    }
+}
+
+.stars {
+    background-color: #FFFFF0;
+}
+
+.flag {
+    background-color: #FDE1E1;
+}
+
+.windows, .lock {
+    background-color: #EBF3D8;
+}
+
+.brush-builder {
+    background-color: #DBCCFA;
+}
+
+.help {
+    background-color: #E1F4FA;
+}
+
+[class*='dark'] {
+    .stars {
+        background-color: #403F40;
+    }
+
+    .flag {
+        background-color: #473943;
+    }
+
+    .windows, .lock {
+        background-color: #39443D;
+    }
+
+    .brush-builder {
+        background-color: #443166;
+    }
+
+    .help {
+        background-color: #334052;
     }
 }
