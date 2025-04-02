@@ -46,14 +46,14 @@ import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-wi
 
 import type { Icon } from '@epam/uui-core';
 import type { AvatarProps, BlockerProps } from '@epam/uui-components';
-import type {
+import {
     AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
     DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
     DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
     PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
     RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
-    TextInputProps, DataPickerCellProps,
+    TextInputProps, DataPickerCellProps, PickerInputProps,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
@@ -638,14 +638,15 @@ interface PickerInputSizes {
         maxHeight: number;
         minWidth: number;
         padding: DataPickerRowProps<unknown, unknown>['padding'];
-        row: DataPickerCellProps<unknown, unknown>['size'];
+        row: DataPickerRowProps<unknown, unknown>['size'];
         itemAvatarMap: Sizes<PickerItemProps<unknown, unknown>['size'], AvatarProps['size']>;
         itemAvatarMultilineMap: Sizes<PickerItemProps<unknown, unknown>['size'], AvatarProps['size']>;
         itemVerticalPaddingMap: Sizes<PickerItemProps<unknown, unknown>['size'], string>;
-        selectIconMap: Sizes<DataPickerCellProps<unknown, unknown>['size'], string>;
+        selectIconMap: Sizes<DataPickerRowProps<unknown, unknown>['size'], string>;
         footerSwitchMap: Sizes<DataPickerFooterProps<unknown, unknown>['size'], SwitchProps['size']>;
         mobileFooterLinkButton: LinkButtonProps['size'];
         mobileRow: DataPickerRowProps<unknown, unknown>['size'];
+        getSearchSize: (props: { pickerSize: PickerInputProps<unknown, unknown>['size'] }) => SearchInputProps['size'];
         mobileSearchInput: SearchInputProps['size'];
     };
 }
@@ -724,6 +725,9 @@ const pickerInputSettings: PickerInputSettings = {
             mobileFooterLinkButton: '48',
             mobileRow: '48',
             mobileSearchInput: '48',
+            getSearchSize: ({ pickerSize }) => {
+                return pickerSize;
+            },
         },
     },
 };
