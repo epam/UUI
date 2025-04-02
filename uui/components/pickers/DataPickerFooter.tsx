@@ -7,7 +7,7 @@ import { LinkButton } from '../buttons';
 import type { SizeMod } from '../types';
 import { settings } from '../../settings';
 
-import css from './DataPickerFooter.module.scss';
+import './DataPickerFooter.module.scss';
 
 export interface DataPickerFooterModsOverride {
 }
@@ -45,7 +45,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const showClear = !props.disableClear && (isSinglePicker ? true : (!view.selectAll || hasSelection));
 
     return !hideFooter && (
-        <FlexRow cx={ css.footer }>
+        <FlexRow cx="uui-picker_input-footer">
             {!isSinglePicker && !isSearchTooShort && ( // Show this switch only for multi mode and when some rows rendered
                 <Switch
                     size={ settings.pickerInput.sizes.body.footerSwitchMap[props.size] }
