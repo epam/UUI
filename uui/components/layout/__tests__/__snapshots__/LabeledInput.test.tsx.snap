@@ -42,7 +42,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
       className="rightChildrenPosition"
     >
       <div
-        className="container uui-input-box -clickable root uui-size-36 mode-form"
+        className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
         onFocus={[Function]}
         tabIndex={-1}
       >
@@ -98,7 +98,7 @@ exports[`LabeledInput should be rendered correctly with minimum props 1`] = `
   >
     <div>
       <div
-        className="container uui-input-box -clickable root uui-size-36 mode-form"
+        className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
         onFocus={[Function]}
         tabIndex={-1}
       >

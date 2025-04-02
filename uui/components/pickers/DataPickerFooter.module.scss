@@ -1,4 +1,4 @@
-.footer {
+:global(.uui-picker_input-footer) {
     --uui-data-picker-footer-horizontal-padding: 12px;
     padding: 0 var(--uui-data-picker-footer-horizontal-padding);
 }
