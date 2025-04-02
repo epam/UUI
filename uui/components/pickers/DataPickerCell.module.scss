@@ -35,12 +35,6 @@
     fill: var(--uui-icon);
 }
 
-.loading-cell {
-    div[aria-busy='true'] > span {
-        margin: 0 calc(var(--uui-grid-unit) / 2) 0 0;
-    }
-}
-
 .content-wrapper {
     display: flex;
     min-width: 0;

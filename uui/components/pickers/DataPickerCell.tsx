@@ -17,12 +17,7 @@ export function DataPickerCell<TItem, TId>(props: DataPickerCellProps<TItem, TId
     let content: React.ReactNode;
 
     if (props.rowProps.isLoading) {
-        content = (
-            // remove `css.loadingCell` after` removing `margin: 0 3px 3px 0` from `TextPlaceholder` `loadingWord` class styles.
-            <Text key="t" size={ props.size } cx={ css.loadingCell }>
-                { settings.pickerInput.renderPlaceholder() }
-            </Text>
-        );
+        content = settings.pickerInput.renderPlaceholder({ rowSize: props.size });
     } else if (props.rowProps.isUnknown) {
         content = (
             <Text key="t" size={ props.size }>

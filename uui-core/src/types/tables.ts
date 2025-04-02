@@ -313,7 +313,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     addons?: React.ReactNode;
 
     /** Overrides default loading placeholder ('skeleton') rendering.
-     * By default: () => <Text> Unknown </Text>
+     * By default: () => <Text> <TextPlaceholder /> </Text>
      * */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
