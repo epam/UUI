@@ -57,6 +57,7 @@ import {
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
+import { Text } from './components/typography/Text';
 import React from 'react';
 
 type Sizes<S extends string | number | symbol, T> = {
@@ -255,11 +256,11 @@ interface DataTableSizes {
 interface DataTableSettings {
     icons: DataTableIcons;
     sizes: DataTableSizes;
-    renderPlaceholder?: () => React.ReactNode;
+    renderPlaceholder?: (props: { rowSize: DataTableRowProps['size'] }) => React.ReactNode;
 }
 
 const dataTableSettings: DataTableSettings = {
-    renderPlaceholder: () => <TextPlaceholder isNotAnimated />,
+    renderPlaceholder: (props) => <Text size={ props.rowSize }><TextPlaceholder /></Text>,
     icons: {
         emptyTable: EmptyTableIcon,
         header: {
@@ -654,11 +655,11 @@ interface PickerInputSizes {
 interface PickerInputSettings {
     icons: PickerInputIcons;
     sizes: PickerInputSizes;
-    renderPlaceholder?: () => React.ReactNode;
+    renderPlaceholder?: (props: { rowSize: DataPickerRowProps<unknown, unknown>['size'] }) => React.ReactNode;
 }
 
 const pickerInputSettings: PickerInputSettings = {
-    renderPlaceholder: () => <TextPlaceholder />,
+    renderPlaceholder: (props) => <Text size={ props.rowSize }><TextPlaceholder /></Text>,
     icons: {
         toggler: {
             clearIcon: CrossIcon,
