@@ -137,7 +137,11 @@ async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = Test
 }
 
 describe('PickerInput', () => {
+    let user: ReturnType<typeof userEvent.setup>;
+
     beforeEach(() => {
+        user = userEvent.setup();
+
         jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(() => {
             return {
                 width: 0,
@@ -921,7 +925,7 @@ describe('PickerInput', () => {
                     selectionMode: 'multi',
                 });
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -955,7 +959,7 @@ describe('PickerInput', () => {
                     selectionMode: 'multi',
                 });
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -989,7 +993,7 @@ describe('PickerInput', () => {
                     value: undefined,
                     selectionMode: 'multi',
                 });
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1031,7 +1035,7 @@ describe('PickerInput', () => {
                 });
 
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1063,7 +1067,7 @@ describe('PickerInput', () => {
                 });
 
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1108,7 +1112,7 @@ describe('PickerInput', () => {
                     valueType: 'entity',
                 });
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1150,7 +1154,7 @@ describe('PickerInput', () => {
                     cascadeSelection: false,
                     dataSource: mockTreeLikeDataSourceAsync,
                 });
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
                 await PickerInputTestObject.clickOptionCheckbox('Parent 2');
                 await waitFor(() => {
@@ -1174,7 +1178,7 @@ describe('PickerInput', () => {
                     dataSource: mockTreeLikeDataSourceAsync,
                 });
 
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
                 // Check parent
                 await PickerInputTestObject.clickOptionCheckbox('Parent 2');
@@ -1209,7 +1213,7 @@ describe('PickerInput', () => {
                     dataSource: mockTreeLikeDataSourceAsync,
                 });
 
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 await waitFor(async () => {
                     expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
                 });
@@ -1276,7 +1280,7 @@ describe('PickerInput', () => {
                         selectionMode: 'multi',
                     });
 
-                    fireEvent.click(dom.input);
+                    await user.click(dom.input);
 
                     const dialog = await screen.findByRole('dialog');
                     expect(dialog).toBeInTheDocument();
@@ -1302,7 +1306,7 @@ describe('PickerInput', () => {
                     });
 
                     expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-                    fireEvent.click(dom.input);
+                    await user.click(dom.input);
 
                     const dialog = await screen.findByRole('dialog');
                     expect(dialog).toBeInTheDocument();
@@ -1369,7 +1373,7 @@ describe('PickerInput', () => {
                         searchPosition: 'body',
                     });
 
-                    fireEvent.click(dom.input);
+                    await user.click(dom.input);
 
                     const dialog = await screen.findByRole('dialog');
                     const bodyInput = await within(dialog).findByPlaceholderText('Search');

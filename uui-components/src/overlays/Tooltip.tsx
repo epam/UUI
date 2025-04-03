@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps } from '@epam/uui-core';
+import { autoPlacement, Middleware, offset, Placement } from '@floating-ui/react';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
@@ -38,14 +39,30 @@ export function Tooltip(props: TooltipProps) {
             return React.cloneElement<React.ComponentPropsWithRef<any>>(child, { ref: props.ref });
         });
 
+    const middleware: Middleware[] = [
+        offset(props.offset || { mainAxis: 12 }),
+    ];
+
+    let placement;
+
+    if (props.placement && props.placement === 'auto') {
+        middleware.push(autoPlacement());
+    } else {
+        placement = props.placement || 'top';
+    }
+
+    if (props.placement === 'auto') {
+        middleware.push(autoPlacement());
+    }
+
     return (
         <Dropdown
             { ...props }
             renderBody={ (props) => renderTooltip(props) }
             openOnHover={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
-            placement={ props.placement || 'top' }
-            modifiers={ [{ name: 'offset', options: { offset: props.offset || [0, 12] } }] }
+            placement={ placement as Placement }
+            middleware={ middleware }
             renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
         />
     );

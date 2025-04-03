@@ -41,7 +41,7 @@ export function DemoToolbar(props: AppFooterContentDemoProps) {
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             Description has been updated.
                         </Text>
                     </SuccessNotification>

@@ -1,10 +1,9 @@
 import {
-    Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode,
+    Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode, ComponentPropsWithRef,
 } from 'react';
+import { FloatingArrowProps, Placement } from '@floating-ui/react';
 import { Link, CX, Icon, AnalyticsEvent } from './objects';
 import * as CSS from 'csstype';
-import { PopperArrowProps } from 'react-popper';
-import { Placement } from '@popperjs/core';
 import * as React from 'react';
 
 /** Component value can be invalid */
@@ -272,8 +271,8 @@ export interface IDropdownBodyProps {
     /** Indicates that dropdown is open */
     isOpen?: boolean;
     /** Props that should be provided to the arrow component */
-    arrowProps?: PopperArrowProps;
-    /** Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/) */
+    arrowProps?: Omit<FloatingArrowProps, 'ref' | 'context'> & React.ComponentPropsWithRef<'div'>;
+    /** Dropdown position relative to the input. See [Floating UI Docs](@link https://floating-ui.com/docs/useFloating#placement) */
     placement?: Placement;
 }
 

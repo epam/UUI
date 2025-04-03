@@ -44,6 +44,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
         return (
             <PickerTogglerTag
                 { ...itemPropsWithSize }
+                key={ itemPropsWithSize.key }
                 getName={ props.getName }
             />
         );
@@ -52,6 +53,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
     return (
         <UuiPickerToggler
             { ...props }
+            key={ undefined }
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ renderItem }

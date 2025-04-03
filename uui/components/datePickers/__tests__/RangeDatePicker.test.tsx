@@ -167,7 +167,7 @@ describe('RangeDataPicker', () => {
     it('should open picker on "to" field focus and close on click outside', async () => {
         const { dom, result } = await setupRangeDatePicker({ value: null });
         fireEvent.keyDown(dom.to, { key: 'Enter', code: 'Enter', charCode: 13 });
-        expect(screen.getByRole('dialog')).toBeInTheDocument();
+        expect(await screen.findByRole('dialog')).toBeInTheDocument();
         await userEvent.click(result.container);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     });

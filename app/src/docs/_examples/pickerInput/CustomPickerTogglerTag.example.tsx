@@ -29,7 +29,7 @@ export default function CustomPickerTogglerTagExample() {
 
         if (isCollapsed) {
             // rendering '+ N items selected' Tag, tooltip is present here by default
-            return <PickerTogglerTag { ...props } key="collapsed" getName={ (i) => i?.name } />;
+            return <PickerTogglerTag { ...props } key={ props.key } getName={ (i) => i?.name } />;
         } else {
             // rendering all other Tags with Tooltip
             const continent = rowProps?.value?.tz ? rowProps?.value?.tz.split('/')[0].concat('/') : '';

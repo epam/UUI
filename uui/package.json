@@ -15,11 +15,10 @@
     "@epam/assets": "5.13.3-beta.4",
     "@epam/uui-components": "5.13.3-beta.4",
     "@epam/uui-core": "5.13.3-beta.4",
-    "@popperjs/core": "2.9.0",
+    "@floating-ui/react": "0.27.5",
     "classnames": "2.2.6",
     "dayjs": "1.11.12",
     "react-focus-lock": "2.13.5",
-    "react-popper": "2.3.0",
     "react-fast-compare": "3.2.2"
   },
   "peerDependencies": {

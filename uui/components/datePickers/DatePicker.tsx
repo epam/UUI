@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { offset } from '@floating-ui/react';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, useUuiContext, uuiMod,
+    DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps,
 } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { TextInput, TextInputProps } from '../inputs';
@@ -14,12 +15,8 @@ import {
 import { settings } from '../../settings';
 
 const defaultMode = EditMode.FORM;
-const modifiers = [{
-    name: 'offset',
-    options: { offset: [0, 6] },
-}];
 
-export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
+function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
     const { format = defaultFormat, value, size = settings.datePicker.sizes.input } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
@@ -65,7 +62,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         }
     };
 
-    const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
+    const renderInput = useCallback((renderProps: IDropdownTogglerProps & { cx?: any }) => {
         const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
@@ -99,9 +96,9 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 id={ props.id }
             />
         );
-    };
+    }, [inputValue, isBodyOpen, props, format, size]);
 
-    const renderBody = (renderProps: DropdownBodyProps) => {
+    const renderBody = useCallback((renderProps: DropdownBodyProps) => {
         return (
             <DropdownContainer { ...renderProps }>
                 <DatePickerBody
@@ -116,23 +113,21 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 {props.renderFooter?.()}
             </DropdownContainer>
         );
-    };
+    }, [value, onBodyValueChange, props]);
 
     return (
         <Dropdown
             value={ isBodyOpen }
-            modifiers={ modifiers }
+            middleware={ [offset(6)] }
             placement={ props.placement }
-            forwardedRef={ ref }
+            ref={ ref }
             onValueChange={ (v) => {
                 setBodyIsOpen(v);
             } }
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || renderInput(renderProps);
             } }
-            renderBody={ (renderProps) => {
-                return renderBody(renderProps);
-            } }
+            renderBody={ renderBody }
         />
     );
 }

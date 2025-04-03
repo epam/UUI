@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
 import {
     IControlled,
     cx,
@@ -81,25 +81,25 @@ function StatelessDatePickerBodyComp({
     onViewChange,
     isDisabled,
 }: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
-    const selectedDate = uuiDayjs.dayjs(value);
+    const selectedDate = useMemo(() => uuiDayjs.dayjs(value), [value]);
 
-    const onMonthClick = (newDate: Dayjs) => {
+    const onMonthClick = useCallback((newDate: Dayjs) => {
         onMonthChange(newDate);
         onViewChange('DAY_SELECTION');
-    };
+    }, [onMonthChange, onViewChange]);
 
-    const onYearClick = (newDate: Dayjs) => {
+    const onYearClick = useCallback((newDate: Dayjs) => {
         onMonthChange(newDate);
         onViewChange('MONTH_SELECTION');
-    };
+    }, [onMonthChange, onViewChange]);
 
-    const onDayClick = (day: Dayjs) => {
+    const onDayClick = useCallback((day: Dayjs) => {
         if (!filter || filter(day)) {
             onValueChange(day.format(valueFormat));
         }
-    };
+    }, [onValueChange, filter]);
 
-    const getView = () => {
+    const getView = useCallback(() => {
         switch (view) {
             case 'MONTH_SELECTION':
                 return (
@@ -130,7 +130,7 @@ function StatelessDatePickerBodyComp({
                     />
                 );
         }
-    };
+    }, [view, selectedDate, month, onMonthClick, onYearClick, onDayClick, filter, renderDay, isHoliday, isDisabled]);
 
     return (
         <div
