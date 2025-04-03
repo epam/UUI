@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 import {
     useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow,
 } from '@floating-ui/react';
-import type { Placement } from '@floating-ui/react';
 import { FreeFocusInside } from 'react-focus-lock';
 import { isEventTargetInsideClickable, UuiContext } from '@epam/uui-core';
 import type { LayoutLayer, DropdownProps } from '@epam/uui-core';
@@ -33,8 +32,6 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         boundaryElement,
     } = props;
 
-    console.log('placment', placement);
-
     const uuiContext = React.useContext(UuiContext);
 
     const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
@@ -51,17 +48,6 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     const layerRef = React.useRef<LayoutLayer | null>(null);
     const openDropdownTimerIdRef = React.useRef<NodeJS.Timeout | null>(null);
     const closeDropdownTimerIdRef = React.useRef<NodeJS.Timeout | null>(null);
-
-    const getOppositePlacement = (placement: Placement): Placement => {
-        const placementDirection = placement.split('-')[0];
-        switch (placementDirection) {
-            case 'bottom': return placement.replace('bottom', 'top') as Placement;
-            case 'top': return placement.replace('top', 'bottom') as Placement;
-            case 'left': return placement.replace('left', 'right') as Placement;
-            case 'right': return placement.replace('right', 'left') as Placement;
-            default: return placement;
-        }
-    };
 
     const isOpened = useCallback(() => {
         return open;
@@ -160,11 +146,11 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         const rect = bodyNodeRef.current?.getBoundingClientRect();
 
         if (rect) {
-            const { y, x, height, width } = rect;
+            const { height, width } = rect;
 
-            if (y && x && width && height) {
-                return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width
-                    && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
+            if (rect.y && rect.x && width && height) {
+                return rect.x - areaPadding <= e.clientX && e.clientX <= rect.x + areaPadding + width
+                    && rect.y - areaPadding <= e.clientY && e.clientY <= rect.y + height + areaPadding;
             }
         }
 
@@ -297,7 +283,17 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             } : {},
         },
         placement: finalPlacement,
-    }), [renderBody, onCloseHandler, togglerWidthRef.current, togglerHeightRef.current, update, isOpened, middlewareData?.arrow?.y, middlewareData?.arrow?.x, finalPlacement]);
+    }), [
+        renderBody,
+        onCloseHandler,
+        togglerWidthRef.current,
+        togglerHeightRef.current,
+        update,
+        isOpened,
+        middlewareData?.arrow?.y,
+        middlewareData?.arrow?.x,
+        finalPlacement,
+    ]);
 
     const mergedBodyRef = useMergeRefs([refs.setFloating, bodyNodeRef]);
 
