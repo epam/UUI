@@ -7,8 +7,6 @@ import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
-    /** Key for the component */
-    key: string;
     /** DataRowProps object of the rendered item */
     rowProps?: DataRowProps<TItem, TId>;
     /** Indicates that tag is collapsed rest selected items, like '+N items selected' */
@@ -128,7 +126,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             }
 
             const tagProps = {
-                key: row?.id as string,
                 rowProps: row,
                 caption: row.isLoading ? null : props.getName(row.value),
                 isCollapsed: false,
@@ -235,6 +232,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.isInvalid && uuiMod.invalid,
                 !props.isReadonly && !props.isDisabled && props.onClick && uuiMarkers.clickable,
                 !props.isReadonly && !props.isDisabled && inFocus && uuiMod.focus,
+                props.selection?.length > 0 && uuiMarkers.hasValue,
                 props.cx,
             ) }
             tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }

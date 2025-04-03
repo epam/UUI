@@ -1,24 +1,24 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
     DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger, DataSourceListProps, IEditable,
     IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
 } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
-import { SearchInput, SearchInputProps } from '../inputs';
+import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import type { ControlSize } from '../types';
 import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
 import isEqual from 'react-fast-compare';
 import { DataPickerRow } from './DataPickerRow';
 import type { PickerInputProps } from './PickerInput';
+import { MoveFocusInside } from 'react-focus-lock';
 
 export interface DataPickerBodyModsOverride {}
 
 interface DataPickerBodyMods {
-    searchSize?: ControlSize;
+    searchSize?: PickerInputProps<any, any>['size'];
 }
 
 export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>,
@@ -36,10 +36,7 @@ export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Ove
 
 export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...props }:DataPickerBodyProps<TItem, TId>) {
     const prevProps = usePrevious(props);
-
     const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
-
-    const searchRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
@@ -117,7 +114,9 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         );
     };
 
-    const searchSize = isMobile() ? settings.pickerInput.sizes.body.mobileSearchInput as SearchInputProps['size'] : props.searchSize;
+    const searchSize = isMobile()
+        ? settings.pickerInput.sizes.body.mobileSearchInput
+        : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
     const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
 
@@ -126,16 +125,17 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
             {showSearch && (
                 <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
                     <FlexCell grow={ 1 }>
-                        <SearchInput
-                            ref={ searchRef }
-                            placeholder={ i18n.dataPickerBody.searchPlaceholder }
-                            value={ props.value.search }
-                            onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
-                            onKeyDown={ searchKeyDown }
-                            size={ searchSize }
-                            debounceDelay={ props.searchDebounceDelay }
-                            rawProps={ { dir: 'auto' } }
-                        />
+                        <MoveFocusInside>
+                            <SearchInput
+                                placeholder={ i18n.dataPickerBody.searchPlaceholder }
+                                value={ props.value.search }
+                                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
+                                onKeyDown={ searchKeyDown }
+                                size={ searchSize }
+                                debounceDelay={ props.searchDebounceDelay }
+                                rawProps={ { dir: 'auto' } }
+                            />
+                        </MoveFocusInside>
                     </FlexCell>
                 </div>
             )}

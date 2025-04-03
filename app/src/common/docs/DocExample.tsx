@@ -82,8 +82,8 @@ export function DocExample(props: DocExampleProps) {
         return name.substring(1);
     };
 
-    const renderCode = (): React.ReactNode => {
-        return code && <Code isVisible={ showCode } codeAsHtml={ code } />;
+    const renderCode = (isVisible: boolean): React.ReactNode => {
+        return code && <Code isVisible={ isVisible } codeAsHtml={ code } />;
     };
 
     const renderPreview = () => {
@@ -126,7 +126,7 @@ export function DocExample(props: DocExampleProps) {
                         <DocExampleFsBtn path={ props.path } theme={ theme } />
                     </FlexRow>
                 </footer>
-                { renderCode()}
+                { renderCode(showCode)}
             </div>
         );
     };
@@ -149,7 +149,7 @@ export function DocExample(props: DocExampleProps) {
                 role="region"
                 aria-label="Example preview"
             >
-                {props.onlyCode ? renderCode() : renderPreview()}
+                {props.onlyCode ? renderCode(true) : renderPreview()}
             </div>
         </section>
     );

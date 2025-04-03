@@ -3,7 +3,7 @@ import { DataTableCellProps as UuiCoreDataTableCellProps, Overwrite } from '@epa
 import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
 import { DataRowAddons } from '../widgets';
 import type { DataTableCellMods } from './types';
-import { TextPlaceholder, Text } from '../typography';
+import { Text } from '../typography';
 import { Tooltip } from '../overlays';
 import { settings } from '../../settings';
 
@@ -23,11 +23,7 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     }
 
     props.renderPlaceholder = props.renderPlaceholder
-        || (() => (
-            <Text key="t" size={ props.size }>
-                <TextPlaceholder isNotAnimated />
-            </Text>
-        ));
+        || (() => settings.dataTable.renderPlaceholder({ rowSize: props.size }));
 
     props.renderUnknown = props.renderUnknown
         || (() => (
