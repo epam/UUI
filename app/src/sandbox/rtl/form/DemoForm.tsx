@@ -24,7 +24,7 @@ export function DemoForm() {
             svc.uuiNotifications.show(
                 (props) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             Data has been saved!
                         </Text>
                     </SuccessNotification>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dropdown, FlexSpacer } from '@epam/uui-components';
+import { offset } from '@floating-ui/react';
 import { Badge, Panel, Text, FlexRow, LinkButton, DropdownContainer, IconButton, FlexCell, IconContainer, Avatar } from '@epam/uui';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './BasicExample.module.scss';
@@ -163,7 +164,7 @@ export default function BasicDropdownExample() {
         <Dropdown
             renderBody={ (props) => renderDropdownBody(props) }
             placement="right-start"
-            modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+            middleware={ [offset(6)] }
             renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Click to open" size="36" { ...props } /> }
         />
     );

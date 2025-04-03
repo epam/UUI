@@ -68,6 +68,10 @@ describe('Dropdown', () => {
         user = userEvent.setup();
     });
 
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe('(controlled)', () => {
         it('should be closed when value is false', async () => {
             await setupControlledDropdownForTests({ value: false });

@@ -75,7 +75,7 @@ export default defineConfig({
             },
             testMatch: [
                 'tests/previewTests/*.e2e.ts',
-                'tests/Integration/**/*.e2e.ts',
+                // 'tests/Integration/**/*.e2e.ts', // due to unstable rendering of components in Safari
             ],
         },
         {

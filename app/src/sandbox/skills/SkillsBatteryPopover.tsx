@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import css from './SkillsBatteryPopover.module.scss';
+import { offset } from '@floating-ui/react';
+import { cx, DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { SmallBattery } from './components/SmallBattery';
 import { BigBattery } from './components/BigBattery';
-import { ISkillLevel, IInnerSkill, ISkill } from './utils';
+import type { ISkillLevel, IInnerSkill, ISkill } from './utils';
 import {
     Button, Dropdown, FlexRow, Text, DropdownContainer, IconContainer, IconButton, TextInput,
 } from '@epam/promo';
-import { cx, DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { getDateInFormat, getLevel, getLevelDescription } from './utils';
 import { ReactComponent as heartIconOutline } from '@epam/assets/icons/common/fav-rates-favorite-outline-18.svg';
 import { ReactComponent as heartIconFilled } from '@epam/assets/icons/common/fav-rates-favorite-18.svg';
@@ -16,6 +16,7 @@ import { ReactComponent as noSkillIcon } from './icons/no-skill-18.svg';
 import { ReactComponent as noActiveIcon } from './icons/no-active-18.svg';
 import { ReactComponent as recommendedIcon } from './icons/recommended-18.svg';
 import { ReactComponent as infoLogo } from './icons/notification-info-outline-10.svg';
+import css from './SkillsBatteryPopover.module.scss';
 
 interface ISkillsBatteryProps {
     data: ISkill;
@@ -119,7 +120,7 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
                 closeOnMouseLeave="boundary"
                 openOnHover={ true }
                 placement="bottom-start"
-                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+                middleware={ [offset(6)] }
             />
         </div>
     );

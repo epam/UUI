@@ -79,9 +79,13 @@ export function getColumns() {
                             valueType="id"
                             selectionMode="single"
                             dataSource={ resourceDataSource }
-                            renderRow={
-                                (props) => <DataPickerRow { ...props } renderItem={ (item) => <PickerItem title={ item.name } subtitle={ item.name } { ...props } /> } />
-                            }
+                            renderRow={ (props) => (
+                                <DataPickerRow
+                                    { ...props }
+                                    key={ props.key }
+                                    renderItem={ (item) => <PickerItem { ...props } title={ item.name } subtitle={ item.name } /> }
+                                />
+                            ) }
                             placeholder=""
                             { ...props }
                         />

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { offset } from '@floating-ui/react';
 import { PlateEditor, getBlockAbove, getPluginOptions, setElements, useEditorRef } from '@udecode/plate-common';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown } from '@epam/uui';
@@ -9,7 +10,7 @@ import { ReactComponent as NoteIcon } from '../../icons/info-block-quote.svg';
 
 import css from './NoteBar.module.scss';
 import { NODE_PLUGIN_KEY, noteTypes } from './constants';
-import { PARAGRAPH_TYPE } from '../paragraphPlugin/constants';
+import { PARAGRAPH_TYPE } from '../paragraphPlugin';
 import { useIsPluginActive } from '../../helpers';
 import { NotePluginOptions } from './types';
 
@@ -94,10 +95,7 @@ export function NoteButton({ editor }: IToolbarNote) {
                 />
             ) }
             placement="top-start"
-            modifiers={ [{
-                name: 'offset',
-                options: { offset: [0, 3] },
-            }] }
+            middleware={ [offset(3)] }
         />
     );
 }

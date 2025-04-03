@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ELEMENT_BLOCKQUOTE, createBlockquotePlugin } from '@udecode/plate-block-quote';
 import {
-    PlateEditor, PlatePluginComponent, focusEditor, isMarkActive, toggleNodeType, PlatePlugin,
+    PlateEditor, PlatePluginComponent, focusEditor, toggleNodeType, PlatePlugin, getBlockAbove,
 } from '@udecode/plate-common';
 
 import { useIsPluginActive } from '../../helpers';
@@ -44,6 +44,8 @@ interface IToolbarButton {
 export function QuoteButton({ editor }: IToolbarButton) {
     if (!useIsPluginActive(QUOTE_PLUGIN_KEY)) return null;
 
+    const block = getBlockAbove(editor);
+
     const onQuoteButtonClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, type: string) => {
         e.preventDefault();
         e.stopPropagation();
@@ -56,7 +58,7 @@ export function QuoteButton({ editor }: IToolbarButton) {
         <ToolbarButton
             onClick={ (e) => onQuoteButtonClick(e, QUOTE_PLUGIN_KEY) }
             icon={ QuoteIcon }
-            isActive={ !!editor?.selection && isMarkActive(editor, QUOTE_PLUGIN_KEY) }
+            isActive={ !!editor?.selection && block?.length && block[0].type === QUOTE_TYPE }
         />
     );
 }

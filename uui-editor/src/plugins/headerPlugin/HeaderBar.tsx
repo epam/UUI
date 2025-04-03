@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { offset } from '@floating-ui/react';
 import { PlateEditor, getBlockAbove, getPluginOptions, setElements, useEditorRef } from '@udecode/plate-common';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown, FlexRow } from '@epam/uui';
@@ -78,20 +79,21 @@ interface IToolbarButton {
 export function HeaderButton({ editor }: IToolbarButton): any {
     if (!useIsPluginActive(HEADER_PLUGIN_KEY)) return null;
 
+    const block = getBlockAbove(editor);
+    const isHeaderActive = block?.length && Object.values(HEADER_TO_TYPE).includes(block[0].type as string);
+
     return (
         <Dropdown
             renderTarget={ (props) => (
                 <ToolbarButton
                     icon={ HeadlinePickerIcon }
+                    isActive={ isHeaderActive }
                     { ...props }
                 />
             ) }
             renderBody={ (props) => <HeaderBar editor={ editor } { ...props } /> }
             placement="top-start"
-            modifiers={ [{
-                name: 'offset',
-                options: { offset: [0, 3] },
-            }] }
+            middleware={ [offset(3)] }
         />
     );
 }

@@ -7,7 +7,6 @@ import { renderer, render, screen } from '@epam/uui-test-utils';
 interface ComponentProps extends IHasCaption, IHasCX {}
 
 describe('withMods', () => {
-    /* eslint-disable react/prefer-stateless-function */
     class ClassComponent extends React.Component<ComponentProps & IHasForwardedRef<HTMLDivElement>> {
         render() {
             return (

@@ -1,10 +1,10 @@
 import React from 'react';
-import { PopperArrowProps } from 'react-popper';
+import { FloatingArrowProps } from '@floating-ui/react';
 import { cx, DropdownPlacement } from '@epam/uui-core';
 import css from './PopoverArrow.module.scss';
 
 interface IPopoverArrow {
-    arrowProps?: PopperArrowProps;
+    arrowProps?: Omit<FloatingArrowProps, 'ref' | 'context'> & React.ComponentPropsWithRef<'div'>;
     placement?: DropdownPlacement;
 }
 

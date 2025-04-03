@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useImperativeHandle, useState } from 'react';
 import cx from 'classnames';
+import { offset } from '@floating-ui/react';
 import {
     DropdownBodyProps, useUuiContext,
 } from '@epam/uui-core';
@@ -14,11 +15,6 @@ import { settings } from '../../settings';
 
 import css from './RangeDatePicker.module.scss';
 
-const modifiers = [{
-    name: 'offset',
-    options: { offset: [0, 6] },
-}];
-
 function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const { value: _value, format = defaultFormat, size = settings.rangeDatePicker.sizes.default } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
@@ -28,6 +24,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     const [inFocus, setInFocus] = useState<RangeDatePickerInputType>(null);
 
     const targetRef = React.useRef<HTMLDivElement>(null);
+
+    useImperativeHandle(ref, () => targetRef.current);
 
     const onValueChange = (newValue: RangeDatePickerValue) => {
         const fromChanged = value?.from !== newValue?.from;
@@ -46,7 +44,10 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         props.onOpenChange?.(newIsOpen);
         if (!inFocus && newIsOpen) {
             setInFocus('from');
-            targetRef.current.querySelector<HTMLInputElement>('.uui-input').focus();
+            if (targetRef.current) {
+                const inputElement = targetRef.current.querySelector<HTMLInputElement>('.uui-input');
+                inputElement?.focus();
+            }
         }
     };
 
@@ -107,7 +108,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                 return props.renderTarget?.(renderProps) || (
                     <RangeDatePickerInput
                         id={ props.id }
-                        ref={ (node) => { (renderProps as any).ref(node); targetRef.current = node; } }
+                        ref={ renderProps.ref }
                         cx={ props.inputCx }
                         onClick={ () => renderProps.toggleDropdownOpening(true) }
                         isDisabled={ props.isDisabled }
@@ -133,9 +134,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             renderBody={ (renderProps) => renderBody(renderProps) }
             onValueChange={ (v) => onOpenChange(v) }
             value={ isOpen }
-            modifiers={ modifiers }
+            middleware={ [offset(6)] }
             placement={ props.placement }
-            forwardedRef={ ref }
+            ref={ ref }
         />
     );
 }

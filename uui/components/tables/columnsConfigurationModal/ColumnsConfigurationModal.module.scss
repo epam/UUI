@@ -25,7 +25,7 @@
     --uui-dt-columns_config_modal-no_data_sub_title-font-weight: 400;
     //
 
-    :global(.uui-modal-window) {
+    &:global(.uui-modal-window) {
         --uui-modals-width: var(--uui-dt-columns_config_modal-width);
     }
 

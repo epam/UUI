@@ -1,6 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
-import { Modifier } from 'react-popper';
-import { IDropdownToggler, DropdownBodyProps, mobilePopperModifier } from '@epam/uui-core';
+import {
+    IDropdownToggler,
+    DropdownBodyProps,
+    mobilePositioning,
+} from '@epam/uui-core';
+import { Middleware, offset } from '@floating-ui/react';
 import { Dropdown } from '@epam/uui-components';
 import { PickerBodyMobileView } from '../../pickers';
 import { SortingPanel, SortingPanelProps } from './SortingPanel';
@@ -15,13 +19,8 @@ type ColumnHeaderDropdownProps = SortingPanelProps & {
 };
 
 const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) => {
-    const popperModifiers: Modifier<any>[] = useMemo(
-        () => [
-            {
-                name: 'offset',
-                options: { offset: [0, 1] },
-            }, mobilePopperModifier,
-        ],
+    const middleware: Middleware[] = useMemo(
+        () => [offset(1), mobilePositioning],
         [],
     );
 
@@ -36,7 +35,7 @@ const ColumnHeaderDropdownImpl: React.FC<ColumnHeaderDropdownProps> = (props) =>
                     {props.renderFilter(dropdownProps)}
                 </PickerBodyMobileView>
             ) }
-            modifiers={ popperModifiers }
+            middleware={ middleware }
             value={ props.isOpen }
             onValueChange={ props.onOpenChange }
         />

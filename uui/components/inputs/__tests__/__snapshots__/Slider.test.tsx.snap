@@ -66,7 +66,6 @@ exports[`Slider should render with maximum props 1`] = `
     onFocus={[Function]}
     onKeyDown={[Function]}
     onMouseDown={[Function]}
-    onMouseUp={[Function]}
     role="slider"
     style={
       Object {
@@ -144,7 +143,6 @@ exports[`Slider should render with minimum props 1`] = `
     onFocus={[Function]}
     onKeyDown={[Function]}
     onMouseDown={[Function]}
-    onMouseUp={[Function]}
     role="slider"
     style={
       Object {
