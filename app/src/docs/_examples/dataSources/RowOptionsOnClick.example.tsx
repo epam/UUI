@@ -26,7 +26,7 @@ export default function RowOptionsOnClickExample() {
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             {`${name} was clicked`}
                         </Text>
                     </SuccessNotification>

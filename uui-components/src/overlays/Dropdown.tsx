@@ -1,232 +1,58 @@
-import * as React from 'react';
-import { Manager, Reference, Popper, ReferenceChildrenProps, PopperChildrenProps } from 'react-popper';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import {
+    useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow,
+} from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import { FreeFocusInside } from 'react-focus-lock';
-import { isEventTargetInsideClickable, LayoutLayer, UuiContexts, UuiContext, DropdownProps, getDir } from '@epam/uui-core';
+import { isEventTargetInsideClickable, UuiContext } from '@epam/uui-core';
+import type { LayoutLayer, DropdownProps } from '@epam/uui-core';
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
-import { Placement } from '@popperjs/core';
 
-interface DropdownState {
-    opened: boolean;
-    bodyBoundingRect: { y: number | null; x: number | null; width: number | null; height: number | null };
-}
+function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLElement>) {
+    const {
+        value: controlledOpen,
+        onValueChange: setControlledOpen,
+        isNotUnfoldable,
+        openOnHover,
+        openOnClick,
+        closeOnMouseLeave,
+        closeOnClickOutside,
+        closeOnTargetClick,
+        openDelay,
+        closeDelay,
+        onClose,
+        virtualTarget,
+        renderTarget,
+        renderBody,
+        closeBodyOnTogglerHidden,
+        zIndex,
+        portalTarget,
+        placement = 'bottom-start',
+        middleware,
+        boundaryElement,
+    } = props;
 
-export class Dropdown extends React.Component<DropdownProps, DropdownState> {
-    private targetNode: HTMLElement | null = null;
-    private bodyNode: HTMLElement | null = null;
-    private lastOpenedMs: number;
-    private togglerWidth: number;
-    private togglerHeight: number;
-    static contextType = UuiContext;
-    public context: UuiContexts;
-    private layer: LayoutLayer;
-    private openDropdownTimerId: NodeJS.Timeout = null;
-    private closeDropdownTimerId: NodeJS.Timeout = null;
-    private observer: MutationObserver;
+    console.log('placment', placement);
 
-    state: DropdownState = {
-        opened: this.props.value || false,
-        bodyBoundingRect: {
-            y: null, x: null, height: null, width: null,
-        },
-    };
+    const uuiContext = React.useContext(UuiContext);
 
-    constructor(props: DropdownProps) {
-        super(props);
-    }
+    const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
-    public componentDidMount() {
-        this.layer = this.context.uuiLayout?.getLayer();
+    const open = controlledOpen ?? uncontrolledOpen;
+    const setOpen = setControlledOpen ?? setUncontrolledOpen;
 
-        window.addEventListener('dragstart', this.clickOutsideHandler);
+    const targetNodeRef = React.useRef<HTMLElement | null>(null);
+    const bodyNodeRef = React.useRef<HTMLElement | null>(null);
+    const arrowRef = React.useRef<HTMLDivElement | null>(null);
+    const lastOpenedMsRef = React.useRef<number>(0);
+    const togglerWidthRef = React.useRef<number>(0);
+    const togglerHeightRef = React.useRef<number>(0);
+    const layerRef = React.useRef<LayoutLayer | null>(null);
+    const openDropdownTimerIdRef = React.useRef<NodeJS.Timeout | null>(null);
+    const closeDropdownTimerIdRef = React.useRef<NodeJS.Timeout | null>(null);
 
-        if (this.props.openOnHover && !this.props.openOnClick) {
-            this.targetNode?.addEventListener?.('mouseenter', this.handleMouseEnter);
-
-            if (this.props.closeOnMouseLeave !== false) {
-                this.targetNode?.addEventListener?.('mouseleave', this.handleMouseLeave);
-            }
-        }
-
-        if (this.props.closeOnClickOutside !== false) {
-            window.addEventListener('click', this.clickOutsideHandler, true);
-        }
-    }
-
-    public componentWillUnmount() {
-        window.removeEventListener('dragstart', this.clickOutsideHandler);
-        this.targetNode?.removeEventListener?.('mouseenter', this.handleMouseEnter);
-        this.targetNode?.removeEventListener?.('mouseleave', this.handleMouseLeave);
-        window.removeEventListener('click', this.clickOutsideHandler, true);
-        window.removeEventListener('mousemove', this.handleMouseMove);
-        this.layer && this.context.uuiLayout?.releaseLayer(this.layer);
-    }
-
-    handleOpenedChange = (opened: boolean) => {
-        if (opened && this.props.closeOnMouseLeave === 'boundary') {
-            window.addEventListener('mousemove', this.handleMouseMove);
-        } else if (!opened && this.props.closeOnMouseLeave === 'boundary') {
-            window.removeEventListener('mousemove', this.handleMouseMove);
-        }
-
-        if (this.props.onValueChange) {
-            this.props.onValueChange(opened);
-        } else {
-            this.setState({ opened });
-        }
-
-        if (opened) {
-            this.lastOpenedMs = new Date().getTime();
-        }
-    };
-
-    isOpened = () => {
-        return this.props.value !== undefined ? this.props.value : this.state.opened;
-    };
-
-    private handleTargetClick = (e: React.SyntheticEvent<HTMLElement>) => {
-        if (!this.props.isNotUnfoldable && !(e && isEventTargetInsideClickable(e))) {
-            const currentValue = this.isOpened();
-            const newValue = this.props.closeOnTargetClick === false ? true : !currentValue;
-
-            if (currentValue !== newValue) {
-                this.handleOpenedChange(newValue);
-            }
-        }
-    };
-
-    private handleMouseEnter = () => {
-        this.clearCloseDropdownTimer();
-        if (this.props.openDelay) {
-            this.setOpenDropdownTimer();
-        } else {
-            this.handleOpenedChange(true);
-        }
-    };
-
-    private handleMouseLeave = () => {
-        this.clearOpenDropdownTimer();
-
-        if (this.props.closeOnMouseLeave !== 'boundary') {
-            // For boundary mode we have separate logic on onMouseMove handler
-            if (this.props.closeDelay) {
-                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
-            } else {
-                this.handleOpenedChange(false);
-            }
-        }
-    };
-
-    isClientInArea(e: MouseEvent) {
-        const areaPadding = 30;
-        const rect = this.bodyNode?.getBoundingClientRect();
-
-        if (rect) {
-            const {
-                y, x, height, width,
-            } = rect;
-
-            if (y && x && width && height) {
-                return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
-            }
-        }
-
-        return false;
-    }
-
-    setOpenDropdownTimer() {
-        this.openDropdownTimerId = setTimeout(() => {
-            this.handleOpenedChange(true);
-            this.clearOpenDropdownTimer();
-        }, this.props.openDelay || 0);
-    }
-
-    setCloseDropdownTimer(delay: number) {
-        this.closeDropdownTimerId = setTimeout(() => {
-            this.handleOpenedChange(false);
-            this.clearCloseDropdownTimer();
-        }, delay);
-    }
-
-    clearOpenDropdownTimer() {
-        if (this.openDropdownTimerId) {
-            clearTimeout(this.openDropdownTimerId);
-            this.openDropdownTimerId = null;
-        }
-    }
-
-    clearCloseDropdownTimer() {
-        if (this.closeDropdownTimerId) {
-            clearTimeout(this.closeDropdownTimerId);
-            this.closeDropdownTimerId = null;
-        }
-    }
-
-    private handleMouseMove = (e: MouseEvent) => {
-        if (this.isInteractedOutside(e) && this.isClientInArea(e) && !this.closeDropdownTimerId) {
-            // User cursor in boundary area, but not inside toggler or body
-            this.clearOpenDropdownTimer();
-            this.setCloseDropdownTimer(this.props.closeDelay ?? 1500);
-        } else if (this.isInteractedOutside(e) && !this.isClientInArea(e)) {
-            // User leave boundary area, close dropdown immediately or with this.props.closeDelay
-            if (this.props.closeDelay && !this.closeDropdownTimerId) {
-                this.isOpened() && this.setCloseDropdownTimer(this.props.closeDelay);
-            } else if (!this.props.closeDelay) {
-                this.clearCloseDropdownTimer();
-                this.handleOpenedChange(false);
-            }
-        } else if (!this.isInteractedOutside(e) && this.closeDropdownTimerId) {
-            // User returned to the toggler or body area, we need to clear close timer
-            this.clearCloseDropdownTimer();
-        }
-    };
-
-    private onClose = () => {
-        if (this.props.onClose) this.props.onClose();
-        else this.handleOpenedChange(false);
-    };
-
-    private getTargetClickHandler = () => {
-        const { openOnClick, openOnHover } = this.props;
-
-        if (
-            openOnClick
-            || !openOnHover
-        ) {
-            return this.handleTargetClick;
-        }
-
-        return undefined;
-    };
-
-    private getIsInteractedOutside = (event: Event) => {
-        return isInteractedOutsideDropdown(
-            event,
-            [
-                this.bodyNode,
-                this.targetNode,
-            ],
-        );
-    };
-
-    private setForwardedRef = (node: HTMLElement | null) => {
-        if (!this.props.forwardedRef) return;
-
-        if (typeof this.props.forwardedRef === 'function') {
-            this.props.forwardedRef(node);
-        } else {
-            this.props.forwardedRef.current = node;
-        }
-    };
-
-    private getPlacement = (placement: Placement = 'bottom-start'): Placement => {
-        if (getDir() === 'rtl') {
-            return placement.replace('start', 'end') as Placement;
-        }
-        return placement;
-    };
-
-    private getOppositePlacement = (placement: Placement): Placement => {
+    const getOppositePlacement = (placement: Placement): Placement => {
         const placementDirection = placement.split('-')[0];
         switch (placementDirection) {
             case 'bottom': return placement.replace('bottom', 'top') as Placement;
@@ -237,126 +63,348 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
         }
     };
 
-    private renderTarget(targetProps: ReferenceChildrenProps) {
-        const innerRef = (node: HTMLElement | null) => {
-            if (!node) {
-                return;
+    const isOpened = useCallback(() => {
+        return open;
+    }, [open]);
+
+    const handleOpenedChange = React.useCallback((newOpened: boolean) => {
+        setOpen(newOpened);
+
+        if (newOpened) {
+            lastOpenedMsRef.current = new Date().getTime();
+        }
+    }, [setOpen]);
+
+    const defaultMiddleware = [
+        flip(),
+        shift({ boundary: boundaryElement, rootBoundary: 'viewport' }),
+        hide(),
+    ];
+
+    if (arrowRef.current) {
+        defaultMiddleware.push(arrow({ element: arrowRef }));
+    }
+
+    const { x, y, refs, strategy, placement: finalPlacement, middlewareData, update, isPositioned } = useFloating({
+        middleware: defaultMiddleware.concat(middleware || []),
+        placement: placement,
+        strategy: 'fixed',
+        open,
+        onOpenChange: handleOpenedChange,
+        whileElementsMounted: autoUpdate,
+    });
+
+    // Force update when the virtualTarget changes.
+    useEffect(() => {
+        update();
+    }, [virtualTarget, update]);
+
+    const clearOpenDropdownTimer = React.useCallback(() => {
+        if (openDropdownTimerIdRef.current) {
+            clearTimeout(openDropdownTimerIdRef.current);
+            openDropdownTimerIdRef.current = null;
+        }
+    }, [openDropdownTimerIdRef.current]);
+
+    const clearCloseDropdownTimer = React.useCallback(() => {
+        if (closeDropdownTimerIdRef.current) {
+            clearTimeout(closeDropdownTimerIdRef.current);
+            closeDropdownTimerIdRef.current = null;
+        }
+    }, [closeDropdownTimerIdRef.current]);
+
+    const setOpenDropdownTimer = React.useCallback(() => {
+        openDropdownTimerIdRef.current = setTimeout(() => {
+            // Use requestAnimationFrame to batch state updates
+            requestAnimationFrame(() => {
+                handleOpenedChange(true);
+                clearOpenDropdownTimer();
+            });
+        }, openDelay || 0);
+    }, [handleOpenedChange, openDelay, clearOpenDropdownTimer]);
+
+    const setCloseDropdownTimer = React.useCallback((delay: number) => {
+        closeDropdownTimerIdRef.current = setTimeout(() => {
+            // Use requestAnimationFrame to batch state updates
+            requestAnimationFrame(() => {
+                handleOpenedChange(false);
+                clearCloseDropdownTimer();
+            });
+        }, delay);
+    }, [handleOpenedChange, clearCloseDropdownTimer]);
+
+    const handleMouseEnter = React.useCallback(() => {
+        clearCloseDropdownTimer();
+        if (openDelay) {
+            setOpenDropdownTimer();
+        } else {
+            handleOpenedChange(true);
+        }
+    }, [clearCloseDropdownTimer, openDelay, setOpenDropdownTimer, handleOpenedChange]);
+
+    const handleMouseLeave = React.useCallback(() => {
+        clearOpenDropdownTimer();
+
+        if (closeOnMouseLeave !== 'boundary') {
+            // For boundary mode we have separate logic on onMouseMove handler
+            if (closeDelay) {
+                open && setCloseDropdownTimer(closeDelay);
+            } else {
+                handleOpenedChange(false);
             }
+        }
+    }, [clearOpenDropdownTimer, closeOnMouseLeave, closeDelay, open, setCloseDropdownTimer, handleOpenedChange]);
 
-            this.targetNode = node;
-            if (typeof targetProps.ref === 'function') {
-                targetProps.ref(this.targetNode);
-            } else if (targetProps.ref) {
-                (targetProps.ref as React.MutableRefObject<HTMLElement>).current = this.targetNode;
+    const isClientInArea = React.useCallback((e: MouseEvent) => {
+        const areaPadding = 30;
+        const rect = bodyNodeRef.current?.getBoundingClientRect();
+
+        if (rect) {
+            const { y, x, height, width } = rect;
+
+            if (y && x && width && height) {
+                return x - areaPadding <= e.clientX && e.clientX <= x + areaPadding + width
+                    && y - areaPadding <= e.clientY && e.clientY <= y + height + areaPadding;
             }
-
-            this.setForwardedRef(this.targetNode);
-        };
-
-        return this.props.renderTarget({
-            onClick: this.getTargetClickHandler(),
-            isOpen: this.isOpened(),
-            isDropdown: true,
-            ref: innerRef,
-            toggleDropdownOpening: this.handleOpenedChange,
-            isInteractedOutside: this.getIsInteractedOutside,
-        });
-    }
-
-    private renderDropdownBody = ({
-        ref, placement, style, update, isReferenceHidden, arrowProps,
-    }: PopperChildrenProps) => {
-        const setRef = (node: HTMLElement) => {
-            (ref as React.RefCallback<HTMLElement>)(node);
-            this.bodyNode = node;
-        };
-
-        if (isReferenceHidden && this.props.closeBodyOnTogglerHidden !== false && this.isOpened()) {
-            // Yes, we know that it's hack and we can perform setState in render, but we don't have other way to do it in this case
-            setTimeout(() => this.handleOpenedChange(false), 0);
         }
 
-        // @ts-ignore
-        return (
-            <FreeFocusInside>
-                <div
-                    role="dialog"
-                    className="uui-popper"
-                    aria-hidden={ !this.isOpened() }
-                    ref={ setRef }
-                    style={ { ...style, zIndex: this.props.zIndex != null ? this.props.zIndex : this.layer?.zIndex } }
-                    data-placement={ this.getPlacement(placement) }
-                >
-                    {this.props.renderBody({
-                        onClose: this.onClose,
-                        togglerWidth: this.togglerWidth,
-                        togglerHeight: this.togglerHeight,
-                        scheduleUpdate: update,
-                        isOpen: this.isOpened(),
-                        arrowProps: arrowProps,
-                        placement: this.getPlacement(placement),
-                    })}
-                </div>
-            </FreeFocusInside>
+        return false;
+    }, []);
+
+    const getIsInteractedOutside = useCallback((event: Event) => {
+        return isInteractedOutsideDropdown(
+            event,
+            [
+                bodyNodeRef.current,
+                targetNodeRef.current,
+            ],
         );
-    };
+    }, []);
 
-    private isInteractedOutside = (e: Event) => {
-        if (!this.isOpened()) return false;
-        return this.getIsInteractedOutside(e);
-    };
+    const isInteractedOutside = useCallback((e: Event) => {
+        if (!isOpened()) return false;
+        return getIsInteractedOutside(e);
+    }, [isOpened, getIsInteractedOutside]);
 
-    private clickOutsideHandler = (e: Event) => {
-        if (this.isInteractedOutside(e)) {
-            this.handleOpenedChange(false);
+    const handleMouseMove = React.useCallback((e: MouseEvent) => {
+        if (!bodyNodeRef.current || !targetNodeRef.current) return;
+
+        if (isInteractedOutside(e) && isClientInArea(e) && !closeDropdownTimerIdRef.current) {
+            // User cursor in boundary area, but not inside toggler or body
+            clearOpenDropdownTimer();
+            setCloseDropdownTimer(closeDelay ?? 1500);
+        } else if (isInteractedOutside(e) && !isClientInArea(e)) {
+            // User leave boundary area, close dropdown immediately or with closeDelay
+            if (closeDelay && !closeDropdownTimerIdRef.current) {
+                isOpened() && setCloseDropdownTimer(closeDelay);
+            } else if (!closeDelay) {
+                clearCloseDropdownTimer();
+                handleOpenedChange(false);
+            }
+        } else if (!isInteractedOutside(e) && closeDropdownTimerIdRef.current) {
+            // User returned to the toggler or body area, we need to clear close timer
+            clearCloseDropdownTimer();
         }
-    };
+    }, [isInteractedOutside, isClientInArea, isOpened, clearOpenDropdownTimer, setCloseDropdownTimer, closeDelay, clearCloseDropdownTimer, handleOpenedChange]);
 
-    private updateTogglerSize() {
-        if (this.targetNode) {
-            const { width, height } = this.targetNode.getBoundingClientRect();
-            this.togglerWidth = width;
-            this.togglerHeight = height;
+    const handleTargetClick = React.useCallback((e: React.SyntheticEvent<HTMLElement>) => {
+        if (!isNotUnfoldable && !(e && isEventTargetInsideClickable(e))) {
+            const currentValue = isOpened();
+            const newValue = closeOnTargetClick === false ? true : !currentValue;
+
+            if (currentValue !== newValue) {
+                handleOpenedChange(newValue);
+            }
         }
+    }, [isNotUnfoldable, isOpened, closeOnTargetClick, handleOpenedChange]);
+
+    const getTargetClickHandler = React.useCallback(() => {
+        if (openOnClick || !openOnHover) {
+            return handleTargetClick;
+        }
+        return undefined;
+    }, [openOnClick, openOnHover, handleTargetClick]);
+
+    const onCloseHandler = React.useCallback(() => {
+        if (onClose) onClose();
+        else handleOpenedChange(false);
+    }, [onClose, handleOpenedChange]);
+
+    const clickOutsideHandler = React.useCallback((e: Event) => {
+        if (isInteractedOutside(e)) {
+            handleOpenedChange(false);
+        }
+    }, [isInteractedOutside, handleOpenedChange]);
+
+    // We'll use this function to get the reference element (either virtual or real)
+    const getReferenceElement = useCallback(() => {
+        return virtualTarget || targetNodeRef.current;
+    }, [virtualTarget]);
+
+    // Modify this function to use the right reference element
+    const updateTogglerSize = React.useCallback(() => {
+        const reference = getReferenceElement();
+        if (reference) {
+            const rect = reference.getBoundingClientRect();
+            togglerWidthRef.current = rect.width;
+            togglerHeightRef.current = rect.height;
+
+            // Force update when toggler size changes
+            if (virtualTarget) {
+                update();
+            }
+        }
+    }, [getReferenceElement, virtualTarget, update]);
+
+    // Only use the real DOM ref if we're not using virtual references
+    const mergedRefs = useMergeRefs([refs.setReference, targetNodeRef, ref]);
+    const mergedTargetRef = virtualTarget
+        ? (node: HTMLElement | null) => { targetNodeRef.current = node; }
+        : mergedRefs;
+
+    // Render target only if not using virtual reference
+    const targetElement = !virtualTarget ? renderTarget({
+        onClick: getTargetClickHandler(),
+        isOpen: isOpened(),
+        isDropdown: true,
+        ref: mergedTargetRef,
+        toggleDropdownOpening: handleOpenedChange,
+        isInteractedOutside: getIsInteractedOutside,
+    }) : null;
+
+    // Set the reference element based on virtual or real element
+    useEffect(() => {
+        if (virtualTarget && refs.setPositionReference) {
+            refs.setPositionReference(virtualTarget);
+            // Force an initial update
+            requestAnimationFrame(() => {
+                update();
+            });
+        }
+    }, [virtualTarget, refs.setPositionReference, update]);
+
+    const body = useMemo(() => renderBody({
+        onClose: onCloseHandler,
+        togglerWidth: togglerWidthRef.current,
+        togglerHeight: togglerHeightRef.current,
+        scheduleUpdate: update,
+        isOpen: isOpened(),
+        arrowProps: {
+            ref: arrowRef,
+            style: middlewareData.arrow ? {
+                top: middlewareData.arrow.y,
+                left: middlewareData.arrow.x,
+            } : {},
+        },
+        placement: finalPlacement,
+    }), [renderBody, onCloseHandler, togglerWidthRef.current, togglerHeightRef.current, update, isOpened, middlewareData?.arrow?.y, middlewareData?.arrow?.x, finalPlacement]);
+
+    const mergedBodyRef = useMergeRefs([refs.setFloating, bodyNodeRef]);
+
+    useEffect(() => {
+        if (open && closeOnMouseLeave === 'boundary') {
+            window.addEventListener('mousemove', handleMouseMove);
+        } else if (closeOnMouseLeave === 'boundary') {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [open, closeOnMouseLeave, handleMouseMove]);
+
+    useEffect(() => {
+        layerRef.current = uuiContext.uuiLayout?.getLayer();
+
+        window.addEventListener('dragstart', clickOutsideHandler);
+
+        if (openOnHover && !openOnClick) {
+            targetNodeRef.current?.addEventListener?.('mouseenter', handleMouseEnter);
+
+            if (closeOnMouseLeave !== false) {
+                targetNodeRef.current?.addEventListener?.('mouseleave', handleMouseLeave);
+            }
+        }
+
+        if (closeOnClickOutside !== false) {
+            window.addEventListener('click', clickOutsideHandler, true);
+        }
+
+        return () => {
+            window.removeEventListener('dragstart', clickOutsideHandler);
+            targetNodeRef.current?.removeEventListener?.('mouseenter', handleMouseEnter);
+            targetNodeRef.current?.removeEventListener?.('mouseleave', handleMouseLeave);
+            window.removeEventListener('click', clickOutsideHandler, true);
+            layerRef.current && uuiContext.uuiLayout?.releaseLayer(layerRef.current);
+        };
+    }, [
+        uuiContext.uuiLayout,
+        openOnHover,
+        openOnClick,
+        closeOnMouseLeave,
+        closeOnClickOutside,
+        clickOutsideHandler,
+        handleMouseEnter,
+        handleMouseLeave,
+        handleMouseMove,
+    ]);
+
+    useLayoutEffect(() => {
+        if (isPositioned && middlewareData.hide?.referenceHidden && (closeBodyOnTogglerHidden !== false)) {
+            handleOpenedChange(false);
+        }
+    }, [middlewareData.hide?.referenceHidden, closeBodyOnTogglerHidden, isPositioned, handleOpenedChange]);
+
+    useEffect(() => {
+        const reference = virtualTarget || targetNodeRef.current;
+        // Only set up autoUpdate when both refs are present and dropdown is open
+        if (open && reference && bodyNodeRef.current) {
+            const cleanup = autoUpdate(
+                reference,
+                bodyNodeRef.current,
+                update,
+                {
+                    ancestorScroll: (!virtualTarget && !!targetNodeRef.current?.isConnected && !!bodyNodeRef.current.isConnected),
+                    ancestorResize: (!virtualTarget && !!targetNodeRef.current?.isConnected && !!bodyNodeRef.current.isConnected),
+                    elementResize: (!virtualTarget && !!targetNodeRef.current?.isConnected && !!bodyNodeRef.current.isConnected),
+                },
+            );
+            return cleanup;
+        }
+    }, [open, update, virtualTarget]);
+
+    const shouldShowBody = open && !isNotUnfoldable;
+
+    if (shouldShowBody) {
+        updateTogglerSize();
     }
 
-    public render() {
-        const shouldShowBody = this.isOpened() && !this.props.isNotUnfoldable;
-        const defaultModifiers = [
-            {
-                name: 'preventOverflow',
-                options: {
-                    rootBoundary: 'viewport',
-                    boundary: this.props.boundaryElement,
-                },
-            },
-            {
-                name: 'hide',
-                enabled: true,
-            },
-            {
-                name: 'flip',
-                options: {
-                    fallbackPlacements: [this.getOppositePlacement(this.getPlacement(this.props.placement)), 'auto'],
-                },
-            },
-        ];
-
-        if (shouldShowBody) {
-            this.updateTogglerSize();
-        }
-
-        return (
-            <Manager>
-                <Reference>{(targetProps) => this.renderTarget(targetProps)}</Reference>
-                {shouldShowBody && (
-                    <Portal target={ this.props.portalTarget }>
-                        <Popper placement={ this.getPlacement(this.props.placement) } strategy="fixed" modifiers={ [...defaultModifiers, ...(this.props.modifiers || [])] }>
-                            {this.renderDropdownBody}
-                        </Popper>
-                    </Portal>
-                )}
-            </Manager>
-        );
-    }
+    return (
+        <>
+            {targetElement}
+            {shouldShowBody && (
+                <Portal target={ portalTarget }>
+                    <FreeFocusInside>
+                        <div
+                            role="dialog"
+                            className="uui-popper"
+                            aria-hidden={ !isOpened() }
+                            ref={ mergedBodyRef }
+                            style={ {
+                                position: strategy,
+                                top: y ?? 0,
+                                left: x ?? 0,
+                                zIndex: zIndex != null ? zIndex : layerRef.current?.zIndex,
+                            } }
+                            data-placement={ finalPlacement }
+                        >
+                            {body}
+                        </div>
+                    </FreeFocusInside>
+                </Portal>
+            )}
+        </>
+    );
 }
+
+export const Dropdown = React.forwardRef(DropdownComponent);

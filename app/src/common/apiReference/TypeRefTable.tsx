@@ -82,9 +82,9 @@ export function TypeRefTable(props: TypeRefTableProps) {
                 },
                 col3,
             ];
-            return <DataTableRow key={ props.id } { ...props } columns={ groupColumns } />;
+            return <DataTableRow { ...props } key={ props.id } columns={ groupColumns } />;
         }
-        return <DataTableRow key={ props.id } { ...props } indent={ Math.min(props.indent, 1) } columns={ columns } />;
+        return <DataTableRow { ...props } key={ props.id } indent={ Math.min(props.indent, 1) } columns={ columns } />;
     };
 
     return (

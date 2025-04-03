@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { offset } from '@floating-ui/react';
 import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState, DropdownBodyProps } from '@epam/uui-core';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, SuccessNotification, DropdownMenuSplitter } from '../../overlays';
 import { IconButton } from '../../buttons';
@@ -51,7 +52,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
             .show(
                 (props) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             {text}
                         </Text>
                     </SuccessNotification>
@@ -130,6 +131,6 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     }, []);
 
     return (
-        <Dropdown renderBody={ renderBody } renderTarget={ renderTarget } placement="bottom-end" modifiers={ [{ name: 'offset', options: { offset: [0, 22] } }] } />
+        <Dropdown renderBody={ renderBody } renderTarget={ renderTarget } placement="bottom-end" middleware={ [offset(22)] } />
     );
 }

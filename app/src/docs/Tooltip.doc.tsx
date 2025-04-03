@@ -3,6 +3,7 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
+import { offset } from '@floating-ui/react';
 import { COLOR_MAP, DocBuilder, DocPreviewBuilder, getColorPickerComponent, TDocConfig, TSkin } from '@epam/uui-docs';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
 import { getCurrentTheme } from '../helpers';
@@ -37,14 +38,15 @@ export class TooltipDoc extends BaseDocsBlock {
                 editorType: 'StringWithExamplesEditor',
             });
             doc.merge('offset', {
+                description: 'Translates the floating element along the specified axes. https://floating-ui.com/docs/offset',
                 examples: [
-                    { name: '[50, 50]', value: [50, 50] },
-                    { name: '[50, 0]', value: [50, 0] },
-                    { name: '[0, 50]', value: [0, 50] },
-                    { name: '() => ([100, 100])', value: () => ([100, 100]) },
+                    { name: '{ crossAxis: 50, mainAxis: 50 }', value: { crossAxis: 50, mainAxis: 50 } },
+                    { name: '{ crossAxis: 50, mainAxis: 0 }', value: { crossAxis: 50, mainAxis: 0 } },
+                    { name: '{ crossAxis: 0, mainAxis: 50 }', value: { crossAxis: 0, mainAxis: 50 } },
+                    { name: '() => ({ crossAxis: 100, mainAxis: 100 })', value: () => ({ crossAxis: 100, mainAxis: 100 }) },
                 ],
             });
-            doc.merge('modifiers', { editorType: 'JsonEditor' });
+            doc.merge('middleware', { examples: [{ name: '[offset(6)]', value: [offset(6)] }] });
             doc.merge('color', {
                 editorType: getColorPickerComponent({
                     ...COLOR_MAP,
