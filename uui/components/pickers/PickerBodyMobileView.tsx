@@ -53,7 +53,7 @@ export const PickerBodyMobileView: React.FC<IMobileDropdownWrapperProps> = (prop
             maxWidth={ maxWidth }
             maxHeight={ maxHeight }
             cx={ [css.container, props.cx] }
-            autoFocus={ true }
+            autoFocus={ false }
         >
             {isMobileView && <DataPickerMobileHeader title={ props.title } close={ props.onClose } />}
 

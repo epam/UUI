@@ -19,9 +19,9 @@ type DocsQuery = {
 
 export function DocumentsPage() {
     const svc = useUuiContext<TApi, AppContext>();
-    const queryParamId: string = useQuery('id');
+    const selectedDocId: string = useQuery('id');
     const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
-    const itemsInfo = useItems(queryParamId);
+    const docsStructure = svc.uuiApp.docsMenuStructure;
     const [pageWidth, setPageWidth] = useState(window.innerWidth);
     const { theme, themesById } = useAppThemeContext();
 
@@ -31,26 +31,43 @@ export function DocumentsPage() {
             query,
         });
 
-    function useItems(selectedId: string) {
-        const { docsMenuStructure } = svc.uuiApp;
+    const addCanonicalLinkTag = () => {
+        const existingCanonicalLink = document.querySelector('link[rel="canonical"]');
+        const currentLink = svc.uuiRouter.getCurrentLink();
 
-        return useMemo(() => {
-            if (docsMenuStructure) {
-                const items = docsMenuStructure;
-                const PageComponent = items.find((item) => item.id === selectedId)?.component;
-                return {
-                    items,
-                    PageComponent,
-                };
-            }
-        }, [docsMenuStructure, selectedId]);
-    }
+        if (existingCanonicalLink) {
+            existingCanonicalLink.remove();
+        }
+
+        const canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        canonicalLink.setAttribute('href', 'https://uui.epam.com' + svc.uuiRouter.createHref({
+            ...currentLink,
+            query: {
+                ...currentLink.query,
+                theme: 'loveship',
+                isSkin: false,
+            },
+        }));
+        document.head.appendChild(canonicalLink);
+    };
+
+    const selectedDoc = useMemo(() => {
+        if (docsStructure) {
+            return docsStructure.find((item) => item.id === selectedDocId);
+        }
+    }, [docsStructure, selectedDocId]);
 
     useEffect(() => {
-        if (itemsInfo && !itemsInfo.PageComponent) {
-            redirectTo({ id: itemsInfo.items[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
+        if (docsStructure && !selectedDoc.component) {
+            redirectTo({ id: docsStructure[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
         }
-    }, [itemsInfo]);
+    }, [docsStructure]);
+
+    useEffect(() => {
+        addCanonicalLinkTag();
+        document.title = selectedDoc.name ? `${selectedDoc.name} | UUI` : 'UUI';
+    }, [selectedDocId, selectedDoc]);
 
     useEffect(() => {
         codesandboxService.getFiles(theme, themesById);
@@ -64,7 +81,7 @@ export function DocumentsPage() {
         };
     }, []);
 
-    const PageComponent = itemsInfo?.PageComponent;
+    const PageComponent = selectedDoc?.component;
 
     return (
         <Page renderHeader={ () => <AppHeader /> }>

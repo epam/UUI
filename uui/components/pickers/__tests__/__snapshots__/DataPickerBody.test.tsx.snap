@@ -19,32 +19,36 @@ Array [
       }
     >
       <div
-        className="container uui-input-box -clickable root uui-size-48 mode-form"
-        dir="auto"
-        onFocus={[Function]}
-        tabIndex={-1}
+        data-autofocus-inside={true}
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          className="container uui-input-box -clickable root uui-size-48 mode-form"
+          dir="auto"
+          onFocus={[Function]}
+          tabIndex={-1}
         >
-          <svg
-            className=""
+          <div
+            className="container uui-icon uui-enabled"
+            style={Object {}}
+          >
+            <svg
+              className=""
+            />
+          </div>
+          <input
+            className="uui-input"
+            dir="ltr"
+            inputMode="search"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Search"
+            tabIndex={0}
+            type="search"
+            value=""
           />
         </div>
-        <input
-          className="uui-input"
-          dir="ltr"
-          inputMode="search"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          placeholder="Search"
-          tabIndex={0}
-          type="search"
-          value=""
-        />
       </div>
     </div>
   </div>,

@@ -6,7 +6,7 @@ import { settings } from '../../settings';
 import css from './DataPickerRow.module.scss';
 import { PickerItem } from './PickerItem';
 import type { PickerInputProps } from './PickerInput';
-import { Text, TextPlaceholder } from '../typography';
+import { Text } from '../typography';
 import { FlexCell } from '../layout';
 import { DataRowAddons } from '../widgets';
 
@@ -49,8 +49,8 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         props.onFocus && props.onFocus(props.index);
     };
 
-    const getSubtitle = ({ path }: DataRowProps<TItem, TId>, { search }: DataSourceState) => {
-        if (!search) return;
+    const getSubtitle = ({ path }: DataRowProps<TItem, TId>) => {
+        if (!props.dataSourceState?.search) return;
 
         return path
             .map(({ value }) => props.getName(value))
@@ -69,7 +69,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
                 size={ props.size || settings.pickerInput.sizes.body.row }
                 dataSourceState={ props.dataSourceState }
                 highlightSearchMatches={ props.highlightSearchMatches }
-                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps, props.dataSourceState) } : {}) }
+                { ...(props.flattenSearchResults ? { subtitle: getSubtitle(rowProps) } : {}) }
                 { ...rowProps }
             />
         );
@@ -79,11 +79,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         let content: React.ReactNode;
 
         if (props.isLoading) {
-            content = (
-                <Text size={ props.size }>
-                    <TextPlaceholder />
-                </Text>
-            );
+            content = settings.pickerInput.renderPlaceholder({ rowSize: props.size });
         } else if (props.isUnknown) {
             content = (
                 <Text size={ props.size }>

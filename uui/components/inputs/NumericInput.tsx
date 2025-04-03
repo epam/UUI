@@ -23,7 +23,7 @@ function applyNumericInputMods(mods: NumericInputMods) {
         textInputCss.root,
         css.root,
         `uui-size-${mods.size || settings.numericInput.sizes.default}`,
-        textInputCss['mode-' + (mods.mode || DEFAULT_MODE)],
+        'uui-control-mode-' + (mods.mode || DEFAULT_MODE),
     ];
 }
 

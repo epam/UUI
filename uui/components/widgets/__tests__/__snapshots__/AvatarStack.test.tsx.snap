@@ -5,7 +5,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
   className="root root"
 >
   <div
-    className="uui-avatars container avatar-right"
+    className="uui-avatar_stack-avatars container avatar-right"
     role="group"
     style={
       Object {
@@ -39,7 +39,7 @@ exports[`AvatarStack should be rendered correctly 1`] = `
     />
   </div>
   <div
-    className="avatarsCount"
+    className="uui-avatar_stack-count"
   >
     +2
   </div>

@@ -27,11 +27,11 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
         css.root,
         'uui-picker_toggler',
         `uui-size-${mods.size || settings.pickerInput.sizes.toggler.default}`,
-        css['mode-' + (mods.mode || defaultMode)],
+        'uui-control-mode-' + (mods.mode || defaultMode),
     ];
 }
 
-function PickerTogglerComponent<TItem extends string, TId>(
+function PickerTogglerComponent<TItem, TId>(
     props: PickerTogglerProps<TItem, TId>,
     ref: React.ForwardedRef<HTMLElement>,
 ): JSX.Element {
@@ -44,7 +44,7 @@ function PickerTogglerComponent<TItem extends string, TId>(
         return (
             <PickerTogglerTag
                 { ...itemPropsWithSize }
-                key={ itemPropsWithSize.key }
+                key={ itemProps.rowProps?.id as string }
                 getName={ props.getName }
             />
         );
@@ -53,7 +53,6 @@ function PickerTogglerComponent<TItem extends string, TId>(
     return (
         <UuiPickerToggler
             { ...props }
-            key={ undefined }
             ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ renderItem }

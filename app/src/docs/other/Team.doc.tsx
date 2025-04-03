@@ -8,7 +8,7 @@ import { ContentSection } from '../../common';
 
 export const team = [
     {
-        name: 'Yakov Zhmorov',
+        name: 'Yakov Zhmurov',
         position: 'Architect',
         isDefault: true,
         src: 'https://static.cdn.epam.com/avatar/779038178a233327b974b53db1836de2.jpg',
