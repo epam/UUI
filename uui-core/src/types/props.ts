@@ -1,5 +1,5 @@
 import {
-    Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode, ComponentPropsWithRef,
+    Attributes, CSSProperties, HTMLAttributes, ForwardedRef, ReactNode,
 } from 'react';
 import { FloatingArrowProps, Placement } from '@floating-ui/react';
 import { Link, CX, Icon, AnalyticsEvent } from './objects';
