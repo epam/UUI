@@ -1443,7 +1443,6 @@ describe('PickerInput', () => {
         });
 
         const testInputFocus = async (selectionMode: PickerInputProps<any, any>['selectionMode'], searchPosition?: PickerInputProps<any, any>['searchPosition']) => {
-            const user = userEvent.setup();
             const { dom } = await setupPickerInputForTest({
                 value: undefined,
                 selectionMode,

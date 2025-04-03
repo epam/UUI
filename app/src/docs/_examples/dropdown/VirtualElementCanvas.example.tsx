@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
-import { Dropdown, DropdownContainer, Panel, Text, FlexRow, FlexCell } from '@epam/uui';
+import { Dropdown, DropdownContainer, Text, FlexRow, FlexCell } from '@epam/uui';
 import { offset, VirtualElement } from '@floating-ui/react';
 
 export default function CanvasDropdownExample() {
@@ -36,17 +36,6 @@ export default function CanvasDropdownExample() {
             // Debug log position updates (throttled)
             const now = Date.now();
             if (now - lastUpdateRef.current > 100) { // Log every 100ms
-                console.log('Virtual element position:', {
-                    x: virtualRect.x,
-                    y: virtualRect.y,
-                    canvasPoint,
-                    rect: {
-                        left: rect.left,
-                        top: rect.top,
-                        width: rect.width,
-                        height: rect.height,
-                    },
-                });
                 lastUpdateRef.current = now;
             }
 
