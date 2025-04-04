@@ -8,7 +8,12 @@ import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
-import { RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
+import {
+    RangeDatePickerBodyValue,
+    RangeDatePickerInputType,
+    RangeDatePickerProps,
+    RangeDatePickerValue,
+} from './types';
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { settings } from '../../settings';
 
@@ -140,4 +145,5 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     );
 }
 
-export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);
+export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent) as
+    (props: RangeDatePickerProps & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof RangeDatePickerComponent>;

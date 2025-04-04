@@ -137,4 +137,5 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     );
 }
 
-export const DatePicker = React.forwardRef(DatePickerComponent);
+export const DatePicker = React.forwardRef(DatePickerComponent) as
+    (props: DatePickerProps & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof DatePickerComponent>;
