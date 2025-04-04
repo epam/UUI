@@ -8,8 +8,9 @@ import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
 import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
 import {
-    RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue,
-} from '../datePickers/types';
+    RangeDatePickerBodyValue, RangeDatePickerProps, RangeDatePickerValue,
+} from '../datePickers';
+import { RangeDatePickerInputType } from '../datePickers/types';
 import { RangeDatePickerBody } from '../datePickers';
 
 export interface FilterRangeDatePickerProps extends RangeDatePickerProps, IDropdownBodyProps {}
