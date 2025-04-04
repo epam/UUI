@@ -7,8 +7,6 @@ export * from './RangeDatePickerBody';
 
 export type { DatePickerBodyProps } from './DatePickerBody';
 export type {
-    DatePickerProps,
-    RangeDatePickerProps,
     RangeDatePickerValue,
     RangeDatePickerBodyValue,
 } from './types';
