@@ -95,7 +95,7 @@ export const DropdownMenuBody = withMods<DropdownMenuContainerProps, DropdownMen
     },
 );
 
-export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>((props, ref) => {
+export function DropdownMenuButton(props: IDropdownMenuItemProps) {
     const context = useContext(UuiContext);
 
     const {
@@ -178,7 +178,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             onKeyDown={ isDisabled ? null : handleOpenDropdown }
             className={ itemClassNames }
             onClick={ handleClick } // update flex row data
-            ref={ ref }
+            ref={ props.ref }
         >
             { getMenuButtonContent() }
             { isSelected && (
@@ -189,7 +189,7 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             ) }
         </div>
     );
-});
+}
 
 export function DropdownMenuSplitter(props: IHasCX) {
     return (

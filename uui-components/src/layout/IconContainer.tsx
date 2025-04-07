@@ -5,12 +5,12 @@ import {
 } from '@epam/uui-core';
 import { Svg } from '../widgets/Svg';
 
-export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasTabIndex {
+export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasTabIndex, React.RefAttributes<HTMLDivElement> {
     /** Icon to display */
     icon?: Icon;
     /** Flips the icon vertically */
     flipY?: boolean;
-    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise)) */
+    /** Rotate the icon (cw stands for 'clock-wise', ccw stands for 'counter clock-wise')) */
     rotate?: '0' | '90cw' | '180' | '90ccw';
     /** Click handler */
     onClick?(e: React.SyntheticEvent<HTMLDivElement>): void;
@@ -23,7 +23,7 @@ export interface ControlIconProps extends IHasCX, IDisableable, IHasRawProps<Rea
 /** Represents the properties of a IconContainer component. */
 export type IconContainerProps = ControlIconProps & {};
 
-export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>((props, ref) => {
+export const IconContainer = (props: ControlIconProps) => {
     const isClickable = !props.isDisabled && props.onClick;
 
     return (
@@ -36,7 +36,7 @@ export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>(
                 props.cx,
                 props.rawProps?.className,
             ) }
-            ref={ ref }
+            ref={ props.ref }
             onClick={ isClickable ? props.onClick : undefined }
             tabIndex={ isClickable ? props.tabIndex : undefined }
             style={ { ...props.style, ...props.rawProps?.style } }
@@ -45,4 +45,4 @@ export const IconContainer = React.forwardRef<HTMLDivElement, ControlIconProps>(
             <Svg svg={ props.icon } width={ props.size } height={ props.size } cx={ cx(props.flipY && css.flipY, props.rotate && css['rotate-' + props.rotate]) } />
         </div>
     );
-});
+};

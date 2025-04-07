@@ -30,7 +30,9 @@ type VirtualListRenderRows<List extends HTMLElement = any> = {
 interface BaseVirtualListProps
     extends IHasCX,
     IEditable<VirtualListState>,
-    IHasRawProps<HTMLAttributes<HTMLDivElement>>, Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'> {
+    IHasRawProps<HTMLAttributes<HTMLDivElement>>,
+    Pick<UseVirtualListProps, 'rowsCount' | 'rowsSelector' | 'onScroll'>,
+    React.RefAttributes<HTMLDivElement> {
     /** HTML role attribute to place on list container */
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     /** Pass true, to enable Blocker while list loading */
@@ -39,7 +41,7 @@ interface BaseVirtualListProps
 
 export type VirtualListProps<List extends HTMLElement = any> = BaseVirtualListProps & VirtualListRenderRows<List>;
 
-export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((props, ref) => {
+export function VirtualList(props: VirtualListProps) {
     const {
         listContainerRef, offsetY, handleScroll, estimatedHeight, scrollContainerRef,
     } = useVirtualList({
@@ -50,7 +52,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         rowsSelector: props.rowsSelector,
     });
 
-    React.useImperativeHandle(ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
+    React.useImperativeHandle(props.ref, () => scrollContainerRef.current, [scrollContainerRef.current]);
 
     const scrollShadows = useScrollShadows({ root: scrollContainerRef.current });
 
@@ -77,6 +79,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
         if (!scrollbars?.container?.firstChild) return;
         scrollContainerRef.current = scrollbars.container.firstChild as HTMLDivElement;
     }, []);
+
     return (
         <ScrollBars
             cx={ cx(css.scrollContainer, props.cx, {
@@ -92,14 +95,14 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
             {renderRows()}
         </ScrollBars>
     );
-});
+}
 
-interface VirtualListViewProps extends IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasChildren {
+interface VirtualListViewProps extends IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasChildren, React.RefAttributes<HTMLDivElement> {
     style?: React.CSSProperties;
     isLoading: boolean;
 }
 
-const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((props, ref) => {
+function VirtualListView(props: VirtualListViewProps) {
     return (
         <>
             <div
@@ -114,11 +117,11 @@ const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((
                     marginRight: props.isLoading ? 0 : props.style.marginRight,
                     marginBottom: props.isLoading ? 0 : props.style.marginBottom,
                 } }
-                ref={ ref }
+                ref={ props.ref }
             >
-                { props.children }
+                {props.children}
             </div>
             <Blocker isEnabled={ props.isLoading } />
         </>
     );
-});
+}

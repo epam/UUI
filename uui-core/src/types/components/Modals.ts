@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
-    IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps, IHasForwardedRef,
+    IHasChildren, IHasCX, IHasRawProps, IModal, VPanelProps,
 } from '../props';
 
-export interface ModalWindowProps extends VPanelProps, IHasForwardedRef<HTMLDivElement> {}
+export interface ModalWindowProps extends VPanelProps {}
 
-export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
+export interface ModalBlockerProps extends IModal<any>, IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Pick<React.RefAttributes<HTMLDivElement>, 'ref'> {
     /** Pass true to disabled locking focus inside modal.
      * If omitted, first clickable element of modal will receive focus on mount and focus will be looped inside modal.
      * */

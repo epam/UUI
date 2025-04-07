@@ -35,7 +35,7 @@ function compareProps(props: any, nextProps: any) {
     return isDeepEqual;
 }
 
-const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId>, ref: React.ForwardedRef<HTMLDivElement>) {
+const DataTableRowImpl = function DataTableRow<TItem, TId>(props: DataTableRowProps<TItem, TId> & React.RefAttributes<HTMLDivElement>) {
     const rowLens = Lens.onEditable(props as IEditable<TItem>);
 
     const renderCell = (column: DataColumnProps<TItem, TId>, idx: number, eventHandlers?: DndEventHandlers) => {
@@ -58,7 +58,7 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
         return (
             <DataTableRowContainer
                 columns={ props.columns }
-                ref={ params.ref || ref }
+                ref={ params.ref || props.ref }
                 renderCell={ renderCell }
                 onClick={ clickHandler && (() => clickHandler(props)) }
                 rawProps={ {
@@ -90,6 +90,6 @@ const DataTableRowImpl = React.forwardRef(function DataTableRow<TItem, TId>(prop
     } else {
         return renderRow({}, clickHandler);
     }
-});
+};
 
 export const DataTableRow = React.memo(DataTableRowImpl, compareProps);

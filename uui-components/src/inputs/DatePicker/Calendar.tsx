@@ -1,6 +1,4 @@
-import React, {
-    HTMLAttributes, ReactElement,
-} from 'react';
+import React, { HTMLAttributes } from 'react';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import type { Dayjs } from '../../helpers/dayJsHelper';
 import {
@@ -16,7 +14,7 @@ import css from './Calendar.module.scss';
 export interface CalendarProps<TSelection> extends IHasCX, IDisableable, IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {
     value?: TSelection;
     onValueChange: (day: Dayjs) => void;
-    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
+    renderDay?: (renderProps: DayProps) => React.ReactNode;
     filter?(day: Dayjs): boolean;
     hideAnotherMonths?: boolean;
     isHoliday?: (day: Dayjs) => boolean;

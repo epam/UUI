@@ -13,12 +13,13 @@ export interface SwitchProps
     IAnalyticableOnChange<boolean>,
     IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>>,
     IHasTabIndex,
-    ICanFocus<HTMLInputElement> {
+    ICanFocus<HTMLInputElement>,
+    React.RefAttributes<HTMLLabelElement> {
     /** ID to put on 'input' node */
     id?: string;
 }
 
-export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>((props, ref) => {
+export function Switch(props: SwitchProps) {
     const context = useUuiContext();
 
     const toggle = () => {
@@ -40,7 +41,7 @@ export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>((props, re
                 props.isReadonly && uuiMod.readonly,
                 !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
             ) }
-            ref={ ref }
+            ref={ props.ref }
             { ...props.rawProps }
         >
             <div
@@ -67,4 +68,4 @@ export const Switch = React.forwardRef<HTMLLabelElement, SwitchProps>((props, re
             {props.label && <div className={ uuiElement.inputLabel }>{props.label}</div>}
         </label>
     );
-});
+}

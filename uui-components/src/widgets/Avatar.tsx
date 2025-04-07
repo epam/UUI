@@ -1,8 +1,8 @@
 import React from 'react';
-import { IHasCX, cx, IHasRawProps, IHasForwardedRef } from '@epam/uui-core';
+import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './Avatar.module.scss';
 
-export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttributes<HTMLImageElement>>, IHasForwardedRef<HTMLImageElement> {
+export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttributes<HTMLImageElement>>, React.RefAttributes<HTMLImageElement> {
     /** HTML alt attribute value */
     alt?: string;
 
@@ -16,7 +16,7 @@ export interface AvatarProps extends IHasCX, IHasRawProps<React.ImgHTMLAttribute
     isLoading?: boolean;
 }
 
-function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageElement>) {
+export function Avatar(props: AvatarProps) {
     const [isError, setIsError] = React.useState<boolean>(false);
 
     function onError() {
@@ -27,7 +27,7 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
 
     return (
         <img
-            ref={ ref }
+            ref={ props.ref }
             className={ cx(css.avatar, props.cx) }
             width={ props.size }
             height={ props.size }
@@ -42,5 +42,3 @@ function AvatarComponent(props: AvatarProps, ref: React.ForwardedRef<HTMLImageEl
         />
     );
 }
-
-export const Avatar = React.forwardRef(AvatarComponent);

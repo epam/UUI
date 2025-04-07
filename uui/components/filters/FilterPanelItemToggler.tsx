@@ -9,18 +9,16 @@ import { settings } from '../../settings';
 
 import css from './FilterPanelItemToggler.module.scss';
 
-import type { JSX } from 'react';
-
-export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable, IHasCX {
+export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps<HTMLDivElement>, IDisableable, IHasCX {
     selection?: React.ReactNode[];
-    postfix?: string | null | JSX.Element;
+    postfix?: string | null | React.ReactNode;
     title?: string;
     maxWidth?: number;
     size?: '24' | '30' | '36' | '42' | '48';
     predicateName: string | null;
 }
 
-export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToolbarItemTogglerProps>((props, ref) => {
+export function FilterPanelItemToggler(props: FilterToolbarItemTogglerProps) {
     const togglerPickerOpened = (e: React.MouseEvent<HTMLDivElement>) => {
         if (props.isDisabled) return;
         e.preventDefault();
@@ -66,7 +64,7 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
                 props.cx,
             ) }
             onClick={ togglerPickerOpened }
-            ref={ ref }
+            ref={ props.ref }
         >
             <div className={ css.titleWrapper }>
                 <Text size={ props.size } cx={ css.title }>{getTitle}</Text>
@@ -86,4 +84,4 @@ export const FilterPanelItemToggler = React.forwardRef<HTMLDivElement, FilterToo
             {!props.isDisabled && <IconContainer icon={ settings.filtersPanel.icons.itemDropdownIcon } flipY={ props.isOpen } cx="uui-icon-dropdown" />}
         </div>
     );
-});
+}

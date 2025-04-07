@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import type { IHasCX, Overwrite } from '@epam/uui-core';
 import { settings } from '../../settings';
@@ -9,7 +9,7 @@ type StatusIndicatorColor = 'neutral' | 'info' | 'success' | 'warning' | 'critic
 
 type StatusIndicatorMods = {
     /**
-     * Component color.
+     * Defines component color.
      * @default 'neutral'
      */
     color?: StatusIndicatorColor;
@@ -17,7 +17,7 @@ type StatusIndicatorMods = {
 
 export interface StatusIndicatorModsOverride {}
 
-export type StatusIndicatorCoreProps = IHasCX & {
+export type StatusIndicatorCoreProps = IHasCX & React.RefAttributes<HTMLDivElement> & {
     /**
      * Component size. If omitted, 24 size will be used.
      * @default '24'
@@ -34,10 +34,10 @@ export type StatusIndicatorCoreProps = IHasCX & {
 
 export type StatusIndicatorProps = StatusIndicatorCoreProps & Overwrite<StatusIndicatorMods, StatusIndicatorModsOverride>;
 
-export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>((props, ref) => {
+export function StatusIndicator(props: StatusIndicatorProps) {
     return (
         <div
-            ref={ ref }
+            ref={ props.ref }
             className={ cx([
                 css.root,
                 `uui-size-${props.size || settings.statusIndicator.sizes.default}`,
@@ -51,4 +51,4 @@ export const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(
             <p className="uui-status_indicator-caption">{props.caption}</p>
         </div>
     );
-});
+}

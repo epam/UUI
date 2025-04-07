@@ -20,7 +20,7 @@ export interface PickerTogglerTagProps<TItem, TId> extends Overwrite<PickerToggl
     getName: (item: TItem) => string;
 }
 
-export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<any, any>, ref: React.Ref<HTMLElement>) => {
+export function PickerTogglerTag<TItem, TId>(props: PickerTogglerTagProps<TItem, TId> & React.RefAttributes<HTMLElement>) {
     const tagProps = {
         ...props,
         tabIndex: -1,
@@ -38,10 +38,10 @@ export const PickerTogglerTag = React.forwardRef((props: PickerTogglerTagProps<a
                 closeOnMouseLeave="boundary"
                 cx={ css.tooltip }
             >
-                <Tag ref={ ref } rawProps={ { role: 'option' } } { ...tagProps } />
+                <Tag ref={ props.ref } rawProps={ { role: 'option' } } { ...tagProps } />
             </Tooltip>
         );
     } else {
-        return <Tag ref={ ref } rawProps={ { role: 'option' } } { ...tagProps } />;
+        return <Tag ref={ props.ref } rawProps={ { role: 'option' } } { ...tagProps } />;
     }
-});
+}

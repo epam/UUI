@@ -1,4 +1,4 @@
-import React, { Attributes, Dispatch, ForwardedRef, ReactNode, SetStateAction } from 'react';
+import React, { Attributes, Dispatch, ReactNode, Ref, SetStateAction } from 'react';
 import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
     IDropdownToggler, IHasValidationMessage,
@@ -281,7 +281,7 @@ export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCe
     /** Ref to pass to the editor component.
      * It's required for correct focus/blur behavior.
      * */
-    ref?: ForwardedRef<HTMLElement>;
+    ref?: Ref<any>;
 }
 
 export interface DataTableCellOptions<TItem = any, TId = any> {

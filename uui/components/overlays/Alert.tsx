@@ -25,7 +25,7 @@ interface AlertMods {
 
 export interface AlertModsOverride {}
 
-export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, React.RefAttributes<HTMLDivElement> {
     /** List of actions to display in the alert. Each action has name and 'action' callback */
     actions?: AlertNotificationAction[];
     /** When specified, a close icon is rendered. onClose callback will be called on clicking the close icon */
@@ -42,54 +42,64 @@ export interface AlertCoreProps extends IHasChildren, IHasCX, IHasRawProps<React
 /** Represents the properties of the Alert component. */
 export interface AlertProps extends AlertCoreProps, Overwrite<AlertMods, AlertModsOverride> {}
 
-export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => (
-    <div
-        role="alert"
-        ref={ ref }
-        className={
-            cx(
-                'uui-alert',
-                css.root,
-                props.color && `uui-color-${props.color}`,
-                props.cx,
-                `uui-size-${props.size || settings.alert.sizes.default}`,
-            )
-        }
-        { ...props.rawProps }
-    >
-        <div className={ css.mainPath }>
-            <div className={ css.contentWrapper }>
-                {props.icon && (
-                    <div className={ css.iconWrapper }>
-                        <IconContainer icon={ props.icon } cx={ css.icon } />
-                    </div>
-                )}
-                <div className={ css.content }>
-                    {props.children}
-                    {props.actions && (
-                        <div className={ css.actionWrapper }>
-                            {props.actions.map((action) => (
-                                <LinkButton
-                                    caption={ action.name }
-                                    onClick={ action.action }
-                                    key={ action.name }
-                                    cx={ css.actionLink }
-                                    size={ settings.alert.sizes.actionMap[props.size || settings.alert.sizes.default] }
-                                />
-                            ))}
+export function Alert(props: AlertProps) {
+    return (
+        <div
+            role="alert"
+            ref={ props.ref }
+            className={
+                cx(
+                    'uui-alert',
+                    css.root,
+                    props.color && `uui-color-${props.color}`,
+                    props.cx,
+                    `uui-size-${props.size || settings.alert.sizes.default}`,
+                )
+            }
+            { ...props.rawProps }
+        >
+            <div className={ css.mainPath }>
+                <div className={ css.contentWrapper }>
+                    {props.icon && (
+                        <div className={ css.iconWrapper }>
+                            <IconContainer icon={ props.icon } cx={ css.icon } />
                         </div>
                     )}
+                    <div className={ css.content }>
+                        {props.children}
+                        {props.actions && (
+                            <div className={ css.actionWrapper }>
+                                {props.actions.map((action) => (
+                                    <LinkButton
+                                        caption={ action.name }
+                                        onClick={ action.action }
+                                        key={ action.name }
+                                        cx={ css.actionLink }
+                                        size={ settings.alert.sizes.actionMap[props.size || settings.alert.sizes.default] }
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
+                {props.onClose && <IconButton icon={ settings.alert.icons.closeIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />}
             </div>
-            {props.onClose && <IconButton icon={ settings.alert.icons.closeIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />}
         </div>
-    </div>
-));
+    );
+}
 
-export const WarningAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.warningIcon } color="warning" ref={ ref } { ...props } />);
+export function WarningAlert(props: Omit<AlertProps, 'color'>) {
+    return <Alert icon={ settings.alert.icons.warningIcon } color="warning" { ...props } />;
+}
 
-export const SuccessAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.successIcon } color="success" ref={ ref } { ...props } />);
+export function SuccessAlert(props: Omit<AlertProps, 'color'>) {
+    return <Alert icon={ settings.alert.icons.successIcon } color="success" { ...props } />;
+}
 
-export const HintAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.infoIcon } color="info" ref={ ref } { ...props } />);
+export function HintAlert(props: Omit<AlertProps, 'color'>) {
+    return <Alert icon={ settings.alert.icons.infoIcon } color="info" { ...props } />;
+}
 
-export const ErrorAlert = React.forwardRef<HTMLDivElement, Omit<AlertProps, 'color'>>((props, ref) => <Alert icon={ settings.alert.icons.errorIcon } color="error" ref={ ref } { ...props } />);
+export function ErrorAlert(props: Omit<AlertProps, 'color'>) {
+    return <Alert icon={ settings.alert.icons.errorIcon } color="error" { ...props } />;
+}

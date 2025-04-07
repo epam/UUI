@@ -1,28 +1,26 @@
 import * as React from 'react';
 import css from './VPanel.module.scss';
 import {
-    isEventTargetInsideClickable, uuiMarkers, VPanelProps, UuiContexts, cx, UuiContext,
+    isEventTargetInsideClickable, uuiMarkers, VPanelProps, cx, useUuiContext,
 } from '@epam/uui-core';
 
-export class VPanel extends React.Component<VPanelProps> {
-    static contextType = UuiContext;
-    context: UuiContexts;
-    handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => {
-        this.props.onClick && !isEventTargetInsideClickable(e) && this.props.onClick(e);
-        this.context.uuiAnalytics.sendEvent(this.props.clickAnalyticsEvent);
+export function VPanel(props: VPanelProps) {
+    const { uuiAnalytics } = useUuiContext();
+
+    const handleClick = (e: React.SyntheticEvent<HTMLDivElement>) => {
+        props.onClick && !isEventTargetInsideClickable(e) && props.onClick(e);
+        uuiAnalytics.sendEvent(props.clickAnalyticsEvent);
     };
 
-    render() {
-        return (
-            <div
-                onClick={ this.props.onClick && this.handleClick }
-                style={ this.props.style }
-                className={ cx(this.props.cx, css.container, this.props.onClick && uuiMarkers.clickable) }
-                ref={ this.props.forwardedRef }
-                { ...this.props.rawProps }
-            >
-                {this.props.children}
-            </div>
-        );
-    }
+    return (
+        <div
+            onClick={ props.onClick && handleClick }
+            style={ props.style }
+            className={ cx(props.cx, css.container, props.onClick && uuiMarkers.clickable) }
+            ref={ props.ref }
+            { ...props.rawProps }
+        >
+            {props.children}
+        </div>
+    );
 }

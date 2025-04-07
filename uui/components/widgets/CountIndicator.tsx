@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import cx from 'classnames';
 import type { IHasCaption, IHasCX, Overwrite } from '@epam/uui-core';
 import { settings } from '../../settings';
@@ -19,14 +19,14 @@ type CountIndicatorMods = {
 
 export interface CountIndicatorModsOverride {}
 
-export type CountIndicatorCoreProps = IHasCaption & IHasCX;
+export type CountIndicatorCoreProps = IHasCaption & IHasCX & React.RefAttributes<HTMLDivElement>;
 
 export type CountIndicatorProps = CountIndicatorCoreProps & Overwrite<CountIndicatorMods, CountIndicatorModsOverride>;
 
-export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((props, ref) => {
+export function CountIndicator(props: CountIndicatorProps) {
     return (
         <div
-            ref={ ref }
+            ref={ props.ref }
             className={ cx([
                 css.root,
                 'uui-count_indicator',
@@ -38,4 +38,4 @@ export const CountIndicator = forwardRef<HTMLDivElement, CountIndicatorProps>((p
             { props.caption }
         </div>
     );
-});
+}

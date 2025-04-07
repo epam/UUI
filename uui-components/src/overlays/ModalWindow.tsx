@@ -2,7 +2,7 @@ import React from 'react';
 import { uuiElement, ModalWindowProps, cx } from '@epam/uui-core';
 import { VPanel } from '../layout';
 
-export const ModalWindow = React.forwardRef<HTMLDivElement, ModalWindowProps>((props, ref) => {
+export const ModalWindow = (props: ModalWindowProps & React.RefAttributes<HTMLDivElement>) => {
     return (
         <VPanel
             style={ props.style }
@@ -12,9 +12,9 @@ export const ModalWindow = React.forwardRef<HTMLDivElement, ModalWindowProps>((p
                 role: 'dialog',
                 ...props.rawProps,
             } }
-            forwardedRef={ ref }
+            ref={ props.ref }
         >
             {props.children}
         </VPanel>
     );
-});
+};

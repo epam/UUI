@@ -25,7 +25,8 @@ interface LinkButtonMods {
 }
 
 /** Represents the Core properties of the LinkButton component. */
-export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
+export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption,
+    React.RefAttributes<HTMLButtonElement | HTMLAnchorElement> {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /**
@@ -44,7 +45,7 @@ export interface LinkButtonModsOverride {}
 /** Represents the properties of the LinkButton component. */
 export interface LinkButtonProps extends LinkButtonCoreProps, Overwrite<LinkButtonMods, LinkButtonModsOverride> {}
 
-export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkButtonProps>((props, ref) => {
+export function LinkButton(props: LinkButtonProps) {
     if (__DEV__ && props.color === 'contrast') {
         devLogger.warnAboutDeprecatedPropValue<LinkButtonProps, 'color'>({
             component: 'LinkButton',
@@ -77,7 +78,7 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             { ...props }
             type="button"
             cx={ rootStyles }
-            ref={ ref }
+            ref={ props.ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
@@ -96,4 +97,4 @@ export const LinkButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement
             ) }
         </Clickable>
     );
-});
+}
