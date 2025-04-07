@@ -1,19 +1,95 @@
-import React, { useImperativeHandle, useState } from 'react';
+import React, { ReactElement, ReactNode, useImperativeHandle, useState } from 'react';
 import cx from 'classnames';
 import { offset } from '@floating-ui/react';
 import {
     DropdownBodyProps, useUuiContext,
 } from '@epam/uui-core';
-import { Dropdown } from '@epam/uui-components';
+import { DayProps, Dropdown, RangeDatePickerPresets } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
 import { RangeDatePickerInput } from './RangeDatePickerInput';
-import { RangeDatePickerBodyValue, RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
+import type {
+    RangeDatePickerBodyValue,
+    RangeDatePickerInputType,
+    RangeDatePickerValue,
+} from './types';
 import { defaultFormat, defaultRangeValue } from './helpers';
 import { settings } from '../../settings';
 
 import css from './RangeDatePicker.module.scss';
+
+export interface RangeDatePickerModsOverride {}
+
+type RangeDatePickerMods = {
+    /**
+     * Defines component size.
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+};
+
+/**
+ * Represents the properties of the RangeDatePicker component
+ */
+export interface RangeDatePickerProps extends
+    Overwrite<RangeDatePickerMods, RangeDatePickerModsOverride>,
+    IEditable<RangeDatePickerValue | null>,
+    IAnalyticableOnChange<RangeDatePickerValue | null>,
+    CommonDatePickerProps {
+    /**
+     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.
+     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)
+     */
+    presets?: RangeDatePickerPresets;
+
+    /**
+     * Allows to add a custom footer to the Picker's dropdown body
+     */
+    renderFooter?(value: RangeDatePickerValue): ReactNode;
+
+    /**
+     * Called when component gets input focus
+     */
+    onFocus?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+
+    /**
+     * Called when component looses input focus
+     */
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;
+
+    /**
+     * Called when component is opened/closed
+     */
+    onOpenChange?: (isOpen: boolean) => void
+
+    /**
+     * A pure function that gets placeholder for 'from' or 'to' input.
+     */
+    getPlaceholder?(type: RangeDatePickerInputType): string;
+
+    /**
+     * Overrides rendering of the single day. For example, to highlight certain days
+     */
+    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
+
+    /**
+     * rawProps as HTML attributes
+     */
+    rawProps?: {
+        /**
+         * Any HTML attributes (native or 'data-') to put on 'from' input
+         */
+        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /**
+         * Any HTML attributes (native or 'data-') to put on 'to' input
+         */
+        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /**
+         * Any HTML attributes (native or 'data-') to put on date picker body
+         */
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+    };
+}
 
 function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const { value: _value, format = defaultFormat, size = settings.rangeDatePicker.sizes.default } = props;
@@ -141,4 +217,5 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
     );
 }
 
-export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);
+export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent) as
+    (props: RangeDatePickerProps & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof RangeDatePickerComponent>;

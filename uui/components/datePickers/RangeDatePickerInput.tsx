@@ -4,7 +4,8 @@ import { TextInput } from '../inputs';
 
 import { defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
-import { RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
+import type { RangeDatePickerInputType, RangeDatePickerValue } from './types';
+import type { RangeDatePickerProps } from './RangeDatePicker';
 
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
