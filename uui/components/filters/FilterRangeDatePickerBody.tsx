@@ -12,6 +12,7 @@ import {
 } from '../datePickers';
 import { RangeDatePickerInputType } from '../datePickers/types';
 import { RangeDatePickerBody } from '../datePickers';
+import { settings } from '../../settings';
 
 export interface FilterRangeDatePickerProps extends RangeDatePickerProps, IDropdownBodyProps {}
 
@@ -74,7 +75,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                     vPadding="12"
                 >
                     <RangeDatePickerInput
-                        size="30"
+                        size={ settings.filtersPanel.sizes.rangeDatePickerInput }
                         disableClear={ props.disableClear }
                         inFocus={ inFocus }
                         format={ format }

@@ -98,6 +98,11 @@ const settings_4px = {
     filtersPanel: {
         sizes: {
             default: '40',
+            mobileFooterLinkButton: '48',
+            pickerBodyMultiSwitch: '24',
+            pickerBodyLinkButton: '24',
+            pickerBodyMinWidth: 360,
+            rangeDatePickerInput: '32',
         },
     },
     labeledInput: {
