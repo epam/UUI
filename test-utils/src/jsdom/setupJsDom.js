@@ -66,7 +66,7 @@ function enableMockForCommon3rdPartyDeps() {
         /**
          * @param {object} props - Component's props
          * @param {function} props.children - Component's children prop
-         * @returns {JSX.Element}
+         * @returns JSX.Element
          */
         Popper: function PopperMock({ children }) {
             return children({
@@ -86,14 +86,14 @@ function enableMockForCommon3rdPartyDeps() {
         /**
          * @param {object} props - Component's props
          * @param {any} props.children - Component's children prop
-         * @returns {JSX.Element}
+         * @returns JSX.Element
          */
         // @ts-ignore
         default: React.forwardRef(({ children }, ref) => React.createElement(React.Fragment, {}, children)),
         /**
          * @param {object} props - Component's props
          * @param {any} props.children - Component's children prop
-         * @returns {JSX.Element}
+         * @returns JSX.Element
          */
         // @ts-ignore
         FreeFocusInside: React.forwardRef(({ children }, ref) => React.createElement(React.Fragment, {}, children)),
