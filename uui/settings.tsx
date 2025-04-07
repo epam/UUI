@@ -1,3 +1,4 @@
+import React from 'react';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import { ReactComponent as CheckIcon } from '@epam/assets/icons/notification-done-outline.svg';
@@ -30,6 +31,7 @@ import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help
 import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
 import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
 import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete-outline.svg';
 
 import { ReactComponent as DocIcon } from '@epam/assets/icons/file-file_word-fill.svg';
 import { ReactComponent as ExelIcon } from '@epam/assets/icons/file-file_excel-fill.svg';
@@ -46,19 +48,18 @@ import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-wi
 
 import type { Icon } from '@epam/uui-core';
 import type { AvatarProps, BlockerProps } from '@epam/uui-components';
-import {
+import type {
     AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
     DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
     DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
     PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
     RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
-    TextInputProps, DataPickerCellProps, PickerInputProps,
+    TextInputProps, DataPickerCellProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
 import { Text } from './components/typography/Text';
-import React from 'react';
 
 type Sizes<S extends string | number | symbol, T> = {
     [size in S]: T;
@@ -444,10 +445,16 @@ const flexRowSettings: FlexRowSettings = {
 interface FiltersPanelIcons {
     addFilterIcon: Icon;
     itemDropdownIcon: Icon;
+    pickerBodyRemoveIcon: Icon;
 }
 
 interface FiltersPanelSizes {
     default: FiltersPanelProps<unknown>['size'];
+    mobileFooterLinkButton: LinkButtonProps['size'];
+    pickerBodyMultiSwitch: MultiSwitchProps['size'];
+    pickerBodyLinkButton: LinkButtonProps['size'];
+    pickerBodyMinWidth: number;
+    rangeDatePickerInput: RangeDatePickerInputProps['size'];
 }
 
 interface FiltersPanelSettings {
@@ -459,9 +466,15 @@ const filtersPanelSettings: FiltersPanelSettings = {
     icons: {
         addFilterIcon: AddIcon,
         itemDropdownIcon: DropdownIcon,
+        pickerBodyRemoveIcon: RemoveIcon,
     },
     sizes: {
         default: '36',
+        mobileFooterLinkButton: '48',
+        pickerBodyMultiSwitch: '24',
+        pickerBodyLinkButton: '24',
+        pickerBodyMinWidth: 360,
+        rangeDatePickerInput: '30',
     },
 };
 

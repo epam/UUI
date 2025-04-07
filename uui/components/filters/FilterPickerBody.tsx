@@ -3,6 +3,7 @@ import { DataRowProps, DataSourceListProps, DataSourceState, DropdownBodyProps, 
 import { PickerBodyBaseProps, usePickerInput } from '@epam/uui-components';
 import { DataPickerRow, PickerItem, DataPickerBody, DataPickerFooter, PickerInputProps } from '../pickers';
 import { settings } from '../../settings';
+import { UUI_FILTERS_PANEL_BODY_FOOTER } from './constants';
 
 const pickerHeight = 300;
 
@@ -92,7 +93,7 @@ export function FilterPickerBody<TItem, TId>({
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ settings.pickerInput.sizes.body.row } />;
+            : <DataPickerFooter { ...footerProps } cx={ UUI_FILTERS_PANEL_BODY_FOOTER } size={ settings.pickerInput.sizes.body.row } />;
     };
 
     const renderBody = (bodyProps: DataSourceListProps & Omit<PickerBodyBaseProps, 'rows'>, rows: DataRowProps<TItem, TId>[]) => {

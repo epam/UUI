@@ -1,11 +1,34 @@
 @use  '../../assets/styles/index' as *;
 
+
+
+.body {
+    --uui-filters_panel-item-header-title: var(--uui-text-secondary);
+    --uui-filters_panel-item-header-title-font-size: 14px;
+    --uui-filters_panel-item-header-title-font-weight: 400;
+    --uui-filters_panel-item-header-title-font-style: normal;
+    --uui-filters_panel-item-header-title-line-height: 18px;
+    --uui-filters_panel-item-header-title-vertical-padding: 3px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 9px 12px 0;
     margin-bottom: 9px;
+
+    .title {
+        font-family: var(--uui-font);
+        font-size: var(--uui-filters_panel-item-header-title-font-size);
+        font-weight: var(--uui-filters_panel-item-header-title-font-weight);
+        font-style: var(--uui-filters_panel-item-header-title-font-style);
+        line-height: var(--uui-filters_panel-item-header-title-line-height);
+        color: var(--uui-filters_panel-item-header-title);
+        padding-top: var(--uui-filters_panel-item-header-title-vertical-padding);
+        padding-bottom: var(--uui-filters_panel-item-header-title-vertical-padding);
+
+    }
 
     .removeButton {
         padding-left: 24px;
