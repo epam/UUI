@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, type JSX } from 'react';
+import React, { useState } from 'react';
 import { cx, IControlled } from '@epam/uui-core';
 import {
     uuiDaySelection, Day, DayProps, RangeDatePickerPresets,
@@ -92,14 +92,12 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     },
 };
 
-export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, IControlled<RangeDatePickerBodyValue<T>> {
+export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, IControlled<RangeDatePickerBodyValue<T>>, React.RefAttributes<HTMLDivElement> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
 }
 
-export const RangeDatePickerBody = forwardRef(RangeDatePickerBodyComp);
-
-function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>, ref: React.ForwardedRef<HTMLDivElement>): JSX.Element {
+export function RangeDatePickerBody(props: RangeDatePickerBodyProps<RangeDatePickerValue | null>) {
     const { value: _value, filter } = props;
     const {
         selectedDate: _selectedDate, inFocus,
@@ -143,7 +141,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
         });
     };
 
-    const renderDay = (renderProps: DayProps): JSX.Element => {
+    const renderDay = (renderProps: DayProps) => {
         return (
             <Day
                 { ...renderProps }
@@ -189,7 +187,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
 
     return (
         <div
-            ref={ ref }
+            ref={ props.ref }
             className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) }
             { ...props.rawProps }
         >

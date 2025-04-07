@@ -1,4 +1,4 @@
-import React, { ForwardedRef, PropsWithChildren } from 'react';
+import React, { Ref, PropsWithChildren } from 'react';
 import {
     cx, isEventTargetInsideClickable, uuiMod, uuiElement, uuiMarkers, useUuiContext, IHasRawProps,
     IClickable, IDisableable, IAnalyticableClick, IHasTabIndex, IHasCX, ICanRedirect,
@@ -17,7 +17,7 @@ export type ClickableRawProps = React.AnchorHTMLAttributes<HTMLAnchorElement> | 
 export type ClickableComponentProps = IClickable & IAnalyticableClick & IHasTabIndex & IDisableable & IHasCX
 & ICanRedirect & IHasRawProps<ClickableRawProps> & {};
 
-export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildren<ClickableComponentProps & ClickableType>>((props, ref) => {
+export function Clickable(props: PropsWithChildren<ClickableComponentProps & ClickableType & React.RefAttributes<ClickableForwardedRef>>) {
     const context = useUuiContext();
     const isAnchor = Boolean(props.href || props.link || props.type === 'anchor');
     const isButton = Boolean(!isAnchor && (props.onClick || props.type === 'button'));
@@ -90,7 +90,7 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
             <a
                 href={ href }
                 target={ target }
-                ref={ ref as ForwardedRef<HTMLAnchorElement> }
+                ref={ props.ref as Ref<HTMLAnchorElement> }
                 { ...relProp }
                 { ...commonProps }
                 { ...props.rawProps as React.AnchorHTMLAttributes<HTMLAnchorElement> }
@@ -103,7 +103,7 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     if (isButton) {
         return (
             <button
-                ref={ ref as ForwardedRef<HTMLButtonElement> }
+                ref={ props.ref as Ref<HTMLButtonElement> }
                 type={ (props.rawProps as any)?.type || 'button' }
                 { ...commonProps }
                 { ...props.rawProps as React.ButtonHTMLAttributes<HTMLButtonElement> }
@@ -115,11 +115,11 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
 
     return (
         <span
-            ref={ ref as ForwardedRef<HTMLSpanElement> }
+            ref={ props.ref as Ref<HTMLSpanElement> }
             { ...commonProps }
             { ...props.rawProps as React.HTMLAttributes<HTMLSpanElement> }
         >
             { props.children }
         </span>
     );
-});
+}

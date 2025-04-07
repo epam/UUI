@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import {
     devLogger,
     FlexRowProps as uuiFlexRowProps,
@@ -48,7 +48,7 @@ export interface FlexRowModsOverride {}
 /** Represents the properties of the FlexRow component. */
 export interface FlexRowProps extends uuiFlexRowProps, Overwrite<FlexRowMods, FlexRowModsOverride> {}
 
-export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => {
+export const FlexRow = (props: FlexRowProps & React.RefAttributes<HTMLDivElement>) => {
     if (__DEV__) {
         if (props.spacing) {
             devLogger.warn('[FlexRow]: The `spacing` property is deprecated and will be removed in future versions. Please use `columnGap` instead.');
@@ -88,7 +88,7 @@ export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => 
 
     return (
         <div
-            ref={ ref }
+            ref={ props.ref }
             onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
             className={ classNames }
             { ...props.rawProps }
@@ -100,4 +100,4 @@ export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => 
             {props.children}
         </div>
     );
-});
+};

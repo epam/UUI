@@ -1,7 +1,7 @@
 import * as React from 'react';
 import FocusLock from 'react-focus-lock';
 import {
-    uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IHasForwardedRef, IDropdownBodyProps,
+    uuiElement, IHasCX, IHasChildren, cx, IHasRawProps, uuiMarkers, IDropdownBodyProps,
     IHasStyleAttrs,
 } from '@epam/uui-core';
 import { VPanel } from '../layout/flexItems/VPanel';
@@ -13,8 +13,8 @@ export interface DropdownContainerProps
     IHasChildren,
     IHasStyleAttrs,
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
-    IHasForwardedRef<HTMLDivElement>,
-    IDropdownBodyProps, Pick<ReactFocusLockProps, 'autoFocus' | 'as' | 'shards' | 'returnFocus'> {
+    IDropdownBodyProps, Pick<ReactFocusLockProps, 'autoFocus' | 'as' | 'shards' | 'returnFocus'>,
+    React.RefAttributes<HTMLElement> {
     /** Defines width in 'px' or 'auto'. If 'auto' provided, will be used width of the content. */
     width?: number | 'auto';
     /** Defines maximum width in 'px'. If 'auto' provided, will be used width of the content. */
@@ -55,7 +55,7 @@ export interface DropdownContainerProps
     onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
 }
 
-export const DropdownContainer = React.forwardRef((props: DropdownContainerProps, ref: React.ForwardedRef<HTMLElement>) => {
+export function DropdownContainer(props: DropdownContainerProps) {
     const {
         focusLock = true,
         returnFocus = true,
@@ -66,7 +66,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
     function renderDropdownContainer() {
         return (
             <VPanel
-                forwardedRef={ !focusLock ? ref as React.ForwardedRef<HTMLDivElement> : undefined }
+                ref={ !focusLock ? props.ref as React.ForwardedRef<HTMLDivElement> : undefined }
                 cx={ cx(uuiElement.dropdownBody, uuiMarkers.lockFocus, props.cx) }
                 style={ {
                     ...props.style,
@@ -96,7 +96,7 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
     return focusLock
         ? (
             <FocusLock
-                ref={ ref }
+                ref={ props.ref }
                 returnFocus={ typeof returnFocus === 'function' ? returnFocus : returnFocus && { preventScroll: true } }
                 persistentFocus={ persistentFocus }
                 lockProps={ { ...({ onKeyDown: handleEscape }), ...props.lockProps } }
@@ -108,4 +108,4 @@ export const DropdownContainer = React.forwardRef((props: DropdownContainerProps
             </FocusLock>
         )
         : renderDropdownContainer();
-});
+}

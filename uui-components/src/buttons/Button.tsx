@@ -4,7 +4,7 @@ import { Clickable, ClickableComponentProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './Button.module.scss';
 
-export type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & {
+export type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon & IHasCaption & React.RefAttributes<HTMLButtonElement | HTMLAnchorElement> & {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
@@ -13,7 +13,7 @@ export type ButtonProps = ClickableComponentProps & IDropdownToggler & IHasIcon 
     dropdownIcon?: Icon;
 };
 
-export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
+export function Button(props: ButtonProps) {
     return (
         <Clickable
             { ...props }
@@ -24,7 +24,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
             } }
             cx={ [css.container, props.cx] }
             type="button"
-            ref={ ref }
+            ref={ props.ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
@@ -48,4 +48,4 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
             ) }
         </Clickable>
     );
-});
+}

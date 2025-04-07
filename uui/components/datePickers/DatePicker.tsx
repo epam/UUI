@@ -19,7 +19,7 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
-export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
+export function DatePicker(props: DatePickerProps & React.RefAttributes<HTMLElement>) {
     const { format = defaultFormat, value, size = settings.datePicker.sizes.input } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
@@ -123,7 +123,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
             value={ isBodyOpen }
             modifiers={ modifiers }
             placement={ props.placement }
-            forwardedRef={ ref }
+            forwardedRef={ props.ref }
             onValueChange={ (v) => {
                 setBodyIsOpen(v);
             } }
@@ -136,5 +136,3 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         />
     );
 }
-
-export const DatePicker = React.forwardRef(DatePickerComponent);

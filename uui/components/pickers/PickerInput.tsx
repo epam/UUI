@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useMemo, useRef, type JSX } from 'react';
+import React, { useContext, useImperativeHandle, useMemo, useRef } from 'react';
 import {
     DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
     PickerInputBaseProps, UuiContext, mobilePopperModifier,
@@ -23,13 +23,13 @@ export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInpu
      * Render callback for picker toggler selection tag
      * If omitted, default `PickerTogglerTag` component will be rendered
      */
-    renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => JSX.Element;
+    renderTag?: (props: PickerTogglerRenderItemParams<TItem, TId>) => React.ReactNode;
 
     /** Replaces default 'toggler' - an input to which Picker attaches dropdown */
     renderToggler?: (props: PickerTogglerProps<TItem, TId>) => React.ReactNode;
 };
 
-function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {
+export function PickerInput<TItem, TId>(props: PickerInputProps<TItem, TId> & React.RefAttributes<PickerInputElement>) {
     const context = useContext(UuiContext);
 
     const popperModifiers: Modifier<any>[] = useMemo(() => [
@@ -81,7 +81,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
 
     const dropdownRef = useRef(null);
 
-    useImperativeHandle(ref, () => {
+    useImperativeHandle(props.ref, () => {
         if (dropdownRef.current) {
             dropdownRef.current.closePickerBody = closePickerBody;
             dropdownRef.current.openPickerBody = openPickerBody;
@@ -185,6 +185,3 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
         />
     );
 }
-
-export const PickerInput = React.forwardRef(PickerInputComponent) as
-    <TItem, TId>(props: PickerInputProps<TItem, TId> & { ref?: React.ForwardedRef<PickerInputElement> }) => ReturnType<typeof PickerInputComponent>;

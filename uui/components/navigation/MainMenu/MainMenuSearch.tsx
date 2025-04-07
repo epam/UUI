@@ -6,22 +6,24 @@ import { cx, IAdaptiveItem, IEditableDebouncer } from '@epam/uui-core';
 import css from './MainMenuSearch.module.scss';
 
 /** Represents the properties of the MainMenuSearch component. */
-export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem {}
+export interface MainMenuSearchProps extends TextInputProps, IAdaptiveItem, React.RefAttributes<HTMLInputElement> {}
 
-export const MainMenuSearch = React.forwardRef<HTMLInputElement, MainMenuSearchProps>((props, ref) => (
-    <IEditableDebouncer
-        { ...props }
-        render={ (iEditable) => (
-            <TextInput
-                iconPosition="left"
-                icon={ LensIcon }
-                cancelIcon={ props.value?.length > 0 && CancelIcon }
-                { ...props }
-                { ...iEditable }
-                ref={ ref }
-                cx={ cx(css.searchInput, props.cx) }
-                { ...props.rawProps }
-            />
-        ) }
-    />
-));
+export function MainMenuSearch(props: MainMenuSearchProps) {
+    return (
+        <IEditableDebouncer
+            { ...props }
+            render={ (iEditable) => (
+                <TextInput
+                    iconPosition="left"
+                    icon={ LensIcon }
+                    cancelIcon={ props.value?.length > 0 && CancelIcon }
+                    { ...props }
+                    { ...iEditable }
+                    ref={ props.ref }
+                    cx={ cx(css.searchInput, props.cx) }
+                    { ...props.rawProps }
+                />
+            ) }
+        />
+    );
+}

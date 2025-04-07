@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { isEventTargetInsideClickable, cx, FlexCellProps } from '@epam/uui-core';
 
-export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, ref) => {
+export const FlexCell = (props: FlexCellProps & React.RefAttributes<HTMLDivElement>) => {
     const actualStyle = {
         ...props.rawProps?.style,
         minWidth: props.minWidth ? `${props.minWidth}px` : 0,
@@ -18,9 +18,9 @@ export const FlexCell = React.forwardRef<HTMLDivElement, FlexCellProps>((props, 
             onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
             { ...props.rawProps }
             style={ actualStyle }
-            ref={ ref }
+            ref={ props.ref }
         >
             {props.children}
         </div>
     );
-});
+};

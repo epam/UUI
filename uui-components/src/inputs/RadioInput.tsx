@@ -7,7 +7,7 @@ import { IconContainer } from '../layout/IconContainer';
 import css from './RadioInput.module.scss';
 
 export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasLabel & ICanBeReadonly & IAnalyticableOnChange<boolean>
-& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & ICanFocus<HTMLInputElement> & IHasTabIndex & {
+& IHasRawProps<React.LabelHTMLAttributes<HTMLLabelElement>> & ICanFocus<HTMLInputElement> & IHasTabIndex & React.RefAttributes<HTMLLabelElement> & {
     /** Icon for radio input selected state.
      * Usually it has a default implementation in skins, so providing this is only necessary if you want to replace the default icon
      */
@@ -22,7 +22,7 @@ export type RadioInputProps = IHasCX & IDisableable & IEditable<boolean> & IHasL
     name?: string;
 };
 
-export const RadioInput = React.forwardRef<HTMLLabelElement, RadioInputProps>((props, ref) => {
+export const RadioInput = (props: RadioInputProps) => {
     const context = useUuiContext();
 
     const handleChange = () => {
@@ -44,7 +44,7 @@ export const RadioInput = React.forwardRef<HTMLLabelElement, RadioInputProps>((p
                 props.cx,
                 !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
             ) }
-            ref={ ref }
+            ref={ props.ref }
             { ...props.rawProps }
         >
             <div
@@ -74,4 +74,4 @@ export const RadioInput = React.forwardRef<HTMLLabelElement, RadioInputProps>((p
             )}
         </label>
     );
-});
+};

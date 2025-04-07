@@ -233,6 +233,7 @@ export type VPanelProps = IHasCX &
 IHasChildren &
 IClickable &
 IHasRawProps<HTMLAttributes<HTMLDivElement>> &
+React.RefAttributes<HTMLDivElement>&
 IHasForwardedRef<HTMLDivElement> &
 IAnalyticableClick & {
     /** Native style attributes */
@@ -285,11 +286,11 @@ export interface IDropdownToggler {
     isDropdown?: boolean;
 }
 
-export interface IDropdownTogglerProps extends IDropdownToggler, IClickable {
+export interface IDropdownTogglerProps<T = any> extends IDropdownToggler, IClickable {
     /** Called when associated dropdown should open or close  */
     toggleDropdownOpening?: (value: boolean) => void;
     /** Called when component is interacted outside, to close the dropdown */
     isInteractedOutside?: (event: Event) => boolean;
     /** Toggler component ref */
-    ref?: React.Ref<any>;
+    ref?: React.Ref<T>;
 }

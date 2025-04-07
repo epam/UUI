@@ -15,6 +15,7 @@ export interface TextInputCoreProps
     IAnalyticableOnChange<string>,
     IHasRawProps<React.HTMLAttributes<HTMLInputElement>>,
     ICanFocus<HTMLInputElement>,
+    React.RefAttributes<HTMLInputElement>,
     IHasTabIndex {
     /** Enables cancel (cross) icon, and fires when the icon is clicked */
     onCancel?(): void;

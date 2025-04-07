@@ -3,7 +3,7 @@ import FocusLock from 'react-focus-lock';
 import css from './ModalBlocker.module.scss';
 import { ModalBlockerProps, UuiContext, cx, uuiElement } from '@epam/uui-core';
 
-export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>((props, ref) => {
+export const ModalBlocker = (props: ModalBlockerProps & React.RefAttributes<HTMLDivElement>) => {
     const context = useContext(UuiContext);
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
     };
 
     return (
-        <div className={ cx(css.container, props.cx) } style={ { zIndex: props.zIndex } } ref={ ref } { ...props.rawProps }>
+        <div className={ cx(css.container, props.cx) } style={ { zIndex: props.zIndex } } ref={ props.ref } { ...props.rawProps }>
             <div
                 className={ uuiElement.modalBlocker }
                 onClick={ handleBlockerClick }
@@ -58,4 +58,4 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
             </FocusLock>
         </div>
     );
-});
+};

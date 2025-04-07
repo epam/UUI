@@ -26,7 +26,7 @@ export interface TextInputProps extends TextInputCoreProps {
     renderInput?: (props: IRenderInputProps) => JSX.Element;
 }
 
-export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
+export const TextInput = (props: TextInputProps) => {
     const context = useUuiContext();
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const inputElement = React.useRef<HTMLInputElement>(undefined);
@@ -115,7 +115,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     return (
         <div
             onClick={ props.onClick && handleClick }
-            ref={ ref }
+            ref={ props.ref }
             className={ cx(
                 css.container,
                 uuiElement.inputBox,
@@ -150,4 +150,4 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             )}
         </div>
     );
-});
+};

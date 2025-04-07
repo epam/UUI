@@ -1,11 +1,11 @@
-import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import React, { CSSProperties, useEffect, useImperativeHandle, useRef } from 'react';
 import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
 import { IHasCX, cx, IHasRawProps, getDir } from '@epam/uui-core';
-import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
+import type { Scrollbars, ScrollbarProps as LibScrollbarProps } from 'react-custom-scrollbars-2';
 
 import css from './ScrollBars.module.scss';
 
-export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
+export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars>, React.RefAttributes<ScrollbarsApi> {
     /** If true, shadow will be added to the top of container, in case when scroll isn't in top position */
     hasTopShadow?: boolean;
     /** If true, shadow will be added to the bottom of container, in case when scroll isn't in bottom position */
@@ -15,9 +15,6 @@ export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, 
      * If omitted, default uui implementation with flex container will be rendered.
      */
     renderView?: (props: any) => React.ReactElement<any>;
-}
-
-export interface PositionValues extends positionValues {
 }
 
 export interface ScrollbarsApi extends Scrollbars {
@@ -34,12 +31,12 @@ enum uuiScrollbars {
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible'
 }
 
-export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
+export const ScrollBars = ({
     style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, cx: outerCx, ...props
-}, ref) => {
+}: ScrollbarProps) => {
     const bars = useRef<ScrollbarsApi>(undefined);
 
-    useImperativeHandle(ref, () => bars.current, [bars.current]);
+    useImperativeHandle(props.ref, () => bars.current, [bars.current]);
 
     const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
         if (!bars.current) return;
@@ -62,7 +59,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
     const getIndent = (margin: string | number): Record<string, string | number> => {
         const dir = getDir();
 
-        // for windows we need to get positive right margin to hide native scrollbar
+        // for windows, we need to get positive right margin to hide native scrollbar
         if (dir === 'rtl') {
             if (margin === 0) return { right: margin };
             const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
@@ -95,4 +92,4 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
             { ...rawProps }
         />
     );
-});
+};

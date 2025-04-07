@@ -11,15 +11,12 @@ import css from './TableCell.module.scss';
 import { ResizeHandle } from '../../implementation/Resizable';
 
 export interface TableCellElementProps
-    extends PlateElementProps<Value, TTableCellElement> {
+    extends PlateElementProps<Value, TTableCellElement>, React.RefAttributes<React.ElementRef<typeof PlateElement>> {
     hideBorder?: boolean;
     isHeader?: boolean;
 }
 
-const TableCellElement = React.forwardRef<
-React.ElementRef<typeof PlateElement>,
-TableCellElementProps
->(({ children, className, style, hideBorder, ...props }, ref) => {
+function TableCellElement({ children, className, style, hideBorder, ...props }: TableCellElementProps) {
     const editor = useEditorRef();
 
     const {
@@ -47,7 +44,7 @@ TableCellElementProps
     return (
         <PlateElement
             asChild
-            ref={ ref }
+            ref={ props.ref }
             className={
                 cx(
                     css.tableCellWrapper,
@@ -119,15 +116,12 @@ TableCellElementProps
             </Cell>
         </PlateElement>
     );
-});
+}
 TableCellElement.displayName = 'TableCellElement';
 
-const TableCellHeaderElement = React.forwardRef<
-React.ElementRef<typeof TableCellElement>,
-TableCellElementProps
->((props, ref) => {
-    return <TableCellElement ref={ ref } { ...props } isHeader />;
-});
+function TableCellHeaderElement(props: TableCellElementProps) {
+    return <TableCellElement { ...props } isHeader />;
+}
 TableCellHeaderElement.displayName = 'TableCellHeaderElement';
 
 export { TableCellElement, TableCellHeaderElement };
