@@ -15,7 +15,7 @@ exports[`PresetInput should render correctly 1`] = `
   }
 >
   <div
-    className="container uui-input-box -clickable root uui-size-36 mode-form presetInput"
+    className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form presetInput"
     onFocus={[Function]}
     tabIndex={-1}
   >

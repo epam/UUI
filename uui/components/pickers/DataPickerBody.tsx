@@ -4,11 +4,10 @@ import {
     IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
 } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
-import { SearchInput, SearchInputProps } from '../inputs';
+import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import type { ControlSize } from '../types';
 import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
 import isEqual from 'react-fast-compare';
@@ -19,7 +18,7 @@ import { MoveFocusInside } from 'react-focus-lock';
 export interface DataPickerBodyModsOverride {}
 
 interface DataPickerBodyMods {
-    searchSize?: ControlSize;
+    searchSize?: PickerInputProps<any, any>['size'];
 }
 
 export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>,
@@ -115,7 +114,9 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         );
     };
 
-    const searchSize = isMobile() ? settings.pickerInput.sizes.body.mobileSearchInput as SearchInputProps['size'] : props.searchSize;
+    const searchSize = isMobile()
+        ? settings.pickerInput.sizes.body.mobileSearchInput
+        : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
     const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
 

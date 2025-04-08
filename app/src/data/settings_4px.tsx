@@ -145,6 +145,7 @@ const settings_4px = {
                 },
             },
             body: {
+                getSearchSize: () => '40',
                 maxHeight: 300,
                 minWidth: 360,
                 padding: '12',

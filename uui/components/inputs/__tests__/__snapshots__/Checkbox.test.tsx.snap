@@ -2,7 +2,7 @@
 
 exports[`TestComponent should be rendered with maximum props 1`] = `
 <label
-  className="container uui-checkbox-container root uui-size-12 mode-cell uui-color-primary uui-disabled uui-readonly uui-invalid"
+  className="container uui-checkbox-container root uui-size-12 uui-control-mode-cell uui-color-primary uui-disabled uui-readonly uui-invalid"
 >
   <div
     className="uui-checkbox uui-checked"
@@ -38,7 +38,7 @@ exports[`TestComponent should be rendered with maximum props 1`] = `
 
 exports[`TestComponent should render with minimum props 1`] = `
 <label
-  className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary -clickable"
+  className="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
 >
   <div
     className="uui-checkbox uui-checked"
