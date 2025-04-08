@@ -32,7 +32,7 @@ export function CodeExpandable(props: { showCode: boolean; docsGenType: TType })
             </FlexRow>
             {isCodeExpanded && (
                 <FlexRow key="code" size="36" padding="12">
-                    <Code codeAsHtml={ docsGenType?.details?.typeValue.print?.join('\n') || '' } />
+                    <Code isVisible={ isCodeExpanded } codeAsHtml={ docsGenType?.details?.typeValue.print?.join('\n') || '' } />
                 </FlexRow>
             )}
         </div>
