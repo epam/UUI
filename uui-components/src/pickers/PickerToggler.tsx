@@ -43,13 +43,13 @@ export interface PickerTogglerProps<TItem = any, TId = any>
     id?: string;
 }
 
-export function PickerToggler<TItem, TId>(props: PickerTogglerProps<TItem, TId>) {
+function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId>, ref: React.ForwardedRef<HTMLElement>) {
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
     const toggleContainer = React.useRef<HTMLDivElement>(undefined);
     const inputContainer = React.useRef<HTMLInputElement>(undefined);
 
-    React.useImperativeHandle(props.ref, () => toggleContainer.current, [toggleContainer.current]);
+    React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
 
     const handleClick = React.useCallback(
         (event: Event) => {
@@ -265,3 +265,5 @@ export function PickerToggler<TItem, TId>(props: PickerTogglerProps<TItem, TId>)
         </div>
     );
 }
+
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as <TItem, TId>(props: PickerTogglerProps<TItem, TId>) => ReturnType<typeof PickerTogglerComponent>;

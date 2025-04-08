@@ -3,18 +3,18 @@ import cx from 'classnames';
 import { IHasCX, IHasRawProps } from '@epam/uui-core';
 import css from './ProgressBar.module.scss';
 
-export interface ProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, React.RefAttributes<HTMLDivElement> {
+export interface ProgressBarProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     progress: number;
     label?: string;
     hideLabel?: boolean;
 }
 
-export const ProgressBar = (props: ProgressBarProps) => {
+export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>((props, ref) => {
     const { hideLabel = false, progress, label } = props;
     const barLabel = label || `${props.progress || 0}%`;
 
     return (
-        <div ref={ props.ref } className={ cx('uui-progress_bar', props.cx, css.container) } { ...props.rawProps }>
+        <div ref={ ref } className={ cx('uui-progress_bar', props.cx, css.container) } { ...props.rawProps }>
             <div
                 role="progressbar"
                 className={ cx(css.bar, 'bar') }
@@ -33,4 +33,4 @@ export const ProgressBar = (props: ProgressBarProps) => {
             )}
         </div>
     );
-};
+});

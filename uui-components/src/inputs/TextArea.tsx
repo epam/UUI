@@ -14,8 +14,7 @@ export interface TextAreaProps
     IDisableable,
     ICanBeReadonly,
     IHasRawProps<React.TextareaHTMLAttributes<HTMLDivElement>>,
-    ICanFocus<HTMLTextAreaElement>,
-    React.RefAttributes<HTMLDivElement> {
+    ICanFocus<HTMLTextAreaElement> {
     /** Adjust height to fit specified number or text rows. HTML TextArea attribute. */
     rows?: number;
     /**
@@ -39,7 +38,7 @@ interface TextAreaState {
     inFocus?: boolean;
 }
 
-export function TextArea(props: TextAreaProps) {
+export const TextArea = React.forwardRef<HTMLDivElement, TextAreaProps>((props, ref) => {
     const [state, setState] = useState<TextAreaState>({
         inFocus: false,
     });
@@ -123,7 +122,7 @@ export function TextArea(props: TextAreaProps) {
             { ...props.rawProps }
             tabIndex={ -1 }
             onFocus={ handleWrapperFocus }
-            ref={ props.ref }
+            ref={ ref }
         >
             <textarea
                 autoFocus={ props.autoFocus }
@@ -159,4 +158,4 @@ export function TextArea(props: TextAreaProps) {
             />
         </div>
     );
-}
+});

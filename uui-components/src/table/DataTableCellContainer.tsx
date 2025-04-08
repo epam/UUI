@@ -11,8 +11,7 @@ export interface DataTableCellContainerProps extends
     IHasCX,
     IClickable,
     React.PropsWithChildren,
-    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
-    React.RefAttributes<HTMLDivElement> {
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /**
      * DataTable column configuration.
      */
@@ -35,7 +34,7 @@ export interface DataTableCellContainerProps extends
     style?: React.CSSProperties;
 }
 
-export const DataTableCellContainer = (props: DataTableCellContainerProps) => {
+export const DataTableCellContainer = React.forwardRef<HTMLDivElement, DataTableCellContainerProps>((props: DataTableCellContainerProps, ref) => {
     return (
         <FlexCell
             { ...props.column }
@@ -47,10 +46,10 @@ export const DataTableCellContainer = (props: DataTableCellContainerProps) => {
             textAlign={ props.textAlign }
             alignSelf={ props.alignSelf }
             shrink={ props.shrink }
-            ref={ props.ref }
+            ref={ ref }
             style={ props.style }
         >
             { props.children }
         </FlexCell>
     );
-};
+});

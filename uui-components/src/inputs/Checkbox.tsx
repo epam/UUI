@@ -4,7 +4,7 @@ import { Icon, uuiMod, uuiElement, isEventTargetInsideClickable, CheckboxCorePro
 import { IconContainer } from '../layout';
 import css from './Checkbox.module.scss';
 
-export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex, React.RefAttributes<HTMLLabelElement> {
+export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex {
     /** Render callback for checkbox label.
      * If omitted, 'label' prop value will be rendered.
      */
@@ -24,7 +24,7 @@ export interface CheckboxProps extends CheckboxCoreProps, IHasTabIndex, React.Re
     indeterminateIcon?: Icon;
 }
 
-export function Checkbox(props: CheckboxProps) {
+export const Checkbox = React.forwardRef<HTMLLabelElement, CheckboxProps>((props, ref) => {
     const context = useUuiContext();
 
     const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ export function Checkbox(props: CheckboxProps) {
                 props.isInvalid && uuiMod.invalid,
                 !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
             ) }
-            ref={ props.ref }
+            ref={ ref }
             { ...props.rawProps }
         >
             <div
@@ -86,4 +86,4 @@ export function Checkbox(props: CheckboxProps) {
             { label && <div className={ uuiElement.inputLabel }>{ label }</div> }
         </label>
     );
-}
+});

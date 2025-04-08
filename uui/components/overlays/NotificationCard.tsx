@@ -22,8 +22,7 @@ interface NotificationAction extends IHasRawProps<React.ButtonHTMLAttributes<HTM
     action: () => void;
 }
 
-export interface NotificationCardCoreProps extends INotification, IHasChildren, IHasCX,
-    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, Pick<React.RefAttributes<HTMLDivElement>, 'ref'> {
+export interface NotificationCardCoreProps extends INotification, IHasChildren, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Array of Notification actions. If provided will be displayed as LinkButtons in the end of notification. */
     actions?: NotificationAction[];
     /** NotificationCard icon */
@@ -37,10 +36,10 @@ interface NotificationMods {
 
 export interface NotificationCardProps extends NotificationCardCoreProps, NotificationMods {}
 
-export function NotificationCard(props: NotificationCardProps) {
-    const notificationCardNode = React.useRef<HTMLDivElement>(null);
+export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCardProps>((props, ref) => {
+    const notificationCardNode = React.useRef(null);
 
-    React.useImperativeHandle(props.ref, () => notificationCardNode.current, [notificationCardNode.current]);
+    React.useImperativeHandle(ref, () => notificationCardNode.current, [notificationCardNode.current]);
 
     React.useLayoutEffect(() => {
         notificationCardNode.current?.addEventListener('mouseenter', props.clearTimer);
@@ -89,23 +88,23 @@ export function NotificationCard(props: NotificationCardProps) {
             </div>
         </div>
     );
-}
+});
 
-export function WarningNotification(props: NotificationCardProps) {
-    return <NotificationCard icon={ settings.notificationCard.icons.warningIcon } color="warning" { ...props } />;
-}
+export const WarningNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+    <NotificationCard icon={ settings.notificationCard.icons.warningIcon } color="warning" { ...props } ref={ ref } cx={ props.cx } />
+));
 
-export function SuccessNotification(props: NotificationCardProps) {
-    return <NotificationCard icon={ settings.notificationCard.icons.successIcon } color="success" { ...props } />;
-}
+export const SuccessNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+    <NotificationCard icon={ settings.notificationCard.icons.successIcon } color="success" { ...props } ref={ ref } cx={ props.cx } />
+));
 
-export function HintNotification(props: NotificationCardProps) {
-    return <NotificationCard icon={ settings.notificationCard.icons.hintIcon } color="info" { ...props } />;
-}
+export const HintNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+    <NotificationCard icon={ settings.notificationCard.icons.hintIcon } color="info" { ...props } ref={ ref } cx={ props.cx } />
+));
 
-export function ErrorNotification(props: NotificationCardProps) {
-    return <NotificationCard icon={ settings.notificationCard.icons.errorIcon } color="error" { ...props } />;
-}
+export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCardCoreProps>((props, ref) => (
+    <NotificationCard icon={ settings.notificationCard.icons.errorIcon } color="error" { ...props } ref={ ref } cx={ props.cx } />
+));
 
 export function ClearNotification() {
     const uuiCtx = useUuiContext();

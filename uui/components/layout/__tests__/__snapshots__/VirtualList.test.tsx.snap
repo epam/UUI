@@ -3,7 +3,7 @@
 exports[`VirtualList should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+    class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
     style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
   >
     <div

@@ -20,8 +20,7 @@ type TabButtonMods = {
 export interface TabButtonModsOverride {}
 
 /** Represents the properties of a TabButton component. */
-export interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOverride>, ClickableComponentProps, IDropdownToggler, IHasIcon,
-    IHasCaption, React.RefAttributes<HTMLButtonElement | HTMLAnchorElement> {
+export interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOverride>, ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
     /** Icon for clear value button (usually cross) */
@@ -32,7 +31,7 @@ export interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOv
     count?: React.ReactNode;
 }
 
-export function TabButton(props: TabButtonProps) {
+export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
     const styles = [
         css.root,
         'uui-tab-button',
@@ -54,7 +53,7 @@ export function TabButton(props: TabButtonProps) {
                 ...props.rawProps,
             } }
             cx={ styles }
-            ref={ props.ref }
+            ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
@@ -86,4 +85,4 @@ export function TabButton(props: TabButtonProps) {
             ) }
         </Clickable>
     );
-}
+});

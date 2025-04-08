@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, type JSX } from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { getChildrenAndRest } from './utils';
 
@@ -73,7 +73,7 @@ export const renderRows = <TItem, TId>(
         />
     );
 
-    return [group].concat(renderRows(otherRows, renderRow, top) as React.JSX.Element[]);
+    return [group].concat(renderRows(otherRows, renderRow, top) as JSX.Element[]);
 };
 
 export function DataRowsGroups<TItem, TId>({

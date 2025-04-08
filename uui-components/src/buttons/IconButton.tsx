@@ -4,7 +4,7 @@ import { Clickable, ClickableComponentProps } from '../widgets';
 import { IconContainer } from '../layout';
 import css from './IconButton.module.scss';
 
-export type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, 'isDropdown'> & React.RefAttributes<HTMLButtonElement | HTMLAnchorElement> & {
+export type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, 'isDropdown'> & {
     /** Icon can be a React element (usually an SVG element) */
     icon?: Icon;
     /** Icon for drop-down toggler */
@@ -19,13 +19,13 @@ export type IconButtonProps = ClickableComponentProps & Omit<IDropdownToggler, '
     showDropdownIcon?: boolean;
 };
 
-export const IconButton = (props: IconButtonProps) => {
+export const IconButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, IconButtonProps>((props, ref) => {
     return (
         <Clickable
             { ...props }
             type="button"
             cx={ [css.container, props.cx] }
-            ref={ props.ref }
+            ref={ ref }
         >
             <IconContainer icon={ props.icon } size={ props.size } />
             { props.showDropdownIcon && (
@@ -33,4 +33,4 @@ export const IconButton = (props: IconButtonProps) => {
             ) }
         </Clickable>
     );
-};
+});

@@ -9,7 +9,7 @@ import {
     Overwrite,
 } from '@epam/uui-core';
 import { IHasEditMode } from '../types';
-import React, { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
 import type { Dayjs } from '../../helpers/dayJsHelper';
 
@@ -158,7 +158,7 @@ type RangeDatePickerInputType = 'from' | 'to' | null;
 interface CommonDatePickerBodyProps extends IHasCX, IDisableable, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     filter?(day: Dayjs): boolean;
     presets?: RangeDatePickerPresets;
-    renderDay?: (renderProps: DayProps) => React.ReactNode;
+    renderDay?: (renderProps: DayProps) => React.ReactElement<Element>;
 }
 
 type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';

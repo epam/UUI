@@ -5,7 +5,7 @@ import {
 import { IconContainer } from './IconContainer';
 import css from './Accordion.module.scss';
 
-interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, React.RefAttributes<HTMLDivElement> {
+interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Accordion title */
     title?: string | React.ReactElement<any>;
     /** Overrides default title rendering. */
@@ -34,7 +34,7 @@ const uuiAccordion = {
 
 const isEditableAccordionProps = (props: AccordionProps): props is EditableAccordionProps => (props as EditableAccordionProps).onValueChange !== undefined;
 
-export const Accordion = (props: AccordionProps) => {
+export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
     const [state, setState] = useState<AccordionState>({
         opened: isEditableAccordionProps(props) ? props.value : false,
     });
@@ -94,7 +94,7 @@ export const Accordion = (props: AccordionProps) => {
 
     return (
         <div
-            ref={ props.ref }
+            ref={ ref }
             aria-disabled={ props.isDisabled }
             aria-expanded={ isAccordionOpened }
             className={ cx(
@@ -109,4 +109,4 @@ export const Accordion = (props: AccordionProps) => {
             {props.children && isAccordionOpened ? renderBody() : null}
         </div>
     );
-};
+});

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, type JSX } from 'react';
 import cx from 'classnames';
 import {
     DropdownBodyProps, useUuiContext,
@@ -19,7 +19,7 @@ const modifiers = [{
     options: { offset: [0, 6] },
 }];
 
-export function RangeDatePicker(props: RangeDatePickerProps & React.RefAttributes<HTMLElement>) {
+function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.ForwardedRef<HTMLElement>): JSX.Element {
     const { value: _value, format = defaultFormat, size = settings.rangeDatePicker.sizes.default } = props;
     const value = _value || defaultRangeValue; // also handles null in comparison to default value
 
@@ -64,7 +64,7 @@ export function RangeDatePicker(props: RangeDatePickerProps & React.RefAttribute
         }
     };
 
-    const renderBody = (renderProps: DropdownBodyProps) => {
+    const renderBody = (renderProps: DropdownBodyProps): JSX.Element => {
         return (
             <DropdownContainer
                 { ...renderProps }
@@ -135,7 +135,9 @@ export function RangeDatePicker(props: RangeDatePickerProps & React.RefAttribute
             value={ isOpen }
             modifiers={ modifiers }
             placement={ props.placement }
-            forwardedRef={ props.ref }
+            forwardedRef={ ref }
         />
     );
 }
+
+export const RangeDatePicker = React.forwardRef(RangeDatePickerComponent);

@@ -242,7 +242,6 @@ function uuiReactRules() {
     return {
         // non-stylistic - start
         ...pickFromAirbnb.react.nonStylistic,
-        'jsx-a11y/click-events-have-key-events': 'off',
         'react/no-unescaped-entities': [unifiedSeverity, { forbid: ['>', '}'] }],
         'react/jsx-no-useless-fragment': unifiedSeverity,
         'react/function-component-definition': [
