@@ -4,7 +4,6 @@ import { TDocsGenExportedType } from '@epam/uui-docs';
 import { useDocsGenForType, useDocsGenSummaries } from './dataHooks';
 import { TType } from '@epam/uui-docs';
 import css from './TypeRefSection.module.scss';
-import { CodeExpandable } from './components/CodeExpandable';
 import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notification-info-outline-18.svg';
 import { TypeRefTable } from './TypeRefTable';
 
@@ -74,7 +73,7 @@ export function TypeRefSection(props: TypeRefSectionProps) {
         <div className={ css.root }>
             { renderToolbar() }
             <TypeRefTable docsGenSummaries={ docsGenSummaries } docsGenType={ docsGenType } isGrouped={ isGrouped } />
-            <CodeExpandable showCode={ props.showCode } docsGenType={ docsGenType } />
+            {/* <CodeExpandable showCode={ props.showCode } docsGenType={ docsGenType } /> */}
         </div>
     );
 }
