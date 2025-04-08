@@ -4,16 +4,16 @@ import { Button, ClickableRawProps } from '@epam/uui-components';
 
 import css from './ToolbarButton.module.scss';
 
-interface ToolbarButtonProps extends IHasCX, IHasCaption, IDisableable, IHasRawProps<ClickableRawProps>, React.RefAttributes<HTMLButtonElement | HTMLAnchorElement> {
+interface ToolbarButtonProps extends IHasCX, IHasCaption, IDisableable, IHasRawProps<ClickableRawProps> {
     isActive?: boolean;
     onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     icon?: Icon;
 }
 
-export function ToolbarButton(props: ToolbarButtonProps) {
+export const ToolbarButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ToolbarButtonProps>((props, ref) => {
     return (
         <Button
-            ref={ props.ref }
+            ref={ ref }
             rawProps={ props.rawProps }
             cx={ cx(css.toolbarButton, css[props.isActive ? 'gray90' : 'gray80'], props.cx) }
             icon={ props.icon }
@@ -22,4 +22,4 @@ export function ToolbarButton(props: ToolbarButtonProps) {
             isDisabled={ props.isDisabled }
         />
     );
-}
+});

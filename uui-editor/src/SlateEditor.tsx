@@ -1,5 +1,5 @@
 import React, {
-    FocusEventHandler, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
+    FocusEventHandler, forwardRef, KeyboardEventHandler, memo, useCallback, useEffect, useMemo, useRef, useState,
 } from 'react';
 import {
     IHasCX, IHasRawProps, cx, uuiMod, useForceUpdate,
@@ -39,7 +39,7 @@ export interface PlateEditorProps
     toolbarPosition?: 'floating' | 'fixed';
 }
 
-export const SlateEditor = memo((props: PlateEditorProps & React.RefAttributes<HTMLDivElement>) => {
+export const SlateEditor = memo(forwardRef<HTMLDivElement, PlateEditorProps>((props, ref) => {
     const [currentId] = useState(String(Date.now()));
     const editorRef = useRef<PlateEditor | null>(null);
     const editableWrapperRef = useRef<HTMLDivElement>(undefined);
@@ -105,7 +105,7 @@ export const SlateEditor = memo((props: PlateEditorProps & React.RefAttributes<H
             }
         }
     }, [props.autoFocus, props.isReadonly]);
-    const composedRef = useComposedRef(autoFocusRef, props.ref);
+    const composedRef = useComposedRef(autoFocusRef, ref);
 
     /** render related */
     const renderContent = useCallback(() => {
@@ -166,4 +166,4 @@ export const SlateEditor = memo((props: PlateEditorProps & React.RefAttributes<H
             </div>
         </Plate>
     );
-});
+}));

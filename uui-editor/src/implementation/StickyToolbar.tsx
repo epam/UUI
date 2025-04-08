@@ -1,11 +1,13 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState, type JSX } from 'react';
 import cx from 'classnames';
 
 import css from './StickyToolbar.module.scss';
-import { IHasChildren, useLayer } from '@epam/uui-core';
+import { useLayer } from '@epam/uui-core';
 import { isEditorFocused, useEditorRef, useEventPlateId } from '@udecode/plate-common';
 
-interface SidebarProps extends IHasChildren {}
+interface SidebarProps {
+    children: JSX.Element[];
+}
 
 // eslint-disable-next-line react/function-component-definition
 export const StickyToolbar: React.FC<SidebarProps> = ({ children }) => {

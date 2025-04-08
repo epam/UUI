@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { IHasCX, cx, IHasRawProps } from '@epam/uui-core';
 import css from './Blocker.module.scss';
 
-export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, React.RefAttributes<HTMLDivElement> {
+export interface BlockerProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Turns the blocker on or off */
     isEnabled: boolean;
     /** Disables spinner animation display */
@@ -26,13 +26,13 @@ const uuiBlocker = {
     exitActive: 'uui-blocker-exit-active',
 } as const;
 
-export const Blocker = (props: BlockerProps) => {
+export const Blocker = forwardRef<HTMLDivElement, BlockerProps>((props, ref) => {
     const transitionRef = React.createRef<HTMLDivElement>();
     return (
         <div
             className={ cx(css.container, classNames.container, props.cx) }
             style={ { minHeight: props.isEnabled && props.spacerHeight ? `${props.spacerHeight}px` : undefined } }
-            ref={ props.ref }
+            ref={ ref }
             role="status"
             aria-live="polite"
             aria-busy={ props.isEnabled ? 'true' : 'false' }
@@ -53,4 +53,4 @@ export const Blocker = (props: BlockerProps) => {
             </CSSTransition>
         </div>
     );
-};
+});

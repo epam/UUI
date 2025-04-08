@@ -3,23 +3,25 @@ import { PlateElement, PlateElementProps } from '@udecode/plate-common';
 import cx from 'classnames';
 import css from './TableRow.module.scss';
 
-export interface PlateTableRowElementProps extends PlateElementProps, React.RefAttributes<React.ElementRef<typeof PlateElement>> {
+export interface PlateTableRowElementProps extends PlateElementProps {
     hideBorder?: boolean;
 }
 
-function TableRowElement({ hideBorder, children, ...props }: PlateTableRowElementProps) {
+const TableRowElement = React.forwardRef<
+React.ElementRef<typeof PlateElement>,
+PlateTableRowElementProps
+>(({ hideBorder, children, ...props }, ref) => {
     return (
         <PlateElement
             asChild
-            ref={ props.ref }
+            ref={ ref }
             className={ cx(css.row, hideBorder && css.hideBorder) }
             { ...props }
         >
             <tr>{ children }</tr>
         </PlateElement>
     );
-}
-
+});
 TableRowElement.displayName = 'TableRowElement';
 
 export { TableRowElement };

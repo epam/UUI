@@ -42,8 +42,7 @@ export interface BadgeCoreProps extends ClickableComponentProps, IDropdownToggle
 }
 
 /** Represents the properties of a Badge component. */
-export interface BadgeProps extends BadgeCoreProps, Overwrite<BadgeMods, BadgeModsOverride>,
-    React.RefAttributes<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement> {}
+export interface BadgeProps extends BadgeCoreProps, Overwrite<BadgeMods, BadgeModsOverride> {}
 
 function applyBadgeMods(mods: BadgeProps) {
     return [
@@ -55,7 +54,7 @@ function applyBadgeMods(mods: BadgeProps) {
     ];
 }
 
-export const Badge = (props: BadgeProps) => {
+export const Badge = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, BadgeProps>((props, ref) => {
     const styles = [applyBadgeMods(props), props.cx];
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.badge.icons.dropdownIcon;
@@ -69,7 +68,7 @@ export const Badge = (props: BadgeProps) => {
                 ...props.rawProps,
             } }
             cx={ styles }
-            ref={ props.ref }
+            ref={ ref }
         >
             {(props.indicator && props.fill === 'outline') && (
                 <div className="uui-indicator"></div>
@@ -101,4 +100,4 @@ export const Badge = (props: BadgeProps) => {
             )}
         </Clickable>
     );
-};
+});

@@ -8,6 +8,8 @@ import { settings } from '../../settings';
 
 import css from './PickerToggler.module.scss';
 
+import type { JSX } from 'react';
+
 const defaultMode = EditMode.FORM;
 
 export interface PickerTogglerModsOverride {}
@@ -31,7 +33,10 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
     ];
 }
 
-export function PickerToggler<TItem, TId>(props: PickerTogglerProps<TItem, TId>) {
+function PickerTogglerComponent<TItem, TId>(
+    props: PickerTogglerProps<TItem, TId>,
+    ref: React.ForwardedRef<HTMLElement>,
+): JSX.Element {
     const renderItem = (itemProps: PickerTogglerTagProps<TItem, TId>) => {
         const itemPropsWithSize = { ...itemProps, size: props.size || settings.pickerInput.sizes.toggler.tag };
         if (!!props.renderItem) {
@@ -50,7 +55,7 @@ export function PickerToggler<TItem, TId>(props: PickerTogglerProps<TItem, TId>)
     return (
         <UuiPickerToggler
             { ...props }
-            ref={ props.ref }
+            ref={ ref }
             cx={ [applyPickerTogglerMods(props), props.cx] }
             renderItem={ renderItem }
             getName={ props.getName }
@@ -59,3 +64,6 @@ export function PickerToggler<TItem, TId>(props: PickerTogglerProps<TItem, TId>)
         />
     );
 }
+
+export const PickerToggler = React.forwardRef(PickerTogglerComponent) as
+    <TItem, TId>(props: PickerTogglerProps<TItem, TId>) => ReturnType<typeof PickerTogglerComponent>;

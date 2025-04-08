@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps } from '@epam/uui-core';
 import { TextInput } from '../inputs';
 
@@ -55,7 +55,7 @@ export interface RangeDatePickerInputProps
     onKeyDown?(e: React.KeyboardEvent<HTMLDivElement>): void;
 }
 
-export function RangeDatePickerInput({
+export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerInputProps>(({
     isDisabled,
     isInvalid,
     isReadonly,
@@ -74,8 +74,7 @@ export function RangeDatePickerInput({
     onKeyDown,
     id,
     cx: classes,
-    ref,
-}: RangeDatePickerInputProps & React.RefAttributes<HTMLDivElement>) {
+}, ref): JSX.Element => {
     const [inputValue, setInputValue] = useState<RangeDatePickerValue>(
         toCustomDateRangeFormat(value, format),
     );
@@ -178,4 +177,4 @@ export function RangeDatePickerInput({
             />
         </div>
     );
-}
+});

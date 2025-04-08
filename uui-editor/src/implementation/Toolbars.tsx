@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react';
+import React, { Fragment, useMemo, type JSX } from 'react';
 import { useEditorRef, PlateEditor, WithPlatePlugin, Value, PluginOptions } from '@udecode/plate-common';
 import { StickyToolbar } from './StickyToolbar';
 import { FloatingToolbar } from './PositionedToolbar';
@@ -25,7 +25,7 @@ const isFloatingButtonPlugin = (options?: WithToolbarButton): options is WithFlo
 
 const getButtons = (editorRef: PlateEditor<Value>) => {
     const plugins = editorRef?.plugins as WithButtonPlugin[];
-    return plugins.reduce<{ floating: React.ReactNode[]; bottom: React.ReactNode[] }>((acc, p) => {
+    return plugins.reduce<{ floating:JSX.Element[]; bottom: JSX.Element[] }>((acc, p) => {
         if (isBottomButtonPlugin(p.options)) {
             const Button = p.options.bottomBarButton;
             acc.bottom.push(<Button key={ p.key } editor={ editorRef } />);

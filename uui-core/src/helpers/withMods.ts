@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { CX, IHasCX } from '../types';
+import { forwardRef } from './forwardRef';
 
 export function withMods<TSource, TResult>(
     Component: React.ComponentType<TSource>,
@@ -31,23 +32,40 @@ export function withMods<TSource, TResult>(
         return result;
     }
 
+    let wrappedComponent: React.ComponentType<TResult & React.RefAttributes<any>>;
+
     if (!Component) {
         // Happens in tests, probably due to circular dependencies.
         return null;
-    } else if (Component instanceof Function && !isClassComponent) {
+    } else if (isClassComponent) {
+        // Class component. Wrap with forwardRef, and pass ref in the forwardedRef prop
+        wrappedComponent = forwardRef<any, Readonly<TResult>>((props, ref) => {
+            const allProps: any = applyMods(props);
+            allProps.forwardedRef = ref;
+            return React.createElement(Component, allProps);
+        });
+    } else if ((Component as any).render) {
+        // React.forwardRef component.
+        // Basically its object like { $$type: Symbol(FORWARD_REF), render: (props, ref) => ... }
+        // However, $$type is not exposed, so there's no good way to detect this.
+        // We re-wrap it in another forward ref, to avoid unnecessary stacking two forwardRefs
+        wrappedComponent = forwardRef(
+            (props: Readonly<TResult>, ref: any) => (Component as any).render(applyMods(props), ref),
+        );
+    } else if (Component instanceof Function) {
         // Plain functional component. Just wrap with function, and apply mods to props
-        const wrapped = (props: TResult) => (Component as Function)(applyMods(props));
-        wrapped.displayName = Component.name;
-        return wrapped;
+        wrappedComponent = (props: TResult) => (Component as Function)(applyMods(props));
     } else {
-        // Any other type of component. E.g. React.memo. or class component
+        // Any other type of component. E.g. React.memo.
         // Wrap it in another functional component
-        return function (props: TResult) {
-            const resultProps: any = applyMods(props);
-            if (isClassComponent) {
-                resultProps.forwardedRef = (props as any).ref;
-            }
+        wrappedComponent = forwardRef<any, Readonly<TResult>>((props: TResult, ref) => {
+            const resultProps = applyMods(props);
+            (resultProps as any).ref = ref;
             return React.createElement(Component, resultProps);
-        };
+        });
     }
+
+    wrappedComponent.displayName = `${Component?.displayName || Component?.name || 'unknown'} (withMods)`;
+
+    return wrappedComponent;
 }

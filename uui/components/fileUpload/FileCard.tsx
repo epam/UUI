@@ -23,7 +23,7 @@ export interface FileCardItem extends Partial<File & FileUploadResponse> {
     abortXHR?: () => void;
 }
 
-export interface FileCardProps extends IHasCX, IClickable, React.RefAttributes<HTMLDivElement> {
+export interface FileCardProps extends IClickable, IHasCX {
     /** Defines file card item */
     file: FileCardItem;
     /**
@@ -33,7 +33,7 @@ export interface FileCardProps extends IHasCX, IClickable, React.RefAttributes<H
     width?: number;
 }
 
-export function FileCard(props: FileCardProps) {
+export const FileCard = React.forwardRef<HTMLDivElement, FileCardProps>((props, ref) => {
     const [isLoadingShow, setIsLoadingShow] = React.useState<boolean>(true);
 
     const { file } = props;
@@ -122,7 +122,7 @@ export function FileCard(props: FileCardProps) {
 
     return (
         <FlexCell
-            ref={ props.ref }
+            ref={ ref }
             cx={ cx(css.root, 'uui-file_card', (isLoading || error?.isError) && uuiMod.loading, componentCx, error?.isError && uuiMod.error) }
             minWidth={ width }
             width={ !width ? '100%' : undefined }
@@ -142,4 +142,4 @@ export function FileCard(props: FileCardProps) {
             </FlexRow>
         </FlexCell>
     );
-}
+});

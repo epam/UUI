@@ -150,6 +150,8 @@ export type PickerBaseOptions<TItem, TId> = {
 
     /** Given an item, should return an array of string fields to search on. By default, the search is performed on item.name field. */
     getSearchFields?(item: TItem): string[];
+    /** Component ref */
+    ref?: React.Ref<PickerInputElement>;
 };
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
@@ -271,7 +273,7 @@ PickerBaseOptions<TItem, TId>
  * Other props can be implemented for full-featured picker togglers.
  */
 export interface IPickerToggler<TItem = any, TId = any>
-    extends IDropdownTogglerProps,
+    extends IBasicPickerToggler,
     Partial<IEditable<string>>,
     Partial<IHasPlaceholder>,
     Partial<IDisableable>,
@@ -280,6 +282,14 @@ export interface IPickerToggler<TItem = any, TId = any>
     selection?: DataRowProps<TItem, TId>[];
     /** Amount of selected items */
     selectedRowsCount?: number;
+}
+
+/**
+ * Component can be used as Toggler control for pickers.
+ * This interface is enough for basic pickers.
+ * Picker togglers with search or advanced selection display should implement IPickerToggler interface
+ */
+export interface IBasicPickerToggler extends IDropdownTogglerProps {
     /** Call to clear toggler value */
     onClear?(e?: any): void;
 }

@@ -30,7 +30,7 @@ function applyTextInputMods(mods: CoreTextInputProps & TextInputMods) {
 export interface TextInputProps extends CoreTextInputProps, Overwrite<TextInputMods, TextInputModsOverride> {}
 
 /** Represents the properties for a SearchInput component. */
-export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions, React.RefAttributes<HTMLInputElement> {}
+export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
 export const TextInput = withMods<CoreTextInputProps, TextInputProps>(uuiTextInput, applyTextInputMods, () => ({
     acceptIcon: settings.textInput.icons.acceptIcon,
@@ -38,7 +38,7 @@ export const TextInput = withMods<CoreTextInputProps, TextInputProps>(uuiTextInp
     dropdownIcon: settings.textInput.icons.dropdownIcon,
 }));
 
-export const SearchInput = (props: SearchInputProps) => {
+export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
     // analytics events are sending in IEditableDebouncer, so we need to avoid sending events in TextInput
     const { ...textInputProps } = props;
     delete textInputProps.getValueChangeAnalyticsEvent;
@@ -55,7 +55,7 @@ export const SearchInput = (props: SearchInputProps) => {
                         onCancel={ props.onCancel ?? defaultOnCancel }
                         type="search"
                         inputMode="search"
-                        ref={ props.ref }
+                        ref={ ref }
                         { ...textInputProps }
                         { ...iEditable }
                     />
@@ -63,4 +63,4 @@ export const SearchInput = (props: SearchInputProps) => {
             } }
         />
     );
-};
+});

@@ -7,7 +7,7 @@ import { IconContainer } from './IconContainer';
 import { i18n } from '../i18n';
 import css from './LabeledInput.module.scss';
 
-export interface LabeledInputProps extends LabeledInputCoreProps, React.RefAttributes<HTMLDivElement> {
+export interface LabeledInputProps extends LabeledInputCoreProps {
     /** Overrides the default Tooltip component to use for info tooltip */
     Tooltip?: React.ComponentType<TooltipProps>;
     /** Overrides the default info icon */
@@ -23,7 +23,7 @@ const uuiLabeledInput = {
     sideNote: 'uui-labeled-input-sidenote',
 } as const;
 
-export const LabeledInput = (props: LabeledInputProps) => {
+export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>((props, ref) => {
     const Tooltip = props.Tooltip;
     const isCanBeOptional = !props.isRequired && props.labelPosition !== 'left' && props.isOptional;
     const isOnlyCharCounter = !props.footnote && (props.charCounter && props.maxLength && !props.isInvalid);
@@ -68,7 +68,7 @@ export const LabeledInput = (props: LabeledInputProps) => {
     };
 
     return (
-        <div className={ cx(css.container, props.cx) } ref={ props.ref } { ...props.rawProps }>
+        <div className={ cx(css.container, props.cx) } ref={ ref } { ...props.rawProps }>
             <div className={ cx(labelMod[props.labelPosition ? props.labelPosition : 'top']) }>
                 {props.label && (
                     <div className={ css.labelWrapper }>
@@ -101,4 +101,4 @@ export const LabeledInput = (props: LabeledInputProps) => {
             { isOnlyCharCounter && getCharCounter()}
         </div>
     );
-};
+});

@@ -13,14 +13,14 @@ interface MainMenuButtonMods {
 }
 
 export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'>
-& IHasIcon & IHasCaption & React.RefAttributes<HTMLButtonElement> & {
+& IHasIcon & IHasCaption & {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
     count?: React.ReactNode;
 };
 
-export function MainMenuButton(props: MainMenuButtonProps) {
+export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {
     const { type, ...clickableProps } = props;
 
     return (
@@ -38,7 +38,7 @@ export function MainMenuButton(props: MainMenuButtonProps) {
                 css['type-' + (type || 'primary')],
                 props.cx,
             ] }
-            ref={ props.ref }
+            ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
@@ -66,4 +66,4 @@ export function MainMenuButton(props: MainMenuButtonProps) {
             )}
         </Clickable>
     );
-}
+});

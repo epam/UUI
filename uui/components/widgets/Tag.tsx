@@ -53,7 +53,7 @@ function applyTagMods(props: TagProps) {
     ];
 }
 
-export function Tag(props: TagProps & React.RefAttributes<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement>) {
+export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TagProps>((props, ref) => {
     const styles = [applyTagMods(props), props.cx];
 
     const ClearIcon = props.clearIcon ? props.clearIcon : settings.tag.icons.clearIcon;
@@ -68,7 +68,7 @@ export function Tag(props: TagProps & React.RefAttributes<HTMLButtonElement | HT
                 ...props.rawProps,
             } }
             cx={ styles }
-            ref={ props.ref }
+            ref={ ref }
         >
             { props.icon && props.iconPosition !== 'right' && (
                 <IconContainer
@@ -99,4 +99,4 @@ export function Tag(props: TagProps & React.RefAttributes<HTMLButtonElement | HT
             ) }
         </Clickable>
     );
-}
+});

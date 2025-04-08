@@ -6,15 +6,13 @@ import { uuiMod } from '@epam/uui-core';
 
 import css from './Separator.module.scss';
 
-interface SeparatorProps extends PlateElementProps, React.RefAttributes<React.ElementRef<typeof PlateElement>> {}
-
-function Separator({ className, ...props }: SeparatorProps) {
+const Separator = React.forwardRef<React.ElementRef<typeof PlateElement>, PlateElementProps>(({ className, ...props }, ref) => {
     const { children } = props;
 
     const selected = useSelected();
 
     return (
-        <PlateElement ref={ props.ref } { ...props }>
+        <PlateElement ref={ ref } { ...props }>
             <div
                 contentEditable={ false }
                 className={ cx(css.separator, selected && uuiMod.focus) }
@@ -23,6 +21,6 @@ function Separator({ className, ...props }: SeparatorProps) {
             { children }
         </PlateElement>
     );
-}
+});
 
 export { Separator };

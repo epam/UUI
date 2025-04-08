@@ -90,25 +90,23 @@ export function SkillsBatteryPopover(props: ISkillsBatteryProps) {
         );
     };
 
-    function TargetBody(props: { isOpen: boolean; data: ISkill; isFavorite: IInnerSkill; level: ISkillLevel } & React.RefAttributes<unknown>) {
-        return (
-            <FlexRow ref={ props.ref } cx={ cx([css.targetBodyContainer, { [css.targetBodyContainerHover]: props.isOpen }]) } size="30">
-                <IconContainer icon={ props.isFavorite?.status ? heartIconFilled : heartIconOutline } style={ props.isFavorite?.status && { fill: '#DB3A1A' } } />
-                <SmallBattery rating={ props.level } />
-                <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18">
-                    {props.data?.caption}
-                </Text>
-                {Object.entries(props?.data.options).map((val) => (
-                    <IconContainer cx={ css.infoItem } style={ { fill: `${val[1].activeColor}` } } icon={ val[1].icon } />
-                ))}
-            </FlexRow>
-        );
-    }
+    const TargetBody = React.forwardRef<unknown, { isOpen: boolean }>((bodyProps, ref) => (
+        <FlexRow ref={ ref } cx={ cx([css.targetBodyContainer, { [css.targetBodyContainerHover]: bodyProps.isOpen }]) } size="30">
+            <IconContainer icon={ isFavorite?.status ? heartIconFilled : heartIconOutline } style={ isFavorite?.status && { fill: '#DB3A1A' } } />
+            <SmallBattery rating={ level } />
+            <Text cx={ cx(css.skillText) } fontSize="14" lineHeight="18">
+                {props.data?.caption}
+            </Text>
+            {Object.entries(props?.data.options).map((val) => (
+                <IconContainer cx={ css.infoItem } style={ { fill: `${val[1].activeColor}` } } icon={ val[1].icon } />
+            ))}
+        </FlexRow>
+    ));
 
     const renderTarget = (targetProps: IDropdownToggler) => {
         return (
             <div { ...targetProps }>
-                <TargetBody ref={ targetBodyRef } isOpen={ targetProps.isOpen } data={ props.data } isFavorite={ isFavorite } level={ level } />
+                <TargetBody ref={ targetBodyRef } isOpen={ targetProps.isOpen } />
             </div>
         );
     };

@@ -12,6 +12,7 @@ export * from './formatBytes';
 export * from './numericInputCalculations';
 export * from './mobile';
 export * from './ssr';
+export * from './forwardRef';
 export * from './queryToSearch';
 export * from './searchToQuery';
 export * from './uuiLogger';

@@ -3,7 +3,7 @@
 exports[`DataTable should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer root uui-dt-vars"
+    class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer uui-dt-vars"
     style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
   >
     <div

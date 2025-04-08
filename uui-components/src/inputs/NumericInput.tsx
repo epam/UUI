@@ -15,8 +15,7 @@ export interface NumericInputProps
     IHasPlaceholder,
     ICanBeReadonly,
     IAnalyticableOnChange<number>,
-    IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
-    React.RefAttributes<HTMLDivElement> {
+    IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Maximum value (default is Number.MAX_SAFE_INTEGER) */
     max?: number;
 
@@ -77,7 +76,7 @@ const getFractionDigits = (formatOptions: Intl.NumberFormatOptions) => {
     return maximumFractionDigits;
 };
 
-export function NumericInput(props: NumericInputProps) {
+export const NumericInput = React.forwardRef<HTMLDivElement, NumericInputProps>((props, ref) => {
     const {
         value: initialValue = null,
         min: initialMin,
@@ -205,7 +204,7 @@ export function NumericInput(props: NumericInputProps) {
             onFocus={ handleWrapperFocus }
             onKeyDown={ handleArrowKeyDown }
             tabIndex={ -1 }
-            ref={ props.ref }
+            ref={ ref }
             { ...props.rawProps }
         >
             <input
@@ -253,4 +252,4 @@ export function NumericInput(props: NumericInputProps) {
             )}
         </div>
     );
-}
+});

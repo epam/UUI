@@ -4,6 +4,8 @@ import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
 import { ControlSize } from '../types';
 
+import type { JSX } from 'react';
+
 type MultiSwitchItem = ButtonProps & {
     /**
      * Defines the id of MultiSwitchItem.
@@ -27,7 +29,7 @@ interface MultiSwitchMods {
 export interface MultiSwitchModsOverride {}
 
 /** Represents the 'Core properties' for the MultiSwitch component. */
-export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & React.RefAttributes<HTMLDivElement> & {
+export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
     /**
      * Defines an array of MultiSwitchItems.
      */
@@ -37,11 +39,10 @@ export type MultiSwitchCoreProps<TValue> = IEditable<TValue> & IHasRawProps<Reac
 /** Represents the properties for the MultiSwitch component. */
 export type MultiSwitchProps<TValue = unknown> = MultiSwitchCoreProps<TValue> & Overwrite<MultiSwitchMods, MultiSwitchModsOverride>;
 
-function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>) {
-    const { ref, ...restProps } = props;
+function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>, ref: React.ForwardedRef<HTMLDivElement>) {
     return (
         <ControlGroup
-            ref={ props.ref }
+            ref={ ref }
             rawProps={ {
                 ...props.rawProps,
                 role: 'tablist',
@@ -53,7 +54,7 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>) {
         >
             {props.items.map((item, index) => (
                 <Button
-                    { ...restProps }
+                    { ...props }
                     { ...item }
                     isDisabled={ props.isDisabled }
                     key={ index + '-' + item.id }
@@ -68,4 +69,4 @@ function MultiSwitchComponent<TValue>(props: MultiSwitchProps<TValue>) {
     );
 }
 
-export const MultiSwitch = MultiSwitchComponent;
+export const MultiSwitch = React.forwardRef(MultiSwitchComponent) as <TValue>(props: MultiSwitchProps<TValue>) => JSX.Element;
