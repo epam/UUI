@@ -5,9 +5,9 @@ import { NumericInput } from '../inputs';
 import { FlexCell, FlexRow } from '../layout';
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
+import { settings } from '../../settings';
 
 import css from './FilterNumericBody.module.scss';
-import { settings } from '../../settings';
 
 interface INumericRangeValue {
     /**
@@ -82,7 +82,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
                         isDisabled={ isClearDisabled }
-                        size={ settings.filtersPanel.sizes[isMobile() ? 'mobileFooterLinkButton' : 'default'] }
+                        size={ settings.filtersPanel.sizes[isMobile() ? 'mobileFooterLinkButton' : 'footerLinkButton'] }
                         caption={ i18n.pickerInput.clearSelectionButtonSingle }
                         onClick={ clearSelection }
                     />
@@ -98,7 +98,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                 <FlexRow
                     padding="12"
                     alignItems="center"
-                    spacing="12"
+                    columnGap="12"
                     borderBottom={ true }
                     cx={ css.container }
                 >

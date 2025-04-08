@@ -8,7 +8,6 @@ import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
 import { LinkButton } from '../buttons';
 import { MultiSwitch } from '../inputs';
-import { TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
 import { PickerBodyMobileView } from '../pickers';
@@ -188,7 +187,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
 
     const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
         if (item.isLoading) {
-            return <TextPlaceholder />;
+            return settings.filtersPanel.renderPlaceholder();
         }
 
         if (item.isUnknown) {
