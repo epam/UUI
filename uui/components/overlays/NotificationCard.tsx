@@ -1,14 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
+import { useUuiContext } from '@epam/uui-core';
+import type { INotification, Icon, IHasChildren, IHasCX, IHasRawProps } from '@epam/uui-core';
 import { IconContainer } from '@epam/uui-components';
-import {
-    INotification,
-    Icon,
-    IHasChildren,
-    IHasCX,
-    IHasRawProps,
-    useUuiContext,
-} from '@epam/uui-core';
 import { IconButton, LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
@@ -60,7 +54,10 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
             <div className={ css.mainPath }>
                 { props.icon && (
                     <div className={ css.iconWrapper }>
-                        <IconContainer size={ 24 } icon={ props.icon } />
+                        <IconContainer
+                            size={ settings.notificationCard.sizes.icon }
+                            icon={ props.icon }
+                        />
                     </div>
                 ) }
                 <div className={ css.content }>
@@ -81,8 +78,13 @@ export const NotificationCard = React.forwardRef<HTMLDivElement, NotificationCar
                     ) }
                 </div>
                 { props.onClose && (
-                    <div className={ css.closeWrapper }>
-                        <IconButton icon={ settings.notificationCard.icons.closeIcon } color="neutral" onClick={ props.onClose } cx={ css.closeIcon } />
+                    <div className={ cx(css.closeWrapper, 'uui-notification_card-close_icon') }>
+                        <IconButton
+                            icon={ settings.notificationCard.icons.closeIcon }
+                            color="neutral"
+                            onClick={ props.onClose }
+                            cx={ css.closeIcon }
+                        />
                     </div>
                 ) }
             </div>
@@ -109,7 +111,7 @@ export const ErrorNotification = React.forwardRef<HTMLDivElement, NotificationCa
 export function ClearNotification() {
     const uuiCtx = useUuiContext();
     return (
-        <div className={ cx(css.notificationWrapper, css.clearButton) }>
+        <div className={ cx(css.clearNotifications, 'uui-clear-notifications') }>
             <LinkButton
                 caption={ i18n.notificationCard.closeAllNotificationsButton }
                 onClick={ () => uuiCtx.uuiNotifications.clearAll() }
