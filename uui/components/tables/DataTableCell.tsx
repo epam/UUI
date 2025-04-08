@@ -23,11 +23,7 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
     }
 
     props.renderPlaceholder = props.renderPlaceholder
-        || (() => (
-            <Text key="t" size={ props.size }>
-                { settings.dataTable.renderPlaceholder() }
-            </Text>
-        ));
+        || (() => settings.dataTable.renderPlaceholder({ rowSize: props.size }));
 
     props.renderUnknown = props.renderUnknown
         || (() => (
