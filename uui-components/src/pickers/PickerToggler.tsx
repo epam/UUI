@@ -176,7 +176,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             <input
                 id={ props?.id }
                 type="text"
-                tabIndex={ -1 }
+                tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
                 ref={ inputContainer }
                 aria-haspopup={ true }
                 autoComplete="no"
@@ -235,7 +235,6 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.selection?.length > 0 && uuiMarkers.hasValue,
                 props.cx,
             ) }
-            tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
             onKeyDown={ props.onKeyDown }
