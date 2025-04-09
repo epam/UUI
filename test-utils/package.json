@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-test-utils",
-  "version": "5.13.3-beta.14",
+  "version": "5.13.3-beta.15",
   "author": "EPAM",
   "license": "MIT",
   "private": false,
@@ -11,7 +11,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.13.3-beta.14",
+    "@epam/uui-core": "5.13.3-beta.15",
     "@testing-library/react": "15.0.7",
     "@testing-library/user-event": "14.4.3",
     "@types/react-test-renderer": "18.0.0",
