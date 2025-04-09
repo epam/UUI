@@ -102,7 +102,7 @@
             .text-wrapper {
                 display: flex;
                 overflow: hidden;
-                align-items: baseline;
+                align-items: center;
                 width: 100%;
                 padding-left: 3px;
             }
@@ -116,6 +116,11 @@
                 line-height: var(--uui-line-height);
                 padding-top: 0;
                 padding-bottom: 0;
+                flex-shrink: 1;
+                flex-basis: auto;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
                 & + span {
                     color: var(--uui-filters_toggler-selection);
@@ -132,6 +137,7 @@
                 padding-top: 0;
                 padding-bottom: 0;
                 overflow: visible;
+                flex-shrink: 0;
             }
 
             .selected {
