@@ -34,7 +34,7 @@ exports[`DataTable should be rendered correctly 1`] = `
     }
   >
     <div
-      className="stickyHeader"
+      className="stickyHeader uui-dt-sticky_header"
     >
       <div
         className="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
@@ -61,7 +61,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       />
     </div>
     <div
-      className="listContainer"
+      className="listContainer uui-dt-data_row_container"
       style={
         Object {
           "minHeight": "0px",
