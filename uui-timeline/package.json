@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-timeline",
-  "version": "5.13.3-beta.14",
+  "version": "5.13.3-beta.15",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -11,8 +11,8 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-components": "5.13.3-beta.14",
-    "@epam/uui-core": "5.13.3-beta.14",
+    "@epam/uui-components": "5.13.3-beta.15",
+    "@epam/uui-core": "5.13.3-beta.15",
     "@types/lodash.sortedindex": "^4.1.9",
     "classnames": "^2.2.6",
     "lodash.sortedindex": "^4.1.0"
