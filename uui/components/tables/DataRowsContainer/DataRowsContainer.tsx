@@ -1,6 +1,7 @@
 import React from 'react';
-import { DataRowProps } from '@epam/uui-core';
-import { VirtualListRenderRowsParams } from '../../layout';
+import cx from 'classnames';
+import type { DataRowProps } from '@epam/uui-core';
+import type { VirtualListRenderRowsParams } from '../../layout';
 import { DataRowsGroups } from './DataRowsGroups';
 
 import css from './DataRowsContainer.module.scss';
@@ -15,7 +16,7 @@ export function DataRowsContainer<TItem, TId, List extends HTMLDivElement = any>
     estimatedHeight, listContainerRef, offsetY, rows, renderRow, headerRef,
 }: DataRowsContainerProps<TItem, TId, List>) {
     return (
-        <div className={ css.listContainer } style={ { minHeight: `${estimatedHeight}px` } }>
+        <div className={ cx(css.listContainer, 'uui-dt-data_row_container') } style={ { minHeight: `${estimatedHeight}px` } }>
             <div ref={ listContainerRef } role="rowgroup" style={ { marginTop: offsetY } }>
                 <DataRowsGroups
                     rows={ rows }

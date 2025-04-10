@@ -139,7 +139,11 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                     </FlexCell>
                 </div>
             )}
-            <FlexRow key="body" cx={ cx('uui-picker_input-body') } rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }>
+            <FlexRow
+                key="body"
+                cx={ cx('uui-picker_input-body') }
+                rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }
+            >
                 { props.rows.length === 0 && props.value.topIndex === 0
                     // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
                     // we fix this state on next render and shouldn't show empty state.

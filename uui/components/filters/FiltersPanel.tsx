@@ -4,18 +4,11 @@ import React, {
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
 import { PickerInput, DataPickerRow } from '../pickers';
-import {
-    DataRowOptions,
-    TableFiltersConfig,
-    FiltersConfig,
-    DataQueryFilter,
-    getOrderBetween,
-    DataTableState,
-    useArrayDataSource,
-    orderBy,
-    PickerInputElement,
-    Overwrite,
+import type {
+    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
+    DataTableState, PickerInputElement, Overwrite,
 } from '@epam/uui-core';
+import { getOrderBetween, useArrayDataSource, orderBy } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';

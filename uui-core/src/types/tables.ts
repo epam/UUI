@@ -12,7 +12,7 @@ import {
 } from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { CommonDatePickerProps, TooltipCoreProps } from './components';
+import { CommonDatePickerProps, RangeDatePickerPresets, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
@@ -447,6 +447,11 @@ type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDa
 type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
     /** Type of the filter */
     type: 'rangeDatePicker';
+    /**
+     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.
+     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)
+     */
+    presets?: RangeDatePickerPresets;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
