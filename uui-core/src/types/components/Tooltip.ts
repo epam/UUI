@@ -29,5 +29,8 @@ export interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<Rea
     /** Max width of tooltip */
     maxWidth?: number;
 
+    /**
+     * The placement of the floating element relative to the reference element.
+     */
     placement?: Placement | 'auto';
 }
