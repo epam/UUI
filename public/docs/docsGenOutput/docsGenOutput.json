@@ -1,5 +1,5 @@
 {
- "version": "5.13.3-beta.13",
+ "version": "5.13.3-beta.18",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -16147,7 +16147,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -16750,6 +16750,21 @@
       },
       "from": "@epam/uui-core:RangeDatePickerFilterConfig",
       "required": true
+     },
+     {
+      "uid": "presets",
+      "name": "presets",
+      "comment": {
+       "raw": [
+        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeDatePickerPresets"
+      },
+      "from": "@epam/uui-core:RangeDatePickerFilterConfig",
+      "required": false
      },
      {
       "uid": "type_5",
@@ -26240,7 +26255,7 @@
     "typeValue": {
      "raw": "PickerFooterProps<TItem, TId>",
      "print": [
-      "type PickerFooterProps<TItem, TId> = {",
+      "type PickerFooterProps<TItem, TId> = IHasCX & {",
       "    /** Instance of picker DataSource view */",
       "    view: IDataSourceView<TItem, TId, any>;",
       "    /** IEditable interface for the 'Show only selected' toggler */",
@@ -26263,6 +26278,21 @@
      ]
     },
     "props": [
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
      {
       "uid": "view",
       "name": "view",
@@ -33492,6 +33522,148 @@
     }
    }
   },
+  "@epam/uui-core:RangeDatePickerPresets": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerPresets",
+     "nameFull": "RangeDatePickerPresets"
+    },
+    "src": "uui-core/src/types/components/DatePicker.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "RangeDatePickerPresets",
+     "print": [
+      "type RangeDatePickerPresets = {",
+      "    /**",
+      "     * Preset config",
+      "     */",
+      "    [key: string]: {",
+      "        /**",
+      "         * Name of the preset to display in rangeDatePicker body",
+      "         */",
+      "        name: ReactNode;",
+      "        /**",
+      "         * A pure function that gets range value which will be applied by preset selection",
+      "         */",
+      "        getRange: () => RangeDatePickerPresetValue;",
+      "    };",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "[key: string]",
+      "name": "[key: string]",
+      "comment": {
+       "raw": [
+        "Preset config"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ name: React.ReactNode; getRange: () => RangeDatePickerPresetValue; }"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:RangeDatePickerPresetValue": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerPresetValue",
+     "nameFull": "RangeDatePickerPresetValue"
+    },
+    "src": "uui-core/src/types/components/DatePicker.ts",
+    "comment": {
+     "raw": [
+      "Represents RangeDatePickerPresetValue"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RangeDatePickerPresetValue",
+     "print": [
+      "/**",
+      " * Represents RangeDatePickerPresetValue",
+      " */",
+      "interface RangeDatePickerPresetValue {",
+      "    /**",
+      "     * Range from value",
+      "     */",
+      "    from?: string;",
+      "    /**",
+      "     * Range to value",
+      "     */",
+      "    to?: string;",
+      "    /**",
+      "     * Preset order in presets list",
+      "     */",
+      "    order?: number;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "from",
+      "name": "from",
+      "comment": {
+       "raw": [
+        "Range from value"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "to",
+      "name": "to",
+      "comment": {
+       "raw": [
+        "Range to value"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "order",
+      "name": "order",
+      "comment": {
+       "raw": [
+        "Preset order in presets list"
+       ]
+      },
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:RecordStatus": {
    "summary": {
     "module": "@epam/uui-core",
@@ -35099,6 +35271,21 @@
       "required": true
      },
      {
+      "uid": "presets",
+      "name": "presets",
+      "comment": {
+       "raw": [
+        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeDatePickerPresets"
+      },
+      "from": "@epam/uui-core:RangeDatePickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "type_5",
       "name": "type",
       "comment": {
@@ -35717,6 +35904,9 @@
       "    children?: React.ReactNode;",
       "    /** Max width of tooltip */",
       "    maxWidth?: number;",
+      "    /**",
+      "     * The placement of the floating element relative to the reference element.",
+      "     */",
       "    placement?: Placement | 'auto';",
       "}"
      ]
@@ -35798,6 +35988,11 @@
      {
       "uid": "placement",
       "name": "placement",
+      "comment": {
+       "raw": [
+        "The placement of the floating element relative to the reference element."
+       ]
+      },
       "typeValue": {
        "raw": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end' | 'auto'"
       },
@@ -42068,7 +42263,7 @@
       "typeValue": {
        "raw": "RangeDatePickerPresets"
       },
-      "typeValueRef": "@epam/uui-components:RangeDatePickerPresets",
+      "typeValueRef": "@epam/uui-core:RangeDatePickerPresets",
       "required": true
      },
      {
@@ -53239,7 +53434,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
+       "raw": "(props: IHasCX & { view: IDataSourceView<TItem, TId, any>; showSelected: IEditable<boolean>; clearSelection: () => void; selectionMode: 'multi' | 'single'; disableClear?: boolean | undefined; selection: TItem | TId | TId[] | TItem[]; search: string; isSearchTooShort?: boolean | undefined; } & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -54840,148 +55035,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:RangeDatePickerPresets": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "RangeDatePickerPresets",
-     "nameFull": "RangeDatePickerPresets"
-    },
-    "src": "uui-components/src/inputs/DatePicker/CalendarPresets.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "RangeDatePickerPresets",
-     "print": [
-      "type RangeDatePickerPresets = {",
-      "    /**",
-      "     * Preset config",
-      "     */",
-      "    [key: string]: {",
-      "        /**",
-      "         * Name of the preset to display in rangeDatePicker body",
-      "         */",
-      "        name: React.ReactNode;",
-      "        /**",
-      "         * A pure function that gets range value which will be applied by preset selection",
-      "         */",
-      "        getRange: () => RangeDatePickerPresetValue;",
-      "    };",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "[key: string]",
-      "name": "[key: string]",
-      "comment": {
-       "raw": [
-        "Preset config"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ name: React.ReactNode; getRange: () => RangeDatePickerPresetValue; }"
-      },
-      "required": true
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:RangeDatePickerPresetValue": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "RangeDatePickerPresetValue",
-     "nameFull": "RangeDatePickerPresetValue"
-    },
-    "src": "uui-components/src/inputs/DatePicker/CalendarPresets.tsx",
-    "comment": {
-     "raw": [
-      "Represents RangeDatePickerPresetValue"
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "RangeDatePickerPresetValue",
-     "print": [
-      "/**",
-      " * Represents RangeDatePickerPresetValue",
-      " */",
-      "interface RangeDatePickerPresetValue {",
-      "    /**",
-      "     * Range from value",
-      "     */",
-      "    from?: string;",
-      "    /**",
-      "     * Range to value",
-      "     */",
-      "    to?: string;",
-      "    /**",
-      "     * Preset order in presets list",
-      "     */",
-      "    order?: number;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "from",
-      "name": "from",
-      "comment": {
-       "raw": [
-        "Range from value"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "to",
-      "name": "to",
-      "comment": {
-       "raw": [
-        "Range to value"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "order",
-      "name": "order",
-      "comment": {
-       "raw": [
-        "Preset order in presets list"
-       ]
-      },
-      "typeValue": {
-       "raw": "number"
-      },
-      "editor": {
-       "type": "number"
       },
       "required": false
      }
@@ -63370,6 +63423,11 @@
      {
       "uid": "placement",
       "name": "placement",
+      "comment": {
+       "raw": [
+        "The placement of the floating element relative to the reference element."
+       ]
+      },
       "typeValue": {
        "raw": "'right' | 'left' | 'top' | 'bottom' | 'auto' | 'right-end' | 'right-start' | 'left-end' | 'left-start' | 'top-end' | 'top-start' | 'bottom-end' | 'bottom-start'"
       },
@@ -65043,7 +65101,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
+       "raw": "(props: IHasCX & { view: IDataSourceView<TItem, TId, any>; showSelected: IEditable<boolean>; clearSelection: () => void; selectionMode: 'multi' | 'single'; disableClear?: boolean | undefined; selection: TItem | TId | TId[] | TItem[]; search: string; isSearchTooShort?: boolean | undefined; } & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -69974,6 +70032,21 @@
        ]
       },
       "from": "@epam/uui:SizeMod",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
       "required": false
      },
      {
@@ -84823,7 +84896,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
+     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: ControlSize | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; contextTypes?: { [x: string]: { [nominalTypeHack]?: { type?: any; } | undefined; } | undefined; } | undefined; defaultProps?: { [x: string]: any; } | undefined; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
      "print": [
       "type PartialSettings = DeepPartial<Settings>;"
      ]
@@ -87738,7 +87811,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
+       "raw": "(props: IHasCX & { view: IDataSourceView<TItem, TId, any>; showSelected: IEditable<boolean>; clearSelection: () => void; selectionMode: 'single' | 'multi'; disableClear?: boolean | undefined; selection: TItem | TId | TId[] | TItem[]; search: string; isSearchTooShort?: boolean | undefined; } & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -89004,7 +89077,7 @@
        ]
       },
       "typeValue": {
-       "raw": "(props: PickerFooterProps<TItem, TId> & Partial<IModal<any, any>>) => React.ReactNode"
+       "raw": "(props: IHasCX & { view: IDataSourceView<TItem, TId, any>; showSelected: IEditable<boolean>; clearSelection: () => void; selectionMode: 'single' | 'multi'; disableClear?: boolean | undefined; selection: TItem | TId | TId[] | TItem[]; search: string; isSearchTooShort?: boolean | undefined; } & Partial<IModal<any, any>>) => React.ReactNode"
       },
       "editor": {
        "type": "component"
@@ -92008,11 +92081,7 @@
       "/**",
       " * Represents RangeDatePickerInputProps",
       " */",
-      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {",
-      "    /**",
-      "     * Defines component size.",
-      "     */",
-      "    size?: '24' | '30' | '36' | '42' | '48';",
+      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {",
       "    /**",
       "     * rawProps as HTML attributes",
       "     */",
@@ -92046,29 +92115,6 @@
      ]
     },
     "props": [
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "required": false
-     },
      {
       "uid": "rawProps",
       "name": "rawProps",
@@ -92282,6 +92328,30 @@
        "type": "func"
       },
       "from": "@epam/uui-core:IClickable",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:RangeDatePickerMods",
       "required": false
      },
      {
@@ -94272,7 +94342,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion: AccordionSettings; alert: AlertSettings; badge: BadgeSettings; button: ButtonSettings; blocker: BlockerSettings; checkbox: CheckboxSettings; countIndicator: CountIndicatorSettings; dataTable: DataTableSettings; datePicker: DatePickerSettings; dropdownMenu: DropdownMenuSettings; flexRow: FlexRowSettings; fileCard: FileCardSettings; filtersPanel: FiltersPanelSettings; iconButton: IconButtonSettings; labeledInput: LabeledInputSettings; linkButton: LinkButtonSettings; modal: ModalSettings; notificationCard: NotificationCardSettings; numericInput: NumericInputSettings; paginator: PaginatorSettings; pickerInput: PickerInputSettings; radioInput: RadioInputSettings; rangeDatePicker: RangeDatePickerSettings; rating: RatingSettings; richTextView: RichTextViewSettings; statusIndicator: StatusIndicatorSettings; switch: SwitchSettings; tabButton: TabButtonSettings; tag: TagSettings; text: TextSettings; textArea: TextAreaSettings; textInput: TextInputSettings; }",
+     "raw": "{ accordion: AccordionSettings; alert: AlertSettings; badge: BadgeSettings; button: ButtonSettings; blocker: BlockerSettings; checkbox: CheckboxSettings; countIndicator: CountIndicatorSettings; dataTable: DataTableSettings; datePicker: DatePickerSettings; dropdownMenu: DropdownMenuSettings; flexRow: FlexRowSettings; fileCard: FileCardSettings; filtersPanel: FiltersPanelSettings; iconButton: IconButtonSettings; labeledInput: LabeledInputSettings; linkButton: LinkButtonSettings; modal: ModalSettings; notificationCard: NotificationCardSettings; numericInput: NumericInputSettings; paginator: PaginatorSettings; pickerInput: PickerInputSettings; presetsPanel: PresetsPanelSettings; radioInput: RadioInputSettings; rangeDatePicker: RangeDatePickerSettings; rating: RatingSettings; richTextView: RichTextViewSettings; statusIndicator: StatusIndicatorSettings; switch: SwitchSettings; tabButton: TabButtonSettings; tag: TagSettings; text: TextSettings; textArea: TextAreaSettings; textInput: TextInputSettings; }",
      "print": [
       "type Settings = typeof settings;"
      ]
@@ -98999,6 +99069,11 @@
      {
       "uid": "placement",
       "name": "placement",
+      "comment": {
+       "raw": [
+        "The placement of the floating element relative to the reference element."
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'top' | 'bottom' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'auto'"
       },
@@ -99366,6 +99441,11 @@
      {
       "uid": "placement",
       "name": "placement",
+      "comment": {
+       "raw": [
+        "The placement of the floating element relative to the reference element."
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'top' | 'bottom' | 'left-start' | 'left-end' | 'right-start' | 'right-end' | 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end' | 'auto'"
       },
@@ -105049,6 +105129,11 @@
      {
       "uid": "placement",
       "name": "placement",
+      "comment": {
+       "raw": [
+        "The placement of the floating element relative to the reference element."
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'left-end' | 'left-start' | 'right-end' | 'right-start' | 'top-end' | 'top-start' | 'bottom-end' | 'bottom-start'"
       },
@@ -112025,6 +112110,11 @@
      {
       "uid": "placement",
       "name": "placement",
+      "comment": {
+       "raw": [
+        "The placement of the floating element relative to the reference element."
+       ]
+      },
       "typeValue": {
        "raw": "'left' | 'right' | 'auto' | 'top' | 'bottom' | 'left-end' | 'left-start' | 'right-end' | 'right-start' | 'top-end' | 'top-start' | 'bottom-end' | 'bottom-start'"
       },
