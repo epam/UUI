@@ -52,7 +52,7 @@ export async function renderHookWithContextAsync<TProps, TResult>(hook: (props: 
 }
 
 /**
- * Wraps the component with context and renders it as JSON using react-test-renderer.
+ * Wraps the component with context and renders it as JSON.
  *
  * Returns virtual DOM structure.
  * Can be used to render React components to pure JavaScript objects.

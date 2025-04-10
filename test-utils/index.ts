@@ -1,5 +1,9 @@
 import * as setupJsDomAll from './src/jsdom/setupJsDom';
 
+import renderer from 'react-test-renderer';
+
+export { renderer };
+
 export const setupJsDom = setupJsDomAll.setupJsDom as (global?: any, params?: { mockCommon3rdPartyDeps: boolean }) => void;
 /*
  * Re-exports everything from @testing-library/react and extends it with:
