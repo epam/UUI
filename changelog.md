@@ -1,6 +1,26 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
-* [Dropdown][Breaking Change]: reworked to functional component, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware`
+* [Dropdown][Breaking Change]: reworked to functional component, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware` for more 
+```
+// old
+<Dropdown
+  targetRef={ targetRef }
+  modifiers={ [
+    {
+        name: 'offset',
+        options: {
+            offset: [10, 10]
+        }
+    }
+  ] }
+>
+// new
+<Dropdown
+  virtualTarget={ virtualTargetRef }
+  middleware={ [offset(10)] }
+>
+
+```
 * [Tooltip][Breaking Change]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react". Part of the `offset` prop type changed to `OffsetOptions | OutdatedOffset`. The `OffsetOptions` type is from the `floating-ui` package, and the `OutdatedOffset` type was added to support the more popular previous behavior like `[10, 10]`. The `OffsetsFunction` type was removed due to being hard to implement and use with `floating-ui`.
 * [DatePicker]: improved render performance for scroll actions.
 * [TimePicker]: added `ref` prop.

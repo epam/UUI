@@ -38,15 +38,16 @@ export class TooltipDoc extends BaseDocsBlock {
                 editorType: 'StringWithExamplesEditor',
             });
             doc.merge('offset', {
-                description: 'Translates the floating element along the specified axes. https://floating-ui.com/docs/offset',
+                description: 'Translates the floating element along the specified axes. Previous most used signature ["skidding", "distance"] deprecated and will be removed in future versions. Use { crossAxis: 50, mainAxis: 50 } instead.',
                 examples: [
                     { name: '{ crossAxis: 50, mainAxis: 50 }', value: { crossAxis: 50, mainAxis: 50 } },
                     { name: '{ crossAxis: 50, mainAxis: 0 }', value: { crossAxis: 50, mainAxis: 0 } },
                     { name: '{ crossAxis: 0, mainAxis: 50 }', value: { crossAxis: 0, mainAxis: 50 } },
                     { name: '() => ({ crossAxis: 100, mainAxis: 100 })', value: () => ({ crossAxis: 100, mainAxis: 100 }) },
+                    { name: '[50, 50]', value: [50, 50] },
                 ],
             });
-            doc.merge('middleware', { examples: [{ name: '[offset(6)]', value: [offset(6)] }] });
+            doc.merge('middleware', { examples: [{ name: '[offset(25)]', value: [offset(25)] }] });
             doc.merge('color', {
                 editorType: getColorPickerComponent({
                     ...COLOR_MAP,
