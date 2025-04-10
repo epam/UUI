@@ -77,9 +77,8 @@ export function Tooltip(props: TooltipProps) {
         placement = props.placement || 'top';
     }
 
-    if (props.placement === 'auto') {
-        middleware.push(autoPlacement());
-    }
+    // Merge any custom middleware from props
+    const finalMiddleware = props.middleware ? [...middleware, ...props.middleware] : middleware;
 
     return (
         <Dropdown
@@ -88,7 +87,7 @@ export function Tooltip(props: TooltipProps) {
             openOnHover={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
             placement={ placement as Placement }
-            middleware={ middleware }
+            middleware={ finalMiddleware }
             renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
         />
     );

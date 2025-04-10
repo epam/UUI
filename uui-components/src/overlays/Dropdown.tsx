@@ -5,6 +5,7 @@ import {
 import { FreeFocusInside } from 'react-focus-lock';
 import { isEventTargetInsideClickable, UuiContext } from '@epam/uui-core';
 import type { LayoutLayer, DropdownProps } from '@epam/uui-core';
+import { getFallbackPlacements } from '../helpers';
 import { Portal } from './Portal';
 import { isInteractedOutsideDropdown } from './DropdownHelpers';
 
@@ -62,7 +63,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [setOpen]);
 
     const defaultMiddleware = [
-        flip(),
+        flip({ fallbackPlacements: getFallbackPlacements(placement) }),
         shift({ boundary: boundaryElement, rootBoundary: 'viewport' }),
         hide(),
     ];
