@@ -40,8 +40,7 @@
     }
 
     .removeButton {
-        padding-left: var(--uui-filters_panel-item-header-remove_button-padding-left);
-        margin-left: auto;
+        margin-left: var(--uui-filters_panel-item-header-remove_button-margin-left);
 
         :global(.uui-caption) {
             font-size: var(--uui-filters_panel-item-header-remove_button-font-size);
