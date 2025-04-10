@@ -14,7 +14,7 @@
     --uui-filters_panel-item-header-title-line-height: 18px;
     --uui-filters_panel-item-header-title-vertical-padding: 3px;
 
-    --uui-filters_panel-item-header-remove_button-padding-left: 24px;
+    --uui-filters_panel-item-header-remove_button-margin-left: 24px;
     --uui-filters_panel-item-header-remove_button-font-size: 14px;
 }
 
@@ -40,8 +40,7 @@
     }
 
     .removeButton {
-        padding-left: var(--uui-filters_panel-item-header-remove_button-padding-left);
-        margin-left: auto;
+        margin-left: var(--uui-filters_panel-item-header-remove_button-margin-left);
 
         :global(.uui-caption) {
             font-size: var(--uui-filters_panel-item-header-remove_button-font-size);
