@@ -198,7 +198,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                     onScroll={ props.onScroll }
                     rowsCount={ props.rowsCount }
                     renderRows={ renderRowsContainer }
-                    cx={ cx(css.root, 'uui-dt-vars') }
+                    cx={ cx(css.root, 'uui-dt-vars', 'uui-data_table') }
                     isLoading={ props.isReloading }
                     rowsSelector="[role=row]"
                     rawProps={ {
