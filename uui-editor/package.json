@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-editor",
-  "version": "5.13.3-beta.13",
+  "version": "5.13.3-beta.17",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "7.0.0",
-    "@epam/assets": "5.13.3-beta.13",
-    "@epam/uui": "5.13.3-beta.13",
-    "@epam/uui-components": "5.13.3-beta.13",
-    "@epam/uui-core": "5.13.3-beta.13",
+    "@epam/assets": "5.13.3-beta.17",
+    "@epam/uui": "5.13.3-beta.17",
+    "@epam/uui-components": "5.13.3-beta.17",
+    "@epam/uui-core": "5.13.3-beta.17",
     "@udecode/plate-autoformat": "31.0.0",
     "@udecode/plate-basic-marks": "31.0.0",
     "@udecode/plate-block-quote": "31.0.0",

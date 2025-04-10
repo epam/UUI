@@ -1,3 +1,4 @@
+import React from 'react';
 import { ReactComponent as CrossIcon } from '@epam/assets/icons/navigation-close-outline.svg';
 import { ReactComponent as DropdownIcon } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
 import { ReactComponent as CheckIcon } from '@epam/assets/icons/notification-done-outline.svg';
@@ -30,6 +31,12 @@ import { ReactComponent as HintIcon } from '@epam/assets/icons/notification-help
 import { ReactComponent as SuccessIcon } from '@epam/assets/icons/notification-check-fill.svg';
 import { ReactComponent as WarningIcon } from '@epam/assets/icons/notification-warning-fill.svg';
 import { ReactComponent as ErrorIcon } from '@epam/assets/icons/notification-error-fill.svg';
+import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete-outline.svg';
+import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/content-link-outline.svg';
+import { ReactComponent as RenameIcon } from '@epam/assets/icons/content-edit-fill.svg';
+import { ReactComponent as CopyIcon } from '@epam/assets/icons/action-copy_content-outline.svg';
+import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
+import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/action-save-outline.svg';
 
 import { ReactComponent as DocIcon } from '@epam/assets/icons/file-file_word-fill.svg';
 import { ReactComponent as ExelIcon } from '@epam/assets/icons/file-file_excel-fill.svg';
@@ -46,19 +53,18 @@ import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-wi
 
 import type { Icon } from '@epam/uui-core';
 import type { AvatarProps, BlockerProps } from '@epam/uui-components';
-import {
+import type {
     AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
     DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
     DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
     PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
     RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
-    TextInputProps, PickerInputProps,
+    TextInputProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps, IconButtonProps,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
 import { Text } from './components/typography/Text';
-import React from 'react';
 
 type Sizes<S extends string | number | symbol, T> = {
     [size in S]: T;
@@ -444,24 +450,40 @@ const flexRowSettings: FlexRowSettings = {
 interface FiltersPanelIcons {
     addFilterIcon: Icon;
     itemDropdownIcon: Icon;
+    pickerBodyRemoveIcon: Icon;
 }
 
 interface FiltersPanelSizes {
     default: FiltersPanelProps<unknown>['size'];
+    footerLinkButton: LinkButtonProps['size'];
+    mobileFooterLinkButton: LinkButtonProps['size'];
+    pickerBodyMultiSwitch: MultiSwitchProps['size'];
+    pickerBodyLinkButton: LinkButtonProps['size'];
+    pickerBodyMinWidth: number;
+    rangeDatePickerInput: RangeDatePickerInputProps['size'];
 }
 
 interface FiltersPanelSettings {
     icons: FiltersPanelIcons;
     sizes: FiltersPanelSizes;
+    renderPlaceholder: () => React.ReactNode;
 }
 
 const filtersPanelSettings: FiltersPanelSettings = {
+    renderPlaceholder: () => <TextPlaceholder />,
     icons: {
         addFilterIcon: AddIcon,
         itemDropdownIcon: DropdownIcon,
+        pickerBodyRemoveIcon: RemoveIcon,
     },
     sizes: {
         default: '36',
+        footerLinkButton: '36',
+        mobileFooterLinkButton: '48',
+        pickerBodyMultiSwitch: '24',
+        pickerBodyLinkButton: '24',
+        pickerBodyMinWidth: 360,
+        rangeDatePickerInput: '30',
     },
 };
 
@@ -549,6 +571,7 @@ interface NotificationCardIcons {
 
 interface NotificationCardSizes {
     action: LinkButtonProps['size'];
+    icon: number;
 }
 
 interface NotificationCardSettings {
@@ -566,6 +589,7 @@ const notificationCardSettings: NotificationCardSettings = {
     },
     sizes: {
         action: '30',
+        icon: 24,
     },
 };
 
@@ -728,6 +752,46 @@ const pickerInputSettings: PickerInputSettings = {
                 return pickerSize;
             },
         },
+    },
+};
+
+interface PresetPanelIcons {
+    addIcon: Icon;
+    copyIcon: Icon;
+    copyLinkIcon: Icon;
+    deleteIcon: Icon;
+    discardChangesIcon: Icon;
+    renameIcon: Icon;
+    menuIcon: Icon;
+    saveAsNewIcon: Icon;
+    saveInCurrentIcon: Icon;
+}
+
+interface PresetPanelSizes {
+    tabButton: TabButtonProps['size'];
+    dropdownTargetIconButton: IconButtonProps['size'];
+}
+
+interface PresetsPanelSettings {
+    icons: PresetPanelIcons;
+    sizes: PresetPanelSizes;
+}
+
+const presetsPanelSettings: PresetsPanelSettings = {
+    icons: {
+        addIcon: AddIcon,
+        copyIcon: CopyIcon,
+        copyLinkIcon: CopyLinkIcon,
+        deleteIcon: RemoveIcon,
+        discardChangesIcon: DiscardChangesIcon,
+        menuIcon: MenuIcon,
+        renameIcon: RenameIcon,
+        saveAsNewIcon: SaveAsNewIcon,
+        saveInCurrentIcon: ResetIcon,
+    },
+    sizes: {
+        tabButton: '60',
+        dropdownTargetIconButton: '18',
     },
 };
 
@@ -994,6 +1058,7 @@ export const settings = {
     numericInput: numericInputSettings,
     paginator: paginatorSettings,
     pickerInput: pickerInputSettings,
+    presetsPanel: presetsPanelSettings,
     radioInput: radioInputSettings,
     rangeDatePicker: rangeDatePickerSettings,
     rating: ratingSettings,

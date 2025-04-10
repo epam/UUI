@@ -1,16 +1,11 @@
 import * as React from 'react';
-import {
-    DropdownBodyProps,
-    isMobile,
-    PickerFilterConfig,
-    usePrevious,
-    PickerInputBaseProps,
-    DataSourceState,
-} from '@epam/uui-core';
+import type { DropdownBodyProps, PickerFilterConfig, PickerInputBaseProps, DataSourceState } from '@epam/uui-core';
+import { isMobile, usePrevious } from '@epam/uui-core';
 import { handleDataSourceKeyboard, usePickerApi, useShowSelected } from '@epam/uui-components';
 import { DataPickerBody, DataPickerFooter } from '../pickers';
 import { settings } from '../../settings';
 import { useState } from 'react';
+import { UUI_FILTERS_PANEL_BODY_FOOTER } from './constants';
 
 const pickerHeight = 300;
 
@@ -69,7 +64,7 @@ export function FilterPickerBody<TItem, TId>({
 
         return props.renderFooter
             ? props.renderFooter(footerProps)
-            : <DataPickerFooter { ...footerProps } size={ settings.pickerInput.sizes.body.row } />;
+            : <DataPickerFooter { ...footerProps } cx={ UUI_FILTERS_PANEL_BODY_FOOTER } size={ settings.pickerInput.sizes.body.row } />;
     };
 
     const renderBody = () => {
