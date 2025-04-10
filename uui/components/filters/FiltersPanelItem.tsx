@@ -22,12 +22,11 @@ import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
 import { LinkButton } from '../buttons';
 import { MultiSwitch } from '../inputs';
-import { Text, TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
 import { PickerBodyMobileView } from '../pickers';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
-import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete-outline.svg';
+import { settings } from '../../settings';
 import css from './FiltersPanelItem.module.scss';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &
@@ -129,16 +128,27 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const renderHeader = (hideTitle: boolean) => (
         <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
-                <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
+                <MultiSwitch
+                    items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) }
+                    value={ predicate }
+                    onValueChange={ changePredicate }
+                    size={ settings.filtersPanel.sizes.pickerBodyMultiSwitch }
+                />
             ) : (
                 !hideTitle && (
-                    <Text color="secondary" size="24" fontSize="14">
+                    <div className={ css.title }>
                         {props.title}
-                    </Text>
+                    </div>
                 )
             )}
             {!props?.isAlwaysVisible && (
-                <LinkButton cx={ css.removeButton } caption={ i18n.filterToolbar.datePicker.removeCaption } onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon } />
+                <LinkButton
+                    cx={ css.removeButton }
+                    caption={ i18n.filterToolbar.datePicker.removeCaption }
+                    onClick={ removeOnclickHandler }
+                    size={ settings.filtersPanel.sizes.pickerBodyLinkButton }
+                    icon={ settings.filtersPanel.icons.pickerBodyRemoveIcon }
+                />
             )}
         </div>
     );
@@ -148,9 +158,9 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return isPickersType ? (
             <PickerBodyMobileView
                 { ...dropdownProps }
-                cx={ UUI_FILTERS_PANEL_ITEM_BODY }
+                cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] }
                 title={ props.title }
-                width={ 360 }
+                width={ settings.filtersPanel.sizes.pickerBodyMinWidth }
                 onClose={ () => isOpenChange(false) }
             >
                 { renderHeader(hideHeaderTitle) }
@@ -163,7 +173,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 />
             </PickerBodyMobileView>
         ) : (
-            <DropdownContainer cx={ UUI_FILTERS_PANEL_ITEM_BODY } { ...dropdownProps }>
+            <DropdownContainer cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...dropdownProps }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
@@ -182,7 +192,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
 
     const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
         if (item.isLoading) {
-            return <TextPlaceholder />;
+            return settings.filtersPanel.renderPlaceholder();
         }
 
         if (item.isUnknown) {

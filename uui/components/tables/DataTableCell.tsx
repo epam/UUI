@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataTableCellProps as UuiCoreDataTableCellProps, Overwrite } from '@epam/uui-core';
+import { DataTableCellProps as UuiCoreDataTableCellProps, Overwrite, uuiMod } from '@epam/uui-core';
 import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
 import { DataRowAddons } from '../widgets';
 import type { DataTableCellMods } from './types';
@@ -62,6 +62,8 @@ export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCe
         props.isLastColumn && 'uui-dt-last-column',
         css[`align-widgets-${props.alignActions || 'top'}`],
         (props.border || isEditable) && 'uui-dt-vertical-cell-border',
+        props.isDisabled && uuiMod.disabled,
+        props.isReadonly && uuiMod.readonly,
     ];
 
     props.style = {

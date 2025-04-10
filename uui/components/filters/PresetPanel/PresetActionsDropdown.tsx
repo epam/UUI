@@ -1,17 +1,11 @@
 import React, { useCallback } from 'react';
 import { offset } from '@floating-ui/react';
-import { IPresetsApi, IDropdownToggler, ITablePreset, useUuiContext, DataTableState, DropdownBodyProps } from '@epam/uui-core';
+import type { IPresetsApi, IDropdownToggler, ITablePreset, DataTableState, DropdownBodyProps } from '@epam/uui-core';
+import { useUuiContext } from '@epam/uui-core';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, SuccessNotification, DropdownMenuSplitter } from '../../overlays';
 import { IconButton } from '../../buttons';
-import { Text } from '../../typography';
-import { ReactComponent as MenuIcon } from '@epam/assets/icons/navigation-more_vert-outline.svg';
-import { ReactComponent as SaveInCurrentIcon } from '@epam/assets/icons/navigation-refresh-outline.svg';
-import { ReactComponent as SaveAsNewIcon } from '@epam/assets/icons/action-save-outline.svg';
-import { ReactComponent as DiscardChangesIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
-import { ReactComponent as CopyIcon } from '@epam/assets/icons/action-copy_content-outline.svg';
-import { ReactComponent as RenameIcon } from '@epam/assets/icons/content-edit-fill.svg';
-import { ReactComponent as CopyLinkIcon } from '@epam/assets/icons/content-link-outline.svg';
-import { ReactComponent as ActionDeleteOutlineIcon } from '@epam/assets/icons/action-delete-outline.svg';
+import { settings } from '../../../settings';
+
 import css from './PresetActionsDropdown.module.scss';
 
 interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
@@ -52,9 +46,9 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
             .show(
                 (props) => (
                     <SuccessNotification { ...props }>
-                        <Text fontSize="14">
+                        <div className="uui-presets-panel-notification-text">
                             {text}
-                        </Text>
+                        </div>
                     </SuccessNotification>
                 ),
                 { duration: 3 },
@@ -90,28 +84,58 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                 { isPresetChanged && (
                     <>
                         {!isReadonlyPreset && (
-                            <DropdownMenuButton key={ `${props.preset.id}-save-in-current` } icon={ SaveInCurrentIcon } caption="Save in current" onClick={ () => { dropdownProps.onClose(); saveInCurrentHandler(); } } />
+                            <DropdownMenuButton
+                                key={ `${props.preset.id}-save-in-current` }
+                                icon={ settings.presetsPanel.icons.saveInCurrentIcon }
+                                caption="Save in current"
+                                onClick={ () => { dropdownProps.onClose(); saveInCurrentHandler(); } }
+                            />
                         )}
                         <DropdownMenuButton
                             key={ `${props.preset.id}-save-as-new` }
-                            icon={ SaveAsNewIcon }
+                            icon={ settings.presetsPanel.icons.saveAsNewIcon }
                             caption="Save as new"
                             // We add setTimeout to call addPreset after dropdown will be closed, since dropdown has focus lock, and it broke autofocus on add new preset input
                             onClick={ () => { dropdownProps.onClose(); setTimeout(() => props.addPreset(), 0); } }
                         />
-                        <DropdownMenuButton key={ `${props.preset.id}-discard` } icon={ DiscardChangesIcon } caption="Discard all changes" onClick={ () => { dropdownProps.onClose(); discardAllChangesHandler(); } } />
+                        <DropdownMenuButton
+                            key={ `${props.preset.id}-discard` }
+                            icon={ settings.presetsPanel.icons.discardChangesIcon }
+                            caption="Discard all changes"
+                            onClick={ () => { dropdownProps.onClose(); discardAllChangesHandler(); } }
+                        />
                         <DropdownMenuSplitter key="discard-splitter" />
                     </>
                 )}
                 { isRenameAvailable && (
-                    <DropdownMenuButton key={ `${props.preset.id}-rename` } icon={ RenameIcon } caption="Rename" onClick={ props.renamePreset } />
+                    <DropdownMenuButton
+                        key={ `${props.preset.id}-rename` }
+                        icon={ settings.presetsPanel.icons.renameIcon }
+                        caption="Rename"
+                        onClick={ props.renamePreset }
+                    />
                 )}
-                <DropdownMenuButton key={ `${props.preset.id}-duplicate` } icon={ CopyIcon } caption="Duplicate" onClick={ () => { dropdownProps.onClose(); duplicateHandler(); } } />
-                <DropdownMenuButton key={ `${props.preset.id}-copyLink` } icon={ CopyLinkIcon } caption="Copy Link" onClick={ copyUrlToClipboard } />
+                <DropdownMenuButton
+                    key={ `${props.preset.id}-duplicate` }
+                    icon={ settings.presetsPanel.icons.copyIcon }
+                    caption="Duplicate"
+                    onClick={ () => { dropdownProps.onClose(); duplicateHandler(); } }
+                />
+                <DropdownMenuButton
+                    key={ `${props.preset.id}-copyLink` }
+                    icon={ settings.presetsPanel.icons.copyLinkIcon }
+                    caption="Copy Link"
+                    onClick={ copyUrlToClipboard }
+                />
                 {!isReadonlyPreset && (
                     <>
                         <DropdownMenuSplitter key="delete-splitter" />
-                        <DropdownMenuButton icon={ ActionDeleteOutlineIcon } caption="Delete" cx={ css.deleteButton } onClick={ deleteHandler } />
+                        <DropdownMenuButton
+                            icon={ settings.presetsPanel.icons.deleteIcon }
+                            caption="Delete"
+                            cx={ css.deleteButton }
+                            onClick={ deleteHandler }
+                        />
                     </>
                 )}
             </DropdownMenuBody>
@@ -124,8 +148,8 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                 cx={ [css.tabButton, dropdownProps.isOpen && css.targetOpen] }
                 color={ props.preset.id === props.activePresetId ? 'primary' : 'neutral' }
                 { ...dropdownProps }
-                icon={ MenuIcon }
-                size="18"
+                icon={ settings.presetsPanel.icons.menuIcon }
+                size={ settings.presetsPanel.sizes.dropdownTargetIconButton }
             />
         );
     }, []);

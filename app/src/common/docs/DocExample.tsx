@@ -134,14 +134,14 @@ export function DocExample(props: DocExampleProps) {
     return (
         <section
             className={ cx(css.container, props.cx) }
-            aria-labelledby={ `example-title-${getDescriptionFileName()}` }
+            aria-labelledby={ getDescriptionFileName() }
             itemScope
             itemType="http://schema.org/SoftwareApplication"
         >
             <EditableDocContent
                 title={ props.title }
                 fileName={ getDescriptionFileName() }
-                id={ `example-title-${getDescriptionFileName()}` }
+                id={ getDescriptionFileName() }
             />
             <div
                 className={ css.previewContainer }

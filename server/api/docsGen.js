@@ -1,18 +1,8 @@
 const express = require('express');
 const { highlightTsCode } = require('./prism');
-const fs = require('fs');
-const path = require('path');
+const { readDocsGenResultsJson, getComponentSummariesLookup } = require('../utils/docsGen');
 
 const router = express.Router();
-
-/**
- *
- * @returns {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TApiReferenceJson}
- */
-function readDocsGenResultsJson() {
-    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
 
 /**
  *
@@ -86,12 +76,7 @@ router.get('/docs-gen/exports', (req, res) => {
  * We only return "summary" part of each type for performance reasons.
  */
 router.get('/docs-gen/summaries', (req, res) => {
-    const { docsGenTypes } = readDocsGenResultsJson();
-    const content = Object.keys(docsGenTypes).reduce((acc, typeRef) => {
-        acc[typeRef] = docsGenTypes[typeRef].summary;
-        return acc;
-    }, {});
-
+    const content = getComponentSummariesLookup();
     res.send({
         content,
     });

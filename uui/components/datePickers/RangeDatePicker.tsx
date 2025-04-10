@@ -1,10 +1,12 @@
 import React, { ReactElement, ReactNode, useImperativeHandle, useState } from 'react';
 import cx from 'classnames';
 import { offset } from '@floating-ui/react';
-import {
-    CommonDatePickerProps, DropdownBodyProps, IAnalyticableOnChange, IEditable, IHasRawProps, Overwrite, useUuiContext,
+import type {
+    CommonDatePickerProps, RangeDatePickerPresets,
+    DropdownBodyProps, IAnalyticableOnChange, IEditable, IHasRawProps, Overwrite,
 } from '@epam/uui-core';
-import { DayProps, Dropdown, RangeDatePickerPresets } from '@epam/uui-components';
+import { useUuiContext } from '@epam/uui-core';
+import { DayProps, Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';
@@ -184,7 +186,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                 return props.renderTarget?.(renderProps) || (
                     <RangeDatePickerInput
                         id={ props.id }
-                        ref={ renderProps.ref }
+                        ref={ (node) => { (renderProps as any).ref(node); targetRef.current = node; } }
                         cx={ props.inputCx }
                         onClick={ () => renderProps.toggleDropdownOpening(true) }
                         isDisabled={ props.isDisabled }
