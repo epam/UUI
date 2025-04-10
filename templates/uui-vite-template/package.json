@@ -40,8 +40,5 @@
     "vite-plugin-svgr": "4.2.0",
     "vitest": "1.2.2",
     "vitest-dom": "0.1.1"
-  },
-  "resolutions": {
-    "@types/react": "18.2.21"
   }
 }
