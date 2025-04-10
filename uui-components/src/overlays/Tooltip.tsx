@@ -1,10 +1,36 @@
 import * as React from 'react';
-import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps } from '@epam/uui-core';
-import { autoPlacement, Middleware, offset, Placement } from '@floating-ui/react';
+import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps, devLogger, OutatedOffset } from '@epam/uui-core';
+import { autoPlacement, Middleware, offset, OffsetOptions, Placement } from '@floating-ui/react';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
 export interface TooltipProps extends TooltipCoreProps {}
+
+function normalizeOffset(offsetValue: OffsetOptions | OutatedOffset | undefined): OffsetOptions {
+    if (!offsetValue) {
+        return { mainAxis: 12 };
+    }
+
+    // If it's an array (tuple) format, convert to object format
+    if (Array.isArray(offsetValue)) {
+        // Only show warning in development mode
+        if (__DEV__) {
+            devLogger.warn(
+                '[Tooltip]: The array format [number, number] for `offset` prop is deprecated and will be removed in future versions. '
+                + 'Please use object format { mainAxis, crossAxis } instead. '
+                + 'See: https://floating-ui.com/docs/offset',
+            );
+        }
+
+        const [crossAxis = 0, mainAxis = 0] = offsetValue;
+        return {
+            crossAxis: crossAxis ?? 0,
+            mainAxis: mainAxis ?? 0,
+        };
+    }
+
+    return offsetValue;
+}
 
 export function Tooltip(props: TooltipProps) {
     const {
@@ -40,7 +66,7 @@ export function Tooltip(props: TooltipProps) {
         });
 
     const middleware: Middleware[] = [
-        offset(props.offset || { mainAxis: 12 }),
+        offset(normalizeOffset(props.offset)),
     ];
 
     let placement;
