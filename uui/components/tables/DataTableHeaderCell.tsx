@@ -67,7 +67,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     placement="top"
                     color="inverted"
                     content={ renderTooltip(this.props.column) }
-                    cx={ css.cellTooltip }
+                    cx={ [css.cellTooltip, 'uui-dt-header-tooltip'] }
                     openDelay={ 600 }
                 >
                     <div key="text" className={ captionCx }>

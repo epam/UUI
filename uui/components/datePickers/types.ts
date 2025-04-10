@@ -1,5 +1,5 @@
-import { IDisableable, IHasCX, IHasRawProps } from '@epam/uui-core';
-import { DayProps, RangeDatePickerPresets } from '@epam/uui-components';
+import type { IDisableable, IHasCX, IHasRawProps, RangeDatePickerPresets } from '@epam/uui-core';
+import type { DayProps } from '@epam/uui-components';
 import type { Dayjs } from '../../helpers/dayJsHelper';
 
 /**

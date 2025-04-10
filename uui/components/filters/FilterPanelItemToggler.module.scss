@@ -6,9 +6,23 @@
     --uui-filters_toggler-border: var(--uui-control-border);
     --uui-filters_toggler-border-hover: var(--uui-control-border-hover);
     --uui-filters_toggler-icon: var(--uui-icon);
-    --uui-filters_toggler-label: var(--uui-text-tertiary);
     --uui-filters_toggler-shadow: none;
     --uui-filters_toggler-text: var(--uui-text-primary);
+
+    --uui-filters_toggler-title: var(--uui-text-tertiary);
+    --uui-filters_toggler-title-font: var(--uui-font);
+    --uui-filters_toggler-title-font-weight: 400;
+    --uui-filters_toggler-title-font-style: normal;
+
+    --uui-filters_toggler-selection: var(--uui-text-primary);
+    --uui-filters_toggler-selection-font: var(--uui-font);
+    --uui-filters_toggler-selection-font-weight: 400;
+    --uui-filters_toggler-selection-font-style: normal;
+
+    --uui-filters_toggler-postfix: var(--uui-text-primary);
+    --uui-filters_toggler-postfix-font: var(--uui-font);
+    --uui-filters_toggler-postfix-font-weight: 400;
+    --uui-filters_toggler-postfix-font-style: normal;
 
     --uui-filters_toggler-border-radius: var(--uui-border-radius);
 
@@ -72,37 +86,58 @@
             padding-right: 6px;
 
             .title {
+                color: var(--uui-filters_toggler-title);
+                font-family: var(--uui-filters_toggler-title-font);
+                font-weight: var(--uui-filters_toggler-title-font-weight);
+                font-style: var(--uui-filters_toggler-title-font-style);
+                font-size: var(--uui-font-size);
+                line-height: var(--uui-line-height);
                 display: flex;
                 text-overflow: initial;
                 overflow: visible;
                 padding-top: 0;
                 padding-bottom: 0;
-                color: var(--uui-filters_toggler-label);
             }
 
             .text-wrapper {
                 display: flex;
                 overflow: hidden;
-                align-items: baseline;
+                align-items: center;
                 width: 100%;
                 padding-left: 3px;
             }
 
             .selection {
+                color: var(--uui-filters_toggler-selection);
+                font-family: var(--uui-filters_toggler-selection-font);
+                font-weight: var(--uui-filters_toggler-selection-font-weight);
+                font-style: var(--uui-filters_toggler-selection-font-style);
+                font-size: var(--uui-font-size);
+                line-height: var(--uui-line-height);
                 padding-top: 0;
                 padding-bottom: 0;
-                color: var(--uui-filters_toggler-text);
+                flex-shrink: 1;
+                flex-basis: auto;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
                 & + span {
-                    color: var(--uui-filters_toggler-text);
+                    color: var(--uui-filters_toggler-selection);
                 }
             }
 
             .postfix {
+                color: var(--uui-filters_toggler-postfix);
+                font-family: var(--uui-filters_toggler-postfix-font);
+                font-weight: var(--uui-filters_toggler-postfix-font-weight);
+                font-style: var(--uui-filters_toggler-postfix-font-style);
+                font-size: var(--uui-font-size);
+                line-height: var(--uui-line-height);
                 padding-top: 0;
                 padding-bottom: 0;
                 overflow: visible;
-                color: var(--uui-filters_toggler-text);
+                flex-shrink: 0;
             }
 
             .selected {

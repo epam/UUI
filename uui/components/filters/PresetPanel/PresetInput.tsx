@@ -1,9 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import css from './PresetInput.module.scss';
+import type { ITablePreset } from '@epam/uui-core';
 import { TextInput } from '../../inputs';
 import { FlexCell } from '../../layout';
-import { ITablePreset } from '@epam/uui-core';
 import { UUI_PRESETS_PANEL_INPUT } from './constants';
+
+import css from './PresetInput.module.scss';
 
 interface IPresetInputProps {
     onCancel: () => void;
