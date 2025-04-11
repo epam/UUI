@@ -1,18 +1,19 @@
 import React from 'react';
-import { Modifier } from 'react-popper';
-import { Placement, Boundary } from '@popperjs/core';
-import { IDropdownTogglerProps, IDropdownBodyProps, IHasForwardedRef, IControlled } from '../props';
+import { Placement, Boundary, Middleware, VirtualElement } from '@floating-ui/react';
+import { IDropdownTogglerProps, IDropdownBodyProps, IControlled } from '../props';
 
 export interface DropdownBodyProps extends IDropdownBodyProps {}
 
 export type DropdownPlacement = Placement;
 
-export interface DropdownProps extends Partial<IControlled<boolean>>, IHasForwardedRef<HTMLElement> {
+export interface DropdownProps extends Partial<IControlled<boolean>> {
     /**
      * Render callback for the dropdown target.
      * Note, that it's required to pass 'props' parameters to the target component.
      */
-    renderTarget: (props: IDropdownTogglerProps) => React.ReactNode;
+    renderTarget?: (props: IDropdownTogglerProps) => React.ReactNode;
+    /** Virtual element is a plain object, which mimics a real element. See [Floating UI docs]{@link https://floating-ui.com/docs/virtual-elements} */
+    virtualTarget?: VirtualElement;
     /** Render callback for the dropdown body */
     renderBody: (props: DropdownBodyProps) => React.ReactNode;
     /** Call to close the dropdown body */
@@ -25,8 +26,8 @@ export interface DropdownProps extends Partial<IControlled<boolean>>, IHasForwar
     zIndex?: number;
     /** Defines dropdown body placement relative to target */
     placement?: DropdownPlacement;
-    /** Original popper.js modifiers. See [Popper docs]{@link https://popper.js.org/docs/v2/modifiers/} */
-    modifiers?: Modifier<any>[];
+    /** Defines an array of middleware objects that change the positioning of the dropdown body. See [Floating UI docs]{@link https://floating-ui.com/docs/middleware}  */
+    middleware?: Middleware[];
     /** Defines how much 'ms' user should hold mouse over target to open the dropdown
      * This prop work only with openOnHover={true}
      * @default 0
@@ -73,5 +74,5 @@ export interface DropdownProps extends Partial<IControlled<boolean>>, IHasForwar
     /** Pass false, if you do not want to close the dropdown in case Toggler move out of viewport.
      * @default true
      * */
-    closeBodyOnTogglerHidden?: boolean; // default: true;
+    closeBodyOnTogglerHidden?: boolean;
 }

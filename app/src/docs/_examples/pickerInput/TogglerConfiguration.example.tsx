@@ -44,6 +44,7 @@ export default function PickerTogglerConfigurationExample() {
                     renderToggler={ (props) => (
                         <SearchInput
                             { ...props }
+                            key="toggler"
                             value={ props.value ?? '' }
                             onValueChange={ props.onValueChange }
                             placeholder="Custom toggler"

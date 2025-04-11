@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-imports */
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';

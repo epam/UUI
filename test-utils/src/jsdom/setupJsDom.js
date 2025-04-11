@@ -28,23 +28,23 @@ export function setupJsDom(global, options = {}) {
     const elementPrototypeMock = {
         scrollTo: () => {},
     };
-    // const consoleMock = (() => {
-    //     const consoleErrorPrev = global.console.error;
-    //     const error = (/** @type {[any]} */ ...args) => {
-    //         const [first] = args;
-    //         const ignorePatterns = ['Warning: validateDOMNesting(...):'];
-    //         if (typeof first === 'string') {
-    //             const shouldIgnore = ignorePatterns.some((p) => first.indexOf(p) !== -1);
-    //             if (shouldIgnore) {
-    //                 return;
-    //             }
-    //         }
-    //         consoleErrorPrev.apply(global, args);
-    //     };
-    //     return {
-    //         error,
-    //     };
-    // })();
+    const consoleMock = (() => {
+        const consoleErrorPrev = global.console.error;
+        const error = (/** @type {[any]} */ ...args) => {
+            const [first] = args;
+            const ignorePatterns = ['Warning: validateDOMNesting(...):'];
+            if (typeof first === 'string') {
+                const shouldIgnore = ignorePatterns.some((p) => first.indexOf(p) !== -1);
+                if (shouldIgnore) {
+                    return;
+                }
+            }
+            consoleErrorPrev.apply(global, args);
+        };
+        return {
+            error,
+        };
+    })();
 
     Object.assign(global, globalMock);
     Object.assign(global.navigator, navigatorMock);
@@ -61,24 +61,23 @@ function enableMockForCommon3rdPartyDeps() {
         throw new Error('Only Jest & Vitest are currently supported. If another test runner is used, '
             + 'then please dont enable mockCommon3rdPartyDeps option and do all mocks using capabilities of your test runner.');
     }
-    testRunner.mock('react-popper', () => ({
-        ...testRunner.requireActual('react-popper'),
-        /**
-         * @param {object} props - Component's props
-         * @param {function} props.children - Component's children prop
-         * @returns JSX.Element
-         */
-        Popper: function PopperMock({ children }) {
-            return children({
-                ref: jest.fn(() => {}),
-                update: jest.fn(),
-                style: {},
-                arrowProps: { ref: jest.fn },
-                placement: 'bottom-start',
-                isReferenceHidden: false,
-            });
-        },
-    }));
+
+    testRunner.mock('@floating-ui/react', () => {
+        const original = jest.requireActual('@floating-ui/react');
+        return {
+            ...original,
+            hide: jest.fn(() => ({
+                // Preserve other middleware behavior if needed
+                ...original.hide(),
+                // Override the middleware's core logic
+                fn: () => ({
+                    data: {
+                        referenceHidden: false,
+                    },
+                }),
+            })),
+        };
+    });
 
     testRunner.mock('react-focus-lock', () => ({
         ...testRunner.requireActual('react-focus-lock'),
