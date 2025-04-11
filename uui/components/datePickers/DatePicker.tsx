@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useCallback, useEffect, useState } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
 import { offset } from '@floating-ui/react';
 import {
     DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps,
@@ -114,7 +114,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         }
     };
 
-    const renderInput = useCallback((renderProps: IDropdownTogglerProps & { cx?: any }) => {
+    const renderInput = (renderProps: IDropdownTogglerProps & { cx?: any }) => {
         const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
@@ -148,9 +148,9 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 id={ props.id }
             />
         );
-    }, [inputValue, isBodyOpen, props, format, size]);
+    };
 
-    const renderBody = useCallback((renderProps: DropdownBodyProps) => {
+    const renderBody = useMemo(() => (renderProps: DropdownBodyProps) => {
         return (
             <DropdownContainer { ...renderProps }>
                 <DatePickerBody
@@ -165,7 +165,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 {props.renderFooter?.()}
             </DropdownContainer>
         );
-    }, [value, onBodyValueChange, props]);
+    }, [value, onBodyValueChange]);
 
     return (
         <Dropdown
