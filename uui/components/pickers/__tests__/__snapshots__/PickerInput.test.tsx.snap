@@ -37,9 +37,9 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
   <div
     aria-hidden="false"
     class="uui-popper"
-    data-placement="bottom-start"
+    data-placement="top-start"
     role="dialog"
-    style="z-index: 2000;"
+    style="position: fixed; top: -6px; left: 0px; z-index: 2000;"
   >
     <div
       class="uui-dropdown-body -lock-focus root container uui-picker_input-body-wrapper container"

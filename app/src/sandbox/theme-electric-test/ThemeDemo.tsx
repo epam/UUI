@@ -89,7 +89,7 @@ export function ThemeElectricDemo() {
                     </Text>
                     <FlexRow vPadding="36">
                         <SuccessNotification id={ 1 } key="1" onSuccess={ () => {} } onClose={ () => {} }>
-                            <Text size="36" fontSize="14">
+                            <Text fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>

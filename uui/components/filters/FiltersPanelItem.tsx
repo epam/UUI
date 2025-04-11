@@ -1,8 +1,22 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import cx from 'classnames';
-import { Modifier } from 'react-popper';
-import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate, IDataSource, DataSourceState } from '@epam/uui-core';
+import { Middleware, offset } from '@floating-ui/react';
+import {
+    DropdownBodyProps,
+    TableFiltersConfig,
+    IDropdownToggler,
+    IEditable,
+    isMobile,
+    FilterPredicateName,
+    getSeparatedValue,
+    DataRowProps,
+    PickerFilterConfig,
+    useForceUpdate,
+    IDataSource,
+    DataSourceState,
+    mobilePositioning,
+} from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
@@ -45,27 +59,18 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
-    const popperModifiers: Modifier<any>[] = useMemo(() => {
-        const modifiers: Modifier<any>[] = [
-            {
-                name: 'offset',
-                options: { offset: isPickersType && isMobileScreen ? [0, 0] : [0, 6] },
-            },
+    const floatingMiddleware: Middleware[] = useMemo(() => {
+        const middleware: Middleware[] = [
+            offset(() => {
+                return isPickersType && isMobileScreen ? 0 : 6;
+            }),
         ];
 
         if (isPickersType && isMobileScreen) {
-            modifiers.push({
-                name: 'resetTransform',
-                enabled: true,
-                phase: 'beforeWrite',
-                requires: ['computeStyles'],
-                fn: ({ state }) => {
-                    state.styles.popper.transform = '';
-                },
-            });
+            middleware.push(mobilePositioning);
         }
 
-        return modifiers;
+        return middleware;
     }, [isPickersType]);
 
     const getDefaultPredicate = () => {
@@ -287,7 +292,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
-            modifiers={ popperModifiers }
+            middleware={ floatingMiddleware }
         />
     );
 }

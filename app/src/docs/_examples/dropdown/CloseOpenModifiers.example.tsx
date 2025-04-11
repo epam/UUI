@@ -38,6 +38,7 @@ export default function CloseOpenModifiersExample() {
                     renderTarget={ (props: IDropdownToggler) => <Button caption="Hover to open (boundary mode)" { ...props } /> }
                     openOnHover={ true }
                     closeOnMouseLeave="boundary"
+                    closeDelay={ 1000 }
                 />
                 <Dropdown
                     renderBody={ (props) => renderDropdownBody({ ...props, focusLock: false }) }
