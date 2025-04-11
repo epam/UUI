@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
     DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite,
-    DataColumnGroupProps,
+    DataColumnGroupProps, IHasCX,
 } from '@epam/uui-core';
 import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
 import { useColumnsWithFilters } from '../../helpers';
@@ -20,7 +20,7 @@ import { settings } from '../../settings';
 import './variables.scss';
 import css from './DataTable.module.scss';
 
-interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
+interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, IHasCX, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
     /** Callback to get rows that will be rendered in table */
     getRows?(): DataRowProps<TItem, TId>[];
 
@@ -198,7 +198,7 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                     onScroll={ props.onScroll }
                     rowsCount={ props.rowsCount }
                     renderRows={ renderRowsContainer }
-                    cx={ cx(css.root, 'uui-dt-vars', 'uui-data_table') }
+                    cx={ cx(css.root, props.cx, 'uui-dt-vars', 'uui-data_table') }
                     isLoading={ props.isReloading }
                     rowsSelector="[role=row]"
                     rawProps={ {

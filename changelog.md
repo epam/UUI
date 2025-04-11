@@ -1,5 +1,6 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
+* [DataTable]: added `cx` prop
 * [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
 * [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
 * [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.

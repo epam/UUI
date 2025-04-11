@@ -54,7 +54,7 @@
         }
     }
 
-    &.resizable {
+    &:global(.uui-resizable) {
         &:hover {
             border-color: var(--uui-dt-border);
         }
@@ -161,7 +161,7 @@
     &.dnd-marker-left {
         box-shadow: inset 2px 0 0 0 var(--uui-dt-header-drop_marker);
 
-        &:global(.-clickable), &:local(.resizable) {
+        &:global(.-clickable), &:global(.uui-resizable) {
             box-shadow: inset 2px 0 0 0 var(--uui-dt-header-drop_marker);
         }
     }
@@ -169,7 +169,7 @@
     &.dnd-marker-right {
         box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
 
-        &:global(.-clickable), &:local(.resizable) {
+        &:global(.-clickable), &:global(.uui-resizable) {
             box-shadow: inset -2px 0 0 0 var(--uui-dt-header-drop_marker);
         }
     }
