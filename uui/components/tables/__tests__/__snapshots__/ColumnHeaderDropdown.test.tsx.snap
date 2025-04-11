@@ -27,6 +27,7 @@ exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
     class="uui-popper"
     data-placement="bottom-start"
     role="dialog"
+    style="position: fixed; top: 1px; left: 0px; z-index: 2000;"
   >
     <div
       class="uui-dropdown-body -lock-focus root container container"
