@@ -56,7 +56,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           style="--uui-flex-row-v-padding: 24px;"
         >
           <div
-            class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
+            class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
             dir="auto"
             tabindex="-1"
           >
@@ -295,7 +295,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           style="--uui-flex-row-v-padding: 24px;"
         >
           <div
-            class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
+            class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
             dir="auto"
             tabindex="-1"
           >
@@ -372,7 +372,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -424,7 +424,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -476,7 +476,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -528,7 +528,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -580,7 +580,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -632,7 +632,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -684,7 +684,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -736,7 +736,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -788,7 +788,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -840,7 +840,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -892,7 +892,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
                     style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-dr_addons-checkbox -clickable"
                     >
                       <div
                         class="uui-checkbox"
@@ -1071,7 +1071,7 @@ exports[`PickerModal should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
-              class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
+              class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
               dir="auto"
               tabindex="-1"
             >

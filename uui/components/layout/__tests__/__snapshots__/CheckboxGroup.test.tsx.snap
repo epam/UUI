@@ -6,7 +6,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
     class="root uui-vertical-direction"
   >
     <label
-      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary -clickable"
+      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
     >
       <div
         class="uui-checkbox"
@@ -24,7 +24,7 @@ exports[`CheckboxGroup should be rendered correctly 1`] = `
       </div>
     </label>
     <label
-      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary -clickable"
+      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
     >
       <div
         class="uui-checkbox"
@@ -51,7 +51,7 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
     class="root uui-horizontal-direction"
   >
     <label
-      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-disabled"
+      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-disabled"
     >
       <div
         class="uui-checkbox"
@@ -71,7 +71,7 @@ exports[`CheckboxGroup should be rendered correctly with props 1`] = `
       </div>
     </label>
     <label
-      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary uui-disabled"
+      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary uui-disabled"
     >
       <div
         class="uui-checkbox"

@@ -51,7 +51,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         class="root uui-flex-row searchArea uui-size-36 borderBottom"
       >
         <div
-          class="container uui-input-box -clickable root uui-size-30 mode-form"
+          class="container uui-input-box -clickable root uui-size-30 uui-control-mode-form"
           tabindex="-1"
         >
           <div
@@ -168,7 +168,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                     </div>
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
                     >
                       <div
                         class="uui-checkbox uui-checked"
@@ -275,7 +275,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                       </div>
                     </div>
                     <label
-                      class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
                     >
                       <div
                         class="uui-checkbox uui-checked"

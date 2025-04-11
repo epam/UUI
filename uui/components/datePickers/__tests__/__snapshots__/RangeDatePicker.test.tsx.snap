@@ -6,7 +6,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
     class="uui-size-36 uui-range-date-picker root uui-disabled uui-readonly uui-invalid"
   >
     <div
-      class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
+      class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 uui-control-mode-form dateInput"
       tabindex="-1"
     >
       <div
@@ -33,7 +33,7 @@ exports[`RangeDataPicker should be rendered if many params defined 1`] = `
       class="separator"
     />
     <div
-      class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 mode-form dateInput"
+      class="container uui-input-box uui-disabled uui-readonly uui-invalid root uui-size-36 uui-control-mode-form dateInput"
       tabindex="-1"
     >
       <input
@@ -58,7 +58,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
     class="uui-size-36 uui-range-date-picker root"
   >
     <div
-      class="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
+      class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form dateInput"
       tabindex="-1"
     >
       <div
@@ -80,7 +80,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
       class="separator"
     />
     <div
-      class="container uui-input-box -clickable root uui-size-36 mode-form dateInput"
+      class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form dateInput"
       tabindex="-1"
     >
       <input

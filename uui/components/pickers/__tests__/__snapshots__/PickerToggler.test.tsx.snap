@@ -3,7 +3,7 @@
 exports[`PickerToggler should render with maximum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable root uui-picker_toggler uui-size-48 mode-form"
+    class="container uui-input-box -clickable uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
     tabindex="0"
   >
     <div
@@ -49,7 +49,7 @@ exports[`PickerToggler should render with maximum props 1`] = `
 exports[`PickerToggler should render with minimum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box root uui-picker_toggler uui-size-36 mode-form"
+    class="container uui-input-box root uui-picker_toggler uui-size-36 uui-control-mode-form"
     tabindex="0"
   >
     <div
