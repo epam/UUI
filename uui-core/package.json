@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-core",
-  "version": "5.13.3-beta.19",
+  "version": "5.13.3-beta.20",
   "description": "EPAM UUI Core",
   "author": "EPAM",
   "license": "MIT",
@@ -31,7 +31,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "8248a65ee62b2a6b3fb065327869cc6f7d756698",
+  "gitHead": "b897295dffd058965d7307b94863bd734658884b",
   "publishConfig": {
     "access": "public",
     "directory": "build"
