@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-test-utils",
-  "version": "5.13.3-beta.21",
+  "version": "5.13.3-beta.22",
   "author": "EPAM",
   "license": "MIT",
   "private": false,
@@ -11,7 +11,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.13.3-beta.21",
+    "@epam/uui-core": "5.13.3-beta.22",
     "@testing-library/react": "15.0.7",
     "@testing-library/user-event": "14.4.3",
     "@types/react-test-renderer": "18.0.0",
@@ -25,5 +25,5 @@
   "publishConfig": {
     "directory": "build"
   },
-  "gitHead": "841999dfc3a3913cf89ba316582a3fe554454655"
+  "gitHead": "7a87c9870563fbbe1534affb13b847904f303823"
 }
