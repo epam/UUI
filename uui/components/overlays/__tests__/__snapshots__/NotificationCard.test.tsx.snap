@@ -3,7 +3,7 @@
 exports[`ClearNotification should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="notificationWrapper clearButton"
+    class="clearNotifications uui-clear-notifications"
   >
     <button
       class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
@@ -46,7 +46,7 @@ exports[`ErrorNotification should be rendered correctly 1`] = `
         class="content"
       />
       <div
-        class="closeWrapper"
+        class="closeWrapper uui-notification_card-close_icon"
       >
         <button
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
@@ -93,7 +93,7 @@ exports[`HintNotification should be rendered correctly 1`] = `
         class="content"
       />
       <div
-        class="closeWrapper"
+        class="closeWrapper uui-notification_card-close_icon"
       >
         <button
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
@@ -127,7 +127,7 @@ exports[`NotificationCard should be rendered correctly 1`] = `
         class="content"
       />
       <div
-        class="closeWrapper"
+        class="closeWrapper uui-notification_card-close_icon"
       >
         <button
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
@@ -174,7 +174,7 @@ exports[`NotificationCard should render with maximum props 1`] = `
         class="content"
       />
       <div
-        class="closeWrapper"
+        class="closeWrapper uui-notification_card-close_icon"
       >
         <button
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
@@ -221,7 +221,7 @@ exports[`SuccessNotification should be rendered correctly 1`] = `
         class="content"
       />
       <div
-        class="closeWrapper"
+        class="closeWrapper uui-notification_card-close_icon"
       >
         <button
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
@@ -268,7 +268,7 @@ exports[`WarningNotification should be rendered correctly 1`] = `
         class="content"
       />
       <div
-        class="closeWrapper"
+        class="closeWrapper uui-notification_card-close_icon"
       >
         <button
           class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"

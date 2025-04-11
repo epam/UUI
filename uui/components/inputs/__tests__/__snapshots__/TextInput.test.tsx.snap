@@ -3,7 +3,7 @@
 exports[`TextInput should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable root uui-size-36 mode-form"
+    class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
     tabindex="-1"
   >
     <input
@@ -19,7 +19,7 @@ exports[`TextInput should be rendered correctly 1`] = `
 exports[`TextInput should be rendered correctly 2`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable root uui-size-36 mode-form"
+    class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
     tabindex="-1"
   >
     <input

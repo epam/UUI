@@ -3,7 +3,7 @@
 exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable root root uui-size-36 mode-inline"
+    class="container uui-input-box -clickable root root uui-size-36 uui-control-mode-inline"
     tabindex="-1"
   >
     <input
@@ -43,7 +43,7 @@ exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
 exports[`NumericInput snapshots should be rendered with minimum props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable root root uui-size-36 mode-form"
+    class="container uui-input-box -clickable root root uui-size-36 uui-control-mode-form"
     tabindex="-1"
   >
     <input

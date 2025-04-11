@@ -42,7 +42,7 @@ exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
         class="rightChildrenPosition"
       >
         <div
-          class="container uui-input-box -clickable root uui-size-36 mode-form"
+          class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
           tabindex="-1"
         >
           <input
@@ -95,7 +95,7 @@ exports[`LabeledInput should be rendered correctly with minimum props 1`] = `
     >
       <div>
         <div
-          class="container uui-input-box -clickable root uui-size-36 mode-form"
+          class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
           tabindex="-1"
         >
           <input

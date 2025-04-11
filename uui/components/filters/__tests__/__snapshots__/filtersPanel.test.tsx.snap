@@ -7,7 +7,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
     style="min-width: 0; flex-basis: auto;"
   >
     <div
-      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
+      class="uui-filters-panel-item-toggler root uui-input-box -clickable uui-has-value uui-size-36"
       role="button"
       style="max-width: 300px;"
       tabindex="0"
@@ -16,7 +16,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
         class="titleWrapper"
       >
         <div
-          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
+          class="title uui-filters-panel-item-toggler-title"
         >
           Status:
         </div>
@@ -24,7 +24,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
           class="textWrapper"
         >
           <div
-            class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline selection container"
+            class="selection uui-filters-panel-item-toggler-selection"
           >
             Unknown
           </div>
@@ -53,7 +53,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
         class="titleWrapper"
       >
         <div
-          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
+          class="title uui-filters-panel-item-toggler-title"
         >
           Position
         </div>
@@ -81,7 +81,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
         class="titleWrapper"
       >
         <div
-          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
+          class="title uui-filters-panel-item-toggler-title"
         >
           Age
         </div>
@@ -109,7 +109,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
         class="titleWrapper"
       >
         <div
-          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
+          class="title uui-filters-panel-item-toggler-title"
         >
           Hire Date
         </div>
@@ -137,7 +137,7 @@ exports[`FiltersPanel snapshot should be rendered correctly 1`] = `
         class="titleWrapper"
       >
         <div
-          class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
+          class="title uui-filters-panel-item-toggler-title"
         >
           Exit Date
         </div>
