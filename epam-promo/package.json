@@ -1,6 +1,6 @@
 {
   "name": "@epam/promo",
-  "version": "5.13.3-beta.22",
+  "version": "5.13.3-beta.23",
   "description": "EPAM UUI4 components set",
   "author": "EPAM",
   "license": "MIT",
@@ -12,10 +12,10 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "5.13.3-beta.22",
-    "@epam/uui": "5.13.3-beta.22",
-    "@epam/uui-components": "5.13.3-beta.22",
-    "@epam/uui-core": "5.13.3-beta.22",
+    "@epam/assets": "5.13.3-beta.23",
+    "@epam/uui": "5.13.3-beta.23",
+    "@epam/uui-components": "5.13.3-beta.23",
+    "@epam/uui-core": "5.13.3-beta.23",
     "@types/classnames": "2.2.6",
     "classnames": "2.2.6"
   },
@@ -27,7 +27,7 @@
     "type": "git",
     "url": "https://github.com/epam/UUI"
   },
-  "gitHead": "7a87c9870563fbbe1534affb13b847904f303823",
+  "gitHead": "206a1ed3341fce9be002aeaabe2745495af65f93",
   "publishConfig": {
     "directory": "build"
   }
