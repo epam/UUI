@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { offset } from '@floating-ui/react';
 import type { IPresetsApi, IDropdownToggler, ITablePreset, DataTableState, DropdownBodyProps } from '@epam/uui-core';
 import { useUuiContext } from '@epam/uui-core';
 import { Dropdown, DropdownMenuBody, DropdownMenuButton, SuccessNotification, DropdownMenuSplitter } from '../../overlays';
@@ -154,6 +155,6 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     }, []);
 
     return (
-        <Dropdown renderBody={ renderBody } renderTarget={ renderTarget } placement="bottom-end" modifiers={ [{ name: 'offset', options: { offset: [0, 22] } }] } />
+        <Dropdown renderBody={ renderBody } renderTarget={ renderTarget } placement="bottom-end" middleware={ [offset(22)] } />
     );
 }

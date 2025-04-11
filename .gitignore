@@ -26,6 +26,9 @@ _ReSharper.Caches
 .DS_Store
 coverage
 .vscode/settings.json
+.cursorrules
+.cursorignore
+.cursor/
 
 # next.js
 .next/

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Placement } from '@floating-ui/react';
 import {
     IAnalyticableOnChange,
     ICanBeInvalid,
@@ -11,7 +12,6 @@ import {
 } from './props';
 import { IDataSource, IDataSourceView, DataSourceState, CascadeSelection, SortingOption } from './dataSources';
 import { DataRowProps, DataRowOptions } from './dataRows';
-import { Placement } from '@popperjs/core';
 import { CX } from './objects';
 import { DropdownProps } from './components';
 

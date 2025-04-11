@@ -1,16 +1,16 @@
-import { Dropdown } from '@epam/uui-components';
 import React from 'react';
-
+import { offset } from '@floating-ui/react';
+import { Dropdown } from '@epam/uui-components';
+import { ScrollBars } from '@epam/uui';
 import { useIsPluginActive, isTextSelected } from '../../helpers';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 import { PlaceholderBlock } from './PlaceholderBlock';
-import { ScrollBars } from '@epam/uui';
 import {
     PlateEditor, createPluginFactory, getPluginOptions, insertElements, PlatePlugin, AnyObject,
 } from '@udecode/plate-common';
-import css from './PlaceholderPlugin.module.scss';
 import { PLACEHOLDER_PLUGIN_KEY } from './constants';
 import { WithToolbarButton } from '../../implementation/Toolbars';
+import css from './PlaceholderPlugin.module.scss';
 
 export interface PlaceholderPluginParams {
     /** Placeholder items */
@@ -95,10 +95,7 @@ export function PlaceholderButton({ editor }: IPlaceholderButton): any {
             ) }
             renderBody={ renderDropdownBody }
             placement="top-start"
-            modifiers={ [{
-                name: 'offset',
-                options: { offset: [0, 3] },
-            }] }
+            middleware={ [offset(3)] }
         />
     );
 }

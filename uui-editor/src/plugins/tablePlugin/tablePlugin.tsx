@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Dropdown } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui';
 import { useFocused, useReadOnly, useSelected } from 'slate-react';
 
 import { useIsPluginActive, isTextSelected } from '../../helpers';

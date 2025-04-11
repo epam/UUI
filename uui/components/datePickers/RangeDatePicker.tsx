@@ -1,5 +1,6 @@
-import React, { ReactElement, ReactNode, useState, type JSX } from 'react';
+import React, { ReactElement, ReactNode, useImperativeHandle, useState, type JSX } from 'react';
 import cx from 'classnames';
+import { offset } from '@floating-ui/react';
 import type {
     CommonDatePickerProps, RangeDatePickerPresets,
     DropdownBodyProps, IAnalyticableOnChange, IEditable, IHasRawProps, Overwrite,
@@ -19,11 +20,6 @@ import { defaultFormat, defaultRangeValue } from './helpers';
 import { settings } from '../../settings';
 
 import css from './RangeDatePicker.module.scss';
-
-const modifiers = [{
-    name: 'offset',
-    options: { offset: [0, 6] },
-}];
 
 export interface RangeDatePickerModsOverride {}
 
@@ -107,6 +103,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
 
     const targetRef = React.useRef<HTMLDivElement>(null);
 
+    useImperativeHandle(ref, () => targetRef.current);
+
     const onValueChange = (newValue: RangeDatePickerValue) => {
         const fromChanged = value?.from !== newValue?.from;
         const toChanged = value?.to !== newValue?.to;
@@ -124,7 +122,10 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
         props.onOpenChange?.(newIsOpen);
         if (!inFocus && newIsOpen) {
             setInFocus('from');
-            targetRef.current.querySelector<HTMLInputElement>('.uui-input').focus();
+            if (targetRef.current) {
+                const inputElement = targetRef.current.querySelector<HTMLInputElement>('.uui-input');
+                inputElement?.focus();
+            }
         }
     };
 
@@ -211,9 +212,9 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
             renderBody={ (renderProps) => renderBody(renderProps) }
             onValueChange={ (v) => onOpenChange(v) }
             value={ isOpen }
-            modifiers={ modifiers }
+            middleware={ [offset(6)] }
             placement={ props.placement }
-            forwardedRef={ ref }
+            ref={ ref }
         />
     );
 }
