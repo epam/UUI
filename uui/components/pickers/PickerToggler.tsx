@@ -29,7 +29,7 @@ function applyPickerTogglerMods(mods: PickerTogglerMods) {
         css.root,
         'uui-picker_toggler',
         `uui-size-${mods.size || settings.pickerInput.sizes.toggler.default}`,
-        css['mode-' + (mods.mode || defaultMode)],
+        'uui-control-mode-' + (mods.mode || defaultMode),
     ];
 }
 

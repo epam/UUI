@@ -82,8 +82,8 @@ export function DocExample(props: DocExampleProps) {
         return name.substring(1);
     };
 
-    const renderCode = (): React.ReactNode => {
-        return code && <Code isVisible={ showCode } codeAsHtml={ code } />;
+    const renderCode = (isVisible: boolean): React.ReactNode => {
+        return code && <Code isVisible={ isVisible } codeAsHtml={ code } />;
     };
 
     const renderPreview = () => {
@@ -126,7 +126,7 @@ export function DocExample(props: DocExampleProps) {
                         <DocExampleFsBtn path={ props.path } theme={ theme } />
                     </FlexRow>
                 </footer>
-                { renderCode()}
+                { renderCode(showCode)}
             </div>
         );
     };
@@ -134,14 +134,14 @@ export function DocExample(props: DocExampleProps) {
     return (
         <section
             className={ cx(css.container, props.cx) }
-            aria-labelledby={ `example-title-${getDescriptionFileName()}` }
+            aria-labelledby={ getDescriptionFileName() }
             itemScope
             itemType="http://schema.org/SoftwareApplication"
         >
             <EditableDocContent
                 title={ props.title }
                 fileName={ getDescriptionFileName() }
-                id={ `example-title-${getDescriptionFileName()}` }
+                id={ getDescriptionFileName() }
             />
             <div
                 className={ css.previewContainer }
@@ -149,7 +149,7 @@ export function DocExample(props: DocExampleProps) {
                 role="region"
                 aria-label="Example preview"
             >
-                {props.onlyCode ? renderCode() : renderPreview()}
+                {props.onlyCode ? renderCode(true) : renderPreview()}
             </div>
         </section>
     );

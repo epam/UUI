@@ -194,7 +194,7 @@ exports[`PickerList should open body 1`] = `
             style="--uui-flex-row-v-padding: 24px;"
           >
             <div
-              class="container uui-input-box -clickable uui-focus root uui-size-36 mode-form"
+              class="container uui-input-box -clickable uui-focus root uui-size-36 uui-control-mode-form"
               dir="auto"
               tabindex="-1"
             >
@@ -742,7 +742,7 @@ exports[`PickerList should render with maximum props 1`] = `
         role="option"
       >
         <label
-          class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary -clickable"
+          class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
         >
           <div
             class="uui-checkbox uui-checked"
@@ -775,7 +775,7 @@ exports[`PickerList should render with maximum props 1`] = `
         role="option"
       >
         <label
-          class="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary -clickable"
+          class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
         >
           <div
             class="uui-checkbox uui-checked"

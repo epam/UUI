@@ -4,7 +4,8 @@ import { TextInput } from '../inputs';
 
 import { defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
-import { RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
+import type { RangeDatePickerInputType, RangeDatePickerValue } from './types';
+import type { RangeDatePickerProps } from './RangeDatePicker';
 
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
@@ -18,11 +19,7 @@ export interface RangeDatePickerInputProps
     extends IEditable<RangeDatePickerValue>,
     IHasCX,
     IClickable,
-    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {
-    /**
-     * Defines component size.
-     */
-    size?: '24' | '30' | '36' | '42' | '48';
+    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {
     /**
      * rawProps as HTML attributes
      */

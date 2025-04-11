@@ -26,7 +26,7 @@ function applyCheckboxMods(mods: CheckboxMods) {
     return [
         css.root,
         `uui-size-${mods.size || settings.checkbox.sizes.default}`,
-        css['mode-' + (mods.mode || 'form')],
+        'uui-control-mode-' + (mods.mode || 'form'),
         'uui-color-primary',
     ];
 }
