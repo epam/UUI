@@ -1,119 +1,112 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LabeledInput should be rendered correctly with maximum props 1`] = `
-<div
-  className="container uui-labeled-input root uui-size-30"
->
+<DocumentFragment>
   <div
-    className="uui-label-left"
+    class="container uui-labeled-input root uui-size-30"
   >
     <div
-      className="labelWrapper"
+      class="uui-label-left"
     >
-      <label
-        className="uui-label"
+      <div
+        class="labelWrapper"
       >
-        Test label
-        <span
-          className="uui-labeled-input-asterisk"
+        <label
+          class="uui-label"
         >
-          *
-        </span>
+          Test label
+          <span
+            class="uui-labeled-input-asterisk"
+          >
+            *
+          </span>
+          <div
+            class="container uui-icon uui-enabled uui-labeled-input-info-icon"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </label>
         <div
-          className="container uui-icon uui-enabled uui-labeled-input-info-icon"
-          style={Object {}}
+          class="flexSpacer"
+        />
+        <div
+          class="uui-labeled-input-sidenote"
+          dir="auto"
         >
-          <svg
-            className=""
+          Sidenote text
+        </div>
+      </div>
+      <div
+        class="rightChildrenPosition"
+      >
+        <div
+          class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
+          tabindex="-1"
+        >
+          <input
+            class="uui-input"
+            tabindex="0"
+            type="text"
+            value=""
           />
         </div>
-      </label>
+      </div>
+    </div>
+    <div
+      class="invalidSectionWrapper"
+    >
       <div
-        className="flexSpacer"
-      />
+        class="uui-invalid-message"
+        dir="auto"
+        role="alert"
+      >
+        Test validation message
+      </div>
       <div
-        className="uui-labeled-input-sidenote"
+        class="uui-labeled-input-char-counter"
         dir="auto"
       >
-        Sidenote text
+        0/10
       </div>
     </div>
     <div
-      className="rightChildrenPosition"
+      class="footnoteSectionWrapper"
     >
       <div
-        className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
-        onFocus={[Function]}
-        tabIndex={-1}
+        class="uui-labeled-input-footnote"
+        dir="auto"
       >
-        <input
-          className="uui-input"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
-          type="text"
-          value=""
-        />
+        Footnote text
       </div>
     </div>
   </div>
-  <div
-    className="invalidSectionWrapper"
-  >
-    <div
-      className="uui-invalid-message"
-      dir="auto"
-      role="alert"
-    >
-      Test validation message
-    </div>
-    <div
-      className="uui-labeled-input-char-counter"
-      dir="auto"
-    >
-      0/10
-    </div>
-  </div>
-  <div
-    className="footnoteSectionWrapper"
-  >
-    <div
-      className="uui-labeled-input-footnote"
-      dir="auto"
-    >
-      Footnote text
-    </div>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`LabeledInput should be rendered correctly with minimum props 1`] = `
-<div
-  className="container uui-labeled-input root uui-size-36"
->
+<DocumentFragment>
   <div
-    className="uui-label-top"
+    class="container uui-labeled-input root uui-size-36"
   >
-    <div>
-      <div
-        className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
-        onFocus={[Function]}
-        tabIndex={-1}
-      >
-        <input
-          className="uui-input"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          tabIndex={0}
-          type="text"
-          value=""
-        />
+    <div
+      class="uui-label-top"
+    >
+      <div>
+        <div
+          class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
+          tabindex="-1"
+        >
+          <input
+            class="uui-input"
+            tabindex="0"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

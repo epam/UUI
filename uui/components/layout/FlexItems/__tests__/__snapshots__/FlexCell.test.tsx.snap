@@ -1,34 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FlexCell should be rendered correctly 1`] = `
-<div
-  className="flexCell"
-  style={
-    Object {
-      "alignSelf": undefined,
-      "flexBasis": "0",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": 0,
-      "textAlign": undefined,
-    }
-  }
-/>
+<DocumentFragment>
+  <div
+    class="flexCell"
+    style="min-width: 0; flex-basis: 0px;"
+  />
+</DocumentFragment>
 `;
 
 exports[`FlexCell should be rendered correctly with props 1`] = `
-<div
-  className="flexCell"
-  onClick={[Function]}
-  style={
-    Object {
-      "alignSelf": "center",
-      "flexBasis": "100%",
-      "flexGrow": 1,
-      "flexShrink": 1,
-      "minWidth": "120px",
-      "textAlign": "left",
-    }
-  }
-/>
+<DocumentFragment>
+  <div
+    class="flexCell"
+    style="min-width: 120px; flex-grow: 1; flex-shrink: 1; flex-basis: 100%; text-align: left; align-self: center;"
+  />
+</DocumentFragment>
 `;

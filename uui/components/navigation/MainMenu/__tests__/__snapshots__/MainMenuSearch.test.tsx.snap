@@ -1,55 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuSearch should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box -clickable searchInput"
-  onFocus={[Function]}
-  tabIndex={-1}
->
+<DocumentFragment>
   <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+    class="container uui-input-box -clickable searchInput"
+    tabindex="-1"
   >
-    <svg
-      className=""
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <input
+      class="uui-input"
+      tabindex="0"
+      type="text"
+      value=""
     />
   </div>
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
-    type="text"
-    value=""
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`MainMenuSearch should be rendered correctly 2`] = `
-<div
-  className="container uui-input-box -clickable searchInput"
-  onFocus={[Function]}
-  tabIndex={-1}
->
+<DocumentFragment>
   <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+    class="container uui-input-box -clickable searchInput"
+    tabindex="-1"
   >
-    <svg
-      className=""
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <input
+      class="uui-input"
+      tabindex="0"
+      type="primary"
+      value="test"
     />
   </div>
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
-    type="primary"
-    value="test"
-  />
-</div>
+</DocumentFragment>
 `;

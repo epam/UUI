@@ -1,94 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PresetsPanel should render with minimum props 1`] = `
-<div
-  className="flexCell"
-  style={
-    Object {
-      "alignSelf": undefined,
-      "flexBasis": "0",
-      "flexGrow": 1,
-      "flexShrink": undefined,
-      "minWidth": "310px",
-      "textAlign": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="root uui-flex-row presetsWrapper columnGap"
-    style={
-      Object {
-        "--uui-flex-row-column-gap": "12px",
-      }
-    }
+    class="flexCell"
+    style="min-width: 310px; flex-grow: 1; flex-basis: 0px;"
   >
     <div
-      className="mainWrapper"
+      class="root uui-flex-row presetsWrapper columnGap"
+      style="--uui-flex-row-column-gap: 12px;"
     >
       <div
-        className="itemsWrapper"
-        style={
-          Object {
-            "columnGap": undefined,
-          }
-        }
+        class="mainWrapper"
       >
         <div
-          className="root uui-flex-row uui-size-36"
-          style={Object {}}
+          class="itemsWrapper"
         >
           <div
-            className="divider"
-          />
-          <button
-            aria-expanded={false}
-            aria-haspopup={true}
-            className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-secondary uui-size-36 uui-presets-panel-more-button"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
+            class="addPresetContainer"
           >
-            <div
-              className="uui-caption"
+            <button
+              class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-presets-panel-add-button"
+              tabindex="0"
+              type="button"
             >
-               more
-            </div>
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-          </button>
-        </div>
-        <div
-          className="addPresetContainer"
-        >
-          <button
-            className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-ghost uui-color-primary uui-size-36 uui-presets-panel-add-button"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
-          >
-            <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
-            >
-              <svg
-                className=""
-              />
-            </div>
-            <div
-              className="uui-caption"
-            >
-              Add Preset
-            </div>
-          </button>
+              <div
+                class="container uui-icon uui-enabled"
+              >
+                <svg
+                  class=""
+                />
+              </div>
+              <div
+                class="uui-caption"
+              >
+                Add Preset
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { useContext, useImperativeHandle, useMemo, useRef, type JSX } from 'react';
 import { Middleware, offset } from '@floating-ui/react';
 import {
     DropdownBodyProps, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,

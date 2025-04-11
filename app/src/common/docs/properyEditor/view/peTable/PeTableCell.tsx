@@ -11,7 +11,7 @@ import { ReactComponent as InfoIcon } from '@epam/assets/icons/common/notificati
 interface IPeTableCellProps<TProps> extends IPropDocEditor<TProps[keyof TProps]> {
     prop: PropDoc<TProps, keyof TProps>;
 }
-export function PeTableCell<TProps>(props: IPeTableCellProps<TProps>): React.ReactElement {
+export function PeTableCell<TProps>(props: IPeTableCellProps<TProps>): React.ReactElement<any> {
     const { name, value, onValueChange, exampleId, onExampleIdChange, examples } = props;
     const { editorType, description } = props.prop;
 

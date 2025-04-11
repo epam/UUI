@@ -1,21 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PresetActionsDropdown should render correctly 1`] = `
-<button
-  className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
-  onClick={[Function]}
-  tabIndex={0}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
+    tabindex="0"
+    type="button"
   >
-    <svg
-      className=""
-      height="18"
-      width="18"
-    />
-  </div>
-</button>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+        height="18"
+        width="18"
+      />
+    </div>
+  </button>
+</DocumentFragment>
 `;

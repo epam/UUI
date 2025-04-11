@@ -1,40 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButton should be rendered correctly 1`] = `
-<button
-  className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root"
-  tabIndex={-1}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  />
-</button>
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root"
+    tabindex="-1"
+    type="button"
+  >
+    <div
+      class="container uui-icon uui-enabled"
+    />
+  </button>
+</DocumentFragment>
 `;
 
 exports[`IconButton should be rendered correctly with props 1`] = `
-<button
-  aria-disabled={true}
-  className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root"
-  tabIndex={-1}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+<DocumentFragment>
+  <button
+    aria-disabled="true"
+    class="uui-button-box uui-disabled container uui-icon_button uui-color-primary root"
+    tabindex="-1"
+    type="button"
   >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className="flipY"
-    />
-  </div>
-</button>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class="flipY"
+      />
+    </div>
+  </button>
+</DocumentFragment>
 `;

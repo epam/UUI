@@ -31,7 +31,7 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const [isHovered, setIsHovered] = React.useState(false);
     const sliderHandleRef = React.useRef<HTMLDivElement | null>(null);
     const arrowRef = React.useRef<HTMLDivElement | null>(null);
-    const updateTimeoutRef = React.useRef<number>();
+    const updateTimeoutRef = React.useRef<number>(null);
 
     const { refs, floatingStyles } = useFloating({
         placement: 'top',

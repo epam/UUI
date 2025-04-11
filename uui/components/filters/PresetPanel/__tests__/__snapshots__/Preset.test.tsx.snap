@@ -1,101 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Preset renders correctly when not in rename mode and active 1`] = `
-<div
-  className="flexCell"
-  style={
-    Object {
-      "alignSelf": "center",
-      "flexBasis": "auto",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": 0,
-      "textAlign": undefined,
-    }
-  }
->
-  <span
-    className="uui-button-box uui-enabled uui-active root uui-tab-button uui-size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
-    role="tab"
-    tabIndex={-1}
+<DocumentFragment>
+  <div
+    class="flexCell"
+    style="min-width: 0; flex-basis: auto; align-self: center;"
   >
-    <div
-      className="uui-caption"
+    <span
+      class="uui-button-box uui-enabled uui-active root uui-tab-button uui-size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
+      role="tab"
+      tabindex="-1"
     >
-      Test Preset
-    </div>
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+      <div
+        class="uui-caption"
       >
-        <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+        Test Preset
+      </div>
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            className=""
-            height="18"
-            width="18"
-          />
-        </div>
-      </button>
-    </div>
-  </span>
-</div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+              height="18"
+              width="18"
+            />
+          </div>
+        </button>
+      </div>
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`Preset renders correctly when not in rename mode and not active 1`] = `
-<div
-  className="flexCell"
-  style={
-    Object {
-      "alignSelf": "center",
-      "flexBasis": "auto",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": 0,
-      "textAlign": undefined,
-    }
-  }
->
-  <span
-    className="uui-button-box uui-enabled uui-active root uui-tab-button uui-size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
-    role="tab"
-    tabIndex={-1}
+<DocumentFragment>
+  <div
+    class="flexCell"
+    style="min-width: 0; flex-basis: auto; align-self: center;"
   >
-    <div
-      className="uui-caption"
+    <span
+      class="uui-button-box uui-enabled uui-active root uui-tab-button uui-size-60 uui-no-left-icon uui-has-right-icon preset activePreset uui-presets-panel-preset"
+      role="tab"
+      tabindex="-1"
     >
-      Test Preset
-    </div>
-    <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+      <div
+        class="uui-caption"
       >
-        <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+        Test Preset
+      </div>
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-primary root tabButton"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            className=""
-            height="18"
-            width="18"
-          />
-        </div>
-      </button>
-    </div>
-  </span>
-</div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+              height="18"
+              width="18"
+            />
+          </div>
+        </button>
+      </div>
+    </span>
+  </div>
+</DocumentFragment>
 `;

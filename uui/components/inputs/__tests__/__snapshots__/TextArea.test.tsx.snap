@@ -1,38 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextArea should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box root uui-textarea uui-size-36 uui-control-mode-form"
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <textarea
-    className="-clickable noAutoSize uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    tabIndex={0}
-    value=""
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="container uui-input-box root uui-textarea uui-size-36 uui-control-mode-form"
+    tabindex="-1"
+  >
+    <textarea
+      class="-clickable noAutoSize uui-input"
+      tabindex="0"
+    />
+  </div>
+</DocumentFragment>
 `;
 
-exports[`TextArea should be rendered correctly 2`] = `
-<div
-  className="container uui-input-box root uui-textarea uui-size-36 uui-control-mode-inline"
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <textarea
-    className="-clickable noAutoSize uui-input"
-    maxLength={200}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    placeholder="Type here"
-    rows={4}
-    tabIndex={0}
-    value=""
-  />
-</div>
+exports[`TextArea should be rendered with props correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container uui-input-box root uui-textarea uui-size-36 uui-control-mode-inline"
+    tabindex="-1"
+  >
+    <textarea
+      class="-clickable noAutoSize uui-input"
+      maxlength="200"
+      placeholder="Type here"
+      rows="4"
+      tabindex="0"
+    />
+  </div>
+</DocumentFragment>
 `;

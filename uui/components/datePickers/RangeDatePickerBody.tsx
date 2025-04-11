@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, type JSX } from 'react';
 import cx from 'classnames';
 import type { IControlled, RangeDatePickerPresets } from '@epam/uui-core';
 import type { DayProps } from '@epam/uui-components';

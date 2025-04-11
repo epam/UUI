@@ -1,81 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PickerToggler should render with maximum props 1`] = `
-<div
-  className="container uui-input-box -clickable uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
+<DocumentFragment>
   <div
-    className="body uui-picker_toggler-multiline"
-  >
-    <span
-      className="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
-      role="option"
-      tabIndex={-1}
-    >
-      <div
-        className="uui-caption"
-      >
-        test
-      </div>
-      <div
-        className="container uui-icon uui-enabled -clickable -clickable"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-    </span>
-  </div>
-  <div
-    className="uui-picker_toggler-actions"
+    class="container uui-input-box -clickable uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
+    tabindex="0"
   >
     <div
-      aria-label="Clear"
-      className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-      onClick={[Function]}
-      role="button"
-      style={Object {}}
-      tabIndex={-1}
+      class="body uui-picker_toggler-multiline"
     >
-      <svg
-        className=""
-      />
+      <span
+        class="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+        role="option"
+        tabindex="-1"
+      >
+        <div
+          class="uui-caption"
+        >
+          test
+        </div>
+        <div
+          class="container uui-icon uui-enabled -clickable -clickable"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </span>
+    </div>
+    <div
+      class="uui-picker_toggler-actions"
+    >
+      <div
+        aria-label="Clear"
+        class="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+        role="button"
+        tabindex="-1"
+      >
+        <svg
+          class=""
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`PickerToggler should render with minimum props 1`] = `
-<div
-  className="container uui-input-box root uui-picker_toggler uui-size-36 uui-control-mode-form"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  tabIndex={0}
->
+<DocumentFragment>
   <div
-    className="body"
+    class="container uui-input-box root uui-picker_toggler uui-size-36 uui-control-mode-form"
+    tabindex="0"
   >
-    <input
-      aria-haspopup={true}
-      autoComplete="no"
-      className="uui-input singleInput"
-      dir="auto"
-      onChange={[Function]}
-      tabIndex={-1}
-      type="text"
-      value=""
+    <div
+      class="body"
+    >
+      <input
+        aria-haspopup="true"
+        autocomplete="no"
+        class="uui-input singleInput"
+        dir="auto"
+        tabindex="-1"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      class="uui-picker_toggler-actions"
     />
   </div>
-  <div
-    className="uui-picker_toggler-actions"
-  />
-</div>
+</DocumentFragment>
 `;
