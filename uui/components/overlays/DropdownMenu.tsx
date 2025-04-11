@@ -1,4 +1,5 @@
 import React, { useRef, useContext, useState } from 'react';
+import { offset } from '@floating-ui/react';
 import {
     cx,
     withMods,
@@ -20,7 +21,8 @@ import {
     uuiMarkers,
     isEventTargetInsideClickable,
 } from '@epam/uui-core';
-import { Text, Anchor, IconContainer, Dropdown, FlexSpacer, DropdownContainerProps } from '@epam/uui-components';
+import { Text, Anchor, IconContainer, Dropdown, FlexSpacer } from '@epam/uui-components';
+import type { DropdownContainerProps } from '@epam/uui-components';
 import { DropdownContainer } from './DropdownContainer';
 import { Switch } from '../inputs/Switch';
 import { IconButton } from '../buttons';
@@ -214,22 +216,17 @@ interface IDropdownSubMenu extends IHasChildren, IHasCaption, IHasIcon, IDropdow
 }
 
 export function DropdownSubMenu(props: IDropdownSubMenu) {
-    const subMenuModifiers: DropdownProps['modifiers'] = [
-        {
-            name: 'offset',
-            options: {
-                offset: ({ placement }) => {
-                    if (
-                        placement === 'right-start'
-                        || placement === 'left-start'
-                    ) {
-                        return [-6, 0];
-                    } else {
-                        return [6, 0];
-                    }
-                },
-            },
-        },
+    const subMenuMiddleware: DropdownProps['middleware'] = [
+        offset(({ placement }) => {
+            if (
+                placement === 'right-start'
+                || placement === 'left-start'
+            ) {
+                return -6;
+            } else {
+                return 6;
+            }
+        }),
     ];
 
     const isRtl = getDir() === 'rtl';
@@ -241,7 +238,7 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
             openDelay={ 400 }
             closeDelay={ 400 }
             placement={ isRtl ? 'left-start' : 'right-start' }
-            modifiers={ subMenuModifiers }
+            middleware={ subMenuMiddleware }
             renderBody={ (dropdownProps) => !props.isDisabled && (<DropdownMenuBody closeOnKey={ IDropdownControlKeys.LEFT_ARROW } { ...props } { ...dropdownProps } />) }
             renderTarget={ ({ toggleDropdownOpening, ...targetProps }) => (
                 <DropdownMenuButton

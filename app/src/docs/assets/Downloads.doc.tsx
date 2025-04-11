@@ -71,7 +71,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                     <IconContainer icon={ image } />
                     <FlexCell width="auto">
                         { title === 'UUI Illustrations' ? (
-                            <Tooltip content="For internal use only" offset={ [0, 10] }>
+                            <Tooltip content="For internal use only" offset={ 10 }>
                                 <LinkButton href={ link } size="24" target="_blank" cx={ css.libraryLinkTitle } caption={ title } iconPosition="right" icon={ LockIcon } />
                             </Tooltip>
                         ) : (
@@ -123,7 +123,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                     <Text size="24" fontSize="16" fontWeight="600">
                                         Font Pack
                                     </Text>
-                                    <Tooltip content="For internal use only" offset={ [0, 10] }>
+                                    <Tooltip content="For internal use only" offset={ 10 }>
                                         <LinkButton
                                             iconPosition="right"
                                             icon={ LockIcon }
@@ -184,7 +184,7 @@ export class DownloadsDoc extends BaseDocsBlock {
                                         UUI Illustrations (SVG pack & Guidelines)
                                     </Text>
                                     <FlexRow>
-                                        <Tooltip content="For internal use only" offset={ [0, 10] }>
+                                        <Tooltip content="For internal use only" offset={ 10 }>
                                             <LinkButton
                                                 iconPosition="right"
                                                 icon={ LockIcon }

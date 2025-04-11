@@ -30,6 +30,7 @@
     "@epam/uui-docs": "5.13.3-beta.18",
     "@epam/uui-editor": "5.13.3-beta.18",
     "@epam/uui-timeline": "5.13.3-beta.18",
+    "@floating-ui/react": "0.27.5",
     "@tanstack/react-query": "^5.17.19",
     "@udecode/plate-common": "31.3.2",
     "amplitude-js": "8.9.1",

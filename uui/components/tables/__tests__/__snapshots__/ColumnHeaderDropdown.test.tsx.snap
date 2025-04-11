@@ -31,6 +31,9 @@ Array [
     role="dialog"
     style={
       Object {
+        "left": 0,
+        "position": "fixed",
+        "top": 0,
         "zIndex": undefined,
       }
     }

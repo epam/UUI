@@ -62,7 +62,7 @@ export function IntroBlock() {
             .show(
                 (props: INotification) => (
                     <SuccessNotification { ...props }>
-                        <Text size="36" fontSize="14">
+                        <Text fontSize="14">
                             { text }
                         </Text>
                     </SuccessNotification>

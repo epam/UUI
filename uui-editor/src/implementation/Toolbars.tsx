@@ -51,7 +51,7 @@ export function Toolbars({
     return (
         <Fragment>
             { toolbarPosition === 'floating' && (
-                <FloatingToolbar isImage={ false } editor={ editorRef }>
+                <FloatingToolbar placement="top" isImage={ false } editor={ editorRef }>
                     { floating }
                 </FloatingToolbar>
             ) }
