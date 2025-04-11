@@ -7,7 +7,7 @@ export default function CanvasDropdownExample() {
     const [isHovering, setIsHovering] = useState(false);
     const [canvasPoint, setCanvasPoint] = useState({ x: 150, y: 100 });
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const requestRef = useRef<number>();
+    const requestRef = useRef<number>(0);
     const lastUpdateRef = useRef<number>(0);
 
     // Virtual element positioned at the current mouse point on canvas

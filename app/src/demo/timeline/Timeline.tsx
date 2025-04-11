@@ -17,8 +17,8 @@ export class Timeline extends React.Component {
     timeline: any = null;
     timelineController = new TimelineController({ center: new Date(2018, 7, 15), pxPerMs: 32 / msPerDay, widthPx: 0 });
     dataRows: Row[] = [];
-    constructor(props: {}, context: {}) {
-        super(props, context);
+    constructor(props: {}) {
+        super(props);
         svc.api.demo.schedules().then((employees) => {
             const rows = employees.map((employee) => ({ items: employee.events }));
             this.dataRows = rows.map((employee) => {

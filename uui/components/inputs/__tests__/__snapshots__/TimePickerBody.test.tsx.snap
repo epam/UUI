@@ -1,365 +1,299 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TimePickerBody should be rendered with maximum props 1`] = `
-<div
-  className="root uui-timepicker-container"
->
+<DocumentFragment>
   <div
-    className="ltrAlways"
+    class="root uui-timepicker-container"
   >
     <div
-      className="uui-timepicker-item"
+      class="ltrAlways"
     >
       <div
-        aria-label="Increment hours"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
-        onClick={[Function]}
-        style={Object {}}
+        class="uui-timepicker-item"
       >
-        <svg
-          className=""
-          height={18}
-          width={18}
-        />
-      </div>
-      <div
-        className="container uui-input-box -clickable uui-timepicker-input"
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={-1}
-      >
-        <input
-          className="uui-input uui-value-in-placeholder"
-          inputMode="numeric"
-          max={12}
-          min={1}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          placeholder="12"
-          tabIndex={0}
-          type="number"
-          value=""
-        />
         <div
-          className="uui-numeric-input-button-group"
+          aria-label="Increment hours"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
         >
-          <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+          <svg
+            class=""
+            height="18"
+            width="18"
+          />
+        </div>
+        <div
+          class="container uui-input-box -clickable uui-timepicker-input"
+          tabindex="-1"
+        >
+          <input
+            class="uui-input uui-value-in-placeholder"
+            inputmode="numeric"
+            max="12"
+            min="1"
+            placeholder="12"
+            tabindex="0"
+            type="number"
+            value=""
           />
           <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+            class="uui-numeric-input-button-group"
+          >
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+              role="button"
+            />
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+              role="button"
+            />
+          </div>
+        </div>
+        <div
+          aria-label="Decrement hours"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+        >
+          <svg
+            class=""
+            height="18"
+            width="18"
           />
         </div>
       </div>
       <div
-        aria-label="Decrement hours"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
-        onClick={[Function]}
-        style={Object {}}
+        class="uui-timepicker-item"
       >
-        <svg
-          className=""
-          height={18}
-          width={18}
-        />
-      </div>
-    </div>
-    <div
-      className="uui-timepicker-item"
-    >
-      <div
-        aria-label="Increment minutes"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={18}
-          width={18}
-        />
-      </div>
-      <div
-        className="container uui-input-box -clickable uui-timepicker-input"
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={-1}
-      >
-        <input
-          className="uui-input uui-value-in-placeholder"
-          inputMode="numeric"
-          max={59}
-          min={0}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          placeholder="30"
-          tabIndex={0}
-          type="number"
-          value=""
-        />
         <div
-          className="uui-numeric-input-button-group"
+          aria-label="Increment minutes"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
         >
-          <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+          <svg
+            class=""
+            height="18"
+            width="18"
+          />
+        </div>
+        <div
+          class="container uui-input-box -clickable uui-timepicker-input"
+          tabindex="-1"
+        >
+          <input
+            class="uui-input uui-value-in-placeholder"
+            inputmode="numeric"
+            max="59"
+            min="0"
+            placeholder="30"
+            tabindex="0"
+            type="number"
+            value=""
           />
           <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+            class="uui-numeric-input-button-group"
+          >
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+              role="button"
+            />
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+              role="button"
+            />
+          </div>
+        </div>
+        <div
+          aria-label="Decrement minutes"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+        >
+          <svg
+            class=""
+            height="18"
+            width="18"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="uui-timepicker-item"
+    >
       <div
-        aria-label="Decrement minutes"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
-        onClick={[Function]}
-        style={Object {}}
+        class="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       >
         <svg
-          className=""
-          height={18}
-          width={18}
+          class=""
+          height="18"
+          width="18"
+        />
+      </div>
+      <div
+        class="container uui-input-box uui-readonly uui-timepicker-input"
+        tabindex="-1"
+      >
+        <input
+          class="uui-input"
+          readonly=""
+          tabindex="-1"
+          type="text"
+          value="PM"
+        />
+      </div>
+      <div
+        class="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      >
+        <svg
+          class=""
+          height="18"
+          width="18"
         />
       </div>
     </div>
   </div>
-  <div
-    className="uui-timepicker-item"
-  >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={18}
-        width={18}
-      />
-    </div>
-    <div
-      className="container uui-input-box uui-readonly uui-timepicker-input"
-      onFocus={[Function]}
-      tabIndex={-1}
-    >
-      <input
-        className="uui-input"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        readOnly={true}
-        tabIndex={-1}
-        type="text"
-        value="PM"
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={18}
-        width={18}
-      />
-    </div>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`TimePickerBody should be rendered with minimum props 1`] = `
-<div
-  className="root uui-timepicker-container"
->
+<DocumentFragment>
   <div
-    className="ltrAlways"
+    class="root uui-timepicker-container"
   >
     <div
-      className="uui-timepicker-item"
+      class="ltrAlways"
     >
       <div
-        aria-label="Increment hours"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
-        onClick={[Function]}
-        style={Object {}}
+        class="uui-timepicker-item"
       >
-        <svg
-          className=""
-          height={18}
-          width={18}
-        />
-      </div>
-      <div
-        className="container uui-input-box -clickable uui-timepicker-input"
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={-1}
-      >
-        <input
-          className="uui-input uui-value-in-placeholder"
-          inputMode="numeric"
-          max={12}
-          min={0}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          placeholder="12"
-          tabIndex={0}
-          type="number"
-          value=""
-        />
         <div
-          className="uui-numeric-input-button-group"
+          aria-label="Increment hours"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
         >
-          <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+          <svg
+            class=""
+            height="18"
+            width="18"
+          />
+        </div>
+        <div
+          class="container uui-input-box -clickable uui-timepicker-input"
+          tabindex="-1"
+        >
+          <input
+            class="uui-input uui-value-in-placeholder"
+            inputmode="numeric"
+            max="12"
+            min="0"
+            placeholder="12"
+            tabindex="0"
+            type="number"
+            value=""
           />
           <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+            class="uui-numeric-input-button-group"
+          >
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+              role="button"
+            />
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+              role="button"
+            />
+          </div>
+        </div>
+        <div
+          aria-label="Decrement hours"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+        >
+          <svg
+            class=""
+            height="18"
+            width="18"
           />
         </div>
       </div>
       <div
-        aria-label="Decrement hours"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
-        onClick={[Function]}
-        style={Object {}}
+        class="uui-timepicker-item"
       >
-        <svg
-          className=""
-          height={18}
-          width={18}
-        />
-      </div>
-    </div>
-    <div
-      className="uui-timepicker-item"
-    >
-      <div
-        aria-label="Increment minutes"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={18}
-          width={18}
-        />
-      </div>
-      <div
-        className="container uui-input-box -clickable uui-timepicker-input"
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        tabIndex={-1}
-      >
-        <input
-          className="uui-input uui-value-in-placeholder"
-          inputMode="numeric"
-          max={59}
-          min={0}
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          placeholder="30"
-          tabIndex={0}
-          type="number"
-          value=""
-        />
         <div
-          className="uui-numeric-input-button-group"
+          aria-label="Increment minutes"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
         >
-          <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+          <svg
+            class=""
+            height="18"
+            width="18"
+          />
+        </div>
+        <div
+          class="container uui-input-box -clickable uui-timepicker-input"
+          tabindex="-1"
+        >
+          <input
+            class="uui-input uui-value-in-placeholder"
+            inputmode="numeric"
+            max="59"
+            min="0"
+            placeholder="30"
+            tabindex="0"
+            type="number"
+            value=""
           />
           <div
-            className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-            onClick={[Function]}
-            role="button"
-            style={Object {}}
+            class="uui-numeric-input-button-group"
+          >
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+              role="button"
+            />
+            <div
+              class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+              role="button"
+            />
+          </div>
+        </div>
+        <div
+          aria-label="Decrement minutes"
+          class="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+        >
+          <svg
+            class=""
+            height="18"
+            width="18"
           />
         </div>
       </div>
+    </div>
+    <div
+      class="uui-timepicker-item"
+    >
       <div
-        aria-label="Decrement minutes"
-        className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
-        onClick={[Function]}
-        style={Object {}}
+        class="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
       >
         <svg
-          className=""
-          height={18}
-          width={18}
+          class=""
+          height="18"
+          width="18"
+        />
+      </div>
+      <div
+        class="container uui-input-box uui-readonly uui-timepicker-input"
+        tabindex="-1"
+      >
+        <input
+          class="uui-input"
+          readonly=""
+          tabindex="-1"
+          type="text"
+          value="PM"
+        />
+      </div>
+      <div
+        class="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
+      >
+        <svg
+          class=""
+          height="18"
+          width="18"
         />
       </div>
     </div>
   </div>
-  <div
-    className="uui-timepicker-item"
-  >
-    <div
-      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-up"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={18}
-        width={18}
-      />
-    </div>
-    <div
-      className="container uui-input-box uui-readonly uui-timepicker-input"
-      onFocus={[Function]}
-      tabIndex={-1}
-    >
-      <input
-        className="uui-input"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        readOnly={true}
-        tabIndex={-1}
-        type="text"
-        value="PM"
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-timepicker-icon-down"
-      onClick={[Function]}
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={18}
-        width={18}
-      />
-    </div>
-  </div>
-</div>
+</DocumentFragment>
 `;

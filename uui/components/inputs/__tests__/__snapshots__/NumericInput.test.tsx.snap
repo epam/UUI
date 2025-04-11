@@ -1,95 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NumericInput snapshots should be rendered with maximum props 1`] = `
-<div
-  className="container uui-input-box -clickable root root uui-size-36 uui-control-mode-inline"
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={-1}
->
-  <input
-    className="uui-input align-left"
-    inputMode="numeric"
-    max={50}
-    min={0}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    placeholder="0"
-    tabIndex={0}
-    type="number"
-    value=""
-  />
+<DocumentFragment>
   <div
-    className="uui-numeric-input-button-group"
+    class="container uui-input-box -clickable root root uui-size-36 uui-control-mode-inline"
+    tabindex="-1"
   >
+    <input
+      class="uui-input align-left"
+      inputmode="numeric"
+      max="50"
+      min="0"
+      placeholder="0"
+      tabindex="0"
+      type="number"
+      value=""
+    />
     <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-      onClick={[Function]}
-      role="button"
-      style={Object {}}
+      class="uui-numeric-input-button-group"
     >
-      <svg
-        className=""
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-      onClick={[Function]}
-      role="button"
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
+      <div
+        class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+        role="button"
+      >
+        <svg
+          class=""
+        />
+      </div>
+      <div
+        class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+        role="button"
+      >
+        <svg
+          class=""
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`NumericInput snapshots should be rendered with minimum props 1`] = `
-<div
-  className="container uui-input-box -clickable root root uui-size-36 uui-control-mode-form"
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={-1}
->
-  <input
-    className="uui-input align-left"
-    inputMode="numeric"
-    max={50}
-    min={0}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    placeholder="0"
-    tabIndex={0}
-    type="number"
-    value=""
-  />
+<DocumentFragment>
   <div
-    className="uui-numeric-input-button-group"
+    class="container uui-input-box -clickable root root uui-size-36 uui-control-mode-form"
+    tabindex="-1"
   >
+    <input
+      class="uui-input align-left"
+      inputmode="numeric"
+      max="50"
+      min="0"
+      placeholder="0"
+      tabindex="0"
+      type="number"
+      value=""
+    />
     <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
-      onClick={[Function]}
-      role="button"
-      style={Object {}}
+      class="uui-numeric-input-button-group"
     >
-      <svg
-        className=""
-      />
-    </div>
-    <div
-      className="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
-      onClick={[Function]}
-      role="button"
-      style={Object {}}
-    >
-      <svg
-        className=""
-      />
+      <div
+        class="container uui-icon uui-enabled -clickable uui-numeric-input-up-button"
+        role="button"
+      >
+        <svg
+          class=""
+        />
+      </div>
+      <div
+        class="container uui-icon uui-enabled -clickable uui-numeric-input-down-button"
+        role="button"
+      >
+        <svg
+          class=""
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

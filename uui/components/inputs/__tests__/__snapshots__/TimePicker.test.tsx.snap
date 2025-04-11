@@ -1,66 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TimePicker should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form root timepickerInput"
-  onClick={null}
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder="hh:mm A"
-    tabIndex={0}
-    type="text"
-    value=""
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form root timepickerInput"
+    tabindex="-1"
+  >
+    <input
+      class="uui-input"
+      placeholder="hh:mm A"
+      tabindex="0"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TimePicker should be rendered correctly with disableClear property 1`] = `
-<div
-  className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form root timepickerInput"
-  onClick={null}
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder="HH:mm"
-    tabIndex={0}
-    type="text"
-    value="01:05"
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form root timepickerInput"
+    tabindex="-1"
+  >
+    <input
+      class="uui-input"
+      placeholder="HH:mm"
+      tabindex="0"
+      type="text"
+      value="01:05"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TimePicker should be rendered correctly with full props 1`] = `
-<div
-  className="container uui-input-box uui-disabled root uui-size-36 uui-control-mode-form root timepickerInput"
-  onClick={null}
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <input
-    aria-disabled={true}
-    className="uui-input"
-    disabled={true}
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    placeholder="HH:mm"
-    tabIndex={-1}
-    type="text"
-    value="01:05"
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="container uui-input-box uui-disabled root uui-size-36 uui-control-mode-form root timepickerInput"
+    tabindex="-1"
+  >
+    <input
+      aria-disabled="true"
+      class="uui-input"
+      disabled=""
+      placeholder="HH:mm"
+      tabindex="-1"
+      type="text"
+      value="01:05"
+    />
+  </div>
+</DocumentFragment>
 `;

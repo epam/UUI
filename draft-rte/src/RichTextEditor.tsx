@@ -9,6 +9,7 @@ import { ToolbarButton } from './types';
 import * as I from 'immutable';
 import cx from 'classnames';
 import { draftToMarkdown, markdownToDraft } from 'markdown-draft-js';
+import { JSX } from 'react'
 
 export type RichTextEditorBindingProps = (RawRichTextEditorProps | HtmlRichTextEditorProps | MarkdownRichTextEditorProps);
 export type HtmlRichTextEditorProps = { valueType: 'html' } & IEditable<string>;
@@ -156,27 +157,32 @@ export class RichTextEditor extends React.Component<RichTextEditorProps> {
 
     // Overridable method to add stuff to the editor window
     protected renderEditor() {
-        return <Editor
-            editorState={ this.editorState }
-            onChange={ this.handleChange }
-            placeholder={ this.currentValue === '' && this.props.placeholder }
-            readOnly={ this.props.isReadonly }
-            ref={ (editor) => this.editor = editor }
-            handleKeyCommand={ this.handleKeyCommand }
-            // customStyleMap={ this.getColorStyleMap(defaultTextColors) }
-            blockRendererFn={ this.imageBlockRenderer }
-            blockRenderMap={ extendedBlockRenderMap as any }
-            onTab={ (event: React.KeyboardEvent<any>) => {
-                const newEditorState = RichUtils.onTab(
-                    event,
-                    this.editorState,
-                    2,
-                );
-                if (newEditorState !== this.editorState) {
-                    this.handleChange(newEditorState);
-                }
-            } }
-        />;
+        const EditorComponent = Editor as JSX.ElementType; // hack to not fail with React 19 typings
+        return (
+            <EditorComponent
+                editorState={ this.editorState }
+                onChange={ this.handleChange }
+                placeholder={ this.currentValue === '' && this.props.placeholder }
+                readOnly={ this.props.isReadonly }
+                ref={ (editor: any) => {
+                    this.editor = editor;
+                } }
+                handleKeyCommand={ this.handleKeyCommand }
+                // customStyleMap={ this.getColorStyleMap(defaultTextColors) }
+                blockRendererFn={ this.imageBlockRenderer }
+                blockRenderMap={ extendedBlockRenderMap as any }
+                onTab={ (event: React.KeyboardEvent<any>) => {
+                    const newEditorState = RichUtils.onTab(
+                        event,
+                        this.editorState,
+                        2,
+                    );
+                    if (newEditorState !== this.editorState) {
+                        this.handleChange(newEditorState);
+                    }
+                } }
+            />
+        );
     }
 
     render() {

@@ -1,30 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IndicatorBar should be rendered correctly 1`] = `
-<div
-  className="uui-indeterminate_bar root root size-12"
->
+<DocumentFragment>
   <div
-    className="progressBar"
-  />
-</div>
+    class="uui-indeterminate_bar root root size-12"
+  >
+    <div
+      class="progressBar"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`IndicatorBar should be rendered correctly with props 1`] = `
-<div
-  className="uui-progress_bar root size-12 root container"
->
+<DocumentFragment>
   <div
-    aria-valuemax={100}
-    aria-valuemin={0}
-    aria-valuenow={20}
-    className="bar bar"
-    role="progressbar"
-    style={
-      Object {
-        "width": "20%",
-      }
-    }
-  />
-</div>
+    class="uui-progress_bar root size-12 root container"
+  >
+    <div
+      aria-valuemax="100"
+      aria-valuemin="0"
+      aria-valuenow="20"
+      class="bar bar"
+      role="progressbar"
+      style="width: 20%;"
+    />
+  </div>
+</DocumentFragment>
 `;

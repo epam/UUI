@@ -43,12 +43,16 @@ export class SliderScaleElement extends React.Component<SliderScaleElementProps,
             <>
                 <div
                     className={ cx(uuiSlider.scaleDot, this.props.isFilledDot && uuiSlider.scaleFilledDot) }
-                    ref={ (scaleDotRef) => (this.scaleDot = scaleDotRef) }
+                    ref={ (scaleDotRef) => {
+                        (this.scaleDot = scaleDotRef);
+                    } }
                     style={ { transform: `translateX(${dotOffset}px)` } }
                 />
                 <div
                     className={ uuiSlider.scaleNumber }
-                    ref={ (scaleNumberRef) => (this.scaleNumber = scaleNumberRef) }
+                    ref={ (scaleNumberRef) => {
+                        (this.scaleNumber = scaleNumberRef);
+                    } }
                     style={ { transform: `translateX(${numberOffset}px)` } }
                 >
                     {this.props.label}

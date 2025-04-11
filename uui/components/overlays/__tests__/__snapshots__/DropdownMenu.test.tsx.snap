@@ -1,77 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropdownMenu should be rendered DropdownMenuBody correctly 1`] = `
-<div
-  className="uui-dropdown-body -lock-focus root uui-dropdownMenu-body container"
-  role="menu"
-  style={
-    Object {
-      "maxHeight": undefined,
-      "maxWidth": undefined,
-      "minHeight": undefined,
-      "minWidth": undefined,
-    }
-  }
-  tabIndex={-1}
->
+<DocumentFragment>
   <div
-    className="itemRoot"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="menuitem"
-    tabIndex={0}
+    class="uui-dropdown-body -lock-focus root uui-dropdownMenu-body container"
+    role="menu"
+    tabindex="-1"
   >
     <div
-      className="container"
-    >
-      Menu Item in Submenu
-    </div>
-  </div>
-  <div
-    className="splitterRoot"
-  >
-    <hr
-      className="splitter"
-    />
-  </div>
-  <div
-    className="uui-dropdown-menu-header headerRoot"
-  >
-    <span
-      className="header"
-    >
-      An example of DropdownMenuHeader
-    </span>
-  </div>
-  <div
-    className="submenuRootItem itemRoot"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    role="menuitem"
-    tabIndex={0}
-  >
-    <div
-      className="container"
-    >
-      One More SubMenu
-    </div>
-    <div
-      className="flexSpacer"
-    />
-    <button
-      className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root icon iconAfter"
-      tabIndex={-1}
-      type="button"
+      class="itemRoot"
+      role="menuitem"
+      tabindex="0"
     >
       <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
+        class="container"
       >
-        <svg
-          className=""
-        />
+        Menu Item in Submenu
       </div>
-    </button>
+    </div>
+    <div
+      class="splitterRoot"
+    >
+      <hr
+        class="splitter"
+      />
+    </div>
+    <div
+      class="uui-dropdown-menu-header headerRoot"
+    >
+      <span
+        class="header"
+      >
+        An example of DropdownMenuHeader
+      </span>
+    </div>
+    <div
+      class="submenuRootItem itemRoot"
+      role="menuitem"
+      tabindex="0"
+    >
+      <div
+        class="container"
+      >
+        One More SubMenu
+      </div>
+      <div
+        class="flexSpacer"
+      />
+      <button
+        class="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root icon iconAfter"
+        tabindex="-1"
+        type="button"
+      >
+        <div
+          class="container uui-icon uui-enabled"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

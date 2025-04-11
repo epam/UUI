@@ -40,7 +40,12 @@ export class TextOverflow extends React.Component<TextOverflowProps> {
         return (
             <Tooltip content={ content } placement="top-start" color="white">
                 <div className={ cx(styles.container, this.props.cx) }>
-                    <div ref={ (el) => (this.textContainer = el) } className={ styles.textContainer }>
+                    <div
+                        ref={ (el) => {
+                            (this.textContainer = el);
+                        } }
+                        className={ styles.textContainer }
+                    >
                         {this.props.text}
                     </div>
                 </div>

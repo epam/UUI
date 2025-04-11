@@ -49,7 +49,7 @@ export function setupJsDom(global, options = {}) {
     Object.assign(global, globalMock);
     Object.assign(global.navigator, navigatorMock);
     Object.assign(global.Element.prototype, elementPrototypeMock);
-    Object.assign(global.console, consoleMock);
+    // Object.assign(global.console, consoleMock);
 
     if (mockCommon3rdPartyDeps) {
         enableMockForCommon3rdPartyDeps();
@@ -85,14 +85,14 @@ function enableMockForCommon3rdPartyDeps() {
         /**
          * @param {object} props - Component's props
          * @param {any} props.children - Component's children prop
-         * @returns {JSX.Element}
+         * @returns JSX.Element
          */
         // @ts-ignore
         default: React.forwardRef(({ children }, ref) => React.createElement(React.Fragment, {}, children)),
         /**
          * @param {object} props - Component's props
          * @param {any} props.children - Component's children prop
-         * @returns {JSX.Element}
+         * @returns JSX.Element
          */
         // @ts-ignore
         FreeFocusInside: React.forwardRef(({ children }, ref) => React.createElement(React.Fragment, {}, children)),

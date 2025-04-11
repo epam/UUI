@@ -331,7 +331,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement<any>;
 
     /**
      * Drag'n'drop marker event handlers.
@@ -463,7 +463,7 @@ type CustomFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     /** Type of the filter */
     type: 'custom';
     /** Render callback for filter body */
-    render: (props: IFilterItemBodyProps<any>) => React.ReactElement;
+    render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any>;
     /** A pure function that gets value to display in filter toggler */
     getTogglerValue: (props: IFilterItemBodyProps<any>) => ReactNode;
 };

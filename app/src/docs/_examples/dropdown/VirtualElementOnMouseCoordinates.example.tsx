@@ -6,7 +6,7 @@ export default function VirtualElementDropdownExample() {
     const [isOpen, setIsOpen] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const latestMousePos = useRef({ x: 0, y: 0 });
-    const animationFrameRef = useRef<number>();
+    const animationFrameRef = useRef<number>(null);
 
     // Create a virtual element that positions the dropdown at mouse coordinates
     const virtualElement = useMemo<VirtualElement>(() => ({

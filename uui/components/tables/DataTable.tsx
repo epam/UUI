@@ -81,7 +81,7 @@ export interface DataTableProps<TItem, TId> extends React.PropsWithChildren<Data
 
 export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
     const { uuiModals } = useUuiContext();
-    const headerRef = React.useRef<HTMLDivElement>();
+    const headerRef = React.useRef<HTMLDivElement>(undefined);
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 

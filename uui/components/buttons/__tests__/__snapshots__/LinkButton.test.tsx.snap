@@ -1,36 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LinkButton should be rendered correctly 1`] = `
-<button
-  className="uui-button-box uui-enabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
-  tabIndex={-1}
-  type="button"
-/>
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+    tabindex="-1"
+    type="button"
+  />
+</DocumentFragment>
 `;
 
 exports[`LinkButton should be rendered correctly with props 1`] = `
-<button
-  aria-disabled={false}
-  className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-has-left-icon uui-has-right-icon uui-color-primary"
-  onClick={[Function]}
-  tabIndex={0}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+<DocumentFragment>
+  <button
+    aria-disabled="false"
+    class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-30 uui-has-left-icon uui-has-right-icon uui-color-primary"
+    tabindex="0"
+    type="button"
   >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-</button>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </button>
+</DocumentFragment>
 `;

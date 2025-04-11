@@ -94,8 +94,8 @@ const bottomExploreBlocks: IExploreBottomBlockItem[] = [
 ];
 
 export function ExploreBenefitsBlock() {
-    const topBlockRefs: React.RefObject<HTMLDivElement>[] = topExploreBlocks.map(() => React.createRef());
-    const bottomBlockRefs: React.RefObject<HTMLDivElement>[] = bottomExploreBlocks.map(() => React.createRef());
+    const topBlockRefs: React.RefObject<HTMLDivElement | null>[] = topExploreBlocks.map(() => React.createRef());
+    const bottomBlockRefs: React.RefObject<HTMLDivElement | null>[] = bottomExploreBlocks.map(() => React.createRef());
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {

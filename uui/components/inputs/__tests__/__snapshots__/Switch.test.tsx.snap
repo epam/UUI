@@ -1,52 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch should be rendered correctly 1`] = `
-<label
-  className="uui-switch container root uui-size-18 uui-color-primary -clickable"
->
-  <div
-    className="uui-switch-body"
+<DocumentFragment>
+  <label
+    class="uui-switch container root uui-size-18 uui-color-primary -clickable"
   >
-    <input
-      aria-checked={false}
-      checked={false}
-      onChange={[Function]}
-      role="switch"
-      type="checkbox"
-    />
     <div
-      className="uui-switch-toggler"
-    />
-  </div>
-</label>
+      class="uui-switch-body"
+    >
+      <input
+        aria-checked="false"
+        role="switch"
+        type="checkbox"
+      />
+      <div
+        class="uui-switch-toggler"
+      />
+    </div>
+  </label>
+</DocumentFragment>
 `;
 
 exports[`Switch should be rendered correctly with maximum props 1`] = `
-<label
-  className="uui-switch container root uui-size-18 uui-color-primary uui-disabled uui-readonly"
->
-  <div
-    className="uui-switch-body"
+<DocumentFragment>
+  <label
+    class="uui-switch container root uui-size-18 uui-color-primary uui-disabled uui-readonly"
   >
-    <input
-      aria-checked={false}
-      aria-disabled={true}
-      aria-readonly={true}
-      checked={false}
-      disabled={true}
-      readOnly={true}
-      required={true}
-      role="switch"
-      type="checkbox"
-    />
     <div
-      className="uui-switch-toggler"
-    />
-  </div>
-  <div
-    className="uui-input-label"
-  >
-    Open
-  </div>
-</label>
+      class="uui-switch-body"
+    >
+      <input
+        aria-checked="false"
+        aria-disabled="true"
+        aria-readonly="true"
+        disabled=""
+        readonly=""
+        required=""
+        role="switch"
+        type="checkbox"
+      />
+      <div
+        class="uui-switch-toggler"
+      />
+    </div>
+    <div
+      class="uui-input-label"
+    >
+      Open
+    </div>
+  </label>
+</DocumentFragment>
 `;

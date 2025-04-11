@@ -5,6 +5,8 @@ import {
 } from '@epam/uui-core';
 import { uuiDaySelection } from './calendarConstants';
 
+import type { JSX } from 'react';
+
 /**
  * Represents the properties of the Day component
  */

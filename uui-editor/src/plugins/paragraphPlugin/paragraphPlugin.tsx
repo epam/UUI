@@ -3,6 +3,8 @@ import { ELEMENT_DEFAULT, PlatePlugin } from '@udecode/plate-common';
 import { createParagraphPlugin } from '@udecode/plate-paragraph';
 import { PARAGRAPH_TYPE } from './constants';
 
+import type { JSX } from 'react';
+
 export const paragraphPlugin = (): PlatePlugin => {
     return createParagraphPlugin({
         type: PARAGRAPH_TYPE,

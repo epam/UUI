@@ -60,9 +60,9 @@ describe('TextInput', () => {
         await setupTextInput({ value: '', onValueChange: handleChange, onFocus: handleFocus });
         const input = screen.getByRole('textbox');
 
-        fireEvent.focus(input);
+        await userEvent.click(input);
 
-        expect(handleFocus).toHaveBeenCalledTimes(2);
+        expect(handleFocus).toHaveBeenCalledTimes(1);
     });
 
     it('handles input blur', async () => {

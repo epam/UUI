@@ -1,15 +1,15 @@
 import React from 'react';
 import { TextArea } from '../TextArea';
-import { renderer } from '@epam/uui-test-utils';
+import { render } from '@epam/uui-test-utils';
 
 describe('TextArea', () => {
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<TextArea value={ null } onValueChange={ jest.fn } />).toJSON();
-        expect(tree).toMatchSnapshot();
+        const { asFragment } = render(<TextArea value="" onValueChange={ jest.fn } />);
+        expect(asFragment()).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', () => {
-        const tree = renderer.create(<TextArea value={ null } onValueChange={ jest.fn } placeholder="Type here" size="36" maxLength={ 200 } rows={ 4 } mode="inline" />).toJSON();
-        expect(tree).toMatchSnapshot();
+    it('should be rendered with props correctly', () => {
+        const { asFragment } = render(<TextArea value="" onValueChange={ jest.fn } placeholder="Type here" size="36" maxLength={ 200 } rows={ 4 } mode="inline" />);
+        expect(asFragment()).toMatchSnapshot();
     });
 });

@@ -213,4 +213,4 @@ export const DataTableRowContainer = React.forwardRef(
             </div>
         );
     },
-) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement;
+) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement<any>;

@@ -1,88 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdaptivePanel should render no items provided 1`] = `
-<div
-  className="mainWrapper"
->
+<DocumentFragment>
   <div
-    className="itemsWrapper"
-    style={
-      Object {
-        "columnGap": undefined,
-      }
-    }
-  />
-</div>
+    class="mainWrapper"
+  >
+    <div
+      class="itemsWrapper"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`AdaptivePanel should render some items 1`] = `
-<div
-  className="mainWrapper"
->
+<DocumentFragment>
   <div
-    className="itemsWrapper"
-    style={
-      Object {
-        "columnGap": undefined,
-      }
-    }
+    class="mainWrapper"
   >
     <div
-      data-label="Item snapshot-0"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-1"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-2"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-3"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-4"
-      data-testid="adaptive-item"
-    />
+      class="itemsWrapper"
+    >
+      <div
+        data-label="Item snapshot-0"
+        data-testid="adaptive-item"
+      />
+      <div
+        data-label="Item snapshot-1"
+        data-testid="adaptive-item"
+      />
+      <div
+        data-label="Item snapshot-2"
+        data-testid="adaptive-item"
+      />
+      <div
+        data-label="Item snapshot-3"
+        data-testid="adaptive-item"
+      />
+      <div
+        data-label="Item snapshot-4"
+        data-testid="adaptive-item"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AdaptivePanel should render some items with itemsGap 1`] = `
-<div
-  className="mainWrapper"
->
+<DocumentFragment>
   <div
-    className="itemsWrapper"
-    style={
-      Object {
-        "columnGap": 6,
-      }
-    }
+    class="mainWrapper"
   >
     <div
-      data-label="Item snapshot-0"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-1"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-2"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-3"
-      data-testid="adaptive-item"
-    />
-    <div
-      data-label="Item snapshot-4"
-      data-testid="adaptive-item"
+      class="itemsWrapper"
+      style="column-gap: 6px;"
     />
   </div>
-</div>
+</DocumentFragment>
 `;

@@ -48,7 +48,7 @@ function testLoad() {
 }
 
 const ArrDataTable = DataTable.of<ArrItemType>();
-const t1 = <ArrDataTable data={ array(arr, { parentField: 'parentId' }) } someColor="blue" render={ (x) => x.value } />;
+//const t1 = <ArrDataTable data={ array(arr, { parentField: 'parentId' }) } someColor="blue" render={ (x) => x.value } />;
 
 // const t2 = <DataTable
 //     data={lazy({ getItems: testLoad })}

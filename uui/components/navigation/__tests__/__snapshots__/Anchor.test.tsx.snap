@@ -1,21 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Anchor should rendered correctly 1`] = `
-<a
-  className="uui-button-box uui-enabled -clickable uui-anchor container root"
-  href="#"
-  tabIndex={0}
->
-  Test Anchor
-</a>
+<DocumentFragment>
+  <a
+    class="uui-button-box uui-enabled -clickable uui-anchor container root"
+    href="#"
+    tabindex="0"
+  >
+    Test Anchor
+  </a>
+</DocumentFragment>
 `;
 
 exports[`Anchor should rendered with props correctly 1`] = `
-<a
-  aria-disabled={true}
-  className="uui-button-box uui-disabled -clickable uui-anchor container root"
-  tabIndex={-1}
->
-  Test Anchor
-</a>
+<DocumentFragment>
+  <a
+    aria-disabled="true"
+    class="uui-button-box uui-disabled -clickable uui-anchor container root"
+    tabindex="-1"
+  >
+    Test Anchor
+  </a>
+</DocumentFragment>
 `;

@@ -100,7 +100,12 @@ export class RangeSlider extends SliderBase<RangeSliderValue, RangeSliderState> 
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div ref={ (slider) => (this.slider = slider) } className={ cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active) } />
+                <div
+                    ref={ (slider) => {
+                        (this.slider = slider);
+                    } }
+                    className={ cx(uuiSlider.slider, this.state.activeHandle && uuiMod.active) }
+                />
                 <div
                     className={ uuiSlider.filled }
                     style={ {

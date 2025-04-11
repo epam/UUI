@@ -80,7 +80,7 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
         [state.value, handleValueChange],
     );
 
-    return props.render?.(propsToRender) as ReactElement;
+    return props.render?.(propsToRender) as ReactElement<any>;
 };
 
 /**

@@ -33,6 +33,7 @@ export function getColumnsTableMode(columnsProps: ColumnsProps) {
                     key={ props.key }
                 />
             ),
+            alignSelf: 'center',
         },
         {
             key: 'estimate',

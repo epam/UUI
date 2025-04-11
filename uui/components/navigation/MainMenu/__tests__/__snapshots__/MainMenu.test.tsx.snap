@@ -1,97 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenu should be rendered correctly 1`] = `
-<nav
-  className="root uui-main_menu uui-mainmenu-container container"
->
-  <div
-    className="itemsContainer mainWrapper"
+<DocumentFragment>
+  <nav
+    class="root uui-main_menu uui-mainmenu-container container"
   >
     <div
-      className="itemsWrapper"
-      style={
-        Object {
-          "columnGap": undefined,
-        }
-      }
+      class="itemsContainer mainWrapper"
     >
       <div
-        className="root uui-burger uui-burger-menu container"
+        class="itemsWrapper"
       >
-        <button
-          className="uui-burger-button"
-          onClick={[Function]}
-        >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
-          >
-            <svg
-              className=""
-            />
-          </div>
-        </button>
+        <span
+          class="uui-button-box uui-enabled root type-primary"
+          tabindex="-1"
+        />
       </div>
-      <span
-        className="uui-button-box uui-enabled root type-primary"
-        tabIndex={-1}
-      />
     </div>
-  </div>
-</nav>
+  </nav>
+</DocumentFragment>
 `;
 
 exports[`MainMenu should be rendered correctly 2`] = `
-<nav
-  className="root uui-main_menu uui-mainmenu-container container uui-mainmenu-transparent"
->
-  <div
-    className="itemsContainer mainWrapper"
+<DocumentFragment>
+  <nav
+    class="root uui-main_menu uui-mainmenu-container container uui-mainmenu-transparent"
   >
     <div
-      className="itemsWrapper"
-      style={
-        Object {
-          "columnGap": undefined,
-        }
-      }
+      class="itemsContainer mainWrapper"
     >
       <div
-        className="root uui-burger uui-burger-menu container"
+        class="itemsWrapper"
       >
-        <button
-          className="uui-burger-button"
-          onClick={[Function]}
-        >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
-          >
-            <svg
-              className=""
-            />
-          </div>
-        </button>
+        <span
+          class="uui-button-box uui-enabled root type-primary"
+          tabindex="-1"
+        />
       </div>
-      <span
-        className="uui-button-box uui-enabled root type-primary"
-        tabIndex={-1}
-      />
     </div>
-  </div>
-  <div
-    className="uui-mainmenu-server-badge"
-  >
     <div
-      className="uui-mainmenu-server-badge-label"
-      style={
-        Object {
-          "background": "#39b7ac",
-        }
-      }
+      class="uui-mainmenu-server-badge"
     >
-      Dev
+      <div
+        class="uui-mainmenu-server-badge-label"
+        style="background: rgb(57, 183, 172);"
+      >
+        Dev
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</DocumentFragment>
 `;
