@@ -19,11 +19,7 @@ export interface RangeDatePickerInputProps
     extends IEditable<RangeDatePickerValue>,
     IHasCX,
     IClickable,
-    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {
-    /**
-     * Defines component size.
-     */
-    size?: '24' | '30' | '36' | '42' | '48';
+    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {
     /**
      * rawProps as HTML attributes
      */

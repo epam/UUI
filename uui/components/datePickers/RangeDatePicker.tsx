@@ -1,10 +1,11 @@
 import React, { ReactElement, ReactNode, useState } from 'react';
 import cx from 'classnames';
-import {
-    CommonDatePickerProps,
-    DropdownBodyProps, IAnalyticableOnChange, IEditable, IHasRawProps, Overwrite, useUuiContext,
+import type {
+    CommonDatePickerProps, RangeDatePickerPresets,
+    DropdownBodyProps, IAnalyticableOnChange, IEditable, IHasRawProps, Overwrite,
 } from '@epam/uui-core';
-import { DayProps, Dropdown, RangeDatePickerPresets } from '@epam/uui-components';
+import { useUuiContext } from '@epam/uui-core';
+import { DayProps, Dropdown } from '@epam/uui-components';
 import { DropdownContainer } from '../overlays';
 import { FlexRow } from '../layout';
 import { RangeDatePickerBody } from './RangeDatePickerBody';

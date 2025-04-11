@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import cx from 'classnames';
 import { isMobile, Overwrite, PickerFooterProps } from '@epam/uui-core';
 import { i18n } from '../../i18n';
 import { Switch } from '../inputs';
@@ -45,7 +46,7 @@ function DataPickerFooterImpl<TItem, TId>(props: PropsWithChildren<DataPickerFoo
     const showClear = !props.disableClear && (isSinglePicker ? true : (!view.selectAll || hasSelection));
 
     return !hideFooter && (
-        <FlexRow cx="uui-picker_input-footer">
+        <FlexRow cx={ cx('uui-picker_input-footer', props.cx) }>
             {!isSinglePicker && !isSearchTooShort && ( // Show this switch only for multi mode and when some rows rendered
                 <Switch
                     size={ settings.pickerInput.sizes.body.footerSwitchMap[props.size] }

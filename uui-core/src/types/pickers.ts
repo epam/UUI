@@ -241,7 +241,7 @@ IHasIcon & {
 
 interface PickerInputFooterProps<TItem, TId> extends PickerFooterProps<TItem, TId>, Pick<DropdownProps, 'onClose'> {}
 
-export type PickerFooterProps<TItem, TId> = {
+export type PickerFooterProps<TItem, TId> = IHasCX & {
     /** Instance of picker DataSource view */
     view: IDataSourceView<TItem, TId, any>;
     /** IEditable interface for the 'Show only selected' toggler */

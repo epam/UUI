@@ -16,7 +16,7 @@ Array [
     }
   >
     <div
-      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-size-36"
+      className="uui-filters-panel-item-toggler root uui-input-box -clickable uui-has-value uui-size-36"
       onClick={[Function]}
       onKeyDown={[Function]}
       role="button"
@@ -31,8 +31,7 @@ Array [
         className="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          className="title uui-filters-panel-item-toggler-title"
         >
           Status:
         </div>
@@ -40,8 +39,7 @@ Array [
           className="textWrapper"
         >
           <div
-            className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline selection container"
-            style={Object {}}
+            className="selection uui-filters-panel-item-toggler-selection"
           >
             Unknown
           </div>
@@ -86,8 +84,7 @@ Array [
         className="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          className="title uui-filters-panel-item-toggler-title"
         >
           Position
         </div>
@@ -131,8 +128,7 @@ Array [
         className="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          className="title uui-filters-panel-item-toggler-title"
         >
           Age
         </div>
@@ -176,8 +172,7 @@ Array [
         className="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          className="title uui-filters-panel-item-toggler-title"
         >
           Hire Date
         </div>
@@ -221,8 +216,7 @@ Array [
         className="titleWrapper"
       >
         <div
-          className="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline title container"
-          style={Object {}}
+          className="title uui-filters-panel-item-toggler-title"
         >
           Exit Date
         </div>

@@ -98,6 +98,12 @@ const settings_4px = {
     filtersPanel: {
         sizes: {
             default: '40',
+            footerLinkButton: '40',
+            mobileFooterLinkButton: '48',
+            pickerBodyMultiSwitch: '24',
+            pickerBodyLinkButton: '24',
+            pickerBodyMinWidth: 360,
+            rangeDatePickerInput: '32',
         },
     },
     labeledInput: {
@@ -121,6 +127,7 @@ const settings_4px = {
     notificationCard: {
         sizes: {
             action: '32',
+            icon: 24,
         },
     },
     numericInput: {
@@ -176,6 +183,10 @@ const settings_4px = {
                 mobileSearchInput: '48',
             },
         },
+    },
+    presetsPanel: {
+        tabButton: '48',
+        dropdownTargetIconButton: '20',
     },
     radioInput: {
         sizes: {
