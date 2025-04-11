@@ -1,118 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ColumnHeaderDropdown should be rendered correctly 1`] = `
-Array [
+<DocumentFragment>
   <button
-    aria-expanded={true}
-    aria-haspopup={true}
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-    onClick={[Function]}
-    tabIndex={0}
+    aria-expanded="true"
+    aria-haspopup="true"
+    class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+    tabindex="0"
     type="button"
   >
     <div
-      className="uui-caption"
+      class="uui-caption"
     >
       Test
     </div>
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      class="container uui-icon uui-enabled"
     >
       <svg
-        className="flipY"
+        class="flipY"
       />
     </div>
-  </button>,
+  </button>
   <div
-    aria-hidden={false}
-    className="uui-popper"
+    aria-hidden="false"
+    class="uui-popper"
     data-placement="bottom-start"
     role="dialog"
-    style={
-      Object {
-        "left": 0,
-        "position": "fixed",
-        "top": 0,
-        "zIndex": undefined,
-      }
-    }
+    style="position: fixed; top: 1px; left: 0px; z-index: 2000;"
   >
     <div
-      className="uui-dropdown-body -lock-focus root container container"
-      style={
-        Object {
-          "maxHeight": undefined,
-          "maxWidth": "auto",
-          "minHeight": undefined,
-          "minWidth": 280,
-        }
-      }
-      tabIndex={-1}
+      class="uui-dropdown-body -lock-focus root container container"
+      style="min-width: 280px; max-width: auto;"
+      tabindex="-1"
     >
       <div
-        className="flexCell sortingPanelContainer uui-dropdownMenu-body"
-        style={
-          Object {
-            "alignSelf": undefined,
-            "flexBasis": "0",
-            "flexGrow": undefined,
-            "flexShrink": undefined,
-            "minWidth": 0,
-            "textAlign": undefined,
-          }
-        }
+        class="flexCell sortingPanelContainer uui-dropdownMenu-body"
+        style="min-width: 0; flex-basis: 0px;"
       >
         <div
-          className="itemRoot uui-active -clickable"
-          onClick={[Function]}
-          onKeyDown={[Function]}
+          class="itemRoot uui-active -clickable"
           role="menuitem"
-          tabIndex={0}
+          tabindex="0"
         >
           <button
-            className="uui-button-box uui-enabled container uui-icon_button uui-color-primary root icon iconBefore"
-            tabIndex={-1}
+            class="uui-button-box uui-enabled container uui-icon_button uui-color-primary root icon iconBefore"
+            tabindex="-1"
             type="button"
           >
             <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+              class="container uui-icon uui-enabled"
             >
               <svg
-                className=""
+                class=""
               />
             </div>
           </button>
           <div
-            className="container"
+            class="container"
           >
             Sort Ascending
           </div>
         </div>
         <div
-          className="itemRoot -clickable"
-          onClick={[Function]}
-          onKeyDown={[Function]}
+          class="itemRoot -clickable"
           role="menuitem"
-          tabIndex={0}
+          tabindex="0"
         >
           <button
-            className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root icon iconBefore"
-            tabIndex={-1}
+            class="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root icon iconBefore"
+            tabindex="-1"
             type="button"
           >
             <div
-              className="container uui-icon uui-enabled"
-              style={Object {}}
+              class="container uui-icon uui-enabled"
             >
               <svg
-                className=""
+                class=""
               />
             </div>
           </button>
           <div
-            className="container"
+            class="container"
           >
             Sort Descending
           </div>
@@ -122,6 +91,6 @@ Array [
         Picker
       </div>
     </div>
-  </div>,
-]
+  </div>
+</DocumentFragment>
 `;

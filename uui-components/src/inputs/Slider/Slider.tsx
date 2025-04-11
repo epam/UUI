@@ -47,7 +47,12 @@ export class Slider extends SliderBase<number, any> {
                 ref={ this.props.forwardedRef }
                 { ...this.props.rawProps }
             >
-                <div ref={ (slider) => (this.slider = slider) } className={ cx(uuiSlider.slider) } />
+                <div
+                    ref={ (slider) => {
+                        (this.slider = slider);
+                    } }
+                    className={ cx(uuiSlider.slider) }
+                />
                 <div className={ uuiSlider.filled } style={ { width: filledOffset } } />
                 <SliderScale
                     handleOffset={ filledOffset }

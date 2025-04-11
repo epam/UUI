@@ -1,21 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ProgressBar should be rendered correctly 1`] = `
-<div
-  className="uui-indeterminate_bar root size-12"
->
+<DocumentFragment>
   <div
-    className="progressBar"
-  />
-</div>
+    class="uui-indeterminate_bar root size-12"
+  >
+    <div
+      class="progressBar"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ProgressBar should be rendered correctly with props 1`] = `
-<div
-  className="uui-indeterminate_bar root size-24"
->
+<DocumentFragment>
   <div
-    className="progressBar"
-  />
-</div>
+    class="uui-indeterminate_bar root size-24"
+  >
+    <div
+      class="progressBar"
+    />
+  </div>
+</DocumentFragment>
 `;

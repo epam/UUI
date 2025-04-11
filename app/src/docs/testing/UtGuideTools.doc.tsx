@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent } from '../../../common';
+import { BaseDocsBlock, EditableDocContent } from '../../common';
 
 export class UtGuideToolsDoc extends BaseDocsBlock {
     title = 'Tools';

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropMarker should be rendered correctly 1`] = `
-<div
-  className="root marker top"
-/>
+<DocumentFragment>
+  <div
+    class="root marker top"
+  />
+</DocumentFragment>
 `;

@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InputAddon InputAddon should be rendered correctly 1`] = `
-<div
-  className="prefixWrapper root custom-class uui-input-addon"
->
-  Test Content
-</div>
+exports[`InputAddon should be rendered correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="prefixWrapper root custom-class uui-input-addon"
+  >
+    Test Content
+  </div>
+</DocumentFragment>
 `;

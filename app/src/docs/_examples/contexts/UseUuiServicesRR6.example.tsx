@@ -1,13 +1,13 @@
 // Note: please remove @ts-nocheck comment in real app, it's here only because it's our local code example.
 // @ts-nocheck
-import { render } from 'react-dom';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { UuiContext, useUuiServices, DragGhost, Router6AdaptedRouter } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
 import { ErrorHandler } from '@epam/promo';
 import { svc } from '../../../services';
 import { createBrowserRouter } from 'react-router-dom';
 import { Route, RouterProvider } from 'react-router';
-import React from 'react';
 
 function MyApp() {
     return (
@@ -30,10 +30,13 @@ function UuiEnhancedApp() {
     Object.assign(svc, services);
 
     return (
-        <UuiContext.Provider value={ services }>
-            <RouterProvider router={ router6 } />
-        </UuiContext.Provider>
+        (
+            <UuiContext value={ services }>
+                <RouterProvider router={ router6 } />
+            </UuiContext>
+        )
     );
 }
 
-render(<UuiEnhancedApp />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<UuiEnhancedApp />);

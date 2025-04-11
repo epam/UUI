@@ -1,95 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioGroup should be rendered correctly 1`] = `
-<fieldset
-  className="root uui-vertical-direction"
->
-  <label
-    className="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
+<DocumentFragment>
+  <fieldset
+    class="root uui-vertical-direction"
   >
-    <div
-      className="uui-radioinput"
+    <label
+      class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
     >
-      <input
-        aria-checked={false}
-        checked={false}
-        onChange={[Function]}
-        type="radio"
-      />
-    </div>
-    <div
-      className="uui-input-label"
+      <div
+        class="uui-radioinput"
+      >
+        <input
+          aria-checked="false"
+          type="radio"
+        />
+      </div>
+      <div
+        class="uui-input-label"
+      >
+        Test1
+      </div>
+    </label>
+    <label
+      class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
     >
-      Test1
-    </div>
-  </label>
-  <label
-    className="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
-  >
-    <div
-      className="uui-radioinput"
-    >
-      <input
-        aria-checked={false}
-        checked={false}
-        onChange={[Function]}
-        type="radio"
-      />
-    </div>
-    <div
-      className="uui-input-label"
-    >
-      Test2
-    </div>
-  </label>
-</fieldset>
+      <div
+        class="uui-radioinput"
+      >
+        <input
+          aria-checked="false"
+          type="radio"
+        />
+      </div>
+      <div
+        class="uui-input-label"
+      >
+        Test2
+      </div>
+    </label>
+  </fieldset>
+</DocumentFragment>
 `;
 
 exports[`RadioGroup should be rendered correctly with props 1`] = `
-<fieldset
-  className="root uui-horizontal-direction"
->
-  <label
-    className="container uui-disabled root uui-size-18 uui-radio-input-container uui-color-primary"
+<DocumentFragment>
+  <fieldset
+    class="root uui-horizontal-direction"
   >
-    <div
-      className="uui-radioinput"
+    <label
+      class="container uui-disabled root uui-size-18 uui-radio-input-container uui-color-primary"
     >
-      <input
-        aria-checked={false}
-        aria-disabled={true}
-        checked={false}
-        disabled={true}
-        onChange={[Function]}
-        type="radio"
-      />
-    </div>
-    <div
-      className="uui-input-label"
+      <div
+        class="uui-radioinput"
+      >
+        <input
+          aria-checked="false"
+          aria-disabled="true"
+          disabled=""
+          type="radio"
+        />
+      </div>
+      <div
+        class="uui-input-label"
+      >
+        Test1
+      </div>
+    </label>
+    <label
+      class="container uui-disabled root uui-size-18 uui-radio-input-container uui-color-primary"
     >
-      Test1
-    </div>
-  </label>
-  <label
-    className="container uui-disabled root uui-size-18 uui-radio-input-container uui-color-primary"
-  >
-    <div
-      className="uui-radioinput"
-    >
-      <input
-        aria-checked={false}
-        aria-disabled={true}
-        checked={false}
-        disabled={true}
-        onChange={[Function]}
-        type="radio"
-      />
-    </div>
-    <div
-      className="uui-input-label"
-    >
-      Test2
-    </div>
-  </label>
-</fieldset>
+      <div
+        class="uui-radioinput"
+      >
+        <input
+          aria-checked="false"
+          aria-disabled="true"
+          disabled=""
+          type="radio"
+        />
+      </div>
+      <div
+        class="uui-input-label"
+      >
+        Test2
+      </div>
+    </label>
+  </fieldset>
+</DocumentFragment>
 `;

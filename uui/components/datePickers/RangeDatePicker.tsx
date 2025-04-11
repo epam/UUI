@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useImperativeHandle, useState } from 'react';
+import React, { ReactElement, ReactNode, useImperativeHandle, useState, type JSX } from 'react';
 import cx from 'classnames';
 import { offset } from '@floating-ui/react';
 import type {

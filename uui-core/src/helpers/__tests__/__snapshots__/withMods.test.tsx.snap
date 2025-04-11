@@ -1,19 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`withMods class components (snapshot) 1`] = `
-<div
-  className="class-from-mods class-from-props"
-  role="note"
->
-  test!
-</div>
+exports[`withMods should apply mods correctly 1`] = `
+<DocumentFragment>
+  <div>
+    test
+  </div>
+</DocumentFragment>
 `;
 
-exports[`withMods functional component (snapshot) 1`] = `
-<div
-  className="class-from-mods class-from-props"
-  role="note"
->
-  from mod
-</div>
+exports[`withMods should apply mods without additional props 1`] = `
+<DocumentFragment>
+  <div />
+</DocumentFragment>
 `;

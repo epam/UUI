@@ -1,6 +1,6 @@
 import React from 'react';
+import { render } from '@epam/uui-test-utils';
 import { DropMarker } from '../DropMarker';
-import { renderer } from '@epam/uui-test-utils';
 
 describe('DropMarker', () => {
     it('should be rendered correctly', () => {
@@ -11,21 +11,19 @@ describe('DropMarker', () => {
         mockEventHandlers.onMouseLeave = jest.fn();
         mockEventHandlers.onMouseUp = jest.fn();
 
-        const tree = renderer
-            .create(
-                <DropMarker
-                    classNames={ ['test-class'] }
-                    eventHandlers={ mockEventHandlers }
-                    isDndInProgress
-                    isDraggable
-                    isDraggedOut
-                    isDraggedOver
-                    isDragGhost
-                    isDropAccepted
-                    position="top"
-                />,
-            )
-            .toJSON();
-        expect(tree).toMatchSnapshot();
+        const { asFragment } = render(
+            <DropMarker
+                classNames={ ['test-class'] }
+                eventHandlers={ mockEventHandlers }
+                isDndInProgress
+                isDraggable
+                isDraggedOut
+                isDraggedOver
+                isDragGhost
+                isDropAccepted
+                position="top"
+            />,
+        );
+        expect(asFragment()).toMatchSnapshot();
     });
 });

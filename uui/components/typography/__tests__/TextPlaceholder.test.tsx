@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextPlaceholder } from '../TextPlaceholder';
-import { renderer } from '@epam/uui-test-utils';
+import { render } from '@epam/uui-test-utils';
 
 describe('TextPlaceholder', () => {
     beforeEach(() => {
@@ -12,12 +12,12 @@ describe('TextPlaceholder', () => {
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<TextPlaceholder />).toJSON();
-        expect(tree).toMatchSnapshot();
+        const { asFragment } = render(<TextPlaceholder />);
+        expect(asFragment()).toMatchSnapshot();
     });
 
     it('should be rendered correctly', () => {
-        const tree = renderer.create(<TextPlaceholder wordsCount={ 5 } isNotAnimated />).toJSON();
-        expect(tree).toMatchSnapshot();
+        const { asFragment } = render(<TextPlaceholder wordsCount={ 5 } isNotAnimated />);
+        expect(asFragment()).toMatchSnapshot();
     });
 });

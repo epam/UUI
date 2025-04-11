@@ -6,7 +6,7 @@ import { useEffect, useMemo } from 'react';
 OpenedPickerBodyContext.displayName = 'OpenedPickerBody';
 export function OpenedPickerBodyContext(props: DemoComponentProps) {
     const { DemoComponent, isPreview } = props;
-    const ref = React.useRef<any>();
+    const ref = React.useRef<any>(undefined);
     const adjustedProps = useMemo(() => ({
         ...props.props,
         ref: ref,
