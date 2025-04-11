@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-build",
-  "version": "5.13.3-beta.20",
+  "version": "5.13.3-beta.21",
   "bin": {
     "epam-uui-build": "./bin/cli.js"
   },
@@ -73,5 +73,5 @@
   "publishConfig": {
     "directory": "build"
   },
-  "gitHead": "b897295dffd058965d7307b94863bd734658884b"
+  "gitHead": "841999dfc3a3913cf89ba316582a3fe554454655"
 }
