@@ -96,7 +96,7 @@ export class EditableDocContent extends React.Component<EditableDocContentProps,
 
     render() {
         const { isLoading } = this.state;
-        const titleId = this.props.id;
+        const titleId = this.props.id || this.props.title?.split(' ').join('_').toLowerCase();
 
         return (
             <article className={ css.wrapper }>

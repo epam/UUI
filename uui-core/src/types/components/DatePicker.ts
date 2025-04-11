@@ -56,3 +56,37 @@ export interface CommonDatePickerProps extends IDisableable,
      */
     bodyCx?: CX;
 }
+
+export type RangeDatePickerPresets = {
+    /**
+     * Preset config
+     */
+    [key: string]: {
+        /**
+         * Name of the preset to display in rangeDatePicker body
+         */
+        name: ReactNode;
+        /**
+         * A pure function that gets range value which will be applied by preset selection
+         */
+        getRange: () => RangeDatePickerPresetValue;
+    };
+};
+
+/**
+ * Represents RangeDatePickerPresetValue
+ */
+export interface RangeDatePickerPresetValue {
+    /**
+     * Range from value
+     */
+    from?: string;
+    /**
+     * Range to value
+     */
+    to?: string;
+    /**
+     * Preset order in presets list
+     */
+    order?: number;
+}

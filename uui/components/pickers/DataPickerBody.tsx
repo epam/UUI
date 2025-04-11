@@ -4,11 +4,10 @@ import {
     IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
 } from '@epam/uui-core';
 import { FlexCell } from '@epam/uui-components';
-import { SearchInput, SearchInputProps } from '../inputs';
+import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import type { ControlSize } from '../types';
 import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
 import isEqual from 'react-fast-compare';
@@ -19,7 +18,7 @@ import { MoveFocusInside } from 'react-focus-lock';
 export interface DataPickerBodyModsOverride {}
 
 interface DataPickerBodyMods {
-    searchSize?: ControlSize;
+    searchSize?: PickerInputProps<any, any>['size'];
 }
 
 export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>,
@@ -115,7 +114,9 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
         );
     };
 
-    const searchSize = isMobile() ? settings.pickerInput.sizes.body.mobileSearchInput as SearchInputProps['size'] : props.searchSize;
+    const searchSize = isMobile()
+        ? settings.pickerInput.sizes.body.mobileSearchInput
+        : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
 
     const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
 
@@ -138,7 +139,11 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                     </FlexCell>
                 </div>
             )}
-            <FlexRow key="body" cx={ cx('uui-picker_input-body') } rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }>
+            <FlexRow
+                key="body"
+                cx={ cx('uui-picker_input-body') }
+                rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }
+            >
                 { props.rows.length === 0 && props.value.topIndex === 0
                     // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
                     // we fix this state on next render and shouldn't show empty state.

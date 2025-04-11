@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { DataTableState, IPresetsApi, ITablePreset } from '@epam/uui-core';
+import type { DataTableState, IPresetsApi, ITablePreset } from '@epam/uui-core';
 import { TabButton } from '../../buttons';
 import { PresetActionsDropdown } from './PresetActionsDropdown';
 import { PresetInput } from './PresetInput';
 import { FlexCell } from '../../layout';
-import css from './Preset.module.scss';
 import { UUI_PRESETS_PANEL_PRESET } from './constants';
+import { settings } from '../../../settings';
+
+import css from './Preset.module.scss';
 
 interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
@@ -48,13 +50,17 @@ export function Preset(props: IPresetProps) {
     return (
         <FlexCell key={ props.preset.id } alignSelf="center" width="auto">
             {isRenamePreset ? (
-                <PresetInput onCancel={ cancelRenamePreset } onSuccess={ handlePresetRename } preset={ props.preset } />
+                <PresetInput
+                    onCancel={ cancelRenamePreset }
+                    onSuccess={ handlePresetRename }
+                    preset={ props.preset }
+                />
             ) : (
                 <TabButton
                     caption={ props.preset.name }
                     onClick={ !isPresetActive && choosePresetHandler }
                     cx={ [css.preset, isPresetActive && css.activePreset, UUI_PRESETS_PANEL_PRESET] }
-                    size="60"
+                    size={ settings.presetsPanel.sizes.tabButton }
                     withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
                     icon={ PresetActionsDropdownComponent }
                     iconPosition="right"

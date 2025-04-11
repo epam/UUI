@@ -36,15 +36,22 @@ export const getCurrentTheme = (): ThemeId => {
 
 export function useCurrentTheme(config: ThemesConfig | undefined): ThemeId | undefined {
     const { uuiRouter } = useUuiContext();
-    const param = useQuery(QUERY_PARAM_THEME);
-    const theme = param ? param : getInitialThemeFallback();
+    const themeQueryParam = useQuery(QUERY_PARAM_THEME);
+    const theme = themeQueryParam ? themeQueryParam : getInitialThemeFallback();
 
     useEffect(() => {
-        if (config && !config.themesById[theme]) {
+        if (!config) { return; }
+
+        if (!config.themesById[theme]) {
             console.error(`[useCurrentTheme] Theme "${theme}" is unknown. Redirecting to default theme "${DEFAULT_THEME}"`);
             changeThemeQueryParam(config.themesById[DEFAULT_THEME], uuiRouter);
         }
-    }, [config, theme, uuiRouter]);
+
+        // if url doesn't have theme query param, set it
+        if (!themeQueryParam) {
+            changeThemeQueryParam(config?.themesById[theme], uuiRouter);
+        }
+    }, [config, theme, uuiRouter, themeQueryParam]);
 
     if (config?.themesById[theme]) {
         return theme;

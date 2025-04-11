@@ -79,11 +79,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         let content: React.ReactNode;
 
         if (props.isLoading) {
-            content = (
-                <Text size={ props.size }>
-                    { settings.pickerInput.renderPlaceholder() }
-                </Text>
-            );
+            content = settings.pickerInput.renderPlaceholder({ rowSize: props.size });
         } else if (props.isUnknown) {
             content = (
                 <Text size={ props.size }>

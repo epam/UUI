@@ -26,6 +26,11 @@ export function DemoPage() {
     const fullScreenApi = useFullScreenApi();
 
     useEffect(() => {
+        const demoName = demoItem?.name;
+        document.title = demoName ? `${demoName} | UUI` : 'Demo | UUI';
+    }, [demoItem?.name]);
+
+    useEffect(() => {
         svc.uuiAnalytics.sendEvent(analyticsEvents.demo.pv(selectedDemoId));
     }, [selectedDemoId]);
 
