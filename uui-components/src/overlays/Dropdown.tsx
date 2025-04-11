@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useContext, useState, forwardRef, useRef } from 'react';
 import {
     useFloating, autoUpdate, flip, shift, useMergeRefs, hide, arrow,
 } from '@floating-ui/react';
@@ -33,28 +33,28 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         boundaryElement,
     } = props;
 
-    const uuiContext = React.useContext(UuiContext);
+    const uuiContext = useContext(UuiContext);
 
-    const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
+    const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
     const open = controlledOpen ?? uncontrolledOpen;
     const setOpen = setControlledOpen ?? setUncontrolledOpen;
 
-    const targetNodeRef = React.useRef<HTMLElement | null>(null);
-    const bodyNodeRef = React.useRef<HTMLElement | null>(null);
-    const arrowRef = React.useRef<HTMLDivElement | null>(null);
-    const lastOpenedMsRef = React.useRef<number>(0);
-    const togglerWidthRef = React.useRef<number>(0);
-    const togglerHeightRef = React.useRef<number>(0);
-    const layerRef = React.useRef<LayoutLayer | null>(null);
-    const openDropdownTimerIdRef = React.useRef<NodeJS.Timeout | null>(null);
-    const closeDropdownTimerIdRef = React.useRef<NodeJS.Timeout | null>(null);
+    const targetNodeRef = useRef<HTMLElement | null>(null);
+    const bodyNodeRef = useRef<HTMLElement | null>(null);
+    const arrowRef = useRef<HTMLDivElement | null>(null);
+    const lastOpenedMsRef = useRef<number>(0);
+    const togglerWidthRef = useRef<number>(0);
+    const togglerHeightRef = useRef<number>(0);
+    const layerRef = useRef<LayoutLayer | null>(null);
+    const openDropdownTimerIdRef = useRef<NodeJS.Timeout | null>(null);
+    const closeDropdownTimerIdRef = useRef<NodeJS.Timeout | null>(null);
 
     const isOpened = useCallback(() => {
         return open;
     }, [open]);
 
-    const handleOpenedChange = React.useCallback((newOpened: boolean) => {
+    const handleOpenedChange = useCallback((newOpened: boolean) => {
         setOpen(newOpened);
 
         if (newOpened) {
@@ -86,21 +86,21 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         update();
     }, [virtualTarget, update]);
 
-    const clearOpenDropdownTimer = React.useCallback(() => {
+    const clearOpenDropdownTimer = useCallback(() => {
         if (openDropdownTimerIdRef.current) {
             clearTimeout(openDropdownTimerIdRef.current);
             openDropdownTimerIdRef.current = null;
         }
     }, [openDropdownTimerIdRef.current]);
 
-    const clearCloseDropdownTimer = React.useCallback(() => {
+    const clearCloseDropdownTimer = useCallback(() => {
         if (closeDropdownTimerIdRef.current) {
             clearTimeout(closeDropdownTimerIdRef.current);
             closeDropdownTimerIdRef.current = null;
         }
     }, [closeDropdownTimerIdRef.current]);
 
-    const setOpenDropdownTimer = React.useCallback(() => {
+    const setOpenDropdownTimer = useCallback(() => {
         openDropdownTimerIdRef.current = setTimeout(() => {
             // Use requestAnimationFrame to batch state updates
             requestAnimationFrame(() => {
@@ -110,7 +110,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }, openDelay || 0);
     }, [handleOpenedChange, openDelay, clearOpenDropdownTimer]);
 
-    const setCloseDropdownTimer = React.useCallback((delay: number) => {
+    const setCloseDropdownTimer = useCallback((delay: number) => {
         closeDropdownTimerIdRef.current = setTimeout(() => {
             // Use requestAnimationFrame to batch state updates
             requestAnimationFrame(() => {
@@ -120,16 +120,16 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }, delay);
     }, [handleOpenedChange, clearCloseDropdownTimer]);
 
-    const handleMouseEnter = React.useCallback(() => {
+    const handleMouseEnter = () => {
         clearCloseDropdownTimer();
         if (openDelay) {
             setOpenDropdownTimer();
         } else {
             handleOpenedChange(true);
         }
-    }, [clearCloseDropdownTimer, openDelay, setOpenDropdownTimer, handleOpenedChange]);
+    };
 
-    const handleMouseLeave = React.useCallback(() => {
+    const handleMouseLeave = () => {
         clearOpenDropdownTimer();
 
         if (closeOnMouseLeave !== 'boundary') {
@@ -140,9 +140,9 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                 handleOpenedChange(false);
             }
         }
-    }, [clearOpenDropdownTimer, closeOnMouseLeave, closeDelay, open, setCloseDropdownTimer, handleOpenedChange]);
+    };
 
-    const isClientInArea = React.useCallback((e: MouseEvent) => {
+    const isClientInArea = useCallback((e: MouseEvent) => {
         const areaPadding = 30;
         const rect = bodyNodeRef.current?.getBoundingClientRect();
 
@@ -173,7 +173,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         return getIsInteractedOutside(e);
     }, [isOpened, getIsInteractedOutside]);
 
-    const handleMouseMove = React.useCallback((e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
         if (!bodyNodeRef.current || !targetNodeRef.current) return;
 
         if (isInteractedOutside(e) && isClientInArea(e) && !closeDropdownTimerIdRef.current) {
@@ -192,9 +192,9 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
             // User returned to the toggler or body area, we need to clear close timer
             clearCloseDropdownTimer();
         }
-    }, [isInteractedOutside, isClientInArea, isOpened, clearOpenDropdownTimer, setCloseDropdownTimer, closeDelay, clearCloseDropdownTimer, handleOpenedChange]);
+    };
 
-    const handleTargetClick = React.useCallback((e: React.SyntheticEvent<HTMLElement>) => {
+    const handleTargetClick = useCallback((e: React.SyntheticEvent<HTMLElement>) => {
         if (!isNotUnfoldable && !(e && isEventTargetInsideClickable(e))) {
             const currentValue = isOpened();
             const newValue = closeOnTargetClick === false ? true : !currentValue;
@@ -205,23 +205,23 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
         }
     }, [isNotUnfoldable, isOpened, closeOnTargetClick, handleOpenedChange]);
 
-    const getTargetClickHandler = React.useCallback(() => {
+    const getTargetClickHandler = useCallback(() => {
         if (openOnClick || !openOnHover) {
             return handleTargetClick;
         }
         return undefined;
     }, [openOnClick, openOnHover, handleTargetClick]);
 
-    const onCloseHandler = React.useCallback(() => {
+    const onCloseHandler = useCallback(() => {
         if (onClose) onClose();
         else handleOpenedChange(false);
     }, [onClose, handleOpenedChange]);
 
-    const clickOutsideHandler = React.useCallback((e: Event) => {
+    const clickOutsideHandler = (e: Event) => {
         if (isInteractedOutside(e)) {
             handleOpenedChange(false);
         }
-    }, [isInteractedOutside, handleOpenedChange]);
+    };
 
     // We'll use this function to get the reference element (either virtual or real)
     const getReferenceElement = useCallback(() => {
@@ -229,7 +229,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     }, [virtualTarget]);
 
     // Modify this function to use the right reference element
-    const updateTogglerSize = React.useCallback(() => {
+    const updateTogglerSize = () => {
         const reference = getReferenceElement();
         if (reference) {
             const rect = reference.getBoundingClientRect();
@@ -241,7 +241,7 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
                 update();
             }
         }
-    }, [getReferenceElement, virtualTarget, update]);
+    };
 
     // Only use the real DOM ref if we're not using virtual references
     const mergedRefs = useMergeRefs([refs.setReference, targetNodeRef, ref]);
@@ -404,4 +404,4 @@ function DropdownComponent(props: DropdownProps, ref: React.ForwardedRef<HTMLEle
     );
 }
 
-export const Dropdown = React.forwardRef(DropdownComponent);
+export const Dropdown = forwardRef(DropdownComponent);
