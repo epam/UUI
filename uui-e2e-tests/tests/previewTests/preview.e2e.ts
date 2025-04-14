@@ -171,7 +171,7 @@ builder
             forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
         },
     ])
-    .only(pickerInput, [
+    .add(pickerInput, [
         ...values(TPickerInputPreview).map((i) => ({ previewId: [i] })),
         {
             onlyChromium: true,
