@@ -47,6 +47,7 @@
 * [ColumnConfigModal]: fixed modal width according design
 * [DatePicker]: fixed type for `renderTarget` prop
 * [@epam/uui-editor]: fixed minor toolbars issues
+* [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
 
 # 5.13.2 - 04.03.2025
 **What's Fixed**
