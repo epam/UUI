@@ -7,7 +7,7 @@ const OPTION_TEXT = {
     FRANCE_GARGES: 'Garges-lès-GonesseEurope / France',
 };
 
-test('pickerInput/LazyTreeInput', async ({ pageWrapper }, testInfo) => {
+test.only('pickerInput/LazyTreeInput', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
@@ -128,7 +128,7 @@ test('pickerInput/LazyTreeInput', async ({ pageWrapper }, testInfo) => {
     });
 });
 
-test('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) => {
+test.only('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
