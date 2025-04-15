@@ -154,7 +154,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 >
                   <div
                     class="root uui-flex-row rowWrapper uui-dt-columns-config-row uui-size-30 alignItems"
-                    style="--uui-flex-row-align-items: top;"
+                    style="--uui-flex-row-align-items: flex-start;"
                   >
                     <div
                       class="dragHandle dndDisabled container uui-drag-handle uui-disabled"
@@ -261,7 +261,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
                 >
                   <div
                     class="root uui-flex-row rowWrapper notPinned uui-dt-columns-config-row uui-size-30 alignItems"
-                    style="--uui-flex-row-align-items: top;"
+                    style="--uui-flex-row-align-items: flex-start;"
                   >
                     <div
                       class="dragHandle container uui-drag-handle"
