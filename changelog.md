@@ -44,10 +44,11 @@
 * [MultiSwitch]: fixed `isReadonly` prop
 * [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
 * [PickerToggler]: fixed `"key" prop is being spread into JSX` warning.
-* [ColumnConfigModal]: fixed modal width according design
+* [ColumnConfigModal]: fixed modal width according to design
 * [DatePicker]: fixed type for `renderTarget` prop
 * [@epam/uui-editor]: fixed minor toolbars issues
 * [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
+* [Pickers]: scroll list to the top while start searching
 
 # 5.13.2 - 04.03.2025
 **What's Fixed**
