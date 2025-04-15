@@ -1,47 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTableHeaderRow should be rendered correctly 1`] = `
-<div
-  className="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
-  role="row"
-  style={
-    Object {
-      "minWidth": "0px",
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="section scrollingSection uui-table-scrolling-section"
-    style={
-      Object {
-        "--uui-dt-cell-border-width": "1px",
-        "flex": "1 0 0px",
-        "minWidth": "0px",
-      }
-    }
-  />
-</div>
+    class="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
+    role="row"
+    style="min-width: 0px;"
+  >
+    <div
+      class="section scrollingSection uui-table-scrolling-section"
+      style="flex: 1 0 0px; min-width: 0px; --uui-dt-cell-border-width: 1px;"
+    />
+  </div>
+</DocumentFragment>
 `;
 
-exports[`DataTableHeaderRow should be rendered correctly 2`] = `
-<div
-  className="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
-  role="row"
-  style={
-    Object {
-      "minWidth": "0px",
-    }
-  }
->
+exports[`DataTableHeaderRow should be rendered with props correctly 1`] = `
+<DocumentFragment>
   <div
-    className="section scrollingSection uui-table-scrolling-section"
-    style={
-      Object {
-        "--uui-dt-cell-border-width": "1px",
-        "flex": "1 0 0px",
-        "minWidth": "0px",
-      }
-    }
-  />
-</div>
+    class="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
+    role="row"
+    style="min-width: 0px;"
+  >
+    <div
+      class="section scrollingSection uui-table-scrolling-section"
+      style="flex: 1 0 0px; min-width: 0px; --uui-dt-cell-border-width: 1px;"
+    />
+  </div>
+</DocumentFragment>
 `;

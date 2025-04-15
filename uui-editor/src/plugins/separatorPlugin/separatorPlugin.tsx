@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    PlateEditor, focusEditor, insertEmptyElement, isMarkActive, toggleNodeType, PlatePlugin,
+    PlateEditor, focusEditor, insertEmptyElement, toggleNodeType, PlatePlugin,
 } from '@udecode/plate-common';
 
 import { useIsPluginActive, isTextSelected } from '../../helpers';
@@ -56,7 +56,7 @@ export function SeparatorButton({ editor }: ToolbarButtonProps) {
             isDisabled={ isTextSelected(editor, true) }
             onClick={ (e) => onSeparatorButtonClick(e, SEPARATOR_TYPE) }
             icon={ SeparateIcon }
-            isActive={ !!editor?.selection && isMarkActive(editor, SEPARATOR_TYPE) }
+            isActive={ !!editor?.selection && getBlockAboveByType(editor, [SEPARATOR_TYPE])?.length > 0 }
         />
     );
 }

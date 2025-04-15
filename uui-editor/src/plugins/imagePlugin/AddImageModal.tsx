@@ -10,7 +10,7 @@ interface AddImageModalProps extends IModal<any> {
     editor: PlateEditor;
 }
 
-export function AddImageModal(props: AddImageModalProps): JSX.Element {
+export function AddImageModal(props: AddImageModalProps) {
     const { abort } = props;
 
     const [imageURL, setImageURL] = useState('');

@@ -1,14 +1,40 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
+* [Dropdown][Breaking Change]: reworked to functional component, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware` for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+```
+// old
+<Dropdown
+  targetRef={ targetRef }
+  modifiers={ [
+    {
+        name: 'offset',
+        options: {
+            offset: [10, 10]
+        }
+    }
+  ] }
+>
+// new
+<Dropdown
+  virtualTarget={ virtualTargetRef }
+  middleware={ [offset(10)] }
+>
+
+```
+* [Tooltip][Breaking Change]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react". Part of the `offset` prop type changed to `OffsetOptions | OutdatedOffset`. The `OffsetOptions` type is from the `floating-ui` package, and the `OutdatedOffset` type was added to support the more popular previous behavior like `[10, 10]`. The `OffsetsFunction` type was removed due to being hard to implement and use with `floating-ui`.
+* [DatePicker]: improved render performance for scroll actions.
+* [TimePicker]: added `ref` prop.
+* [@epam/uui-components][SliderHandle]: changed signature of prop `offcet` - see [docs](https://floating-ui.com/docs/offset), migrated from "react-popper" to "floating-ui/react".
+* [@epam/uui-editor]: migrated from "react-popper" to "floating-ui/react".
 * [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
 * [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
 * [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
-* [PickerInput]: 
+* [PickerInput]:
   * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
   * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
   * [DataPickerRow]: added default implementation of `renderItem` callback
 * [PickerList]:
-  * [Breaking Change]: `renderRow` prop now affects only modal rows 
+  * [Breaking Change]: `renderRow` prop now affects only modal rows
   * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
   * added `renderListRow` callback to customize list row without affecting row in modal
 * [NumericInput]: added `center` value for `align` prop
@@ -17,6 +43,13 @@
 * [NumericInput]: added right margin for arrows
 * [MultiSwitch]: fixed `isReadonly` prop
 * [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
+* [PickerToggler]: fixed `"key" prop is being spread into JSX` warning.
+* [ColumnConfigModal]: fixed modal width according to design
+* [DatePicker]: fixed type for `renderTarget` prop
+* [@epam/uui-editor]: fixed minor toolbars issues
+* [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
+* [Pickers]: scroll list to the top while start searching
+* [PickerInput]: remove list bottom border in case if it does not have a footer
 
 # 5.13.2 - 04.03.2025
 **What's Fixed**
@@ -75,7 +108,7 @@
             {' '}
             <a href={ `https://status.epam.com/?utm_source=${window.location.host}&utm_medium=ErrorPage&utm_campaign=StatusAquisitionTracking` }>status.epam.com</a>
         </>
-    );   
+    );
   ```
 * Remove 'prop-types' from UUI packages dependencies. Remove `uuiContextTypes` interface, since it was needed for already outdated React context API.
 * [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
@@ -84,7 +117,7 @@
 
 
 **What's Fixed**
-* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement. 
+* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement.
   Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode

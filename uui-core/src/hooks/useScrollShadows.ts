@@ -15,7 +15,7 @@ interface UseScrollShadowsApi {
 export function useScrollShadows({ root }: UseScrollShadowsProps): UseScrollShadowsApi {
     const [vertical, setVertical] = React.useState({ top: false, bottom: false });
     const [horizontal, setHorizontal] = React.useState({ left: false, right: false });
-    const resizeObserver = React.useRef<ResizeObserver>();
+    const resizeObserver = React.useRef<ResizeObserver>(undefined);
 
     const isRtl = getDir() === 'rtl';
     const rtlMultiplier = isRtl ? -1 : 1;

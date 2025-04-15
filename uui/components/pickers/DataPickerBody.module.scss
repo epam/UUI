@@ -10,9 +10,9 @@
     align-self: stretch;
     width: 100%;
 
-    :global(.-scrolled-bottom) {
-        border-bottom: 1px solid var(--uui-divider);
-    }
+    //:global(.-scrolled-bottom) {
+    //    border-bottom: 1px solid var(--uui-divider);
+    //}
 
     &.modal {
         :global(.-scrolled-top) {
@@ -23,6 +23,11 @@
             border-bottom: 1px solid var(--uui-divider);
         }
     }
+}
+
+// We should add bottom border for list with scroll, only in case if we have footer
+:global(.uui-picker_input-body):has(+ :global(.uui-picker_input-footer)) > :global(.-scrolled-bottom) {
+    border-bottom: 1px solid var(--uui-divider);
 }
 
 .search-wrapper ~ :global(.uui-picker_input-body) {

@@ -1,294 +1,290 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ClearNotification should be rendered correctly 1`] = `
-<div
-  className="clearNotifications uui-clear-notifications"
->
-  <button
-    className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
-    onClick={[Function]}
-    tabIndex={0}
-    type="button"
+<DocumentFragment>
+  <div
+    class="clearNotifications uui-clear-notifications"
   >
-    <div
-      className="uui-caption uui-link-button-weight-semibold"
+    <button
+      class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+      tabindex="0"
+      type="button"
     >
-      CLOSE ALL NOTIFICATIONS
-    </div>
-  </button>
-</div>
+      <div
+        class="uui-caption uui-link-button-weight-semibold"
+      >
+        CLOSE ALL NOTIFICATIONS
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ErrorNotification should be rendered correctly 1`] = `
-<div
-  className="uui-notification_card uui-color-error root"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-notification_card uui-color-error root"
+    role="alert"
   >
     <div
-      className="iconWrapper"
+      class="mainPath"
     >
       <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={24}
-          width={24}
-        />
-      </div>
-    </div>
-    <div
-      className="content"
-    />
-    <div
-      className="closeWrapper uui-notification_card-close_icon"
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="iconWrapper"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          class="container uui-icon uui-enabled"
         >
           <svg
-            className=""
+            class=""
+            height="24"
+            width="24"
           />
         </div>
-      </button>
+      </div>
+      <div
+        class="content"
+      />
+      <div
+        class="closeWrapper uui-notification_card-close_icon"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`HintNotification should be rendered correctly 1`] = `
-<div
-  className="uui-notification_card uui-color-info root"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-notification_card uui-color-info root"
+    role="alert"
   >
     <div
-      className="iconWrapper"
+      class="mainPath"
     >
       <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={24}
-          width={24}
-        />
-      </div>
-    </div>
-    <div
-      className="content"
-    />
-    <div
-      className="closeWrapper uui-notification_card-close_icon"
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="iconWrapper"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          class="container uui-icon uui-enabled"
         >
           <svg
-            className=""
+            class=""
+            height="24"
+            width="24"
           />
         </div>
-      </button>
+      </div>
+      <div
+        class="content"
+      />
+      <div
+        class="closeWrapper uui-notification_card-close_icon"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`NotificationCard should be rendered correctly 1`] = `
-<div
-  className="uui-notification_card uui-color-error root"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-notification_card uui-color-error root"
+    role="alert"
   >
     <div
-      className="content"
-    />
-    <div
-      className="closeWrapper uui-notification_card-close_icon"
+      class="mainPath"
     >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+      <div
+        class="content"
+      />
+      <div
+        class="closeWrapper uui-notification_card-close_icon"
       >
-        <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            className=""
-          />
-        </div>
-      </button>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`NotificationCard should render with maximum props 1`] = `
-<div
-  className="uui-notification_card uui-color-error root"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-notification_card uui-color-error root"
+    role="alert"
   >
     <div
-      className="iconWrapper"
+      class="mainPath"
     >
       <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={24}
-          width={24}
-        />
-      </div>
-    </div>
-    <div
-      className="content"
-    />
-    <div
-      className="closeWrapper uui-notification_card-close_icon"
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="iconWrapper"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          class="container uui-icon uui-enabled"
         >
           <svg
-            className=""
+            class=""
+            height="24"
+            width="24"
           />
         </div>
-      </button>
+      </div>
+      <div
+        class="content"
+      />
+      <div
+        class="closeWrapper uui-notification_card-close_icon"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`SuccessNotification should be rendered correctly 1`] = `
-<div
-  className="uui-notification_card uui-color-success root"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-notification_card uui-color-success root"
+    role="alert"
   >
     <div
-      className="iconWrapper"
+      class="mainPath"
     >
       <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={24}
-          width={24}
-        />
-      </div>
-    </div>
-    <div
-      className="content"
-    />
-    <div
-      className="closeWrapper uui-notification_card-close_icon"
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="iconWrapper"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          class="container uui-icon uui-enabled"
         >
           <svg
-            className=""
+            class=""
+            height="24"
+            width="24"
           />
         </div>
-      </button>
+      </div>
+      <div
+        class="content"
+      />
+      <div
+        class="closeWrapper uui-notification_card-close_icon"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`WarningNotification should be rendered correctly 1`] = `
-<div
-  className="uui-notification_card uui-color-warning root"
-  role="alert"
->
+<DocumentFragment>
   <div
-    className="mainPath"
+    class="uui-notification_card uui-color-warning root"
+    role="alert"
   >
     <div
-      className="iconWrapper"
+      class="mainPath"
     >
       <div
-        className="container uui-icon uui-enabled"
-        style={Object {}}
-      >
-        <svg
-          className=""
-          height={24}
-          width={24}
-        />
-      </div>
-    </div>
-    <div
-      className="content"
-    />
-    <div
-      className="closeWrapper uui-notification_card-close_icon"
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="iconWrapper"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          class="container uui-icon uui-enabled"
         >
           <svg
-            className=""
+            class=""
+            height="24"
+            width="24"
           />
         </div>
-      </button>
+      </div>
+      <div
+        class="content"
+      />
+      <div
+        class="closeWrapper uui-notification_card-close_icon"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root closeIcon"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

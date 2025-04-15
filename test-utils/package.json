@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-test-utils",
-  "version": "5.13.3-beta.18",
+  "version": "6.0.0-beta.0",
   "author": "EPAM",
   "license": "MIT",
   "private": false,
@@ -11,16 +11,17 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "5.13.3-beta.18",
-    "@testing-library/react": "15.0.7",
-    "@testing-library/user-event": "14.4.3",
-    "@types/react-test-renderer": "18.0.0",
-    "react-test-renderer": "18.2.0"
+    "@epam/uui-core": "6.0.0-beta.0",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/react": "16.2.0",
+    "@testing-library/user-event": "14.6.1",
+    "@types/react-test-renderer": "19.0.0",
+    "react-test-renderer": "19.0.0"
   },
   "peerDependencies": {
-    "@types/react-dom": "^18.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "@types/react-dom": ">=16.0.0",
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
   },
   "publishConfig": {
     "directory": "build"

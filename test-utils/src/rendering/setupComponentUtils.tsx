@@ -14,8 +14,8 @@ function isMockFunctionGeneric(fn: () => void) {
 }
 
 type PropsContextType<TProps> = { setProperty: (name: keyof TProps, value?: TProps[keyof TProps]) => void; };
-export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps>>) => PropsAll<TProps>;
-export type ComponentRenderCallbackType<TProps> = (props: PropsAll<TProps>) => React.ReactElement;
+export type PropsInitializerCallbackType<TProps> = (contextRef: React.RefObject<PropsContextType<TProps> | null>) => PropsAll<TProps>;
+export type ComponentRenderCallbackType<TProps> = (props: PropsAll<TProps>) => React.ReactElement<any>;
 
 type PropsAll<TProps> = { [key in keyof TProps]: TProps[key] };
 type PropsSubset<TProps> = { [key in keyof TProps]?: TProps[key] };

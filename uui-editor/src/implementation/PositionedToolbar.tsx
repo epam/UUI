@@ -1,30 +1,28 @@
-import { Portal } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui';
 import { findNode, toDOMNode, useEditorState, useEventEditorSelectors } from '@udecode/plate-common';
 import { getCellTypes } from '@udecode/plate-table';
 import cx from 'classnames';
 import React, { useRef } from 'react';
-import { Popper } from 'react-popper';
 import { Range } from 'slate';
+import { offset } from '@floating-ui/react';
 
 import { isImageSelected, isTextSelected, SelectionUtils } from '../helpers';
 import css from './PositionedToolbar.module.scss';
-import { useLayer } from '@epam/uui-core';
 
 interface ToolbarProps {
     editor: any;
     children: any;
     isImage?: boolean;
     isTable?: boolean;
-    placement?: 'top' | 'bottom' | 'right' | 'left' | 'auto';
+    placement?: 'top' | 'bottom' | 'right' | 'left';
 }
 
 export function FloatingToolbar(props: ToolbarProps): any {
-    const ref = useRef<HTMLElement | null>();
+    const ref = useRef<HTMLElement | null>(undefined);
     const editor = useEditorState(); // TODO: use useEditorRef
     const inFocus = useEventEditorSelectors.focus() === editor.id;
-    const zIndex = useLayer()?.zIndex;
 
-    const virtualReferenceElement = (): any => ({
+    const virtualReferenceElement = {
         getBoundingClientRect(): DOMRect {
             if (props.isTable) {
                 const [selectedNode] = findNode(editor, {
@@ -49,7 +47,7 @@ export function FloatingToolbar(props: ToolbarProps): any {
 
             return getSelectionBoundingClientRect({ shadowRoot });
         },
-    });
+    };
 
     let isToolbarVisible: boolean;
     if (props.isImage) {
@@ -58,34 +56,36 @@ export function FloatingToolbar(props: ToolbarProps): any {
         isToolbarVisible = !!props.isTable || isTextSelected(editor, inFocus);
     }
 
-    return (
-        <Portal>
-            { isToolbarVisible && (
-                <Popper
-                    referenceElement={ virtualReferenceElement() }
-                    placement={ props.placement || 'top' }
-                    modifiers={ [{ name: 'offset', options: { offset: [0, 12] } }] }
+    return isToolbarVisible && (
+        <Dropdown
+            value={ isToolbarVisible }
+            virtualTarget={ virtualReferenceElement }
+            renderTarget={ (p) => <div { ...p }></div> }
+            placement={ props.placement || 'top' }
+            middleware={ [
+                offset(12),
+            ] }
+            renderBody={ (bodyProps) => (
+                <div
+                    role="toolbar"
+                    tabIndex={ 0 }
+                    aria-label="Formatting toolbar"
+                    onMouseDown={ (e) => e.preventDefault() }
+                    onKeyDown={ (e) => {
+                        if (e.key === 'Escape' && bodyProps.onClose) {
+                            bodyProps.onClose();
+                        }
+                    } }
+                    className={ cx(css.container, 'slate-prevent-blur') }
                 >
-                    { (popperProps) => (
-                        <div
-                            onMouseDown={ (e) => e.preventDefault() }
-                            className={ cx(css.container, 'slate-prevent-blur') }
-                            style={ { ...popperProps.style, zIndex } }
-                            ref={ (node) => {
-                                ref.current = node;
-                                (popperProps.ref as React.RefCallback<HTMLDivElement>)(node);
-                            } }
-                        >
-                            { props.children }
-                        </div>
-                    ) }
-                </Popper>
+                    {props.children}
+                </div>
             ) }
-        </Portal>
+        />
     );
 }
 
-const getDefaultBoundingClientRect = () => ({
+const getDefaultBoundingClientRect = () => (({
     width: 0,
     height: 0,
     x: 0,
@@ -94,7 +94,7 @@ const getDefaultBoundingClientRect = () => ({
     left: -9999,
     right: 9999,
     bottom: 9999,
-}) as DOMRect;
+}) as DOMRect);
 
 /**
  * Get bounding client rect of the window selection

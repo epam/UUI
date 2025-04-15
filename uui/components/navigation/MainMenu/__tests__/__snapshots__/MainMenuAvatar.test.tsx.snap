@@ -1,41 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuAvatar should be rendered correctly 1`] = `
-<button
-  className="container"
->
-  <img
-    className="avatar"
-    height="36"
-    onError={[Function]}
-    src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg"
-    width="36"
-  />
-</button>
+<DocumentFragment>
+  <button
+    class="container"
+  >
+    <img
+      class="avatar"
+      height="36"
+      src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/icons/avatar_placeholder.svg"
+      width="36"
+    />
+  </button>
+</DocumentFragment>
 `;
 
 exports[`MainMenuAvatar should be rendered correctly 2`] = `
-<button
-  className="container dropdown"
->
-  <img
-    className="avatar"
-    height="36"
-    onError={[Function]}
-    src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
-    width="36"
-  />
-  <div>
-    <div
-      className="container uui-icon uui-enabled foldingArrow"
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={18}
-        width={18}
-      />
+<DocumentFragment>
+  <button
+    class="container dropdown"
+  >
+    <img
+      class="avatar"
+      height="36"
+      src="https://static.cdn.epam.com/uploads/690afa39a93c88c4dd13758fe1d869d5/EPM-UUI/Images/avatar_placeholder.jpg"
+      width="36"
+    />
+    <div>
+      <div
+        class="container uui-icon uui-enabled foldingArrow"
+      >
+        <svg
+          class=""
+          height="18"
+          width="18"
+        />
+      </div>
     </div>
-  </div>
-</button>
+  </button>
+</DocumentFragment>
 `;

@@ -1,9 +1,36 @@
 import * as React from 'react';
-import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps } from '@epam/uui-core';
+import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps, devLogger, OutatedOffset } from '@epam/uui-core';
+import { autoPlacement, Middleware, offset, OffsetOptions, Placement } from '@floating-ui/react';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
 export interface TooltipProps extends TooltipCoreProps {}
+
+function normalizeOffset(offsetValue: OffsetOptions | OutatedOffset | undefined): OffsetOptions {
+    if (!offsetValue) {
+        return { mainAxis: 12 };
+    }
+
+    // If it's an array (tuple) format, convert to object format
+    if (Array.isArray(offsetValue)) {
+        // Only show warning in development mode
+        if (__DEV__) {
+            devLogger.warn(
+                '[Tooltip]: The array format [number, number] for `offset` prop is deprecated and will be removed in future versions. '
+                + 'Please use object format { mainAxis, crossAxis } instead. '
+                + 'See: https://floating-ui.com/docs/offset',
+            );
+        }
+
+        const [crossAxis = 0, mainAxis = 0] = offsetValue;
+        return {
+            crossAxis: crossAxis ?? 0,
+            mainAxis: mainAxis ?? 0,
+        };
+    }
+
+    return offsetValue;
+}
 
 export function Tooltip(props: TooltipProps) {
     const {
@@ -38,14 +65,29 @@ export function Tooltip(props: TooltipProps) {
             return React.cloneElement<React.ComponentPropsWithRef<any>>(child, { ref: props.ref });
         });
 
+    const middleware: Middleware[] = [
+        offset(normalizeOffset(props.offset)),
+    ];
+
+    let placement;
+
+    if (props.placement && props.placement === 'auto') {
+        middleware.push(autoPlacement());
+    } else {
+        placement = props.placement || 'top';
+    }
+
+    // Merge any custom middleware from props
+    const finalMiddleware = props.middleware ? [...middleware, ...props.middleware] : middleware;
+
     return (
         <Dropdown
             { ...props }
             renderBody={ (props) => renderTooltip(props) }
             openOnHover={ true }
             closeOnMouseLeave={ closeOnMouseLeave ?? 'toggler' }
-            placement={ props.placement || 'top' }
-            modifiers={ [{ name: 'offset', options: { offset: props.offset || [0, 12] } }] }
+            placement={ placement as Placement }
+            middleware={ finalMiddleware }
             renderTarget={ (props: IDropdownTogglerProps) => renderTarget(props) }
         />
     );
