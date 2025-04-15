@@ -62,9 +62,11 @@ export function AppTheme(props: { children: React.ReactNode }) {
     };
 
     return (
-        <AppThemeContext.Provider value={ value }>
-            { renderChildren() }
-        </AppThemeContext.Provider>
+        (
+            <AppThemeContext value={ value }>
+                { renderChildren() }
+            </AppThemeContext>
+        )
     );
 }
 

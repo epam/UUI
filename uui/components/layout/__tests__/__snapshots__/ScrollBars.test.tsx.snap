@@ -1,67 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ScrollBars should be rendered correctly 1`] = `
-<div
-  className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-  style={
-    Object {
-      "display": "flex",
-      "height": "100%",
-      "overflow": "hidden",
-      "position": "relative",
-      "width": "100%",
-    }
-  }
->
+<DocumentFragment>
   <div
-    style={
-      Object {
-        "WebkitOverflowScrolling": "touch",
-        "bottom": 0,
-        "flex": "1 1 auto",
-        "left": 0,
-        "marginBottom": 0,
-        "marginRight": 0,
-        "overflow": "scroll",
-        "position": "relative",
-        "right": 0,
-        "top": 0,
-      }
-    }
-  >
-    <button
-      className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-      tabIndex={-1}
-      type="button"
-    />
-  </div>
-  <div
-    className="uui-track-horizontal"
-    style={
-      Object {
-        "display": "none",
-        "height": 6,
-        "position": "absolute",
-      }
-    }
+    class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+    style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
   >
     <div
-      className="uui-thumb-horizontal"
-    />
-  </div>
-  <div
-    className="uui-track-vertical"
-    style={
-      Object {
-        "display": "none",
-        "position": "absolute",
-        "width": 6,
-      }
-    }
-  >
+      style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
+    >
+      <button
+        class="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+        tabindex="-1"
+        type="button"
+      />
+    </div>
     <div
-      className="uui-thumb-vertical"
-    />
+      class="uui-track-horizontal"
+      style="position: absolute; height: 6px; display: none;"
+    >
+      <div
+        class="uui-thumb-horizontal"
+      />
+    </div>
+    <div
+      class="uui-track-vertical"
+      style="position: absolute; width: 6px; display: none;"
+    >
+      <div
+        class="uui-thumb-vertical"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

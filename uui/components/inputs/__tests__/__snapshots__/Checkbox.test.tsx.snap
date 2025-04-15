@@ -1,63 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestComponent should be rendered with maximum props 1`] = `
-<label
-  className="container uui-checkbox-container root uui-size-12 uui-control-mode-cell uui-color-primary uui-disabled uui-readonly uui-invalid"
->
-  <div
-    className="uui-checkbox uui-checked"
+<DocumentFragment>
+  <label
+    class="container uui-checkbox-container root uui-size-12 uui-control-mode-cell uui-color-primary uui-disabled uui-readonly uui-invalid"
   >
-    <input
-      aria-checked="mixed"
-      aria-disabled={true}
-      aria-readonly={true}
-      aria-required={true}
-      checked={true}
-      disabled={true}
-      readOnly={true}
-      required={true}
-      tabIndex={-1}
-      type="checkbox"
-    />
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      class="uui-checkbox uui-checked"
     >
-      <svg
-        className=""
+      <input
+        aria-checked="mixed"
+        aria-disabled="true"
+        aria-readonly="true"
+        aria-required="true"
+        checked=""
+        disabled=""
+        readonly=""
+        required=""
+        tabindex="-1"
+        type="checkbox"
       />
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
     </div>
-  </div>
-  <div
-    className="uui-input-label"
-  >
-    Test label
-  </div>
-</label>
+    <div
+      class="uui-input-label"
+    >
+      Test label
+    </div>
+  </label>
+</DocumentFragment>
 `;
 
 exports[`TestComponent should render with minimum props 1`] = `
-<label
-  className="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
->
-  <div
-    className="uui-checkbox uui-checked"
+<DocumentFragment>
+  <label
+    class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary -clickable"
   >
-    <input
-      aria-checked={true}
-      checked={true}
-      onChange={[Function]}
-      tabIndex={0}
-      type="checkbox"
-    />
     <div
-      className="container uui-icon uui-enabled"
-      style={Object {}}
+      class="uui-checkbox uui-checked"
     >
-      <svg
-        className=""
+      <input
+        aria-checked="true"
+        checked=""
+        tabindex="0"
+        type="checkbox"
       />
+      <div
+        class="container uui-icon uui-enabled"
+      >
+        <svg
+          class=""
+        />
+      </div>
     </div>
-  </div>
-</label>
+  </label>
+</DocumentFragment>
 `;

@@ -1,21 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RichTextView should be rendered correctly 1`] = `
-<div
-  className="uui-typography uui-typography-size-14"
->
-  <p>
-    Test
-  </p>
-</div>
+<DocumentFragment>
+  <div
+    class="uui-typography uui-typography-size-14"
+  >
+    <p>
+      Test
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`RichTextView should be rendered correctly 2`] = `
-<div
-  className="uui-typography uui-typography-size-16"
->
-  <div>
-    Test
+<DocumentFragment>
+  <div
+    class="uui-typography uui-typography-size-16"
+  >
+    <div>
+      Test
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

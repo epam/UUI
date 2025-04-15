@@ -1,45 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RadioInput should be rendered correctly with maximum 1`] = `
-<label
-  className="container uui-disabled uui-readonly uui-invalid root uui-size-18 uui-radio-input-container uui-color-primary"
->
-  <div
-    className="uui-radioinput"
+<DocumentFragment>
+  <label
+    class="container uui-disabled uui-readonly uui-invalid root uui-size-18 uui-radio-input-container uui-color-primary"
   >
-    <input
-      aria-checked={false}
-      aria-disabled={true}
-      aria-readonly={true}
-      aria-required={true}
-      checked={false}
-      disabled={true}
-      readOnly={true}
-      required={true}
-      type="radio"
-    />
-  </div>
-  <div
-    className="uui-input-label"
-  >
-    Open
-  </div>
-</label>
+    <div
+      class="uui-radioinput"
+    >
+      <input
+        aria-checked="false"
+        aria-disabled="true"
+        aria-readonly="true"
+        aria-required="true"
+        disabled=""
+        readonly=""
+        required=""
+        type="radio"
+      />
+    </div>
+    <div
+      class="uui-input-label"
+    >
+      Open
+    </div>
+  </label>
+</DocumentFragment>
 `;
 
 exports[`RadioInput should be rendered correctly with minimum props 1`] = `
-<label
-  className="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
->
-  <div
-    className="uui-radioinput"
+<DocumentFragment>
+  <label
+    class="container root uui-size-18 uui-radio-input-container uui-color-primary -clickable"
   >
-    <input
-      aria-checked={false}
-      checked={false}
-      onChange={[Function]}
-      type="radio"
-    />
-  </div>
-</label>
+    <div
+      class="uui-radioinput"
+    >
+      <input
+        aria-checked="false"
+        type="radio"
+      />
+    </div>
+  </label>
+</DocumentFragment>
 `;

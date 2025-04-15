@@ -94,7 +94,12 @@ export class Snackbar extends React.Component<SnackbarProps> {
                     key={ item.props.key }
                     style={ isItemOnBottom ? { bottom: position } : { top: position } }
                 >
-                    <div className={ cx(uuiSnackbar.item.self) } ref={ (node) => this.updateHeight(item, node) }>
+                    <div
+                        className={ cx(uuiSnackbar.item.self) }
+                        ref={ (node) => {
+                            this.updateHeight(item, node);
+                        } }
+                    >
                         {React.createElement(item.component, item.props)}
                     </div>
                 </div>

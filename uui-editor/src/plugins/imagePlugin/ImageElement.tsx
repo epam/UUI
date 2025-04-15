@@ -36,7 +36,7 @@ export const ImageElement = withHOC(ResizableProvider, ({
     const selected = useSelected();
     const readOnly = useReadOnly();
 
-    const imageRef = useRef<HTMLImageElement>();
+    const imageRef = useRef<HTMLImageElement>(undefined);
 
     const isCaptionEnabled = () => {
         const imageWidth = imageRef.current?.width;

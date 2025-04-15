@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { Placement } from '@popperjs/core';
+import { Placement } from '@floating-ui/react';
 import {
-    ICanBeReadonly, IDisableable, IDropdownToggler,
+    ICanBeReadonly, IDisableable, IDropdownTogglerProps,
 } from '../props';
 import { CX } from '../objects';
 import { Dayjs } from '../../helpers/dayJsHelper';
@@ -29,7 +29,7 @@ export interface CommonDatePickerProps extends IDisableable,
     /**
      * Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons
      */
-    renderTarget?(props: IDropdownToggler): ReactNode;
+    renderTarget?(props: IDropdownTogglerProps): ReactNode;
 
     /**
      * Disable clearing date value (e.g. via cross icon)

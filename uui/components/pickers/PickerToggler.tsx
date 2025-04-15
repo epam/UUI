@@ -8,6 +8,8 @@ import { settings } from '../../settings';
 
 import css from './PickerToggler.module.scss';
 
+import type { JSX } from 'react';
+
 const defaultMode = EditMode.FORM;
 
 export interface PickerTogglerModsOverride {}
@@ -44,7 +46,7 @@ function PickerTogglerComponent<TItem, TId>(
         return (
             <PickerTogglerTag
                 { ...itemPropsWithSize }
-                key={ itemProps.rowProps?.id as string }
+                key={ itemProps.isCollapsed ? 'collapsed_tag' : itemProps.rowProps?.id as string }
                 getName={ props.getName }
             />
         );
@@ -64,4 +66,4 @@ function PickerTogglerComponent<TItem, TId>(
 }
 
 export const PickerToggler = React.forwardRef(PickerTogglerComponent) as
-    <TItem, TId>(props: PickerTogglerProps<TItem, TId> & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof PickerTogglerComponent>;
+    <TItem, TId>(props: PickerTogglerProps<TItem, TId>) => ReturnType<typeof PickerTogglerComponent>;

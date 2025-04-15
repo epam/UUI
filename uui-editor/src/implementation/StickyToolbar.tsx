@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useState, type JSX } from 'react';
 import cx from 'classnames';
 
 import css from './StickyToolbar.module.scss';

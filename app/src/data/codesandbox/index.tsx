@@ -1,5 +1,5 @@
+import { createRoot } from 'react-dom/client';
 import React, { useEffect, useState } from 'react';
-import { render } from 'react-dom';
 // @ts-ignore
 import { createBrowserHistory } from 'history';
 import { ErrorHandler, FlexRow } from '@epam/promo';
@@ -52,22 +52,22 @@ function UuiEnhancedApp() {
 
     if (isLoaded) {
         return (
-            <UuiContext.Provider value={ services }>
-                <ErrorHandler>
-                    <FlexRow vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
-                        <Example />
-                    </FlexRow>
-                    <Snackbar />
-                    <Modals />
-                    <DragGhost />
-                </ErrorHandler>
-            </UuiContext.Provider>
+            (
+                <UuiContext value={ services }>
+                    <ErrorHandler>
+                        <FlexRow vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
+                            <Example />
+                        </FlexRow>
+                        <Snackbar />
+                        <Modals />
+                        <DragGhost />
+                    </ErrorHandler>
+                </UuiContext>
+            )
         );
     }
     return null;
 }
 
-render(
-    <UuiEnhancedApp />,
-    rootElement,
-);
+const root = createRoot(rootElement);
+root.render(<UuiEnhancedApp />);

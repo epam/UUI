@@ -57,6 +57,9 @@ export function usePickerApi<TItem, TId>(props: UsePickerProps<TItem, TId>) {
 
             if ((newDsState.search || st.search) && newDsState.search !== st.search) {
                 newDsState.focusedIndex = 0;
+                newDsState.scrollTo = {
+                    index: 0,
+                };
             }
 
             return newDsState;

@@ -12,6 +12,8 @@ import { settings } from '../../settings';
 
 import css from './FilterPanelItemToggler.module.scss';
 
+import type { JSX } from 'react';
+
 export interface FilterToolbarItemTogglerProps extends IDropdownTogglerProps, IDisableable, IHasCX, Pick<FiltersPanelProps<any>, 'size'> {
     selection?: React.ReactNode[];
     postfix?: string | null | JSX.Element;

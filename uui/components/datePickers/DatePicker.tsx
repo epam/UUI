@@ -1,6 +1,8 @@
-import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
+import { offset } from '@floating-ui/react';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, useUuiContext, uuiMod, Overwrite, CommonDatePickerProps, ICanFocus,
+    DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps,
+    Overwrite, CommonDatePickerProps, ICanFocus,
     IEditable, IAnalyticableOnChange, IHasPlaceholder, IHasRawProps,
 } from '@epam/uui-core';
 import { DayProps, Dropdown } from '@epam/uui-components';
@@ -14,10 +16,6 @@ import {
 import { settings } from '../../settings';
 
 const defaultMode = EditMode.FORM;
-const modifiers = [{
-    name: 'offset',
-    options: { offset: [0, 6] },
-}];
 
 type DatePickerMods = {
     /**
@@ -116,7 +114,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         }
     };
 
-    const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
+    const renderInput = (renderProps: IDropdownTogglerProps & { cx?: any }) => {
         const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
@@ -152,7 +150,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         );
     };
 
-    const renderBody = (renderProps: DropdownBodyProps) => {
+    const renderBody = useMemo(() => (renderProps: DropdownBodyProps) => {
         return (
             <DropdownContainer { ...renderProps }>
                 <DatePickerBody
@@ -167,23 +165,21 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 {props.renderFooter?.()}
             </DropdownContainer>
         );
-    };
+    }, [value, onBodyValueChange]);
 
     return (
         <Dropdown
             value={ isBodyOpen }
-            modifiers={ modifiers }
+            middleware={ [offset(6)] }
             placement={ props.placement }
-            forwardedRef={ ref }
+            ref={ ref }
             onValueChange={ (v) => {
                 setBodyIsOpen(v);
             } }
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || renderInput(renderProps);
             } }
-            renderBody={ (renderProps) => {
-                return renderBody(renderProps);
-            } }
+            renderBody={ renderBody }
         />
     );
 }

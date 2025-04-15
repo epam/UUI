@@ -1,7 +1,8 @@
-import React, { useContext, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { useContext, useImperativeHandle, useMemo, useRef, type JSX } from 'react';
+import { Middleware, offset } from '@floating-ui/react';
 import {
-    DropdownBodyProps, IDropdownToggler, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
-    PickerInputBaseProps, UuiContext, mobilePopperModifier,
+    DropdownBodyProps, IEditableDebouncer, PickerInputElement, isMobile, Overwrite,
+    PickerInputBaseProps, UuiContext, mobilePositioning,
 } from '@epam/uui-core';
 import { PickerTogglerRenderItemParams, PickerTogglerProps, usePickerInput } from '@epam/uui-components';
 import { Dropdown } from '../overlays/Dropdown';
@@ -12,7 +13,6 @@ import { DataPickerBody } from './DataPickerBody';
 import { DataPickerFooter } from './DataPickerFooter';
 import { EditMode, IHasEditMode, SizeMod } from '../types';
 import { settings } from '../../settings';
-import { Modifier } from 'react-popper';
 
 export interface PickerInputModsOverride {}
 
@@ -32,12 +32,7 @@ export type PickerInputProps<TItem, TId> = Overwrite<PickerInputMods, PickerInpu
 function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, ref: React.ForwardedRef<PickerInputElement>) {
     const context = useContext(UuiContext);
 
-    const popperModifiers: Modifier<any>[] = useMemo(() => [
-        {
-            name: 'offset',
-            options: { offset: [0, 6] },
-        }, mobilePopperModifier,
-    ], []);
+    const middleware: Middleware[] = useMemo(() => [offset(6), mobilePositioning], []);
 
     const toggleModalOpening = () => {
         const { renderFooter, rawProps, ...restProps } = props;
@@ -79,15 +74,15 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
         handlePickerInputKeyboard,
     } = usePickerInput<TItem, TId, PickerInputProps<TItem, TId>>({ ...props, toggleModalOpening });
 
-    const dropdownRef = useRef(null);
+    const togglerRef = useRef(null);
 
     useImperativeHandle(ref, () => {
-        if (dropdownRef.current) {
-            dropdownRef.current.closePickerBody = closePickerBody;
-            dropdownRef.current.openPickerBody = openPickerBody;
+        if (togglerRef.current) {
+            togglerRef.current.closePickerBody = closePickerBody;
+            togglerRef.current.openPickerBody = openPickerBody;
         }
 
-        return dropdownRef.current;
+        return togglerRef.current;
     }, [closePickerBody, openPickerBody]);
 
     const getTogglerMods = (): PickerTogglerMods => {
@@ -99,7 +94,7 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
 
     const rows = getRows();
 
-    const renderTarget = (targetProps: IDropdownToggler & PickerTogglerProps<TItem, TId>) => {
+    const renderTarget = (targetProps: PickerTogglerProps<TItem, TId>) => {
         const renderTargetFn = props.renderToggler || ((props) => <PickerToggler { ...props } />);
 
         return (
@@ -178,10 +173,10 @@ function PickerInputComponent<TItem, TId>(props: PickerInputProps<TItem, TId>, r
             value={ shouldShowBody() }
             onValueChange={ !props.isDisabled && toggleBodyOpening }
             placement={ props.dropdownPlacement }
-            modifiers={ popperModifiers }
+            middleware={ middleware }
             closeBodyOnTogglerHidden={ !isMobile() }
             portalTarget={ props.portalTarget }
-            ref={ dropdownRef }
+            ref={ togglerRef }
         />
     );
 }

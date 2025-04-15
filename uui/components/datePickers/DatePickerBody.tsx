@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import {
     IControlled,
     cx,
@@ -81,7 +81,7 @@ function StatelessDatePickerBodyComp({
     onViewChange,
     isDisabled,
 }: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
-    const selectedDate = uuiDayjs.dayjs(value);
+    const selectedDate = useMemo(() => uuiDayjs.dayjs(value), [value]);
 
     const onMonthClick = (newDate: Dayjs) => {
         onMonthChange(newDate);

@@ -1,55 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextInput should be rendered correctly 1`] = `
-<div
-  className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
-    type="text"
-    value=""
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
+    tabindex="-1"
+  >
+    <input
+      class="uui-input"
+      tabindex="0"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TextInput should be rendered correctly 2`] = `
-<div
-  className="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
-  onFocus={[Function]}
-  tabIndex={-1}
->
-  <input
-    className="uui-input"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
-    type="text"
-    value=""
-  />
+<DocumentFragment>
   <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+    class="container uui-input-box -clickable root uui-size-36 uui-control-mode-form"
+    tabindex="-1"
   >
-    <svg
-      className=""
+    <input
+      class="uui-input"
+      tabindex="0"
+      type="text"
+      value=""
     />
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <div
+      class="container uui-icon uui-enabled pointer"
+    >
+      <svg
+        class="flipY"
+      />
+    </div>
   </div>
-  <div
-    className="container uui-icon uui-enabled pointer"
-    style={Object {}}
-  >
-    <svg
-      className="flipY"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;

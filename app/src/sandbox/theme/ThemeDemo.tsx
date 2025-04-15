@@ -85,7 +85,7 @@ export function ThemeDemo() {
                 .show(
                     (props: INotification) => (
                         <SuccessNotification { ...props }>
-                            <Text size="36" fontSize="14">
+                            <Text fontSize="14">
                                 Success notification
                             </Text>
                         </SuccessNotification>
@@ -103,7 +103,7 @@ export function ThemeDemo() {
                     </Text>
                     <FlexRow vPadding="36">
                         <SuccessNotification id={ 1 } key="1" onSuccess={ () => {} } onClose={ () => {} }>
-                            <Text size="36" fontSize="14">
+                            <Text fontSize="14">
                                 Data has been saved!
                             </Text>
                         </SuccessNotification>
