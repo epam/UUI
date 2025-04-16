@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { RangeDatePicker } from '../RangeDatePicker';
+import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent, fireEvent,
 } from '@epam/uui-test-utils';
 import dayjs from 'dayjs';
-import { RangeDatePickerProps } from '../types';
 import { supportedDateFormats } from '../helpers';
+import { RangeDatePickerValue } from '../types';
 
-type TestProps = Pick<RangeDatePickerProps, 'format' | 'onBlur' | 'onFocus' |'isHoliday' | 'onOpenChange'> & {
+type TestProps = Omit<RangeDatePickerProps, 'onValueChange'> & {
     value: RangeDatePickerProps['value'];
 };
 
@@ -100,7 +100,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should not clear when range is not filled', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: null,
             to: null,
         };
@@ -173,7 +173,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should reset invalid "from" value onBlur', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: null,
             to: '2019-10-07',
         };
@@ -194,7 +194,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should reset invalid "to" value onBlur', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: '2019-10-07',
             to: null,
         };
@@ -215,7 +215,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should set new value when new value typed in input', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: null,
             to: '2019-10-07',
         };
@@ -496,5 +496,22 @@ describe('RangeDataPicker', () => {
         });
         expect(dom.from.value).toBe(dayjs('2019-09-10').format(currentFormat));
         expect(dom.to.value).toBe(dayjs('2019-09-15').format(currentFormat));
+    });
+
+    it('should not select date that does not pass filter callback', async () => {
+        const { dom, mocks, result } = await setupRangeDatePicker({
+            value: null,
+            filter: (date) => dayjs(date).isAfter('2023-01-01'),
+        });
+
+        expect(dom.from.value).toEqual('');
+        expect(dom.to.value).toEqual('');
+
+        await userEvent.type(dom.from, '2022-12-31');
+        await userEvent.click(result.container);
+
+        expect(mocks.onValueChange).not.toHaveBeenCalled();
+        expect(dom.from.value).toEqual('');
+        expect(dom.to.value).toEqual('');
     });
 });

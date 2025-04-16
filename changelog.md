@@ -50,6 +50,7 @@
 * [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
 * [Pickers]: scroll list to the top while start searching
 * [PickerInput]: remove list bottom border in case if it does not have a footer
+* [DatePickers]: fixed select of disabled dates via input
 
 # 5.13.2 - 04.03.2025
 **What's Fixed**
