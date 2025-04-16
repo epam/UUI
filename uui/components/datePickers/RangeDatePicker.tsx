@@ -199,6 +199,7 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                         inFocus={ inFocus }
                         value={ value }
                         format={ format }
+                        filter={ props.filter }
                         onValueChange={ onValueChange }
                         onFocusInput={ (e, type) => {
                             props.onFocus?.(e, type);
