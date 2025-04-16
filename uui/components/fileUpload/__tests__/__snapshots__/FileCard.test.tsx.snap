@@ -8,7 +8,7 @@ exports[`FileCard should be rendered correctly with Excel file 1`] = `
   >
     <div
       class="root uui-flex-row uui-size-36 alignItems columnGap"
-      style="--uui-flex-row-align-items: top; --uui-flex-row-column-gap: 6px;"
+      style="--uui-flex-row-align-items: flex-start; --uui-flex-row-column-gap: 6px;"
     >
       <div
         class="container uui-icon uui-enabled xlsColor"
@@ -75,7 +75,7 @@ exports[`FileCard should be rendered correctly with doc file 1`] = `
   >
     <div
       class="root uui-flex-row uui-size-36 alignItems columnGap"
-      style="--uui-flex-row-align-items: top; --uui-flex-row-column-gap: 6px;"
+      style="--uui-flex-row-align-items: flex-start; --uui-flex-row-column-gap: 6px;"
     >
       <div
         class="container uui-icon uui-enabled docColor"
@@ -142,7 +142,7 @@ exports[`FileCard should be rendered correctly with img file 1`] = `
   >
     <div
       class="root uui-flex-row uui-size-36 alignItems columnGap"
-      style="--uui-flex-row-align-items: top; --uui-flex-row-column-gap: 6px;"
+      style="--uui-flex-row-align-items: flex-start; --uui-flex-row-column-gap: 6px;"
     >
       <div
         class="container uui-icon uui-enabled imgColor"

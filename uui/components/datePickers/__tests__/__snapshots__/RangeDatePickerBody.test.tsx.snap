@@ -7,7 +7,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
   >
     <div
       class="root uui-flex-row daySelection container uui-size-36 alignItems"
-      style="--uui-flex-row-align-items: top;"
+      style="--uui-flex-row-align-items: flex-start;"
     >
       <div
         class="flexCell"
@@ -18,7 +18,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
         >
           <div
             class="root uui-flex-row bodesWrapper uui-size-36 alignItems"
-            style="--uui-flex-row-align-items: top;"
+            style="--uui-flex-row-align-items: flex-start;"
           >
             <div
               class="uui-datepicker-container uui-size-36 fromPicker"

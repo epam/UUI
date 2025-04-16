@@ -13,7 +13,7 @@ exports[`FlexRow should be rendered correctly with props 1`] = `
   <div
     class="root uui-flex-row -clickable some class uui-size-24 alignItems justifyContent padding vPadding margin topShadow borderBottom borderTop columnGap rowGap uui-flex-row-bg-surface-main"
     id="123"
-    style="--uui-flex-row-align-items: top; --uui-flex-row-justify-content: center; --uui-flex-row-column-gap: 24px; --uui-flex-row-row-gap: 24px; --uui-flex-row-padding: 12px; --uui-flex-row-v-padding: 12px; --uui-flex-row-margin: 12px;"
+    style="--uui-flex-row-align-items: flex-start; --uui-flex-row-justify-content: center; --uui-flex-row-column-gap: 24px; --uui-flex-row-row-gap: 24px; --uui-flex-row-padding: 12px; --uui-flex-row-v-padding: 12px; --uui-flex-row-margin: 12px;"
   />
 </DocumentFragment>
 `;

@@ -16,9 +16,11 @@
     }
 
     &.align-widgets-top {
-        div:global(.uui-checkbox) {
-            margin-top: calc(var(--uui-data-picker-size) / 2 - var(--uui-size) / 2);
+        .row-content {
+            div:global(.uui-checkbox) {
+                margin-top: calc(var(--uui-data-picker-size) / 2 - var(--uui-size) / 2);
 
+            }
         }
     }
 
