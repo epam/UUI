@@ -10,13 +10,10 @@ const { isDevServer } = require('./utils/envUtils');
 const actuator = require('express-actuator');
 const staticMiddleware = require('./static');
 const { getCspHeaderValue } = require('./utils/cspUtil');
-const { mcpApis } = require('./mcp/apis');
 
 const app = express();
 
 !isDevServer() && app.use(logger('dev'));
-
-app.use('/api/mcp', mcpApis);
 
 app.use(express.json({ limit: '200mb' }));
 app.use(express.urlencoded({ limit: '200mb', extended: true }));
