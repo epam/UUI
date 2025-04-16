@@ -95,7 +95,8 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onBlurInput?.(event, inputType);
 
         const selectedDate = toValueDateRangeFormat(inputValue, format);
-        if (isValidRange(selectedDate) && (!filter || filter(uuiDayjs.dayjs(selectedDate[inputType])))) {
+        const isDateDisabled = filter?.(uuiDayjs.dayjs(selectedDate[inputType])) === false;
+        if (isValidRange(selectedDate) && !isDateDisabled) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
