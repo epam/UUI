@@ -59,7 +59,7 @@ export class DemoDnd extends React.Component<{}, DemoDndState> {
         const isDesktop = window.document.body.clientWidth >= 1280;
 
         return (
-            <FlexRow cx={ css.root } alignItems="stretch">
+            <FlexRow cx={ css.root } alignItems="flex-start">
                 {isDesktop && (
                     <>
                         <Panel background="surface-main" shadow>

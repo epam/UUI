@@ -61,9 +61,17 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         return measuredItems.displayed.map((i) => i.render(i, measuredItems.hidden, measuredItems.displayed));
     };
 
+    let styles;
+
+    if (props.itemsGap) {
+        styles = {
+            columnGap: `${props.itemsGap}px`,
+        };
+    }
+
     return (
         <div { ...props.rawProps } className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <div className={ css.itemsWrapper } style={ { columnGap: props?.itemsGap } } ref={ displayedRowRef }>{ renderItems() }</div>
+            <div className={ css.itemsWrapper } style={ styles } ref={ displayedRowRef }>{ renderItems() }</div>
         </div>
     );
 }
