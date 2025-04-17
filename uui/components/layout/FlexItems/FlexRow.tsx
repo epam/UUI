@@ -75,8 +75,15 @@ export const FlexRow = forwardRef<HTMLDivElement, FlexRowProps>((props, ref) => 
         props.background && `uui-flex-row-bg-${props.background}`,
     ]);
 
+    let alignItemsValue = props.alignItems;
+    if (alignItemsValue === 'top') {
+        alignItemsValue = 'flex-start';
+    } else if (alignItemsValue === 'bottom') {
+        alignItemsValue = 'flex-end';
+    }
+
     const style = {
-        ...(props.alignItems && { '--uui-flex-row-align-items': props.alignItems }),
+        ...(props.alignItems && { '--uui-flex-row-align-items': alignItemsValue }),
         ...(props.justifyContent && { '--uui-flex-row-justify-content': props.justifyContent }),
         ...(props.columnGap && { '--uui-flex-row-column-gap': `${props.columnGap}px` }),
         ...(props.rowGap && { '--uui-flex-row-row-gap': `${props.rowGap}px` }),
