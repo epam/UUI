@@ -222,9 +222,9 @@ export function DropdownSubMenu(props: IDropdownSubMenu) {
                 placement === 'right-start'
                 || placement === 'left-start'
             ) {
-                return -6;
+                return { crossAxis: -6, mainAxis: 0 };
             } else {
-                return 6;
+                return { crossAxis: 6, mainAxis: 0 };
             }
         }),
     ];
