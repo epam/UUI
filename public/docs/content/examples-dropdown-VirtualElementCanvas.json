@@ -3,40 +3,42 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "This example shows how to position a dropdown relative to coordinates on an HTML Canvas using "
+        "text": "You can position a dropdown relative to coordinates on an HTML Canvas by using the "
       },
       {
         "text": "virtualTarget",
-        "uui-richTextEditor-code": true,
-        "color": "rgb(58, 60, 56)"
+        "uui-richTextEditor-code": true
       },
       {
-        "text": " (",
-        "color": "rgb(58, 60, 56)"
+        "text": " prop with a "
       },
       {
-        "text": "VirtualElement). It handles canvas scaling by calculating viewport-relative coordinates in "
+        "text": "VirtualElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". To control positioning relative to the Canvas, calculate coordinates using "
       },
       {
         "text": "getBoundingClientRect",
         "uui-richTextEditor-code": true
       },
       {
-        "text": ", with "
+        "text": ". Use the "
       },
       {
         "text": "placement=\"top\"",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " and "
+        "text": " prop and "
       },
       {
         "text": "middleware",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " props controlling the dropdown position."
+        "text": " to control dropdown positioning."
       }
     ]
   }
