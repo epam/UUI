@@ -70,7 +70,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
       </div>
       <input
         class="uui-input"
-        placeholder="From:"
+        placeholder="From"
         tabindex="0"
         type="text"
         value=""
@@ -85,7 +85,7 @@ exports[`RangeDataPicker should be rendered if minimum params and custom format 
     >
       <input
         class="uui-input"
-        placeholder="To:"
+        placeholder="To"
         tabindex="0"
         type="text"
         value=""
