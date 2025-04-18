@@ -180,7 +180,7 @@ builder
             forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
         },
     ])
-    .add(rangeDatePicker, [
+    .only(rangeDatePicker, [
         {
             previewId: [TRangeDatePickerPreview['States']],
             onlyChromium: true,
