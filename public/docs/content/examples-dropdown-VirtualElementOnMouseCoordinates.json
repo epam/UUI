@@ -3,35 +3,49 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "This example demonstrates using a VirtualElement to position a dropdown at mouse coordinates. The "
+        "text": "Use the "
       },
       {
         "text": "virtualTarget",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " property accepts a VirtualElement object with "
+        "text": " prop with a "
+      },
+      {
+        "text": "VirtualElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to position a dropdown at mouse coordinates. The "
+      },
+      {
+        "text": "VirtualElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " provides cursor coordinates via "
       },
       {
         "text": "getBoundingClientRect",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " providing cursor coordinates, while "
-      },
-      {
-        "text": "middleware",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": ", "
+        "text": ", while "
       },
       {
         "text": "placement",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " and other props control positioning and appearance."
+        "text": ", "
+      },
+      {
+        "text": "middleware",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", and other props help customize dropdown positioning and appearance."
       }
     ]
   }
