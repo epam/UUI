@@ -1,5 +1,7 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
+
+* Update icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons was added
 * [Dropdown][Breaking Change]: reworked to functional component, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware` for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
 ```
 // old
