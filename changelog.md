@@ -1,7 +1,12 @@
 # 5.xx.x - xx.xx.2025
 **What's New**
-
-* Update icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons was added
+* React 19 support:
+    * UUI is now compatible with React 19. UUI site was reworked to work with React 19.
+    * UUI components still backward compatible with React 18
+* Introduced component sizes and icons theming via css-variables and 'setting' configuration. This is essential for external customer support, as it allows them to use their own sizes and icons.
+  * Be aware — API in the Beta stage and is not stable and might be changed in future versions, please don't rely on it without a critical necessity. 
+  * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
+* Update icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
 * [Dropdown][Breaking Change]: reworked to functional component, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware` for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
 ```
 // old
