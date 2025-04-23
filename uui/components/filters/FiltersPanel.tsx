@@ -3,22 +3,14 @@ import React, {
 } from 'react';
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
-import { PickerInput, PickerItem, DataPickerRow } from '../pickers';
-import {
-    DataRowOptions,
-    TableFiltersConfig,
-    FiltersConfig,
-    DataQueryFilter,
-    getOrderBetween,
-    DataTableState,
-    useArrayDataSource,
-    orderBy,
-    PickerInputElement,
-    Overwrite,
+import { PickerInput, DataPickerRow } from '../pickers';
+import type {
+    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
+    DataTableState, PickerInputElement, Overwrite,
 } from '@epam/uui-core';
+import { getOrderBetween, useArrayDataSource, orderBy } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
-import { ReactComponent as addIcon } from '@epam/assets/icons/action-add-outline.svg';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
 import { settings } from '../../settings';
 
@@ -82,7 +74,7 @@ const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
 };
 
 function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFilter>) {
-    const { filters, tableState, setTableState, size = (settings.sizes.defaults.filtersPanel as FiltersPanelProps<TFilter>['size']) } = props;
+    const { filters, tableState, setTableState, size = (settings.filtersPanel.sizes.default) } = props;
     const [newFilterId, setNewFilterId] = useState(null);
 
     const pickerInputRef = useRef<PickerInputElement>(null);
@@ -165,7 +157,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                 onClick={ togglerProps.onClick }
                 ref={ togglerProps.ref }
                 caption={ i18n.filterToolbar.addCaption }
-                icon={ addIcon }
+                icon={ settings.filtersPanel.icons.addFilterIcon }
                 iconPosition="left"
                 fill="ghost"
                 color="primary"
@@ -230,7 +222,6 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                                 props.onCheck && props.onCheck(row);
                                 setNewFilterId(row.value.field);
                             } }
-                            renderItem={ (item, rowProps) => <PickerItem { ...rowProps } title={ item.title } /> }
                         />
                     ) }
                     getName={ (i) => i.title }

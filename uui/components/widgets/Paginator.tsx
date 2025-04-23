@@ -1,12 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
-import { Overwrite } from '@epam/uui-core';
+import type { Overwrite } from '@epam/uui-core';
 import { Paginator as UuiPaginator, PaginatorRenderParams, PaginatorProps as UuiPaginatorProps } from '@epam/uui-components';
-import { Button, ButtonProps } from '../buttons/Button';
-import { ReactComponent as ArrowLeftIcon } from '@epam/assets/icons/navigation-chevron_left-outline.svg';
-import { ReactComponent as ArrowRightIcon } from '@epam/assets/icons/navigation-chevron_right-outline.svg';
-import css from './Paginator.module.scss';
+import { Button } from '../buttons';
 import { settings } from '../../settings';
+
+import css from './Paginator.module.scss';
 
 export interface PaginatorModsOverride {}
 
@@ -22,10 +21,10 @@ export interface PaginatorProps extends UuiPaginatorProps, Overwrite<PaginatorMo
 
 export function Paginator(props: PaginatorProps) {
     const renderPaginator = (params: PaginatorRenderParams) => (
-        <nav role="navigation" className={ cx(css.root, 'uui-paginator', `uui-size-${props.size || settings.sizes.defaults.paginator}`) } { ...params.rawProps }>
+        <nav role="navigation" className={ cx(css.root, 'uui-paginator', `uui-size-${props.size || settings.paginator.sizes.default}`) } { ...params.rawProps }>
             <Button
-                size={ props.size || settings.sizes.defaults.paginator as ButtonProps['size'] }
-                icon={ ArrowLeftIcon }
+                size={ props.size || settings.paginator.sizes.default }
+                icon={ settings.paginator.icons.leftArrowIcon }
                 onClick={ params.goToPrev }
                 isDisabled={ params.isFirst || props.isDisabled }
                 fill="outline"
@@ -36,7 +35,7 @@ export function Paginator(props: PaginatorProps) {
                     return (
                         <Button
                             cx={ cx(css.spacer, css.page) }
-                            size={ props.size || settings.sizes.defaults.paginator as ButtonProps['size'] }
+                            size={ props.size || settings.paginator.sizes.default }
                             key={ `${index}_spacer` }
                             caption="..."
                             fill="ghost"
@@ -49,7 +48,7 @@ export function Paginator(props: PaginatorProps) {
                     return (
                         <Button
                             cx={ cx(css[`mode-${!page.isActive && 'ghost'}`], css.page) }
-                            size={ props.size || settings.sizes.defaults.paginator as ButtonProps['size'] }
+                            size={ props.size || settings.paginator.sizes.default }
                             key={ page.pageNumber }
                             caption={ page.pageNumber }
                             onClick={ () => page.onClick?.() }
@@ -62,8 +61,8 @@ export function Paginator(props: PaginatorProps) {
                 }
             })}
             <Button
-                size={ props.size || settings.sizes.defaults.paginator as ButtonProps['size'] }
-                icon={ ArrowRightIcon }
+                size={ props.size || settings.paginator.sizes.default }
+                icon={ settings.paginator.icons.rightArrowIcon }
                 onClick={ params.goToNext }
                 isDisabled={ params.isLast || props.isDisabled }
                 fill="outline"

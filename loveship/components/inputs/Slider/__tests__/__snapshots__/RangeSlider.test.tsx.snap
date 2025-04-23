@@ -1,197 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RangeSlider should be rendered correctly 1`] = `
-<div
-  className="uui-slider-container root root"
-  onClick={[Function]}
->
+<DocumentFragment>
   <div
-    className="uui-slider"
-  />
-  <div
-    className="uui-slider-filled"
-    style={
-      Object {
-        "left": 0,
-        "width": 0,
-      }
-    }
-  />
-  <div
-    className="uui-slider-scale"
+    class="uui-slider-container root root"
   >
     <div
-      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
+      class="uui-slider"
     />
     <div
-      className="uui-slider-scale-number"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
-    >
-      1
-    </div>
-    <div
-      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
+      class="uui-slider-filled"
+      style="width: 0px; left: 0px;"
     />
     <div
-      className="uui-slider-scale-number"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
+      class="uui-slider-scale"
     >
-      100
+      <div
+        class="uui-slider-scale-dot uui-slider-scale-filled-dot"
+        style="transform: translateX(0px);"
+      />
+      <div
+        class="uui-slider-scale-number"
+        style="transform: translateX(0px);"
+      >
+        1
+      </div>
+      <div
+        class="uui-slider-scale-dot uui-slider-scale-filled-dot"
+        style="transform: translateX(0px);"
+      />
+      <div
+        class="uui-slider-scale-number"
+        style="transform: translateX(0px);"
+      >
+        100
+      </div>
     </div>
+    <div
+      aria-label="From"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="0"
+      class="uui-slider-handle root"
+      role="slider"
+      style="transform: translateX(0px);"
+      tabindex="0"
+    />
+    <div
+      aria-label="To"
+      aria-valuemax="100"
+      aria-valuemin="1"
+      aria-valuenow="50"
+      class="uui-slider-handle root"
+      role="slider"
+      style="transform: translateX(0px);"
+      tabindex="0"
+    />
   </div>
-  <div
-    aria-label="From"
-    aria-valuemax={100}
-    aria-valuemin={1}
-    aria-valuenow={0}
-    className="uui-slider-handle root"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    role="slider"
-    style={
-      Object {
-        "transform": "translateX(0px)",
-      }
-    }
-    tabIndex={0}
-  />
-  <div
-    aria-label="To"
-    aria-valuemax={100}
-    aria-valuemin={1}
-    aria-valuenow={50}
-    className="uui-slider-handle root"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    role="slider"
-    style={
-      Object {
-        "transform": "translateX(0px)",
-      }
-    }
-    tabIndex={0}
-  />
-</div>
-`;
-
-exports[`RangeSlider should be rendered correctly with extra props 1`] = `
-<div
-  className="uui-slider-container root root"
-  onClick={[Function]}
->
-  <div
-    className="uui-slider"
-  />
-  <div
-    className="uui-slider-filled"
-    style={
-      Object {
-        "left": 0,
-        "width": 0,
-      }
-    }
-  />
-  <div
-    className="uui-slider-scale"
-  >
-    <div
-      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
-    />
-    <div
-      className="uui-slider-scale-number"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
-    >
-      1
-    </div>
-    <div
-      className="uui-slider-scale-dot uui-slider-scale-filled-dot"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
-    />
-    <div
-      className="uui-slider-scale-number"
-      style={
-        Object {
-          "transform": "translateX(0px)",
-        }
-      }
-    >
-      100
-    </div>
-  </div>
-  <div
-    aria-label="From"
-    aria-valuemax={100}
-    aria-valuemin={1}
-    aria-valuenow={0}
-    className="uui-slider-handle root"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    role="slider"
-    style={
-      Object {
-        "transform": "translateX(0px)",
-      }
-    }
-    tabIndex={0}
-  />
-  <div
-    aria-label="To"
-    aria-valuemax={100}
-    aria-valuemin={1}
-    aria-valuenow={50}
-    className="uui-slider-handle root"
-    onBlur={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    role="slider"
-    style={
-      Object {
-        "transform": "translateX(0px)",
-      }
-    }
-    tabIndex={0}
-  />
-</div>
+</DocumentFragment>
 `;

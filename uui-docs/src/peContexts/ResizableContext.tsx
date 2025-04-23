@@ -10,7 +10,7 @@ ResizableContext.displayName = 'Resizable';
 export function ResizableContext(props: DemoComponentProps) {
     const [state, setState] = useState<{ widthPercent: number }>({ widthPercent: 100 });
     const { DemoComponent, isPreview } = props;
-    const elementRef = useRef<HTMLDivElement>();
+    const elementRef = useRef<HTMLDivElement>(undefined);
     const key = useElementWidth(elementRef);
 
     const resizeHandler = useCallback((value: number) => {
@@ -32,7 +32,7 @@ export function ResizableContext(props: DemoComponentProps) {
     );
 }
 
-function useElementWidth(elementRef: React.RefObject<HTMLElement>) {
+function useElementWidth(elementRef: React.RefObject<HTMLElement | null>) {
     const [width, setWidth] = useState<number | undefined>();
     useEffect(() => {
         if (elementRef.current) {

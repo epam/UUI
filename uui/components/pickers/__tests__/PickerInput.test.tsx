@@ -6,7 +6,7 @@ import {
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
 import { PickerInput, PickerInputProps } from '../PickerInput';
-import { Item, TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
+import { TestItemType, TestTreeItem, mockDataSource, mockDataSourceAsync, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync } from './mocks';
 
 type PickerInputComponentProps<TItem, TId> = PickerInputProps<TItem, TId>;
 
@@ -137,7 +137,11 @@ async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = Test
 }
 
 describe('PickerInput', () => {
+    let user: ReturnType<typeof userEvent.setup>;
+
     beforeEach(() => {
+        user = userEvent.setup();
+
         jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockImplementation(() => {
             return {
                 width: 0,
@@ -278,7 +282,7 @@ describe('PickerInput', () => {
                 searchPosition: 'body',
                 dataSource: mockEmptyDS,
                 renderEmpty: ({ minCharsToSearch, search }) => {
-                    if (search.length < minCharsToSearch) {
+                    if (minCharsToSearch && search.length < minCharsToSearch) {
                         return (
                             <FlexCell grow={ 1 } textAlign="center" rawProps={ { 'data-testid': customTextForNotEnoughCharsInSearchId } }>
                                 <Text>{customTextForNotEnoughCharsInSearch}</Text>
@@ -371,7 +375,7 @@ describe('PickerInput', () => {
 
     describe('Body Open/Close', () => {
         it('should open body', async () => {
-            const { dom, result, mocks } = await setupPickerInputForTest<Item, number>({
+            const { dom, result, mocks } = await setupPickerInputForTest<TestItemType, number>({
                 value: undefined,
                 selectionMode: 'single',
                 dataSource: mockSmallDataSourceAsync,
@@ -921,7 +925,7 @@ describe('PickerInput', () => {
                     selectionMode: 'multi',
                 });
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -955,7 +959,7 @@ describe('PickerInput', () => {
                     selectionMode: 'multi',
                 });
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -989,7 +993,7 @@ describe('PickerInput', () => {
                     value: undefined,
                     selectionMode: 'multi',
                 });
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1031,7 +1035,7 @@ describe('PickerInput', () => {
                 });
 
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1063,7 +1067,7 @@ describe('PickerInput', () => {
                 });
 
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1108,7 +1112,7 @@ describe('PickerInput', () => {
                     valueType: 'entity',
                 });
                 expect(PickerInputTestObject.getPlaceholderText(dom.input)).toEqual('Please select');
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
                 await PickerInputTestObject.clickOptionCheckbox('A1');
@@ -1150,7 +1154,7 @@ describe('PickerInput', () => {
                     cascadeSelection: false,
                     dataSource: mockTreeLikeDataSourceAsync,
                 });
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
                 await PickerInputTestObject.clickOptionCheckbox('Parent 2');
                 await waitFor(() => {
@@ -1174,7 +1178,7 @@ describe('PickerInput', () => {
                     dataSource: mockTreeLikeDataSourceAsync,
                 });
 
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
                 // Check parent
                 await PickerInputTestObject.clickOptionCheckbox('Parent 2');
@@ -1209,7 +1213,7 @@ describe('PickerInput', () => {
                     dataSource: mockTreeLikeDataSourceAsync,
                 });
 
-                fireEvent.click(dom.input);
+                await user.click(dom.input);
                 await waitFor(async () => {
                     expect(await PickerInputTestObject.hasOptions()).toBeTruthy();
                 });
@@ -1276,7 +1280,7 @@ describe('PickerInput', () => {
                         selectionMode: 'multi',
                     });
 
-                    fireEvent.click(dom.input);
+                    await user.click(dom.input);
 
                     const dialog = await screen.findByRole('dialog');
                     expect(dialog).toBeInTheDocument();
@@ -1302,7 +1306,7 @@ describe('PickerInput', () => {
                     });
 
                     expect(dom.input.hasAttribute('readonly')).toBeTruthy();
-                    fireEvent.click(dom.input);
+                    await user.click(dom.input);
 
                     const dialog = await screen.findByRole('dialog');
                     expect(dialog).toBeInTheDocument();
@@ -1369,7 +1373,7 @@ describe('PickerInput', () => {
                         searchPosition: 'body',
                     });
 
-                    fireEvent.click(dom.input);
+                    await user.click(dom.input);
 
                     const dialog = await screen.findByRole('dialog');
                     const bodyInput = await within(dialog).findByPlaceholderText('Search');
@@ -1438,8 +1442,7 @@ describe('PickerInput', () => {
             btn = addFocusableElementBefore();
         });
 
-        const testInputFocus = async (selectionMode, searchPosition?) => {
-            const user = userEvent.setup();
+        const testInputFocus = async (selectionMode: PickerInputProps<any, any>['selectionMode'], searchPosition?: PickerInputProps<any, any>['searchPosition']) => {
             const { dom } = await setupPickerInputForTest({
                 value: undefined,
                 selectionMode,
@@ -1788,7 +1791,10 @@ describe('PickerInput', () => {
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
 
-                fireEvent.click(dom.input);
+                // eslint-disable-next-line testing-library/no-unnecessary-act
+                await act(async () => {
+                    fireEvent.click(dom.input);
+                });
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
@@ -1822,7 +1828,11 @@ describe('PickerInput', () => {
                     searchPosition: 'body',
                 });
 
-                fireEvent.click(dom.target);
+                // eslint-disable-next-line testing-library/no-unnecessary-act
+                await act(async () => {
+                    fireEvent.click(dom.target);
+                });
+
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
@@ -1845,7 +1855,11 @@ describe('PickerInput', () => {
                     searchPosition: 'body',
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
-                fireEvent.click(dom.target);
+
+                // eslint-disable-next-line testing-library/no-unnecessary-act
+                await act(async () => {
+                    fireEvent.click(dom.target);
+                });
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1865,7 +1879,10 @@ describe('PickerInput', () => {
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
 
-                fireEvent.click(dom.target);
+                // eslint-disable-next-line testing-library/no-unnecessary-act
+                await act(async () => {
+                    fireEvent.click(dom.target);
+                });
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1917,152 +1934,5 @@ describe('PickerInput', () => {
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 6]);
         });
         expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'B1']);
-    });
-
-    describe('Picker footer tests', () => {
-        describe('single mode', () => {
-            it('should clear selection by clear button', async () => {
-                const { dom, mocks } = await setupPickerInputForTest({
-                    value: 1, // Initial selected values
-                    selectionMode: 'single',
-                });
-
-                fireEvent.click(dom.input);
-                const dialog = await screen.findByRole('dialog');
-                expect(dialog).toBeInTheDocument();
-
-                const clearButton = within(dialog).getByRole('button', { name: 'CLEAR' });
-                expect(clearButton).toBeInTheDocument();
-
-                fireEvent.click(clearButton);
-                await waitFor(() => {
-                    expect(mocks.onValueChange).toHaveBeenCalledWith(undefined);
-                });
-            });
-
-            it('should not render "Show only selected" switch in single mode', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: undefined,
-                    selectionMode: 'single',
-                });
-
-                fireEvent.click(dom.input);
-                const dialog = await screen.findByRole('dialog');
-                expect(dialog).toBeInTheDocument();
-
-                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
-                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
-            });
-
-            it('should remove Clear button if disableClear = true', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: undefined,
-                    selectionMode: 'single',
-                    disableClear: true,
-                });
-
-                fireEvent.click(dom.input);
-                const dialog = screen.getByRole('dialog');
-                expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR' });
-                expect(clearAllButton).not.toBeInTheDocument();
-            });
-
-            it('should render clear button if there is no visible rows, but picker has some selection', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: 2,
-                    selectionMode: 'single',
-                    searchPosition: 'body',
-                    minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
-                });
-
-                fireEvent.click(dom.input);
-                const dialog = screen.getByRole('dialog');
-                expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR' });
-                expect(clearAllButton).toBeInTheDocument();
-            });
-        });
-
-        describe('multi mode', () => {
-            it('should remove Clear All button if disableClear = true', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: undefined,
-                    selectionMode: 'multi',
-                    disableClear: true,
-                });
-
-                fireEvent.click(dom.target);
-                const dialog = screen.getByRole('dialog');
-                expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
-                expect(clearAllButton).not.toBeInTheDocument();
-            });
-
-            it('should not render footer while searching', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: undefined,
-                    selectionMode: 'multi',
-                    searchPosition: 'body',
-                });
-
-                fireEvent.click(dom.target);
-                const dialog = screen.getByRole('dialog');
-                expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-                const bodyInput = within(dialog).getByPlaceholderText('Search');
-                fireEvent.change(bodyInput, { target: { value: 'A1+' } });
-
-                await waitFor(() => expect(PickerInputTestObject.getOptions({ busy: false }).length).toBe(1)); // check that search is active
-
-                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
-                expect(clearAllButton).not.toBeInTheDocument();
-
-                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
-                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
-            });
-
-            it('should not render footer if there is no selection and no visible rows', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: undefined,
-                    selectionMode: 'multi',
-                    searchPosition: 'body',
-                    minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
-                });
-                fireEvent.click(dom.target);
-
-                const dialog = screen.getByRole('dialog');
-                expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
-                expect(clearAllButton).not.toBeInTheDocument();
-
-                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
-                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
-            });
-
-            it('should render clear all button if there is no visible rows, but picker has some selection', async () => {
-                const { dom } = await setupPickerInputForTest({
-                    value: [2, 3],
-                    selectionMode: 'multi',
-                    searchPosition: 'body',
-                    minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
-                });
-
-                fireEvent.click(dom.target);
-
-                const dialog = screen.getByRole('dialog');
-                expect(screen.getByRole('dialog')).toBeInTheDocument();
-
-                const clearAllButton = within(dialog).queryByRole('button', { name: 'CLEAR ALL' });
-                expect(clearAllButton).toBeInTheDocument();
-
-                const showOnlySelectedSwitch = within(dialog).queryByText('Show only selected');
-                expect(showOnlySelectedSwitch).not.toBeInTheDocument();
-            });
-        });
     });
 });

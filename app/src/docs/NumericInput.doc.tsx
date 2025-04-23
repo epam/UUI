@@ -29,7 +29,6 @@ export class NumericInputDoc extends BaseDocsBlock {
         },
         doc: (doc: DocBuilder<uui.NumericInputProps>) => {
             doc.merge('value', { examples: [{ value: 0, isDefault: true }, 123, 123.99] });
-            doc.merge('size', { defaultValue: '36' });
             doc.merge('step', { examples: [5, 10, 100] });
             doc.merge('min', { examples: [-10, 0, 10] });
             doc.merge('max', { examples: [20, 50, 500] });

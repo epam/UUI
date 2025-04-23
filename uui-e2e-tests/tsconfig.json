@@ -2,11 +2,15 @@
   "compilerOptions": {
     "lib": ["ES2022", "DOM"],
     "esModuleInterop": true,
-    "target": "ES2022",
+    "target": "ES2021",
     "module": "Node16",
     "moduleResolution": "Node16",
-    "strict": true,
+    "jsx": "react",
     "preserveConstEnums": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
     "noEmit": true,
     "rootDir": "../.",
     "baseUrl": ".",
@@ -22,6 +26,7 @@
     "scripts",
     "tests",
     "playwright.config.ts",
-    "../app/src/docs/_types/previewIds.ts"
+    "../app/src/docs/_types/previewIds.ts",
+    "globals.d.ts"
   ]
 }

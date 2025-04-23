@@ -1,124 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTable should be rendered correctly 1`] = `
-<div
-  className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer root uui-dt-vars"
-  style={
-    Object {
-      "display": "flex",
-      "height": "100%",
-      "overflow": "hidden",
-      "position": "relative",
-      "width": "100%",
-    }
-  }
->
+<DocumentFragment>
   <div
-    aria-colcount={0}
-    role="table"
-    style={
-      Object {
-        "WebkitOverflowScrolling": "touch",
-        "bottom": 0,
-        "display": "flex",
-        "flex": "1 1 auto",
-        "flexDirection": "column",
-        "left": 0,
-        "marginBottom": 0,
-        "marginRight": 0,
-        "overflow": "scroll",
-        "position": "relative",
-        "right": 0,
-        "top": 0,
-      }
-    }
+    class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer uui-dt-vars uui-data_table"
+    style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
   >
     <div
-      className="stickyHeader"
+      aria-colcount="0"
+      role="table"
+      style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
     >
       <div
-        className="uui-flex-row container uui-table-row-container root root uui-dt-vars uui-table-header-row container align-items-center"
-        role="row"
-        style={
-          Object {
-            "columnGap": undefined,
-            "minWidth": "0px",
-            "rowGap": undefined,
-          }
-        }
+        class="stickyHeader uui-dt-sticky_header"
       >
         <div
-          className="section scrollingSection uui-table-scrolling-section"
-          style={
-            Object {
-              "--uui-dt-cell-border-width": "1px",
-              "flex": "1 0 0px",
-              "minWidth": "0px",
-            }
-          }
+          class="container uui-table-row-container root root uui-dt-vars uui-table-header-row"
+          role="row"
+          style="min-width: 0px;"
+        >
+          <div
+            class="section scrollingSection uui-table-scrolling-section"
+            style="flex: 1 0 0px; min-width: 0px; --uui-dt-cell-border-width: 1px;"
+          />
+        </div>
+        <div
+          class="uui-scroll-shadow-top"
         />
       </div>
       <div
-        className="uui-scroll-shadow-top"
-      />
+        class="listContainer uui-dt-data_row_container"
+        style="min-height: NaNpx;"
+      >
+        <div
+          role="rowgroup"
+          style="margin-top: 0px;"
+        />
+      </div>
     </div>
     <div
-      className="listContainer"
-      style={
-        Object {
-          "minHeight": "0px",
-        }
-      }
+      aria-busy="false"
+      aria-label=""
+      aria-live="polite"
+      class="container uui-blocker-container root"
+      role="status"
+    />
+    <div
+      class="uui-track-horizontal"
+      style="position: absolute; height: 6px; display: none;"
     >
       <div
-        role="rowgroup"
-        style={
-          Object {
-            "marginTop": 0,
-          }
-        }
+        class="uui-thumb-horizontal"
+      />
+    </div>
+    <div
+      class="uui-track-vertical"
+      style="position: absolute; width: 6px; display: none;"
+    >
+      <div
+        class="uui-thumb-vertical"
       />
     </div>
   </div>
-  <div
-    aria-busy="false"
-    aria-label=""
-    aria-live="polite"
-    className="container uui-blocker-container root"
-    role="status"
-    style={
-      Object {
-        "minHeight": undefined,
-      }
-    }
-  />
-  <div
-    className="uui-track-horizontal"
-    style={
-      Object {
-        "display": "none",
-        "height": 6,
-        "position": "absolute",
-      }
-    }
-  >
-    <div
-      className="uui-thumb-horizontal"
-    />
-  </div>
-  <div
-    className="uui-track-vertical"
-    style={
-      Object {
-        "display": "none",
-        "position": "absolute",
-        "width": 6,
-      }
-    }
-  >
-    <div
-      className="uui-thumb-vertical"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;

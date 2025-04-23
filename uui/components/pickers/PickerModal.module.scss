@@ -25,3 +25,19 @@
         padding: 0;
     }
 }
+
+.body {
+    border: 0;
+
+    :global(.uui-picker_input-row) {
+        --uui-data_picker-horizontal-padding: 24px;
+    }
+
+    :global(.-scrolled-top) {
+        border-top: 1px solid var(--uui-divider);
+    }
+
+    :global(.-scrolled-bottom) {
+        border-bottom: 1px solid var(--uui-divider);
+    }
+}

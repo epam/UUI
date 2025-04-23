@@ -61,8 +61,8 @@ export function PreviewLayout(props: IPreviewLayout) {
         );
     };
 
-    const wrapperRef = useRef<HTMLDivElement>();
-    const layoutRef = useRef<HTMLDivElement>();
+    const wrapperRef = useRef<HTMLDivElement>(undefined);
+    const layoutRef = useRef<HTMLDivElement>(undefined);
     const handleLayoutClick = (e: React.MouseEvent<HTMLElement>) => {
         if ([wrapperRef.current, layoutRef.current].includes(e.target as HTMLDivElement)) {
             props.onOpenConfig();
@@ -86,7 +86,7 @@ export function PreviewLayout(props: IPreviewLayout) {
 function getPreviewRegionAttrs(isLoaded: boolean) {
     return {
         'aria-busy': !isLoaded,
-        'aria-label': 'Preview Content',
+        'aria-label': 'Page Content',
         role: 'region',
     };
 }

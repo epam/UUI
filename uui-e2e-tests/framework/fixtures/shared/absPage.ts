@@ -3,6 +3,7 @@ import { TClip, TEngine } from '../../types';
 import { PlayWrightInterfaceName } from '../../constants';
 import { slowTestExpectTimeout } from '../../../playwright.config';
 import { CdpSessionWrapper } from '../previewPage/cdpSessionWrapper';
+import type { Link } from '@epam/uui-core';
 
 export interface IScreenshotOptions {
     fullPage?: boolean;
@@ -65,7 +66,7 @@ export abstract class AbsPage {
         return res;
     }
 
-    protected async _clientRedirect<T extends object>(params: T) {
+    protected async _clientRedirect(link: Link) {
         await this.page.mouse.move(0, 0);
         await this.page.evaluate(async (_params: string) => {
             const [p, i] = _params.split('[||||]');
@@ -92,8 +93,9 @@ export abstract class AbsPage {
                     }
                 });
             };
-            (await waitForInterface())(p);
-        }, [jsonStringify(params), PlayWrightInterfaceName].join('[||||]'));
+            const playWrightInterface = await waitForInterface();
+            playWrightInterface.clientRedirect(p);
+        }, [jsonStringify(link), PlayWrightInterfaceName].join('[||||]'));
     }
 }
 

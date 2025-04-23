@@ -1,12 +1,15 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps } from '@epam/uui-core';
-import { RangeDatePickerInputType, RangeDatePickerProps, RangeDatePickerValue } from './types';
+import { TextInput } from '../inputs';
+
 import { defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
-import { TextInput, TextInputProps } from '../inputs';
-import { systemIcons } from '../../icons/icons';
+import type { RangeDatePickerInputType, RangeDatePickerValue } from './types';
+import type { RangeDatePickerProps } from './RangeDatePicker';
+
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
+
 import css from './RangeDatePickerInput.module.scss';
 
 /**
@@ -16,11 +19,7 @@ export interface RangeDatePickerInputProps
     extends IEditable<RangeDatePickerValue>,
     IHasCX,
     IClickable,
-    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format'> {
-    /**
-     * Defines component size.
-     */
-    size?: '24' | '30' | '36' | '42' | '48';
+    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {
     /**
      * rawProps as HTML attributes
      */
@@ -96,7 +95,8 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         onBlurInput?.(event, inputType);
 
         const selectedDate = toValueDateRangeFormat(inputValue, format);
-        if (isValidRange(selectedDate) && (!filter || filter(uuiDayjs.dayjs(selectedDate[inputType])))) {
+        const isDateDisabled = filter?.(uuiDayjs.dayjs(selectedDate[inputType])) === false;
+        if (isValidRange(selectedDate) && !isDateDisabled) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
@@ -124,7 +124,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         <div
             ref={ ref }
             className={ cx(
-                `uui-size-${size || settings.sizes.defaults.rangeDatePicker}`,
+                `uui-size-${size || settings.rangeDatePicker.sizes.default}`,
                 'uui-range-date-picker',
                 classes,
                 css.root,
@@ -136,9 +136,9 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             onKeyDown={ onKeyDown }
         >
             <TextInput
-                icon={ systemIcons.calendar }
+                icon={ settings.rangeDatePicker.icons.input.calendarIcon }
                 cx={ cx(css.dateInput, inFocus === 'from' && uuiMod.focus) }
-                size={ size || settings.sizes.defaults.rangeDatePicker as TextInputProps['size'] }
+                size={ size || settings.rangeDatePicker.sizes.default }
                 placeholder={ getPlaceholder ? getPlaceholder('from') : i18n.rangeDatePicker.pickerPlaceholderFrom }
                 value={ inputValue.from || undefined }
                 onValueChange={ (v) => onInputChange(v || '', 'from') }
@@ -157,7 +157,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             <TextInput
                 cx={ cx(css.dateInput, inFocus === 'to' && uuiMod.focus) }
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
-                size={ size || settings.sizes.defaults.rangeDatePicker as TextInputProps['size'] }
+                size={ size || settings.rangeDatePicker.sizes.default }
                 value={ inputValue.to || undefined }
                 onCancel={ clearAllowed ? () => {
                     onValueChange(defaultRangeValue);

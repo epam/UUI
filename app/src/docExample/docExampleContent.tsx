@@ -40,7 +40,7 @@ export function DocExampleContent(props: IDocExampleContent) {
 
     return (
         <Page renderHeader={ () => null }>
-            <div className={ css.exampleRoot } aria-busy={ isLoading } aria-label="Doc Example Content">
+            <div className={ css.exampleRoot } aria-busy={ isLoading } aria-label="Page Content">
                 { renderContent() }
             </div>
         </Page>

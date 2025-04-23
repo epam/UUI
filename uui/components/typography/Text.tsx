@@ -1,6 +1,8 @@
-import { Overwrite, withMods } from '@epam/uui-core';
+import type { Overwrite } from '@epam/uui-core';
+import { withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import { settings } from '../../settings';
+
 import css from './Text.module.scss';
 
 type TextColor = 'info' | 'warning' | 'critical' | 'success' | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'white';
@@ -19,11 +21,6 @@ interface TextMods {
      * @default '36'
      */
     size?: TextSize;
-}
-
-export interface TextModsOverride {}
-
-export interface TextCoreProps extends uuiComponents.TextProps {
     /** Defines text line-height */
     lineHeight?: '12' | '18' | '24' | '30';
     /** Defines text font-size */
@@ -40,13 +37,17 @@ export interface TextCoreProps extends uuiComponents.TextProps {
     fontStyle?: TextFontStyle;
 }
 
-export interface TextProps extends TextCoreProps, Overwrite<TextMods, TextModsOverride> {}
+export interface TextCoreProps extends uuiComponents.TextProps {}
+
+export interface TextModsOverride {}
+
+export interface TextProps extends uuiComponents.TextProps, Overwrite<TextMods, TextModsOverride> {}
 
 function applyTextMods(mods: TextProps) {
     return [
         css.root,
         'uui-text',
-        `uui-size-${mods.size || settings.sizes.defaults.text}`,
+        `uui-size-${mods.size || settings.text.sizes.default}`,
         (mods.size !== 'none' || mods.lineHeight) && css.lineHeight,
         (mods.size !== 'none' || mods.fontSize) && css.fontSize,
         `uui-color-${mods.color || 'primary'}`,

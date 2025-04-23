@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { PickerModalTestObject, act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor } from '@epam/uui-test-utils';
+import { PickerModalTestObject, act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor, delayAct } from '@epam/uui-test-utils';
 import { PickerModal, PickerModalProps } from '../PickerModal';
-import { Item, mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
+import { mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
 import { Button, Modals } from '@epam/uui-components';
 import { CascadeSelection, UuiContext } from '@epam/uui-core';
 
@@ -117,7 +117,7 @@ describe('PickerModal', () => {
     });
 
     it('should open body', async () => {
-        const { dom, result } = await setupPickerModalForTest<Item, number>({
+        const { dom, result } = await setupPickerModalForTest<TestItemType, number>({
             selectionMode: 'single',
             dataSource: mockSmallDataSourceAsync,
             getName: ({ name }) => name,
@@ -250,8 +250,9 @@ describe('PickerModal', () => {
             await PickerModalTestObject.waitForOptionsToBeReady();
 
             await PickerModalTestObject.clickOptionCheckbox('A1');
-            await PickerModalTestObject.clickSelectItems();
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']);
 
+            await PickerModalTestObject.clickSelectItems();
             await waitFor(() => {
                 expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             });
@@ -259,8 +260,9 @@ describe('PickerModal', () => {
             fireEvent.click(dom.toggler);
             
             await PickerModalTestObject.clickOptionCheckbox('A1+');
-            await PickerModalTestObject.clickSelectItems();
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
+            await PickerModalTestObject.clickSelectItems();
             await waitFor(() => {
                 expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 3]);
             });
@@ -333,9 +335,9 @@ describe('PickerModal', () => {
             expect(await PickerModalTestObject.hasOptions()).toBeTruthy();
 
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['Parent 2']);
 
             await PickerModalTestObject.clickSelectItems();
-
             await waitFor(() => {
                 expect(onValueChangeMock).toHaveBeenLastCalledWith([2]);
             });
@@ -365,6 +367,8 @@ describe('PickerModal', () => {
 
             // Check parent
             await PickerModalTestObject.clickOptionCheckbox('Parent 2');
+            await delayAct(1); // wait react update
+
             // Unfold parent
             await PickerModalTestObject.clickOptionUnfold('Parent 2');
 
@@ -386,6 +390,8 @@ describe('PickerModal', () => {
 
             // // Check child
             await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
+            await delayAct(1); // wait react update
+
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -434,6 +440,8 @@ describe('PickerModal', () => {
 
             // Check child
             await PickerModalTestObject.clickOptionCheckbox('Child 2.2');
+            await delayAct(1); // wait react update
+
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -461,6 +469,8 @@ describe('PickerModal', () => {
 
             await PickerModalTestObject.waitForOptionsToBeReady();
             await PickerModalTestObject.clickSelectAllOptions();
+            await delayAct(1); // wait react update
+
             await PickerModalTestObject.clickSelectItems();
 
             await waitFor(() => {
@@ -476,6 +486,8 @@ describe('PickerModal', () => {
             );
 
             await PickerModalTestObject.clickClearAllOptions();
+            await delayAct(1); // wait react update
+
             await PickerModalTestObject.clickSelectItems();
 
             fireEvent.click(dom.toggler);

@@ -92,7 +92,7 @@
         }
     }
 
-    &.mode-form {
+    &:global(.uui-control-mode-form) {
         :global(.uui-input) {
             background-color: var(--uui-text_area-bg);
             border-color: var(--uui-text_area-border);
@@ -121,7 +121,7 @@
         }
     }
 
-    &.mode-cell {
+    &:global(.uui-control-mode-cell) {
         :global(.uui-input) {
             background-color: transparent;
             border-color: transparent;
@@ -138,7 +138,7 @@
         }
     }
 
-    &.mode-inline {
+    &:global(.uui-control-mode-inline) {
         :global(.uui-input) {
             padding-left: var(--uui-text_area-inline-horizontal-padding);
             padding-right: var(--uui-text_area-inline-horizontal-padding);

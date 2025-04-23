@@ -1,4 +1,4 @@
-import React from 'react-dom';
+import React from 'react';
 import { UuiContext, HistoryAdaptedRouter, useUuiServices } from '@epam/uui-core';
 import { createBrowserHistory } from 'history';
 
@@ -14,8 +14,8 @@ export function App() {
     const { services } = useUuiServices({ router, fetch: myFetch });
 
     return (
-        <UuiContext.Provider value={ services }>
+        <UuiContext value={ services }>
             App
-        </UuiContext.Provider>
+        </UuiContext>
     );
 }

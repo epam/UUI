@@ -22,7 +22,7 @@ type State = {
 };
 
 export abstract class BaseDocsBlock extends React.Component<any, State> {
-    containerRef: React.RefObject<HTMLDivElement>;
+    containerRef: React.RefObject<HTMLDivElement | null>;
     public static contextType = UuiContext;
     public context: UuiContexts;
 

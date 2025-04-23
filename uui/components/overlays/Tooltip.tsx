@@ -1,4 +1,4 @@
-import { withMods } from '@epam/uui-core';
+import { Overwrite, withMods } from '@epam/uui-core';
 import * as uuiComponents from '@epam/uui-components';
 import css from './Tooltip.module.scss';
 
@@ -12,7 +12,9 @@ interface TooltipMods {
 
 export interface TooltipCoreProps extends uuiComponents.TooltipProps {}
 
-export interface TooltipProps extends TooltipCoreProps, TooltipMods {}
+export interface TooltipModsOverride {}
+
+export interface TooltipProps extends TooltipCoreProps, Overwrite<TooltipMods, TooltipModsOverride> {}
 
 function applyTooltipMods(mods: TooltipMods) {
     return [

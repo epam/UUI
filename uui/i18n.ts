@@ -39,8 +39,8 @@ const TREE_SHAKEABLE_INIT = () => ({
         },
     },
     rangeDatePicker: {
-        pickerPlaceholderFrom: 'From:',
-        pickerPlaceholderTo: 'To:',
+        pickerPlaceholderFrom: 'From',
+        pickerPlaceholderTo: 'To',
     },
     tables: {
         noResultsBlock: {

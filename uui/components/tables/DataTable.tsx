@@ -1,26 +1,26 @@
 import * as React from 'react';
-import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
-import { useColumnsWithFilters } from '../../helpers';
 import {
     ColumnsConfig, DataRowProps, useUuiContext, uuiScrollShadows, useColumnsConfig, IEditable, DataTableState, DataTableColumnsConfigOptions,
     DataSourceListProps, DataColumnProps, cx, TableFiltersConfig, DataTableRowProps, DataTableSelectedCellData, Overwrite,
     DataColumnGroupProps,
 } from '@epam/uui-core';
-import { DataTableHeaderRow, DataTableHeaderRowProps } from './DataTableHeaderRow';
-import { DataTableRow, DataTableRowProps as UuiDataTableRowProps } from './DataTableRow';
-import { DataTableMods, DataTableModsOverride, DataTableRowMods } from './types';
-import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
-import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
-import { DataRowsContainer } from './DataRowsContainer';
-import { ReactComponent as EmptyTableIcon } from '../../icons/pictures/empty-table.svg';
+import { IconContainer, DataTableSelectionProvider, DataTableFocusManager, DataTableFocusProvider } from '@epam/uui-components';
+import { useColumnsWithFilters } from '../../helpers';
+import { DataTableHeaderRow } from './DataTableHeaderRow';
+import { DataTableRow } from './DataTableRow';
 import { Text } from '../typography';
+import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
+import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
+import { DataRowsContainer } from './DataRowsContainer';
+import type { DataTableMods, DataTableRowMods } from './types';
+
 import { i18n } from '../../i18n';
 import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTable.module.scss';
 
-export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
+interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTableState>, DataSourceListProps, DataTableColumnsConfigOptions, Pick<VirtualListProps, 'onScroll'> {
     /** Callback to get rows that will be rendered in table */
     getRows?(): DataRowProps<TItem, TId>[];
 
@@ -64,6 +64,9 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
      */
     renderColumnsConfigurationModal?: (props: ColumnsConfigurationModalProps<TItem, TId, TFilter>) => React.ReactNode;
 
+    /**
+     * Focus manipulation manager in tables.
+     */
     dataTableFocusManager?: DataTableFocusManager<TId>;
 
     /**
@@ -72,16 +75,20 @@ export interface DataTableProps<TItem, TId, TFilter = any> extends IEditable<Dat
     showFoldAll?: boolean;
 }
 
-export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTableProps<TItem, TId> & Overwrite<DataTableMods, DataTableModsOverride>>) {
+export interface DataTableModsOverride {}
+
+export interface DataTableProps<TItem, TId> extends React.PropsWithChildren<DataTableCoreProps<TItem, TId> & Overwrite<DataTableMods, DataTableModsOverride>> {}
+
+export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
     const { uuiModals } = useUuiContext();
-    const headerRef = React.useRef<HTMLDivElement>();
+    const headerRef = React.useRef<HTMLDivElement>(undefined);
     const columnsWithFilters = useColumnsWithFilters(props.columns, props.filters);
     const { columns, config, defaultConfig } = useColumnsConfig(columnsWithFilters, props.value?.columnsConfig);
 
     const defaultRenderRow = React.useCallback((rowProps: DataRowProps<TItem, TId> & DataTableRowMods) => {
         return (
             <DataTableRow
-                size={ props.size || settings.sizes.dataTable.body.row.default as UuiDataTableRowProps['size'] }
+                size={ props.size || settings.dataTable.sizes.body.row }
                 columnsGap={ props.columnsGap }
                 borderBottom={ props.border }
                 { ...rowProps }
@@ -101,7 +108,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     props.renderNoResultsBlock?.()
                 ) : (
                     <>
-                        <IconContainer cx={ css.icon } icon={ EmptyTableIcon } />
+                        <IconContainer cx={ css.icon } icon={ settings.dataTable.icons.emptyTable } />
                         <Text cx={ css.title } fontSize="24" lineHeight="30" color="primary" fontWeight="600">
                             {i18n.tables.noResultsBlock.title}
                         </Text>
@@ -141,13 +148,13 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
     const renderRowsContainer = React.useCallback(
         ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
             <>
-                <div className={ css.stickyHeader } ref={ headerRef }>
+                <div className={ cx(css.stickyHeader, 'uui-dt-sticky_header') } ref={ headerRef }>
                     <DataTableHeaderRow
                         columns={ columns }
                         columnGroups={ props.columnGroups }
                         onConfigButtonClick={ props.showColumnsConfig && onConfigurationButtonClick }
                         selectAll={ props.selectAll }
-                        size={ props.headerSize || settings.sizes.dataTable.header.row.default as DataTableHeaderRowProps['size'] }
+                        size={ props.headerSize || settings.dataTable.sizes.header.row }
                         textCase={ props.headerTextCase }
                         allowColumnsReordering={ props.allowColumnsReordering }
                         allowColumnsResizing={ props.allowColumnsResizing }
@@ -191,7 +198,7 @@ export function DataTable<TItem, TId>(props: React.PropsWithChildren<DataTablePr
                     onScroll={ props.onScroll }
                     rowsCount={ props.rowsCount }
                     renderRows={ renderRowsContainer }
-                    cx={ cx(css.root, 'uui-dt-vars') }
+                    cx={ cx(css.root, 'uui-dt-vars', 'uui-data_table') }
                     isLoading={ props.isReloading }
                     rowsSelector="[role=row]"
                     rawProps={ {

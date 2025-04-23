@@ -6,6 +6,7 @@ export type ControlSize = '24' | '30' | '36' | '42' | '48';
 export interface SizeMod {
     /**
      * Defines component size.
+     * @default '36'
      */
     size?: ControlSize;
 }

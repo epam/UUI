@@ -1,19 +1,32 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import cx from 'classnames';
-import { Modifier } from 'react-popper';
-import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable, isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig, useForceUpdate, IDataSource, DataSourceState } from '@epam/uui-core';
+import { Middleware, offset } from '@floating-ui/react';
+import {
+    DropdownBodyProps,
+    TableFiltersConfig,
+    IDropdownToggler,
+    IEditable,
+    isMobile,
+    FilterPredicateName,
+    getSeparatedValue,
+    DataRowProps,
+    PickerFilterConfig,
+    useForceUpdate,
+    IDataSource,
+    DataSourceState,
+    mobilePositioning,
+} from '@epam/uui-core';
 import { Dropdown } from '@epam/uui-components';
 import { i18n } from '../../i18n';
 import { FilterPanelItemToggler } from './FilterPanelItemToggler';
 import { LinkButton } from '../buttons';
 import { MultiSwitch } from '../inputs';
-import { Text, TextPlaceholder } from '../typography';
 import { FilterItemBody } from './FilterItemBody';
 import { DropdownContainer } from '../overlays';
 import { PickerBodyMobileView } from '../pickers';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
-import { ReactComponent as RemoveIcon } from '@epam/assets/icons/action-delete-outline.svg';
+import { settings } from '../../settings';
 import css from './FiltersPanelItem.module.scss';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &
@@ -46,27 +59,18 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
-    const popperModifiers: Modifier<any>[] = useMemo(() => {
-        const modifiers: Modifier<any>[] = [
-            {
-                name: 'offset',
-                options: { offset: isPickersType && isMobileScreen ? [0, 0] : [0, 6] },
-            },
+    const floatingMiddleware: Middleware[] = useMemo(() => {
+        const middleware: Middleware[] = [
+            offset(() => {
+                return isPickersType && isMobileScreen ? 0 : 6;
+            }),
         ];
 
         if (isPickersType && isMobileScreen) {
-            modifiers.push({
-                name: 'resetTransform',
-                enabled: true,
-                phase: 'beforeWrite',
-                requires: ['computeStyles'],
-                fn: ({ state }) => {
-                    state.styles.popper.transform = '';
-                },
-            });
+            middleware.push(mobilePositioning);
         }
 
-        return modifiers;
+        return middleware;
     }, [isPickersType]);
 
     const getDefaultPredicate = () => {
@@ -124,16 +128,27 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const renderHeader = (hideTitle: boolean) => (
         <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
-                <MultiSwitch items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) } value={ predicate } onValueChange={ changePredicate } size="24" />
+                <MultiSwitch
+                    items={ props.predicates.map((i) => ({ id: i.predicate, caption: i.name })) }
+                    value={ predicate }
+                    onValueChange={ changePredicate }
+                    size={ settings.filtersPanel.sizes.pickerBodyMultiSwitch }
+                />
             ) : (
                 !hideTitle && (
-                    <Text color="secondary" size="24" fontSize="14">
+                    <div className={ css.title }>
                         {props.title}
-                    </Text>
+                    </div>
                 )
             )}
             {!props?.isAlwaysVisible && (
-                <LinkButton cx={ css.removeButton } caption={ i18n.filterToolbar.datePicker.removeCaption } onClick={ removeOnclickHandler } size="24" icon={ RemoveIcon } />
+                <LinkButton
+                    cx={ css.removeButton }
+                    caption={ i18n.filterToolbar.datePicker.removeCaption }
+                    onClick={ removeOnclickHandler }
+                    size={ settings.filtersPanel.sizes.pickerBodyLinkButton }
+                    icon={ settings.filtersPanel.icons.pickerBodyRemoveIcon }
+                />
             )}
         </div>
     );
@@ -143,9 +158,9 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         return isPickersType ? (
             <PickerBodyMobileView
                 { ...dropdownProps }
-                cx={ UUI_FILTERS_PANEL_ITEM_BODY }
+                cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] }
                 title={ props.title }
-                width={ 360 }
+                width={ settings.filtersPanel.sizes.pickerBodyMinWidth }
                 onClose={ () => isOpenChange(false) }
             >
                 { renderHeader(hideHeaderTitle) }
@@ -158,7 +173,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 />
             </PickerBodyMobileView>
         ) : (
-            <DropdownContainer cx={ UUI_FILTERS_PANEL_ITEM_BODY } { ...dropdownProps }>
+            <DropdownContainer cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...dropdownProps }>
                 { renderHeader(hideHeaderTitle) }
                 <FilterItemBody
                     { ...props }
@@ -177,7 +192,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
 
     const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
         if (item.isLoading) {
-            return <TextPlaceholder />;
+            return settings.filtersPanel.renderPlaceholder();
         }
 
         if (item.isUnknown) {
@@ -277,7 +292,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
             closeBodyOnTogglerHidden={ !isMobile() }
             value={ isOpen }
             onValueChange={ isOpenChange }
-            modifiers={ popperModifiers }
+            middleware={ floatingMiddleware }
         />
     );
 }

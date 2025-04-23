@@ -1,6 +1,6 @@
 import { TNormalizedMatrix } from '@epam/uui-docs';
 import { IModal } from '@epam/uui-core';
-import React from 'react';
+import React, { type JSX } from 'react';
 import {
     Button,
     FlexCell,

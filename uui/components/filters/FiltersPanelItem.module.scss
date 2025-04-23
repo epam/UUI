@@ -1,18 +1,49 @@
 @use  '../../assets/styles/index' as *;
 
+
+
+.body {
+    --uui-filters_panel-item-header-padding: 9px 12px 0;
+    --uui-filters_panel-item-header-margin-bottom: 9px;
+
+    --uui-filters_panel-item-header-title: var(--uui-text-secondary);
+    --uui-filters_panel-item-header-title-font: var(--uui-font);
+    --uui-filters_panel-item-header-title-font-size: 14px;
+    --uui-filters_panel-item-header-title-font-weight: 400;
+    --uui-filters_panel-item-header-title-font-style: normal;
+    --uui-filters_panel-item-header-title-line-height: 18px;
+    --uui-filters_panel-item-header-title-vertical-padding: 3px;
+
+    --uui-filters_panel-item-header-remove_button-margin-left: 24px;
+    --uui-filters_panel-item-header-remove_button-font-size: 14px;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 9px 12px 0;
-    margin-bottom: 9px;
+    padding: var(--uui-filters_panel-item-header-padding);
+    margin-bottom: var(--uui-filters_panel-item-header-margin-bottom);
+
+    .title {
+        font-family: var(--uui-filters_panel-item-header-title-font);
+        font-size: var(--uui-filters_panel-item-header-title-font-size);
+        font-weight: var(--uui-filters_panel-item-header-title-font-weight);
+        font-style: var(--uui-filters_panel-item-header-title-font-style);
+        line-height: var(--uui-filters_panel-item-header-title-line-height);
+        color: var(--uui-filters_panel-item-header-title);
+        padding-top: var(--uui-filters_panel-item-header-title-vertical-padding);
+        padding-bottom: var(--uui-filters_panel-item-header-title-vertical-padding);
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+    }
 
     .removeButton {
-        padding-left: 24px;
-        margin-left: auto;
+        margin-left: var(--uui-filters_panel-item-header-remove_button-margin-left);
 
         :global(.uui-caption) {
-            font-size: 14px;
+            font-size: var(--uui-filters_panel-item-header-remove_button-font-size);
         }
     }
 

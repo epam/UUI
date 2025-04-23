@@ -1,64 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Accordion should be rendered correctly 1`] = `
-<div
-  aria-expanded={false}
-  className="uui-accordion-container container root mode-block"
->
+<DocumentFragment>
   <div
-    className="uui-accordion-toggler"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    tabIndex={0}
+    aria-expanded="false"
+    class="uui-accordion-container container root mode-block"
   >
     <div
-      className="uui-accordion-toggle-container"
+      class="uui-accordion-toggler"
+      tabindex="0"
     >
       <div
-        className="uui-accordion-title"
+        class="uui-accordion-toggle-container"
       >
-        Test title
-      </div>
-      <div
-        className="container uui-icon uui-enabled arrow"
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
+        <div
+          class="uui-accordion-title"
+        >
+          Test title
+        </div>
+        <div
+          class="container uui-icon uui-enabled arrow"
+        >
+          <svg
+            class=""
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Accordion should be rendered correctly with props 1`] = `
-<div
-  aria-disabled={true}
-  aria-expanded={false}
-  className="uui-accordion-container container uui-disabled root mode-inline padding-18"
->
+<DocumentFragment>
   <div
-    className="uui-accordion-toggler uui-disabled"
-    tabIndex={-1}
+    aria-disabled="true"
+    aria-expanded="false"
+    class="uui-accordion-container container uui-disabled root mode-inline padding-18"
   >
     <div
-      className="uui-accordion-toggle-container"
+      class="uui-accordion-toggler uui-disabled"
+      tabindex="-1"
     >
       <div
-        className="uui-accordion-title"
+        class="uui-accordion-toggle-container"
       >
-        Test title
-      </div>
-      <div
-        className="container uui-icon uui-enabled uui-disabled arrow"
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
+        <div
+          class="uui-accordion-title"
+        >
+          Test title
+        </div>
+        <div
+          class="container uui-icon uui-enabled uui-disabled arrow"
+        >
+          <svg
+            class=""
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

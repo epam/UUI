@@ -1,11 +1,15 @@
 import React, { useMemo, useState } from 'react';
 import { DataColumnProps, useLazyDataSource, useUuiContext, UuiContexts } from '@epam/uui-core';
-import { DataTable, Panel, StatusIndicator, StatusIndicatorProps, Text } from '@epam/uui';
+import { DataTable, DataTableProps, Panel, StatusIndicator, StatusIndicatorProps, Text } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import { TApi } from '../../../data';
 import css from './TablesExamples.module.scss';
+import { ExampleProps } from '../types';
+import { getAllPropValues } from '../utils';
 
-export default function CondensedView() {
+export default function CondensedView(props: ExampleProps) {
+    const sizes = getAllPropValues('size', false, props) as DataTableProps<any, any>['size'][];
+    const rowSize = sizes[1]; // to make the example work with 4/6 pixel grid design systems
     const svc = useUuiContext<TApi, UuiContexts>();
 
     const [value, onValueChange] = useState({});
@@ -90,7 +94,7 @@ export default function CondensedView() {
                 allowColumnsReordering={ true }
                 columnsGap="12"
                 headerSize="48"
-                size="30"
+                size={ rowSize }
                 border={ false }
             />
         </Panel>

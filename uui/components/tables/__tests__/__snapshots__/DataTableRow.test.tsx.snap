@@ -1,57 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataTableRow should be rendered correctly 1`] = `
-<div
-  className="uui-flex-row container uui-table-row-container uui-table-row root uui-dt-vars uui-dt-row-border uui-size-36 container align-items-center"
-  role="row"
-  style={
-    Object {
-      "columnGap": undefined,
-      "minWidth": "95px",
-      "rowGap": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="section scrollingSection uui-table-scrolling-section"
-    style={
-      Object {
-        "--uui-dt-cell-border-width": "1px",
-        "flex": "1 0 95px",
-        "minWidth": "95px",
-      }
-    }
+    class="container uui-table-row-container uui-table-row root uui-dt-vars uui-dt-row-border uui-size-36"
+    role="row"
+    style="min-width: 95px;"
   >
     <div
-      className="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-36 uui-dt-first-column uui-dt-last-column align-widgets-top"
-      role="cell"
-      style={
-        Object {
-          "--uui-dt-cell-padding-end": "24px",
-          "--uui-dt-cell-padding-start": "24px",
-          "alignSelf": undefined,
-          "flexBasis": "96px",
-          "flexGrow": 0,
-          "flexShrink": undefined,
-          "justifyContent": false,
-          "minWidth": "96px",
-          "textAlign": undefined,
-        }
-      }
+      class="section scrollingSection uui-table-scrolling-section"
+      style="flex: 1 0 95px; min-width: 95px; --uui-dt-cell-border-width: 1px;"
     >
       <div
-        className="contentWrapper"
-        style={
-          Object {
-            "alignSelf": undefined,
-            "justifyContent": undefined,
-            "textAlign": undefined,
-          }
-        }
+        class="uui-dt-vars root uui-table-cell cell data-table-cell root uui-size-36 uui-dt-first-column uui-dt-last-column align-widgets-top"
+        role="cell"
+        style="min-width: 96px; flex-grow: 0; flex-basis: 96px; --uui-dt-cell-padding-start: var(--uui-dt-cell-padding-edge); --uui-dt-cell-padding-end: var(--uui-dt-cell-padding-edge);"
       >
-        <div />
+        <div
+          class="contentWrapper"
+        >
+          <div>
+            Test Product
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

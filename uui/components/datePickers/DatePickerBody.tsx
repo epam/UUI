@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useMemo, useState } from 'react';
 import {
     IControlled,
     cx,
@@ -12,6 +12,7 @@ import {
 } from './helpers';
 import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
 import { settings } from '../../settings';
+
 import css from './DatePickerBody.module.scss';
 
 export interface DatePickerBodyProps extends CommonDatePickerBodyProps, IControlled<string | null> {
@@ -80,7 +81,7 @@ function StatelessDatePickerBodyComp({
     onViewChange,
     isDisabled,
 }: StatelessDatePickerBodyProps, ref: React.ForwardedRef<HTMLDivElement>) {
-    const selectedDate = uuiDayjs.dayjs(value);
+    const selectedDate = useMemo(() => uuiDayjs.dayjs(value), [value]);
 
     const onMonthClick = (newDate: Dayjs) => {
         onMonthChange(newDate);
@@ -134,7 +135,7 @@ function StatelessDatePickerBodyComp({
     return (
         <div
             ref={ ref }
-            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.sizes.defaults.datePicker}`, classes) }
+            className={ cx(uuiDatePickerBodyBase.container, `uui-size-${settings.datePicker.sizes.body}`, classes) }
             { ...rawProps }
         >
             <div className={ cx(css.root, uuiDatePickerBody.wrapper) }>

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { DropdownBodyProps, IDropdownToggler, isFocusReceiverInsideFocusLock } from '@epam/uui-core';
+import { offset } from '@floating-ui/react';
+import { isFocusReceiverInsideFocusLock } from '@epam/uui-core';
+import { Dropdown } from '@epam/uui-components';
+import type { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
 import { uuiDayjs } from '../../../helpers/dayJsHelper';
-import { Dropdown, DropdownContainer } from '../../overlays';
+import { DropdownContainer } from '../../overlays/DropdownContainer';
 import { TextInput } from '../TextInput';
 import { TimePickerBody } from './TimePickerBody';
 import { EditMode } from '../../types';
-import { TimePickerProps, TimePickerValue } from './types';
+import type { TimePickerProps, TimePickerValue } from './types';
 import { formatTime, getMeridian, parseTimeNumbers } from './parseTimeHelper';
 import css from './TimePicker.module.scss';
 
@@ -18,7 +21,7 @@ const valueToTimeString = (value: TimePickerValue, format: TimePickerProps['form
         .format(format === 24 ? 'HH:mm' : 'hh:mm A');
 };
 
-export function TimePicker(props: TimePickerProps) {
+export function TimePickerComponent(props: TimePickerProps, ref: React.ForwardedRef<HTMLElement>) {
     const [state, setState] = useState(
         {
             isOpen: false,
@@ -110,7 +113,7 @@ export function TimePicker(props: TimePickerProps) {
             <TextInput
                 { ...inputProps }
                 onClick={ null }
-                size={ props.size || '36' }
+                size={ props.size }
                 isDisabled={ props.isDisabled }
                 isReadonly={ props.isReadonly }
                 isInvalid={ props.isInvalid }
@@ -152,8 +155,10 @@ export function TimePicker(props: TimePickerProps) {
             renderBody={ (bodyProps) => !props.isDisabled && !props.isReadonly && renderBody(bodyProps) }
             onValueChange={ !props.isDisabled && !props.isReadonly ? onToggle : null }
             value={ state.isOpen }
-            modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
-            forwardedRef={ props.forwardedRef }
+            middleware={ [offset(6)] }
+            ref={ ref }
         />
     );
 }
+
+export const TimePicker = React.forwardRef(TimePickerComponent);

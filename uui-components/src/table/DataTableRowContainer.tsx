@@ -1,13 +1,11 @@
 import React from 'react';
 import {
     DataColumnProps, IClickable, IHasCX, IHasRawProps, uuiMarkers, Link, cx,
-    DndEventHandlers,
-    DataColumnGroupProps,
+    DndEventHandlers, DataColumnGroupProps, isEventTargetInsideClickable,
 } from '@epam/uui-core';
-import { FlexRow } from '../layout';
 import { Anchor } from '../navigation';
-import css from './DataTableRowContainer.module.scss';
 import { getGroupsWithColumns, isGroupOfColumns } from './columnsConfigurationModal/columnsGroupsUtils';
+import css from './DataTableRowContainer.module.scss';
 
 export interface DataTableRowContainerProps<TItem, TId, TFilter>
     extends IClickable,
@@ -52,11 +50,11 @@ enum SectionType {
 // This is required to have the same width, as the sum of column's width, and grow in the same proportion, as columns inside.
 // E.g. for 2 columns: { width: 100, grow: 0 }, { width: 200, grow: 1 } we compute { width: 300, grow: 1 }
 // For scrollingSection and for the whole table, we put at least grow=1 - to make the table occupy full width, even if there's no columns with grow > 0.
-function getSectionStyle(columns: DataColumnProps[], type: SectionType) {
+function getSectionStyle(sectionColumns: DataColumnProps[], type: SectionType, allColumns: DataColumnProps[]) {
     let grow = 0;
     let width = 0;
 
-    columns.forEach((column) => {
+    sectionColumns.forEach((column) => {
         let columnWidth;
         if (typeof column.width === 'number') {
             // As columns border's are overlap to collapse borders, effective width of each cell is less by CELL_BORDER_WIDTH
@@ -72,12 +70,17 @@ function getSectionStyle(columns: DataColumnProps[], type: SectionType) {
         grow += typeof column.grow === 'number' ? column.grow : 0;
     });
 
-    // For fixed sections we keep 1 border width for a transparent border on the edge, so borders on scrolling section can be visible through it
+    // For fixed sections, we keep 1 border width for a transparent border on the edge,
+    // so borders on a scrolling section can be visible through it
     if (width > 0 && type === SectionType.Fixed) {
         width += CELL_BORDER_WIDTH;
     }
 
-    const minGrow = type === SectionType.Scrolling ? 1 : 0;
+    const columnsWithGrow = allColumns.filter((column) => column.grow > 0).length;
+
+    // In case if there are no columns with 'grow', we use minimal grow 1 for a scrolling section,
+    // to occupy all available space between fixed sections. If there are some columns with grow, we assume that these sections will fit all available space.
+    const minGrow = type === SectionType.Scrolling && columnsWithGrow === 0 ? 1 : 0;
     grow = Math.max(grow, minGrow);
 
     return {
@@ -106,7 +109,7 @@ export const DataTableRowContainer = React.forwardRef(
                     const lastColumnIdx = props.columns?.indexOf(item.columns[item.columns.length - 1]) || 0;
 
                     return (
-                        <div style={ getSectionStyle(item.columns, SectionType.Group) } className={ cx(css.section, 'uui-table-column-group-wrapper') }>
+                        <div style={ getSectionStyle(item.columns, SectionType.Group, props.columns) } className={ cx(css.section, 'uui-table-column-group-wrapper') }>
 
                             {props.renderGroupCell(item.group, index, firstColumnIdx, lastColumnIdx)}
                             <div className={ css.groupColumnsWrapper }>
@@ -129,7 +132,7 @@ export const DataTableRowContainer = React.forwardRef(
         function wrapFixedSection(columns: DataColumnProps<TItem, TId, TFilter>[], direction: 'left' | 'right', hasScrollingSection: boolean) {
             return (
                 <div
-                    style={ getSectionStyle(columns, SectionType.Fixed) }
+                    style={ getSectionStyle(columns, SectionType.Fixed, props.columns) }
                     className={ cx({
                         [css.section]: true,
                         [uuiDataTableRowCssMarkers.uuiTableFixedSection]: true,
@@ -151,7 +154,7 @@ export const DataTableRowContainer = React.forwardRef(
             return (
                 <div
                     className={ cx(css.section, css.scrollingSection, uuiDataTableRowCssMarkers.uuiTableScrollingSection) }
-                    style={ getSectionStyle(columns, SectionType.Scrolling) }
+                    style={ getSectionStyle(columns, SectionType.Scrolling, props.columns) }
                 >
                     {renderCells(columns)}
                 </div>
@@ -182,7 +185,7 @@ export const DataTableRowContainer = React.forwardRef(
         }
 
         // We use only total minWidth here, grow is not needed (rows are placed in block or vertical flex contexts)
-        const minWidth = getSectionStyle(props.columns, SectionType.Table).minWidth;
+        const minWidth = getSectionStyle(props.columns, SectionType.Table, props.columns).minWidth;
 
         const rawProps = {
             ...restRawProps,
@@ -200,16 +203,19 @@ export const DataTableRowContainer = React.forwardRef(
                 {getRowContent()}
             </Anchor>
         ) : (
-            <FlexRow
-                onClick={ props.onClick }
-                cx={ [
-                    css.container, uuiDataTableRowCssMarkers.uuiTableRowContainer, props.onClick && uuiMarkers.clickable, props.cx,
-                ] }
-                rawProps={ rawProps }
+            <div
+                onClick={ props.onClick ? (e) => !isEventTargetInsideClickable(e) && props.onClick(e) : undefined }
+                className={ cx(
+                    css.container,
+                    uuiDataTableRowCssMarkers.uuiTableRowContainer,
+                    props.onClick && uuiMarkers.clickable,
+                    props.cx,
+                ) }
+                { ...rawProps }
                 ref={ ref }
             >
                 {getRowContent()}
-            </FlexRow>
+            </div>
         );
     },
-) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement;
+) as <TItem, TId, TFilter = any>(props: DataTableRowContainerProps<TItem, TId, TFilter> & { ref?: React.ForwardedRef<HTMLDivElement> }) => React.ReactElement<any>;

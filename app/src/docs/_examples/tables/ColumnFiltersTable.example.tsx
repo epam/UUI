@@ -22,7 +22,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
                     <Badge indicator size="24" fill="outline" color={ p.profileStatus.toLowerCase() as BadgeProps['color'] } caption={ p.profileStatus } />
                 </FlexRow>
             ),
-        width: 140,
+        width: 180,
         isSortable: true,
         isFilterActive: (f) => !!f.profileStatusId,
     }, {

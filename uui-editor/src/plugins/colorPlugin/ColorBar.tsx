@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { offset } from '@floating-ui/react';
 import { Dropdown, FlexRow } from '@epam/uui';
 import { ToolbarButton } from '../../implementation/ToolbarButton';
 
@@ -58,6 +59,11 @@ export function ColorButton() {
     const type = getPluginType(editor, MARK_COLOR);
     const markValue: any = getMark(editor, type);
 
+    const { colors } = React.useMemo(() => getPluginOptions<ColorPluginOptions>(
+        editor,
+        COLOR_PLUGIN_KEY,
+    ), [editor]);
+
     const updateColor = React.useCallback((color: string) => {
         if (markValue !== color) {
             setMarks(editor, { [type]: color });
@@ -70,8 +76,6 @@ export function ColorButton() {
         removeMark(editor, { key: type });
     }, [editor, type]);
 
-    const modifiers = React.useMemo(() => ([{ name: 'offset', options: { offset: [0, 3] } }]), []);
-
     if (!pluginActive) return null;
 
     return (
@@ -79,6 +83,7 @@ export function ColorButton() {
             renderTarget={ (props) => (
                 <ToolbarButton
                     icon={ ColorIcoNormal }
+                    isActive={ !!markValue && colors.includes(markValue) }
                     { ...props }
                 />
             ) }
@@ -90,7 +95,7 @@ export function ColorButton() {
                 />
             ) }
             placement="top-start"
-            modifiers={ modifiers }
+            middleware={ [offset(3)] }
         />
     );
 }

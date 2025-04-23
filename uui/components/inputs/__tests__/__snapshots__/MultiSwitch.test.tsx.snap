@@ -1,37 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should be rendered correctly 1`] = `
-<div
-  className="container root uui-control-group"
-  role="tablist"
->
-  <button
-    aria-current={true}
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-    onClick={[Function]}
-    role="tab"
-    tabIndex={0}
-    type="button"
+<DocumentFragment>
+  <div
+    class="container root uui-control-group"
+    role="tablist"
   >
-    <div
-      className="uui-caption"
+    <button
+      aria-current="true"
+      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+      role="tab"
+      tabindex="0"
+      type="button"
     >
-      On
-    </div>
-  </button>
-  <button
-    aria-current={false}
-    className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-primary uui-size-36"
-    onClick={[Function]}
-    role="tab"
-    tabIndex={0}
-    type="button"
-  >
-    <div
-      className="uui-caption"
+      <div
+        class="uui-caption"
+      >
+        On
+      </div>
+    </button>
+    <button
+      aria-current="false"
+      class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-primary uui-size-36"
+      role="tab"
+      tabindex="0"
+      type="button"
     >
-      Off
-    </div>
-  </button>
-</div>
+      <div
+        class="uui-caption"
+      >
+        Off
+      </div>
+    </button>
+  </div>
+</DocumentFragment>
 `;

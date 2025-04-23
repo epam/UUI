@@ -9,32 +9,17 @@
     flex: 1 1 auto;
     align-self: stretch;
     width: 100%;
+}
 
-    :global(.-scrolled-bottom) {
-        border-bottom: 1px solid var(--uui-divider);
-    }
-
-    &.modal {
-        :global(.-scrolled-top) {
-            border-top: 1px solid var(--uui-divider);
-        }
-
-        :global(.-scrolled-bottom) {
-            border-bottom: 1px solid var(--uui-divider);
-        }
-    }
+// We should add bottom border for list with scroll, only in case if we have footer
+:global(.uui-picker_input-body):has(+ :global(.uui-picker_input-footer)) > :global(.-scrolled-bottom) {
+    border-bottom: 1px solid var(--uui-divider);
 }
 
 .search-wrapper ~ :global(.uui-picker_input-body) {
-    &:not(.modal) {
-        :global(.-scrolled-top) {
-            border-top: 1px solid var(--uui-divider);
-        }
+    :global(.-scrolled-top) {
+        border-top: 1px solid var(--uui-divider);
     }
-}
-
-.modal {
-    border: 0;
 }
 
 .search-wrapper {
@@ -46,10 +31,4 @@
 .no-data {
     padding-top: var(--uui-data_picker_body-no-data-vertical-padding);
     padding-bottom: var(--uui-data_picker_body-no-data-vertical-padding);
-}
-
-
-.type-search-to-load-size-24 {
-    padding-top: 20px;
-    padding-bottom: 20px;
 }

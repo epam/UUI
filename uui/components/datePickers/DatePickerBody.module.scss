@@ -10,7 +10,7 @@
     --uui-dtp_body-content-font: var(--uui-font);
     --uui-dtp_body-content-font-weight: 400;
 
-    --uui-dtp_body-min-height: 282px;
+    --uui-dtp_body-min-height: calc(var(--uui-size) * 6);
     --uui-dtp_body-padding: 12px 18px;
 
     --uui-dtp-cell-height: var(--uui-size);
@@ -25,10 +25,13 @@
     --uui-dtp-year-width: 63px;
     --uui-dtp-year-hover-width: calc(var(--uui-dtp-year-width) - var(--uui-dtp-cell-border-width) * 2);
     --uui-dtp-year-margin: 6px 0;
+
+    --uui-dtp-weeks-height: 24px; // to calc right height of body, align with --uui-calendar-weekday-line-height in 'Calendar' styles
 }
 
 :global(.uui-datepicker-body-wrapper) {
     min-height: var(--uui-dtp_body-min-height);
+    min-width: calc(var(--uui-size) * 7);
     padding: var(--uui-dtp_body-padding);
 
     // DatePickerBase style
@@ -40,6 +43,11 @@
     :global(.uui-month_selection-content), :global(.uui-year_selection-content) {
         font-family: var(--uui-dtp_body-content-font);
         font-weight: var(--uui-dtp_body-content-font-weight, normal);
+    }
+
+    :global(.uui-month_selection-month-container),
+    :global(.uui-year_selection-years-container) {
+        min-height: calc((var(--uui-size) * 6) + var(--uui-dtp-weeks-height));
     }
 
     :global(.uui-month_selection-month-container) {
@@ -61,7 +69,10 @@
     }
 
     :global(.uui-year_selection-years-row) {
-        display: flex;
+        justify-content: space-between;
+    }
+
+    :global(.uui-month_selection-months-row) {
         justify-content: space-between;
     }
 

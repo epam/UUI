@@ -1,20 +1,23 @@
-import React, { forwardRef, useState } from 'react';
-import { Dayjs, uuiDayjs } from '../../helpers/dayJsHelper';
-import { cx, IControlled } from '@epam/uui-core';
-import {
-    uuiDaySelection, Day, DayProps, RangeDatePickerPresets,
-} from '@epam/uui-components';
+import React, { forwardRef, useState, type JSX } from 'react';
+import cx from 'classnames';
+import type { IControlled, RangeDatePickerPresets } from '@epam/uui-core';
+import type { DayProps } from '@epam/uui-components';
+import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { CalendarPresets } from './CalendarPresets';
-import css from './RangeDatePickerBody.module.scss';
+import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePickerBody';
+
+import type { Dayjs } from '../../helpers/dayJsHelper';
+import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
     defaultRangeValue, getMonthOnOpen, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
-import {
+import type {
     CommonDatePickerBodyProps,
     RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue, ViewType,
 } from './types';
-import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePickerBody';
+
+import css from './RangeDatePickerBody.module.scss';
 
 export const uuiRangeDatePickerBody = {
     inRange: 'uui-range-datepicker-in-range',

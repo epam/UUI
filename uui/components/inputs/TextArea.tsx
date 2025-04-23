@@ -2,6 +2,7 @@ import { Overwrite, withMods } from '@epam/uui-core';
 import { TextArea as uuiTextArea, TextAreaProps as uuiTextAreaProps } from '@epam/uui-components';
 import * as types from '../types';
 import { settings } from '../../settings';
+
 import css from './TextArea.module.scss';
 
 const DEFAULT_MODE = types.EditMode.FORM;
@@ -20,8 +21,8 @@ function applyTextAreaMods(mods: TextAreaMods) {
     return [
         css.root,
         'uui-textarea',
-        'uui-size-' + (mods.size || settings.sizes.defaults.textArea),
-        css['mode-' + (mods.mode || DEFAULT_MODE)],
+        'uui-size-' + (mods.size || settings.textArea.sizes.default),
+        'uui-control-mode-' + (mods.mode || DEFAULT_MODE),
     ];
 }
 

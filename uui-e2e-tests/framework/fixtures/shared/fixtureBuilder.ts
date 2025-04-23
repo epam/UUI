@@ -10,9 +10,7 @@ interface IFixtureBuilderParams<TPageWrapper> {
     extraStyles?: string;
 }
 
-export function buildFixture<TPageWrapper extends AbsPage>(
-    builderParams: IFixtureBuilderParams<TPageWrapper>,
-) {
+export function buildFixture<TPageWrapper extends AbsPage>(builderParams: IFixtureBuilderParams<TPageWrapper>) {
     const { initialUrl, PageWrapperConstructor, extraStyles } = builderParams;
     return baseTest.extend<{}, { pageWrapper: TPageWrapper }>({
         pageWrapper: [

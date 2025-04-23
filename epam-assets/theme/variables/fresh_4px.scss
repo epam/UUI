@@ -17,6 +17,7 @@
 
     & {
         --uui-border-radius: 3px;
+        scrollbar-color: var(--uui-neutral-40) transparent;
     }
 
     /* begin color classes */
@@ -355,27 +356,27 @@
 
     /* FlexRow */
 
-    .uui-flex-row.uui-color-none {
+    .uui-flex-row.uui-flex-row-bg-none {
         --uui-flex-row-bg: transparent;
     }
 
-    .uui-flex-row.uui-color-white {
+    .uui-flex-row.uui-flex-row-bg-white {
         --uui-flex-row-bg: var(--white);
     }
 
-    .uui-flex-row.uui-color-night50 {
+    .uui-flex-row.uui-flex-row-bg-night50 {
         --uui-flex-row-bg: var(--night50);
     }
 
-    .uui-flex-row.uui-color-night100 {
+    .uui-flex-row.uui-flex-row-bg-night100 {
         --uui-flex-row-bg: var(--night100);
     }
 
-    .uui-panel.uui-color-white {
+    .uui-panel.uui-bg-white {
         --uui-panel-bg: var(--white);
     }
 
-    .uui-panel.uui-color-night50 {
+    .uui-panel.uui-bg-night50 {
         --uui-panel-bg: var(--night50);
     }
 
@@ -573,6 +574,38 @@
             font-size: 72px;
             line-height: 72px;
             font-weight: 700;
+        }
+    }
+
+    .uui-picker_input-body-search {
+        --uui-data_picker_body-search-padding: 12px;
+    }
+
+    .uui-picker_input-row {
+        margin: 0 12px;
+        border-radius: 4px;
+    }
+
+    [aria-selected='true'], [aria-selected='true'].uui-focus {
+        background-color: var(--uui-primary-60);
+
+        .uui-picker_input-item {
+            --uui-picker_item-title: var(--uui-neutral-0);
+            --uui-picker_item-subtitle: var(--uui-neutral-0);
+        }
+
+        .uui-picker_input-row-select_icon {
+            display: none;
+        }
+    }
+
+    .uui-timepicker-container > .uui-timepicker-item .uui-timepicker-input.uui-input-box {
+        width: 40px;
+    }
+
+    .uui-dt-columns-config-row {
+        .uui-drag-handle {
+            --uui-dt-columns_config_modal-row-vertical-padding: 5px;
         }
     }
 }

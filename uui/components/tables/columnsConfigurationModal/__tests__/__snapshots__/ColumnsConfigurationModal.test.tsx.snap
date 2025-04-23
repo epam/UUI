@@ -1,587 +1,411 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
-<div
-  className="container modalBlocker"
-  style={
-    Object {
-      "zIndex": 1,
-    }
-  }
->
+<DocumentFragment>
   <div
-    aria-label="Click to close a modal"
-    className="uui-modal-blocker"
-    onClick={[Function]}
-  />
-  <div
-    aria-modal={true}
-    className="uui-modal-window root modal root container"
-    role="dialog"
-    style={
-      Object {
-        "height": "95dvh",
-        "maxHeight": "95dvh",
-        "width": 560,
-      }
-    }
+    class="container modalBlocker"
+    style="z-index: 1;"
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      aria-label="Click to close a modal"
+      class="uui-modal-blocker"
+    />
+    <div
+      aria-modal="true"
+      class="uui-modal-window root modal root uui-columns-config-modal container"
+      role="dialog"
+      style="max-height: 95dvh;"
     >
       <div
-        className="uui-modal-title uui-typography"
+        class="root modalHeader uui-modal-header"
       >
-        Configure columns
+        <div
+          class="uui-modal-title uui-typography"
+        >
+          Configure columns
+        </div>
+        <div
+          class="flexSpacer"
+        />
+        <div
+          class="flexCell"
+          style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
+        >
+          <button
+            aria-label="Close modal"
+            class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="container uui-icon uui-enabled"
+            >
+              <svg
+                class=""
+              />
+            </div>
+          </button>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
-      <div
-        className="flexCell"
-        style={
-          Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": 0,
-            "minWidth": 0,
-            "textAlign": undefined,
-          }
-        }
+        class="root uui-flex-row searchArea uui-size-36 borderBottom"
       >
+        <div
+          class="container uui-input-box -clickable root uui-size-30 uui-control-mode-form"
+          tabindex="-1"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+          <input
+            class="uui-input"
+            inputmode="search"
+            placeholder="Search by column name"
+            tabindex="0"
+            type="search"
+            value=""
+          />
+        </div>
         <button
-          aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
-          onClick={[Function]}
-          tabIndex={0}
+          aria-expanded="false"
+          aria-haspopup="false"
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-30"
+          tabindex="0"
           type="button"
         >
           <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+            class="container uui-icon uui-enabled"
           >
             <svg
-              className=""
+              class=""
             />
           </div>
         </button>
       </div>
-    </div>
-    <div
-      className="uui-flex-row root uui-size-36 borderBottom searchArea container align-items-center"
-      style={
-        Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
-        }
-      }
-    >
       <div
-        className="container uui-input-box -clickable root uui-size-30 mode-form"
-        onFocus={[Function]}
-        tabIndex={-1}
+        class="uui-panel root uui-surface-main mainPanel container"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
-        >
-          <svg
-            className=""
-          />
-        </div>
-        <input
-          className="uui-input"
-          inputMode="search"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          placeholder="Search by column name"
-          tabIndex={0}
-          type="search"
-          value=""
-        />
-      </div>
-      <button
-        aria-expanded={false}
-        aria-haspopup={false}
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-30"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
-        >
-          <svg
-            className=""
-          />
-        </div>
-      </button>
-    </div>
-    <div
-      className="uui-panel root uui-surface-main mainPanel container"
-    >
-      <div
-        className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-        style={
-          Object {
-            "display": "flex",
-            "height": "100%",
-            "overflow": "hidden",
-            "position": "relative",
-            "width": "100%",
-          }
-        }
-      >
-        <div
-          style={
-            Object {
-              "WebkitOverflowScrolling": "touch",
-              "bottom": 0,
-              "flex": "1 1 auto",
-              "left": 0,
-              "marginBottom": 0,
-              "marginRight": 0,
-              "overflow": "scroll",
-              "position": "relative",
-              "right": 0,
-              "top": 0,
-            }
-          }
+          class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+          style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
         >
           <div
-            className="uui-flex-row root uui-size-36 group container align-items-center"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
+            style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
           >
             <div
-              className="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline groupTitle container"
-              style={Object {}}
+              class="root uui-flex-row group uui-size-36"
             >
-              Displayed in table
+              <div
+                class="root uui-text uui-size-none uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline groupTitle container"
+              >
+                Displayed in table
+              </div>
+              <div
+                class="root uui-count_indicator uui-size-18 uui-color-neutral"
+              >
+                2
+              </div>
+              <div
+                class="flexSpacer"
+              />
             </div>
             <div
-              className="root uui-count_indicator uui-size-18 uui-color-neutral"
+              aria-expanded="true"
+              class="uui-accordion-container container uui-opened subgroupAccordion"
             >
-              2
+              <div
+                class="uui-accordion-toggler uui-opened"
+                tabindex="0"
+              >
+                <div
+                  class="uui-accordion-toggle-container"
+                >
+                  <div
+                    class="root uui-flex-row subgroup uui-size-36"
+                  >
+                    <div
+                      class="container uui-icon uui-enabled"
+                    >
+                      <svg
+                        class=""
+                      />
+                    </div>
+                    <div
+                      class="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
+                    >
+                      Pinned to the left
+                    </div>
+                  </div>
+                  <div
+                    class="container uui-icon uui-enabled arrow"
+                  />
+                </div>
+              </div>
+              <div
+                class="uui-accordion-body"
+                role="region"
+              >
+                <div
+                  class="root uui-flex-row groupItems uui-size-30"
+                >
+                  <div
+                    class="root uui-flex-row rowWrapper uui-dt-columns-config-row uui-size-30 alignItems"
+                    style="--uui-flex-row-align-items: flex-start;"
+                  >
+                    <div
+                      class="dragHandle dndDisabled container uui-drag-handle uui-disabled"
+                    >
+                      <div
+                        class="container uui-icon uui-disabled"
+                      >
+                        <svg
+                          class=""
+                        />
+                      </div>
+                    </div>
+                    <label
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
+                    >
+                      <div
+                        class="uui-checkbox uui-checked"
+                      >
+                        <input
+                          aria-checked="true"
+                          aria-readonly="true"
+                          checked=""
+                          readonly=""
+                          tabindex="-1"
+                          type="checkbox"
+                        />
+                        <div
+                          class="container uui-icon uui-enabled"
+                        >
+                          <svg
+                            class=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="uui-input-label"
+                      >
+                        ID
+                      </div>
+                    </label>
+                    <div
+                      class="root uui-flex-row pinIconButton"
+                    >
+                      <button
+                        aria-disabled="true"
+                        class="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
+                        tabindex="-1"
+                        type="button"
+                      >
+                        <div
+                          class="container uui-icon uui-enabled"
+                        >
+                          <svg
+                            class=""
+                          />
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div
-              className="flexSpacer"
+              class="root uui-flex-row hDivider"
+            />
+            <div
+              aria-expanded="true"
+              class="uui-accordion-container container uui-opened subgroupAccordion"
+            >
+              <div
+                class="uui-accordion-toggler uui-opened"
+                tabindex="0"
+              >
+                <div
+                  class="uui-accordion-toggle-container"
+                >
+                  <div
+                    class="root uui-flex-row subgroup uui-size-36"
+                  >
+                    <div
+                      class="container uui-icon uui-enabled"
+                    >
+                      <svg
+                        class=""
+                      />
+                    </div>
+                    <div
+                      class="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
+                    >
+                      Not pinned
+                    </div>
+                  </div>
+                  <div
+                    class="container uui-icon uui-enabled arrow"
+                  />
+                </div>
+              </div>
+              <div
+                class="uui-accordion-body"
+                role="region"
+              >
+                <div
+                  class="root uui-flex-row groupItems uui-size-30"
+                >
+                  <div
+                    class="root uui-flex-row rowWrapper notPinned uui-dt-columns-config-row uui-size-30 alignItems"
+                    style="--uui-flex-row-align-items: flex-start;"
+                  >
+                    <div
+                      class="dragHandle container uui-drag-handle"
+                    >
+                      <div
+                        class="container uui-icon uui-enabled"
+                      >
+                        <svg
+                          class=""
+                        />
+                      </div>
+                    </div>
+                    <label
+                      class="container uui-checkbox-container root uui-size-18 uui-control-mode-form uui-color-primary checkbox uui-readonly"
+                    >
+                      <div
+                        class="uui-checkbox uui-checked"
+                      >
+                        <input
+                          aria-checked="true"
+                          aria-readonly="true"
+                          checked=""
+                          readonly=""
+                          tabindex="-1"
+                          type="checkbox"
+                        />
+                        <div
+                          class="container uui-icon uui-enabled"
+                        >
+                          <svg
+                            class=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="uui-input-label"
+                      >
+                        Level
+                      </div>
+                    </label>
+                    <div
+                      class="root uui-flex-row pinIconButton"
+                    >
+                      <button
+                        aria-disabled="false"
+                        class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <div
+                          class="container uui-icon uui-enabled"
+                        >
+                          <svg
+                            class=""
+                          />
+                        </div>
+                      </button>
+                      <button
+                        aria-disabled="false"
+                        class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
+                        tabindex="0"
+                        type="button"
+                      >
+                        <div
+                          class="container uui-icon uui-enabled"
+                        >
+                          <svg
+                            class=""
+                          />
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="uui-track-horizontal"
+            style="position: absolute; height: 6px; display: none;"
+          >
+            <div
+              class="uui-thumb-horizontal"
             />
           </div>
           <div
-            aria-expanded={true}
-            className="uui-accordion-container container uui-opened subgroupAccordion"
+            class="uui-track-vertical"
+            style="position: absolute; width: 6px; display: none;"
           >
             <div
-              className="uui-accordion-toggler uui-opened"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              tabIndex={0}
-            >
-              <div
-                className="uui-accordion-toggle-container"
-              >
-                <div
-                  className="uui-flex-row root uui-size-36 subgroup container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
-                >
-                  <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                      height="18"
-                      width="18"
-                    />
-                  </div>
-                  <div
-                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
-                    style={Object {}}
-                  >
-                    Pinned to the left
-                  </div>
-                </div>
-                <div
-                  className="container uui-icon uui-enabled arrow"
-                  style={Object {}}
-                />
-              </div>
-            </div>
-            <div
-              className="uui-accordion-body"
-              role="region"
-            >
-              <div
-                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
-                style={
-                  Object {
-                    "columnGap": undefined,
-                    "rowGap": undefined,
-                  }
-                }
-              >
-                <div
-                  className="uui-flex-row root uui-size-30 rowWrapper uui-dt-columns-config-row container align-items-top"
-                  onPointerEnter={[Function]}
-                  onPointerLeave={[Function]}
-                  onPointerMove={[Function]}
-                  onPointerUp={[Function]}
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
-                >
-                  <div
-                    className="dragHandle dndDisabled container uui-drag-handle uui-disabled"
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="container uui-icon uui-disabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                      />
-                    </div>
-                  </div>
-                  <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
-                  >
-                    <div
-                      className="uui-checkbox uui-checked"
-                    >
-                      <input
-                        aria-checked={true}
-                        aria-readonly={true}
-                        checked={true}
-                        readOnly={true}
-                        tabIndex={-1}
-                        type="checkbox"
-                      />
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      ID
-                    </div>
-                  </label>
-                  <div
-                    className="uui-flex-row root pinIconButton container align-items-center"
-                    style={
-                      Object {
-                        "columnGap": undefined,
-                        "rowGap": undefined,
-                      }
-                    }
-                  >
-                    <button
-                      aria-disabled={true}
-                      className="uui-button-box uui-disabled container uui-icon_button uui-color-primary root pinTogglerIcon"
-                      tabIndex={-1}
-                      type="button"
-                    >
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              class="uui-thumb-vertical"
+            />
           </div>
-          <div
-            className="uui-flex-row root hDivider container align-items-center"
-            style={
-              Object {
-                "columnGap": undefined,
-                "rowGap": undefined,
-              }
-            }
-          />
-          <div
-            aria-expanded={true}
-            className="uui-accordion-container container uui-opened subgroupAccordion"
-          >
-            <div
-              className="uui-accordion-toggler uui-opened"
-              onClick={[Function]}
-              onKeyDown={[Function]}
-              tabIndex={0}
-            >
-              <div
-                className="uui-accordion-toggle-container"
-              >
-                <div
-                  className="uui-flex-row root uui-size-36 subgroup container align-items-center"
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
-                >
-                  <div
-                    className="container uui-icon uui-enabled"
-                    style={Object {}}
-                  >
-                    <svg
-                      className=""
-                      height="18"
-                      width="18"
-                    />
-                  </div>
-                  <div
-                    className="root uui-text uui-size-none uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline subgroupTitle container"
-                    style={Object {}}
-                  >
-                    Not pinned
-                  </div>
-                </div>
-                <div
-                  className="container uui-icon uui-enabled arrow"
-                  style={Object {}}
-                />
-              </div>
-            </div>
-            <div
-              className="uui-accordion-body"
-              role="region"
-            >
-              <div
-                className="uui-flex-row root uui-size-30 groupItems container align-items-center"
-                style={
-                  Object {
-                    "columnGap": undefined,
-                    "rowGap": undefined,
-                  }
-                }
-              >
-                <div
-                  className="uui-flex-row root uui-size-30 rowWrapper notPinned uui-dt-columns-config-row container align-items-top"
-                  onPointerEnter={[Function]}
-                  onPointerLeave={[Function]}
-                  onPointerMove={[Function]}
-                  onPointerUp={[Function]}
-                  style={
-                    Object {
-                      "columnGap": undefined,
-                      "rowGap": undefined,
-                    }
-                  }
-                >
-                  <div
-                    className="dragHandle container uui-drag-handle"
-                    onPointerDown={[Function]}
-                    onTouchStart={[Function]}
-                  >
-                    <div
-                      className="container uui-icon uui-enabled"
-                      style={Object {}}
-                    >
-                      <svg
-                        className=""
-                      />
-                    </div>
-                  </div>
-                  <label
-                    className="container uui-checkbox-container root uui-size-18 mode-form uui-color-primary checkbox uui-readonly"
-                  >
-                    <div
-                      className="uui-checkbox uui-checked"
-                    >
-                      <input
-                        aria-checked={true}
-                        aria-readonly={true}
-                        checked={true}
-                        readOnly={true}
-                        tabIndex={-1}
-                        type="checkbox"
-                      />
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className="uui-input-label"
-                    >
-                      Level
-                    </div>
-                  </label>
-                  <div
-                    className="uui-flex-row root pinIconButton container align-items-center"
-                    style={
-                      Object {
-                        "columnGap": undefined,
-                        "rowGap": undefined,
-                      }
-                    }
-                  >
-                    <button
-                      aria-disabled={false}
-                      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                      onClick={[Function]}
-                      tabIndex={0}
-                      type="button"
-                    >
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </button>
-                    <button
-                      aria-disabled={false}
-                      className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root pinTogglerIcon"
-                      onClick={[Function]}
-                      tabIndex={0}
-                      type="button"
-                    >
-                      <div
-                        className="container uui-icon uui-enabled"
-                        style={Object {}}
-                      >
-                        <svg
-                          className=""
-                        />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="uui-track-horizontal"
-          style={
-            Object {
-              "display": "none",
-              "height": 6,
-              "position": "absolute",
-            }
-          }
-        >
-          <div
-            className="uui-thumb-horizontal"
-          />
-        </div>
-        <div
-          className="uui-track-vertical"
-          style={
-            Object {
-              "display": "none",
-              "position": "absolute",
-              "width": 6,
-            }
-          }
-        >
-          <div
-            className="uui-thumb-vertical"
-          />
         </div>
       </div>
-    </div>
-    <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 borderTop root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
-        >
-          <svg
-            className=""
-          />
-        </div>
-        <div
-          className="uui-caption uui-link-button-weight-semibold"
-        >
-          Reset to Default
-        </div>
-      </button>
       <div
-        className="flexSpacer"
-      />
-      <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-36"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="root modalFooter uui-modal-footer borderTop"
       >
-        <div
-          className="uui-caption"
+        <button
+          class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-has-left-icon uui-no-right-icon uui-color-primary"
+          tabindex="0"
+          type="button"
         >
-          Cancel
-        </div>
-      </button>
-      <button
-        aria-disabled={false}
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+          <div
+            class="uui-caption uui-link-button-weight-semibold"
+          >
+            Reset to Default
+          </div>
+        </button>
         <div
-          className="uui-caption"
+          class="flexSpacer"
+        />
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-none uui-color-secondary uui-size-36"
+          tabindex="0"
+          type="button"
         >
-          Apply
-        </div>
-      </button>
+          <div
+            class="uui-caption"
+          >
+            Cancel
+          </div>
+        </button>
+        <button
+          aria-disabled="false"
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            Apply
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

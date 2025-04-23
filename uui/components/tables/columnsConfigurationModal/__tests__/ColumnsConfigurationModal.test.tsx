@@ -57,7 +57,13 @@ describe('ColumnsConfigurationModal', () => {
     it('should be rendered correctly', async () => {
         const defaultConfig = getColumnsConfig(mockColumns, {});
         const tree = await renderSnapshotWithContextAsync(
-            <ColumnsConfigurationModal { ...modalProps } columns={ mockColumns } columnsConfig={ defaultConfig } defaultConfig={ defaultConfig } />,
+            <ColumnsConfigurationModal
+                { ...modalProps }
+                key={ modalProps.key }
+                columns={ mockColumns }
+                columnsConfig={ defaultConfig }
+                defaultConfig={ defaultConfig }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });

@@ -12,7 +12,7 @@ import {
 } from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { CommonDatePickerProps, TooltipCoreProps } from './components';
+import { CommonDatePickerProps, RangeDatePickerPresets, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
@@ -313,7 +313,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     addons?: React.ReactNode;
 
     /** Overrides default loading placeholder ('skeleton') rendering.
-     * By default: () => <Text> Unknown </Text>
+     * By default: () => <Text> <TextPlaceholder /> </Text>
      * */
     renderPlaceholder?(cellProps: DataTableCellProps<TItem, TId, TCellValue>): React.ReactNode;
 
@@ -331,7 +331,7 @@ export interface DataTableCellProps<TItem = any, TId = any, TCellValue = any> ex
     renderEditor?(props: RenderEditorProps<TItem, TId, TCellValue>): React.ReactNode;
 
     /** Overrides default tooltip, used to show validation message if the cell is invalid */
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement<any>;
 
     /**
      * Drag'n'drop marker event handlers.
@@ -447,6 +447,11 @@ type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDa
 type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
     /** Type of the filter */
     type: 'rangeDatePicker';
+    /**
+     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.
+     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)
+     */
+    presets?: RangeDatePickerPresets;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
@@ -458,7 +463,7 @@ type CustomFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
     /** Type of the filter */
     type: 'custom';
     /** Render callback for filter body */
-    render: (props: IFilterItemBodyProps<any>) => React.ReactElement;
+    render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any>;
     /** A pure function that gets value to display in filter toggler */
     getTogglerValue: (props: IFilterItemBodyProps<any>) => ReactNode;
 };
