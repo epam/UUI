@@ -1,10 +1,12 @@
 import React from 'react';
+import { DropdownBodyProps, isMobile } from '@epam/uui-core';
 import { FlexSpacer } from '@epam/uui-components';
 import { NumericInput } from '../inputs';
-import { DropdownBodyProps, isMobile } from '@epam/uui-core';
 import { FlexCell, FlexRow } from '../layout';
 import { LinkButton } from '../buttons';
 import { i18n } from '../../i18n';
+import { settings } from '../../settings';
+
 import css from './FilterNumericBody.module.scss';
 
 interface INumericRangeValue {
@@ -61,7 +63,6 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
     };
 
     const renderFooter = () => {
-        const size = isMobile() ? '48' : '36';
         const clearSelection = () => {
             if (isInRangePredicate) {
                 props.onValueChange({
@@ -81,7 +82,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                 <FlexCell width="auto" alignSelf="center">
                     <LinkButton
                         isDisabled={ isClearDisabled }
-                        size={ size }
+                        size={ settings.filtersPanel.sizes[isMobile() ? 'mobileFooterLinkButton' : 'footerLinkButton'] }
                         caption={ i18n.pickerInput.clearSelectionButtonSingle }
                         onClick={ clearSelection }
                     />
@@ -97,12 +98,13 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                 <FlexRow
                     padding="12"
                     alignItems="center"
-                    spacing="12"
+                    columnGap="12"
                     borderBottom={ true }
                     cx={ css.container }
                 >
                     <FlexCell width="100%">
                         <NumericInput
+                            size={ settings.filtersPanel.sizes.default }
                             value={ value?.from ?? null }
                             onValueChange={ rangeValueHandler('from') }
                             placeholder="Min"
@@ -111,6 +113,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
                     </FlexCell>
                     <FlexCell width="100%">
                         <NumericInput
+                            size={ settings.filtersPanel.sizes.default }
                             value={ value?.to ?? null }
                             onValueChange={ rangeValueHandler('to') }
                             placeholder="Max"
@@ -134,6 +137,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
             >
                 <FlexCell width={ 130 }>
                     <NumericInput
+                        size={ settings.filtersPanel.sizes.default }
                         value={ typeof props.value === 'number' ? props.value : null }
                         onValueChange={ props.onValueChange }
                         placeholder="Enter a number"

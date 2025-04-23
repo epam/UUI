@@ -29,7 +29,6 @@ export class MultiSwitchDoc extends BaseDocsBlock {
             [TSkin.Electric]: { type: '@epam/uui:MultiSwitchProps', component: electric.MultiSwitch },
         },
         doc: (doc: DocBuilder<uui.MultiSwitchProps<any>>) => {
-            doc.merge('size', { defaultValue: '36' });
             doc.merge('value', { examples: [1, 2, 3] });
             const contextSwitch = [{ id: 1, caption: 'Form' }, { id: 2, caption: 'Default' }, { id: 3, caption: 'Resizable' }];
             const toggleSwitch = [{ id: 1, caption: 'On' }, { id: 2, caption: 'Off' }];

@@ -1,109 +1,167 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import {
-    Lens, DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger,
+    DataSourceState, isMobile, cx, Overwrite, IDropdownBodyProps, devLogger, DataSourceListProps, IEditable,
+    IHasRawProps, usePrevious, DataRowProps, FlattenSearchResultsConfig,
 } from '@epam/uui-core';
-import { FlexCell, PickerBodyBase, PickerBodyBaseProps } from '@epam/uui-components';
-import { SearchInput, SearchInputProps } from '../inputs';
+import { FlexCell } from '@epam/uui-components';
+import { SearchInput } from '../inputs';
 import { FlexRow, VirtualList } from '../layout';
 import { Text } from '../typography';
 import { i18n } from '../../i18n';
-import { ControlSize } from '../types';
 import { settings } from '../../settings';
 import css from './DataPickerBody.module.scss';
+import isEqual from 'react-fast-compare';
+import { DataPickerRow } from './DataPickerRow';
+import type { PickerInputProps } from './PickerInput';
+import { MoveFocusInside } from 'react-focus-lock';
 
 export interface DataPickerBodyModsOverride {}
 
 interface DataPickerBodyMods {
-    searchSize?: ControlSize;
+    searchSize?: PickerInputProps<any, any>['size'];
 }
 
-export interface DataPickerBodyProps extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>, PickerBodyBaseProps, IDropdownBodyProps {
+export interface DataPickerBodyProps<TItem = unknown, TId = unknown> extends Overwrite<DataPickerBodyMods, DataPickerBodyModsOverride>,
+    Pick<PickerInputProps<TItem, TId>, 'size' | 'renderRow' | 'highlightSearchMatches' | 'getName' | 'minCharsToSearch' | 'renderEmpty' | 'renderNotFound' | 'fixedBodyPosition' | 'searchDebounceDelay'>,
+    FlattenSearchResultsConfig, DataSourceListProps, IEditable<DataSourceState>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IDropdownBodyProps {
     maxHeight?: number;
-    editMode?: 'dropdown' | 'modal';
     selectionMode?: 'single' | 'multi';
     maxWidth?: number;
+    onKeyDown?(e: React.KeyboardEvent<HTMLElement>): void;
+    rows: DataRowProps<TItem, TId>[];
+    showSearch?: boolean | 'auto';
+    /** A pure function that gets entity name from entity object */
+    getName: (item: TItem) => string;
 }
 
-export class DataPickerBody extends PickerBodyBase<DataPickerBodyProps> {
-    lens = Lens.onEditableComponent<DataSourceState>(this);
-    searchLens = this.lens.prop('search').default('');
-    getSearchSize = () => (isMobile() ? settings.sizes.pickerInput.body.mobile.searchInput : this.props.searchSize) as SearchInputProps['size'];
+export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...props }:DataPickerBodyProps<TItem, TId>) {
+    const prevProps = usePrevious(props);
+    const showSearch = props.showSearch === 'auto' ? props.totalCount > 10 : Boolean(props.showSearch);
 
-    renderEmpty() {
-        const search = this.searchLens.get();
+    useEffect(() => {
+        if (props.rows.length !== prevProps?.rows.length || (!isEqual(prevProps?.value.checked, props.value.checked) && !props.fixedBodyPosition)) {
+            props.scheduleUpdate?.();
+        }
+    }, [props.rows, prevProps, props.value.checked, props.fixedBodyPosition]);
 
-        if (this.props.renderEmpty) {
-            return this.props.renderEmpty({
-                minCharsToSearch: this.props.minCharsToSearch,
-                onClose: this.props.onClose,
+    const searchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        props.onKeyDown?.(e);
+        if (e.shiftKey && e.key === 'Tab') e.preventDefault();
+    };
+
+    const renderEmpty = () => {
+        const search = props.value.search;
+
+        if (props.renderEmpty) {
+            return props.renderEmpty({
+                minCharsToSearch: props.minCharsToSearch,
+                onClose: props.onClose,
                 search: search,
             });
         }
 
-        if (this.props.minCharsToSearch && search.length < this.props.minCharsToSearch) {
+        if (props.minCharsToSearch && search.length < props.minCharsToSearch) {
             return (
                 <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
-                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
+                    <Text size={ props.searchSize }>{i18n.dataPickerBody.typeSearchToLoadMessage}</Text>
                 </FlexCell>
             );
         }
 
-        if (this.props.rows.length === 0) {
-            if (this.props.renderNotFound) {
+        if (props.rows.length === 0) {
+            if (props.renderNotFound) {
                 if (__DEV__) {
                     devLogger.warn('[PickerInput]: renderNotFound prop is deprecated. Please use renderEmpty prop instead.');
                 }
 
-                return this.props.renderNotFound({
-                    onClose: this.props.onClose,
-                    search: this.searchLens.get(),
+                return props.renderNotFound({
+                    onClose: props.onClose,
+                    search: search,
                 });
             }
 
-            // Default no record found message for 'NOT_FOUND' and "NO_RECORDS" reason
-            // TODO: make separate messages for 'NOT_FOUND' and "NO_RECORDS" reason
             return (
                 <FlexCell cx={ css.noData } grow={ 1 } textAlign="center">
-                    <Text size={ this.props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
+                    <Text size={ props.searchSize }>{i18n.dataPickerBody.noRecordsMessage}</Text>
                 </FlexCell>
             );
         }
-    }
+    };
 
-    render() {
-        const searchSize = this.getSearchSize();
-        return (
-            <>
-                {this.showSearch() && (
-                    <div key="search" className={ css.searchWrapper }>
-                        <FlexCell grow={ 1 }>
+    const getRowSize = () => {
+        if (isMobile()) {
+            return settings.pickerInput.sizes.body.mobileRow;
+        }
+
+        return props.size || settings.pickerInput.sizes.body.row;
+    };
+
+    const renderRow = (row: DataRowProps<TItem, TId>, dsState: DataSourceState) => {
+        const pickerRowProps = { ...row, getName: props.getName };
+
+        return props.renderRow ? (
+            props.renderRow(pickerRowProps, dsState)
+        ) : (
+            <DataPickerRow
+                { ...pickerRowProps }
+                key={ row.rowKey }
+                size={ getRowSize() }
+                flattenSearchResults={ props.flattenSearchResults }
+                highlightSearchMatches={ highlightSearchMatches }
+                dataSourceState={ dsState }
+                getName={ props.getName }
+            />
+        );
+    };
+
+    const searchSize = isMobile()
+        ? settings.pickerInput.sizes.body.mobileSearchInput
+        : settings.pickerInput.sizes.body.getSearchSize({ pickerSize: props.searchSize });
+
+    const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
+
+    return (
+        <>
+            {showSearch && (
+                <div key="search" className={ cx(css.searchWrapper, 'uui-picker_input-body-search') }>
+                    <FlexCell grow={ 1 }>
+                        <MoveFocusInside>
                             <SearchInput
-                                ref={ this.searchRef }
                                 placeholder={ i18n.dataPickerBody.searchPlaceholder }
-                                { ...this.searchLens.toProps() }
-                                onKeyDown={ this.searchKeyDown }
+                                value={ props.value.search }
+                                onValueChange={ (newVal) => props.onValueChange({ ...props.value, search: newVal }) }
+                                onKeyDown={ searchKeyDown }
                                 size={ searchSize }
-                                debounceDelay={ this.props.searchDebounceDelay }
+                                debounceDelay={ props.searchDebounceDelay }
                                 rawProps={ { dir: 'auto' } }
                             />
-                        </FlexCell>
-                    </div>
-                )}
-                <FlexRow key="body" cx={ cx('uui-picker_input-body', css[this.props.editMode], css[this.props.selectionMode]) } rawProps={ { style: { maxHeight: this.props.maxHeight, maxWidth: this.props.maxWidth } } }>
-                    { this.props.rows.length === 0 && this.props.value.topIndex === 0
-                        // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
-                        // we fix this state on next render and shouldn't show empty state.
-                        ? this.renderEmpty() : (
-                            <VirtualList
-                                { ...this.lens.toProps() }
-                                rows={ this.props.rows }
-                                rawProps={ this.props.rawProps }
-                                rowsCount={ this.props.rowsCount }
-                                isLoading={ this.props.isReloading }
-                            />
-                        )}
-                </FlexRow>
-            </>
-        );
-    }
+                        </MoveFocusInside>
+                    </FlexCell>
+                </div>
+            )}
+            <FlexRow
+                key="body"
+                cx={ cx('uui-picker_input-body') }
+                rawProps={ { style: { maxHeight: props.maxHeight, maxWidth: props.maxWidth }, tabIndex: -1 } }
+            >
+                { props.rows.length === 0 && props.value.topIndex === 0
+                    // We need to also ensure that topIndex === 0, because we can have state were there is no rows but topIndex > 0, in case when we scrolled lover than we have rows
+                    // we fix this state on next render and shouldn't show empty state.
+                    ? renderEmpty() : (
+                        <VirtualList
+                            value={ props.value }
+                            onValueChange={ props.onValueChange }
+                            rows={ renderedDataRows }
+                            rawProps={ {
+                                'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
+                                'aria-orientation': 'vertical',
+                                ...props.rawProps,
+                            } }
+                            rowsCount={ props.rowsCount }
+                            isLoading={ props.isReloading }
+                        />
+                    )}
+            </FlexRow>
+        </>
+    );
 }

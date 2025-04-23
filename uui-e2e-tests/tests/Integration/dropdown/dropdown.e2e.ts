@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../../framework/fixtures/docExamplePage/fixture';
+import { test } from '../../../framework/fixtures/integrationTestPage/fixture';
 import { DropdownObject } from '../../../framework/pageObjects/dropdownObject';
 import { setupDocExampleTest } from '../testUtils';
 

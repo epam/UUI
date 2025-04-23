@@ -1,6 +1,6 @@
 import * as uuiComponents from '@epam/uui-components';
 import { withMods, Overwrite, devLogger } from '@epam/uui-core';
-import { systemIcons } from '../../icons/icons';
+import { settings } from '../../settings';
 
 import css from './IconButton.module.scss';
 
@@ -43,7 +43,7 @@ export const IconButton = withMods<uuiComponents.IconButtonProps, IconButtonProp
             });
         }
         return {
-            dropdownIcon: props.dropdownIcon || systemIcons.foldingArrow,
+            dropdownIcon: props.dropdownIcon || settings.iconButton.icons.dropdownIcon,
         };
     },
 );

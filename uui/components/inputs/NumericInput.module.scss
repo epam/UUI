@@ -6,12 +6,8 @@
 
     //
     &:global(.uui-input-box) {
-        padding-inline-end: 0;
+        padding-inline-end: calc(var(--uui-horizontal-padding) - var(--uui-border-width));
         min-width: 40px;
-
-        &:global(.uui-numeric-input-without-arrows) {
-            padding-inline-end: calc(var(--uui-horizontal-padding) - var(--uui-border-width));
-        }
 
         :global(.uui-numeric-input-up-button) {
             transform: rotate(180deg);

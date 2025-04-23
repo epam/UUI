@@ -1,5 +1,6 @@
+import { createRoot } from 'react-dom/client';
 import React, { useEffect, useState } from 'react';
-import { render } from 'react-dom';
+// @ts-ignore
 import { createBrowserHistory } from 'history';
 import { ErrorHandler, FlexRow } from '@epam/promo';
 import {
@@ -10,7 +11,7 @@ import {
     DragGhost,
 } from '@epam/uui-core';
 import { Modals, Snackbar } from '@epam/uui-components';
-import { Settings, settings } from '@epam/uui';
+import { settings } from '@epam/uui';
 import { settings_override } from './settings';
 import '@epam/uui-components/styles.css';
 // eslint-disable-next-line import/no-unresolved
@@ -22,12 +23,11 @@ import '@epam/loveship/styles.css';
 import '@epam/uui-docs/styles.css';
 import Example from './Example';
 import { svc, getApi } from './api';
+import deepmerge from 'deepmerge';
 /* eslint-enable */
 
-settings.sizes = {
-    ...settings.sizes,
-    ...(settings_override as Settings).sizes,
-};
+const merged = deepmerge(settings, settings_override ?? {});
+Object.assign(settings, merged);
 
 type TApi = ReturnType<typeof getApi>;
 
@@ -52,22 +52,22 @@ function UuiEnhancedApp() {
 
     if (isLoaded) {
         return (
-            <UuiContext.Provider value={ services }>
-                <ErrorHandler>
-                    <FlexRow vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
-                        <Example />
-                    </FlexRow>
-                    <Snackbar />
-                    <Modals />
-                    <DragGhost />
-                </ErrorHandler>
-            </UuiContext.Provider>
+            (
+                <UuiContext value={ services }>
+                    <ErrorHandler>
+                        <FlexRow vPadding="48" padding="24" borderBottom alignItems="top" columnGap="12">
+                            <Example />
+                        </FlexRow>
+                        <Snackbar />
+                        <Modals />
+                        <DragGhost />
+                    </ErrorHandler>
+                </UuiContext>
+            )
         );
     }
     return null;
 }
 
-render(
-    <UuiEnhancedApp />,
-    rootElement,
-);
+const root = createRoot(rootElement);
+root.render(<UuiEnhancedApp />);

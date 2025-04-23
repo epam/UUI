@@ -1636,7 +1636,7 @@ exports[`docsGen:all docsGen:union should not expand ReactNode type of property 
       "typeValue": {
        "raw": "React.ReactNode"
       },
-      "typeValueRef": "@types/react:ReactNode",
+      "typeValueRef": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode",
       "required": false
      }
     ],
@@ -1670,21 +1670,21 @@ exports[`docsGen:all docsGen:union should not expand ReactNode type of property 
       "typeValue": {
        "raw": "React.ReactNode"
       },
-      "typeValueRef": "@types/react:ReactNode",
+      "typeValueRef": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode",
       "required": false
      }
     ],
     "propsFromUnion": false
    }
   },
-  "@types/react:ReactNode": {
+  "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode": {
    "summary": {
-    "module": "@types/react",
+    "module": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts",
     "typeName": {
      "name": "ReactNode",
      "nameFull": "ReactNode"
     },
-    "src": "node_modules/@types/react/index.d.ts",
+    "src": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts",
     "exported": false
    }
   }

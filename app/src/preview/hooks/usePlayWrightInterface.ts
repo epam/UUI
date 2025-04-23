@@ -1,13 +1,12 @@
-import { useEffect } from 'react';
 import { PlayWrightInterfaceName } from '../constants';
+import { svc } from '../../services';
+import { Link } from '@epam/uui-core';
 
-export function usePlayWrightInterface<T extends object>(setter: (newParams: T) => void) {
-    useEffect(() => {
-        (window as any)[PlayWrightInterfaceName] = (_params: string) => {
-            setter(JSON.parse(_params) as T);
-        };
-        return () => {
-            delete (window as any)[PlayWrightInterfaceName];
-        };
-    }, [setter]);
+export function usePlayWrightInterface() {
+    (window as any)[PlayWrightInterfaceName] = {
+        clientRedirect: (linkJson: string) => {
+            const link = JSON.parse(linkJson) as Link;
+            svc.uuiRouter.redirect(link);
+        },
+    };
 }

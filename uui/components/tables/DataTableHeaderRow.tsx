@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
 import { DataTableHeaderRowProps as CoreDataTableHeaderRowProps, withMods } from '@epam/uui-core';
-import { DataTableHeaderRowMods } from './types';
-import { DataTableHeaderCell } from './DataTableHeaderCell';
+import { DataTableHeaderRow as uuiDataTableHeaderRow } from '@epam/uui-components';
 import { IconButton } from '../buttons';
-import { ReactComponent as ConfigIcon } from '@epam/assets/icons/action-settings-fill.svg';
+import { DataTableHeaderCell } from './DataTableHeaderCell';
+import { DataTableHeaderGroupCell } from './DataTableHeaderGroupCell';
+import type { DataTableHeaderRowMods } from './types';
 import { settings } from '../../settings';
 
 import './variables.scss';
 import css from './DataTableHeaderRow.module.scss';
-import { DataTableHeaderGroupCell } from './DataTableHeaderGroupCell';
 
 export type DataTableHeaderRowProps = CoreDataTableHeaderRowProps & DataTableHeaderRowMods;
 export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTableHeaderRowProps>(
@@ -38,9 +37,9 @@ export const DataTableHeaderRow = withMods<CoreDataTableHeaderRowProps, DataTabl
             <IconButton
                 key="configuration"
                 onClick={ mods.onConfigButtonClick }
-                cx={ ['config-icon', `uui-size-${settings.sizes.dataTable.header.row.cell.iconSize[mods.size || settings.sizes.dataTable.header.row.default]}`] }
+                cx={ ['config-icon', `uui-size-${settings.dataTable.sizes.header.iconMap[mods.size || settings.dataTable.sizes.header.row]}`] }
                 color="neutral"
-                icon={ ConfigIcon }
+                icon={ settings.dataTable.icons.header.configIcon }
             />
         ),
     }),

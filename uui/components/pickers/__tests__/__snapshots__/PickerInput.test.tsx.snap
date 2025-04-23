@@ -4,7 +4,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
 <body>
   <div>
     <div
-      class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 mode-form"
+      class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 uui-control-mode-form"
       tabindex="0"
     >
       <div
@@ -37,18 +37,19 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
   <div
     aria-hidden="false"
     class="uui-popper"
-    data-placement="bottom-start"
+    data-placement="top-start"
     role="dialog"
-    style="z-index: 2000;"
+    style="position: fixed; top: -6px; left: 0px; z-index: 2000;"
   >
     <div
-      class="uui-dropdown-body -lock-focus root container container"
+      class="uui-dropdown-body -lock-focus root container uui-picker_input-body-wrapper container"
       style="min-width: 360px; max-width: 360px;"
       tabindex="-1"
     >
       <div
-        class="uui-flex-row root uui-size-36 uui-picker_input-body dropdown single container align-items-center"
+        class="root uui-flex-row uui-picker_input-body uui-size-36"
         style="max-height: 300px;"
+        tabindex="-1"
       >
         <div
           class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
@@ -68,88 +69,78 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
                 <div
                   aria-posinset="1"
                   aria-selected="false"
-                  class="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
+                  class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top uui-focus -clickable"
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-                    role="cell"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
+                    class="flexCell rowContent"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <div
                       class="contentWrapper"
                     >
                       <div
-                        class="renderItem"
+                        class="flexCell root uui-picker_input-item uui-typography"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          class="flexCell root uui-typography"
-                          style="min-width: 0; flex-basis: auto;"
+                          class="root uui-flex-row columnGap uui-size-36"
+                          style="--uui-picker_item-vertical-padding: 9px;"
                         >
                           <div
-                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
-                            style="--uui-picker_item-vertical-padding: 9px;"
+                            class="flexCell"
+                            style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="flexCell"
-                              style="min-width: 0; flex-basis: auto;"
+                              class="title uui-size-36"
                             >
-                              <div
-                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
-                              >
-                                Elementary
-                              </div>
+                              Elementary
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="flexSpacer"
-                        />
                       </div>
+                      <div
+                        class="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
                 <div
                   aria-posinset="2"
                   aria-selected="false"
-                  class="uui-flex-row pickerRow container -clickable align-items-center"
+                  class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
                   role="option"
                 >
                   <div
-                    class="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-                    role="cell"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px; --uui-data_picker_cell-horizontal-padding: 12px;"
+                    class="flexCell rowContent"
+                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                   >
                     <div
                       class="contentWrapper"
                     >
                       <div
-                        class="renderItem"
+                        class="flexCell root uui-picker_input-item uui-typography"
+                        style="min-width: 0; flex-basis: auto;"
                       >
                         <div
-                          class="flexCell root uui-typography"
-                          style="min-width: 0; flex-basis: auto;"
+                          class="root uui-flex-row columnGap uui-size-36"
+                          style="--uui-picker_item-vertical-padding: 9px;"
                         >
                           <div
-                            class="uui-flex-row root uui-size-36 columnGap container align-items-center"
-                            style="--uui-picker_item-vertical-padding: 9px;"
+                            class="flexCell"
+                            style="min-width: 0; flex-basis: auto;"
                           >
                             <div
-                              class="flexCell"
-                              style="min-width: 0; flex-basis: auto;"
+                              class="title uui-size-36"
                             >
-                              <div
-                                class="root uui-text uui-size-36 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline text container"
-                              >
-                                Elementary+
-                              </div>
+                              Elementary+
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="flexSpacer"
-                        />
                       </div>
+                      <div
+                        class="flexSpacer"
+                      />
                     </div>
                   </div>
                 </div>
@@ -182,7 +173,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
         </div>
       </div>
       <div
-        class="uui-flex-row root uui-size-36 footer container align-items-center"
+        class="root uui-flex-row uui-picker_input-footer uui-size-36"
       >
         <div
           class="flexSpacer"
@@ -211,121 +202,107 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
 `;
 
 exports[`PickerInput Rendering should render with maximum props 1`] = `
-<div
-  className="container uui-input-box -clickable root uui-picker_toggler uui-size-48 mode-form"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
+<DocumentFragment>
   <div
-    className="body uui-picker_toggler-multiline"
-  >
-    <span
-      className="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
-      role="option"
-      tabIndex={-1}
-    >
-      <div
-        className="uui-caption"
-      >
-        A1
-      </div>
-      <div
-        className="container uui-icon uui-enabled -clickable -clickable"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-    </span>
-    <span
-      className="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
-      role="option"
-      tabIndex={-1}
-    >
-      <div
-        className="uui-caption"
-      >
-        A1+
-      </div>
-      <div
-        className="container uui-icon uui-enabled -clickable -clickable"
-        onClick={[Function]}
-        style={Object {}}
-      >
-        <svg
-          className=""
-        />
-      </div>
-    </span>
-  </div>
-  <div
-    className="uui-picker_toggler-actions"
+    class="container uui-input-box -clickable uui-has-value root uui-picker_toggler uui-size-48 uui-control-mode-form"
+    tabindex="0"
   >
     <div
-      aria-label="Clear"
-      className="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
-      onClick={[Function]}
-      role="button"
-      style={Object {}}
-      tabIndex={-1}
+      class="body uui-picker_toggler-multiline"
     >
-      <svg
-        className=""
-      />
+      <span
+        class="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+        role="option"
+        tabindex="-1"
+      >
+        <div
+          class="uui-caption"
+        >
+          A1
+        </div>
+        <div
+          class="container uui-icon uui-enabled -clickable -clickable"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </span>
+      <span
+        class="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
+        role="option"
+        tabindex="-1"
+      >
+        <div
+          class="uui-caption"
+        >
+          A1+
+        </div>
+        <div
+          class="container uui-icon uui-enabled -clickable -clickable"
+        >
+          <svg
+            class=""
+          />
+        </div>
+      </span>
     </div>
     <div
-      className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      class="uui-picker_toggler-actions"
     >
-      <svg
-        className=""
-      />
+      <div
+        aria-label="Clear"
+        class="container uui-icon uui-enabled -clickable uui-icon-cancel -clickable"
+        role="button"
+        tabindex="-1"
+      >
+        <svg
+          class=""
+        />
+      </div>
+      <div
+        class="container uui-icon uui-enabled uui-icon-dropdown"
+      >
+        <svg
+          class=""
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`PickerInput Rendering should render with minimum props 1`] = `
-<div
-  className="container uui-input-box -clickable root uui-picker_toggler uui-size-36 mode-form"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
+<DocumentFragment>
   <div
-    className="body"
-  >
-    <input
-      aria-haspopup={true}
-      autoComplete="no"
-      className="uui-input singleInput cursorText"
-      dir="ltr"
-      onChange={[Function]}
-      placeholder="Please select "
-      readOnly={false}
-      tabIndex={-1}
-      type="text"
-      value=""
-    />
-  </div>
-  <div
-    className="uui-picker_toggler-actions"
+    class="container uui-input-box -clickable root uui-picker_toggler uui-size-36 uui-control-mode-form"
+    tabindex="0"
   >
     <div
-      className="container uui-icon uui-enabled uui-icon-dropdown"
-      style={Object {}}
+      class="body"
     >
-      <svg
-        className=""
+      <input
+        aria-haspopup="true"
+        autocomplete="no"
+        class="uui-input singleInput cursorText"
+        dir="ltr"
+        placeholder="Please select "
+        tabindex="-1"
+        type="text"
+        value=""
       />
     </div>
+    <div
+      class="uui-picker_toggler-actions"
+    >
+      <div
+        class="container uui-icon uui-enabled uui-icon-dropdown"
+      >
+        <svg
+          class=""
+        />
+      </div>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

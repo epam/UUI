@@ -1,31 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StatusIndicator should be rendered correctly 1`] = `
-<div
-  className="root uui-size-24 uui-status_indicator uui-color-neutral uui-fill-solid"
->
+<DocumentFragment>
   <div
-    className="uui-status_indicator-dot"
-  />
-  <p
-    className="uui-status_indicator-caption"
+    class="root uui-size-24 uui-status_indicator uui-color-neutral uui-fill-solid"
   >
-    Indicator
-  </p>
-</div>
+    <div
+      class="uui-status_indicator-dot"
+    />
+    <p
+      class="uui-status_indicator-caption"
+    >
+      Indicator
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`StatusIndicator should be rendered correctly with props 1`] = `
-<div
-  className="root uui-size-12 uui-status_indicator uui-color-info uui-fill-outline"
->
+<DocumentFragment>
   <div
-    className="uui-status_indicator-dot"
-  />
-  <p
-    className="uui-status_indicator-caption"
+    class="root uui-size-12 uui-status_indicator uui-color-info uui-fill-outline"
   >
-    Indicator
-  </p>
-</div>
+    <div
+      class="uui-status_indicator-dot"
+    />
+    <p
+      class="uui-status_indicator-caption"
+    >
+      Indicator
+    </p>
+  </div>
+</DocumentFragment>
 `;

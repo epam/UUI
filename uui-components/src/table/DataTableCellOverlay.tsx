@@ -10,7 +10,7 @@ export interface DataTableCellOverlayProps extends IHasCX, ICanBeInvalid, IHasVa
     inFocus: boolean;
     columnIndex: number;
     rowIndex: number;
-    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement;
+    renderTooltip?: (props: ICanBeInvalid & TooltipCoreProps) => React.ReactElement<any>;
 }
 
 const uuiDataTableCellOverlayMarkers = {

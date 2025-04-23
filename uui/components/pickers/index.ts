@@ -1,6 +1,6 @@
 export * from './DataPickerBody';
 export * from './DataPickerFooter';
-export * from './DataPickerHeader';
+export * from './DataPickerMobileHeader';
 export * from './DataPickerRow';
 export * from './PickerBodyMobileView';
 export * from './PickerInput';

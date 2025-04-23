@@ -11,8 +11,11 @@ import { Modals, PortalRoot } from '@epam/uui-components';
 import { DragGhost, useDocumentDir } from '@epam/uui-core';
 import { getCurrentTheme } from './helpers';
 import { DocExamplePage } from './docExample/docExamplePage';
+import { usePlayWrightInterface } from './preview/hooks/usePlayWrightInterface';
 
 function App() {
+    usePlayWrightInterface();
+
     return (
         <Routes>
             <Route Component={ AppLayout }>

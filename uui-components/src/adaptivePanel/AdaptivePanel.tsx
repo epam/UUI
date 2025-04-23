@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import css from './AdaptivePanel.module.scss';
-import { FlexRow } from '../layout/flexItems';
-import { measureAdaptiveItems } from './measureItemsUtils';
-import { useLayoutEffectSafeForSsr } from '@epam/uui-core';
-import { AdaptivePanelProps } from './types';
 import cx from 'classnames';
+import { useLayoutEffectSafeForSsr } from '@epam/uui-core';
+import { measureAdaptiveItems } from './measureItemsUtils';
+import type { AdaptivePanelProps } from './types';
+
+import css from './AdaptivePanel.module.scss';
 
 export function AdaptivePanel(props: AdaptivePanelProps) {
     const [itemsWidth, setItemsWidth] = useState<Record<string, number>>();
@@ -61,9 +61,17 @@ export function AdaptivePanel(props: AdaptivePanelProps) {
         return measuredItems.displayed.map((i) => i.render(i, measuredItems.hidden, measuredItems.displayed));
     };
 
+    let styles;
+
+    if (props.itemsGap) {
+        styles = {
+            columnGap: `${props.itemsGap}px`,
+        };
+    }
+
     return (
         <div { ...props.rawProps } className={ cx(props.cx, css.mainWrapper) } ref={ wrapperRef }>
-            <FlexRow columnGap={ props?.itemsGap } ref={ displayedRowRef }>{ renderItems() }</FlexRow>
+            <div className={ css.itemsWrapper } style={ styles } ref={ displayedRowRef }>{ renderItems() }</div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { offset } from '@floating-ui/react';
 import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
@@ -24,7 +25,28 @@ export class DropdownDoc extends BaseDocsBlock {
             doc.merge('closeOnClickOutside', { remountOnChange: true });
             doc.merge('closeOnTargetClick', { remountOnChange: true });
             doc.merge('closeOnMouseLeave', { remountOnChange: true });
-            doc.merge('modifiers', { examples: [{ name: "[{ name: 'offset', options: { offset: [0, 6] } }]", value: [{ name: 'offset', options: { offset: [0, 6] } }] }] });
+            doc.merge('middleware', { examples: [{ name: '[offset(6)]', value: [offset(6)] }] });
+            doc.merge('virtualTarget', {
+                examples: [
+                    {
+                        name: 'Virtual Element',
+                        value: {
+                            getBoundingClientRect() {
+                                return {
+                                    x: 20,
+                                    y: 20,
+                                    top: 0,
+                                    left: 0,
+                                    bottom: 20,
+                                    right: 20,
+                                    width: 20,
+                                    height: 20,
+                                };
+                            },
+                        },
+                    },
+                ],
+            });
             doc.merge('renderBody', {
                 editorType: 'MultiUnknownEditor',
                 examples: [
@@ -46,7 +68,7 @@ export class DropdownDoc extends BaseDocsBlock {
                     {
                         value: () => {
                             return (
-                                <uui.Panel shadow={ true }>
+                                <uui.Panel background="surface-main" shadow={ true }>
                                     <uui.FlexRow padding="12" vPadding="12">
                                         <uui.Text>Dropdown body content. You can use any components as a dropdown body.</uui.Text>
                                     </uui.FlexRow>
@@ -79,6 +101,8 @@ export class DropdownDoc extends BaseDocsBlock {
                 <DocExample title="Set delay for dropdown body opening or closing" path="./_examples/dropdown/DelayForOpenAndClose.example.tsx" />
                 <DocExample title="Handle dropdown state by yourself" path="./_examples/dropdown/HandleStateByYourself.example.tsx" />
                 <DocExample title="Close dropdown from body" path="./_examples/dropdown/CloseFromBody.example.tsx" />
+                <DocExample title="Virtual element positioned at a specific point on canvas" path="./_examples/dropdown/VirtualElementCanvas.example.tsx" />
+                <DocExample title="Create a virtual element that positions the dropdown at mouse coordinates" path="./_examples/dropdown/VirtualElementOnMouseCoordinates.example.tsx" />
             </>
         );
     }

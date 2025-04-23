@@ -1,9 +1,11 @@
-import css from './CalendarPresets.module.scss';
 import * as React from 'react';
 import {
     IHasCX, cx, IHasRawProps, IHasForwardedRef,
 } from '@epam/uui-core';
 import { LinkButton } from '../buttons';
+
+import css from './CalendarPresets.module.scss';
+import { settings } from '../../settings';
 
 export const uuiPresets = {
     container: 'uui-presets-container',
@@ -58,7 +60,7 @@ const getPresets = (presets: RangeDatePickerPresets) => {
     })).sort((a, b) => a.order - b.order);
 };
 
-export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
+export function CalendarPresets(props: CalendarPresetsProps) {
     return (
         <div
             ref={ props.forwardedRef }
@@ -67,7 +69,12 @@ export function CalendarPresets(props: CalendarPresetsProps): JSX.Element {
         >
             <div className={ uuiPresets.header }>Presets</div>
             {getPresets(props.presets).map((item) => (
-                <LinkButton key={ item.key } caption={ item.name } onClick={ () => props.onPresetSet(item) } size="24" />
+                <LinkButton
+                    key={ item.key }
+                    caption={ item.name }
+                    onClick={ () => props.onPresetSet(item) }
+                    size={ settings.rangeDatePicker.sizes.preset }
+                />
             ))}
         </div>
     );

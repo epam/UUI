@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tooltip should be rendered correctly 1`] = `"Test"`;
+exports[`Tooltip should be rendered correctly 1`] = `
+<DocumentFragment>
+  Test
+</DocumentFragment>
+`;
 
-exports[`Tooltip should be rendered correctly 2`] = `"Test"`;
+exports[`Tooltip should be rendered correctly 2`] = `
+<DocumentFragment>
+  Test
+</DocumentFragment>
+`;

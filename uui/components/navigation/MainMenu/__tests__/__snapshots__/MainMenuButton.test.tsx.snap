@@ -1,35 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuButton should be rendered correctly 1`] = `
-<a
-  aria-current="page"
-  aria-expanded={false}
-  className="uui-button-box uui-enabled uui-active -clickable uui-anchor root type-primary"
-  href=""
-  onClick={[Function]}
-  rel="noopener noreferrer"
-  tabIndex={0}
-  target="_blank"
->
-  <div
-    className="uui-caption"
+<DocumentFragment>
+  <a
+    aria-current="page"
+    aria-expanded="false"
+    class="uui-button-box uui-enabled uui-active -clickable uui-anchor root type-primary"
+    href=""
+    rel="noopener noreferrer"
+    tabindex="0"
+    target="_blank"
   >
-    Test button
-  </div>
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-</a>
+    <div
+      class="uui-caption"
+    >
+      Test button
+    </div>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </a>
+</DocumentFragment>
 `;
 
 exports[`MainMenuButton should be rendered correctly with minimum props 1`] = `
-<span
-  className="uui-button-box uui-enabled root type-primary"
-  tabIndex={-1}
-/>
+<DocumentFragment>
+  <span
+    class="uui-button-box uui-enabled root type-primary"
+    tabindex="-1"
+  />
+</DocumentFragment>
 `;

@@ -1,148 +1,111 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DropSpot should be rendered correctly 1`] = `
-<div
-  className="root"
->
+<DocumentFragment>
   <div
-    className="dropArea"
-    onDragEnter={[Function]}
-    onDragLeave={[Function]}
-    onDragOver={[Function]}
-    onDrop={[Function]}
+    class="root"
   >
     <div
-      className="uui-flex-row root uui-size-24 container align-items-center"
-      style={
-        Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
-        }
-      }
+      class="dropArea"
     >
       <div
-        className="container uui-icon uui-enabled iconBlue"
-        style={Object {}}
+        class="root uui-flex-row uui-size-24"
       >
-        <svg
-          className=""
-        />
-      </div>
-      <div
-        className="root uui-text uui-size-24 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline dropCaption container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "24px",
-          }
-        }
-      >
-        Drop files to attach or
-      </div>
-      <div>
-        <input
-          className="fileInput"
-          multiple={true}
-          onChange={[Function]}
-          type="file"
-        />
         <div
-          className="uui-typography uui-typography-size-14"
+          class="container uui-icon uui-enabled iconBlue"
         >
-          <button
-            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
+          <svg
+            class=""
+          />
+        </div>
+        <div
+          class="root uui-text uui-size-24 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline dropCaption container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 24px;"
+        >
+          Drop files to attach or
+        </div>
+        <div>
+          <input
+            class="fileInput"
+            multiple=""
+            type="file"
+          />
+          <div
+            class="uui-typography uui-typography-size-14"
           >
-            <div
-              className="uui-caption uui-link-button-weight-semibold"
+            <button
+              class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
+              tabindex="0"
+              type="button"
             >
-              browse
-            </div>
-          </button>
+              <div
+                class="uui-caption uui-link-button-weight-semibold"
+              >
+                browse
+              </div>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DropSpot should be rendered correctly with props 1`] = `
-<div
-  className="root"
->
+<DocumentFragment>
   <div
-    className="dropArea"
-    onDragEnter={[Function]}
-    onDragLeave={[Function]}
-    onDragOver={[Function]}
-    onDrop={[Function]}
+    class="root"
   >
     <div
-      className="uui-flex-row root uui-size-24 container align-items-center"
-      style={
-        Object {
-          "columnGap": undefined,
-          "rowGap": undefined,
-        }
-      }
+      class="dropArea"
     >
       <div
-        className="container uui-icon uui-enabled iconBlue"
-        style={Object {}}
+        class="root uui-flex-row uui-size-24"
       >
-        <svg
-          className=""
-        />
-      </div>
-      <div
-        className="root uui-text uui-size-24 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline dropCaption container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "24px",
-          }
-        }
-      >
-        Drop files to attach or
-      </div>
-      <div>
-        <input
-          className="fileInput"
-          multiple={true}
-          onChange={[Function]}
-          type="file"
-        />
         <div
-          className="uui-typography uui-typography-size-14"
+          class="container uui-icon uui-enabled iconBlue"
         >
-          <button
-            className="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
-            onClick={[Function]}
-            tabIndex={0}
-            type="button"
+          <svg
+            class=""
+          />
+        </div>
+        <div
+          class="root uui-text uui-size-24 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline dropCaption container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 24px;"
+        >
+          Drop files to attach or
+        </div>
+        <div>
+          <input
+            class="fileInput"
+            multiple=""
+            type="file"
+          />
+          <div
+            class="uui-typography uui-typography-size-14"
           >
-            <div
-              className="uui-caption uui-link-button-weight-semibold"
+            <button
+              class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary link"
+              tabindex="0"
+              type="button"
             >
-              browse
-            </div>
-          </button>
+              <div
+                class="uui-caption uui-link-button-weight-semibold"
+              >
+                browse
+              </div>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      className="root uui-text uui-size-24 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
-      style={
-        Object {
-          "--uui-text-font-size": "14px",
-          "--uui-text-line-height": "24px",
-        }
-      }
-    >
-      Test info
+      <div
+        class="root uui-text uui-size-24 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
+        style="--uui-text-font-size: 14px; --uui-text-line-height: 24px;"
+      >
+        Test info
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

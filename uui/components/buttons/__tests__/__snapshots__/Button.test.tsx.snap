@@ -1,54 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should render with maximum props 1`] = `
-<button
-  aria-disabled={false}
-  aria-expanded={true}
-  aria-haspopup={true}
-  className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-accent uui-size-36"
-  data-my_attr="value"
-  id="123"
-  onClick={[Function]}
-  tabIndex={0}
-  type="button"
->
-  <div
-    className="uui-caption"
+<DocumentFragment>
+  <button
+    aria-disabled="false"
+    aria-expanded="true"
+    aria-haspopup="true"
+    class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-accent uui-size-36"
+    data-my_attr="value"
+    id="123"
+    tabindex="0"
+    type="button"
   >
-    Click me
-  </div>
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className="flipY"
-    />
-  </div>
-  <div
-    className="container uui-icon uui-enabled -clickable -clickable"
-    onClick={[Function]}
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-</button>
+    <div
+      class="uui-caption"
+    >
+      Click me
+    </div>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class="flipY"
+      />
+    </div>
+    <div
+      class="container uui-icon uui-enabled -clickable -clickable"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`Button should render with minimum props 1`] = `
-<button
-  className="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-  tabIndex={-1}
-  type="button"
-/>
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+    tabindex="-1"
+    type="button"
+  />
+</DocumentFragment>
 `;

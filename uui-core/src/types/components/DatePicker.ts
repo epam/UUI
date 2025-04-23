@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { Placement } from '@popperjs/core';
+import { Placement } from '@floating-ui/react';
 import {
-    ICanBeReadonly, IDisableable, IDropdownToggler,
+    ICanBeReadonly, IDisableable, IDropdownTogglerProps,
 } from '../props';
 import { CX } from '../objects';
 import { Dayjs } from '../../helpers/dayJsHelper';
@@ -29,7 +29,7 @@ export interface CommonDatePickerProps extends IDisableable,
     /**
      * Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons
      */
-    renderTarget?(props: IDropdownToggler): ReactNode;
+    renderTarget?(props: IDropdownTogglerProps): ReactNode;
 
     /**
      * Disable clearing date value (e.g. via cross icon)
@@ -55,4 +55,38 @@ export interface CommonDatePickerProps extends IDisableable,
      * CSS class(es) to put on datepicker body
      */
     bodyCx?: CX;
+}
+
+export type RangeDatePickerPresets = {
+    /**
+     * Preset config
+     */
+    [key: string]: {
+        /**
+         * Name of the preset to display in rangeDatePicker body
+         */
+        name: ReactNode;
+        /**
+         * A pure function that gets range value which will be applied by preset selection
+         */
+        getRange: () => RangeDatePickerPresetValue;
+    };
+};
+
+/**
+ * Represents RangeDatePickerPresetValue
+ */
+export interface RangeDatePickerPresetValue {
+    /**
+     * Range from value
+     */
+    from?: string;
+    /**
+     * Range to value
+     */
+    to?: string;
+    /**
+     * Preset order in presets list
+     */
+    order?: number;
 }

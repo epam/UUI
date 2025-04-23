@@ -1,38 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MainMenuIcon should be rendered correctly 1`] = `
-<a
-  className="uui-button-box uui-enabled -clickable uui-anchor container uui-icon_button uui-color-neutral root container"
-  href=""
-  onClick={[Function]}
-  rel="noopener noreferrer"
-  tabIndex={0}
-  target="_blank"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+<DocumentFragment>
+  <a
+    class="uui-button-box uui-enabled -clickable uui-anchor container uui-icon_button uui-color-neutral root container"
+    href=""
+    rel="noopener noreferrer"
+    tabindex="0"
+    target="_blank"
   >
-    <svg
-      className=""
-    />
-  </div>
-</a>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </a>
+</DocumentFragment>
 `;
 
 exports[`MainMenuIcon should be rendered correctly with minimum props 1`] = `
-<button
-  className="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root container"
-  tabIndex={-1}
-  type="button"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled container uui-icon_button uui-color-neutral root container"
+    tabindex="-1"
+    type="button"
   >
-    <svg
-      className=""
-    />
-  </div>
-</button>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </button>
+</DocumentFragment>
 `;

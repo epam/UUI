@@ -108,7 +108,6 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
     };
 
     const daysMatrix = getDaysMatrix(props.month?.startOf('day'));
-    const weeksHeight = daysMatrix.length * 36;
 
     const renderDaysTable = () => daysMatrix.map((week, index) => {
         const key = `${props.month.valueOf()}-${index}`;
@@ -138,7 +137,6 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                 </div>
                 <div
                     className={ uuiDaySelection.days }
-                    style={ { height: weeksHeight } }
                 >
                     {renderDaysTable()}
                 </div>

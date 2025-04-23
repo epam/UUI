@@ -16,7 +16,7 @@ const showNotification = (color: string, uuiNotifications: INotificationContext)
         .show(
             (props) => (
                 <SuccessNotification { ...props }>
-                    <Text size="36" fontSize="14">
+                    <Text fontSize="14">
                         { `var(${color}) token copied to clipboard!` }
                     </Text>
                 </SuccessNotification>

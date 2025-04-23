@@ -1,347 +1,213 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ConfirmationModal should be rendered correctly 1`] = `
-<div
-  className="container modalBlocker"
-  style={
-    Object {
-      "zIndex": 1,
-    }
-  }
->
+<DocumentFragment>
   <div
-    aria-label="Click to close a modal"
-    className="uui-modal-blocker"
-    onClick={[Function]}
-  />
-  <div
-    aria-modal={true}
-    className="uui-modal-window root modal container"
-    role="dialog"
-    style={
-      Object {
-        "height": "auto",
-        "maxHeight": "80dvh",
-        "width": 420,
-      }
-    }
+    class="container modalBlocker"
+    style="z-index: 1;"
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 borderBottom root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      aria-label="Click to close a modal"
+      class="uui-modal-blocker"
+    />
+    <div
+      aria-modal="true"
+      class="uui-modal-window root modal container"
+      role="dialog"
+      style="width: 420px; height: auto; max-height: var(--uui-modals-max-height);"
     >
       <div
-        className="uui-modal-title uui-typography"
+        class="root modalHeader uui-modal-header borderBottom"
       >
-        Test
+        <div
+          class="uui-modal-title uui-typography"
+        >
+          Test
+        </div>
+        <div
+          class="flexSpacer"
+        />
+        <div
+          class="flexCell"
+          style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
+        >
+          <button
+            aria-label="Close modal"
+            class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="container uui-icon uui-enabled"
+            >
+              <svg
+                class=""
+              />
+            </div>
+          </button>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
+        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+      >
+        <div
+          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
+        >
+          <div
+            class="uui-panel root margin-24 uui-surface-main container"
+          >
+            <div>
+              Test content
+            </div>
+          </div>
+        </div>
+        <div
+          class="uui-track-horizontal"
+          style="position: absolute; height: 6px; display: none;"
+        >
+          <div
+            class="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          class="uui-track-vertical"
+          style="position: absolute; width: 6px; display: none;"
+        >
+          <div
+            class="uui-thumb-vertical"
+          />
+        </div>
+      </div>
       <div
-        className="flexCell"
-        style={
-          Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": 0,
-            "minWidth": 0,
-            "textAlign": undefined,
-          }
-        }
+        class="root modalFooter uui-modal-footer footer"
       >
         <button
-          aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
-          onClick={[Function]}
-          tabIndex={0}
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
+          tabindex="0"
           type="button"
         >
           <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+            class="uui-caption"
           >
-            <svg
-              className=""
-            />
+            Discard
+          </div>
+        </button>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            Save
           </div>
         </button>
       </div>
     </div>
-    <div
-      className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
-    >
-      <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "flex": "1 1 auto",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      >
-        <div
-          className="uui-panel root margin-24 uui-surface-main container"
-        >
-          <div>
-            Test content
-          </div>
-        </div>
-      </div>
-      <div
-        className="uui-track-horizontal"
-        style={
-          Object {
-            "display": "none",
-            "height": 6,
-            "position": "absolute",
-          }
-        }
-      >
-        <div
-          className="uui-thumb-horizontal"
-        />
-      </div>
-      <div
-        className="uui-track-vertical"
-        style={
-          Object {
-            "display": "none",
-            "position": "absolute",
-            "width": 6,
-          }
-        }
-      >
-        <div
-          className="uui-thumb-vertical"
-        />
-      </div>
-    </div>
-    <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter footer container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="uui-caption"
-        >
-          Discard
-        </div>
-      </button>
-      <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="uui-caption"
-        >
-          Save
-        </div>
-      </button>
-    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ConfirmationModal should be rendered correctly without body 1`] = `
-<div
-  className="container modalBlocker"
-  style={
-    Object {
-      "zIndex": 1,
-    }
-  }
->
+<DocumentFragment>
   <div
-    aria-label="Click to close a modal"
-    className="uui-modal-blocker"
-    onClick={[Function]}
-  />
-  <div
-    aria-modal={true}
-    className="uui-modal-window root modal container"
-    role="dialog"
-    style={
-      Object {
-        "height": "auto",
-        "maxHeight": "80dvh",
-        "width": 420,
-      }
-    }
+    class="container modalBlocker"
+    style="z-index: 1;"
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 borderBottom root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      aria-label="Click to close a modal"
+      class="uui-modal-blocker"
+    />
+    <div
+      aria-modal="true"
+      class="uui-modal-window root modal container"
+      role="dialog"
+      style="width: 420px; height: auto; max-height: var(--uui-modals-max-height);"
     >
       <div
-        className="uui-modal-title uui-typography"
+        class="root modalHeader uui-modal-header borderBottom"
       >
-        Test
+        <div
+          class="uui-modal-title uui-typography"
+        >
+          Test
+        </div>
+        <div
+          class="flexSpacer"
+        />
+        <div
+          class="flexCell"
+          style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
+        >
+          <button
+            aria-label="Close modal"
+            class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+            tabindex="0"
+            type="button"
+          >
+            <div
+              class="container uui-icon uui-enabled"
+            >
+              <svg
+                class=""
+              />
+            </div>
+          </button>
+        </div>
       </div>
       <div
-        className="flexSpacer"
-      />
+        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+      >
+        <div
+          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto;"
+        />
+        <div
+          class="uui-track-horizontal"
+          style="position: absolute; height: 6px; display: none;"
+        >
+          <div
+            class="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          class="uui-track-vertical"
+          style="position: absolute; width: 6px; display: none;"
+        >
+          <div
+            class="uui-thumb-vertical"
+          />
+        </div>
+      </div>
       <div
-        className="flexCell"
-        style={
-          Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": 0,
-            "minWidth": 0,
-            "textAlign": undefined,
-          }
-        }
+        class="root modalFooter uui-modal-footer footer"
       >
         <button
-          aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
-          onClick={[Function]}
-          tabIndex={0}
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
+          tabindex="0"
           type="button"
         >
           <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+            class="uui-caption"
           >
-            <svg
-              className=""
-            />
+            Discard
+          </div>
+        </button>
+        <button
+          class="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="uui-caption"
+          >
+            Save
           </div>
         </button>
       </div>
     </div>
-    <div
-      className="root root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
-      style={
-        Object {
-          "display": "flex",
-          "height": "100%",
-          "overflow": "hidden",
-          "position": "relative",
-          "width": "100%",
-        }
-      }
-    >
-      <div
-        style={
-          Object {
-            "WebkitOverflowScrolling": "touch",
-            "bottom": 0,
-            "flex": "1 1 auto",
-            "left": 0,
-            "marginBottom": 0,
-            "marginRight": 0,
-            "overflow": "scroll",
-            "position": "relative",
-            "right": 0,
-            "top": 0,
-          }
-        }
-      />
-      <div
-        className="uui-track-horizontal"
-        style={
-          Object {
-            "display": "none",
-            "height": 6,
-            "position": "absolute",
-          }
-        }
-      >
-        <div
-          className="uui-thumb-horizontal"
-        />
-      </div>
-      <div
-        className="uui-track-vertical"
-        style={
-          Object {
-            "display": "none",
-            "position": "absolute",
-            "width": 6,
-          }
-        }
-      >
-        <div
-          className="uui-thumb-vertical"
-        />
-      </div>
-    </div>
-    <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter footer container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-outline uui-color-secondary uui-size-36"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="uui-caption"
-        >
-          Discard
-        </div>
-      </button>
-      <button
-        className="uui-button-box uui-enabled -clickable container root uui-button uui-fill-solid uui-color-primary uui-size-36"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <div
-          className="uui-caption"
-        >
-          Save
-        </div>
-      </button>
-    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

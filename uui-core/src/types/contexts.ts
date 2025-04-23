@@ -19,7 +19,7 @@ export interface IBaseContext<TState = {}> {
 }
 
 export interface NotificationParams {
-    /** Notification visibility duration in ms
+    /** Notification visibility duration in sec. Default value is 7 sec.
      * If 'forever' value provided, notification required manual action for closing.
      */
     duration?: number | 'forever';

@@ -1,13 +1,11 @@
-import { ControlSize } from '../types';
-
-export interface DataTableModsOverride {}
+export type DataTableControlSize = '24' | '30' | '36' | '42' | '48';
 
 export interface DataTableMods {
     /**
      *  Min height of table rows and header
      *  @default '36'
      * */
-    size?: ControlSize;
+    size?: DataTableControlSize;
     /** Pass true, to turn row bottom border */
     border?: boolean;
     /** Configure column header text case
@@ -27,7 +25,7 @@ export interface DataTableMods {
 }
 
 interface TableSizesAndPositionMods {
-    size?: ControlSize | '60';
+    size?: DataTableControlSize;
     padding?: '0' | '12' | '24';
     alignActions?: 'top' | 'center';
 }

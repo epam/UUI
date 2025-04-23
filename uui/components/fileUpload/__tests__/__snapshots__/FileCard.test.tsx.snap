@@ -1,302 +1,193 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FileCard should be rendered correctly with Excel file 1`] = `
-<div
-  className="flexCell root uui-file_card uui-loading"
-  style={
-    Object {
-      "alignSelf": undefined,
-      "flexBasis": "100%",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": 0,
-      "textAlign": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="uui-flex-row root uui-size-36 container align-items-top"
-    style={
-      Object {
-        "columnGap": "6px",
-        "rowGap": undefined,
-      }
-    }
+    class="flexCell root uui-file_card uui-loading"
+    style="min-width: 0; flex-basis: 100%;"
   >
     <div
-      className="container uui-icon uui-enabled xlsColor"
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={24}
-        width={24}
-      />
-    </div>
-    <div
-      className="flexCell"
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "100%",
-          "flexGrow": undefined,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
+      class="root uui-flex-row uui-size-36 alignItems columnGap"
+      style="--uui-flex-row-align-items: flex-start; --uui-flex-row-column-gap: 6px;"
     >
       <div
-        className="root uui-text uui-size-18 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline fileName container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "18px",
-          }
-        }
+        class="container uui-icon uui-enabled xlsColor"
       >
-        Test
+        <svg
+          class=""
+          height="24"
+          width="24"
+        />
       </div>
       <div
-        className="root uui-text uui-size-18 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "18px",
-          }
-        }
+        class="flexCell"
+        style="min-width: 0; flex-basis: 100%;"
       >
-        XLS, 
-        0 Bytes of 
-        12.25 KB
+        <div
+          class="root uui-text uui-size-none lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline fileName container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 18px;"
+        >
+          Test
+        </div>
+        <div
+          class="root uui-text uui-size-none lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 18px;"
+        >
+          XLS, 0 Bytes of 12.25 KB
+        </div>
       </div>
-    </div>
-    <div
-      className="iconsBlock"
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <svg
-        className="root"
-        height={18}
-        width={18}
+      <div
+        class="iconsBlock"
       >
-        <circle
-          cx={9}
-          cy={9}
-          fill="transparent"
-          r={3}
-          strokeDasharray={18.84955592153876}
-          strokeDashoffset={18.84955592153876}
-          strokeWidth={6}
-        />
-        <circle
-          cx={9}
-          cy={9}
-          fill="transparent"
-          r={8}
-          strokeWidth={1}
-        />
-      </svg>
+        <svg
+          class="root"
+          height="18"
+          width="18"
+        >
+          <circle
+            cx="9"
+            cy="9"
+            fill="transparent"
+            r="3"
+            stroke-dasharray="18.84955592153876"
+            stroke-dashoffset="18.84955592153876"
+            stroke-width="6"
+          />
+          <circle
+            cx="9"
+            cy="9"
+            fill="transparent"
+            r="8"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`FileCard should be rendered correctly with doc file 1`] = `
-<div
-  className="flexCell root uui-file_card uui-loading"
-  style={
-    Object {
-      "alignSelf": undefined,
-      "flexBasis": "0",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": "140px",
-      "textAlign": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="uui-flex-row root uui-size-36 container align-items-top"
-    style={
-      Object {
-        "columnGap": "6px",
-        "rowGap": undefined,
-      }
-    }
+    class="flexCell root uui-file_card uui-loading"
+    style="min-width: 140px; flex-basis: 0px;"
   >
     <div
-      className="container uui-icon uui-enabled docColor"
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={24}
-        width={24}
-      />
-    </div>
-    <div
-      className="flexCell"
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "100%",
-          "flexGrow": undefined,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
+      class="root uui-flex-row uui-size-36 alignItems columnGap"
+      style="--uui-flex-row-align-items: flex-start; --uui-flex-row-column-gap: 6px;"
     >
       <div
-        className="root uui-text uui-size-18 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline fileName container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "18px",
-          }
-        }
+        class="container uui-icon uui-enabled docColor"
       >
-        Test
+        <svg
+          class=""
+          height="24"
+          width="24"
+        />
       </div>
       <div
-        className="root uui-text uui-size-18 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "18px",
-          }
-        }
+        class="flexCell"
+        style="min-width: 0; flex-basis: 100%;"
       >
-        DOC, 
-        0 Bytes of 
-        12.25 KB
+        <div
+          class="root uui-text uui-size-none lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline fileName container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 18px;"
+        >
+          Test
+        </div>
+        <div
+          class="root uui-text uui-size-none lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 18px;"
+        >
+          DOC, 0 Bytes of 12.25 KB
+        </div>
       </div>
-    </div>
-    <div
-      className="iconsBlock"
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <svg
-        className="root"
-        height={18}
-        width={18}
+      <div
+        class="iconsBlock"
       >
-        <circle
-          cx={9}
-          cy={9}
-          fill="transparent"
-          r={3}
-          strokeDasharray={18.84955592153876}
-          strokeDashoffset={18.84955592153876}
-          strokeWidth={6}
-        />
-        <circle
-          cx={9}
-          cy={9}
-          fill="transparent"
-          r={8}
-          strokeWidth={1}
-        />
-      </svg>
+        <svg
+          class="root"
+          height="18"
+          width="18"
+        >
+          <circle
+            cx="9"
+            cy="9"
+            fill="transparent"
+            r="3"
+            stroke-dasharray="18.84955592153876"
+            stroke-dashoffset="18.84955592153876"
+            stroke-width="6"
+          />
+          <circle
+            cx="9"
+            cy="9"
+            fill="transparent"
+            r="8"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`FileCard should be rendered correctly with img file 1`] = `
-<div
-  className="flexCell root uui-file_card"
-  style={
-    Object {
-      "alignSelf": undefined,
-      "flexBasis": "0",
-      "flexGrow": undefined,
-      "flexShrink": undefined,
-      "minWidth": "140px",
-      "textAlign": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="uui-flex-row root uui-size-36 container align-items-top"
-    style={
-      Object {
-        "columnGap": "6px",
-        "rowGap": undefined,
-      }
-    }
+    class="flexCell root uui-file_card"
+    style="min-width: 140px; flex-basis: 0px;"
   >
     <div
-      className="container uui-icon uui-enabled imgColor"
-      style={Object {}}
-    >
-      <svg
-        className=""
-        height={24}
-        width={24}
-      />
-    </div>
-    <div
-      className="flexCell"
-      style={
-        Object {
-          "alignSelf": undefined,
-          "flexBasis": "100%",
-          "flexGrow": undefined,
-          "flexShrink": undefined,
-          "minWidth": 0,
-          "textAlign": undefined,
-        }
-      }
+      class="root uui-flex-row uui-size-36 alignItems columnGap"
+      style="--uui-flex-row-align-items: flex-start; --uui-flex-row-column-gap: 6px;"
     >
       <div
-        className="root uui-text uui-size-18 lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline fileName container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "18px",
-          }
-        }
+        class="container uui-icon uui-enabled imgColor"
       >
-        Test
+        <svg
+          class=""
+          height="24"
+          width="24"
+        />
       </div>
       <div
-        className="root uui-text uui-size-18 lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
-        style={
-          Object {
-            "--uui-text-font-size": "14px",
-            "--uui-text-line-height": "18px",
-          }
-        }
-      >
-        GIF, 
-        12.25 KB
-      </div>
-    </div>
-    <div
-      className="iconsBlock"
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <button
-        className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
-        onClick={[Function]}
-        tabIndex={0}
-        type="button"
+        class="flexCell"
+        style="min-width: 0; flex-basis: 100%;"
       >
         <div
-          className="container uui-icon uui-enabled"
-          style={Object {}}
+          class="root uui-text uui-size-none lineHeight fontSize uui-color-primary uui-font-weight-400 uui-font-style-normal uui-typography-inline fileName container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 18px;"
         >
-          <svg
-            className=""
-          />
+          Test
         </div>
-      </button>
+        <div
+          class="root uui-text uui-size-none lineHeight fontSize uui-color-tertiary uui-font-weight-400 uui-font-style-normal uui-typography-inline container"
+          style="--uui-text-font-size: 14px; --uui-text-line-height: 18px;"
+        >
+          GIF, 12.25 KB
+        </div>
+      </div>
+      <div
+        class="iconsBlock"
+      >
+        <button
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+          tabindex="0"
+          type="button"
+        >
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

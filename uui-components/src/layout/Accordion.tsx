@@ -7,9 +7,9 @@ import css from './Accordion.module.scss';
 
 interface GeneralAccordionProps extends IHasCX, IDisableable, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Accordion title */
-    title?: string | React.ReactElement;
+    title?: string | React.ReactElement<any>;
     /** Overrides default title rendering. */
-    renderTitle?: (isOpen: boolean) => React.ReactElement;
+    renderTitle?: (isOpen: boolean) => React.ReactElement<any>;
     /** Overrides the default dropdown (folding) icon.Pass null to disable the folding icon completely */
     dropdownIcon?: Icon | null;
     /** Renders additional items to component's header (after the title, and before the folding icon) */

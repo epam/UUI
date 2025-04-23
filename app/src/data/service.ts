@@ -20,7 +20,7 @@ const CodesandboxFiles: Record<string, string | { path: string, placeholders: Re
     'settings.ts': {
         path: '../data/codesandbox/settings.ts',
         placeholders: {
-            '"<UUI_SETTINGS_OVERRIDE>"': (theme) => theme.settings ? JSON.stringify(theme.settings.sizes, null, 4) : '{}',
+            '"<UUI_SETTINGS_OVERRIDE>"': (theme) => theme.settings ? JSON.stringify(theme.settings, null, 4) : '{}',
         },
     },
     'package.json': {

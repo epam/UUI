@@ -2,12 +2,11 @@ import * as React from 'react';
 import {
     renderSnapshotWithContextAsync, fireEvent, setupComponentForTest, screen, userEvent, within,
 } from '@epam/uui-test-utils';
-import { DatePicker } from '../DatePicker';
+import { DatePicker, DatePickerProps } from '../DatePicker';
 import dayjs from 'dayjs';
-import { DatePickerProps } from '../types';
 import { supportedDateFormats } from '../helpers';
 
-type TestParams = Pick<DatePickerProps, 'value' | 'format' | 'isHoliday'>;
+type TestParams = Omit<DatePickerProps, 'onValueChange'>;
 
 function parentElemContainsClasses(elem: HTMLElement, classesArr: string[]) {
     // @ts-ignore
@@ -200,6 +199,20 @@ describe('DatePicker', () => {
         expect(screen.getByRole('dialog')).toBeInTheDocument();
         await userEvent.click(result.container);
         expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    });
+
+    it('should not select date that does not pass filter callback', async () => {
+        const { dom, mocks } = await setupDatePicker({
+            value: null,
+            filter: (date) => dayjs(date).isAfter('2023-01-01'),
+        });
+
+        expect(dom.input.value).toEqual('');
+        await userEvent.type(dom.input, '2022-12-31');
+        fireEvent.blur(dom.input);
+
+        expect(mocks.onValueChange).not.toHaveBeenCalled();
+        expect(dom.input.value).toEqual('');
     });
 
     it('should set new value with custom format', async () => {

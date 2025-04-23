@@ -1,31 +1,22 @@
 import type { Page, TestInfo } from '@playwright/test';
-import { type DocExamplePage } from '../../framework/fixtures/docExamplePage/docExamplePage';
+import { type IntegrationTestPage } from '../../framework/fixtures/integrationTestPage/IntegrationTestPage';
 
-interface IDocExampleTestSetupBase<TPageObject> {
+interface IDocExampleTestSetupWithUrl<TPageObject> {
+    testUrl: string;
     testInfo: TestInfo,
-    pageWrapper: DocExamplePage,
+    pageWrapper: IntegrationTestPage,
     PageObjectConstructor: new (page: Page) => TPageObject
 }
 
-interface IDocExampleTestSetupWithUrl<TPageObject> extends IDocExampleTestSetupBase<TPageObject> {
-    testUrl: string;
-}
-
-interface IDocExampleTestSetupWithPath<TPageObject> extends IDocExampleTestSetupBase<TPageObject> {
-    examplePath: string;
-}
-
-type IDocExampleTestSetup<TPageObject> = IDocExampleTestSetupWithUrl<TPageObject> | IDocExampleTestSetupWithPath<TPageObject>;
+type IDocExampleTestSetup<TPageObject> = IDocExampleTestSetupWithUrl<TPageObject>;
 
 export async function setupDocExampleTest<TPageObject>(params: IDocExampleTestSetup<TPageObject>) {
     const { pageWrapper, testInfo, PageObjectConstructor } = params;
     // The timeout is increased for all doc example tests, because such tests contain many assertions.
     testInfo.setTimeout(testInfo.timeout * 3);
-    if ('testUrl' in params) {
-        await pageWrapper.clientRedirectTo(params.testUrl);
-    } else {
-        await pageWrapper.clientRedirectToExample({ examplePath: params.examplePath });
-    }
+    const [pathname, search] = params.testUrl.split('?');
+    await pageWrapper.clientRedirectTo({ pathname, search });
+
     const expectScreenshot = async (stepNumber: number, stepName: string) => {
         const stepNumberPadded = numberWithLeadingZeros(stepNumber, 2);
         const screenshotName = `${testInfo.title}_step-${stepNumberPadded}-${stepName}.png`;

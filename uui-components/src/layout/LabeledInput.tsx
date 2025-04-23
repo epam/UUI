@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Icon, uuiElement, labelMod, LabeledInputCoreProps, cx } from '@epam/uui-core';
-import { TooltipProps } from '../overlays/Tooltip';
-import { FlexRow, FlexSpacer } from './flexItems';
+import { uuiElement, labelMod, cx } from '@epam/uui-core';
+import type { Icon, LabeledInputCoreProps } from '@epam/uui-core';
+import type { TooltipProps } from '../overlays';
+import { FlexSpacer } from './flexItems';
 import { IconContainer } from './IconContainer';
 import { i18n } from '../i18n';
 import css from './LabeledInput.module.scss';
@@ -45,24 +46,24 @@ export const LabeledInput = React.forwardRef<HTMLDivElement, LabeledInputProps>(
     const getInvalidSection = () => {
         const isCharCounterAllow = props.charCounter && props.maxLength;
         return (
-            <FlexRow alignItems="top" columnGap={ 12 }>
+            <div className={ css.invalidSectionWrapper }>
                 <div role="alert" dir="auto" className={ uuiElement.invalidMessage }>
                     {props.validationMessage}
                 </div>
                 { isCharCounterAllow && getCharCounter()}
-            </FlexRow>
+            </div>
         );
     };
 
     const getFootnoteSection = () => {
         const isCharCounterAllow = props.charCounter && props.maxLength && !props.isInvalid;
         return (
-            <FlexRow alignItems="top" columnGap={ 12 }>
+            <div className={ css.footnoteSectionWrapper }>
                 <div dir="auto" className={ uuiLabeledInput.footNote }>
                     { props.footnote }
                 </div>
                 { isCharCounterAllow && getCharCounter() }
-            </FlexRow>
+            </div>
         );
     };
 

@@ -18,8 +18,8 @@ const uuiDataTableCellMarkers = {
 export function DataTableCell<TItem, TId, TCellValue>(props: DataTableCellProps<TItem, TId, TCellValue>) {
     const [state, setState] = React.useState<DataTableCellState>({ inFocus: false });
     const row = props.rowProps;
-    const ref = React.useRef<HTMLDivElement>();
-    const editorRef = React.useRef<HTMLElement>();
+    const ref = React.useRef<HTMLDivElement>(undefined);
+    const editorRef = React.useRef<HTMLElement>(undefined);
     const isEditable = !!props.onValueChange;
     const isReadonly = props.isReadonly ?? props.rowProps.isReadonly;
 

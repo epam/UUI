@@ -1,7 +1,7 @@
 import React from 'react';
-import { DropdownContainer, LinkButton, Text, Button, FlexRow, FlexCell } from '@epam/uui';
-import { Dropdown } from '@epam/uui';
-import { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
+import { offset } from '@floating-ui/react';
+import type { DropdownBodyProps, IDropdownToggler } from '@epam/uui-core';
+import { DropdownContainer, Dropdown, LinkButton, Text, Button, FlexRow, FlexCell } from '@epam/uui';
 
 export default function BasicExample() {
     const renderFirstDropdownBody = (props: DropdownBodyProps) => {
@@ -55,7 +55,7 @@ export default function BasicExample() {
             <Dropdown
                 renderBody={ (props) => renderSecondDropdownBody(props) }
                 placement="right-start"
-                modifiers={ [{ name: 'offset', options: { offset: [0, 6] } }] }
+                middleware={ [offset(6)] }
                 renderTarget={ (props: IDropdownToggler) => <LinkButton caption="With Arrow" size="36" { ...props } /> }
             />
         </>

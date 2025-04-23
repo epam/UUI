@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { ReactComponent as LockIcon } from '@epam/assets/icons/action-lock-fill.svg';
-import { ReactComponent as PinLeftIcon } from '@epam/assets/icons/table-group_column_left-fill.svg';
-import { ReactComponent as PinRightIcon } from '@epam/assets/icons/table-group_column_right-fill.svg';
+import type { Icon } from '@epam/uui-core';
+import { cx } from '@epam/uui-core';
 import { IconButton } from '../../buttons';
 import { Tooltip } from '../../overlays';
 import { i18n } from '../../../i18n';
-import { cx, Icon } from '@epam/uui-core';
-//
+import { settings } from '../../../settings';
+
 import css from './PinIconButton.module.scss';
 
 type TPinPosition = 'left' | 'right' | undefined;
@@ -32,17 +31,33 @@ export function PinIconButton(props: IPinIconButton) {
         const unpinClickHandler = isPinnedAlways ? undefined : () => onTogglePin(undefined);
         pinUnpinNode = (
             <Tooltip content={ iconTooltip } placement="bottom" color="inverted">
-                <IconButton cx={ cx(!isPinnedAlways && css.unpinIcon, css.pinTogglerIcon) } icon={ unpinIcon } onClick={ unpinClickHandler } isDisabled={ isPinnedAlways } color="primary" />
+                <IconButton
+                    cx={ cx(!isPinnedAlways && css.unpinIcon, css.pinTogglerIcon) }
+                    icon={ unpinIcon }
+                    onClick={ unpinClickHandler }
+                    isDisabled={ isPinnedAlways }
+                    color="primary"
+                />
             </Tooltip>
         );
     } else {
         pinUnpinNode = (
             <>
                 <Tooltip content={ i18nLocal.pinColumnToTheLeftButton } placement="bottom" color="inverted">
-                    <IconButton cx={ css.pinTogglerIcon } icon={ PinLeftIcon } onClick={ () => onTogglePin('left') } isDisabled={ isPinnedAlways } />
+                    <IconButton
+                        cx={ css.pinTogglerIcon }
+                        icon={ settings.dataTable.icons.columnsConfigurationModal.pinLeftIcon }
+                        onClick={ () => onTogglePin('left') }
+                        isDisabled={ isPinnedAlways }
+                    />
                 </Tooltip>
                 <Tooltip content={ i18nLocal.pinColumnToTheRightButton } placement="bottom" color="inverted">
-                    <IconButton cx={ css.pinTogglerIcon } icon={ PinRightIcon } onClick={ () => onTogglePin('right') } isDisabled={ isPinnedAlways } />
+                    <IconButton
+                        cx={ css.pinTogglerIcon }
+                        icon={ settings.dataTable.icons.columnsConfigurationModal.pinRightIcon }
+                        onClick={ () => onTogglePin('right') }
+                        isDisabled={ isPinnedAlways }
+                    />
                 </Tooltip>
             </>
         );
@@ -54,14 +69,14 @@ export function PinIconButton(props: IPinIconButton) {
 function getUnpinIcon(params: { isPinnedAlways: boolean, pinPosition: TPinPosition }): Icon | undefined {
     const { isPinnedAlways, pinPosition } = params;
     if (isPinnedAlways) {
-        return LockIcon;
+        return settings.dataTable.icons.columnsConfigurationModal.lockIcon;
     }
     switch (pinPosition) {
         case 'left': {
-            return PinLeftIcon;
+            return settings.dataTable.icons.columnsConfigurationModal.pinLeftIcon;
         }
         case 'right': {
-            return PinRightIcon;
+            return settings.dataTable.icons.columnsConfigurationModal.pinRightIcon;
         }
         default: {
             return;

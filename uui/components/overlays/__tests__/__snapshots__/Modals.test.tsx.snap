@@ -1,136 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Modals should be rendered correctly with many props 1`] = `
-<div
-  className="container modalBlocker"
-  style={
-    Object {
-      "zIndex": 1,
-    }
-  }
->
+<DocumentFragment>
   <div
-    aria-label="Click to close a modal"
-    className="uui-modal-blocker"
-    onClick={[Function]}
-  />
-  <div
-    aria-modal={true}
-    className="uui-modal-window root modal container"
-    role="dialog"
-    style={
-      Object {
-        "height": 300,
-        "maxHeight": "80dvh",
-        "width": 300,
-      }
-    }
+    class="container modalBlocker"
+    style="z-index: 1;"
   >
     <div
-      className="uui-flex-row root padding-6 vPadding-36 borderBottom root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      aria-label="Click to close a modal"
+      class="uui-modal-blocker"
+    />
+    <div
+      aria-modal="true"
+      class="uui-modal-window root modal container"
+      role="dialog"
+      style="width: 300px; height: 300px; max-height: var(--uui-modals-max-height);"
     >
       <div
-        className="uui-modal-title uui-typography"
+        class="root modalHeader uui-modal-header borderBottom"
       >
-        Test header
-      </div>
-      <div
-        className="flexSpacer"
-      />
-      <div
-        className="flexCell"
-        style={
-          Object {
-            "alignSelf": undefined,
-            "flexBasis": "auto",
-            "flexGrow": undefined,
-            "flexShrink": 0,
-            "minWidth": 0,
-            "textAlign": undefined,
-          }
-        }
-      >
-        <button
-          aria-label="Close modal"
-          className="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
-          onClick={[Function]}
-          tabIndex={0}
-          type="button"
+        <div
+          class="uui-modal-title uui-typography"
         >
-          <div
-            className="container uui-icon uui-enabled"
-            style={Object {}}
+          Test header
+        </div>
+        <div
+          class="flexSpacer"
+        />
+        <div
+          class="flexCell"
+          style="min-width: 0; flex-shrink: 0; flex-basis: auto;"
+        >
+          <button
+            aria-label="Close modal"
+            class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root"
+            tabindex="0"
+            type="button"
           >
-            <svg
-              className=""
-            />
-          </div>
-        </button>
+            <div
+              class="container uui-icon uui-enabled"
+            >
+              <svg
+                class=""
+              />
+            </div>
+          </button>
+        </div>
       </div>
+      <div
+        class="root modalFooter uui-modal-footer borderTop"
+      />
     </div>
-    <div
-      className="uui-flex-row root uui-size-36 padding-18 vPadding-24 root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
-    />
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`Modals should be rendered correctly with minimum props 1`] = `
-<div
-  className="container modalBlocker"
-  style={
-    Object {
-      "zIndex": 1,
-    }
-  }
->
+<DocumentFragment>
   <div
-    aria-label="Click to close a modal"
-    className="uui-modal-blocker"
-    onClick={[Function]}
-  />
-  <div
-    aria-modal={true}
-    className="uui-modal-window root modal container"
-    role="dialog"
-    style={
-      Object {
-        "height": "auto",
-        "maxHeight": "80dvh",
-        "width": 420,
-      }
-    }
+    class="container modalBlocker"
+    style="z-index: 1;"
   >
     <div
-      className="uui-flex-row root padding-24 vPadding-36 root modalHeader container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
+      aria-label="Click to close a modal"
+      class="uui-modal-blocker"
     />
     <div
-      className="uui-flex-row root uui-size-36 padding-24 vPadding-24 root modalFooter container align-items-center"
-      style={
-        Object {
-          "columnGap": "12px",
-          "rowGap": undefined,
-        }
-      }
-    />
+      aria-modal="true"
+      class="uui-modal-window root modal container"
+      role="dialog"
+      style="height: auto; max-height: var(--uui-modals-max-height);"
+    >
+      <div
+        class="root modalHeader uui-modal-header"
+      />
+      <div
+        class="root modalFooter uui-modal-footer"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

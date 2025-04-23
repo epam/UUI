@@ -114,7 +114,7 @@
         }
     }
 
-    &.mode-form {
+    &:global(.uui-control-mode-form) {
         background-color: var(--uui-picker_toggler-bg);
         border-color: var(--uui-picker_toggler-border);
         fill: var(--uui-picker_toggler-icon);
@@ -143,7 +143,7 @@
         }
     }
 
-    &.mode-cell {
+    &:global(.uui-control-mode-cell) {
         background-color: transparent !important;
         border-color: transparent;
         border-radius: 0;
@@ -183,7 +183,7 @@
         }
     }
 
-    &.mode-inline {
+    &:global(.uui-control-mode-inline) {
         background-color: initial;
         border-color: transparent;
         fill: var(--uui-picker_toggler-icon-clickable);
@@ -199,7 +199,7 @@
     }
 
     &:global(.uui-invalid) {
-        &.mode-form, &.mode-inline {
+        &:global(.uui-control-mode-form), &:global(.uui-control-mode-inline) {
             border-color: var(--uui-picker_toggler-border-error);
         }
     }

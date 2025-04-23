@@ -1,43 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BurgerButton should be rendered correctly 1`] = `
-<a
-  aria-expanded={false}
-  aria-haspopup={true}
-  className="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
-  href="#"
-  rel="noopener noreferrer"
-  tabIndex={0}
-  target="_blank"
->
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
+<DocumentFragment>
+  <a
+    aria-expanded="false"
+    aria-haspopup="true"
+    class="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
+    href="#"
+    rel="noopener noreferrer"
+    tabindex="0"
+    target="_blank"
   >
-    <svg
-      className=""
-    />
-  </div>
-  <div
-    className="uui-caption"
-  >
-    Test button
-  </div>
-  <div
-    className="container uui-icon uui-enabled"
-    style={Object {}}
-  >
-    <svg
-      className=""
-    />
-  </div>
-</a>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+    <div
+      class="uui-caption"
+    >
+      Test button
+    </div>
+    <div
+      class="container uui-icon uui-enabled"
+    >
+      <svg
+        class=""
+      />
+    </div>
+  </a>
+</DocumentFragment>
 `;
 
 exports[`BurgerButton should be rendered correctly with minimum props 1`] = `
-<button
-  className="uui-button-box uui-enabled container root uui-main_menu-burger-button button-primary indent-0"
-  tabIndex={-1}
-  type="button"
-/>
+<DocumentFragment>
+  <button
+    class="uui-button-box uui-enabled container root uui-main_menu-burger-button button-primary indent-0"
+    tabindex="-1"
+    type="button"
+  />
+</DocumentFragment>
 `;

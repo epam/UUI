@@ -9,14 +9,20 @@
     --uui-notification_card-border-radius: var(--uui-border-radius);
     --uui-notification_card-border-width: 0;
     --uui-notification_card-border-top-width: 6px;
+    --uui-notification_card-padding: 6px 18px;
+    --uui-notification_card-width: 360px;
     --uui-notification_card-icon-size: 24px;
+    --uui-notification_card-icon-padding: 6px 0;
+    --uui-notification_card-close_icon-padding: 6px 0;
+    --uui-notification_card-actions-gap: 12px;
+    --uui-notification_card-content-margin: 0 12px;
     //
     border-style: solid;
     border-color: var(--uui-notification_card-border, transparent);
     border-width: var(--uui-notification_card-border-width);
     border-top-width: var(--uui-notification_card-border-top-width);
-    padding: 6px 18px;
-    width: 360px;
+    padding: var(--uui-notification_card-padding);
+    width: var(--uui-notification_card-width);
     background: var(--uui-notification_card-bg, var(--uui-surface-main));
     display: flex;
     overflow: hidden;
@@ -28,20 +34,17 @@
     }
 
     .icon-wrapper {
-        padding: 6px 0;
+        padding: var(--uui-notification_card-icon-padding);
     }
 
     .action-wrapper {
         display: flex;
         align-items: center;
-    }
-
-    .action-link:not(:last-child) {
-        margin-right: 12px;
+        column-gap: var(--uui-notification_card-actions-gap);
     }
 
     .close-icon {
-        padding: 6px 0;
+        padding: var(--uui-notification_card-close_icon-padding);
 
         :global(.uui-icon) {
             svg {
@@ -62,7 +65,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
         width: 100%;
-        margin: 0 12px;
+        margin: var(--uui-notification_card-content-margin);
     }
 
     .close-wrapper {
@@ -77,25 +80,26 @@
     }
 }
 
-.notification-wrapper {
-    padding: 6px 18px;
-    width: 360px;
-    background: var(--uui-surface-main);
-    border-radius: 3px;
+.clear-notifications {
+    --uui-clear-notifications-height: 48px;
+    --uui-clear-notifications-padding: 0 18px;
+    --uui-clear-notifications-width: 360px;
+    --uui-clear-notifications-border-radius: 3px;
+    //
     display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+    height: var(--uui-clear-notifications-height);
+    padding: var(--uui-clear-notifications-padding);
+    width: var(--uui-clear-notifications-width);
+    border-radius: var(--uui-clear-notifications-border-radius);
+    background: var(--uui-surface-main);
     box-shadow: var(--uui-shadow-level-2);
 }
 
-.clear-button {
-    justify-content: center;
-    align-items: center;
-    height: 48px;
-    padding: 0 18px;
-}
-
 @media (max-width: 720px) {
-    .notification-wrapper {
+    .clear-notifications {
         width: 100%;
     }
 }

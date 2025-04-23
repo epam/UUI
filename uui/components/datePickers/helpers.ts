@@ -52,7 +52,7 @@ export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeD
 
 export const isValidDate = (input: string | null, format: string, filter?:(day: Dayjs) => boolean): boolean | undefined => {
     const parsedDate = uuiDayjs.dayjs(input, supportedDateFormats(format), true);
-    return parsedDate.isValid() ?? filter?.(parsedDate) ?? true;
+    return filter ? parsedDate.isValid() && filter(parsedDate) : parsedDate.isValid();
 };
 
 export const isValidRange = (range: RangeDatePickerValue) => {

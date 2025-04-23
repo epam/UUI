@@ -3,7 +3,7 @@ import { LayoutLayer, useUuiContext } from '../services';
 
 export const useLayer = () => {
     const context = useUuiContext();
-    const layer = useRef<LayoutLayer>();
+    const layer = useRef<LayoutLayer>(undefined);
 
     useEffect(() => {
         layer.current = context.uuiLayout.getLayer();

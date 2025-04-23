@@ -1,9 +1,22 @@
 import * as React from 'react';
 import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 import css from '../styles.module.scss';
+import { TDocConfig, TSkin } from '@epam/uui-docs';
+import * as uui from '@epam/uui';
 
 export class TablesOverviewDoc extends BaseDocsBlock {
     title = 'Tables overview';
+
+    static override config: TDocConfig = {
+        name: 'DataTable',
+        bySkin: {
+            [TSkin.UUI]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+            [TSkin.Loveship]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+            [TSkin.Promo]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+            [TSkin.Electric]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+        },
+    };
+
     renderContent() {
         return (
             <>
@@ -20,7 +33,7 @@ export class TablesOverviewDoc extends BaseDocsBlock {
 
                 <DocExample cx={ css.appBg } title="Column size and content align configuration" path="./_examples/tables/StyledColumns.example.tsx" />
 
-                <DocExample cx={ css.appBg } title="Condensed view" path="./_examples/tables/CondensedView.example.tsx" />
+                <DocExample config={ this.getConfig() } cx={ css.appBg } title="Condensed view" path="./_examples/tables/CondensedView.example.tsx" />
             </>
         );
     }

@@ -1,6 +1,7 @@
 @use '../../../assets/styles/index' as *;
 
 .root {
+    --uui-dt-columns_config_modal-width: 560px;
     --uui-dt-columns_config_modal-padding: 24px;
     --uui-dt-columns_config_modal-horizontal-gap: 6px;
     --uui-dt-columns_config_modal-search_area-min-height: 42px;
@@ -14,6 +15,7 @@
     --uui-dt-columns_config_modal-subgroup_title-font-size: 10px;
     --uui-dt-columns_config_modal-subgroup_title-line-height: 12px;
     --uui-dt-columns_config_modal-subgroup_title-font-weight: 600;
+    --uui-dt-columns_config_modal-subgroup_icon: 18px;
     //
     --uui-dt-columns_config_modal-no_data_title-line-height: 30px;
     --uui-dt-columns_config_modal-no_data_title-font-size: 24px;
@@ -21,6 +23,11 @@
     --uui-dt-columns_config_modal-no_data_sub_title-line-height: 24px;
     --uui-dt-columns_config_modal-no_data_sub_title-font-size: 16px;
     --uui-dt-columns_config_modal-no_data_sub_title-font-weight: 400;
+    //
+
+    &:global(.uui-modal-window) {
+        --uui-modals-width: var(--uui-dt-columns_config_modal-width);
+    }
 
     .main-panel {
         height: 100%;
@@ -104,6 +111,11 @@
 
             :global(.uui-icon) {
                 fill: var(--uui-text-tertiary);
+
+                svg {
+                    height: var(--uui-dt-columns_config_modal-subgroup_icon);
+                    width: inherit;
+                }
             }
         }
     }

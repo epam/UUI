@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, type JSX } from 'react';
 import { DataRowProps } from '@epam/uui-core';
-import css from './DataRowsContainer.module.scss';
 import { getChildrenAndRest } from './utils';
+
+import css from './DataRowsContainer.module.scss';
 
 interface DataRowsGroupProps<TItem, TId> {
     row: DataRowProps<TItem, TId>;
@@ -22,7 +23,7 @@ function DataRowsGroup<TItem, TId>({
     renderRow,
     top = 1,
 }: DataRowsGroupProps<TItem, TId>) {
-    const rowRef = useRef<HTMLDivElement>();
+    const rowRef = useRef<HTMLDivElement>(undefined);
     const childrenPinnedTop = row.isPinned ? (top + (rowRef.current?.clientHeight ?? 0)) : top;
     return ( 
         <div className={ css.group } key={ row.rowKey }>

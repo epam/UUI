@@ -1,7 +1,7 @@
 import * as uuiCore from '@epam/uui-core';
 import * as uui from '@epam/uui';
 
-export interface RowMods extends Omit<uui.RowMods, 'spacing' | 'background'> {
+export interface RowMods extends Omit<uui.FlexRowMods, 'spacing' | 'background'> {
     /**
      * @default 'none'
      */
@@ -39,7 +39,7 @@ const rowTypesDefaults: Record<string, FlexRowProps> = {
 export const FlexRow = uuiCore.withMods<uuiCore.FlexRowProps, FlexRowProps>(
     uui.FlexRow,
     (props) => {
-        return [`uui-color-${props.background || 'none'}`];
+        return [`uui-flex-row-bg-${props.background || 'none'}`];
     },
     (props) => {
         const defaults = rowTypesDefaults[props.type || 'panel'];

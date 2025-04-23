@@ -1,32 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useQuery } from '../helpers';
 import { docExampleLoader } from '../common/docs/docExampleLoader';
 import { DocExampleContent } from './docExampleContent';
-import { usePlayWrightInterface } from '../preview/hooks/usePlayWrightInterface';
-import { BuiltInTheme, ThemeId } from '../data';
-import { svc } from '../services';
-
-interface DocExamplePageParams {
-    examplePath: string;
-    theme: ThemeId;
-}
 
 export function DocExamplePage() {
     const [component, setComponent] = useState<any>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const examplePath = useQuery('examplePath'); // E.g.: http://localhost:3793/docExample?examplePath=alert/Basic
-
-    const handleNavDocExample = useCallback((newParams: DocExamplePageParams) => {
-        svc.uuiRouter.redirect({
-            pathname: '/docExample',
-            query: {
-                theme: newParams.theme || BuiltInTheme.promo,
-                examplePath: newParams.examplePath,
-            },
-        });
-    }, []);
-
-    usePlayWrightInterface<DocExamplePageParams>(handleNavDocExample);
 
     useEffect(() => {
         let isDestroyed = false;

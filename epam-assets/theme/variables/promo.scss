@@ -19,6 +19,7 @@
 
     & {
         --uui-border-radius: 0;
+        scrollbar-color: var(--uui-neutral-40) transparent;
     }
 
     /* begin color classes */
@@ -358,15 +359,15 @@
 
     /* FlexRow */
 
-    .uui-flex-row.uui-color-none {
+    .uui-flex-row.uui-flex-row-bg-none {
         --uui-flex-row-bg: transparent;
     }
 
-    .uui-flex-row.uui-color-white {
+    .uui-flex-row.uui-flex-row-bg-white {
         --uui-flex-row-bg: var(--white);
     }
 
-    .uui-flex-row.uui-color-gray5 {
+    .uui-flex-row.uui-flex-row-bg-gray5 {
         --uui-flex-row-bg: var(--gray5);
     }
 

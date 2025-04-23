@@ -1,27 +1,75 @@
-import React, { useEffect, useState } from 'react';
-import { Dropdown } from '@epam/uui-components';
+import React, { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
+import { offset } from '@floating-ui/react';
 import {
-    DropdownBodyProps, IDropdownToggler, cx, useUuiContext, uuiMod,
+    DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps,
+    Overwrite, CommonDatePickerProps, ICanFocus,
+    IEditable, IAnalyticableOnChange, IHasPlaceholder, IHasRawProps,
 } from '@epam/uui-core';
+import { DayProps, Dropdown } from '@epam/uui-components';
 import { TextInput, TextInputProps } from '../inputs';
-import { EditMode } from '../types';
-import { systemIcons } from '../../icons/icons';
+import { EditMode, IHasEditMode } from '../types';
 import { DropdownContainer } from '../overlays';
-import { DatePickerProps } from './types';
+import { DatePickerBody } from './DatePickerBody';
 import {
     defaultFormat, isValidDate, toCustomDateFormat, toValueDateFormat,
 } from './helpers';
-import { DatePickerBody } from './DatePickerBody';
 import { settings } from '../../settings';
 
 const defaultMode = EditMode.FORM;
-const modifiers = [{
-    name: 'offset',
-    options: { offset: [0, 6] },
-}];
+
+type DatePickerMods = {
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: '24' | '30' | '36' | '42' | '48';
+};
+
+export interface DatePickerModsOverride {}
+
+/**
+ * Represents the properties of the DatePicker component
+ */
+export interface DatePickerProps extends
+    Overwrite<DatePickerMods, DatePickerModsOverride>,
+    CommonDatePickerProps,
+    IHasEditMode,
+    ICanFocus<HTMLInputElement>,
+    IEditable<string | null>,
+    IAnalyticableOnChange<string>,
+    IHasPlaceholder {
+    /**
+     * Defines where to place calendar icon
+     */
+    iconPosition?: 'left' | 'right';
+
+    /**
+     * Render prop to add a custom footer inside the DatePicker dropdown body
+     */
+    renderFooter?(): ReactNode;
+
+    /**
+     * Overrides rendering of the single day. For example, to highlight certain days
+     */
+    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
+
+    /**
+     * Any HTML attributes (native or 'data-') to put on date picker parts
+     */
+    rawProps?: {
+        /**
+         * Any HTML attributes (native or 'data-') to put on date picker input
+         */
+        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+        /**
+         * Any HTML attributes (native or 'data-') to put on date picker body
+         */
+        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
+    };
+}
 
 export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
-    const { format = defaultFormat, value, size = settings.sizes.defaults.datePicker } = props;
+    const { format = defaultFormat, value, size = settings.datePicker.sizes.input } = props;
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
@@ -66,14 +114,14 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         }
     };
 
-    const renderInput = (renderProps: IDropdownToggler & { cx?: any }) => {
+    const renderInput = (renderProps: IDropdownTogglerProps & { cx?: any }) => {
         const allowClear = !props.disableClear && !!inputValue;
         return (
             <TextInput
                 { ...renderProps }
                 isDropdown={ false }
                 cx={ cx(props.inputCx, isBodyOpen && uuiMod.focus) }
-                icon={ props.mode !== EditMode.CELL && systemIcons.calendar ? systemIcons.calendar : undefined }
+                icon={ props.mode !== EditMode.CELL ? settings.datePicker.icons.input.calendarIcon : undefined }
                 iconPosition={ props.iconPosition || 'left' }
                 placeholder={ props.placeholder ? props.placeholder : format }
                 size={ size as TextInputProps['size'] }
@@ -102,7 +150,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
         );
     };
 
-    const renderBody = (renderProps: DropdownBodyProps) => {
+    const renderBody = useMemo(() => (renderProps: DropdownBodyProps) => {
         return (
             <DropdownContainer { ...renderProps }>
                 <DatePickerBody
@@ -117,25 +165,24 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 {props.renderFooter?.()}
             </DropdownContainer>
         );
-    };
+    }, [value, onBodyValueChange]);
 
     return (
         <Dropdown
             value={ isBodyOpen }
-            modifiers={ modifiers }
+            middleware={ [offset(6)] }
             placement={ props.placement }
-            forwardedRef={ ref }
+            ref={ ref }
             onValueChange={ (v) => {
                 setBodyIsOpen(v);
             } }
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || renderInput(renderProps);
             } }
-            renderBody={ (renderProps) => {
-                return renderBody(renderProps);
-            } }
+            renderBody={ renderBody }
         />
     );
 }
 
-export const DatePicker = React.forwardRef(DatePickerComponent);
+export const DatePicker = React.forwardRef(DatePickerComponent) as
+    (props: DatePickerProps & { ref?: React.ForwardedRef<HTMLElement> }) => ReturnType<typeof DatePickerComponent>;

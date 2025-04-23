@@ -1,97 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DataPickerRow should be rendered correctly 1`] = `
-<div
-  aria-posinset={2}
-  className="uui-flex-row pickerRow container align-items-center"
-  role="option"
-  style={
-    Object {
-      "columnGap": undefined,
-      "rowGap": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="flexCell root data-picker-cell uui-size-36 align-widgets-top"
-    role="cell"
-    style={
-      Object {
-        "--uui-data_picker_cell-horizontal-padding": "24px",
-        "alignSelf": undefined,
-        "flexBasis": "0",
-        "flexGrow": 1,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    aria-posinset="2"
+    class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top"
+    role="option"
   >
     <div
-      className="contentWrapper"
+      class="flexCell rowContent"
+      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
     >
       <div
-        className="renderItem"
+        class="contentWrapper"
       >
-        <div />
+        <div>
+          test
+        </div>
         <div
-          className="flexSpacer"
+          class="flexSpacer"
         />
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DataPickerRow should be rendered correctly 2`] = `
-<div
-  aria-posinset={2}
-  aria-selected={true}
-  className="uui-flex-row uui-focus pickerRow container -clickable align-items-center"
-  onClick={[Function]}
-  role="option"
-  style={
-    Object {
-      "columnGap": undefined,
-      "rowGap": undefined,
-    }
-  }
->
+<DocumentFragment>
   <div
-    className="flexCell root data-picker-cell uui-size-48 align-widgets-top"
-    role="cell"
-    style={
-      Object {
-        "--uui-data_picker_cell-horizontal-padding": "24px",
-        "alignSelf": undefined,
-        "flexBasis": "0",
-        "flexGrow": 1,
-        "flexShrink": undefined,
-        "minWidth": 0,
-        "textAlign": undefined,
-      }
-    }
+    aria-posinset="2"
+    aria-selected="true"
+    class="pickerRow uui-picker_input-row uui-size-48 align-widgets-top uui-focus -clickable"
+    role="option"
+    style="--uui-data_picker-horizontal-padding: 24px;"
   >
     <div
-      className="contentWrapper"
+      class="flexCell rowContent"
+      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
     >
       <div
-        className="renderItem"
+        class="contentWrapper"
       >
-        <div />
+        <div>
+          test
+        </div>
         <div
-          className="flexSpacer"
+          class="flexSpacer"
         />
         <div
-          className="iconWrapper uui-selected"
+          class="iconWrapper uui-picker_input-row-select_icon uui-selected"
         >
           <div
             aria-label="Selected"
-            className="container uui-icon uui-enabled selectedMark"
-            style={Object {}}
+            class="container uui-icon uui-enabled selectedMark"
           >
             <svg
-              className=""
+              class=""
               height="24"
               width="24"
             />
@@ -100,5 +65,5 @@ exports[`DataPickerRow should be rendered correctly 2`] = `
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

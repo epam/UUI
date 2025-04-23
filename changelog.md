@@ -1,5 +1,67 @@
-# 5.13.2 - 04.03.2025
+# 6.0.0 - 23.04.2025
+**What's New**
+* React 19 support:
+    * UUI is now compatible with React 19. UUI site was reworked to work with React 19.
+    * UUI packages still backward compatible with React 18
+    * UUI templates updated to use React 19
+* Introduced sizes and icons theming. This is essential for external customers support, as it allows them to use their own sizes and icons.
+  * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity. 
+  * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
+* Update icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
+* [Dropdown]: reworked to FC, migrated from "react-popper" to "floating-ui/react"
+  * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+    ```
+    // old
+    <Dropdown
+      modifiers={ [
+        {
+            name: 'offset',
+            options: {
+                offset: [10, 10]
+            }
+        }
+      ] }
+    >
+    // new
+    <Dropdown
+      middleware={ [offset(10)] }
+    >
+    ```
+  * added support for virtual elements instead of target node, you can define them via `virtualTarget` prop
+* [Tooltip]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react"
+  * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+  * `offset` prop changed to accept `OffsetOptions` object. Old format with array(`[10, 10]`) was deprecated and will be removed in future versions.
+* [SliderHandle]: migrated from "react-popper" to "floating-ui/react", changed signature of prop `offset` - see [docs](https://floating-ui.com/docs/offset).
+* [PickerInput]:
+    * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
+    * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
+    * [DataPickerRow]: added default implementation of `renderItem` callback
+* [PickerList]:
+    * [Breaking Change]: `renderRow` prop now affects only modal rows
+    * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
+    * added `renderListRow` callback to customize list row without affecting row in modal
+* [FlexRow][Breaking Change]: component was moved from `@epam/uui-components` to `@epam/uui`. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
+* [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
+* [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
+* [DatePicker]: improved render performance for scroll actions.
+* [TimePicker]: added `ref` prop.
+* [NumericInput]: added `center` value for `align` prop
 
+**What's Fixed**
+* [NumericInput]: added right margin for arrows
+* [MultiSwitch]: fixed `isReadonly` prop
+* [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
+* [PickerToggler]: fixed `"key" prop is being spread into JSX` warning.
+* [ColumnConfigModal]: fixed modal width according to design
+* [DatePicker]: fixed type for `renderTarget` prop
+* [@epam/uui-editor]: fixed minor toolbars issues
+* [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
+* [Pickers]: scroll list to the top while start searching
+* [PickerInput]: remove list bottom border in case if it does not have a footer
+* [DatePickers]: fixed select of disabled dates via input
+* [RangeDatePicker]: remove colons from input placeholders
+
+# 5.13.2 - 04.03.2025
 **What's Fixed**
 * Fixed PickerInput and PickerToggler component typings for React 19
 * [Text]: use .uui-typography-inline instead of .uui-typography class to not conflict with Text internal styles
@@ -56,7 +118,7 @@
             {' '}
             <a href={ `https://status.epam.com/?utm_source=${window.location.host}&utm_medium=ErrorPage&utm_campaign=StatusAquisitionTracking` }>status.epam.com</a>
         </>
-    );   
+    );
   ```
 * Remove 'prop-types' from UUI packages dependencies. Remove `uuiContextTypes` interface, since it was needed for already outdated React context API.
 * [DataTable]: added support of column groups in table header. Read more - https://uui.epam.com/documents?id=advancedTables&mode=doc&category=tables&theme=electric#table_with_header_groups
@@ -65,7 +127,7 @@
 
 
 **What's Fixed**
-* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement. 
+* [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement.
   Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode
@@ -420,7 +482,7 @@
 **What's Fixed**
 
 * [TabButton, VerticalTabButton]: set 18 icon size for all button sizes according to design
-* [DataPickerHeader]: changed close icon to match design
+* [DataPickerMobileHeader]: changed close icon to match design
 * [DataTableHeaderCell]: set 18 size for all icons by design
 
 # 5.7.0 - 25.03.2024

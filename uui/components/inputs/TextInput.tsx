@@ -2,8 +2,8 @@ import React from 'react';
 import { withMods, IEditableDebouncer, IEditableDebouncerOptions, Overwrite } from '@epam/uui-core';
 import { TextInput as uuiTextInput, TextInputProps as CoreTextInputProps } from '@epam/uui-components';
 import { IHasEditMode, EditMode, ControlSize } from '../types';
-import { systemIcons } from '../../icons/icons';
 import { settings } from '../../settings';
+
 import css from './TextInput.module.scss';
 
 const DEFAULT_MODE = EditMode.FORM;
@@ -21,8 +21,8 @@ export interface TextInputModsOverride {}
 function applyTextInputMods(mods: CoreTextInputProps & TextInputMods) {
     return [
         css.root,
-        `uui-size-${mods.size || settings.sizes.defaults.textInput}`,
-        css['mode-' + (mods.mode || DEFAULT_MODE)],
+        `uui-size-${mods.size || settings.textInput.sizes.default}`,
+        'uui-control-mode-' + (mods.mode || DEFAULT_MODE),
     ];
 }
 
@@ -33,9 +33,9 @@ export interface TextInputProps extends CoreTextInputProps, Overwrite<TextInputM
 export interface SearchInputProps extends TextInputProps, IEditableDebouncerOptions {}
 
 export const TextInput = withMods<CoreTextInputProps, TextInputProps>(uuiTextInput, applyTextInputMods, () => ({
-    acceptIcon: systemIcons.accept,
-    cancelIcon: systemIcons.clear,
-    dropdownIcon: systemIcons.foldingArrow,
+    acceptIcon: settings.textInput.icons.acceptIcon,
+    cancelIcon: settings.textInput.icons.clearIcon,
+    dropdownIcon: settings.textInput.icons.dropdownIcon,
 }));
 
 export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>((props, ref) => {
@@ -51,7 +51,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
                 return (
                     <TextInput
-                        icon={ systemIcons.search }
+                        icon={ settings.textInput.icons.searchIcon }
                         onCancel={ props.onCancel ?? defaultOnCancel }
                         type="search"
                         inputMode="search"

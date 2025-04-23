@@ -1,65 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextPlaceholder should be rendered correctly 1`] = `
-<div
-  aria-busy={true}
-  className="root uui-text-placeholder"
->
-  <span
-    className="loadingWord animatedLoading"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    aria-busy="true"
+    class="root uui-text-placeholder"
+  >
+    <span
+      class="loadingWord animatedLoading"
+    >
+                   
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TextPlaceholder should be rendered correctly 2`] = `
-<div
-  aria-busy={true}
-  className="root uui-text-placeholder"
->
-  <span
-    className="loadingWord"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-      }
-    }
-  />
-  <span
-    className="loadingWord"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-      }
-    }
-  />
-  <span
-    className="loadingWord"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-      }
-    }
-  />
-  <span
-    className="loadingWord"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-      }
-    }
-  />
-  <span
-    className="loadingWord"
-    dangerouslySetInnerHTML={
-      Object {
-        "__html": "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    aria-busy="true"
+    class="root uui-text-placeholder"
+  >
+    <span
+      class="loadingWord"
+    >
+                   
+    </span>
+    <span
+      class="loadingWord"
+    >
+                   
+    </span>
+    <span
+      class="loadingWord"
+    >
+                   
+    </span>
+    <span
+      class="loadingWord"
+    >
+                   
+    </span>
+    <span
+      class="loadingWord"
+    >
+                   
+    </span>
+  </div>
+</DocumentFragment>
 `;

@@ -1,27 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FlexRow should be rendered correctly 1`] = `
-<div
-  className="uui-flex-row root uui-size-36 container align-items-center"
-  style={
-    Object {
-      "columnGap": undefined,
-      "rowGap": undefined,
-    }
-  }
-/>
+<DocumentFragment>
+  <div
+    class="root uui-flex-row uui-size-36"
+  />
+</DocumentFragment>
 `;
 
 exports[`FlexRow should be rendered correctly with props 1`] = `
-<div
-  className="uui-flex-row root uui-size-24 padding-12 vPadding-12 margin-12 topShadow borderBottom borderTop uui-surface-main some class container -clickable align-items-top justify-content-center"
-  id="123"
-  onClick={[Function]}
-  style={
-    Object {
-      "columnGap": "24px",
-      "rowGap": "24px",
-    }
-  }
-/>
+<DocumentFragment>
+  <div
+    class="root uui-flex-row -clickable some class uui-size-24 alignItems justifyContent padding vPadding margin topShadow borderBottom borderTop columnGap rowGap uui-flex-row-bg-surface-main"
+    id="123"
+    style="--uui-flex-row-align-items: flex-start; --uui-flex-row-justify-content: center; --uui-flex-row-column-gap: 24px; --uui-flex-row-row-gap: 24px; --uui-flex-row-padding: 12px; --uui-flex-row-v-padding: 12px; --uui-flex-row-margin: 12px;"
+  />
+</DocumentFragment>
 `;
