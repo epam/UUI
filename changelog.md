@@ -29,7 +29,7 @@
     >
     ```
   * added support for virtual elements, you can define them via `virtualTarget` prop
-* [Tooltip]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react"
+* [Tooltip]: reworked to FC, migrated from "react-popper" to "floating-ui/react"
   * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
   * `offset` prop changed to accept `OffsetOptions` object. Old format with array(`[10, 10]`) was deprecated and will be removed in future versions.
 * [SliderHandle]: migrated from "react-popper" to "floating-ui/react", changed signature of prop `offset` - see [docs](https://floating-ui.com/docs/offset).
