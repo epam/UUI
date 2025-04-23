@@ -51,10 +51,9 @@
 * [NumericInput]: added right margin for arrows
 * [MultiSwitch]: fixed `isReadonly` prop
 * [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
-* [PickerToggler]: fixed `"key" prop is being spread into JSX` warning.
 * [ColumnConfigModal]: fixed modal width according to design
 * [DatePicker]: fixed type for `renderTarget` prop
-* [@epam/uui-editor]: fixed minor toolbars issues
+* [RTE]: fixed minor toolbars issues
 * [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
 * [Pickers]: scroll list to the top while start searching
 * [PickerInput]: remove list bottom border in case if it does not have a footer
