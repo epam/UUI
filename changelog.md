@@ -7,7 +7,7 @@
 * Introduced sizes and icons theming. This is essential for external customers support, as it allows them to use their own sizes and icons.
   * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity. 
   * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
-* Update icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
+* Updated icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
 * [Dropdown]: reworked to FC, migrated from "react-popper" to "floating-ui/react"
   * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
     ```
@@ -27,7 +27,7 @@
       middleware={ [offset(10)] }
     >
     ```
-  * added support for virtual elements instead of target node, you can define them via `virtualTarget` prop
+  * added support for virtual elements, you can define them via `virtualTarget` prop
 * [Tooltip]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react"
   * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
   * `offset` prop changed to accept `OffsetOptions` object. Old format with array(`[10, 10]`) was deprecated and will be removed in future versions.
