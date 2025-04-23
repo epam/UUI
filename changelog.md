@@ -1,4 +1,5 @@
 # 6.0.0 - 23.04.2025
+
 **What's New**
 * React 19 support:
     * UUI is now compatible with React 19. UUI site was reworked to work with React 19.
