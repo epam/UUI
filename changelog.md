@@ -1,47 +1,50 @@
-# 6.0.0 - xx.xx.2025
+# 6.0.0 - 23.04.2025
 **What's New**
 * React 19 support:
     * UUI is now compatible with React 19. UUI site was reworked to work with React 19.
-    * UUI components still backward compatible with React 18
-* Introduced component sizes and icons theming. This is essential for external customer support, as it allows them to use their own sizes and icons.
+    * UUI packages still backward compatible with React 18
+    * UUI templates updated to use React 19
+* Introduced sizes and icons theming. This is essential for external customers support, as it allows them to use their own sizes and icons.
   * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity. 
   * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
 * Update icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
-* [Dropdown][Breaking Change]: reworked to FC, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware` for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
-```
-// old
-<Dropdown
-  modifiers={ [
-    {
-        name: 'offset',
-        options: {
-            offset: [10, 10]
+* [Dropdown]: reworked to FC, migrated from "react-popper" to "floating-ui/react"
+  * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+    ```
+    // old
+    <Dropdown
+      modifiers={ [
+        {
+            name: 'offset',
+            options: {
+                offset: [10, 10]
+            }
         }
-    }
-  ] }
->
-// new
-<Dropdown
-  middleware={ [offset(10)] }
->
-
-```
-* [Tooltip][Breaking Change]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react". Part of the `offset` prop type changed to `OffsetOptions | OutdatedOffset`. The `OffsetOptions` type is from the `floating-ui` package, and the `OutdatedOffset` type was added to support the more popular previous behavior like `[10, 10]`. The `OffsetsFunction` type was removed due to being hard to implement and use with `floating-ui`.
-* [DatePicker]: improved render performance for scroll actions.
-* [TimePicker]: added `ref` prop.
-* [@epam/uui-components][SliderHandle]: changed signature of prop `offcet` - see [docs](https://floating-ui.com/docs/offset), migrated from "react-popper" to "floating-ui/react".
-* [@epam/uui-editor]: migrated from "react-popper" to "floating-ui/react".
-* [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
+      ] }
+    >
+    // new
+    <Dropdown
+      middleware={ [offset(10)] }
+    >
+    ```
+  * added support for virtual elements instead of target node, you can define them via `virtualTarget` prop
+* [Tooltip]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react"
+  * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+  * `offset` prop changed to accept `OffsetOptions` object. Old format with array(`[10, 10]`) was deprecated and will be removed in future versions.
+* [SliderHandle]: migrated from "react-popper" to "floating-ui/react", changed signature of prop `offset` - see [docs](https://floating-ui.com/docs/offset).
+* [PickerInput]:
+    * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
+    * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
+    * [DataPickerRow]: added default implementation of `renderItem` callback
+* [PickerList]:
+    * [Breaking Change]: `renderRow` prop now affects only modal rows
+    * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
+    * added `renderListRow` callback to customize list row without affecting row in modal
+* [FlexRow][Breaking Change]: component was moved from `@epam/uui-components` to `@epam/uui`. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
 * [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
 * [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
-* [PickerInput]:
-  * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
-  * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
-  * [DataPickerRow]: added default implementation of `renderItem` callback
-* [PickerList]:
-  * [Breaking Change]: `renderRow` prop now affects only modal rows
-  * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
-  * added `renderListRow` callback to customize list row without affecting row in modal
+* [DatePicker]: improved render performance for scroll actions.
+* [TimePicker]: added `ref` prop.
 * [NumericInput]: added `center` value for `align` prop
 
 **What's Fixed**
