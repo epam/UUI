@@ -3,8 +3,9 @@
 **What's New**
 * [DatePicker]: added `preventEmpty` prop to prevent picker form being empty. See example [here](https://uui.epam.com/documents?id=datePicker&mode=doc&category=components#examples-datePicker-PreventEmpty)
 * [RangeDatePicker]: added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
+* [AsyncDataSource]: added caching functionality, allowing two or more Views to reuse the same data.
 
-
+**What's Fixed**
 
 # 6.0.0 - 23.04.2025
 
