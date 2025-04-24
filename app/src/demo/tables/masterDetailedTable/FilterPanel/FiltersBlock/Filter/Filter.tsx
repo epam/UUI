@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react';
 import css from './Filter.module.scss';
 import {
-    DatePicker, IconContainer, PickerList, RangeDatePicker, RangeDatePickerValue,
+    DatePicker, IconContainer, PickerList, RangeDatePicker,
 } from '@epam/uui';
-import { TableFiltersConfig, IEditable } from '@epam/uui-core';
+import { TableFiltersConfig, IEditable, RangeDatePickerValue } from '@epam/uui-core';
 import { ReactComponent as ArrowDown } from '@epam/assets/icons/common/navigation-chevron-down-18.svg';
 
 interface IFilterProps<TFilter extends Record<string, any>> extends IEditable<TFilter> {

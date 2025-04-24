@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RangeDatePicker, FlexRow } from '@epam/uui';
 
-export default function DatePickerBaseExample() {
+export default function RangeDatePickerBaseExample() {
     const [value, onValueChange] = useState({ from: null, to: null });
 
     return (
