@@ -320,4 +320,36 @@ describe('DatePicker', () => {
         await userEvent.click(result.container); // emit blur event (close)
         expect(mocks.onValueChange).toHaveBeenCalledWith(null);
     });
+
+    it('should respect preventEmpty prop by maintaining the last valid value', async () => {
+        const {
+            dom, mocks, result,
+        } = await setupDatePicker({
+            value: '2017-01-22',
+            preventEmpty: true,
+        });
+
+        // Clear button should not be present when preventEmpty is true
+        const clearButton = screen.queryByAria('label', 'Clear input');
+        expect(clearButton).not.toBeInTheDocument();
+
+        // Case 1: Type an invalid date
+        await userEvent.clear(dom.input);
+        await userEvent.type(dom.input, 'invalid-date');
+        await userEvent.click(result.container); // emit blur event
+
+        // Value should not change to null
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(null);
+        // Input should revert to the previous valid value
+        expect(dom.input.value).toEqual('Jan 22, 2017');
+
+        // Case 2: Clear the input without typing anything
+        await userEvent.clear(dom.input);
+        await userEvent.click(result.container); // emit blur event
+
+        // Value should not change to null
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(null);
+        // Input should revert to the previous valid value
+        expect(dom.input.value).toEqual('Jan 22, 2017');
+    });
 });
