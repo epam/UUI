@@ -85,6 +85,8 @@ export class DatePickerDoc extends BaseDocsBlock {
 
                 <DocExample title="Disable dates" path="./_examples/datePicker/Filter.example.tsx" />
 
+                <DocExample title="Prevent from being empty" path="./_examples/datePicker/PreventEmpty.example.tsx" />
+
                 <DocExample title="Customize day render" path="./_examples/datePicker/CustomRenderDay.example.tsx" />
                 {this.renderSectionTitle('Localization')}
                 <EditableDocContent fileName="datePicker-localization" />
