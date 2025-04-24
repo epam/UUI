@@ -11,9 +11,7 @@ import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
     defaultRangeValue, getMonthOnOpen, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
-import type {
-    CommonDatePickerBodyProps,
-} from './types';
+import type { CommonDatePickerBodyProps, ViewType } from './types';
 
 import css from './RangeDatePickerBody.module.scss';
 
@@ -90,8 +88,6 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
         }),
     },
 };
-
-export type ViewType = 'DAY_SELECTION' | 'MONTH_SELECTION' | 'YEAR_SELECTION';
 
 /**
  * Represents date picker body value
