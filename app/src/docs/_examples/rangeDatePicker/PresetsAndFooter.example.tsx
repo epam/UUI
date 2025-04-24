@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { rangeDatePickerPresets, RangeDatePickerValue, RangeDatePicker, FlexRow, Text } from '@epam/uui';
+import { rangeDatePickerPresets, RangeDatePicker, FlexRow, Text } from '@epam/uui';
+import { RangeDatePickerValue } from '@epam/uui-core';
 import dayjs from 'dayjs';
 import css from './PresetsAndFooter.module.scss';
 

@@ -1,11 +1,9 @@
-import React, { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { offset } from '@floating-ui/react';
 import {
-    DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps,
-    Overwrite, CommonDatePickerProps, ICanFocus,
-    IEditable, IAnalyticableOnChange, IHasPlaceholder, IHasRawProps,
+    DatePickerProps as CoreDatePickerProps, DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps, Overwrite,
 } from '@epam/uui-core';
-import { DayProps, Dropdown } from '@epam/uui-components';
+import { Dropdown } from '@epam/uui-components';
 import { TextInput, TextInputProps } from '../inputs';
 import { EditMode, IHasEditMode } from '../types';
 import { DropdownContainer } from '../overlays';
@@ -30,43 +28,7 @@ export interface DatePickerModsOverride {}
 /**
  * Represents the properties of the DatePicker component
  */
-export interface DatePickerProps extends
-    Overwrite<DatePickerMods, DatePickerModsOverride>,
-    CommonDatePickerProps,
-    IHasEditMode,
-    ICanFocus<HTMLInputElement>,
-    IEditable<string | null>,
-    IAnalyticableOnChange<string>,
-    IHasPlaceholder {
-    /**
-     * Defines where to place calendar icon
-     */
-    iconPosition?: 'left' | 'right';
-
-    /**
-     * Render prop to add a custom footer inside the DatePicker dropdown body
-     */
-    renderFooter?(): ReactNode;
-
-    /**
-     * Overrides rendering of the single day. For example, to highlight certain days
-     */
-    renderDay?: (renderProps: DayProps) => ReactElement<Element>;
-
-    /**
-     * Any HTML attributes (native or 'data-') to put on date picker parts
-     */
-    rawProps?: {
-        /**
-         * Any HTML attributes (native or 'data-') to put on date picker input
-         */
-        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-        /**
-         * Any HTML attributes (native or 'data-') to put on date picker body
-         */
-        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
-    };
-}
+export interface DatePickerProps extends CoreDatePickerProps, IHasEditMode, Overwrite<DatePickerMods, DatePickerModsOverride> {}
 
 export function DatePickerComponent(props: DatePickerProps, ref: React.ForwardedRef<HTMLElement>) {
     const { format = defaultFormat, value, size = settings.datePicker.sizes.input } = props;
@@ -102,8 +64,9 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
             setInputValue(toCustomDateFormat(inputValue, format));
             onValueChange(toValueDateFormat(inputValue, format));
         } else {
-            setInputValue(null);
-            onValueChange(null);
+            const newValue = props.preventEmpty ? value : null;
+            setInputValue(toCustomDateFormat(newValue, format));
+            onValueChange(newValue);
         }
     };
 
@@ -115,7 +78,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     };
 
     const renderInput = (renderProps: IDropdownTogglerProps & { cx?: any }) => {
-        const allowClear = !props.disableClear && !!inputValue;
+        const allowClear = !props.disableClear && !!inputValue && !props.preventEmpty;
         return (
             <TextInput
                 { ...renderProps }
