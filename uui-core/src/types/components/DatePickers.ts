@@ -97,7 +97,7 @@ export interface DatePickerProps extends
     };
     /**
      * Pass true to prevent component from being empty.
-     * It's disable clear cross icon and return last selected value if input was cleared
+     * It's disable clear cross-icon and return last selected value if input was cleared
     */
     preventEmpty?: boolean;
 }
@@ -212,8 +212,15 @@ export interface RangeDatePickerProps extends
          */
         body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];
     };
-
+    /**
+     * Pass true to prevent "From" date from being empty.
+     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared
+     */
     preventEmptyFromDate?: boolean;
+    /**
+     * Pass true to prevent "To" date from being empty.
+     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared
+     */
     preventEmptyToDate?: boolean;
 }
 
