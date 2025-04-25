@@ -7,12 +7,12 @@ export interface MainMenuDropdownProps extends Props {
      * Defines component color scheme.
      * @default 'dark'
      */
-    colorScheme?: 'light' | 'dark';
+    color?: 'white' | 'dark';
 }
 
 function applyMainMenuMods(mods: MainMenuDropdownProps) {
     return [
-        mods.colorScheme && `uui-main_menu-${mods.colorScheme || 'dark'}`,
+        mods.color && `uui-main_menu-${mods.color || 'dark'}`,
     ];
 }
 
