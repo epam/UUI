@@ -120,10 +120,10 @@ export default function MainMenuResponsiveExample() {
                 ),
             },
             { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-            { id: 'search', priority: 8, render: (p) => <div style={ { display: 'flex' } }><MainMenuSearch key={ p.id } value={ searchQuery } onValueChange={ setSearchQuery } /></div> },
-            { id: 'pinIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ PinIcon } rawProps={ { 'aria-label': 'Pin' } } onClick={ () => {} } /> },
-            { id: 'helpIcon', priority: 8, render: (p) => <MainMenuIcon key={ p.id } icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } onClick={ () => {} } /> },
-            { id: 'avatar', priority: 9, render: renderAvatar },
+            { id: 'search', priority: 9, render: (p) => <div style={ { display: 'flex' } }><MainMenuSearch key={ p.id } value={ searchQuery } onValueChange={ setSearchQuery } /></div> },
+            { id: 'pinIcon', priority: 9, render: (p) => <MainMenuIcon key={ p.id } icon={ PinIcon } rawProps={ { 'aria-label': 'Pin' } } onClick={ () => {} } /> },
+            { id: 'helpIcon', priority: 9, render: (p) => <MainMenuIcon key={ p.id } icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } onClick={ () => {} } /> },
+            { id: 'avatar', priority: 10, render: renderAvatar },
             { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } /> },
         ];
     };
