@@ -1,5 +1,5 @@
 {
- "version": "6.0.0-beta.0",
+ "version": "6.0.1-beta.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -10272,6 +10272,703 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:DatePickerProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DatePickerProps",
+     "nameFull": "DatePickerProps"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents the properties of the DatePicker component"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DatePickerProps",
+     "print": [
+      "/**",
+      " * Represents the properties of the DatePicker component",
+      " */",
+      "interface DatePickerProps extends CommonDatePickerProps, ICanFocus<HTMLInputElement>, IEditable<string | null>, IAnalyticableOnChange<string>, IHasPlaceholder {",
+      "    /**",
+      "     * Defines where to place calendar icon",
+      "     */",
+      "    iconPosition?: 'left' | 'right';",
+      "    /**",
+      "     * Render prop to add a custom footer inside the DatePicker dropdown body",
+      "     */",
+      "    renderFooter?(): ReactNode;",
+      "    /**",
+      "     * Overrides rendering of the single day. For example, to highlight certain days",
+      "     */",
+      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
+      "    /**",
+      "     * Any HTML attributes (native or 'data-') to put on date picker parts",
+      "     */",
+      "    rawProps?: {",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on date picker input",
+      "         */",
+      "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on date picker body",
+      "         */",
+      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "    };",
+      "    /**",
+      "     * Pass true to prevent component from being empty.",
+      "     * It's disable clear cross-icon and return last selected value if input was cleared",
+      "    */",
+      "    preventEmpty?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "iconPosition",
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Defines where to place calendar icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "'right' | 'left'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "right",
+        "left"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render prop to add a custom footer inside the DatePicker dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on date picker parts"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID attribute for the toggler input"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderTarget",
+      "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: IDropdownTogglerProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disable clearing date value (e.g. via cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "placement",
+      "name": "placement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "top-start",
+        "top-end",
+        "right-start",
+        "right-end",
+        "bottom-start",
+        "bottom-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "comment": {
+       "raw": [
+        "If this function returns true, the day will be highlighted as holiday"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "inputCx",
+      "name": "inputCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker input"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "bodyCx",
+      "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker body"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: string | null) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: string | null, oldValue: string | null) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "placeholder",
+      "name": "placeholder",
+      "comment": {
+       "raw": [
+        "Placeholder to display when empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "any"
+      },
+      "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:DayProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DayProps",
+     "nameFull": "DayProps"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents the properties of the Day component"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DayProps",
+     "print": [
+      "/**",
+      " * Represents the properties of the Day component",
+      " */",
+      "interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IHasCX {",
+      "    filter?(day: Dayjs): boolean;",
+      "    renderDayNumber?: (param: Dayjs) => any;",
+      "    isSelected?: boolean;",
+      "    isHoliday?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "filter",
+      "name": "filter",
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderDayNumber",
+      "name": "renderDayNumber",
+      "typeValue": {
+       "raw": "(param: Dayjs) => any"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "isSelected",
+      "name": "isSelected",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "Dayjs"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: Dayjs) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DistributiveOmit": {
    "summary": {
     "module": "@epam/uui-core",
@@ -16147,7 +16844,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyFromDate' | 'preventEmptyToDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -16692,6 +17389,41 @@
       "required": false
      },
      {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
       "uid": "type_2",
       "name": "type",
       "comment": {
@@ -16732,8 +17464,31 @@
       "required": true
      },
      {
+      "uid": "renderDay_2",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "preventEmptyFromDate",
       "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -16746,28 +17501,17 @@
      {
       "uid": "preventEmptyToDate",
       "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
       "editor": {
        "type": "bool"
-      },
-      "from": "@epam/uui-core:RangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": "renderDay",
-      "name": "renderDay",
-      "comment": {
-       "raw": [
-        "Overrides rendering of a single day. For example, to highlight certain days"
-       ]
-      },
-      "typeValue": {
-       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
-      },
-      "editor": {
-       "type": "component"
       },
       "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
@@ -24324,12 +25068,12 @@
     }
    }
   },
-  "@epam/uui-core:OutatedOffset": {
+  "@epam/uui-core:OutdatedOffset": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
-     "name": "OutatedOffset",
-     "nameFull": "OutatedOffset<number | null | undefined, number | null | undefined>"
+     "name": "OutdatedOffset",
+     "nameFull": "OutdatedOffset<number | null | undefined, number | null | undefined>"
     },
     "src": "uui-core/src/types/components/Tooltip.ts",
     "comment": {
@@ -24343,13 +25087,13 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "OutatedOffset",
+     "raw": "OutdatedOffset",
      "print": [
       "/**",
       " * @deprecated",
       " * left for backward compatibility, will be removed in future versions",
       " */",
-      "type OutatedOffset = [",
+      "type OutdatedOffset = [",
       "    number | null | undefined,",
       "    number | null | undefined",
       "];"
@@ -33563,6 +34307,34 @@
     }
    }
   },
+  "@epam/uui-core:RangeDatePickerInputType": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerInputType",
+     "nameFull": "RangeDatePickerInputType"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents RangeDatePicker input type"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "null | 'from' | 'to'",
+     "print": [
+      "/**",
+      " * Represents RangeDatePicker input type",
+      " */",
+      "type RangeDatePickerInputType = 'from' | 'to' | null;"
+     ]
+    }
+   }
+  },
   "@epam/uui-core:RangeDatePickerPresets": {
    "summary": {
     "module": "@epam/uui-core",
@@ -33767,7 +34539,15 @@
       "         */",
       "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
       "    };",
+      "    /**",
+      "     * Pass true to prevent \"From\" date from being empty.",
+      "     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared",
+      "     */",
       "    preventEmptyFromDate?: boolean;",
+      "    /**",
+      "     * Pass true to prevent \"To\" date from being empty.",
+      "     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared",
+      "     */",
       "    preventEmptyToDate?: boolean;",
       "}"
      ]
@@ -33899,6 +34679,12 @@
      {
       "uid": "preventEmptyFromDate",
       "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -33910,6 +34696,12 @@
      {
       "uid": "preventEmptyToDate",
       "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -34202,6 +34994,78 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:RangeDatePickerValue": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerValue",
+     "nameFull": "RangeDatePickerValue"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents RangeDatePicker value"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "RangeDatePickerValue",
+     "print": [
+      "/**",
+      " * Represents RangeDatePicker value",
+      " */",
+      "type RangeDatePickerValue = {",
+      "    /**",
+      "     * Defines DatePicker value 'from'.",
+      "     */",
+      "    from: string | null;",
+      "    /**",
+      "     * Defines DatePicker value 'to'.",
+      "     */",
+      "    to: string | null;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "from",
+      "name": "from",
+      "comment": {
+       "raw": [
+        "Defines DatePicker value 'from'."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "to",
+      "name": "to",
+      "comment": {
+       "raw": [
+        "Defines DatePicker value 'to'."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:RecordStatus": {
    "summary": {
     "module": "@epam/uui-core",
@@ -34413,7 +35277,7 @@
       "interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {",
       "    /** DataRowProps object of rendered row */",
       "    rowProps: DataRowProps<TItem, TId>;",
-      "    /** Cell mode signal the editor component to adapt it's visuals to cell editor */",
+      "    /** Cell mode signals the editor component to adapt it's visuals to cell editor */",
       "    mode: 'cell';",
       "    /** Ref to pass to the editor component.",
       "     * It's required for correct focus/blur behavior.",
@@ -34442,7 +35306,7 @@
       "name": "mode",
       "comment": {
        "raw": [
-        "Cell mode signal the editor component to adapt it's visuals to cell editor"
+        "Cell mode signals the editor component to adapt it's visuals to cell editor"
        ]
       },
       "typeValue": {
@@ -35749,6 +36613,41 @@
       "required": false
      },
      {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
       "uid": "type_2",
       "name": "type",
       "comment": {
@@ -35789,8 +36688,31 @@
       "required": true
      },
      {
+      "uid": "renderDay_2",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "preventEmptyFromDate",
       "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -35803,28 +36725,17 @@
      {
       "uid": "preventEmptyToDate",
       "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
       "editor": {
        "type": "bool"
-      },
-      "from": "@epam/uui-core:RangeDatePickerProps",
-      "required": false
-     },
-     {
-      "uid": "renderDay",
-      "name": "renderDay",
-      "comment": {
-       "raw": [
-        "Overrides rendering of a single day. For example, to highlight certain days"
-       ]
-      },
-      "typeValue": {
-       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
-      },
-      "editor": {
-       "type": "component"
       },
       "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
@@ -36478,7 +37389,7 @@
       "     * The function will only be called when content is shown, this can save performance. */",
       "    renderContent?(): any;",
       "    /** See [Floating UI docs]{@link https://floating-ui.com/docs/offset} */",
-      "    offset?: OffsetOptions | OutatedOffset;",
+      "    offset?: OffsetOptions | OutdatedOffset;",
       "    /** React Node(s) to show tooltip for */",
       "    children?: React.ReactNode;",
       "    /** Max width of tooltip */",
@@ -36530,7 +37441,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | OutatedOffset | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue>"
+       "raw": "number | OutdatedOffset | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue>"
       },
       "required": false
      },
@@ -44820,11 +45731,6 @@
      "nameFull": "DayProps"
     },
     "src": "uui-components/src/inputs/DatePicker/Day.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of the Day component"
-     ]
-    },
     "exported": true
    },
    "details": {
@@ -44832,14 +45738,7 @@
     "typeValue": {
      "raw": "DayProps",
      "print": [
-      "/**",
-      " * Represents the properties of the Day component",
-      " */",
-      "interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IHasCX {",
-      "    filter?(day: Dayjs): boolean;",
-      "    renderDayNumber?: (param: Dayjs) => any;",
-      "    isSelected?: boolean;",
-      "    isHoliday?: boolean;",
+      "interface DayProps extends CoreDayProps {",
       "}"
      ]
     },
@@ -44853,6 +45752,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -44864,6 +45764,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -44875,6 +45776,7 @@
       "editor": {
        "type": "bool"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -44886,6 +45788,7 @@
       "editor": {
        "type": "bool"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -64569,7 +65472,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -73105,7 +74008,7 @@
       "     * Defines table header cell size",
       "     * @default '36'",
       "     */",
-      "    size?: DataTableMods['headerSize'];",
+      "    size?: DataTableProps<unknown, unknown>['headerSize'];",
       "}"
      ]
     },
@@ -73676,7 +74579,7 @@
       "     * Defines table header row size",
       "     * @default '36'",
       "     */",
-      "    size?: DataTableMods['headerSize'];",
+      "    size?: DataTableProps<unknown, unknown>['headerSize'];",
       "}"
      ]
     },
@@ -74593,6 +75496,21 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
      },
      {
       "uid": "selectAll",
@@ -76073,33 +76991,7 @@
       "/**",
       " * Represents the properties of the DatePicker component",
       " */",
-      "interface DatePickerProps extends Overwrite<DatePickerMods, DatePickerModsOverride>, CommonDatePickerProps, IHasEditMode, ICanFocus<HTMLInputElement>, IEditable<string | null>, IAnalyticableOnChange<string>, IHasPlaceholder {",
-      "    /**",
-      "     * Defines where to place calendar icon",
-      "     */",
-      "    iconPosition?: 'left' | 'right';",
-      "    /**",
-      "     * Render prop to add a custom footer inside the DatePicker dropdown body",
-      "     */",
-      "    renderFooter?(): ReactNode;",
-      "    /**",
-      "     * Overrides rendering of the single day. For example, to highlight certain days",
-      "     */",
-      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
-      "    /**",
-      "     * Any HTML attributes (native or 'data-') to put on date picker parts",
-      "     */",
-      "    rawProps?: {",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on date picker input",
-      "         */",
-      "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on date picker body",
-      "         */",
-      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "    };",
-      "    preventEmpty?: boolean;",
+      "interface DatePickerProps extends CoreDatePickerProps, IHasEditMode, Overwrite<DatePickerMods, DatePickerModsOverride> {",
       "}"
      ]
     },
@@ -76122,6 +77014,7 @@
         "right"
        ]
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -76138,6 +77031,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -76154,6 +77048,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -76167,45 +77062,25 @@
       "typeValue": {
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
       "uid": "preventEmpty",
       "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
       "editor": {
        "type": "bool"
       },
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
-      },
-      "from": "@epam/uui:DatePickerMods",
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -76406,31 +77281,6 @@
       "required": false
      },
      {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     },
-     {
       "uid": "onFocus",
       "name": "onFocus",
       "comment": {
@@ -76562,6 +77412,59 @@
        "raw": "any"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": "mode",
+      "name": "mode",
+      "comment": {
+       "raw": [
+        "Visual mode for component:",
+        " - form: default visuals, to use in forms.",
+        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
+        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
+       ]
+      },
+      "typeValue": {
+       "raw": "'inline' | 'form' | 'cell'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "inline",
+        "form",
+        "cell"
+       ]
+      },
+      "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:DatePickerMods",
       "required": false
      }
     ],
@@ -93188,7 +94091,7 @@
      "name": "RangeDatePickerBodyValue",
      "nameFull": "RangeDatePickerBodyValue<TSelection>"
     },
-    "src": "uui/components/datePickers/types.ts",
+    "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
     "comment": {
      "raw": [
       "Represents date picker body value"
@@ -93228,7 +94131,7 @@
       "typeValue": {
        "raw": "null | 'from' | 'to'"
       },
-      "typeValueRef": "@epam/uui:RangeDatePickerInputType",
+      "typeValueRef": "@epam/uui-core:RangeDatePickerInputType",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -93337,7 +94240,7 @@
       "typeValue": {
        "raw": "null | 'from' | 'to'"
       },
-      "typeValueRef": "@epam/uui:RangeDatePickerInputType",
+      "typeValueRef": "@epam/uui-core:RangeDatePickerInputType",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -93606,6 +94509,12 @@
      {
       "uid": "preventEmptyFromDate",
       "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -93618,6 +94527,12 @@
      {
       "uid": "preventEmptyToDate",
       "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -93848,6 +94763,12 @@
      {
       "uid": "preventEmptyFromDate",
       "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -93860,6 +94781,12 @@
      {
       "uid": "preventEmptyToDate",
       "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
       "typeValue": {
        "raw": "boolean"
       },
@@ -94171,78 +95098,6 @@
        ]
       },
       "from": "@epam/uui:RangeDatePickerMods",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:RangeDatePickerValue": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RangeDatePickerValue",
-     "nameFull": "RangeDatePickerValue"
-    },
-    "src": "uui/components/datePickers/types.ts",
-    "comment": {
-     "raw": [
-      "Represents RangeDatePicker value"
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "RangeDatePickerValue",
-     "print": [
-      "/**",
-      " * Represents RangeDatePicker value",
-      "*/",
-      "type RangeDatePickerValue = {",
-      "    /**",
-      "     * Defines DatePicker value 'from'.",
-      "     */",
-      "    from: string | null;",
-      "    /**",
-      "     * Defines DatePicker value 'to'.",
-      "     */",
-      "    to: string | null;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "from",
-      "name": "from",
-      "comment": {
-       "raw": [
-        "Defines DatePicker value 'from'."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "to",
-      "name": "to",
-      "comment": {
-       "raw": [
-        "Defines DatePicker value 'to'."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string"
-      },
-      "editor": {
-       "type": "string"
-      },
       "required": false
      }
     ],
@@ -100237,7 +101092,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -100609,7 +101464,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -102009,22 +102864,6 @@
      "nameFull": "RadioInputMods"
     },
     "src": "uui/components/inputs/RadioInput.tsx",
-    "exported": false
-   }
-  },
-  "@epam/uui:RangeDatePickerInputType": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RangeDatePickerInputType",
-     "nameFull": "RangeDatePickerInputType"
-    },
-    "src": "uui/components/datePickers/types.ts",
-    "comment": {
-     "raw": [
-      "Represents RangeDatePicker input type"
-     ]
-    },
     "exported": false
    }
   },
@@ -104491,343 +105330,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/promo:MainMenuProps": {
-   "summary": {
-    "module": "@epam/promo",
-    "typeName": {
-     "name": "MainMenuProps",
-     "nameFull": "MainMenuProps"
-    },
-    "src": "epam-promo/components/navigation/MainMenu/MainMenu.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "MainMenuProps",
-     "print": [
-      "interface MainMenuProps extends uui.MainMenuProps {",
-      "    /**",
-      "     * Defines component color scheme.",
-      "     * @default 'dark'",
-      "     */",
-      "    colorScheme?: 'light' | 'dark';",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "colorScheme",
-      "name": "colorScheme",
-      "comment": {
-       "raw": [
-        "Defines component color scheme.",
-        " @default 'dark'"
-       ],
-       "tags": {
-        "@default": "dark"
-       }
-      },
-      "typeValue": {
-       "raw": "'light' | 'dark'"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "light",
-        "dark"
-       ]
-      },
-      "required": false
-     },
-     {
-      "uid": "items",
-      "name": "items",
-      "comment": {
-       "raw": [
-        "Array of menu items to be rendered"
-       ]
-      },
-      "typeValue": {
-       "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "serverBadge",
-      "name": "serverBadge",
-      "typeValue": {
-       "raw": "string"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "rawProps",
-      "name": "rawProps",
-      "comment": {
-       "raw": [
-        "Any HTML attributes (native or 'data-') to put on the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>"
-      },
-      "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "forwardedRef",
-      "name": "forwardedRef",
-      "comment": {
-       "raw": [
-        "this ref is passed to the underlying component"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>"
-      },
-      "from": "@epam/uui-core:IHasForwardedRef",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/promo:ModalWindowProps": {
    "summary": {
     "module": "@epam/promo",
@@ -106634,7 +107136,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -107581,6 +108083,264 @@
        ]
       },
       "from": "@epam/electric:BadgeMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/electric:MainMenuDropdownProps": {
+   "summary": {
+    "module": "@epam/electric",
+    "typeName": {
+     "name": "MainMenuDropdownProps",
+     "nameFull": "MainMenuDropdownProps"
+    },
+    "src": "epam-electric/components/navigation/MainMenu/MainMenuDropdown.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuDropdownProps",
+     "print": [
+      "interface MainMenuDropdownProps extends Props {",
+      "    /**",
+      "     * Defines component color scheme.",
+      "     * @default 'dark'",
+      "     */",
+      "    colorScheme?: 'light' | 'dark';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "colorScheme",
+      "name": "colorScheme",
+      "comment": {
+       "raw": [
+        "Defines component color scheme.",
+        " @default 'dark'"
+       ],
+       "tags": {
+        "@default": "dark"
+       }
+      },
+      "typeValue": {
+       "raw": "'light' | 'dark'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "light",
+        "dark"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "renderBody",
+      "name": "renderBody",
+      "comment": {
+       "raw": [
+        "Render callback for the MainMenuDropdown body.",
+        " If omitted, component children will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DropdownBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:MainMenuDropdownProps",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "estimatedWidth",
+      "name": "estimatedWidth",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "priority",
+      "name": "priority",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "showInBurgerMenu",
+      "name": "showInBurgerMenu",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapseToMore",
+      "name": "collapseToMore",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapsedContainer",
+      "name": "collapsedContainer",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "href",
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "target",
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
       "required": false
      }
     ],
@@ -111275,6 +112035,264 @@
     "propsFromUnion": false
    }
   },
+  "@epam/loveship:MainMenuDropdownProps": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "MainMenuDropdownProps",
+     "nameFull": "MainMenuDropdownProps"
+    },
+    "src": "loveship/components/navigation/MainMenu/MainMenuDropdown.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuDropdownProps",
+     "print": [
+      "interface MainMenuDropdownProps extends Props {",
+      "    /**",
+      "     * Defines component color scheme.",
+      "     * @default 'dark'",
+      "     */",
+      "    colorScheme?: 'light' | 'dark';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "colorScheme",
+      "name": "colorScheme",
+      "comment": {
+       "raw": [
+        "Defines component color scheme.",
+        " @default 'dark'"
+       ],
+       "tags": {
+        "@default": "dark"
+       }
+      },
+      "typeValue": {
+       "raw": "'light' | 'dark'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "light",
+        "dark"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "renderBody",
+      "name": "renderBody",
+      "comment": {
+       "raw": [
+        "Render callback for the MainMenuDropdown body.",
+        " If omitted, component children will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DropdownBodyProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:MainMenuDropdownProps",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "estimatedWidth",
+      "name": "estimatedWidth",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "priority",
+      "name": "priority",
+      "typeValue": {
+       "raw": "number"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "showInBurgerMenu",
+      "name": "showInBurgerMenu",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapseToMore",
+      "name": "collapseToMore",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapsedContainer",
+      "name": "collapsedContainer",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "href",
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "target",
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/loveship:MainMenuProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -114289,7 +115307,7 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
