@@ -1,5 +1,5 @@
 import { uuiDayjs, Dayjs } from '../../helpers/dayJsHelper';
-import { RangeDatePickerInputType, RangeDatePickerValue } from './types';
+import { RangeDatePickerInputType, RangeDatePickerValue } from '@epam/uui-core';
 
 export const defaultFormat = 'MMM D, YYYY';
 export const valueFormat = 'YYYY-MM-DD';

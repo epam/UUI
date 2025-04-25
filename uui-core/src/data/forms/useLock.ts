@@ -3,13 +3,18 @@ import { useUuiContext } from '../../services';
 import { Link } from '../../types';
 
 export interface UseLockProps {
-    /** Callback which will be called on router change */
+    /** Callback, which will be called on router change */
     handleLeave?: (nextLocation: Link, currentLocation: Link) => Promise<boolean | 'remain'>;
+    /**
+     * Pass true to enable lock mechanism.
+     * If false, the lock mechanism will be disabled - router can't be blocked
+     */
+    isEnabled: boolean;
 }
 
 type LockStatus = 'blocked' | 'unblocked' | 'remain';
 
-export function useLock({ handleLeave }: UseLockProps) {
+export function useLock({ handleLeave, isEnabled }: UseLockProps) {
     const context = useUuiContext();
     const [status, setStatus] = useState<LockStatus>('unblocked');
 
@@ -43,7 +48,7 @@ export function useLock({ handleLeave }: UseLockProps) {
     };
 
     useEffect(() => {
-        if (!handleLeave || status === 'unblocked') return;
+        if (!isEnabled || status === 'unblocked') return;
         if (status === 'remain') {
             setStatus('blocked');
             return;

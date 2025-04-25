@@ -141,7 +141,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                     isDisabled={ props.isDisabled }
                     icon={ props.cancelIcon }
                     onClick={ handleCancel }
-                    rawProps={ { role: 'button' } }
+                    rawProps={ { role: 'button', 'aria-label': 'Clear input' } }
                 />
             )}
             {props.iconPosition === 'right' && icon}

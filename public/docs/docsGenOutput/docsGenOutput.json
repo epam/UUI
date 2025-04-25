@@ -4379,7 +4379,7 @@
      "name": "CommonDatePickerProps",
      "nameFull": "CommonDatePickerProps"
     },
-    "src": "uui-core/src/types/components/DatePicker.ts",
+    "src": "uui-core/src/types/components/DatePickers.ts",
     "comment": {
      "raw": [
       "Represents CommonDatePickerProps"
@@ -16147,7 +16147,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -16730,6 +16730,47 @@
       },
       "from": "@epam/uui-core:NumericFilterConfig",
       "required": true
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
      },
      {
       "uid": "type_4",
@@ -33529,7 +33570,7 @@
      "name": "RangeDatePickerPresets",
      "nameFull": "RangeDatePickerPresets"
     },
-    "src": "uui-core/src/types/components/DatePicker.ts",
+    "src": "uui-core/src/types/components/DatePickers.ts",
     "exported": true
    },
    "details": {
@@ -33579,7 +33620,7 @@
      "name": "RangeDatePickerPresetValue",
      "nameFull": "RangeDatePickerPresetValue"
     },
-    "src": "uui-core/src/types/components/DatePicker.ts",
+    "src": "uui-core/src/types/components/DatePickers.ts",
     "comment": {
      "raw": [
       "Represents RangeDatePickerPresetValue"
@@ -33658,6 +33699,503 @@
       "editor": {
        "type": "number"
       },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:RangeDatePickerProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerProps",
+     "nameFull": "RangeDatePickerProps"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RangeDatePickerProps",
+     "print": [
+      "interface RangeDatePickerProps extends IEditable<RangeDatePickerValue | null>, IAnalyticableOnChange<RangeDatePickerValue | null>, CommonDatePickerProps {",
+      "    /**",
+      "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+      "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
+      "     */",
+      "    presets?: RangeDatePickerPresets;",
+      "    /**",
+      "     * Allows to add a custom footer to the Picker's dropdown body",
+      "     */",
+      "    renderFooter?(value: RangeDatePickerValue): ReactNode;",
+      "    /**",
+      "     * Called when component gets input focus",
+      "     */",
+      "    onFocus?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
+      "    /**",
+      "     * Called when component looses input focus",
+      "     */",
+      "    onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
+      "    /**",
+      "     * Called when component is opened/closed",
+      "     */",
+      "    onOpenChange?: (isOpen: boolean) => void;",
+      "    /**",
+      "     * A pure function that gets placeholder for 'from' or 'to' input.",
+      "     */",
+      "    getPlaceholder?(type: RangeDatePickerInputType): string;",
+      "    /**",
+      "     * Overrides rendering of a single day. For example, to highlight certain days",
+      "     */",
+      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
+      "    /**",
+      "     * rawProps as HTML attributes",
+      "     */",
+      "    rawProps?: {",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on 'from' input",
+      "         */",
+      "        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on 'to' input",
+      "         */",
+      "        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on date picker body",
+      "         */",
+      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "    };",
+      "    preventEmptyFromDate?: boolean;",
+      "    preventEmptyToDate?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "presets",
+      "name": "presets",
+      "comment": {
+       "raw": [
+        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeDatePickerPresets"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Allows to add a custom footer to the Picker's dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(value: RangeDatePickerValue) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onOpenChange",
+      "name": "onOpenChange",
+      "comment": {
+       "raw": [
+        "Called when component is opened/closed"
+       ]
+      },
+      "typeValue": {
+       "raw": "(isOpen: boolean) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "getPlaceholder",
+      "name": "getPlaceholder",
+      "comment": {
+       "raw": [
+        "A pure function that gets placeholder for 'from' or 'to' input."
+       ]
+      },
+      "typeValue": {
+       "raw": "(type: RangeDatePickerInputType) => string"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "rawProps as HTML attributes"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ from?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; to?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | RangeDatePickerValue"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeDatePickerValue | null) => void"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeDatePickerValue | null, oldValue: RangeDatePickerValue | null) => AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID attribute for the toggler input"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderTarget",
+      "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: IDropdownTogglerProps) => React.ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disable clearing date value (e.g. via cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "placement",
+      "name": "placement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "top-start",
+        "top-end",
+        "right-start",
+        "right-end",
+        "bottom-start",
+        "bottom-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "comment": {
+       "raw": [
+        "If this function returns true, the day will be highlighted as holiday"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "inputCx",
+      "name": "inputCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker input"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "bodyCx",
+      "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker body"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
       "required": false
      }
     ],
@@ -35249,6 +35787,47 @@
       },
       "from": "@epam/uui-core:NumericFilterConfig",
       "required": true
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
      },
      {
       "uid": "type_4",
@@ -75520,6 +76099,7 @@
       "         */",
       "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
       "    };",
+      "    preventEmpty?: boolean;",
       "}"
      ]
     },
@@ -75586,6 +76166,17 @@
       },
       "typeValue": {
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      },
@@ -77512,7 +78103,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines size(height) of filter panel and filters",
+        "Defines size(height) of FilterPanel and filters togglers",
         " @default '36'"
        ],
        "tags": {
@@ -92688,7 +93279,7 @@
       "/**",
       " * Represents RangeDatePickerInputProps",
       " */",
-      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {",
+      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size' | 'preventEmptyFromDate' | 'preventEmptyToDate'> {",
       "    /**",
       "     * rawProps as HTML attributes",
       "     */",
@@ -93013,6 +93604,30 @@
       "required": false
      },
      {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "getPlaceholder",
       "name": "getPlaceholder",
       "comment": {
@@ -93026,7 +93641,7 @@
       "editor": {
        "type": "func"
       },
-      "from": "@epam/uui:RangeDatePickerProps",
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93094,53 +93709,7 @@
       "/**",
       " * Represents the properties of the RangeDatePicker component",
       " */",
-      "interface RangeDatePickerProps extends Overwrite<RangeDatePickerMods, RangeDatePickerModsOverride>, IEditable<RangeDatePickerValue | null>, IAnalyticableOnChange<RangeDatePickerValue | null>, CommonDatePickerProps {",
-      "    /**",
-      "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
-      "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
-      "     */",
-      "    presets?: RangeDatePickerPresets;",
-      "    /**",
-      "     * Allows to add a custom footer to the Picker's dropdown body",
-      "     */",
-      "    renderFooter?(value: RangeDatePickerValue): ReactNode;",
-      "    /**",
-      "     * Called when component gets input focus",
-      "     */",
-      "    onFocus?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
-      "    /**",
-      "     * Called when component looses input focus",
-      "     */",
-      "    onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
-      "    /**",
-      "     * Called when component is opened/closed",
-      "     */",
-      "    onOpenChange?: (isOpen: boolean) => void;",
-      "    /**",
-      "     * A pure function that gets placeholder for 'from' or 'to' input.",
-      "     */",
-      "    getPlaceholder?(type: RangeDatePickerInputType): string;",
-      "    /**",
-      "     * Overrides rendering of the single day. For example, to highlight certain days",
-      "     */",
-      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
-      "    /**",
-      "     * rawProps as HTML attributes",
-      "     */",
-      "    rawProps?: {",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on 'from' input",
-      "         */",
-      "        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on 'to' input",
-      "         */",
-      "        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on date picker body",
-      "         */",
-      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "    };",
+      "interface RangeDatePickerProps extends CoreRangeDatePickerProps, Overwrite<RangeDatePickerMods, RangeDatePickerModsOverride> {",
       "}"
      ]
     },
@@ -93157,6 +93726,7 @@
       "typeValue": {
        "raw": "RangeDatePickerPresets"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93173,6 +93743,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93189,6 +93760,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93205,6 +93777,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93221,6 +93794,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93237,6 +93811,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93244,7 +93819,7 @@
       "name": "renderDay",
       "comment": {
        "raw": [
-        "Overrides rendering of the single day. For example, to highlight certain days"
+        "Overrides rendering of a single day. For example, to highlight certain days"
        ]
       },
       "typeValue": {
@@ -93253,6 +93828,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93266,30 +93842,31 @@
       "typeValue": {
        "raw": "{ from?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; to?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size."
-       ]
-      },
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'"
+       "raw": "boolean"
       },
       "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
-       ]
+       "type": "bool"
       },
-      "from": "@epam/uui:RangeDatePickerMods",
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "typeValue": {
+       "raw": "boolean"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -93570,6 +94147,30 @@
       },
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size."
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:RangeDatePickerMods",
       "required": false
      }
     ],
