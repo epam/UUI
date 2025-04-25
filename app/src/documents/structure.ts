@@ -5,7 +5,7 @@ import {
     EmptyStatesDoc, LayoutsDoc, LoadersDoc, ValidationDoc, VisualExamplesDoc, GettingStartedDoc, UtGuideBasicsDoc, UtGuideToolsDoc,
     UtGuideCookbookDoc, DataSourcesGettingStartedDoc, DataSourcesRowOptionsDoc, DataSourcesBaseDataSourcePropsDoc,
     DataSourcesDataSourceStateDoc, DataSourcesArrayDataSourceDoc, DataSourcesAsyncDataSourceDoc,
-    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, OverviewDoc,
+    DataSourcesLazyDataSourceDoc, DataSourcesUsageDoc, OverviewDoc, SupportDoc,
     ThemingOverview, VariablesDoc, AccessibilityDoc, UtGuideGettingStartedDoc, LensesDoc, CreateThemeDoc,
 } from '../docs';
 import { CoreConceptsDoc } from '../docs/CoreConcepts';
@@ -76,6 +76,7 @@ export const items: DocItem[] = [
     { id: 'lenses', name: 'Lenses', component: LensesDoc, parentId: 'advanced' },
 
     { id: 'Accessibility', name: 'Accessibility', component: AccessibilityDoc },
+    { id: 'support', name: 'Support', component: SupportDoc },
 
     { id: 'projects', name: 'Projects', component: ProjectsDoc },
 
