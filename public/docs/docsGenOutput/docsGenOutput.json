@@ -108109,14 +108109,14 @@
       "     * Defines component color scheme.",
       "     * @default 'dark'",
       "     */",
-      "    colorScheme?: 'light' | 'dark';",
+      "    color?: 'white' | 'dark';",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "colorScheme",
-      "name": "colorScheme",
+      "uid": "color",
+      "name": "color",
       "comment": {
        "raw": [
         "Defines component color scheme.",
@@ -108127,12 +108127,12 @@
        }
       },
       "typeValue": {
-       "raw": "'light' | 'dark'"
+       "raw": "'white' | 'dark'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "light",
+        "white",
         "dark"
        ]
       },
@@ -108367,14 +108367,14 @@
       "     * Defines component color scheme.",
       "     * @default 'dark'",
       "     */",
-      "    colorScheme?: 'light' | 'dark';",
+      "    color?: 'white' | 'dark';",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "colorScheme",
-      "name": "colorScheme",
+      "uid": "color",
+      "name": "color",
       "comment": {
        "raw": [
         "Defines component color scheme.",
@@ -108385,12 +108385,12 @@
        }
       },
       "typeValue": {
-       "raw": "'light' | 'dark'"
+       "raw": "'white' | 'dark'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "light",
+        "white",
         "dark"
        ]
       },
@@ -112055,14 +112055,14 @@
       "     * Defines component color scheme.",
       "     * @default 'dark'",
       "     */",
-      "    colorScheme?: 'light' | 'dark';",
+      "    color?: 'white' | 'dark';",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "colorScheme",
-      "name": "colorScheme",
+      "uid": "color",
+      "name": "color",
       "comment": {
        "raw": [
         "Defines component color scheme.",
@@ -112073,12 +112073,12 @@
        }
       },
       "typeValue": {
-       "raw": "'light' | 'dark'"
+       "raw": "'white' | 'dark'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "light",
+        "white",
         "dark"
        ]
       },
@@ -112313,14 +112313,14 @@
       "     * Defines component color scheme.",
       "     * @default 'dark'",
       "     */",
-      "    colorScheme?: 'light' | 'dark';",
+      "    color?: 'white' | 'dark';",
       "}"
      ]
     },
     "props": [
      {
-      "uid": "colorScheme",
-      "name": "colorScheme",
+      "uid": "color",
+      "name": "color",
       "comment": {
        "raw": [
         "Defines component color scheme.",
@@ -112331,12 +112331,12 @@
        }
       },
       "typeValue": {
-       "raw": "'light' | 'dark'"
+       "raw": "'white' | 'dark'"
       },
       "editor": {
        "type": "oneOf",
        "options": [
-        "light",
+        "white",
         "dark"
        ]
       },
