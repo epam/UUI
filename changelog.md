@@ -4,7 +4,7 @@
 * [DatePicker]: added `preventEmpty` prop to prevent picker form being empty. See example [here](https://uui.epam.com/documents?id=datePicker&mode=doc&category=components#examples-datePicker-PreventEmpty)
 * [RangeDatePicker]: added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
 * [AsyncDataSource]: added caching functionality, allowing two or more Views to reuse the same data.
-* [MainMenu][Electric][Loveship]: added prop `colorScheme` with `light` and `dark` values for the MainMenu component. The `dark` is used by default.
+* [MainMenu][Electric][Loveship]: added prop `color` with `white` and `dark` values for the MainMenu component. The `dark` is used by default.
 
 **What's Fixed**
 * [useForm]: fixed router blocking if `beforeLeave` props returned `false`. Previously router was blocked and immediately unblocked on any redirect, but we shouldn't block in at all in this case.

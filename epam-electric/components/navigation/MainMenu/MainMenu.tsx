@@ -8,12 +8,12 @@ export interface MainMenuProps extends uui.MainMenuProps {
      * Defines component color scheme.
      * @default 'dark'
      */
-    colorScheme?: 'light' | 'dark';
+    color?: 'white' | 'dark';
 }
 
 function applyMainMenuMods(mods: MainMenuProps) {
     return [
-        mods.colorScheme && `uui-main_menu-${mods.colorScheme || 'dark'}`,
+        mods.color && `uui-main_menu-${mods.color || 'dark'}`,
     ];
 }
 
@@ -21,7 +21,7 @@ export const MainMenu = createSkinComponent<uui.MainMenuProps, MainMenuProps>(
     uui.MainMenu,
     (props) => {
         return {
-            MainMenuDropdown: (dropdownProps) => <MainMenuDropdown { ...dropdownProps } colorScheme={ props.colorScheme } />,
+            MainMenuDropdown: (dropdownProps) => <MainMenuDropdown { ...dropdownProps } color={ props.color } />,
         };
     },
     applyMainMenuMods,

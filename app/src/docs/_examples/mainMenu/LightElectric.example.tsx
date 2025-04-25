@@ -110,7 +110,7 @@ export default function MainMenuResponsiveExample() {
                 collapsedContainer: true,
                 render: (item, hiddenItems) => (
                     <MainMenuDropdown
-                        colorScheme="light"
+                        color="white"
                         caption="More"
                         key={ item.id }
                         renderBody={ (props) => {
@@ -133,7 +133,7 @@ export default function MainMenuResponsiveExample() {
             <Slider value={ width } onValueChange={ setWidth } min={ 0 } max={ 100 } step={ 1 } />
 
             <div style={ { width: `${width}%`, marginTop: 12 } }>
-                <MainMenu colorScheme="light" items={ getMenuItems() } />
+                <MainMenu color="white" items={ getMenuItems() } />
             </div>
         </FlexCell>
     );
