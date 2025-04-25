@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrayDataSource, ArrayDataSourceProps } from './ArrayDataSource';
 import { useForceUpdate } from '../../hooks';
 import { DataSourceState, IDataSourceView, SetDataSourceState } from '../../types';
@@ -23,6 +23,15 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         this.itemsStatusCollector = new ItemsStatusCollector(newMap(params), params);
     }
 
+    private cache: Promise<TItem[]>;
+    private cachedApi = async () => {
+        if (!this.cache) {
+            this.cache = this.api();
+        }
+
+        return this.cache;
+    };
+
     public setProps(newProps: ArrayDataSourceProps<TItem, TId, TFilter>) {
         const props = { ...newProps };
         // We'll receive items=null on updates (because we inherit ArrayDataSource, but nobody would actually pass items there - they are expected to come from API)
@@ -36,6 +45,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
     }
 
     reload() {
+        this.cache = null;
         this.setProps({ ...this.props, items: [] });
         const params = { getId: this.getId, complexIds: this.props.complexIds };
         this.itemsStorage = new ItemsStorage({ items: [], params });
@@ -53,14 +63,14 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         const forceUpdate = useForceUpdate();
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const [itemsMap, setItemsMap] = useState(this.itemsStorage.getItemsMap());
-        
+
         const { items, ...props } = { ...this.props, ...options };
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const { tree, reload, selectionTree, totalCount, ...restProps } = useTree({
             type: 'async',
-            api: this.api,
             ...props,
+            api: this.cachedApi,
             itemsMap,
             setItems: this.itemsStorage.setItems,
             itemsStatusCollector: this.itemsStatusCollector,
@@ -71,6 +81,11 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             setDataSourceState: onValueChange,
         }, [...deps, this]);
 
+        const clearCacheAndReload = useCallback(() => {
+            this.cache = null;
+            reload();
+        }, [reload]);
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.itemsStorage.subscribe((newItemsMap) => {
@@ -78,18 +93,18 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
                     setItemsMap(newItemsMap);
                 }
             });
-            
+
             return () => {
                 unsubscribe();
             };
         }, [this.itemsStorage]);
-                
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             const unsubscribe = this.itemsStatusCollector.subscribe(() => {
                 forceUpdate();
             });
-            
+
             return () => {
                 unsubscribe();
             };
@@ -98,7 +113,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
             this.trees.set(tree, reload);
-            return () => { 
+            return () => {
                 this.trees.delete(tree);
             };
         }, [tree, reload]);
@@ -114,14 +129,14 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             ...restProps,
             ...cascadeSelectionService,
         });
-    
+
         // eslint-disable-next-line react-hooks/rules-of-hooks
         return useMemo(() => ({
             getVisibleRows: () => rows,
             getListProps: () => ({ ...listProps, totalCount }),
             selectAll,
             getConfig: () => restProps,
-            reload,
+            reload: clearCacheAndReload,
             getById,
             getSelectedRowsCount,
             clearAllChecked,
@@ -131,7 +146,7 @@ export class AsyncDataSource<TItem = any, TId = any, TFilter = any> extends Arra
             selectAll,
             restProps,
             totalCount,
-            reload,
+            clearCacheAndReload,
             getById,
             getSelectedRowsCount,
             clearAllChecked,

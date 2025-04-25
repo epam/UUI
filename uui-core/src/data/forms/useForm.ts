@@ -110,7 +110,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         removeUnsavedChanges,
     ]);
 
-    const { isLocked, block, unblock } = useLock({ handleLeave });
+    const { isLocked, block, unblock } = useLock({ handleLeave, isEnabled: !!props.beforeLeave });
 
     const getMergedValidationState = () => {
         const {

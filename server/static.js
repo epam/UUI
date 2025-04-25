@@ -22,6 +22,7 @@ router.use('/android-chrome-192x192.png', serveStatic('../app/build/android-chro
 router.use('/android-chrome-512x512.png', serveStatic('../app/build/android-chrome-512x512.png'));
 router.use('/mstile-150x150.png', serveStatic('../app/build/mstile-150x150.png'));
 router.use('/browserconfig.xml', serveStatic('../app/build/browserconfig.xml'));
+router.use('/robots.txt', serveStatic('../app/build/robots.txt'));
 
 router.use('/static/uploads', serveStatic(path.resolve(__dirname, '../public/uploads')));
 

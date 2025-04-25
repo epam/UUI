@@ -18,7 +18,7 @@ export interface FiltersPanelModsOverride {}
 
 interface FiltersPanelMods {
     /**
-     * Defines size(height) of filter panel and filters
+     * Defines size(height) of FilterPanel and filters togglers
      * @default '36'
      */
     size?: '24' | '30' | '36' | '42' | '48';

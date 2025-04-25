@@ -4,9 +4,9 @@ import React, {
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import type { Dayjs } from '../../helpers/dayJsHelper';
 import {
-    arrayToMatrix, cx, IDisableable, IHasCX, IHasForwardedRef, IHasRawProps,
+    arrayToMatrix, cx, IDisableable, IHasCX, IHasForwardedRef, IHasRawProps, DayProps,
 } from '@epam/uui-core';
-import { Day, DayProps } from './Day';
+import { Day } from './Day';
 import { uuiDaySelection } from './calendarConstants';
 import css from './Calendar.module.scss';
 
