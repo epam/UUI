@@ -54,6 +54,11 @@
     }
 
     &:global(.uui-readonly) {
-        @include readonly-input();
+        :global(.uui-input.uui-value-in-placeholder) {
+            &::placeholder {
+                -webkit-text-fill-color: var(--uui-text_input-text);
+                color: var(--uui-text_input-text);
+            }
+        }
     }
 }
