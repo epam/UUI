@@ -39,6 +39,8 @@
         &:global(.uui-active) {
             border: 0 none;
             border-left: 3px solid var(--uui-main_menu-border-active);
+            border-image: var(--uui-main_menu-border-active-gradient, none);
+            border-image-slice: 3;
             background-color: var(--uui-main_menu-hover);
         }
     }
