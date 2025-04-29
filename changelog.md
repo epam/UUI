@@ -2,7 +2,9 @@
 
 **What's New**
 * [DatePicker]: added `preventEmpty` prop to prevent picker form being empty. See example [here](https://uui.epam.com/documents?id=datePicker&mode=doc&category=components#examples-datePicker-PreventEmpty)
-* [RangeDatePicker]: added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
+* [RangeDatePicker]: 
+  * added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
+  * `RangeDatePickerValue` interface was moved to the @epam/uui-core package
 * [AsyncDataSource]: added caching functionality, allowing two or more Views to reuse the same data.
 * [MainMenu][Electric][Loveship]: added prop `color` with `white` and `dark` values for the MainMenu component. The `dark` is used by default.
 
