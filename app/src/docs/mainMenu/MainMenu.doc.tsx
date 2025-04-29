@@ -19,8 +19,20 @@ export class MainMenuDoc extends BaseDocsBlock {
         contexts: [TDocContext.Resizable],
         bySkin: {
             [TSkin.UUI]: { type: '@epam/uui:MainMenuProps', component: uui.MainMenu },
-            [TSkin.Electric]: { type: '@epam/electric:MainMenuProps', component: electric.MainMenu },
-            [TSkin.Loveship]: { type: '@epam/loveship:MainMenuProps', component: loveship.MainMenu },
+            [TSkin.Electric]: {
+                type: '@epam/electric:MainMenuProps',
+                component: electric.MainMenu,
+                doc: (doc) => {
+                    doc.merge('color', { editorType: 'MultiUnknownEditor' });
+                },
+            },
+            [TSkin.Loveship]: {
+                type: '@epam/loveship:MainMenuProps',
+                component: loveship.MainMenu,
+                doc: (doc) => {
+                    doc.merge('color', { editorType: 'MultiUnknownEditor' });
+                },
+            },
             [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps | loveship.MainMenuProps | electric.MainMenuProps>) => {
