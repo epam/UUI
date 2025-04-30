@@ -23,22 +23,6 @@ export const defaultRangeValue: RangeDatePickerValue = {
     to: null,
 };
 
-export const rangeIsEmpty = (range: RangeDatePickerValue) => {
-    return !range.from && !range.to;
-};
-
-export const getValidMonth = (i: RangeDatePickerValue, focus: RangeDatePickerInputType, format: string, filter?: (day: Dayjs) => boolean) => {
-    const fromValid = isValidDate(i.from, format, filter);
-    const toValid = isValidDate(i.to, format, filter);
-    if (fromValid && toValid && focus) {
-        return uuiDayjs.dayjs(i[focus]);
-    } else if (fromValid) {
-        return uuiDayjs.dayjs(i.from);
-    } else if (toValid) {
-        return uuiDayjs.dayjs(i.to);
-    }
-};
-
 export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
     if (selectedDate.from && selectedDate.to && focus) {
         return uuiDayjs.dayjs(selectedDate[focus]);

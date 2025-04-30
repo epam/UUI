@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RangeDatePicker, FlexRow } from '@epam/uui';
 
 export default function RangeDatePickerPreventEmptyExample() {
-    const [value, onValueChange] = useState({ from: '24-04-2025', to: '30-04-2025' });
+    const [value, onValueChange] = useState({ from: '2025-04-24', to: '2025-04-30' });
 
     return (
         <FlexRow>
