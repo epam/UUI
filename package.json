@@ -24,6 +24,7 @@
     "prepare": "husky install",
     "process-icons": "node uui-build/scripts/processIcons.js icons",
     "release": "lerna publish --force-publish",
+    "release-beta": "yarn release --dist-tag beta",
     "start": "cd ./app && yarn start",
     "start-sd": "cd ./app && yarn start-sd",
     "start-server": "cd ./app && yarn server",
