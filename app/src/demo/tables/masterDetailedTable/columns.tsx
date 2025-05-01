@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, Badge, FlexRow, IconButton, LinkButton, BadgeProps } from '@epam/uui';
-import { DataColumnProps, DataQueryFilter } from '@epam/uui-core';
+import { DataColumnProps, DataQueryFilter, getSeparatedValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 import css from './DemoTable.module.scss';
 import { ReactComponent as ViewIcon } from '@epam/assets/icons/common/action-eye-18.svg';
@@ -36,6 +36,20 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
         width: 200,
         isSortable: true,
         isFilterActive: (f) => !!f.jobTitleId,
+    }, {
+        key: 'salary',
+        caption: 'Salary',
+        render: (p) => (
+            <Text>
+                {getSeparatedValue(+p.salary, {
+                    style: 'currency', currency: 'USD', maximumFractionDigits: 2, minimumFractionDigits: 2,
+                }, 'en-US')}
+            </Text>
+        ),
+        width: 150,
+        textAlign: 'right',
+        isSortable: true,
+        isFilterActive: (f) => !!f.salary,
     }, {
         key: 'departmentName',
         caption: 'Department',
@@ -83,6 +97,7 @@ export const personColumns: DataColumnProps<Person, PersonTableRecordId[], DataQ
         render: (p) => p?.birthDate && <Text>{new Date(p.birthDate).toLocaleDateString()}</Text>,
         width: 120,
         isSortable: true,
+        isFilterActive: (f) => !!f.birthDate,
     }, {
         key: 'relatedNPR',
         caption: 'Related NPR',
