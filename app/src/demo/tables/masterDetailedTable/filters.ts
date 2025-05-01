@@ -1,5 +1,6 @@
 import { TableFiltersConfig, LazyDataSource } from '@epam/uui-core';
 import { svc } from '../../../services';
+import { defaultPredicates } from '@epam/uui';
 
 export const getFilters = <TFilter extends Record<string, any>>(): TableFiltersConfig<TFilter>[] => {
     return [
@@ -9,12 +10,28 @@ export const getFilters = <TFilter extends Record<string, any>>(): TableFiltersC
             title: 'Profile Status',
             type: 'multiPicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
+            predicates: defaultPredicates.multiPicker,
+            showSearch: false,
         }, {
             field: 'jobTitleId',
             columnKey: 'jobTitle',
             title: 'Title',
             type: 'multiPicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
+            predicates: defaultPredicates.multiPicker,
+            showSearch: true,
+        }, {
+            field: 'salary',
+            columnKey: 'salary',
+            title: 'Salary',
+            type: 'numeric',
+            predicates: defaultPredicates.numeric,
+        }, {
+            field: 'title',
+            columnKey: 'title',
+            title: 'Title',
+            type: 'numeric',
+            predicates: defaultPredicates.multiPicker,
         }, {
             field: 'departmentId',
             columnKey: 'departmentName',
@@ -39,6 +56,7 @@ export const getFilters = <TFilter extends Record<string, any>>(): TableFiltersC
             title: 'Country',
             type: 'multiPicker',
             dataSource: new LazyDataSource({ api: svc.api.demo.countries }),
+            predicates: [{ predicate: 'in', name: 'is', isDefault: true }, { predicate: 'nin', name: 'is not' }],
         }, {
             field: 'cityId',
             columnKey: 'cityName',
@@ -51,6 +69,7 @@ export const getFilters = <TFilter extends Record<string, any>>(): TableFiltersC
             title: 'Birth Date',
             type: 'rangeDatePicker',
             format: 'YYYY-MM-DD',
+            predicates: defaultPredicates.rangeDatePicker,
         },
     ];
 };

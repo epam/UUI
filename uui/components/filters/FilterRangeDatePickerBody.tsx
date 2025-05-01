@@ -56,12 +56,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
     };
 
     const onClear = () => {
-        const newValue = {
-            from: props.preventEmptyFromDate ? value.from : null,
-            to: props.preventEmptyToDate ? value.to : null,
-        };
-
-        onValueChange(newValue);
+        onValueChange(undefined);
     };
 
     const shouldShowClearButton = !props.preventEmptyToDate || !props.preventEmptyFromDate;
