@@ -19,6 +19,7 @@
     * UUI is now compatible with React 19. UUI site was reworked to work with React 19.
     * UUI packages still backward compatible with React 18
     * UUI templates updated to use React 19
+    * @epam/uui-test-utils reworked to not use deprecated 'react-test-renderer', now we use '@testing-library/react' instead. It will cause different snapshots results via renderSnapshotWithContextAsync helper, so please update them.
 * Introduced sizes and icons theming. This is essential for external customers support, as it allows them to use their own sizes and icons.
   * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity. 
   * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
