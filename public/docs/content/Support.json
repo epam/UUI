@@ -1,0 +1,128 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "UUI is the core UI framework powering "
+      },
+      {
+        "type": "link",
+        "url": "https://epam.com/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "EPAM’s"
+          }
+        ]
+      },
+      {
+        "text": " digital ecosystem since 2016, driving more than 50 mission-critical internal applications. As an open-source solution, it also serves as an accelerator for EPAM customers, delivering engineering excellence, continuous innovation, and long-term support.UUI’s evolution is inseparable from EPAM’s own growth — as long as EPAM continues to advance, UUI will remain actively developed, maintained and future-proofed."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "The dedicated team behind UUI ensures rapid resolution of major bugs, ongoing improvements, and continuous enhancement of documentation. If you think you've found a bug, or you have a new feature idea — do not hesitate to open an issue in our "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/issues",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "GitHub"
+          }
+        ]
+      },
+      {
+        "text": " repository. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "We use "
+      },
+      {
+        "type": "link",
+        "url": "https://github.com/epam/UUI/discussions",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "GitHub Discussions"
+          }
+        ]
+      },
+      {
+        "text": " for how-to questions. You may get an answer from UUI Team as well as from community experts. Also, you may request our personalized support with a 48-hour SLA for the first answer through "
+      },
+      {
+        "type": "link",
+        "url": "https://discord.gg/rrPXzbtPAK",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Discord"
+          }
+        ]
+      },
+      {
+        "text": " or via "
+      },
+      {
+        "type": "link",
+        "url": "https://teams.microsoft.com/l/channel/19%3Af9ce97808e1e419cb976f71d310ca74f%40thread.skype/General?groupId=726eb5c9-1516-4c6a-be33-0838d9a33b02&tenantId=b41b72d0-4e9f-4c26-8a69-f949f367c91d",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Teams"
+          }
+        ]
+      },
+      {
+        "text": " (EPAM only). "
+      }
+    ]
+  },
+  {
+    "type": "uui-richTextEditor-header-3",
+    "children": [
+      {
+        "text": "Custom Development"
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "If you need some help with custom features EPAM and our team can provide services on top of UUI. You may "
+      },
+      {
+        "type": "link",
+        "url": "https://www.epam.com/about/who-we-are/contact",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "contact sales"
+          }
+        ]
+      },
+      {
+        "text": " or reach out to us directly via Teams (EPAM only)."
+      }
+    ]
+  }
+]

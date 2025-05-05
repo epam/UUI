@@ -68,3 +68,4 @@ export * from './CountIndicator.doc';
 export * from './StatusIndicator.doc';
 export * from './Accessibility.doc';
 export * from './Lenses.doc';
+export * from './Support.doc';
