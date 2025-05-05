@@ -5,6 +5,7 @@ import { changeThemeQueryParam, overrideUuiSettings, saveThemeIdToLocalStorage,
     setThemeCssClass, TAppThemeContext, ThemesConfig, useCurrentTheme,
 } from './appThemeUtils';
 import { useUuiContext } from '@epam/uui-core';
+import { Blocker } from '@epam/uui';
 
 const AppThemeContext = React.createContext<TAppThemeContext>(null);
 export function useAppThemeContext() {
@@ -42,7 +43,7 @@ export function AppTheme(props: { children: React.ReactNode }) {
     }
 
     const value = useMemo(() => {
-        if (theme && config) {
+        if (theme && config && appliedTheme) {
             return {
                 ...config,
                 theme,
@@ -52,11 +53,11 @@ export function AppTheme(props: { children: React.ReactNode }) {
             };
         }
         return null;
-    }, [config, theme, uuiRouter]);
+    }, [appliedTheme, applyTheme, config, theme]);
 
     const renderChildren = () => {
         if (!value) {
-            return null;
+            return <Blocker isEnabled />;
         }
         return props.children;
     };
