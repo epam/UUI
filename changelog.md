@@ -10,6 +10,7 @@
 
 **What's Fixed**
 * [useForm]: fixed router blocking if `beforeLeave` props returned `false`. Previously router was blocked and immediately unblocked on any redirect, but we shouldn't block in at all in this case.
+* [PickerInput]: fixed bug when selected item was applied value to the search after arrow keyboard navigation
 * [NumericInput]: fixed `value` text color for `readonly` state
 
 # 6.0.0 - 23.04.2025
