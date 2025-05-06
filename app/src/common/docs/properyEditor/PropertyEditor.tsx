@@ -220,7 +220,7 @@ export class PropertyEditor extends React.Component<ComponentEditorProps, Compon
         this.setState((prevState) => {
             return {
                 ...prevState,
-                ...rebuildInputDataExamples({
+                inputData: rebuildInputDataExamples({
                     prevInputData: prevState.inputData,
                     docs: this.props.docs,
                     ctx: this.getCtx(),
