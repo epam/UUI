@@ -101,6 +101,8 @@ function RangeDatePickerComponent(props: RangeDatePickerProps, ref: React.Forwar
                         } }
                         isHoliday={ props.isHoliday }
                         rawProps={ props.rawProps?.body }
+                        preventEmptyToDate={ props.preventEmptyToDate }
+                        preventEmptyFromDate={ props.preventEmptyFromDate }
                     />
                 </FlexRow>
             </DropdownContainer>
