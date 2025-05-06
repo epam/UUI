@@ -5,7 +5,7 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TPreviewCellSize, TSkin } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
-import { childrenExamples, itemsExamples, renderBurgerExamples } from './mainMenuExamples';
+import { getChilrdenExamples, getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
 //
 import css from './../styles.module.scss';
 import { TMainMenuPreview } from '../_types/previewIds';
@@ -23,27 +23,27 @@ export class MainMenuDoc extends BaseDocsBlock {
                 type: '@epam/electric:MainMenuProps',
                 component: electric.MainMenu,
                 doc: (doc) => {
-                    doc.merge('color', { editorType: 'MultiUnknownEditor' });
+                    doc.merge('color', { editorType: 'MultiUnknownEditor', remountOnChange: true, defaultValue: 'dark' });
                 },
             },
             [TSkin.Loveship]: {
                 type: '@epam/loveship:MainMenuProps',
                 component: loveship.MainMenu,
                 doc: (doc) => {
-                    doc.merge('color', { editorType: 'MultiUnknownEditor' });
+                    doc.merge('color', { editorType: 'MultiUnknownEditor', remountOnChange: true, defaultValue: 'dark' });
                 },
             },
             [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps | loveship.MainMenuProps | electric.MainMenuProps>) => {
-            doc.merge('children', { examples: childrenExamples, remountOnChange: true });
+            doc.merge('children', { examples: (ctx) => getChilrdenExamples(ctx), remountOnChange: true });
             doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });
             doc.merge('logoHref', { editorType: 'StringEditor', examples: [] });
             doc.merge('appLogoUrl', { editorType: 'StringEditor', examples: [] });
             doc.merge('renderBurger', { examples: renderBurgerExamples });
-            doc.merge('items', { examples: itemsExamples, remountOnChange: true });
+            doc.merge('items', { examples: (ctx) => getItemsExamples(ctx), remountOnChange: true });
             doc.merge('MainMenuDropdown', { examples: [{ value: uui.MainMenuDropdown, name: 'MainMenuDropdown', isDefault: true }] });
             doc.merge('Burger', { examples: [{ value: uui.Burger, name: 'Burger', isDefault: true }] });
             doc.merge('logoLink', {

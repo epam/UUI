@@ -10,7 +10,7 @@ import { ReactComponent as PinIcon } from '@epam/assets/icons/common/action-pin_
 
 export default function MainMenuResponsiveExample() {
     const [width, setWidth] = useState<number>(100);
-    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string>();
 
     const renderBurger = (hiddenItems: AdaptiveItemProps<{ caption?: string }>[], onClose?: () => void): ReactNode => (
         <>
@@ -120,7 +120,7 @@ export default function MainMenuResponsiveExample() {
                 ),
             },
             { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-            { id: 'search', priority: 9, render: (p) => <div style={ { display: 'flex' } }><MainMenuSearch key={ p.id } value={ searchQuery } onValueChange={ setSearchQuery } /></div> },
+            { id: 'search', priority: 9, render: (p) => <div style={ { display: 'flex' } }><MainMenuSearch key={ p.id } placeholder="Search here..." value={ searchQuery } onValueChange={ setSearchQuery } /></div> },
             { id: 'pinIcon', priority: 9, render: (p) => <MainMenuIcon key={ p.id } icon={ PinIcon } rawProps={ { 'aria-label': 'Pin' } } onClick={ () => {} } /> },
             { id: 'helpIcon', priority: 9, render: (p) => <MainMenuIcon key={ p.id } icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } onClick={ () => {} } /> },
             { id: 'avatar', priority: 10, render: renderAvatar },
