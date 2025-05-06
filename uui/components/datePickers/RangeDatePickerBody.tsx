@@ -1,6 +1,13 @@
 import React, { forwardRef, useState, type JSX } from 'react';
 import cx from 'classnames';
-import type { IControlled, RangeDatePickerPresets, DayProps, RangeDatePickerInputType, RangeDatePickerValue } from '@epam/uui-core';
+import type {
+    IControlled,
+    RangeDatePickerPresets,
+    DayProps,
+    RangeDatePickerInputType,
+    RangeDatePickerValue,
+    RangeDatePickerProps,
+} from '@epam/uui-core';
 import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { CalendarPresets } from './CalendarPresets';
@@ -103,7 +110,7 @@ export interface RangeDatePickerBodyValue<TSelection> {
     selectedDate: TSelection;
 }
 
-export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, IControlled<RangeDatePickerBodyValue<T>> {
+export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate'>, IControlled<RangeDatePickerBodyValue<T>> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
 }
@@ -126,10 +133,10 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     const getRange = (newValue: string | null) => {
         if (!filter || filter(uuiDayjs.dayjs(newValue))) {
             if (inFocus === 'from') {
-                return getWithFrom(selectedDate, newValue);
+                return getWithFrom(selectedDate, newValue, props.preventEmptyFromDate);
             }
             if (inFocus === 'to') {
-                return getWithTo(selectedDate, newValue);
+                return getWithTo(selectedDate, newValue, props.preventEmptyToDate);
             }
         }
     };
