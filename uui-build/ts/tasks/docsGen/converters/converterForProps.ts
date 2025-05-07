@@ -3,9 +3,21 @@ import { IConverterContext, TConvertable, TTypePropsConverted } from '../types/t
 import { SymbolUtils } from './converterUtils/symbolUtils';
 import { NodeUtils } from './converterUtils/nodeUtils';
 import { TypeUtils } from './converterUtils/typeUtils';
-import { TTypeProp, TTypeRef } from '../types/sharedTypes';
+import { TTypeProp, TTypeRef, TTypeValue } from '../types/sharedTypes';
 import { getTypeRefFromTypeSummary } from './converterUtils/converterUtils';
 import { ConvertableUtils } from './converterUtils/convertableUtils';
+import { highlight, languages } from 'prismjs';
+// @ts-ignore
+import loadLanguages from 'prismjs/components/index';
+
+loadLanguages(['typescript']);
+
+function highlightTsCode(raw: any) {
+    if (typeof raw !== 'undefined') {
+        return highlight(raw, languages.typescript, 'typescript');
+    }
+    return raw;
+}
 
 function isPropsSupported(node: Node) {
     const type = node.getType();
@@ -78,6 +90,23 @@ function extractPropsFromNonUnionType(params: { parentNode: Node, type: Type, co
     }
 }
 
+function prettyPrintTypeValue(typeValue: TTypeValue) {
+    if (typeValue) {
+        const res: any = {};
+        if (typeValue.print) {
+            res.print = highlightTsCode(typeValue.print.join('\n'))?.split('\n');
+        }
+        if (typeValue.raw) {
+            res.html = highlightTsCode(typeValue.raw);
+        }
+        return {
+            ...typeValue,
+            ...res,
+        };
+    }
+    return typeValue;
+}
+
 function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, context: IConverterContext, idGen: SimpleIdGen }): TTypeProp | undefined {
     const { parentNode, propertySymbol, context, idGen } = params;
     let prop: TTypeProp | undefined = undefined;
@@ -98,6 +127,7 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
         if (!tv) {
             return;
         }
+        const prettyPrintedTypeValue = prettyPrintTypeValue(tv);
         const comment = NodeUtils.getCommentFromNode(propertyNode);
         let fromRef;
         const propParent = NodeUtils.getPropertyNodeParent(propertyNode, parentNode);
@@ -113,7 +143,7 @@ function mapSingleMember(params: { parentNode?: Node, propertySymbol: Symbol, co
             uid,
             name,
             comment,
-            typeValue: tv,
+            typeValue: prettyPrintedTypeValue,
             typeValueRef: getPropertyTypeValueRef({ propertySymbol, context }),
             editor: context.convertPropEditor({ convertable: propertySymbol }),
             from: fromRef,
