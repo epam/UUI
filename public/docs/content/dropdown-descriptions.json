@@ -1,221 +1,91 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "Dropdown is a low-level component which allows opening an overlay component (\"Dropdown body\") by clicking or hovering on another component (\"Target\"). This component is used internally to construct components like DropdownMenu and Tooltip, and is useful in many other cases.",
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "Pay attention that you wrap your app into",
+        "uui-richTextEditor-span-mark": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "type": "link",
         "data": {},
-        "nodes": [
+        "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo",
+        "children": [
           {
-            "object": "text",
-            "text": "Dropdown is a low-level component which allows opening an overlay component (\"Dropdown body\") by clicking or hovering on another component (\"Target\"). This component is used internally to construct components like DropdownMenu and Tooltip, and is useful in many other cases.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
+            "text": "ContextProvider",
+            "uui-richTextEditor-span-mark": true
           }
         ]
       },
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Pay attention that you wrap your app into",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "https://uui.epam.com/documents?category=contexts&id=contextProvider&mode=doc&skin=UUI4_promo"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "ContextProvider",
-                "marks": [
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  },
-                  {
-                    "object": "mark",
-                    "type": "uui-richTextEditor-span-mark",
-                    "data": {
-                      "style": {}
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "component, because it's necessary for correct dropdown component work.",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              },
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-span-mark",
-                "data": {
-                  "style": {}
-                }
-              }
-            ]
-          }
-        ]
+        "text": " "
       },
       {
-        "object": "block",
-        "type": "note-warning",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "Note:",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-bold",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " Make sure the target of your Dropdown works correctly with refs. The ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "renderTarget",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " callback returns an object containing a ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ref",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " property for your target component. If the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "ref",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.",
-            "marks": []
-          }
-        ]
+        "text": "component, because it's necessary for correct dropdown component work.",
+        "uui-richTextEditor-span-mark": true
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "data": {},
+    "children": [
+      {
+        "text": "Note:",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " Make sure the target of your Dropdown works correctly with refs. The "
+      },
+      {
+        "text": "renderTarget",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " callback returns an object containing a "
+      },
+      {
+        "text": "ref",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property for your target component. If the "
+      },
+      {
+        "text": "ref",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is not exposed correctly (either not pointing to a DOM element or ignored), the Dropdown will not be able to work as expected.\n\nAlternatively, for scenarios where you need dropdown positioning without a physical DOM element as target or when ref-based positioning isn't feasible, you can use the "
+      },
+      {
+        "text": "virtualTarget",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop with a VirtualElement object that implements "
+      },
+      {
+        "text": "getBoundingClientRect",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to position your dropdown at arbitrary coordinates."
       }
     ]
   }
-}
+]

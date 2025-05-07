@@ -1,0 +1,52 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Use the "
+      },
+      {
+        "text": "virtualTarget",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop with a "
+      },
+      {
+        "text": "VirtualElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " to position a dropdown at mouse coordinates. The "
+      },
+      {
+        "text": "VirtualElement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " provides cursor coordinates via "
+      },
+      {
+        "text": "getBoundingClientRect",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", while "
+      },
+      {
+        "text": "placement",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "middleware",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", and other props help customize dropdown positioning and appearance."
+      }
+    ]
+  }
+]

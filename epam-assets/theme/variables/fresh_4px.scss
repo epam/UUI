@@ -356,19 +356,19 @@
 
     /* FlexRow */
 
-    .uui-flex-row.uui-bg-none {
+    .uui-flex-row.uui-flex-row-bg-none {
         --uui-flex-row-bg: transparent;
     }
 
-    .uui-flex-row.uui-bg-white {
+    .uui-flex-row.uui-flex-row-bg-white {
         --uui-flex-row-bg: var(--white);
     }
 
-    .uui-flex-row.uui-bg-night50 {
+    .uui-flex-row.uui-flex-row-bg-night50 {
         --uui-flex-row-bg: var(--night50);
     }
 
-    .uui-flex-row.uui-bg-night100 {
+    .uui-flex-row.uui-flex-row-bg-night100 {
         --uui-flex-row-bg: var(--night100);
     }
 
@@ -601,5 +601,11 @@
 
     .uui-timepicker-container > .uui-timepicker-item .uui-timepicker-input.uui-input-box {
         width: 40px;
+    }
+
+    .uui-dt-columns-config-row {
+        .uui-drag-handle {
+            --uui-dt-columns_config_modal-row-vertical-padding: 5px;
+        }
     }
 }

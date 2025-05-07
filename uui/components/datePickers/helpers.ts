@@ -1,5 +1,5 @@
 import { uuiDayjs, Dayjs } from '../../helpers/dayJsHelper';
-import { RangeDatePickerInputType, RangeDatePickerValue } from './types';
+import { RangeDatePickerInputType, RangeDatePickerValue } from '@epam/uui-core';
 
 export const defaultFormat = 'MMM D, YYYY';
 export const valueFormat = 'YYYY-MM-DD';
@@ -21,22 +21,6 @@ export const getNewMonth = (value: string | Dayjs | null) => {
 export const defaultRangeValue: RangeDatePickerValue = {
     from: null,
     to: null,
-};
-
-export const rangeIsEmpty = (range: RangeDatePickerValue) => {
-    return !range.from && !range.to;
-};
-
-export const getValidMonth = (i: RangeDatePickerValue, focus: RangeDatePickerInputType, format: string, filter?: (day: Dayjs) => boolean) => {
-    const fromValid = isValidDate(i.from, format, filter);
-    const toValid = isValidDate(i.to, format, filter);
-    if (fromValid && toValid && focus) {
-        return uuiDayjs.dayjs(i[focus]);
-    } else if (fromValid) {
-        return uuiDayjs.dayjs(i.from);
-    } else if (toValid) {
-        return uuiDayjs.dayjs(i.to);
-    }
 };
 
 export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
@@ -63,7 +47,7 @@ export const isValidRange = (range: RangeDatePickerValue) => {
         : true;
 };
 
-export const getWithFrom = (selectedDate: RangeDatePickerValue, newValue: string | null) => {
+export const getWithFrom = (selectedDate: RangeDatePickerValue, newValue: string | null, preventEmpty: boolean) => {
     if (uuiDayjs.dayjs(newValue).valueOf() <= uuiDayjs.dayjs(selectedDate.to).valueOf()) {
         // update range
         return {
@@ -74,12 +58,12 @@ export const getWithFrom = (selectedDate: RangeDatePickerValue, newValue: string
         // new range value
         return {
             from: newValue,
-            to: null,
+            to: preventEmpty ? newValue : null,
         };
     }
 };
 
-export const getWithTo = (selectedDate:RangeDatePickerValue, newValue: string | null) => {
+export const getWithTo = (selectedDate:RangeDatePickerValue, newValue: string | null, preventEmpty: boolean) => {
     if (!selectedDate.from) {
         // started on "to" input
         return {
@@ -96,7 +80,7 @@ export const getWithTo = (selectedDate:RangeDatePickerValue, newValue: string | 
         // range is invalid
         return {
             from: newValue,
-            to: null,
+            to: preventEmpty ? newValue : null,
         };
     }
 };

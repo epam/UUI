@@ -2,6 +2,7 @@
 
 .row-wrapper {
     --uui-dt-columns_config_modal-row-vertical-padding: 3px;
+    --uui-dt-columns_config_modal-icon-size: var(--uui-icon-size);
     position: relative;
     width: 100%;
     box-sizing: border-box;
@@ -45,6 +46,11 @@
 
         :global(.uui-icon) {
             fill: var(--uui-control-icon);
+
+            svg {
+                width: var(--uui-dt-columns_config_modal-icon-size);
+                height: var(--uui-dt-columns_config_modal-icon-size);
+            }
         }
     }
 

@@ -334,7 +334,7 @@ describe('FiltersPanel', () => {
             await user.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date:${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).toHaveClass('uui-calendar-selected-day');
-            await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR ALL' }));
+            await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR' }));
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).not.toHaveClass('uui-calendar-selected-day');
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             await user.click(removeButton);
@@ -364,7 +364,7 @@ describe('FiltersPanel', () => {
             await user.click(screen.getByRoleAndText({ role: 'button', text: `Hire Date Not in Range${TODAY_DATE_FORMATTED} - ${TODAY_DATE_FORMATTED}` }));
             expectDialog();
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).toHaveClass('uui-calendar-selected-day');
-            await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR ALL' }));
+            await user.click(withinDialog().getByRoleAndText({ role: 'button', text: 'CLEAR' }));
             expect(withinDialog().getAllByText(TODAY_DAY_OF_MONTH)[0].parentElement).not.toHaveClass('uui-calendar-selected-day');
             const removeButton = withinDialog().getByRoleAndText({ role: 'button', text: 'REMOVE FILTER' });
             await user.click(removeButton);

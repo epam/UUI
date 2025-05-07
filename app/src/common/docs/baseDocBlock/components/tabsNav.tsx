@@ -44,6 +44,10 @@ export function TabsNav(props: TTabsNavProps) {
         };
     }
 
+    if (Object.keys(allTabs).length <= 1) {
+        return;
+    }
+
     return (
         <FlexRow
             rawProps={ { role: 'tablist' } }

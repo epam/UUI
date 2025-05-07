@@ -1,10 +1,8 @@
 import React, { forwardRef, useEffect, useState, type JSX } from 'react';
-import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps } from '@epam/uui-core';
+import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps, RangeDatePickerValue, RangeDatePickerInputType } from '@epam/uui-core';
 import { TextInput } from '../inputs';
-
-import { defaultRangeValue, isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
+import { isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
-import type { RangeDatePickerInputType, RangeDatePickerValue } from './types';
 import type { RangeDatePickerProps } from './RangeDatePicker';
 
 import { i18n } from '../../i18n';
@@ -19,7 +17,7 @@ export interface RangeDatePickerInputProps
     extends IEditable<RangeDatePickerValue>,
     IHasCX,
     IClickable,
-    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {
+    Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size' | 'preventEmptyFromDate' | 'preventEmptyToDate'> {
     /**
      * rawProps as HTML attributes
      */
@@ -69,6 +67,8 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     getPlaceholder,
     filter,
     onKeyDown,
+    preventEmptyFromDate,
+    preventEmptyToDate,
     id,
     cx: classes,
 }, ref): JSX.Element => {
@@ -93,20 +93,34 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
         onBlurInput?.(event, inputType);
+        
+        const canBeEmpty = {
+            from: !preventEmptyFromDate,
+            to: !preventEmptyToDate,
+        };
 
         const selectedDate = toValueDateRangeFormat(inputValue, format);
+
+        // If new value is null and input can't be empty, set the value to the last selected value
+        if (selectedDate[inputType] === null && !canBeEmpty[inputType]) {
+            selectedDate[inputType] = value[inputType];
+        }
+
         const isDateDisabled = filter?.(uuiDayjs.dayjs(selectedDate[inputType])) === false;
+
         if (isValidRange(selectedDate) && !isDateDisabled) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
+            const newValue = !canBeEmpty[inputType] ? value[inputType] : null;
+
             setInputValue({
                 ...inputValue,
-                [inputType]: null,
+                [inputType]: newValue,
             });
             onValueChange({
                 ...selectedDate,
-                [inputType]: null,
+                [inputType]: newValue,
             });
         }
     };
@@ -118,7 +132,16 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
         }
     };
 
-    const clearAllowed = !disableClear && inputValue.from && inputValue.to;
+    const onClear = () => {
+        const newValue = {
+            from: preventEmptyFromDate ? value.from : null,
+            to: preventEmptyToDate ? value.to : null,
+        };
+
+        onValueChange(newValue);
+    };
+
+    const clearAllowed = !disableClear && !(preventEmptyFromDate && preventEmptyToDate) && inputValue.from && inputValue.to;
     return (
         // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div
@@ -159,9 +182,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
                 placeholder={ getPlaceholder ? getPlaceholder('to') : i18n.rangeDatePicker.pickerPlaceholderTo }
                 size={ size || settings.rangeDatePicker.sizes.default }
                 value={ inputValue.to || undefined }
-                onCancel={ clearAllowed ? () => {
-                    onValueChange(defaultRangeValue);
-                } : undefined }
+                onCancel={ clearAllowed ? onClear : undefined }
                 onValueChange={ (v) => onInputChange(v || '', 'to') }
                 onFocus={ (e) => handleFocus(e, 'to') }
                 onBlur={ (e) => handleBlur(e, 'to') }

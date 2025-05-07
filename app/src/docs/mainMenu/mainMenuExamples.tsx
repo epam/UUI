@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { IPropSamplesCreationContext } from '@epam/uui-docs';
 import {
     Burger,
     BurgerButton,
@@ -8,7 +9,10 @@ import {
     MainMenuAvatar,
     MainMenuButton,
     MainMenuIcon,
+    MainMenuProps,
 } from '@epam/uui';
+import { MainMenuProps as LoveshipMainMenuProps } from '@epam/loveship';
+import { MainMenuProps as ElectricMainMenuProps } from '@epam/electric';
 import { AdaptiveItemProps, Dropdown, MainMenuCustomElement, MainMenuLogo } from '@epam/uui-components';
 import { ReactComponent as HelpIcon } from '@epam/assets/icons/common/notification-help-outline-24.svg';
 import { ALL_AVATARS } from '../avatarStack/avatarsExamples';
@@ -30,78 +34,93 @@ export const renderBurgerExamples = [
     },
 ];
 
-export const childrenExamples = [
-    {
-        value: [
-            <MainMenuLogo key="appLogo2" logoUrl="/static/images/app-logos/grow_logo.svg" priority={ 100500 } estimatedWidth={ 142 } />,
-            <MainMenuButton caption="Me" collapseToMore priority={ 3 } estimatedWidth={ 52 } showInBurgerMenu key="me" isLinkActive={ true } />,
-            <MainMenuButton caption="My Team" collapseToMore priority={ 2 } estimatedWidth={ 92 } showInBurgerMenu key="my team" />,
-            <MainMenuButton caption="Skill Matrices" collapseToMore priority={ 1 } estimatedWidth={ 139 } showInBurgerMenu key="skill" href="/" />,
-            <FlexSpacer priority={ 100500 } key="spacer" />,
-            <MainMenuButton caption="Tools" type="secondary" isDropdown priority={ 4 } estimatedWidth={ 113 } key="tool" />,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
-        ],
-        name: 'Grow',
-        isDefault: true,
-    },
-    {
-        value: [
-            <MainMenuLogo key="appLogo2" logoUrl="/static/images/app-logos/learn_logo.svg" priority={ 100500 } estimatedWidth={ 142 } />,
-            <MainMenuButton key="start" caption="Start" collapseToMore priority={ 3 } estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
-            <MainMenuButton key="explore" caption="Explore" collapseToMore priority={ 2 } estimatedWidth={ 78 } showInBurgerMenu />,
-            <MainMenuButton key="myLearning" caption="My Learning" collapseToMore priority={ 2 } estimatedWidth={ 104 } showInBurgerMenu href="/" />,
-            <FlexSpacer priority={ 100500 } key="spacer" />,
-            <MainMenuAvatar
-                isDropdown
-                key="avatar"
-                avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-                priority={ 100 }
-                estimatedWidth={ 84 }
-                rawProps={ { 'aria-label': 'Avatar' } }
-            />,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
-        ],
-        name: 'Learn',
-    },
-    {
-        value: [
-            <MainMenuLogo key="appLogo2" logoUrl="/static/logo.svg" priority={ 100500 } estimatedWidth={ 52 } />,
-            <MainMenuButton caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="home" isLinkActive={ true } />,
-            <MainMenuButton caption="Assets" priority={ 2 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="assets" />,
-            <MainMenuButton caption="Components" priority={ 4 } collapseToMore estimatedWidth={ 108 } showInBurgerMenu key="components" />,
-            <MainMenuButton caption="Demos" priority={ 2 } collapseToMore estimatedWidth={ 72 } showInBurgerMenu key="demos" />,
-            <MainMenuButton caption="Tests" priority={ 1 } collapseToMore estimatedWidth={ 62 } showInBurgerMenu key="tests" />,
-            <FlexSpacer priority={ 100500 } key="spacer" />,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
-        ],
-        name: 'UI',
-    },
-    {
-        value: [
-            <MainMenuLogo key="appLogo2" logoUrl="/static/images/app-logos/heroes_logo.svg" priority={ 100500 } estimatedWidth={ 52 } />,
-            <MainMenuButton caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="home" isLinkActive={ true } />,
-            <MainMenuButton caption="Assets" priority={ 2 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="assets" />,
-            <MainMenuButton caption="Components" priority={ 4 } collapseToMore estimatedWidth={ 108 } showInBurgerMenu key="components" />,
-            <MainMenuButton caption="Demos" priority={ 2 } collapseToMore estimatedWidth={ 72 } showInBurgerMenu key="demos" />,
-            <MainMenuButton caption="Tests" priority={ 1 } collapseToMore estimatedWidth={ 62 } showInBurgerMenu key="tests" />,
-            <FlexSpacer priority={ 100500 } key="spacer" />,
-            <MainMenuCustomElement key="badge" estimatedWidth={ 94 } priority={ 12 }>
-                <div style={ { alignSelf: 'flex-start' } }>
-                    <img
-                        style={ {
-                            padding: '0 16px',
-                            cursor: 'pointer',
-                        } }
-                        src="/static/images/give_badge.svg"
-                        alt="give-badge"
-                    />
-                </div>
-            </MainMenuCustomElement>,
-            <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
-        ],
-        name: 'Heroes',
-    },
-];
+export const getChilrdenExamples = (props: IPropSamplesCreationContext<MainMenuProps | LoveshipMainMenuProps | ElectricMainMenuProps>) => {
+    const selectedProps = props.getSelectedProps();
+    let grow_logo = '/static/images/app-logos/grow_logo.svg';
+    let heroes_logo = '/static/images/app-logos/heroes_logo.svg';
+    let learn_logo = '/static/images/app-logos/learn_logo.svg';
+    let logo = '/static/logo.svg';
+
+    if ('color' in selectedProps && selectedProps.color === 'white') {
+        grow_logo = '/static/images/app-logos/grow_dark_logo.svg';
+        heroes_logo = '/static/images/app-logos/heroes_dark_logo.svg';
+        learn_logo = '/static/images/app-logos/learn_dark_logo.svg';
+        logo = '/static/logo_dark.svg';
+    }
+
+    return [
+        {
+            value: [
+                <MainMenuLogo key="appLogo2" logoUrl={ grow_logo } priority={ 100500 } estimatedWidth={ 142 } />,
+                <MainMenuButton caption="Me" collapseToMore priority={ 3 } estimatedWidth={ 52 } showInBurgerMenu key="me" isLinkActive={ true } />,
+                <MainMenuButton caption="My Team" collapseToMore priority={ 2 } estimatedWidth={ 92 } showInBurgerMenu key="my team" />,
+                <MainMenuButton caption="Skill Matrices" collapseToMore priority={ 1 } estimatedWidth={ 139 } showInBurgerMenu key="skill" href="/" />,
+                <FlexSpacer priority={ 100500 } key="spacer" />,
+                <MainMenuButton caption="Tools" type="secondary" isDropdown priority={ 4 } estimatedWidth={ 113 } key="tool" />,
+                <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
+            ],
+            name: 'Grow',
+            isDefault: true,
+        },
+        {
+            value: [
+                <MainMenuLogo key="appLogo2" logoUrl={ learn_logo } priority={ 100500 } estimatedWidth={ 142 } />,
+                <MainMenuButton key="start" caption="Start" collapseToMore priority={ 3 } estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+                <MainMenuButton key="explore" caption="Explore" collapseToMore priority={ 2 } estimatedWidth={ 78 } showInBurgerMenu />,
+                <MainMenuButton key="myLearning" caption="My Learning" collapseToMore priority={ 2 } estimatedWidth={ 104 } showInBurgerMenu href="/" />,
+                <FlexSpacer priority={ 100500 } key="spacer" />,
+                <MainMenuAvatar
+                    isDropdown
+                    key="avatar"
+                    avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+                    priority={ 100 }
+                    estimatedWidth={ 84 }
+                    rawProps={ { 'aria-label': 'Avatar' } }
+                />,
+                <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
+            ],
+            name: 'Learn',
+        },
+        {
+            value: [
+                <MainMenuLogo key="appLogo2" logoUrl={ logo } priority={ 100500 } estimatedWidth={ 52 } />,
+                <MainMenuButton caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="home" isLinkActive={ true } />,
+                <MainMenuButton caption="Assets" priority={ 2 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="assets" />,
+                <MainMenuButton caption="Components" priority={ 4 } collapseToMore estimatedWidth={ 108 } showInBurgerMenu key="components" />,
+                <MainMenuButton caption="Demos" priority={ 2 } collapseToMore estimatedWidth={ 72 } showInBurgerMenu key="demos" />,
+                <MainMenuButton caption="Tests" priority={ 1 } collapseToMore estimatedWidth={ 62 } showInBurgerMenu key="tests" />,
+                <FlexSpacer priority={ 100500 } key="spacer" />,
+                <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
+            ],
+            name: 'UI',
+        },
+        {
+            value: [
+                <MainMenuLogo key="appLogo2" logoUrl={ heroes_logo } priority={ 100500 } estimatedWidth={ 52 } />,
+                <MainMenuButton caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="home" isLinkActive={ true } />,
+                <MainMenuButton caption="Assets" priority={ 2 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu key="assets" />,
+                <MainMenuButton caption="Components" priority={ 4 } collapseToMore estimatedWidth={ 108 } showInBurgerMenu key="components" />,
+                <MainMenuButton caption="Demos" priority={ 2 } collapseToMore estimatedWidth={ 72 } showInBurgerMenu key="demos" />,
+                <MainMenuButton caption="Tests" priority={ 1 } collapseToMore estimatedWidth={ 62 } showInBurgerMenu key="tests" />,
+                <FlexSpacer priority={ 100500 } key="spacer" />,
+                <MainMenuCustomElement key="badge" estimatedWidth={ 94 } priority={ 12 }>
+                    <div style={ { alignSelf: 'flex-start' } }>
+                        <img
+                            style={ {
+                                padding: '0 16px',
+                                cursor: 'pointer',
+                            } }
+                            src="/static/images/give_badge.svg"
+                            alt="give-badge"
+                        />
+                    </div>
+                </MainMenuCustomElement>,
+                <GlobalMenu priority={ 100500 } estimatedWidth={ 60 } key="global-menu" rawProps={ { 'aria-label': 'Global Menu' } } />,
+            ],
+            name: 'Heroes',
+        },
+    ];
+};
 
 const renderBurger = (props: { onClose: () => void }) => (
     <>
@@ -142,6 +161,7 @@ const renderBurger = (props: { onClose: () => void }) => (
         />
     </>
 );
+
 const renderAvatar = () => {
     return (
         <Dropdown
@@ -160,24 +180,34 @@ const renderAvatar = () => {
         />
     );
 };
-const items: AdaptiveItemProps[] = [
-    {
-        id: 'burger', priority: 100, collapsedContainer: true, render: (p) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
-    },
-    {
-        id: 'logo',
-        priority: 99,
-        render: (p) => <MainMenuLogo key={ p.id } href="https://learn.epam.com/" logoUrl="https://uui.epam.com/static/images/app-logos/learn_logo.svg" />,
-    },
-    { id: 'trainingCatalog', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Training Catalog" /> },
-    { id: 'requests', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Requests" /> },
-    { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-    { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } /> },
-    { id: 'avatar', priority: 2, render: renderAvatar },
-    { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } /> },
-];
-export const itemsExamples = [
-    {
+
+export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProps | LoveshipMainMenuProps | ElectricMainMenuProps>) => {
+    let learn_logo = '/static/images/app-logos/learn_logo.svg';
+
+    const selectedProps = props.getSelectedProps();
+
+    if ('color' in selectedProps && selectedProps.color === 'white') {
+        learn_logo = '/static/images/app-logos/learn_dark_logo.svg';
+    }
+
+    const items: AdaptiveItemProps[] = [
+        {
+            id: 'burger', priority: 100, collapsedContainer: true, render: (p) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
+        },
+        {
+            id: 'logo',
+            priority: 99,
+            render: (p) => <MainMenuLogo key={ p.id } href="https://learn.epam.com/" logoUrl={ learn_logo } />,
+        },
+        { id: 'trainingCatalog', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Training Catalog" /> },
+        { id: 'requests', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Requests" /> },
+        { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
+        { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } /> },
+        { id: 'avatar', priority: 2, render: renderAvatar },
+        { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } /> },
+    ];
+
+    return [{
         name: `Items: ${items.map((i) => i.id).join(', ')}.`,
         value: items,
     },
@@ -187,7 +217,7 @@ export const itemsExamples = [
             {
                 id: 'appLogo2',
                 priority: 99,
-                render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl="/static/images/app-logos/learn_logo.svg" estimatedWidth={ 142 } />,
+                render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } estimatedWidth={ 142 } />,
             },
             {
                 id: 'start',
@@ -228,5 +258,5 @@ export const itemsExamples = [
                 render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
             },
         ],
-    },
-];
+    }];
+};
