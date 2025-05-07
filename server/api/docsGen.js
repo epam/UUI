@@ -4,28 +4,6 @@ const { readDocsGenResultsJson, getComponentSummariesLookup } = require('../util
 
 const router = express.Router();
 
-/**
- *
- * @param typeValue {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TTypeValue}
- * @returns {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TTypeValue}
- */
-function prettyPrintTypeValue(typeValue) {
-    if (typeValue) {
-        const pp = {};
-        if (typeValue.print) {
-            pp.print = highlightTsCode(typeValue.print.join('\n')).split('\n');
-        }
-        if (typeValue.raw) {
-            pp.html = highlightTsCode(typeValue.raw);
-        }
-        return {
-            ...typeValue,
-            ...pp,
-        };
-    }
-    return typeValue;
-}
-
 router.get('/docs-gen/details/:shortRef', (req, res) => {
     const shortRef = req.params.shortRef;
     if (!shortRef) {
@@ -34,17 +12,6 @@ router.get('/docs-gen/details/:shortRef', (req, res) => {
     const { docsGenTypes } = readDocsGenResultsJson();
 
     const exportedType = docsGenTypes[shortRef];
-    const details = exportedType.details;
-
-    if (details) {
-        details.typeValue = prettyPrintTypeValue(details.typeValue);
-        if (details.props) {
-            details.props = details.props.map((p) => {
-                p.typeValue = prettyPrintTypeValue(p.typeValue);
-                return p;
-            });
-        }
-    }
 
     res.send({
         content: exportedType,
