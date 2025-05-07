@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
+import { IDropdownBodyProps, useUuiContext, RangeDatePickerInputType, RangeDatePickerValue } from '@epam/uui-core';
 import {
     FlexRow, FlexSpacer, FlexCell,
 } from '../layout';
@@ -8,9 +8,8 @@ import { i18n } from '../../i18n';
 import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
 import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
 import type {
-    RangeDatePickerBodyValue, RangeDatePickerProps, RangeDatePickerValue,
+    RangeDatePickerBodyValue, RangeDatePickerProps,
 } from '../datePickers';
-import type { RangeDatePickerInputType } from '../datePickers/types';
 import { RangeDatePickerBody } from '../datePickers';
 import { settings } from '../../settings';
 
@@ -56,6 +55,17 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
         }
     };
 
+    const onClear = () => {
+        const newValue = {
+            from: props.preventEmptyFromDate ? value.from : null,
+            to: props.preventEmptyToDate ? value.to : null,
+        };
+
+        onValueChange(newValue);
+    };
+
+    const shouldShowClearButton = !props.preventEmptyToDate || !props.preventEmptyFromDate;
+
     return (
         <Fragment>
             <FlexRow borderBottom={ true }>
@@ -88,13 +98,17 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                             setInFocus(inputType);
                         } }
                         onBlurInput={ props.onBlur }
+                        preventEmptyFromDate={ props.preventEmptyFromDate }
+                        preventEmptyToDate={ props.preventEmptyToDate }
                     />
                     <FlexSpacer />
-                    <LinkButton
-                        isDisabled={ !value.from && !value.to }
-                        caption={ i18n.pickerModal.clearAllButton }
-                        onClick={ () => onValueChange(defaultRangeValue) }
-                    />
+                    { shouldShowClearButton && (
+                        <LinkButton
+                            isDisabled={ !value.from && !value.to }
+                            caption={ i18n.filterToolbar.rangeDatePicker.clearCaption }
+                            onClick={ onClear }
+                        />
+                    ) }
                 </FlexRow>
             </FlexCell>
         </Fragment>

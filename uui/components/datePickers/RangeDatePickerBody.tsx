@@ -1,7 +1,13 @@
 import React, { forwardRef, useState, type JSX } from 'react';
 import cx from 'classnames';
-import type { IControlled, RangeDatePickerPresets } from '@epam/uui-core';
-import type { DayProps } from '@epam/uui-components';
+import type {
+    IControlled,
+    RangeDatePickerPresets,
+    DayProps,
+    RangeDatePickerInputType,
+    RangeDatePickerValue,
+    RangeDatePickerProps,
+} from '@epam/uui-core';
 import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
 import { CalendarPresets } from './CalendarPresets';
@@ -12,10 +18,7 @@ import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
     defaultRangeValue, getMonthOnOpen, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
-import type {
-    CommonDatePickerBodyProps,
-    RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerBodyValue, ViewType,
-} from './types';
+import type { CommonDatePickerBodyProps, ViewType } from './types';
 
 import css from './RangeDatePickerBody.module.scss';
 
@@ -93,7 +96,21 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     },
 };
 
-export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, IControlled<RangeDatePickerBodyValue<T>> {
+/**
+ * Represents date picker body value
+ */
+export interface RangeDatePickerBodyValue<TSelection> {
+    /**
+     * Currently setting date
+     */
+    inFocus: RangeDatePickerInputType;
+    /**
+     * Date currently set
+     */
+    selectedDate: TSelection;
+}
+
+export interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate'>, IControlled<RangeDatePickerBodyValue<T>> {
     renderFooter?(): React.ReactNode;
     isHoliday?: (day: Dayjs) => boolean;
 }
@@ -116,10 +133,10 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     const getRange = (newValue: string | null) => {
         if (!filter || filter(uuiDayjs.dayjs(newValue))) {
             if (inFocus === 'from') {
-                return getWithFrom(selectedDate, newValue);
+                return getWithFrom(selectedDate, newValue, props.preventEmptyFromDate);
             }
             if (inFocus === 'to') {
-                return getWithTo(selectedDate, newValue);
+                return getWithTo(selectedDate, newValue, props.preventEmptyToDate);
             }
         }
     };

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps, devLogger, OutatedOffset } from '@epam/uui-core';
+import { uuiElement, cx, TooltipCoreProps, DropdownBodyProps, IDropdownTogglerProps, devLogger, OutdatedOffset } from '@epam/uui-core';
 import { autoPlacement, Middleware, offset, OffsetOptions, Placement } from '@floating-ui/react';
 import { Dropdown } from './Dropdown';
 import { DropdownContainer } from './DropdownContainer';
 
 export interface TooltipProps extends TooltipCoreProps {}
 
-function normalizeOffset(offsetValue: OffsetOptions | OutatedOffset | undefined): OffsetOptions {
+function normalizeOffset(offsetValue: OffsetOptions | OutdatedOffset | undefined): OffsetOptions {
     if (!offsetValue) {
         return { mainAxis: 12 };
     }

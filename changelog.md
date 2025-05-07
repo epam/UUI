@@ -1,56 +1,82 @@
-# 5.xx.x - xx.xx.2025
-**What's New**
-* [Dropdown][Breaking Change]: reworked to functional component, migrated from "react-popper" to "floating-ui/react", added support for virtual elements - prop `virtualTarget`, prop `modifiers` changed to `middleware` for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
-```
-// old
-<Dropdown
-  targetRef={ targetRef }
-  modifiers={ [
-    {
-        name: 'offset',
-        options: {
-            offset: [10, 10]
-        }
-    }
-  ] }
->
-// new
-<Dropdown
-  virtualTarget={ virtualTargetRef }
-  middleware={ [offset(10)] }
->
+# 6.xx.xx - xx.xx.2025
 
-```
-* [Tooltip][Breaking Change]: reworked to a functional component, migrated from "react-popper" to "floating-ui/react". Part of the `offset` prop type changed to `OffsetOptions | OutdatedOffset`. The `OffsetOptions` type is from the `floating-ui` package, and the `OutdatedOffset` type was added to support the more popular previous behavior like `[10, 10]`. The `OffsetsFunction` type was removed due to being hard to implement and use with `floating-ui`.
-* [DatePicker]: improved render performance for scroll actions.
-* [TimePicker]: added `ref` prop.
-* [@epam/uui-components][SliderHandle]: changed signature of prop `offcet` - see [docs](https://floating-ui.com/docs/offset), migrated from "react-popper" to "floating-ui/react".
-* [@epam/uui-editor]: migrated from "react-popper" to "floating-ui/react".
-* [FlexRow][Breaking Change]: all logic moved from `@epam/uui-components` to `@epam/uui`, export from `@epam/uui-components` removed. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
+**What's New**
+* Removed `react-test-renderer` deps from '@epam/uui-test-utils' package, since it crashes with React 18 and lower. If you are import 'renderer' from '@epam/uui-test-utils', replace it to the direct import from 'react-test-renderer' package.
+* [DatePicker]: added `preventEmpty` prop to prevent picker form being empty. See example [here](https://uui.epam.com/documents?id=datePicker&mode=doc&category=components#examples-datePicker-PreventEmpty)
+* [RangeDatePicker]: 
+  * added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
+  * `RangeDatePickerValue` interface was moved to the @epam/uui-core package
+* [AsyncDataSource]: added caching functionality, allowing two or more Views to reuse the same data.
+* [MainMenu][Electric][Loveship]: added prop `color` with `white` and `dark` values for the MainMenu component. The `dark` is used by default.
+
+**What's Fixed**
+* [useForm]: fixed router blocking if `beforeLeave` props returned `false`. Previously router was blocked and immediately unblocked on any redirect, but we shouldn't block in at all in this case.
+* [PickerInput]: fixed bug when selected item was applied value to the search after arrow keyboard navigation
+* [NumericInput]: fixed `value` text color for `readonly` state
+
+# 6.0.0 - 23.04.2025
+
+**What's New**
+* React 19 support:
+    * UUI is now compatible with React 19. UUI site was reworked to work with React 19.
+    * UUI packages still backward compatible with React 18
+    * UUI templates updated to use React 19
+    * @epam/uui-test-utils reworked to not use deprecated 'react-test-renderer', now we use '@testing-library/react' instead. It will cause different snapshots results via renderSnapshotWithContextAsync helper, so please update them.
+* Introduced sizes and icons theming. This is essential for external customers support, as it allows them to use their own sizes and icons.
+  * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity. 
+  * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
+* Updated icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
+* [Dropdown]: reworked to FC, migrated from "react-popper" to "floating-ui/react"
+  * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+    ```
+    // old
+    <Dropdown
+      modifiers={ [
+        {
+            name: 'offset',
+            options: {
+                offset: [10, 10]
+            }
+        }
+      ] }
+    >
+    // new
+    <Dropdown
+      middleware={ [offset(10)] }
+    >
+    ```
+  * added support for virtual elements, you can define them via `virtualTarget` prop
+* [Tooltip]: reworked to FC, migrated from "react-popper" to "floating-ui/react"
+  * [Breaking Change]: prop `modifiers` changed to `middleware` according to new "floating-ui" api, for more info see [docs](https://floating-ui.com/docs/migration#configure-middleware)
+  * `offset` prop changed to accept `OffsetOptions` object. Old format with array(`[10, 10]`) was deprecated and will be removed in future versions.
+* [SliderHandle]: migrated from "react-popper" to "floating-ui/react", changed signature of prop `offset` - see [docs](https://floating-ui.com/docs/offset).
+* [PickerInput]:
+    * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
+    * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
+    * [DataPickerRow]: added default implementation of `renderItem` callback
+* [PickerList]:
+    * [Breaking Change]: `renderRow` prop now affects only modal rows
+    * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
+    * added `renderListRow` callback to customize list row without affecting row in modal
+* [FlexRow][Breaking Change]: component was moved from `@epam/uui-components` to `@epam/uui`. Component refactored to CSS variables approach. `alignItems`, `justifyContent` props aligned with CSS.
 * [ModalHeader][Breaking Change]: removed `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-header` class to change default values `--uui-modals-header-column-gap`, `--uui-modals-header-padding`, `--uui-modals-header-vertical-padding`.
 * [ModalFooter][Breaking Change]: removed `borderBottom`, `margin`, `size`, `spacing`, `topShadow`, `columnGap`, `padding`, `vPadding` props, to set custom values use `cx` prop or global `uui-modal-footer` class to change default values `--uui-modals-footer-column-gap`, `--uui-modals-footer-padding`, `--uui-modals-footer-vertical-padding`.
-* [PickerInput]:
-  * `renderRow` prop type is changed, first param of the callback now has `PickerRenderRowParams` type
-  * [DataPickerRow][Breaking Change]: added required `getName` prop. This prop also passed into first param of `renderRow` `PickerInput` prop callback.
-  * [DataPickerRow]: added default implementation of `renderItem` callback
-* [PickerList]:
-  * [Breaking Change]: `renderRow` prop now affects only modal rows
-  * [Breaking Change]: `PickerListItem` was renamed to `PickerListRow`
-  * added `renderListRow` callback to customize list row without affecting row in modal
+* [DatePicker]: improved render performance for scroll actions.
+* [TimePicker]: added `ref` prop.
 * [NumericInput]: added `center` value for `align` prop
 
 **What's Fixed**
 * [NumericInput]: added right margin for arrows
 * [MultiSwitch]: fixed `isReadonly` prop
 * [FilterPanelItemToggler]: removed redundant left padding for postfix (align with figma design)
-* [PickerToggler]: fixed `"key" prop is being spread into JSX` warning.
 * [ColumnConfigModal]: fixed modal width according to design
 * [DatePicker]: fixed type for `renderTarget` prop
-* [@epam/uui-editor]: fixed minor toolbars issues
+* [RTE]: fixed minor toolbars issues
 * [DataTable]: fixed bug when fixed column with `grow: 1` didn't fill all available space
 * [Pickers]: scroll list to the top while start searching
 * [PickerInput]: remove list bottom border in case if it does not have a footer
 * [DatePickers]: fixed select of disabled dates via input
+* [RangeDatePicker]: remove colons from input placeholders
 
 # 5.13.2 - 04.03.2025
 **What's Fixed**

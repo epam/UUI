@@ -193,7 +193,7 @@ export class DataTableHeaderCell<TItem, TId> extends React.Component<DataTableHe
                     this.props.isFirstColumn && 'uui-dt-header-first-column',
                     this.props.isLastColumn && 'uui-dt-header-last-column',
                     this.props.column.fix && css['pinned-' + this.props.column.fix],
-                    isResizable && css.resizable,
+                    isResizable && uuiMarkers.resizable,
                     props.isDraggable && css.draggable,
                     props.isDragGhost && css.ghost,
                     props.isDraggedOut && css.isDraggedOut,

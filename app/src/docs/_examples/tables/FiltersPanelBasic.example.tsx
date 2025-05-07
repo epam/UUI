@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import dayjs from 'dayjs';
 import { defaultPredicates, rangeDatePickerPresets, FiltersPanel, DataTable, Panel, FlexRow, Text, Switch, Badge, BadgeProps } from '@epam/uui';
-import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
+import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext, RangeDatePickerValue } from '@epam/uui-core';
 import { Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
@@ -70,10 +70,12 @@ const personColumns: DataColumnProps<Person, number>[] = [
     },
 ];
 
+type FilterType = Person & { hireDatePreventEmpty: RangeDatePickerValue; birthDatePreventEmpty: string };
+
 export default function FiltersPanelExample() {
     const svc = useUuiContext();
 
-    const filtersConfig = useMemo<TableFiltersConfig<Person>[]>(
+    const filtersConfig = useMemo<TableFiltersConfig<FilterType>[]>(
         () => [
             {
                 field: 'profileStatusId',
@@ -146,6 +148,21 @@ export default function FiltersPanelExample() {
                         },
                     },
                 },
+            },
+            {
+                field: 'hireDatePreventEmpty',
+                columnKey: 'hireDate',
+                title: 'Hire date prevent empty',
+                type: 'rangeDatePicker',
+                preventEmptyFromDate: true,
+                preventEmptyToDate: true,
+            },
+            {
+                field: 'birthDatePreventEmpty',
+                columnKey: 'birthDate',
+                title: 'Birth Date prevent empty',
+                type: 'datePicker',
+                preventEmpty: true,
             },
         ],
         [],

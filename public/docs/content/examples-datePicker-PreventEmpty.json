@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To prevent the DatePicker from being empty, you can pass the "
+      },
+      {
+        "text": "preventEmpty={true}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. This will remove the input's 'clear' icon and also return the last selected value if the input is cleared via keyboard."
+      }
+    ]
+  }
+]

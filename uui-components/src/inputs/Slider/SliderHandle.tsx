@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IHasCX, uuiElement, cx, IHasRawProps } from '@epam/uui-core';
 import css from './SliderHandle.module.scss';
-import { useFloating, offset, flip, shift, arrow, autoUpdate } from '@floating-ui/react';
+import { useFloating, arrow, autoUpdate } from '@floating-ui/react';
 import { Portal } from '../../overlays';
 import { uuiSlider } from './SliderBase';
 
@@ -36,9 +36,6 @@ export const SliderHandle: React.FC<SliderHandleProps> = (props) => {
     const { refs, floatingStyles } = useFloating({
         placement: 'top',
         middleware: [
-            offset(10),
-            flip(),
-            shift({ padding: 5 }),
             arrow({ element: arrowRef }),
         ],
         whileElementsMounted: autoUpdate,

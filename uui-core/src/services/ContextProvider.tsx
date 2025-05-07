@@ -49,10 +49,10 @@ export function ContextProvider<TApi, TAppContext>(props: ContextProviderProps<T
 
     return (
         (
-            <UuiContext value={ services }>
+            <UuiContext.Provider value={ services }>
                 {children}
                 <DragGhost />
-            </UuiContext>
+            </UuiContext.Provider>
         )
     );
 }

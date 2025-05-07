@@ -1,37 +1,18 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
-        "data": {},
-        "nodes": [
-          {
-            "object": "text",
-            "text": "UUI supports different TextInput sizes, according to TextInput height. You can change the size by passing the ",
-            "marks": []
-          },
-          {
-            "object": "text",
-            "text": "size",
-            "marks": [
-              {
-                "object": "mark",
-                "type": "uui-richTextEditor-code",
-                "data": {}
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " prop.",
-            "marks": []
-          }
-        ]
+        "text": "UUI supports different TextInput sizes, according to TextInput height. You can change the size by passing the "
+      },
+      {
+        "text": "size",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop."
       }
     ]
   }
-}
+]

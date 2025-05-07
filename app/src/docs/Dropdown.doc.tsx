@@ -68,7 +68,7 @@ export class DropdownDoc extends BaseDocsBlock {
                     {
                         value: () => {
                             return (
-                                <uui.Panel shadow={ true }>
+                                <uui.Panel background="surface-main" shadow={ true }>
                                     <uui.FlexRow padding="12" vPadding="12">
                                         <uui.Text>Dropdown body content. You can use any components as a dropdown body.</uui.Text>
                                     </uui.FlexRow>
