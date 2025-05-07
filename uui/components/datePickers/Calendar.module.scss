@@ -83,7 +83,7 @@
     }
 
     :global(.uui-calendar-clickable-day) {
-        &:hover, &:focus {
+        &:hover, &:focus-visible {
             &:not(:global(.uui-calendar-filtered-day)) {
                 outline: none;
                 cursor: pointer;
