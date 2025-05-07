@@ -3,7 +3,15 @@ import * as uui from '@epam/uui';
 import * as loveship from '@epam/loveship';
 import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
-import { DocBuilder, DocPreviewBuilder, TDocConfig, TDocContext, TPreviewCellSize, TSkin } from '@epam/uui-docs';
+import {
+    DocBuilder,
+    DocPreviewBuilder,
+    IPropSamplesCreationContext,
+    TDocConfig,
+    TDocContext,
+    TPreviewCellSize,
+    TSkin,
+} from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { getChilrdenExamples, getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
 //
@@ -57,10 +65,17 @@ export class MainMenuDoc extends BaseDocsBlock {
         },
         preview: (docPreview: DocPreviewBuilder<uui.MainMenuProps>) => {
             const w600_h80: TPreviewCellSize = '600-80';
+            const fakeCtx = {
+                getSelectedProps: () => ({}),
+            } as IPropSamplesCreationContext<any>;
+            const TEST_DATA = {
+                items: getItemsExamples(fakeCtx)[1].value,
+            };
+
             docPreview.add({
                 id: TMainMenuPreview['All Variants'],
                 matrix: {
-                    items: { examples: ['Learn'] },
+                    items: { values: [TEST_DATA.items] },
                 },
                 cellSize: w600_h80,
             });
