@@ -1,40 +1,8 @@
 const express = require('express');
 const { highlightTsCode } = require('./prism');
-const fs = require('fs');
-const path = require('path');
+const { readDocsGenResultsJson, getComponentSummariesLookup } = require('../utils/docsGen');
 
 const router = express.Router();
-
-/**
- *
- * @returns {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TApiReferenceJson}
- */
-function readDocsGenResultsJson() {
-    const filePath = path.join(__dirname, '../../public/docs/docsGenOutput/docsGenOutput.json');
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
-}
-
-/**
- *
- * @param typeValue {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TTypeValue}
- * @returns {import('@epam/uui-build/ts/tasks/docsGen/types/sharedTypes.ts').TTypeValue}
- */
-function prettyPrintTypeValue(typeValue) {
-    if (typeValue) {
-        const pp = {};
-        if (typeValue.print) {
-            pp.print = highlightTsCode(typeValue.print.join('\n')).split('\n');
-        }
-        if (typeValue.raw) {
-            pp.html = highlightTsCode(typeValue.raw);
-        }
-        return {
-            ...typeValue,
-            ...pp,
-        };
-    }
-    return typeValue;
-}
 
 router.get('/docs-gen/details/:shortRef', (req, res) => {
     const shortRef = req.params.shortRef;
@@ -44,17 +12,6 @@ router.get('/docs-gen/details/:shortRef', (req, res) => {
     const { docsGenTypes } = readDocsGenResultsJson();
 
     const exportedType = docsGenTypes[shortRef];
-    const details = exportedType.details;
-
-    if (details) {
-        details.typeValue = prettyPrintTypeValue(details.typeValue);
-        if (details.props) {
-            details.props = details.props.map((p) => {
-                p.typeValue = prettyPrintTypeValue(p.typeValue);
-                return p;
-            });
-        }
-    }
 
     res.send({
         content: exportedType,
@@ -86,12 +43,7 @@ router.get('/docs-gen/exports', (req, res) => {
  * We only return "summary" part of each type for performance reasons.
  */
 router.get('/docs-gen/summaries', (req, res) => {
-    const { docsGenTypes } = readDocsGenResultsJson();
-    const content = Object.keys(docsGenTypes).reduce((acc, typeRef) => {
-        acc[typeRef] = docsGenTypes[typeRef].summary;
-        return acc;
-    }, {});
-
+    const content = getComponentSummariesLookup();
     res.send({
         content,
     });
