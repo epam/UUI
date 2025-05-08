@@ -34,6 +34,11 @@
 
         &:focus-visible {
             @include focus-visible-effect(-2px);
+            background-color: var(--uui-main_menu-dropdown-bg);
+        }
+
+        &:focus {
+            background-color: var(--uui-main_menu-dropdown-bg);
         }
     }
 
