@@ -330,8 +330,8 @@
         --uui-main_menu-text-hover: var(--uui-text-primary);
         --uui-main_menu-text-active: var(--uui-text-primary);
         --uui-main_menu-bg: var(--uui-neutral-0);
-        --uui-main_menu-hover: var(--uui-neutral-10);
-        --uui-main_menu-active: var(--uui-neutral-10);
+        --uui-main_menu-hover: var(--uui-neutral-20);
+        --uui-main_menu-active: var(--uui-neutral-20);
         --uui-main_menu-border-active: var(--uui-primary-50);
 
         --uui-main_menu-search-bg: var(--uui-neutral-5);
@@ -357,8 +357,9 @@
             --uui-main_menu-text-hover: var(--uui-text-primary);
             --uui-main_menu-text-active: var(--uui-text-primary);
             --uui-main_menu-active: var(--uui-neutral-10);
-            --uui-main_menu-dropdown-bg: var(--uui-neutral-10);
+            --uui-main_menu-dropdown-bg: var(--uui-neutral-0);
             --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-20);
+            --uui-main_menu-dropdown-shadow: var(--uui-shadow-level-2);
         }
     }
 
