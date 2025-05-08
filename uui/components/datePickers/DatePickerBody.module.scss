@@ -83,7 +83,7 @@
         margin: var(--uui-dtp-month-margin);
         color: var(--uui-dtp_body-text);
 
-        &:hover, &:focus {
+        &:hover, &:focus-visible {
             outline: none;
             width: var(--uui-dtp-month-hover-width);
             height: var(--uui-dtp-cell-hover-height);
@@ -102,7 +102,7 @@
         margin: var(--uui-dtp-year-margin);
         color: var(--uui-dtp_body-text);
 
-        &:hover, &:focus {
+        &:hover, &:focus-visible {
             outline: none;
             width: var(--uui-dtp-year-hover-width);
             height: var(--uui-dtp-cell-hover-height);
