@@ -1,4 +1,4 @@
-# 6.1.0 - xx.xx.2025
+# 6.1.0 - 08.05.2025
 
 **What's New**
 * Removed `react-test-renderer` deps from '@epam/uui-test-utils' package, since it crashes with React 18 and lower. If you are import 'renderer' from '@epam/uui-test-utils', replace it to the direct import from 'react-test-renderer' package.
