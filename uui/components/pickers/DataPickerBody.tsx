@@ -155,6 +155,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                             rawProps={ {
                                 'aria-multiselectable': props.selectionMode === 'multi' ? true : null,
                                 'aria-orientation': 'vertical',
+                                tabIndex: -1,
                                 ...props.rawProps,
                             } }
                             rowsCount={ props.rowsCount }
