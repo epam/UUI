@@ -10,7 +10,8 @@
     --uui-main_menu-dropdown-bg: var(--uui-neutral-90);
     --uui-main_menu-dropdown-bg-hover: var(--uui-neutral-80);
     --uui-main_menu-dropdown-shadow: none;
-    --uui-main_menu-dropdown-border-radius: none;
+    --uui-main_menu-dropdown-border-radius: 0 0 6px 6px;
+    --uui-main_menu-dropdown-padding: 6px 0;
 
     --uui-main_menu-icon: var(--uui-neutral-5);
     --uui-main_menu-icon-hover: var(--uui-neutral-5);
@@ -20,6 +21,7 @@
     display: flex;
     flex-direction: column;
     min-width: 200px;
+    padding: var(--uui-main_menu-dropdown-padding);
     background-color: var(--uui-main_menu-dropdown-bg);
     box-shadow: var(--uui-main_menu-dropdown-shadow);
     border-radius: var(--uui-main_menu-dropdown-border-radius);
@@ -32,6 +34,11 @@
 
         &:focus-visible {
             @include focus-visible-effect(-2px);
+            background-color: var(--uui-main_menu-dropdown-bg);
+        }
+
+        &:focus {
+            background-color: var(--uui-main_menu-dropdown-bg);
         }
     }
 
@@ -39,6 +46,8 @@
         &:global(.uui-active) {
             border: 0 none;
             border-left: 3px solid var(--uui-main_menu-border-active);
+            border-image: var(--uui-main_menu-border-active-gradient, none);
+            border-image-slice: 3;
             background-color: var(--uui-main_menu-hover);
         }
     }

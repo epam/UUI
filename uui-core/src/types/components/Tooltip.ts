@@ -8,7 +8,7 @@ import { IControlled } from '../props';
  * @deprecated
  * left for backward compatibility, will be removed in future versions
  */
-export type OutatedOffset = [number | null | undefined, number | null | undefined];
+export type OutdatedOffset = [number | null | undefined, number | null | undefined];
 
 export interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     Partial<IControlled<boolean>>, Pick<DropdownProps, 'onClose' | 'middleware' | 'openDelay' |
@@ -21,7 +21,7 @@ export interface TooltipCoreProps extends IHasCX, IHasChildren, IHasRawProps<Rea
     renderContent?(): any;
 
     /** See [Floating UI docs]{@link https://floating-ui.com/docs/offset} */
-    offset?: OffsetOptions | OutatedOffset;
+    offset?: OffsetOptions | OutdatedOffset;
 
     /** React Node(s) to show tooltip for */
     children?: React.ReactNode;

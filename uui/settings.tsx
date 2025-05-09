@@ -635,7 +635,7 @@ const paginatorSettings: PaginatorSettings = {
         rightArrowIcon: RightArrowIcon,
     },
     sizes: {
-        default: '36',
+        default: '30',
     },
 };
 

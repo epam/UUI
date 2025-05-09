@@ -11,7 +11,7 @@ function queryAllByRoleAndText(container: HTMLElement, params: { role: string, t
 }
 
 function queryAllByAria(container: HTMLElement, name: string, value: string) {
-    const arr = container.querySelectorAll(`[aria-${name}=${value}]`);
+    const arr = container.querySelectorAll(`[aria-${name}='${value}']`);
     return [...arr] as HTMLElement[];
 }
 

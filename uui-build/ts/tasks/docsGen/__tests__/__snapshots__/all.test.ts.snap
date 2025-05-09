@@ -39,7 +39,8 @@ exports[`docsGen:all docsGen:comments should convert comments 1`] = `
       "uid": "a",
       "name": "a",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -55,7 +56,8 @@ exports[`docsGen:all docsGen:comments should convert comments 1`] = `
        ]
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -126,7 +128,8 @@ exports[`docsGen:all docsGen:comments should convert property-level tags 1`] = `
        }
       },
       "typeValue": {
-       "raw": "boolean"
+       "raw": "boolean",
+       "html": "<span class=\\"token builtin\\">boolean</span>"
       },
       "editor": {
        "type": "bool"
@@ -146,7 +149,8 @@ exports[`docsGen:all docsGen:comments should convert property-level tags 1`] = `
        }
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -166,7 +170,8 @@ exports[`docsGen:all docsGen:comments should convert property-level tags 1`] = `
        }
       },
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -186,7 +191,8 @@ exports[`docsGen:all docsGen:comments should convert property-level tags 1`] = `
        }
       },
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -228,7 +234,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface when it exten
       "uid": "value",
       "name": "value",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -240,7 +247,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface when it exten
       "uid": "onValueChange",
       "name": "onValueChange",
       "typeValue": {
-       "raw": "(newValue: string) => void"
+       "raw": "(newValue: string) => void",
+       "html": "<span class=\\"token punctuation\\">(</span>newValue<span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> <span class=\\"token keyword\\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -310,7 +318,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
       "uid": "aProp",
       "name": "aProp",
       "typeValue": {
-       "raw": "'black' | 'white'"
+       "raw": "'black' | 'white'",
+       "html": "<span class=\\"token string\\">'black'</span> <span class=\\"token operator\\">|</span> <span class=\\"token string\\">'white'</span>"
       },
       "editor": {
        "type": "oneOf",
@@ -325,7 +334,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
       "uid": "propExternalTypeTest",
       "name": "propExternalTypeTest",
       "typeValue": {
-       "raw": "HTMLElement"
+       "raw": "HTMLElement",
+       "html": "HTMLElement"
       },
       "required": true
      },
@@ -338,7 +348,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
        ]
       },
       "typeValue": {
-       "raw": "{ name: string; value: any; }[]"
+       "raw": "{ name: string; value: any; }[]",
+       "html": "<span class=\\"token punctuation\\">{</span> name<span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">;</span> value<span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">any</span><span class=\\"token punctuation\\">;</span> <span class=\\"token punctuation\\">}</span><span class=\\"token punctuation\\">[</span><span class=\\"token punctuation\\">]</span>"
       },
       "required": true
      },
@@ -351,7 +362,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
        ]
       },
       "typeValue": {
-       "raw": "(a?: number | undefined, b?: number | undefined) => number | undefined"
+       "raw": "(a?: number | undefined, b?: number | undefined) => number | undefined",
+       "html": "<span class=\\"token punctuation\\">(</span>a<span class=\\"token operator\\">?</span><span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">number</span> <span class=\\"token operator\\">|</span> <span class=\\"token keyword\\">undefined</span><span class=\\"token punctuation\\">,</span> b<span class=\\"token operator\\">?</span><span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">number</span> <span class=\\"token operator\\">|</span> <span class=\\"token keyword\\">undefined</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> <span class=\\"token builtin\\">number</span> <span class=\\"token operator\\">|</span> <span class=\\"token keyword\\">undefined</span>"
       },
       "editor": {
        "type": "func"
@@ -367,7 +379,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
        ]
       },
       "typeValue": {
-       "raw": "(p: number) => number"
+       "raw": "(p: number) => number",
+       "html": "<span class=\\"token punctuation\\">(</span>p<span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">number</span><span class=\\"token punctuation\\">)</span> <span class=\\"token operator\\">=></span> <span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "func"
@@ -383,7 +396,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
        ]
       },
       "typeValue": {
-       "raw": "get someBool(): boolean"
+       "raw": "get someBool(): boolean",
+       "html": "<span class=\\"token keyword\\">get</span> <span class=\\"token function\\">someBool</span><span class=\\"token punctuation\\">(</span><span class=\\"token punctuation\\">)</span><span class=\\"token operator\\">:</span> <span class=\\"token builtin\\">boolean</span>"
       },
       "editor": {
        "type": "bool"
@@ -394,7 +408,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
       "uid": "a",
       "name": "a",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -411,7 +426,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
        ]
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -450,7 +466,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
       "uid": "a",
       "name": "a",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -466,7 +483,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface which extends
        ]
       },
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -514,7 +532,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface with generics
       "uid": "srcData",
       "name": "srcData",
       "typeValue": {
-       "raw": "TSrcData"
+       "raw": "TSrcData",
+       "html": "TSrcData"
       },
       "required": true
      },
@@ -522,7 +541,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface with generics
       "uid": "dstData",
       "name": "dstData",
       "typeValue": {
-       "raw": "TDstData"
+       "raw": "TDstData",
+       "html": "TDstData"
       },
       "required": false
      },
@@ -530,7 +550,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface with generics
       "uid": "offsetLeft",
       "name": "offsetLeft",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -541,7 +562,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface with generics
       "uid": "offsetTop",
       "name": "offsetTop",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -552,7 +574,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface with generics
       "uid": "targetWidth",
       "name": "targetWidth",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -563,7 +586,8 @@ exports[`docsGen:all docsGen:complexTypes should convert interface with generics
       "uid": "targetHeight",
       "name": "targetHeight",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -636,7 +660,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pBool",
       "name": "pBool",
       "typeValue": {
-       "raw": "boolean"
+       "raw": "boolean",
+       "html": "<span class=\\"token builtin\\">boolean</span>"
       },
       "editor": {
        "type": "bool"
@@ -647,7 +672,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pNumber",
       "name": "pNumber",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -658,7 +684,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pString",
       "name": "pString",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -669,7 +696,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pAny",
       "name": "pAny",
       "typeValue": {
-       "raw": "any"
+       "raw": "any",
+       "html": "<span class=\\"token builtin\\">any</span>"
       },
       "required": true
      },
@@ -677,7 +705,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pUnknown",
       "name": "pUnknown",
       "typeValue": {
-       "raw": "unknown"
+       "raw": "unknown",
+       "html": "<span class=\\"token builtin\\">unknown</span>"
       },
       "required": true
      },
@@ -685,7 +714,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pNever",
       "name": "pNever",
       "typeValue": {
-       "raw": "never"
+       "raw": "never",
+       "html": "<span class=\\"token builtin\\">never</span>"
       },
       "required": true
      },
@@ -693,7 +723,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pVoid",
       "name": "pVoid",
       "typeValue": {
-       "raw": "void"
+       "raw": "void",
+       "html": "<span class=\\"token keyword\\">void</span>"
       },
       "required": true
      },
@@ -701,7 +732,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pNull",
       "name": "pNull",
       "typeValue": {
-       "raw": "null"
+       "raw": "null",
+       "html": "<span class=\\"token keyword\\">null</span>"
       },
       "required": true
      },
@@ -709,7 +741,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pUndefined",
       "name": "pUndefined",
       "typeValue": {
-       "raw": "undefined"
+       "raw": "undefined",
+       "html": "<span class=\\"token keyword\\">undefined</span>"
       },
       "required": true
      },
@@ -717,7 +750,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pArray",
       "name": "pArray",
       "typeValue": {
-       "raw": "string[]"
+       "raw": "string[]",
+       "html": "<span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">[</span><span class=\\"token punctuation\\">]</span>"
       },
       "required": true
      },
@@ -725,7 +759,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pObject",
       "name": "pObject",
       "typeValue": {
-       "raw": "object"
+       "raw": "object",
+       "html": "object"
       },
       "required": true
      },
@@ -733,7 +768,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pBigint",
       "name": "pBigint",
       "typeValue": {
-       "raw": "bigint"
+       "raw": "bigint",
+       "html": "bigint"
       },
       "required": true
      },
@@ -741,7 +777,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pSymbol",
       "name": "pSymbol",
       "typeValue": {
-       "raw": "symbol"
+       "raw": "symbol",
+       "html": "<span class=\\"token builtin\\">symbol</span>"
       },
       "required": true
      },
@@ -749,7 +786,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pLiteral",
       "name": "pLiteral",
       "typeValue": {
-       "raw": "'test'"
+       "raw": "'test'",
+       "html": "<span class=\\"token string\\">'test'</span>"
       },
       "editor": {
        "type": "oneOf",
@@ -763,7 +801,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pTuple",
       "name": "pTuple",
       "typeValue": {
-       "raw": "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']"
+       "raw": "[boolean, number, string, any, unknown, never, void, null, undefined, string[], object, bigint, symbol, 'test']",
+       "html": "<span class=\\"token punctuation\\">[</span><span class=\\"token builtin\\">boolean</span><span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">number</span><span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">any</span><span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">unknown</span><span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">never</span><span class=\\"token punctuation\\">,</span> <span class=\\"token keyword\\">void</span><span class=\\"token punctuation\\">,</span> <span class=\\"token keyword\\">null</span><span class=\\"token punctuation\\">,</span> <span class=\\"token keyword\\">undefined</span><span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">[</span><span class=\\"token punctuation\\">]</span><span class=\\"token punctuation\\">,</span> object<span class=\\"token punctuation\\">,</span> bigint<span class=\\"token punctuation\\">,</span> <span class=\\"token builtin\\">symbol</span><span class=\\"token punctuation\\">,</span> <span class=\\"token string\\">'test'</span><span class=\\"token punctuation\\">]</span>"
       },
       "required": true
      },
@@ -771,7 +810,8 @@ exports[`docsGen:all docsGen:complexTypes should convert object type with differ
       "uid": "pUnion",
       "name": "pUnion",
       "typeValue": {
-       "raw": "null | string | number | bigint | boolean | symbol | void | object | string[]"
+       "raw": "null | string | number | bigint | boolean | symbol | void | object | string[]",
+       "html": "<span class=\\"token keyword\\">null</span> <span class=\\"token operator\\">|</span> <span class=\\"token builtin\\">string</span> <span class=\\"token operator\\">|</span> <span class=\\"token builtin\\">number</span> <span class=\\"token operator\\">|</span> bigint <span class=\\"token operator\\">|</span> <span class=\\"token builtin\\">boolean</span> <span class=\\"token operator\\">|</span> <span class=\\"token builtin\\">symbol</span> <span class=\\"token operator\\">|</span> <span class=\\"token keyword\\">void</span> <span class=\\"token operator\\">|</span> object <span class=\\"token operator\\">|</span> <span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">[</span><span class=\\"token punctuation\\">]</span>"
       },
       "required": false
      }
@@ -809,7 +849,8 @@ exports[`docsGen:all docsGen:complexTypes should expand props if internal type i
       "uid": "p2",
       "name": "p2",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -864,7 +905,8 @@ exports[`docsGen:all docsGen:complexTypes should include generic type argument n
       "uid": "p1",
       "name": "p1",
       "typeValue": {
-       "raw": "Record<string, T>"
+       "raw": "Record<string, T>",
+       "html": "Record<span class=\\"token operator\\">&lt;</span><span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">,</span> <span class=\\"token constant\\">T</span><span class=\\"token operator\\">></span>"
       },
       "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Record",
       "required": true
@@ -898,7 +940,8 @@ exports[`docsGen:all docsGen:complexTypes should include generic type argument n
       "uid": "p1",
       "name": "p1",
       "typeValue": {
-       "raw": "Record<string, S>"
+       "raw": "Record<string, S>",
+       "html": "Record<span class=\\"token operator\\">&lt;</span><span class=\\"token builtin\\">string</span><span class=\\"token punctuation\\">,</span> <span class=\\"token constant\\">S</span><span class=\\"token operator\\">></span>"
       },
       "typeValueRef": "node_modules/typescript/lib/lib.es5.d.ts:Record",
       "required": true
@@ -949,7 +992,8 @@ exports[`docsGen:all docsGen:complexTypes should mark props as optional when typ
       "uid": "value",
       "name": "value",
       "typeValue": {
-       "raw": "boolean"
+       "raw": "boolean",
+       "html": "<span class=\\"token builtin\\">boolean</span>"
       },
       "editor": {
        "type": "bool"
@@ -1029,7 +1073,8 @@ exports[`docsGen:all docsGen:intersection should convert intersection 1`] = `
       "uid": "a1",
       "name": "a1",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1041,7 +1086,8 @@ exports[`docsGen:all docsGen:intersection should convert intersection 1`] = `
       "uid": "a2",
       "name": "a2",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1053,7 +1099,8 @@ exports[`docsGen:all docsGen:intersection should convert intersection 1`] = `
       "uid": "b1",
       "name": "b1",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1065,7 +1112,8 @@ exports[`docsGen:all docsGen:intersection should convert intersection 1`] = `
       "uid": "b2",
       "name": "b2",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1129,7 +1177,8 @@ exports[`docsGen:all docsGen:intersection should convert top level type with Omi
       "uid": "f1",
       "name": "f1",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1182,7 +1231,8 @@ exports[`docsGen:all docsGen:intersection should convert type intersection with 
       "uid": "f1",
       "name": "f1",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1194,7 +1244,8 @@ exports[`docsGen:all docsGen:intersection should convert type intersection with 
       "uid": "f3",
       "name": "f3",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1206,7 +1257,8 @@ exports[`docsGen:all docsGen:intersection should convert type intersection with 
       "uid": "f4",
       "name": "f4",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1218,7 +1270,8 @@ exports[`docsGen:all docsGen:intersection should convert type intersection with 
       "uid": "s1",
       "name": "s1",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1230,7 +1283,8 @@ exports[`docsGen:all docsGen:intersection should convert type intersection with 
       "uid": "s2",
       "name": "s2",
       "typeValue": {
-       "raw": "number"
+       "raw": "number",
+       "html": "<span class=\\"token builtin\\">number</span>"
       },
       "editor": {
        "type": "number"
@@ -1307,7 +1361,8 @@ exports[`docsGen:all docsGen:mappedType should convert mapped type 1`] = `
       "uid": "[key: number]",
       "name": "[key: number]",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "required": true
      }
@@ -1347,7 +1402,8 @@ exports[`docsGen:all docsGen:propEditor should convert prop editor for optional 
       "uid": "icon",
       "name": "icon",
       "typeValue": {
-       "raw": "Icon"
+       "raw": "Icon",
+       "html": "Icon"
       },
       "editor": {
        "type": "component"
@@ -1390,7 +1446,8 @@ exports[`docsGen:all docsGen:propEditor:oneOf should convert union of literals a
       "uid": "size",
       "name": "size",
       "typeValue": {
-       "raw": "number | '12' | '18'"
+       "raw": "number | '12' | '18'",
+       "html": "<span class=\\"token builtin\\">number</span> <span class=\\"token operator\\">|</span> <span class=\\"token string\\">'12'</span> <span class=\\"token operator\\">|</span> <span class=\\"token string\\">'18'</span>"
       },
       "editor": {
        "type": "oneOf",
@@ -1469,7 +1526,8 @@ exports[`docsGen:all docsGen:union should convert union of two anonymous object 
       "uid": "sameProp",
       "name": "sameProp",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1480,7 +1538,8 @@ exports[`docsGen:all docsGen:union should convert union of two anonymous object 
       "uid": "n1Prop",
       "name": "n1Prop",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1491,7 +1550,8 @@ exports[`docsGen:all docsGen:union should convert union of two anonymous object 
       "uid": "n2Prop",
       "name": "n2Prop",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1532,7 +1592,8 @@ exports[`docsGen:all docsGen:union should convert union of two object types 1`] 
       "uid": "sameProp",
       "name": "sameProp",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1544,7 +1605,8 @@ exports[`docsGen:all docsGen:union should convert union of two object types 1`] 
       "uid": "n1Prop",
       "name": "n1Prop",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1556,7 +1618,8 @@ exports[`docsGen:all docsGen:union should convert union of two object types 1`] 
       "uid": "sameProp_2",
       "name": "sameProp",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1568,7 +1631,8 @@ exports[`docsGen:all docsGen:union should convert union of two object types 1`] 
       "uid": "n2Prop",
       "name": "n2Prop",
       "typeValue": {
-       "raw": "string"
+       "raw": "string",
+       "html": "<span class=\\"token builtin\\">string</span>"
       },
       "editor": {
        "type": "string"
@@ -1634,7 +1698,8 @@ exports[`docsGen:all docsGen:union should not expand ReactNode type of property 
       "uid": "testProp",
       "name": "testProp",
       "typeValue": {
-       "raw": "React.ReactNode"
+       "raw": "React.ReactNode",
+       "html": "React<span class=\\"token punctuation\\">.</span>ReactNode"
       },
       "typeValueRef": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode",
       "required": false
@@ -1668,7 +1733,8 @@ exports[`docsGen:all docsGen:union should not expand ReactNode type of property 
       "uid": "testProp",
       "name": "testProp",
       "typeValue": {
-       "raw": "React.ReactNode"
+       "raw": "React.ReactNode",
+       "html": "React<span class=\\"token punctuation\\">.</span>ReactNode"
       },
       "typeValueRef": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode",
       "required": false

@@ -1,6 +1,9 @@
-import { DataSourceState, DataRowProps, IEditable, IDataSourceView, PickerInputSearchPosition } from '@epam/uui-core';
+import React from 'react';
+import { DataSourceState, DataRowProps, IDataSourceView, PickerInputSearchPosition } from '@epam/uui-core';
 
-interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
+interface DataSourceKeyboardParams {
+    value: DataSourceState;
+    onValueChange: (setter: ((prevState: DataSourceState) => DataSourceState)) => void;
     listView: IDataSourceView<any, any, any>;
     rows: DataRowProps<any, any>[];
     searchPosition: PickerInputSearchPosition;
@@ -8,7 +11,6 @@ interface DataSourceKeyboardParams extends IEditable<DataSourceState> {
 
 export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: React.KeyboardEvent<HTMLElement>) => {
     const value = params.value;
-    const search = value.search;
 
     let focusedIndex = value.focusedIndex || 0;
     const maxVisibleIndex = value.topIndex + params.rows.length - 1;
@@ -54,12 +56,11 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             return;
     }
 
-    if (value.focusedIndex !== focusedIndex || value.search !== search) {
-        params.onValueChange({
-            ...value,
+    if (value.focusedIndex !== focusedIndex) {
+        params.onValueChange((state) => ({
+            ...state,
             focusedIndex,
             scrollTo: { index: focusedIndex, behavior: 'smooth', align: 'nearest' },
-            search,
-        });
+        }));
     }
 };

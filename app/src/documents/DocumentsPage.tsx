@@ -59,14 +59,14 @@ export function DocumentsPage() {
     }, [docsStructure, selectedDocId]);
 
     useEffect(() => {
-        if (docsStructure && !selectedDoc.component) {
+        if (docsStructure && !selectedDoc?.component) {
             redirectTo({ id: docsStructure[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
         }
     }, [docsStructure]);
 
     useEffect(() => {
         addCanonicalLinkTag();
-        document.title = selectedDoc.name ? `${selectedDoc.name} | UUI` : 'UUI';
+        document.title = selectedDoc?.name ? `${selectedDoc.name} | UUI` : 'UUI';
     }, [selectedDocId, selectedDoc]);
 
     useEffect(() => {

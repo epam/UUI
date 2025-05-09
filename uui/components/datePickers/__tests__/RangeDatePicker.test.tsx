@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { RangeDatePicker } from '../RangeDatePicker';
+import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent, fireEvent,
 } from '@epam/uui-test-utils';
 import dayjs from 'dayjs';
-import { RangeDatePickerProps } from '../types';
 import { supportedDateFormats } from '../helpers';
+import { RangeDatePickerValue } from '@epam/uui-core';
 
-type TestProps = Pick<RangeDatePickerProps, 'format' | 'onBlur' | 'onFocus' |'isHoliday' | 'onOpenChange'> & {
+type TestProps = Omit<RangeDatePickerProps, 'onValueChange'> & {
     value: RangeDatePickerProps['value'];
 };
 
@@ -100,7 +100,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should not clear when range is not filled', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: null,
             to: null,
         };
@@ -173,7 +173,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should reset invalid "from" value onBlur', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: null,
             to: '2019-10-07',
         };
@@ -194,7 +194,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should reset invalid "to" value onBlur', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: '2019-10-07',
             to: null,
         };
@@ -215,7 +215,7 @@ describe('RangeDataPicker', () => {
     });
 
     it('should set new value when new value typed in input', async () => {
-        const value = {
+        const value: RangeDatePickerValue = {
             from: null,
             to: '2019-10-07',
         };
@@ -328,41 +328,6 @@ describe('RangeDataPicker', () => {
         // should set 'from' value, since it earlier then previous 'to' value
         expect(dom.from.value).toBe('Oct 9, 2019');
         expect(dom.to.value).toBe('Oct 11, 2019');
-
-        // TODO: failed because oct 15 isn't clicked. Don't have idea why
-        // // move focus to 'from' input
-        // await userEvent.click(result.container); // close
-        // await userEvent.click(dom.from);
-        // expect(screen.getByRole('dialog')).toBeInTheDocument();
-        //
-        // expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
-        // expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
-        // const [, oct15] = await within(dialog).findAllByText('15');
-        // screen.debug(oct9, 100500);
-        // await userEvent.click(oct15);
-        // // should clear and focus 'to' input, when selecting older date
-        // expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
-        // expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
-        // // should set 'from' value, since it earlier then previous 'to' value
-        // expect(dom.from.value).toBe('Oct 15, 2019');
-        // expect(dom.to.value).toBe('');
-        //
-        // const [, oct10] = await within(dialog).findAllByText('10');
-        // await userEvent.click(oct10);
-        // // should not change focus when earlier date selected for 'to' input
-        // expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
-        // expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
-        // // should set 'from' value once more time, since it earlier then previous 'to' value
-        // expect(dom.from.value).toBe('Oct 10, 2019');
-        // expect(dom.to.value).toBe('');
-        //
-        // const [, oct17] = await within(dialog).findAllByText('17');
-        // await userEvent.click(oct17);
-        // // should return focus on input after two dates selected
-        // expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
-        // expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
-        // expect(dom.from.value).toBe('Oct 10, 2019');
-        // expect(dom.to.value).toBe('Oct 17, 2019');
 
         /**
          * 'to'
@@ -496,5 +461,110 @@ describe('RangeDataPicker', () => {
         });
         expect(dom.from.value).toBe(dayjs('2019-09-10').format(currentFormat));
         expect(dom.to.value).toBe(dayjs('2019-09-15').format(currentFormat));
+    });
+
+    it('should not select date that does not pass filter callback', async () => {
+        const { dom, mocks, result } = await setupRangeDatePicker({
+            value: null,
+            filter: (date) => dayjs(date).isAfter('2023-01-01'),
+        });
+
+        expect(dom.from.value).toEqual('');
+        expect(dom.to.value).toEqual('');
+
+        await userEvent.type(dom.from, '2022-12-31');
+        await userEvent.click(result.container);
+
+        expect(mocks.onValueChange).not.toHaveBeenCalled();
+        expect(dom.from.value).toEqual('');
+    });
+
+    it('should prevent picker from being empty when preventEmptyFromDate and preventEmptyToDate when both are true', async () => {
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-15',
+        };
+
+        const { dom, mocks, result } = await setupRangeDatePicker({
+            value,
+            preventEmptyFromDate: true,
+            preventEmptyToDate: true,
+        });
+
+        // Clear button should not be present when both preventEmpty props are true
+        const clearButton = screen.queryByAria('label', 'Clear input');
+        expect(clearButton).not.toBeInTheDocument();
+
+        // Case 1: Clear the 'from' input
+        await userEvent.clear(dom.from);
+        await userEvent.click(result.container); // emit blur event
+
+        // 'from' value should not change to null
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(expect.objectContaining({ from: null }));
+        // Input should revert to the previous valid value
+        expect(dom.from.value).toEqual('Sep 10, 2019');
+
+        // Case 2: Clear the 'to' input
+        await userEvent.clear(dom.to);
+        await userEvent.click(result.container); // emit blur event
+
+        // 'to' value should not change to null
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(expect.objectContaining({ to: null }));
+        // Input should revert to the previous valid value
+        expect(dom.to.value).toEqual('Sep 15, 2019');
+
+        // Case 3: Type an invalid date in 'from' input
+        await userEvent.clear(dom.from);
+        await userEvent.type(dom.from, 'invalid-date');
+        await userEvent.click(result.container); // emit blur event
+
+        // 'from' value should not change to null
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(expect.objectContaining({ from: null }));
+        // Input should revert to the previous valid value
+        expect(dom.from.value).toEqual('Sep 10, 2019');
+    });
+
+    it('should prevent picker "from" part being empty when preventEmptyFromDate it is true', async () => {
+        const value = {
+            from: '2019-09-10',
+            to: '2019-09-15',
+        };
+
+        const { dom, mocks, result } = await setupRangeDatePicker({
+            value,
+            preventEmptyFromDate: true,
+            preventEmptyToDate: false,
+        });
+
+        // Clear button should be present when only one preventEmpty prop is true
+        const clearButton = screen.queryByAria('label', 'Clear input');
+        expect(clearButton).toBeInTheDocument();
+
+        // Case 1: Clear the 'from' input
+        await userEvent.clear(dom.from);
+        await userEvent.click(result.container); // emit blur event
+
+        // 'from' value should not change to null
+        expect(mocks.onValueChange).not.toHaveBeenCalledWith(expect.objectContaining({ from: null }));
+        // Input should revert to the previous valid value
+        expect(dom.from.value).toEqual('Sep 10, 2019');
+
+        // Case 2: Clear the 'to' input
+        await userEvent.clear(dom.to);
+        await userEvent.click(result.container); // emit blur event
+
+        // 'to' value should change to null
+        expect(mocks.onValueChange).toHaveBeenCalledWith(expect.objectContaining({ to: null }));
+        // Input should be empty
+        expect(dom.to.value).toEqual('');
+
+        // Case 3: Click the clear button
+        await userEvent.click(clearButton);
+
+        // 'from' value should not change to null, but 'to' should
+        expect(mocks.onValueChange).toHaveBeenCalledWith({
+            from: '2019-09-10',
+            to: null,
+        });
     });
 });

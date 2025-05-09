@@ -39,7 +39,7 @@ const rowTypesDefaults: Record<string, FlexRowProps> = {
 export const FlexRow = uuiCore.withMods<uuiCore.FlexRowProps, FlexRowProps>(
     uui.FlexRow,
     (props) => {
-        return [`uui-color-${props.background || 'none'}`];
+        return [`uui-flex-row-bg-${props.background || 'none'}`];
     },
     (props) => {
         const defaults = rowTypesDefaults[props.type || 'panel'];

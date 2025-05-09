@@ -1,3 +1,5 @@
+import type { DataTableProps } from './DataTable';
+
 export type DataTableControlSize = '24' | '30' | '36' | '42' | '48';
 
 export interface DataTableMods {
@@ -59,7 +61,7 @@ export interface DataTableHeaderCellMods {
      * Defines table header cell size
      * @default '36'
      */
-    size?: DataTableMods['headerSize'];
+    size?: DataTableProps<unknown, unknown>['headerSize'];
 }
 
 export interface DataTableHeaderRowMods {
@@ -73,5 +75,5 @@ export interface DataTableHeaderRowMods {
      * Defines table header row size
      * @default '36'
      */
-    size?: DataTableMods['headerSize'];
+    size?: DataTableProps<unknown, unknown>['headerSize'];
 }

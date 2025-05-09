@@ -1,9 +1,11 @@
 .search-input {
+    box-sizing: border-box;
     flex-basis: 200px;
     max-width: 500px;
     height: 36px;
     min-width: 36px;
     border-radius: 18px;
+    border: 1px solid var(--uui-main_menu-search-border);
     background-color: var(--uui-main_menu-search-bg);
     fill: var(--uui-main_menu-search-icon);
     padding: 0 6px;
