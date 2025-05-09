@@ -16,7 +16,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
           dir="ltr"
           placeholder="Please select "
           tabindex="0"
-          type="text"
+          type="search"
           value=""
         />
       </div>
@@ -57,6 +57,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
           <div
             aria-orientation="vertical"
             style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+            tabindex="-1"
           >
             <div
               class="listContainer"
@@ -286,7 +287,7 @@ exports[`PickerInput Rendering should render with minimum props 1`] = `
         dir="ltr"
         placeholder="Please select "
         tabindex="0"
-        type="text"
+        type="search"
         value=""
       />
     </div>
