@@ -56,7 +56,7 @@ async function setupPickerInputForTest<TItem = TestItemType, TId = number>(param
             </>
         ),
     );
-    const input = screen.queryByRole('textbox') as HTMLElement;
+    const input = screen.queryByRole('searchbox') as HTMLElement;
 
     return {
         setProps,
@@ -126,7 +126,7 @@ async function setupPickerInputForTestWithFirstValueChangeRewriting<TItem = Test
             </>
         ),
     );
-    const input = screen.queryByRole('textbox') as HTMLElement;
+    const input = screen.queryByRole('searchbox') as HTMLElement;
 
     return {
         setProps,

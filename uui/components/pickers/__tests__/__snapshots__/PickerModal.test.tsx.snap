@@ -91,6 +91,7 @@ exports[`PickerModal should be rendered correctly 1`] = `
           <div
             aria-orientation="vertical"
             style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+            tabindex="-1"
           >
             <div
               class="listContainer"
@@ -353,6 +354,7 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
           <div
             aria-orientation="vertical"
             style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+            tabindex="-1"
           >
             <div
               class="listContainer"
@@ -1106,6 +1108,7 @@ exports[`PickerModal should open body 1`] = `
             <div
               aria-orientation="vertical"
               style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+              tabindex="-1"
             >
               <div
                 class="listContainer"

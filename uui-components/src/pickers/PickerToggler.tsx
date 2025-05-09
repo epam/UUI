@@ -174,7 +174,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         return (
             <input
                 id={ props?.id }
-                type="text"
+                type="search"
                 tabIndex={ -1 }
                 ref={ inputContainer }
                 aria-haspopup={ true }
