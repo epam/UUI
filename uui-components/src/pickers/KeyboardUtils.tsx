@@ -27,7 +27,8 @@ export const handleDataSourceKeyboard = (params: DataSourceKeyboardParams, e: Re
             break;
         }
         case 'Enter': {
-            if (value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
+            // We should handle Enter key only when search input is focused
+            if ((e.target as HTMLInputElement).type === 'search' && value.topIndex <= focusedIndex && focusedIndex <= maxVisibleIndex) {
                 const focusedRow: DataRowProps<any, any> = params.rows[value.focusedIndex - value.topIndex];
                 const clickHandler = focusedRow.onFold || focusedRow.onSelect || focusedRow.onCheck;
                 clickHandler && clickHandler(focusedRow);
