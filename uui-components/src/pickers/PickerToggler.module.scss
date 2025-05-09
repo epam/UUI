@@ -22,6 +22,8 @@
         &[type='search']::-webkit-search-results-button,
         &[type='search']::-webkit-search-results-decoration {
             -webkit-appearance: none;
+            display: none;
+            appearance: none;
         }
 
 
