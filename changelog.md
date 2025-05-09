@@ -1,3 +1,9 @@
+# 6.x.x - xx.xx.2025
+**What's New**
+
+**What's Fixed**
+* [PickerInput]: fixed returning to the previous focused element via shift+tab press
+
 # 6.1.0 - 08.05.2025
 
 **What's New**
