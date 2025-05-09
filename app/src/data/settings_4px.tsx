@@ -92,7 +92,7 @@ const settings_4px = {
     },
     flexRow: {
         sizes: {
-            default: '32',
+            default: '40',
         },
     },
     filtersPanel: {
@@ -141,10 +141,10 @@ const settings_4px = {
         },
     },
     pickerInput: {
-        renderPlaceholder: () => 'Loading...',
+        // renderPlaceholder: () => 'Loading...',
         sizes: {
             toggler: {
-                defaultSize: '40',
+                default: '40',
                 tag: '40',
                 tagMap: {
                     40: '32',
@@ -155,7 +155,6 @@ const settings_4px = {
                 getSearchSize: () => '40',
                 maxHeight: 300,
                 minWidth: 360,
-                padding: '12',
                 row: '40',
                 itemAvatarMap: {
                     40: '32',
@@ -177,7 +176,6 @@ const settings_4px = {
                     40: '20',
                     48: '24',
                 },
-                mobileHeaderTitleSize: '48',
                 mobileFooterLinkButton: '48',
                 mobileRow: '48',
                 mobileSearchInput: '48',

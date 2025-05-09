@@ -8,18 +8,17 @@
       "type": "node",
       "request": "launch",
       "name": "Jest",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "--runInBand",
-        "uui-editor/src/__tests__/serialization.test.ts"
-      ],
+      "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+      "args": ["--verbose", "-i", "--no-cache", "--testTimeout", "100500", "--testPathPattern", "${fileBasename}"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
-      "runtimeExecutable": "/Users/dzmitry_tamashevich/.nvm/versions/node/v18.18.0/bin/node",
-      "disableOptimisticBPs": true,
       "windows": {
         "program": "${workspaceFolder}/node_modules/jest/bin/jest"
-      }
+      },
+      "env": {
+        "CI": "true",
+        "DEBUG": "jest"
+      },
     },
     {
       "type": "node",

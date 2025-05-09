@@ -16,8 +16,9 @@ export type MainMenuProps = uuiComponents.MainMenuProps;
 export const MainMenu = withMods<uuiComponents.MainMenuProps, MainMenuProps>(
     uuiComponents.MainMenu,
     applyMainMenuMods,
-    () => ({
+    (props) => ({
         Burger,
         MainMenuDropdown,
+        ...props,
     }),
 );

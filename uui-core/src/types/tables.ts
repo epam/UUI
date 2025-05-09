@@ -12,7 +12,7 @@ import {
 } from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { CommonDatePickerProps, RangeDatePickerPresets, TooltipCoreProps } from './components';
+import { DatePickerProps, RangeDatePickerPresets, RangeDatePickerProps, TooltipCoreProps } from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
@@ -276,7 +276,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {
     /** DataRowProps object of rendered row */
     rowProps: DataRowProps<TItem, TId>;
-    /** Cell mode signal the editor component to adapt it's visuals to cell editor */
+    /** Cell mode signals the editor component to adapt it's visuals to cell editor */
     mode: 'cell';
     /** Ref to pass to the editor component.
      * It's required for correct focus/blur behavior.
@@ -439,12 +439,12 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Picke
     highlightSearchMatches?: boolean;
 };
 
-type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
+type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & {
     /** Type of the filter */
     type: 'datePicker';
 };
 
-type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & {
+type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & {
     /** Type of the filter */
     type: 'rangeDatePicker';
     /**

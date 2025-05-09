@@ -141,7 +141,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
             className={ cx(
                 css.pickerRow,
                 'uui-picker_input-row',
-                props.size && `uui-size-${props.size || settings.pickerInput.sizes.body.row}`,
+                `uui-size-${props.size || settings.pickerInput.sizes.body.row}`,
                 css[`align-widgets-${props.alignActions || 'top'}`],
                 clickHandler && props.isFocused && uuiMod.focus,
                 clickHandler && uuiMarkers.clickable,

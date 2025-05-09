@@ -97,6 +97,8 @@ export class RangeDatePickerDoc extends BaseDocsBlock {
 
                 <DocExample title="Presets and Footer" path="./_examples/rangeDatePicker/PresetsAndFooter.example.tsx" />
 
+                <DocExample title="Prevent component being empty" path="./_examples/rangeDatePicker/PreventEmpty.example.tsx" />
+
                 {this.renderSectionTitle('Localization')}
                 <EditableDocContent fileName="datePicker-localization" />
             </>

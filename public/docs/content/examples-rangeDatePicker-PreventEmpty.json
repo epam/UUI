@@ -1,0 +1,24 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To prevent the RangeDatePicker from having an empty 'from' or 'to' date, you can pass the "
+      },
+      {
+        "text": "preventEmptyFromDate={true}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "preventEmptyToDate={true}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props to configure this for the respective 'from' and 'to' date inputs. This will remove the input's 'clear' icon and also return the last selected value if the input is cleared via the keyboard."
+      }
+    ]
+  }
+]
