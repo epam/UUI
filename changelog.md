@@ -1,4 +1,10 @@
-# 6.xx.xx - xx.xx.2025
+# 6.x.x - xx.xx.2025
+**What's New**
+
+**What's Fixed**
+* [PickerInput]: fixed returning to the previous focused element via shift+tab press
+
+# 6.1.0 - 08.05.2025
 
 **What's New**
 * Removed `react-test-renderer` deps from '@epam/uui-test-utils' package, since it crashes with React 18 and lower. If you are import 'renderer' from '@epam/uui-test-utils', replace it to the direct import from 'react-test-renderer' package.
@@ -7,12 +13,14 @@
   * added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
   * `RangeDatePickerValue` interface was moved to the @epam/uui-core package
 * [AsyncDataSource]: added caching functionality, allowing two or more Views to reuse the same data.
-* [MainMenu][Electric][Loveship]: added prop `color` with `white` and `dark` values for the MainMenu component. The `dark` is used by default.
+* [MainMenu]: added `white` color for Loveship and Electric themes. It can be configured via `color` prop with `white` and `dark` value,  the `dark` is used by default.
 
 **What's Fixed**
+* [uuiContext]: Return `UuiContext.Provider` instead of new React 19 simple `UuiContext` usage, to fix compatibility with React 17
 * [useForm]: fixed router blocking if `beforeLeave` props returned `false`. Previously router was blocked and immediately unblocked on any redirect, but we shouldn't block in at all in this case.
 * [PickerInput]: fixed bug when selected item was applied value to the search after arrow keyboard navigation
 * [NumericInput]: fixed `value` text color for `readonly` state
+* [DatePicker]: removed focus from day/month/year item when user navigate to it by mouse
 
 # 6.0.0 - 23.04.2025
 
