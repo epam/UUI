@@ -175,7 +175,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         return (
             <input
                 id={ props?.id }
-                type="text"
+                type="search"
                 tabIndex={ props.isReadonly || props.isDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
                 ref={ searchInput }
                 aria-haspopup={ true }
