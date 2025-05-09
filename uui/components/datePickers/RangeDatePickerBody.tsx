@@ -124,8 +124,8 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     } = _value;
     const selectedDate = _selectedDate || defaultRangeValue; // also handles null in comparison to default value
 
-    const [activeMonth, setActiveMonth] = useState<RangeDatePickerInputType>(inFocus);
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
+    const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
     const [month, setMonth] = useState(() => {
         return getMonthOnOpen(selectedDate, inFocus);
     });
@@ -141,7 +141,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
         }
     };
 
-    const onBodyValueChange = (v: string | null, part: 'from' | 'to') => {
+    const onBodyValueChange = (v: string | null) => {
         // selectedDate can be null, other params should always have values
         const newRange = v ? getRange(v) : selectedDate;
 
@@ -154,7 +154,6 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
             newInFocus = 'from';
         }
 
-        setActiveMonth(part);
         props.onValueChange({
             selectedDate: newRange ? newRange : selectedDate,
             inFocus: newInFocus ?? inFocus,
@@ -172,12 +171,12 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
 
     const from: StatelessDatePickerBodyValue<string> = {
         month,
-        view: activeMonth === 'from' ? view : 'DAY_SELECTION',
+        view: disabledPanel === 'right' ? view : 'DAY_SELECTION',
         value: null,
     };
 
     const to: StatelessDatePickerBodyValue<string> = {
-        view: activeMonth === 'to' ? view : 'DAY_SELECTION',
+        view: disabledPanel === 'left' ? view : 'DAY_SELECTION',
         month: month.add(1, 'month'),
         value: null,
     };
@@ -190,6 +189,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                     onPresetSet={ (presetVal) => {
                         // enable day if smth other were selected
                         setView('DAY_SELECTION');
+                        setDisabledPanel(null);
                         setMonth(uuiDayjs.dayjs(presetVal.from));
                         props.onValueChange({
                             inFocus: props.value.inFocus,
@@ -225,35 +225,41 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                                 key="date-picker-body-left"
                                 cx={ cx(css.fromPicker) }
                                 { ...from }
-                                onValueChange={ (v) => onBodyValueChange(v, 'from') }
+                                onValueChange={ (v) => onBodyValueChange(v) }
                                 onMonthChange={ (m) => {
                                     setMonth(m);
                                 } }
-                                onViewChange={ (v) => setView(v) }
+                                onViewChange={ (v) => {
+                                    setView(v);
+                                    setDisabledPanel(v !== 'DAY_SELECTION' ? 'right' : null);
+                                } }
                                 filter={ props.filter }
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
-                                isDisabled={ view !== 'DAY_SELECTION' && activeMonth === 'to' }
+                                isDisabled={ disabledPanel === 'left' }
                             />
                             <StatelessDatePickerBody
                                 key="date-picker-body-right"
                                 cx={ cx(css.toPicker) }
                                 { ...to }
-                                onValueChange={ (v) => onBodyValueChange(v, 'to') }
+                                onValueChange={ (v) => onBodyValueChange(v) }
                                 onMonthChange={ (m) => {
                                     setMonth(m.subtract(1, 'month'));
                                 } }
-                                onViewChange={ (v) => setView(v) }
+                                onViewChange={ (v) => {
+                                    setView(v);
+                                    setDisabledPanel(v !== 'DAY_SELECTION' ? 'left' : null);
+                                } }
                                 filter={ props.filter }
                                 renderDay={ props.renderDay || renderDay }
                                 isHoliday={ props.isHoliday }
-                                isDisabled={ view !== 'DAY_SELECTION' && activeMonth === 'from' }
+                                isDisabled={ disabledPanel === 'right' }
                             />
                             {view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
-                                        left: activeMonth === 'from' ? '50%' : undefined,
-                                        right: activeMonth === 'to' ? '50%' : undefined,
+                                        left: disabledPanel === 'right' ? '50%' : undefined,
+                                        right: disabledPanel === 'left' ? '50%' : undefined,
                                     } }
                                     className={ css.blocker }
                                 />
