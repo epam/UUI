@@ -47,9 +47,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     const [inFocus, setInFocus] = React.useState<boolean>(false);
 
     const toggleContainer = React.useRef<HTMLDivElement>(undefined);
-    const inputContainer = React.useRef<HTMLInputElement>(undefined);
+    const searchInput = React.useRef<HTMLInputElement>(undefined);
 
     React.useImperativeHandle(ref, () => toggleContainer.current, [toggleContainer.current]);
+
+    const isSearchInToggler = props.searchPosition === 'input';
 
     const handleClick = React.useCallback(
         (event: Event) => {
@@ -64,15 +66,15 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         // We need to subscribe on any document clicks, when toggler is in focus to be able to make blur on toggler in case of click outside.
         inFocus && window.document.addEventListener('click', handleClick);
 
-        if (props.autoFocus && !props.disableSearch) {
-            inputContainer.current?.focus();
+        if (props.autoFocus && !props.disableSearch && isSearchInToggler) {
+            searchInput.current?.focus();
         }
 
         return () => window.document.removeEventListener('click', handleClick);
     }, [inFocus, handleClick]);
 
     const isActivePlaceholder = (): Boolean => {
-        if (props.pickerMode === 'single' && props.searchPosition !== 'input' && props.selection?.length > 0) {
+        if (props.pickerMode === 'single' && !isSearchInToggler && props.selection?.length > 0) {
             return true;
         }
         return false;
@@ -82,21 +84,19 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         setInFocus(false);
         props.onBlur?.(e);
         props.closePickerBody();
-        inputContainer.current?.blur();
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
         props.onFocus?.(e);
         setInFocus(true);
-        props.searchPosition === 'input' && inputContainer.current?.focus();
     };
 
     const handleBlur = (e: React.FocusEvent<HTMLElement>) => {
         if (props.isOpen) {
             // If picker opened and search inside input, we lock focus on toggler.
             // In case, when search inside body, we need to highlight toggler like in focus state, even when focus was moved to the body. So we do nothing in this case.
-            if (props.searchPosition === 'input') {
-                inputContainer.current?.focus();
+            if (isSearchInToggler) {
+                searchInput.current?.focus();
             }
         } else {
             // If picker closed, we perform blur event as usual.
@@ -167,7 +167,8 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             placeholder = props.selection[0].isLoading ? undefined : props.getName(props.selection[0]?.value);
         }
         const value = props.disableSearch ? null : props.value;
-        if (props.searchPosition !== 'input' && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
+
+        if (!isSearchInToggler && props.pickerMode === 'multi' && props.selectedRowsCount > 0) {
             return null;
         }
 
@@ -175,13 +176,15 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             <input
                 id={ props?.id }
                 type="search"
-                tabIndex={ -1 }
-                ref={ inputContainer }
+                tabIndex={ props.isReadonly || props.isDisabled || !isSearchInToggler ? -1 : 0 } // If search not in toggler, we shouldn't make this input focusable
+                ref={ searchInput }
                 aria-haspopup={ true }
                 autoComplete="no"
                 aria-required={ props.isRequired }
                 aria-disabled={ props.isDisabled }
                 aria-readonly={ props.isReadonly }
+                onFocus={ handleFocus }
+                onBlur={ handleBlur }
                 className={ cx(
                     uuiElement.input,
                     props.pickerMode === 'single' && css.singleInput,
@@ -234,9 +237,11 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 props.selection?.length > 0 && uuiMarkers.hasValue,
                 props.cx,
             ) }
-            tabIndex={ props.isReadonly || props.isDisabled ? -1 : 0 }
             onFocus={ handleFocus }
             onBlur={ handleBlur }
+            // If search in toggler, we make nested search input focusable, and wrapper not.
+            // It's required that only 1 focusable element in toggler, since if we have more we will go through all of them using tab key
+            tabIndex={ props.isReadonly || props.isDisabled || isSearchInToggler ? undefined : 0 }
             onKeyDown={ props.onKeyDown }
             { ...props.rawProps }
         >
