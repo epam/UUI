@@ -4,8 +4,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
 <body>
   <div>
     <div
-      class="container uui-input-box -clickable uui-focus root uui-picker_toggler uui-size-36 uui-control-mode-form"
-      tabindex="0"
+      class="container uui-input-box -clickable root uui-picker_toggler uui-size-36 uui-control-mode-form"
     >
       <div
         class="body"
@@ -16,7 +15,7 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
           class="uui-input singleInput cursorText"
           dir="ltr"
           placeholder="Please select "
-          tabindex="-1"
+          tabindex="0"
           type="search"
           value=""
         />
@@ -277,7 +276,6 @@ exports[`PickerInput Rendering should render with minimum props 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable root uui-picker_toggler uui-size-36 uui-control-mode-form"
-    tabindex="0"
   >
     <div
       class="body"
@@ -288,7 +286,7 @@ exports[`PickerInput Rendering should render with minimum props 1`] = `
         class="uui-input singleInput cursorText"
         dir="ltr"
         placeholder="Please select "
-        tabindex="-1"
+        tabindex="0"
         type="search"
         value=""
       />
