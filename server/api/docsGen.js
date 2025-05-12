@@ -1,5 +1,4 @@
 const express = require('express');
-const { highlightTsCode } = require('./prism');
 const { readDocsGenResultsJson, getComponentSummariesLookup } = require('../utils/docsGen');
 
 const router = express.Router();
