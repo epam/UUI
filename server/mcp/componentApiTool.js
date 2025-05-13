@@ -1,5 +1,10 @@
 const { z } = require('zod');
 const { getComponentSummariesLookup, readDocsGenResultsJson } = require('../utils/docsGen');
+const fs = require('fs');
+const path = require('path');
+
+// Cache for component examples
+const examplesCache = new Map();
 
 // Helper to find component by fuzzy name
 function findComponentByName(name) {
@@ -41,6 +46,48 @@ function simplifyComponentDetails(details) {
     };
 }
 
+function getComponentExamples(componentName) {
+    // Check cache first
+    if (examplesCache.has(componentName)) {
+        return examplesCache.get(componentName);
+    }
+
+    // Get examples directory path - fix the path resolution to point to app directory
+    const examplesDir = path.join(process.cwd(), 'src', 'docs', '_examples');
+
+    try {
+        // Find matching folder case-insensitively
+        const componentNameLower = componentName.toLowerCase();
+        const folders = fs.readdirSync(examplesDir);
+        const matchingFolder = folders.find((folder) => folder.toLowerCase() === componentNameLower);
+
+        if (!matchingFolder) {
+            examplesCache.set(componentName, []);
+            return [];
+        }
+
+        const folderPath = path.join(examplesDir, matchingFolder);
+
+        // Read only .example.tsx files
+        const files = fs.readdirSync(folderPath)
+            .filter((file) => file.endsWith('.example.tsx'));
+
+        // Get content of each file
+        const examples = files.map((file) => {
+            const filePath = path.join(folderPath, file);
+            const content = fs.readFileSync(filePath, 'utf8');
+            return { name: file, content: content };
+        });
+
+        // Cache the results
+        examplesCache.set(componentName, examples);
+        return examples;
+    } catch (error) {
+        console.error(`Error reading examples for ${componentName}:`, error);
+        return [];
+    }
+}
+
 /**
  * Registers UUI component API tools with the MCP server
  * @param {import("@modelcontextprotocol/sdk/server/mcp.js").McpServer} server
@@ -67,6 +114,7 @@ function addComponentApiTools(server) {
             const { docsGenTypes } = readDocsGenResultsJson();
             const componentInfo = docsGenTypes[shortRef];
             const simplifiedDetails = simplifyComponentDetails(componentInfo.details);
+            const examples = getComponentExamples(componentName);
 
             return {
                 content: [
@@ -76,6 +124,7 @@ function addComponentApiTools(server) {
                             name: componentInfo.summary.typeName.name,
                             module: componentInfo.summary.module,
                             props: simplifiedDetails.props,
+                            codeExamples: examples,
                         }, null, 2),
                     },
                 ],
