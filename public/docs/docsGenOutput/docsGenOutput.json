@@ -1,5 +1,5 @@
 {
- "version": "6.0.0-beta.0",
+ "version": "6.1.0",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -4570,7 +4570,7 @@
      "name": "CommonDatePickerProps",
      "nameFull": "CommonDatePickerProps"
     },
-    "src": "uui-core/src/types/components/DatePicker.ts",
+    "src": "uui-core/src/types/components/DatePickers.ts",
     "comment": {
      "raw": [
       "Represents CommonDatePickerProps"
@@ -10764,6 +10764,740 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:DatePickerProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DatePickerProps",
+     "nameFull": "DatePickerProps"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents the properties of the DatePicker component"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DatePickerProps",
+     "print": [
+      "/**",
+      " * Represents the properties of the DatePicker component",
+      " */",
+      "interface DatePickerProps extends CommonDatePickerProps, ICanFocus<HTMLInputElement>, IEditable<string | null>, IAnalyticableOnChange<string>, IHasPlaceholder {",
+      "    /**",
+      "     * Defines where to place calendar icon",
+      "     */",
+      "    iconPosition?: 'left' | 'right';",
+      "    /**",
+      "     * Render prop to add a custom footer inside the DatePicker dropdown body",
+      "     */",
+      "    renderFooter?(): ReactNode;",
+      "    /**",
+      "     * Overrides rendering of the single day. For example, to highlight certain days",
+      "     */",
+      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
+      "    /**",
+      "     * Any HTML attributes (native or 'data-') to put on date picker parts",
+      "     */",
+      "    rawProps?: {",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on date picker input",
+      "         */",
+      "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on date picker body",
+      "         */",
+      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "    };",
+      "    /**",
+      "     * Pass true to prevent component from being empty.",
+      "     * It's disable clear cross-icon and return last selected value if input was cleared",
+      "    */",
+      "    preventEmpty?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "iconPosition",
+      "name": "iconPosition",
+      "comment": {
+       "raw": [
+        "Defines where to place calendar icon"
+       ]
+      },
+      "typeValue": {
+       "raw": "'right' | 'left'",
+       "html": "<span class=\"token string\">'right'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "right",
+        "left"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render prop to add a custom footer inside the DatePicker dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on date picker parts"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }",
+       "html": "<span class=\"token punctuation\">{</span> input<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> body<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID attribute for the toggler input"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderTarget",
+      "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: IDropdownTogglerProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> IDropdownTogglerProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disable clearing date value (e.g. via cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "placement",
+      "name": "placement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+       "html": "<span class=\"token string\">'top'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'right'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'bottom'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'top-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'top-end'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'right-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'right-end'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'bottom-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'bottom-end'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left-end'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "top-start",
+        "top-end",
+        "right-start",
+        "right-end",
+        "bottom-start",
+        "bottom-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "comment": {
+       "raw": [
+        "If this function returns true, the day will be highlighted as holiday"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "inputCx",
+      "name": "inputCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker input"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "bodyCx",
+      "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker body"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:ICanFocus",
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: string | null) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: string | null, oldValue: string | null) => AnalyticsEvent",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">,</span> oldValue<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "placeholder",
+      "name": "placeholder",
+      "comment": {
+       "raw": [
+        "Placeholder to display when empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "any",
+       "html": "<span class=\"token builtin\">any</span>"
+      },
+      "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:DayProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DayProps",
+     "nameFull": "DayProps"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents the properties of the Day component"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "DayProps",
+     "print": [
+      "/**",
+      " * Represents the properties of the Day component",
+      " */",
+      "interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IHasCX {",
+      "    filter?(day: Dayjs): boolean;",
+      "    renderDayNumber?: (param: Dayjs) => any;",
+      "    isSelected?: boolean;",
+      "    isHoliday?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "filter",
+      "name": "filter",
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderDayNumber",
+      "name": "renderDayNumber",
+      "typeValue": {
+       "raw": "(param: Dayjs) => any",
+       "html": "<span class=\"token punctuation\">(</span>param<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "isSelected",
+      "name": "isSelected",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "Dayjs",
+       "html": "Dayjs"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: Dayjs) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:DistributiveOmit": {
    "summary": {
     "module": "@epam/uui-core",
@@ -16889,7 +17623,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<CommonDatePickerProps, 'filter' | 'format'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyFromDate' | 'preventEmptyToDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -17465,6 +18199,43 @@
       "required": false
      },
      {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
       "uid": "type_2",
       "name": "type",
       "comment": {
@@ -17505,6 +18276,62 @@
       },
       "from": "@epam/uui-core:NumericFilterConfig",
       "required": true
+     },
+     {
+      "uid": "renderDay_2",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
      },
      {
       "uid": "type_4",
@@ -25387,12 +26214,12 @@
     }
    }
   },
-  "@epam/uui-core:OutatedOffset": {
+  "@epam/uui-core:OutdatedOffset": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
-     "name": "OutatedOffset",
-     "nameFull": "OutatedOffset<number | null | undefined, number | null | undefined>"
+     "name": "OutdatedOffset",
+     "nameFull": "OutdatedOffset<number | null | undefined, number | null | undefined>"
     },
     "src": "uui-core/src/types/components/Tooltip.ts",
     "comment": {
@@ -25406,13 +26233,13 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "OutatedOffset",
+     "raw": "OutdatedOffset",
      "print": [
       "/**",
       " * @deprecated",
       " * left for backward compatibility, will be removed in future versions",
       " */",
-      "type OutatedOffset = [",
+      "type OutdatedOffset = [",
       "    number | null | undefined,",
       "    number | null | undefined",
       "];"
@@ -35133,6 +35960,34 @@
     }
    }
   },
+  "@epam/uui-core:RangeDatePickerInputType": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerInputType",
+     "nameFull": "RangeDatePickerInputType"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents RangeDatePicker input type"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "null | 'from' | 'to'",
+     "print": [
+      "/**",
+      " * Represents RangeDatePicker input type",
+      " */",
+      "type RangeDatePickerInputType = 'from' | 'to' | null;"
+     ]
+    }
+   }
+  },
   "@epam/uui-core:RangeDatePickerPresets": {
    "summary": {
     "module": "@epam/uui-core",
@@ -35140,7 +35995,7 @@
      "name": "RangeDatePickerPresets",
      "nameFull": "RangeDatePickerPresets"
     },
-    "src": "uui-core/src/types/components/DatePicker.ts",
+    "src": "uui-core/src/types/components/DatePickers.ts",
     "exported": true
    },
    "details": {
@@ -35191,7 +36046,7 @@
      "name": "RangeDatePickerPresetValue",
      "nameFull": "RangeDatePickerPresetValue"
     },
-    "src": "uui-core/src/types/components/DatePicker.ts",
+    "src": "uui-core/src/types/components/DatePickers.ts",
     "comment": {
      "raw": [
       "Represents RangeDatePickerPresetValue"
@@ -35272,6 +36127,623 @@
       },
       "editor": {
        "type": "number"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:RangeDatePickerProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerProps",
+     "nameFull": "RangeDatePickerProps"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "RangeDatePickerProps",
+     "print": [
+      "interface RangeDatePickerProps extends IEditable<RangeDatePickerValue | null>, IAnalyticableOnChange<RangeDatePickerValue | null>, CommonDatePickerProps {",
+      "    /**",
+      "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+      "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
+      "     */",
+      "    presets?: RangeDatePickerPresets;",
+      "    /**",
+      "     * Allows to add a custom footer to the Picker's dropdown body",
+      "     */",
+      "    renderFooter?(value: RangeDatePickerValue): ReactNode;",
+      "    /**",
+      "     * Called when component gets input focus",
+      "     */",
+      "    onFocus?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
+      "    /**",
+      "     * Called when component looses input focus",
+      "     */",
+      "    onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
+      "    /**",
+      "     * Called when component is opened/closed",
+      "     */",
+      "    onOpenChange?: (isOpen: boolean) => void;",
+      "    /**",
+      "     * A pure function that gets placeholder for 'from' or 'to' input.",
+      "     */",
+      "    getPlaceholder?(type: RangeDatePickerInputType): string;",
+      "    /**",
+      "     * Overrides rendering of a single day. For example, to highlight certain days",
+      "     */",
+      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
+      "    /**",
+      "     * rawProps as HTML attributes",
+      "     */",
+      "    rawProps?: {",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on 'from' input",
+      "         */",
+      "        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on 'to' input",
+      "         */",
+      "        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "        /**",
+      "         * Any HTML attributes (native or 'data-') to put on date picker body",
+      "         */",
+      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
+      "    };",
+      "    /**",
+      "     * Pass true to prevent \"From\" date from being empty.",
+      "     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared",
+      "     */",
+      "    preventEmptyFromDate?: boolean;",
+      "    /**",
+      "     * Pass true to prevent \"To\" date from being empty.",
+      "     * It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared",
+      "     */",
+      "    preventEmptyToDate?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "presets",
+      "name": "presets",
+      "comment": {
+       "raw": [
+        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeDatePickerPresets",
+       "html": "RangeDatePickerPresets"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Allows to add a custom footer to the Picker's dropdown body"
+       ]
+      },
+      "typeValue": {
+       "raw": "(value: RangeDatePickerValue) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>value<span class=\"token operator\">:</span> RangeDatePickerValue<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">,</span> inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">,</span> inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "onOpenChange",
+      "name": "onOpenChange",
+      "comment": {
+       "raw": [
+        "Called when component is opened/closed"
+       ]
+      },
+      "typeValue": {
+       "raw": "(isOpen: boolean) => void",
+       "html": "<span class=\"token punctuation\">(</span>isOpen<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "getPlaceholder",
+      "name": "getPlaceholder",
+      "comment": {
+       "raw": [
+        "A pure function that gets placeholder for 'from' or 'to' input."
+       ]
+      },
+      "typeValue": {
+       "raw": "(type: RangeDatePickerInputType) => string",
+       "html": "<span class=\"token punctuation\">(</span>type<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "rawProps as HTML attributes"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ from?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; to?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }",
+       "html": "<span class=\"token punctuation\">{</span> from<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> to<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> body<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isInvalid",
+      "name": "isInvalid",
+      "comment": {
+       "raw": [
+        "True if component contains invalid input"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeInvalid",
+      "required": false
+     },
+     {
+      "uid": "isDisabled",
+      "name": "isDisabled",
+      "comment": {
+       "raw": [
+        "Disable editing, and visually de-emphasize value of the component"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IDisableable",
+      "required": false
+     },
+     {
+      "uid": "isReadonly",
+      "name": "isReadonly",
+      "comment": {
+       "raw": [
+        "Disable editing. Unlike isDisabled, keep component's value readable."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeReadonly",
+      "required": false
+     },
+     {
+      "uid": "isRequired",
+      "name": "isRequired",
+      "comment": {
+       "raw": [
+        "Marks that component's value is required and shouldn't be empty"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeRequired",
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | RangeDatePickerValue",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> RangeDatePickerValue"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeDatePickerValue | null) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> RangeDatePickerValue <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "getValueChangeAnalyticsEvent",
+      "name": "getValueChangeAnalyticsEvent",
+      "comment": {
+       "raw": [
+        "Given a value, returns an analytics event to send when component is edited.",
+        " See [AnalyticsContext](@link https://uui.epam.com/documents?id=analyticsContext&mode=doc&skin=UUI4_promo&category=contexts)."
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeDatePickerValue | null, oldValue: RangeDatePickerValue | null) => AnalyticsEvent",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> RangeDatePickerValue <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">,</span> oldValue<span class=\"token operator\">:</span> RangeDatePickerValue <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> AnalyticsEvent"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IAnalyticableOnChange",
+      "required": false
+     },
+     {
+      "uid": "id",
+      "name": "id",
+      "comment": {
+       "raw": [
+        "HTML ID attribute for the toggler input"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderTarget",
+      "name": "renderTarget",
+      "comment": {
+       "raw": [
+        "Overrides rendering of picker Target - component which triggers dropdown. Can be used to attach DatePicker to other components, e.g. Buttons"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: IDropdownTogglerProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> IDropdownTogglerProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disable clearing date value (e.g. via cross icon)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "placement",
+      "name": "placement",
+      "comment": {
+       "raw": [
+        "Dropdown position relative to the input. See [Popper Docs](@link https://popper.js.org/)"
+       ]
+      },
+      "typeValue": {
+       "raw": "'top' | 'right' | 'bottom' | 'left' | 'top-start' | 'top-end' | 'right-start' | 'right-end' | 'bottom-start' | 'bottom-end' | 'left-start' | 'left-end'",
+       "html": "<span class=\"token string\">'top'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'right'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'bottom'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'top-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'top-end'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'right-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'right-end'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'bottom-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'bottom-end'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left-start'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'left-end'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "top",
+        "right",
+        "bottom",
+        "left",
+        "top-start",
+        "top-end",
+        "right-start",
+        "right-end",
+        "bottom-start",
+        "bottom-end",
+        "left-start",
+        "left-end"
+       ]
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "isHoliday",
+      "name": "isHoliday",
+      "comment": {
+       "raw": [
+        "If this function returns true, the day will be highlighted as holiday"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "inputCx",
+      "name": "inputCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker input"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "bodyCx",
+      "name": "bodyCx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on datepicker body"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:RangeDatePickerValue": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerValue",
+     "nameFull": "RangeDatePickerValue"
+    },
+    "src": "uui-core/src/types/components/DatePickers.ts",
+    "comment": {
+     "raw": [
+      "Represents RangeDatePicker value"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "RangeDatePickerValue",
+     "print": [
+      "/**",
+      " * Represents RangeDatePicker value",
+      " */",
+      "type RangeDatePickerValue = {",
+      "    /**",
+      "     * Defines DatePicker value 'from'.",
+      "     */",
+      "    from: string | null;",
+      "    /**",
+      "     * Defines DatePicker value 'to'.",
+      "     */",
+      "    to: string | null;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "from",
+      "name": "from",
+      "comment": {
+       "raw": [
+        "Defines DatePicker value 'from'."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "required": false
+     },
+     {
+      "uid": "to",
+      "name": "to",
+      "comment": {
+       "raw": [
+        "Defines DatePicker value 'to'."
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
       },
       "required": false
      }
@@ -35499,7 +36971,7 @@
       "interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, IHasValidationMessage, ICanFocus<any> {",
       "    /** DataRowProps object of rendered row */",
       "    rowProps: DataRowProps<TItem, TId>;",
-      "    /** Cell mode signal the editor component to adapt it's visuals to cell editor */",
+      "    /** Cell mode signals the editor component to adapt it's visuals to cell editor */",
       "    mode: 'cell';",
       "    /** Ref to pass to the editor component.",
       "     * It's required for correct focus/blur behavior.",
@@ -35529,7 +37001,7 @@
       "name": "mode",
       "comment": {
        "raw": [
-        "Cell mode signal the editor component to adapt it's visuals to cell editor"
+        "Cell mode signals the editor component to adapt it's visuals to cell editor"
        ]
       },
       "typeValue": {
@@ -36894,6 +38366,43 @@
       "required": false
      },
      {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
       "uid": "type_2",
       "name": "type",
       "comment": {
@@ -36934,6 +38443,62 @@
       },
       "from": "@epam/uui-core:NumericFilterConfig",
       "required": true
+     },
+     {
+      "uid": "renderDay_2",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
      },
      {
       "uid": "type_4",
@@ -37618,7 +39183,7 @@
       "     * The function will only be called when content is shown, this can save performance. */",
       "    renderContent?(): any;",
       "    /** See [Floating UI docs]{@link https://floating-ui.com/docs/offset} */",
-      "    offset?: OffsetOptions | OutatedOffset;",
+      "    offset?: OffsetOptions | OutdatedOffset;",
       "    /** React Node(s) to show tooltip for */",
       "    children?: React.ReactNode;",
       "    /** Max width of tooltip */",
@@ -37672,8 +39237,8 @@
        ]
       },
       "typeValue": {
-       "raw": "number | OutatedOffset | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue>",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> OutatedOffset <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span>"
+       "raw": "number | OutdatedOffset | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue>",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> OutdatedOffset <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span>"
       },
       "required": false
      },
@@ -46359,11 +47924,6 @@
      "nameFull": "DayProps"
     },
     "src": "uui-components/src/inputs/DatePicker/Day.tsx",
-    "comment": {
-     "raw": [
-      "Represents the properties of the Day component"
-     ]
-    },
     "exported": true
    },
    "details": {
@@ -46371,14 +47931,7 @@
     "typeValue": {
      "raw": "DayProps",
      "print": [
-      "/**",
-      " * Represents the properties of the Day component",
-      " */",
-      "interface DayProps extends IEditable<Dayjs>, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement>, IHasCX {",
-      "    filter?(day: Dayjs): boolean;",
-      "    renderDayNumber?: (param: Dayjs) => any;",
-      "    isSelected?: boolean;",
-      "    isHoliday?: boolean;",
+      "interface DayProps extends CoreDayProps {",
       "}"
      ]
     },
@@ -46393,6 +47946,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -46405,6 +47959,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -46417,6 +47972,7 @@
       "editor": {
        "type": "bool"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -46429,6 +47985,7 @@
       "editor": {
        "type": "bool"
       },
+      "from": "@epam/uui-core:DayProps",
       "required": false
      },
      {
@@ -67382,8 +68939,8 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -76366,7 +77923,7 @@
       "     * Defines table header cell size",
       "     * @default '36'",
       "     */",
-      "    size?: DataTableMods['headerSize'];",
+      "    size?: DataTableProps<unknown, unknown>['headerSize'];",
       "}"
      ]
     },
@@ -76967,7 +78524,7 @@
       "     * Defines table header row size",
       "     * @default '36'",
       "     */",
-      "    size?: DataTableMods['headerSize'];",
+      "    size?: DataTableProps<unknown, unknown>['headerSize'];",
       "}"
      ]
     },
@@ -77930,6 +79487,22 @@
       },
       "from": "@epam/uui-core:IControlled",
       "required": true
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
      },
      {
       "uid": "selectAll",
@@ -79489,32 +81062,7 @@
       "/**",
       " * Represents the properties of the DatePicker component",
       " */",
-      "interface DatePickerProps extends Overwrite<DatePickerMods, DatePickerModsOverride>, CommonDatePickerProps, IHasEditMode, ICanFocus<HTMLInputElement>, IEditable<string | null>, IAnalyticableOnChange<string>, IHasPlaceholder {",
-      "    /**",
-      "     * Defines where to place calendar icon",
-      "     */",
-      "    iconPosition?: 'left' | 'right';",
-      "    /**",
-      "     * Render prop to add a custom footer inside the DatePicker dropdown body",
-      "     */",
-      "    renderFooter?(): ReactNode;",
-      "    /**",
-      "     * Overrides rendering of the single day. For example, to highlight certain days",
-      "     */",
-      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
-      "    /**",
-      "     * Any HTML attributes (native or 'data-') to put on date picker parts",
-      "     */",
-      "    rawProps?: {",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on date picker input",
-      "         */",
-      "        input?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on date picker body",
-      "         */",
-      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "    };",
+      "interface DatePickerProps extends CoreDatePickerProps, IHasEditMode, Overwrite<DatePickerMods, DatePickerModsOverride> {",
       "}"
      ]
     },
@@ -79538,6 +81086,7 @@
         "right"
        ]
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -79555,6 +81104,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -79572,6 +81122,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -79586,35 +81137,26 @@
        "raw": "{ input?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }",
        "html": "<span class=\"token punctuation\">{</span> input<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> body<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
       },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
       "comment": {
        "raw": [
-        "Defines component size.",
-        " @default '36'"
-       ],
-       "tags": {
-        "@default": "36"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'",
-       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
        ]
       },
-      "from": "@epam/uui:DatePickerMods",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
       "required": false
      },
      {
@@ -79826,32 +81368,6 @@
       "required": false
      },
      {
-      "uid": "mode",
-      "name": "mode",
-      "comment": {
-       "raw": [
-        "Visual mode for component:",
-        " - form: default visuals, to use in forms.",
-        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
-        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
-       ]
-      },
-      "typeValue": {
-       "raw": "'inline' | 'form' | 'cell'",
-       "html": "<span class=\"token string\">'inline'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'form'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'cell'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "inline",
-        "form",
-        "cell"
-       ]
-      },
-      "from": "@epam/uui:IHasEditMode",
-      "required": false
-     },
-     {
       "uid": "onFocus",
       "name": "onFocus",
       "comment": {
@@ -79991,6 +81507,61 @@
        "html": "<span class=\"token builtin\">any</span>"
       },
       "from": "@epam/uui-core:IHasPlaceholder",
+      "required": false
+     },
+     {
+      "uid": "mode",
+      "name": "mode",
+      "comment": {
+       "raw": [
+        "Visual mode for component:",
+        " - form: default visuals, to use in forms.",
+        " - cell: adjust to embed as table cell editor: no borders, no focus (it is applied by DataCell)",
+        " - inline: adjust for WYSIWYG UX. Backgrounds removed. Borders appear only on hover."
+       ]
+      },
+      "typeValue": {
+       "raw": "'inline' | 'form' | 'cell'",
+       "html": "<span class=\"token string\">'inline'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'form'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'cell'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "inline",
+        "form",
+        "cell"
+       ]
+      },
+      "from": "@epam/uui:IHasEditMode",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:DatePickerMods",
       "required": false
      }
     ],
@@ -81610,7 +83181,7 @@
       "name": "size",
       "comment": {
        "raw": [
-        "Defines size(height) of filter panel and filters",
+        "Defines size(height) of FilterPanel and filters togglers",
         " @default '36'"
        ],
        "tags": {
@@ -97340,7 +98911,7 @@
     "typeValue": {
      "raw": "RangeDatePickerBodyProps<T>",
      "print": [
-      "interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, IControlled<RangeDatePickerBodyValue<T>> {",
+      "interface RangeDatePickerBodyProps<T> extends CommonDatePickerBodyProps, Pick<RangeDatePickerProps, 'preventEmptyToDate' | 'preventEmptyFromDate'>, IControlled<RangeDatePickerBodyValue<T>> {",
       "    renderFooter?(): React.ReactNode;",
       "    isHoliday?: (day: Dayjs) => boolean;",
       "}"
@@ -97457,6 +99028,44 @@
       "required": false
      },
      {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "value",
       "name": "value",
       "comment": {
@@ -97500,7 +99109,7 @@
      "name": "RangeDatePickerBodyValue",
      "nameFull": "RangeDatePickerBodyValue<TSelection>"
     },
-    "src": "uui/components/datePickers/types.ts",
+    "src": "uui/components/datePickers/RangeDatePickerBody.tsx",
     "comment": {
      "raw": [
       "Represents date picker body value"
@@ -97541,7 +99150,7 @@
        "raw": "null | 'from' | 'to'",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'from'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'to'</span>"
       },
-      "typeValueRef": "@epam/uui:RangeDatePickerInputType",
+      "typeValueRef": "@epam/uui-core:RangeDatePickerInputType",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -97593,7 +99202,7 @@
       "/**",
       " * Represents RangeDatePickerInputProps",
       " */",
-      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size'> {",
+      "interface RangeDatePickerInputProps extends IEditable<RangeDatePickerValue>, IHasCX, IClickable, Pick<RangeDatePickerProps, 'getPlaceholder' | 'disableClear' | 'filter' | 'id' | 'format' | 'size' | 'preventEmptyFromDate' | 'preventEmptyToDate'> {",
       "    /**",
       "     * rawProps as HTML attributes",
       "     */",
@@ -97653,7 +99262,7 @@
        "raw": "null | 'from' | 'to'",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'from'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'to'</span>"
       },
-      "typeValueRef": "@epam/uui:RangeDatePickerInputType",
+      "typeValueRef": "@epam/uui-core:RangeDatePickerInputType",
       "editor": {
        "type": "oneOf",
        "options": [
@@ -97935,6 +99544,44 @@
       "required": false
      },
      {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
       "uid": "getPlaceholder",
       "name": "getPlaceholder",
       "comment": {
@@ -97949,7 +99596,7 @@
       "editor": {
        "type": "func"
       },
-      "from": "@epam/uui:RangeDatePickerProps",
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98018,53 +99665,7 @@
       "/**",
       " * Represents the properties of the RangeDatePicker component",
       " */",
-      "interface RangeDatePickerProps extends Overwrite<RangeDatePickerMods, RangeDatePickerModsOverride>, IEditable<RangeDatePickerValue | null>, IAnalyticableOnChange<RangeDatePickerValue | null>, CommonDatePickerProps {",
-      "    /**",
-      "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
-      "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
-      "     */",
-      "    presets?: RangeDatePickerPresets;",
-      "    /**",
-      "     * Allows to add a custom footer to the Picker's dropdown body",
-      "     */",
-      "    renderFooter?(value: RangeDatePickerValue): ReactNode;",
-      "    /**",
-      "     * Called when component gets input focus",
-      "     */",
-      "    onFocus?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
-      "    /**",
-      "     * Called when component looses input focus",
-      "     */",
-      "    onBlur?: (e: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => void;",
-      "    /**",
-      "     * Called when component is opened/closed",
-      "     */",
-      "    onOpenChange?: (isOpen: boolean) => void;",
-      "    /**",
-      "     * A pure function that gets placeholder for 'from' or 'to' input.",
-      "     */",
-      "    getPlaceholder?(type: RangeDatePickerInputType): string;",
-      "    /**",
-      "     * Overrides rendering of the single day. For example, to highlight certain days",
-      "     */",
-      "    renderDay?: (renderProps: DayProps) => ReactElement<Element>;",
-      "    /**",
-      "     * rawProps as HTML attributes",
-      "     */",
-      "    rawProps?: {",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on 'from' input",
-      "         */",
-      "        from?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on 'to' input",
-      "         */",
-      "        to?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "        /**",
-      "         * Any HTML attributes (native or 'data-') to put on date picker body",
-      "         */",
-      "        body?: IHasRawProps<React.HTMLAttributes<HTMLDivElement>>['rawProps'];",
-      "    };",
+      "interface RangeDatePickerProps extends CoreRangeDatePickerProps, Overwrite<RangeDatePickerMods, RangeDatePickerModsOverride> {",
       "}"
      ]
     },
@@ -98082,6 +99683,7 @@
        "raw": "RangeDatePickerPresets",
        "html": "RangeDatePickerPresets"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98099,6 +99701,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98116,6 +99719,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98133,6 +99737,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98150,6 +99755,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98167,6 +99773,7 @@
       "editor": {
        "type": "func"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98174,7 +99781,7 @@
       "name": "renderDay",
       "comment": {
        "raw": [
-        "Overrides rendering of the single day. For example, to highlight certain days"
+        "Overrides rendering of a single day. For example, to highlight certain days"
        ]
       },
       "typeValue": {
@@ -98184,6 +99791,7 @@
       "editor": {
        "type": "component"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98198,31 +99806,45 @@
        "raw": "{ from?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; to?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; body?: (React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>) | undefined; }",
        "html": "<span class=\"token punctuation\">{</span> from<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> to<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> body<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
       },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
-      "uid": "size",
-      "name": "size",
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
       "comment": {
        "raw": [
-        "Defines component size."
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
       "typeValue": {
-       "raw": "'36' | '48' | '24' | '30' | '42'",
-       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
       },
       "editor": {
-       "type": "oneOf",
-       "options": [
-        "24",
-        "30",
-        "36",
-        "42",
-        "48"
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
-      "from": "@epam/uui:RangeDatePickerMods",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
       "required": false
      },
      {
@@ -98520,79 +100142,30 @@
       "typeValueRef": "@epam/uui-core:ClassValue",
       "from": "@epam/uui-core:CommonDatePickerProps",
       "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui:RangeDatePickerValue": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RangeDatePickerValue",
-     "nameFull": "RangeDatePickerValue"
-    },
-    "src": "uui/components/datePickers/types.ts",
-    "comment": {
-     "raw": [
-      "Represents RangeDatePicker value"
-     ]
-    },
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "RangeDatePickerValue",
-     "print": [
-      "/**",
-      " * Represents RangeDatePicker value",
-      "*/",
-      "type RangeDatePickerValue = {",
-      "    /**",
-      "     * Defines DatePicker value 'from'.",
-      "     */",
-      "    from: string | null;",
-      "    /**",
-      "     * Defines DatePicker value 'to'.",
-      "     */",
-      "    to: string | null;",
-      "};"
-     ]
-    },
-    "props": [
-     {
-      "uid": "from",
-      "name": "from",
-      "comment": {
-       "raw": [
-        "Defines DatePicker value 'from'."
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
      },
      {
-      "uid": "to",
-      "name": "to",
+      "uid": "size",
+      "name": "size",
       "comment": {
        "raw": [
-        "Defines DatePicker value 'to'."
+        "Defines component size."
        ]
       },
       "typeValue": {
-       "raw": "null | string",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
+       "raw": "'36' | '48' | '24' | '30' | '42'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span>"
       },
       "editor": {
-       "type": "string"
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48"
+       ]
       },
+      "from": "@epam/uui:RangeDatePickerMods",
       "required": false
      }
     ],
@@ -104882,8 +106455,8 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -105272,8 +106845,8 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -106730,22 +108303,6 @@
      "nameFull": "RadioInputMods"
     },
     "src": "uui/components/inputs/RadioInput.tsx",
-    "exported": false
-   }
-  },
-  "@epam/uui:RangeDatePickerInputType": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "RangeDatePickerInputType",
-     "nameFull": "RangeDatePickerInputType"
-    },
-    "src": "uui/components/datePickers/types.ts",
-    "comment": {
-     "raw": [
-      "Represents RangeDatePicker input type"
-     ]
-    },
     "exported": false
    }
   },
@@ -111214,8 +112771,8 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
@@ -112200,6 +113757,636 @@
        ]
       },
       "from": "@epam/electric:BadgeMods",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/electric:MainMenuDropdownProps": {
+   "summary": {
+    "module": "@epam/electric",
+    "typeName": {
+     "name": "MainMenuDropdownProps",
+     "nameFull": "MainMenuDropdownProps"
+    },
+    "src": "epam-electric/components/navigation/MainMenu/MainMenuDropdown.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuDropdownProps",
+     "print": [
+      "interface MainMenuDropdownProps extends Props {",
+      "    /**",
+      "     * Defines component color scheme.",
+      "     * @default 'dark'",
+      "     */",
+      "    color?: 'white' | 'dark';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color scheme.",
+        " @default 'dark'"
+       ],
+       "tags": {
+        "@default": "dark"
+       }
+      },
+      "typeValue": {
+       "raw": "'white' | 'dark'",
+       "html": "<span class=\"token string\">'white'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'dark'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "white",
+        "dark"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "renderBody",
+      "name": "renderBody",
+      "comment": {
+       "raw": [
+        "Render callback for the MainMenuDropdown body.",
+        " If omitted, component children will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DropdownBodyProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> DropdownBodyProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:MainMenuDropdownProps",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode",
+       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode",
+       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "estimatedWidth",
+      "name": "estimatedWidth",
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "priority",
+      "name": "priority",
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "showInBurgerMenu",
+      "name": "showInBurgerMenu",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapseToMore",
+      "name": "collapseToMore",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapsedContainer",
+      "name": "collapsedContainer",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "href",
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "target",
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'",
+       "html": "<span class=\"token string\">'_blank'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/electric:MainMenuProps": {
+   "summary": {
+    "module": "@epam/electric",
+    "typeName": {
+     "name": "MainMenuProps",
+     "nameFull": "MainMenuProps"
+    },
+    "src": "epam-electric/components/navigation/MainMenu/MainMenu.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuProps",
+     "print": [
+      "interface MainMenuProps extends uui.MainMenuProps {",
+      "    /**",
+      "     * Defines component color scheme.",
+      "     * @default 'dark'",
+      "     */",
+      "    color?: 'white' | 'dark';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color scheme.",
+        " @default 'dark'"
+       ],
+       "tags": {
+        "@default": "dark"
+       }
+      },
+      "typeValue": {
+       "raw": "'white' | 'dark'",
+       "html": "<span class=\"token string\">'white'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'dark'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "white",
+        "dark"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Array of menu items to be rendered"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]",
+       "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "@deprecated",
+        " Use 'items' prop to define menu content"
+       ]
+      },
+      "typeValue": {
+       "raw": "any",
+       "html": "<span class=\"token builtin\">any</span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "appLogoUrl",
+      "name": "appLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the logo source"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "logoLink",
+      "name": "logoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "logoHref",
+      "name": "logoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "onLogoClick",
+      "name": "onLogoClick",
+      "comment": {
+       "raw": [
+        "Called when logo is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoUrl",
+      "name": "customerLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the customer logo source"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoLink",
+      "name": "customerLogoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoHref",
+      "name": "customerLogoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoBgColor",
+      "name": "customerLogoBgColor",
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "isTransparent",
+      "name": "isTransparent",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "renderBurger",
+      "name": "renderBurger",
+      "comment": {
+       "raw": [
+        "Render callback for burger menu content.",
+        " Burger will appear, which some items don't fit the menu width."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "alwaysShowBurger",
+      "name": "alwaysShowBurger",
+      "comment": {
+       "raw": [
+        "If true, Burger button will be always visible"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "serverBadge",
+      "name": "serverBadge",
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "MainMenuDropdown",
+      "name": "MainMenuDropdown",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for MainMenuDropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
+       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "Burger",
+      "name": "Burger",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for Burger"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
+       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
       "required": false
      }
     ],
@@ -115715,6 +117902,636 @@
     "propsFromUnion": false
    }
   },
+  "@epam/loveship:MainMenuDropdownProps": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "MainMenuDropdownProps",
+     "nameFull": "MainMenuDropdownProps"
+    },
+    "src": "loveship/components/navigation/MainMenu/MainMenuDropdown.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuDropdownProps",
+     "print": [
+      "interface MainMenuDropdownProps extends Props {",
+      "    /**",
+      "     * Defines component color scheme.",
+      "     * @default 'dark'",
+      "     */",
+      "    color?: 'white' | 'dark';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color scheme.",
+        " @default 'dark'"
+       ],
+       "tags": {
+        "@default": "dark"
+       }
+      },
+      "typeValue": {
+       "raw": "'white' | 'dark'",
+       "html": "<span class=\"token string\">'white'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'dark'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "white",
+        "dark"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "renderBody",
+      "name": "renderBody",
+      "comment": {
+       "raw": [
+        "Render callback for the MainMenuDropdown body.",
+        " If omitted, component children will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: DropdownBodyProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> DropdownBodyProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:MainMenuDropdownProps",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "Component children"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode",
+       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasChildren",
+      "required": false
+     },
+     {
+      "uid": "caption",
+      "name": "caption",
+      "comment": {
+       "raw": [
+        "Caption. Can be a string, or React.Element. Certain components supports minimal markup (<b>,<i>,<a>) in captions."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ReactNode",
+       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "typeValueRef": "@types/react:ReactNode",
+      "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "estimatedWidth",
+      "name": "estimatedWidth",
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "priority",
+      "name": "priority",
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "showInBurgerMenu",
+      "name": "showInBurgerMenu",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapseToMore",
+      "name": "collapseToMore",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "collapsedContainer",
+      "name": "collapsedContainer",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:IAdaptiveItem",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "href",
+      "name": "href",
+      "comment": {
+       "raw": [
+        "Href (URL) to redirect to, for non-SPA redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "target",
+      "name": "target",
+      "comment": {
+       "raw": [
+        "Controls where the link should be opened"
+       ]
+      },
+      "typeValue": {
+       "raw": "'_blank'",
+       "html": "<span class=\"token string\">'_blank'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "_blank"
+       ]
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/loveship:MainMenuProps": {
+   "summary": {
+    "module": "@epam/loveship",
+    "typeName": {
+     "name": "MainMenuProps",
+     "nameFull": "MainMenuProps"
+    },
+    "src": "loveship/components/navigation/MainMenu/MainMenu.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "MainMenuProps",
+     "print": [
+      "interface MainMenuProps extends uui.MainMenuProps {",
+      "    /**",
+      "     * Defines component color scheme.",
+      "     * @default 'dark'",
+      "     */",
+      "    color?: 'white' | 'dark';",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "color",
+      "name": "color",
+      "comment": {
+       "raw": [
+        "Defines component color scheme.",
+        " @default 'dark'"
+       ],
+       "tags": {
+        "@default": "dark"
+       }
+      },
+      "typeValue": {
+       "raw": "'white' | 'dark'",
+       "html": "<span class=\"token string\">'white'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'dark'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "white",
+        "dark"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "items",
+      "name": "items",
+      "comment": {
+       "raw": [
+        "Array of menu items to be rendered"
+       ]
+      },
+      "typeValue": {
+       "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]",
+       "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "children",
+      "name": "children",
+      "comment": {
+       "raw": [
+        "@deprecated",
+        " Use 'items' prop to define menu content"
+       ]
+      },
+      "typeValue": {
+       "raw": "any",
+       "html": "<span class=\"token builtin\">any</span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "appLogoUrl",
+      "name": "appLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the logo source"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "logoLink",
+      "name": "logoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "logoHref",
+      "name": "logoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "onLogoClick",
+      "name": "onLogoClick",
+      "comment": {
+       "raw": [
+        "Called when logo is clicked"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoUrl",
+      "name": "customerLogoUrl",
+      "comment": {
+       "raw": [
+        "Path to the customer logo source"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoLink",
+      "name": "customerLogoLink",
+      "comment": {
+       "raw": [
+        "SPA link to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoHref",
+      "name": "customerLogoHref",
+      "comment": {
+       "raw": [
+        "Href to navigate on customer logo click"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "customerLogoBgColor",
+      "name": "customerLogoBgColor",
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "isTransparent",
+      "name": "isTransparent",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "renderBurger",
+      "name": "renderBurger",
+      "comment": {
+       "raw": [
+        "Render callback for burger menu content.",
+        " Burger will appear, which some items don't fit the menu width."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "alwaysShowBurger",
+      "name": "alwaysShowBurger",
+      "comment": {
+       "raw": [
+        "If true, Burger button will be always visible"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "serverBadge",
+      "name": "serverBadge",
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "MainMenuDropdown",
+      "name": "MainMenuDropdown",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for MainMenuDropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
+       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "Burger",
+      "name": "Burger",
+      "comment": {
+       "raw": [
+        "Internal prop to define component for Burger"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
+       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-components:MainMenuProps",
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     },
+     {
+      "uid": "rawProps",
+      "name": "rawProps",
+      "comment": {
+       "raw": [
+        "Any HTML attributes (native or 'data-') to put on the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "React.HTMLAttributes<HTMLDivElement> & Record<`data-${string}`, string>",
+       "html": "React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLDivElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasRawProps",
+      "required": false
+     },
+     {
+      "uid": "forwardedRef",
+      "name": "forwardedRef",
+      "comment": {
+       "raw": [
+        "this ref is passed to the underlying component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (instance: HTMLDivElement | null) => void | React.RefObject<HTMLDivElement | null>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:IHasForwardedRef",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/loveship:ModalWindowProps": {
    "summary": {
     "module": "@epam/loveship",
@@ -118518,8 +121335,8 @@
        ]
       },
       "typeValue": {
-       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutatedOffset",
-       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutatedOffset"
+       "raw": "number | { mainAxis?: number | undefined; crossAxis?: number | undefined; alignmentAxis?: number | null | undefined; } | Derivable<OffsetValue> | OutdatedOffset",
+       "html": "<span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> mainAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> crossAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> alignmentAxis<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span> <span class=\"token operator\">|</span> Derivable<span class=\"token operator\">&lt;</span>OffsetValue<span class=\"token operator\">></span> <span class=\"token operator\">|</span> OutdatedOffset"
       },
       "from": "@epam/uui-core:TooltipCoreProps",
       "required": false
