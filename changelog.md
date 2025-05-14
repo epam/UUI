@@ -4,6 +4,7 @@
 **What's Fixed**
 * [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
 * [PickerInput]: fixed returning to the previous focused element via shift+tab press
+* [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
 
 # 6.1.0 - 08.05.2025
 

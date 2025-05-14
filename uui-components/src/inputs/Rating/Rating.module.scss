@@ -1,3 +1,7 @@
+.root {
+    display: flex;
+}
+
 .container {
     &:focus {
         outline: none;
