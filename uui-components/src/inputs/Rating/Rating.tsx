@@ -80,6 +80,10 @@ export class Rating extends React.Component<RatingProps> {
     };
 
     render() {
-        return <BaseRating { ...this.props } from={ this.props.step || 1 } to={ maxValue } step={ this.props.step } renderRating={ this.renderRating } />;
+        return (
+            <div className={ css.root }>
+                <BaseRating { ...this.props } from={ this.props.step || 1 } to={ maxValue } step={ this.props.step } renderRating={ this.renderRating } />
+            </div>
+        );
     }
 }
