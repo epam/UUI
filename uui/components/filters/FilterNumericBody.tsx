@@ -64,14 +64,7 @@ export function FilterNumericBody(props: IFilterNumericBodyProps) {
 
     const renderFooter = () => {
         const clearSelection = () => {
-            if (isInRangePredicate) {
-                props.onValueChange({
-                    from: undefined,
-                    to: undefined,
-                });
-            } else {
-                props.onValueChange(undefined);
-            }
+            props.onValueChange(undefined);
         };
 
         const isClearDisabled = typeof props.value !== 'number' && typeof props.value !== 'object';
