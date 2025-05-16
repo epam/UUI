@@ -1,5 +1,3 @@
-module.exports = { getCspHeaderValue };
-
 // Origins where custom themes are hosted
 const CUSTOM_THEME_ASSETS = {
     // On localhost
@@ -12,7 +10,7 @@ const CUSTOM_THEME_ASSETS = {
  * @param isDevServer {boolean}
  * @returns {string}
  */
-function getCspHeaderValue(isDevServer) {
+export function getCspHeaderValue(isDevServer: boolean) {
     return join(
         "default-src 'self' https://*.epam.com; ",
         dir(

@@ -1,42 +1,42 @@
-const fs = require('fs');
-const path = require('path');
-const { getComponentSummariesLookup } = require('../utils/docsGen');
+import fs from 'fs';
+import path from 'path';
+import { getComponentSummariesLookup } from '../utils/docsGen';
 
 // Cache for component examples
 const examplesCache = new Map();
 
 // Helper to find component by fuzzy name
-function findComponentByName(name) {
+export function findComponentByName(name: string) {
     const summaries = getComponentSummariesLookup();
     const lowerName = name.toLowerCase();
 
     // First try exact match in @epam/uui
-    const exactMatch = Object.entries(summaries).find(([_, summary]) =>
+    const exactMatch = Object.entries(summaries).find(([, summary]: any) =>
         summary.module.startsWith('@epam/uui')
         && summary.typeName.name.toLowerCase() === lowerName);
 
     if (exactMatch) return exactMatch[0];
 
     // Then try fuzzy match in @epam/uui
-    const fuzzyMatch = Object.entries(summaries).find(([_, summary]) =>
+    const fuzzyMatch = Object.entries(summaries).find(([, summary]: any) =>
         summary.module.startsWith('@epam/uui')
         && summary.typeName.name.toLowerCase().includes(lowerName));
 
     if (fuzzyMatch) return fuzzyMatch[0];
 
     // Finally try fuzzy match in any module
-    const anyMatch = Object.entries(summaries).find(([_, summary]) =>
+    const anyMatch = Object.entries(summaries).find(([, summary]: any) =>
         summary.typeName.name.toLowerCase().includes(lowerName));
 
     return anyMatch ? anyMatch[0] : null;
 }
 
 // Helper to simplify component details
-function simplifyComponentDetails(details) {
+export function simplifyComponentDetails(details) {
     if (!details || !details.props) return { props: [] };
 
     return {
-        props: details.props.map((prop) => ({
+        props: details.props.map((prop: any) => ({
             name: prop.name,
             type: prop.typeValue?.raw || 'unknown',
             description: prop.comment?.raw?.join('\n') || '',
@@ -45,14 +45,13 @@ function simplifyComponentDetails(details) {
     };
 }
 
-function getComponentExamples(componentName) {
+export function getComponentExamples(componentName) {
     // Check cache first
     if (examplesCache.has(componentName)) {
         return examplesCache.get(componentName);
     }
 
-    // Get examples directory path - fix the path resolution to point to app directory
-    const examplesDir = path.join(process.cwd(), 'src', 'docs', '_examples');
+    const examplesDir = path.resolve(__dirname, '../../app/src/docs/_examples');
 
     try {
         // Find matching folder case-insensitively
@@ -77,7 +76,7 @@ function getComponentExamples(componentName) {
             const content = fs.readFileSync(filePath, 'utf8');
             let description = '';
 
-            const docFile = findExampleDescription(componentName, file.split('.')[0], folderPath);
+            const docFile = findExampleDescription(componentName, file.split('.')[0]);
 
             if (docFile) {
                 const doc = JSON.parse(docFile);
@@ -96,7 +95,7 @@ function getComponentExamples(componentName) {
     }
 }
 
-function getTextFromJsonDocDescription(node) {
+export function getTextFromJsonDocDescription(node) {
     let result = '';
     if (Array.isArray(node)) {
         for (const item of node) {
@@ -122,7 +121,7 @@ function getTextFromJsonDocDescription(node) {
  * @returns {string|null} The file content if found, or null if not found
  */
 function findExampleDescription(componentName, exampleName) {
-    const docsDir = path.join(process.cwd(), '..', 'public', 'docs', 'content');
+    const docsDir = path.resolve(__dirname, '../../public/docs/content');
     const files = fs.readdirSync(docsDir);
     const match = files.find((file) => {
         const [type, component, fileExampleName] = file.split('.')[0].split('-');
@@ -134,10 +133,3 @@ function findExampleDescription(componentName, exampleName) {
     }
     return null;
 }
-
-module.exports = {
-    findComponentByName,
-    simplifyComponentDetails,
-    getComponentExamples,
-    getTextFromJsonDocDescription,
-};
