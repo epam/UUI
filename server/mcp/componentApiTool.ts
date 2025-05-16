@@ -1,12 +1,12 @@
-const { z } = require('zod');
-const { getComponentSummariesLookup, readDocsGenResultsJson } = require('../utils/docsGen');
-const { findComponentByName, simplifyComponentDetails, getComponentExamples, getTextFromJsonDocDescription } = require('./helpers');
+import { z } from 'zod';
+import { getComponentSummariesLookup, readDocsGenResultsJson } from '../utils/docsGen';
+import { findComponentByName, simplifyComponentDetails, getComponentExamples } from './helpers';
 
 /**
  * Registers UUI component API tools with the MCP server
  * @param {import("@modelcontextprotocol/sdk/server/mcp.js").McpServer} server
  */
-function addComponentApiTools(server) {
+export function addComponentApiTools(server) {
     server.tool(
         'uui-component-api',
         {
@@ -52,10 +52,10 @@ function addComponentApiTools(server) {
         async () => {
             const summaries = getComponentSummariesLookup();
             const uuiComponents = Object.values(summaries)
-                .filter((summary) => summary.module.startsWith('@epam/uui'))
+                .filter((summary) => (summary as any).module.startsWith('@epam/uui'))
                 .map((summary) => ({
-                    name: summary.typeName.name,
-                    module: summary.module,
+                    name: (summary as any).typeName.name,
+                    module: (summary as any).module,
                 }))
                 .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -70,5 +70,3 @@ function addComponentApiTools(server) {
         },
     );
 }
-
-module.exports = { addComponentApiTools };

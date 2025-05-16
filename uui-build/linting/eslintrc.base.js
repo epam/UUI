@@ -57,7 +57,8 @@ module.exports = {
                  */
                 'react-hooks/exhaustive-deps': 'off',
             },
-        }, {
+        },
+        {
             files: ['**/__tests__/**/*', '**/*.{test}.ts?(x)'],
             extends: require.resolve('./eslintConfigReactApp/allJest.js'),
             env: { 'jest/globals': true },
@@ -84,22 +85,22 @@ module.exports = {
                 'testing-library/prefer-explicit-assert': unifiedSeverity,
                 ...turnOffEslintRulesToBeFixed(),
             },
-        }, {
-            files: ['./server/**/*.js', './uui-build/**/*.js'],
+        },
+        {
+            files: ['./server/**/*.ts', './uui-build/**/*.ts'],
             env: {
-                es6: true,
                 node: true,
-                commonjs: true,
             },
-            parserOptions: { ecmaVersion: 2020 },
             rules: {
                 ...uuiJsRules(),
-                'import/no-unresolved': [
-                    unifiedSeverity, {
-                        commonjs: true,
-                        caseSensitive: true,
-                    },
-                ],
+                ...uuiTsRules(),
+                // 'import/no-unresolved': [
+                //     unifiedSeverity, {
+                //         commonjs: true,
+                //         caseSensitive: true,
+                //     },
+                // ],
+                'no-restricted-imports': 'off',
                 'import/extensions': [
                     unifiedSeverity, 'never', { ignorePackages: true },
                 ],

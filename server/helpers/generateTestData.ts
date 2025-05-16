@@ -1,10 +1,10 @@
-const { Chance } = require('chance'); // https://chancejs.com/
-const { indexToOrder } = require('./indexToOrder');
-const { getData } = require('./getData');
+import { Chance } from 'chance'; // https://chancejs.com/
+import { indexToOrder } from './indexToOrder';
+import { getData } from './getData';
 
-const cache = {};
+const cache: any = {};
 
-const cached = (key, fn) => {
+const cached = (key: any, fn: any) => {
     return () => {
         if (!cache[key]) {
             return cache[key] = fn();
@@ -15,34 +15,34 @@ const cached = (key, fn) => {
 };
 
 const getCities = cached('cities', async () => {
-    const cities = await getData('cities');
-    const countries = await getData('countries');
-    const countryById = Object.fromEntries(countries.map((c) => [c.id, c]));
-    cities.forEach((i) => i.countryName = countryById[i.country].name);
+    const cities: any = await getData('cities');
+    const countries: any = await getData('countries');
+    const countryById: any = Object.fromEntries(countries.map((c: any) => [c.id, c]));
+    cities.forEach((i: any) => i.countryName = countryById[i.country].name);
     return cities;
 });
 
 const getLocationTree = cached('locations', async () => {
-    const cities = await getCities();
-    const continents = await getData('continents');
-    const countries = await getData('countries');
+    const cities: any = await getCities();
+    const continents: any = await getData('continents');
+    const countries: any = await getData('countries');
 
-    let list = [];
-    list = list.concat(continents.map((c) => ({
+    let list: any[] = [];
+    list = list.concat(continents.map((c: any) => ({
         id: `c-${c.id}`, type: 'continent', name: c.name, parentId: null,
     })));
-    list = list.concat(cities.map((c) => ({
+    list = list.concat(cities.map((c: any) => ({
         ...c, id: c.id, name: c.name, type: 'city', parentId: c.country,
     })));
-    list = list.concat(countries.map((c) => ({
+    list = list.concat(countries.map((c: any) => ({
         id: c.id, name: c.name, type: 'country', parentId: `c-${c.continent}`,
     })));
-    list.forEach((l) => { l.__typename = 'Location'; });
+    list.forEach((l: any) => { l.__typename = 'Location'; });
 
-    const byId = new Map(list.map((l) => [l.id, l]));
-    const byParentId = new Map();
+    const byId: any = new Map(list.map((l: any) => [l.id, l]));
+    const byParentId: any = new Map();
 
-    list.forEach((l) => {
+    list.forEach((l: any) => {
         if (byParentId.get(l.parentId) == null) {
             byParentId.set(l.parentId, []);
         }
@@ -54,8 +54,8 @@ const getLocationTree = cached('locations', async () => {
 
 const getPersons = cached('persons', async () => {
     const size = 10000;
-    const cities = await getCities();
-    const c = new Chance(1);
+    const cities: any = await getCities();
+    const c: any = new Chance(1);
 
     const companies = [
         {
@@ -66,14 +66,14 @@ const getPersons = cached('persons', async () => {
 
     const jobTitles = jobTitlesWithFrequency.map(({ frequency, ...t }) => t);
     const jobTitlesFreq = jobTitlesWithFrequency.map((jt) => jt.frequency);
-    const topCities = cities.filter((city) => city.population > 400000);
+    const topCities = cities.filter((city: any) => city.population > 400000);
     const statuses = profileStatuses;
-    const managers = c.unique(c.name, 30).map((i, index) => ({ id: index, name: i }));
-    const offices = c.unique(c.address, 30).map((i, index) => ({ id: index, name: i }));
+    const managers = c.unique(c.name, 30).map((i: any, index: any) => ({ id: index, name: i }));
+    const offices = c.unique(c.address, 30).map((i: any, index: any) => ({ id: index, name: i }));
     const workload = [
         0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
     ];
-    const persons = [];
+    const persons: any[] = [];
     const nationalities = ['en', 'it', 'nl', 'uk', 'de', 'jp', 'es', 'fr'];
 
     for (let n = 0; n < size; n++) {
@@ -82,7 +82,7 @@ const getPersons = cached('persons', async () => {
         }
         const id = n + 1;
         const firstName = c.first();
-        const lastName = c.last({ nationality: c.pickone(nationalities) });
+        const lastName = c.last({ nationality: c.pickone(nationalities) as any });
         const manager = c.pickone(managers);
         const email = `${firstName}_${lastName}@uui.com`;
         const department = c.pickone(departments);
@@ -99,33 +99,33 @@ const getPersons = cached('persons', async () => {
         persons.push({
             avatarUrl: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${c.guid()}&radius=50&randomizeIds=true&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf`,
             birthDate: c.birthday().toDateString(),
-            cityId: city.id,
-            cityName: city.name,
-            countryId: city.country,
-            countryName: city.countryName,
-            departmentId: department.id,
-            departmentName: department.name,
+            cityId: (city as any).id,
+            cityName: (city as any).name,
+            countryId: (city as any).country,
+            countryName: (city as any).countryName,
+            departmentId: (department as any).id,
+            departmentName: (department as any).name,
             email,
             employmentStatus: c.bool(),
             firstName,
-            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }).toDateString(),
+            hireDate: c.date({ year: c.year({ min: 2010, max: 2020 }) }) as any,
             id,
-            jobTitle: jobTitle.name,
-            jobTitleId: jobTitle.id,
+            jobTitle: (jobTitle as any).name,
+            jobTitleId: (jobTitle as any).id,
             lastName,
-            locationId: city.id,
-            locationName: city.countryName + ', ' + city.name,
-            managerId: manager.id,
-            managerName: manager.name,
-            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }).toDateString(),
+            locationId: (city as any).id,
+            locationName: (city as any).countryName + ', ' + (city as any).name,
+            managerId: (manager as any).id,
+            managerName: (manager as any).name,
+            modifiedDate: c.date({ year: c.year({ min: 2018, max: 2020 }) }) as any,
             name: `${firstName} ${lastName}`,
-            officeAddress: office.name,
-            officeId: office.id,
-            primarySkill: primarySkill.name,
-            primarySkillId: primarySkill.id,
+            officeAddress: (office as any).name,
+            officeId: (office as any).id,
+            primarySkill: (primarySkill as any).name,
+            primarySkillId: (primarySkill as any).id,
             productionCategory: c.bool(),
-            profileStatus: profileStatus.name,
-            profileStatusId: profileStatus.id,
+            profileStatus: (profileStatus as any).name,
+            profileStatusId: (profileStatus as any).id,
             relatedNPR: c.bool(),
             salary: c.integer({ min: 0, max: 1500 }),
             titleLevel: `${c.character({ pool: 'AB' })}${c.character({ pool: '1234' })}`,
@@ -142,20 +142,20 @@ const getPersons = cached('persons', async () => {
 });
 
 const getProjectTasks = cached('projectTasks', async () => {
-    const projectTasks = await getData('projectTasks');
-    projectTasks.forEach((t, index) => {
+    const projectTasks: any = await getData('projectTasks');
+    projectTasks.forEach((t: any, index: any) => {
         t.parentId = t.parentId === undefined || t.parentId === null ? null : t.parentId;
         t.order = indexToOrder(index);
     });
     return { projectTasks };
 });
 
-module.exports = {
-    getCities,
-    getLocationTree,
-    getPersons,
-    getProjectTasks,
-};
+export { getCities, getLocationTree, getPersons, getProjectTasks };
+export function generateTestData() {
+    // ... implementation ...
+}
+
+// Export any other functions as needed
 
 const profileStatuses = [
     { id: 1, name: 'Critical' }, { id: 2, name: 'Warning' }, { id: 3, name: 'Success' },

@@ -1,5 +1,4 @@
-exports.__esModule = true;
-const { isDate } = require('./getFilterPredicate');
+import { isDate } from './getFilterPredicate';
 
 const eqPredicate = function () { return 0; };
 // Previous versions use this comparer. While it works great for human-readable strings, it's broken for dates. Also, we need a plain sort in case of 'order' fields.
@@ -16,7 +15,7 @@ function compareScalars(a, b, order) {
     if (a === b) return 0;
     return order;
 }
-function getOrderComparer(sorting) {
+export function getOrderComparer(sorting) {
     if (!sorting || sorting.length === 0 || !Array.isArray(sorting)) {
         return eqPredicate;
     }
@@ -36,4 +35,3 @@ function getOrderComparer(sorting) {
     };
     return comparer;
 }
-exports.getOrderComparer = getOrderComparer;
