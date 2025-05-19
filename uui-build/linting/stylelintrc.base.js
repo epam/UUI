@@ -35,8 +35,6 @@ const SCSS_COMMON_RULES = {
     'selector-no-vendor-prefix': null,
     'property-no-vendor-prefix': null,
     'selector-no-qualifying-type': null,
-    //
-    'declaration-empty-line-before': 'never',
     'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
     'declaration-property-value-disallowed-list': [
         {
