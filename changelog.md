@@ -1,5 +1,6 @@
 # 6.x.x - xx.xx.2025
 **What's New**
+* [Modals][Eectric]: increased border radius to 12 px
 
 **What's Fixed**
 * [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
