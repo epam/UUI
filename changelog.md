@@ -1,5 +1,7 @@
 # 6.x.x - xx.xx.2025
 **What's New**
+* [RangeDatePicker]: added 'aria-multiselectable', 'aria-selected', 'data-date' attributes to improve 'accessibility,' updated behavior to set new value in 'body' when value typed in inputs.
+* [DatePicker]: added 'aria-selected', 'data-date' attributes to improve 'accessibility'.
 
 **What's Fixed**
 * [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.

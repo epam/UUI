@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RangeDatePicker, RangeDatePickerProps } from '../RangeDatePicker';
 import {
-    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent, fireEvent,
+    renderSnapshotWithContextAsync, setupComponentForTest, screen, within, userEvent, fireEvent, waitFor,
 } from '@epam/uui-test-utils';
 import dayjs from 'dayjs';
 import { supportedDateFormats } from '../helpers';
@@ -235,6 +235,31 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('Oct 7, 2019');
     });
 
+    it('should set new value in body when new value typed in "from" input', async () => {
+        const value: RangeDatePickerValue = {
+            from: '2019-10-10', // this date should be selected to open body in the right month for the test
+            to: null,
+        };
+        const { dom } = await setupRangeDatePicker({ value });
+
+        await userEvent.click(dom.from);
+
+        expect(dom.from).toHaveFocus();
+        expect(dom.from.value).toBe('Oct 10, 2019');
+        expect(dom.to.value).toBe('');
+
+        await userEvent.clear(dom.from);
+        await userEvent.type(dom.from, '2019-10-12');
+
+        expect(dom.from.value).toBe('Oct 12, 2019');
+
+        const selectedDate = await waitFor(() =>
+            within(screen.getByAria('multiselectable', 'true'))
+                .findByAria('selected', 'true'));
+        
+        expect(selectedDate.textContent).toContain('12');
+    });
+
     it('should change range on picker body value change', async () => {
         const newValueManualSel = { from: '2019-09-11' };
         const value = {
@@ -342,10 +367,10 @@ describe('RangeDataPicker', () => {
 
         const [oct5] = await within(dialog).findAllByText('5');
         await userEvent.click(oct5);
-        // should return focus on 'from' input
-        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeTruthy();
-        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeFalsy();
-        // should clear 'to' when selecting 'to' earlier than 'from'
+        // should clear 'to' and set new 'from' value if date is selected in 'to' less than 'from'
+        // should left focus on 'to' input
+        expect(parentElemContainsClasses(dom.from, ['uui-focus'])).toBeFalsy();
+        expect(parentElemContainsClasses(dom.to, ['uui-focus'])).toBeTruthy();
         expect(dom.from.value).toBe('Oct 5, 2019');
         expect(dom.to.value).toBe('');
     });
@@ -559,7 +584,7 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toEqual('');
 
         // Case 3: Click the clear button
-        await userEvent.click(clearButton);
+        await userEvent.click(clearButton!);
 
         // 'from' value should not change to null, but 'to' should
         expect(mocks.onValueChange).toHaveBeenCalledWith({
