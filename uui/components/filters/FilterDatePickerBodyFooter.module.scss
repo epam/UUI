@@ -1,0 +1,6 @@
+:global(.uui-filters-panel-dtp-footer) {
+    --uui-filters_panel-dtp-footer-vertical-paddding: 6px;
+    --uui-filters_panel-dtp-footer-horizontal-padding: 24px;
+
+    padding: var(--uui-filters_panel-dtp-footer-vertical-paddding) var(--uui-filters_panel-dtp-footer-horizontal-padding);
+}
