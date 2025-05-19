@@ -1,7 +1,7 @@
 import React, { Attributes, Dispatch, ForwardedRef, ReactNode, SetStateAction } from 'react';
 import {
     IEditable, ICheckable, IHasCX, IClickable, IHasRawProps, ICanBeInvalid, ICanFocus, IDropdownBodyProps,
-    IDropdownToggler, IHasValidationMessage,
+    IDropdownToggler, IHasValidationMessage, IControlled,
 } from './props';
 import { PickerInputBaseProps } from './pickers';
 import { DataRowProps } from './dataRows';
@@ -12,7 +12,13 @@ import {
 } from './dataSources';
 import { ILens } from '../data/lenses/types';
 import * as CSS from 'csstype';
-import { DatePickerProps, RangeDatePickerPresets, RangeDatePickerProps, TooltipCoreProps } from './components';
+import {
+    DatePickerProps, RangeDatePickerInputType,
+    RangeDatePickerPresets,
+    RangeDatePickerProps,
+    RangeDatePickerValue,
+    TooltipCoreProps,
+} from './components';
 import { IFilterItemBodyProps } from './components/filterItemBody';
 
 export interface DataTableState<TFilter = any, TViewState = any> extends DataSourceState<TFilter> {
@@ -439,12 +445,26 @@ export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Picke
     highlightSearchMatches?: boolean;
 };
 
-type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & {
+export type FilterDatePickerBodyFooterProps = IControlled<string | null>;
+
+export type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & {
     /** Type of the filter */
     type: 'datePicker';
+
+    /** Render callback for datepicker body footer.
+     * If omitted, the default FilterDatePickerBodyFooter component will be rendered.
+     */
+    renderFooter?: (props: FilterDatePickerBodyFooterProps) => React.ReactNode;
 };
 
-type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & {
+export interface FilterRangeDatePickerBodyFooterProps extends IControlled<RangeDatePickerValue | null>, Pick<RangeDatePickerProps, 'format' | 'onFocus' | 'onBlur' | 'preventEmptyToDate' | 'preventEmptyFromDate'> {
+    disableClear: boolean;
+    inFocus: RangeDatePickerInputType;
+    setInFocus: (inputType: RangeDatePickerInputType) => void;
+    onClear: () => void;
+}
+
+export type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & {
     /** Type of the filter */
     type: 'rangeDatePicker';
     /**
@@ -452,6 +472,11 @@ type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<Ran
      * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)
      */
     presets?: RangeDatePickerPresets;
+
+    /** Render callback for datepicker body footer.
+     * If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered.
+     */
+    renderFooter?: (props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode;
 };
 
 type NumericFilterConfig<TFilter> = FilterConfigBase<TFilter> & {
