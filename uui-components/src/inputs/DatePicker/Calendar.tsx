@@ -56,6 +56,7 @@ function isSelected <T>(day: Dayjs, value: T): boolean {
 export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
     const getDaysToRender = (days: Dayjs[]) =>
         days.map((day: Dayjs, index: number) => {
+            const isSelectedDay: boolean = isSelected(day, props.value);
             return (
                 <div
                     className={ uuiDaySelection.dayCell }
@@ -69,7 +70,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                             },
                             filter: props.filter,
                             isHoliday: props.isHoliday ? props.isHoliday(day) : isHoliday(day),
-                            isSelected: isSelected(day, props.value),
+                            isSelected: isSelectedDay,
                             isDisabled: props.isDisabled,
                         })
                     ) : (
@@ -80,7 +81,7 @@ export function Calendar<TSelection>(props: CalendarProps<TSelection>) {
                             } }
                             filter={ props.filter }
                             isHoliday={ props.isHoliday ? props.isHoliday(day) : isHoliday(day) }
-                            isSelected={ isSelected(day, props.value) }
+                            isSelected={ isSelectedDay }
                             isDisabled={ props.isDisabled }
                         />
                     )}

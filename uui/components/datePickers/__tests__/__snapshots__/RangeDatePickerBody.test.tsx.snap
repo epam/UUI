@@ -3,6 +3,7 @@
 exports[`RangeDatePickerBody should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
+    aria-multiselectable="true"
     class="root uui-datepicker-container"
   >
     <div
@@ -131,6 +132,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-01"
                             tabindex="0"
                           >
                             <div
@@ -145,6 +147,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-02"
                             tabindex="0"
                           >
                             <div
@@ -159,6 +162,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-03"
                             tabindex="0"
                           >
                             <div
@@ -173,6 +177,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-04"
                             tabindex="0"
                           >
                             <div
@@ -187,6 +192,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-05"
                             tabindex="0"
                           >
                             <div
@@ -201,6 +207,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-06"
                             tabindex="0"
                           >
                             <div
@@ -217,6 +224,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-07"
                             tabindex="0"
                           >
                             <div
@@ -231,6 +239,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-08"
                             tabindex="0"
                           >
                             <div
@@ -245,6 +254,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-09"
                             tabindex="0"
                           >
                             <div
@@ -259,6 +269,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-10"
                             tabindex="0"
                           >
                             <div
@@ -273,6 +284,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-11"
                             tabindex="0"
                           >
                             <div
@@ -286,7 +298,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-range-datepicker-first-day-in-range-wrapper uui-calendar-selected-day uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-12"
                             tabindex="0"
                           >
                             <div
@@ -300,7 +314,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-13"
                             tabindex="0"
                           >
                             <div
@@ -316,7 +332,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-calendar-day-wrapper"
+                            data-date="2019-10-14"
                             tabindex="0"
                           >
                             <div
@@ -330,7 +348,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-calendar-day-wrapper"
+                            data-date="2019-10-15"
                             tabindex="0"
                           >
                             <div
@@ -344,7 +364,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-calendar-day-wrapper"
+                            data-date="2019-10-16"
                             tabindex="0"
                           >
                             <div
@@ -358,7 +380,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-calendar-day-wrapper"
+                            data-date="2019-10-17"
                             tabindex="0"
                           >
                             <div
@@ -372,7 +396,9 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                           class="uui-calendar-day-cell"
                         >
                           <div
+                            aria-selected="true"
                             class="uui-calendar-clickable-day -clickable uui-range-datepicker-in-range uui-range-datepicker-last-day-in-range-wrapper uui-calendar-selected-day uui-calendar-day-wrapper"
+                            data-date="2019-10-18"
                             tabindex="0"
                           >
                             <div
@@ -387,6 +413,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-19"
                             tabindex="0"
                           >
                             <div
@@ -401,6 +428,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-20"
                             tabindex="0"
                           >
                             <div
@@ -417,6 +445,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-21"
                             tabindex="0"
                           >
                             <div
@@ -431,6 +460,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-22"
                             tabindex="0"
                           >
                             <div
@@ -445,6 +475,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-23"
                             tabindex="0"
                           >
                             <div
@@ -459,6 +490,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-24"
                             tabindex="0"
                           >
                             <div
@@ -473,6 +505,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-25"
                             tabindex="0"
                           >
                             <div
@@ -487,6 +520,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-26"
                             tabindex="0"
                           >
                             <div
@@ -501,6 +535,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-10-27"
                             tabindex="0"
                           >
                             <div
@@ -517,6 +552,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-28"
                             tabindex="0"
                           >
                             <div
@@ -531,6 +567,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-29"
                             tabindex="0"
                           >
                             <div
@@ -545,6 +582,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-30"
                             tabindex="0"
                           >
                             <div
@@ -559,6 +597,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-10-31"
                             tabindex="0"
                           >
                             <div
@@ -697,6 +736,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-01"
                             tabindex="0"
                           >
                             <div
@@ -711,6 +751,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-02"
                             tabindex="0"
                           >
                             <div
@@ -725,6 +766,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-03"
                             tabindex="0"
                           >
                             <div
@@ -741,6 +783,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-04"
                             tabindex="0"
                           >
                             <div
@@ -755,6 +798,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-05"
                             tabindex="0"
                           >
                             <div
@@ -769,6 +813,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-06"
                             tabindex="0"
                           >
                             <div
@@ -783,6 +828,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-07"
                             tabindex="0"
                           >
                             <div
@@ -797,6 +843,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-08"
                             tabindex="0"
                           >
                             <div
@@ -811,6 +858,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-09"
                             tabindex="0"
                           >
                             <div
@@ -825,6 +873,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-10"
                             tabindex="0"
                           >
                             <div
@@ -841,6 +890,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-11"
                             tabindex="0"
                           >
                             <div
@@ -855,6 +905,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-12"
                             tabindex="0"
                           >
                             <div
@@ -869,6 +920,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-13"
                             tabindex="0"
                           >
                             <div
@@ -883,6 +935,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-14"
                             tabindex="0"
                           >
                             <div
@@ -897,6 +950,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-15"
                             tabindex="0"
                           >
                             <div
@@ -911,6 +965,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-16"
                             tabindex="0"
                           >
                             <div
@@ -925,6 +980,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-17"
                             tabindex="0"
                           >
                             <div
@@ -941,6 +997,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-18"
                             tabindex="0"
                           >
                             <div
@@ -955,6 +1012,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-19"
                             tabindex="0"
                           >
                             <div
@@ -969,6 +1027,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-20"
                             tabindex="0"
                           >
                             <div
@@ -983,6 +1042,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-21"
                             tabindex="0"
                           >
                             <div
@@ -997,6 +1057,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-22"
                             tabindex="0"
                           >
                             <div
@@ -1011,6 +1072,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-23"
                             tabindex="0"
                           >
                             <div
@@ -1025,6 +1087,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-24"
                             tabindex="0"
                           >
                             <div
@@ -1041,6 +1104,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-25"
                             tabindex="0"
                           >
                             <div
@@ -1055,6 +1119,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-26"
                             tabindex="0"
                           >
                             <div
@@ -1069,6 +1134,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-27"
                             tabindex="0"
                           >
                             <div
@@ -1083,6 +1149,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-28"
                             tabindex="0"
                           >
                             <div
@@ -1097,6 +1164,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                            data-date="2019-11-29"
                             tabindex="0"
                           >
                             <div
@@ -1111,6 +1179,7 @@ exports[`RangeDatePickerBody should be rendered correctly 1`] = `
                         >
                           <div
                             class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                            data-date="2019-11-30"
                             tabindex="0"
                           >
                             <div

@@ -145,3 +145,13 @@ export const getPrevYearsList = (currentDate: Dayjs) => {
 export const getNextYearsList = (currentDate: Dayjs) => {
     return currentDate.add(16, 'year');
 };
+
+export const isValidAndInFilter = (
+    dateValue: RangeDatePickerValue,
+    inputType: 'from' | 'to',
+    filter?: (d: Dayjs) => boolean,
+): boolean => {
+    if (!dateValue[inputType]) return false;
+    if (!isValidRange(dateValue)) return false;
+    return !(filter && filter(uuiDayjs.dayjs(dateValue[inputType])) === false);
+};
