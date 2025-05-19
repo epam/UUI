@@ -27,7 +27,7 @@ export const uuiRangeDatePickerBody = {
     firstDayInRangeWrapper: 'uui-range-datepicker-first-day-in-range-wrapper',
     lastDayInRangeWrapper: 'uui-range-datepicker-last-day-in-range-wrapper',
     separator: 'uui-range-datepicker-separator',
-};
+} as const;
 
 export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
@@ -96,6 +96,12 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     },
 };
 
+interface DayState {
+    inRange: boolean;
+    isFirst: boolean;
+    isLast: boolean;
+}
+
 /**
  * Represents date picker body value
  */
@@ -150,7 +156,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
         const toChanged = selectedDate.to !== newRange?.to;
         if (inFocus === 'from' && fromChanged) {
             newInFocus = 'to';
-        } else if (inFocus === 'to' && toChanged) {
+        } else if (inFocus === 'to' && toChanged && !fromChanged) { // for the case when we change the value "to" less than the value "from" and do not want to get stuck on the focus "from"
             newInFocus = 'from';
         }
 
@@ -161,10 +167,15 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     };
 
     const renderDay = (renderProps: DayProps): JSX.Element => {
+        const { inRange, isFirst, isLast } = getDayState(renderProps.value, selectedDate);
         return (
             <Day
                 { ...renderProps }
-                cx={ getDayCX(renderProps.value, selectedDate) }
+                cx={ getDayCX({ inRange, isFirst, isLast }) }
+                rawProps={ {
+                    ...renderProps.rawProps,
+                    'aria-selected': (isFirst || isLast || inRange) ? 'true' : undefined,
+                } }
             />
         );
     };
@@ -210,6 +221,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
             ref={ ref }
             className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) }
             { ...props.rawProps }
+            aria-multiselectable="true"
         >
             <FlexRow
                 cx={ [view === 'DAY_SELECTION' && css.daySelection, css.container] }
@@ -274,7 +286,20 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     );
 }
 
-const getDayCX = (day: Dayjs, selectedDate: RangeDatePickerValue): string[] => {
+const getDayCX = ({ inRange, isFirst, isLast }: DayState): string[] => {
+    return [
+        cx(
+            inRange && uuiRangeDatePickerBody.inRange,
+            isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
+            !inRange && isFirst && uuiRangeDatePickerBody.lastDayInRangeWrapper,
+            isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
+            !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
+            (isFirst || isLast) && uuiDaySelection.selectedDay,
+        ),
+    ];
+};
+
+const getDayState = (day: Dayjs, selectedDate: RangeDatePickerValue): DayState => {
     const dayValue = day.valueOf();
     const fromValue = selectedDate?.from
         ? uuiDayjs.dayjs(selectedDate.from).valueOf() : null;
@@ -289,12 +314,9 @@ const getDayCX = (day: Dayjs, selectedDate: RangeDatePickerValue): string[] => {
     const isFirst = dayValue === fromValue;
     const isLast = dayValue === toValue;
 
-    return [cx(
-        inRange && uuiRangeDatePickerBody.inRange,
-        isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
-        !inRange && isFirst && uuiRangeDatePickerBody.lastDayInRangeWrapper,
-        isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
-        !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
-        (dayValue === fromValue || dayValue === toValue) && uuiDaySelection.selectedDay,
-    )];
+    return {
+        inRange,
+        isFirst,
+        isLast,
+    };
 };
