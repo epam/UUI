@@ -1,0 +1,5 @@
+:global(.uui-filters-panel-rdtp-footer) {
+    --uui-filters_panel-rdtp-footer-vertical-paddding: 6px;
+    --uui-filters_panel-rdtp-footer-horizontal-padding: 24px;
+    padding: var(--uui-filters_panel-rdtp-footer-vertical-paddding) var(--uui-filters_panel-rdtp-footer-horizontal-padding);
+}
