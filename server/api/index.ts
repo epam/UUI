@@ -1,6 +1,5 @@
 import express from 'express';
 import getCode from './getCode';
-import templateEndpoint from './templateEndpoint';
 import testDataApis from './testDataApis';
 import getChangelog from './getChangelog';
 import docsApi from './docs';
@@ -17,7 +16,6 @@ router.use(jsonParser);
 
 router.use(getChangelog);
 router.use(getCode);
-router.use(templateEndpoint);
 router.use(testDataApis);
 router.use(docsApi);
 router.use(tsDocsApi);

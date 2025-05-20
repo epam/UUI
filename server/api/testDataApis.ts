@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import * as helpers from '../helpers/index';
 import _ from 'lodash';
+import { getFilterPredicate } from '@epam/uui-core';
 
 const router = Router();
 
@@ -27,7 +28,7 @@ function filterAndSort(request: any, allItems: any, typeName: any) {
     }
 
     if (request.filter) {
-        const predicate = helpers.getFilterPredicate(request.filter);
+        const predicate = getFilterPredicate(request.filter);
         items = items.filter(predicate);
     }
 
