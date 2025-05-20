@@ -8,6 +8,7 @@
 * [PickerInput]: fixed returning to the previous focused element via shift+tab press
 * [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
 * [Modals][Eectric]: increased border radius to 12 px
+* [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
 
 
 # 6.1.0 - 08.05.2025
