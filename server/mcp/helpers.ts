@@ -51,7 +51,7 @@ export function getComponentExamples(componentName) {
         return examplesCache.get(componentName);
     }
 
-    const examplesDir = path.resolve(__dirname, '../../app/src/docs/_examples');
+    const examplesDir = path.resolve(__dirname, '../../../app/src/docs/_examples');
 
     try {
         // Find matching folder case-insensitively
