@@ -6,7 +6,7 @@ import { sortBy } from 'lodash';
 const router = express.Router();
 
 router.post('/get-demo-doc-content', (req, res) => {
-    const contentDir = path.join(process.cwd(), 'public/rte_contents/');
+    const contentDir = path.join(__dirname, '../../../../../public/rte_contents/');
     const docContentPath = path.resolve(contentDir, `${req.body.name}`);
     if (!docContentPath.startsWith(contentDir)) {
         res.send(null);
