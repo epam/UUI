@@ -147,9 +147,7 @@ router.post('/persons-paged', async (req: any, res: any) => {
             pageCount: Math.ceil(filteredAndSorted.items.length / pageSize),
         };
     } else if (req.body.range) {
-        // @ts-ignore
         const from = req.range.from || 0;
-        // @ts-ignore
         const count = req.range.count == null ? filteredAndSorted.items.length : req.range.count;
         const items = filteredAndSorted.items.slice(from, from + count);
         result = { items, totalCount: filteredAndSorted.items.length };
