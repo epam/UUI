@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import { testRunner } from '../internal/testRunnerUtils';
+import { mockGetBoundingClientRect } from '../internal/jsdomMockUtils';
 
 /**
  * Adds UUI-specific mocks to the jsdom
@@ -25,9 +26,13 @@ export function setupJsDom(global, options = {}) {
             writeText: () => {},
         },
     };
+
+    mockGetBoundingClientRect();
+
     const elementPrototypeMock = {
         scrollTo: () => {},
     };
+
     const consoleMock = (() => {
         const consoleErrorPrev = global.console.error;
         const error = (/** @type {[any]} */ ...args) => {
