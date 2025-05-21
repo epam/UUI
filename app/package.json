@@ -10,7 +10,6 @@
     "start-sd": "cross-env isWrapUuiAppInShadowDom=true craco start",
     "build": "craco build",
     "build-dev": "craco build --app-dev",
-    "server": "node ../server/app.js",
     "analyzer": "source-map-explorer 'build/static/**/*.js'"
   },
   "cracoConfig": "./build-config/craco.config.js",

@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
 let idCounter = 0;
 
-router.post('/uploadFileMock', function uploadFileMock(req, res) {
+router.post('/uploadFileMock', function uploadFileMock(req: any, res: any) {
     const file = req.files.file;
 
     let fileType = 'attachment';
@@ -39,4 +39,4 @@ router.post('/uploadFileMock', function uploadFileMock(req, res) {
     });
 });
 
-module.exports = router;
+export default router;

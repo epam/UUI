@@ -1,12 +1,12 @@
-const express = require('express');
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import { sortBy } from 'lodash';
 
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
-const { sortBy } = require('lodash');
 
 router.post('/get-demo-doc-content', (req, res) => {
-    const contentDir = path.join(__dirname, '../../public/rte_contents/');
+    const contentDir = path.join(__dirname, '../../../../../public/rte_contents/');
     const docContentPath = path.resolve(contentDir, `${req.body.name}`);
     if (!docContentPath.startsWith(contentDir)) {
         res.send(null);
@@ -32,4 +32,4 @@ router.get('/get-contents-list', (req, res) => {
     }));
 });
 
-module.exports = router;
+export default router;
