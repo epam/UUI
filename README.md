@@ -15,7 +15,7 @@ React-based components and accelerators library built by EPAM Systems.
 - :black_joker: Rich set of components: from buttons to data tables
 - :rocket: Common services: modals, notifications, error, monitoring, and more
 - :wrench: State-management primitives: Forms with validation, Lists and Tables with lazy-loading
-- :octocat: Open for contribution, actively evolving, supported, and used by 40+ EPAM internal production projects
+- :octocat: Open for contribution, actively evolving, supported by EPAM systems dedicated team
 - :lipstick: Allows deep customization to build your own brand UI components set on top
 - :memo: Not opinionated, you don't have to go all in: it's compatible with CRA, Babel/TypeScript, LESS/SASS, Apollo/Redux.
 
