@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -44,4 +44,4 @@ router.get('/auth/login', function (req, res) {
     res.send('<html><script>window.localStorage.setItem("uui-auth-recovery-success", "true"); window.close();</script></html>');
 });
 
-module.exports = router;
+export default router;
