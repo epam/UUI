@@ -120,8 +120,6 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
 
     const renderedDataRows = useMemo(() => props.rows.map((row) => renderRow(row, props.value)), [props.rows, props.value]);
 
-    // console.log('props.rows', props.rows);
-
     return (
         <>
             {showSearch && (
