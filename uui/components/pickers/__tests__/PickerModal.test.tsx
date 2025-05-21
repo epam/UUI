@@ -535,5 +535,39 @@ describe('PickerModal', () => {
 
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
         });
+
+        it('should be disabled "Show only selected" when search field do not empty', async () => {
+            const { dom } = await setupPickerModalForTest<TestItemType, number>({
+                initialValue: [4, 2, 6, 8],
+                selectionMode: 'multi',
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A2', 'B1', 'B2']);
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+', 'B1+', 'B2+', 'C1', 'C1+', 'C2']);
+
+            const searchInput = await PickerModalTestObject.findSearchInput();
+
+            fireEvent.change(searchInput, { target: { value: 'A' } });
+
+            await delayAct(500);
+
+            await waitFor(async () => {
+                expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A2']);
+            }, { timeout: 200 });
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+']);
+
+            await PickerModalTestObject.clickShowOnlySelected();
+
+            await waitFor(async () => {
+                expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A2']);
+            });
+
+            expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+']);
+        });
     });
 });
