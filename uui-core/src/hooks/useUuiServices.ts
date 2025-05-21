@@ -38,7 +38,8 @@ function createServices<TApi, TAppContext>(props: UseUuiServicesProps<TApi, TApp
     const uuiApi = new ApiContext({ apiPingPath, apiReloginPath, apiServerUrl, fetch }, uuiAnalytics);
 
     const rawApi = apiDefinition ? apiDefinition(uuiApi.processRequest.bind(uuiApi)) : ({} as TApi);
-    const withOptions = (options: ApiCallOptions) => apiDefinition((url, method, data) => uuiApi.processRequest(url, method, data, options));
+    const withOptions = (options: ApiCallOptions) => apiDefinition((url, method, data, defaultOptions) =>
+        uuiApi.processRequest(url, method, data, { ...defaultOptions, ...options }));
     const api = { ...rawApi, withOptions };
 
     const uuiUserSettings = new UserSettingsContext();

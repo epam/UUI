@@ -28,16 +28,6 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-coy.min.css" integrity="sha384-v15aiNnyEfhnpemZzTVe9Bb5DHhuH7OsXGaj7SPVyQZazurou/CIJG49yqKm8lg2" crossorigin="anonymous">    <title>Unified UI</title>
-    <% if (process.env.NODE_ENV === 'production') { %>
-        <script src='https://menu.epam.com/scripts/menu.js?app=uui3' async></script>
-    <% } %>
-
-
-    <% if (process.env.NODE_ENV === 'production') { %>
-        <meta name="google-site-verification" content="txfous52x9szxaVtdNjSMeFG4EIlCB1qdShWqZs_pLc" />
-    <% } %>
-
     <% if (process.env.REACT_APP_ENV_NAME === 'prod') { %>
     <!-- CookiePro Cookies Consent Notice start for uui.epam.com -->
     <script type="text/javascript" src=https://cookie-cdn.cookiepro.com/consent/0194a705-dff9-7c5a-97ef-98eecb725050/OtAutoBlock.js ></script>
@@ -49,13 +39,23 @@
     <% } %>
 
     <% if (process.env.REACT_APP_ENV_NAME === 'dev' || process.env.REACT_APP_ENV_NAME === 'qa') { %>
-        <!-- CookiePro Cookies Consent Notice start for uui.epam.com -->
-        <script type="text/javascript" src=https://cookie-cdn.cookiepro.com/consent/0194a705-dff9-7c5a-97ef-98eecb725050-test/OtAutoBlock.js ></script>
-        <script src=https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js  type="text/javascript" charset="UTF-8" data-domain-script="0194a705-dff9-7c5a-97ef-98eecb725050-test" ></script>
-        <script type="text/javascript">
-            function OptanonWrapper() { }
-        </script>
-        <!-- CookiePro Cookies Consent Notice end for uui.epam.com -->
+    <!-- CookiePro Cookies Consent Notice start for uui.epam.com -->
+    <script type="text/javascript" src=https://cookie-cdn.cookiepro.com/consent/0194a705-dff9-7c5a-97ef-98eecb725050-test/OtAutoBlock.js ></script>
+    <script src=https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js  type="text/javascript" charset="UTF-8" data-domain-script="0194a705-dff9-7c5a-97ef-98eecb725050-test" ></script>
+    <script type="text/javascript">
+        function OptanonWrapper() { }
+    </script>
+    <!-- CookiePro Cookies Consent Notice end for uui.epam.com -->
+    <% } %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-coy.min.css" integrity="sha384-v15aiNnyEfhnpemZzTVe9Bb5DHhuH7OsXGaj7SPVyQZazurou/CIJG49yqKm8lg2" crossorigin="anonymous">    <title>Unified UI</title>
+    <% if (process.env.NODE_ENV === 'production') { %>
+        <script src='https://menu.epam.com/scripts/menu.js?app=uui3' async></script>
+    <% } %>
+
+
+    <% if (process.env.NODE_ENV === 'production') { %>
+        <meta name="google-site-verification" content="txfous52x9szxaVtdNjSMeFG4EIlCB1qdShWqZs_pLc" />
     <% } %>
 
     <% if (process.env.NODE_ENV === 'production') { %>

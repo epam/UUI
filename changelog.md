@@ -8,7 +8,9 @@
 * [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
 * [PickerInput]: fixed returning to the previous focused element via shift+tab press
 * [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
-* [Modals][Eectric]: increased border radius to 12 px
+* [Modals][Electric]: increased border radius to 12 px
+* [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
+* [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
 * [PickerModal]: disabled "Show only selected" when search is active
 
 # 6.1.0 - 08.05.2025

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.9.0",
+    "@epam/uui-core": "6.1.0",
     "body-parser": "1.19.0",
     "chance": "^1.1.11",
     "cookie-parser": "~1.4.4",
@@ -20,6 +21,15 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/chance": "^1.1.0"
+    "@types/chance": "^1.1.0",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
+    "typescript": "^5.8.3",
+    "ts-node-dev": "^2.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/app.js",
+    "watch": "tsc --watch"
   }
 }
