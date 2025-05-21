@@ -1,12 +1,12 @@
-const express = require('express');
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import { isDevServer } from '../utils/envUtils';
 
 const router = express.Router();
-const fs = require('fs');
-const path = require('path');
-const { isDevServer } = require('../utils/envUtils');
 
-router.post('/get-doc-content', (req, res) => {
-    const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);
+router.post('/get-doc-content', (req: any, res: any) => {
+    const docContentPath = path.join(__dirname, '../../../', 'public/docs/content/', `${req.body.name}.json`);
 
     const isPathInsideDocsDirectory = docContentPath.includes(path.normalize('public/docs/content/'));
 
@@ -22,11 +22,11 @@ router.post('/get-doc-content', (req, res) => {
     }
 });
 
-router.post('/save-doc-content', (req, res) => {
+router.post('/save-doc-content', (req: any, res: any) => {
     if (!isDevServer()) {
         return res.sendStatus(403);
     }
-    const docContentPath = path.join(__dirname, '../../', 'public/docs/content/', `${req.body.name}.json`);
+    const docContentPath = path.join(__dirname, '../../../', 'public/docs/content/', `${req.body.name}.json`);
 
     const isPathInsideDocsDirectory = docContentPath.includes(path.normalize('public/docs/content/'));
 
@@ -39,8 +39,8 @@ router.post('/save-doc-content', (req, res) => {
     res.send({});
 });
 
-router.get('/get-props', (req, res) => {
-    const propsFilePath = path.join(__dirname, '../../public/docs/componentsPropsSet.json');
+router.get('/get-props', (req: any, res: any) => {
+    const propsFilePath = path.join(__dirname, '../../../public/docs/componentsPropsSet.json');
 
     const content = JSON.parse(fs.readFileSync(propsFilePath, 'utf8'));
 
@@ -49,4 +49,4 @@ router.get('/get-props', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

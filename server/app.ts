@@ -1,18 +1,18 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
-const fileUpload = require('express-fileupload');
-const api = require('./api');
-const fileUploadApi = require('./api/fileUpload');
-const { isDevServer } = require('./utils/envUtils');
-const actuator = require('express-actuator');
-const staticMiddleware = require('./static');
-const { getCspHeaderValue } = require('./utils/cspUtil');
-const { mcpApis } = require('./mcp/apis');
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import cors from 'cors';
+import fileUpload from 'express-fileupload';
+import api from './api';
+import fileUploadApi from './api/fileUpload';
+import { isDevServer } from './utils/envUtils';
+import actuator from 'express-actuator';
+import staticMiddleware from './static';
+import { getCspHeaderValue } from './utils/cspUtil';
+import { mcpApis } from './mcp/apis';
 
-const app = express();
+export const app = express();
 
 !isDevServer() && app.use(logger('dev'));
 
@@ -44,14 +44,12 @@ app.use(staticMiddleware);
 
 if (!isDevServer()) {
     app.get('*', function response(req, res) {
+        const indexPath = path.resolve(__dirname, '../../app/build/index.html');
         res.set('Cache-Control', 'no-cache');
-        res.sendFile(path.join(__dirname, '../app/build/', 'index.html'));
+        res.sendFile(indexPath);
     });
-
     app.listen(5000, () => {
         // eslint-disable-next-line no-console
         console.log('Example app listening on port 5000!');
     });
 }
-
-module.exports = app;

@@ -1,5 +1,9 @@
-const server = require('../../server/app');
+const server = require('../../server/build/app.js');
 
 module.exports = function (app) {
-    app.use(server);
+    try {
+        app.use(server.app);
+    } catch (e) {
+        console.error(e);
+    }
 };

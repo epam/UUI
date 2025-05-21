@@ -1,51 +1,12 @@
-const { z } = require('zod');
-const { getComponentSummariesLookup, readDocsGenResultsJson } = require('../utils/docsGen');
-
-// Helper to find component by fuzzy name
-function findComponentByName(name) {
-    const summaries = getComponentSummariesLookup();
-    const lowerName = name.toLowerCase();
-
-    // First try exact match in @epam/uui
-    const exactMatch = Object.entries(summaries).find(([_, summary]) =>
-        summary.module.startsWith('@epam/uui')
-        && summary.typeName.name.toLowerCase() === lowerName);
-
-    if (exactMatch) return exactMatch[0];
-
-    // Then try fuzzy match in @epam/uui
-    const fuzzyMatch = Object.entries(summaries).find(([_, summary]) =>
-        summary.module.startsWith('@epam/uui')
-        && summary.typeName.name.toLowerCase().includes(lowerName));
-
-    if (fuzzyMatch) return fuzzyMatch[0];
-
-    // Finally try fuzzy match in any module
-    const anyMatch = Object.entries(summaries).find(([_, summary]) =>
-        summary.typeName.name.toLowerCase().includes(lowerName));
-
-    return anyMatch ? anyMatch[0] : null;
-}
-
-// Helper to simplify component details
-function simplifyComponentDetails(details) {
-    if (!details || !details.props) return { props: [] };
-
-    return {
-        props: details.props.map((prop) => ({
-            name: prop.name,
-            type: prop.typeValue?.raw || 'unknown',
-            description: prop.comment?.raw?.join('\n') || '',
-            required: prop.required || false,
-        })),
-    };
-}
+import { z } from 'zod';
+import { getComponentSummariesLookup, readDocsGenResultsJson } from '../utils/docsGen';
+import { findComponentByName, simplifyComponentDetails, getComponentExamples } from './helpers';
 
 /**
  * Registers UUI component API tools with the MCP server
  * @param {import("@modelcontextprotocol/sdk/server/mcp.js").McpServer} server
  */
-function addComponentApiTools(server) {
+export function addComponentApiTools(server) {
     server.tool(
         'uui-component-api',
         {
@@ -67,6 +28,7 @@ function addComponentApiTools(server) {
             const { docsGenTypes } = readDocsGenResultsJson();
             const componentInfo = docsGenTypes[shortRef];
             const simplifiedDetails = simplifyComponentDetails(componentInfo.details);
+            const examples = getComponentExamples(componentName);
 
             return {
                 content: [
@@ -76,6 +38,7 @@ function addComponentApiTools(server) {
                             name: componentInfo.summary.typeName.name,
                             module: componentInfo.summary.module,
                             props: simplifiedDetails.props,
+                            codeExamples: examples,
                         }, null, 2),
                     },
                 ],
@@ -89,10 +52,10 @@ function addComponentApiTools(server) {
         async () => {
             const summaries = getComponentSummariesLookup();
             const uuiComponents = Object.values(summaries)
-                .filter((summary) => summary.module.startsWith('@epam/uui'))
+                .filter((summary) => (summary as any).module.startsWith('@epam/uui'))
                 .map((summary) => ({
-                    name: summary.typeName.name,
-                    module: summary.module,
+                    name: (summary as any).typeName.name,
+                    module: (summary as any).module,
                 }))
                 .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -107,5 +70,3 @@ function addComponentApiTools(server) {
         },
     );
 }
-
-module.exports = { addComponentApiTools };
