@@ -2,6 +2,7 @@
 **What's New**
 * [RangeDatePicker]: improved a11y, updated so that when a date is typed in the input fields, the calendar body immediately reflects and selects the new value, providing instant feedback and better usability.
 * [DatePicker]: improved a11y.
+* [@epam/uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
 
 **What's Fixed**
 * [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
@@ -10,7 +11,7 @@
 * [Modals][Electric]: increased border radius to 12 px
 * [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
 * [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
-
+* [PickerModal]: disabled "Show only selected" when search is active
 
 # 6.1.0 - 08.05.2025
 
