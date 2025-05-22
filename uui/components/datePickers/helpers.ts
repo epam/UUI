@@ -23,7 +23,7 @@ export const defaultRangeValue: RangeDatePickerValue = {
     to: null,
 };
 
-export const getMonthOnOpen = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
+export const getDisplayedMonth = (selectedDate: RangeDatePickerValue, focus: RangeDatePickerInputType) => {
     if (selectedDate.from && selectedDate.to && focus) {
         return uuiDayjs.dayjs(selectedDate[focus]);
     } else if (selectedDate.from) {
