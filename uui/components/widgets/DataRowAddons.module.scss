@@ -2,6 +2,19 @@
     padding-inline-end: var(--uui-horizontal-gap);
 }
 
+.drag-handle-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding-inline-start: var(--uui-dt-cell-padding-start);
+}
+
+.with-indent {
+    padding-inline-end: 12px;
+}
+
 .drag-handle {
     position: absolute;
     left: 2px;
