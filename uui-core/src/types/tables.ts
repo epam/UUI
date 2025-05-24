@@ -409,6 +409,8 @@ export type IFilterPredicate = {
     isDefault?: boolean;
 };
 
+export type FilterType = 'panel' | 'column';
+
 type FilterConfigBase<TFilter> = {
     /** Title of the filter, displayed in filter toggler and filter body */
     title: string;
