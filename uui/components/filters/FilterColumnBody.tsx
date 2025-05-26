@@ -1,23 +1,23 @@
 import { FilterPredicateName, IFilterItemBodyProps } from '@epam/uui-core';
-import React, { useEffect, useState } from 'react';
-import { getDefaultPredicate } from '../index';
+import React, { useState } from 'react';
+import { DropdownContainer, FilterItemBody, getDefaultPredicate } from '../index';
 import { FilterPredicatePanel } from './FilterPredicatePanel';
-import { FilterPredicateBody } from './FilterPredicateBody';
+import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
+import { getValue } from './helpers/predicateHelpers';
+import css from './FiltersPanelItem.module.scss';
 
 export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
 
     const [predicate, setPredicate] = useState<FilterPredicateName>(getDefaultPredicate(props.predicates, props.value));
 
-    useEffect(() => {
-        // This effect needs when the filter dropdown was closed and opened again
-        if (props.predicates && props.value && Object.keys(props.value).length > 0) {
-            const predicateFromValue = Object.keys(props.value)[0];
-            if (predicateFromValue !== predicate) {
-                setPredicate(predicateFromValue as FilterPredicateName);
-            }
+    const onValueChange = (value: any) => {
+        if (props.predicates) {
+            props.onValueChange({ [predicate]: value });
+        } else {
+            props.onValueChange(value);
         }
-    }, [props.value]);
+    };
 
     const renderHeader = () => (
         <FilterPredicatePanel
@@ -33,14 +33,14 @@ export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
     );
 
     return (
-        <FilterPredicateBody
-            { ...props }
-            filterType="column"
-            predicate={ predicate }
-            renderHeader={ renderHeader }
-            isPickersType={ isPickersType }
-            value={ props.value }
-            onValueChange={ props.onValueChange }
-        />
+        <DropdownContainer style={ { minWidth: '360px' } } cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...props }>
+            {renderHeader()}
+            <FilterItemBody
+                { ...props }
+                selectedPredicate={ predicate }
+                value={ getValue(predicate, props.value) }
+                onValueChange={ onValueChange }
+            />
+        </DropdownContainer>
     );
 }
