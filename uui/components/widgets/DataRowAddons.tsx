@@ -43,7 +43,13 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
 
     return (
         <>
-            {row.dnd?.srcData && <DragHandle key="dh" cx={ css.dragHandle } rawProps={ { ...props.eventHandlers } } /> }
+            {
+                row.dnd?.srcData && (
+                    <div key="dh" className={ cx(css.dragHandleWrapper, row.indent > 0 && css.withIndent) } style={ { width: row.indent > 0 ? (getIndent() + getWidth()) : 0 } } { ...props.eventHandlers }>
+                        <DragHandle cx={ css.dragHandle } />
+                    </div>
+                )
+            }
             {row?.checkbox?.isVisible && (
                 <Checkbox
                     key="cb"

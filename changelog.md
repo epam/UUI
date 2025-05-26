@@ -12,6 +12,7 @@
 * [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
 * [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
 * [PickerModal]: disabled "Show only selected" when search is active
+* [DataTable]: increased DnD area for rows
 
 # 6.1.0 - 08.05.2025
 
