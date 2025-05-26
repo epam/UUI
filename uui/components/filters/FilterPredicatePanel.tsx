@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cx from 'classnames';
 import { FilterPredicate, FilterPredicateName, FilterType, IFilterPredicate } from '@epam/uui-core';
 import { settings } from '../../settings';
@@ -19,6 +19,17 @@ interface IPredicatesHeaderProps {
 
 export function FilterPredicatePanel(props: IPredicatesHeaderProps) {
     if (!props.predicates) return null;
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        // This effect needs when the filter dropdown was closed and opened again
+        if (props.predicates && props.value && Object.keys(props.value).length > 0) {
+            const predicateFromValue = Object.keys(props.value)[0];
+            if (predicateFromValue !== props.predicate) {
+                props.setPredicate(predicateFromValue as FilterPredicateName);
+            }
+        }
+    }, [props.value]);
 
     const changePredicate = (val: FilterPredicateName) => {
         const isInRange = (p: FilterPredicateName) => p === 'inRange' || p === 'notInRange';

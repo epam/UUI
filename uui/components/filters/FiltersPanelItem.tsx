@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Middleware, offset } from '@floating-ui/react';
 import { DropdownBodyProps, TableFiltersConfig, IDropdownToggler, IEditable,
     isMobile, FilterPredicateName, getSeparatedValue, DataRowProps, PickerFilterConfig,
@@ -12,9 +12,12 @@ import { FilterPanelItemToggler } from './FilterPanelItemToggler';
 import { LinkButton } from '../buttons';
 import { settings } from '../../settings';
 import { FilterPredicatePanel } from './FilterPredicatePanel';
-import { FilterPredicateBody } from './FilterPredicateBody';
 import { getDefaultPredicate } from './defaultPredicates';
 import { getValue } from './helpers/predicateHelpers';
+import { PickerBodyMobileView } from '../pickers';
+import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
+import { FilterItemBody } from './FilterItemBody';
+import { DropdownContainer } from '../overlays';
 import css from './FiltersPanelItem.module.scss';
 
 export type FiltersToolbarItemProps = TableFiltersConfig<any> &
@@ -47,6 +50,8 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
     const { maxCount = 2 } = props;
     const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
     const isMobileScreen = isMobile();
+    const hideHeaderTitle = isPickersType && isMobileScreen;
+
     const floatingMiddleware: Middleware[] = useMemo(() => {
         const middleware: Middleware[] = [
             offset(() => {
@@ -63,10 +68,19 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
 
     const [isOpen, isOpenChange] = useState(props.autoFocus);
     const [predicate, setPredicate] = useState<FilterPredicateName>(getDefaultPredicate(props.predicates, props.value));
+
     const predicateName: string = React.useMemo(
         () => predicate && props.predicates.find((p) => p.predicate === predicate).name,
         [predicate],
     );
+
+    const onValueChange = (value: any) => {
+        if (props.predicates) {
+            props.onValueChange({ [predicate]: value });
+        } else {
+            props.onValueChange(value);
+        }
+    };
 
     useEffect(() => {
         // This effect needs when the filter dropdown was closed and opened again
@@ -82,7 +96,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         props.removeFilter(props.field);
     };
 
-    const renderHeader = useCallback((hideTitle: boolean) => (
+    const renderHeader = (hideTitle: boolean) => (
         <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
                 <FilterPredicatePanel
@@ -112,23 +126,39 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 />
             )}
         </div>
-    ), [props.predicates, props.title, props.isAlwaysVisible, predicate, isPickersType, props.type, props.value]);
-
-    const renderBody = (dropdownProps: DropdownBodyProps) => (
-        <FilterPredicateBody
-            { ...props }
-            { ...dropdownProps }
-            filterType="panel"
-            isPickersType={ isPickersType }
-            title={ props.title }
-            isOpenChange={ isOpenChange }
-            isOpen={ isOpen }
-            renderHeader={ renderHeader }
-            predicate={ predicate }
-            value={ props.value }
-            onValueChange={ props.onValueChange }
-        />
     );
+
+    const renderBody = (dropdownProps: DropdownBodyProps) => {
+        return isPickersType ? (
+            <PickerBodyMobileView
+                { ...dropdownProps }
+                cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] }
+                title={ props.title }
+                width={ settings.filtersPanel.sizes.pickerBodyMinWidth }
+                onClose={ () => isOpenChange(false) }
+            >
+                { renderHeader(hideHeaderTitle) }
+                <FilterItemBody
+                    { ...props }
+                    { ...dropdownProps }
+                    selectedPredicate={ predicate }
+                    value={ getValue(predicate, props.value) ? getValue(predicate, props.value) : null }
+                    onValueChange={ onValueChange }
+                />
+            </PickerBodyMobileView>
+        ) : (
+            <DropdownContainer cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...dropdownProps }>
+                { renderHeader(hideHeaderTitle) }
+                <FilterItemBody
+                    { ...props }
+                    { ...dropdownProps }
+                    selectedPredicate={ predicate }
+                    value={ getValue(predicate, props.value) }
+                    onValueChange={ onValueChange }
+                />
+            </DropdownContainer>
+        );
+    };
 
     const getPickerItemName = (item: DataRowProps<any, any>, config: PickerFilterConfig<any>) => {
         if (item.isLoading) {
