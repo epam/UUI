@@ -1,7 +1,7 @@
 # 6.x.x - xx.xx.2025
 **What's New**
 * [RangeDatePicker]: improved a11y, updated so that when a date is typed in the input fields, the calendar body immediately reflects and selects the new value, providing instant feedback and better usability.
-* [DatePicker]: improved a11y.
+* [DatePicker]: improved a11y, updated so that when a date is typed in the input fields, the calendar body immediately reflects and selects the new value, providing instant feedback and better usability.
 * [@epam/uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
 
 **What's Fixed**
