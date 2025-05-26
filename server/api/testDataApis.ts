@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import * as helpers from '../helpers/index';
 import _ from 'lodash';
-import { getFilterPredicate } from '@epam/uui-core';
+import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
+import { undefined } from 'zod';
 
 const router = Router();
 
@@ -33,7 +34,7 @@ function filterAndSort(request: any, allItems: any, typeName: any) {
     }
 
     if (request.sorting) {
-        const comparer = (helpers as any).getOrderComparer(request.sorting);
+        const comparer = getOrderComparer(request.sorting);
         items.sort(comparer);
     } else {
         items = _.orderBy(items, 'name');
@@ -63,7 +64,7 @@ function filterAndSort(request: any, allItems: any, typeName: any) {
 function group(request: any, allItems: any, typeName: any, getGroupId: any = (groupId: any) => groupId) {
     request = request || {};
 
-    const { search, filter: { groupBy, ...filter } = {}, ...groupingRequest } = request;
+    const { search, filter: { groupBy, ...filter } = { groupBy: undefined }, ...groupingRequest } = request;
 
     let groups: any[] = [];
     const items = filterAndSort({ search, filter }, allItems, typeName).items;
