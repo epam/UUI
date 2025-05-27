@@ -7,7 +7,6 @@ import { getValue } from './helpers/predicateHelpers';
 interface IPredicatesHeaderProps {
     predicates: IFilterPredicate[];
     predicate: keyof FilterPredicate<any>;
-    isPickersType: boolean;
     type: 'singlePicker' | 'multiPicker' | 'datePicker' | 'numeric' | 'rangeDatePicker' | 'custom';
     onValueChange: (newValue: any) => void;
     value: unknown;

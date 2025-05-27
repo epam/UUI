@@ -10,7 +10,6 @@ export const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
         const key = keys[n];
         const filterValue: any = filter[key];
         if (filterValue && typeof filterValue === 'object') {
-            // Добавляем проверку на пустой объект
             if (Object.keys(filterValue).length === 0) {
                 delete filter[key];
                 continue;

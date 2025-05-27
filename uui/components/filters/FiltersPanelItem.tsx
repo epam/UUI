@@ -102,7 +102,6 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                 <FilterPredicatePanel
                     predicates={ props.predicates }
                     predicate={ predicate }
-                    isPickersType={ isPickersType }
                     type={ props.type }
                     onValueChange={ props.onValueChange }
                     value={ props.value }
