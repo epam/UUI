@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
-import cx from 'classnames';
-import { FilterPredicate, FilterPredicateName, FilterType, IFilterPredicate } from '@epam/uui-core';
+import { FilterPredicate, FilterPredicateName, IFilterPredicate } from '@epam/uui-core';
 import { settings } from '../../settings';
 import { MultiSwitch } from '../inputs';
 import { getValue } from './helpers/predicateHelpers';
-import css from './FiltersPanelItem.module.scss';
 
 interface IPredicatesHeaderProps {
-    filterType: FilterType;
     predicates: IFilterPredicate[];
     predicate: keyof FilterPredicate<any>;
     isPickersType: boolean;
@@ -50,24 +47,12 @@ export function FilterPredicatePanel(props: IPredicatesHeaderProps) {
         props.setPredicate(val);
     };
 
-    const getWrapper = (children: React.ReactNode) => {
-        switch (props.filterType) {
-            case 'column':
-                return (
-                    <div className={ cx(css.header, props.isPickersType) }>
-                        { children }
-                    </div>
-                );
-            default: return children;
-        }
-    };
-
-    return getWrapper(
+    return (
         <MultiSwitch
             items={ props.predicates?.map((i) => ({ id: i.predicate, caption: i.name })) }
             value={ props.predicate }
             onValueChange={ changePredicate }
             size={ settings.filtersPanel.sizes.pickerBodyMultiSwitch }
-        />,
+        />
     );
 }
