@@ -1,17 +1,13 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-import css from '../styles.module.scss';
-
-export class FiltersPanelDoc extends BaseDocsBlock {
-    title = 'Filters Panel';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="filters-panel-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample cx={ css.appBg } title="Basic" path="./_examples/tables/FiltersPanelBasic.example.tsx" />
-            </>
-        );
-    }
-}
+export const FiltersPanelDocItem: DocItem = {
+    id: 'filtersPanel',
+    name: 'Filters Panel',
+    parentId: 'tables',
+    examples: [
+        { descriptionPath: 'filters-panel-descriptions' },
+        { name: 'Basic', componentPath: './_examples/tables/FiltersPanelBasic.example.tsx' },
+    ],
+    order: 5,
+    tags: ['tables', 'dataTable'],
+};

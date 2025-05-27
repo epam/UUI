@@ -1,19 +1,13 @@
-import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock,
-} from '../common';
+import { DocItem } from '../documents/structure';
 
-export class VirtualListDoc extends BaseDocsBlock {
-    title = 'VirtualList';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="virtual-list-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/virtualList/Basic.example.tsx" />
-                <DocExample title="Scroll to index" path="./_examples/virtualList/ScrollTo.example.tsx" />
-                <DocExample title="Advanced" path="./_examples/virtualList/Advanced.example.tsx" />
-            </>
-        );
-    }
-}
+export const VirtualListDocItem: DocItem = {
+    id: 'virtualList',
+    name: 'Virtual List',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'virtual-list-descriptions' },
+        { name: 'Basic', componentPath: './_examples/virtualList/Basic.example.tsx' },
+        { name: 'Scroll to index', componentPath: './_examples/virtualList/ScrollTo.example.tsx' },
+        { name: 'Advanced', componentPath: './_examples/virtualList/Advanced.example.tsx' },
+    ],
+};

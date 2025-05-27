@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class LockContextDoc extends BaseDocsBlock {
-    title = 'Lock context';
-    renderContent() {
-        return (
-            <EditableDocContent fileName="lock-context-descriptions" />
-        );
-    }
-}
+export const LockContextDocItem: DocItem = {
+    id: 'lockContextDoc',
+    name: 'Lock Context',
+    parentId: 'contexts',
+    examples: [
+        { descriptionPath: 'lock-context-descriptions' },
+    ],
+    tags: ['contexts'],
+};

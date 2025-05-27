@@ -1,17 +1,11 @@
-import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock,
-} from '../common';
+import { DocItem } from '../documents/structure';
 
-export class AdaptivePanelDoc extends BaseDocsBlock {
-    title = 'Adaptive panel';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="adaptivePanel-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/adaptivePanel/Basic.example.tsx" />
-            </>
-        );
-    }
-}
+export const AdaptivePanelDocItem: DocItem = {
+    id: 'adaptivePanel',
+    name: 'Adaptive Panel',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'adaptivePanel-descriptions' },
+        { name: 'Basic', componentPath: './_examples/adaptivePanel/Basic.example.tsx' },
+    ],
+};

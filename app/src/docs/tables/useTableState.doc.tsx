@@ -1,19 +1,15 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
-
 import css from '../styles.module.scss';
+import { DocItem } from '../../documents/structure';
 
-export class useTableStateDoc extends BaseDocsBlock {
-    title = 'useTableState hook';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="useTableState-descriptions" />
-                {this.renderSectionTitle('Examples')}
-
-                <DocExample cx={ css.appBg } title="Filtration with Presets" path="./_examples/tables/useTableState/useTableState.example.tsx" />
-                <DocExample cx={ css.appBg } title="Disable URL storing and handle state manually" path="./_examples/tables/useTableState/useTableStateWithIEditable.example.tsx" />
-            </>
-        );
-    }
-}
+export const useTableStateDocItem: DocItem = {
+    id: 'useTableState',
+    name: 'useTableState',
+    parentId: 'tables',
+    examples: [
+        { descriptionPath: 'useTableState-descriptions' },
+        { name: 'Filtration with Presets', componentPath: './_examples/tables/useTableState/useTableState.example.tsx', cx: css.appBg },
+        { name: 'Disable URL storing and handle state manually', componentPath: './_examples/tables/useTableState/useTableStateWithIEditable.example.tsx', cx: css.appBg },
+    ],
+    order: 4,
+    tags: ['tables', 'dataTable'],
+};

@@ -1,40 +1,32 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 import css from '../styles.module.scss';
 import { TDocConfig, TSkin } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
+import { DocItem } from '../../documents/structure';
 
-export class TablesOverviewDoc extends BaseDocsBlock {
-    title = 'Tables overview';
+export const tablesOverviewExplorerConfig: TDocConfig = {
+    name: 'DataTable',
+    bySkin: {
+        [TSkin.UUI]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+        [TSkin.Loveship]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+        [TSkin.Promo]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+        [TSkin.Electric]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
+    },
+};
 
-    static override config: TDocConfig = {
-        name: 'DataTable',
-        bySkin: {
-            [TSkin.UUI]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
-            [TSkin.Loveship]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
-            [TSkin.Promo]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
-            [TSkin.Electric]: { type: '@epam/uui:DataTableProps', component: uui.DataTable },
-        },
-    };
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="tables-overview-descriptions" />
-                {this.renderSectionTitle('Examples')}
-
-                <DocExample cx={ css.appBg } title="Async Table" path="./_examples/tables/AsyncTable.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Lazy Table" path="./_examples/tables/LazyTable.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Array Table" path="./_examples/tables/ArrayTable.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Tree Table" path="./_examples/tables/TreeTable.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Column size and content align configuration" path="./_examples/tables/StyledColumns.example.tsx" />
-
-                <DocExample config={ this.getConfig() } cx={ css.appBg } title="Condensed view" path="./_examples/tables/CondensedView.example.tsx" />
-            </>
-        );
-    }
-}
+export const TablesOverviewDocItem: DocItem = {
+    id: 'tablesOverview',
+    name: 'Overview',
+    parentId: 'tables',
+    examples: [
+        { descriptionPath: 'tables-overview-descriptions' },
+        { name: 'Async Table', componentPath: './_examples/tables/AsyncTable.example.tsx', cx: css.appBg },
+        { name: 'Lazy Table', componentPath: './_examples/tables/LazyTable.example.tsx', cx: css.appBg },
+        { name: 'Array Table', componentPath: './_examples/tables/ArrayTable.example.tsx', cx: css.appBg },
+        { name: 'Tree Table', componentPath: './_examples/tables/TreeTable.example.tsx', cx: css.appBg },
+        { name: 'Column size and content align configuration', componentPath: './_examples/tables/StyledColumns.example.tsx', cx: css.appBg },
+        { name: 'Condensed view', componentPath: './_examples/tables/CondensedView.example.tsx', cx: css.appBg },
+    ],
+    explorerConfig: tablesOverviewExplorerConfig,
+    order: 1,
+    tags: ['tables', 'dataTable'],
+};

@@ -1,22 +1,16 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import type { DocItem } from '../../documents/structure';
 
-export class DataSourcesArrayDataSourceDoc extends BaseDocsBlock {
-    title = 'ArrayDataSource';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dataSources-Array-dataSource" />
-                
-                <DocExample title="useArrayDataSource" path="./_examples/dataSources/UseArrayDataSource.code.example.ts" onlyCode={ true } />
-                <EditableDocContent title="ArrayDataSourceProps" fileName="dataSources-array-dataSource-props-overview" />
-
-                <DocExample title="Data" path="./_examples/dataSources/ArrayDataSourceData.example.tsx" />
-                <DocExample title="Search" path="./_examples/dataSources/ArrayDataSourceSearch.example.tsx" />
-                <DocExample title="Filter" path="./_examples/dataSources/ArrayDataSourceFilter.example.tsx" />
-                <DocExample title="Sorting" path="./_examples/dataSources/ArrayDataSourceSorting.example.tsx" />
-            </>
-        );
-    }
-}
+export const DataSourcesArrayDataSourceDocItem: DocItem = {
+    id: 'dataSources-array-dataSource',
+    name: 'ArrayDataSource',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-Array-dataSource' },
+        { name: 'useArrayDataSource', componentPath: './_examples/dataSources/UseArrayDataSource.code.example.ts', onlyCode: true },
+        { name: 'ArrayDataSourceProps', descriptionPath: 'dataSources-array-dataSource-props-overview' },
+        { name: 'Data', componentPath: './_examples/dataSources/ArrayDataSourceData.example.tsx' },
+        { name: 'Search', componentPath: './_examples/dataSources/ArrayDataSourceSearch.example.tsx' },
+        { name: 'Filter', componentPath: './_examples/dataSources/ArrayDataSourceFilter.example.tsx' },
+        { name: 'Sorting', componentPath: './_examples/dataSources/ArrayDataSourceSorting.example.tsx' },
+    ],
+};

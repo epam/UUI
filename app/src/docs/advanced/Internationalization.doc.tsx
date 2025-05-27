@@ -1,14 +1,11 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock, DocExample } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class InternationalizationDoc extends BaseDocsBlock {
-    title = 'Internationalization';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="internationalization-intro" />
-                <DocExample title="Right-to-left support(RTL)" path="./_examples/i18n/Rtl.example.tsx" />
-            </>
-        );
-    }
-}
+export const InternationalizationDocItem: DocItem = {
+    id: 'internationalization',
+    name: 'Internationalization',
+    parentId: 'advanced',
+    examples: [
+        { descriptionPath: 'internationalization-intro' },
+        { name: 'Right-to-left support(RTL)', componentPath: './_examples/i18n/Rtl.example.tsx' },
+    ],
+};

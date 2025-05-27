@@ -1,19 +1,13 @@
-import * as React from 'react';
-import {
-    BaseDocsBlock, DocExample, EditableDocContent,
-} from '../common';
+import { DocItem } from '../documents/structure';
 
-export class ProgressBarDoc extends BaseDocsBlock {
-    title = 'Loaders';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="progressBar-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic ProgressBar" path="./_examples/progressBar/Basic.example.tsx" />
-                <DocExample title="IndeterminateBar example" path="./_examples/progressBar/IndeterminateBar.example.tsx" />
-                <DocExample title="IndicatorBar example" path="./_examples/progressBar/IndicatorBar.example.tsx" />
-            </>
-        );
-    }
-}
+export const ProgressBarDocItem: DocItem = {
+    id: 'progressBar',
+    name: 'Progress Bar',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'progressBar-descriptions' },
+        { name: 'Basic ProgressBar', componentPath: './_examples/progressBar/Basic.example.tsx' },
+        { name: 'IndeterminateBar example', componentPath: './_examples/progressBar/IndeterminateBar.example.tsx' },
+        { name: 'IndicatorBar example', componentPath: './_examples/progressBar/IndicatorBar.example.tsx' },
+    ],
+};

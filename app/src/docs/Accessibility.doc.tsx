@@ -1,16 +1,12 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock, DocExample } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class AccessibilityDoc extends BaseDocsBlock {
-    title = 'Accessibility';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="Accessibility" />
-                <DocExample title="Keyboard navigation" path="./_examples/accessibility/KeyboardNavigation.example.tsx" />
-                <EditableDocContent title="Color contrast" fileName="color_contrast" />
-                <DocExample title="Accessible labels" path="./_examples/accessibility/AccessibleLabels.example.tsx" />
-            </>
-        );
-    }
-}
+export const AccessibilityDocItem: DocItem = {
+    id: 'Accessibility',
+    name: 'Accessibility',
+    examples: [
+        { descriptionPath: 'Accessibility' },
+        { name: 'Keyboard navigation', componentPath: './_examples/accessibility/KeyboardNavigation.example.tsx' },
+        { name: 'Color contrast', descriptionPath: 'color_contrast' },
+        { name: 'Accessible labels', componentPath: './_examples/accessibility/AccessibleLabels.example.tsx' },
+    ],
+};
