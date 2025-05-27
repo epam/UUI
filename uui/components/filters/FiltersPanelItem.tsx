@@ -100,7 +100,6 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
         <div className={ cx(css.header, isPickersType && (props.showSearch ?? css.withSearch)) }>
             {props.predicates ? (
                 <FilterPredicatePanel
-                    filterType="panel"
                     predicates={ props.predicates }
                     predicate={ predicate }
                     isPickersType={ isPickersType }

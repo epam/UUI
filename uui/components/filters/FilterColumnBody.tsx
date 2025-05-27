@@ -4,6 +4,7 @@ import { DropdownContainer, FilterItemBody, getDefaultPredicate } from '../index
 import { FilterPredicatePanel } from './FilterPredicatePanel';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
 import { getValue } from './helpers/predicateHelpers';
+import cx from 'classnames';
 import css from './FiltersPanelItem.module.scss';
 
 export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
@@ -19,18 +20,25 @@ export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
         }
     };
 
-    const renderHeader = () => (
-        <FilterPredicatePanel
-            filterType="column"
-            predicates={ props.predicates }
-            predicate={ predicate }
-            isPickersType={ isPickersType }
-            type={ props.type }
-            onValueChange={ props.onValueChange }
-            value={ props.value }
-            setPredicate={ setPredicate }
-        />
-    );
+    const renderHeader = () => {
+        const panelProps = {
+            predicates: props.predicates,
+            predicate,
+            isPickersType,
+            type: props.type,
+            onValueChange: props.onValueChange,
+            value: props.value,
+            setPredicate,
+        };
+
+        return props.predicates?.length >= 1 ? (
+            <div className={ cx(css.header, isPickersType) }>
+                <FilterPredicatePanel { ...panelProps } />
+            </div>
+        ) : (
+            <FilterPredicatePanel { ...panelProps } />
+        );
+    };
 
     return (
         <DropdownContainer style={ { minWidth: '360px' } } cx={ [css.body, UUI_FILTERS_PANEL_ITEM_BODY] } { ...props }>
