@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class RichTextEditorSerializersDoc extends BaseDocsBlock {
-    title = 'Rich Text Editor Serializers';
-    renderContent() {
-        return (
-            <>
-                <DocExample title="MD format" path="./_examples/richTextEditor/MdSerialization.example.tsx" />
-                <DocExample title="HTML format" path="./_examples/richTextEditor/HtmlSerialization.example.tsx" />
-            </>
-        );
-    }
-}
+export const RichTextEditorSerializersDocItem: DocItem = {
+    id: 'rteSerializers',
+    name: 'Serializers',
+    parentId: 'richTextEditor',
+    examples: [
+        { name: 'MD format', componentPath: './_examples/richTextEditor/MdSerialization.example.tsx' },
+        { name: 'HTML format', componentPath: './_examples/richTextEditor/HtmlSerialization.example.tsx' },
+    ],
+    order: 2,
+    tags: ['RTE', 'RichTextEditor'],
+};

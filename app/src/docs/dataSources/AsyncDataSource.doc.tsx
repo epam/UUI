@@ -1,20 +1,13 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class DataSourcesAsyncDataSourceDoc extends BaseDocsBlock {
-    title = 'AsyncDataSource';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dataSources-Async-dataSource" />
-
-                <DocExample title="useAsyncDataSource" path="./_examples/dataSources/UseAsyncDataSource.code.example.ts" onlyCode={ true } />
-                <EditableDocContent fileName="dataSources-async-dataSource-props-overview" />
-
-                <DocExample title="Data" path="./_examples/dataSources/AsyncDataSourceData.example.tsx" />
-            </>
-            
-        );
-    }
-}
+export const DataSourcesAsyncDataSourceDocItem: DocItem = {
+    id: 'dataSources-Async-dataSource',
+    name: 'AsyncDataSource',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-Async-dataSource' },
+        { name: 'useAsyncDataSource', componentPath: './_examples/dataSources/UseAsyncDataSource.code.example.ts', onlyCode: true },
+        { descriptionPath: 'dataSources-async-dataSource-props-overview' },
+        { name: 'Data', componentPath: './_examples/dataSources/AsyncDataSourceData.example.tsx', onlyCode: true },
+    ],
+};

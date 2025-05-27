@@ -1,32 +1,19 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
+import { DocItem } from '../documents/structure';
 
-export class FormDoc extends BaseDocsBlock {
-    title = 'Form';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="form-descriptions" />
-
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/form/Basic.example.tsx" />
-
-                <DocExample title="Complex validation" path="./_examples/form/ComplexValidation.example.tsx" />
-
-                <DocExample title="Handle successful or failed saves" path="./_examples/form/HandleSuccessSaveAndError.example.tsx" />
-
-                <DocExample title="Modal with Form" path="./_examples/modals/ModalWithForm.example.tsx" />
-
-                <DocExample title="Leave form with unsaved changes handling" path="./_examples/form/FormLeaveHandling.example.tsx" />
-
-                <DocExample title="Validation on change" path="./_examples/form/FormValidateOnChange.example.tsx" />
-
-                <DocExample title="Undo/redo and revert form" path="./_examples/form/Advanced.example.tsx" />
-
-                <DocExample title="Server-side validation" path="./_examples/form/ServerValidation.example.tsx" />
-
-                <DocExample title="Usage with class components" path="./_examples/form/FormWIthClasses.example.tsx" />
-            </>
-        );
-    }
-}
+export const FormDocItem: DocItem = {
+    id: 'form',
+    name: 'Form',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'form-descriptions' },
+        { name: 'Basic', componentPath: './_examples/form/Basic.example.tsx' },
+        { name: 'Complex validation', componentPath: './_examples/form/ComplexValidation.example.tsx' },
+        { name: 'Handle successful or failed saves', componentPath: './_examples/form/HandleSuccessSaveAndError.example.tsx' },
+        { name: 'Modal with Form', componentPath: './_examples/modals/ModalWithForm.example.tsx' },
+        { name: 'Leave form with unsaved changes handling', componentPath: './_examples/form/FormLeaveHandling.example.tsx' },
+        { name: 'Validation on change', componentPath: './_examples/form/FormValidateOnChange.example.tsx' },
+        { name: 'Undo/redo and revert form', componentPath: './_examples/form/Advanced.example.tsx' },
+        { name: 'Server-side validation', componentPath: './_examples/form/ServerValidation.example.tsx' },
+        { name: 'Usage with class components', componentPath: './_examples/form/FormWIthClasses.example.tsx' },
+    ],
+};

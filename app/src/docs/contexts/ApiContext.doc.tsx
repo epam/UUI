@@ -1,23 +1,16 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class ApiContextDoc extends BaseDocsBlock {
-    title = 'Api Context and Error Handling';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="api-context-descriptions" />
-
-                <DocExample title="How to send a request" path="./_examples/contexts/apiContext/SendRequest.example.tsx" onlyCode={ true } />
-
-                <DocExample title="Congigure error handling type" path="./_examples/contexts/apiContext/ErrorHandlingTypes.example.tsx" />
-
-                <DocExample title="Auth and Connection lost handling" path="./_examples/contexts/apiContext/AuthAndConnectionLostHandling.example.tsx" />
-
-                <DocExample title="Throw errors from your code" path="./_examples/contexts/apiContext/ApiContextThrowUUIError.example.tsx" />
-
-                <DocExample title="Custom fetcher" path="./_examples/contexts/apiContext/CustomFetch.example.tsx" onlyCode={ true } />
-            </>
-        );
-    }
-}
+export const ApiContextDocItem: DocItem = {
+    id: 'apiContext',
+    name: 'Api Context and Error Handling',
+    parentId: 'contexts',
+    examples: [
+        { descriptionPath: 'api-context-descriptions' },
+        { name: 'How to send a request', componentPath: './_examples/contexts/apiContext/SendRequest.example.tsx', onlyCode: true },
+        { name: 'Congigure error handling type', componentPath: './_examples/contexts/apiContext/ErrorHandlingTypes.example.tsx' },
+        { name: 'Auth and Connection lost handling', componentPath: './_examples/contexts/apiContext/AuthAndConnectionLostHandling.example.tsx' },
+        { name: 'Throw errors from your code', componentPath: './_examples/contexts/apiContext/ApiContextThrowUUIError.example.tsx' },
+        { name: 'Custom fetcher', componentPath: './_examples/contexts/apiContext/CustomFetch.example.tsx', onlyCode: true },
+    ],
+    tags: ['contexts'],
+};

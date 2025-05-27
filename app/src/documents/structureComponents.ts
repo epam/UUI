@@ -1,140 +1,145 @@
 import { orderBy } from '@epam/uui-core';
-import {
-    AccordionDoc,
-    AdaptivePanelDoc,
-    AdvancedTablesDoc,
-    AlertDoc,
-    AvatarDoc,
-    AvatarStackDoc,
-    BadgeDoc,
-    BlockerDoc,
-    ButtonDoc,
-    CheckboxDoc,
-    CheckboxGroupDoc,
-    ControlGroupDoc,
-    CountIndicatorDoc,
-    DatePickerDoc, DropdownContainerDoc,
-    DropdownDoc,
-    DropdownMenuDoc,
-    EditableTablesDoc, FileUploadDoc,
-    FiltersPanelDoc,
-    FlexCellDoc,
-    FlexRowDoc,
-    FlexSpacerDoc, FormDoc,
-    IconButtonDoc,
-    IconContainerDoc,
-    LabeledInputDoc,
-    LinkButtonDoc,
-    MainMenuDoc,
-    ModalsDoc,
-    MultiSwitchDoc,
-    NotificationCardDoc,
-    NumericInputDoc,
-    PaginatorDoc,
-    PanelDoc,
-    PickerInputDoc,
-    PickerListDoc,
-    PickerModalDoc,
-    PresetsPanelDoc, ProgressBarDoc,
-    RadioGroupDoc,
-    RadioInputDoc,
-    RangeDatePickerDoc,
-    RatingDoc,
-    RichTextEditorDoc,
-    RichTextViewDoc, ScrollSpyDoc,
-    SearchInputDoc,
-    SliderDoc,
-    SliderRatingDoc,
-    SpinnerDoc,
-    StatusIndicatorDoc,
-    SwitchDoc,
-    TabButtonDoc,
-    TablesOverviewDoc,
-    TagDoc,
-    TextAreaDoc,
-    TextDoc,
-    TextInputDoc, TextPlaceholderDoc, TimePickerDoc, TooltipDoc,
-    useTableStateDoc, VerticalTabButtonDoc, VirtualListDoc,
-} from '../docs';
-import { AnchorDoc } from '../docs/anchor/Anchor.doc';
-import { RichTextEditorSerializersDoc } from '../docs/RichTextEditorSerializers.doc';
-import { TreeDoc } from '../docs/Tree.doc';
+import { ButtonDocItem, BadgeDocItem, AlertDocItem } from '../docs';
+import { DocItem } from './structure';
+import { CheckboxGroupDocItem } from '../docs/CheckboxGroup.doc';
+import { ControlGroupDocItem } from '../docs/ControlGroup.doc';
+import { DatePickerDocItem } from '../docs/datePicker/DatePicker.doc';
+import { DropdownDocItem } from '../docs/Dropdown.doc';
+import { DropdownMenuDocItem } from '../docs/DropdownMenu.doc';
+import { AccordionDocItem } from '../docs/accordion/Accordion.doc';
+import { AdaptivePanelDocItem } from '../docs/AdaptivePanel.doc';
+import { AnchorDocItem } from '../docs/anchor/Anchor.doc';
+import { AvatarDocItem } from '../docs/Avatar.doc';
+import { AvatarStackDocItem } from '../docs/avatarStack/AvatarStack.doc';
+import { BlockerDocItem } from '../docs/Blocker.doc';
+import { CheckboxDocItem } from '../docs/Checkbox.doc';
+import { PanelDocItem } from '../docs/panel/Panel.doc';
+import { FlexRowDocItem } from '../docs/flexRow/FlexRow.doc';
+import { FlexCellDocItem } from '../docs/FlexCell.doc';
+import { FlexSpacerDocItem } from '../docs/FlexSpacer.doc';
+import { IconButtonDocItem } from '../docs/IconButton.doc';
+import { IconContainerDocItem } from '../docs/IconContainer.doc';
+import { CountIndicatorDocItem } from '../docs/CountIndicator.doc';
+import { StatusIndicatorDocItem } from '../docs/StatusIndicator.doc';
+import { LabeledInputDocItem } from '../docs/LabeledInput.doc';
+import { LinkButtonDocItem } from '../docs/LinkButton.doc';
+import { MainMenuDocItem } from '../docs/mainMenu/MainMenu.doc';
+import { ModalsDocItem } from '../docs/Modals.doc';
+import { MultiSwitchDocItem } from '../docs/MultiSwitch.doc';
+import { NotificationCardDocItem } from '../docs/NotificationCard.doc';
+import { NumericInputDocItem } from '../docs/NumericInput.doc';
+import { PaginatorDocItem } from '../docs/Paginator.doc';
+import { PickerInputDocItem } from '../docs/pickerInput/PickerInput.doc';
+import { RadioGroupDocItem } from '../docs/RadioGroup.doc';
+import { RadioInputDocItem } from '../docs/RadioInput.doc';
+import { RangeDatePickerDocItem } from '../docs/rangeDatePicker/RangeDatePicker.doc';
+import { RatingDocItem } from '../docs/Rating.doc';
+import { SearchInputDocItem } from '../docs/SearchInput.doc';
+import { SliderDocItem } from '../docs/Slider.doc';
+import { SliderRatingDocItem } from '../docs/SliderRating.doc';
+import { SpinnerDocItem } from '../docs/Spinner.doc';
+import { SwitchDocItem } from '../docs/Switch.doc';
+import { TabButtonDocItem } from '../docs/TabButton.doc';
+import { TagDocItem } from '../docs/Tag.doc';
+import { TextDocItem } from '../docs/Text.doc';
+import { TextAreaDocItem } from '../docs/TextArea.doc';
+import { TextInputDocItem } from '../docs/TextInput.doc';
+import { TextPlaceholderDocItem } from '../docs/TextPlaceholder.doc';
+import { TimePickerDocItem } from '../docs/TimePicker.doc';
+import { TooltipDocItem } from '../docs/Tooltip.doc';
+import { FormDocItem } from '../docs/Form.doc';
+import { FileUploadDocItem } from '../docs/FileUpload.doc';
+import { VerticalTabButtonDocItem } from '../docs/VerticalTabButton.doc';
+import { VirtualListDocItem } from '../docs/VirtualList.doc';
+import { ProgressBarDocItem } from '../docs/ProgressBar.doc';
+import { ScrollSpyDocItem } from '../docs/ScrollSpy.doc';
+import { DropdownContainerDocItem } from '../docs/dropdownContainer/DropdownContainer.doc';
+import { PickerModalDocItem } from '../docs/PickerModal.doc';
+import { PickerListDocItem } from '../docs/PickerList.doc';
+import { RichTextViewDocItem } from '../docs/richTextView/RichTextView.doc';
+import { TreeDocItem } from '../docs/Tree.doc';
+import { TablesOverviewDocItem } from '../docs/tables/Overview.doc';
+import { EditableTablesDocItem } from '../docs/tables/EditableTables.doc';
+import { AdvancedTablesDocItem } from '../docs/tables/Advanced.doc';
+import { useTableStateDocItem } from '../docs/tables/useTableState.doc';
+import { FiltersPanelDocItem } from '../docs/tables/FiltersPanel.doc';
+import { PresetsPanelDocItem } from '../docs/tables/PresetsPanel.doc';
+import { RichTextEditorDocItem } from '../docs/RichTextEditor.doc';
+import { RichTextEditorSerializersDocItem } from '../docs/RichTextEditorSerializers.doc';
 
-export const componentsStructure = orderBy(
+export const componentsStructure: DocItem[] = orderBy(
     [
-        { id: 'accordion', name: 'Accordion', component: AccordionDoc, parentId: 'components' },
-        { id: 'adaptivePanel', name: 'Adaptive Panel', component: AdaptivePanelDoc, parentId: 'components' },
-        { id: 'alert', name: 'Alert', component: AlertDoc, parentId: 'components' },
-        { id: 'anchor', name: 'Anchor', component: AnchorDoc, parentId: 'components' },
-        { id: 'avatar', name: 'Avatar', component: AvatarDoc, parentId: 'components' },
-        { id: 'avatarStack', name: 'Avatar Stack', component: AvatarStackDoc, parentId: 'components' },
-        { id: 'badge', name: 'Badge', component: BadgeDoc, parentId: 'components' },
-        { id: 'blocker', name: 'Blocker', component: BlockerDoc, parentId: 'components' },
-        { id: 'button', name: 'Button', component: ButtonDoc, parentId: 'components' },
-        { id: 'checkbox', name: 'Checkbox', component: CheckboxDoc, parentId: 'components' },
-        { id: 'checkboxGroup', name: 'Checkbox Group', component: CheckboxGroupDoc, parentId: 'components' },
-        { id: 'controlGroup', name: 'Control Group', component: ControlGroupDoc, parentId: 'components' },
-        { id: 'datePicker', name: 'Date Picker', component: DatePickerDoc, parentId: 'components' },
-        { id: 'dropdown', name: 'Dropdown', component: DropdownDoc, parentId: 'components' },
-        { id: 'dropdownMenu', name: 'Dropdown Menu', component: DropdownMenuDoc, parentId: 'components' },
+        AccordionDocItem,
+        AdaptivePanelDocItem,
+        AlertDocItem,
+        AnchorDocItem,
+        AvatarDocItem,
+        AvatarStackDocItem,
+        BadgeDocItem,
+        BlockerDocItem,
+        ButtonDocItem,
+        CheckboxDocItem,
+        CheckboxGroupDocItem,
+        ControlGroupDocItem,
+        DatePickerDocItem,
+        DropdownDocItem,
+        DropdownMenuDocItem,
         { id: 'flexItems', name: 'Flex Items', parentId: 'components' },
-        { id: 'panel', name: 'Panel', component: PanelDoc, parentId: 'flexItems', order: 1 },
-        { id: 'flexRow', name: 'Flex Row', component: FlexRowDoc, parentId: 'flexItems', order: 2 },
-        { id: 'flexCell', name: 'Flex Cell', component: FlexCellDoc, parentId: 'flexItems', order: 3 },
-        { id: 'flexSpacer', name: 'Flex Spacer', component: FlexSpacerDoc, parentId: 'flexItems', order: 4 },
-
+        PanelDocItem,
+        FlexRowDocItem,
+        FlexCellDocItem,
+        FlexSpacerDocItem,
         { id: 'richTextEditor', name: 'Rich Text Editor', parentId: 'components', tags: ['RTE', 'RichTextEditor'] },
-        { id: 'rteOverview', name: 'Overview', component: RichTextEditorDoc, parentId: 'richTextEditor', order: 1, tags: ['RTE', 'RichTextEditor'] },
-        { id: 'rteSerializers', name: 'Serializers', component: RichTextEditorSerializersDoc, parentId: 'richTextEditor', order: 2, tags: ['RTE', 'RichTextEditor'] },
-
-        { id: 'iconButton', name: 'Icon Button', component: IconButtonDoc, parentId: 'components' },
-        { id: 'iconContainer', name: 'Icon Container', component: IconContainerDoc, parentId: 'components' },
-        { id: 'countIndicator', name: 'Count Indicator', component: CountIndicatorDoc, parentId: 'components' },
-        { id: 'statusIndicator', name: 'Status Indicator', component: StatusIndicatorDoc, parentId: 'components' },
-        { id: 'labeledInput', name: 'Labeled Input', component: LabeledInputDoc, parentId: 'components' },
-        { id: 'linkButton', name: 'Link Button', component: LinkButtonDoc, parentId: 'components' },
-        { id: 'mainMenu', name: 'Main Menu', component: MainMenuDoc, parentId: 'components', tags: ['MainMenu'] },
-        { id: 'modals', name: 'Modals', component: ModalsDoc, parentId: 'components' },
-        { id: 'multiSwitch', name: 'MultiSwitch', component: MultiSwitchDoc, parentId: 'components' },
-        { id: 'notificationCard', name: 'Notification Card', component: NotificationCardDoc, parentId: 'components' },
-        { id: 'numericInput', name: 'Numeric Input', component: NumericInputDoc, parentId: 'components' },
-        { id: 'paginator', name: 'Paginator', component: PaginatorDoc, parentId: 'components' },
-        { id: 'pickerInput', name: 'Picker Input', component: PickerInputDoc, parentId: 'components', tags: ['PickerInput'] },
-        { id: 'pickerModal', name: 'Picker Modal', component: PickerModalDoc, parentId: 'components', tags: ['PickerList'] },
-        { id: 'PickerList', name: 'Picker List', component: PickerListDoc, parentId: 'components', tags: ['PickerModal'] },
-        { id: 'radioGroup', name: 'Radio Group', component: RadioGroupDoc, parentId: 'components' },
-        { id: 'radioInput', name: 'Radio Input', component: RadioInputDoc, parentId: 'components' },
-        { id: 'rangeDatePicker', name: 'Range Date Picker', component: RangeDatePickerDoc, parentId: 'components' },
-        { id: 'rating', name: 'Rating', component: RatingDoc, parentId: 'components' },
-        { id: 'richTextView', name: 'Rich Text View', component: RichTextViewDoc, parentId: 'components' },
-        { id: 'searchInput', name: 'Search Input', component: SearchInputDoc, parentId: 'components' },
-        { id: 'slider', name: 'Slider', component: SliderDoc, parentId: 'components' },
-        { id: 'sliderRating', name: 'Slider Rating', component: SliderRatingDoc, parentId: 'components' },
-        { id: 'spinner', name: 'Spinner', component: SpinnerDoc, parentId: 'components' },
-        { id: 'switch', name: 'Switch', component: SwitchDoc, parentId: 'components' },
-        { id: 'tabButton', name: 'Tab Button', component: TabButtonDoc, parentId: 'components' },
+        RichTextEditorDocItem,
+        RichTextEditorSerializersDocItem,
+        IconButtonDocItem,
+        IconContainerDocItem,
+        CountIndicatorDocItem,
+        StatusIndicatorDocItem,
+        LabeledInputDocItem,
+        LinkButtonDocItem,
+        MainMenuDocItem,
+        ModalsDocItem,
+        MultiSwitchDocItem,
+        NotificationCardDocItem,
+        NumericInputDocItem,
+        PaginatorDocItem,
+        PickerInputDocItem,
+        PickerModalDocItem,
+        PickerListDocItem,
+        RadioGroupDocItem,
+        RadioInputDocItem,
+        RangeDatePickerDocItem,
+        RatingDocItem,
+        RichTextViewDocItem,
+        SearchInputDocItem,
+        SliderDocItem,
+        SliderRatingDocItem,
+        SpinnerDocItem,
+        SwitchDocItem,
+        TabButtonDocItem,
         { id: 'tables', name: 'Data Tables', parentId: 'components', tags: ['table'] },
-        { id: 'tablesOverview', name: 'Overview', component: TablesOverviewDoc, parentId: 'tables', order: 1, tags: ['tables', 'dataTable'] },
-        { id: 'tree', name: 'Tree', component: TreeDoc, parentId: 'components', tags: ['tree', 'virtualList', 'dataSources'] },
-        { id: 'editableTables', name: 'Editable', component: EditableTablesDoc, parentId: 'tables', order: 2, tags: ['tables', 'dataTable'] },
-        { id: 'advancedTables', name: 'Advanced', component: AdvancedTablesDoc, parentId: 'tables', order: 3, tags: ['tables', 'dataTable'] },
-        { id: 'useTableState', name: 'useTableState', component: useTableStateDoc, parentId: 'tables', order: 4, tags: ['tables', 'dataTable'] },
-        { id: 'filtersPanel', name: 'Filters Panel', component: FiltersPanelDoc, parentId: 'tables', order: 5, tags: ['tables', 'dataTable'] },
-        { id: 'presetsPanel', name: 'Presets Panel', component: PresetsPanelDoc, parentId: 'tables', order: 6, tags: ['tables', 'dataTable'] },
-        { id: 'tag', name: 'Tag', component: TagDoc, parentId: 'components' },
-        { id: 'text', name: 'Text', component: TextDoc, parentId: 'components' },
-        { id: 'textArea', name: 'Text Area', component: TextAreaDoc, parentId: 'components' },
-        { id: 'textInput', name: 'Text Input', component: TextInputDoc, parentId: 'components' },
-        { id: 'textPlaceholder', name: 'Text Placeholder', component: TextPlaceholderDoc, parentId: 'components' },
-        { id: 'timePicker', name: 'Time Picker', component: TimePickerDoc, parentId: 'components' },
-        { id: 'tooltip', name: 'Tooltip', component: TooltipDoc, parentId: 'components' },
-        { id: 'form', name: 'Form', component: FormDoc, parentId: 'components', tags: ['useForm'] },
-        { id: 'fileUpload', name: 'File Upload', component: FileUploadDoc, parentId: 'components' },
-        { id: 'verticalTabButton', name: 'Vertical Tab Button', component: VerticalTabButtonDoc, parentId: 'components' },
-        { id: 'virtualList', name: 'Virtual List', component: VirtualListDoc, parentId: 'components' },
-        { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
-        { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDoc, parentId: 'components' },
-        { id: 'dropdownContainer', name: 'Dropdown Container', component: DropdownContainerDoc, parentId: 'components' },
+        TablesOverviewDocItem,
+        TreeDocItem,
+        EditableTablesDocItem,
+        AdvancedTablesDocItem,
+        useTableStateDocItem,
+        FiltersPanelDocItem,
+        PresetsPanelDocItem,
+        TagDocItem,
+        TextDocItem,
+        TextAreaDocItem,
+        TextInputDocItem,
+        TextPlaceholderDocItem,
+        TimePickerDocItem,
+        TooltipDocItem,
+        FormDocItem,
+        FileUploadDocItem,
+        VerticalTabButtonDocItem,
+        VirtualListDocItem,
+        ProgressBarDocItem,
+        ScrollSpyDocItem,
+        DropdownContainerDocItem,
     ],
-    (item) => (item.order ? item.order + item.name : item.name),
+    (item: DocItem) => (item.order ? item.order + item.name : item.name),
 );

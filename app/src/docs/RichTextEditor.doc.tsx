@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class RichTextEditorDoc extends BaseDocsBlock {
-    title = 'Rich Text Editor';
-    renderContent() {
-        return (
-            <>
-                <DocExample path="./_examples/richTextEditor/Basic.example.tsx" />
-                <DocExample title="Inner scroll behavior" path="./_examples/richTextEditor/WithInnerScroll.example.tsx" />
-            </>
-        );
-    }
-}
+export const RichTextEditorDocItem: DocItem = {
+    id: 'rteOverview',
+    name: 'Overview',
+    parentId: 'richTextEditor',
+    examples: [
+        { componentPath: './_examples/richTextEditor/Basic.example.tsx' },
+        { name: 'Inner scroll behavior', componentPath: './_examples/richTextEditor/WithInnerScroll.example.tsx' },
+    ],
+    order: 1,
+    tags: ['RTE', 'RichTextEditor'],
+};

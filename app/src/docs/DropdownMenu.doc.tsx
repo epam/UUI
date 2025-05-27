@@ -1,15 +1,11 @@
-import React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class DropdownMenuDoc extends BaseDocsBlock {
-    title = 'DropdownMenu';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dropdownMenu-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="DropdownMenu" path="./_examples/dropdownMenu/Basic.example.tsx" />
-            </>
-        );
-    }
-}
+export const DropdownMenuDocItem: DocItem = {
+    id: 'dropdownMenu',
+    name: 'Dropdown Menu',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'dropdownMenu-descriptions' },
+        { name: 'DropdownMenu', componentPath: './_examples/dropdownMenu/Basic.example.tsx' },
+    ],
+};

@@ -1,17 +1,13 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-import css from '../styles.module.scss';
-
-export class PresetsPanelDoc extends BaseDocsBlock {
-    title = 'Presets Panel';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="presets-panel-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample cx={ css.appBg } title="Basic" path="./_examples/tables/PresetsPanelBasic.example.tsx" />
-            </>
-        );
-    }
-}
+export const PresetsPanelDocItem: DocItem = {
+    id: 'presetsPanel',
+    name: 'Presets Panel',
+    parentId: 'tables',
+    examples: [
+        { descriptionPath: 'presets-panel-descriptions' },
+        { name: 'Basic', componentPath: './_examples/tables/PresetsPanelBasic.example.tsx' },
+    ],
+    order: 6,
+    tags: ['tables', 'dataTable'],
+};

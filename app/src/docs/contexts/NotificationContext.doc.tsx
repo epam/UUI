@@ -1,14 +1,12 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class NotificationContextDoc extends BaseDocsBlock {
-    title = 'Notification Context';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="notification-context-descriptions" />
-                <DocExample title="Example" path="./_examples/contexts/NotificationContext.example.tsx" />
-            </>
-        );
-    }
-}
+export const NotificationContextDocItem: DocItem = {
+    id: 'notificationContextDoc',
+    name: 'Notification Context',
+    parentId: 'contexts',
+    examples: [
+        { descriptionPath: 'notification-context-descriptions' },
+        { name: 'Example', componentPath: './_examples/contexts/NotificationContext.example.tsx' },
+    ],
+    tags: ['contexts'],
+};

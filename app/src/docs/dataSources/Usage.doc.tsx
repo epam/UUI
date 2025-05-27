@@ -1,17 +1,12 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import type { DocItem } from '../../documents/structure';
 
-export class DataSourcesUsageDoc extends BaseDocsBlock {
-    title = 'Usage in components';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dataSources-usage-in-components" />
-
-                <DocExample title="DataSourceViewer" path="./_examples/dataSources/DataSourceViewer.code.example.tsx" onlyCode={ true } />
-                <DocExample title="Custom hierarchical list" path="./_examples/dataSources/CustomHierarchicalList.example.tsx" />
-            </>
-        );
-    }
-}
+export const DataSourcesUsageDocItem: DocItem = {
+    id: 'dataSources-usage-in-components',
+    name: 'Usage',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-usage-in-components' },
+        { name: 'DataSourceViewer', componentPath: './_examples/dataSources/DataSourceViewer.code.example.tsx', onlyCode: true },
+        { name: 'Custom hierarchical list', componentPath: './_examples/dataSources/CustomHierarchicalList.example.tsx', onlyCode: true },
+    ],
+};

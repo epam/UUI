@@ -1,19 +1,13 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class ModalsDoc extends BaseDocsBlock {
-    title = 'Modals';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="modals-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/modals/Basic.example.tsx" />
-
-                <DocExample title="Modal with Form" path="./_examples/modals/ModalWithForm.example.tsx" />
-
-                <DocExample title="Disabling close on click outside modal and modal header cross" path="./_examples/modals/DisableClickOutsideAndCross.example.tsx" />
-            </>
-        );
-    }
-}
+export const ModalsDocItem: DocItem = {
+    id: 'modals',
+    name: 'Modals',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'modals-descriptions' },
+        { name: 'Basic', componentPath: './_examples/modals/Basic.example.tsx' },
+        { name: 'Modal with Form', componentPath: './_examples/modals/ModalWithForm.example.tsx' },
+        { name: 'Disabling close on click outside modal and modal header cross', componentPath: './_examples/modals/DisableClickOutsideAndCross.example.tsx' },
+    ],
+};

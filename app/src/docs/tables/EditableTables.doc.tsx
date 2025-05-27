@@ -1,19 +1,15 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 import css from '../styles.module.scss';
+import { DocItem } from '../../documents/structure';
 
-export class EditableTablesDoc extends BaseDocsBlock {
-    title = 'Editable Tables';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="editable-tables-descriptions" />
-                {this.renderSectionTitle('Examples')}
-
-                <DocExample cx={ css.appBg } title="Editable Table" path="./_examples/tables/EditableTable.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Table with copying" path="./_examples/tables/TableWithCopying.example.tsx" />
-            </>
-        );
-    }
-}
+export const EditableTablesDocItem: DocItem = {
+    id: 'editableTables',
+    name: 'Editable',
+    parentId: 'tables',
+    examples: [
+        { descriptionPath: 'editable-tables-descriptions' },
+        { name: 'Editable Table', componentPath: './_examples/tables/EditableTable.example.tsx', cx: css.appBg },
+        { name: 'Table with copying', componentPath: './_examples/tables/TableWithCopying.example.tsx', cx: css.appBg },
+    ],
+    order: 2,
+    tags: ['tables', 'dataTable'],
+};

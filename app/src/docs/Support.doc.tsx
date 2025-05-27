@@ -1,13 +1,9 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class SupportDoc extends BaseDocsBlock {
-    title = 'Support';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="Support" />
-            </>
-        );
-    }
-}
+export const SupportDocItem: DocItem = {
+    id: 'support',
+    name: 'Support',
+    examples: [
+        { descriptionPath: 'Support' },
+    ],
+};

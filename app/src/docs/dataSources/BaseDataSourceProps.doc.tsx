@@ -1,27 +1,21 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class DataSourcesBaseDataSourcePropsDoc extends BaseDocsBlock {
-    title = 'DataSource Props';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dataSources-base-props" />
-
-                <EditableDocContent title="Common DataSource Props" fileName="dataSources-base-props-overview" />
-
-                <DocExample title="getId and getParentId" path="./_examples/dataSources/DataSourcePropsIds.example.tsx" />
-                <DocExample title="complexIds" path="./_examples/dataSources/DataSourcePropsComplexIds.example.tsx" />
-                <DocExample title="isFoldedByDefault" path="./_examples/dataSources/DataSourcePropsIsFoldedByDefault.example.tsx" />
-                <DocExample title="cascadeSelection" path="./_examples/dataSources/DataSourcePropsCascadeSelection.example.tsx" />
-                <DocExample title="selectAll" path="./_examples/dataSources/DataSourcePropsSelectAll.example.tsx" />
-                <DocExample title="showSelectedOnly" path="./_examples/dataSources/DataSourcePropsShowSelectedOnly.example.tsx" />
-                <DocExample title="patch" path="./_examples/dataSources/DataSourcePropsPatch.example.tsx" />
-                <DocExample title="isDeleted" path="./_examples/dataSources/DataSourcePropsPatchIsDeleted.example.tsx" />
-                <DocExample title="getNewItemPosition" path="./_examples/dataSources/DataSourcePropsPatchGetNewItemPosition.example.tsx" />
-                <DocExample title="fixItemBetweenSortings" path="./_examples/dataSources/DataSourcePropsPatchFixItemBetweenSortings.example.tsx" />
-            </>
-        );
-    }
-}
+export const DataSourcesBaseDataSourcePropsDocItem: DocItem = {
+    id: 'dataSources-base-props',
+    name: 'DataSource Props',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-base-props' },
+        { name: 'Common DataSource Props', descriptionPath: 'dataSources-base-props-overview' },
+        { name: 'getId and getParentId', componentPath: './_examples/dataSources/DataSourcePropsIds.example.tsx' },
+        { name: 'complexIds', componentPath: './_examples/dataSources/DataSourcePropsComplexIds.example.tsx' },
+        { name: 'isFoldedByDefault', componentPath: './_examples/dataSources/DataSourcePropsIsFoldedByDefault.example.tsx' },
+        { name: 'cascadeSelection', componentPath: './_examples/dataSources/DataSourcePropsCascadeSelection.example.tsx' },
+        { name: 'selectAll', componentPath: './_examples/dataSources/DataSourcePropsSelectAll.example.tsx' },
+        { name: 'showSelectedOnly', componentPath: './_examples/dataSources/DataSourcePropsShowSelectedOnly.example.tsx' },
+        { name: 'patch', componentPath: './_examples/dataSources/DataSourcePropsPatch.example.tsx' },
+        { name: 'isDeleted', componentPath: './_examples/dataSources/DataSourcePropsPatchIsDeleted.example.tsx' },
+        { name: 'getNewItemPosition', componentPath: './_examples/dataSources/DataSourcePropsPatchGetNewItemPosition.example.tsx' },
+        { name: 'fixItemBetweenSortings', componentPath: './_examples/dataSources/DataSourcePropsPatchFixItemBetweenSortings.example.tsx' },
+    ],
+};

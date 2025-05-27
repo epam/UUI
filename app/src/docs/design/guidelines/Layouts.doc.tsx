@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../../common';
+import { DocItem } from '../../../documents/structure';
 
-export class LayoutsDoc extends BaseDocsBlock {
-    title = 'Layouts';
-    renderContent() {
-        return (
-            <EditableDocContent key="layouts-for-designers" fileName="layouts-for-designers" />
-        );
-    }
-}
+export const LayoutsDocItem: DocItem = {
+    id: 'layouts',
+    name: 'Layouts',
+    parentId: 'guidelines',
+    examples: [
+        { descriptionPath: 'layouts-for-designers' },
+    ],
+};

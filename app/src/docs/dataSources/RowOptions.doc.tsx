@@ -1,26 +1,20 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class DataSourcesRowOptionsDoc extends BaseDocsBlock {
-    title = 'Row Options';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dataSources-row-options" />
-                
-                <EditableDocContent title="DataRowOptions" fileName="dataSources-row-options-overview" />
-
-                <DocExample title="Checkbox" path="./_examples/dataSources/RowOptionsCheckbox.example.tsx" />
-                <DocExample title="Disabled rows" path="./_examples/dataSources/RowOptionsIsDisabled.example.tsx" />
-                <DocExample title="Selectable rows" path="./_examples/dataSources/RowOptionsIsSelectable.example.tsx" />
-                <DocExample title="Click handler" path="./_examples/dataSources/RowOptionsOnClick.example.tsx" />
-                <DocExample title="Links" path="./_examples/dataSources/RowOptionsLink.example.tsx" />
-                <DocExample title="Drag'n'drop" path="./_examples/dataSources/RowOptionsDnd.example.tsx" />
-                <DocExample title="Value/onValueChange" path="./_examples/dataSources/RowOptionsValue.example.tsx" />
-                <DocExample title="Readonly" path="./_examples/dataSources/RowOptionsIsReadonly.example.tsx" />
-                <DocExample title="Invalid" path="./_examples/dataSources/RowOptionsIsInvalid.example.tsx" />
-            </>
-        );
-    }
-}
+export const DataSourcesRowOptionsDocItem: DocItem = {
+    id: 'dataSources-row-options',
+    name: 'Row Options',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-row-options' },
+        { name: 'DataRowOptions', descriptionPath: 'dataSources-row-options-overview' },
+        { name: 'Checkbox', componentPath: './_examples/dataSources/RowOptionsCheckbox.example.tsx' },
+        { name: 'Disabled rows', componentPath: './_examples/dataSources/RowOptionsIsDisabled.example.tsx' },
+        { name: 'Selectable rows', componentPath: './_examples/dataSources/RowOptionsIsSelectable.example.tsx' },
+        { name: 'Click handler', componentPath: './_examples/dataSources/RowOptionsOnClick.example.tsx' },
+        { name: 'Links', componentPath: './_examples/dataSources/RowOptionsLink.example.tsx' },
+        { name: "Drag'n'drop", componentPath: './_examples/dataSources/RowOptionsDnd.example.tsx' },
+        { name: 'Value/onValueChange', componentPath: './_examples/dataSources/RowOptionsValue.example.tsx' },
+        { name: 'Readonly', componentPath: './_examples/dataSources/RowOptionsIsReadonly.example.tsx' },
+        { name: 'Invalid', componentPath: './_examples/dataSources/RowOptionsIsInvalid.example.tsx' },
+    ],
+};

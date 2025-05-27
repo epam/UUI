@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class VisualExamplesDoc extends BaseDocsBlock {
-    title = 'Visual Examples';
-    renderContent() {
-        return (
-            <EditableDocContent key="visualExamples-for-designers" fileName="visualExamples-for-designers" />
-        );
-    }
-}
+export const VisualExamplesDocItem: DocItem = {
+    id: 'visualExamples',
+    name: 'Visual Examples',
+    parentId: 'forDesigners',
+    examples: [
+        { descriptionPath: 'visualExamples-for-designers' },
+    ],
+};

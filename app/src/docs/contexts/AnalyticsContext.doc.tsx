@@ -1,21 +1,13 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class AnalyticsContextDoc extends BaseDocsBlock {
-    public readonly title = 'Analytics Context';
-    public renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="analytics-context-descriptions" />
-
-                {this.renderSectionTitle('Getting started')}
-
-                <DocExample path="./_examples/contexts/AnalyticsContextBase.example.tsx" onlyCode />
-
-                {this.renderSectionTitle('Example')}
-
-                <DocExample path="./_examples/contexts/AnalyticsContextEvents.example.tsx" onlyCode />
-            </>
-        );
-    }
-}
+export const AnalyticsContextDocItem: DocItem = {
+    id: 'analyticsContext',
+    name: 'Analytics Context',
+    parentId: 'contexts',
+    examples: [
+        { descriptionPath: 'analytics-context-descriptions' },
+        { name: 'Getting started', componentPath: './_examples/contexts/AnalyticsContextBase.example.tsx', onlyCode: true },
+        { name: 'Example', componentPath: './_examples/contexts/AnalyticsContextEvents.example.tsx', onlyCode: true },
+    ],
+    tags: ['contexts'],
+};

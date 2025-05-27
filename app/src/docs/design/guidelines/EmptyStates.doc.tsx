@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../../common';
+import { DocItem } from '../../../documents/structure';
 
-export class EmptyStatesDoc extends BaseDocsBlock {
-    title = 'Empty States';
-    renderContent() {
-        return (
-            <EditableDocContent key="emptyStates-for-designers" fileName="emptyStates-for-designers" />
-        );
-    }
-}
+export const EmptyStatesDocItem: DocItem = {
+    id: 'emptyStates',
+    name: 'Empty States',
+    parentId: 'guidelines',
+    examples: [
+        { descriptionPath: 'emptyStates-for-designers' },
+    ],
+};

@@ -1,12 +1,10 @@
-import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class UtGuideBasicsDoc extends BaseDocsBlock {
-    title = 'Basics';
-
-    renderContent() {
-        return (
-            <EditableDocContent fileName="unitTestingGuide-basics" />
-        );
-    }
-}
+export const UtGuideBasicsDocItem: DocItem = {
+    id: 'utGuideBasics',
+    name: 'Basics',
+    parentId: 'testing',
+    examples: [
+        { descriptionPath: 'unitTestingGuide-basics' },
+    ],
+};
