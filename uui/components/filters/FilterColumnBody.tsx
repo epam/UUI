@@ -4,12 +4,9 @@ import { DropdownContainer, FilterItemBody, getDefaultPredicate } from '../index
 import { FilterPredicatePanel } from './FilterPredicatePanel';
 import { UUI_FILTERS_PANEL_ITEM_BODY } from './constants';
 import { getValue } from './helpers/predicateHelpers';
-import cx from 'classnames';
 import css from './FiltersPanelItem.module.scss';
 
 export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
-    const isPickersType = props?.type === 'multiPicker' || props?.type === 'singlePicker';
-
     const [predicate, setPredicate] = useState<FilterPredicateName>(getDefaultPredicate(props.predicates, props.value));
 
     const onValueChange = (value: any) => {
@@ -24,19 +21,16 @@ export function FilterColumnBody(props: IFilterItemBodyProps<any>) {
         const panelProps = {
             predicates: props.predicates,
             predicate,
-            isPickersType,
             type: props.type,
             onValueChange: props.onValueChange,
             value: props.value,
             setPredicate,
         };
 
-        return props.predicates?.length >= 1 ? (
-            <div className={ cx(css.header, isPickersType) }>
+        return props.predicates?.length > 0 && (
+            <div className={ css.header }>
                 <FilterPredicatePanel { ...panelProps } />
             </div>
-        ) : (
-            <FilterPredicatePanel { ...panelProps } />
         );
     };
 
