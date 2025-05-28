@@ -1,10 +1,8 @@
 @use './mixins.module' as *;
-@use  '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
     position: relative;
     margin: 1px 0;
-    @include dnd-cursor-style();
 
     &:hover .drag-handle {
         visibility: visible;

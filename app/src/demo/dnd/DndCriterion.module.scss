@@ -1,11 +1,9 @@
 @use './mixins.module' as *;
-@use  '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
     position: relative;
     width: max-content;
     margin: 1px 6px;
-    @include dnd-cursor-style();
 
     .row {
         min-height: 18px;
