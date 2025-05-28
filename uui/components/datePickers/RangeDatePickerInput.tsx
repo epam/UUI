@@ -117,11 +117,12 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
+            const newInputValue = !canBeEmpty[inputType] ? toCustomDateRangeFormat(value, format)[inputType] : null;
             const newValue = !canBeEmpty[inputType] ? value[inputType] : null;
 
             setInputValue({
                 ...inputValue,
-                [inputType]: newValue,
+                [inputType]: newInputValue,
             });
             onValueChange({
                 ...selectedDate,
