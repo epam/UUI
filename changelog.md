@@ -12,7 +12,11 @@
 * [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
 * [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
 * [PickerModal]: disabled "Show only selected" when search is active
-* [DataTable]: increased DnD area for rows
+* [DataTable]: increased DnD area for rows, updated drag-and-drop styles for improved user experience
+* [DnDContext]: fixed cursor visualization during drag and drop operations
+* [DnD]: Enhanced drag-and-drop functionality with improved styles, cursor feedback, and more intuitive interaction in demos and examples
+* [NotificationCard]: added gap between content and actions
+* [DataPickerFooter]: added gap between switch and actions
 * [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
 * [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
 
