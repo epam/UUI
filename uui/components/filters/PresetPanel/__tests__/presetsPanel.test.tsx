@@ -105,6 +105,19 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
 }
 
 describe('PresetsPanel', () => {
+    beforeEach(() => {
+        mockAdaptivePanelLayout({
+            isAdaptivePanelRoot: (elem) => {
+                const p = elem.parentElement?.parentElement;
+                if (p && p.getAttribute('data-testid') === 'presets-panel') {
+                    return true;
+                }
+            },
+            width: 500,
+            itemWidth: 15,
+        });
+    });
+
     it('should render with minimum props', async () => {
         const component = await renderSnapshotWithContextAsync(
             <PresetsPanel

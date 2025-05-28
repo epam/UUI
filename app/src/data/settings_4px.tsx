@@ -142,6 +142,7 @@ const settings_4px = {
     },
     pickerInput: {
         // renderPlaceholder: () => 'Loading...',
+        // renderBlocker: (props: any) => props.isLoading && 'Blocker',
         sizes: {
             toggler: {
                 default: '40',
