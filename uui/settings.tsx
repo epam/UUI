@@ -53,14 +53,45 @@ import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-wi
 
 import type { Icon } from '@epam/uui-core';
 import type { AvatarProps, BlockerProps } from '@epam/uui-components';
-import type {
-    AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
-    DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
-    SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
-    DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
-    PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
-    RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
-    TextInputProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps, IconButtonProps,
+import {
+    AlertProps,
+    LinkButtonProps,
+    BadgeProps,
+    CountIndicatorProps,
+    ButtonProps,
+    CheckboxProps,
+    DataTableHeaderRowProps,
+    DataTableHeaderCellProps,
+    DataTableRowProps,
+    SearchInputProps,
+    FlexRowProps,
+    TextProps,
+    DatePickerProps,
+    FiltersPanelProps,
+    DataPickerRowProps,
+    PickerItemProps,
+    DataPickerFooterProps,
+    LabeledInputProps,
+    NumericInputProps,
+    PickerTogglerProps,
+    PickerTogglerTagProps,
+    TagProps,
+    SwitchProps,
+    RangeDatePickerProps,
+    RadioInputProps,
+    RatingProps,
+    RichTextViewProps,
+    DataRowAddonsProps,
+    StatusIndicatorProps,
+    TabButtonProps,
+    TextAreaProps,
+    TextInputProps,
+    PickerInputProps,
+    MultiSwitchProps,
+    RangeDatePickerInputProps,
+    IconButtonProps,
+    VirtualListProps,
+    Blocker,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
@@ -679,10 +710,12 @@ interface PickerInputSettings {
     icons: PickerInputIcons;
     sizes: PickerInputSizes;
     renderPlaceholder?: (props: { rowSize: DataPickerRowProps<unknown, unknown>['size'] }) => React.ReactNode;
+    renderBlocker?: VirtualListProps['renderBlocker'];
 }
 
 const pickerInputSettings: PickerInputSettings = {
     renderPlaceholder: (props) => <Text size={ props.rowSize }><TextPlaceholder /></Text>,
+    renderBlocker: (props) => <Blocker isEnabled={ props.isLoading } />,
     icons: {
         toggler: {
             clearIcon: CrossIcon,
