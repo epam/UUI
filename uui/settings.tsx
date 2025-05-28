@@ -53,49 +53,19 @@ import { ReactComponent as NotFoundSearchIcon } from './icons/pictures/search-wi
 
 import type { Icon } from '@epam/uui-core';
 import type { AvatarProps, BlockerProps } from '@epam/uui-components';
-import {
-    AlertProps,
-    LinkButtonProps,
-    BadgeProps,
-    CountIndicatorProps,
-    ButtonProps,
-    CheckboxProps,
-    DataTableHeaderRowProps,
-    DataTableHeaderCellProps,
-    DataTableRowProps,
-    SearchInputProps,
-    FlexRowProps,
-    TextProps,
-    DatePickerProps,
-    FiltersPanelProps,
-    DataPickerRowProps,
-    PickerItemProps,
-    DataPickerFooterProps,
-    LabeledInputProps,
-    NumericInputProps,
-    PickerTogglerProps,
-    PickerTogglerTagProps,
-    TagProps,
-    SwitchProps,
-    RangeDatePickerProps,
-    RadioInputProps,
-    RatingProps,
-    RichTextViewProps,
-    DataRowAddonsProps,
-    StatusIndicatorProps,
-    TabButtonProps,
-    TextAreaProps,
-    TextInputProps,
-    PickerInputProps,
-    MultiSwitchProps,
-    RangeDatePickerInputProps,
-    IconButtonProps,
-    VirtualListProps,
-    Blocker,
+import type {
+    AlertProps, LinkButtonProps, BadgeProps, CountIndicatorProps, ButtonProps, CheckboxProps,
+    DataTableHeaderRowProps, DataTableHeaderCellProps, DataTableRowProps,
+    SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
+    DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
+    PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
+    RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
+    TextInputProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps, IconButtonProps, VirtualListProps,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
 import { Text } from './components/typography/Text';
+import { Blocker } from './components/layout/Blocker';
 
 type Sizes<S extends string | number | symbol, T> = {
     [size in S]: T;
