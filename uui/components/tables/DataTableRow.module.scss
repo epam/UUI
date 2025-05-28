@@ -1,5 +1,4 @@
 @use  '../../assets/styles/index' as *;
-@use  '../../assets/styles/dnd' as *;
 
 .root {
     --uui-dt-row-min-height: var(--uui-size);
@@ -16,10 +15,6 @@
         &:hover {
             --uui-dt-row-bg: var(--uui-dt-row-bg-hover);
         }
-    }
-
-    &:global(.-draggable) {
-        @include dnd-cursor-style();
     }
 
     &:global(.uui-selected.uui-table-row) {

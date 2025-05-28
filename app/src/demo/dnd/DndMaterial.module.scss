@@ -1,13 +1,10 @@
 @use '~@epam/promo/assets/styles/colors' as *;
-@use  '~@epam/uui/assets/styles/dnd' as *;
 @use './mixins.module' as *;
 
 .drag-element {
     position: relative;
     padding: 6px 0;
     margin: 0 24px;
-
-    @include dnd-cursor-style();
 
     .dnd-item {
         border: 1px solid var(--uui-divider);

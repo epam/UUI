@@ -43,7 +43,27 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             window.removeEventListener('pointermove', this.windowPointerMoveHandler);
             window.removeEventListener('pointerup', this.windowPointerUpHandler);
             this.mouseCoordsService.destroy();
+
+            // Cleanup cursor override if still present
+            this.cleanupCursorOverride();
         }
+    }
+
+    /**
+     * Cleans up cursor override styles and classes.
+     * This method ensures that any temporary cursor modifications during drag operations
+     * are properly removed to prevent memory leaks and UI inconsistencies.
+     *
+     * - Removes the injected <style> element with id 'uui-drag-cursor-override'
+     * - Removes the 'uui-dragging' class from document.body
+     * - Safe to call multiple times (idempotent)
+     */
+    private cleanupCursorOverride() {
+        const style = document.getElementById('uui-drag-cursor-override');
+        if (style) {
+            document.head.removeChild(style);
+        }
+        document.body.classList.remove('uui-dragging');
     }
 
     public getMouseCoords = (): TMouseCoords => {
@@ -60,6 +80,23 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
 
         this.dragData = data;
         this.renderGhostCallback = renderGhost;
+
+        // Set cursor for drag operation
+        // This creates a global cursor override to ensure 'grabbing' cursor is shown
+        // during drag operations, regardless of individual element cursor styles
+        if (isClientSide) {
+            // Remove any existing style first to prevent duplicates
+            this.cleanupCursorOverride();
+
+            // Inject CSS that forces 'grabbing' cursor on all elements during drag
+            // Uses high specificity selector with !important to override any existing styles
+            // Preserves text cursor for input fields to maintain usability
+            const style = document.createElement('style');
+            style.id = 'uui-drag-cursor-override';
+            style.textContent = 'body.uui-dragging *, body.uui-dragging *:hover { cursor: grabbing !important; } body.uui-dragging input, body.uui-dragging textarea, body.uui-dragging [contenteditable] { cursor: text !important; }';
+            document.head.appendChild(style);
+            document.body.classList.add('uui-dragging');
+        }
 
         // prepare scroll
         this.lastScrollTime = new Date().getTime();
@@ -85,6 +122,13 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
             return;
         }
 
+        // Reset cursor immediately
+        // Clean up cursor override to restore normal cursor behavior
+        // Must be done synchronously to prevent cursor flickering or stuck states
+        if (isClientSide) {
+            this.cleanupCursorOverride();
+        }
+
         new Promise<void>((res) => {
             this.update({ isDragging: false });
             res();
@@ -104,7 +148,18 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         }
     };
 
+    /**
+     * Handles global pointer up events to ensure drag operations are properly terminated.
+     * This is a safety mechanism that cleans up drag state even if endDrag() fails to be called.
+     *
+     * - Cleans up cursor override styles immediately
+     * - Calls endDrag() to complete the drag operation cleanup
+     * - Prevents stuck drag states that could occur from unexpected pointer releases
+     */
     private windowPointerUpHandler = () => {
+        if (isClientSide) {
+            this.cleanupCursorOverride();
+        }
         this.endDrag();
     };
 

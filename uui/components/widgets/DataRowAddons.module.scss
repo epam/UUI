@@ -1,5 +1,13 @@
+@use  '../../assets/styles/dnd' as *;
+
 :global(.uui-dr_addons-checkbox) {
     padding-inline-end: var(--uui-horizontal-gap);
+}
+
+:global(.-draggable) {
+    .drag-handle-wrapper {
+        @include dnd-cursor-style();
+    }
 }
 
 .drag-handle-wrapper {

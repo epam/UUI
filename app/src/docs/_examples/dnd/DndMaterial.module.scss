@@ -4,7 +4,6 @@
     position: relative;
     padding: 6px 0;
     margin: 0 24px;
-    @include dnd-cursor-style();
 
     .materialRow {
         border: 1px solid var(--uui-control-border);
@@ -55,5 +54,7 @@
         bottom: 12px;
         align-self: stretch;
         visibility: hidden;
+
+        @include dnd-cursor-style();
     }
 }
