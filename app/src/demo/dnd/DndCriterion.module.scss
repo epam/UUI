@@ -25,3 +25,11 @@
 }
 
 @include drag-handle(3px, 9px, 9px, 120%);
+
+:global(.uui-dragging) {
+    .drag-element {
+        &:hover .drag-handle {
+            visibility: hidden;
+        }
+    }
+}

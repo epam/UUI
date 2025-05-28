@@ -54,3 +54,12 @@
 .icon-gray60 {
     fill: var(--uui-icon);
 }
+
+:global(.uui-dragging) {
+    .drag-element {
+        &:hover .drag-handle {
+            visibility: hidden;
+        }
+    }
+}
+

@@ -37,6 +37,12 @@
     }
 }
 
+:global(.uui-dragging) {
+    :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover .drag-handle {
+        visibility: hidden;
+    }
+}
+
 :global(.uui-dr_addons-indent) {
     display: flex;
     justify-content: flex-start;
