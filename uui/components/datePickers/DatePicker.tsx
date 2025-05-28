@@ -41,10 +41,6 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
 
     const onOpenChange = (isOpen: boolean) => {
         setBodyIsOpen(isOpen);
-        if (isOpen && targetRef.current) {
-            const inputElement = targetRef.current.querySelector<HTMLInputElement>('.uui-input');
-            inputElement?.focus();
-        }
     };
 
     const onInputChange = (newValue: string | null) => {
@@ -137,11 +133,13 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     };
 
     const renderBody = useMemo(() => function (renderProps: DropdownBodyProps) {
+        const shards = targetRef.current ? [targetRef.current] : [];
         return (
             <DropdownContainer
                 { ...renderProps }
                 returnFocus={ true }
-                shards={ [targetRef] }
+                autoFocus={ true }
+                shards={ shards }
             >
                 <DatePickerBody
                     value={ value }
