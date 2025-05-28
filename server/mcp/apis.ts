@@ -1,12 +1,12 @@
-const express = require('express');
-const { SSEServerTransport } = require('@modelcontextprotocol/sdk/server/sse.js');
-const { server } = require('./server');
+import express from 'express';
+import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
+import { server } from './server';
 
 const mcpApis = express.Router();
 
 // to support multiple simultaneous connections we have a lookup object from
 // sessionId to transport
-const transports = {};
+const transports: Record<string, any> = {};
 
 mcpApis.get('/sse', async (_, res) => {
     const transport = new SSEServerTransport('/api/mcp/messages', res);
@@ -18,7 +18,7 @@ mcpApis.get('/sse', async (_, res) => {
 });
 
 mcpApis.post('/messages', async (req, res) => {
-    const sessionId = req.query.sessionId;
+    const sessionId = req.query.sessionId as string;
     const transport = transports[sessionId];
     if (transport) {
         await transport.handlePostMessage(req, res);
@@ -27,4 +27,4 @@ mcpApis.post('/messages', async (req, res) => {
     }
 });
 
-module.exports = { mcpApis };
+export { mcpApis };

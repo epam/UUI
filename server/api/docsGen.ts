@@ -1,5 +1,5 @@
-const express = require('express');
-const { readDocsGenResultsJson, getComponentSummariesLookup } = require('../utils/docsGen');
+import express from 'express';
+import { readDocsGenResultsJson, getComponentSummariesLookup } from '../utils/docsGen';
 
 const router = express.Router();
 
@@ -48,4 +48,4 @@ router.get('/docs-gen/summaries', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

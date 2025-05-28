@@ -7,7 +7,7 @@ const memoized = [];
  * @param input integer order of item
  * @returns order string
  */
-function indexToOrder(input) {
+export function indexToOrder(input) {
     const existing = memoized[input];
     if (existing) {
         return existing;
@@ -32,7 +32,3 @@ function indexToOrder(input) {
     memoized[input] = order;
     return order;
 }
-
-module.exports = {
-    indexToOrder,
-};

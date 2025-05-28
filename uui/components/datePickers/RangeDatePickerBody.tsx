@@ -1,12 +1,12 @@
 import React, { forwardRef, useState, type JSX } from 'react';
 import cx from 'classnames';
-import type {
+import {
     IControlled,
     RangeDatePickerPresets,
     DayProps,
     RangeDatePickerInputType,
     RangeDatePickerValue,
-    RangeDatePickerProps,
+    RangeDatePickerProps, useLayoutEffectSafeForSsr,
 } from '@epam/uui-core';
 import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
@@ -16,7 +16,7 @@ import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePic
 import type { Dayjs } from '../../helpers/dayJsHelper';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
-    defaultRangeValue, getMonthOnOpen, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
+    defaultRangeValue, getDisplayedMonth, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
 import type { CommonDatePickerBodyProps, ViewType } from './types';
 
@@ -133,7 +133,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
     const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
     const [month, setMonth] = useState(() => {
-        return getMonthOnOpen(selectedDate, inFocus);
+        return getDisplayedMonth(selectedDate, inFocus);
     });
 
     const getRange = (newValue: string | null) => {
@@ -215,6 +215,15 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
             </React.Fragment>
         );
     };
+
+    useLayoutEffectSafeForSsr(() => {
+        const monthToSet = getDisplayedMonth(selectedDate, inFocus);
+        // To avoid re-rendering the body if the current month being displayed is equal to or greater than 1
+        const shouldNotIgnoreUpdate = !(uuiDayjs.dayjs(month).isSame(monthToSet, 'month') || uuiDayjs.dayjs(month).add(1, 'month').isSame(monthToSet, 'month'));
+        if (shouldNotIgnoreUpdate) {
+            setMonth(monthToSet);
+        }
+    }, [selectedDate]);
 
     return (
         <div

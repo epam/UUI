@@ -249,9 +249,9 @@ describe('RangeDataPicker', () => {
         expect(dom.to.value).toBe('');
 
         await userEvent.clear(dom.from);
-        await userEvent.type(dom.from, '2019-10-12');
+        await userEvent.type(dom.from, '2020-10-12');
 
-        expect(dom.from.value).toBe('Oct 12, 2019');
+        expect(dom.from.value).toBe('Oct 12, 2020');
 
         const selectedDate = await waitFor(() =>
             within(screen.getByAria('multiselectable', 'true'))
