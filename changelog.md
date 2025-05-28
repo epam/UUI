@@ -14,6 +14,8 @@
 * [PickerModal]: disabled "Show only selected" when search is active
 * [DataTable]: increased DnD area for rows
 * [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
+* [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
+
 
 # 6.1.0 - 08.05.2025
 
@@ -32,7 +34,6 @@
 * [PickerInput]: fixed bug when selected item was applied value to the search after arrow keyboard navigation
 * [NumericInput]: fixed `value` text color for `readonly` state
 * [DatePicker]: removed focus from day/month/year item when user navigate to it by mouse
-* [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
 
 # 6.0.0 - 23.04.2025
 
