@@ -33,7 +33,7 @@ export const verticalTabButtonExplorerConfig: TDocConfig = {
             href: 'https://google.com',
             icon: 'action-account-fill.svg',
         };
-        const w165_h55: TPreviewCellSize = '165-55';
+        const w200_h55: TPreviewCellSize = '200-55';
         type TMatrixLocal = TPreviewMatrix<uui.TabButtonProps>;
         const statesMatrix: TMatrixLocal = {
             size: { values: ['36'] },
@@ -54,7 +54,7 @@ export const verticalTabButtonExplorerConfig: TDocConfig = {
             icon: { examples: [undefined, TEST_DATA.icon] },
             iconPosition: { examples: '*', condition: (props) => !!props.icon },
             isDropdown: { values: [true, false] },
-        }, '140-70');
+        }, '180-70');
         docPreview.add(TVerticalTabButtonPreview['States'], {
             ...baseMatrix,
             ...statesMatrix,
@@ -64,7 +64,7 @@ export const verticalTabButtonExplorerConfig: TDocConfig = {
             iconPosition: { examples: ['left'] },
             onClear: { examples: [TEST_DATA.callback] },
             isDropdown: { values: [true] },
-        }, w165_h55);
+        }, w200_h55);
     },
 };
 

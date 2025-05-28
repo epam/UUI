@@ -1,19 +1,15 @@
 import React, { Fragment, useState } from 'react';
-import { IDropdownBodyProps, useUuiContext, RangeDatePickerInputType, RangeDatePickerValue } from '@epam/uui-core';
-import {
-    FlexRow, FlexSpacer, FlexCell,
-} from '../layout';
-import { LinkButton } from '../buttons';
-import { i18n } from '../../i18n';
-import { RangeDatePickerInput } from '../datePickers/RangeDatePickerInput';
+import { IDropdownBodyProps, useUuiContext, RangeDatePickerInputType, RangeDatePickerValue, RangeDatePickerFilterConfig } from '@epam/uui-core';
+import { FlexRow } from '../layout';
 import { defaultFormat, defaultRangeValue } from '../datePickers/helpers';
 import type {
     RangeDatePickerBodyValue, RangeDatePickerProps,
 } from '../datePickers';
 import { RangeDatePickerBody } from '../datePickers';
-import { settings } from '../../settings';
+import { FilterRangeDatePickerBodyFooter } from './FilterRangeDatePickerBodyFooter';
 
-export interface FilterRangeDatePickerProps extends RangeDatePickerProps, IDropdownBodyProps {}
+export interface FilterRangeDatePickerProps extends
+    Omit<RangeDatePickerProps, 'renderFooter'>, IDropdownBodyProps, Pick<RangeDatePickerFilterConfig<any>, 'renderFooter'> {}
 
 export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
     const { value: _value, format = defaultFormat } = props;
@@ -64,7 +60,23 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
         onValueChange(newValue);
     };
 
-    const shouldShowClearButton = !props.preventEmptyToDate || !props.preventEmptyFromDate;
+    function renderFooter() {
+        const footerProps = {
+            value,
+            onValueChange,
+            format: format,
+            disableClear: props.disableClear,
+            preventEmptyFromDate: props.preventEmptyFromDate,
+            preventEmptyToDate: props.preventEmptyToDate,
+            onFocus: props.onFocus,
+            onBlur: props.onBlur,
+            inFocus,
+            setInFocus,
+            onClear,
+        };
+
+        return props.renderFooter ? props.renderFooter(footerProps) : <FilterRangeDatePickerBodyFooter { ...footerProps } />;
+    }
 
     return (
         <Fragment>
@@ -79,38 +91,7 @@ export function FilterRangeDatePickerBody(props: FilterRangeDatePickerProps) {
                     presets={ props.presets }
                 />
             </FlexRow>
-            <FlexCell alignSelf="stretch">
-                <FlexRow
-                    padding="24"
-                    vPadding="12"
-                >
-                    <RangeDatePickerInput
-                        size={ settings.filtersPanel.sizes.rangeDatePickerInput }
-                        disableClear={ props.disableClear }
-                        inFocus={ inFocus }
-                        format={ format }
-                        value={ value }
-                        onValueChange={ onValueChange }
-                        onFocusInput={ (event, inputType) => {
-                            if (props.onFocus) {
-                                props.onFocus(event, inputType);
-                            }
-                            setInFocus(inputType);
-                        } }
-                        onBlurInput={ props.onBlur }
-                        preventEmptyFromDate={ props.preventEmptyFromDate }
-                        preventEmptyToDate={ props.preventEmptyToDate }
-                    />
-                    <FlexSpacer />
-                    { shouldShowClearButton && (
-                        <LinkButton
-                            isDisabled={ !value.from && !value.to }
-                            caption={ i18n.filterToolbar.rangeDatePicker.clearCaption }
-                            onClick={ onClear }
-                        />
-                    ) }
-                </FlexRow>
-            </FlexCell>
+            { renderFooter() }
         </Fragment>
     );
 }

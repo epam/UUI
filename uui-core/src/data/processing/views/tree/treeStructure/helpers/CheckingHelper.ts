@@ -271,10 +271,8 @@ export class CheckingHelper {
             .forEach((parentId) => {
                 const { ids: childrenIds } = tree.getItems(parentId);
                 if (childrenIds && childrenIds.every((childId) => checkedIdsMap.has(childId))) {
-                    // eslint-disable-next-line eqeqeq
-                    if (parentId != ROOT_ID) {
-                        checkedIdsMap.set(parentId, true);
-                    }
+                    checkedIdsMap.set(parentId, true);
+
                     if (removeExplicitChildrenSelection) {
                         Tree.forEachChildren(
                             tree,
