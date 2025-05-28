@@ -84,19 +84,16 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         // Set cursor for drag operation
         // This creates a global cursor override to ensure 'grabbing' cursor is shown
         // during drag operations, regardless of individual element cursor styles
-        if (isClientSide) {
-            // Remove any existing style first to prevent duplicates
-            this.cleanupCursorOverride();
+        // Remove any existing style first to prevent duplicates
+        this.cleanupCursorOverride();
 
-            // Inject CSS that forces 'grabbing' cursor on all elements during drag
-            // Uses high specificity selector with !important to override any existing styles
-            // Preserves text cursor for input fields to maintain usability
-            const style = document.createElement('style');
-            style.id = 'uui-drag-cursor-override';
-            style.textContent = 'body.uui-dragging *, body.uui-dragging *:hover { cursor: grabbing !important; } body.uui-dragging input, body.uui-dragging textarea, body.uui-dragging [contenteditable] { cursor: text !important; }';
-            document.head.appendChild(style);
-            document.body.classList.add('uui-dragging');
-        }
+        // Inject CSS that forces 'grabbing' cursor on all elements during drag
+        // Uses high specificity selector with !important to override any existing styles
+        const style = document.createElement('style');
+        style.id = 'uui-drag-cursor-override';
+        style.textContent = 'body.uui-dragging *, body.uui-dragging *:hover { cursor: grabbing !important; }';
+        document.head.appendChild(style);
+        document.body.classList.add('uui-dragging');
 
         // prepare scroll
         this.lastScrollTime = new Date().getTime();
@@ -125,9 +122,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
         // Reset cursor immediately
         // Clean up cursor override to restore normal cursor behavior
         // Must be done synchronously to prevent cursor flickering or stuck states
-        if (isClientSide) {
-            this.cleanupCursorOverride();
-        }
+        this.cleanupCursorOverride();
 
         new Promise<void>((res) => {
             this.update({ isDragging: false });
@@ -157,9 +152,7 @@ export class DndContext extends BaseContext<DndContextState> implements IDndCont
      * - Prevents stuck drag states that could occur from unexpected pointer releases
      */
     private windowPointerUpHandler = () => {
-        if (isClientSide) {
-            this.cleanupCursorOverride();
-        }
+        this.cleanupCursorOverride();
         this.endDrag();
     };
 
