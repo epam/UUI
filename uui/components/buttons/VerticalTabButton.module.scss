@@ -5,6 +5,7 @@
     border-inline-start: var(--uui-tab-line-width) solid transparent;
     text-align: start;
     column-gap: 0;
+    padding-inline-start: calc(var(--uui-tab_btn-padding) - var(--uui-tab-line-width));
 
     :global(.uui-caption) {
         &:first-child {

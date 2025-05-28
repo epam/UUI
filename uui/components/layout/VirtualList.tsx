@@ -35,6 +35,11 @@ interface BaseVirtualListProps
     role?: React.HTMLAttributes<HTMLDivElement>['role'];
     /** Pass true, to enable Blocker while list loading */
     isLoading?: boolean;
+    /**
+     * Render callback for virtual list loading blocker
+     * If omitted, default UUI `Blocker` component will be rendered
+     */
+    renderBlocker?: (props: { isLoading: boolean }) => React.ReactNode;
 }
 
 export type VirtualListProps<List extends HTMLElement = any> = BaseVirtualListProps & VirtualListRenderRows<List>;
@@ -70,6 +75,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
             isLoading={ props.isLoading }
             style={ style }
             rawProps={ props.rawProps }
+            renderBlocker={ props.renderBlocker }
         />
     );
 
@@ -94,7 +100,7 @@ export const VirtualList = React.forwardRef<ScrollbarsApi, VirtualListProps>((pr
     );
 });
 
-interface VirtualListViewProps extends IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasChildren {
+interface VirtualListViewProps extends IHasRawProps<HTMLAttributes<HTMLDivElement>>, IHasChildren, Pick<BaseVirtualListProps, 'renderBlocker'> {
     style?: React.CSSProperties;
     isLoading: boolean;
 }
@@ -118,7 +124,7 @@ const VirtualListView = React.forwardRef<HTMLDivElement, VirtualListViewProps>((
             >
                 { props.children }
             </div>
-            <Blocker isEnabled={ props.isLoading } />
+            { props.renderBlocker ? props.renderBlocker({ isLoading: props.isLoading }) : <Blocker isEnabled={ props.isLoading } /> }
         </>
     );
 });

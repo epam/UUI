@@ -87,6 +87,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     };
 
     const dataRows = getRows();
+    const isSearching = dataSourceState.search && dataSourceState.search.length > 0;
 
     return (
         <ModalBlocker { ...props }>
@@ -117,7 +118,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
                             cx={ css.switch }
                             size={ settings.pickerInput.sizes.body.footerSwitchMap[settings.pickerInput.sizes.body.row] }
                             { ...getFooterProps().showSelected }
-                            isDisabled={ view.getSelectedRowsCount() < 1 }
+                            isDisabled={ isSearching || view.getSelectedRowsCount() < 1 }
                             label="Show only selected"
                         />
                     )}
