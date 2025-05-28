@@ -160,6 +160,7 @@ export function DataPickerBody<TItem, TId>({ highlightSearchMatches = true, ...p
                             } }
                             rowsCount={ props.rowsCount }
                             isLoading={ props.isReloading }
+                            renderBlocker={ settings.pickerInput.renderBlocker }
                         />
                     )}
             </FlexRow>
