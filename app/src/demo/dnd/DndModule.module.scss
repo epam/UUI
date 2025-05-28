@@ -50,3 +50,11 @@
 .icon-gray50 {
     fill: var(--uui-secondary-50);
 }
+
+:global(.uui-dragging) {
+    .drag-element {
+        &:hover .drag-handle {
+            visibility: hidden;
+        }
+    }
+}

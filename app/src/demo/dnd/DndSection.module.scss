@@ -1,11 +1,8 @@
 @use './mixins.module' as *;
-@use '~@epam/uui/assets/styles/dnd' as *;
 
 .drag-element {
     position: relative;
     padding: 6px 0;
-
-    @include dnd-cursor-style();
 
     .dnd-item:hover {
         box-shadow: 0 6px 12px 0 rgba(29, 30, 38, 0.1), 0 3px 6px 0 rgba(29, 30, 38, 0.1);
@@ -57,3 +54,12 @@
 .icon-gray60 {
     fill: var(--uui-icon);
 }
+
+:global(.uui-dragging) {
+    .drag-element {
+        &:hover .drag-handle {
+            visibility: hidden;
+        }
+    }
+}
+

@@ -10,10 +10,17 @@
             width: 8px;
             flex: 0 0 8px;
         }
+
+        &:hover {
+            cursor: grab;
+        }
+
+        &:active {
+            cursor: grabbing;
+        }
     }
 
     &:global(.uui-disabled) {
         cursor: auto;
     }
 }
-
