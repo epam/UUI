@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, useLazyDataSource, useUuiContext, TableFiltersConfig, LazyDataSource, useTableState, DataTableState, getSeparatedValue } from '@epam/uui-core';
-import { Text, DataTable, Panel, FlexRow, Badge, BadgeProps } from '@epam/uui';
+import { Text, DataTable, Panel, FlexRow, Badge, BadgeProps, defaultPredicates } from '@epam/uui';
 import { Person } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
@@ -38,6 +38,7 @@ const personColumns: DataColumnProps<Person, number>[] = [
         width: 150,
         textAlign: 'right',
         isSortable: true,
+        isFilterActive: (f) => !!f.salary,
     }, {
         key: 'jobTitle',
         caption: 'Title',
@@ -77,11 +78,13 @@ export default function ColumnFiltersTableExample() {
                 title: 'Title',
                 type: 'multiPicker',
                 dataSource: new LazyDataSource({ api: api.demo.jobTitles }),
+                predicates: defaultPredicates.multiPicker,
             }, {
                 field: 'salary',
                 columnKey: 'salary',
                 title: 'Salary',
                 type: 'numeric',
+                predicates: defaultPredicates.numeric,
             }, {
                 field: 'birthDate',
                 columnKey: 'birthDate',
