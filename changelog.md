@@ -29,6 +29,7 @@
 * [PickerInput]: fixed bug when selected item was applied value to the search after arrow keyboard navigation
 * [NumericInput]: fixed `value` text color for `readonly` state
 * [DatePicker]: removed focus from day/month/year item when user navigate to it by mouse
+* [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
 
 # 6.0.0 - 23.04.2025
 
