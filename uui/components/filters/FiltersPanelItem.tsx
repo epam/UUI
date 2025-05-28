@@ -140,7 +140,7 @@ function FiltersToolbarItemImpl(props: FiltersToolbarItemProps) {
                     { ...props }
                     { ...dropdownProps }
                     selectedPredicate={ predicate }
-                    value={ getValue(predicate, props.value) ? getValue(predicate, props.value) : null }
+                    value={ getValue(predicate, props.value) }
                     onValueChange={ onValueChange }
                 />
             </PickerBodyMobileView>
