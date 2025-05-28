@@ -1,19 +1,15 @@
 import React, { Fragment } from 'react';
-import { IDropdownBodyProps, useUuiContext } from '@epam/uui-core';
-import { uuiDayjs } from '../../helpers/dayJsHelper';
-import { i18n } from '../../i18n';
-import {
-    FlexSpacer, FlexRow, FlexCell,
-} from '../layout';
-import { LinkButton } from '../buttons';
-import { Text } from '../typography';
+import { IDropdownBodyProps, useUuiContext, FilterDatePickerBodyFooterProps, DatePickerFilterConfig } from '@epam/uui-core';
+import { FlexRow } from '../layout';
 import { DatePickerProps } from '../datePickers';
 import { DatePickerBody } from '../datePickers';
+import { FilterDatePickerBodyFooter } from './FilterDatePickerBodyFooter';
 
 /**
  * Represents the properties of the FiterDatePicker
  */
-export interface FilterDatePickerProps extends DatePickerProps, IDropdownBodyProps {}
+export interface FilterDatePickerProps extends
+    Omit<DatePickerProps, 'renderFooter'>, IDropdownBodyProps, Pick<DatePickerFilterConfig<any>, 'renderFooter'> {}
 
 export function FilterDatePickerBody(props: FilterDatePickerProps) {
     const { value } = props;
@@ -37,6 +33,15 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
         }
     };
 
+    function renderFooter() {
+        const footerProps: FilterDatePickerBodyFooterProps = {
+            value,
+            onValueChange: handleValueChange,
+        };
+
+        return props.renderFooter ? props.renderFooter(footerProps) : <FilterDatePickerBodyFooter { ...footerProps } />;
+    }
+
     return (
         <Fragment>
             <FlexRow borderBottom={ true }>
@@ -49,22 +54,7 @@ export function FilterDatePickerBody(props: FilterDatePickerProps) {
                     rawProps={ props.rawProps?.body }
                 />
             </FlexRow>
-            <FlexCell alignSelf="stretch">
-                <FlexRow
-                    padding="24"
-                    vPadding="12"
-                >
-                    <Text>{value ? uuiDayjs.dayjs(value).format('MMM DD, YYYY') : ''}</Text>
-                    <FlexSpacer />
-                    <LinkButton
-                        isDisabled={ !value }
-                        caption={ i18n.filterToolbar.datePicker.clearCaption }
-                        onClick={ () => {
-                            handleValueChange(undefined); // null is not working with setTableData filters
-                        } }
-                    />
-                </FlexRow>
-            </FlexCell>
+            { renderFooter() }
         </Fragment>
     );
 }

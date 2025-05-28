@@ -1,13 +1,13 @@
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
+import { RangeDatePickerValue } from '@epam/uui-core';
 import { uuiDaySelection } from '@epam/uui-components';
 import {
-    RangeDatePickerBody, RangeDatePickerBodyProps, rangeDatePickerPresets,
+    RangeDatePickerBody, RangeDatePickerBodyProps, RangeDatePickerBodyValue, rangeDatePickerPresets,
 } from '../RangeDatePickerBody';
 import {
     act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, within,
 } from '@epam/uui-test-utils';
-import { RangeDatePickerValue, RangeDatePickerBodyValue } from '../types';
 
 type RangeBodyProps = RangeDatePickerBodyProps<RangeDatePickerValue | null>;
 
@@ -159,7 +159,7 @@ describe('RangeDatePickerBody', () => {
         const [oct11] = screen.getAllByText('11');
         fireEvent.click(oct11);
         expect(mocks.onValueChange).toHaveBeenLastCalledWith({
-            inFocus: 'from',
+            inFocus: 'to',
             selectedDate: {
                 from: '2019-10-11',
                 to: null,
