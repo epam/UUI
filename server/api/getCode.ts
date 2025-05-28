@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
+import path from 'path';
+import fs from 'fs/promises';
+import { highlightTsCode } from './prism';
 
 const router = express.Router();
-const path = require('path');
-const fs = require('fs').promises;
-const { highlightTsCode } = require('./prism');
 
-router.post('/get-code', async (req, res) => {
+router.post('/get-code', async (req: any, res: any) => {
     try {
         const params = req.body;
-        const filePath = path.resolve('src/docs/', path.normalize(params.path));
+        const filePath = path.resolve(__dirname, '../../../app/src/docs/', path.normalize(params.path));
 
         const isPathInsideSrcDirectory = filePath.includes(path.normalize('/app/src/'));
 
@@ -33,4 +33,4 @@ router.post('/get-code', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

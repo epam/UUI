@@ -30,7 +30,7 @@ jobs:
                   yarn
                   yarn --cwd uui-e2e-tests local-test-e2e-deps-install
                   yarn build
-                  cd server && yarn
+                  cd server && yarn && yarn build
 
             - name: 'Run e2e tests'
               run: |

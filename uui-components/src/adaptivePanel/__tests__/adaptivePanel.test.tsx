@@ -62,17 +62,20 @@ async function setupAdaptivePanel({ width, itemWidth, itemsGap }: { width: numbe
 
 describe('AdaptivePanel', () => {
     it('should render no items provided', async () => {
-        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel items={ [] } />);
+        mockAdaptivePanelLayout({ width: 500, itemWidth: 20 });
+        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel rawProps={ { 'data-testid': 'adaptive-panel' } } items={ [] } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('should render some items', async () => {
-        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel items={ getNItems('snapshot', 5) } />);
+        mockAdaptivePanelLayout({ width: 500, itemWidth: 20 });
+        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel rawProps={ { 'data-testid': 'adaptive-panel' } } items={ getNItems('snapshot', 5) } />);
         expect(tree).toMatchSnapshot();
     });
 
     it('should render some items with itemsGap', async () => {
-        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel itemsGap={ 6 } items={ getNItems('snapshot', 5) } />);
+        mockAdaptivePanelLayout({ width: 500, itemWidth: 20 });
+        const tree = await renderSnapshotWithContextAsync(<AdaptivePanel rawProps={ { 'data-testid': 'adaptive-panel' } } itemsGap={ 6 } items={ getNItems('snapshot', 5) } />);
         expect(tree).toMatchSnapshot();
     });
 

@@ -1,18 +1,15 @@
-import React, {
-    useCallback, useEffect, useMemo, useRef, useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { i18n } from '../../i18n';
 import { Button } from '../buttons';
 import { PickerInput, DataPickerRow } from '../pickers';
-import type {
-    DataRowOptions, TableFiltersConfig, FiltersConfig, DataQueryFilter,
-    DataTableState, PickerInputElement, Overwrite,
-} from '@epam/uui-core';
+import type { DataRowOptions, TableFiltersConfig, FiltersConfig,
+    DataTableState, PickerInputElement, Overwrite } from '@epam/uui-core';
 import { getOrderBetween, useArrayDataSource, orderBy } from '@epam/uui-core';
 import { PickerTogglerProps, FlexCell } from '@epam/uui-components';
 import { FiltersPanelItem } from './FiltersPanelItem';
 import { UUI_FILTERS_PANEL_ADD_BUTTON, UUI_FILTERS_PANEL_ADD_BUTTON_BODY } from './constants';
 import { settings } from '../../settings';
+import { normalizeFilterWithPredicates } from './helpers/predicateHelpers';
 
 export interface FiltersPanelModsOverride {}
 
@@ -33,45 +30,6 @@ export interface FiltersPanelProps<TFilter> extends
     /** Called when state needs to be changed */
     setTableState: (newState: DataTableState) => void;
 }
-
-const normalizeFilterWithPredicates = <TFilter,>(filter: TFilter) => {
-    if (!filter) {
-        return {};
-    }
-    const result: DataQueryFilter<TFilter> = filter;
-    const keys = Object.keys(filter) as (keyof TFilter)[];
-    for (let n = 0; n < keys.length; n++) {
-        const key = keys[n];
-        const filterValue: any = filter[key];
-        if (filterValue && typeof filterValue === 'object') {
-            if ('from' in filterValue && 'to' in filterValue) {
-                continue;
-            }
-            if ('in' in filterValue && (!Array.isArray(filterValue.in) || !filterValue.in.length)) {
-                delete filter[key];
-            }
-            if ('nin' in filterValue && (!Array.isArray(filterValue.nin) || !filterValue.nin.length)) {
-                delete filter[key];
-            }
-            if ('inRange' in filterValue) {
-                if (!filterValue.inRange || (!filterValue.inRange.from && !filterValue.inRange.to)) {
-                    delete filter[key];
-                }
-            }
-            if ('notInRange' in filterValue) {
-                if (!filterValue.notInRange || (!filterValue.notInRange.from && !filterValue.notInRange.to)) {
-                    delete filter[key];
-                }
-            }
-            Object.keys(filterValue).forEach((predicate) => {
-                if (filterValue[predicate] === null || filterValue[predicate] === undefined) {
-                    delete filter[key];
-                }
-            });
-        }
-    }
-    return result;
-};
 
 function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFilter>) {
     const { filters, tableState, setTableState, size = (settings.filtersPanel.sizes.default) } = props;
@@ -117,8 +75,8 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
         });
     };
 
-    const handleFilterChange = (newFilter: TFilter) => {
-        const filter = normalizeFilterWithPredicates({ ...tableState.filter, ...newFilter });
+    const handleFilterChange = (newFilter: TFilter, field: string | number | symbol) => {
+        const filter = normalizeFilterWithPredicates({ ...tableState.filter, [field]: newFilter });
         setTableState({
             ...tableState,
             filter: filter,
@@ -198,7 +156,7 @@ function FiltersToolbarImpl<TFilter extends object>(props: FiltersPanelProps<TFi
                     <FiltersPanelItem
                         { ...f }
                         value={ tableState.filter?.[f.field] }
-                        onValueChange={ handleFilterChange }
+                        onValueChange={ (newFilter: TFilter) => handleFilterChange(newFilter, f.field) }
                         key={ f.field as string }
                         autoFocus={ newFilterId === f.field }
                         removeFilter={ removeFilter }

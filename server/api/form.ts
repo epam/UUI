@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -23,4 +23,4 @@ router.post('/form/validate-form', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

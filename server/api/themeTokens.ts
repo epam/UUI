@@ -1,6 +1,6 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
  * @returns {import('@epam/uui-build/ts/tasks/themeTokensGen/types/sharedTypes.ts').IUuiTokensCollection}
  */
 function readThemeTokensJson() {
-    const filePath = path.join(__dirname, '../../public/docs/figmaTokensGen/ThemeTokens.json');
+    const filePath = path.resolve(__dirname, '../../public/docs/figmaTokensGen/ThemeTokens.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
@@ -23,4 +23,4 @@ router.get('/theme-tokens', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;
