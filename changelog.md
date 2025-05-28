@@ -17,6 +17,9 @@
 * [DnD]: Enhanced drag-and-drop functionality with improved styles, cursor feedback, and more intuitive interaction in demos and examples
 * [NotificationCard]: added gap between content and actions
 * [DataPickerFooter]: added gap between switch and actions
+* [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
+* [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
+
 
 # 6.1.0 - 08.05.2025
 
