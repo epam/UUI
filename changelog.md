@@ -13,6 +13,7 @@
 * [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
 * [PickerModal]: disabled "Show only selected" when search is active
 * [DataTable]: increased DnD area for rows
+* [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
 
 # 6.1.0 - 08.05.2025
 

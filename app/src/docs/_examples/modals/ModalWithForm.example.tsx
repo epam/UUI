@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { IModal, useUuiContext, useAsyncDataSource, LazyDataSourceApiResponse } from '@epam/uui-core';
 import { Country } from '@epam/uui-docs';
 import { ModalBlocker, ModalWindow, FlexSpacer, ModalHeader, FlexRow, LabeledInput, TextInput, Button, ScrollBars, ModalFooter, SuccessNotification, useForm, Text,
@@ -36,10 +36,13 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
         }),
     });
 
+    // It shows 'Leave with unsaved changes' dialog when a user tries to close modal with unsaved form
+    const closeModalWithFormSave = useCallback(() => close().then(modalProps.abort).catch(() => {}), [modalProps.abort, close]);
+
     return (
-        <ModalBlocker { ...modalProps } abort={ () => close().then(modalProps.abort).catch(() => {}) }>
+        <ModalBlocker { ...modalProps } abort={ closeModalWithFormSave }>
             <ModalWindow>
-                <ModalHeader borderBottom title="New committee" onClose={ () => close().then(modalProps.abort).catch(() => {}) } />
+                <ModalHeader borderBottom title="New committee" onClose={ closeModalWithFormSave } />
                 <ScrollBars>
                     <Panel background="surface-main">
                         <FlexRow padding="24" vPadding="12">
@@ -79,7 +82,7 @@ function ModalWithFormExample(modalProps: IModal<Person>) {
                         </FlexRow>
                     </Panel>
                     <ModalFooter borderTop cx={ css.footer }>
-                        <Button color="secondary" fill="outline" onClick={ () => close().then(modalProps.abort) } caption="Cancel" />
+                        <Button color="secondary" fill="outline" onClick={ closeModalWithFormSave } caption="Cancel" />
                         <Button color="primary" caption="Confirm" onClick={ save } />
                     </ModalFooter>
                     <FlexSpacer />
