@@ -7,6 +7,7 @@
 **What's Fixed**
 * [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
 * [PickerInput]: fixed returning to the previous focused element via shift+tab press
+* [PickerInput]: fixed row focusing on search results
 * [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
 * [Modals][Electric]: increased border radius to 12 px
 * [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
