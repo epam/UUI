@@ -1,31 +1,22 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../../common';
 import css from '../styles.module.scss';
+import { DocItem } from '../../documents/structure';
 
-export class AdvancedTablesDoc extends BaseDocsBlock {
-    title = 'Advanced Tables';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="advanced-tables-descriptions" />
-                {this.renderSectionTitle('Examples')}
-
-                <DocExample cx={ css.appBg } title="Collapse/expand All" path="./_examples/tables/TableCollapse.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Columns Configuration" path="./_examples/tables/ColumnsConfig.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Table with paging and select page" path="./_examples/tables/PagedTable.example.tsx" />
-                <DocExample cx={ css.appBg } title="Table with paging and select all rows" path="./_examples/tables/PagedTableWithSelectAll.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Table with column filters" path="./_examples/tables/ColumnFiltersTable.example.tsx" />
-                
-                <DocExample cx={ css.appBg } title="Table with pinned rows" path="./_examples/tables/TableWithPinnedRows.example.tsx" />
-                <DocExample cx={ css.appBg } title="Table with expandable rows" path="./_examples/tables/TableWithExpandableRows.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Table with rows Drag&Drop" path="./_examples/tables/TableWithDnD.example.tsx" />
-
-                <DocExample cx={ css.appBg } title="Table with header groups" path="./_examples/tables/TableGroupedHeader.example.tsx" />
-            </>
-        );
-    }
-}
+export const AdvancedTablesDocItem: DocItem = {
+    id: 'advancedTables',
+    name: 'Advanced',
+    parentId: 'tables',
+    examples: [
+        { descriptionPath: 'advanced-tables-descriptions' },
+        { name: 'Collapse/expand All', componentPath: './_examples/tables/TableCollapse.example.tsx', cx: css.appBg },
+        { name: 'Columns Configuration', componentPath: './_examples/tables/ColumnsConfig.example.tsx', cx: css.appBg },
+        { name: 'Table with paging and select page', componentPath: './_examples/tables/PagedTable.example.tsx', cx: css.appBg },
+        { name: 'Table with paging and select all rows', componentPath: './_examples/tables/PagedTableWithSelectAll.example.tsx', cx: css.appBg },
+        { name: 'Table with column filters', componentPath: './_examples/tables/ColumnFiltersTable.example.tsx', cx: css.appBg },
+        { name: 'Table with pinned rows', componentPath: './_examples/tables/TableWithPinnedRows.example.tsx', cx: css.appBg },
+        { name: 'Table with expandable rows', componentPath: './_examples/tables/TableWithExpandableRows.example.tsx', cx: css.appBg },
+        { name: 'Table with rows Drag&Drop', componentPath: './_examples/tables/TableWithDnD.example.tsx', cx: css.appBg },
+        { name: 'Table with header groups', componentPath: './_examples/tables/TableGroupedHeader.example.tsx', cx: css.appBg },
+    ],
+    order: 3,
+    tags: ['tables', 'dataTable'],
+};

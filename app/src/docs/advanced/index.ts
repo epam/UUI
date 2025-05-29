@@ -5,7 +5,6 @@ export * from '../testing/UtGuideTools.doc';
 export * from '../testing/UtGuideCookbook.doc';
 export * from '../testing/UtGuideGetttingStarted.doc';
 export * from '../dataSources/GettingStarted.doc';
-export * from '../dataSources/Overview.doc';
 export * from '../dataSources/RowOptions.doc';
 export * from '../dataSources/BaseDataSourceProps.doc';
 export * from '../dataSources/DataSourceState.doc';
