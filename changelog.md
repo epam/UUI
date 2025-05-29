@@ -1,23 +1,23 @@
-# 6.x.x - xx.xx.2025
+# 6.1.1 - 29.09.2025
 **What's New**
-* [RangeDatePicker]: improved a11y, updated so that when a date is typed in the input fields, the calendar body immediately reflects and selects the new value, providing instant feedback and better usability.
-* [DatePicker]: improved a11y.
-* [@epam/uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
+* [uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
+* [FiltersPanel]: added `renderFooter` prop for `DatePicker` and `RangeDatePicker` filters. Exported default implementation of UUI footers - `FilterDatePickerBodyFooter` and `FilterRangeDatePickerBodyFooter` components
+* [DataTable]: added predicates functionality for column filters
 
 **What's Fixed**
-* [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
+* [RangeDatePicker]: fixed switching of the calendar depending on which field(From/To) the action was on
+* [RangeDatePicker]: immediately apply date entered in input if it is valid
 * [PickerInput]: fixed returning to the previous focused element via shift+tab press
 * [PickerInput]: fixed row focusing on search results
 * [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
-* [Modals][Electric]: increased border radius to 12 px
+* [Modals]: change border radius to 12px in Electric theme
 * [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
 * [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
 * [PickerModal]: disabled "Show only selected" when search is active
 * [DataTable]: increased DnD area for rows, updated drag-and-drop styles for improved user experience
 * [DnDContext]: fixed cursor visualization during drag and drop operations
-* [DnD]: Enhanced drag-and-drop functionality with improved styles, cursor feedback, and more intuitive interaction in demos and examples
 * [NotificationCard]: added gap between content and actions
-* [DataPickerFooter]: added gap between switch and actions
+* [DataPickerFooter]: added gap between switch and action
 * [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
 * [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
 
