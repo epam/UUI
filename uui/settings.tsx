@@ -60,11 +60,12 @@ import type {
     DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
     PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
     RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
-    TextInputProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps, IconButtonProps,
+    TextInputProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps, IconButtonProps, VirtualListProps,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
 import { TextPlaceholder } from './components/typography/TextPlaceholder';
 import { Text } from './components/typography/Text';
+import { Blocker } from './components/layout/Blocker';
 
 type Sizes<S extends string | number | symbol, T> = {
     [size in S]: T;
@@ -679,10 +680,12 @@ interface PickerInputSettings {
     icons: PickerInputIcons;
     sizes: PickerInputSizes;
     renderPlaceholder?: (props: { rowSize: DataPickerRowProps<unknown, unknown>['size'] }) => React.ReactNode;
+    renderBlocker?: VirtualListProps['renderBlocker'];
 }
 
 const pickerInputSettings: PickerInputSettings = {
     renderPlaceholder: (props) => <Text size={ props.rowSize }><TextPlaceholder /></Text>,
+    renderBlocker: (props) => <Blocker isEnabled={ props.isLoading } />,
     icons: {
         toggler: {
             clearIcon: CrossIcon,

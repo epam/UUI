@@ -172,12 +172,16 @@ builder
         },
     ])
     .add(pickerInput, [
-        ...values(TPickerInputPreview).map((i) => ({ previewId: [i] })),
+        ...values(TPickerInputPreview, { exclude: [TPickerInputPreview['Opened multi']] }).map((i) => ({ previewId: [i] })),
         {
             onlyChromium: true,
             previewId: [TPickerInputPreview['Modes + States']],
             previewTag: 'PseudoStateHover',
             forcePseudoState: [{ state: 'hover', selector: '.uui-input-box' }],
+        },
+        {
+            onlyChromium: true,
+            previewId: [TPickerInputPreview['Opened multi']],
         },
     ])
     .add(rangeDatePicker, [

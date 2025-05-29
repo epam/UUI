@@ -22,13 +22,17 @@ export interface IEditableDebouncerOptions {
 export interface IEditableDebouncerProps<T> extends IEditable<T>, IEditableDebouncerOptions, IAnalyticableOnChange<T> {
     /**
      * Render wrapped component.
+     * Receives props and forwarded ref as a second parameter.
      */
-    render: (props: IEditable<T>) => React.ReactNode;
+    render: (props: IEditable<T>, ref: React.Ref<any>) => React.ReactNode;
 }
 
 const defaultDelay = 500;
 
-const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
+const IEditableDebouncerImpl = <T,>(
+    props: IEditableDebouncerProps<T>,
+    ref: React.Ref<any>,
+) => {
     const [state, setState] = useState({ value: props.value });
     const lastSentValue = useRef(props.value);
     const context = useUuiContext();
@@ -72,7 +76,7 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
         ],
     );
 
-    const propsToRender: IEditable<T> = useMemo(
+    const propsToRender = useMemo(
         () => ({
             value: state.value,
             onValueChange: handleValueChange,
@@ -80,12 +84,16 @@ const IEditableDebouncerImpl = <T>(props: IEditableDebouncerProps<T>) => {
         [state.value, handleValueChange],
     );
 
-    return props.render?.(propsToRender) as ReactElement<any>;
+    return props.render?.(propsToRender, ref) as ReactElement<any>;
 };
+
+const IEditableDebouncerForwardRef = React.forwardRef(IEditableDebouncerImpl) as <T>(
+    props: IEditableDebouncerProps<T> & { ref?: React.Ref<any> }
+) => React.ReactElement | null;
 
 /**
  * Wrap other IEditable components into the IEditableDebouncer to debounce onValueChange calls.
  * Useful for search inputs, or any other components that cause expensive computations on change.
  * Wrapped component still behaves as controlled component, and will react to external value changes immediately.
  */
-export const IEditableDebouncer = React.memo(IEditableDebouncerImpl) as typeof IEditableDebouncerImpl;
+export const IEditableDebouncer = React.memo(IEditableDebouncerForwardRef) as typeof IEditableDebouncerForwardRef;

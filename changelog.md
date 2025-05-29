@@ -1,9 +1,33 @@
+# 6.x.x - xx.xx.2025
+**What's New**
+* [RangeDatePicker]: improved a11y, updated so that when a date is typed in the input fields, the calendar body immediately reflects and selects the new value, providing instant feedback and better usability.
+* [DatePicker]: improved a11y.
+* [@epam/uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
+
+**What's Fixed**
+* [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
+* [PickerInput]: fixed returning to the previous focused element via shift+tab press
+* [PickerInput]: fixed row focusing on search results
+* [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
+* [Modals][Electric]: increased border radius to 12 px
+* [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
+* [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
+* [PickerModal]: disabled "Show only selected" when search is active
+* [DataTable]: increased DnD area for rows, updated drag-and-drop styles for improved user experience
+* [DnDContext]: fixed cursor visualization during drag and drop operations
+* [DnD]: Enhanced drag-and-drop functionality with improved styles, cursor feedback, and more intuitive interaction in demos and examples
+* [NotificationCard]: added gap between content and actions
+* [DataPickerFooter]: added gap between switch and actions
+* [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
+* [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
+
+
 # 6.1.0 - 08.05.2025
 
 **What's New**
 * Removed `react-test-renderer` deps from '@epam/uui-test-utils' package, since it crashes with React 18 and lower. If you are import 'renderer' from '@epam/uui-test-utils', replace it to the direct import from 'react-test-renderer' package.
 * [DatePicker]: added `preventEmpty` prop to prevent picker form being empty. See example [here](https://uui.epam.com/documents?id=datePicker&mode=doc&category=components#examples-datePicker-PreventEmpty)
-* [RangeDatePicker]: 
+* [RangeDatePicker]:
   * added `preventEmptyFromDate` and `preventEmptyToDate` props to prevent the RangeDatePicker from having an empty 'from' or 'to' date. See example [here](https://uui.epam.com/documents?id=rangeDatePicker&mode=doc&category=components#examples-rangeDatePicker-PreventEmpty)
   * `RangeDatePickerValue` interface was moved to the @epam/uui-core package
 * [AsyncDataSource]: added caching functionality, allowing two or more Views to reuse the same data.
@@ -25,7 +49,7 @@
     * UUI templates updated to use React 19
     * @epam/uui-test-utils reworked to not use deprecated 'react-test-renderer', now we use '@testing-library/react' instead. It will cause different snapshots results via renderSnapshotWithContextAsync helper, so please update them.
 * Introduced sizes and icons theming. This is essential for external customers support, as it allows them to use their own sizes and icons.
-  * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity. 
+  * Be aware — API in the Beta stage, not stable, and might be changed in future versions, please don't rely on it without a critical necessity.
   * Sizes and styles of current EPAM themes(Loveship, Promo, Electric) remained the same. There are no changes required from your side.
 * Updated icon pack: moon(outline/fill), sun(outline/fill), fcd (outline) icons were added
 * [Dropdown]: reworked to FC, migrated from "react-popper" to "floating-ui/react"

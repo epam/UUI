@@ -27,6 +27,8 @@ interface BaseRatingState {
 
 export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRatingState> {
     container: HTMLElement | null;
+    isPointerMoveSubscribed = false;
+
     constructor(props: BaseRatingProps<number>) {
         super(props);
         this.state = {};
@@ -87,18 +89,46 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         return step * Math.ceil(width / this.getMarkWidth()) + (this.props.from - step);
     }
 
-    onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+        if (!this.isPointerMoveSubscribed) {
+            window.addEventListener('pointermove', this.handleWindowPointerMove);
+            this.isPointerMoveSubscribed = true;
+        }
+
         const width = e.pageX - this.getContainerOffsetLeft();
         if (width > 0 && width <= this.state.containerWidth) {
             this.setState({ rating: this.checkRating(this.getRatingFromWidth(width)) });
         }
     }
 
-    onMouseLeave() {
-        this.setState({ rating: this.checkRating(this.props.value) });
-    }
+    handleWindowPointerMove = (e: PointerEvent) => {
+        if (!this.container) return;
+        const { clientX, clientY } = e;
+        const rect = this.container.getBoundingClientRect();
+        const inside = clientX >= rect.left
+            && clientX <= rect.right
+            && clientY >= rect.top
+            && clientY <= rect.bottom;
 
-    onMouseUp(e: React.MouseEvent<HTMLDivElement>) {
+        if (!inside) {
+            this.resetRatingToValue();
+            window.removeEventListener('pointermove', this.handleWindowPointerMove);
+            this.isPointerMoveSubscribed = false;
+        }
+    };
+
+    unsubscribePointerMove = () => {
+        if (this.isPointerMoveSubscribed) {
+            window.removeEventListener('pointermove', this.handleWindowPointerMove);
+            this.isPointerMoveSubscribed = false;
+        }
+    };
+
+    resetRatingToValue = () => {
+        this.setState({ rating: this.checkRating(this.props.value) });
+    };
+
+    onPointerUp(e: React.PointerEvent<HTMLDivElement>) {
         const width = e.pageX - this.getContainerOffsetLeft();
         this.props.onValueChange(this.checkRating(this.getRatingFromWidth(width)));
     }
@@ -128,6 +158,12 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
         (this.props.forwardedRef as React.RefCallback<HTMLDivElement>)?.(container);
     };
 
+    onPointerLeave = () => {
+        if (this.props.isReadonly || this.props.isDisabled) return;
+        this.unsubscribePointerMove();
+        this.resetRatingToValue();
+    };
+
     render() {
         const isReadonly = this.props.isReadonly || this.props.isDisabled;
 
@@ -140,9 +176,9 @@ export class BaseRating extends React.Component<BaseRatingProps<number>, BaseRat
                 tabIndex={ 0 }
                 onKeyDown={ (e) => !isReadonly && this.onKeyDown(e) }
                 className={ cx(css.container, this.props.isDisabled && uuiMod.disabled, isReadonly && css.containerReadonly, this.props.cx) }
-                onMouseMove={ (e) => !isReadonly && this.onMouseMove(e) }
-                onMouseLeave={ () => !isReadonly && this.onMouseLeave() }
-                onMouseUp={ (e) => !isReadonly && this.onMouseUp(e) }
+                onPointerMove={ (e) => !isReadonly && this.onPointerMove(e) }
+                onPointerLeave={ () => !isReadonly && this.onPointerLeave() }
+                onPointerUp={ (e) => !isReadonly && this.onPointerUp(e) }
                 onTouchEnd={ (e) => !isReadonly && this.onTouchEnd(e) }
                 ref={ this.handleRef }
                 { ...this.props.rawProps }

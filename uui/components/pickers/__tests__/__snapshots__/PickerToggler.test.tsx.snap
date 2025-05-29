@@ -61,7 +61,7 @@ exports[`PickerToggler should render with minimum props 1`] = `
         class="uui-input singleInput"
         dir="auto"
         tabindex="-1"
-        type="text"
+        type="search"
         value=""
       />
     </div>

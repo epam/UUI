@@ -62,7 +62,7 @@ export class Tree {
                 break;
             }
             parentId = tree.getParams().getParentId?.(item);
-            if (parentId === undefined) {
+            if (parentId === undefined || parentId === null) {
                 break;
             }
             parentIds.unshift(parentId);

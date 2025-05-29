@@ -1,5 +1,26 @@
+@use  '../../assets/styles/dnd' as *;
+
 :global(.uui-dr_addons-checkbox) {
     padding-inline-end: var(--uui-horizontal-gap);
+}
+
+:global(.-draggable) {
+    .drag-handle-wrapper {
+        @include dnd-cursor-style();
+    }
+}
+
+.drag-handle-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding-inline-start: var(--uui-dt-cell-padding-start);
+}
+
+.with-indent {
+    padding-inline-end: 12px;
 }
 
 .drag-handle {
@@ -13,6 +34,12 @@
 
     :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover & {
         visibility: visible;
+    }
+}
+
+:global(.uui-dragging) {
+    :global(.-draggable.uui-table-row):not(:global(.uui-drop-accepted)):hover .drag-handle {
+        visibility: hidden;
     }
 }
 

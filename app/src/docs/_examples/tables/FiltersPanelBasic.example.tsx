@@ -104,12 +104,6 @@ export default function FiltersPanelExample() {
                 predicates: defaultPredicates.numeric,
             },
             {
-                field: 'birthDate',
-                columnKey: 'birthDate',
-                title: 'Birth date',
-                type: 'datePicker',
-            },
-            {
                 field: 'productionCategory',
                 columnKey: 'productionCategory',
                 title: 'Is Production',

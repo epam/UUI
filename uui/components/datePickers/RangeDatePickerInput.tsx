@@ -1,8 +1,7 @@
 import React, { forwardRef, useEffect, useState, type JSX } from 'react';
 import { IEditable, cx, uuiMod, IHasCX, IClickable, IHasRawProps, RangeDatePickerValue, RangeDatePickerInputType } from '@epam/uui-core';
 import { TextInput } from '../inputs';
-import { isValidRange, toCustomDateRangeFormat, toValueDateRangeFormat } from './helpers';
-import { uuiDayjs } from '../../helpers/dayJsHelper';
+import { toCustomDateRangeFormat, toValueDateRangeFormat, isValidAndInFilter } from './helpers';
 import type { RangeDatePickerProps } from './RangeDatePicker';
 
 import { i18n } from '../../i18n';
@@ -81,10 +80,18 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
     }, [format, value, setInputValue]);
 
     const onInputChange = (newValue: string, inputType: 'from' | 'to') => {
-        setInputValue({
+        const updatedInputValue = {
             ...inputValue,
             [inputType]: newValue,
-        });
+        };
+
+        setInputValue(updatedInputValue);
+
+        const selectedDate = toValueDateRangeFormat(updatedInputValue, format);
+
+        if (isValidAndInFilter(selectedDate, inputType, filter)) {
+            onValueChange(selectedDate);
+        }
     };
 
     const handleFocus = (event: React.FocusEvent<HTMLInputElement>, inputType: RangeDatePickerInputType) => {
@@ -93,7 +100,7 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>, inputType: 'from' | 'to') => {
         onBlurInput?.(event, inputType);
-        
+
         const canBeEmpty = {
             from: !preventEmptyFromDate,
             to: !preventEmptyToDate,
@@ -101,22 +108,21 @@ export const RangeDatePickerInput = forwardRef<HTMLDivElement, RangeDatePickerIn
 
         const selectedDate = toValueDateRangeFormat(inputValue, format);
 
-        // If new value is null and input can't be empty, set the value to the last selected value
+        // If the new value is null and the input can't be empty, set the value to the last selected value
         if (selectedDate[inputType] === null && !canBeEmpty[inputType]) {
             selectedDate[inputType] = value[inputType];
         }
 
-        const isDateDisabled = filter?.(uuiDayjs.dayjs(selectedDate[inputType])) === false;
-
-        if (isValidRange(selectedDate) && !isDateDisabled) {
+        if (isValidAndInFilter(selectedDate, inputType, filter)) {
             setInputValue(toCustomDateRangeFormat(selectedDate, format));
             onValueChange(selectedDate);
         } else {
+            const newInputValue = !canBeEmpty[inputType] ? toCustomDateRangeFormat(value, format)[inputType] : null;
             const newValue = !canBeEmpty[inputType] ? value[inputType] : null;
 
             setInputValue({
                 ...inputValue,
-                [inputType]: newValue,
+                [inputType]: newInputValue,
             });
             onValueChange({
                 ...selectedDate,

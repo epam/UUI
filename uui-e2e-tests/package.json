@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-e2e-tests",
-  "version": "6.1.0",
+  "version": "6.1.1-beta.1",
   "description": "",
   "author": "EPAM",
   "license": "MIT",
@@ -18,13 +18,13 @@
     "test-e2e-chromium": "cross-env UUI_TEST_PARAM_PROJECT=chromium yarn test-e2e",
     "test-e2e-update": "cross-env UUI_TEST_PARAM_UPDATE_SNAPSHOTS=true yarn test-e2e",
     "test-e2e-open-report": "npx ../node_modules/playwright show-report ./tests/.report/report",
-    "start-server": "yarn --cwd ../app server",
+    "start-server": "cd ../server && yarn start",
     "codegen": "npx ../node_modules/playwright codegen",
     "print-error": "ts-node scripts/cmd/cmdPrintError.ts"
   },
   "dependencies": {
-    "@epam/uui-core": "6.1.0",
-    "@epam/uui-docs": "6.1.0",
+    "@epam/uui-core": "6.1.1-beta.1",
+    "@epam/uui-docs": "6.1.1-beta.1",
     "@playwright/test": "1.51.1",
     "@types/node": "*",
     "address": "2.0.2",
