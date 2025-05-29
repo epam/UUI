@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import { offset } from '@floating-ui/react';
 import {
     DatePickerProps as CoreDatePickerProps, DropdownBodyProps, cx, useUuiContext, uuiMod, IDropdownTogglerProps, Overwrite,
@@ -35,6 +35,25 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     const context = useUuiContext();
     const [inputValue, setInputValue] = useState(toCustomDateFormat(value, format));
     const [isBodyOpen, setBodyIsOpen] = useState(false);
+    const targetRef = React.useRef<HTMLDivElement>(null);
+
+    useImperativeHandle(ref, () => targetRef.current);
+
+    const onOpenChange = (isOpen: boolean) => {
+        setBodyIsOpen(isOpen);
+    };
+
+    const onInputChange = (newValue: string | null) => {
+        if (isValidDate(newValue, format, props.filter)) {
+            const newDateValue = toValueDateFormat(newValue, format);
+            if (value !== newDateValue) {
+                setInputValue(toCustomDateFormat(newDateValue, format));
+                onValueChange(newDateValue);
+            }
+        } else {
+            setInputValue(newValue || '');
+        }
+    };
 
     useEffect(() => {
         setInputValue(toCustomDateFormat(value, format));
@@ -54,7 +73,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
     const onBodyValueChange = (newValue: string | null) => {
         setInputValue(toCustomDateFormat(newValue, format));
         onValueChange(newValue);
-        setBodyIsOpen(false);
+        onOpenChange(false);
     };
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -72,7 +91,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
 
     const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            setBodyIsOpen(true);
+            onOpenChange(true);
             e.preventDefault();
         }
     };
@@ -89,9 +108,7 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 placeholder={ props.placeholder ? props.placeholder : format }
                 size={ size as TextInputProps['size'] }
                 value={ inputValue || undefined }
-                onValueChange={ (v) => {
-                    setInputValue(v || '');
-                } }
+                onValueChange={ onInputChange }
                 onCancel={ allowClear ? () => {
                     if (!props.disableClear && !!inputValue) {
                         onValueChange(null);
@@ -109,13 +126,21 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
                 mode={ props.mode || defaultMode }
                 rawProps={ props.rawProps?.input }
                 id={ props.id }
+                ref={ (node) => { (renderProps as any).ref(node); targetRef.current = node; } }
+                onClick={ () => renderProps.toggleDropdownOpening(true) }
             />
         );
     };
 
-    const renderBody = useMemo(() => (renderProps: DropdownBodyProps) => {
+    const renderBody = useMemo(() => function (renderProps: DropdownBodyProps) {
+        const shards = targetRef.current ? [targetRef.current] : [];
         return (
-            <DropdownContainer { ...renderProps }>
+            <DropdownContainer
+                { ...renderProps }
+                returnFocus={ true }
+                autoFocus={ true }
+                shards={ shards }
+            >
                 <DatePickerBody
                     value={ value }
                     onValueChange={ onBodyValueChange }
@@ -132,13 +157,11 @@ export function DatePickerComponent(props: DatePickerProps, ref: React.Forwarded
 
     return (
         <Dropdown
+            ref={ ref }
             value={ isBodyOpen }
+            onValueChange={ (v) => onOpenChange(v) }
             middleware={ [offset(6)] }
             placement={ props.placement }
-            ref={ ref }
-            onValueChange={ (v) => {
-                setBodyIsOpen(v);
-            } }
             renderTarget={ (renderProps) => {
                 return props.renderTarget?.(renderProps) || renderInput(renderProps);
             } }
