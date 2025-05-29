@@ -1,12 +1,12 @@
 import React, { forwardRef, useState, type JSX } from 'react';
 import cx from 'classnames';
-import type {
+import {
     IControlled,
     RangeDatePickerPresets,
     DayProps,
     RangeDatePickerInputType,
     RangeDatePickerValue,
-    RangeDatePickerProps,
+    RangeDatePickerProps, useLayoutEffectSafeForSsr,
 } from '@epam/uui-core';
 import { uuiDaySelection, Day } from '@epam/uui-components';
 import { FlexCell, FlexRow } from '../layout';
@@ -16,7 +16,7 @@ import { StatelessDatePickerBody, StatelessDatePickerBodyValue } from './DatePic
 import type { Dayjs } from '../../helpers/dayJsHelper';
 import { uuiDayjs } from '../../helpers/dayJsHelper';
 import {
-    defaultRangeValue, getMonthOnOpen, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
+    defaultRangeValue, getDisplayedMonth, getWithFrom, getWithTo, uuiDatePickerBodyBase, valueFormat,
 } from './helpers';
 import type { CommonDatePickerBodyProps, ViewType } from './types';
 
@@ -27,7 +27,7 @@ export const uuiRangeDatePickerBody = {
     firstDayInRangeWrapper: 'uui-range-datepicker-first-day-in-range-wrapper',
     lastDayInRangeWrapper: 'uui-range-datepicker-last-day-in-range-wrapper',
     separator: 'uui-range-datepicker-separator',
-};
+} as const;
 
 export const rangeDatePickerPresets: RangeDatePickerPresets = {
     today: {
@@ -96,6 +96,12 @@ export const rangeDatePickerPresets: RangeDatePickerPresets = {
     },
 };
 
+interface DayState {
+    inRange: boolean;
+    isFirst: boolean;
+    isLast: boolean;
+}
+
 /**
  * Represents date picker body value
  */
@@ -124,10 +130,10 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     } = _value;
     const selectedDate = _selectedDate || defaultRangeValue; // also handles null in comparison to default value
 
-    const [activeMonth, setActiveMonth] = useState<RangeDatePickerInputType>(inFocus);
     const [view, setView] = useState<ViewType>('DAY_SELECTION');
+    const [disabledPanel, setDisabledPanel] = useState<'left' | 'right' | null>(null);
     const [month, setMonth] = useState(() => {
-        return getMonthOnOpen(selectedDate, inFocus);
+        return getDisplayedMonth(selectedDate, inFocus);
     });
 
     const getRange = (newValue: string | null) => {
@@ -141,7 +147,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
         }
     };
 
-    const onBodyValueChange = (v: string | null, part: 'from' | 'to') => {
+    const onBodyValueChange = (v: string | null) => {
         // selectedDate can be null, other params should always have values
         const newRange = v ? getRange(v) : selectedDate;
 
@@ -150,11 +156,10 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
         const toChanged = selectedDate.to !== newRange?.to;
         if (inFocus === 'from' && fromChanged) {
             newInFocus = 'to';
-        } else if (inFocus === 'to' && toChanged) {
+        } else if (inFocus === 'to' && toChanged && !fromChanged) { // for the case when we change the value "to" less than the value "from" and do not want to get stuck on the focus "from"
             newInFocus = 'from';
         }
 
-        setActiveMonth(part);
         props.onValueChange({
             selectedDate: newRange ? newRange : selectedDate,
             inFocus: newInFocus ?? inFocus,
@@ -162,22 +167,27 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     };
 
     const renderDay = (renderProps: DayProps): JSX.Element => {
+        const { inRange, isFirst, isLast } = getDayState(renderProps.value, selectedDate);
         return (
             <Day
                 { ...renderProps }
-                cx={ getDayCX(renderProps.value, selectedDate) }
+                cx={ getDayCX({ inRange, isFirst, isLast }) }
+                rawProps={ {
+                    ...renderProps.rawProps,
+                    'aria-selected': (isFirst || isLast || inRange) ? 'true' : undefined,
+                } }
             />
         );
     };
 
     const from: StatelessDatePickerBodyValue<string> = {
         month,
-        view: activeMonth === 'from' ? view : 'DAY_SELECTION',
+        view: disabledPanel === 'right' ? view : 'DAY_SELECTION',
         value: null,
     };
 
     const to: StatelessDatePickerBodyValue<string> = {
-        view: activeMonth === 'to' ? view : 'DAY_SELECTION',
+        view: disabledPanel === 'left' ? view : 'DAY_SELECTION',
         month: month.add(1, 'month'),
         value: null,
     };
@@ -190,6 +200,7 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                     onPresetSet={ (presetVal) => {
                         // enable day if smth other were selected
                         setView('DAY_SELECTION');
+                        setDisabledPanel(null);
                         setMonth(uuiDayjs.dayjs(presetVal.from));
                         props.onValueChange({
                             inFocus: props.value.inFocus,
@@ -205,11 +216,21 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
         );
     };
 
+    useLayoutEffectSafeForSsr(() => {
+        const monthToSet = getDisplayedMonth(selectedDate, inFocus);
+        // To avoid re-rendering the body if the current month being displayed is equal to or greater than 1
+        const shouldNotIgnoreUpdate = !(uuiDayjs.dayjs(month).isSame(monthToSet, 'month') || uuiDayjs.dayjs(month).add(1, 'month').isSame(monthToSet, 'month'));
+        if (shouldNotIgnoreUpdate) {
+            setMonth(monthToSet);
+        }
+    }, [selectedDate]);
+
     return (
         <div
             ref={ ref }
             className={ cx(css.root, uuiDatePickerBodyBase.container, props.cx) }
             { ...props.rawProps }
+            aria-multiselectable="true"
         >
             <FlexRow
                 cx={ [view === 'DAY_SELECTION' && css.daySelection, css.container] }
@@ -225,35 +246,41 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
                                 key="date-picker-body-left"
                                 cx={ cx(css.fromPicker) }
                                 { ...from }
-                                onValueChange={ (v) => onBodyValueChange(v, 'from') }
+                                onValueChange={ (v) => onBodyValueChange(v) }
                                 onMonthChange={ (m) => {
                                     setMonth(m);
                                 } }
-                                onViewChange={ (v) => setView(v) }
+                                onViewChange={ (v) => {
+                                    setView(v);
+                                    setDisabledPanel(v !== 'DAY_SELECTION' ? 'right' : null);
+                                } }
                                 filter={ props.filter }
                                 isHoliday={ props.isHoliday }
                                 renderDay={ props.renderDay || renderDay }
-                                isDisabled={ view !== 'DAY_SELECTION' && activeMonth === 'to' }
+                                isDisabled={ disabledPanel === 'left' }
                             />
                             <StatelessDatePickerBody
                                 key="date-picker-body-right"
                                 cx={ cx(css.toPicker) }
                                 { ...to }
-                                onValueChange={ (v) => onBodyValueChange(v, 'to') }
+                                onValueChange={ (v) => onBodyValueChange(v) }
                                 onMonthChange={ (m) => {
                                     setMonth(m.subtract(1, 'month'));
                                 } }
-                                onViewChange={ (v) => setView(v) }
+                                onViewChange={ (v) => {
+                                    setView(v);
+                                    setDisabledPanel(v !== 'DAY_SELECTION' ? 'left' : null);
+                                } }
                                 filter={ props.filter }
                                 renderDay={ props.renderDay || renderDay }
                                 isHoliday={ props.isHoliday }
-                                isDisabled={ view !== 'DAY_SELECTION' && activeMonth === 'from' }
+                                isDisabled={ disabledPanel === 'right' }
                             />
                             {view !== 'DAY_SELECTION' && (
                                 <div
                                     style={ {
-                                        left: activeMonth === 'from' ? '50%' : undefined,
-                                        right: activeMonth === 'to' ? '50%' : undefined,
+                                        left: disabledPanel === 'right' ? '50%' : undefined,
+                                        right: disabledPanel === 'left' ? '50%' : undefined,
                                     } }
                                     className={ css.blocker }
                                 />
@@ -268,7 +295,20 @@ function RangeDatePickerBodyComp(props: RangeDatePickerBodyProps<RangeDatePicker
     );
 }
 
-const getDayCX = (day: Dayjs, selectedDate: RangeDatePickerValue): string[] => {
+const getDayCX = ({ inRange, isFirst, isLast }: DayState): string[] => {
+    return [
+        cx(
+            inRange && uuiRangeDatePickerBody.inRange,
+            isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
+            !inRange && isFirst && uuiRangeDatePickerBody.lastDayInRangeWrapper,
+            isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
+            !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
+            (isFirst || isLast) && uuiDaySelection.selectedDay,
+        ),
+    ];
+};
+
+const getDayState = (day: Dayjs, selectedDate: RangeDatePickerValue): DayState => {
     const dayValue = day.valueOf();
     const fromValue = selectedDate?.from
         ? uuiDayjs.dayjs(selectedDate.from).valueOf() : null;
@@ -283,12 +323,9 @@ const getDayCX = (day: Dayjs, selectedDate: RangeDatePickerValue): string[] => {
     const isFirst = dayValue === fromValue;
     const isLast = dayValue === toValue;
 
-    return [cx(
-        inRange && uuiRangeDatePickerBody.inRange,
-        isFirst && uuiRangeDatePickerBody.firstDayInRangeWrapper,
-        !inRange && isFirst && uuiRangeDatePickerBody.lastDayInRangeWrapper,
-        isLast && uuiRangeDatePickerBody.lastDayInRangeWrapper,
-        !inRange && isLast && uuiRangeDatePickerBody.firstDayInRangeWrapper,
-        (dayValue === fromValue || dayValue === toValue) && uuiDaySelection.selectedDay,
-    )];
+    return {
+        inRange,
+        isFirst,
+        isLast,
+    };
 };

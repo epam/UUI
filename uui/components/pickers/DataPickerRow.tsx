@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import { cx, DataRowProps, DataSourceState, FlattenSearchResultsConfig, Icon, isEventTargetInsideClickable, Overwrite, uuiMarkers, uuiMod } from '@epam/uui-core';
 import { FlexSpacer, IconContainer } from '@epam/uui-components';
 import { settings } from '../../settings';
@@ -36,6 +37,10 @@ export interface DataPickerRowProps<TItem, TId> extends Overwrite<DataPickerRowM
 export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>) {
     const rowNode = React.useRef<HTMLDivElement>(null);
 
+    const handleMouseEnter = useCallback(() => {
+        props.onFocus && props.onFocus(props.index);
+    }, [props.onFocus, props.index]);
+
     React.useEffect(() => {
         if (props.onFocus) {
             rowNode.current?.addEventListener('mouseenter', handleMouseEnter);
@@ -43,11 +48,7 @@ export function DataPickerRow<TItem, TId>(props: DataPickerRowProps<TItem, TId>)
         return () => {
             rowNode.current?.removeEventListener('mouseenter', handleMouseEnter);
         };
-    }, [props.onFocus]);
-
-    const handleMouseEnter = () => {
-        props.onFocus && props.onFocus(props.index);
-    };
+    }, [props.onFocus, handleMouseEnter]);
 
     const getSubtitle = ({ path }: DataRowProps<TItem, TId>) => {
         if (!props.dataSourceState?.search) return;

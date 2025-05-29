@@ -133,6 +133,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-01"
                   tabindex="0"
                 >
                   <div
@@ -148,7 +149,9 @@ exports[`DataPicker should be rendered correctly 1`] = `
                 class="uui-calendar-day-cell"
               >
                 <div
+                  aria-selected="true"
                   class="uui-calendar-clickable-day -clickable uui-calendar-selected-day uui-calendar-day-wrapper"
+                  data-date="2017-01-02"
                   tabindex="0"
                 >
                   <div
@@ -163,6 +166,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-03"
                   tabindex="0"
                 >
                   <div
@@ -177,6 +181,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-04"
                   tabindex="0"
                 >
                   <div
@@ -191,6 +196,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-05"
                   tabindex="0"
                 >
                   <div
@@ -205,6 +211,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-06"
                   tabindex="0"
                 >
                   <div
@@ -219,6 +226,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-07"
                   tabindex="0"
                 >
                   <div
@@ -233,6 +241,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-08"
                   tabindex="0"
                 >
                   <div
@@ -249,6 +258,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-09"
                   tabindex="0"
                 >
                   <div
@@ -263,6 +273,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-10"
                   tabindex="0"
                 >
                   <div
@@ -277,6 +288,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-11"
                   tabindex="0"
                 >
                   <div
@@ -291,6 +303,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-12"
                   tabindex="0"
                 >
                   <div
@@ -305,6 +318,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-13"
                   tabindex="0"
                 >
                   <div
@@ -319,6 +333,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-14"
                   tabindex="0"
                 >
                   <div
@@ -333,6 +348,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-15"
                   tabindex="0"
                 >
                   <div
@@ -349,6 +365,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-16"
                   tabindex="0"
                 >
                   <div
@@ -363,6 +380,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-17"
                   tabindex="0"
                 >
                   <div
@@ -377,6 +395,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-18"
                   tabindex="0"
                 >
                   <div
@@ -391,6 +410,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-19"
                   tabindex="0"
                 >
                   <div
@@ -405,6 +425,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-20"
                   tabindex="0"
                 >
                   <div
@@ -419,6 +440,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-21"
                   tabindex="0"
                 >
                   <div
@@ -433,6 +455,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-22"
                   tabindex="0"
                 >
                   <div
@@ -449,6 +472,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-23"
                   tabindex="0"
                 >
                   <div
@@ -463,6 +487,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-24"
                   tabindex="0"
                 >
                   <div
@@ -477,6 +502,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-25"
                   tabindex="0"
                 >
                   <div
@@ -491,6 +517,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-26"
                   tabindex="0"
                 >
                   <div
@@ -505,6 +532,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-27"
                   tabindex="0"
                 >
                   <div
@@ -519,6 +547,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-28"
                   tabindex="0"
                 >
                   <div
@@ -533,6 +562,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper uui-calendar-day-holiday"
+                  data-date="2017-01-29"
                   tabindex="0"
                 >
                   <div
@@ -549,6 +579,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-30"
                   tabindex="0"
                 >
                   <div
@@ -563,6 +594,7 @@ exports[`DataPicker should be rendered correctly 1`] = `
               >
                 <div
                   class="uui-calendar-clickable-day -clickable uui-calendar-day-wrapper"
+                  data-date="2017-01-31"
                   tabindex="0"
                 >
                   <div

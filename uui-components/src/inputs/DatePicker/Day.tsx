@@ -35,6 +35,8 @@ export function Day(props: DayProps): JSX.Element {
                 props.isHoliday && uuiDaySelection.holiday,
             ]) }
             ref={ props.forwardedRef }
+            data-date={ props.value.format('YYYY-MM-DD') }
+            aria-selected={ props.isSelected ? 'true' : undefined }
             { ...props.rawProps }
         >
             <div className={ uuiDaySelection.day }>

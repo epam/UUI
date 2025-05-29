@@ -1,6 +1,6 @@
 {
   "name": "@epam/electric",
-  "version": "6.1.0",
+  "version": "6.1.1-beta.1",
   "description": "EPAM UUI components set branded with 'electric' style",
   "author": "EPAM",
   "license": "MIT",
@@ -12,9 +12,9 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui": "6.1.0",
-    "@epam/uui-components": "6.1.0",
-    "@epam/uui-core": "6.1.0"
+    "@epam/uui": "6.1.1-beta.1",
+    "@epam/uui-components": "6.1.1-beta.1",
+    "@epam/uui-core": "6.1.1-beta.1"
   },
   "devDependencies": {
     "mockdate": "^3.0.5"

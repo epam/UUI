@@ -101,8 +101,7 @@ DataRowOptions<TItem, TId> & {
          */
     onSelect?(rowProps: DataRowProps<TItem, TId>): void;
 
-    /** Handles row focusing.
-         */
+    /** Handles row focusing */
     onFocus?(focusedIndex: number): void;
 
     /** True if row pinned, it means that it will be sticky inside his nesting level */

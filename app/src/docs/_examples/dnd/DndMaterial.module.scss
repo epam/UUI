@@ -57,3 +57,11 @@
         visibility: hidden;
     }
 }
+
+:global(.uui-dragging) {
+    .dragElement {
+        &:hover .dragHandle {
+            visibility: hidden;
+        }
+    }
+}

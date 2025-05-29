@@ -16,6 +16,7 @@
     --uui-notification_card-close_icon-padding: 6px 0;
     --uui-notification_card-actions-gap: 12px;
     --uui-notification_card-content-margin: 0 12px;
+    --uui-notification_card-content-gap: 12px;
     //
     border-style: solid;
     border-color: var(--uui-notification_card-border, transparent);
@@ -66,6 +67,7 @@
         justify-content: space-between;
         width: 100%;
         margin: var(--uui-notification_card-content-margin);
+        column-gap: var(--uui-notification_card-content-gap);
     }
 
     .close-wrapper {
