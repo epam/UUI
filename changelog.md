@@ -1,4 +1,4 @@
-# 6.1.1 - 29.09.2025
+# 6.1.1 - 29.05.2025
 **What's New**
 * [uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
 * [FiltersPanel]: added `renderFooter` prop for `DatePicker` and `RangeDatePicker` filters. Exported default implementation of UUI footers - `FilterDatePickerBodyFooter` and `FilterRangeDatePickerBodyFooter` components
