@@ -72,6 +72,8 @@ export interface PickerModalOptions<TItem, TId> extends IHasRawProps<React.HTMLA
      * @default false
      */
     disallowClickOutside?: boolean;
+    /** Disallow to clear Picker value */
+    disableClear?: boolean;
 }
 
 export type PickerModalScalarProps<TId, TItem> =

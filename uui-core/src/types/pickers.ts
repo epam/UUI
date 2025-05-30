@@ -152,6 +152,9 @@ export type PickerBaseOptions<TItem, TId> = {
     getSearchFields?(item: TItem): string[];
     /** Component ref */
     ref?: React.Ref<PickerInputElement>;
+
+    /** Disallow to clear Picker value */
+    disableClear?: boolean;
 };
 
 export type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId>
