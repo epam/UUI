@@ -6,7 +6,13 @@
 * [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
 
 
+# 6.1.2 - 30.05.2025
+
+**What's Fixed**
+* [MultiSwitch]: fixed `size` prop for 'Loveship' and 'Electric' skins
+
 # 6.1.1 - 29.05.2025
+
 **What's New**
 * [uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
 * [FiltersPanel]: added `renderFooter` prop for `DatePicker` and `RangeDatePicker` filters. Exported default implementation of UUI footers - `FilterDatePickerBodyFooter` and `FilterRangeDatePickerBodyFooter` components
