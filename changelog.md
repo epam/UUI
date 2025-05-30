@@ -1,3 +1,11 @@
+# 6.x.x - xx.xx.2025
+**What's New**
+* []: add or remove
+
+**What's Fixed**
+* [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
+
+
 # 6.1.1 - 29.05.2025
 **What's New**
 * [uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
