@@ -2,7 +2,6 @@ import * as React from 'react';
 import { IEditable, IHasRawProps, Overwrite } from '@epam/uui-core';
 import { ControlGroup } from '../layout/ControlGroup';
 import { Button, ButtonProps } from '../buttons';
-import { ControlSize } from '../types';
 
 import type { JSX } from 'react';
 
@@ -23,7 +22,7 @@ interface MultiSwitchMods {
      * Defines component size.
      * @default '36'
      */
-    size?: ControlSize | '60';
+    size?: '24' | '30' | '36' | '42' | '48' | '60';
 }
 
 export interface MultiSwitchModsOverride {}
