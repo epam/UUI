@@ -18,7 +18,7 @@ export const AppHeader = () => {
 
     return (
         <MainMenu
-            appLogoUrl={logo.src}
+            appLogoUrl={logo}
             renderBurger={handleRenderBurger}
         >
             <MainMenuButton

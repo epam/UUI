@@ -13,19 +13,25 @@
     "@epam/promo": "latest",
     "@epam/uui-components": "latest",
     "@epam/uui-core": "latest",
-    "next": "14.1.0",
+    "next": "15.3.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sass": "1.78.0",
     "server-only": "0.0.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.27.0",
+    "@svgr/webpack": "^8.1.0",
     "@types/node": "*",
     "@types/react": "*",
-    "@typescript-eslint/parser": "7.0.1",
-    "eslint": "8.56.0",
-    "eslint-config-next": "14.1.0",
-    "prettier": "3.2.5",
-    "typescript": "5.4.2"
+    "@typescript-eslint/parser": "^8.33.0",
+    "eslint": "^9.27.0",
+    "eslint-config-next": "^15.3.2",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "url-loader": "^4.1.1"
   }
 }
