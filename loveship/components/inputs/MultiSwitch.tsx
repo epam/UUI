@@ -7,6 +7,12 @@ type MultiSwitchMods = {
      * @default 'sky'
      */
     color?: 'sky' | 'gray' | uui.MultiSwitchProps['color'];
+
+    /**
+     * Defines component size.
+     * @default '36'
+     */
+    size?: '24' | '30' | '36' | '42' | '48' | '60';
 };
 
 /** Represents the properties for the MultiSwitch component. */

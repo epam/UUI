@@ -1,5 +1,5 @@
 {
- "version": "6.1.0",
+ "version": "6.1.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -6571,8 +6571,7 @@
       "         * We demand to pass the row as well, to avoid creating closures for each row.",
       "         */",
       "    onSelect?(rowProps: DataRowProps<TItem, TId>): void;",
-      "    /** Handles row focusing.",
-      "         */",
+      "    /** Handles row focusing */",
       "    onFocus?(focusedIndex: number): void;",
       "    /** True if row pinned, it means that it will be sticky inside his nesting level */",
       "    isPinned?: boolean;",
@@ -7251,7 +7250,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -10350,7 +10349,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -10758,6 +10757,268 @@
        "type": "number"
       },
       "from": "@epam/uui-core:VirtualListRange",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:DatePickerFilterConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DatePickerFilterConfig",
+     "nameFull": "DatePickerFilterConfig<TFilter>"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DatePickerFilterConfig<TFilter>",
+     "print": [
+      "type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & {",
+      "    /** Type of the filter */",
+      "    type: 'datePicker';",
+      "    /** Render callback for datepicker body footer.",
+      "     * If omitted, the default FilterDatePickerBodyFooter component will be rendered.",
+      "     */",
+      "    renderFooter?: (props: FilterDatePickerBodyFooterProps) => React.ReactNode;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "title",
+      "name": "title",
+      "comment": {
+       "raw": [
+        "Title of the filter, displayed in filter toggler and filter body"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "field",
+      "name": "field",
+      "comment": {
+       "raw": [
+        "Field of filters object, where store the filter value"
+       ]
+      },
+      "typeValue": {
+       "raw": "keyof TFilter",
+       "html": "<span class=\"token keyword\">keyof</span> TFilter"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "columnKey",
+      "name": "columnKey",
+      "comment": {
+       "raw": [
+        "Key of the column to which the filter is attached.",
+        " If omitted, filter won't be attached to the column."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "isAlwaysVisible",
+      "name": "isAlwaysVisible",
+      "comment": {
+       "raw": [
+        "Pass true to make filter always visible in FilterPanel. User can't hide it via 'Add filter' dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "predicates",
+      "name": "predicates",
+      "comment": {
+       "raw": [
+        "Array of available predicates for the filter. This predicated can be chosen by user and applied to the filter value."
+       ]
+      },
+      "typeValue": {
+       "raw": "IFilterPredicate[]",
+       "html": "IFilterPredicate<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "maxCount",
+      "name": "maxCount",
+      "comment": {
+       "raw": [
+        "Count of words to show in the Filter toggler. By default, 2 item will be shown."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "togglerWidth",
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Type of the filter"
+       ]
+      },
+      "typeValue": {
+       "raw": "'datePicker'",
+       "html": "<span class=\"token string\">'datePicker'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "datePicker"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
       "required": false
      }
     ],
@@ -13285,6 +13546,65 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:FilterDatePickerBodyFooterProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FilterDatePickerBodyFooterProps",
+     "nameFull": "FilterDatePickerBodyFooterProps<string | null>"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "FilterDatePickerBodyFooterProps",
+     "print": [
+      "type FilterDatePickerBodyFooterProps = IControlled<string | null>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: string | null) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:FilterPredicate": {
    "summary": {
     "module": "@epam/uui-core",
@@ -13522,6 +13842,213 @@
       "type FilterPredicateName = keyof FilterPredicate<any>;"
      ]
     }
+   }
+  },
+  "@epam/uui-core:FilterRangeDatePickerBodyFooterProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FilterRangeDatePickerBodyFooterProps",
+     "nameFull": "FilterRangeDatePickerBodyFooterProps"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "FilterRangeDatePickerBodyFooterProps",
+     "print": [
+      "interface FilterRangeDatePickerBodyFooterProps extends IControlled<RangeDatePickerValue | null>, Pick<RangeDatePickerProps, 'format' | 'onFocus' | 'onBlur' | 'preventEmptyToDate' | 'preventEmptyFromDate'> {",
+      "    disableClear: boolean;",
+      "    inFocus: RangeDatePickerInputType;",
+      "    setInFocus: (inputType: RangeDatePickerInputType) => void;",
+      "    onClear: () => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "inFocus",
+      "name": "inFocus",
+      "typeValue": {
+       "raw": "null | 'from' | 'to'",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'from'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'to'</span>"
+      },
+      "typeValueRef": "@epam/uui-core:RangeDatePickerInputType",
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "from",
+        "to",
+        null
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "setInFocus",
+      "name": "setInFocus",
+      "typeValue": {
+       "raw": "(inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "onClear",
+      "name": "onClear",
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | RangeDatePickerValue",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> RangeDatePickerValue"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeDatePickerValue | null) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> RangeDatePickerValue <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">,</span> inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">,</span> inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui-core:FiltersConfig": {
@@ -17187,8 +17714,9 @@
       "interface IEditableDebouncerProps<T> extends IEditable<T>, IEditableDebouncerOptions, IAnalyticableOnChange<T> {",
       "    /**",
       "     * Render wrapped component.",
+      "     * Receives props and forwarded ref as a second parameter.",
       "     */",
-      "    render: (props: IEditable<T>) => React.ReactNode;",
+      "    render: (props: IEditable<T>, ref: React.Ref<any>) => React.ReactNode;",
       "}"
      ]
     },
@@ -17198,12 +17726,13 @@
       "name": "render",
       "comment": {
        "raw": [
-        "Render wrapped component."
+        "Render wrapped component.",
+        " Receives props and forwarded ref as a second parameter."
        ]
       },
       "typeValue": {
-       "raw": "(props: IEditable<T>) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> IEditable<span class=\"token operator\">&lt;</span><span class=\"token constant\">T</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+       "raw": "(props: IEditable<T>, ref: React.Ref<any>) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> IEditable<span class=\"token operator\">&lt;</span><span class=\"token constant\">T</span><span class=\"token operator\">></span><span class=\"token punctuation\">,</span> ref<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>Ref<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
       },
       "editor": {
        "type": "component"
@@ -17623,7 +18152,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyFromDate' | 'preventEmptyToDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -18257,6 +18786,25 @@
       "required": true
      },
      {
+      "uid": "renderFooter_2",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "type_3",
       "name": "type",
       "comment": {
@@ -18296,11 +18844,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyFromDate",
-      "name": "preventEmptyFromDate",
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"From\" date from being empty.",
+        "Pass true to prevent \"To\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -18315,11 +18863,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyToDate",
-      "name": "preventEmptyToDate",
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"To\" date from being empty.",
+        "Pass true to prevent \"From\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -18366,6 +18914,25 @@
       "typeValue": {
        "raw": "RangeDatePickerPresets",
        "html": "RangeDatePickerPresets"
+      },
+      "from": "@epam/uui-core:RangeDatePickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "renderFooter_3",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterRangeDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "from": "@epam/uui-core:RangeDatePickerFilterConfig",
       "required": false
@@ -35843,7 +36410,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -35958,6 +36525,307 @@
       "type ProcessRequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | string & {};"
      ]
     }
+   }
+  },
+  "@epam/uui-core:RangeDatePickerFilterConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerFilterConfig",
+     "nameFull": "RangeDatePickerFilterConfig<TFilter>"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "RangeDatePickerFilterConfig<TFilter>",
+     "print": [
+      "type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & {",
+      "    /** Type of the filter */",
+      "    type: 'rangeDatePicker';",
+      "    /**",
+      "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+      "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
+      "     */",
+      "    presets?: RangeDatePickerPresets;",
+      "    /** Render callback for datepicker body footer.",
+      "     * If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered.",
+      "     */",
+      "    renderFooter?: (props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "title",
+      "name": "title",
+      "comment": {
+       "raw": [
+        "Title of the filter, displayed in filter toggler and filter body"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "field",
+      "name": "field",
+      "comment": {
+       "raw": [
+        "Field of filters object, where store the filter value"
+       ]
+      },
+      "typeValue": {
+       "raw": "keyof TFilter",
+       "html": "<span class=\"token keyword\">keyof</span> TFilter"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "columnKey",
+      "name": "columnKey",
+      "comment": {
+       "raw": [
+        "Key of the column to which the filter is attached.",
+        " If omitted, filter won't be attached to the column."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "isAlwaysVisible",
+      "name": "isAlwaysVisible",
+      "comment": {
+       "raw": [
+        "Pass true to make filter always visible in FilterPanel. User can't hide it via 'Add filter' dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "predicates",
+      "name": "predicates",
+      "comment": {
+       "raw": [
+        "Array of available predicates for the filter. This predicated can be chosen by user and applied to the filter value."
+       ]
+      },
+      "typeValue": {
+       "raw": "IFilterPredicate[]",
+       "html": "IFilterPredicate<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "maxCount",
+      "name": "maxCount",
+      "comment": {
+       "raw": [
+        "Count of words to show in the Filter toggler. By default, 2 item will be shown."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "togglerWidth",
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Type of the filter"
+       ]
+      },
+      "typeValue": {
+       "raw": "'rangeDatePicker'",
+       "html": "<span class=\"token string\">'rangeDatePicker'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "rangeDatePicker"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "presets",
+      "name": "presets",
+      "comment": {
+       "raw": [
+        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeDatePickerPresets",
+       "html": "RangeDatePickerPresets"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterRangeDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui-core:RangeDatePickerInputType": {
@@ -38424,6 +39292,25 @@
       "required": true
      },
      {
+      "uid": "renderFooter_2",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "type_3",
       "name": "type",
       "comment": {
@@ -38463,11 +39350,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyFromDate",
-      "name": "preventEmptyFromDate",
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"From\" date from being empty.",
+        "Pass true to prevent \"To\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -38482,11 +39369,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyToDate",
-      "name": "preventEmptyToDate",
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"To\" date from being empty.",
+        "Pass true to prevent \"From\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -38533,6 +39420,25 @@
       "typeValue": {
        "raw": "RangeDatePickerPresets",
        "html": "RangeDatePickerPresets"
+      },
+      "from": "@epam/uui-core:RangeDatePickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "renderFooter_3",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterRangeDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "from": "@epam/uui-core:RangeDatePickerFilterConfig",
       "required": false
@@ -43637,17 +44543,6 @@
     "exported": false
    }
   },
-  "@epam/uui-core:DatePickerFilterConfig": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "DatePickerFilterConfig",
-     "nameFull": "DatePickerFilterConfig<TFilter>"
-    },
-    "src": "uui-core/src/types/tables.ts",
-    "exported": false
-   }
-  },
   "@epam/uui-core:FilterConfigBase": {
    "summary": {
     "module": "@epam/uui-core",
@@ -43762,17 +44657,6 @@
     "typeName": {
      "name": "NumericFilterConfig",
      "nameFull": "NumericFilterConfig<TFilter>"
-    },
-    "src": "uui-core/src/types/tables.ts",
-    "exported": false
-   }
-  },
-  "@epam/uui-core:RangeDatePickerFilterConfig": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "RangeDatePickerFilterConfig",
-     "nameFull": "RangeDatePickerFilterConfig<TFilter>"
     },
     "src": "uui-core/src/types/tables.ts",
     "exported": false
@@ -76944,7 +77828,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -80723,7 +81607,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -91584,7 +92468,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: ControlSize | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
+     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: '36' | '48' | '24' | '30' | '42' | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; renderBlocker?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
      "print": [
       "type PartialSettings = DeepPartial<Settings>;"
      ]
@@ -93738,7 +94622,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -94507,7 +95391,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -107658,6 +108542,25 @@
       "required": false
      },
      {
+      "uid": "renderBlocker",
+      "name": "renderBlocker",
+      "comment": {
+       "raw": [
+        "Render callback for virtual list loading blocker",
+        " If omitted, default UUI `Blocker` component will be rendered"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { isLoading: boolean; }) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> isLoading<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:BaseVirtualListProps",
+      "required": false
+     },
+     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -111254,6 +112157,36 @@
         "primary",
         "secondary",
         "gray50"
+       ]
+      },
+      "from": "@epam/promo:MultiSwitchMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'60'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
        ]
       },
       "from": "@epam/promo:MultiSwitchMods",
@@ -118906,6 +119839,36 @@
         "gray",
         "primary",
         "secondary"
+       ]
+      },
+      "from": "@epam/loveship:MultiSwitchMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'60'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
        ]
       },
       "from": "@epam/loveship:MultiSwitchMods",
