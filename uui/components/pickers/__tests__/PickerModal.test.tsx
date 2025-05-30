@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { PickerModalTestObject, act, fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest, waitFor, delayAct } from '@epam/uui-test-utils';
 import { PickerModal, PickerModalProps } from '../PickerModal';
-import { mockDataSource, mockDataSourceAsync, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
+import { mockDataSource, mockDataSourceAsync, mockEmptyDataSource, mockSmallDataSource, mockSmallDataSourceAsync, mockTreeLikeDataSourceAsync, TestItemType, TestTreeItem } from './mocks';
 import { Button, Modals } from '@epam/uui-components';
 import { CascadeSelection, UuiContext } from '@epam/uui-core';
 
@@ -63,7 +63,7 @@ async function setupPickerModalForTest<TItem = TestItemType, TId = number>(param
             );
         },
     );
-    const toggler = screen.queryByRole('button') as HTMLElement;
+    const toggler = screen.getAllByRole('button')[0] as HTMLElement;
 
     return {
         setProps,
@@ -258,7 +258,7 @@ describe('PickerModal', () => {
             });
 
             fireEvent.click(dom.toggler);
-            
+
             await PickerModalTestObject.clickOptionCheckbox('A1+');
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
@@ -275,8 +275,8 @@ describe('PickerModal', () => {
             expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
 
             await PickerModalTestObject.clickOptionCheckbox('A1+');
-    
-            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']); 
+
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1']);
         });
 
         it('[valueType entity] should select & clear several options', async () => {
@@ -378,7 +378,7 @@ describe('PickerModal', () => {
                 // Test if checkboxes are checked/unchecked
                 expect(onValueChangeMock).toHaveBeenLastCalledWith([2, 2.1, 2.2, 2.3]);
             });
-            
+
             fireEvent.click(dom.toggler);
             expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
 
@@ -519,7 +519,7 @@ describe('PickerModal', () => {
 
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual([]);
             await PickerModalTestObject.clickSelectItems();
-            
+
             await waitFor(() => {
                 expect(onValueChangeMock).toHaveBeenLastCalledWith([4, 2, 6, 8]);
             });
@@ -568,6 +568,145 @@ describe('PickerModal', () => {
             });
 
             expect(await PickerModalTestObject.findUncheckedOptions()).toEqual(['A1+', 'A2+']);
+        });
+    });
+
+    describe('[Clear button functionality]', () => {
+        it('should render clear button in single mode', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'single',
+                initialValue: 2,
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            const clearButton = screen.getByRole('button', { name: /clear/i });
+            expect(clearButton).toBeInTheDocument();
+        });
+
+        it('should render clear button in multi mode', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'multi',
+                initialValue: [2, 3],
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            const clearButton = screen.getByRole('button', { name: /clear all/i });
+            expect(clearButton).toBeInTheDocument();
+        });
+
+        it('should disable clear button when searching in single mode', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'single',
+                initialValue: 2,
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            const searchInput = await PickerModalTestObject.findSearchInput();
+            fireEvent.change(searchInput, { target: { value: 'test' } });
+
+            await delayAct(500);
+
+            const clearButton = screen.getAllByRole('button', { name: /clear/i })[1];
+            expect(clearButton).toHaveAttribute('aria-disabled', 'true');
+        });
+
+        it('should disable clear button when no selection and no rows in single mode', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'single',
+                initialValue: null,
+                dataSource: mockEmptyDataSource,
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            const clearButton = screen.queryByRole('button', { name: /clear/i });
+            expect(clearButton).toHaveAttribute('aria-disabled', 'true');
+        });
+
+        it('should disable clear button when searching in multi mode', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'multi',
+                initialValue: [2, 3],
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            const searchInput = await PickerModalTestObject.findSearchInput();
+            fireEvent.change(searchInput, { target: { value: 'test' } });
+
+            await delayAct(500);
+
+            const clearButton = screen.getByRole('button', { name: /clear all/i });
+            expect(clearButton).toHaveAttribute('aria-disabled', 'true');
+        });
+
+        it('should disable clear button when no selection and no rows in multi mode', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'multi',
+                initialValue: [],
+                dataSource: mockSmallDataSourceAsync,
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await delayAct(100);
+
+            const clearButton = screen.queryByRole('button', { name: /clear/i });
+            expect(clearButton).toBeNull();
+        });
+
+        it('should clear selection when clear button is clicked', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'multi',
+                initialValue: [2, 3],
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual(['A1', 'A1+']);
+
+            const clearButton = screen.getByRole('button', { name: /clear all/i });
+            fireEvent.click(clearButton);
+
+            await delayAct(1);
+
+            expect(await PickerModalTestObject.findCheckedOptions()).toEqual([]);
+        });
+
+        it('should handle disableClear prop', async () => {
+            const { dom } = await setupPickerModalForTest({
+                selectionMode: 'single',
+                initialValue: 2,
+                disableClear: true,
+            });
+
+            fireEvent.click(dom.toggler);
+            expect(await PickerModalTestObject.findDialog()).toBeInTheDocument();
+
+            await PickerModalTestObject.waitForOptionsToBeReady();
+
+            const clearButton = screen.queryByRole('button', { name: /clear/i });
+            expect(clearButton).toBeNull();
         });
     });
 });
