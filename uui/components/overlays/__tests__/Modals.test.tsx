@@ -6,7 +6,7 @@ import { Button } from '../../buttons';
 import { Modals } from '@epam/uui-components';
 import { PickerInput } from '../../pickers';
 
-function TestElement(props?: ModalBlockerProps) {
+function TestElement(props: ModalBlockerProps) {
     return (
         <ModalBlocker { ...props }>
             <ModalWindow>
