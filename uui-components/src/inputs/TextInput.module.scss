@@ -1,4 +1,7 @@
+@use '../../../uui/assets/styles/effects.scss' as *;
+
 .container {
+    align-items: center;
     width: 100%;
 
     &:global(.uui-input-box) {
@@ -34,4 +37,12 @@
 
 .pointer {
     cursor: pointer;
+}
+
+.clearButton {
+    &:active,
+    &:focus {
+        @include focus-visible-effect(var(--uui-focus-outline-offset));
+        border-radius: var(--uui-focus-radius);
+    }
 }
