@@ -47,5 +47,10 @@ export interface ITree<TItem, TId> {
      */
     getById(id: TId): TItem | typeof NOT_FOUND_RECORD;
 
+    /**
+     * Accessor to all known items. It may contain records, filtered out of the tree.
+     * Items accessor cannot be used to investigate current state of the tree.
+     * Instead, use tree.getItems(), in the combination with tree.getById(id).
+     */
     getItemsAccessor(): IItemsAccessor<TItem, TId>;
 }
