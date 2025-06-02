@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
+import { IconButton } from '../buttons';
 import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import css from './TextInput.module.scss';
@@ -78,8 +79,17 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         inputElement.current?.focus();
     };
 
-    const handleWrapperFocus = () => {
-        inputElement.current?.focus();
+    const handleWrapperFocus = (
+        event: React.FocusEvent<HTMLDivElement>,
+    ): void => {
+        /*
+            Without this check, when using Tab for navigation,
+            the focus always stays within the container, though it should move
+            to other elements (like clear button).
+        */
+        if (event.target === inputElement.current) {
+            inputElement.current?.focus();
+        }
     };
 
     const getInputProps = () => ({
@@ -136,8 +146,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 <IconContainer cx={ cx('uui-icon-accept') } isDisabled={ props.isDisabled } icon={ props.acceptIcon } onClick={ props.onAccept } rawProps={ { role: 'button' } } />
             )}
             {props.onCancel && showIconsOnAction && (
-                <IconContainer
-                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
+                <IconButton
+                    cx={ cx('uui-icon-cancel', css.clearButton, uuiMarkers.clickable) }
                     isDisabled={ props.isDisabled }
                     icon={ props.cancelIcon }
                     onClick={ handleCancel }

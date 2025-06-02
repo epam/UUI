@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, screen, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
+import { fireEvent, renderWithContextAsync, screen, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
 import { TextInput, TextInputProps } from '../TextInput';
 
 jest.mock('@epam/uui-core', () => {
@@ -145,5 +145,70 @@ describe('TextInput', () => {
 
         expect(handleChange).toHaveBeenCalledTimes(1);
         expect(getValueChangeAnalyticsEvent).toHaveBeenCalled();
+    });
+
+    it('clears input via keyboard using clear button', async () => {
+        function TestComponent(): React.ReactNode {
+            const valueInitial = undefined;
+            const [
+                value,
+                setValue,
+            ] = React.useState<string | undefined>(valueInitial);
+
+            return (
+                <TextInput
+                    value={ value }
+                    onValueChange={ setValue }
+                    onCancel={ () => {
+                        setValue(valueInitial);
+                    } }
+                    rawProps={ {
+                        'data-testid': 'input-wrapper',
+                    } }
+                />
+            );
+        }
+
+        await renderWithContextAsync(
+            <TestComponent />,
+        );
+
+        // Initial state check (empty and unfocused input).
+        const input = await screen.findByRole('textbox');
+        expect(input).toHaveValue('');
+        expect(input).not.toHaveFocus();
+
+        // User clicks on the input to start typing.
+        await userEvent.click(input);
+        expect(input).toHaveFocus();
+
+        /*
+            User starts typing some text in the input,
+            which makes the clear button to appear.
+        */
+        await userEvent.type(
+            input,
+            'Test',
+        );
+        expect(input).toHaveValue('Test');
+        expect(input).toHaveFocus();
+        const clearButton = await screen.findByRole(
+            'button',
+            {
+                name: /clear input/i,
+            },
+        );
+        expect(clearButton).toBeInTheDocument();
+
+        // User changes focus to the clear button.
+        await userEvent.tab();
+        expect(input).not.toHaveFocus();
+        expect(clearButton).toHaveFocus();
+
+        // User presses "Enter" key to clear the input's value.
+        await userEvent.keyboard('{Enter}');
+        expect(input).toHaveValue('');
+        expect(input).toHaveFocus();
+        expect(clearButton).not.toBeInTheDocument();
     });
 });
