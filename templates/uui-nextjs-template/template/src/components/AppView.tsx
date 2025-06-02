@@ -21,7 +21,7 @@ export function AppView({ children }: PropsWithChildren) {
     const { services } = useUuiServices({ router: routerAdapter });
 
     return (
-        (<UuiContext value={services}>
+        <UuiContext value={services}>
             <ErrorHandler>
                 <AppHeader />
                 <Suspense>{children}</Suspense>
@@ -29,6 +29,6 @@ export function AppView({ children }: PropsWithChildren) {
                 <Modals />
                 <DragGhost />
             </ErrorHandler>
-        </UuiContext>)
+        </UuiContext>
     );
 }
