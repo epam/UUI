@@ -1,31 +1,30 @@
 import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { DataSourceState, SortingOption } from '../../../../../../types';
-import { ITree } from '../../ITree';
-import { SortHelper } from '../../treeStructure';
-import { useUpdateTree } from './useUpdateTree';
+import { TreeState } from '../../treeState';
+import { useUpdateTreeState } from './useUpdateTreeState';
 
-export type UseSortTreeProps<TItem, TId, TFilter = any> = {
+export type UseSortTreeStateProps<TItem, TId, TFilter = any> = {
     sortBy?(item: TItem, sorting: SortingOption): any;
-    tree: ITree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
     isLoading?: boolean;
 };
 
-export function useSortTree<TItem, TId, TFilter = any>(
+export function useSortTreeState<TItem, TId, TFilter = any>(
     {
         tree,
         dataSourceState: { sorting },
         sortBy,
         isLoading,
-    }: UseSortTreeProps<TItem, TId, TFilter>,
+    }: UseSortTreeStateProps<TItem, TId, TFilter>,
     deps: any[],
-): ITree<TItem, TId> {
+): TreeState<TItem, TId> {
     const prevSorting = usePrevious(sorting);
 
-    const sortTree = useUpdateTree({
+    const sortTree = useUpdateTreeState({
         tree,
         shouldUpdate: () => sorting !== prevSorting,
-        update: (currentTree) => SortHelper.sort({ tree: currentTree, sorting, sortBy }),
+        update: (currentTree) => currentTree.sort({ sorting, sortBy }),
     }, [sorting, ...deps]);
 
     if (isLoading || sortTree === null) {

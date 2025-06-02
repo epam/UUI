@@ -126,10 +126,10 @@ export class TreeState<TItem, TId> {
         filter,
         getFilter,
     }: FilterOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
-        const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = FilterHelper.filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter });
+        const tree = this.getTreeStructure('full');
+        const newTreeStructure = FilterHelper.filter<TItem, TId, TFilter>({ tree, getFilter, filter }) as TreeStructure<TItem, TId>;
 
-        if (treeStructure === newTreeStructure) {
+        if (tree === newTreeStructure) {
             return this;
         }
 
@@ -137,14 +137,13 @@ export class TreeState<TItem, TId> {
     }
 
     public sort<TFilter>({
-        getId,
         sorting,
         sortBy,
     }: SortOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
-        const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ treeStructure, sorting, sortBy, getId });
+        const tree = this.getTreeStructure('full');
+        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ tree, sorting, sortBy }) as TreeStructure<TItem, TId>;
 
-        if (treeStructure === newTreeStructure) {
+        if (tree === newTreeStructure) {
             return this;
         }
 
@@ -157,10 +156,14 @@ export class TreeState<TItem, TId> {
         sortSearchByRelevance,
     }: SearchOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = SearchHelper.search({ treeStructure, search, getSearchFields, sortSearchByRelevance });
+        const newTreeStructure = SearchHelper.search({ tree: treeStructure, search, getSearchFields, sortSearchByRelevance }) as TreeStructure<TItem, TId>;
 
         if (newTreeStructure === treeStructure) {
             return this;
+        }
+
+        if (!(newTreeStructure instanceof TreeStructure)) {
+            throw Error('TreeState supports only TreeStructure as a state');
         }
 
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });

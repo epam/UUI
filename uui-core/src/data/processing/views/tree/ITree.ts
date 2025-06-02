@@ -1,5 +1,5 @@
 import { EMPTY, FULLY_LOADED, NOT_FOUND_RECORD, PARTIALLY_LOADED } from './constants';
-import { ITreeNodeInfo, ITreeParams } from './treeStructure/types';
+import { IItemsAccessor, ITreeNodeInfo, ITreeParams } from './treeStructure/types';
 
 /**
  * ITree node loading/state status.
@@ -46,4 +46,6 @@ export interface ITree<TItem, TId> {
      * @param id - ID of an item to be returned.
      */
     getById(id: TId): TItem | typeof NOT_FOUND_RECORD;
+
+    getItemsAccessor(): IItemsAccessor<TItem, TId>;
 }
