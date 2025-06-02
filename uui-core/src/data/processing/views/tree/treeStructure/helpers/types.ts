@@ -114,7 +114,14 @@ export interface CreateTreeInstanceOptions<TItem, TId> {
     items: TItem[] | ItemsMap<TId, TItem>;
     itemsAccessor: IItemsAccessor<TItem, TId>;
 }
+
+/**
+ * Create new ITree instance interface.
+ */
 export interface CreateTreeInstance<TItem, TId> {
+    /**
+     * Create a new ITree instance.
+     */
     newTreeInstance?: (options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>;
 }
 
