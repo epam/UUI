@@ -162,10 +162,6 @@ export class TreeState<TItem, TId> {
             return this;
         }
 
-        if (!(newTreeStructure instanceof TreeStructure)) {
-            throw Error('TreeState supports only TreeStructure as a state');
-        }
-
         return this.withNewTreeStructures({ using: 'visible', treeStructure: newTreeStructure, itemsMap: this.itemsMap });
     }
 
