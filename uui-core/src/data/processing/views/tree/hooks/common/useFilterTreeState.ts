@@ -1,25 +1,24 @@
 import { usePrevious } from '../../../../../../hooks/usePrevious';
 import { DataSourceState } from '../../../../../../types';
-import { ITree } from '../../ITree';
-import { FilterHelper } from '../../treeStructure';
-import { useUpdateTree } from './useUpdateTree';
+import { TreeState } from '../../treeState';
+import { useUpdateTreeState } from './useUpdateTreeState';
 
-export type UseFilterTreeProps<TItem, TId, TFilter = any> = {
+export type UseFilterTreeStateProps<TItem, TId, TFilter = any> = {
     getFilter?: (filter: TFilter) => (item: TItem) => boolean;
-    tree: ITree<TItem, TId>;
+    tree: TreeState<TItem, TId>;
     dataSourceState: DataSourceState<TFilter, TId>;
     isLoading?: boolean;
 };
 
-export function useFilterTree<TItem, TId, TFilter = any>(
-    { tree, dataSourceState: { filter }, getFilter, isLoading }: UseFilterTreeProps<TItem, TId, TFilter>,
+export function useFilterTreeState<TItem, TId, TFilter = any>(
+    { tree, dataSourceState: { filter }, getFilter, isLoading }: UseFilterTreeStateProps<TItem, TId, TFilter>,
     deps: any[],
 ) {
     const prevFilter = usePrevious(filter);
-    const filteredTree = useUpdateTree({
+    const filteredTree = useUpdateTreeState({
         tree,
         shouldUpdate: () => filter !== prevFilter,
-        update: (currentTree) => FilterHelper.filter({ tree: currentTree, filter, getFilter }),
+        update: (currentTree) => currentTree.filter({ filter, getFilter }),
     }, [filter, ...deps]);
 
     if (isLoading || filteredTree === null) {
