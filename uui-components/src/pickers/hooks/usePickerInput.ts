@@ -127,6 +127,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
         if (e.key === 'Escape' && opened) {
             e.preventDefault();
+            e.stopPropagation();
             toggleDropdownOpening(false);
         }
 
