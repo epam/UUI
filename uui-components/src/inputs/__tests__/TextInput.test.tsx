@@ -162,9 +162,6 @@ describe('TextInput', () => {
                     onCancel={ () => {
                         setValue(valueInitial);
                     } }
-                    rawProps={ {
-                        'data-testid': 'input-wrapper',
-                    } }
                 />
             );
         }
