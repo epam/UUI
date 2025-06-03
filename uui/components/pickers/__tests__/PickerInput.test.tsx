@@ -2011,10 +2011,12 @@ describe('PickerInput', () => {
         expect(pickerInput).toHaveValue('Option 1');
         /*
             Focus is set to `body` instead of the input.
+
             Also there is the following issue on UI:
-            when moving to the button using Tab key, `document.activeElement`
-            displays `body`, though the button is visually focused,
-            and by pressing Enter/Space, it activated as expected.
+            when moving to the clear button using Tab key,
+            `document.activeElement` points to `body`,
+            though the clear button is visually focused,
+            and by pressing Enter/Space it is activated as expected.
             Probably these issues are related.
         */
         expect(pickerInput).toHaveFocus();
