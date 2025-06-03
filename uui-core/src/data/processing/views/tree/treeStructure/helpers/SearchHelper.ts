@@ -10,11 +10,7 @@ export class SearchHelper {
         options: SearchOptions<TItem, TId, TFilter>,
     ): ITree<TItem, TId> {
         const search = this.buildSearchFilter(options);
-        return this.applySearchToTree({
-            tree: options.tree,
-            search,
-            sortSearchByRelevance: options.sortSearchByRelevance,
-        });
+        return this.applySearchToTree({ ...options, search });
     }
 
     private static buildSearchFilter<TItem, TId, TFilter>({
