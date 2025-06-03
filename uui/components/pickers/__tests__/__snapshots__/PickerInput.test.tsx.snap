@@ -251,9 +251,8 @@ exports[`PickerInput Rendering should render with maximum props 1`] = `
       class="uui-picker_toggler-actions"
     >
       <button
-        aria-label="Clear"
+        aria-label="Clear input"
         class="uui-button-box uui-enabled -clickable container uui-icon-cancel clearButton -clickable"
-        role="button"
         tabindex="0"
         type="button"
       >

@@ -260,7 +260,9 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                             isDisabled={ props.isDisabled }
                             icon={ props.cancelIcon }
                             onClick={ handleCrossIconClick }
-                            rawProps={ { role: 'button', 'aria-label': 'Clear' } }
+                            rawProps={ {
+                                'aria-label': 'Clear input',
+                            } }
                         />
                     )}
                     {props.isDropdown

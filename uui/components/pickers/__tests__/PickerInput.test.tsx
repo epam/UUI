@@ -1991,7 +1991,7 @@ describe('PickerInput', () => {
         const clearButton = screen.queryByRole(
             'button',
             {
-                name: /clear/i,
+                name: /clear input/i,
             },
         );
         expect(clearButton).not.toBeInTheDocument();
