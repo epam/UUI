@@ -1,7 +1,8 @@
-import React, { ReactNode } from 'react';
-import { ArrayDataSource, CascadeSelection, LazyDataSource } from '@epam/uui-core';
+import React, { ReactNode, useState } from 'react';
+import { ArrayDataSource, CascadeSelection, LazyDataSource, useArrayDataSource } from '@epam/uui-core';
 import {
     renderSnapshotWithContextAsync, setupComponentForTest, screen, within, fireEvent, waitFor, userEvent, PickerInputTestObject, act,
+    renderWithContextAsync,
 } from '@epam/uui-test-utils';
 import { Modals, PickerToggler } from '@epam/uui-components';
 import { DataPickerRow, FlexCell, PickerItem, Text, Button } from '../../';
@@ -1934,5 +1935,107 @@ describe('PickerInput', () => {
             expect(mocks.onValueChange).toHaveBeenLastCalledWith([2, 6]);
         });
         expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'B1']);
+    });
+
+    // TODO: fix the test.
+    it.skip('clears input via keyboard using clear button', async () => {
+        function TestComponent(): React.ReactNode {
+            interface Option {
+                id: string;
+                name: string;
+            }
+            const [
+                option,
+                setOption,
+            ] = useState<Option | undefined>(undefined);
+            const dataSource = useArrayDataSource<
+            Option,
+            Option['id'] | undefined,
+            unknown
+            >(
+                {
+                    items: [
+                        {
+                            id: 'option-1',
+                            name: 'Option 1',
+                        },
+                        {
+                            id: 'option-2',
+                            name: 'Option 2',
+                        },
+                    ],
+                },
+                [],
+            );
+
+            return (
+                <PickerInput
+                    dataSource={ dataSource }
+                    value={ option }
+                    onValueChange={ setOption }
+                    selectionMode="single"
+                    valueType="entity"
+                />
+            );
+        }
+
+        await renderWithContextAsync(
+            <TestComponent />,
+        );
+
+        const pickerInput = await screen.findByRole('searchbox');
+        expect(pickerInput).toBeInTheDocument();
+        expect(pickerInput).toHaveValue('');
+        expect(pickerInput).not.toHaveFocus();
+
+        const clearButton = screen.queryByRole(
+            'button',
+            {
+                name: /clear/i,
+            },
+        );
+        expect(clearButton).not.toBeInTheDocument();
+
+        await userEvent.click(pickerInput);
+        expect(pickerInput).toHaveFocus();
+
+        const firstOption = await screen.findByRole(
+            'option',
+            {
+                name: /option 1/i,
+            },
+        );
+        expect(firstOption).toBeVisible();
+
+        await userEvent.click(firstOption);
+        expect(pickerInput).toHaveValue('Option 1');
+        /*
+            Focus is set to `body` instead of the input.
+            Also there is the following issue on UI:
+            when moving to the button using Tab key, `document.activeElement`
+            displays `body`, though the button is visually focused,
+            and by pressing Enter/Space, it activated as expected.
+            Probably these issues are related.
+        */
+        expect(pickerInput).toHaveFocus();
+        expect(
+            screen.queryByRole(
+                'option',
+                {
+                    name: /option 1/i,
+                },
+            ),
+        ).not.toBeInTheDocument();
+        expect(clearButton).toBeInTheDocument();
+        expect(clearButton).not.toHaveFocus();
+
+        await userEvent.tab();
+        expect(pickerInput).not.toHaveFocus();
+        expect(clearButton).toHaveFocus();
+
+        await userEvent.keyboard('{Enter}');
+        expect(pickerInput).toHaveValue('');
+        expect(clearButton).toHaveFocus();
+        expect(clearButton).not.toBeInTheDocument();
     });
 });

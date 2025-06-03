@@ -5,6 +5,7 @@ import { i18n } from '../i18n';
 import { getMaxItems } from './helpers';
 import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
+import { IconButton } from '../buttons';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** DataRowProps object of the rendered item */
@@ -254,11 +255,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             {!props.isDisabled && !props.isReadonly && (
                 <div className="uui-picker_toggler-actions">
                     {!props.disableClear && (props.value || props.selectedRowsCount > 0) && (
-                        <IconContainer
-                            cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
+                        <IconButton
+                            cx={ cx('uui-icon-cancel', css.clearButton, uuiMarkers.clickable) }
                             isDisabled={ props.isDisabled }
                             icon={ props.cancelIcon }
-                            tabIndex={ -1 }
                             onClick={ handleCrossIconClick }
                             rawProps={ { role: 'button', 'aria-label': 'Clear' } }
                         />
