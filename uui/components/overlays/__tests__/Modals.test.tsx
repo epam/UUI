@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import { ModalBlocker, ModalHeader, ModalFooter, ModalWindow } from '../Modals';
-import { fireEvent, getDefaultUUiContextWrapper, renderSnapshotWithContextAsync, renderWithContextAsync, screen, setupComponentForTest } from '@epam/uui-test-utils';
+import { fireEvent, getDefaultUUiContextWrapper, renderSnapshotWithContextAsync, renderWithContextAsync, screen, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
 import { IModal, ModalBlockerProps, useArrayDataSource, useUuiContext } from '@epam/uui-core';
 import { Button } from '../../buttons';
 import { Modals } from '@epam/uui-components';
@@ -262,11 +262,11 @@ describe('Modals', () => {
                 name: /open modal window/i,
             },
         );
-        fireEvent.click(openModalWindowButton);
+        await userEvent.click(openModalWindowButton);
         const pickerInput = await screen.findByRole('searchbox');
         expect(pickerInput).toBeInTheDocument();
 
-        fireEvent.click(pickerInput);
+        await userEvent.click(pickerInput);
         // Checking that picker input's body is opened.
         expect(
             await screen.findByRole(
@@ -278,12 +278,7 @@ describe('Modals', () => {
         ).toBeVisible();
 
         // First 'Escape' key press should close the picker input's options.
-        fireEvent.keyDown(
-            pickerInput,
-            {
-                key: 'Escape',
-            },
-        );
+        await userEvent.keyboard('{Escape}');
         // Checking that picker input's body is closed.
         expect(
             screen.queryByRole(
@@ -298,17 +293,7 @@ describe('Modals', () => {
         expect(abortMock).not.toBeCalled();
 
         // Second 'Escape' key press should close the modal window.
-        fireEvent.keyDown(
-            /*
-                In implementation, after the first 'Escape' key press
-                focus is set back to the picker input element,
-                which is why the event is fired on this element.
-            */
-            pickerInput,
-            {
-                key: 'Escape',
-            },
-        );
+        await userEvent.keyboard('{Escape}');
         expect(
             screen.queryByRole('searchbox'),
         ).not.toBeInTheDocument();
