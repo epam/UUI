@@ -16,7 +16,7 @@ async function setupTextInput(params: Partial<TextInputProps>) {
         (context) => ({
             value: params.value,
             onValueChange: params.onValueChange || jest.fn().mockImplementation((newValue) => {
-                context.current.setProperty('value', newValue);
+                context.current?.setProperty('value', newValue);
             }),
             ...params,
         }),
@@ -31,17 +31,6 @@ async function setupTextInput(params: Partial<TextInputProps>) {
 }
 
 describe('TextInput', () => {
-    it('handles input change', async () => {
-        const handleChange = jest.fn();
-        await setupTextInput({ value: '', onValueChange: handleChange });
-        const input = screen.getByRole('textbox');
-
-        fireEvent.change(input, { target: { value: 'Test' } });
-
-        expect(handleChange).toHaveBeenCalledTimes(1);
-        expect(handleChange).toHaveBeenCalledWith('Test');
-    });
-
     it('handles input change', async () => {
         const handleChange = jest.fn();
         await setupTextInput({ value: '', onValueChange: handleChange });
