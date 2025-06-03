@@ -33,8 +33,15 @@ exports[`Tag should be rendered correctly with props 1`] = `
     >
       12
     </div>
+  </button>
+  <button
+    aria-label="Remove tag"
+    class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root clearButton -clickable"
+    tabindex="0"
+    type="button"
+  >
     <div
-      class="container uui-icon uui-enabled -clickable -clickable"
+      class="container uui-icon uui-enabled"
     >
       <svg
         class=""
