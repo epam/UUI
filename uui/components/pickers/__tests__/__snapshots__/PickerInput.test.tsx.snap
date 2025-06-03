@@ -220,13 +220,20 @@ exports[`PickerInput Rendering should render with maximum props 1`] = `
         >
           A1
         </div>
-        <div
-          class="container uui-icon uui-enabled -clickable -clickable"
+        <button
+          aria-label="Remove tag"
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root clearButton -clickable"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            class=""
-          />
-        </div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
       </span>
       <span
         class="uui-button-box uui-enabled root uui-size-36 uui-color-neutral uui-fill-solid uui-tag"
@@ -238,13 +245,20 @@ exports[`PickerInput Rendering should render with maximum props 1`] = `
         >
           A1+
         </div>
-        <div
-          class="container uui-icon uui-enabled -clickable -clickable"
+        <button
+          aria-label="Remove tag"
+          class="uui-button-box uui-enabled -clickable container uui-icon_button uui-color-neutral root clearButton -clickable"
+          tabindex="0"
+          type="button"
         >
-          <svg
-            class=""
-          />
-        </div>
+          <div
+            class="container uui-icon uui-enabled"
+          >
+            <svg
+              class=""
+            />
+          </div>
+        </button>
       </span>
     </div>
     <div
