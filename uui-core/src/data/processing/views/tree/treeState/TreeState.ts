@@ -305,10 +305,11 @@ export class TreeState<TItem, TId> {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
 
-    public clearStructure(): TreeState<TItem, TId> {
+    public clearStructure(newParams?: ITreeParams<TItem, TId>): TreeState<TItem, TId> {
+        const params = newParams || this.visible.getParams();
         return TreeState.create(
             this.full,
-            TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            TreeStructure.create(params, ItemsAccessor.toItemsAccessor(this.itemsMap)),
             this.selectedOnly,
             this.itemsMap,
             this.setItems,
