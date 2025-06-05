@@ -8,6 +8,7 @@ import { TMode } from '../common/docs/docsConstants';
 import { AppContext, type TApi, ThemeId } from '../data';
 import { DocsSidebar } from '../common/docs/DocsSidebar';
 import { useAppThemeContext } from '../helpers/appTheme';
+import { DocBlock } from '../common/docs/baseDocBlock/DocBlock';
 
 type DocsQuery = {
     id: string;
@@ -59,7 +60,7 @@ export function DocumentsPage() {
     }, [docsStructure, selectedDocId]);
 
     useEffect(() => {
-        if (docsStructure && !selectedDoc?.component) {
+        if (docsStructure && !selectedDoc) {
             redirectTo({ id: docsStructure[0].id, mode: TMode.doc, isSkin: isSkin, theme: theme });
         }
     }, [docsStructure]);
@@ -89,7 +90,7 @@ export function DocumentsPage() {
                 { pageWidth > 768 && (
                     <DocsSidebar />
                 ) }
-                { PageComponent && <PageComponent /> }
+                { PageComponent ? <PageComponent docItem={ selectedDoc } /> : <DocBlock key={ selectedDoc.id } docItem={ selectedDoc } /> }
             </FlexRow>
         </Page>
     );

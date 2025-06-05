@@ -1,17 +1,12 @@
-import * as React from 'react';
-import {
-    EditableDocContent, DocExample, BaseDocsBlock,
-} from '../common';
+import { DocItem } from '../documents/structure';
 
-export class TreeDoc extends BaseDocsBlock {
-    title = 'Tree';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="tree-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="Basic" path="./_examples/dataSources/CustomHierarchicalList.example.tsx" />
-            </>
-        );
-    }
-}
+export const TreeDocItem: DocItem = {
+    id: 'tree',
+    name: 'Tree',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'tree-descriptions' },
+        { name: 'Basic', componentPath: './_examples/dataSources/CustomHierarchicalList.example.tsx' },
+    ],
+    tags: ['tree', 'virtualList', 'dataSources'],
+};

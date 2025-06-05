@@ -1,27 +1,20 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class DataSourcesLazyDataSourceDoc extends BaseDocsBlock {
-    title = 'LazyDataSource';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="dataSources-lazy-dataSource" />
-
-                <DocExample title="useLazyDataSource" path="./_examples/dataSources/UseLazyDataSource.code.example.ts" onlyCode={ true } />
-                <EditableDocContent title="LazyDataSourceProps" fileName="dataSources-lazy-dataSource-props-overview" />
-
-                <EditableDocContent title="LazyDataSourceApi" fileName="dataSources-lazy-api-overview" />
-
-                <DocExample title="Data" path="./_examples/dataSources/LazyDataSourceData.example.tsx" />
-                <DocExample title="How to request flatten data lazily?" path="./_examples/dataSources/LazyDataSourceRequestingFlattenData.example.tsx" />
-                <DocExample title="How to request tree-like data lazily?" path="./_examples/dataSources/LazyDataSourceRequestingTreeLikeData.example.tsx" />
-                <DocExample title="Child count" path="./_examples/dataSources/LazyDataSourceGetChildCount.example.tsx" />
-                <DocExample title="Filter" path="./_examples/dataSources/LazyDataSourceFilter.example.tsx" />
-                <DocExample title="Flatten search results" path="./_examples/dataSources/LazyDataSourceFlattenSearchResults.example.tsx" />
-                <DocExample title="Using cursor-based pagination" path="./_examples/dataSources/LazyDataSourceCursor.example.tsx" />
-            </>
-        );
-    }
-}
+export const DataSourcesLazyDataSourceDocItem: DocItem = {
+    id: 'dataSources-lazy-dataSource',
+    name: 'LazyDataSource',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-lazy-dataSource' },
+        { name: 'useLazyDataSource', componentPath: './_examples/dataSources/UseLazyDataSource.code.example.ts', onlyCode: true },
+        { name: 'LazyDataSourceProps', descriptionPath: 'dataSources-lazy-dataSource-props-overview' },
+        { name: 'LazyDataSourceApi', descriptionPath: 'dataSources-lazy-api-overview' },
+        { name: 'Data', componentPath: './_examples/dataSources/LazyDataSourceData.example.tsx' },
+        { name: 'How to request flatten data lazily?', componentPath: './_examples/dataSources/LazyDataSourceRequestingFlattenData.example.tsx' },
+        { name: 'How to request tree-like data lazily?', componentPath: './_examples/dataSources/LazyDataSourceRequestingTreeLikeData.example.tsx' },
+        { name: 'Child count', componentPath: './_examples/dataSources/LazyDataSourceGetChildCount.example.tsx' },
+        { name: 'Filter', componentPath: './_examples/dataSources/LazyDataSourceFilter.example.tsx' },
+        { name: 'Flatten search results', componentPath: './_examples/dataSources/LazyDataSourceFlattenSearchResults.example.tsx' },
+        { name: 'Using cursor-based pagination', componentPath: './_examples/dataSources/LazyDataSourceCursor.example.tsx' },
+    ],
+};

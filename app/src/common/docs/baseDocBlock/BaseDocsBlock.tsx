@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { TDocConfig } from '@epam/uui-docs';
+import React from 'react';
 import { UuiContext, UuiContexts } from '@epam/uui-core';
 import { FlexCell, FlexRow, FlexSpacer, IconContainer, RichTextView, Text } from '@epam/uui';
 import { svc } from '../../../services';
@@ -15,13 +14,21 @@ import { DocsSidebar } from '../DocsSidebar';
 import cx from 'classnames';
 //
 import css from './BaseDocsBlock.module.scss';
+import { DocItem } from '../../../documents/structure';
+import { TDocConfig } from '@epam/uui-docs';
+import { DocExample } from '../DocExample';
+import { EditableDocContent } from '../EditableDocContent';
 
 type State = {
     isOpen: boolean;
     isClosing: boolean;
 };
 
-export abstract class BaseDocsBlock extends React.Component<any, State> {
+interface DocBlockProps {
+    docItem?: DocItem;
+}
+
+export abstract class BaseDocsBlock extends React.Component<DocBlockProps, State> {
     containerRef: React.RefObject<HTMLDivElement | null>;
     public static contextType = UuiContext;
     public context: UuiContexts;
@@ -38,8 +45,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
         svc.uuiAnalytics.sendEvent(analyticsEvents.document.pv(id, category));
     }
 
-    abstract title: string;
-    abstract renderContent(): React.ReactNode;
+    title: string;
     protected renderDocTitle(): React.ReactNode { return null; }
 
     static config: TDocConfig;
@@ -79,7 +85,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
     }
 
     getConfig = () => {
-        return (this.constructor as unknown as { config: TDocConfig })?.config;
+        return this.props.docItem.explorerConfig || (this.constructor as unknown as { config: TDocConfig })?.config;
     };
 
     private isModeSupported = (mode: TMode) => {
@@ -89,6 +95,33 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
         return true;
     };
 
+    renderContent() {
+        const theme = QueryHelpers.getTheme();
+
+        const result: any = [];
+        if (this.props.docItem.examples) {
+            this.props.docItem.examples.forEach((example) => {
+                if (example.themes?.length > 0 && !example.themes.includes(theme)) {
+                    return; // Skip example if it is not applicable for the current theme
+                }
+
+                if (example.componentPath) {
+                    result.push(<DocExample
+                        config={ this.getConfig() }
+                        title={ example.name }
+                        path={ example.componentPath }
+                        onlyCode={ example.onlyCode }
+                        cx={ example.cx }
+                    />);
+                } else if (example.descriptionPath) {
+                    result.push(<EditableDocContent title={ example.name } fileName={ example.descriptionPath } />);
+                }
+            });
+        }
+
+        return result;
+    }
+
     private renderTabContent(mode: TMode) {
         const isSkin = QueryHelpers.isSkin();
         const theme = QueryHelpers.getTheme();
@@ -97,7 +130,7 @@ export abstract class BaseDocsBlock extends React.Component<any, State> {
             case TMode.doc: {
                 return (
                     <DocTab
-                        title={ this.title }
+                        title={ this.title || this.props.docItem.name }
                         config={ this.getConfig() }
                         renderDocTitle={ () => this.renderDocTitle() }
                         renderSectionTitle={ (title) => this.renderSectionTitle(title) }
