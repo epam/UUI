@@ -5,7 +5,7 @@ import { LazyListViewProps } from '../../../types';
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ExtendedPatchOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../ItemsMap';
 import { ITree } from '../../ITree';
-import { NOT_FOUND_RECORD } from '../../exposed';
+import { NOT_FOUND_RECORD } from '../../constants';
 
 export interface ActForCheckableOptions<TItem, TId> {
     tree: ITree<TItem, TId>;

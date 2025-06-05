@@ -124,7 +124,7 @@ export function useLazyTree<TItem, TId, TFilter = any>(
         let currentTree = treeWithDataActual;
         if (shouldRefetch) {
             setIsFetching(true);
-            currentTree = treeWithDataActual.clearStructure();
+            currentTree = treeWithDataActual.clearStructure({ getId, getParentId, getChildCount, complexIds });
         }
 
         if (shouldLoad) {

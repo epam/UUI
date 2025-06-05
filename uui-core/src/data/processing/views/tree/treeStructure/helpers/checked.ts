@@ -1,4 +1,4 @@
-import { DataSourceState, IImmutableMap, IMap } from '../../../../../../types';
+import type { DataSourceState, IImmutableMap, IMap } from '../../../../../../types';
 
 export const getSelectedAndChecked = <TItem, TId>(
     dataSourceState: DataSourceState<any, TId>,

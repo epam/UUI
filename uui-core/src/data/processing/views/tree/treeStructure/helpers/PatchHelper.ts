@@ -1,12 +1,12 @@
 import { IImmutableMap, IMap } from '../../../../../../types';
 import { indexToOrder } from '../../../../../../helpers';
 import { buildComparators, composeComparators, simpleComparator } from '../../helpers';
-import { NOT_FOUND_RECORD } from '../../exposed';
+import { NOT_FOUND_RECORD } from '../../constants';
 import { ItemsAccessor } from '../../ItemsAccessor';
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from '../../helpers/map';
 import { merge } from '../../helpers/merge';
-import { PatchIntoTreeStructureOptions } from './types';
+import type { PatchIntoTreeStructureOptions } from './types';
 import { ItemsMap } from '../../ItemsMap';
 
 interface ApplyPatchWithSortingOptions<TItem, TId> {
