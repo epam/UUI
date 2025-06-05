@@ -8,9 +8,9 @@ export function onEditableComponent<T>(component: any): ILens<T> {
         get() {
             return component.props.value;
         },
-        set(big: any, small: any) {
-            component.props.onValueChange(small);
-            return small;
+        set(update) {
+            const newValue = update(component.props.value);
+            component.props.onValueChange(newValue);
         },
         getValidationState() {
             const { isInvalid, validationMessage, validationProps } = component.props;
@@ -32,9 +32,9 @@ export function onEditable<T>(editable: IEditable<T>): ILens<T> {
         get() {
             return editable.value;
         },
-        set(big: any, small: any) {
-            editable.onValueChange(small);
-            return small;
+        set(update) {
+            const newValue = update(editable.value);
+            editable.onValueChange(newValue);
         },
         getValidationState() {
             return editable;
@@ -48,9 +48,9 @@ export function onState<T>(component: any): ILens<T> {
         get() {
             return component.state;
         },
-        set(_, small: any) {
-            component.setState(small);
-            return small;
+        set(update) {
+            const newValue = update(component.state);
+            component.setState(newValue);
         },
     });
 }
