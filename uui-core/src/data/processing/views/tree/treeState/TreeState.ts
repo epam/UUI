@@ -1,5 +1,5 @@
 import { ItemsStorage } from '../ItemsStorage';
-import {
+import type {
     ExtendedPatchOptions,
     FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions,
@@ -9,9 +9,9 @@ import { ItemsMap } from '../ItemsMap';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
 import { cloneMap, newMap } from '../helpers';
-import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
+import type { ITreeNodeInfo, ITreeParams } from '../treeStructure';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
-import { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
+import type { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
