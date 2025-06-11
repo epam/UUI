@@ -13,7 +13,7 @@ import {
     TSkin,
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
-import { getChilrdenExamples, getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
+import { getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
 //
 import css from './../styles.module.scss';
 import { TMainMenuPreview } from '../_types/previewIds';
@@ -44,7 +44,6 @@ export class MainMenuDoc extends BaseDocsBlock {
             [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps | loveship.MainMenuProps | electric.MainMenuProps>) => {
-            doc.merge('children', { examples: (ctx) => getChilrdenExamples(ctx), remountOnChange: true });
             doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
             doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });
