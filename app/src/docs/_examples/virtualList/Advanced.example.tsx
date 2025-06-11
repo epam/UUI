@@ -6,9 +6,16 @@ import css from './AdvancedExample.module.scss';
 
 function Header() {
     return (
-        <MainMenu cx={ css.menuContainer } logoLink={ { pathname: '/' } } appLogoUrl="/static/logo.svg">
-            <MainMenuButton caption="Home" />
-        </MainMenu>
+        <MainMenu
+            cx={ css.menuContainer }
+            logoLink={ { pathname: '/' } }
+            appLogoUrl="/static/logo.svg"
+            items={ [{
+                id: 'home',
+                render: () => <MainMenuButton caption="Home" />,
+                priority: 1,
+            }] }
+        />
     );
 }
 
