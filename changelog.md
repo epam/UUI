@@ -1,6 +1,6 @@
 # 6.x.x - xx.xx.2025
 **What's New**
-* []: add or remove
+* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only.
 
 **What's Fixed**
 * [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
@@ -186,7 +186,7 @@
 
 **What's Fixed**
 * [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement.
-  Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
+  Now it tries other placements, e.g., if there's no space at the top or bottom, it will place the body on the right if there's enough space.
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode
 * [DatePicker]: fixed body close if date picker input scrolled out from view
@@ -995,7 +995,7 @@ This release introduces Themes support. `@epam/uui` package now contains compone
 Pay attention that this release requires some additional actions for the library to work properly.
 You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
-Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized Themes APIs (CSS variables names). We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
+Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven't yet finalized Themes APIs (CSS variables names). We can't yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
 
 **Testing facilities and documentation**
 * Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
@@ -1114,7 +1114,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [PresetPanel]: fix copy link action on non-active preset
 
 
-**What’s Fixed**
+**What's Fixed**
 * [VerticalTabButton]: fix text trimmed and text align
 * [Switch]: remove margin-left when there is no label
 * [Anchor][Button]: added `rel='noopener noreferrer'` where `target='_blank'`
@@ -1130,7 +1130,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 
 # 4.9.2 - 14.12.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [useForm] - allow to replace getMetadata prop after the first render
 
 
@@ -1145,7 +1145,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [DatePickers]: added support for typing value according predefined set of formats
 
 
-**What’s Fixed**
+**What's Fixed**
 * fixed sans semi-bold font url
 * [LazyDataSource]: fixed row handle check while tree wasn't initiated
 * [NumericInput] prevent value change onScroll
@@ -1163,7 +1163,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [ModalContext]: added argument to abort method
 
 
-**What’s Fixed**
+**What's Fixed**
 * [RawProps]: fixed wrong type for HtmlDivElement
 * [TableColumnFilters]: fixed scroll position in 'Show only selected' mode in Loveship
 * [Checkbox]: added indeterminate state to the aria-checked attribute
@@ -1251,7 +1251,7 @@ With this release you already can build editable tables. However, we are plannin
 * [ModalContext]: added argument to abort method
 
 
-**What’s Fixed**
+**What's Fixed**
 * Fixed `rawProps` prop typings
 * [DndActor]: improved 'inside' position calculation
 * [useForm]:
@@ -1273,20 +1273,20 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.8.5 - 15.09.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [RTE]: fix readonly mode
 * [ErrorHandler]: fix 'dark' theme error container styles
 
 # 4.8.4 - 09.09.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [RTE]: fix wrong image size on first render
 * [RTE]: fix cursor jumping on new text typing in chrome 105+ version
 * [RTE]: fix image reducing to the minimum size when trying to resize it without focus on it
 
 # 4.8.3 - 01.09.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
 * [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
 * [useVirtual]: Improved visible range computation:
@@ -1306,7 +1306,7 @@ With this release you already can build editable tables. However, we are plannin
 * [FilterPanel]: add possibility to add predicates for filters. For this provide `predicates` array in `TableFiltersConfig`.
 * [DataTable]: add possibility to reset sorting to default value
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: fix input with minCharsToSearch props. Fix toggler input size in 'multi' mode
 
 # 4.8.1 - 10.08.2022
@@ -1322,7 +1322,7 @@ With this release you already can build editable tables. However, we are plannin
 * [FilterToolbar]: small improvements and bugfixes
 
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: rework styles for selected value in toggler
 * [DataTable]: fix table rerender when columns prop changed
 * [NumericInput]: don't allow '+' and 'e' symbols
@@ -1341,7 +1341,7 @@ With this release you already can build editable tables. However, we are plannin
 * [PickerInput]: add 'fixedBodyPosition' prop, to have possibility to fixed body on initial position in case when toggler moved
 * [FileUpload]: rework error states
 
-**What’s Fixed**
+**What's Fixed**
 * [DropSpot]: fix drag&drop area view
 * [NumericInput]: fix arrows layout hidden when input disabled or readonly
 * [DropdownMenu]: fixed item active state
@@ -1359,7 +1359,7 @@ With this release you already can build editable tables. However, we are plannin
 **What's New**
 * [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
 
-**What’s Fixed**
+**What's Fixed**
 * [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
 * [PickerInput]: fix the second line tag margin in multi mode
 * [NumericInput]: hide arrows when input disabled or readonly
