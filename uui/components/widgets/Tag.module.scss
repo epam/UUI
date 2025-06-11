@@ -30,6 +30,7 @@
     @include clickable-styles();
 
     & {
+        align-items: center;
         min-height: var(--uui-tag-min-height);
         min-width: var(--uui-tag-min-width);
         column-gap: var(--uui-tag-horizontal-gap);
@@ -97,5 +98,20 @@
             --uui-count_indicator-border: var(--uui-neutral-40);
             --uui-count_indicator-caption: var(--uui-neutral-70);
         }
+    }
+}
+
+.clearButton {
+    &:active,
+    &:focus,
+    &:focus-visible {
+        /*
+            Overrides the value set in `IconButton` component
+            for `focus-visible` pseudo-class.
+        */
+        --uui-focus-outline-offset: 0;
+
+        @include focus-visible-effect();
+        border-radius: var(--uui-focus-radius);
     }
 }

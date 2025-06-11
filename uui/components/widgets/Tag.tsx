@@ -1,10 +1,12 @@
 import React from 'react';
 import {
+    cx,
     Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement, uuiMarkers,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
 import { settings } from '../../settings';
+import { IconButton } from '../buttons';
 
 import css from './Tag.module.scss';
 
@@ -95,7 +97,14 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
                 <IconContainer icon={ DropdownIcon } flipY={ props.isOpen } />
             )}
             { props.onClear && !props.isDisabled && (
-                <IconContainer cx={ uuiMarkers.clickable } icon={ ClearIcon } onClick={ props.onClear } />
+                <IconButton
+                    cx={ cx(css.clearButton, uuiMarkers.clickable) }
+                    icon={ ClearIcon }
+                    onClick={ props.onClear }
+                    rawProps={ {
+                        'aria-label': 'Remove tag',
+                    } }
+                />
             ) }
         </Clickable>
     );
