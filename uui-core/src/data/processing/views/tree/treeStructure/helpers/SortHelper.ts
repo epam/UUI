@@ -1,6 +1,6 @@
 import { buildSorter } from '../../helpers';
 import { TreeStructure } from '../TreeStructure';
-import { SortOptions } from './types';
+import type { SortOptions } from './types';
 
 export class SortHelper {
     public static sort<TItem, TId, TFilter>({ treeStructure, ...options }: SortOptions<TItem, TId, TFilter>) {

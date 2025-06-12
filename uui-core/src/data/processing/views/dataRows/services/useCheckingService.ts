@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { CascadeSelectionTypes, DataRowProps } from '../../../../../types';
-import { ITree, NOT_FOUND_RECORD } from '../../tree';
+import type { ITree } from '../../tree/ITree';
+import { NOT_FOUND_RECORD, FAILED_RECORD } from '../../tree/constants';
 import { CommonTreeConfig, GetItemStatus } from '../../tree/hooks/strategies/types';
 import { CascadeSelectionService } from './useCascadeSelectionService';
-import { FAILED_RECORD } from '../../tree';
 import { isInProgress } from '../../helpers';
 import { buildParentsLookup, idToKey } from './buildParentsLookup';
 import { CheckingHelper } from '../../tree/treeStructure';
