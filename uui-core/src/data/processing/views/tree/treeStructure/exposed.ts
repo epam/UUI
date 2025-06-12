@@ -1,2 +1,2 @@
 export { FetchingHelper } from './helpers';
-export type { ITreeNodeInfo, ITreeParams } from './types';
+export type { ITreeNodeInfo, ITreeParams, IItemsAccessor } from './types';

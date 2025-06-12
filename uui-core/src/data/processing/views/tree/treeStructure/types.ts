@@ -1,7 +1,20 @@
 import { NOT_FOUND_RECORD } from '../constants';
 
+/**
+ * Tree data accessor.
+ * Used by tree to access known items.
+ */
 export interface IItemsAccessor<TItem, TId> {
+    /**
+     * Get records by id.
+     * @param id - id of the record.
+     * @returns record or `NOT_FOUND_RECORD`.
+     */
     get: (id: TId) => TItem | typeof NOT_FOUND_RECORD;
+
+    /**
+     * Iteration function over all data.
+     */
     forEach: (action: (item: TItem, id: TId) => void) => void;
 }
 
