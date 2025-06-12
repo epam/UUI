@@ -3,7 +3,7 @@ import { CascadeSelection, CascadeSelectionTypes, DataRowPathItem, DataSourceSta
 import { ITree } from './ITree';
 import { FULLY_LOADED, NOT_FOUND_RECORD, ROOT_ID } from './constants';
 import { FetchingHelper } from './treeStructure/helpers/FetchingHelper';
-import { ITreeNodeInfo, ITreeParams } from './treeStructure/types';
+import type { ITreeNodeInfo, ITreeParams } from './treeStructure/types';
 import { TreeStructure } from './treeStructure';
 import { ItemsMap } from './ItemsMap';
 import { ItemsAccessor } from './ItemsAccessor';
