@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from "react-router-dom";
 import { MainMenu, MainMenuButton } from "@epam/uui";
 import logo from '../icons/logo.svg';
