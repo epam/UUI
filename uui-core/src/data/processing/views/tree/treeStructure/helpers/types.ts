@@ -5,7 +5,8 @@ import { LazyListViewProps } from '../../../types';
 import { ApplyFilterOptions, ApplySearchOptions, ApplySortOptions, ExtendedPatchOptions, ItemsComparator, LoadTreeOptions } from '../../treeState/types';
 import { ItemsMap } from '../../ItemsMap';
 import { ITree } from '../../ITree';
-import { NOT_FOUND_RECORD } from '../../exposed';
+import { ITreeParams, NOT_FOUND_RECORD } from '../../exposed';
+import { IItemsAccessor } from '../types';
 
 export interface ActForCheckableOptions<TItem, TId> {
     tree: ITree<TItem, TId>;
@@ -98,18 +99,34 @@ export interface LoadOptions<TItem, TId, TFilter = any> {
     patch?: IMap<TId, TItem> | IImmutableMap<TId, TItem>;
 }
 
-export interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, TFilter> {
-    treeStructure: TreeStructure<TItem, TId>;
+export interface SortOptions<TItem, TId, TFilter> extends Omit<ApplySortOptions<TItem, TId, TFilter>, 'getId'>, CreateTreeInstance<TItem, TId> {
+    tree: ITree<TItem, TId>;
 }
 
-export interface ApplySearchToTreeSnapshotOptions<TItem, TId> {
-    treeStructure: TreeStructure<TItem, TId>;
+export interface ApplySearchToTreeSnapshotOptions<TItem, TId> extends CreateTreeInstance<TItem, TId> {
+    tree: ITree<TItem, TId>;
     search: undefined | ((item: TItem) => number | boolean);
     sortSearchByRelevance?: boolean;
 }
 
-export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<TItem, TId, TFilter> {
-    treeStructure: TreeStructure<TItem, TId>;
+export interface CreateTreeInstanceOptions<TItem, TId> {
+    params: ITreeParams<TItem, TId>;
+    items: TItem[] | ItemsMap<TId, TItem>;
+    itemsAccessor: IItemsAccessor<TItem, TId>;
+}
+
+/**
+ * Create new ITree instance interface.
+ */
+export interface CreateTreeInstance<TItem, TId> {
+    /**
+     * Create a new ITree instance.
+     */
+    newTreeInstance?: (options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>;
+}
+
+export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<TItem, TId, TFilter>, CreateTreeInstance<TItem, TId> {
+    tree: ITree<TItem, TId>;
 }
 
 export interface PatchIntoTreeStructureOptions<TItem, TId> extends Omit<ExtendedPatchOptions<TItem, TId>, 'getNewItemPosition'> {
@@ -142,11 +159,11 @@ export interface PatchOptions<TItem, TId> {
     comparator?: ItemsComparator<TItem>;
 }
 
-export interface FilterOptions<TItem, TId, TFilter = any> extends ApplyFilterOptions<TItem, TId, TFilter> {
-    treeStructure: TreeStructure<TItem, TId>;
+export interface FilterOptions<TItem, TId, TFilter = any> extends ApplyFilterOptions<TItem, TId, TFilter>, CreateTreeInstance<TItem, TId> {
+    tree: ITree<TItem, TId>;
 }
 
-export interface ApplyFilterToTreeSnapshotOptions<TItem, TId> {
-    treeStructure: TreeStructure<TItem, TId>;
+export interface ApplyFilterToTreeSnapshotOptions<TItem, TId> extends CreateTreeInstance<TItem, TId> {
+    tree: ITree<TItem, TId>;
     filter: undefined | ((item: TItem) => number | boolean);
 }
