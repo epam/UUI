@@ -1,5 +1,5 @@
 import { ItemsStorage } from '../ItemsStorage';
-import {
+import type {
     ExtendedPatchOptions,
     FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions,
@@ -9,9 +9,9 @@ import { ItemsMap } from '../ItemsMap';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
 import { cloneMap, newMap } from '../helpers';
-import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
+import type { ITreeNodeInfo, ITreeParams } from '../treeStructure';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
-import { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
+import type { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -126,10 +126,10 @@ export class TreeState<TItem, TId> {
         filter,
         getFilter,
     }: FilterOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
-        const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = FilterHelper.filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter });
+        const tree = this.getTreeStructure('full');
+        const newTreeStructure = FilterHelper.filter<TItem, TId, TFilter>({ tree, getFilter, filter }) as TreeStructure<TItem, TId>;
 
-        if (treeStructure === newTreeStructure) {
+        if (tree === newTreeStructure) {
             return this;
         }
 
@@ -137,14 +137,13 @@ export class TreeState<TItem, TId> {
     }
 
     public sort<TFilter>({
-        getId,
         sorting,
         sortBy,
     }: SortOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
-        const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ treeStructure, sorting, sortBy, getId });
+        const tree = this.getTreeStructure('full');
+        const newTreeStructure = SortHelper.sort<TItem, TId, TFilter>({ tree, sorting, sortBy }) as TreeStructure<TItem, TId>;
 
-        if (treeStructure === newTreeStructure) {
+        if (tree === newTreeStructure) {
             return this;
         }
 
@@ -157,7 +156,7 @@ export class TreeState<TItem, TId> {
         sortSearchByRelevance,
     }: SearchOptions<TItem, TId, TFilter>): TreeState<TItem, TId> {
         const treeStructure = this.getTreeStructure('full');
-        const newTreeStructure = SearchHelper.search({ treeStructure, search, getSearchFields, sortSearchByRelevance });
+        const newTreeStructure = SearchHelper.search({ tree: treeStructure, search, getSearchFields, sortSearchByRelevance }) as TreeStructure<TItem, TId>;
 
         if (newTreeStructure === treeStructure) {
             return this;
@@ -305,10 +304,11 @@ export class TreeState<TItem, TId> {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
 
-    public clearStructure(): TreeState<TItem, TId> {
+    public clearStructure(newParams?: ITreeParams<TItem, TId>): TreeState<TItem, TId> {
+        const params = newParams || this.visible.getParams();
         return TreeState.create(
             this.full,
-            TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            TreeStructure.create(params, ItemsAccessor.toItemsAccessor(this.itemsMap)),
             this.selectedOnly,
             this.itemsMap,
             this.setItems,
