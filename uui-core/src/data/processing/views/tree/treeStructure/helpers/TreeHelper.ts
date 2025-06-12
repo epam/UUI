@@ -1,4 +1,4 @@
-import { ITree } from '../../ITree';
+import type { ITree } from '../../ITree';
 import { NOT_FOUND_RECORD } from '../../constants';
 
 export class TreeHelper {

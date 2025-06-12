@@ -1,5 +1,5 @@
 import { ItemsStorage } from '../ItemsStorage';
-import {
+import type {
     ExtendedPatchOptions,
     FilterOptions, LoadAllOptions, LoadOptions,
     SearchOptions, SortOptions, TreeStructureId, UpdateTreeStructuresOptions,
@@ -9,9 +9,9 @@ import { ItemsMap } from '../ItemsMap';
 import { ItemsAccessor } from '../ItemsAccessor';
 import { NOT_FOUND_RECORD } from '../constants';
 import { cloneMap, newMap } from '../helpers';
-import { ITreeNodeInfo, ITreeParams } from '../treeStructure/types';
+import type { ITreeNodeInfo, ITreeParams } from '../treeStructure';
 import { TreeHelper } from '../treeStructure/helpers/TreeHelper';
-import { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
+import type { PatchIntoTreeStructureOptions } from '../treeStructure/helpers/types';
 
 export class TreeState<TItem, TId> {
     protected constructor(
@@ -305,10 +305,11 @@ export class TreeState<TItem, TId> {
         return (treeStructureId ?? 'full') === 'full' ? this._fullTree : this._visibleTree;
     }
 
-    public clearStructure(): TreeState<TItem, TId> {
+    public clearStructure(newParams?: ITreeParams<TItem, TId>): TreeState<TItem, TId> {
+        const params = newParams || this.visible.getParams();
         return TreeState.create(
             this.full,
-            TreeStructure.create(this.visible.getParams(), ItemsAccessor.toItemsAccessor(this.itemsMap)),
+            TreeStructure.create(params, ItemsAccessor.toItemsAccessor(this.itemsMap)),
             this.selectedOnly,
             this.itemsMap,
             this.setItems,
