@@ -15,6 +15,7 @@ import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-f
 
 import css from './DocExample.module.scss';
 import { useAppThemeContext } from '../../helpers/appTheme';
+import { CX } from '@epam/uui-core';
 
 const EXAMPLES_PATH_PREFIX = './_examples';
 
@@ -27,7 +28,7 @@ interface DocExampleProps {
     title?: string;
     onlyCode?: boolean;
     width?: number | 'auto';
-    cx?: string;
+    cx?: CX;
     disableCodesandbox?: boolean;
     config?: TDocConfig;
 }

@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { BaseDocsBlock, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class DataSourcesGettingStartedDoc extends BaseDocsBlock {
-    title = 'Getting Started';
-
-    renderContent() {
-        return <EditableDocContent fileName="dataSources-getting-started" />;
-    }
-}
+export const DataSourcesGettingStartedDocItem: DocItem = {
+    id: 'dataSourcesGettingStarted',
+    name: 'Getting Started',
+    parentId: 'dataSources',
+    examples: [
+        { descriptionPath: 'dataSources-getting-started' },
+    ],
+};

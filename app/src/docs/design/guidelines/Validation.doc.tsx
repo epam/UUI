@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../../common';
+import { DocItem } from '../../../documents/structure';
 
-export class ValidationDoc extends BaseDocsBlock {
-    title = 'Validation';
-    renderContent() {
-        return (
-            <EditableDocContent key="validation-for-designers" fileName="validation-for-designers" />
-        );
-    }
-}
+export const ValidationDocItem: DocItem = {
+    id: 'validation',
+    name: 'Validation',
+    parentId: 'guidelines',
+    examples: [
+        { descriptionPath: 'validation-for-designers' },
+    ],
+};
