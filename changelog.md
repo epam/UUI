@@ -3,6 +3,7 @@
 * []: add or remove
 
 **What's Fixed**
+* [@epam/uui-test-utils]: fixed various of utils to work with React 18
 * [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
 * [PickerInput] Stop "Escape" key press event propagation when body is opened ([#2839](https://github.com/epam/UUI/pull/2839))
 * [useLazyTree]: fixed tree structure update when getParentId function changes. When filter changes trigger tree refetch and affect getParentId logic (e.g., changing groupBy parameter), the tree now correctly clears its structure with updated hierarchy parameters instead of using stale getParentId function.
