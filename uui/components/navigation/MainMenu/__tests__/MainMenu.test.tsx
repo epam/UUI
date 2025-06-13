@@ -16,16 +16,22 @@ describe('MainMenu', () => {
         ReactDOM.createPortal = oldPortal;
     });
 
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly with default props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <MainMenu>
-                <MainMenuButton />
-            </MainMenu>,
+            <MainMenu
+                items={ [
+                    {
+                        id: 'btn',
+                        render: () => <MainMenuButton />,
+                        priority: 0,
+                    },
+                ] }
+            />,
         );
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly with burger, logo, transparency and serverBadge', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <MainMenu
                 renderBurger={ () => <BurgerButton /> }
@@ -33,11 +39,15 @@ describe('MainMenu', () => {
                 appLogoUrl=""
                 isTransparent
                 serverBadge="Dev"
-            >
-                <MainMenuButton />
-            </MainMenu>,
+                items={ [
+                    {
+                        id: 'btn',
+                        render: () => <MainMenuButton />,
+                        priority: 0,
+                    },
+                ] }
+            />,
         );
-
         expect(tree).toMatchSnapshot();
     });
 });

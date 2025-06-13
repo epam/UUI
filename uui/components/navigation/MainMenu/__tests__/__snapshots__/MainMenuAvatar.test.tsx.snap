@@ -15,7 +15,7 @@ exports[`MainMenuAvatar should be rendered correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`MainMenuAvatar should be rendered correctly 2`] = `
+exports[`MainMenuAvatar should be rendered correctly with props 1`] = `
 <DocumentFragment>
   <button
     class="container dropdown"
