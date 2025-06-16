@@ -3,7 +3,7 @@
 exports[`MainMenu should be rendered correctly with burger, logo, transparency and serverBadge 1`] = `
 <DocumentFragment>
   <nav
-    class="root uui-main_menu uui-mainmenu-container container uui-mainmenu-transparent"
+    class="root uui-main_menu uui-mainmenu-container container"
   >
     <div
       class="itemsContainer mainWrapper"
