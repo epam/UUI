@@ -18,9 +18,9 @@ export const getDefaultUUiContextWrapper = () => {
         Object.assign(testUuiCtx, services);
         return (
             (
-                <UuiContext value={ services }>
+                <UuiContext.Provider value={ services }>
                     { children }
-                </UuiContext>
+                </UuiContext.Provider>
             )
         );
     };
