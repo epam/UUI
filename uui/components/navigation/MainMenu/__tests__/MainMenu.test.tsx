@@ -22,7 +22,7 @@ describe('MainMenu', () => {
                 items={ [
                     {
                         id: 'btn',
-                        render: () => <MainMenuButton />,
+                        render: () => <MainMenuButton key="btn" />,
                         priority: 0,
                     },
                 ] }
@@ -41,7 +41,7 @@ describe('MainMenu', () => {
                 items={ [
                     {
                         id: 'btn',
-                        render: () => <MainMenuButton />,
+                        render: () => <MainMenuButton key="btn" />,
                         priority: 0,
                     },
                 ] }
