@@ -210,6 +210,7 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
     return [{
         name: `Items: ${items.map((i) => i.id).join(', ')}.`,
         value: items,
+        isDefault: true,
     },
     {
         name: 'Learn',
