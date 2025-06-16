@@ -1,6 +1,6 @@
 # 6.x.x - xx.xx.2025
 **What's New**
-* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only.
+* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. 
 
 **What's Fixed**
 * [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`

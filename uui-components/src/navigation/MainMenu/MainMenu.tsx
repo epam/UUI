@@ -11,8 +11,8 @@ import {
     IHasForwardedRef,
     DropdownBodyProps,
 } from '@epam/uui-core';
-import { BurgerProps } from './Burger/Burger';
-import { MainMenuLogo } from '../MainMenu/MainMenuLogo';
+import { BurgerProps } from './Burger';
+import { MainMenuLogo } from './MainMenuLogo';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import css from './MainMenu.module.scss';
 
@@ -43,14 +43,6 @@ export interface MainMenuProps
     logoHref?: string;
     /** Called when logo is clicked */
     onLogoClick?: (e: MouseEvent) => any;
-    /** Path to the customer logo source */
-    customerLogoUrl?: string;
-    /** SPA link to navigate on customer logo click */
-    customerLogoLink?: Link;
-    /** Href to navigate on customer logo click */
-    customerLogoHref?: string;
-    customerLogoBgColor?: string;
-    isTransparent?: boolean;
     /** Render callback for burger menu content.
      * Burger will appear, which some items don't fit the menu width.
      * */
@@ -68,7 +60,6 @@ export const uuiMainMenu = {
     container: 'uui-mainmenu-container',
     serverBadge: 'uui-mainmenu-server-badge',
     serverBadgeLabel: 'uui-mainmenu-server-badge-label',
-    transparent: 'uui-mainmenu-transparent',
 } as const;
 
 export function MainMenu(props: MainMenuProps) {
@@ -78,11 +69,6 @@ export function MainMenu(props: MainMenuProps) {
         logoLink,
         logoHref,
         onLogoClick,
-        customerLogoUrl,
-        customerLogoLink,
-        customerLogoHref,
-        customerLogoBgColor,
-        isTransparent,
         renderBurger,
         alwaysShowBurger,
         serverBadge,
@@ -143,22 +129,6 @@ export function MainMenu(props: MainMenuProps) {
                 ),
             });
         }
-        if (customerLogoUrl) {
-            menuItems.unshift({
-                id: 'customerLogo',
-                priority: 100499,
-                render: () => (
-                    <MainMenuLogo
-                        key="customerLogo"
-                        logoUrl={ customerLogoUrl }
-                        logoBgColor={ customerLogoBgColor }
-                        link={ customerLogoLink || logoLink }
-                        href={ customerLogoHref || logoHref }
-                        showArrow
-                    />
-                ),
-            });
-        }
         menuItems.unshift({
             id: 'Burger',
             priority: 100501,
@@ -169,8 +139,7 @@ export function MainMenu(props: MainMenuProps) {
                         key="burger"
                         width={ 300 }
                         renderBurgerContent={ renderBurger }
-                        logoUrl={ customerLogoUrl || appLogoUrl }
-                        bg={ customerLogoBgColor || undefined }
+                        logoUrl={ appLogoUrl }
                     />
                 ) : null,
         });
@@ -181,10 +150,6 @@ export function MainMenu(props: MainMenuProps) {
         logoLink,
         logoHref,
         onLogoClick,
-        customerLogoUrl,
-        customerLogoLink,
-        customerLogoHref,
-        customerLogoBgColor,
         alwaysShowBurger,
         renderBurger,
         Burger,
@@ -202,7 +167,6 @@ export function MainMenu(props: MainMenuProps) {
                 cxProp,
                 uuiMainMenu.container,
                 css.container,
-                isTransparent && uuiMainMenu.transparent,
             ) }
             ref={ forwardedRef }
             { ...rawProps }
@@ -212,5 +176,3 @@ export function MainMenu(props: MainMenuProps) {
         </nav>
     );
 }
-
-// TODO: Обновить тесты и интеграции, убрать использование children, проверить все обёртки и edge-cases
