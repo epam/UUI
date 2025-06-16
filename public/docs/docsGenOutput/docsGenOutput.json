@@ -1,5 +1,5 @@
 {
- "version": "6.1.1",
+ "version": "6.1.2",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -20446,6 +20446,86 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:IItemsAccessor": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IItemsAccessor",
+     "nameFull": "IItemsAccessor<TItem, TId>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/treeStructure/types.ts",
+    "comment": {
+     "raw": [
+      "Tree data accessor.",
+      " Used by tree to access known items."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IItemsAccessor<TItem, TId>",
+     "print": [
+      "/**",
+      " * Tree data accessor.",
+      " * Used by tree to access known items.",
+      " */",
+      "interface IItemsAccessor<TItem, TId> {",
+      "    /**",
+      "     * Get records by id.",
+      "     * @param id - id of the record.",
+      "     * @returns record or `NOT_FOUND_RECORD`.",
+      "     */",
+      "    get: (id: TId) => TItem | typeof NOT_FOUND_RECORD;",
+      "    /**",
+      "     * Iteration function over all data.",
+      "     */",
+      "    forEach: (action: (item: TItem, id: TId) => void) => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "get",
+      "name": "get",
+      "comment": {
+       "raw": [
+        "Get records by id.",
+        " @param id - id of the record.",
+        " @returns record or `NOT_FOUND_RECORD`."
+       ]
+      },
+      "typeValue": {
+       "raw": "(id: TId) => TItem | typeof NOT_FOUND_RECORD",
+       "html": "<span class=\"token punctuation\">(</span>id<span class=\"token operator\">:</span> TId<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> TItem <span class=\"token operator\">|</span> <span class=\"token keyword\">typeof</span> <span class=\"token constant\">NOT_FOUND_RECORD</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "forEach",
+      "name": "forEach",
+      "comment": {
+       "raw": [
+        "Iteration function over all data."
+       ]
+      },
+      "typeValue": {
+       "raw": "(action: (item: TItem, id: TId) => void) => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token function-variable function\">action</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">,</span> id<span class=\"token operator\">:</span> TId<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:ILayoutContext": {
    "summary": {
     "module": "@epam/uui-core",
@@ -23053,6 +23133,12 @@
       "     * @param id - ID of an item to be returned.",
       "     */",
       "    getById(id: TId): TItem | typeof NOT_FOUND_RECORD;",
+      "    /**",
+      "     * Accessor to all known items. It may contain records, filtered out of the tree.",
+      "     * Items accessor cannot be used to investigate current state of the tree.",
+      "     * Instead, use tree.getItems(), in the combination with tree.getById(id).",
+      "     */",
+      "    getItemsAccessor(): IItemsAccessor<TItem, TId>;",
       "}"
      ]
     },
@@ -23104,6 +23190,25 @@
       "typeValue": {
        "raw": "(id: TId) => TItem | typeof NOT_FOUND_RECORD",
        "html": "<span class=\"token punctuation\">(</span>id<span class=\"token operator\">:</span> TId<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> TItem <span class=\"token operator\">|</span> <span class=\"token keyword\">typeof</span> <span class=\"token constant\">NOT_FOUND_RECORD</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "getItemsAccessor",
+      "name": "getItemsAccessor",
+      "comment": {
+       "raw": [
+        "Accessor to all known items. It may contain records, filtered out of the tree.",
+        " Items accessor cannot be used to investigate current state of the tree.",
+        " Instead, use tree.getItems(), in the combination with tree.getById(id)."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => IItemsAccessor<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IItemsAccessor<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -27098,6 +27203,8 @@
       "    getSearchFields?(item: TItem): string[];",
       "    /** Component ref */",
       "    ref?: React.Ref<PickerInputElement>;",
+      "    /** Disallow to clear Picker value */",
+      "    disableClear?: boolean;",
       "};"
      ]
     },
@@ -27378,6 +27485,23 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -27695,6 +27819,24 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -29399,6 +29541,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -29800,23 +29960,6 @@
         "input",
         "none"
        ]
-      },
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disallow to clear Picker value (cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "required": false
      },
@@ -40985,6 +41128,132 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:UseFilterTreeProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseFilterTreeProps",
+     "nameFull": "UseFilterTreeProps<TItem, TId, TFilter>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/hooks/common/useFilterTree.ts",
+    "comment": {
+     "raw": [
+      "Filter tree hook props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseFilterTreeProps<TItem, TId, TFilter>",
+     "print": [
+      "/**",
+      " * Filter tree hook props.",
+      " */",
+      "interface UseFilterTreeProps<TItem, TId, TFilter = any> extends FilterConfig<TItem, TFilter>, CreateTreeInstance<TItem, TId> {",
+      "    /**",
+      "     * Tree with data.",
+      "     */",
+      "    tree: ITree<TItem, TId>;",
+      "    /**",
+      "     * State of the dataSource.",
+      "     */",
+      "    dataSourceState: DataSourceState<TFilter, TId>;",
+      "    /**",
+      "     * Are data loading.",
+      "     */",
+      "    isLoading?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "tree",
+      "name": "tree",
+      "comment": {
+       "raw": [
+        "Tree with data."
+       ]
+      },
+      "typeValue": {
+       "raw": "ITree<TItem, TId>",
+       "html": "ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "dataSourceState",
+      "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "State of the dataSource."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<TFilter, TId>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "Are data loading."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "getFilter",
+      "name": "getFilter",
+      "comment": {
+       "raw": [
+        "A pure function that returns filter callback to be applied for each item.",
+        " The callback should return true, if item passed the filter."
+       ]
+      },
+      "typeValue": {
+       "raw": "(filter: TFilter) => (item: TItem) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>filter<span class=\"token operator\">:</span> TFilter<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:FilterConfig",
+      "required": false
+     },
+     {
+      "uid": "newTreeInstance",
+      "name": "newTreeInstance",
+      "comment": {
+       "raw": [
+        "Create a new ITree instance."
+       ]
+      },
+      "typeValue": {
+       "raw": "(options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> CreateTreeInstanceOptions<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CreateTreeInstance",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:UseFoldingServiceProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -41545,6 +41814,291 @@
       "editor": {
        "type": "number"
       },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:UseSearchTreeProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseSearchTreeProps",
+     "nameFull": "UseSearchTreeProps<TItem, TId, TFilter>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/hooks/common/useSearchTree.ts",
+    "comment": {
+     "raw": [
+      "Search tree hook props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseSearchTreeProps<TItem, TId, TFilter>",
+     "print": [
+      "/**",
+      " * Search tree hook props.",
+      " */",
+      "interface UseSearchTreeProps<TItem, TId, TFilter = any> extends SearchConfig<TItem>, CreateTreeInstance<TItem, TId> {",
+      "    /**",
+      "     * Tree with data.",
+      "     */",
+      "    tree: ITree<TItem, TId>;",
+      "    /**",
+      "     * State of the dataSource.",
+      "     */",
+      "    dataSourceState: DataSourceState<TFilter, TId>;",
+      "    /**",
+      "     * Are data loading.",
+      "     */",
+      "    isLoading?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "tree",
+      "name": "tree",
+      "comment": {
+       "raw": [
+        "Tree with data."
+       ]
+      },
+      "typeValue": {
+       "raw": "ITree<TItem, TId>",
+       "html": "ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "dataSourceState",
+      "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "State of the dataSource."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<TFilter, TId>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "Are data loading."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "getSearchFields",
+      "name": "getSearchFields",
+      "comment": {
+       "raw": [
+        "A pure function that gets search value for each item.",
+        " @default (item) => item.name."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string[]",
+       "html": "<span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:SearchConfig",
+      "required": false
+     },
+     {
+      "uid": "sortSearchByRelevance",
+      "name": "sortSearchByRelevance",
+      "comment": {
+       "raw": [
+        "Enables sorting of search results by relevance.",
+        " - The highest priority has records, which have a full match with a search keyword.",
+        " - The lower one has records, which have a search keyword at the 0 position, but not the full match.",
+        " - Then, records, which contain a search keyword as a separate word, but not at the beginning.",
+        " - And the lowest one - any other match of the search keyword.",
+        "",
+        " Example:",
+        " - `search`: 'some'",
+        " - `record string`: 'some word', `rank` = 4",
+        " - `record string`: 'someone', `rank` = 3",
+        " - `record string`: 'I know some guy', `rank` = 2",
+        " - `record string`: 'awesome', `rank` = 1",
+        "",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:SearchConfig",
+      "required": false
+     },
+     {
+      "uid": "newTreeInstance",
+      "name": "newTreeInstance",
+      "comment": {
+       "raw": [
+        "Create a new ITree instance."
+       ]
+      },
+      "typeValue": {
+       "raw": "(options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> CreateTreeInstanceOptions<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CreateTreeInstance",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:UseSortTreeProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseSortTreeProps",
+     "nameFull": "UseSortTreeProps<TItem, TId, TFilter>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/hooks/common/useSortTree.ts",
+    "comment": {
+     "raw": [
+      "Sort tree hook props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseSortTreeProps<TItem, TId, TFilter>",
+     "print": [
+      "/**",
+      " * Sort tree hook props.",
+      " */",
+      "interface UseSortTreeProps<TItem, TId, TFilter = any> extends SortConfig<TItem>, CreateTreeInstance<TItem, TId> {",
+      "    /**",
+      "     * Tree with data.",
+      "     */",
+      "    tree: ITree<TItem, TId>;",
+      "    /**",
+      "     * State of the dataSource.",
+      "     */",
+      "    dataSourceState: DataSourceState<TFilter, TId>;",
+      "    /**",
+      "     * Are data loading.",
+      "     */",
+      "    isLoading?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "tree",
+      "name": "tree",
+      "comment": {
+       "raw": [
+        "Tree with data."
+       ]
+      },
+      "typeValue": {
+       "raw": "ITree<TItem, TId>",
+       "html": "ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "dataSourceState",
+      "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "State of the dataSource."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<TFilter, TId>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "Are data loading."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "sortBy",
+      "name": "sortBy",
+      "comment": {
+       "raw": [
+        "A pure function that gets sorting value for current sorting value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, sorting: SortingOption<any>) => any",
+       "html": "<span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">,</span> sorting<span class=\"token operator\">:</span> SortingOption<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:SortConfig",
+      "required": false
+     },
+     {
+      "uid": "newTreeInstance",
+      "name": "newTreeInstance",
+      "comment": {
+       "raw": [
+        "Create a new ITree instance."
+       ]
+      },
+      "typeValue": {
+       "raw": "(options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> CreateTreeInstanceOptions<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CreateTreeInstance",
       "required": false
      }
     ],
@@ -44527,6 +45081,22 @@
     "comment": {
      "raw": [
       "Tree configuration."
+     ]
+    },
+    "exported": false
+   }
+  },
+  "@epam/uui-core:CreateTreeInstance": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "CreateTreeInstance",
+     "nameFull": "CreateTreeInstance<TItem, TId>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/treeStructure/helpers/types.ts",
+    "comment": {
+     "raw": [
+      "Create new ITree instance interface."
      ]
     },
     "exported": false
@@ -56354,9 +56924,6 @@
       "interface MainMenuProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
       "    /** Array of menu items to be rendered */",
       "    items?: AdaptiveItemProps[];",
-      "    /** @deprecated",
-      "     * Use 'items' prop to define menu content */",
-      "    children?: any;",
       "    /** Path to the logo source */",
       "    appLogoUrl?: string;",
       "    /** SPA link to navigate on logo click */",
@@ -56365,14 +56932,6 @@
       "    logoHref?: string;",
       "    /** Called when logo is clicked */",
       "    onLogoClick?: (e: MouseEvent) => any;",
-      "    /** Path to the customer logo source */",
-      "    customerLogoUrl?: string;",
-      "    /** SPA link to navigate on customer logo click */",
-      "    customerLogoLink?: Link;",
-      "    /** Href to navigate on customer logo click */",
-      "    customerLogoHref?: string;",
-      "    customerLogoBgColor?: string;",
-      "    isTransparent?: boolean;",
       "    /** Render callback for burger menu content.",
       "     * Burger will appear, which some items don't fit the menu width.",
       "     * */",
@@ -56401,21 +56960,6 @@
       "typeValue": {
        "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]",
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
       },
       "required": false
      },
@@ -56481,78 +57025,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "required": false
      },
@@ -58156,6 +58628,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -58866,6 +59356,8 @@
       "     * @default false",
       "     */",
       "    disallowClickOutside?: boolean;",
+      "    /** Disallow to clear Picker value */",
+      "    disableClear?: boolean;",
       "}"
      ]
     },
@@ -58917,6 +59409,23 @@
        "tags": {
         "@default": false
        }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
       },
       "typeValue": {
        "raw": "boolean",
@@ -70662,6 +71171,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -71423,6 +71950,24 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -88986,22 +89531,6 @@
       "required": false
      },
      {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
       "uid": "appLogoUrl",
       "name": "appLogoUrl",
       "comment": {
@@ -89066,83 +89595,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -92876,6 +93328,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -93282,24 +93752,6 @@
         "input",
         "body"
        ]
-      },
-      "from": "@epam/uui-core:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disallow to clear Picker value (cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
@@ -95574,6 +96026,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerModalOptions",
+      "required": false
+     },
+     {
       "uid": "rawProps",
       "name": "rawProps",
       "comment": {
@@ -96667,6 +97137,24 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -115035,22 +115523,6 @@
       "required": false
      },
      {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
       "uid": "appLogoUrl",
       "name": "appLogoUrl",
       "comment": {
@@ -115115,83 +115587,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -119174,22 +119569,6 @@
       "required": false
      },
      {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
       "uid": "appLogoUrl",
       "name": "appLogoUrl",
       "comment": {
@@ -119254,83 +119633,6 @@
       },
       "editor": {
        "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
