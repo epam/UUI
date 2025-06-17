@@ -62,6 +62,11 @@ export default defineConfig({
             name: 'chromium',
             use: {
                 ...devices['Desktop Chrome'],
+                launchOptions: {
+                    args: [
+                        '--disable-font-subpixel-positioning',
+                    ],
+                },
             },
             testMatch: [
                 'tests/previewTests/*.e2e.ts',
