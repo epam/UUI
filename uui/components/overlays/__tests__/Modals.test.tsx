@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { ReactNode, useState } from 'react';
 import { ModalBlocker, ModalHeader, ModalFooter, ModalWindow } from '../Modals';
-import { fireEvent, renderSnapshotWithContextAsync, screen, setupComponentForTest } from '@epam/uui-test-utils';
-import { IModal, ModalBlockerProps, useUuiContext } from '@epam/uui-core';
+import { fireEvent, getDefaultUUiContextWrapper, renderSnapshotWithContextAsync, renderWithContextAsync, screen, setupComponentForTest, userEvent } from '@epam/uui-test-utils';
+import { IModal, ModalBlockerProps, useArrayDataSource, useUuiContext } from '@epam/uui-core';
 import { Button } from '../../buttons';
 import { Modals } from '@epam/uui-components';
+import { PickerInput } from '../../pickers';
 
-function TestElement(props?: ModalBlockerProps) {
+function TestElement(props: ModalBlockerProps) {
     return (
         <ModalBlocker { ...props }>
             <ModalWindow>
@@ -163,6 +164,141 @@ describe('Modals', () => {
         document.dispatchEvent(escEvent);
 
         expect(screen.getByText('Test content')).toBeInTheDocument();
+    });
+
+    it('should properly handle closing picker input\'s options and modal window on \'Escape\' key presses', async () => {
+        const successMock = jest.fn();
+        const abortMock = jest.fn();
+        const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+
+        function ModalWindowWithPickerInput(
+            props: IModal<undefined>,
+        ) {
+            interface Option {
+                id: string;
+                name: string;
+            }
+
+            const [
+                option,
+                setOption,
+            ] = useState<Option | undefined>(undefined);
+
+            const dataSource = useArrayDataSource<
+            Option,
+            Option['id'] | undefined,
+            unknown
+            >(
+                {
+                    items: [
+                        {
+                            id: 'option-1',
+                            name: 'Option 1',
+                        },
+                        {
+                            id: 'option-2',
+                            name: 'Option 2',
+                        },
+                    ],
+                },
+                [],
+            );
+
+            return (
+                <ModalBlocker
+                    { ...props }
+                >
+                    <ModalWindow>
+                        <PickerInput
+                            dataSource={ dataSource }
+                            value={ option }
+                            onValueChange={ setOption }
+                            selectionMode="single"
+                            valueType="entity"
+                        />
+                    </ModalWindow>
+                </ModalBlocker>
+            );
+        }
+
+        function TestComponent(): ReactNode {
+            const handleOpenModalWindow = async (): Promise<void> => {
+                try {
+                    await testUuiCtx.uuiModals.show((
+                        modalWindowProps,
+                    ) => {
+                        return (
+                            <ModalWindowWithPickerInput
+                                { ...modalWindowProps }
+                                success={ successMock.mockImplementation(modalWindowProps.success) }
+                                abort={ abortMock.mockImplementation(modalWindowProps.abort) }
+                            />
+                        );
+                    });
+                } catch {}
+            };
+
+            return (
+                <>
+                    <Button
+                        caption="Open modal window"
+                        onClick={ handleOpenModalWindow }
+                    />
+                    <Modals />
+                </>
+            );
+        }
+
+        await renderWithContextAsync(
+            <TestComponent />,
+            {
+                wrapper,
+            },
+        );
+
+        const openModalWindowButton = await screen.findByRole(
+            'button',
+            {
+                name: /open modal window/i,
+            },
+        );
+        await userEvent.click(openModalWindowButton);
+        const pickerInput = await screen.findByRole('searchbox');
+        expect(pickerInput).toBeInTheDocument();
+
+        await userEvent.click(pickerInput);
+        // Checking that picker input's body is opened.
+        expect(
+            await screen.findByRole(
+                'option',
+                {
+                    name: /option 1/i,
+                },
+            ),
+        ).toBeVisible();
+
+        // First 'Escape' key press should close the picker input's options.
+        await userEvent.keyboard('{Escape}');
+        // Checking that picker input's body is closed.
+        expect(
+            screen.queryByRole(
+                'option',
+                {
+                    name: /option 1/i,
+                },
+            ),
+        ).not.toBeInTheDocument();
+        expect(pickerInput).toBeInTheDocument();
+        expect(successMock).not.toBeCalled();
+        expect(abortMock).not.toBeCalled();
+
+        // Second 'Escape' key press should close the modal window.
+        await userEvent.keyboard('{Escape}');
+        expect(
+            screen.queryByRole('searchbox'),
+        ).not.toBeInTheDocument();
+        expect(successMock).not.toBeCalled();
+        expect(abortMock).toBeCalled();
     });
 
     // TODO: create test for 'disableCloseOnRouterChange' when our 'setupComponentForTest' be able listen routes

@@ -71,6 +71,7 @@ export function usePickerModal<TItem, TId>(props: UsePickerModalProps<TItem, TId
             search: dataSourceState.search,
             success: () => props.success(selection as any),
             abort: props.abort,
+            disableClear: props.disableClear,
         };
     };
 
