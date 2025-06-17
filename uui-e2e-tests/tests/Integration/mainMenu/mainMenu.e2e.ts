@@ -23,9 +23,9 @@ test('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
     });
 
     await test.step('More: open More menu', async () => {
-        await expect(await mainMenu.isMoreButtonVisible()).toBe(true);
+        expect(await mainMenu.isMoreButtonVisible()).toBe(true);
         await mainMenu.clickMoreButton();
-        await expect(await mainMenu.isDropdownVisible()).toBe(true);
+        expect(await mainMenu.isDropdownVisible()).toBe(true);
         await expectScreenshot(2, 'more-open');
     });
 
@@ -33,8 +33,9 @@ test('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
         await pageWrapper.page.setViewportSize({ width: 400, height: 900 });
         await expectScreenshot(3, 'responsive-burger-visible');
         await mainMenu.clickBurger();
-        await expect(await mainMenu.isBurgerVisible()).toBe(true);
+        expect(await mainMenu.isBurgerVisible()).toBe(true);
         await expectScreenshot(4, 'responsive-burger-open');
+        pageWrapper.page.viewportSize();
     });
 });
 
@@ -45,6 +46,7 @@ test('mainMenu/ServerBadge', async ({ pageWrapper }, testInfo) => {
         PageObjectConstructor: MainMenuObject,
         testUrl: testPageUrl.serverBadgePreview,
     });
+    await pageWrapper.page.setViewportSize({ width: 640, height: 120 });
     const mainMenu = pageObject as MainMenuObject;
     await expect(mainMenu.locators.serverBadgeLabel).toBeVisible();
     const badgeText = await mainMenu.getServerBadgeText();
@@ -52,4 +54,5 @@ test('mainMenu/ServerBadge', async ({ pageWrapper }, testInfo) => {
     const color = await mainMenu.getServerBadgeColor();
     expect(color).toBeTruthy();
     await expectScreenshot(1, 'serverBadge-smoke');
+    pageWrapper.page.viewportSize();
 });
