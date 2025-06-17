@@ -1,4 +1,5 @@
-# 6.1.4 - xx.xx.2025
+# 6.1.4 - 17.06.2025
+
 **What's Fixed**
 * [@epam/uui-test-utils]: fixed various of utils to work with React 18
 * [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
