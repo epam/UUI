@@ -2,7 +2,7 @@ import { NOT_FOUND_RECORD } from '../../constants';
 import { buildSorter } from '../../helpers';
 import { ITree } from '../../ITree';
 import { TreeStructure } from '../TreeStructure';
-import { SortOptions } from './types';
+import type { SortOptions } from './types';
 
 export class SortHelper {
     public static sort<TItem, TId, TFilter>({
