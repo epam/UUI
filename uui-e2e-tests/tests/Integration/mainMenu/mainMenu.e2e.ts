@@ -45,7 +45,6 @@ test('mainMenu/ServerBadge', async ({ pageWrapper }, testInfo) => {
         PageObjectConstructor: MainMenuObject,
         testUrl: testPageUrl.serverBadgePreview,
     });
-    await pageWrapper.page.setViewportSize({ width: 640, height: 120 });
     const mainMenu = pageObject as MainMenuObject;
     await expect(mainMenu.locators.serverBadgeLabel).toBeVisible();
     const badgeText = await mainMenu.getServerBadgeText();
