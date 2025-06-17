@@ -1,6 +1,6 @@
-import logo from '../../icons/logo.svg';
 import { BurgerButton, MainMenu, MainMenuButton } from '@epam/uui';
 import { useCallback } from 'react';
+import logo from '../../icons/logo.svg';
 
 export const AppHeader = () => {
     const handleShowAlert = useCallback(() => {
@@ -20,13 +20,18 @@ export const AppHeader = () => {
         <MainMenu
             appLogoUrl={logo.src}
             renderBurger={handleRenderBurger}
-        >
-            <MainMenuButton
-                caption='Home'
-                link={{ pathname: '/' }}
-                priority={1}
-                estimatedWidth={72}
-            />
-        </MainMenu>
+            items={[{
+                id: 'home',
+                render: () => (
+                    <MainMenuButton
+                        caption='Home'
+                        link={{ pathname: '/' }}
+                        priority={1}
+                        estimatedWidth={72}
+                    />
+                ),
+                priority: 1,
+            }]}
+        />
     );
 };

@@ -1,5 +1,5 @@
 # The version of the base image must be in sync with the version of "@playwright/test" NPM package
-FROM mcr.microsoft.com/playwright:v1.51.1-jammy
+FROM mcr.microsoft.com/playwright:v1.53.0-noble
 
 WORKDIR /e2e
 
