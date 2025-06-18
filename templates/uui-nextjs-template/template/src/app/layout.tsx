@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
 import '@epam/assets/theme/theme_loveship.scss';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, Suspense } from 'react';
 import { AppView } from '../components/AppView';
 
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -24,7 +24,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 />
             </head>
             <body className='uui-theme-loveship'>
-                <AppView>{children}</AppView>
+                <Suspense>
+                    <AppView>{children}</AppView>
+                </Suspense>
             </body>
         </html>
     );
