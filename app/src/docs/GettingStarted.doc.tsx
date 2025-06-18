@@ -1,21 +1,13 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class GettingStartedDoc extends BaseDocsBlock {
-    title = 'Getting Started';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="gettingStarted-intro" />
-                {this.renderSectionTitle('Starting a new Vite project')}
-                <EditableDocContent fileName="gettingStarted-configuring from scratch vite" />
-                {this.renderSectionTitle('Starting a new CRA-based project')}
-                <EditableDocContent fileName="gettingStarted-configuring from scratch" />
-                {this.renderSectionTitle('Starting a new Next.js project')}
-                <EditableDocContent fileName="gettingStarted-configuring from scratch nextjs" />
-                {this.renderSectionTitle('Adding UUI to existing project')}
-                <EditableDocContent fileName="Configuring-into-existing-project" />
-            </>
-        );
-    }
-}
+export const GettingStartedDocItem: DocItem = {
+    id: 'gettingStarted',
+    name: 'Getting Started',
+    examples: [
+        { descriptionPath: 'gettingStarted-intro' },
+        { name: 'Starting a new Vite project', descriptionPath: 'gettingStarted-configuring from scratch vite' },
+        { name: 'Starting a new CRA-based project', descriptionPath: 'gettingStarted-configuring from scratch' },
+        { name: 'Starting a new Next.js project', descriptionPath: 'gettingStarted-configuring from scratch nextjs' },
+        { name: 'Adding UUI to existing project', descriptionPath: 'Configuring-into-existing-project' },
+    ],
+};

@@ -1,16 +1,12 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../common/docs';
+import { DocItem } from '../documents/structure';
 
-export class FlexSpacerDoc extends BaseDocsBlock {
-    title = 'FlexSpacer';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="flexSpacer-description" />
-
-                {this.renderSectionTitle('Examples')}
-                <DocExample path="./_examples/flexItems/FlexSpacer.example.tsx" />
-            </>
-        );
-    }
-}
+export const FlexSpacerDocItem: DocItem = {
+    id: 'flexSpacer',
+    name: 'Flex Spacer',
+    parentId: 'flexItems',
+    order: 4,
+    examples: [
+        { descriptionPath: 'flexSpacer-description' },
+        { componentPath: './_examples/flexItems/FlexSpacer.example.tsx' },
+    ],
+};
