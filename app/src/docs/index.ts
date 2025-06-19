@@ -69,3 +69,4 @@ export * from './StatusIndicator.doc';
 export * from './Accessibility.doc';
 export * from './Lenses.doc';
 export * from './Support.doc';
+export * from './TabList.doc';

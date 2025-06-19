@@ -11,8 +11,10 @@ import React, {
 
 import {
     TabButton,
+} from '../buttons/TabButton';
+import {
     VerticalTabButton,
-} from '../buttons';
+} from '../buttons/VerticalTabButton';
 import {
     FlexRow,
 } from './FlexItems';
@@ -26,7 +28,7 @@ type TabButtonPropsBase =
 
 export type TabId = string;
 
-export type TabButtonProps = TabButtonPropsBase & {
+export type TabListItemProps = TabButtonPropsBase & {
     id: TabId;
 };
 
@@ -34,7 +36,7 @@ interface TabListProps extends
     IControlled<TabId>,
     IHasDirection,
     FlexRowProps {
-    items: Array<TabButtonProps>;
+    items: Array<TabListItemProps>;
 }
 
 export function TabList({
@@ -186,7 +188,7 @@ export function TabList({
                         id,
                     } = tabProps;
 
-                    const handleTabClick: TabButtonProps['onClick'] = () => {
+                    const handleTabClick: TabListItemProps['onClick'] = () => {
                         onValueChange(id);
                     };
 
