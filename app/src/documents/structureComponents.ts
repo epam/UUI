@@ -55,6 +55,7 @@ import {
     TextDoc,
     TextInputDoc, TextPlaceholderDoc, TimePickerDoc, TooltipDoc,
     useTableStateDoc, VerticalTabButtonDoc, VirtualListDoc,
+    TableListDoc,
 } from '../docs';
 import { AnchorDoc } from '../docs/anchor/Anchor.doc';
 import { RichTextEditorSerializersDoc } from '../docs/RichTextEditorSerializers.doc';
@@ -135,6 +136,7 @@ export const componentsStructure = orderBy(
         { id: 'progressBar', name: 'Progress Bar', component: ProgressBarDoc, parentId: 'components' },
         { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDoc, parentId: 'components' },
         { id: 'dropdownContainer', name: 'Dropdown Container', component: DropdownContainerDoc, parentId: 'components' },
+        { id: 'tabList', name: 'Tab List', component: TableListDoc, parentId: 'components' },
     ],
     (item) => (item.order ? item.order + item.name : item.name),
 );

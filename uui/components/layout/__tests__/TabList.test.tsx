@@ -9,21 +9,21 @@ import {
 } from 'react';
 
 import {
-    type TabButtonProps,
+    type TabListItemProps,
     TabList,
 } from '../TabList';
 
-const tab1: TabButtonProps = {
+const tab1: TabListItemProps = {
     id: 'tab-1',
     caption: 'Tab 1',
 };
 
-const tab2: TabButtonProps = {
+const tab2: TabListItemProps = {
     id: 'tab-2',
     caption: 'Tab 2',
 };
 
-const items: Array<TabButtonProps> = [
+const items: Array<TabListItemProps> = [
     tab1,
     tab2,
     {
