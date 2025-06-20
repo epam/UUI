@@ -6,6 +6,8 @@ import {
 } from '@epam/uui-test-utils';
 import {
     type ReactNode,
+    useImperativeHandle,
+    useRef,
 } from 'react';
 
 import {
@@ -697,9 +699,10 @@ describe('focus managements', () => {
 });
 
 describe('tab activation', () => {
-    test('calls `onValueChange` with tab id and tab\'s `onClick` when Enter is pressed on a focused tab', async () => {
+    test('calls correct event handlers when Enter key is pressed on a focused tab (button)', async () => {
         const onValueChange = jest.fn();
         const onClick = jest.fn();
+        const onKeyDown = jest.fn();
         await renderWithContextAsync(
             <TabList
                 items={ [
@@ -707,6 +710,9 @@ describe('tab activation', () => {
                     {
                         ...tab2,
                         onClick,
+                        rawProps: {
+                            onKeyDown,
+                        },
                     },
                 ] }
                 value="tab-1"
@@ -727,11 +733,13 @@ describe('tab activation', () => {
         await userEvent.keyboard('{Enter}');
         expect(onValueChange).toBeCalledWith('tab-2');
         expect(onClick).toBeCalled();
+        expect(onKeyDown).toBeCalled();
     });
 
-    test('calls `onValueChange` with tab id and tab\'s `onClick` when space bar is pressed on a focused tab', async () => {
+    test('calls correct event handlers when Space key is pressed on a focused tab (button)', async () => {
         const onValueChange = jest.fn();
         const onClick = jest.fn();
+        const onKeyDown = jest.fn();
         await renderWithContextAsync(
             <TabList
                 items={ [
@@ -739,6 +747,9 @@ describe('tab activation', () => {
                     {
                         ...tab2,
                         onClick,
+                        rawProps: {
+                            onKeyDown,
+                        },
                     },
                 ] }
                 value="tab-1"
@@ -759,14 +770,40 @@ describe('tab activation', () => {
         await userEvent.keyboard(' ');
         expect(onValueChange).toBeCalledWith('tab-2');
         expect(onClick).toBeCalled();
+        expect(onKeyDown).toBeCalled();
     });
 
-    test('doesn\'t call tab\'s `onClick` when it is missing when a focused tab is activated', async () => {
+    test('calls correct event handlers when Enter key is pressed on a focused tab (link)', async () => {
         const onValueChange = jest.fn();
+        const onClick = jest.fn();
+        const onKeyDown = jest.fn();
         await renderWithContextAsync(
             <TabList
-                items={ items }
-                value="tab-2"
+                items={ [
+                    {
+                        ...tab1,
+                        link: {
+                            pathname: '/',
+                            query: {
+                                tabId: 'tab-1',
+                            },
+                        },
+                    },
+                    {
+                        ...tab2,
+                        link: {
+                            pathname: '/',
+                            query: {
+                                tabId: 'tab-2',
+                            },
+                        },
+                        onClick,
+                        rawProps: {
+                            onKeyDown,
+                        },
+                    },
+                ] }
+                value="tab-1"
                 onValueChange={ onValueChange }
             />,
         );
@@ -775,14 +812,129 @@ describe('tab activation', () => {
         const activeTabCurrent = screen.getByRole(
             'tab',
             {
-                name: /tab 2/i,
+                name: /tab 1/i,
             },
         );
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
         await userEvent.keyboard('{Enter}');
-        expect(onValueChange).toBeCalledWith('tab-3');
+        expect(onValueChange).toBeCalledWith('tab-2');
+        expect(onClick).toBeCalled();
+        expect(onKeyDown).toBeCalled();
+    });
+
+    test('calls correct event handlers when Space key is pressed on a focused tab (link)', async () => {
+        const onValueChange = jest.fn();
+        const onClick = jest.fn();
+        const onKeyDown = jest.fn();
+        await renderWithContextAsync(
+            <TabList
+                items={ [
+                    {
+                        ...tab1,
+                        link: {
+                            pathname: '/',
+                            query: {
+                                tabId: 'tab-1',
+                            },
+                        },
+                    },
+                    {
+                        ...tab2,
+                        link: {
+                            pathname: '/',
+                            query: {
+                                tabId: 'tab-2',
+                            },
+                        },
+                        onClick,
+                        rawProps: {
+                            onKeyDown,
+                        },
+                    },
+                ] }
+                value="tab-1"
+                onValueChange={ onValueChange }
+            />,
+        );
+
+        await userEvent.tab();
+        const activeTabCurrent = screen.getByRole(
+            'tab',
+            {
+                name: /tab 1/i,
+            },
+        );
+        expect(activeTabCurrent).toHaveFocus();
+
+        await userEvent.keyboard('{ArrowRight}');
+        await userEvent.keyboard(' ');
+        expect(onValueChange).toBeCalledWith('tab-2');
+        expect(onClick).toBeCalled();
+        expect(onKeyDown).toBeCalled();
+    });
+
+    test('calls `click` method of external ref when Space key is pressed on a focused tab (link)', async () => {
+        const click = jest.fn();
+        function Example(): ReactNode {
+            const tabRef = useRef<HTMLAnchorElement | null>(null);
+
+            // `tabRef.current.click = click` doesn't work.
+            useImperativeHandle(
+                tabRef,
+                () => {
+                    return {
+                        click,
+                    } as unknown as HTMLAnchorElement;
+                },
+                [],
+            );
+
+            return (
+                <TabList
+                    items={ [
+                        {
+                            ...tab1,
+                            link: {
+                                pathname: '/',
+                                query: {
+                                    tabId: 'tab-1',
+                                },
+                            },
+                        },
+                        {
+                            ...tab2,
+                            ref: tabRef,
+                            link: {
+                                pathname: '/',
+                                query: {
+                                    tabId: 'tab-2',
+                                },
+                            },
+                        },
+                    ] }
+                    value="tab-1"
+                    onValueChange={ () => {} }
+                />
+            );
+        }
+        await renderWithContextAsync(
+            <Example />,
+        );
+
+        await userEvent.tab();
+        const activeTabCurrent = screen.getByRole(
+            'tab',
+            {
+                name: /tab 1/i,
+            },
+        );
+        expect(activeTabCurrent).toHaveFocus();
+
+        await userEvent.keyboard('{ArrowRight}');
+        await userEvent.keyboard(' ');
+        expect(click).toBeCalled();
     });
 });
 
