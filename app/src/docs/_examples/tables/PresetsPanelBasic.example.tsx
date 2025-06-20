@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import {
@@ -76,6 +76,7 @@ const initialPresets: ITablePreset[] = [
 export default function PresetsPanelExample() {
     const svc = useUuiContext();
     const { uuiModals } = useUuiContext();
+    const [initialPresetsState] = useState([...initialPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
     const filtersConfig: TableFiltersConfig<Person>[] = useMemo(
         () => [
@@ -123,7 +124,7 @@ export default function PresetsPanelExample() {
 
     const tableStateApi = useTableState({
         filters: filtersConfig,
-        initialPresets: initialPresets,
+        initialPresets: initialPresetsState,
         onPresetCreate: svc.api.presets.createPreset,
         onPresetUpdate: svc.api.presets.updatePreset,
         onPresetDelete: handlePresetDelete,

@@ -13,6 +13,7 @@ interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
     addPreset: () => void;
     tableState: DataTableState;
+    onCopyLink?: ((tableState: DataTableState) => string) | null;
 }
 
 export function Preset(props: IPresetProps) {
@@ -41,7 +42,7 @@ export function Preset(props: IPresetProps) {
     );
 
     const isPresetActive = props.activePresetId === props.preset.id;
-     
+
     const PresetActionsDropdownComponent = useCallback(
         () => <PresetActionsDropdown renamePreset={ setPresetForRename } { ...props } />,
         [props.preset, props.tableState, props.activePresetId],
