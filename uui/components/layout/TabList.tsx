@@ -188,17 +188,13 @@ export function TabList({
                         id,
                     } = tabProps;
 
-                    const handleTabClick: TabListItemProps['onClick'] = () => {
+                    const handleOnClick: TabListItemProps['onClick'] = () => {
                         onValueChange(id);
+
+                        tabProps.onClick?.();
                     };
 
                     const isLinkActive = id === value;
-                    const handleOnClick = (
-                        tabProps.link === undefined
-                        && tabProps.href === undefined
-                    )
-                        ? handleTabClick
-                        : tabProps.onClick;
                     const tabIndex = isLinkActive
                         ? undefined
                         : -1;
