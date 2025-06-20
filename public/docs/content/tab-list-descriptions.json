@@ -1,0 +1,86 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "A wrapper around "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tabButton&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "TabButton"
+          }
+        ]
+      },
+      {
+        "text": " or "
+      },
+      {
+        "type": "link",
+        "url": "http://localhost:3793/documents?id=verticalTabButton&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "VerticalTabButton"
+          }
+        ]
+      },
+      {
+        "text": " (depending on "
+      },
+      {
+        "text": "direction",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " property) with accessible keyboard navigation."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This component implements "
+      },
+      {
+        "text": "tablist",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ", while users have to implement "
+      },
+      {
+        "text": "tabpanel",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " themselves, since use-cases may vary in different projects."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Learn more about tabs pattern "
+      },
+      {
+        "type": "link",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-manual/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "here"
+          }
+        ]
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]
