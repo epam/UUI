@@ -8,12 +8,14 @@ import {
 import React, {
     type ReactNode,
     type PropsWithChildren,
-    useState,
-    useEffect,
 } from 'react';
 
 import css from './TabPanel.module.scss';
 import { useSearchParams } from 'react-router-dom';
+
+const getTabpanelId = (tabId: TabId): string => {
+    return `tabpanel-${tabId}`;
+};
 
 interface TabPanelProps {
     tabId: TabId;
@@ -28,7 +30,7 @@ function TabPanel({
     return (
         <div
             className={ css.tabPanel }
-            id={ `tabpanel-${tabId}` }
+            id={ getTabpanelId(tabId) }
             role="tabpanel"
             aria-labelledby={ tabId }
             tabIndex={ tabIndex }
@@ -40,51 +42,51 @@ function TabPanel({
 
 export default function TabsWithLinksTabListExample(): ReactNode {
     const [searchParams] = useSearchParams();
-    const [value, onValueChange] = useState<TabId>('');
-
-    useEffect(
-        () => {
-            const tabId = searchParams.get('tabId');
-
-            onValueChange(tabId);
-        },
-        [
-            searchParams,
-        ],
+    const tabId = (
+        searchParams.get('tabId')
+        ?? 'tab-with-links-1'
     );
 
     const renderTabPanel = (): ReactNode => {
-        if (value === 'tab-links-1') {
+        if (tabId === 'tab-with-links-1') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 1 content</Text>
+                    <Text>
+                        Tab 1 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-links-2') {
+        if (tabId === 'tab-with-links-2') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 2 content</Text>
+                    <Text>
+                        Tab 2 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-links-3') {
+        if (tabId === 'tab-with-links-3') {
             return (
-                <TabPanel tabId={ value }>
+                <TabPanel
+                    tabId={ tabId }
+                >
                     <LinkButton
                         caption="Google"
                         href="https://google.com"
                     />
 
-                    <Text>Tab 3 content</Text>
+                    <Text>
+                        Tab 3 content
+                    </Text>
                 </TabPanel>
             );
         }
@@ -99,7 +101,7 @@ export default function TabsWithLinksTabListExample(): ReactNode {
             <TabList
                 items={ [
                     {
-                        id: 'tab-links-1',
+                        id: 'tab-with-links-1',
                         caption: 'Tab 1',
                         link: {
                             pathname: '/documents',
@@ -107,12 +109,15 @@ export default function TabsWithLinksTabListExample(): ReactNode {
                                 id: 'tabList',
                                 mode: 'doc',
                                 category: 'components',
-                                tabId: 'tab-links-1',
+                                tabId: 'tab-with-links-1',
                             },
+                        },
+                        rawProps: {
+                            'aria-controls': getTabpanelId('tab-with-links-1'),
                         },
                     },
                     {
-                        id: 'tab-links-2',
+                        id: 'tab-with-links-2',
                         caption: 'Tab 2',
                         link: {
                             pathname: '/documents',
@@ -120,12 +125,15 @@ export default function TabsWithLinksTabListExample(): ReactNode {
                                 id: 'tabList',
                                 mode: 'doc',
                                 category: 'components',
-                                tabId: 'tab-links-2',
+                                tabId: 'tab-with-links-2',
                             },
+                        },
+                        rawProps: {
+                            'aria-controls': getTabpanelId('tab-with-links-2'),
                         },
                     },
                     {
-                        id: 'tab-links-3',
+                        id: 'tab-with-links-3',
                         caption: 'Tab 3',
                         link: {
                             pathname: '/documents',
@@ -133,13 +141,22 @@ export default function TabsWithLinksTabListExample(): ReactNode {
                                 id: 'tabList',
                                 mode: 'doc',
                                 category: 'components',
-                                tabId: 'tab-links-3',
+                                tabId: 'tab-with-links-3',
                             },
+                        },
+                        rawProps: {
+                            'aria-controls': getTabpanelId('tab-with-links-3'),
                         },
                     },
                 ] }
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ tabId }
+                /*
+                    If a tab is a link (has `href` or `link` property),
+                    `onValueChange` is not called on its activation.
+                    If you want to react to a link tab's activation,
+                    pass `onClick` property to the appropriate tab in `items`.
+                */
+                onValueChange={ () => {} }
                 rawProps={ {
                     'aria-label': 'Tab list with links example',
                 } }

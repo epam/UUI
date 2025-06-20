@@ -14,6 +14,10 @@ import React, {
 
 import css from './TabPanel.module.scss';
 
+const getTabpanelId = (tabId: TabId): string => {
+    return `tabpanel-${tabId}`;
+};
+
 interface TabPanelProps {
     tabId: TabId;
     tabIndex?: number;
@@ -42,40 +46,48 @@ function TabPanel({
 }
 
 export default function VerticalLayoutTabListExample(): ReactNode {
-    const [value, onValueChange] = useState<TabId>('tab-vertical-1');
+    const [tabId, setTabId] = useState<TabId>('tab-vertical-1');
 
     const renderTabPanel = (): ReactNode => {
-        if (value === 'tab-vertical-1') {
+        if (tabId === 'tab-vertical-1') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 1 content</Text>
+                    <Text>
+                        Tab 1 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-vertical-2') {
+        if (tabId === 'tab-vertical-2') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 2 content</Text>
+                    <Text>
+                        Tab 2 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-vertical-3') {
+        if (tabId === 'tab-vertical-3') {
             return (
-                <TabPanel tabId={ value }>
+                <TabPanel
+                    tabId={ tabId }
+                >
                     <LinkButton
                         caption="Google"
                         href="https://google.com"
                     />
 
-                    <Text>Tab 3 content</Text>
+                    <Text>
+                        Tab 3 content
+                    </Text>
                 </TabPanel>
             );
         }
@@ -95,19 +107,28 @@ export default function VerticalLayoutTabListExample(): ReactNode {
                         {
                             id: 'tab-vertical-1',
                             caption: 'Tab 1',
+                            rawProps: {
+                                'aria-controls': getTabpanelId('tab-vertical-1'),
+                            },
                         },
                         {
                             id: 'tab-vertical-2',
                             caption: 'Tab 2',
+                            rawProps: {
+                                'aria-controls': getTabpanelId('tab-vertical-2'),
+                            },
                         },
                         {
                             id: 'tab-vertical-3',
                             caption: 'Tab 3',
+                            rawProps: {
+                                'aria-controls': getTabpanelId('tab-vertical-3'),
+                            },
                         },
                     ] }
                     direction="vertical"
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    value={ tabId }
+                    onValueChange={ setTabId }
                     rawProps={ {
                         'aria-label': 'Vertical tab list example',
                     } }

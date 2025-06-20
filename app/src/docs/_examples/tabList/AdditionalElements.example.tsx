@@ -16,6 +16,10 @@ import React, {
 
 import css from './TabPanel.module.scss';
 
+const getTabpanelId = (tabId: TabId): string => {
+    return `tabpanel-${tabId}`;
+};
+
 interface TabPanelProps {
     tabId: TabId;
     tabIndex?: number;
@@ -29,7 +33,7 @@ function TabPanel({
     return (
         <div
             className={ css.tabPanel }
-            id={ `tabpanel-${tabId}` }
+            id={ getTabpanelId(tabId) }
             role="tabpanel"
             aria-labelledby={ tabId }
             tabIndex={ tabIndex }
@@ -40,41 +44,49 @@ function TabPanel({
 }
 
 export default function HorizontalTabListExample(): ReactNode {
-    const [value, onValueChange] = useState<TabId>('tab-additional-elements-1');
+    const [tabId, setTabId] = useState<TabId>('tab-additional-elements-1');
     const [search, setSearch] = useState('');
 
     const renderTabPanel = (): ReactNode => {
-        if (value === 'tab-additional-elements-1') {
+        if (tabId === 'tab-additional-elements-1') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 1 content</Text>
+                    <Text>
+                        Tab 1 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-additional-elements-2') {
+        if (tabId === 'tab-additional-elements-2') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 2 content</Text>
+                    <Text>
+                        Tab 2 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-additional-elements-3') {
+        if (tabId === 'tab-additional-elements-3') {
             return (
-                <TabPanel tabId={ value }>
+                <TabPanel
+                    tabId={ tabId }
+                >
                     <LinkButton
                         caption="Google"
                         href="https://google.com"
                     />
 
-                    <Text>Tab 3 content</Text>
+                    <Text>
+                        Tab 3 content
+                    </Text>
                 </TabPanel>
             );
         }
@@ -102,18 +114,27 @@ export default function HorizontalTabListExample(): ReactNode {
                         {
                             id: 'tab-additional-elements-1',
                             caption: 'Tab 1',
+                            rawProps: {
+                                'aria-controls': getTabpanelId('tab-additional-elements-1'),
+                            },
                         },
                         {
                             id: 'tab-additional-elements-2',
                             caption: 'Tab 2',
+                            rawProps: {
+                                'aria-controls': getTabpanelId('tab-additional-elements-2'),
+                            },
                         },
                         {
                             id: 'tab-additional-elements-3',
                             caption: 'Tab 3',
+                            rawProps: {
+                                'aria-controls': getTabpanelId('tab-additional-elements-3'),
+                            },
                         },
                     ] }
-                    value={ value }
-                    onValueChange={ onValueChange }
+                    value={ tabId }
+                    onValueChange={ setTabId }
                     borderBottom={ false }
                     rawProps={ {
                         'aria-label': 'Additional elements tab list example',
