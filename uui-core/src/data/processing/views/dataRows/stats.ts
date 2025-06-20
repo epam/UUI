@@ -47,6 +47,7 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
         }
 
         if (!row.isChecked && !isImplicitCascadeSelection) {
+            // if checkbox is not checked and disabled, should pass the previous state of all checked further.
             isAllChecked = row.checkbox.isDisabled ? isAllChecked : false;
         } else if (row.parentId === undefined && !row.isChecked && isImplicitCascadeSelection) {
             isAllChecked = false;
