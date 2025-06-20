@@ -13,6 +13,10 @@ import React, {
 
 import css from './TabPanel.module.scss';
 
+const getTabpanelId = (tabId: TabId): string => {
+    return `tabpanel-${tabId}`;
+};
+
 interface TabPanelProps {
     tabId: TabId;
     tabIndex?: number;
@@ -26,7 +30,7 @@ function TabPanel({
     return (
         <div
             className={ css.tabPanel }
-            id={ `tabpanel-${tabId}` }
+            id={ getTabpanelId(tabId) }
             role="tabpanel"
             aria-labelledby={ tabId }
             tabIndex={ tabIndex }
@@ -37,40 +41,48 @@ function TabPanel({
 }
 
 export default function HorizontalLayoutTabListExample(): ReactNode {
-    const [value, onValueChange] = useState<TabId>('tab-horizontal-1');
+    const [tabId, setTabId] = useState<TabId>('tab-horizontal-1');
 
     const renderTabPanel = (): ReactNode => {
-        if (value === 'tab-horizontal-1') {
+        if (tabId === 'tab-horizontal-1') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 1 content</Text>
+                    <Text>
+                        Tab 1 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-horizontal-2') {
+        if (tabId === 'tab-horizontal-2') {
             return (
                 <TabPanel
-                    tabId={ value }
+                    tabId={ tabId }
                     tabIndex={ 0 }
                 >
-                    <Text>Tab 2 content</Text>
+                    <Text>
+                        Tab 2 content
+                    </Text>
                 </TabPanel>
             );
         }
 
-        if (value === 'tab-horizontal-3') {
+        if (tabId === 'tab-horizontal-3') {
             return (
-                <TabPanel tabId={ value }>
+                <TabPanel
+                    tabId={ tabId }
+                >
                     <LinkButton
                         caption="Google"
                         href="https://google.com"
                     />
 
-                    <Text>Tab 3 content</Text>
+                    <Text>
+                        Tab 3 content
+                    </Text>
                 </TabPanel>
             );
         }
@@ -87,18 +99,27 @@ export default function HorizontalLayoutTabListExample(): ReactNode {
                     {
                         id: 'tab-horizontal-1',
                         caption: 'Tab 1',
+                        rawProps: {
+                            'aria-controls': getTabpanelId('tab-horizontal-1'),
+                        },
                     },
                     {
                         id: 'tab-horizontal-2',
                         caption: 'Tab 2',
+                        rawProps: {
+                            'aria-controls': getTabpanelId('tab-horizontal-2'),
+                        },
                     },
                     {
                         id: 'tab-horizontal-3',
                         caption: 'Tab 3',
+                        rawProps: {
+                            'aria-controls': getTabpanelId('tab-horizontal-3'),
+                        },
                     },
                 ] }
-                value={ value }
-                onValueChange={ onValueChange }
+                value={ tabId }
+                onValueChange={ setTabId }
                 rawProps={ {
                     'aria-label': 'Horizontal tab list example',
                 } }
