@@ -18,17 +18,17 @@ export function useSelectAll<TItem, TId>(props: UseSelectAllProps<TItem, TId>) {
         if (props.stats.isSomeCheckable && isSelectAllEnabled) {
             if (!props.stats.isPartiallyLoaded && !props.stats.isSomeCheckboxEnabled) {
                 return {
-                    value: false,
+                    value: props.stats.isAllDisabledChecked,
                     onValueChange: props.handleSelectAll,
                     isDisabled: true,
-                    indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllChecked,
+                    indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllDisabledChecked,
                 };
             }
 
             return {
                 value: props.stats.isSomeCheckboxEnabled ? props.stats.isAllChecked : false,
                 onValueChange: props.handleSelectAll,
-                indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllChecked,
+                indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllChecked && props.stats.isSomeEnabledChecked,
             };
         } else if (props.tree.getItems().ids.length === 0 && props.areCheckboxesVisible && isSelectAllEnabled) {
             // Nothing loaded yet, but we guess that something is checkable. Add disabled checkbox for less flicker.
