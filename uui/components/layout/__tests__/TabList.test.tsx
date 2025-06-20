@@ -697,12 +697,19 @@ describe('focus managements', () => {
 });
 
 describe('tab activation', () => {
-    test('calls `onValueChange` with tab id when Enter is pressed on a focused tab', async () => {
+    test('calls `onValueChange` with tab id and tab\'s `onClick` when Enter is pressed on a focused tab', async () => {
         const onValueChange = jest.fn();
+        const onClick = jest.fn();
         await renderWithContextAsync(
             <TabList
-                items={ items }
-                value="tab-2"
+                items={ [
+                    tab1,
+                    {
+                        ...tab2,
+                        onClick,
+                    },
+                ] }
+                value="tab-1"
                 onValueChange={ onValueChange }
             />,
         );
@@ -711,22 +718,30 @@ describe('tab activation', () => {
         const activeTabCurrent = screen.getByRole(
             'tab',
             {
-                name: /tab 2/i,
+                name: /tab 1/i,
             },
         );
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
         await userEvent.keyboard('{Enter}');
-        expect(onValueChange).toBeCalledWith('tab-3');
+        expect(onValueChange).toBeCalledWith('tab-2');
+        expect(onClick).toBeCalled();
     });
 
-    test('calls `onValueChange` with tab id when space bar is pressed on a focused tab', async () => {
+    test('calls `onValueChange` with tab id and tab\'s `onClick` when space bar is pressed on a focused tab', async () => {
         const onValueChange = jest.fn();
+        const onClick = jest.fn();
         await renderWithContextAsync(
             <TabList
-                items={ items }
-                value="tab-2"
+                items={ [
+                    tab1,
+                    {
+                        ...tab2,
+                        onClick,
+                    },
+                ] }
+                value="tab-1"
                 onValueChange={ onValueChange }
             />,
         );
@@ -735,90 +750,39 @@ describe('tab activation', () => {
         const activeTabCurrent = screen.getByRole(
             'tab',
             {
-                name: /tab 2/i,
+                name: /tab 1/i,
             },
         );
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
         await userEvent.keyboard(' ');
+        expect(onValueChange).toBeCalledWith('tab-2');
+        expect(onClick).toBeCalled();
+    });
+
+    test('doesn\'t call tab\'s `onClick` when it is missing when a focused tab is activated', async () => {
+        const onValueChange = jest.fn();
+        await renderWithContextAsync(
+            <TabList
+                items={ items }
+                value="tab-2"
+                onValueChange={ onValueChange }
+            />,
+        );
+
+        await userEvent.tab();
+        const activeTabCurrent = screen.getByRole(
+            'tab',
+            {
+                name: /tab 2/i,
+            },
+        );
+        expect(activeTabCurrent).toHaveFocus();
+
+        await userEvent.keyboard('{ArrowRight}');
+        await userEvent.keyboard('{Enter}');
         expect(onValueChange).toBeCalledWith('tab-3');
-    });
-
-    test('calls `onValueChange` instead of a custom `onClick` callback when activating a tab without `link` or `href`', async () => {
-        const onValueChange = jest.fn();
-        const onClick = jest.fn();
-        await renderWithContextAsync(
-            <TabList
-                items={ [
-                    tab1,
-                    {
-                        ...tab2,
-                        onClick,
-                    },
-                ] }
-                value="tab-1"
-                onValueChange={ onValueChange }
-            />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowRight}');
-        await userEvent.keyboard('{Enter}');
-        expect(onClick).not.toBeCalled();
-        expect(onValueChange).toBeCalled();
-    });
-
-    test('calls a custom `onClick` callback instead of `onValueChange` when activating a tab with `link`', async () => {
-        const onValueChange = jest.fn();
-        const onClick = jest.fn();
-        await renderWithContextAsync(
-            <TabList
-                items={ [
-                    tab1,
-                    {
-                        ...tab2,
-                        onClick,
-                        link: {
-                            pathname: '/',
-                        },
-                    },
-                ] }
-                value="tab-1"
-                onValueChange={ onValueChange }
-            />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowRight}');
-        await userEvent.keyboard('{Enter}');
-        expect(onClick).toBeCalled();
-        expect(onValueChange).not.toBeCalled();
-    });
-
-    test('calls a custom `onClick` callback instead of `onValueChange` when activating a tab with `href`', async () => {
-        const onValueChange = jest.fn();
-        const onClick = jest.fn();
-        await renderWithContextAsync(
-            <TabList
-                items={ [
-                    tab1,
-                    {
-                        ...tab2,
-                        onClick,
-                        href: '#',
-                    },
-                ] }
-                value="tab-1"
-                onValueChange={ onValueChange }
-            />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowRight}');
-        await userEvent.keyboard('{Enter}');
-        expect(onClick).toBeCalled();
-        expect(onValueChange).not.toBeCalled();
     });
 });
 
