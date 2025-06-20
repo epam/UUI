@@ -150,12 +150,6 @@ export default function TabsWithLinksTabListExample(): ReactNode {
                     },
                 ] }
                 value={ tabId }
-                /*
-                    If a tab is a link (has `href` or `link` property),
-                    `onValueChange` is not called on its activation.
-                    If you want to react to a link tab's activation,
-                    pass `onClick` property to the appropriate tab in `items`.
-                */
                 onValueChange={ () => {} }
                 rawProps={ {
                     'aria-label': 'Tab list with links example',

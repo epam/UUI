@@ -106,7 +106,7 @@ export default function HorizontalTabListExample(): ReactNode {
                 <Avatar
                     alt="avatar"
                     img="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
-                    size="42"
+                    size="36"
                 />
 
                 <TabList
