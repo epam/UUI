@@ -16,6 +16,15 @@ export function useSelectAll<TItem, TId>(props: UseSelectAllProps<TItem, TId>) {
 
     const selectAll = useMemo(() => {
         if (props.stats.isSomeCheckable && isSelectAllEnabled) {
+            if (!props.stats.isPartiallyLoaded && !props.stats.isSomeCheckboxEnabled) {
+                return {
+                    value: false,
+                    onValueChange: props.handleSelectAll,
+                    isDisabled: true,
+                    indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllChecked,
+                };
+            }
+
             return {
                 value: props.stats.isSomeCheckboxEnabled ? props.stats.isAllChecked : false,
                 onValueChange: props.handleSelectAll,
