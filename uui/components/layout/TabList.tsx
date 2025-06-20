@@ -4,9 +4,12 @@ import {
 } from '@epam/uui-core';
 import React, {
     type ComponentProps,
+    forwardRef,
     type KeyboardEvent,
     type KeyboardEventHandler,
     type ReactNode,
+    RefObject,
+    useRef,
 } from 'react';
 
 import {
@@ -20,6 +23,11 @@ import {
 } from './FlexItems';
 import css from './TabList.module.scss';
 
+const stopKeyboardEvent: KeyboardEventHandler = (event): void => {
+    event.stopPropagation();
+    event.preventDefault();
+};
+
 type FlexRowProps = ComponentProps<typeof FlexRow>;
 
 type TabButtonPropsBase =
@@ -31,6 +39,91 @@ export type TabId = string;
 export type TabListItemProps = TabButtonPropsBase & {
     id: TabId;
 };
+
+type TabElement =
+    | HTMLButtonElement
+    | HTMLAnchorElement
+    | HTMLSpanElement;
+
+type OnKeyDownEvent =
+    & KeyboardEvent<HTMLAnchorElement>
+    & KeyboardEvent<HTMLButtonElement>
+    & KeyboardEvent<HTMLSpanElement>;
+
+type TabListItemComponentProps = TabListItemProps & Required<IHasDirection>;
+
+/*
+    A separate component is only necessary to correctly define a ref,
+    pass it to the tab component and call `click` on the tab element
+    if it is a link to activate it when "Space" key is pressed.
+    This manual activation is necessary because the role `tab` is expected to
+    behave the same way regardless of implementation details (link or button),
+    and links are not activated when pressing "Space" by default.
+*/
+const TabListItem = forwardRef<TabElement, TabListItemComponentProps>(
+    (
+        {
+            direction,
+            ...tabProps
+        },
+        refExternal,
+    ) => {
+        const refLocal = useRef<TabElement | null>(null);
+        const ref = refExternal !== null
+            ? refExternal as RefObject<TabElement>
+            : refLocal;
+
+        const {
+            id,
+            isLinkActive,
+        } = tabProps;
+
+        const isLink = (
+            tabProps.link !== undefined
+            || tabProps.href !== undefined
+        );
+
+        const handleOnKeyDown = (event: OnKeyDownEvent): void => {
+            if (
+                isLink
+                && event.code === 'Space'
+            ) {
+                stopKeyboardEvent(event);
+
+                tabProps.rawProps?.onKeyDown?.(event);
+
+                ref.current?.click();
+            } else {
+                tabProps.rawProps?.onKeyDown?.(event);
+            }
+        };
+
+        const tabIndex = isLinkActive
+            ? undefined
+            : -1;
+        const Component = direction === 'vertical'
+            ? VerticalTabButton
+            : TabButton;
+
+        return (
+            <Component
+                key={ id }
+                ref={ ref }
+                tabIndex={ tabIndex }
+                { ...tabProps }
+                rawProps={ {
+                    id,
+                    role: 'tab',
+                    'aria-selected': isLinkActive,
+                    ...tabProps.rawProps,
+                    onKeyDown: handleOnKeyDown,
+                } }
+            />
+        );
+    },
+);
+
+TabListItem.displayName = 'TabListItem';
 
 interface TabListProps extends
     IControlled<TabId>,
@@ -54,11 +147,6 @@ export function TabList({
     }
 
     const tabLastIndex = items.length - 1;
-
-    const stopKeyboardEvent: KeyboardEventHandler = (event): void => {
-        event.stopPropagation();
-        event.preventDefault();
-    };
 
     const getTabCurrentIndex = (tabIdCurrent: TabId): number => {
         return items.findIndex((tabProps) => {
@@ -100,14 +188,10 @@ export function TabList({
     };
 
     const onKeyDown: KeyboardEventHandler = (event) => {
-        type TargetElement =
-            | HTMLButtonElement
-            | HTMLAnchorElement
-            | HTMLSpanElement;
-        const focusedTabIdCurrent = (event.target as TargetElement).id;
+        const focusedTabIdCurrent = (event.target as TabElement).id;
 
         // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
-        switch (event.key) {
+        switch (event.code) {
             case 'ArrowUp': {
                 if (direction === 'vertical') {
                     stopKeyboardEvent(event);
@@ -188,41 +272,30 @@ export function TabList({
                         id,
                     } = tabProps;
 
-                    const handleOnClick: TabListItemProps['onClick'] = () => {
+                    const handleOnClick = (): void => {
                         onValueChange(id);
 
                         tabProps.onClick?.();
                     };
 
+                    const handleOnKeyDown = (event: OnKeyDownEvent): void => {
+                        onKeyDown(event);
+
+                        tabProps.rawProps?.onKeyDown?.(event);
+                    };
+
                     const isLinkActive = id === value;
-                    const tabIndex = isLinkActive
-                        ? undefined
-                        : -1;
-                    const Component = direction === 'vertical'
-                        ? VerticalTabButton
-                        : TabButton;
 
                     return (
-                        <Component
+                        <TabListItem
                             key={ id }
+                            direction={ direction }
                             isLinkActive={ isLinkActive }
-                            tabIndex={ tabIndex }
                             { ...tabProps }
                             onClick={ handleOnClick }
                             rawProps={ {
-                                id,
-                                role: 'tab',
-                                'aria-selected': isLinkActive,
                                 ...tabProps.rawProps,
-                                onKeyDown: (
-                                    event: KeyboardEvent<HTMLAnchorElement>
-                                    & KeyboardEvent<HTMLButtonElement>
-                                    & KeyboardEvent<HTMLSpanElement>,
-                                ) => {
-                                    onKeyDown(event);
-
-                                    tabProps.rawProps?.onKeyDown?.(event);
-                                },
+                                onKeyDown: handleOnKeyDown,
                             } }
                         />
                     );
