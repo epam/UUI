@@ -21,6 +21,7 @@ async function openTabMenuAndClickOption(tab: HTMLElement, optionToClick: string
     const opt = items.map((item) => within(item).queryByText(optionToClick)).find((e) => !!e);
     fireEvent.click(opt);
 }
+
 async function expectPresetTabHasOptions(tab: HTMLElement, expectedOptions: string[]) {
     fireEvent.click(within(tab).getByRole('button'));
     const dialog = await screen.findByRole('dialog');
@@ -30,7 +31,8 @@ async function expectPresetTabHasOptions(tab: HTMLElement, expectedOptions: stri
         expect(elem).toHaveTextContent(expectedOptions[i]);
     });
 }
-async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps> = {}) {
+
+async function setupPresetsPanel({ hasPresetChanged, onCopyLink }: Partial<PresetsPanelProps> = {}) {
     const mocks = {
         createNewPreset: jest.fn(),
         duplicatePreset: jest.fn(),
@@ -38,6 +40,7 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
         deletePreset: jest.fn(),
         choosePreset: jest.fn(),
         getPresetLink: jest.fn(),
+        onCopyLink: onCopyLink,
     };
     type TestViewStateType = {
         thisIsATest: string;
@@ -91,6 +94,7 @@ async function setupPresetsPanel({ hasPresetChanged }: Partial<PresetsPanelProps
         rawProps: {
             'data-testid': 'presets-panel',
         },
+        onCopyLink: mocks.onCopyLink,
     };
     const result = await renderWithContextAsync(<PresetsPanel { ...panelProps } />);
     const tabs = await screen.findAllByRole('tab');
@@ -261,7 +265,7 @@ describe('PresetsPanel', () => {
         });
         expect(tabs[1]).toHaveClass('uui-has-right-icon');
         await expectPresetTabHasOptions(tabs[1], [
-            'Save in current', 'Save as new', 'Discard all changes', 'Rename', 'Duplicate', 'Copy Link', 'Delete',
+            'Save in current', 'Save as new', 'Discard all changes', 'Rename', 'Copy Link', 'Delete',
         ]);
     });
 
@@ -390,5 +394,42 @@ describe('PresetsPanel', () => {
         expect(items.length).toBe(2);
         expect(items[0]).toHaveTextContent('All items');
         expect(items[1]).toHaveTextContent('Items with red status');
+    });
+
+    it('should NOT show "Duplicate" for modified preset', async () => {
+        const {
+            dom: { tabs },
+        } = await setupPresetsPanel({
+            hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
+        });
+        // Открываем меню для изменённого пресета
+        fireEvent.click(within(tabs[1]).getByRole('button'));
+        const dialog = await screen.findByRole('dialog');
+        const items = within(dialog).getAllByRole('menuitem');
+        const duplicate = items.find((item) => item.textContent?.includes('Duplicate'));
+        expect(duplicate).toBeUndefined();
+    });
+
+    it('should NOT show "Copy Link" if onCopyLink is null', async () => {
+        const { dom: { tabs } } = await setupPresetsPanel({
+            onCopyLink: null,
+        });
+        fireEvent.click(within(tabs[1]).getByRole('button'));
+        const dialog = await screen.findByRole('dialog');
+        const items = within(dialog).getAllByRole('menuitem');
+        const copyLink = items.find((item) => item.textContent?.includes('Copy Link'));
+        expect(copyLink).toBeUndefined();
+    });
+
+    it('should use custom onCopyLink if provided', async () => {
+        const customLink = 'https://custom-link';
+        const mocks = {
+            onCopyLink: jest.fn(() => customLink),
+        };
+        const { dom: { tabs } } = await setupPresetsPanel({
+            onCopyLink: mocks.onCopyLink,
+        });
+        await openTabMenuAndClickOption(tabs[1], 'Copy Link');
+        expect(mocks.onCopyLink).toHaveBeenCalled();
     });
 });
