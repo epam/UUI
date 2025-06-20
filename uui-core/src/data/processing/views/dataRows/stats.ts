@@ -7,15 +7,17 @@ export interface NodeStats {
     isSomeSelected: boolean;
     hasMoreRows: boolean;
     isSomeCheckboxEnabled: boolean;
+    isPartiallyLoaded?: boolean;
 }
 
-export const getDefaultNodeStats = () => ({
+export const getDefaultNodeStats = (): NodeStats => ({
     isSomeCheckable: false,
     isSomeChecked: false,
     isAllChecked: true,
     isSomeSelected: false,
     hasMoreRows: false,
     isSomeCheckboxEnabled: false,
+    isPartiallyLoaded: false,
 });
 
 export const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
@@ -26,12 +28,14 @@ export const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
     isAllChecked: parentStats.isAllChecked && childStats.isAllChecked,
     isSomeCheckboxEnabled: parentStats.isSomeCheckboxEnabled || childStats.isSomeCheckboxEnabled,
     hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
+    isPartiallyLoaded: parentStats.isPartiallyLoaded || childStats.isPartiallyLoaded,
 });
 
 export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualStats: NodeStats, cascadeSelection: CascadeSelection): NodeStats => {
     let {
         isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
     } = actualStats;
+    const isImplicitCascadeSelection = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
 
     if (row.checkbox && row.checkbox.isVisible) {
         isSomeCheckable = true;
@@ -42,11 +46,9 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
             isSomeCheckboxEnabled = true;
         }
 
-        const isImplicitCascadeSelection = cascadeSelection === CascadeSelectionTypes.IMPLICIT;
-        if (
-            (!row.isChecked && !row.checkbox.isDisabled && !isImplicitCascadeSelection)
-            || (row.parentId === undefined && !row.isChecked && isImplicitCascadeSelection)
-        ) {
+        if (!row.isChecked && !isImplicitCascadeSelection) {
+            isAllChecked = row.checkbox.isDisabled ? isAllChecked : false;
+        } else if (row.parentId === undefined && !row.isChecked && isImplicitCascadeSelection) {
             isAllChecked = false;
         }
     }
@@ -56,6 +58,11 @@ export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualSta
     }
 
     return {
-        ...actualStats, isSomeCheckable, isSomeChecked, isAllChecked, isSomeSelected, isSomeCheckboxEnabled,
+        ...actualStats,
+        isSomeCheckable,
+        isSomeChecked,
+        isAllChecked,
+        isSomeSelected,
+        isSomeCheckboxEnabled,
     };
 };

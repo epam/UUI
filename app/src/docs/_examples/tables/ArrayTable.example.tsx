@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { DataColumnProps, useArrayDataSource } from '@epam/uui-core';
+import { DataColumnProps, DataTableState, useArrayDataSource } from '@epam/uui-core';
 import { DataTable, Panel, Text } from '@epam/uui';
 import { demoData, FeatureClass } from '@epam/uui-docs';
 import css from './TablesExamples.module.scss';
 
 export default function ArrayDataTableExample() {
-    const [dataSourceState, setDataSourceState] = useState({});
+    const [dataSourceState, setDataSourceState] = useState<DataTableState>({ checked: ['PPL'] });
 
     const dataSource = useArrayDataSource<FeatureClass, number, unknown>(
         {
@@ -14,7 +14,17 @@ export default function ArrayDataTableExample() {
         [],
     );
 
-    const view = dataSource.useView(dataSourceState, setDataSourceState, {});
+    const view = dataSource.useView(dataSourceState, setDataSourceState, {
+        getRowOptions: (item) => {
+            const index = demoData.featureClasses.findIndex((i) => item.id === i.id);
+            return {
+                checkbox: {
+                    isVisible: true,
+                    isDisabled: index % 2 === 0,
+                },
+            };
+        },
+    });
 
     const productColumns: DataColumnProps<FeatureClass>[] = useMemo(
         () => [
