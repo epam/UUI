@@ -1,40 +1,55 @@
-{
-  "object": "value",
-  "document": {
-    "object": "document",
+[
+  {
+    "type": "paragraph",
     "data": {},
-    "nodes": [
+    "children": [
       {
-        "object": "block",
-        "type": "paragraph",
+        "text": "TabButton is used in the Tabs menu. It extends all behavior from basic "
+      },
+      {
+        "type": "link",
         "data": {},
-        "nodes": [
+        "url": "/documents?category=components&id=button&mode=doc&skin=UUI4_promo",
+        "children": [
           {
-            "object": "text",
-            "text": "TabButton is used in the Tabs menu. It extends all behavior from basic ",
-            "marks": []
-          },
-          {
-            "object": "inline",
-            "type": "link",
-            "data": {
-              "url": "/documents?category=components&id=button&mode=doc&skin=UUI4_promo"
-            },
-            "nodes": [
-              {
-                "object": "text",
-                "text": "Button",
-                "marks": []
-              }
-            ]
-          },
-          {
-            "object": "text",
-            "text": " components except some styling configurations.",
-            "marks": []
+            "text": "Button"
           }
         ]
+      },
+      {
+        "text": " components except some styling configurations."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": ""
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "If you want an accessible keyboard navigation between tabs, consider using "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tabList&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Tab List"
+          }
+        ]
+      },
+      {
+        "text": " component."
       }
     ]
   }
-}
+]
