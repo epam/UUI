@@ -1,3 +1,5 @@
+import { TabList } from '@epam/uui';
+import { TDocConfig, TSkin } from '@epam/uui-docs';
 import React from 'react';
 
 import {
@@ -8,6 +10,16 @@ import {
 
 export class TableListDoc extends BaseDocsBlock {
     title = 'Tab List';
+
+    static override config: TDocConfig = {
+        name: 'TabList',
+        bySkin: {
+            [TSkin.UUI]: {
+                type: '@epam/uui:TabListProps',
+                component: TabList,
+            },
+        },
+    };
 
     renderContent() {
         return (

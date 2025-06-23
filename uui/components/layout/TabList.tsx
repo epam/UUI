@@ -7,7 +7,6 @@ import React, {
     forwardRef,
     type KeyboardEvent,
     type KeyboardEventHandler,
-    type ReactNode,
     RefObject,
     useRef,
 } from 'react';
@@ -125,182 +124,191 @@ const TabListItem = forwardRef<TabElement, TabListItemComponentProps>(
 
 TabListItem.displayName = 'TabListItem';
 
-interface TabListProps extends
+export interface TabListProps extends
     IControlled<TabId>,
     IHasDirection,
     FlexRowProps {
+    /** `TabButton` or `VerticalTabButton` props with required `id`. */
     items: Array<TabListItemProps>;
 }
 
-export function TabList({
-    items,
-    value,
-    onValueChange,
-    direction = 'horizontal',
-    borderBottom = direction === 'horizontal',
-    cx,
-    rawProps,
-    ...otherProps
-}: TabListProps): ReactNode {
-    if (items.length === 0) {
-        return null;
-    }
+export const TabList = forwardRef<HTMLDivElement, TabListProps>(
+    (
+        {
+            items,
+            value,
+            onValueChange,
+            direction = 'horizontal',
+            borderBottom = direction === 'horizontal',
+            cx,
+            rawProps,
+            ...otherProps
+        },
+        ref,
+    ) => {
+        if (items.length === 0) {
+            return null;
+        }
 
-    const tabLastIndex = items.length - 1;
+        const tabLastIndex = items.length - 1;
 
-    const getTabCurrentIndex = (tabIdCurrent: TabId): number => {
-        return items.findIndex((tabProps) => {
-            return tabProps.id === tabIdCurrent;
-        });
-    };
+        const getTabCurrentIndex = (tabIdCurrent: TabId): number => {
+            return items.findIndex((tabProps) => {
+                return tabProps.id === tabIdCurrent;
+            });
+        };
 
-    const moveToTabWithIndex = (tabIndex: number): void => {
-        /*
-            `id`-s provided in `items` are assigned to the tabs.
-            Unless users manually broke this connection,
-            the index calculation will be correct,
-            and the tab element will be present in the DOM.
-        */
-        const tab = items.at(tabIndex)!;
-        const tabElement = document.getElementById(tab.id)!;
+        const moveToTabWithIndex = (tabIndex: number): void => {
+            /*
+                `id`-s provided in `items` are assigned to the tabs.
+                Unless users manually broke this connection,
+                the index calculation will be correct,
+                and the tab element will be present in the DOM.
+            */
+            const tab = items.at(tabIndex)!;
+            const tabElement = document.getElementById(tab.id)!;
 
-        tabElement.focus();
-    };
+            tabElement.focus();
+        };
 
-    const moveToPreviousTab = (tabIdCurrent: TabId): void => {
-        const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
+        const moveToPreviousTab = (tabIdCurrent: TabId): void => {
+            const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
 
-        const tabIndexNext = tabCurrentIndex === 0
-            ? tabLastIndex
-            : tabCurrentIndex - 1;
+            const tabIndexNext = tabCurrentIndex === 0
+                ? tabLastIndex
+                : tabCurrentIndex - 1;
 
-        moveToTabWithIndex(tabIndexNext);
-    };
+            moveToTabWithIndex(tabIndexNext);
+        };
 
-    const moveToNextTab = (tabIdCurrent: TabId): void => {
-        const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
+        const moveToNextTab = (tabIdCurrent: TabId): void => {
+            const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
 
-        const tabIndexNext = tabCurrentIndex === tabLastIndex
-            ? 0
-            : tabCurrentIndex + 1;
+            const tabIndexNext = tabCurrentIndex === tabLastIndex
+                ? 0
+                : tabCurrentIndex + 1;
 
-        moveToTabWithIndex(tabIndexNext);
-    };
+            moveToTabWithIndex(tabIndexNext);
+        };
 
-    const onKeyDown: KeyboardEventHandler = (event) => {
-        const focusedTabIdCurrent = (event.target as TabElement).id;
+        const onKeyDown: KeyboardEventHandler = (event) => {
+            const focusedTabIdCurrent = (event.target as TabElement).id;
 
-        // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
-        switch (event.code) {
-            case 'ArrowUp': {
-                if (direction === 'vertical') {
+            // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
+            switch (event.code) {
+                case 'ArrowUp': {
+                    if (direction === 'vertical') {
+                        stopKeyboardEvent(event);
+
+                        moveToPreviousTab(focusedTabIdCurrent);
+                    }
+
+                    break;
+                }
+
+                case 'ArrowDown': {
+                    if (direction === 'vertical') {
+                        stopKeyboardEvent(event);
+
+                        moveToNextTab(focusedTabIdCurrent);
+                    }
+
+                    break;
+                }
+
+                case 'ArrowLeft': {
                     stopKeyboardEvent(event);
 
                     moveToPreviousTab(focusedTabIdCurrent);
+
+                    break;
                 }
 
-                break;
-            }
-
-            case 'ArrowDown': {
-                if (direction === 'vertical') {
+                case 'ArrowRight': {
                     stopKeyboardEvent(event);
 
                     moveToNextTab(focusedTabIdCurrent);
+
+                    break;
                 }
 
-                break;
+                case 'Home': {
+                    stopKeyboardEvent(event);
+
+                    moveToTabWithIndex(0);
+
+                    break;
+                }
+
+                case 'End': {
+                    stopKeyboardEvent(event);
+
+                    moveToTabWithIndex(tabLastIndex);
+
+                    break;
+                }
+
+                default: {
+                    break;
+                }
             }
+        };
 
-            case 'ArrowLeft': {
-                stopKeyboardEvent(event);
-
-                moveToPreviousTab(focusedTabIdCurrent);
-
-                break;
-            }
-
-            case 'ArrowRight': {
-                stopKeyboardEvent(event);
-
-                moveToNextTab(focusedTabIdCurrent);
-
-                break;
-            }
-
-            case 'Home': {
-                stopKeyboardEvent(event);
-
-                moveToTabWithIndex(0);
-
-                break;
-            }
-
-            case 'End': {
-                stopKeyboardEvent(event);
-
-                moveToTabWithIndex(tabLastIndex);
-
-                break;
-            }
-
-            default: {
-                break;
-            }
-        }
-    };
-
-    return (
-        <FlexRow
-            borderBottom={ borderBottom }
-            cx={ [
+        return (
+            <FlexRow
+                ref={ ref }
+                borderBottom={ borderBottom }
+                cx={ [
+                    {
+                        [css.vertical]: direction === 'vertical',
+                    },
+                    cx,
+                ] }
+                rawProps={ {
+                    role: 'tablist',
+                    'aria-orientation': direction,
+                    ...rawProps,
+                } }
+                { ...otherProps }
+            >
                 {
-                    [css.vertical]: direction === 'vertical',
-                },
-                cx,
-            ] }
-            rawProps={ {
-                role: 'tablist',
-                'aria-orientation': direction,
-                ...rawProps,
-            } }
-            { ...otherProps }
-        >
-            {
-                items.map((tabProps) => {
-                    const {
-                        id,
-                    } = tabProps;
+                    items.map((tabProps) => {
+                        const {
+                            id,
+                        } = tabProps;
 
-                    const handleOnClick = (): void => {
-                        onValueChange(id);
+                        const handleOnClick = (): void => {
+                            onValueChange(id);
 
-                        tabProps.onClick?.();
-                    };
+                            tabProps.onClick?.();
+                        };
 
-                    const handleOnKeyDown = (event: OnKeyDownEvent): void => {
-                        onKeyDown(event);
+                        const handleOnKeyDown = (event: OnKeyDownEvent): void => {
+                            onKeyDown(event);
 
-                        tabProps.rawProps?.onKeyDown?.(event);
-                    };
+                            tabProps.rawProps?.onKeyDown?.(event);
+                        };
 
-                    const isLinkActive = id === value;
+                        const isLinkActive = id === value;
 
-                    return (
-                        <TabListItem
-                            key={ id }
-                            direction={ direction }
-                            isLinkActive={ isLinkActive }
-                            { ...tabProps }
-                            onClick={ handleOnClick }
-                            rawProps={ {
-                                ...tabProps.rawProps,
-                                onKeyDown: handleOnKeyDown,
-                            } }
-                        />
-                    );
-                })
-            }
-        </FlexRow>
-    );
-}
+                        return (
+                            <TabListItem
+                                key={ id }
+                                direction={ direction }
+                                isLinkActive={ isLinkActive }
+                                { ...tabProps }
+                                onClick={ handleOnClick }
+                                rawProps={ {
+                                    ...tabProps.rawProps,
+                                    onKeyDown: handleOnKeyDown,
+                                } }
+                            />
+                        );
+                    })
+                }
+            </FlexRow>
+        );
+    },
+);
+
+TabList.displayName = 'TabList';
