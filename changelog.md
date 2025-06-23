@@ -1,4 +1,8 @@
 # 6.1.4 - xx.xx.2025
+
+**What's New**
+* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
+
 **What's Fixed**
 * [@epam/uui-test-utils]: fixed various of utils to work with React 18
 * [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
