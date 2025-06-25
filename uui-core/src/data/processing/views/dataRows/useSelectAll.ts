@@ -16,12 +16,24 @@ export function useSelectAll<TItem, TId>(props: UseSelectAllProps<TItem, TId>) {
 
     const selectAll = useMemo(() => {
         if (props.stats.isSomeCheckable && isSelectAllEnabled) {
+            // For case when we full list is loaded(Array, Async, Full loaded lazy) and all checkboxes are disabled
             if (!props.stats.isPartiallyLoaded && !props.stats.isSomeCheckboxEnabled) {
                 return {
                     value: props.stats.isAllDisabledChecked,
                     onValueChange: props.handleSelectAll,
                     isDisabled: true,
                     indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllDisabledChecked,
+                };
+            }
+
+            // For case when list a partially loaded,
+            // we can't rely on props.stats.isSomeEnabledChecked in indeterminate calculation,
+            // because we might not have loaded checked items yet and can't check if they disabled or not
+            if (props.stats.isPartiallyLoaded) {
+                return {
+                    value: props.stats.isSomeCheckboxEnabled ? props.stats.isAllChecked : false,
+                    onValueChange: props.handleSelectAll,
+                    indeterminate: props.checked && props.checked.length > 0 && !props.stats.isAllChecked,
                 };
             }
 
