@@ -1,3 +1,9 @@
+# 6.x.x - xx.xx.2025
+
+**What's Fixed**
+* [DataSources]: fixed handling of selectAll for views with disabled checkboxes
+
+
 # 6.1.4 - 17.06.2025
 
 **What's Fixed**
