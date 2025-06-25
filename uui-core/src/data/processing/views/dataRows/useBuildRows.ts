@@ -75,7 +75,11 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                 const estimatedChildrenCount = getEstimatedChildrenCount(id);
                 if (estimatedChildrenCount !== undefined) {
-                    const { ids: childrenIds } = tree.getItems(id);
+                    const { ids: childrenIds, status: childStatus } = tree.getItems(id);
+
+                    if (childStatus === PARTIALLY_LOADED) {
+                        stats.isPartiallyLoaded = true;
+                    }
 
                     if (estimatedChildrenCount > 0) {
                         if (childrenIds.length > 0) {
