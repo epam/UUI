@@ -61,7 +61,7 @@ export const Text = withMods<uuiComponents.TextProps, TextProps>(
     uuiComponents.Text,
     applyTextMods,
     (props) => {
-        const style: any = props?.rawProps?.style || {};
+        const style: any = props?.rawProps?.style ? { ...props.rawProps.style } : {};
 
         props.fontSize && (style['--uui-text-font-size'] = `${props.fontSize}px`);
         props.lineHeight && (style['--uui-text-line-height'] = `${props.lineHeight}px`);
