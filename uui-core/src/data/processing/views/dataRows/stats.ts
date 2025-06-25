@@ -35,7 +35,7 @@ export const mergeStats = (parentStats: NodeStats, childStats: NodeStats) => ({
     hasMoreRows: parentStats.hasMoreRows || childStats.hasMoreRows,
     isPartiallyLoaded: parentStats.isPartiallyLoaded || childStats.isPartiallyLoaded,
     isAllDisabledChecked: parentStats.isAllDisabledChecked && childStats.isAllDisabledChecked,
-    isSomeEnabledChecked: parentStats.isSomeEnabledChecked && childStats.isSomeEnabledChecked,
+    isSomeEnabledChecked: parentStats.isSomeEnabledChecked || childStats.isSomeEnabledChecked,
 });
 
 export const getRowStats = <TItem, TId>(row: DataRowProps<TItem, TId>, actualStats: NodeStats, cascadeSelection: CascadeSelection): NodeStats => {
