@@ -1,4 +1,6 @@
 # 6.x.x - xx.xx.2025
+**What's New**
+* [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
 
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
