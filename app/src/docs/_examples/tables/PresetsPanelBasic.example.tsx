@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { DataColumnProps, IModal, ITablePreset, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext } from '@epam/uui-core';
 import {
@@ -76,8 +76,72 @@ const initialPresets: ITablePreset[] = [
 export default function PresetsPanelExample() {
     const svc = useUuiContext();
     const { uuiModals } = useUuiContext();
-    const [initialPresetsState] = useState([...initialPresets, ...(JSON.parse(localStorage.getItem('presets')) || [])]);
 
+    // --- Presets API Imitation using localStorage ---
+    // Key for localStorage
+    const PRESETS_KEY = 'presetsPanelExample.presets';
+
+    // Load presets from localStorage or fallback to initialPresets
+    const loadPresets = () => {
+        try {
+            const raw = localStorage.getItem(PRESETS_KEY);
+            if (raw) return JSON.parse(raw);
+        } catch {}
+        return [...initialPresets];
+    };
+
+    // Find the next available positive ID (ignoring negative IDs for built-ins)
+    const getNextId = (presets: ITablePreset[]) => {
+        const max = presets.reduce((acc, p) => (typeof p.id === 'number' && p.id > acc ? p.id : acc), 0);
+        return max + 1;
+    };
+
+    // State for presets and nextId
+    const [presets, setPresets] = useState<ITablePreset[]>(loadPresets());
+    const [nextId, setNextId] = useState(() => getNextId(loadPresets()));
+
+    // Save presets to localStorage
+    const savePresets = (newPresets: ITablePreset[]) => {
+        localStorage.setItem(PRESETS_KEY, JSON.stringify(newPresets));
+    };
+
+    // --- CRUD handlers (imitating async API) ---
+    const createPreset = useCallback(async (preset: ITablePreset) => {
+        const id = nextId;
+        setNextId(id + 1);
+        const newPreset = { ...preset, id };
+        setPresets((prev) => {
+            const updated = [...prev, newPreset];
+            savePresets(updated);
+            return updated;
+        });
+        return id;
+    }, [nextId]);
+
+    const updatePreset = useCallback(async (preset: ITablePreset) => {
+        setPresets((prev) => {
+            const updated = prev.map((p) => p.id === preset.id ? { ...preset } : p);
+            savePresets(updated);
+            return updated;
+        });
+    }, []);
+
+    const deletePreset = useCallback(async (preset: ITablePreset) => {
+        setPresets((prev) => {
+            const updated = prev.filter((p) => p.id !== preset.id);
+            savePresets(updated);
+            return updated;
+        });
+    }, []);
+
+    // --- Confirmation modal for delete (UI only, not API) ---
+    const handlePresetDelete = useCallback(async (preset: ITablePreset<any, any>): Promise<void> => {
+        await uuiModals
+            .show((props) => <RemovePresetConfirmationModal presetName={ preset.name } { ...props } />);
+        deletePreset(preset);
+    }, [deletePreset, uuiModals]);
+
+    // --- Table state and data ---
     const filtersConfig: TableFiltersConfig<Person>[] = useMemo(
         () => [
             {
@@ -116,19 +180,21 @@ export default function PresetsPanelExample() {
         [],
     );
 
-    const handlePresetDelete = useCallback(async (preset: ITablePreset<any, any>): Promise<void> => {
-        await uuiModals
-            .show((props) => <RemovePresetConfirmationModal presetName={ preset.name } { ...props } />);
-        await svc.api.presets.deletePreset(preset);
-    }, [svc.api.presets, uuiModals]);
-
     const tableStateApi = useTableState({
         filters: filtersConfig,
-        initialPresets: initialPresetsState,
-        onPresetCreate: svc.api.presets.createPreset,
-        onPresetUpdate: svc.api.presets.updatePreset,
+        initialPresets: presets,
+        onPresetCreate: createPreset,
+        onPresetUpdate: updatePreset,
         onPresetDelete: handlePresetDelete,
     });
+
+    // Keep local state in sync with useTableState (for UI consistency)
+    useEffect(() => {
+        if (tableStateApi.presets !== presets) {
+            setPresets(tableStateApi.presets);
+            savePresets(tableStateApi.presets);
+        }
+    }, [tableStateApi.presets]);
 
     const view = dataSource.useView(tableStateApi.tableState, tableStateApi.setTableState);
 
