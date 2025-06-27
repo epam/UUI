@@ -34,6 +34,7 @@ export const DataTableCell = <TItem, TId, TCellValue>(props: DataTableCellProps<
         const editorProps: RenderEditorProps<TItem, TId, any> = {
             value: props.value,
             onValueChange: props.onValueChange,
+            isFocused: state.inFocus,
             isDisabled: props.isDisabled,
             isInvalid: props.isInvalid,
             isReadonly: props.isReadonly,

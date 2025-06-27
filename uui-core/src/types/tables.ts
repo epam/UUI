@@ -135,6 +135,7 @@ export interface DataTableRowProps<TItem = any, TId = any> extends DataRowProps<
 
 export interface RenderEditorProps<TItem, TId, TCellValue> extends IEditable<TCellValue>, ICanFocus<any> {
     rowProps: DataRowProps<TItem, TId>;
+    isFocused: boolean;
     mode: 'cell'; // This can signal the editor component to adapt it's visuals to cell editor
 }
 
