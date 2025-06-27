@@ -1701,7 +1701,7 @@ exports[`docsGen:all docsGen:union should not expand ReactNode type of property 
        "raw": "React.ReactNode",
        "html": "React<span class=\\"token punctuation\\">.</span>ReactNode"
       },
-      "typeValueRef": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode",
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      }
     ],
@@ -1736,21 +1736,21 @@ exports[`docsGen:all docsGen:union should not expand ReactNode type of property 
        "raw": "React.ReactNode",
        "html": "React<span class=\\"token punctuation\\">.</span>ReactNode"
       },
-      "typeValueRef": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode",
+      "typeValueRef": "@types/react:ReactNode",
       "required": false
      }
     ],
     "propsFromUnion": false
    }
   },
-  "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts:ReactNode": {
+  "@types/react:ReactNode": {
    "summary": {
-    "module": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts",
+    "module": "@types/react",
     "typeName": {
      "name": "ReactNode",
      "nameFull": "ReactNode"
     },
-    "src": "node_modules/@types/draft-js/node_modules/@types/react/index.d.ts",
+    "src": "node_modules/@types/react/index.d.ts",
     "exported": false
    }
   }
