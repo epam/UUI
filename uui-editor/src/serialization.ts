@@ -65,7 +65,7 @@ interface RteConverterOptions {
     plugins?: PlatePlugin[];
 }
 
-export const createDeserializer = (type: SerializerType = 'html', options: RteConverterOptions) => {
+export const createDeserializer = (type: SerializerType = 'html', options?: RteConverterOptions) => {
     if (type === 'html') {
         const editor = createTempEditor(options.plugins || defaultHtmlSerializationsWorkingPlugins);
         return (data: string) => {
@@ -86,7 +86,7 @@ export const createDeserializer = (type: SerializerType = 'html', options: RteCo
     }
 };
 
-export const createSerializer = (type: SerializerType = 'html', options: RteConverterOptions) => {
+export const createSerializer = (type: SerializerType = 'html', options?: RteConverterOptions) => {
     if (type === 'html') {
         const editor = createTempEditor(options.plugins || defaultHtmlSerializationsWorkingPlugins);
         return (v: EditorValue) => {
