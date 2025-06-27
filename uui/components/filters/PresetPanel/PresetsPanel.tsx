@@ -17,6 +17,8 @@ import css from './PresetsPanel.module.scss';
 export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {
     /** Current state value of the table(list) */
     tableState: DataTableState;
+    /** Optional: custom logic for Copy Link action, if null, "Copy Link" button will be hidden */
+    onCopyLink?: ((tableState: DataTableState) => string) | null;
 }
 
 type PresetAdaptiveItem = AdaptiveItemProps<{ preset?: ITablePreset }>;

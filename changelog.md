@@ -3,6 +3,12 @@
 * remove support of deprecated draft-rte
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
 
+**What's New**
+* [PresetsPanel]:
+    * "Duplicate" action is now only available for unchanged presets
+    * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
+    * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
+
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
 
