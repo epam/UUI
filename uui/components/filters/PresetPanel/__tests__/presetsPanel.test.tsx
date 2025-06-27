@@ -402,7 +402,6 @@ describe('PresetsPanel', () => {
         } = await setupPresetsPanel({
             hasPresetChanged: (preset: ITablePreset) => preset.id === -2,
         });
-        // Открываем меню для изменённого пресета
         fireEvent.click(within(tabs[1]).getByRole('button'));
         const dialog = await screen.findByRole('dialog');
         const items = within(dialog).getAllByRole('menuitem');

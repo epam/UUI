@@ -13,7 +13,7 @@ interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
     addPreset: () => void;
     tableState: DataTableState;
     renamePreset: () => void;
-    onCopyLink?: ((tableState: DataTableState) => string) | null;
+    onCopyLink?: ((tableState: DataTableState) => void) | null;
 }
 
 export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
@@ -34,20 +34,15 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
             .catch(() => null);
     }, []);
 
-    function getCopyLink(): string {
-        const getPresetLink = props.onCopyLink || props.getPresetLink;
-        const isPresetChanged = props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset);
-        if (isPresetChanged) {
-            return getPresetLink({ ...props.preset, ...props.tableState });
-        }
-        return getPresetLink(props.preset);
-    }
-
     const copyUrlToClipboard = useCallback(async (): Promise<void> => {
-        const link = getCopyLink();
+        const isPresetChanged = props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset);
+        const preset = isPresetChanged ? { ...props.preset, ...props.tableState } : props.preset;
+        const link = props.getPresetLink(preset);
         await navigator.clipboard.writeText(link);
         successNotificationHandler('Link copied!');
-    }, [props.activePresetId, props.preset, props.hasPresetChanged, props.getPresetLink, props.tableState, props.onCopyLink]);
+    }, [props.activePresetId, props.preset, props.hasPresetChanged, props.getPresetLink, props.tableState]);
+
+    const onCopyLink = props.onCopyLink ? props.onCopyLink : copyUrlToClipboard;
 
     const saveInCurrent = useCallback(
         async (preset: ITablePreset) => {
@@ -139,7 +134,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                         key={ `${props.preset.id}-copyLink` }
                         icon={ settings.presetsPanel.icons.copyLinkIcon }
                         caption="Copy Link"
-                        onClick={ copyUrlToClipboard }
+                        onClick={ onCopyLink }
                     />
                 )}
                 {!isReadonlyPreset && (
