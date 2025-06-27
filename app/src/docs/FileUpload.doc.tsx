@@ -1,16 +1,12 @@
-import * as React from 'react';
-import { EditableDocContent, DocExample, BaseDocsBlock } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class FileUploadDoc extends BaseDocsBlock {
-    title = 'File Upload';
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="file-upload-descriptions" />
-                {this.renderSectionTitle('Examples')}
-                <DocExample title="File Upload" path="./_examples/fileUpload/FileUpload.example.tsx" />
-                <DocExample title="With custom infoText" path="./_examples/fileUpload/FileUploadCustomInfoText.example.tsx" />
-            </>
-        );
-    }
-}
+export const FileUploadDocItem: DocItem = {
+    id: 'fileUpload',
+    name: 'File Upload',
+    parentId: 'components',
+    examples: [
+        { descriptionPath: 'file-upload-descriptions' },
+        { name: 'File Upload', componentPath: './_examples/fileUpload/FileUpload.example.tsx' },
+        { name: 'With custom infoText', componentPath: './_examples/fileUpload/FileUploadCustomInfoText.example.tsx' },
+    ],
+};
