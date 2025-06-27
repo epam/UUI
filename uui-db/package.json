@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-db",
-  "version": "4.11.0-alpha.1",
+  "version": "4.11.0",
   "description": "UUI - client-side relational state cache",
   "author": "EPAM",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/uui-core": "4.11.0-alpha.1",
+    "@epam/uui-core": "4.11.0",
     "@types/lodash.countby": "4.6.6",
     "@types/lodash.filter": "4.6.6",
     "@types/lodash.foreach": "4.5.6",

@@ -1,6 +1,6 @@
 {
   "name": "@epam/draft-rte",
-  "version": "4.11.0-alpha.1",
+  "version": "4.11.0",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@epam/assets": "4.5.3",
-    "@epam/loveship": "4.11.0-alpha.1",
-    "@epam/uui-components": "4.11.0-alpha.1",
-    "@epam/uui-core": "4.11.0-alpha.1",
+    "@epam/loveship": "4.11.0",
+    "@epam/uui-components": "4.11.0",
+    "@epam/uui-core": "4.11.0",
     "@types/draft-js": "0.10.23",
     "classnames": "^2.2.6",
     "draft-convert": "^2.1.2",

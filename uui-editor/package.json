@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-editor",
-  "version": "4.11.0-alpha.1",
+  "version": "4.11.0",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -13,9 +13,9 @@
   "dependencies": {
     "@braintree/sanitize-url": "4.0.1",
     "@convertkit/slate-lists": "0.2.2",
-    "@epam/assets": "4.11.0-alpha.1",
-    "@epam/uui-components": "4.11.0-alpha.1",
-    "@epam/uui-core": "4.11.0-alpha.1",
+    "@epam/assets": "4.11.0",
+    "@epam/uui-components": "4.11.0",
+    "@epam/uui-core": "4.11.0",
     "@mercuriya/slate-linkify": "0.1.2",
     "@popperjs/core": "2.9.0",
     "@types/lodash.flatten": "4.4.6",
