@@ -234,7 +234,7 @@ describe('ArrayListView - row options', () => {
             expect(view.selectAll).not.toBeNull();
             expect(view.selectAll!.value).toBeFalsy();
             expect(typeof view.selectAll!.onValueChange).toBe('function');
-            expect(view.selectAll!.indeterminate).toBeFalsy();
+            expect(view.selectAll!.indeterminate).toBeTruthy();
 
             const afRow = view.getVisibleRows()[0];
 
@@ -789,7 +789,7 @@ describe('ArrayListView - row options', () => {
             expect(view.selectAll).not.toBeNull();
             expect(view.selectAll!.value).toBeFalsy();
             expect(typeof view.selectAll!.onValueChange).toBe('function');
-            expect(view.selectAll!.indeterminate).toBeFalsy();
+            expect(view.selectAll!.indeterminate).toBeTruthy();
 
             const afRow = view.getVisibleRows()[0];
 
