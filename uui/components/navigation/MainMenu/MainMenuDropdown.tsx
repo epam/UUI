@@ -1,4 +1,4 @@
-import React, { ReactElement, KeyboardEvent } from 'react';
+import React, { KeyboardEvent } from 'react';
 import FocusLock from 'react-focus-lock';
 import cx from 'classnames';
 import { Dropdown, MainMenuDropdownProps } from '@epam/uui-components';
@@ -32,23 +32,7 @@ export function MainMenuDropdown(props: MainMenuDropdownProps) {
                     } }
                 >
                     <div className={ cx(css.dropdownBody, 'uui-main_menu-dropdown', props.cx) }>
-                        {props.renderBody
-                            ? props.renderBody({ ...dropdownBodyProps })
-                            : React.Children.map<ReactElement<any>, ReactElement<any>>(
-                                props.children as ReactElement<any>[],
-                                (item) => {
-                                    if (!item) return item;
-                                    return React.createElement(item.type, {
-                                        ...item.props,
-                                        onClick: item.props.onClick
-                                            ? () => {
-                                                item.props.onClick();
-                                                dropdownBodyProps.onClose();
-                                            }
-                                            : null,
-                                    });
-                                },
-                            )}
+                        {props.renderBody({ ...dropdownBodyProps })}
                     </div>
                 </FocusLock>
             ) }

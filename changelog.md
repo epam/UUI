@@ -1,6 +1,44 @@
 # 6.x.x - xx.xx.2025
 **What's New**
-* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props.
+* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. Removed `Burger`, `renderBurger` prop, use `Burger` component instead. Removed `alwaysShowBurger` prop, use `Burger` component in items with `collapsedContainer: true/false` option. Removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. Removed `MainMenuDropdown` prop, use `MainMenuDropdown` as a component for 'More' container in items, see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components&theme=loveship#examples-mainMenu-Responsive)
+    
+  ```tsx
+  // before
+  
+    <MainMenu
+       cx={ css.menuContainer }
+       renderBurger={ renderBurger }
+       logoLink={ { pathname: '/' } }
+       appLogoUrl="/static/logo.svg"
+       onLogoClick={ onLogoClick }
+    >
+        <MainMenuButton caption="Home" />
+    </MainMenu>
+  
+  // after
+  
+    <MainMenu
+        cx={ css.menuContainer }
+        items={ [
+            {
+                id: 'burger',
+                priority: 100,
+                collapsedContainer: true,
+                render: (p) => <Burger key={ p.id } renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" />,
+            },
+            {
+                id: 'logo',
+                priority: 99,
+                render: (p) => <MainMenuLogo key={ p.id } link={ { pathname: '/' } } onClick={ onLogoClick } logoUrl="/static/logo.svg"  />,
+            },
+            {
+                id: 'home',
+                render: (p) => <MainMenuButton key={ p.id } caption="Home" />,
+                priority: 1,
+            },
+        ] }
+    />
+  ```
 
 
 # 6.1.4 - 17.06.2025
