@@ -9,7 +9,7 @@ const router = express.Router();
  * @returns {import('@epam/uui-build/ts/tasks/themeTokensGen/types/sharedTypes.ts').IUuiTokensCollection}
  */
 function readThemeTokensJson() {
-    const filePath = path.resolve(__dirname, '../../public/docs/figmaTokensGen/ThemeTokens.json');
+    const filePath = path.resolve(__dirname, '../../../public/docs/figmaTokensGen/ThemeTokens.json');
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 

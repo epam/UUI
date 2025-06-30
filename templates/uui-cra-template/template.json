@@ -10,13 +10,13 @@
       "react-dom": "19.1.0",
       "react-router-dom": "5.3.4",
       "typescript": "4.9.5",
-      "sass": "^1.78.0",
+      "sass": "1.78.0",
       "react-scripts": "5.0.1"
     },
     "devDependencies": {
       "@epam/uui-test-utils": "latest",
-      "@testing-library/jest-dom": "^5.16.5",
-      "@types/jest": "^27.5.2",
+      "@testing-library/jest-dom": "5.16.5",
+      "@types/jest": "27.5.2",
       "@types/react": "19.1.8",
       "@types/react-dom": "19.1.1",
       "@types/react-router-dom": "5.3.3",
