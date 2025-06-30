@@ -1,32 +1,27 @@
-import React, { useCallback, useMemo, MouseEvent } from 'react';
+import React, { useCallback } from 'react';
 import {
     IAdaptiveItem,
     ICanRedirect,
     IHasCaption,
-    IHasChildren,
     IHasCX,
-    Link,
     IHasRawProps,
     cx,
     IHasForwardedRef,
     DropdownBodyProps,
 } from '@epam/uui-core';
-import { BurgerProps } from './Burger';
-import { MainMenuLogo } from './MainMenuLogo';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import css from './MainMenu.module.scss';
 
 export interface MainMenuDropdownProps
-    extends IHasChildren,
-    IHasCaption,
+    extends IHasCaption,
     IAdaptiveItem,
     ICanRedirect,
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLElement>> {
-    /** Render callback for the MainMenuDropdown body.
-     * If omitted, component children will be rendered.
+    /**
+     * Render callback for the MainMenuDropdown body.
      */
-    renderBody?: (props: DropdownBodyProps) => React.ReactNode;
+    renderBody: (props: DropdownBodyProps) => React.ReactNode;
 }
 
 export interface MainMenuProps
@@ -34,26 +29,8 @@ export interface MainMenuProps
     IHasRawProps<React.HTMLAttributes<HTMLDivElement>>,
     IHasForwardedRef<HTMLDivElement> {
     /** Array of menu items to be rendered */
-    items?: AdaptiveItemProps[];
-    /** Path to the logo source */
-    appLogoUrl?: string;
-    /** SPA link to navigate on logo click */
-    logoLink?: Link;
-    /** Href to navigate on logo click */
-    logoHref?: string;
-    /** Called when logo is clicked */
-    onLogoClick?: (e: MouseEvent) => any;
-    /** Render callback for burger menu content.
-     * Burger will appear, which some items don't fit the menu width.
-     * */
-    renderBurger?: (props: { onClose: () => void }) => React.ReactNode;
-    /** If true, Burger button will be always visible */
-    alwaysShowBurger?: boolean;
+    items: AdaptiveItemProps[];
     serverBadge?: string;
-    /** Internal prop to define component for MainMenuDropdown */
-    MainMenuDropdown?: React.ComponentType<MainMenuDropdownProps>;
-    /** Internal prop to define component for Burger */
-    Burger?: React.ComponentType<BurgerProps>;
 }
 
 export const uuiMainMenu = {
@@ -65,14 +42,7 @@ export const uuiMainMenu = {
 export function MainMenu(props: MainMenuProps) {
     const {
         items,
-        appLogoUrl,
-        logoLink,
-        logoHref,
-        onLogoClick,
-        renderBurger,
-        alwaysShowBurger,
         serverBadge,
-        Burger,
         cx: cxProp,
         rawProps,
         forwardedRef,
@@ -109,57 +79,6 @@ export function MainMenu(props: MainMenuProps) {
             ) : null;
     }, [serverBadge]);
 
-    const getMenuItems = useCallback((): AdaptiveItemProps[] => {
-        let menuItems: AdaptiveItemProps[] = [];
-        if (items) {
-            menuItems = items;
-        }
-        if (appLogoUrl) {
-            menuItems.unshift({
-                id: 'appLogo',
-                priority: 100500,
-                render: () => (
-                    <MainMenuLogo
-                        key="logo"
-                        logoUrl={ appLogoUrl }
-                        link={ logoLink }
-                        href={ logoHref }
-                        onClick={ onLogoClick }
-                    />
-                ),
-            });
-        }
-        menuItems.unshift({
-            id: 'Burger',
-            priority: 100501,
-            collapsedContainer: !alwaysShowBurger,
-            render: () =>
-                Burger ? (
-                    <Burger
-                        key="burger"
-                        width={ 300 }
-                        renderBurgerContent={ renderBurger }
-                        logoUrl={ appLogoUrl }
-                    />
-                ) : null,
-        });
-        return menuItems;
-    }, [
-        items,
-        appLogoUrl,
-        logoLink,
-        logoHref,
-        onLogoClick,
-        alwaysShowBurger,
-        renderBurger,
-        Burger,
-    ]);
-
-    const menuItems = useMemo(
-        () => items || getMenuItems(),
-        [items, getMenuItems],
-    );
-
     return (
         <nav
             key="uuiMainMenu"
@@ -171,7 +90,7 @@ export function MainMenu(props: MainMenuProps) {
             ref={ forwardedRef }
             { ...rawProps }
         >
-            <AdaptivePanel items={ menuItems } cx={ css.itemsContainer } />
+            <AdaptivePanel items={ items } cx={ css.itemsContainer } />
             {renderServerBadge()}
         </nav>
     );

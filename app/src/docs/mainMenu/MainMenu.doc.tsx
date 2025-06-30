@@ -14,7 +14,7 @@ import {
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
 import { QueryHelpers } from '../../common/docs/baseDocBlock/utils/queryHelpers';
-import { getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
+import { getItemsExamples } from './mainMenuExamples';
 import { TMainMenuPreview } from '../_types/previewIds';
 
 import css from './../styles.module.scss';
@@ -44,16 +44,7 @@ export class MainMenuDoc extends BaseDocsBlock {
             [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps | loveship.MainMenuProps | electric.MainMenuProps>) => {
-            doc.merge('logoHref', { editorType: 'StringEditor', examples: [] });
-            doc.merge('appLogoUrl', { editorType: 'StringEditor', examples: [] });
-            doc.merge('renderBurger', { examples: renderBurgerExamples });
             doc.merge('items', { examples: (ctx) => getItemsExamples(ctx), remountOnChange: true });
-            doc.merge('MainMenuDropdown', { examples: [{ value: uui.MainMenuDropdown, name: 'MainMenuDropdown', isDefault: true }] });
-            doc.merge('Burger', { examples: [{ value: uui.Burger, name: 'Burger', isDefault: true }] });
-            doc.merge('logoLink', {
-                editorType: 'LinkEditor',
-                examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
-            });
         },
         preview: (docPreview: DocPreviewBuilder<uui.MainMenuProps>) => {
             const w600_h80: TPreviewCellSize = '600-80';

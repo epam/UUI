@@ -3,18 +3,30 @@ import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList } fro
 import { Text, MainMenu, TextPlaceholder, MainMenuButton } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import css from './AdvancedExample.module.scss';
+import { MainMenuLogo } from '@epam/uui-components/build';
 
 function Header() {
     return (
         <MainMenu
             cx={ css.menuContainer }
-            logoLink={ { pathname: '/' } }
-            appLogoUrl="/static/logo.svg"
-            items={ [{
-                id: 'home',
-                render: () => <MainMenuButton caption="Home" />,
-                priority: 1,
-            }] }
+            items={ [
+                {
+                    id: 'logo',
+                    render: () => (
+                        <MainMenuLogo
+                            key="logo"
+                            link={ { pathname: '/' } }
+                            logoUrl="/static/logo.svg"
+                        />
+                    ),
+                    priority: 10,
+                },
+                {
+                    id: 'home',
+                    render: () => <MainMenuButton caption="Home" />,
+                    priority: 1,
+                },
+            ] }
         />
     );
 }
