@@ -67,13 +67,13 @@ interface RteConverterOptions {
 
 export const createDeserializer = (type: SerializerType = 'html', options?: RteConverterOptions) => {
     if (type === 'html') {
-        const editor = createTempEditor(options.plugins || defaultHtmlSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultHtmlSerializationsWorkingPlugins);
         return (data: string) => {
             const document = parseHtmlDocument(data);
             return deserializeHtml(editor, { element: document.body }) as EditorValue;
         };
     } else {
-        const editor = createTempEditor(options.plugins || defaultMdSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultMdSerializationsWorkingPlugins);
         return (data: string) => {
             editor.children = deserializeMd<Value>(editor, data);
             editor.normalize({ force: true });
@@ -88,13 +88,13 @@ export const createDeserializer = (type: SerializerType = 'html', options?: RteC
 
 export const createSerializer = (type: SerializerType = 'html', options?: RteConverterOptions) => {
     if (type === 'html') {
-        const editor = createTempEditor(options.plugins || defaultHtmlSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultHtmlSerializationsWorkingPlugins);
         return (v: EditorValue) => {
             const value = initializeEditor(editor, v);
             return serializeHtml(editor, { nodes: value, convertNewLinesToHtmlBr: true });
         };
     } else {
-        const editor = createTempEditor(options.plugins || defaultMdSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultMdSerializationsWorkingPlugins);
         return (v: EditorValue) => {
             const value = initializeEditor(editor, v);
 
