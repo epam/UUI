@@ -150,62 +150,6 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         },
     ];
 
-    const learnItems = [
-        {
-            id: 'appLogo2',
-            priority: 100500,
-            estimatedWidth: 142,
-            render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } priority={ 100500 } estimatedWidth={ 142 } />,
-        },
-        {
-            id: 'start',
-            caption: 'Start',
-            collapseToMore: true,
-            priority: 3,
-            estimatedWidth: 62,
-            showInBurgerMenu: true,
-            isLinkActive: true,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore priority={ 3 } estimatedWidth={ 62 } showInBurgerMenu isLinkActive />,
-        },
-        {
-            id: 'explore',
-            caption: 'Explore',
-            collapseToMore: true,
-            priority: 2,
-            estimatedWidth: 78,
-            showInBurgerMenu: true,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore priority={ 2 } estimatedWidth={ 78 } showInBurgerMenu />,
-        },
-        {
-            id: 'myLearning',
-            caption: 'My Learning',
-            collapseToMore: true,
-            priority: 2,
-            estimatedWidth: 104,
-            showInBurgerMenu: true,
-            href: '/',
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore priority={ 2 } estimatedWidth={ 104 } showInBurgerMenu href="/" />,
-        },
-        {
-            id: 'spacer',
-            priority: 100500,
-            render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } priority={ 100500 } />,
-        },
-        {
-            id: 'avatar',
-            isDropdown: true,
-            priority: 100,
-            estimatedWidth: 84,
-            render: (p: AdaptiveItemProps) => <MainMenuAvatar isDropdown key={ p.id } avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" estimatedWidth={ 84 } rawProps={ { 'aria-label': 'Avatar' } } />,
-        },
-        {
-            id: 'global-menu',
-            priority: 100500,
-            estimatedWidth: 60,
-            render: (p: AdaptiveItemProps) => <GlobalMenu key={ p.id } priority={ 100500 } estimatedWidth={ 60 } rawProps={ { 'aria-label': 'Global Menu' } } />,
-        },
-    ];
-
     const uiItems = [
         {
             id: 'appLogo2',
@@ -381,12 +325,56 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
             isDefault: true,
         },
         {
-            name: 'Grow',
-            value: growItems,
+            name: 'Learn', // this is the default example for E2E tests, do not change them
+            value: [
+                {
+                    id: 'appLogo2',
+                    priority: 99,
+                    render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } estimatedWidth={ 142 } />,
+                },
+                {
+                    id: 'start',
+                    priority: 3,
+                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+                },
+                {
+                    id: 'explore',
+                    priority: 2,
+                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore estimatedWidth={ 78 } showInBurgerMenu />,
+                },
+                {
+                    id: 'myLearning',
+                    priority: 2,
+                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore estimatedWidth={ 104 } showInBurgerMenu href="/" />,
+                },
+                {
+                    id: 'spacer',
+                    priority: 3,
+                    render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } />,
+                },
+                {
+                    id: 'avatar',
+                    priority: 100,
+                    render: (p: AdaptiveItemProps) => (
+                        <MainMenuAvatar
+                            isDropdown
+                            key={ p.id }
+                            avatarUrl={ ALL_AVATARS[0] }
+                            estimatedWidth={ 84 }
+                            rawProps={ { 'aria-label': 'Avatar' } }
+                        />
+                    ),
+                },
+                {
+                    id: 'global-menu',
+                    priority: 100,
+                    render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
+                },
+            ],
         },
         {
-            name: 'Learn',
-            value: learnItems,
+            name: 'Grow',
+            value: growItems,
         },
         {
             name: 'UI',
