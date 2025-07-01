@@ -11,7 +11,7 @@
 
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
-
+* [PickerInput]: fixed incorrect selection state in modal for single selection mode
 
 # 6.1.4 - 17.06.2025
 
