@@ -113,7 +113,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
     useLayoutEffectSafeForSsr(() => {
         const maxBottomIndex = Math.ceil(rowsCount / blockSize) * blockSize;
         if (virtualListInfo.value?.topIndex + virtualListInfo.value?.visibleCount > maxBottomIndex) {
-            const newTopIndex = maxBottomIndex - blockSize;
+            const newTopIndex = Math.max(maxBottomIndex - blockSize, 0);
             onValueChange({ ...value, topIndex: newTopIndex, visibleCount: blockSize });
         }
     }, [rowsCount]);

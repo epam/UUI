@@ -50,7 +50,6 @@ const JSDOM_TESTS_ROOTS = [
     // 'extra',
     // 'uui-db',
     // 'app',
-    // 'draft-rte',
     // 'uui-docs',
     // 'uui-timeline',
 ];
