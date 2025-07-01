@@ -1,7 +1,18 @@
-# 6.1.4 - xx.xx.2025
-
+# 6.x.x - xx.xx.2025
 **What's New**
+* remove support of deprecated draft-rte
 * [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
+* [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
+* [PresetsPanel]:
+    * "Duplicate" action is now only available for unchanged presets
+    * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
+    * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
+
+**What's Fixed**
+* [DataSources]: fixed handling of selectAll for views with disabled checkboxes
+
+
+# 6.1.4 - 17.06.2025
 
 **What's Fixed**
 * [@epam/uui-test-utils]: fixed various of utils to work with React 18

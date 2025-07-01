@@ -234,7 +234,7 @@ describe('AsyncListView - row options', () => {
             expect(view.selectAll).not.toBeNull();
             expect(view.selectAll!.value).toBeFalsy();
             expect(typeof view.selectAll!.onValueChange).toBe('function');
-            expect(view.selectAll!.indeterminate).toBeFalsy();
+            expect(view.selectAll!.indeterminate).toBeTruthy();
 
             const afRow = view.getVisibleRows()[0];
 
@@ -761,7 +761,7 @@ describe('AsyncListView - row options', () => {
             expect(view.selectAll).toBeNull();
         });
 
-        it('should return indeterminate = false for selectAll, if checkbox is visible and disabled at getRowOptions and some item is checked', async () => {
+        it('should return indeterminate = true for selectAll, if checkbox is visible and disabled at getRowOptions and some item is checked', async () => {
             const checkbox = { isVisible: true, isDisabled: true };
             const { dataSource } = getAsyncLocationsDS({
                 getRowOptions: () => ({ checkbox }),
@@ -789,7 +789,7 @@ describe('AsyncListView - row options', () => {
             expect(view.selectAll).not.toBeNull();
             expect(view.selectAll!.value).toBeFalsy();
             expect(typeof view.selectAll!.onValueChange).toBe('function');
-            expect(view.selectAll!.indeterminate).toBeFalsy();
+            expect(view.selectAll!.indeterminate).toBeTruthy();
 
             const afRow = view.getVisibleRows()[0];
 
