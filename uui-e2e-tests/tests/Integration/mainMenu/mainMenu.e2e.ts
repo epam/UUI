@@ -8,7 +8,7 @@ const testPageUrl = {
     serverBadgePreview: '/preview?theme=loveship&isSkin=true&componentId=mainMenu&previewId=All+Variants',
 };
 
-test('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
+test.only('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
@@ -30,7 +30,7 @@ test('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
     });
 
     await test.step('Responsive: set small viewport and open burger menu', async () => {
-        await pageWrapper.page.setViewportSize({ width: 400, height: 900 });
+        await pageWrapper.page.setViewportSize({ width: 500, height: 900 });
         await expectScreenshot(3, 'responsive-burger-visible');
         await mainMenu.clickBurger();
         expect(await mainMenu.isBurgerVisible()).toBe(true);
