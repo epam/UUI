@@ -9,3 +9,4 @@ export * from './ScrollBars';
 export * from './VirtualList';
 export * from './Blocker';
 export * from './CheckboxGroup';
+export * from './TabList';

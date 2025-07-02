@@ -1,9 +1,8 @@
 # 6.x.x - xx.xx.2025
 **What's New**
 * remove support of deprecated draft-rte
+* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
-
-**What's New**
 * [PresetsPanel]:
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
