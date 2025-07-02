@@ -1,11 +1,9 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../common';
+import { DocItem } from '../documents/structure';
 
-export class CoreConceptsDoc extends BaseDocsBlock {
-    title = 'Core Concepts';
-    renderContent() {
-        return (
-            <EditableDocContent fileName="coreConcepts" />
-        );
-    }
-}
+export const CoreConceptsDocItem: DocItem = {
+    id: 'coreConcepts',
+    name: 'Core Concepts',
+    examples: [
+        { descriptionPath: 'coreConcepts' },
+    ],
+};

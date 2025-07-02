@@ -1,16 +1,12 @@
-import * as React from 'react';
-import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
+import { DocItem } from '../../documents/structure';
 
-export class UtGuideGettingStartedDoc extends BaseDocsBlock {
-    title = 'Getting Started';
-
-    renderContent() {
-        return (
-            <>
-                <EditableDocContent fileName="unitTestingGuide-getting-started-add-dependencies" />
-                <EditableDocContent fileName="unitTestingGuide-getting-started" />
-                <DocExample title="Create Tests" path="./_examples/testing/__tests__/testComponent.test.tsx" onlyCode={ true } />
-            </>
-        );
-    }
-}
+export const UtGuideGettingStartedDocItem: DocItem = {
+    id: 'testing-getting-started',
+    name: 'Getting Started',
+    parentId: 'testing',
+    examples: [
+        { descriptionPath: 'unitTestingGuide-getting-started-add-dependencies' },
+        { descriptionPath: 'unitTestingGuide-getting-started' },
+        { name: 'Create Tests', componentPath: './_examples/testing/__tests__/testComponent.test.tsx', onlyCode: true },
+    ],
+};
