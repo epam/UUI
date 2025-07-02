@@ -44,19 +44,12 @@ export function DocsSidebar() {
         }
     };
 
-    const getSearchFields = (item: DocItem) => {
-        if (item.component) {
-            return [item.name, ...(item.tags || [])];
-        }
-        return [];
-    };
-
     return (
         <Sidebar<DocItem>
             value={ queryParamId }
             onValueChange={ onChange }
             items={ docsMenuStructure }
-            getSearchFields={ getSearchFields }
+            getSearchFields={ (i) => [i.name, ...(i.tags || [])] }
             getItemLink={ (row) =>
                 !row.isFoldable && {
                     pathname: '/documents',
