@@ -82,46 +82,5 @@
         "text": "."
       }
     ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "Tabs' removing is not implemented since the need of it is unclear. If you need this functionality, you can implement it manually by passing a keyboard event handler (for example, "
-      },
-      {
-        "text": "onKeyDown",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": ") to the appropriate tabs and handling the delete button's event's code (like it is described "
-      },
-      {
-        "type": "link",
-        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction",
-        "target": "_blank",
-        "children": [
-          {
-            "text": "here"
-          }
-        ]
-      },
-      {
-        "text": "), or create an "
-      },
-      {
-        "type": "link",
-        "url": "https://github.com/epam/UUI/issues/new?template=improvement.md",
-        "target": "_blank",
-        "children": [
-          {
-            "text": "improvement request"
-          }
-        ]
-      },
-      {
-        "text": " in the UUI repository."
-      }
-    ]
   }
 ]
