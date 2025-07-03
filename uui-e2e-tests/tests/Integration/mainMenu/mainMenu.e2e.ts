@@ -8,7 +8,7 @@ const testPageUrl = {
     serverBadgePreview: '/preview?theme=loveship&isSkin=true&componentId=mainMenu&previewId=All+Variants',
 };
 
-test.only('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
+test('mainMenu/Responsive scenario', async ({ pageWrapper }, testInfo) => {
     const { pageObject, expectScreenshot } = await setupDocExampleTest({
         testInfo,
         pageWrapper,
