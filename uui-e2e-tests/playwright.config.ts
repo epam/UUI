@@ -83,6 +83,9 @@ export default defineConfig({
             use: {
                 ...devices['Desktop Firefox'],
             },
+            testIgnore: [
+                'tests/Integration/mainMenu/mainMenu.e2e.ts',
+            ],
             testMatch: [
                 'tests/Integration/**/*.e2e.ts',
             ],

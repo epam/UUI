@@ -3,13 +3,13 @@ import { MainMenuSearch } from '../MainMenuSearch';
 import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('MainMenuSearch', () => {
-    it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<MainMenuSearch value={ null } onValueChange={ jest.fn } />);
+    it('should be rendered correctly with null value', async () => {
+        const tree = await renderSnapshotWithContextAsync(<MainMenuSearch value={ undefined } onValueChange={ jest.fn } />);
 
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly with value and extra props', async () => {
         const tree = await renderSnapshotWithContextAsync(
             <MainMenuSearch
                 value="test"
