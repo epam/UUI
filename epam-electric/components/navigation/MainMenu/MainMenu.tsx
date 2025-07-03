@@ -1,7 +1,5 @@
-import React from 'react';
 import * as uui from '@epam/uui';
 import { createSkinComponent } from '@epam/uui-core';
-import { MainMenuDropdown } from './MainMenuDropdown';
 
 export interface MainMenuProps extends uui.MainMenuProps {
     /**
@@ -19,10 +17,6 @@ function applyMainMenuMods(mods: MainMenuProps) {
 
 export const MainMenu = createSkinComponent<uui.MainMenuProps, MainMenuProps>(
     uui.MainMenu,
-    (props) => {
-        return {
-            MainMenuDropdown: (dropdownProps) => <MainMenuDropdown { ...dropdownProps } color={ props.color } />,
-        };
-    },
+    undefined,
     applyMainMenuMods,
 );
