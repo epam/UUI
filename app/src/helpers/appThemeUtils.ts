@@ -1,6 +1,7 @@
 import deepmerge from 'deepmerge';
 import { getQuery, useQuery } from './getQuery';
-import { BuiltInTheme, ThemeBaseParams, ThemeId } from '../data';
+import { ThemeBaseParams } from '../data';
+import { ThemeId, BuiltInTheme } from '@epam/uui-docs';
 import { getUuiThemeRoot } from './appRootUtils';
 import { settings } from '@epam/uui';
 import { CustomThemeManifest } from '../data/customThemes';

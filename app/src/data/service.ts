@@ -1,8 +1,9 @@
 import { getParameters } from 'codesandbox/lib/api/define';
 import { CodesandboxFilesRecord, FilesRecord, getCodesandboxConfig } from './codesandbox/getCodesandboxConfig';
 import { svc } from '../services';
-import { ThemeBaseParams, ThemeId } from './themes';
+import { ThemeBaseParams } from './themes';
 import { CustomThemeManifest } from './customThemes';
+import { ThemeId } from '@epam/uui-docs';
 
 const CodesandboxFiles: Record<string, string | { path: string, placeholders: Record<string, string | ((arg: ThemeBaseParams | CustomThemeManifest) => string)> }> = {
     'index.html': {

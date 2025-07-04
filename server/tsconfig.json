@@ -15,6 +15,7 @@
     "noEmitOnError": false,
     "types": [],
     "allowSyntheticDefaultImports": true,
+    "jsx": "react"
   },
   "include": [
     "./**/*.ts",

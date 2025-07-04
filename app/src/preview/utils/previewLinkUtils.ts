@@ -1,7 +1,7 @@
 import { DocBuilder, PropDocPropsUnknown, TDocContext, TComponentPreview } from '@epam/uui-docs';
 import { TPropInputDataAll } from '../../common/docs/properyEditor/propDocUtils';
 import { TPreviewRef } from '../types';
-import { ThemeId } from '../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 const INLINE_PREVIEW_PREFIX = 'json:';
 

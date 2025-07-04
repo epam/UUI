@@ -1,10 +1,8 @@
-import { DocBuilder, PropDocPropsUnknown, TComponentPreview, TDocConfig, TPreviewCellSize } from '@epam/uui-docs';
-import { componentsStructure } from '../../documents/structureComponents';
+import { DocBuilder, PropDocPropsUnknown, TComponentPreview, TDocConfig, TPreviewCellSize, componentsStructure } from '@epam/uui-docs';
 import { SCREENSHOT_WIDTH_LIMIT } from '../constants';
 
 const compMap = componentsStructure.reduce<Map<string, TDocConfig >>((acc, entry) => {
-    const Comp = entry.component;
-    const config = Comp?.config;
+    const config = entry?.explorerConfig;
     if (config) {
         acc.set(entry.id, config);
     }

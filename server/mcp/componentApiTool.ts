@@ -1,6 +1,9 @@
 import { z } from 'zod';
 import { getComponentSummariesLookup, readDocsGenResultsJson } from '../utils/docsGen';
 import { findComponentByName, simplifyComponentDetails, getComponentExamples } from './helpers';
+// import { AccessibilityDocItem } from 'docItems/Accessibility.doc';
+//
+// console.log('AccessibilityDocItem', AccessibilityDocItem);
 
 /**
  * Registers UUI component API tools with the MCP server

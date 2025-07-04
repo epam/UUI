@@ -13,12 +13,21 @@
   },
   "dependencies": {
     "@epam/assets": "6.1.1-beta.1",
+    "@epam/draft-rte": "6.1.1-beta.1",
+    "@epam/electric": "6.1.1-beta.1",
+    "@epam/internal": "0.0.2",
+    "@epam/loveship": "6.1.1-beta.1",
     "@epam/promo": "6.1.1-beta.1",
     "@epam/uui": "6.1.1-beta.1",
     "@epam/uui-components": "6.1.1-beta.1",
     "@epam/uui-core": "6.1.1-beta.1",
+    "@epam/uui-db": "6.1.1-beta.1",
+    "@epam/uui-editor": "6.1.1-beta.1",
+    "@epam/uui-timeline": "6.1.1-beta.1",
     "@types/classnames": "2.2.6",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "@floating-ui/react": "0.27.12",
+    "dayjs": "1.11.12"
   },
   "peerDependencies": {
     "react": ">=16.0.0",

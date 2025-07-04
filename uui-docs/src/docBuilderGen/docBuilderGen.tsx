@@ -5,10 +5,12 @@ import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilder
 import { TOneOfItemType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
 import { IDocBuilderGenCtx, TDocConfig, TPropEditorTypeOverride } from './docBuilderGenTypes';
+import { ThemeId } from '../docItems';
 
 interface IDocBuilderGenParams {
     config: TDocConfig,
     skin: TSkin,
+    theme: ThemeId,
     docBuilderGenCtx: IDocBuilderGenCtx,
 }
 /**
@@ -57,7 +59,7 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
         previewSkin?.(previewBuilder);
 
         docCommonOverride({ docs, contexts });
-        docCommon?.(docs);
+        docCommon?.(docs, { theme: params.theme });
         docSkin?.(docs);
 
         unresolvedProps.forEach((prop) => {
