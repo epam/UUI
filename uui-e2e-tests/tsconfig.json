@@ -26,7 +26,7 @@
     "scripts",
     "tests",
     "playwright.config.ts",
-    "../app/src/docs/_types/previewIds.ts",
+    "../uui-docs/src/docItems/_types/previewIds.ts",
     "globals.d.ts"
   ]
 }

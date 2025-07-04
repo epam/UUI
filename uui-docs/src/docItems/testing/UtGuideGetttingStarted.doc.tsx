@@ -1,0 +1,12 @@
+import { DocItem } from '../_types/docItem';
+
+export const UtGuideGettingStartedDocItem: DocItem = {
+    id: 'testing-getting-started',
+    name: 'Getting Started',
+    parentId: 'testing',
+    examples: [
+        { descriptionPath: 'unitTestingGuide-getting-started-add-dependencies' },
+        { descriptionPath: 'unitTestingGuide-getting-started' },
+        { name: 'Create Tests', componentPath: './_examples/testing/__tests__/testComponent.test.tsx', onlyCode: true },
+    ],
+};

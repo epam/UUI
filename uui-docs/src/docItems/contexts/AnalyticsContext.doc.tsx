@@ -1,0 +1,13 @@
+import { DocItem } from '../_types/docItem';
+
+export const AnalyticsContextDocItem: DocItem = {
+    id: 'analyticsContext',
+    name: 'Analytics Context',
+    parentId: 'contexts',
+    examples: [
+        { descriptionPath: 'analytics-context-descriptions' },
+        { name: 'Getting started', componentPath: './_examples/contexts/AnalyticsContextBase.example.tsx', onlyCode: true },
+        { name: 'Example', componentPath: './_examples/contexts/AnalyticsContextEvents.example.tsx', onlyCode: true },
+    ],
+    tags: ['contexts'],
+};
