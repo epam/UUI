@@ -4,6 +4,7 @@ import { TOneOfItemType, TPropEditorType, TType, TTypeProp, TTypeRef } from '../
 import * as React from 'react';
 import { Icon, UuiContexts } from '@epam/uui-core';
 import { IDemoApi } from '../demoApi';
+import type { ThemeId } from '../docItems';
 
 export type TPropDocBuilderParams = {
     docs: DocBuilder<any>,
@@ -73,7 +74,7 @@ export type TDocConfig = {
      * Override doc for all listed skins. Skin-specific override has higher priority.
      * @param doc
      */
-    doc?: (doc: DocBuilder<any>) => void;
+    doc?: (doc: DocBuilder<any>, params: { theme: ThemeId }) => void;
 
     /**
      * Preview tab renders component

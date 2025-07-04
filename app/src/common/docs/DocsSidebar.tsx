@@ -1,11 +1,10 @@
 import React from 'react';
 import { DataRowProps } from '@epam/uui-core';
 import { TreeListItem } from '@epam/uui-components';
-import { DocItem } from '../../documents/structure';
 import { Sidebar } from '../sidebar';
 import { useQuery } from '../../helpers';
 import { TMode } from './docsConstants';
-import { ThemeId } from '../../data';
+import { ThemeId, DocItem } from '@epam/uui-docs';
 import { svc } from '../../services';
 import { useAppThemeContext } from '../../helpers/appTheme';
 

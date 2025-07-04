@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { TDocConfig } from '@epam/uui-docs';
+import { TDocConfig, ThemeId } from '@epam/uui-docs';
 import { ComponentEditorWrapper } from '../../properyEditor/PropertyEditor';
-import { ThemeId } from '../../../../data';
 
 type TPropExplorerTabProps = {
     isSkin: boolean;

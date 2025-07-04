@@ -5,10 +5,11 @@ import { AppHeader, Page } from '../common';
 import { useQuery } from '../helpers';
 import { codesandboxService } from '../data/service';
 import { TMode } from '../common/docs/docsConstants';
-import { AppContext, type TApi, ThemeId } from '../data';
+import { AppContext, type TApi } from '../data';
 import { DocsSidebar } from '../common/docs/DocsSidebar';
 import { useAppThemeContext } from '../helpers/appTheme';
 import { DocBlock } from '../common/docs/baseDocBlock/DocBlock';
+import { ThemeId } from '@epam/uui-docs';
 
 type DocsQuery = {
     id: string;

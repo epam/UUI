@@ -4,7 +4,7 @@ import {
 import { useThemeTokens } from '../../../sandbox/tokens/palette/hooks/useThemeTokens/useThemeTokens';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../../sandbox/tokens/palette/types/types';
 import { isGroupCfgWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
-import { ThemeId } from '../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 const PARAMS: TLoadThemeTokensParams = {
     filter: {

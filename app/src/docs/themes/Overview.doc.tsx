@@ -1,4 +1,4 @@
-import { DocItem } from '../../documents/structure';
+import { DocItem } from '@epam/uui-docs';
 
 export const ThemingOverviewDocItem: DocItem = {
     id: 'themingOverview',

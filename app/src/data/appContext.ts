@@ -1,6 +1,6 @@
-import { ThemeBaseParams, builtInThemes, ThemeId } from './themes';
+import { ThemeBaseParams, builtInThemes } from './themes';
 import { CustomThemeManifest, loadCustomThemes } from './customThemes';
-import { DocItem } from '../documents/structure';
+import { ThemeId, DocItem } from '@epam/uui-docs';
 
 export interface AppContext {
     themes: ThemeId[],

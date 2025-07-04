@@ -1,1 +1,1 @@
-export * from '../../../app/src/docs/_types/previewIds';
+export * from '../../../uui-docs/src/docItems/_types/previewIds';

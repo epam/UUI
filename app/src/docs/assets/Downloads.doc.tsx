@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { cx } from '@epam/uui-core';
 import { FlexCell, FlexRow, IconContainer, LinkButton, RichTextView, Text, Tooltip } from '@epam/uui';
-import { BaseDocsBlock } from '../../common/docs';
 import css from './DownloadsDoc.module.scss';
 import { ReactComponent as FigmaIcon } from '../../icons/figma.svg';
 import { ReactComponent as FontIcon } from '../../icons/fonts_icon.svg';
@@ -10,6 +9,7 @@ import { ReactComponent as LogotypeIcon } from '../../icons/design_platform_icon
 import { ReactComponent as DownloadIcon } from '../../icons/download_icon_set.svg';
 import { ReactComponent as LockIcon } from '@epam/assets/icons/common/action-lock-fill-18.svg';
 import { ReactComponent as ContentLinkIcon } from '@epam/assets/icons/common/content-link-18.svg';
+import { DocItem } from '@epam/uui-docs';
 
 const library = [
     {
@@ -52,19 +52,8 @@ const assets = {
     illustrations: 'https://epam.sharepoint.com/:u:/s/EPAMUII3/EahAf6j0ZERKqnbgZwTPFjYBX1HJJC9n845j6xC3FL-gKg?e=K0LQU1',
 };
 
-export class DownloadsDoc extends BaseDocsBlock {
-    title = 'Downloads';
-    renderDocTitle() {
-        return (
-            <FlexRow>
-                <div className={ css.title }>{this.title}</div>
-            </FlexRow>
-        );
-    }
-
-    renderLibraryCard({
-        title, additionalInfo, link, image,
-    }: any) {
+export function DownloadsDoc() {
+    const renderLibraryCard = ({ title, additionalInfo, link, image }: any) => {
         return (
             <FlexCell key={ title } minWidth={ 320 }>
                 <FlexRow columnGap="12">
@@ -92,115 +81,120 @@ export class DownloadsDoc extends BaseDocsBlock {
                 </FlexRow>
             </FlexCell>
         );
-    }
+    };
 
-    renderContent() {
-        return (
-            <>
-                <FlexRow alignItems="top" cx={ css.headerRow }>
-                    <FlexCell width="100%" cx={ css.contentBlock }>
-                        <RichTextView size="16">
-                            <h2>Design Libraries</h2>
-                            <p>
-                                You need to install the component library for full-scale work with design documents. You will find detailed instructions on installing the
-                                library, additional files, and answers to frequent questions here.
-                            </p>
-                        </RichTextView>
-                        <FlexRow cx={ css.libraryBlock }>{ library.map((item) => this.renderLibraryCard(item)) }</FlexRow>
+    return (
+        <>
+            <FlexRow alignItems="top" cx={ css.headerRow }>
+                <FlexCell width="100%" cx={ css.contentBlock }>
+                    <RichTextView size="16">
+                        <h2>Design Libraries</h2>
+                        <p>
+                            You need to install the component library for full-scale work with design documents. You will find detailed instructions on installing the
+                            library, additional files, and answers to frequent questions here.
+                        </p>
+                    </RichTextView>
+                    <FlexRow cx={ css.libraryBlock }>{ library.map((item) => renderLibraryCard(item)) }</FlexRow>
+                </FlexCell>
+            </FlexRow>
+            <FlexCell>
+                <RichTextView size="16">
+                    <h2>Assets</h2>
+                </RichTextView>
+                <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
+                    <FlexCell minWidth={ 320 }>
+                        <FlexRow columnGap="12">
+                            <div className={ cx(css.downloadsOval, css.fontPackBackground) }>
+                                <IconContainer icon={ FontIcon } />
+                            </div>
+                            <FlexCell width="auto">
+                                <Text size="24" fontSize="16" fontWeight="600">
+                                    Font Pack
+                                </Text>
+                                <Tooltip content="For internal use only" offset={ 10 }>
+                                    <LinkButton
+                                        iconPosition="right"
+                                        icon={ LockIcon }
+                                        caption="Download"
+                                        size="24"
+                                        href={ assets.fonts }
+                                        cx={ css.assetsLinkCaption }
+                                    />
+                                </Tooltip>
+                            </FlexCell>
+                        </FlexRow>
+                    </FlexCell>
+                    <FlexCell minWidth={ 320 }>
+                        <FlexRow columnGap="12">
+                            <div className={ cx(css.downloadsOval, css.logotypesBackground) }>
+                                <IconContainer icon={ LogotypeIcon } />
+                            </div>
+                            <FlexCell width="auto">
+                                <Text size="24" fontSize="16" fontWeight="600">
+                                    Logotypes
+                                </Text>
+                                <LinkButton
+                                    caption="Download"
+                                    size="24"
+                                    href={ assets.logos }
+                                    cx={ css.assetsLinkCaption }
+                                />
+                            </FlexCell>
+                        </FlexRow>
+                    </FlexCell>
+                    <FlexCell minWidth={ 320 }>
+                        <FlexRow columnGap="12">
+                            <div className={ cx(css.downloadsOval, css.iconSetBackground) }>
+                                <IconContainer icon={ DownloadIcon } />
+                            </div>
+                            <FlexCell width="auto">
+                                <Text size="24" fontSize="16" fontWeight="600">
+                                    Icon Set
+                                </Text>
+                                <LinkButton
+                                    caption="Download"
+                                    size="24"
+                                    href={ assets.icons }
+                                    cx={ css.assetsLinkCaption }
+                                />
+                            </FlexCell>
+                        </FlexRow>
                     </FlexCell>
                 </FlexRow>
-                <FlexCell>
-                    <RichTextView size="16">
-                        <h2>Assets</h2>
-                    </RichTextView>
-                    <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
-                        <FlexCell minWidth={ 320 }>
-                            <FlexRow columnGap="12">
-                                <div className={ cx(css.downloadsOval, css.fontPackBackground) }>
-                                    <IconContainer icon={ FontIcon } />
-                                </div>
-                                <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" fontWeight="600">
-                                        Font Pack
-                                    </Text>
+                <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
+                    <FlexCell minWidth={ 480 }>
+                        <FlexRow columnGap="12">
+                            <div className={ cx(css.downloadsOval, css.illustrationsBackground) }>
+                                <IconContainer icon={ IllustrationsIcon } />
+                            </div>
+                            <FlexCell width="auto">
+                                <Text size="24" fontSize="16" fontWeight="600">
+                                    UUI Illustrations (SVG pack & Guidelines)
+                                </Text>
+                                <FlexRow>
                                     <Tooltip content="For internal use only" offset={ 10 }>
                                         <LinkButton
                                             iconPosition="right"
                                             icon={ LockIcon }
                                             caption="Download"
                                             size="24"
-                                            href={ assets.fonts }
+                                            href={ assets.illustrations }
                                             cx={ css.assetsLinkCaption }
                                         />
                                     </Tooltip>
-                                </FlexCell>
-                            </FlexRow>
-                        </FlexCell>
-                        <FlexCell minWidth={ 320 }>
-                            <FlexRow columnGap="12">
-                                <div className={ cx(css.downloadsOval, css.logotypesBackground) }>
-                                    <IconContainer icon={ LogotypeIcon } />
-                                </div>
-                                <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" fontWeight="600">
-                                        Logotypes
-                                    </Text>
-                                    <LinkButton
-                                        caption="Download"
-                                        size="24"
-                                        href={ assets.logos }
-                                        cx={ css.assetsLinkCaption }
-                                    />
-                                </FlexCell>
-                            </FlexRow>
-                        </FlexCell>
-                        <FlexCell minWidth={ 320 }>
-                            <FlexRow columnGap="12">
-                                <div className={ cx(css.downloadsOval, css.iconSetBackground) }>
-                                    <IconContainer icon={ DownloadIcon } />
-                                </div>
-                                <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" fontWeight="600">
-                                        Icon Set
-                                    </Text>
-                                    <LinkButton
-                                        caption="Download"
-                                        size="24"
-                                        href={ assets.icons }
-                                        cx={ css.assetsLinkCaption }
-                                    />
-                                </FlexCell>
-                            </FlexRow>
-                        </FlexCell>
-                    </FlexRow>
-                    <FlexRow alignItems="bottom" cx={ css.downloadsRow }>
-                        <FlexCell minWidth={ 480 }>
-                            <FlexRow columnGap="12">
-                                <div className={ cx(css.downloadsOval, css.illustrationsBackground) }>
-                                    <IconContainer icon={ IllustrationsIcon } />
-                                </div>
-                                <FlexCell width="auto">
-                                    <Text size="24" fontSize="16" fontWeight="600">
-                                        UUI Illustrations (SVG pack & Guidelines)
-                                    </Text>
-                                    <FlexRow>
-                                        <Tooltip content="For internal use only" offset={ 10 }>
-                                            <LinkButton
-                                                iconPosition="right"
-                                                icon={ LockIcon }
-                                                caption="Download"
-                                                size="24"
-                                                href={ assets.illustrations }
-                                                cx={ css.assetsLinkCaption }
-                                            />
-                                        </Tooltip>
-                                    </FlexRow>
-                                </FlexCell>
-                            </FlexRow>
-                        </FlexCell>
-                    </FlexRow>
-                </FlexCell>
-            </>
-        );
-    }
+                                </FlexRow>
+                            </FlexCell>
+                        </FlexRow>
+                    </FlexCell>
+                </FlexRow>
+            </FlexCell>
+        </>
+    );
 }
+
+export const DownloadsDocItem: DocItem = {
+    id: 'downloads',
+    name: 'Downloads',
+    parentId: 'assets',
+    renderContent: () => <DownloadsDoc />,
+};

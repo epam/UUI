@@ -8,7 +8,7 @@ import { svc } from '../../services';
 import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
 import { docExampleLoader } from './docExampleLoader';
-import { ThemeId } from '../../data';
+import { ThemeId } from '@epam/uui-docs';
 import { generateNewRawString, getSkin, useCode, useExampleProps, usePropEditorTypeOverride } from './utils';
 
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';

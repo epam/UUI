@@ -1,7 +1,7 @@
 import { getCurrentTheme, getQuery } from '../../../../helpers';
 import { DEFAULT_MODE, TMode } from '../../docsConstants';
 import { svc } from '../../../../services';
-import { ThemeId } from '../../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 export class QueryHelpers {
     static isSkin(): boolean {

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import * as helpers from '../helpers/index';
 import _ from 'lodash';
-import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
+// import { getFilterPredicate, getOrderComparer } from '@epam/uui-core';
 import { undefined } from 'zod';
 
 const router = Router();
@@ -29,13 +29,13 @@ function filterAndSort(request: any, allItems: any, typeName: any) {
     }
 
     if (request.filter) {
-        const predicate = getFilterPredicate(request.filter);
-        items = items.filter(predicate);
+        // const predicate = getFilterPredicate(request.filter);
+        // items = items.filter(predicate);
     }
 
     if (request.sorting) {
-        const comparer = getOrderComparer(request.sorting);
-        items.sort(comparer);
+        // const comparer = getOrderComparer(request.sorting);
+        // items.sort(comparer);
     } else {
         items = _.orderBy(items, 'name');
     }

@@ -3,7 +3,7 @@ import { useArrayDataSource } from '@epam/uui-core';
 import { FlexRow, LabeledInput, PickerInput } from '@epam/uui';
 import { TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
-import { ThemeId } from '../../../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 type TokensSummaryProps = {
     uuiTheme: ThemeId,

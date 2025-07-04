@@ -14,8 +14,7 @@ import { DocsSidebar } from '../DocsSidebar';
 import cx from 'classnames';
 //
 import css from './BaseDocsBlock.module.scss';
-import { DocItem } from '../../../documents/structure';
-import { TDocConfig } from '@epam/uui-docs';
+import { TDocConfig, DocItem } from '@epam/uui-docs';
 import { DocExample } from '../DocExample';
 import { EditableDocContent } from '../EditableDocContent';
 
