@@ -13,7 +13,7 @@ interface IPresetProps extends Omit<IPresetsApi, 'presets'> {
     preset: ITablePreset;
     addPreset: () => void;
     tableState: DataTableState;
-    onCopyLink?: ((tableState: DataTableState) => string) | null;
+    onCopyLink?: ((tableState: DataTableState) => void) | null;
 }
 
 export function Preset(props: IPresetProps) {

@@ -98641,7 +98641,7 @@
       "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
       "    /** Optional: custom logic for Copy Link action, if null, \"Copy Link\" button will be hidden */",
-      "    onCopyLink?: ((tableState: DataTableState) => string) | null;",
+      "    onCopyLink?: ((tableState: DataTableState) => void) | null;",
       "}"
      ]
     },
@@ -98669,8 +98669,8 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (tableState: DataTableState<any, any>) => string",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>tableState<span class=\"token operator\">:</span> DataTableState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span>"
+       "raw": "null | (tableState: DataTableState<any, any>) => void",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>tableState<span class=\"token operator\">:</span> DataTableState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
