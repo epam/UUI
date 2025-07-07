@@ -18,7 +18,7 @@ export interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLA
     /** Current state value of the table(list) */
     tableState: DataTableState;
     /** Optional: custom logic for Copy Link action, if null, "Copy Link" button will be hidden */
-    onCopyLink?: ((tableState: DataTableState) => string) | null;
+    onCopyLink?: ((tableState: DataTableState) => void) | null;
 }
 
 type PresetAdaptiveItem = AdaptiveItemProps<{ preset?: ITablePreset }>;

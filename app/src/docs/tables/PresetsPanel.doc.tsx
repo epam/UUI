@@ -11,6 +11,7 @@ export class PresetsPanelDoc extends BaseDocsBlock {
                 <EditableDocContent fileName="presets-panel-descriptions" />
                 {this.renderSectionTitle('Examples')}
                 <DocExample cx={ css.appBg } title="Basic" path="./_examples/tables/PresetsPanelBasic.example.tsx" />
+                <DocExample cx={ css.appBg } title="Custom onCopyLink handler" path="./_examples/tables/PresetsPanelOnCopyLink.example.tsx" />
             </>
         );
     }
