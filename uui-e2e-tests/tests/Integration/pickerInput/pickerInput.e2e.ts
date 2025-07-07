@@ -165,5 +165,6 @@ test('pickerInput/LazyTreeInput/Mobile view', async ({ pageWrapper }, testInfo) 
         await pageObject.locators.dropdown.done.click();
         await pageObject.waitDropdownDisappears();
         await expectScreenshot(5, 'body-closed-after-done-click');
+        pageWrapper.page.viewportSize();
     });
 });

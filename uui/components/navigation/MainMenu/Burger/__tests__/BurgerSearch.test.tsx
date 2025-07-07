@@ -5,14 +5,14 @@ import { renderSnapshotWithContextAsync } from '@epam/uui-test-utils';
 
 describe('BurgerSearch', () => {
     it('should be rendered correctly', async () => {
-        const tree = await renderSnapshotWithContextAsync(<BurgerSearch value={ null } onValueChange={ () => {} } />);
+        const tree = await renderSnapshotWithContextAsync(<BurgerSearch value={ undefined } onValueChange={ () => {} } />);
 
         expect(tree).toMatchSnapshot();
     });
 
-    it('should be rendered correctly', async () => {
+    it('should be rendered correctly with extra props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <BurgerSearch value={ null } onValueChange={ () => {} } onAccept={ () => {} } onCancel={ () => {} } icon={ CalendarIcon } iconPosition="right" isDropdown isOpen />,
+            <BurgerSearch value={ undefined } onValueChange={ () => {} } onAccept={ () => {} } onCancel={ () => {} } icon={ CalendarIcon } iconPosition="right" isDropdown isOpen />,
         );
 
         expect(tree).toMatchSnapshot();

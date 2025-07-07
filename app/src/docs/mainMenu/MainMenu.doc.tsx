@@ -13,11 +13,11 @@ import {
     TSkin,
 } from '@epam/uui-docs';
 import { BaseDocsBlock, DocExample, EditableDocContent } from '../../common';
-import { getChilrdenExamples, getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
-//
-import css from './../styles.module.scss';
-import { TMainMenuPreview } from '../_types/previewIds';
 import { QueryHelpers } from '../../common/docs/baseDocBlock/utils/queryHelpers';
+import { getItemsExamples } from './mainMenuExamples';
+import { TMainMenuPreview } from '../_types/previewIds';
+
+import css from './../styles.module.scss';
 
 export class MainMenuDoc extends BaseDocsBlock {
     title = 'Main Menu';
@@ -44,24 +44,7 @@ export class MainMenuDoc extends BaseDocsBlock {
             [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
         },
         doc: (doc: DocBuilder<uui.MainMenuProps | loveship.MainMenuProps | electric.MainMenuProps>) => {
-            doc.merge('children', { examples: (ctx) => getChilrdenExamples(ctx), remountOnChange: true });
-            doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
-            doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
-            doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });
-            doc.merge('logoHref', { editorType: 'StringEditor', examples: [] });
-            doc.merge('appLogoUrl', { editorType: 'StringEditor', examples: [] });
-            doc.merge('renderBurger', { examples: renderBurgerExamples });
             doc.merge('items', { examples: (ctx) => getItemsExamples(ctx), remountOnChange: true });
-            doc.merge('MainMenuDropdown', { examples: [{ value: uui.MainMenuDropdown, name: 'MainMenuDropdown', isDefault: true }] });
-            doc.merge('Burger', { examples: [{ value: uui.Burger, name: 'Burger', isDefault: true }] });
-            doc.merge('logoLink', {
-                editorType: 'LinkEditor',
-                examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
-            });
-            doc.merge('customerLogoLink', {
-                editorType: 'LinkEditor',
-                examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
-            });
         },
         preview: (docPreview: DocPreviewBuilder<uui.MainMenuProps>) => {
             const w600_h80: TPreviewCellSize = '600-80';

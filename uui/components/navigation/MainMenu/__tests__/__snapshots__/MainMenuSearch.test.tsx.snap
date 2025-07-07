@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainMenuSearch should be rendered correctly 1`] = `
+exports[`MainMenuSearch should be rendered correctly with null value 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable searchInput"
@@ -23,7 +23,7 @@ exports[`MainMenuSearch should be rendered correctly 1`] = `
 </DocumentFragment>
 `;
 
-exports[`MainMenuSearch should be rendered correctly 2`] = `
+exports[`MainMenuSearch should be rendered correctly with value and extra props 1`] = `
 <DocumentFragment>
   <div
     class="container uui-input-box -clickable searchInput"
