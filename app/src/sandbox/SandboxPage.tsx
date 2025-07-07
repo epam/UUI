@@ -6,7 +6,6 @@ import { getQuery } from '../helpers';
 import { DbDemo } from './db/DbDemo';
 import { PersonsTableDemo } from './tables/PersonsTableDemo';
 import { DemoTablePaged } from './tablePaged';
-import { DraftRTEDemo } from './draft-rte/DraftRTEDemo';
 import { ScrollSpyDemo } from './scroll-spy/ScrollSpyDemo';
 import { ThemeDemo } from './theme/ThemeDemo';
 import { ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
@@ -33,8 +32,7 @@ export function SandboxPage() {
             { id: 'productsTableDemo', name: 'Products Table', component: ProductsTableDemo },
             { id: 'projectTasksDemo', name: 'Project Tasks Demo', component: ProjectTasksDemo },
             { id: 'editableTableDemo', name: 'Editable Table', component: ProjectTableDemo },
-            { id: 'reactQueryLocationsTableDemo', name: 'React-query Loactions Demo', component: ReactQueryLocationsTable },
-            { id: 'Draft', name: 'DRAFT RTE demo', component: DraftRTEDemo },
+            { id: 'reactQueryLocationsTableDemo', name: 'React-query Locations Demo', component: ReactQueryLocationsTable },
             { id: 'scrollSpy', name: 'Scroll Spy', component: ScrollSpyDemo },
             { id: 'uui_theming', name: 'UUI Theming', component: ThemeDemo },
             { id: 'theme_electric', name: 'Theme Electric', component: ThemeElectricDemo },

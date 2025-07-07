@@ -53,7 +53,6 @@
     "packages": [
       "app",
       "uui-e2e-tests",
-      "draft-rte",
       "epam-assets",
       "epam-electric",
       "epam-promo",

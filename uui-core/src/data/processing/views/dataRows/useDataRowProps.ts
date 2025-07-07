@@ -71,8 +71,8 @@ export function useDataRowProps<TItem, TId, TFilter = any>(
         row.onFold = row.isFoldable ? handleOnFold : undefined;
         row.isFolded = row.isFoldable && isFolded(row.value);
 
-        row.isChildrenChecked = row.isChildrenChecked || isRowChildrenChecked(row);
-        row.isChildrenSelected = row.isChildrenSelected || isRowChildSelected(row);
+        row.isChildrenChecked = isRowChildrenChecked(row);
+        row.isChildrenSelected = isRowChildSelected(row);
 
         return row;
     }, [

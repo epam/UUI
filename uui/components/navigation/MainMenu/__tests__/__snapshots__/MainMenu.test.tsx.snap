@@ -1,30 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainMenu should be rendered correctly 1`] = `
+exports[`MainMenu should be rendered correctly with burger, logo, transparency and serverBadge 1`] = `
 <DocumentFragment>
   <nav
     class="root uui-main_menu uui-mainmenu-container container"
-  >
-    <div
-      class="itemsContainer mainWrapper"
-    >
-      <div
-        class="itemsWrapper"
-      >
-        <span
-          class="uui-button-box uui-enabled root type-primary"
-          tabindex="-1"
-        />
-      </div>
-    </div>
-  </nav>
-</DocumentFragment>
-`;
-
-exports[`MainMenu should be rendered correctly 2`] = `
-<DocumentFragment>
-  <nav
-    class="root uui-main_menu uui-mainmenu-container container uui-mainmenu-transparent"
   >
     <div
       class="itemsContainer mainWrapper"
@@ -46,6 +25,27 @@ exports[`MainMenu should be rendered correctly 2`] = `
         style="background: rgb(57, 183, 172);"
       >
         Dev
+      </div>
+    </div>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`MainMenu should be rendered correctly with default props 1`] = `
+<DocumentFragment>
+  <nav
+    class="root uui-main_menu uui-mainmenu-container container"
+  >
+    <div
+      class="itemsContainer mainWrapper"
+    >
+      <div
+        class="itemsWrapper"
+      >
+        <span
+          class="uui-button-box uui-enabled root type-primary"
+          tabindex="-1"
+        />
       </div>
     </div>
   </nav>

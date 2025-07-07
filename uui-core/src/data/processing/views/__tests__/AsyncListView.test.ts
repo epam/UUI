@@ -1908,4 +1908,49 @@ describe('AsyncListView', () => {
 
         expect(view.getListProps().rowsCount).toBe(0);
     });
+
+    it('Adjust parent selection if children are selected (isChildrenSelected)', async () => {
+        currentValue = { ...initialValue, visibleCount: 10, selectedId: 121 };
+        const hookResult = renderHook(
+            ({ value }) => treeDataSource.useView(value, onValueChangeFn, {
+                cascadeSelection: true,
+                getRowOptions: () => ({ isSelectable: true }),
+                isFoldedByDefault: () => false,
+            }),
+            { initialProps: { value: currentValue } },
+        );
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100, isChildrenSelected: true },
+                { id: 110 },
+                { id: 120, isChildrenSelected: true },
+                { id: 121, isSelected: true },
+                { id: 122 },
+                { id: 200 },
+                { id: 300 },
+                { id: 310 },
+                { id: 320 },
+                { id: 330 },
+            ]);
+        });
+        
+        currentValue = { ...currentValue, selectedId: 310 };
+        hookResult.rerender({ value: currentValue });
+        await waitFor(() => {
+            const view = hookResult.result.current;
+            expectViewToLookLike(view, [
+                { id: 100 },
+                { id: 110 },
+                { id: 120 },
+                { id: 121 },
+                { id: 122 },
+                { id: 200 },
+                { id: 300, isChildrenSelected: true },
+                { id: 310, isSelected: true },
+                { id: 320 },
+                { id: 330 },
+            ]);
+        });
+    });
 });
