@@ -1,0 +1,13 @@
+{
+    "id": "mainMenu",
+    "name": "Main Menu",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "mainMenu-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/mainMenu/Basic.example.tsx" },
+        { "name": "Responsive", "componentPath": "./_examples/mainMenu/Responsive.example.tsx" },
+        { "name": "Light menu (Electric)", "componentPath": "./_examples/mainMenu/LightElectric.example.tsx", "themes": ["electric"] },
+        { "name": "Light menu (Loveship)", "componentPath": "./_examples/mainMenu/LightLoveship.example.tsx", "themes": ["loveship"] }
+    ],
+    "tags": ["MainMenu"]
+}

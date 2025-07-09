@@ -17,6 +17,7 @@ import css from './BaseDocsBlock.module.scss';
 import { TDocConfig, DocItem } from '@epam/uui-docs';
 import { DocExample } from '../DocExample';
 import { EditableDocContent } from '../EditableDocContent';
+import { explorerConfigsMap } from '../../../docs/explorerConfigs/_explorerConfigsSet';
 
 type State = {
     isOpen: boolean;
@@ -84,7 +85,8 @@ export abstract class BaseDocsBlock extends React.Component<DocBlockProps, State
     }
 
     getConfig = () => {
-        return this.props.docItem.explorerConfig || (this.constructor as unknown as { config: TDocConfig })?.config;
+        const config = explorerConfigsMap.get(this.props.docItem?.id);
+        return config || (this.constructor as unknown as { config: TDocConfig })?.config;
     };
 
     private isModeSupported = (mode: TMode) => {

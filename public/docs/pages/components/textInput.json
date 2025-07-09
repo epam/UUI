@@ -1,0 +1,11 @@
+{
+    "id": "textInput",
+    "name": "Text Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "textInput-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/textInput/Basic.example.tsx" },
+        { "name": "Size", "componentPath": "./_examples/textInput/Size.example.tsx" },
+        { "name": "Action", "componentPath": "./_examples/textInput/Action.example.tsx" }
+    ]
+}

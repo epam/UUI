@@ -1,0 +1,9 @@
+{
+    "id": "switch",
+    "name": "Switch",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "switch-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/switch/Basic.example.tsx" }
+    ]
+}

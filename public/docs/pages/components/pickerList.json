@@ -1,0 +1,10 @@
+{
+    "id": "pickerList",
+    "name": "Picker List",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "pickerList-description" },
+        { "name": "Basic", "componentPath": "./_examples/pickerList/Basic.example.tsx" }
+    ],
+    "tags": ["PickerModal"]
+}

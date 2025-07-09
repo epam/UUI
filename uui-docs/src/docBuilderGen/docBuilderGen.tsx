@@ -1,11 +1,10 @@
-import { TSkin } from '../types';
+import { ThemeId, TSkin } from '../types';
 import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
 import { TOneOfItemType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import { mergeUnionTypeDuplicatePropsExamples } from './propDetailsBuilders/shared/unionPropsUtil';
 import { IDocBuilderGenCtx, TDocConfig, TPropEditorTypeOverride } from './docBuilderGenTypes';
-import { ThemeId } from '../docItems';
 
 interface IDocBuilderGenParams {
     config: TDocConfig,

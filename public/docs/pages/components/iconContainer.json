@@ -1,0 +1,9 @@
+{
+    "id": "iconContainer",
+    "name": "Icon Container",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "iconContainer-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/iconContainer/Basic.example.tsx" }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "id": "labeledInput",
+    "name": "Labeled Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "labeledInput-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/labeledInput/Basic.example.tsx" }
+    ]
+}

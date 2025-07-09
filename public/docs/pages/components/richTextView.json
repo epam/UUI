@@ -1,0 +1,9 @@
+{
+    "id": "richTextView",
+    "name": "Rich Text View",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "richTextView-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/richTextView/Basic.example.tsx" }
+    ]
+}

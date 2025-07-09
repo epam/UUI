@@ -1,0 +1,14 @@
+{
+  "id": "button",
+  "name": "Button",
+  "parentId": "components",
+  "examples": [
+    { "descriptionPath": "button-descriptions" },
+    { "name": "Basic", "componentPath": "./_examples/button/Basic.example.tsx" },
+    { "name": "Size", "componentPath": "./_examples/button/Size.example.tsx" },
+    { "name": "Styles", "componentPath": "./_examples/button/Styling.example.tsx" },
+    { "name": "Button with Icon", "componentPath": "./_examples/button/Icon.example.tsx" },
+    { "name": "Button with link", "componentPath": "./_examples/button/Link.example.tsx" },
+    { "name": "Button as a Toggler", "componentPath": "./_examples/button/Toggler.example.tsx" }
+  ]
+}

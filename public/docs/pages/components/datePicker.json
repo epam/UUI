@@ -1,0 +1,14 @@
+{
+    "id": "datePicker",
+    "name": "Date Picker",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "datePicker-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/datePicker/Basic.example.tsx" },
+        { "name": "Format date", "componentPath": "./_examples/datePicker/FormatDate.example.tsx" },
+        { "name": "Render footer", "componentPath": "./_examples/datePicker/Footer.example.tsx" },
+        { "name": "Disable dates", "componentPath": "./_examples/datePicker/Filter.example.tsx" },
+        { "name": "Prevent from being empty", "componentPath": "./_examples/datePicker/PreventEmpty.example.tsx" },
+        { "name": "Customize day render", "componentPath": "./_examples/datePicker/CustomRenderDay.example.tsx" }
+    ]
+}

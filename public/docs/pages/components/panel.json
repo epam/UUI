@@ -1,0 +1,10 @@
+{
+    "id": "panel",
+    "name": "Panel",
+    "parentId": "flexItems",
+    "order": 1,
+    "examples": [
+        { "descriptionPath": "panel-description" },
+        { "componentPath": "./_examples/flexItems/Panel.example.tsx" }
+    ]
+}

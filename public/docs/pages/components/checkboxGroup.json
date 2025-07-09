@@ -1,0 +1,9 @@
+{
+  "id": "checkboxGroup",
+  "name": "Checkbox Group",
+  "parentId": "components",
+  "examples": [
+    { "descriptionPath": "checkboxGroup-descriptions" },
+    { "name": "Checkbox Group", "componentPath": "./_examples/checkbox/Group.example.tsx" }
+  ]
+}

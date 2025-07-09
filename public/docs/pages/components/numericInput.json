@@ -1,0 +1,11 @@
+{
+    "id": "numericInput",
+    "name": "Numeric Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "numericInput-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/numericInput/Basic.example.tsx" },
+        { "name": "Formatting options", "componentPath": "./_examples/numericInput/Formatting.example.tsx" },
+        { "name": "Size", "componentPath": "./_examples/numericInput/Size.example.tsx" }
+    ]
+}

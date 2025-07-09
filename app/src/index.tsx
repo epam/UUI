@@ -10,7 +10,7 @@ import { svc } from './services';
 import App from './App';
 import { getApi, TApi, AppContext, getThemeContext } from './data';
 import { getAppRootNode } from './helpers/appRootUtils';
-import { items as itemsStructure } from './documents/structure';
+import { items as itemsStructure } from './documents/structure/structure';
 import { DocItem } from '@epam/uui-docs';
 
 import { TypeRefPage } from './common';
