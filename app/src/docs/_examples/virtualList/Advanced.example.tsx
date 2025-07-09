@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { useUuiContext, DataSourceState, useLazyDataSource, useVirtualList } from '@epam/uui-core';
-import { Text, MainMenu, TextPlaceholder, MainMenuButton } from '@epam/uui';
+import { Text, MainMenu, TextPlaceholder, MainMenuButton, MainMenuLogo } from '@epam/uui';
 import { City } from '@epam/uui-docs';
 import css from './AdvancedExample.module.scss';
-import { MainMenuLogo } from '@epam/uui-components/build';
 
 function Header() {
     return (
