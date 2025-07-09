@@ -324,7 +324,7 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         },
     ];
 
-    const learnItemsWithBurger: AdaptiveItemProps[] = [
+    const learnItemsWithBurger: AdaptiveItemProps[] = [ // this is the default example for E2E tests, do not change them
         {
             id: 'burger',
             priority: 100,
@@ -401,7 +401,7 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         },
     ];
 
-    const learnItemsWithoutBurger = [ // this is the default example for E2E tests, do not change them
+    const learnItemsWithoutBurger = [
         {
             id: 'appLogo2',
             priority: 99,
@@ -449,12 +449,12 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
 
     return [
         {
-            name: 'Learn with burger',
+            name: 'Learn with burger', // this is the default example for E2E tests, do not change them
             value: learnItemsWithBurger,
             isDefault: true,
         },
         {
-            name: 'Learn without burger', // this is the default example for E2E tests, do not change them
+            name: 'Learn without burger',
             value: learnItemsWithoutBurger,
         },
         {
