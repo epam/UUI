@@ -1,16 +1,9 @@
-import { DocBuilder, PropDocPropsUnknown, TComponentPreview, TDocConfig, TPreviewCellSize, componentsStructure } from '@epam/uui-docs';
+import { DocBuilder, PropDocPropsUnknown, TComponentPreview, TDocConfig, TPreviewCellSize } from '@epam/uui-docs';
 import { SCREENSHOT_WIDTH_LIMIT } from '../constants';
-
-const compMap = componentsStructure.reduce<Map<string, TDocConfig >>((acc, entry) => {
-    const config = entry?.explorerConfig;
-    if (config) {
-        acc.set(entry.id, config);
-    }
-    return acc;
-}, new Map());
+import { explorerConfigsMap } from '../../docs/explorerConfigs/_explorerConfigsSet';
 
 export function getConfigByComponentId(componentId: string | undefined): TDocConfig | undefined {
-    return compMap.get(componentId);
+    return explorerConfigsMap.get(componentId);
 }
 
 export function calcLayoutCssFromCellSize(

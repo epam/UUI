@@ -7,7 +7,7 @@ import {
     TPickerInputPreview, TRadioGroupPreview, TRadioInputPreview, TRangeDatePickerPreview,
     TSwitchPreview, TTabButtonPreview, TTagPreview, TTextAreaPreview, TTextInputPreview,
     TTextPreview, TTooltipPreview, TVerticalTabButtonPreview,
-} from '../../framework/data/previewIds';
+} from '@epam/uui-docs';
 
 const {
     badge, button, linkButton, avatarStack, tag, checkbox, textInput, countIndicator,

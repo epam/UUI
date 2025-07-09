@@ -1,0 +1,10 @@
+{
+    "id": "timePicker",
+    "name": "Time Picker",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "timePicker-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/timePicker/Basic.example.tsx" },
+        { "name": "24-hour format", "componentPath": "./_examples/timePicker/TimeFormat.example.tsx" }
+    ]
+}

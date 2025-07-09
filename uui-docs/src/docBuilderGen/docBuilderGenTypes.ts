@@ -1,10 +1,9 @@
-import { IconBase, PropDoc, TDocContext, TDocsGenExportedType, TSkin } from '../types';
+import { IconBase, PropDoc, TDocContext, TDocsGenExportedType, ThemeId, TSkin } from '../types';
 import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { TOneOfItemType, TPropEditorType, TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import * as React from 'react';
 import { Icon, UuiContexts } from '@epam/uui-core';
 import { IDemoApi } from '../demoApi';
-import type { ThemeId } from '../docItems';
 
 export type TPropDocBuilderParams = {
     docs: DocBuilder<any>,
@@ -40,6 +39,10 @@ export type TPropEditorTypeOverride = {
 };
 
 export type TDocConfig = {
+    /**
+     * Id to link config with docItem, id in doc items should be the same as in config.
+     */
+    id?: string;
     /**
      * The React component's tag name
      */

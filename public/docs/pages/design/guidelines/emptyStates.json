@@ -1,0 +1,8 @@
+{
+    "id": "emptyStates",
+    "name": "Empty States",
+    "parentId": "guidelines",
+    "examples": [
+        { "descriptionPath": "emptyStates-for-designers" }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "id": "validation",
+    "name": "Validation",
+    "parentId": "guidelines",
+    "examples": [
+        { "descriptionPath": "validation-for-designers" }
+    ]
+}

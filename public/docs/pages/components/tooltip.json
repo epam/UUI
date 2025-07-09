@@ -1,0 +1,15 @@
+{
+    "id": "tooltip",
+    "name": "Tooltip",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "tooltip-descriptions" },
+        { "name": "Types", "componentPath": "./_examples/tooltip/Types.example.tsx" },
+        { "name": "Variants (Styles)", "componentPath": "./_examples/tooltip/Variants.example.tsx" },
+        { "name": "Tooltip placement", "componentPath": "./_examples/tooltip/Placement.example.tsx" },
+        { "name": "Custom markup", "componentPath": "./_examples/tooltip/CustomMarkup.example.tsx" },
+        { "name": "Tooltip with delay", "componentPath": "./_examples/tooltip/Delay.example.tsx" },
+        { "name": "Tooltip with icon", "componentPath": "./_examples/tooltip/WithIcon.example.tsx" },
+        { "name": "Tooltip with a link", "componentPath": "./_examples/tooltip/WithLink.example.tsx" }
+    ]
+}

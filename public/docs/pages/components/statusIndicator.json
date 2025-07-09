@@ -1,0 +1,12 @@
+{
+    "id": "statusIndicator",
+    "name": "Status Indicator",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "statusIndicator-descriptions" },
+        { "name": "Sizes example", "componentPath": "./_examples/statusIndicator/Sizes.example.tsx" },
+        { "name": "Fill & Colors example", "componentPath": "./_examples/statusIndicator/Basic.example.tsx" },
+        { "name": "Uses in Table example", "componentPath": "./_examples/statusIndicator/WithTable.example.tsx" },
+        { "name": "Dropdown example", "componentPath": "./_examples/statusIndicator/Dropdown.example.tsx" }
+    ]
+}

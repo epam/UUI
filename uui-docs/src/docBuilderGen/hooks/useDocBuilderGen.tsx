@@ -3,7 +3,7 @@ import { TSkin, TDocsGenExportedType, PropDocPropsUnknown } from '../../types';
 import { docBuilderGen } from '../docBuilderGen';
 import { DocBuilder } from '../../DocBuilder';
 import { IDocBuilderGenCtx, TDocConfig } from '../docBuilderGenTypes';
-import { ThemeId } from '../../docItems';
+import { ThemeId } from '../../types/themes';
 
 interface IUseDocBuilderGenParams {
     config?: TDocConfig;

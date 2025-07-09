@@ -1,0 +1,9 @@
+{
+    "id": "multiSwitch",
+    "name": "MultiSwitch",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "multiSwitch-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/multiSwitch/Basic.example.tsx" }
+    ]
+}

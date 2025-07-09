@@ -1,0 +1,27 @@
+{
+    "id": "pickerInput",
+    "name": "Picker Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "pickerInput-descriptions" },
+        { "name": "Basic", "componentPath": "./_examples/pickerInput/ArrayPickerInput.example.tsx" },
+        { "name": "Lazy list", "componentPath": "./_examples/pickerInput/LazyPickerInput.example.tsx" },
+        { "name": "Lazy tree", "componentPath": "./_examples/pickerInput/LazyTreeInput.example.tsx" },
+        { "name": "Async list", "componentPath": "./_examples/pickerInput/AsyncPickerInput.example.tsx" },
+        { "name": "Cascade selection modes", "componentPath": "./_examples/pickerInput/CascadeSelectionModes.example.tsx" },
+        { "name": "Custom picker row", "componentPath": "./_examples/pickerInput/CustomUserRow.example.tsx" },
+        { "name": "Custom picker footer", "componentPath": "./_examples/pickerInput/PickerInputWithCustomFooter.example.tsx" },
+        { "name": "Picker toggler configuration and options", "componentPath": "./_examples/pickerInput/TogglerConfiguration.example.tsx" },
+        { "name": "Setting row options", "componentPath": "./_examples/pickerInput/GetRowOptions.example.tsx" },
+        { "name": "Getting selected entity", "componentPath": "./_examples/pickerInput/ValueType.example.tsx" },
+        { "name": "Search positions", "componentPath": "./_examples/pickerInput/SearchPositions.example.tsx" },
+        { "name": "Flatten search results mode", "componentPath": "./_examples/pickerInput/LazyTreeSearch.example.tsx" },
+        { "name": "Turn off 'Select All' button in footer", "componentPath": "./_examples/pickerInput/PickerInputTurnOffSelectAll.example.tsx" },
+        { "name": "Open picker in modal", "componentPath": "./_examples/pickerInput/EditMode.example.tsx" },
+        { "name": "Picker with changed array of items", "componentPath": "./_examples/pickerInput/PickerWithChangingItemsArray.example.tsx" },
+        { "name": "Linked pickers", "componentPath": "./_examples/pickerInput/LinkedPickers.example.tsx" },
+        { "name": "Change portal target and dropdown placement", "componentPath": "./_examples/pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" },
+        { "name": "Custom toggler tag render", "componentPath": "./_examples/pickerInput/CustomPickerTogglerTag.example.tsx" }
+    ],
+    "tags": ["PickerInput"]
+}

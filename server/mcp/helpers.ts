@@ -133,3 +133,35 @@ function findExampleDescription(componentName, exampleName) {
     }
     return null;
 }
+
+const componentsDocsMapCache = new Map();
+
+export function getComponentsDocsMap() {
+    if (componentsDocsMapCache.size > 0) {
+        return componentsDocsMapCache;
+    }
+
+    const docsDir = path.resolve(__dirname, '../../../public/docs/pages');
+
+    function readFilesRecursively(dir) {
+        const entries = fs.readdirSync(dir);
+        for (const entry of entries) {
+            if (entry === 'package.json') continue;
+
+            const fullPath = path.join(dir, entry);
+            const stats = fs.statSync(fullPath);
+
+            if (stats.isDirectory()) {
+                readFilesRecursively(fullPath);
+            } else {
+                const content = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+                if (content.id) {
+                    componentsDocsMapCache.set(content.id, content);
+                }
+            }
+        }
+    }
+
+    readFilesRecursively(docsDir);
+    return componentsDocsMapCache;
+}
