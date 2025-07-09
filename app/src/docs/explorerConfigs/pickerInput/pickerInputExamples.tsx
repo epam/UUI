@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as uui from '@epam/uui';
 import { PickerInputProps, PickerTogglerTag, Tooltip } from '@epam/uui';
 import { PickerTogglerRenderItemParams } from '@epam/uui-components';
-import { IPropSamplesCreationContext } from '../../types';
+import { IPropSamplesCreationContext } from '@epam/uui-docs';
 
 type TRenderTogglerParam = Parameters<uui.PickerInputProps<any, any>['renderToggler']>[0];
 

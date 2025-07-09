@@ -1,7 +1,6 @@
-import { TComponentPreview, TDocContext, TPreviewMatrix } from '../../';
+import { TComponentPreview, TDocContext, TPreviewMatrix, TPickerInputPreview } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
 import { euLocationsDs } from './previewTestData';
-import { TPickerInputPreview } from '../_types/previewIds';
 
 const TEST_DATA = {
     entityName: 'Language',
