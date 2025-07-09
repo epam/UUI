@@ -52,7 +52,7 @@ export class MainMenuDoc extends BaseDocsBlock {
                 getSelectedProps: () => ({}),
             } as IPropSamplesCreationContext<any>;
             const TEST_DATA = {
-                items: getItemsExamples(fakeCtx)[1].value,
+                items: getItemsExamples(fakeCtx)[0].value,
             };
 
             docPreview.add({
