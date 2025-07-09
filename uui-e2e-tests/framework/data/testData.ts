@@ -26,7 +26,7 @@ import {
     TTextInputPreview,
     TTextPreview, TTooltipPreview,
     TVerticalTabButtonPreview,
-} from '@epam/uui-docs';
+} from './previewIds';
 import { TTheme } from '../types';
 
 /**
