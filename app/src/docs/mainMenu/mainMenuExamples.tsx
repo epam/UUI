@@ -63,7 +63,12 @@ const renderAvatar = () => {
         <Dropdown
             key="avatar"
             renderTarget={ (props) => (
-                <MainMenuAvatar avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4" isDropdown { ...props } rawProps={ { 'aria-label': 'Avatar' } } />
+                <MainMenuAvatar
+                    avatarUrl="https://api.dicebear.com/7.x/pixel-art/svg?seed=Coco&radius=50&backgroundColor=b6e3f4"
+                    isDropdown
+                    { ...props }
+                    rawProps={ { 'aria-label': 'Avatar' } }
+                />
             ) }
             renderBody={ (props) => (
                 <DropdownMenuBody { ...props }>
@@ -93,6 +98,12 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
     }
 
     const growItems = [
+        {
+            id: 'burger',
+            priority: 100500,
+            collapsedContainer: true,
+            render: (p: AdaptiveItemProps<any>) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
+        },
         {
             id: 'appLogo2',
             priority: 100500,
@@ -151,6 +162,12 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
     ];
 
     const uiItems = [
+        {
+            id: 'burger',
+            priority: 100500,
+            collapsedContainer: true,
+            render: (p: AdaptiveItemProps<any>) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
+        },
         {
             id: 'appLogo2',
             priority: 100500,
@@ -217,6 +234,12 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
     ];
 
     const heroesItems = [
+        {
+            id: 'burger',
+            priority: 100500,
+            collapsedContainer: true,
+            render: (p: AdaptiveItemProps<any>) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
+        },
         {
             id: 'appLogo2',
             priority: 100500,
@@ -301,76 +324,138 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         },
     ];
 
-    const items: AdaptiveItemProps[] = [
+    const learnItemsWithBurger: AdaptiveItemProps[] = [
         {
-            id: 'burger', priority: 100, collapsedContainer: true, render: (p) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
+            id: 'burger',
+            priority: 100,
+            collapsedContainer: true,
+            render: (p: AdaptiveItemProps<any>) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
         },
         {
-            id: 'logo',
+            id: 'appLogo2',
             priority: 99,
-            render: (p) => <MainMenuLogo key={ p.id } href="https://learn.epam.com/" logoUrl={ learn_logo } />,
+            render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } estimatedWidth={ 142 } />,
         },
-        { id: 'trainingCatalog', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Training Catalog" /> },
-        { id: 'requests', priority: 3, render: (p) => <MainMenuButton key={ p.id } href="/" caption="Requests" /> },
-        { id: 'flexSpacer', priority: 100, render: (p) => <FlexSpacer key={ p.id } /> },
-        { id: 'help', priority: 1, render: (p) => <MainMenuIcon key={ p.id } href="https://support.epam.com" target="_blank" icon={ HelpIcon } rawProps={ { 'aria-label': 'Help' } } /> },
-        { id: 'avatar', priority: 2, render: renderAvatar },
-        { id: 'globalMenu', priority: 100, render: (p) => <GlobalMenu key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } /> },
+        {
+            id: 'start',
+            priority: 3,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+        },
+        {
+            id: 'explore',
+            priority: 2,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore estimatedWidth={ 78 } showInBurgerMenu />,
+        },
+        {
+            id: 'myLearning',
+            priority: 1,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore estimatedWidth={ 104 } showInBurgerMenu href="/" />,
+        },
+        {
+            id: 'moreContainer',
+            priority: 7,
+            collapsedContainer: true,
+            render: (item: { id: React.Key; }, hiddenItems: any[]) => {
+                return (
+                    <MainMenuDropdown
+                        caption="More"
+                        key={ item.id }
+                        renderBody={ (props) => {
+                            return hiddenItems?.map((i) => {
+                                return i.render({ ...i, onClose: props.onClose });
+                            });
+                        } }
+                    />
+                );
+            },
+        },
+        {
+            id: 'spacer',
+            priority: 100,
+            render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } />,
+        },
+        {
+            id: 'help',
+            priority: 10,
+            render: (p: AdaptiveItemProps) => (
+                <MainMenuIcon
+                    key={ p.id }
+                    icon={ HelpIcon }
+                    estimatedWidth={ 32 }
+                    rawProps={ { 'aria-label': 'Help' } }
+                    onClick={ () => {
+                        window.open('https://uui.epam.com/documents?id=overview', '_blank');
+                    } }
+                />
+            ),
+        },
+        {
+            id: 'avatar',
+            priority: 100,
+            render: renderAvatar,
+        },
+        {
+            id: 'global-menu',
+            priority: 100,
+            render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
+        },
+    ];
+
+    const learnItemsWithoutBurger = [ // this is the default example for E2E tests, do not change them
+        {
+            id: 'appLogo2',
+            priority: 99,
+            render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } estimatedWidth={ 142 } />,
+        },
+        {
+            id: 'start',
+            priority: 3,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+        },
+        {
+            id: 'explore',
+            priority: 2,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore estimatedWidth={ 78 } showInBurgerMenu />,
+        },
+        {
+            id: 'myLearning',
+            priority: 2,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore estimatedWidth={ 104 } showInBurgerMenu href="/" />,
+        },
+        {
+            id: 'spacer',
+            priority: 3,
+            render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } />,
+        },
+        {
+            id: 'avatar',
+            priority: 100,
+            render: (p: AdaptiveItemProps) => (
+                <MainMenuAvatar
+                    isDropdown
+                    key={ p.id }
+                    avatarUrl={ ALL_AVATARS[0] }
+                    estimatedWidth={ 84 }
+                    rawProps={ { 'aria-label': 'Avatar' } }
+                />
+            ),
+        },
+        {
+            id: 'global-menu',
+            priority: 100,
+            render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
+        },
     ];
 
     return [
         {
-            name: `Items: ${items.map((i) => i.id).join(', ')}.`,
-            value: items,
+            name: 'Learn with burger',
+            value: learnItemsWithBurger,
             isDefault: true,
         },
         {
-            name: 'Learn', // this is the default example for E2E tests, do not change them
-            value: [
-                {
-                    id: 'appLogo2',
-                    priority: 99,
-                    render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } estimatedWidth={ 142 } />,
-                },
-                {
-                    id: 'start',
-                    priority: 3,
-                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
-                },
-                {
-                    id: 'explore',
-                    priority: 2,
-                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore estimatedWidth={ 78 } showInBurgerMenu />,
-                },
-                {
-                    id: 'myLearning',
-                    priority: 2,
-                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore estimatedWidth={ 104 } showInBurgerMenu href="/" />,
-                },
-                {
-                    id: 'spacer',
-                    priority: 3,
-                    render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } />,
-                },
-                {
-                    id: 'avatar',
-                    priority: 100,
-                    render: (p: AdaptiveItemProps) => (
-                        <MainMenuAvatar
-                            isDropdown
-                            key={ p.id }
-                            avatarUrl={ ALL_AVATARS[0] }
-                            estimatedWidth={ 84 }
-                            rawProps={ { 'aria-label': 'Avatar' } }
-                        />
-                    ),
-                },
-                {
-                    id: 'global-menu',
-                    priority: 100,
-                    render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
-                },
-            ],
+            name: 'Learn without burger', // this is the default example for E2E tests, do not change them
+            value: learnItemsWithoutBurger,
         },
         {
             name: 'Grow',
@@ -383,75 +468,6 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         {
             name: 'Heroes',
             value: heroesItems,
-        },
-        {
-            name: 'Learn (advanced)',
-            value: [
-                {
-                    id: 'burger', priority: 100, collapsedContainer: true, render: (p: AdaptiveItemProps<any>) => <Burger key={ p.id } width={ 300 } renderBurgerContent={ renderBurger } />,
-                },
-                {
-                    id: 'appLogo2',
-                    priority: 99,
-                    render: (p: AdaptiveItemProps) => <MainMenuLogo key={ p.id } logoUrl={ learn_logo } estimatedWidth={ 142 } />,
-                },
-                {
-                    id: 'start',
-                    priority: 3,
-                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
-                },
-                {
-                    id: 'explore',
-                    priority: 2,
-                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Explore" collapseToMore estimatedWidth={ 78 } showInBurgerMenu />,
-                },
-                {
-                    id: 'myLearning',
-                    priority: 1,
-                    render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="My Learning" collapseToMore estimatedWidth={ 104 } showInBurgerMenu href="/" />,
-                },
-                {
-                    id: 'moreContainer',
-                    priority: 7,
-                    collapsedContainer: true,
-                    render: (item: { id: React.Key; }, hiddenItems: any[]) => {
-                        return (
-                            <MainMenuDropdown
-                                caption="More"
-                                key={ item.id }
-                                renderBody={ (props) => {
-                                    return hiddenItems?.map((i) => {
-                                        return i.render({ ...i, onClose: props.onClose });
-                                    });
-                                } }
-                            />
-                        );
-                    },
-                },
-                {
-                    id: 'spacer',
-                    priority: 100,
-                    render: (p: AdaptiveItemProps) => <FlexSpacer key={ p.id } />,
-                },
-                {
-                    id: 'avatar',
-                    priority: 100,
-                    render: (p: AdaptiveItemProps) => (
-                        <MainMenuAvatar
-                            isDropdown
-                            key={ p.id }
-                            avatarUrl={ ALL_AVATARS[0] }
-                            estimatedWidth={ 84 }
-                            rawProps={ { 'aria-label': 'Avatar' } }
-                        />
-                    ),
-                },
-                {
-                    id: 'global-menu',
-                    priority: 100,
-                    render: (p: AdaptiveItemProps) => <GlobalMenu estimatedWidth={ 60 } key={ p.id } rawProps={ { 'aria-label': 'Global Menu' } } />,
-                },
-            ],
         },
     ];
 };
