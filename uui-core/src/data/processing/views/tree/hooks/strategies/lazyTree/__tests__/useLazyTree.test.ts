@@ -278,4 +278,180 @@ describe('useLazyTree', () => {
         expect(typeof tree.getItemStatus).toBe('function');
         expect(tree.getItemStatus!('GW')).toBe(FAILED_RECORD);
     });
+
+    describe('getParentId updates', () => {
+        it('should update tree structure when getParentId function changes', async () => {
+            // Initial getParentId that uses parentId
+            let useParentField = true;
+            const mockGetParentId = jest.fn(({ parentId, alternateParentId }: LocationItem & { alternateParentId?: string }) =>
+                useParentField ? parentId : alternateParentId);
+
+            // Mock locations with both parentId and alternateParentId
+            const mockItems: Array<LocationItem & { alternateParentId?: string | undefined }> = [
+                { id: 'root', parentId: undefined, alternateParentId: undefined, name: 'Root', type: 'continent', childCount: 2, __typename: 'Location' },
+                { id: 'child1', parentId: 'root', alternateParentId: 'child2', name: 'Child 1', type: 'country', childCount: 0, __typename: 'Location' },
+                { id: 'child2', parentId: 'root', alternateParentId: undefined, name: 'Child 2', type: 'country', childCount: 1, __typename: 'Location' },
+            ];
+
+            const mockApi = jest.fn(async (request) => {
+                const { filter } = request;
+                let items = mockItems;
+
+                if (filter?.parentId?.isNull) {
+                    items = mockItems.filter((item) => mockGetParentId(item) === undefined);
+                } else if (filter?.parentId) {
+                    items = mockItems.filter((item) => mockGetParentId(item) === filter.parentId);
+                }
+
+                return { items, totalCount: items.length };
+            });
+
+            let mockDataSourceState: DataSourceState = { topIndex: 0, visibleCount: 10 };
+            const mockSetDataSourceState = jest.fn((newState) => {
+                if (typeof newState === 'function') {
+                    mockDataSourceState = newState(mockDataSourceState);
+                } else {
+                    mockDataSourceState = newState;
+                }
+            });
+
+            // Initial render with first getParentId logic
+            const { result, rerender } = renderHook(
+                ({ deps }) => useLazyTree({
+                    type: 'lazy',
+                    api: mockApi,
+                    getId: ({ id }) => id,
+                    getParentId: mockGetParentId,
+                    dataSourceState: mockDataSourceState,
+                    setDataSourceState: mockSetDataSourceState,
+                }, deps),
+                { initialProps: { deps: [useParentField] } },
+            );
+
+            // Wait for initial load
+            await waitFor(() => {
+                expect(result.current.isFetching).toBeFalsy();
+            });
+
+            // Check initial structure - child1 should be under root
+            const initialRootItems = result.current.tree.getItems(undefined);
+            expect(initialRootItems.ids).toContain('root');
+
+            const initialChild1Parent = mockGetParentId(mockItems[1]); // should be 'root'
+            expect(initialChild1Parent).toBe('root');
+
+            // Clear mock calls
+            mockApi.mockClear();
+            mockGetParentId.mockClear();
+
+            // Change getParentId logic
+            useParentField = false;
+
+            // Rerender with new deps to trigger getParentId change
+            rerender({ deps: [useParentField] });
+
+            // Wait for refetch
+            await waitFor(() => {
+                expect(result.current.isFetching).toBeFalsy();
+            });
+
+            // Verify that new getParentId logic is used
+            const newChild1Parent = mockGetParentId(mockItems[1]); // should now be 'child2'
+            expect(newChild1Parent).toBe('child2');
+
+            // Verify that tree structure was updated with new hierarchy
+            expect(mockApi).toHaveBeenCalled();
+            expect(mockGetParentId).toHaveBeenCalled();
+        });
+
+        it('should handle filter changes that affect getParentId logic', async () => {
+            // Simulate a scenario like PersonsTableDemo where groupBy affects getParentId
+            let groupBy: 'department' | 'location' | undefined = undefined;
+
+            const mockPersons = [
+                { id: 'person1', __typename: 'Person', departmentId: 'dept1', locationId: 'loc1', name: 'John' },
+                { id: 'dept1', __typename: 'Department', name: 'Engineering' },
+                { id: 'loc1', __typename: 'Location', name: 'New York' },
+            ];
+
+            const mockGetParentId = jest.fn((item: any) => {
+                if (item.__typename === 'Person') {
+                    if (groupBy === 'department') {
+                        return ['Department', item.departmentId];
+                    } else if (groupBy === 'location') {
+                        return ['Location', item.locationId];
+                    }
+                }
+                return undefined;
+            });
+
+            const mockApi = jest.fn(async () => ({ items: mockPersons, totalCount: mockPersons.length }));
+
+            let testDataSourceState: DataSourceState = {
+                topIndex: 0,
+                visibleCount: 10,
+                filter: { groupBy },
+            };
+
+            const testSetDataSourceState = jest.fn((newState) => {
+                if (typeof newState === 'function') {
+                    testDataSourceState = newState(testDataSourceState);
+                } else {
+                    testDataSourceState = newState;
+                }
+            });
+
+            const { result, rerender } = renderHook(
+                ({ groupBy: testGroupBy }: { groupBy: 'department' | 'location' | undefined }) => {
+                    groupBy = testGroupBy;
+                    return useLazyTree({
+                        type: 'lazy',
+                        api: mockApi,
+                        getId: (item: any) => [item.__typename, item.id],
+                        getParentId: mockGetParentId,
+                        dataSourceState: { ...testDataSourceState, filter: { groupBy } },
+                        setDataSourceState: testSetDataSourceState,
+                        complexIds: true,
+                        filter: { groupBy },
+                    }, [groupBy]);
+                },
+                { initialProps: { groupBy: undefined as 'department' | 'location' | undefined } },
+            );
+
+            // Wait for initial load
+            await waitFor(() => {
+                expect(result.current.isFetching).toBeFalsy();
+            });
+
+            const initialCalls = mockGetParentId.mock.calls.length;
+
+            // Change groupBy to 'department'
+            rerender({ groupBy: 'department' });
+
+            // Wait for refetch
+            await waitFor(() => {
+                expect(result.current.isFetching).toBeFalsy();
+            });
+
+            // Verify getParentId was called again with new logic
+            expect(mockGetParentId.mock.calls.length).toBeGreaterThan(initialCalls);
+
+            // Verify the new logic returns department parent
+            const person = mockPersons[0];
+            const departmentParent = mockGetParentId(person);
+            expect(departmentParent).toEqual(['Department', 'dept1']);
+
+            // Change groupBy to 'location'
+            rerender({ groupBy: 'location' });
+
+            // Wait for refetch
+            await waitFor(() => {
+                expect(result.current.isFetching).toBeFalsy();
+            });
+
+            // Verify the location logic is now used
+            const locationParent = mockGetParentId(person);
+            expect(locationParent).toEqual(['Location', 'loc1']);
+        });
+    });
 });

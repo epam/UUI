@@ -8,6 +8,7 @@ import { usePickerApi } from './usePickerApi';
 import { useShowSelected } from './useShowSelected';
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
+const defaultMaxItems = 20;
 
 export type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
     toggleModalOpening?(opened: boolean): void;
@@ -116,17 +117,18 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const handlePickerInputKeyboard = (
         rows: DataRowProps<TItem, TId>[],
-        e: React.KeyboardEvent<HTMLElement>,
+        event: React.KeyboardEvent<HTMLElement>,
         actualSearch?: string,
     ) => {
         if (props.isDisabled || props.isReadonly) return;
 
-        if (e.key === 'Enter' && !opened) {
+        if (event.key === 'Enter' && !opened) {
             return toggleBodyOpening(true);
         }
 
-        if (e.key === 'Escape' && opened) {
-            e.preventDefault();
+        if (event.key === 'Escape' && opened) {
+            event.preventDefault();
+            event.stopPropagation();
             toggleDropdownOpening(false);
         }
 
@@ -139,7 +141,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
                 searchPosition: getSearchPosition(),
                 rows,
             },
-            e,
+            event,
         );
     };
 
@@ -228,7 +230,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             isInvalid,
             isReadonly,
             isSingleLine,
-            maxItems,
+            maxItems = defaultMaxItems,
             minCharsToSearch,
             inputCx,
             disableClear: propDisableClear,

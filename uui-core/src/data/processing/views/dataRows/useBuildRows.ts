@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ITree, NOT_FOUND_RECORD, Tree } from '../tree';
+import { ITree, NOT_FOUND_RECORD, PARTIALLY_LOADED, Tree } from '../tree';
 import { DataRowPathItem, DataRowProps } from '../../../../types';
 import { idToKey } from '../helpers';
 import { NodeStats, getDefaultNodeStats, getRowStats, mergeStats } from './stats';
@@ -48,7 +48,11 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
             const layerRows: DataRowProps<TItem, TId>[] = [];
 
-            const { ids, count } = tree.getItems(parentId);
+            const { ids, count, status } = tree.getItems(parentId);
+
+            if (status === PARTIALLY_LOADED) {
+                stats.isPartiallyLoaded = true;
+            }
 
             for (let n = 0; n < ids.length; n++) {
                 const id = ids[n];
@@ -71,7 +75,11 @@ export function useBuildRows<TItem, TId, TFilter = any>({
 
                 const estimatedChildrenCount = getEstimatedChildrenCount(id);
                 if (estimatedChildrenCount !== undefined) {
-                    const { ids: childrenIds } = tree.getItems(id);
+                    const { ids: childrenIds, status: childStatus } = tree.getItems(id);
+
+                    if (childStatus === PARTIALLY_LOADED) {
+                        stats.isPartiallyLoaded = true;
+                    }
 
                     if (estimatedChildrenCount > 0) {
                         if (childrenIds.length > 0) {
@@ -134,13 +142,13 @@ export function useBuildRows<TItem, TId, TFilter = any>({
             return stats;
         };
 
-        const rootStats = iterateNode(undefined, true);
+        const stats = iterateNode(undefined, true);
 
         return {
             rows,
             pinned,
             pinnedByParentId,
-            stats: rootStats,
+            stats,
         };
     };
 

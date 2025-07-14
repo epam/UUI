@@ -1,18 +1,94 @@
 # 6.x.x - xx.xx.2025
 **What's New**
-* [RangeDatePicker]: improved a11y, updated so that when a date is typed in the input fields, the calendar body immediately reflects and selects the new value, providing instant feedback and better usability.
-* [DatePicker]: improved a11y.
-* [@epam/uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
+* remove support of deprecated `draft-rte`
+* [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
+* [PresetsPanel]:
+    * "Duplicate" action is now only available for unchanged presets
+    * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
+    * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
+      **What's New**
+* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. Removed `Burger`, `renderBurger` prop, use `Burger` component instead. Removed `alwaysShowBurger` prop, use `Burger` component in items with `collapsedContainer: true/false` option. Removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. Removed `MainMenuDropdown` prop, use `MainMenuDropdown` as a component for 'More' container in items, see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components&theme=loveship#examples-mainMenu-Responsive)
+
+  ```tsx
+  // before
+  
+    <MainMenu
+       cx={ css.menuContainer }
+       renderBurger={ renderBurger }
+       logoLink={ { pathname: '/' } }
+       appLogoUrl="/static/logo.svg"
+       onLogoClick={ onLogoClick }
+    >
+        <MainMenuButton caption="Home" />
+    </MainMenu>
+  
+  // after
+  
+    <MainMenu
+        cx={ css.menuContainer }
+        items={ [
+            {
+                id: 'burger',
+                priority: 100,
+                collapsedContainer: true,
+                render: (p) => <Burger key={ p.id } renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" />,
+            },
+            {
+                id: 'logo',
+                priority: 99,
+                render: (p) => <MainMenuLogo key={ p.id } link={ { pathname: '/' } } onClick={ onLogoClick } logoUrl="/static/logo.svg"  />,
+            },
+            {
+                id: 'home',
+                render: (p) => <MainMenuButton key={ p.id } caption="Home" />,
+                priority: 1,
+            },
+        ] }
+    />
+  ```
 
 **What's Fixed**
-* [RangeDatePicker]: fixed switching of the calendar panel depending on which field the action was on.
+* [DataSources]: fixed handling of selectAll for views with disabled checkboxes
+* [PickerInput]: fixed incorrect selection state in modal for single selection mode
+
+# 6.1.4 - 17.06.2025
+
+**What's Fixed**
+* [@epam/uui-test-utils]: fixed various of utils to work with React 18
+* [PickerModal]: fixed `disableClear: true` behavior for `selectionMode: multi`, added `Clear` button functionality to `selectionMode: single`
+* [PickerInput]: decreased default `maxItems` prop value from 100 to 20
+* [PickerInput] Stop "Escape" key press event propagation when body is opened ([#2839](https://github.com/epam/UUI/pull/2839))
+* [useLazyTree]: fixed tree structure update when getParentId function changes. When filter changes trigger tree refetch and affect getParentId logic (e.g., changing groupBy parameter), the tree now correctly clears its structure with updated hierarchy parameters instead of using stale getParentId function.
+* [TreeState]: added optional `newParams` parameter to `clearStructure()` method to support updating tree parameters during structure clearing
+
+
+# 6.1.2 - 30.05.2025
+
+**What's Fixed**
+* [MultiSwitch]: fixed `size` prop for 'Loveship' and 'Electric' skins
+
+
+# 6.1.1 - 29.05.2025
+
+**What's New**
+* [uui-test-utils]: added global mock for "getBoundingClientRect" to "setupJsDom"
+* [FiltersPanel]: added `renderFooter` prop for `DatePicker` and `RangeDatePicker` filters. Exported default implementation of UUI footers - `FilterDatePickerBodyFooter` and `FilterRangeDatePickerBodyFooter` components
+* [DataTable]: added predicates functionality for column filters
+
+**What's Fixed**
+* [RangeDatePicker]: fixed switching of the calendar depending on which field(From/To) the action was on
+* [RangeDatePicker]: immediately apply date entered in input if it is valid
 * [PickerInput]: fixed returning to the previous focused element via shift+tab press
+* [PickerInput]: fixed row focusing on search results
 * [Rating]: fixed wrong rating calculations in 'block' container and 'sticky' value on hover
-* [Modals][Electric]: increased border radius to 12 px
+* [Modals]: change border radius to 12px in Electric theme
 * [VerticalTabButton]: aligned paddings and gaps for all sizes according to the design
 * [uuiApi]: .withOptions method now merges his options with default option from apiDefinitions
 * [PickerModal]: disabled "Show only selected" when search is active
-* [DataTable]: increased DnD area for rows
+* [DataTable]: increased DnD area for rows, updated drag-and-drop styles for improved user experience
+* [DnDContext]: fixed cursor visualization during drag and drop operations
+* [NotificationCard]: added gap between content and actions
+* [DataPickerFooter]: added gap between switch and action
 * [ModalBlocker]: fixed stale closure in abort function when it is called on "Escape" key's press
 * [IEditableDebouncer]: fixed `ref` forwarding, `ref` provided on the component forwarded to the `render` prop as a second param
 

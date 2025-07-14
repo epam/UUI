@@ -32,7 +32,7 @@ import { migrateLegacySchema } from './migrations/legacy_migrations';
 
 type SerializerType = 'html' | 'md';
 
-export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
+export const defaultHtmlSerializationsWorkingPlugins: PlatePlugin[] = [
     ...baseMarksPlugin(),
     paragraphPlugin(),
     headerPlugin(),
@@ -47,7 +47,7 @@ export const htmlSerializationsWorkingPlugins: PlatePlugin[] = [
     separatorPlugin(),
 ];
 
-export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
+export const defaultMdSerializationsWorkingPlugins: PlatePlugin[] = [
     createDeserializeMdPlugin(),
     boldPlugin(),
     italicPlugin(),
@@ -55,27 +55,25 @@ export const mdSerializationsWorkingPlugins: PlatePlugin[] = [
     linkPlugin(),
     listPlugin(),
     headerPlugin(),
-    // quotePlugin,
-    // separatorPlugin,
-    // inlineCodePlugin
-    // underline
-    // image
-    // strikethrough
-    // superscript
-    // subscript
-    // code blocks
-    // tables
 ];
 
-export const createDeserializer = (type: SerializerType = 'html') => {
+interface RteConverterOptions {
+    /**
+     * Plugins to use for (de)serialization.
+     * If not provided, defaults to `defaultHtmlSerializationsWorkingPlugins` for HTML and `mdSerializationsWorkingPlugins` for Markdown.
+     */
+    plugins?: PlatePlugin[];
+}
+
+export const createDeserializer = (type: SerializerType = 'html', options?: RteConverterOptions) => {
     if (type === 'html') {
-        const editor = createTempEditor(htmlSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultHtmlSerializationsWorkingPlugins);
         return (data: string) => {
             const document = parseHtmlDocument(data);
             return deserializeHtml(editor, { element: document.body }) as EditorValue;
         };
     } else {
-        const editor = createTempEditor(mdSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultMdSerializationsWorkingPlugins);
         return (data: string) => {
             editor.children = deserializeMd<Value>(editor, data);
             editor.normalize({ force: true });
@@ -88,15 +86,15 @@ export const createDeserializer = (type: SerializerType = 'html') => {
     }
 };
 
-export const createSerializer = (type: SerializerType = 'html') => {
+export const createSerializer = (type: SerializerType = 'html', options?: RteConverterOptions) => {
     if (type === 'html') {
-        const editor = createTempEditor(htmlSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultHtmlSerializationsWorkingPlugins);
         return (v: EditorValue) => {
             const value = initializeEditor(editor, v);
             return serializeHtml(editor, { nodes: value, convertNewLinesToHtmlBr: true });
         };
     } else {
-        const editor = createTempEditor(mdSerializationsWorkingPlugins);
+        const editor = createTempEditor(options?.plugins || defaultMdSerializationsWorkingPlugins);
         return (v: EditorValue) => {
             const value = initializeEditor(editor, v);
 

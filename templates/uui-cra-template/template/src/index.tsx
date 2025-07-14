@@ -4,7 +4,7 @@ import '@epam/assets/theme/theme_loveship.scss';
 import './index.module.scss';
 
 //
-import { StrictMode } from "react";
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserHistory } from "history";
 import { Route, Router } from "react-router-dom";

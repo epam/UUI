@@ -1,14 +1,18 @@
 import { ITree, NOT_FOUND_RECORD,
-    ITreeNodeInfo, ITreeParams, ITreeItemsInfo, ITreeNodeStatus, IMap } from '@epam/uui-core';
+    ITreeNodeInfo, ITreeParams, ITreeItemsInfo, ITreeNodeStatus, IMap, IItemsAccessor } from '@epam/uui-core';
 import { Location } from '@epam/uui-docs';
+import { ItemsAccessor } from './ItemsAccessor';
 
 export class Tree implements ITree<Location, string> {
+    private _itemsAccessor: IItemsAccessor<Location, string>;
     constructor(
         protected _params: ITreeParams<Location, string>,
         protected _itemsMap: IMap<string, Location> = new Map(),
         protected _byParentId: IMap<string, string[]> = new Map(),
         protected _nodeInfoById: IMap<string, ITreeNodeInfo> = new Map(),
-    ) {}
+    ) {
+        this._itemsAccessor = new ItemsAccessor(_itemsMap);
+    }
 
     public getParams() {
         return this._params;
@@ -40,6 +44,10 @@ export class Tree implements ITree<Location, string> {
 
     public get itemsMap() {
         return this._itemsMap;
+    }
+
+    public getItemsAccessor() {
+        return this._itemsAccessor;
     }
 
     public update(items: Location[], newByParentId: IMap<string, string[]>, newNodeInfoById: IMap<string, ITreeNodeInfo>) {
