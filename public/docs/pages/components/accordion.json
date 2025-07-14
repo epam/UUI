@@ -4,8 +4,8 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "accordion-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/accordion/Basic.example.tsx" },
-        { "name": "Handle Accordion state by yourself", "componentPath": "./_examples/accordion/HandleStateByYourself.example.tsx" },
-        { "name": "Custom accordion", "componentPath": "./_examples/accordion/Custom.example.tsx" }
+        { "name": "Basic", "componentPath": "accordion/Basic.example.tsx" },
+        { "name": "Handle Accordion state by yourself", "componentPath": "accordion/HandleStateByYourself.example.tsx" },
+        { "name": "Custom accordion", "componentPath": "accordion/Custom.example.tsx" }
     ]
 }

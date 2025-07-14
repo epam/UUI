@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "rating-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/rating/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "rating/Basic.example.tsx" }
     ]
 }

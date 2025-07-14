@@ -4,12 +4,12 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "badge-descriptions" },
-        { "name": "Types", "componentPath": "./_examples/badge/Types.example.tsx" },
-        { "name": "Color variants", "componentPath": "./_examples/badge/Colors.example.tsx" },
-        { "name": "Styles", "componentPath": "./_examples/badge/Styles.example.tsx" },
-        { "name": "Sizes", "componentPath": "./_examples/badge/Size.example.tsx" },
-        { "name": "Attributes", "componentPath": "./_examples/badge/Attributes.example.tsx" },
-        { "name": "Dropdown", "componentPath": "./_examples/badge/Dropdown.example.tsx" },
-        { "name": "Badge with status indicator", "componentPath": "./_examples/badge/StatusIndicator.example.tsx" }
+        { "name": "Types", "componentPath": "badge/Types.example.tsx" },
+        { "name": "Color variants", "componentPath": "badge/Colors.example.tsx" },
+        { "name": "Styles", "componentPath": "badge/Styles.example.tsx" },
+        { "name": "Sizes", "componentPath": "badge/Size.example.tsx" },
+        { "name": "Attributes", "componentPath": "badge/Attributes.example.tsx" },
+        { "name": "Dropdown", "componentPath": "badge/Dropdown.example.tsx" },
+        { "name": "Badge with status indicator", "componentPath": "badge/StatusIndicator.example.tsx" }
     ]
 }

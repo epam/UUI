@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "icon-button-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/iconButton/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "iconButton/Basic.example.tsx" }
     ]
 }

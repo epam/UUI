@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "avatarStack-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/avatarStack/Basic.example.tsx" },
-        { "name": "With custom avatar", "componentPath": "./_examples/avatarStack/RenderItem.example.tsx" }
+        { "name": "Basic", "componentPath": "avatarStack/Basic.example.tsx" },
+        { "name": "With custom avatar", "componentPath": "avatarStack/RenderItem.example.tsx" }
     ]
 }

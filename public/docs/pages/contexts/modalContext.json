@@ -4,7 +4,7 @@
     "parentId": "contexts",
     "examples": [
         { "descriptionPath": "modal-context-descriptions" },
-        { "name": "Example", "componentPath": "./_examples/modals/Basic.example.tsx" }
+        { "name": "Example", "componentPath": "modals/Basic.example.tsx" }
     ],
     "tags": ["contexts"]
 }

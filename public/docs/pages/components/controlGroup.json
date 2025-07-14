@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "controlGroup-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/controlGroup/Basic.example.tsx" },
-        { "name": "Prefix", "componentPath": "./_examples/controlGroup/Prefix.example.tsx" }
+        { "name": "Basic", "componentPath": "controlGroup/Basic.example.tsx" },
+        { "name": "Prefix", "componentPath": "controlGroup/Prefix.example.tsx" }
     ]
 }

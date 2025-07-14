@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "textPlaceholder-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/textPlaceholder/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "textPlaceholder/Basic.example.tsx" }
     ]
 }

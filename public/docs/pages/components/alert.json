@@ -4,7 +4,7 @@
   "parentId": "components",
   "examples": [
     { "descriptionPath": "alert-descriptions" },
-    { "name": "Basic", "componentPath": "./_examples/alert/Basic.example.tsx" },
-    { "name": "Sizes", "componentPath": "./_examples/alert/Sizes.example.tsx" }
+    { "name": "Basic", "componentPath": "alert/Basic.example.tsx" },
+    { "name": "Sizes", "componentPath": "alert/Sizes.example.tsx" }
   ]
 }

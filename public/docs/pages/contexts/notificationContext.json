@@ -4,7 +4,7 @@
     "parentId": "contexts",
     "examples": [
         { "descriptionPath": "notification-context-descriptions" },
-        { "name": "Example", "componentPath": "./_examples/contexts/NotificationContext.example.tsx" }
+        { "name": "Example", "componentPath": "contexts/NotificationContext.example.tsx" }
     ],
     "tags": ["contexts"]
 }

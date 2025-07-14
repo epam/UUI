@@ -17,8 +17,6 @@ import css from './DocExample.module.scss';
 import { useAppThemeContext } from '../../helpers/appTheme';
 import { CX } from '@epam/uui-core';
 
-const EXAMPLES_PATH_PREFIX = './_examples';
-
 const LABELS = {
     Fullscreen: 'Fullscreen',
 };
@@ -63,8 +61,7 @@ export function DocExample(props: DocExampleProps) {
         const { path, onlyCode } = props;
 
         if (!onlyCode) {
-            const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
-            docExampleLoader({ path: exPathRelative }).then((elementType) => {
+            docExampleLoader({ path: path }).then((elementType) => {
                 setComponent({ elementType });
             });
         }
@@ -80,7 +77,7 @@ export function DocExample(props: DocExampleProps) {
 
     const getDescriptionFileName = (): string => {
         const name = props.path.replace(new RegExp(/\.example.tsx|\./g), '').replace(/\//g, '-').replace(/^-/, '');
-        return name.substring(1);
+        return name;
     };
 
     const renderCode = (isVisible: boolean): React.ReactNode => {

@@ -4,8 +4,8 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "virtual-list-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/virtualList/Basic.example.tsx" },
-        { "name": "Scroll to index", "componentPath": "./_examples/virtualList/ScrollTo.example.tsx" },
-        { "name": "Advanced", "componentPath": "./_examples/virtualList/Advanced.example.tsx" }
+        { "name": "Basic", "componentPath": "virtualList/Basic.example.tsx" },
+        { "name": "Scroll to index", "componentPath": "virtualList/ScrollTo.example.tsx" },
+        { "name": "Advanced", "componentPath": "virtualList/Advanced.example.tsx" }
     ]
 }

@@ -4,7 +4,7 @@
     "parentId": "tables",
     "examples": [
         { "descriptionPath": "filters-panel-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/tables/FiltersPanelBasic.example.tsx" }
+        { "name": "Basic", "componentPath": "tables/FiltersPanelBasic.example.tsx" }
     ],
     "order": 5,
     "tags": ["tables", "dataTable"]

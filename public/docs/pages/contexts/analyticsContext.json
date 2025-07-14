@@ -4,8 +4,8 @@
     "parentId": "contexts",
     "examples": [
         { "descriptionPath": "analytics-context-descriptions" },
-        { "name": "Getting started", "componentPath": "./_examples/contexts/AnalyticsContextBase.example.tsx", "onlyCode": true },
-        { "name": "Example", "componentPath": "./_examples/contexts/AnalyticsContextEvents.example.tsx", "onlyCode": true }
+        { "name": "Getting started", "componentPath": "contexts/AnalyticsContextBase.example.tsx", "onlyCode": true },
+        { "name": "Example", "componentPath": "contexts/AnalyticsContextEvents.example.tsx", "onlyCode": true }
     ],
     "tags": ["contexts"]
 }

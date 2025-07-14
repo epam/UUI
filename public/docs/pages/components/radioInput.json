@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "radioInput-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/radioInput/Basic.example.tsx" },
-        { "name": "RadioInput Group", "componentPath": "./_examples/radioInput/Group.example.tsx" }
+        { "name": "Basic", "componentPath": "radioInput/Basic.example.tsx" },
+        { "name": "RadioInput Group", "componentPath": "radioInput/Group.example.tsx" }
     ]
 }

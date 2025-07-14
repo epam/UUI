@@ -4,7 +4,7 @@
     "parentId": "dataSources",
     "examples": [
         { "descriptionPath": "dataSources-usage-in-components" },
-        { "name": "DataSourceViewer", "componentPath": "./_examples/dataSources/DataSourceViewer.code.example.tsx", "onlyCode": true },
-        { "name": "Custom hierarchical list", "componentPath": "./_examples/dataSources/CustomHierarchicalList.example.tsx", "onlyCode": true }
+        { "name": "DataSourceViewer", "componentPath": "dataSources/DataSourceViewer.code.example.tsx", "onlyCode": true },
+        { "name": "Custom hierarchical list", "componentPath": "dataSources/CustomHierarchicalList.example.tsx", "onlyCode": true }
     ]
 }

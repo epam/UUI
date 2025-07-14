@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "searchInput-descriptions" },
-        { "name": "Debounce", "componentPath": "./_examples/searchInput/Debounce.example.tsx" }
+        { "name": "Debounce", "componentPath": "searchInput/Debounce.example.tsx" }
     ]
 }

@@ -4,12 +4,12 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "dropdown-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/dropdown/Basic.example.tsx" },
-        { "name": "Dropdown Open/Close modifiers", "componentPath": "./_examples/dropdown/CloseOpenModifiers.example.tsx" },
-        { "name": "Set delay for dropdown body opening or closing", "componentPath": "./_examples/dropdown/DelayForOpenAndClose.example.tsx" },
-        { "name": "Handle dropdown state by yourself", "componentPath": "./_examples/dropdown/HandleStateByYourself.example.tsx" },
-        { "name": "Close dropdown from body", "componentPath": "./_examples/dropdown/CloseFromBody.example.tsx" },
-        { "name": "Virtual element positioned at a specific point on canvas", "componentPath": "./_examples/dropdown/VirtualElementCanvas.example.tsx" },
-        { "name": "Create a virtual element that positions the dropdown at mouse coordinates", "componentPath": "./_examples/dropdown/VirtualElementOnMouseCoordinates.example.tsx" }
+        { "name": "Basic", "componentPath": "dropdown/Basic.example.tsx" },
+        { "name": "Dropdown Open/Close modifiers", "componentPath": "dropdown/CloseOpenModifiers.example.tsx" },
+        { "name": "Set delay for dropdown body opening or closing", "componentPath": "dropdown/DelayForOpenAndClose.example.tsx" },
+        { "name": "Handle dropdown state by yourself", "componentPath": "dropdown/HandleStateByYourself.example.tsx" },
+        { "name": "Close dropdown from body", "componentPath": "dropdown/CloseFromBody.example.tsx" },
+        { "name": "Virtual element positioned at a specific point on canvas", "componentPath": "dropdown/VirtualElementCanvas.example.tsx" },
+        { "name": "Create a virtual element that positions the dropdown at mouse coordinates", "componentPath": "dropdown/VirtualElementOnMouseCoordinates.example.tsx" }
     ]
 }

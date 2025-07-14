@@ -5,14 +5,14 @@
     "examples": [
         { "descriptionPath": "dataSources-row-options" },
         { "name": "DataRowOptions", "descriptionPath": "dataSources-row-options-overview" },
-        { "name": "Checkbox", "componentPath": "./_examples/dataSources/RowOptionsCheckbox.example.tsx" },
-        { "name": "Disabled rows", "componentPath": "./_examples/dataSources/RowOptionsIsDisabled.example.tsx" },
-        { "name": "Selectable rows", "componentPath": "./_examples/dataSources/RowOptionsIsSelectable.example.tsx" },
-        { "name": "Click handler", "componentPath": "./_examples/dataSources/RowOptionsOnClick.example.tsx" },
-        { "name": "Links", "componentPath": "./_examples/dataSources/RowOptionsLink.example.tsx" },
-        { "name": "Drag'n'drop", "componentPath": "./_examples/dataSources/RowOptionsDnd.example.tsx" },
-        { "name": "Value/onValueChange", "componentPath": "./_examples/dataSources/RowOptionsValue.example.tsx" },
-        { "name": "Readonly", "componentPath": "./_examples/dataSources/RowOptionsIsReadonly.example.tsx" },
-        { "name": "Invalid", "componentPath": "./_examples/dataSources/RowOptionsIsInvalid.example.tsx" }
+        { "name": "Checkbox", "componentPath": "dataSources/RowOptionsCheckbox.example.tsx" },
+        { "name": "Disabled rows", "componentPath": "dataSources/RowOptionsIsDisabled.example.tsx" },
+        { "name": "Selectable rows", "componentPath": "dataSources/RowOptionsIsSelectable.example.tsx" },
+        { "name": "Click handler", "componentPath": "dataSources/RowOptionsOnClick.example.tsx" },
+        { "name": "Links", "componentPath": "dataSources/RowOptionsLink.example.tsx" },
+        { "name": "Drag'n'drop", "componentPath": "dataSources/RowOptionsDnd.example.tsx" },
+        { "name": "Value/onValueChange", "componentPath": "dataSources/RowOptionsValue.example.tsx" },
+        { "name": "Readonly", "componentPath": "dataSources/RowOptionsIsReadonly.example.tsx" },
+        { "name": "Invalid", "componentPath": "dataSources/RowOptionsIsInvalid.example.tsx" }
     ]
 }
