@@ -44,7 +44,7 @@ export function DocsSidebar() {
     };
 
     const getSearchFields = (item: DocItem) => {
-        if (item.component) {
+        if (item.examples || item.component || item.renderContent) {
             return [item.name, ...(item.tags || [])];
         }
         return [];

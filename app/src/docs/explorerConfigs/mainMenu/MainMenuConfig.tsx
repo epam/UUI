@@ -11,11 +11,10 @@ import {
     TPreviewCellSize,
     TSkin,
 } from '@epam/uui-docs';
-import { getChilrdenExamples, getItemsExamples, renderBurgerExamples } from './mainMenuExamples';
+import { getItemsExamples } from './mainMenuExamples';
 import { TMainMenuPreview } from '@epam/uui-docs';
 
 export const MainMenuConfig: TDocConfig = {
-    id: 'mainMenu',
     name: 'MainMenu',
     contexts: [TDocContext.Resizable],
     bySkin: {
@@ -37,24 +36,7 @@ export const MainMenuConfig: TDocConfig = {
         [TSkin.Promo]: { type: '@epam/uui:MainMenuProps', component: promo.MainMenu },
     },
     doc: (doc: DocBuilder<uui.MainMenuProps | loveship.MainMenuProps | electric.MainMenuProps>) => {
-        doc.merge('children', { examples: (ctx) => getChilrdenExamples(ctx), remountOnChange: true });
-        doc.merge('customerLogoBgColor', { editorType: 'StringEditor', examples: [] });
-        doc.merge('customerLogoUrl', { editorType: 'StringEditor', examples: [] });
-        doc.merge('customerLogoHref', { editorType: 'StringEditor', examples: [] });
-        doc.merge('logoHref', { editorType: 'StringEditor', examples: [] });
-        doc.merge('appLogoUrl', { editorType: 'StringEditor', examples: [] });
-        doc.merge('renderBurger', { examples: renderBurgerExamples });
         doc.merge('items', { examples: (ctx) => getItemsExamples(ctx), remountOnChange: true });
-        doc.merge('MainMenuDropdown', { examples: [{ value: uui.MainMenuDropdown, name: 'MainMenuDropdown', isDefault: true }] });
-        doc.merge('Burger', { examples: [{ value: uui.Burger, name: 'Burger', isDefault: true }] });
-        doc.merge('logoLink', {
-            editorType: 'LinkEditor',
-            examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
-        });
-        doc.merge('customerLogoLink', {
-            editorType: 'LinkEditor',
-            examples: [{ name: '{pathname: "/"}', value: { pathname: '/' } }],
-        });
     },
     preview: (docPreview: DocPreviewBuilder<uui.MainMenuProps>) => {
         const w600_h80: TPreviewCellSize = '600-80';
@@ -62,7 +44,7 @@ export const MainMenuConfig: TDocConfig = {
             getSelectedProps: () => ({}),
         } as IPropSamplesCreationContext<any>;
         const TEST_DATA = {
-            items: getItemsExamples(fakeCtx)[1].value,
+            items: getItemsExamples(fakeCtx)[0].value,
         };
 
         docPreview.add({
