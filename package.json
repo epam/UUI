@@ -52,7 +52,6 @@
   "workspaces": {
     "packages": [
       "app",
-      "server",
       "uui-e2e-tests",
       "draft-rte",
       "epam-assets",

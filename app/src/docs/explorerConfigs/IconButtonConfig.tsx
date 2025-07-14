@@ -58,7 +58,7 @@ export const IconButtonConfig: TDocConfig = {
                 size: { values: ['24'] },
                 color: { examples: '*' },
                 dropdownIcon: { examples: [TEST_DATA.dropdownIcon] },
-                showDropdownIcon: { values: [false] },
+                showDropdownIcon: { values: [true] },
                 isOpen: { values: [false] },
                 icon: { examples: [TEST_DATA.icon] },
                 isDisabled: { values: [false, true] },

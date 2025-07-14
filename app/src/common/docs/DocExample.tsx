@@ -17,10 +17,6 @@ import css from './DocExample.module.scss';
 import { useAppThemeContext } from '../../helpers/appTheme';
 import { CX } from '@epam/uui-core';
 
-const LABELS = {
-    Fullscreen: 'Fullscreen',
-};
-
 interface DocExampleProps {
     path: string;
     title?: string;
@@ -32,7 +28,7 @@ interface DocExampleProps {
 }
 
 function DocExampleFsBtn({ path, theme }: { path: string; theme: ThemeId }) {
-    const regex = /^\.\/_examples\/(.*)\/(\w+)\.example\.tsx$/;
+    const regex = /^(.*)\/(\w+)\.example\.tsx$/;
     const examplePath = path.replace(regex, '$1/$2');
     const href = `/docExample?theme=${encodeURIComponent(theme)}&examplePath=${encodeURIComponent(examplePath)}`;
     return (
@@ -41,7 +37,7 @@ function DocExampleFsBtn({ path, theme }: { path: string; theme: ThemeId }) {
             icon={ PreviewIcon }
             iconPosition="right"
             href={ href }
-            caption={ LABELS.Fullscreen }
+            caption="Fullscreen"
         />
     );
 }
