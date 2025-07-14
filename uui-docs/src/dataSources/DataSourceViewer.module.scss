@@ -1,8 +1,6 @@
-@import '~@epam/promo/assets/styles/colors';
-
 .list {
     max-height: 300px;
-    border: 1px solid $gray20;
+    border: 1px solid var(--uui-neutral-20);
 }
 
 .row {
