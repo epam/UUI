@@ -15,6 +15,7 @@ import { getItemsExamples } from './mainMenuExamples';
 import { TMainMenuPreview } from '@epam/uui-docs';
 
 export const MainMenuConfig: TDocConfig = {
+    id: 'mainMenu',
     name: 'MainMenu',
     contexts: [TDocContext.Resizable],
     bySkin: {
