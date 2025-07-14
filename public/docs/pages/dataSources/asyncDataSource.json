@@ -4,8 +4,8 @@
     "parentId": "dataSources",
     "examples": [
         { "descriptionPath": "dataSources-Async-dataSource" },
-        { "name": "useAsyncDataSource", "componentPath": "./_examples/dataSources/UseAsyncDataSource.code.example.ts", "onlyCode": true },
+        { "name": "useAsyncDataSource", "componentPath": "dataSources/UseAsyncDataSource.code.example.ts", "onlyCode": true },
         { "descriptionPath": "dataSources-async-dataSource-props-overview" },
-        { "name": "Data", "componentPath": "./_examples/dataSources/AsyncDataSourceData.example.tsx", "onlyCode": true }
+        { "name": "Data", "componentPath": "dataSources/AsyncDataSourceData.example.tsx", "onlyCode": true }
     ]
 }

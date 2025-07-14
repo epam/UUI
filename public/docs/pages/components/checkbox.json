@@ -4,7 +4,7 @@
   "parentId": "components",
   "examples": [
     { "descriptionPath": "checkbox-descriptions" },
-    { "name": "Basic", "componentPath": "./_examples/checkbox/Basic.example.tsx" },
-    { "name": "Checkbox Group", "componentPath": "./_examples/checkbox/Group.example.tsx" }
+    { "name": "Basic", "componentPath": "checkbox/Basic.example.tsx" },
+    { "name": "Checkbox Group", "componentPath": "checkbox/Group.example.tsx" }
   ]
 }

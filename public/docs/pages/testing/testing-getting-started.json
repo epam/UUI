@@ -5,6 +5,6 @@
     "examples": [
         { "descriptionPath": "unitTestingGuide-getting-started-add-dependencies" },
         { "descriptionPath": "unitTestingGuide-getting-started" },
-        { "name": "Create Tests", "componentPath": "./_examples/testing/__tests__/testComponent.test.tsx", "onlyCode": true }
+        { "name": "Create Tests", "componentPath": "testing/__tests__/testComponent.test.tsx", "onlyCode": true }
     ]
 }

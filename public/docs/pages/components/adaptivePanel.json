@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "adaptivePanel-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/adaptivePanel/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "adaptivePanel/Basic.example.tsx" }
     ]
 }

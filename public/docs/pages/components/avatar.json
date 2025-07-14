@@ -4,6 +4,6 @@
   "parentId": "components",
   "examples": [
     { "descriptionPath": "avatar-descriptions" },
-    { "name": "Basic", "componentPath": "./_examples/avatar/Basic.example.tsx" }
+    { "name": "Basic", "componentPath": "avatar/Basic.example.tsx" }
   ]
 }

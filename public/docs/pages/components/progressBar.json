@@ -4,8 +4,8 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "progressBar-descriptions" },
-        { "name": "Basic ProgressBar", "componentPath": "./_examples/progressBar/Basic.example.tsx" },
-        { "name": "IndeterminateBar example", "componentPath": "./_examples/progressBar/IndeterminateBar.example.tsx" },
-        { "name": "IndicatorBar example", "componentPath": "./_examples/progressBar/IndicatorBar.example.tsx" }
+        { "name": "Basic ProgressBar", "componentPath": "progressBar/Basic.example.tsx" },
+        { "name": "IndeterminateBar example", "componentPath": "progressBar/IndeterminateBar.example.tsx" },
+        { "name": "IndicatorBar example", "componentPath": "progressBar/IndicatorBar.example.tsx" }
     ]
 }

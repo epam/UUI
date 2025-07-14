@@ -4,12 +4,12 @@
     "parentId": "tables",
     "examples": [
         { "descriptionPath": "tables-overview-descriptions" },
-        { "name": "Async Table", "componentPath": "./_examples/tables/AsyncTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Lazy Table", "componentPath": "./_examples/tables/LazyTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Array Table", "componentPath": "./_examples/tables/ArrayTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Tree Table", "componentPath": "./_examples/tables/TreeTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Column size and content align configuration", "componentPath": "./_examples/tables/StyledColumns.example.tsx", "cx": "css.appBg" },
-        { "name": "Condensed view", "componentPath": "./_examples/tables/CondensedView.example.tsx", "cx": "css.appBg" }
+        { "name": "Async Table", "componentPath": "tables/AsyncTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Lazy Table", "componentPath": "tables/LazyTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Array Table", "componentPath": "tables/ArrayTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Tree Table", "componentPath": "tables/TreeTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Column size and content align configuration", "componentPath": "tables/StyledColumns.example.tsx", "cx": "css.appBg" },
+        { "name": "Condensed view", "componentPath": "tables/CondensedView.example.tsx", "cx": "css.appBg" }
     ],
     "order": 1,
     "tags": ["tables", "dataTable"]

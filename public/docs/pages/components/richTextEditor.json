@@ -3,8 +3,8 @@
     "name": "Overview",
     "parentId": "richTextEditor",
     "examples": [
-        { "componentPath": "./_examples/richTextEditor/Basic.example.tsx" },
-        { "name": "Inner scroll behavior", "componentPath": "./_examples/richTextEditor/WithInnerScroll.example.tsx" }
+        { "componentPath": "richTextEditor/Basic.example.tsx" },
+        { "name": "Inner scroll behavior", "componentPath": "richTextEditor/WithInnerScroll.example.tsx" }
     ],
     "order": 1,
     "tags": ["RTE", "RichTextEditor"]

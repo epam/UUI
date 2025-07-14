@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "paginator-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/paginator/Basic.example.tsx" },
-        { "name": "Size", "componentPath": "./_examples/paginator/Size.example.tsx" }
+        { "name": "Basic", "componentPath": "paginator/Basic.example.tsx" },
+        { "name": "Size", "componentPath": "paginator/Size.example.tsx" }
     ]
 }

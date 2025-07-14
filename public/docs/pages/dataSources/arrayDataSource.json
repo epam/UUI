@@ -4,11 +4,11 @@
     "parentId": "dataSources",
     "examples": [
         { "descriptionPath": "dataSources-Array-dataSource" },
-        { "name": "useArrayDataSource", "componentPath": "./_examples/dataSources/UseArrayDataSource.code.example.ts", "onlyCode": true },
+        { "name": "useArrayDataSource", "componentPath": "dataSources/UseArrayDataSource.code.example.ts", "onlyCode": true },
         { "name": "ArrayDataSourceProps", "descriptionPath": "dataSources-array-dataSource-props-overview" },
-        { "name": "Data", "componentPath": "./_examples/dataSources/ArrayDataSourceData.example.tsx" },
-        { "name": "Search", "componentPath": "./_examples/dataSources/ArrayDataSourceSearch.example.tsx" },
-        { "name": "Filter", "componentPath": "./_examples/dataSources/ArrayDataSourceFilter.example.tsx" },
-        { "name": "Sorting", "componentPath": "./_examples/dataSources/ArrayDataSourceSorting.example.tsx" }
+        { "name": "Data", "componentPath": "dataSources/ArrayDataSourceData.example.tsx" },
+        { "name": "Search", "componentPath": "dataSources/ArrayDataSourceSearch.example.tsx" },
+        { "name": "Filter", "componentPath": "dataSources/ArrayDataSourceFilter.example.tsx" },
+        { "name": "Sorting", "componentPath": "dataSources/ArrayDataSourceSorting.example.tsx" }
     ]
 }

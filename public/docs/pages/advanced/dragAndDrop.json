@@ -4,7 +4,7 @@
     "parentId": "advanced",
     "examples": [
         { "descriptionPath": "DragAndDrop-intro" },
-        { "name": "Basic", "componentPath": "./_examples/dnd/Basic.example.tsx" },
+        { "name": "Basic", "componentPath": "dnd/Basic.example.tsx" },
         { "descriptionPath": "DragAndDrop-stateManagement" }
     ]
 }

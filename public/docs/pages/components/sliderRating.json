@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "sliderRating-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/sliderRating/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "sliderRating/Basic.example.tsx" }
     ]
 }

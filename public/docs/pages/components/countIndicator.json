@@ -4,6 +4,6 @@
   "parentId": "components",
   "examples": [
     { "descriptionPath": "countIndicator-descriptions" },
-    { "name": "Basic", "componentPath": "./_examples/countIndicator/Basic.example.tsx" }
+    { "name": "Basic", "componentPath": "countIndicator/Basic.example.tsx" }
   ]
 }

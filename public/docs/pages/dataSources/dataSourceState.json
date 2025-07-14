@@ -5,14 +5,14 @@
     "examples": [
         { "descriptionPath": "dataSources-dataSource-state" },
         { "name": "DataSourceState", "descriptionPath": "dataSources-dataSource-description" },
-        { "name": "Search", "componentPath": "./_examples/dataSources/DataSourceStateSearch.example.tsx" },
-        { "name": "Filter", "componentPath": "./_examples/dataSources/DataSourceStateFilter.example.tsx" },
-        { "name": "Sorting", "componentPath": "./_examples/dataSources/DataSourceStateSorting.example.tsx" },
-        { "name": "Selected Id", "componentPath": "./_examples/dataSources/DataSourceStateSelectedId.example.tsx" },
-        { "name": "Checked", "componentPath": "./_examples/dataSources/DataSourceStateChecked.example.tsx" },
-        { "name": "Folded", "componentPath": "./_examples/dataSources/DataSourceStateFolded.example.tsx" },
-        { "name": "Visible rows count", "componentPath": "./_examples/dataSources/DataSourceStateVisibleCount.example.tsx" },
-        { "name": "Index to scroll", "componentPath": "./_examples/dataSources/DataSourceStateIndexToScroll.example.tsx" },
-        { "name": "Paging", "componentPath": "./_examples/dataSources/DataSourceStatePage.example.tsx" }
+        { "name": "Search", "componentPath": "dataSources/DataSourceStateSearch.example.tsx" },
+        { "name": "Filter", "componentPath": "dataSources/DataSourceStateFilter.example.tsx" },
+        { "name": "Sorting", "componentPath": "dataSources/DataSourceStateSorting.example.tsx" },
+        { "name": "Selected Id", "componentPath": "dataSources/DataSourceStateSelectedId.example.tsx" },
+        { "name": "Checked", "componentPath": "dataSources/DataSourceStateChecked.example.tsx" },
+        { "name": "Folded", "componentPath": "dataSources/DataSourceStateFolded.example.tsx" },
+        { "name": "Visible rows count", "componentPath": "dataSources/DataSourceStateVisibleCount.example.tsx" },
+        { "name": "Index to scroll", "componentPath": "dataSources/DataSourceStateIndexToScroll.example.tsx" },
+        { "name": "Paging", "componentPath": "dataSources/DataSourceStatePage.example.tsx" }
     ]
 }

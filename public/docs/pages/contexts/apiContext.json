@@ -4,11 +4,11 @@
     "parentId": "contexts",
     "examples": [
         { "descriptionPath": "api-context-descriptions" },
-        { "name": "How to send a request", "componentPath": "./_examples/contexts/apiContext/SendRequest.example.tsx", "onlyCode": true },
-        { "name": "Congigure error handling type", "componentPath": "./_examples/contexts/apiContext/ErrorHandlingTypes.example.tsx" },
-        { "name": "Auth and Connection lost handling", "componentPath": "./_examples/contexts/apiContext/AuthAndConnectionLostHandling.example.tsx" },
-        { "name": "Throw errors from your code", "componentPath": "./_examples/contexts/apiContext/ApiContextThrowUUIError.example.tsx" },
-        { "name": "Custom fetcher", "componentPath": "./_examples/contexts/apiContext/CustomFetch.example.tsx", "onlyCode": true }
+        { "name": "How to send a request", "componentPath": "contexts/apiContext/SendRequest.example.tsx", "onlyCode": true },
+        { "name": "Congigure error handling type", "componentPath": "contexts/apiContext/ErrorHandlingTypes.example.tsx" },
+        { "name": "Auth and Connection lost handling", "componentPath": "contexts/apiContext/AuthAndConnectionLostHandling.example.tsx" },
+        { "name": "Throw errors from your code", "componentPath": "contexts/apiContext/ApiContextThrowUUIError.example.tsx" },
+        { "name": "Custom fetcher", "componentPath": "contexts/apiContext/CustomFetch.example.tsx", "onlyCode": true }
     ],
     "tags": ["contexts"]
 }

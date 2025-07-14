@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "slider-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/slider/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "slider/Basic.example.tsx" }
     ]
 }

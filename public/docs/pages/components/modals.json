@@ -4,8 +4,8 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "modals-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/modals/Basic.example.tsx" },
-        { "name": "Modal with Form", "componentPath": "./_examples/modals/ModalWithForm.example.tsx" },
-        { "name": "Disabling close on click outside modal and modal header cross", "componentPath": "./_examples/modals/DisableClickOutsideAndCross.example.tsx" }
+        { "name": "Basic", "componentPath": "modals/Basic.example.tsx" },
+        { "name": "Modal with Form", "componentPath": "modals/ModalWithForm.example.tsx" },
+        { "name": "Disabling close on click outside modal and modal header cross", "componentPath": "modals/DisableClickOutsideAndCross.example.tsx" }
     ]
 }

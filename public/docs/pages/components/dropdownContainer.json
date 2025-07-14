@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "dropdownContainer-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/dropdownContainer/Basic.example.tsx" },
-        { "name": "Focus lock and keyboard navigation", "componentPath": "./_examples/dropdownContainer/FocusLockAndKeyboardNavigation.example.tsx" }
+        { "name": "Basic", "componentPath": "dropdownContainer/Basic.example.tsx" },
+        { "name": "Focus lock and keyboard navigation", "componentPath": "dropdownContainer/FocusLockAndKeyboardNavigation.example.tsx" }
     ]
 }

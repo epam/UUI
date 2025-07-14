@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "richTextView-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/richTextView/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "richTextView/Basic.example.tsx" }
     ]
 }

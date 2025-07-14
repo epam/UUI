@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "anchor-descriptions" },
-        { "name": "With block nodes", "componentPath": "./_examples/anchor/Basic.example.tsx" },
-        { "name": "In text", "componentPath": "./_examples/anchor/AnchorInText.example.tsx" }
+        { "name": "With block nodes", "componentPath": "anchor/Basic.example.tsx" },
+        { "name": "In text", "componentPath": "anchor/AnchorInText.example.tsx" }
     ]
 }

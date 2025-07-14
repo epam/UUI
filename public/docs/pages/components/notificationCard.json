@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "notificationCard-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/notificationCard/Basic.example.tsx" },
-        { "name": "Advanced", "componentPath": "./_examples/notificationCard/Advanced.example.tsx" }
+        { "name": "Basic", "componentPath": "notificationCard/Basic.example.tsx" },
+        { "name": "Advanced", "componentPath": "notificationCard/Advanced.example.tsx" }
     ]
 }

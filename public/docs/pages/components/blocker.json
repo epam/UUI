@@ -4,7 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "blocker-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/blocker/Basic.example.tsx" },
-        { "name": "Advanced", "componentPath": "./_examples/blocker/Advanced.example.tsx" }
+        { "name": "Basic", "componentPath": "blocker/Basic.example.tsx" },
+        { "name": "Advanced", "componentPath": "blocker/Advanced.example.tsx" }
     ]
 }

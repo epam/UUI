@@ -4,6 +4,6 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "switch-descriptions" },
-        { "name": "Basic", "componentPath": "./_examples/switch/Basic.example.tsx" }
+        { "name": "Basic", "componentPath": "switch/Basic.example.tsx" }
     ]
 }
