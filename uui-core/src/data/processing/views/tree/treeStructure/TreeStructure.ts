@@ -14,6 +14,10 @@ export class TreeStructure<TItem, TId> implements ITree<TItem, TId> {
         protected readonly _nodeInfoById: IMap<TId, ITreeNodeInfo> = newMap(_params),
     ) {}
 
+    getItemsAccessor(): IItemsAccessor<TItem, TId> {
+        return this.itemsAccessor;
+    }
+
     public get itemsAccessor() {
         return this._itemsAccessor;
     }

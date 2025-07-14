@@ -209,6 +209,18 @@ exports[`PickerModal should be rendered correctly 1`] = `
       <div
         class="root modalFooter uui-modal-footer"
       >
+        <button
+          aria-disabled="true"
+          class="uui-button-box uui-disabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+          tabindex="-1"
+          type="button"
+        >
+          <div
+            class="uui-caption uui-link-button-weight-semibold"
+          >
+            CLEAR
+          </div>
+        </button>
         <div
           class="flexSpacer"
         />
@@ -967,7 +979,6 @@ exports[`PickerModal should be rendered correctly with maximum props 1`] = `
         class="root modalFooter uui-modal-footer"
       >
         <button
-          aria-disabled="false"
           class="uui-button-box uui-enabled -clickable uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
           tabindex="0"
           type="button"
@@ -1248,6 +1259,18 @@ exports[`PickerModal should open body 1`] = `
         <div
           class="root modalFooter uui-modal-footer"
         >
+          <button
+            aria-disabled="true"
+            class="uui-button-box uui-disabled uui-link_button root uui-size-36 uui-no-left-icon uui-no-right-icon uui-color-primary"
+            tabindex="-1"
+            type="button"
+          >
+            <div
+              class="uui-caption uui-link-button-weight-semibold"
+            >
+              CLEAR
+            </div>
+          </button>
           <div
             class="flexSpacer"
           />

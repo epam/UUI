@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { TimelineController, msPerDay } from '@epam/uui-timeline';
 import { Panel, Button, FlexCell, FlexRow, FlexSpacer, IconButton, useForm, SearchInput, Tooltip, MultiSwitch } from '@epam/uui';
 import { AcceptDropParams, DataTableState, DropParams, DropPosition, IImmutableMap, ItemsMap, Metadata,
-    NOT_FOUND_RECORD, Tree, useDataRows, usePrevious, useTree } from '@epam/uui-core';
+    NOT_FOUND_RECORD, Tree, useDataRows, usePrevious, useSearchTree, useTree } from '@epam/uui-core';
 import { useDataTableFocusManager } from '@epam/uui-components';
 
 import { ReactComponent as undoIcon } from '@epam/assets/icons/content-edit_undo-outline.svg';
@@ -79,7 +79,7 @@ export function ProjectTableDemo() {
         [],
     );
 
-    const { tree, applyPatch, ...restProps } = useTree<Task, number>({
+    const { tree: treeWithPatch, applyPatch, ...restProps } = useTree<Task, number>({
         type: 'sync',
         dataSourceState: tableState, 
         setDataSourceState: setTableState,
@@ -91,6 +91,12 @@ export function ProjectTableDemo() {
         fixItemBetweenSortings: false,
         isDeleted: ({ isDeleted }) => isDeleted,
     }, []);
+
+    const tree = useSearchTree({ 
+        tree: treeWithPatch,
+        getSearchFields: (item) => [item.name],
+        dataSourceState: tableState,
+    }, [treeWithPatch]);
 
     const treeRef = useRef(tree);
     const applyPatchRef = useRef(applyPatch);

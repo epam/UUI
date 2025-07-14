@@ -1,22 +1,36 @@
+import { NOT_FOUND_RECORD } from '../../constants';
+import { ITree } from '../../ITree';
 import { TreeStructure } from '../TreeStructure';
 import { ApplyFilterToTreeSnapshotOptions, FilterOptions } from './types';
 
 export class FilterHelper {
-    public static filter<TItem, TId, TFilter>({ treeStructure, getFilter, filter }: FilterOptions<TItem, TId, TFilter>): TreeStructure<TItem, TId> {
+    public static filter<TItem, TId, TFilter>({
+        tree,
+        getFilter,
+        filter,
+        newTreeInstance = (options) => TreeStructure.createFromItems(options),
+    }: FilterOptions<TItem, TId, TFilter>): ITree<TItem, TId> {
         const isMatchingFilter = getFilter?.(filter);
-        return this.applyFilterToTreeSnapshot({ treeStructure, filter: isMatchingFilter });
+        return this.applyFilterToTreeSnapshot({ tree, newTreeInstance, filter: isMatchingFilter });
     }
 
-    private static applyFilterToTreeSnapshot<TItem, TId>({ treeStructure, filter }: ApplyFilterToTreeSnapshotOptions<TItem, TId>) {
-        if (!filter) return treeStructure;
+    private static applyFilterToTreeSnapshot<TItem, TId>({
+        tree,
+        filter,
+        newTreeInstance,
+    }: ApplyFilterToTreeSnapshotOptions<TItem, TId>) {
+        if (!filter) return tree;
 
         const matchedItems: TItem[] = [];
-        const applyFilterRec = (items: TItem[]) => {
+        const applyFilterRec = (ids: TId[]) => {
             let isSomeMatching: number | boolean = false;
-            items.forEach((item) => {
+            ids.forEach((id) => {
+                const item = tree.getById(id);
+                if (item === NOT_FOUND_RECORD) return;
+
                 const isItemMatching = filter(item);
-                const id = treeStructure.getParams().getId(item);
-                const isSomeChildMatching = applyFilterRec(treeStructure.getChildren(id));
+                const { ids: children } = tree.getItems(id);
+                const isSomeChildMatching = applyFilterRec(children);
                 const isMatching = isItemMatching || isSomeChildMatching;
                 if (isMatching) {
                     matchedItems.push(item);
@@ -30,11 +44,12 @@ export class FilterHelper {
             return isSomeMatching;
         };
 
-        applyFilterRec(treeStructure.getRootItems());
+        const { ids: root } = tree.getItems(undefined);
+        applyFilterRec(root);
 
-        return TreeStructure.createFromItems({
-            itemsAccessor: treeStructure.itemsAccessor,
-            params: treeStructure.getParams(),
+        return newTreeInstance({
+            itemsAccessor: tree.getItemsAccessor(),
+            params: tree.getParams(),
             items: matchedItems,
         });
     }

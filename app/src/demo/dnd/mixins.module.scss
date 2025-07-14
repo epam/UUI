@@ -1,3 +1,5 @@
+@use '~@epam/uui/assets/styles/dnd' as *;
+
 @mixin drag-handle($left, $top, $bottom, $bg_size) {
     .drag-handle {
         position: absolute;
@@ -7,16 +9,8 @@
         align-self: stretch;
         visibility: hidden;
         background-size: $bg_size;
-    }
-}
 
-@mixin cursor-style {
-    &:hover {
-        cursor: grab;
-    }
-
-    &:active {
-        cursor: grabbing;
+        @include dnd-cursor-style();
     }
 }
 

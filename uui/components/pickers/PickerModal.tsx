@@ -34,6 +34,7 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
         isSingleSelect,
         handleDataSourceValueChange,
     } = usePickerModal<TItem, TId>(props);
+    const isSearching = dataSourceState.search && dataSourceState.search.length > 0;
 
     const renderRow = (rowProps: PickerRenderRowParams<TItem, TId>) => {
         return props.renderRow ? (
@@ -53,14 +54,23 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     const renderFooter = () => {
         const hasSelection = view.getSelectedRowsCount() > 0;
         const rowsCount = view.getListProps().rowsCount;
-        const isEmptyRowsAndHasNoSelection = (rowsCount === 0 && !hasSelection);
+        const isEmptyRowsAndHasNoSelection = (rowsCount === 0 || !hasSelection);
+        const showClear = !props.disableClear && (isSingleSelect() ? true : (!view.selectAll || hasSelection));
+        const isClearDisabled = isSearching || isEmptyRowsAndHasNoSelection;
+
         return (
             <>
-                {view.selectAll && (
+                {view.selectAll && !hasSelection && (
                     <LinkButton
-                        caption={ hasSelection ? i18n.pickerModal.clearAllButton : i18n.pickerModal.selectAllButton }
-                        onClick={ hasSelection ? () => clearSelection() : () => view.selectAll.onValueChange(true) }
-                        isDisabled={ isEmptyRowsAndHasNoSelection }
+                        caption={ i18n.pickerModal.selectAllButton }
+                        onClick={ () => view.selectAll.onValueChange(true) }
+                    />
+                )}
+                {showClear && (
+                    <LinkButton
+                        caption={ isSingleSelect() ? i18n.pickerModal.clearButton : i18n.pickerModal.clearAllButton }
+                        onClick={ () => clearSelection() }
+                        isDisabled={ isClearDisabled }
                     />
                 )}
                 <FlexSpacer />
@@ -87,7 +97,6 @@ export function PickerModal<TItem, TId>(props: PickerModalProps<TItem, TId>) {
     };
 
     const dataRows = getRows();
-    const isSearching = dataSourceState.search && dataSourceState.search.length > 0;
 
     return (
         <ModalBlocker { ...props }>

@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { SyncTreeProps } from './types';
 import { useCreateTree } from './useCreateTree';
 import {
-    useFilterTree, useSearchTree, useSortTree, useDataSourceStateWithDefaults,
+    useFilterTreeState, useSearchTreeState, useSortTreeState, useDataSourceStateWithDefaults,
     useItemsStorage, usePatchTree, useSelectedOnlyTree,
 } from '../../common';
 import { UseTreeResult } from '../../types';
@@ -50,17 +50,17 @@ export function useSyncTree<TItem, TId, TFilter = any>(
 
     const dataSourceState = useDataSourceStateWithDefaults({ dataSourceState: props.dataSourceState });
 
-    const filteredTree = useFilterTree(
+    const filteredTree = useFilterTreeState(
         { tree: fullTree, getFilter, dataSourceState },
         [fullTree],
     );
 
-    const sortTree = useSortTree(
+    const sortTree = useSortTreeState(
         { tree: filteredTree, sortBy, dataSourceState },
         [filteredTree],
     );
 
-    const searchTree = useSearchTree(
+    const searchTree = useSearchTreeState(
         { tree: sortTree, getSearchFields, sortSearchByRelevance, dataSourceState },
         [sortTree],
     );

@@ -14,6 +14,7 @@ const TREE_SHAKEABLE_INIT = () => ({
         searchPlaceholder: 'Type text for quick search',
         cancelButton: 'Cancel',
         selectButton: 'Select',
+        clearButton: 'CLEAR',
         clearAllButton: 'CLEAR ALL',
         selectAllButton: 'SELECT ALL',
     },

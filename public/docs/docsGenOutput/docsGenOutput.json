@@ -1,5 +1,5 @@
 {
- "version": "6.1.0",
+ "version": "6.1.5-beta.1",
  "docsGenTypes": {
   "@epam/uui-core:AcceptDropParams": {
    "summary": {
@@ -6571,8 +6571,7 @@
       "         * We demand to pass the row as well, to avoid creating closures for each row.",
       "         */",
       "    onSelect?(rowProps: DataRowProps<TItem, TId>): void;",
-      "    /** Handles row focusing.",
-      "         */",
+      "    /** Handles row focusing */",
       "    onFocus?(focusedIndex: number): void;",
       "    /** True if row pinned, it means that it will be sticky inside his nesting level */",
       "    isPinned?: boolean;",
@@ -7251,7 +7250,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -10350,7 +10349,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -10758,6 +10757,268 @@
        "type": "number"
       },
       "from": "@epam/uui-core:VirtualListRange",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:DatePickerFilterConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "DatePickerFilterConfig",
+     "nameFull": "DatePickerFilterConfig<TFilter>"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "DatePickerFilterConfig<TFilter>",
+     "print": [
+      "type DatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & {",
+      "    /** Type of the filter */",
+      "    type: 'datePicker';",
+      "    /** Render callback for datepicker body footer.",
+      "     * If omitted, the default FilterDatePickerBodyFooter component will be rendered.",
+      "     */",
+      "    renderFooter?: (props: FilterDatePickerBodyFooterProps) => React.ReactNode;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "title",
+      "name": "title",
+      "comment": {
+       "raw": [
+        "Title of the filter, displayed in filter toggler and filter body"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "field",
+      "name": "field",
+      "comment": {
+       "raw": [
+        "Field of filters object, where store the filter value"
+       ]
+      },
+      "typeValue": {
+       "raw": "keyof TFilter",
+       "html": "<span class=\"token keyword\">keyof</span> TFilter"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "columnKey",
+      "name": "columnKey",
+      "comment": {
+       "raw": [
+        "Key of the column to which the filter is attached.",
+        " If omitted, filter won't be attached to the column."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "isAlwaysVisible",
+      "name": "isAlwaysVisible",
+      "comment": {
+       "raw": [
+        "Pass true to make filter always visible in FilterPanel. User can't hide it via 'Add filter' dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "predicates",
+      "name": "predicates",
+      "comment": {
+       "raw": [
+        "Array of available predicates for the filter. This predicated can be chosen by user and applied to the filter value."
+       ]
+      },
+      "typeValue": {
+       "raw": "IFilterPredicate[]",
+       "html": "IFilterPredicate<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "maxCount",
+      "name": "maxCount",
+      "comment": {
+       "raw": [
+        "Count of words to show in the Filter toggler. By default, 2 item will be shown."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "togglerWidth",
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmpty",
+      "name": "preventEmpty",
+      "comment": {
+       "raw": [
+        "Pass true to prevent component from being empty.",
+        " It's disable clear cross-icon and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of the single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Type of the filter"
+       ]
+      },
+      "typeValue": {
+       "raw": "'datePicker'",
+       "html": "<span class=\"token string\">'datePicker'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "datePicker"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
       "required": false
      }
     ],
@@ -13285,6 +13546,65 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:FilterDatePickerBodyFooterProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FilterDatePickerBodyFooterProps",
+     "nameFull": "FilterDatePickerBodyFooterProps<string | null>"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "FilterDatePickerBodyFooterProps",
+     "print": [
+      "type FilterDatePickerBodyFooterProps = IControlled<string | null>;"
+     ]
+    },
+    "props": [
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: string | null) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:FilterPredicate": {
    "summary": {
     "module": "@epam/uui-core",
@@ -13522,6 +13842,213 @@
       "type FilterPredicateName = keyof FilterPredicate<any>;"
      ]
     }
+   }
+  },
+  "@epam/uui-core:FilterRangeDatePickerBodyFooterProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "FilterRangeDatePickerBodyFooterProps",
+     "nameFull": "FilterRangeDatePickerBodyFooterProps"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "FilterRangeDatePickerBodyFooterProps",
+     "print": [
+      "interface FilterRangeDatePickerBodyFooterProps extends IControlled<RangeDatePickerValue | null>, Pick<RangeDatePickerProps, 'format' | 'onFocus' | 'onBlur' | 'preventEmptyToDate' | 'preventEmptyFromDate'> {",
+      "    disableClear: boolean;",
+      "    inFocus: RangeDatePickerInputType;",
+      "    setInFocus: (inputType: RangeDatePickerInputType) => void;",
+      "    onClear: () => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     },
+     {
+      "uid": "inFocus",
+      "name": "inFocus",
+      "typeValue": {
+       "raw": "null | 'from' | 'to'",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token string\">'from'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'to'</span>"
+      },
+      "typeValueRef": "@epam/uui-core:RangeDatePickerInputType",
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "from",
+        "to",
+        null
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "setInFocus",
+      "name": "setInFocus",
+      "typeValue": {
+       "raw": "(inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "onClear",
+      "name": "onClear",
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "The current value of component"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | RangeDatePickerValue",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> RangeDatePickerValue"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Called when value needs to be changed (usually due to user interaction)"
+       ]
+      },
+      "typeValue": {
+       "raw": "(newValue: RangeDatePickerValue | null) => void",
+       "html": "<span class=\"token punctuation\">(</span>newValue<span class=\"token operator\">:</span> RangeDatePickerValue <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:IControlled",
+      "required": true
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "onFocus",
+      "name": "onFocus",
+      "comment": {
+       "raw": [
+        "Called when component gets input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">,</span> inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "onBlur",
+      "name": "onBlur",
+      "comment": {
+       "raw": [
+        "Called when component looses input focus"
+       ]
+      },
+      "typeValue": {
+       "raw": "(e: React.FocusEvent<HTMLInputElement, Element>, inputType: RangeDatePickerInputType) => void",
+       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>FocusEvent<span class=\"token operator\">&lt;</span>HTMLInputElement<span class=\"token punctuation\">,</span> Element<span class=\"token operator\">></span><span class=\"token punctuation\">,</span> inputType<span class=\"token operator\">:</span> RangeDatePickerInputType<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui-core:FiltersConfig": {
@@ -17187,8 +17714,9 @@
       "interface IEditableDebouncerProps<T> extends IEditable<T>, IEditableDebouncerOptions, IAnalyticableOnChange<T> {",
       "    /**",
       "     * Render wrapped component.",
+      "     * Receives props and forwarded ref as a second parameter.",
       "     */",
-      "    render: (props: IEditable<T>) => React.ReactNode;",
+      "    render: (props: IEditable<T>, ref: React.Ref<any>) => React.ReactNode;",
       "}"
      ]
     },
@@ -17198,12 +17726,13 @@
       "name": "render",
       "comment": {
        "raw": [
-        "Render wrapped component."
+        "Render wrapped component.",
+        " Receives props and forwarded ref as a second parameter."
        ]
       },
       "typeValue": {
-       "raw": "(props: IEditable<T>) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> IEditable<span class=\"token operator\">&lt;</span><span class=\"token constant\">T</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+       "raw": "(props: IEditable<T>, ref: React.Ref<any>) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> IEditable<span class=\"token operator\">&lt;</span><span class=\"token constant\">T</span><span class=\"token operator\">></span><span class=\"token punctuation\">,</span> ref<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>Ref<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
       },
       "editor": {
        "type": "component"
@@ -17623,7 +18152,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyFromDate' | 'preventEmptyToDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
+     "raw": "FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch'> & { type: 'singlePicker' | 'multiPicker'; showSearch?: boolean | undefined; maxBodyHeight?: number | undefined; highlightSearchMatches?: boolean | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<DatePickerProps, 'filter' | 'format' | 'preventEmpty' | 'renderDay'> & { type: 'datePicker'; renderFooter?: ((props: FilterDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'numeric'; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'renderDay' | 'preventEmptyToDate' | 'preventEmptyFromDate'> & { type: 'rangeDatePicker'; presets?: RangeDatePickerPresets | undefined; renderFooter?: ((props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode) | undefined; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; } | FilterConfigBase<TFilter> & { type: 'custom'; render: (props: IFilterItemBodyProps<any>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>; getTogglerValue: (props: IFilterItemBodyProps<any>) => React.ReactNode; } & IEditable<any> & IDropdownBodyProps & { selectedPredicate?: string | undefined; }",
      "print": [
       "type IFilterItemBodyProps<TFilter> = TableFiltersConfig<TFilter> & IEditable<any> & IDropdownBodyProps & {",
       "    /** Name of currently selected predicate */",
@@ -18257,6 +18786,25 @@
       "required": true
      },
      {
+      "uid": "renderFooter_2",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "type_3",
       "name": "type",
       "comment": {
@@ -18296,11 +18844,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyFromDate",
-      "name": "preventEmptyFromDate",
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"From\" date from being empty.",
+        "Pass true to prevent \"To\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -18315,11 +18863,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyToDate",
-      "name": "preventEmptyToDate",
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"To\" date from being empty.",
+        "Pass true to prevent \"From\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -18366,6 +18914,25 @@
       "typeValue": {
        "raw": "RangeDatePickerPresets",
        "html": "RangeDatePickerPresets"
+      },
+      "from": "@epam/uui-core:RangeDatePickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "renderFooter_3",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterRangeDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "from": "@epam/uui-core:RangeDatePickerFilterConfig",
       "required": false
@@ -19869,6 +20436,86 @@
       "typeValue": {
        "raw": "() => IterableIterator<[TKey, TValue]>",
        "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IterableIterator<span class=\"token operator\">&lt;</span><span class=\"token punctuation\">[</span>TKey<span class=\"token punctuation\">,</span> TValue<span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:IItemsAccessor": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "IItemsAccessor",
+     "nameFull": "IItemsAccessor<TItem, TId>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/treeStructure/types.ts",
+    "comment": {
+     "raw": [
+      "Tree data accessor.",
+      " Used by tree to access known items."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "IItemsAccessor<TItem, TId>",
+     "print": [
+      "/**",
+      " * Tree data accessor.",
+      " * Used by tree to access known items.",
+      " */",
+      "interface IItemsAccessor<TItem, TId> {",
+      "    /**",
+      "     * Get records by id.",
+      "     * @param id - id of the record.",
+      "     * @returns record or `NOT_FOUND_RECORD`.",
+      "     */",
+      "    get: (id: TId) => TItem | typeof NOT_FOUND_RECORD;",
+      "    /**",
+      "     * Iteration function over all data.",
+      "     */",
+      "    forEach: (action: (item: TItem, id: TId) => void) => void;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "get",
+      "name": "get",
+      "comment": {
+       "raw": [
+        "Get records by id.",
+        " @param id - id of the record.",
+        " @returns record or `NOT_FOUND_RECORD`."
+       ]
+      },
+      "typeValue": {
+       "raw": "(id: TId) => TItem | typeof NOT_FOUND_RECORD",
+       "html": "<span class=\"token punctuation\">(</span>id<span class=\"token operator\">:</span> TId<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> TItem <span class=\"token operator\">|</span> <span class=\"token keyword\">typeof</span> <span class=\"token constant\">NOT_FOUND_RECORD</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "forEach",
+      "name": "forEach",
+      "comment": {
+       "raw": [
+        "Iteration function over all data."
+       ]
+      },
+      "typeValue": {
+       "raw": "(action: (item: TItem, id: TId) => void) => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token function-variable function\">action</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">,</span> id<span class=\"token operator\">:</span> TId<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -22486,6 +23133,12 @@
       "     * @param id - ID of an item to be returned.",
       "     */",
       "    getById(id: TId): TItem | typeof NOT_FOUND_RECORD;",
+      "    /**",
+      "     * Accessor to all known items. It may contain records, filtered out of the tree.",
+      "     * Items accessor cannot be used to investigate current state of the tree.",
+      "     * Instead, use tree.getItems(), in the combination with tree.getById(id).",
+      "     */",
+      "    getItemsAccessor(): IItemsAccessor<TItem, TId>;",
       "}"
      ]
     },
@@ -22537,6 +23190,25 @@
       "typeValue": {
        "raw": "(id: TId) => TItem | typeof NOT_FOUND_RECORD",
        "html": "<span class=\"token punctuation\">(</span>id<span class=\"token operator\">:</span> TId<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> TItem <span class=\"token operator\">|</span> <span class=\"token keyword\">typeof</span> <span class=\"token constant\">NOT_FOUND_RECORD</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": true
+     },
+     {
+      "uid": "getItemsAccessor",
+      "name": "getItemsAccessor",
+      "comment": {
+       "raw": [
+        "Accessor to all known items. It may contain records, filtered out of the tree.",
+        " Items accessor cannot be used to investigate current state of the tree.",
+        " Instead, use tree.getItems(), in the combination with tree.getById(id)."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => IItemsAccessor<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> IItemsAccessor<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
       },
       "editor": {
        "type": "func"
@@ -26531,6 +27203,8 @@
       "    getSearchFields?(item: TItem): string[];",
       "    /** Component ref */",
       "    ref?: React.Ref<PickerInputElement>;",
+      "    /** Disallow to clear Picker value */",
+      "    disableClear?: boolean;",
       "};"
      ]
     },
@@ -26811,6 +27485,23 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "required": false
      }
@@ -27128,6 +27819,24 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -28474,7 +29183,9 @@
       "type PickerInputBaseProps<TItem, TId> = PickerBaseProps<TItem, TId> & ICanFocus<HTMLElement> & IHasPlaceholder & IDisableable & ICanBeReadonly & IHasIcon & {",
       "    /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */",
       "    editMode?: PickerInputEditMode;",
-      "    /** Maximum number of tags to display in input, before collapsing to \"N items selected\" mode */",
+      "    /** Maximum number of tags to display in input, before collapsing to \"N items selected\" mode",
+      "     * @default 20",
+      "     * */",
       "    maxItems?: number;",
       "    /** Minimum width of dropdown body */",
       "    minBodyWidth?: number;",
@@ -28832,6 +29543,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -29132,8 +29861,12 @@
       "name": "maxItems",
       "comment": {
        "raw": [
-        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
-       ]
+        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode",
+        " @default 20"
+       ],
+       "tags": {
+        "@default": 20
+       }
       },
       "typeValue": {
        "raw": "number",
@@ -29233,23 +29966,6 @@
         "input",
         "none"
        ]
-      },
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disallow to clear Picker value (cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "required": false
      },
@@ -35843,7 +36559,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -35958,6 +36674,307 @@
       "type ProcessRequestMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | string & {};"
      ]
     }
+   }
+  },
+  "@epam/uui-core:RangeDatePickerFilterConfig": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "RangeDatePickerFilterConfig",
+     "nameFull": "RangeDatePickerFilterConfig<TFilter>"
+    },
+    "src": "uui-core/src/types/tables.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 265,
+    "typeValue": {
+     "raw": "RangeDatePickerFilterConfig<TFilter>",
+     "print": [
+      "type RangeDatePickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<RangeDatePickerProps, 'filter' | 'format' | 'preventEmptyFromDate' | 'preventEmptyToDate' | 'renderDay'> & {",
+      "    /** Type of the filter */",
+      "    type: 'rangeDatePicker';",
+      "    /**",
+      "     * Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+      "     * UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)",
+      "     */",
+      "    presets?: RangeDatePickerPresets;",
+      "    /** Render callback for datepicker body footer.",
+      "     * If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered.",
+      "     */",
+      "    renderFooter?: (props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode;",
+      "};"
+     ]
+    },
+    "props": [
+     {
+      "uid": "title",
+      "name": "title",
+      "comment": {
+       "raw": [
+        "Title of the filter, displayed in filter toggler and filter body"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "field",
+      "name": "field",
+      "comment": {
+       "raw": [
+        "Field of filters object, where store the filter value"
+       ]
+      },
+      "typeValue": {
+       "raw": "keyof TFilter",
+       "html": "<span class=\"token keyword\">keyof</span> TFilter"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": true
+     },
+     {
+      "uid": "columnKey",
+      "name": "columnKey",
+      "comment": {
+       "raw": [
+        "Key of the column to which the filter is attached.",
+        " If omitted, filter won't be attached to the column."
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "isAlwaysVisible",
+      "name": "isAlwaysVisible",
+      "comment": {
+       "raw": [
+        "Pass true to make filter always visible in FilterPanel. User can't hide it via 'Add filter' dropdown"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "predicates",
+      "name": "predicates",
+      "comment": {
+       "raw": [
+        "Array of available predicates for the filter. This predicated can be chosen by user and applied to the filter value."
+       ]
+      },
+      "typeValue": {
+       "raw": "IFilterPredicate[]",
+       "html": "IFilterPredicate<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "maxCount",
+      "name": "maxCount",
+      "comment": {
+       "raw": [
+        "Count of words to show in the Filter toggler. By default, 2 item will be shown."
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "togglerWidth",
+      "name": "togglerWidth",
+      "comment": {
+       "raw": [
+        "Defines maxWidth of the filter toggler"
+       ]
+      },
+      "typeValue": {
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
+      },
+      "editor": {
+       "type": "number"
+      },
+      "from": "@epam/uui-core:FilterConfigBase",
+      "required": false
+     },
+     {
+      "uid": "filter",
+      "name": "filter",
+      "comment": {
+       "raw": [
+        "Filter selectable days. Days, for which this callback returns false - will be disabled"
+       ]
+      },
+      "typeValue": {
+       "raw": "(day: Dayjs) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>day<span class=\"token operator\">:</span> Dayjs<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "format",
+      "name": "format",
+      "comment": {
+       "raw": [
+        "Date format string, see [dayjs docs](@link https://day.js.org/docs/en/display/format)"
+       ]
+      },
+      "typeValue": {
+       "raw": "string",
+       "html": "<span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "string"
+      },
+      "from": "@epam/uui-core:CommonDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "renderDay",
+      "name": "renderDay",
+      "comment": {
+       "raw": [
+        "Overrides rendering of a single day. For example, to highlight certain days"
+       ]
+      },
+      "typeValue": {
+       "raw": "(renderProps: DayProps) => React.ReactElement<Element, string | React.JSXElementConstructor<any>>",
+       "html": "<span class=\"token punctuation\">(</span>renderProps<span class=\"token operator\">:</span> DayProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactElement<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>JSXElementConstructor<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">>></span>"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"To\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
+      "comment": {
+       "raw": [
+        "Pass true to prevent \"From\" date from being empty.",
+        " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:RangeDatePickerProps",
+      "required": false
+     },
+     {
+      "uid": "type",
+      "name": "type",
+      "comment": {
+       "raw": [
+        "Type of the filter"
+       ]
+      },
+      "typeValue": {
+       "raw": "'rangeDatePicker'",
+       "html": "<span class=\"token string\">'rangeDatePicker'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "rangeDatePicker"
+       ]
+      },
+      "required": true
+     },
+     {
+      "uid": "presets",
+      "name": "presets",
+      "comment": {
+       "raw": [
+        "Range presets (like 'this week', 'this month', etc.) to display at the right of the Picker's body.",
+        " UUI provides defaults in the 'rangeDatePickerPresets' exported variable - you can use it as is, or build on top of it (e.g. add your presets)"
+       ]
+      },
+      "typeValue": {
+       "raw": "RangeDatePickerPresets",
+       "html": "RangeDatePickerPresets"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderFooter",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterRangeDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
    }
   },
   "@epam/uui-core:RangeDatePickerInputType": {
@@ -38424,6 +39441,25 @@
       "required": true
      },
      {
+      "uid": "renderFooter_2",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui-core:DatePickerFilterConfig",
+      "required": false
+     },
+     {
       "uid": "type_3",
       "name": "type",
       "comment": {
@@ -38463,11 +39499,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyFromDate",
-      "name": "preventEmptyFromDate",
+      "uid": "preventEmptyToDate",
+      "name": "preventEmptyToDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"From\" date from being empty.",
+        "Pass true to prevent \"To\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -38482,11 +39518,11 @@
       "required": false
      },
      {
-      "uid": "preventEmptyToDate",
-      "name": "preventEmptyToDate",
+      "uid": "preventEmptyFromDate",
+      "name": "preventEmptyFromDate",
       "comment": {
        "raw": [
-        "Pass true to prevent \"To\" date from being empty.",
+        "Pass true to prevent \"From\" date from being empty.",
         " It's disable clear cross-icon(if both preventEmptyFromDate and preventEmptyToDate specified) and return last selected value if input was cleared"
        ]
       },
@@ -38533,6 +39569,25 @@
       "typeValue": {
        "raw": "RangeDatePickerPresets",
        "html": "RangeDatePickerPresets"
+      },
+      "from": "@epam/uui-core:RangeDatePickerFilterConfig",
+      "required": false
+     },
+     {
+      "uid": "renderFooter_3",
+      "name": "renderFooter",
+      "comment": {
+       "raw": [
+        "Render callback for datepicker body footer.",
+        " If omitted, the default FilterRangeDatePickerBodyFooter component will be rendered."
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: FilterRangeDatePickerBodyFooterProps) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> FilterRangeDatePickerBodyFooterProps<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
       },
       "from": "@epam/uui-core:RangeDatePickerFilterConfig",
       "required": false
@@ -40079,6 +41134,132 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:UseFilterTreeProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseFilterTreeProps",
+     "nameFull": "UseFilterTreeProps<TItem, TId, TFilter>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/hooks/common/useFilterTree.ts",
+    "comment": {
+     "raw": [
+      "Filter tree hook props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseFilterTreeProps<TItem, TId, TFilter>",
+     "print": [
+      "/**",
+      " * Filter tree hook props.",
+      " */",
+      "interface UseFilterTreeProps<TItem, TId, TFilter = any> extends FilterConfig<TItem, TFilter>, CreateTreeInstance<TItem, TId> {",
+      "    /**",
+      "     * Tree with data.",
+      "     */",
+      "    tree: ITree<TItem, TId>;",
+      "    /**",
+      "     * State of the dataSource.",
+      "     */",
+      "    dataSourceState: DataSourceState<TFilter, TId>;",
+      "    /**",
+      "     * Are data loading.",
+      "     */",
+      "    isLoading?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "tree",
+      "name": "tree",
+      "comment": {
+       "raw": [
+        "Tree with data."
+       ]
+      },
+      "typeValue": {
+       "raw": "ITree<TItem, TId>",
+       "html": "ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "dataSourceState",
+      "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "State of the dataSource."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<TFilter, TId>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "Are data loading."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "getFilter",
+      "name": "getFilter",
+      "comment": {
+       "raw": [
+        "A pure function that returns filter callback to be applied for each item.",
+        " The callback should return true, if item passed the filter."
+       ]
+      },
+      "typeValue": {
+       "raw": "(filter: TFilter) => (item: TItem) => boolean",
+       "html": "<span class=\"token punctuation\">(</span>filter<span class=\"token operator\">:</span> TFilter<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:FilterConfig",
+      "required": false
+     },
+     {
+      "uid": "newTreeInstance",
+      "name": "newTreeInstance",
+      "comment": {
+       "raw": [
+        "Create a new ITree instance."
+       ]
+      },
+      "typeValue": {
+       "raw": "(options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> CreateTreeInstanceOptions<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CreateTreeInstance",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:UseFoldingServiceProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -40639,6 +41820,291 @@
       "editor": {
        "type": "number"
       },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:UseSearchTreeProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseSearchTreeProps",
+     "nameFull": "UseSearchTreeProps<TItem, TId, TFilter>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/hooks/common/useSearchTree.ts",
+    "comment": {
+     "raw": [
+      "Search tree hook props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseSearchTreeProps<TItem, TId, TFilter>",
+     "print": [
+      "/**",
+      " * Search tree hook props.",
+      " */",
+      "interface UseSearchTreeProps<TItem, TId, TFilter = any> extends SearchConfig<TItem>, CreateTreeInstance<TItem, TId> {",
+      "    /**",
+      "     * Tree with data.",
+      "     */",
+      "    tree: ITree<TItem, TId>;",
+      "    /**",
+      "     * State of the dataSource.",
+      "     */",
+      "    dataSourceState: DataSourceState<TFilter, TId>;",
+      "    /**",
+      "     * Are data loading.",
+      "     */",
+      "    isLoading?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "tree",
+      "name": "tree",
+      "comment": {
+       "raw": [
+        "Tree with data."
+       ]
+      },
+      "typeValue": {
+       "raw": "ITree<TItem, TId>",
+       "html": "ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "dataSourceState",
+      "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "State of the dataSource."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<TFilter, TId>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "Are data loading."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "getSearchFields",
+      "name": "getSearchFields",
+      "comment": {
+       "raw": [
+        "A pure function that gets search value for each item.",
+        " @default (item) => item.name."
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string[]",
+       "html": "<span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:SearchConfig",
+      "required": false
+     },
+     {
+      "uid": "sortSearchByRelevance",
+      "name": "sortSearchByRelevance",
+      "comment": {
+       "raw": [
+        "Enables sorting of search results by relevance.",
+        " - The highest priority has records, which have a full match with a search keyword.",
+        " - The lower one has records, which have a search keyword at the 0 position, but not the full match.",
+        " - Then, records, which contain a search keyword as a separate word, but not at the beginning.",
+        " - And the lowest one - any other match of the search keyword.",
+        "",
+        " Example:",
+        " - `search`: 'some'",
+        " - `record string`: 'some word', `rank` = 4",
+        " - `record string`: 'someone', `rank` = 3",
+        " - `record string`: 'I know some guy', `rank` = 2",
+        " - `record string`: 'awesome', `rank` = 1",
+        "",
+        " @default true"
+       ],
+       "tags": {
+        "@default": true
+       }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:SearchConfig",
+      "required": false
+     },
+     {
+      "uid": "newTreeInstance",
+      "name": "newTreeInstance",
+      "comment": {
+       "raw": [
+        "Create a new ITree instance."
+       ]
+      },
+      "typeValue": {
+       "raw": "(options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> CreateTreeInstanceOptions<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CreateTreeInstance",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:UseSortTreeProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseSortTreeProps",
+     "nameFull": "UseSortTreeProps<TItem, TId, TFilter>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/hooks/common/useSortTree.ts",
+    "comment": {
+     "raw": [
+      "Sort tree hook props."
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseSortTreeProps<TItem, TId, TFilter>",
+     "print": [
+      "/**",
+      " * Sort tree hook props.",
+      " */",
+      "interface UseSortTreeProps<TItem, TId, TFilter = any> extends SortConfig<TItem>, CreateTreeInstance<TItem, TId> {",
+      "    /**",
+      "     * Tree with data.",
+      "     */",
+      "    tree: ITree<TItem, TId>;",
+      "    /**",
+      "     * State of the dataSource.",
+      "     */",
+      "    dataSourceState: DataSourceState<TFilter, TId>;",
+      "    /**",
+      "     * Are data loading.",
+      "     */",
+      "    isLoading?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "tree",
+      "name": "tree",
+      "comment": {
+       "raw": [
+        "Tree with data."
+       ]
+      },
+      "typeValue": {
+       "raw": "ITree<TItem, TId>",
+       "html": "ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "dataSourceState",
+      "name": "dataSourceState",
+      "comment": {
+       "raw": [
+        "State of the dataSource."
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<TFilter, TId>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>TFilter<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "required": true
+     },
+     {
+      "uid": "isLoading",
+      "name": "isLoading",
+      "comment": {
+       "raw": [
+        "Are data loading."
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "sortBy",
+      "name": "sortBy",
+      "comment": {
+       "raw": [
+        "A pure function that gets sorting value for current sorting value"
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem, sorting: SortingOption<any>) => any",
+       "html": "<span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">,</span> sorting<span class=\"token operator\">:</span> SortingOption<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:SortConfig",
+      "required": false
+     },
+     {
+      "uid": "newTreeInstance",
+      "name": "newTreeInstance",
+      "comment": {
+       "raw": [
+        "Create a new ITree instance."
+       ]
+      },
+      "typeValue": {
+       "raw": "(options: CreateTreeInstanceOptions<TItem, TId>) => ITree<TItem, TId>",
+       "html": "<span class=\"token punctuation\">(</span>options<span class=\"token operator\">:</span> CreateTreeInstanceOptions<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> ITree<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "from": "@epam/uui-core:CreateTreeInstance",
       "required": false
      }
     ],
@@ -43626,23 +45092,28 @@
     "exported": false
    }
   },
+  "@epam/uui-core:CreateTreeInstance": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "CreateTreeInstance",
+     "nameFull": "CreateTreeInstance<TItem, TId>"
+    },
+    "src": "uui-core/src/data/processing/views/tree/treeStructure/helpers/types.ts",
+    "comment": {
+     "raw": [
+      "Create new ITree instance interface."
+     ]
+    },
+    "exported": false
+   }
+  },
   "@epam/uui-core:CustomFilterConfig": {
    "summary": {
     "module": "@epam/uui-core",
     "typeName": {
      "name": "CustomFilterConfig",
      "nameFull": "CustomFilterConfig<TFilter>"
-    },
-    "src": "uui-core/src/types/tables.ts",
-    "exported": false
-   }
-  },
-  "@epam/uui-core:DatePickerFilterConfig": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "DatePickerFilterConfig",
-     "nameFull": "DatePickerFilterConfig<TFilter>"
     },
     "src": "uui-core/src/types/tables.ts",
     "exported": false
@@ -43762,17 +45233,6 @@
     "typeName": {
      "name": "NumericFilterConfig",
      "nameFull": "NumericFilterConfig<TFilter>"
-    },
-    "src": "uui-core/src/types/tables.ts",
-    "exported": false
-   }
-  },
-  "@epam/uui-core:RangeDatePickerFilterConfig": {
-   "summary": {
-    "module": "@epam/uui-core",
-    "typeName": {
-     "name": "RangeDatePickerFilterConfig",
-     "nameFull": "RangeDatePickerFilterConfig<TFilter>"
     },
     "src": "uui-core/src/types/tables.ts",
     "exported": false
@@ -54973,11 +56433,11 @@
     "typeValue": {
      "raw": "MainMenuDropdownProps",
      "print": [
-      "interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
-      "    /** Render callback for the MainMenuDropdown body.",
-      "     * If omitted, component children will be rendered.",
+      "interface MainMenuDropdownProps extends IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "    /**",
+      "     * Render callback for the MainMenuDropdown body.",
       "     */",
-      "    renderBody?: (props: DropdownBodyProps) => React.ReactNode;",
+      "    renderBody: (props: DropdownBodyProps) => React.ReactNode;",
       "}"
      ]
     },
@@ -54987,8 +56447,7 @@
       "name": "renderBody",
       "comment": {
        "raw": [
-        "Render callback for the MainMenuDropdown body.",
-        " If omitted, component children will be rendered."
+        "Render callback for the MainMenuDropdown body."
        ]
       },
       "typeValue": {
@@ -54998,23 +56457,7 @@
       "editor": {
        "type": "component"
       },
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
+      "required": true
      },
      {
       "uid": "caption",
@@ -55469,39 +56912,8 @@
      "print": [
       "interface MainMenuProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
       "    /** Array of menu items to be rendered */",
-      "    items?: AdaptiveItemProps[];",
-      "    /** @deprecated",
-      "     * Use 'items' prop to define menu content */",
-      "    children?: any;",
-      "    /** Path to the logo source */",
-      "    appLogoUrl?: string;",
-      "    /** SPA link to navigate on logo click */",
-      "    logoLink?: Link;",
-      "    /** Href to navigate on logo click */",
-      "    logoHref?: string;",
-      "    /** Called when logo is clicked */",
-      "    onLogoClick?: (e: MouseEvent) => any;",
-      "    /** Path to the customer logo source */",
-      "    customerLogoUrl?: string;",
-      "    /** SPA link to navigate on customer logo click */",
-      "    customerLogoLink?: Link;",
-      "    /** Href to navigate on customer logo click */",
-      "    customerLogoHref?: string;",
-      "    customerLogoBgColor?: string;",
-      "    isTransparent?: boolean;",
-      "    /** Render callback for burger menu content.",
-      "     * Burger will appear, which some items don't fit the menu width.",
-      "     * */",
-      "    renderBurger?: (props: {",
-      "        onClose: () => void;",
-      "    }) => React.ReactNode;",
-      "    /** If true, Burger button will be always visible */",
-      "    alwaysShowBurger?: boolean;",
+      "    items: AdaptiveItemProps[];",
       "    serverBadge?: string;",
-      "    /** Internal prop to define component for MainMenuDropdown */",
-      "    MainMenuDropdown?: React.ComponentType<MainMenuDropdownProps>;",
-      "    /** Internal prop to define component for Burger */",
-      "    Burger?: React.ComponentType<BurgerProps>;",
       "}"
      ]
     },
@@ -55518,194 +56930,7 @@
        "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]",
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -55716,34 +56941,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "required": false
      },
@@ -57272,6 +58469,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -57982,6 +59197,8 @@
       "     * @default false",
       "     */",
       "    disallowClickOutside?: boolean;",
+      "    /** Disallow to clear Picker value */",
+      "    disableClear?: boolean;",
       "}"
      ]
     },
@@ -58033,6 +59250,23 @@
        "tags": {
         "@default": false
        }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
       },
       "typeValue": {
        "raw": "boolean",
@@ -69778,6 +71012,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -70539,6 +71791,24 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -76944,7 +78214,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -80723,7 +81993,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -88099,206 +89369,7 @@
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -88309,36 +89380,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -91584,7 +92625,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: ControlSize | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
+     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: '36' | '48' | '24' | '30' | '42' | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; renderBlocker?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
      "print": [
       "type PartialSettings = DeepPartial<Settings>;"
      ]
@@ -91992,6 +93033,24 @@
       "required": false
      },
      {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
       "uid": "selectionMode",
       "name": "selectionMode",
       "comment": {
@@ -92293,8 +93352,12 @@
       "name": "maxItems",
       "comment": {
        "raw": [
-        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode"
-       ]
+        "Maximum number of tags to display in input, before collapsing to \"N items selected\" mode",
+        " @default 20"
+       ],
+       "tags": {
+        "@default": 20
+       }
       },
       "typeValue": {
        "raw": "number",
@@ -92398,24 +93461,6 @@
         "input",
         "body"
        ]
-      },
-      "from": "@epam/uui-core:PickerInputBaseProps",
-      "required": false
-     },
-     {
-      "uid": "disableClear",
-      "name": "disableClear",
-      "comment": {
-       "raw": [
-        "Disallow to clear Picker value (cross icon)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:PickerInputBaseProps",
       "required": false
@@ -93738,7 +94783,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -94507,7 +95552,7 @@
       "name": "onFocus",
       "comment": {
        "raw": [
-        "Handles row focusing."
+        "Handles row focusing"
        ]
       },
       "typeValue": {
@@ -94678,6 +95723,24 @@
        "tags": {
         "@default": false
        }
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-components:PickerModalOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
       },
       "typeValue": {
        "raw": "boolean",
@@ -95783,6 +96846,24 @@
       "typeValue": {
        "raw": "null | (instance: PickerInputElement | null) => void | (() => VoidOrUndefinedOnly) | React.RefObject<PickerInputElement | null>",
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>PickerInputElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
+      },
+      "from": "@epam/uui-core:PickerBaseOptions",
+      "required": false
+     },
+     {
+      "uid": "disableClear",
+      "name": "disableClear",
+      "comment": {
+       "raw": [
+        "Disallow to clear Picker value"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
       },
       "from": "@epam/uui-core:PickerBaseOptions",
       "required": false
@@ -97559,6 +98640,8 @@
       "interface PresetsPanelProps extends IPresetsApi, IHasRawProps<React.HTMLAttributes<HTMLDivElement>> {",
       "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
+      "    /** Optional: custom logic for Copy Link action, if null, \"Copy Link\" button will be hidden */",
+      "    onCopyLink?: ((tableState: DataTableState) => void) | null;",
       "}"
      ]
     },
@@ -97576,6 +98659,23 @@
        "html": "DataTableState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
       },
       "required": true
+     },
+     {
+      "uid": "onCopyLink",
+      "name": "onCopyLink",
+      "comment": {
+       "raw": [
+        "Optional: custom logic for Copy Link action, if null, \"Copy Link\" button will be hidden"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | (tableState: DataTableState<any, any>) => void",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>tableState<span class=\"token operator\">:</span> DataTableState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
      },
      {
       "uid": "activePresetId",
@@ -107658,6 +108758,25 @@
       "required": false
      },
      {
+      "uid": "renderBlocker",
+      "name": "renderBlocker",
+      "comment": {
+       "raw": [
+        "Render callback for virtual list loading blocker",
+        " If omitted, default UUI `Blocker` component will be rendered"
+       ]
+      },
+      "typeValue": {
+       "raw": "(props: { isLoading: boolean; }) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> isLoading<span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "from": "@epam/uui:BaseVirtualListProps",
+      "required": false
+     },
+     {
       "uid": "cx",
       "name": "cx",
       "comment": {
@@ -111258,6 +112377,36 @@
       },
       "from": "@epam/promo:MultiSwitchMods",
       "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'60'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
+       ]
+      },
+      "from": "@epam/promo:MultiSwitchMods",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -113818,8 +114967,7 @@
       "name": "renderBody",
       "comment": {
        "raw": [
-        "Render callback for the MainMenuDropdown body.",
-        " If omitted, component children will be rendered."
+        "Render callback for the MainMenuDropdown body."
        ]
       },
       "typeValue": {
@@ -113830,23 +114978,7 @@
        "type": "component"
       },
       "from": "@epam/uui-components:MainMenuDropdownProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
+      "required": true
      },
      {
       "uid": "caption",
@@ -114099,206 +115231,7 @@
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -114309,36 +115242,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -117957,8 +118860,7 @@
       "name": "renderBody",
       "comment": {
        "raw": [
-        "Render callback for the MainMenuDropdown body.",
-        " If omitted, component children will be rendered."
+        "Render callback for the MainMenuDropdown body."
        ]
       },
       "typeValue": {
@@ -117969,23 +118871,7 @@
        "type": "component"
       },
       "from": "@epam/uui-components:MainMenuDropdownProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
+      "required": true
      },
      {
       "uid": "caption",
@@ -118238,206 +119124,7 @@
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -118448,36 +119135,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -118906,6 +119563,36 @@
         "gray",
         "primary",
         "secondary"
+       ]
+      },
+      "from": "@epam/loveship:MultiSwitchMods",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '24' | '30' | '42' | '60'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'24'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'42'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'60'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "24",
+        "30",
+        "36",
+        "42",
+        "48",
+        "60"
        ]
       },
       "from": "@epam/loveship:MultiSwitchMods",
