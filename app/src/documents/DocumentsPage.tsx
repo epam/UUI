@@ -8,8 +8,8 @@ import { TMode } from '../common/docs/docsConstants';
 import { AppContext, type TApi } from '../data';
 import { DocsSidebar } from '../common/docs/DocsSidebar';
 import { useAppThemeContext } from '../helpers/appTheme';
-import { DocBlock } from '../common/docs/baseDocBlock/DocBlock';
 import { ThemeId } from '@epam/uui-docs';
+import { DocsBlock } from '../common/docs/docsBlock/DocsBlock';
 
 type DocsQuery = {
     id: string;
@@ -91,7 +91,7 @@ export function DocumentsPage() {
                 { pageWidth > 768 && (
                     <DocsSidebar />
                 ) }
-                { PageComponent ? <PageComponent docItem={ selectedDoc } /> : <DocBlock key={ selectedDoc.id } docItem={ selectedDoc } /> }
+                { PageComponent ? <PageComponent docItem={ selectedDoc } /> : <DocsBlock key={ selectedDoc.id } docItem={ selectedDoc } /> }
             </FlexRow>
         </Page>
     );

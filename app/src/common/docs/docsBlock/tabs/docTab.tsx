@@ -10,23 +10,18 @@ import css from './docTab.module.scss';
 type TDocTabProps = {
     title: string;
     config: TDocConfig | undefined;
-    renderDocTitle: () => React.ReactNode;
     renderSectionTitle: (title: string) => React.ReactNode;
     renderContent: () => React.ReactNode;
 };
 
 export function DocTab(props: TDocTabProps) {
     const renderDocTitle = useCallback(() => {
-        const customTitle = props.renderDocTitle();
-        if (customTitle) {
-            return customTitle;
-        }
         return (
             <RichTextView>
                 <h1 itemProp="name">{props.title}</h1>
             </RichTextView>
         );
-    }, [props.title, props.renderDocTitle]);
+    }, [props.title]);
 
     const renderApiBlock = useCallback(() => {
         if (props.config) {
