@@ -97,6 +97,10 @@ export abstract class BaseDocsBlock extends React.Component<DocBlockProps, State
     };
 
     renderContent() {
+        if (this.props.docItem.renderContent) {
+            return this.props.docItem.renderContent();
+        }
+
         const theme = QueryHelpers.getTheme();
 
         const result: any = [];

@@ -1,3 +1,4 @@
+import React from 'react';
 import OverviewDocItem from 'uui-doc-pages/overview.json';
 import CoreConceptsDocItem from 'uui-doc-pages/coreConcepts.json';
 import SupportDocItem from 'uui-doc-pages/components/support.json';
@@ -41,7 +42,7 @@ export const items: DocItem[] = [
     GettingStartedDocItem,
     CoreConceptsDocItem,
     { id: 'forDesigners', name: 'For Designers' },
-    { id: 'gettingStartedForDesigners', name: 'Getting Started', component: DownloadsDoc, parentId: 'forDesigners' },
+    { id: 'gettingStartedForDesigners', name: 'Getting Started', renderContent: () => <DownloadsDoc />, parentId: 'forDesigners' },
     { id: 'guidelines', name: 'Guidelines', parentId: 'forDesigners' },
     EmptyStatesDocItem,
     LayoutsDocItem,
