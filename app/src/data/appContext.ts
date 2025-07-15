@@ -1,11 +1,11 @@
 import { ThemeBaseParams, builtInThemes } from './themes';
 import { CustomThemeManifest, loadCustomThemes } from './customThemes';
-import { ThemeId } from '@epam/uui-docs';
+import { DocItem, ThemeId } from '@epam/uui-docs';
 
 export interface AppContext {
     themes: ThemeId[],
     themesById: Record<ThemeId, ThemeBaseParams | CustomThemeManifest>,
-    docsMenuStructure: any[],
+    docsMenuStructure: DocItem[],
 }
 
 export async function getThemeContext() {
