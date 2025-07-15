@@ -7,12 +7,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserHistory } from 'history';
 import { Route, Router } from 'react-router-dom';
-import {
-    DragGhost,
-    HistoryAdaptedRouter,
-    useUuiServices,
-    UuiContext,
-} from '@epam/uui-core';
+import { DragGhost, HistoryAdaptedRouter, useUuiServices, UuiContext } from '@epam/uui-core';
 import { Menu } from './common/Menu';
 import { ErrorHandler } from '@epam/uui';
 import { Modals, Snackbar } from '@epam/uui-components';
@@ -27,7 +22,7 @@ function UuiEnhancedApp() {
     const { services } = useUuiServices({ router });
     Object.assign(svc, services);
     return (
-        (<UuiContext value={services}>
+        <UuiContext value={services}>
             <ErrorHandler>
                 <Router history={history}>
                     <Route component={Menu} />
@@ -37,7 +32,7 @@ function UuiEnhancedApp() {
                 <Modals />
                 <DragGhost />
             </ErrorHandler>
-        </UuiContext>)
+        </UuiContext>
     );
 }
 
