@@ -16,7 +16,7 @@ import UtGuideToolsDocItem from 'uui-doc-pages/testing/utGuideTools.json';
 
 import { ProjectsDoc, ReleaseNotesDoc, TeamDoc } from '../../docs/other';
 import { IconsDoc, DownloadsDocItem, DownloadsDoc } from '../../docs/assets';
-import { ThemingOverviewDocItem, CreateThemeDocItem, VariablesDoc } from '../../docs/themes';
+import { ThemingOverviewDocItem, CreateThemeDocItem, ThemeVariablesDocItem } from '../../docs/themes';
 import { componentsStructure } from './components';
 import { DocItem } from '@epam/uui-docs';
 import DataSourcesGettingStartedDocItem from 'uui-doc-pages/dataSources/gettingStarted.json';
@@ -76,7 +76,7 @@ export const items: DocItem[] = [
 
     { id: 'themes', name: 'Themes' },
     ThemingOverviewDocItem,
-    { id: 'tokens', name: 'Variables', component: VariablesDoc, parentId: 'themes', tags: ['colors', 'variables', 'tokens'] },
+    ThemeVariablesDocItem,
     CreateThemeDocItem,
 
     { id: 'testing', name: 'Testing' },
