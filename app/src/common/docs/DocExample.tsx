@@ -8,32 +8,27 @@ import { svc } from '../../services';
 import { CodesandboxLink } from './CodesandboxLink';
 import { Code } from './Code';
 import { docExampleLoader } from './docExampleLoader';
-import { ThemeId } from '../../data';
+import { ThemeId } from '@epam/uui-docs';
 import { generateNewRawString, getSkin, useCode, useExampleProps, usePropEditorTypeOverride } from './utils';
 
 import { ReactComponent as PreviewIcon } from '@epam/assets/icons/common/media-fullscreen-12.svg';
 
 import css from './DocExample.module.scss';
 import { useAppThemeContext } from '../../helpers/appTheme';
-
-const EXAMPLES_PATH_PREFIX = './_examples';
-
-const LABELS = {
-    Fullscreen: 'Fullscreen',
-};
+import { CX } from '@epam/uui-core';
 
 interface DocExampleProps {
     path: string;
     title?: string;
     onlyCode?: boolean;
     width?: number | 'auto';
-    cx?: string;
+    cx?: CX;
     disableCodesandbox?: boolean;
     config?: TDocConfig;
 }
 
 function DocExampleFsBtn({ path, theme }: { path: string; theme: ThemeId }) {
-    const regex = /^\.\/_examples\/(.*)\/(\w+)\.example\.tsx$/;
+    const regex = /^(.*)\/(\w+)\.example\.tsx$/;
     const examplePath = path.replace(regex, '$1/$2');
     const href = `/docExample?theme=${encodeURIComponent(theme)}&examplePath=${encodeURIComponent(examplePath)}`;
     return (
@@ -42,7 +37,7 @@ function DocExampleFsBtn({ path, theme }: { path: string; theme: ThemeId }) {
             icon={ PreviewIcon }
             iconPosition="right"
             href={ href }
-            caption={ LABELS.Fullscreen }
+            caption="Fullscreen"
         />
     );
 }
@@ -62,8 +57,7 @@ export function DocExample(props: DocExampleProps) {
         const { path, onlyCode } = props;
 
         if (!onlyCode) {
-            const exPathRelative = `.${path.substring(EXAMPLES_PATH_PREFIX.length)}`;
-            docExampleLoader({ path: exPathRelative }).then((elementType) => {
+            docExampleLoader({ path: path }).then((elementType) => {
                 setComponent({ elementType });
             });
         }
@@ -79,7 +73,7 @@ export function DocExample(props: DocExampleProps) {
 
     const getDescriptionFileName = (): string => {
         const name = props.path.replace(new RegExp(/\.example.tsx|\./g), '').replace(/\//g, '-').replace(/^-/, '');
-        return name.substring(1);
+        return name;
     };
 
     const renderCode = (isVisible: boolean): React.ReactNode => {

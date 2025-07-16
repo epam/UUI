@@ -1,0 +1,19 @@
+{
+    "id": "dataSources-base-props",
+    "name": "DataSource Props",
+    "parentId": "dataSources",
+    "examples": [
+        { "descriptionPath": "dataSources-base-props" },
+        { "name": "Common DataSource Props", "descriptionPath": "dataSources-base-props-overview" },
+        { "name": "getId and getParentId", "componentPath": "dataSources/DataSourcePropsIds.example.tsx" },
+        { "name": "complexIds", "componentPath": "dataSources/DataSourcePropsComplexIds.example.tsx" },
+        { "name": "isFoldedByDefault", "componentPath": "dataSources/DataSourcePropsIsFoldedByDefault.example.tsx" },
+        { "name": "cascadeSelection", "componentPath": "dataSources/DataSourcePropsCascadeSelection.example.tsx" },
+        { "name": "selectAll", "componentPath": "dataSources/DataSourcePropsSelectAll.example.tsx" },
+        { "name": "showSelectedOnly", "componentPath": "dataSources/DataSourcePropsShowSelectedOnly.example.tsx" },
+        { "name": "patch", "componentPath": "dataSources/DataSourcePropsPatch.example.tsx" },
+        { "name": "isDeleted", "componentPath": "dataSources/DataSourcePropsPatchIsDeleted.example.tsx" },
+        { "name": "getNewItemPosition", "componentPath": "dataSources/DataSourcePropsPatchGetNewItemPosition.example.tsx" },
+        { "name": "fixItemBetweenSortings", "componentPath": "dataSources/DataSourcePropsPatchFixItemBetweenSortings.example.tsx" }
+    ]
+}

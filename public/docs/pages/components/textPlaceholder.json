@@ -1,0 +1,9 @@
+{
+    "id": "textPlaceholder",
+    "name": "Text Placeholder",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "textPlaceholder-descriptions" },
+        { "name": "Basic", "componentPath": "textPlaceholder/Basic.example.tsx" }
+    ]
+}

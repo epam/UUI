@@ -1,6 +1,6 @@
 import { TPropEditorTypeOverride } from '@epam/uui-docs';
 import { Settings, PartialSettings } from '@epam/uui';
-import { ThemeId } from './themes';
+import { ThemeId } from '@epam/uui-docs';
 import { svc } from '../services';
 
 const THEME_MANIFEST_FILE = 'theme-manifest.json';

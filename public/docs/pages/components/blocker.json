@@ -1,0 +1,10 @@
+{
+    "id": "blocker",
+    "name": "Blocker",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "blocker-descriptions" },
+        { "name": "Basic", "componentPath": "blocker/Basic.example.tsx" },
+        { "name": "Advanced", "componentPath": "blocker/Advanced.example.tsx" }
+    ]
+}

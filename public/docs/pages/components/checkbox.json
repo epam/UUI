@@ -1,0 +1,10 @@
+{
+  "id": "checkbox",
+  "name": "Checkbox",
+  "parentId": "components",
+  "examples": [
+    { "descriptionPath": "checkbox-descriptions" },
+    { "name": "Basic", "componentPath": "checkbox/Basic.example.tsx" },
+    { "name": "Checkbox Group", "componentPath": "checkbox/Group.example.tsx" }
+  ]
+}

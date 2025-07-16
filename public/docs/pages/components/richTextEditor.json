@@ -1,0 +1,11 @@
+{
+    "id": "rteOverview",
+    "name": "Overview",
+    "parentId": "richTextEditor",
+    "examples": [
+        { "componentPath": "richTextEditor/Basic.example.tsx" },
+        { "name": "Inner scroll behavior", "componentPath": "richTextEditor/WithInnerScroll.example.tsx" }
+    ],
+    "order": 1,
+    "tags": ["RTE", "RichTextEditor"]
+}

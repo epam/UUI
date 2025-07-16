@@ -3,11 +3,13 @@ import { TSkin, TDocsGenExportedType, PropDocPropsUnknown } from '../../types';
 import { docBuilderGen } from '../docBuilderGen';
 import { DocBuilder } from '../../DocBuilder';
 import { IDocBuilderGenCtx, TDocConfig } from '../docBuilderGenTypes';
+import { ThemeId } from '../../types/themes';
 
 interface IUseDocBuilderGenParams {
     config?: TDocConfig;
     skin: TSkin;
     docBuilderGenCtx: IDocBuilderGenCtx;
+    theme: ThemeId;
 }
 interface IUseDocBuilderGenReturn {
     docs?: DocBuilder<PropDocPropsUnknown>,
@@ -33,7 +35,7 @@ export function useDocBuilderGen(params: IUseDocBuilderGenParams): IUseDocBuilde
         setRes({ isLoaded: false });
         if (config) {
             const generatedFromType = config.bySkin[skin]?.type;
-            docBuilderGen({ config, skin, docBuilderGenCtx }).then((docs) => {
+            docBuilderGen({ config, skin, docBuilderGenCtx, theme: params.theme }).then((docs) => {
                 setRes({
                     isLoaded: true,
                     isGenerated: true,

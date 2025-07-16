@@ -1,0 +1,18 @@
+{
+    "id": "dataSources-lazy-dataSource",
+    "name": "LazyDataSource",
+    "parentId": "dataSources",
+    "examples": [
+        { "descriptionPath": "dataSources-lazy-dataSource" },
+        { "name": "useLazyDataSource", "componentPath": "dataSources/UseLazyDataSource.code.example.ts", "onlyCode": true },
+        { "name": "LazyDataSourceProps", "descriptionPath": "dataSources-lazy-dataSource-props-overview" },
+        { "name": "LazyDataSourceApi", "descriptionPath": "dataSources-lazy-api-overview" },
+        { "name": "Data", "componentPath": "dataSources/LazyDataSourceData.example.tsx" },
+        { "name": "How to request flatten data lazily?", "componentPath": "dataSources/LazyDataSourceRequestingFlattenData.example.tsx" },
+        { "name": "How to request tree-like data lazily?", "componentPath": "dataSources/LazyDataSourceRequestingTreeLikeData.example.tsx" },
+        { "name": "Child count", "componentPath": "dataSources/LazyDataSourceGetChildCount.example.tsx" },
+        { "name": "Filter", "componentPath": "dataSources/LazyDataSourceFilter.example.tsx" },
+        { "name": "Flatten search results", "componentPath": "dataSources/LazyDataSourceFlattenSearchResults.example.tsx" },
+        { "name": "Using cursor-based pagination", "componentPath": "dataSources/LazyDataSourceCursor.example.tsx" }
+    ]
+}

@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/get-code', async (req: any, res: any) => {
     try {
         const params = req.body;
-        const filePath = path.resolve(__dirname, '../../../app/src/docs/', path.normalize(params.path));
+        const filePath = path.resolve(__dirname, '../../../app/src/docs/_examples/', path.normalize(params.path));
 
         const isPathInsideSrcDirectory = filePath.includes(path.normalize('/app/src/'));
 

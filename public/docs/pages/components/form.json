@@ -1,0 +1,17 @@
+{
+    "id": "form",
+    "name": "Form",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "form-descriptions" },
+        { "name": "Basic", "componentPath": "form/Basic.example.tsx" },
+        { "name": "Complex validation", "componentPath": "form/ComplexValidation.example.tsx" },
+        { "name": "Handle successful or failed saves", "componentPath": "form/HandleSuccessSaveAndError.example.tsx" },
+        { "name": "Modal with Form", "componentPath": "modals/ModalWithForm.example.tsx" },
+        { "name": "Leave form with unsaved changes handling", "componentPath": "form/FormLeaveHandling.example.tsx" },
+        { "name": "Validation on change", "componentPath": "form/FormValidateOnChange.example.tsx" },
+        { "name": "Undo/redo and revert form", "componentPath": "form/Advanced.example.tsx" },
+        { "name": "Server-side validation", "componentPath": "form/ServerValidation.example.tsx" },
+        { "name": "Usage with class components", "componentPath": "form/FormWIthClasses.example.tsx" }
+    ]
+}

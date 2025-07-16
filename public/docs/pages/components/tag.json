@@ -1,0 +1,11 @@
+{
+    "id": "tag",
+    "name": "Tag",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "tag-descriptions" },
+        { "name": "Basic", "componentPath": "tag/Basic.example.tsx" },
+        { "name": "Size", "componentPath": "tag/Size.example.tsx" },
+        { "name": "Color variants", "componentPath": "tag/Colors.example.tsx" }
+    ]
+}
