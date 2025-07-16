@@ -54,7 +54,25 @@ function getComponentDocInfo(componentName: string) {
  */
 export function addComponentApiTools(server) {
     server.tool(
+        'uui-components-list',
+        'Gets a list of all UUI components docs and other related docs with short descriptions',
+        {},
+        async () => {
+            const docsList = getComponentsListWithDescriptions();
+            return {
+                content: [
+                    {
+                        type: 'text',
+                        text: JSON.stringify(docsList, null, 2),
+                    },
+                ],
+            };
+        },
+    );
+
+    server.tool(
         'uui-component-api',
+        'Gets detailed info about a specific UUI component, including its props and code examples with descriptions',
         {
             componentName: z.string().describe('Name of the component to look up'),
         },
@@ -66,22 +84,6 @@ export function addComponentApiTools(server) {
                     {
                         type: 'text',
                         text: JSON.stringify(componentDocInfo, null, 2),
-                    },
-                ],
-            };
-        },
-    );
-
-    server.tool(
-        'uui-components-list',
-        {},
-        async () => {
-            const docsList = getComponentsListWithDescriptions();
-            return {
-                content: [
-                    {
-                        type: 'text',
-                        text: JSON.stringify(docsList, null, 2),
                     },
                 ],
             };

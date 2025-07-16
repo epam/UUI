@@ -15,10 +15,10 @@
     "noEmitOnError": false,
     "types": [],
     "allowSyntheticDefaultImports": true,
-    "jsx": "react"
+    "sourceMap": true
   },
   "include": [
-    "./**/*.ts",
+    "./**/*.ts"
   ],
   "exclude": [
     "node_modules",
