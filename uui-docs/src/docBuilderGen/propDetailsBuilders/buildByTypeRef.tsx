@@ -1,4 +1,4 @@
-import { TDocsGenExportedType } from '../../types';
+import { TDocsGenExportedType } from '../../types/types';
 import { TPropDocBuilder } from '../docBuilderGenTypes';
 import { getReactNodeExamples } from './shared/reusableExamples';
 

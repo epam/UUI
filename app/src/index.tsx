@@ -10,7 +10,9 @@ import { svc } from './services';
 import App from './App';
 import { getApi, TApi, AppContext, getThemeContext } from './data';
 import { getAppRootNode } from './helpers/appRootUtils';
-import { DocItem, items as itemsStructure } from './documents/structure';
+import { items as itemsStructure } from './documents/structure/structure';
+import { DocItem } from '@epam/uui-docs';
+
 import { TypeRefPage } from './common';
 import '@epam/internal/styles.css';
 import '@epam/assets/theme/theme_vanilla_thunder.scss';

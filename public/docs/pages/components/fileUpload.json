@@ -1,0 +1,10 @@
+{
+    "id": "fileUpload",
+    "name": "File Upload",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "file-upload-descriptions" },
+        { "name": "File Upload", "componentPath": "fileUpload/FileUpload.example.tsx" },
+        { "name": "With custom infoText", "componentPath": "fileUpload/FileUploadCustomInfoText.example.tsx" }
+    ]
+}

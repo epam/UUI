@@ -1,12 +1,10 @@
-import * as React from 'react';
-import { EditableDocContent, BaseDocsBlock } from '../../common';
+import { DocItem } from '@epam/uui-docs';
 
-export class ThemingOverview extends BaseDocsBlock {
-    title = 'Themes Overview';
-
-    renderContent() {
-        return (
-            <EditableDocContent fileName="theming-intro" />
-        );
-    }
-}
+export const ThemingOverviewDocItem: DocItem = {
+    id: 'themingOverview',
+    name: 'Theming Overview',
+    parentId: 'themes',
+    examples: [
+        { descriptionPath: 'theming-intro' },
+    ],
+};

@@ -1,12 +1,85 @@
 import fs from 'fs';
 import path from 'path';
-import { getComponentSummariesLookup } from '../utils/docsGen';
+import { getComponentSummariesLookup, readDocsGenResultsJson } from '../utils/docsGen';
 
-// Cache for component examples
-const examplesCache = new Map();
+interface DocItem {
+    id: string;
+    name: string;
+    component?: any;
+    examples?: DocItemExample[];
+    parentId?: string;
+    order?: number;
+    tags?: string[];
+}
+
+interface DocItemExample {
+    name?: string;
+    componentPath?: any;
+    descriptionPath?: string;
+    onlyCode?: boolean;
+    cx?: any;
+    themes?: string[];
+}
+
+const componentsDocsMapCache = new Map<string, DocItem>();
+
+export function getComponentsDocsList() {
+    if (componentsDocsMapCache.size > 0) {
+        return componentsDocsMapCache;
+    }
+
+    const docsDir = path.resolve(__dirname, '../../../public/docs/pages');
+
+    function readFilesRecursively(dir) {
+        const entries = fs.readdirSync(dir);
+        for (const entry of entries) {
+            if (entry === 'package.json') continue;
+
+            const fullPath = path.join(dir, entry);
+            const stats = fs.statSync(fullPath);
+
+            if (stats.isDirectory()) {
+                readFilesRecursively(fullPath);
+            } else {
+                const doc: DocItem = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+                if (doc.id) {
+                    componentsDocsMapCache.set(doc.id.toLowerCase(), doc);
+                }
+            }
+        }
+    }
+
+    readFilesRecursively(docsDir);
+    return componentsDocsMapCache;
+}
+
+// Find component doc by id or tags
+export function findComponentDoc(componentName: string) {
+    const lowerName = componentName.toLowerCase();
+
+    const doc = getComponentsDocsList().get(lowerName);
+
+    if (!doc) {
+        // try to find docs by tag field
+        const foundByTag = [];
+        getComponentsDocsList().forEach((docItem) => {
+            if (docItem.tags && Array.isArray(docItem.tags) && docItem.tags.find((tag) => tag.toLowerCase().includes(lowerName))) {
+                foundByTag.push(docItem);
+            }
+        });
+
+        if (foundByTag.length > 0) {
+            return foundByTag;
+        } else {
+            return [];
+        }
+    } else {
+        return [doc];
+    }
+}
 
 // Helper to find component by fuzzy name
-export function findComponentByName(name: string) {
+export function findComponentApiByName(name: string) {
     const summaries = getComponentSummariesLookup();
     const lowerName = name.toLowerCase();
 
@@ -45,53 +118,35 @@ export function simplifyComponentDetails(details) {
     };
 }
 
-export function getComponentExamples(componentName) {
-    // Check cache first
-    if (examplesCache.has(componentName)) {
-        return examplesCache.get(componentName);
+// Cache for component examples
+const examplesCache = new Map();
+
+export function getComponentExamples(componentId: string) {
+    if (examplesCache.has(componentId)) {
+        return examplesCache.get(componentId);
     }
 
     const examplesDir = path.resolve(__dirname, '../../../app/src/docs/_examples');
 
-    try {
-        // Find matching folder case-insensitively
-        const componentNameLower = componentName.toLowerCase();
-        const folders = fs.readdirSync(examplesDir);
-        const matchingFolder = folders.find((folder) => folder.toLowerCase() === componentNameLower);
+    const componentDoc = getComponentsDocsList().get(componentId.toLowerCase());
 
-        if (!matchingFolder) {
-            examplesCache.set(componentName, []);
-            return [];
-        }
+    if (componentDoc?.examples.length > 0) {
+        const examples = componentDoc.examples.map((example) => {
+            if (!example.componentPath) return null;
 
-        const folderPath = path.join(examplesDir, matchingFolder);
+            const result: any = { name: example.name };
 
-        // Read only .example.tsx files
-        const files = fs.readdirSync(folderPath)
-            .filter((file) => file.endsWith('.example.tsx'));
-
-        // Get content of each file
-        const examples = files.map((file) => {
-            const filePath = path.join(folderPath, file);
-            const content = fs.readFileSync(filePath, 'utf8');
-            let description = '';
-
-            const docFile = findExampleDescription(componentName, file.split('.')[0]);
-
-            if (docFile) {
-                const doc = JSON.parse(docFile);
-                description = getTextFromJsonDocDescription(doc);
+            if (!example.onlyCode) {
+                result.description = getExampleDescription(example);
             }
+            result.code = fs.readFileSync(path.join(examplesDir, example.componentPath), 'utf8');
 
-            return { name: file, content: content, description: description };
-        });
+            return result;
+        }).filter((i) => i !== null);
 
-        // Cache the results
-        examplesCache.set(componentName, examples);
+        // Cache the examples
+        examplesCache.set(componentId, examples);
         return examples;
-    } catch (error) {
-        console.error(`Error reading examples for ${componentName}:`, error);
-        return [];
     }
 }
 
@@ -114,22 +169,30 @@ export function getTextFromJsonDocDescription(node) {
     return result;
 }
 
-/**
- * Finds the documentation JSON file for a single component example and returns its content.
- * @param {string} componentName - The name of the component (e.g., 'PickerInput')
- * @param {string} exampleName - The example name (e.g., 'ArrayPickerInput')
- * @returns {string|null} The file content if found, or null if not found
- */
-function findExampleDescription(componentName, exampleName) {
-    const docsDir = path.resolve(__dirname, '../../public/docs/content');
-    const files = fs.readdirSync(docsDir);
-    const match = files.find((file) => {
-        const [type, component, fileExampleName] = file.split('.')[0].split('-');
-        return type === 'examples' && component === componentName.toLowerCase() && fileExampleName.toLowerCase().includes(exampleName.toLowerCase());
-    });
-    if (match) {
-        const filePath = path.join(docsDir, match);
-        return fs.readFileSync(filePath, 'utf8');
+export const getDescriptionFileName = (descriptionPath: string): string => {
+    const name = descriptionPath.replace(new RegExp(/\.example.tsx|\./g), '').replace(/\//g, '-').replace(/^-/, '');
+    return name.substring(1);
+};
+
+export function getExampleDescription(example: DocItemExample) {
+    const docsDir = path.resolve(__dirname, '../../../public/docs/content');
+    const fileName = (example.descriptionPath || getDescriptionFileName(example.componentPath)) + '.json';
+    if (!fs.existsSync(path.join(docsDir, fileName))) {
+        return; // File does not exist
     }
-    return null;
+
+    const descriptionFile = fs.readFileSync(path.join(docsDir, fileName), 'utf8');
+    const content = JSON.parse(descriptionFile);
+    return getTextFromJsonDocDescription(content);
+}
+
+export function getComponentApi(componentName: string) {
+    const shortRef = findComponentApiByName(componentName);
+    if (!shortRef) {
+        return null;
+    }
+
+    const { docsGenTypes } = readDocsGenResultsJson();
+    const componentInfo = docsGenTypes[shortRef];
+    return simplifyComponentDetails(componentInfo.details);
 }

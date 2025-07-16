@@ -1,0 +1,12 @@
+{
+    "id": "presetsPanel",
+    "name": "Presets Panel",
+    "parentId": "tables",
+    "examples": [
+        { "descriptionPath": "presets-panel-descriptions" },
+        { "name": "Basic", "componentPath": "tables/PresetsPanelBasic.example.tsx" },
+        { "name": "Custom CopyLink behavior", "componentPath": "tables/PresetsPanelOnCopyLink.example.tsx" }
+    ],
+    "order": 6,
+    "tags": ["tables", "dataTable"]
+}

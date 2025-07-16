@@ -1,0 +1,10 @@
+{
+    "id": "anchor",
+    "name": "Anchor",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "anchor-descriptions" },
+        { "name": "With block nodes", "componentPath": "anchor/Basic.example.tsx" },
+        { "name": "In text", "componentPath": "anchor/AnchorInText.example.tsx" }
+    ]
+}

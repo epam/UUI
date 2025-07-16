@@ -1,0 +1,10 @@
+{
+    "id": "dropdownContainer",
+    "name": "Dropdown Container",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "dropdownContainer-descriptions" },
+        { "name": "Basic", "componentPath": "dropdownContainer/Basic.example.tsx" },
+        { "name": "Focus lock and keyboard navigation", "componentPath": "dropdownContainer/FocusLockAndKeyboardNavigation.example.tsx" }
+    ]
+}

@@ -20,7 +20,7 @@ import {
 } from './propDocUtils';
 import { useQuery } from '../../../helpers';
 import { buildPreviewRef } from '../../../preview/utils/previewLinkUtils';
-import { ThemeId } from '../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 export function ComponentEditorWrapper(props: {
     theme: ThemeId,
@@ -41,7 +41,7 @@ export function ComponentEditorWrapper(props: {
     const docBuilderGenCtx = useDocBuilderGenCtx(
         usePropEditorTypeOverride(theme, config?.bySkin[skin]?.type),
     );
-    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
+    const { isLoaded, docs, generatedFromType } = useDocBuilderGen({ config, skin, docBuilderGenCtx, theme });
 
     React.useEffect(() => {
         if (!config) {

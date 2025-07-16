@@ -16,6 +16,7 @@
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@elastic/apm-rum": "^5.14.0",
+    "uui-doc-pages": "file:../public/docs/pages",
     "@epam/assets": "6.1.5-beta.1",
     "@epam/electric": "6.1.5-beta.1",
     "@epam/internal": "0.0.2",
@@ -39,7 +40,7 @@
     "history": "4.10.1",
     "imask": "6.0.7",
     "lodash.assign": "4.2.0",
-    "prismjs": "^1.19.0",
+    "prismjs": "1.30.0",
     "qhistory": "1.0.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",

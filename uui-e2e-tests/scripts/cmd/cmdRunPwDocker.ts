@@ -79,7 +79,7 @@ function getEnvParamsForDocker(): string[] {
 }
 
 function getVolumesMapArgs() {
-    const absPathToPreviewIds = forwardSlashes(path.resolve('../app/src/docs/_types/previewIds.ts'));
+    const absPathToPreviewIds = forwardSlashes(path.resolve('../uui-docs/src/types/previewIds.ts'));
     // files/folders to mount volumes
     return [
         './scripts',
@@ -92,7 +92,7 @@ function getVolumesMapArgs() {
         const to = `/e2e/${from.replace('./', '')}`;
         acc.push('-v', `${forwardSlashes(path.resolve(from))}:${to}`);
         return acc;
-    }, []).concat(['-v', `${absPathToPreviewIds}:/app/src/docs/_types/previewIds.ts`]);
+    }, []).concat(['-v', `${absPathToPreviewIds}:/uui-docs/src/types/previewIds.ts`]);
 }
 
 function forwardSlashes(pathStr: string) {
