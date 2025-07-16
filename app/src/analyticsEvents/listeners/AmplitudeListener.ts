@@ -14,17 +14,19 @@ export class AmplitudeListener implements IAnalyticsListener {
         const ampClient = amplitude.createInstance();
 
         ampClient.init(this.ampCode, undefined, {
-            // includeReferrer: true,
-            // includeUtm: true,
-            // saveParamsReferrerOncePerSession: false,
             cookieOptions: { domain: 'uui.epam.com' },
         });
 
         return ampClient;
     }
 
+    private hasConsent(): boolean {
+        const dataLayer = (window as any).dataLayer ?? [];
+        return dataLayer.length === 0 ? false : dataLayer.some((item: any) => item.event === 'OneTrustLoaded' && item.OnetrustActiveGroups?.includes('C0002'));
+    }
+
     public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType: string) {
-        if (eventType !== 'event') return;
+        if (!this.hasConsent() || eventType !== 'event') return;
         this.client.track(event.name, parameters);
     }
 }
