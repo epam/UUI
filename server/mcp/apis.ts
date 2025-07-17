@@ -1,29 +1,32 @@
 import express from 'express';
-import { SSEServerTransport } from '@modelcontextprotocol/sdk/server/sse.js';
 import { server } from './server';
+import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 
 const mcpApis = express.Router();
 
-// to support multiple simultaneous connections we have a lookup object from
-// sessionId to transport
-const transports: Record<string, any> = {};
-
-mcpApis.get('/sse', async (_, res) => {
-    const transport = new SSEServerTransport('/api/mcp/messages', res);
-    transports[transport.sessionId] = transport;
-    res.on('close', () => {
-        delete transports[transport.sessionId];
-    });
-    await server.connect(transport);
-});
-
-mcpApis.post('/messages', async (req, res) => {
-    const sessionId = req.query.sessionId as string;
-    const transport = transports[sessionId];
-    if (transport) {
-        await transport.handlePostMessage(req, res);
-    } else {
-        res.status(400).send('No transport found for sessionId');
+mcpApis.post('/mcp', async (req, res) => {
+    try {
+        const transport: StreamableHTTPServerTransport = new StreamableHTTPServerTransport({
+            sessionIdGenerator: undefined,
+        });
+        res.on('close', () => {
+            transport.close();
+            server.close();
+        });
+        await server.connect(transport);
+        await transport.handleRequest(req, res, req.body);
+    } catch (error) {
+        console.error('Error handling MCP request:', error);
+        if (!res.headersSent) {
+            res.status(500).json({
+                jsonrpc: '2.0',
+                error: {
+                    code: -32603,
+                    message: 'Internal server error',
+                },
+                id: null,
+            });
+        }
     }
 });
 
