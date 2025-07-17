@@ -9,11 +9,13 @@ import errorApi from './error';
 import formApi from './form';
 import RTEDemoApi from './RTEDemoApi';
 import bodyParser from 'body-parser';
+import { mcpApis } from '../mcp/apis';
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
 router.use(jsonParser);
 
+router.use(mcpApis);
 router.use(getChangelog);
 router.use(getCode);
 router.use(testDataApis);

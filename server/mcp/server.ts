@@ -3,8 +3,8 @@ import { addComponentApiTools } from './componentApiTool';
 
 // Create an MCP server
 const server = new McpServer({
-    name: 'Demo',
-    version: '1.0.0',
+    name: 'UUI Docs',
+    version: '1.0.1',
 });
 
 // Register UUI component tools

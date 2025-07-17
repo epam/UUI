@@ -3,6 +3,7 @@ import {
     getComponentsDocsList, getComponentExamples, getExampleDescription, findComponentDoc,
     getComponentApi,
 } from './helpers';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 function getComponentsListWithDescriptions() {
     const docsList = getComponentsDocsList();
@@ -52,11 +53,13 @@ function getComponentDocInfo(componentName: string) {
  * Registers UUI component API tools with the MCP server
  * @param {import("@modelcontextprotocol/sdk/server/mcp.js").McpServer} server
  */
-export function addComponentApiTools(server) {
-    server.tool(
+export function addComponentApiTools(server: McpServer) {
+    server.registerTool(
         'uui-components-list',
-        'Gets a list of all UUI components docs and other related docs with short descriptions',
-        {},
+        {
+            title: 'UUI Components List',
+            description: 'Gets a list of all UUI components docs and other related docs with short descriptions',
+        },
         async () => {
             const docsList = getComponentsListWithDescriptions();
             return {
@@ -70,11 +73,14 @@ export function addComponentApiTools(server) {
         },
     );
 
-    server.tool(
+    server.registerTool(
         'uui-component-api',
-        'Gets detailed info about a specific UUI component, including its props and code examples with descriptions',
         {
-            componentName: z.string().describe('Name of the component to look up'),
+            title: 'UUI Component API',
+            description: 'Gets detailed info about a specific UUI component, including its props and code examples with descriptions',
+            inputSchema: {
+                componentName: z.string().describe('Name of the component to look up'),
+            },
         },
         async ({ componentName }) => {
             const componentDocInfo = getComponentDocInfo(componentName);
