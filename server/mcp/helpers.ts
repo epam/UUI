@@ -170,8 +170,7 @@ export function getTextFromJsonDocDescription(node) {
 }
 
 export const getDescriptionFileName = (descriptionPath: string): string => {
-    const name = descriptionPath.replace(new RegExp(/\.example.tsx|\./g), '').replace(/\//g, '-').replace(/^-/, '');
-    return name.substring(1);
+    return descriptionPath.replace(new RegExp(/\.example.tsx|\./g), '').replace(/\//g, '-').replace(/^-/, '');
 };
 
 export function getExampleDescription(example: DocItemExample) {

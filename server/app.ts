@@ -10,13 +10,10 @@ import { isDevServer } from './utils/envUtils';
 import actuator from 'express-actuator';
 import staticMiddleware from './static';
 import { getCspHeaderValue } from './utils/cspUtil';
-import { mcpApis } from './mcp/apis';
 
 export const app = express();
 
 !isDevServer() && app.use(logger('dev'));
-
-app.use('/api/mcp', mcpApis);
 
 app.use(express.json({ limit: '200mb' }));
 app.use(express.urlencoded({ limit: '200mb', extended: true }));
