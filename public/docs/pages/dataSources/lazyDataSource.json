@@ -14,5 +14,6 @@
         { "name": "Filter", "componentPath": "dataSources/LazyDataSourceFilter.example.tsx" },
         { "name": "Flatten search results", "componentPath": "dataSources/LazyDataSourceFlattenSearchResults.example.tsx" },
         { "name": "Using cursor-based pagination", "componentPath": "dataSources/LazyDataSourceCursor.example.tsx" }
-    ]
+    ],
+    "tags": ["lazyDataSource"]
 }

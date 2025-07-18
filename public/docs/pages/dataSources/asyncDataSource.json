@@ -7,5 +7,6 @@
         { "name": "useAsyncDataSource", "componentPath": "dataSources/UseAsyncDataSource.code.example.ts", "onlyCode": true },
         { "descriptionPath": "dataSources-async-dataSource-props-overview" },
         { "name": "Data", "componentPath": "dataSources/AsyncDataSourceData.example.tsx", "onlyCode": true }
-    ]
+    ],
+  "tags": ["asyncDataSource"]
 }
