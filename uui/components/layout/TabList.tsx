@@ -1,6 +1,5 @@
 import {
     type IControlled,
-    type IHasDirection,
 } from '@epam/uui-core';
 import React, {
     type ComponentProps,
@@ -20,7 +19,6 @@ import {
 import {
     FlexRow,
 } from './FlexItems';
-import css from './TabList.module.scss';
 
 const stopKeyboardEvent: KeyboardEventHandler = (event): void => {
     event.stopPropagation();
@@ -49,8 +47,6 @@ type OnKeyDownEvent =
     & KeyboardEvent<HTMLButtonElement>
     & KeyboardEvent<HTMLSpanElement>;
 
-type TabListItemComponentProps = TabListItemProps & Required<IHasDirection>;
-
 /*
     A separate component is only necessary to correctly define a ref,
     pass it to the tab component and call `click` on the tab element
@@ -59,12 +55,9 @@ type TabListItemComponentProps = TabListItemProps & Required<IHasDirection>;
     behave the same way regardless of implementation details (link or button),
     and links are not activated when pressing "Space" by default.
 */
-const TabListItem = forwardRef<TabElement, TabListItemComponentProps>(
+const TabListItem = forwardRef<TabElement, TabListItemProps>(
     (
-        {
-            direction,
-            ...tabProps
-        },
+        tabProps,
         refExternal,
     ) => {
         const refLocal = useRef<TabElement | null>(null);
@@ -100,12 +93,9 @@ const TabListItem = forwardRef<TabElement, TabListItemComponentProps>(
         const tabIndex = isLinkActive
             ? undefined
             : -1;
-        const Component = direction === 'vertical'
-            ? VerticalTabButton
-            : TabButton;
 
         return (
-            <Component
+            <TabButton
                 key={ id }
                 ref={ ref }
                 tabIndex={ tabIndex }
@@ -126,7 +116,6 @@ TabListItem.displayName = 'TabListItem';
 
 export interface TabListProps extends
     IControlled<TabId>,
-    IHasDirection,
     FlexRowProps {
     /** `TabButton` or `VerticalTabButton` props with required `id`. */
     items: Array<TabListItemProps>;
@@ -138,8 +127,7 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
             items,
             value,
             onValueChange,
-            direction = 'horizontal',
-            borderBottom = direction === 'horizontal',
+            borderBottom = true,
             cx,
             rawProps,
             ...otherProps
@@ -196,26 +184,6 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
 
             // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
             switch (event.code) {
-                case 'ArrowUp': {
-                    if (direction === 'vertical') {
-                        stopKeyboardEvent(event);
-
-                        moveToPreviousTab(focusedTabIdCurrent);
-                    }
-
-                    break;
-                }
-
-                case 'ArrowDown': {
-                    if (direction === 'vertical') {
-                        stopKeyboardEvent(event);
-
-                        moveToNextTab(focusedTabIdCurrent);
-                    }
-
-                    break;
-                }
-
                 case 'ArrowLeft': {
                     stopKeyboardEvent(event);
 
@@ -258,15 +226,9 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
             <FlexRow
                 ref={ ref }
                 borderBottom={ borderBottom }
-                cx={ [
-                    {
-                        [css.vertical]: direction === 'vertical',
-                    },
-                    cx,
-                ] }
                 rawProps={ {
                     role: 'tablist',
-                    'aria-orientation': direction,
+                    'aria-orientation': 'horizontal',
                     ...rawProps,
                 } }
                 { ...otherProps }
@@ -294,7 +256,6 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
                         return (
                             <TabListItem
                                 key={ id }
-                                direction={ direction }
                                 isLinkActive={ isLinkActive }
                                 { ...tabProps }
                                 onClick={ handleOnClick }
