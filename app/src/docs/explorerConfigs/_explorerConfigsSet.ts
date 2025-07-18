@@ -49,6 +49,7 @@ import { tabButtonExplorerConfig } from './TabButtonConfig';
 import { verticalTabButtonExplorerConfig } from './VerticalTabButtonConfig';
 import { pickerListExplorerConfig } from './PickerListConfig';
 import { TDocConfig } from '@epam/uui-docs';
+import { TabListConfig } from './tabList/TabListConfig';
 
 export const explorerConfigs = [
     SwitchConfig,
@@ -102,6 +103,7 @@ export const explorerConfigs = [
     tabButtonExplorerConfig,
     verticalTabButtonExplorerConfig,
     pickerListExplorerConfig,
+    TabListConfig,
 ];
 
 export const explorerConfigsMap = explorerConfigs.reduce<Map<string, TDocConfig >>((acc, config) => {

@@ -40,11 +40,11 @@ function TabPanel({
     );
 }
 
-export default function HorizontalLayoutTabListExample(): ReactNode {
-    const [tabId, setTabId] = useState<TabId>('tab-horizontal-1');
+export default function DefaultTabListExample(): ReactNode {
+    const [tabId, setTabId] = useState<TabId>('tab-1');
 
     const renderTabPanel = (): ReactNode => {
-        if (tabId === 'tab-horizontal-1') {
+        if (tabId === 'tab-1') {
             return (
                 <TabPanel
                     tabId={ tabId }
@@ -57,7 +57,7 @@ export default function HorizontalLayoutTabListExample(): ReactNode {
             );
         }
 
-        if (tabId === 'tab-horizontal-2') {
+        if (tabId === 'tab-2') {
             return (
                 <TabPanel
                     tabId={ tabId }
@@ -70,7 +70,7 @@ export default function HorizontalLayoutTabListExample(): ReactNode {
             );
         }
 
-        if (tabId === 'tab-horizontal-3') {
+        if (tabId === 'tab-3') {
             return (
                 <TabPanel
                     tabId={ tabId }
@@ -97,24 +97,24 @@ export default function HorizontalLayoutTabListExample(): ReactNode {
             <TabList
                 items={ [
                     {
-                        id: 'tab-horizontal-1',
+                        id: 'tab-1',
                         caption: 'Tab 1',
                         rawProps: {
-                            'aria-controls': getTabpanelId('tab-horizontal-1'),
+                            'aria-controls': getTabpanelId('tab-1'),
                         },
                     },
                     {
-                        id: 'tab-horizontal-2',
+                        id: 'tab-2',
                         caption: 'Tab 2',
                         rawProps: {
-                            'aria-controls': getTabpanelId('tab-horizontal-2'),
+                            'aria-controls': getTabpanelId('tab-2'),
                         },
                     },
                     {
-                        id: 'tab-horizontal-3',
+                        id: 'tab-3',
                         caption: 'Tab 3',
                         rawProps: {
-                            'aria-controls': getTabpanelId('tab-horizontal-3'),
+                            'aria-controls': getTabpanelId('tab-3'),
                         },
                     },
                 ] }
