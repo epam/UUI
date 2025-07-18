@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     TDocsGenExportedType,
-} from '../../types';
+} from '../../types/types';
 import {
     DocBuilder,
 } from '../../DocBuilder';

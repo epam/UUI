@@ -1,0 +1,10 @@
+{
+    "id": "flexRow",
+    "name": "Flex Row",
+    "parentId": "flexItems",
+    "order": 2,
+    "examples": [
+        { "descriptionPath": "flexRow-description" },
+        { "componentPath": "common/Card.example.tsx" }
+    ]
+}

@@ -2,7 +2,7 @@ import { IThemeVar } from '../../types/sharedTypes';
 import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../types/types';
 import { getFigmaTheme, validateActualTokenValue } from '../../utils/themeVarUtils';
 import { getBrowserTokens } from './browserTokens';
-import { ThemeId } from '../../../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 export function loadedTokensConverter(
     params: TLoadThemeTokensParams & { rawTokens: IThemeVar[], uuiTheme: ThemeId },

@@ -24,7 +24,15 @@ export class GAListener implements IAnalyticsListener {
         document.head.appendChild(gtagScript);
     }
 
+    private hasConsent(): boolean {
+        const dataLayer = (window as any).dataLayer ?? [];
+        return dataLayer.length === 0 ? false : dataLayer.some((item: any) => item.event === 'OneTrustLoaded' && item.OnetrustActiveGroups?.includes('C0002'));
+    }
+
     public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType?: string) {
+        if (!this.hasConsent()) {
+            return; // Do not send events if cookie consent is not given
+        }
         switch (eventType) {
             case 'pageView':
                 this.sendPageView(event.path);

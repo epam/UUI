@@ -1,0 +1,10 @@
+{
+    "id": "radioInput",
+    "name": "Radio Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "radioInput-descriptions" },
+        { "name": "Basic", "componentPath": "radioInput/Basic.example.tsx" },
+        { "name": "RadioInput Group", "componentPath": "radioInput/Group.example.tsx" }
+    ]
+}

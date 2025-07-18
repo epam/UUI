@@ -1,0 +1,9 @@
+{
+    "id": "internationalization",
+    "name": "Internationalization",
+    "parentId": "advanced",
+    "examples": [
+        { "descriptionPath": "internationalization-intro" },
+        { "name": "Right-to-left support(RTL)", "componentPath": "i18n/Rtl.example.tsx" }
+    ]
+}

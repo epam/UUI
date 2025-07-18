@@ -1,0 +1,11 @@
+{
+    "id": "filtersPanel",
+    "name": "Filters Panel",
+    "parentId": "tables",
+    "examples": [
+        { "descriptionPath": "filters-panel-descriptions" },
+        { "name": "Basic", "componentPath": "tables/FiltersPanelBasic.example.tsx" }
+    ],
+    "order": 5,
+    "tags": ["tables", "dataTable"]
+}

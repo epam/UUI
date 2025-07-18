@@ -1,0 +1,9 @@
+{
+    "id": "lockContextDoc",
+    "name": "Lock Context",
+    "parentId": "contexts",
+    "examples": [
+        { "descriptionPath": "lock-context-descriptions" }
+    ],
+    "tags": ["contexts"]
+}

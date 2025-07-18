@@ -1,0 +1,8 @@
+{
+    "id": "loaders",
+    "name": "Loaders",
+    "parentId": "guidelines",
+    "examples": [
+        { "descriptionPath": "loaders-for-designers" }
+    ]
+}

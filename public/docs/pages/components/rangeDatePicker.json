@@ -1,0 +1,11 @@
+{
+    "id": "rangeDatePicker",
+    "name": "Range Date Picker",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "rangeDatePicker-descriptions" },
+        { "name": "Basic", "componentPath": "rangeDatePicker/Basic.example.tsx" },
+        { "name": "Presets and Footer", "componentPath": "rangeDatePicker/PresetsAndFooter.example.tsx" },
+        { "name": "Prevent component being empty", "componentPath": "rangeDatePicker/PreventEmpty.example.tsx" }
+    ]
+}

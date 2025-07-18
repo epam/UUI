@@ -1,0 +1,27 @@
+{
+    "id": "pickerInput",
+    "name": "Picker Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "pickerInput-descriptions" },
+        { "name": "Basic", "componentPath": "pickerInput/ArrayPickerInput.example.tsx" },
+        { "name": "Lazy list", "componentPath": "pickerInput/LazyPickerInput.example.tsx" },
+        { "name": "Lazy tree", "componentPath": "pickerInput/LazyTreeInput.example.tsx" },
+        { "name": "Async list", "componentPath": "pickerInput/AsyncPickerInput.example.tsx" },
+        { "name": "Cascade selection modes", "componentPath": "pickerInput/CascadeSelectionModes.example.tsx" },
+        { "name": "Custom picker row", "componentPath": "pickerInput/CustomUserRow.example.tsx" },
+        { "name": "Custom picker footer", "componentPath": "pickerInput/PickerInputWithCustomFooter.example.tsx" },
+        { "name": "Picker toggler configuration and options", "componentPath": "pickerInput/TogglerConfiguration.example.tsx" },
+        { "name": "Setting row options", "componentPath": "pickerInput/GetRowOptions.example.tsx" },
+        { "name": "Getting selected entity", "componentPath": "pickerInput/ValueType.example.tsx" },
+        { "name": "Search positions", "componentPath": "pickerInput/SearchPositions.example.tsx" },
+        { "name": "Flatten search results mode", "componentPath": "pickerInput/LazyTreeSearch.example.tsx" },
+        { "name": "Turn off 'Select All' button in footer", "componentPath": "pickerInput/PickerInputTurnOffSelectAll.example.tsx" },
+        { "name": "Open picker in modal", "componentPath": "pickerInput/EditMode.example.tsx" },
+        { "name": "Picker with changed array of items", "componentPath": "pickerInput/PickerWithChangingItemsArray.example.tsx" },
+        { "name": "Linked pickers", "componentPath": "pickerInput/LinkedPickers.example.tsx" },
+        { "name": "Change portal target and dropdown placement", "componentPath": "pickerInput/ConfigurePortalTargetAndPlacement.example.tsx" },
+        { "name": "Custom toggler tag render", "componentPath": "pickerInput/CustomPickerTogglerTag.example.tsx" }
+    ],
+    "tags": ["PickerInput"]
+}

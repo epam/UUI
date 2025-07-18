@@ -1,0 +1,10 @@
+{
+  "id": "alert",
+  "name": "Alert",
+  "parentId": "components",
+  "examples": [
+    { "descriptionPath": "alert-descriptions" },
+    { "name": "Basic", "componentPath": "alert/Basic.example.tsx" },
+    { "name": "Sizes", "componentPath": "alert/Sizes.example.tsx" }
+  ]
+}

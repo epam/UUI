@@ -1,0 +1,15 @@
+{
+    "id": "badge",
+    "name": "Badge",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "badge-descriptions" },
+        { "name": "Types", "componentPath": "badge/Types.example.tsx" },
+        { "name": "Color variants", "componentPath": "badge/Colors.example.tsx" },
+        { "name": "Styles", "componentPath": "badge/Styles.example.tsx" },
+        { "name": "Sizes", "componentPath": "badge/Size.example.tsx" },
+        { "name": "Attributes", "componentPath": "badge/Attributes.example.tsx" },
+        { "name": "Dropdown", "componentPath": "badge/Dropdown.example.tsx" },
+        { "name": "Badge with status indicator", "componentPath": "badge/StatusIndicator.example.tsx" }
+    ]
+}

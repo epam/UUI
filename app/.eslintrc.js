@@ -7,6 +7,10 @@ module.exports = {
         // in the future, this rule will be enabled globally (not only in "app")
         'react-hooks/exhaustive-deps': unifiedSeverity,
         ...turnOffEslintRulesToBeFixed(),
-        'no-restricted-imports': 'off',
+        'no-restricted-imports': ['error', {
+            patterns: [
+                { group: ['@epam/*/build/*', '@epam/*/build'], message: 'Import from "build" folder of UUI modules is not allowed.' },
+            ],
+        }],
     },
 };

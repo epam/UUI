@@ -1,0 +1,8 @@
+{
+    "id": "utGuideBasics",
+    "name": "Basics",
+    "parentId": "testing",
+    "examples": [
+        { "descriptionPath": "unitTestingGuide-basics" }
+    ]
+}

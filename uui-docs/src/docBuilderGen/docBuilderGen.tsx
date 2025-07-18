@@ -1,4 +1,4 @@
-import { TSkin } from '../types';
+import { ThemeId, TSkin } from '../types';
 import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { docCommonOverride } from './docOverrides/docCommonOverride';
 import { buildPropDetails, buildPropFallbackDetails } from './propDetailsBuilders/build';
@@ -9,6 +9,7 @@ import { IDocBuilderGenCtx, TDocConfig, TPropEditorTypeOverride } from './docBui
 interface IDocBuilderGenParams {
     config: TDocConfig,
     skin: TSkin,
+    theme: ThemeId,
     docBuilderGenCtx: IDocBuilderGenCtx,
 }
 /**
@@ -57,7 +58,7 @@ export async function docBuilderGen(params: IDocBuilderGenParams): Promise<DocBu
         previewSkin?.(previewBuilder);
 
         docCommonOverride({ docs, contexts });
-        docCommon?.(docs);
+        docCommon?.(docs, { theme: params.theme });
         docSkin?.(docs);
 
         unresolvedProps.forEach((prop) => {

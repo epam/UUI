@@ -2,7 +2,7 @@ import React from 'react';
 import {
     DataColumnProps, DataSourceState, DataTableState, IDataSource, IEditable,
 } from '@epam/uui-core';
-import { DataTable, Panel, Text } from '@epam/promo';
+import { DataTable, Panel, Text } from '@epam/loveship';
 import css from './DataSourceTableViewer.module.scss';
 
 interface Props<TItem, TId> extends IEditable<DataTableState> {

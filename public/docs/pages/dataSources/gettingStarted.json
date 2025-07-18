@@ -1,0 +1,8 @@
+{
+    "id": "dataSourcesGettingStarted",
+    "name": "Getting Started",
+    "parentId": "dataSources",
+    "examples": [
+        { "descriptionPath": "dataSources-getting-started" }
+    ]
+}

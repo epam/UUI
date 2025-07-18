@@ -11,6 +11,8 @@ import {
     DropdownMenuButton,
     BurgerButton,
     SuccessNotification,
+    MainMenuLogo,
+    Burger,
 } from '@epam/promo';
 import { MainMenuCustomElement } from '@epam/uui-components';
 import css from './AppHeader.module.scss';
@@ -103,36 +105,48 @@ export const AppHeader = () => {
     return (
         <MainMenu
             cx={css.root}
-            logoLink={{ pathname: `/` }}
-            onLogoClick={() => null}
-            appLogoUrl={'/icons/logo.svg'}
-            renderBurger={handleRenderBurger}
-        >
-            <FlexSpacer priority={100500} />
-            {renderThemeSwitcher()}
-            <MainMenuCustomElement
-                priority={0}
-                estimatedWidth={113}
-            >
-                <a
-                    className={css.linkContainer}
-                    href={GIT_LINK}
-                >
-                    <IconContainer icon={GitIcon} />
-                    <Text
-                        fontWeight='400'
-                        fontSize='14'
-                        lineHeight='24'
-                        cx={css.linkCaption}
-                    >
-                        Open Git
-                    </Text>
-                </a>
-            </MainMenuCustomElement>
-            <GlobalMenu
-                estimatedWidth={60}
-                priority={100500}
-            />
-        </MainMenu>
+            items={[
+                {
+                    id: 'burger',
+                    priority: 100500,
+                    collapsedContainer: true,
+                    render: (p) => <Burger key={p.id} renderBurgerContent={handleRenderBurger} logoUrl="/icons/logo.svg" />,
+                },
+                {
+                    id: 'logo',
+                    priority: 99,
+                    render: (p) => <MainMenuLogo key={p.id} link={{ pathname: '/' }} logoUrl="/icons/logo.svg" onClick={() => null} />,
+                },
+                {
+                    id: 'flexSpacer',
+                    priority: 100500,
+                    render: () => <FlexSpacer priority={100500} />,
+                },
+                {
+                    id: 'themeSwitcher',
+                    priority: 10,
+                    render: renderThemeSwitcher,
+                },
+                {
+                    id: 'git',
+                    priority: 0,
+                    render: () => (
+                        <MainMenuCustomElement priority={0} estimatedWidth={113}>
+                            <a className={css.linkContainer} href={GIT_LINK}>
+                                <IconContainer icon={GitIcon} />
+                                <Text fontWeight='400' fontSize='14' lineHeight='24' cx={css.linkCaption}>
+                                    Open Git
+                                </Text>
+                            </a>
+                        </MainMenuCustomElement>
+                    ),
+                },
+                {
+                    id: 'globalMenu',
+                    priority: 100500,
+                    render: () => <GlobalMenu estimatedWidth={60} priority={100500} />,
+                },
+            ]}
+        />
     );
 };

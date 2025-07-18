@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from 'react';
 import { TPreviewContentParams } from '../types';
 import { useQuery } from '../../helpers';
-import { BuiltInTheme, ThemeId } from '../../data';
 import { parsePreviewIdFromString } from '../utils/previewLinkUtils';
 import { useAppThemeContext } from '../../helpers/appTheme';
+import { ThemeId, BuiltInTheme } from '@epam/uui-docs';
 
 export function usePreviewParams(): TPreviewContentParams {
     const isSkin: boolean = useQuery('isSkin') === 'true';
