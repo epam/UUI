@@ -43,7 +43,7 @@ function TabPanel({
     );
 }
 
-export default function HorizontalTabListExample(): ReactNode {
+export default function AdditionalElementsTabListExample(): ReactNode {
     const [tabId, setTabId] = useState<TabId>('tab-additional-elements-1');
     const [search, setSearch] = useState('');
 

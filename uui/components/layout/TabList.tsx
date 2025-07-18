@@ -128,7 +128,6 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
             value,
             onValueChange,
             borderBottom = true,
-            cx,
             rawProps,
             ...otherProps
         },
