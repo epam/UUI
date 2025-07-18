@@ -112,7 +112,7 @@ describe('PresetsPanel', () => {
     beforeEach(() => {
         mockAdaptivePanelLayout({
             isAdaptivePanelRoot: (elem) => {
-                const p = elem.parentElement?.parentElement;
+                const p = elem?.parentElement?.parentElement;
                 if (p && p.getAttribute('data-testid') === 'presets-panel') {
                     return true;
                 }
@@ -374,7 +374,7 @@ describe('PresetsPanel', () => {
     it('should render presets panel with hidden items in collapsed container (the active item is not hidden)', async () => {
         mockAdaptivePanelLayout({
             isAdaptivePanelRoot: (elem) => {
-                const p = elem.parentElement?.parentElement;
+                const p = elem?.parentElement?.parentElement;
                 if (p && p.getAttribute('data-testid') === 'presets-panel') {
                     return true;
                 }

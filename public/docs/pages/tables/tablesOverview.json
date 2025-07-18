@@ -1,0 +1,16 @@
+{
+    "id": "tablesOverview",
+    "name": "Overview",
+    "parentId": "tables",
+    "examples": [
+        { "descriptionPath": "tables-overview-descriptions" },
+        { "name": "Async Table", "componentPath": "tables/AsyncTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Lazy Table", "componentPath": "tables/LazyTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Array Table", "componentPath": "tables/ArrayTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Tree Table", "componentPath": "tables/TreeTable.example.tsx", "cx": "css.appBg" },
+        { "name": "Column size and content align configuration", "componentPath": "tables/StyledColumns.example.tsx", "cx": "css.appBg" },
+        { "name": "Condensed view", "componentPath": "tables/CondensedView.example.tsx", "cx": "css.appBg" }
+    ],
+    "order": 1,
+    "tags": ["tables", "dataTable"]
+}

@@ -1,0 +1,9 @@
+{
+    "id": "rating",
+    "name": "Rating",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "rating-descriptions" },
+        { "name": "Basic", "componentPath": "rating/Basic.example.tsx" }
+    ]
+}

@@ -9,7 +9,7 @@ import {
     TComponentPreviewList,
     TComponentPreview,
     TPreviewPropsItemRenderCases, TPreviewCellSize, TPreviewMatrix,
-} from './types';
+} from './types/types';
 import { TestMatrixUtils } from './utils/testMatrixUtils';
 
 export class DocPreviewBuilder<TProps> {

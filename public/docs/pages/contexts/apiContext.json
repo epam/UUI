@@ -1,0 +1,14 @@
+{
+    "id": "apiContext",
+    "name": "Api Context and Error Handling",
+    "parentId": "contexts",
+    "examples": [
+        { "descriptionPath": "api-context-descriptions" },
+        { "name": "How to send a request", "componentPath": "contexts/apiContext/SendRequest.example.tsx", "onlyCode": true },
+        { "name": "Congigure error handling type", "componentPath": "contexts/apiContext/ErrorHandlingTypes.example.tsx" },
+        { "name": "Auth and Connection lost handling", "componentPath": "contexts/apiContext/AuthAndConnectionLostHandling.example.tsx" },
+        { "name": "Throw errors from your code", "componentPath": "contexts/apiContext/ApiContextThrowUUIError.example.tsx" },
+        { "name": "Custom fetcher", "componentPath": "contexts/apiContext/CustomFetch.example.tsx", "onlyCode": true }
+    ],
+    "tags": ["contexts"]
+}

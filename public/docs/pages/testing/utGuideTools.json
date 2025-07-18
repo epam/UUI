@@ -1,0 +1,8 @@
+{
+    "id": "utGuideTools",
+    "name": "Tools",
+    "parentId": "testing",
+    "examples": [
+        { "descriptionPath": "unitTestingGuide-tools" }
+    ]
+}

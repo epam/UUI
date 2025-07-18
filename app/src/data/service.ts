@@ -1,38 +1,39 @@
 import { getParameters } from 'codesandbox/lib/api/define';
 import { CodesandboxFilesRecord, FilesRecord, getCodesandboxConfig } from './codesandbox/getCodesandboxConfig';
 import { svc } from '../services';
-import { ThemeBaseParams, ThemeId } from './themes';
+import { ThemeBaseParams } from './themes';
 import { CustomThemeManifest } from './customThemes';
+import { ThemeId } from '@epam/uui-docs';
 
 const CodesandboxFiles: Record<string, string | { path: string, placeholders: Record<string, string | ((arg: ThemeBaseParams | CustomThemeManifest) => string)> }> = {
     'index.html': {
-        path: '../data/codesandbox/index.html',
+        path: '../../data/codesandbox/index.html',
         placeholders: {
             '<CURRENT_THEME>': (theme: ThemeBaseParams) => theme.id,
         },
     },
     'index.tsx': {
-        path: '../data/codesandbox/index.tsx',
+        path: '../../data/codesandbox/index.tsx',
         placeholders: {
             '"<UUI_CURRENT_THEME_IMPORT>"': (theme) => `import '@epam/assets/css/theme/theme_${theme.id}.css';`,
         },
     },
     'settings.ts': {
-        path: '../data/codesandbox/settings.ts',
+        path: '../../data/codesandbox/settings.ts',
         placeholders: {
             '"<UUI_SETTINGS_OVERRIDE>"': (theme) => theme.settings ? JSON.stringify(theme.settings, null, 4) : '{}',
         },
     },
     'package.json': {
-        path: '../data/codesandbox/package.json',
+        path: '../../data/codesandbox/package.json',
         placeholders: {
             '<UUI_VERSION>': __PACKAGE_VERSION__, // __PACKAGE_VERSION__ will be replaced to a real string by Webpack
         },
     },
-    'tsconfig.json': '../data/codesandbox/tsconfig.json',
-    'apiDefinitions.ts': '../data/apiDefinition.ts',
-    'globals.d.ts': '../data/codesandbox/globals.d.ts',
-    '.env': '../data/codesandbox/.env',
+    'tsconfig.json': '../../data/codesandbox/tsconfig.json',
+    'apiDefinitions.ts': '../../data/apiDefinition.ts',
+    'globals.d.ts': '../../data/codesandbox/globals.d.ts',
+    '.env': '../../data/codesandbox/.env',
 };
 
 class CodesandboxService {

@@ -1,0 +1,13 @@
+{
+    "id": "contextProvider",
+    "name": "Context Provider",
+    "parentId": "contexts",
+    "examples": [
+        { "descriptionPath": "context-provider-descriptions" },
+        { "name": "Initialization", "componentPath": "contexts/UseUuiServices.example.tsx", "onlyCode": true },
+        { "name": "Usage", "componentPath": "contexts/UuiServicesUsage.example.tsx", "onlyCode": true },
+        { "name": "Advanced setup", "componentPath": "contexts/UseUuiServicesAdvanced.example.tsx", "onlyCode": true },
+        { "name": "With react-router v.6", "componentPath": "contexts/UseUuiServicesRR6.example.tsx", "onlyCode": true }
+    ],
+    "tags": ["contexts"]
+}

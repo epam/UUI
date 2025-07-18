@@ -56433,11 +56433,11 @@
     "typeValue": {
      "raw": "MainMenuDropdownProps",
      "print": [
-      "interface MainMenuDropdownProps extends IHasChildren, IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
-      "    /** Render callback for the MainMenuDropdown body.",
-      "     * If omitted, component children will be rendered.",
+      "interface MainMenuDropdownProps extends IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "    /**",
+      "     * Render callback for the MainMenuDropdown body.",
       "     */",
-      "    renderBody?: (props: DropdownBodyProps) => React.ReactNode;",
+      "    renderBody: (props: DropdownBodyProps) => React.ReactNode;",
       "}"
      ]
     },
@@ -56447,8 +56447,7 @@
       "name": "renderBody",
       "comment": {
        "raw": [
-        "Render callback for the MainMenuDropdown body.",
-        " If omitted, component children will be rendered."
+        "Render callback for the MainMenuDropdown body."
        ]
       },
       "typeValue": {
@@ -56458,23 +56457,7 @@
       "editor": {
        "type": "component"
       },
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
+      "required": true
      },
      {
       "uid": "caption",
@@ -56929,39 +56912,8 @@
      "print": [
       "interface MainMenuProps extends IHasCX, IHasRawProps<React.HTMLAttributes<HTMLDivElement>>, IHasForwardedRef<HTMLDivElement> {",
       "    /** Array of menu items to be rendered */",
-      "    items?: AdaptiveItemProps[];",
-      "    /** @deprecated",
-      "     * Use 'items' prop to define menu content */",
-      "    children?: any;",
-      "    /** Path to the logo source */",
-      "    appLogoUrl?: string;",
-      "    /** SPA link to navigate on logo click */",
-      "    logoLink?: Link;",
-      "    /** Href to navigate on logo click */",
-      "    logoHref?: string;",
-      "    /** Called when logo is clicked */",
-      "    onLogoClick?: (e: MouseEvent) => any;",
-      "    /** Path to the customer logo source */",
-      "    customerLogoUrl?: string;",
-      "    /** SPA link to navigate on customer logo click */",
-      "    customerLogoLink?: Link;",
-      "    /** Href to navigate on customer logo click */",
-      "    customerLogoHref?: string;",
-      "    customerLogoBgColor?: string;",
-      "    isTransparent?: boolean;",
-      "    /** Render callback for burger menu content.",
-      "     * Burger will appear, which some items don't fit the menu width.",
-      "     * */",
-      "    renderBurger?: (props: {",
-      "        onClose: () => void;",
-      "    }) => React.ReactNode;",
-      "    /** If true, Burger button will be always visible */",
-      "    alwaysShowBurger?: boolean;",
+      "    items: AdaptiveItemProps[];",
       "    serverBadge?: string;",
-      "    /** Internal prop to define component for MainMenuDropdown */",
-      "    MainMenuDropdown?: React.ComponentType<MainMenuDropdownProps>;",
-      "    /** Internal prop to define component for Burger */",
-      "    Burger?: React.ComponentType<BurgerProps>;",
       "}"
      ]
     },
@@ -56978,194 +56930,7 @@
        "raw": "{ render: (item: any, hiddenItems?: any[] | undefined, displayedItems?: any[] | undefined) => any; priority: number; collapsedContainer?: boolean | undefined; id: string; }[]",
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -57176,34 +56941,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "required": false
      },
@@ -89632,206 +89369,7 @@
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -89842,36 +89380,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -99133,7 +98641,7 @@
       "    /** Current state value of the table(list) */",
       "    tableState: DataTableState;",
       "    /** Optional: custom logic for Copy Link action, if null, \"Copy Link\" button will be hidden */",
-      "    onCopyLink?: ((tableState: DataTableState) => string) | null;",
+      "    onCopyLink?: ((tableState: DataTableState) => void) | null;",
       "}"
      ]
     },
@@ -99161,8 +98669,8 @@
        ]
       },
       "typeValue": {
-       "raw": "null | (tableState: DataTableState<any, any>) => string",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>tableState<span class=\"token operator\">:</span> DataTableState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span>"
+       "raw": "null | (tableState: DataTableState<any, any>) => void",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>tableState<span class=\"token operator\">:</span> DataTableState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
       },
       "editor": {
        "type": "func"
@@ -116419,8 +115927,7 @@
       "name": "renderBody",
       "comment": {
        "raw": [
-        "Render callback for the MainMenuDropdown body.",
-        " If omitted, component children will be rendered."
+        "Render callback for the MainMenuDropdown body."
        ]
       },
       "typeValue": {
@@ -116431,23 +115938,7 @@
        "type": "component"
       },
       "from": "@epam/uui-components:MainMenuDropdownProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
+      "required": true
      },
      {
       "uid": "caption",
@@ -116700,206 +116191,7 @@
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -116910,36 +116202,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false
@@ -120558,8 +119820,7 @@
       "name": "renderBody",
       "comment": {
        "raw": [
-        "Render callback for the MainMenuDropdown body.",
-        " If omitted, component children will be rendered."
+        "Render callback for the MainMenuDropdown body."
        ]
       },
       "typeValue": {
@@ -120570,23 +119831,7 @@
        "type": "component"
       },
       "from": "@epam/uui-components:MainMenuDropdownProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
+      "required": true
      },
      {
       "uid": "caption",
@@ -120839,206 +120084,7 @@
        "html": "<span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">render</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> hiddenItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">,</span> displayedItems<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> priority<span class=\"token operator\">:</span> <span class=\"token builtin\">number</span><span class=\"token punctuation\">;</span> collapsedContainer<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> <span class=\"token keyword\">undefined</span><span class=\"token punctuation\">;</span> id<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "@deprecated",
-        " Use 'items' prop to define menu content"
-       ]
-      },
-      "typeValue": {
-       "raw": "any",
-       "html": "<span class=\"token builtin\">any</span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "appLogoUrl",
-      "name": "appLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoLink",
-      "name": "logoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "logoHref",
-      "name": "logoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "onLogoClick",
-      "name": "onLogoClick",
-      "comment": {
-       "raw": [
-        "Called when logo is clicked"
-       ]
-      },
-      "typeValue": {
-       "raw": "(e: React.MouseEvent<Element, MouseEvent>) => any",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">:</span> React<span class=\"token punctuation\">.</span>MouseEvent<span class=\"token operator\">&lt;</span>Element<span class=\"token punctuation\">,</span> MouseEvent<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">any</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoUrl",
-      "name": "customerLogoUrl",
-      "comment": {
-       "raw": [
-        "Path to the customer logo source"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoLink",
-      "name": "customerLogoLink",
-      "comment": {
-       "raw": [
-        "SPA link to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "Link",
-       "html": "Link"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoHref",
-      "name": "customerLogoHref",
-      "comment": {
-       "raw": [
-        "Href to navigate on customer logo click"
-       ]
-      },
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "customerLogoBgColor",
-      "name": "customerLogoBgColor",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "isTransparent",
-      "name": "isTransparent",
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "renderBurger",
-      "name": "renderBurger",
-      "comment": {
-       "raw": [
-        "Render callback for burger menu content.",
-        " Burger will appear, which some items don't fit the menu width."
-       ]
-      },
-      "typeValue": {
-       "raw": "(props: { onClose: () => void; }) => React.ReactNode",
-       "html": "<span class=\"token punctuation\">(</span>props<span class=\"token operator\">:</span> <span class=\"token punctuation\">{</span> <span class=\"token function-variable function\">onClose</span><span class=\"token operator\">:</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "alwaysShowBurger",
-      "name": "alwaysShowBurger",
-      "comment": {
-       "raw": [
-        "If true, Burger button will be always visible"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
+      "required": true
      },
      {
       "uid": "serverBadge",
@@ -121049,36 +120095,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "MainMenuDropdown",
-      "name": "MainMenuDropdown",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for MainMenuDropdown"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<MainMenuDropdownProps, any> | React.FunctionComponent<MainMenuDropdownProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>MainMenuDropdownProps<span class=\"token operator\">></span>"
-      },
-      "from": "@epam/uui-components:MainMenuProps",
-      "required": false
-     },
-     {
-      "uid": "Burger",
-      "name": "Burger",
-      "comment": {
-       "raw": [
-        "Internal prop to define component for Burger"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ComponentClass<BurgerProps, any> | React.FunctionComponent<BurgerProps>",
-       "html": "React<span class=\"token punctuation\">.</span>ComponentClass<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>FunctionComponent<span class=\"token operator\">&lt;</span>BurgerProps<span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-components:MainMenuProps",
       "required": false

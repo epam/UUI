@@ -1,0 +1,9 @@
+{
+    "id": "sliderRating",
+    "name": "Slider Rating",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "sliderRating-descriptions" },
+        { "name": "Basic", "componentPath": "sliderRating/Basic.example.tsx" }
+    ]
+}

@@ -1,4 +1,4 @@
-import { IPropSamplesCreationContext, PropDoc, PropExample } from '../../../types';
+import { IPropSamplesCreationContext, PropDoc, PropExample } from '../../../types/types';
 
 /**
  * It's applicable to union types only

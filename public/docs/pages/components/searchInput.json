@@ -1,0 +1,9 @@
+{
+    "id": "searchInput",
+    "name": "Search Input",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "searchInput-descriptions" },
+        { "name": "Debounce", "componentPath": "searchInput/Debounce.example.tsx" }
+    ]
+}

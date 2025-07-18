@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { Icon } from '@epam/uui-core';
-import {
-    FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text,
-} from '@epam/uui';
+import { FlexCell, FlexRow, FlexSpacer, IconContainer, LinkButton, Text } from '@epam/uui';
 import { ContentSection } from '../../common';
 import css from './ProjectsDoc.module.scss';
 

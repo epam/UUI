@@ -1,4 +1,4 @@
-import { IconBase, PropDoc, TDocContext, TDocsGenExportedType, TSkin } from '../types';
+import { IconBase, PropDoc, TDocContext, TDocsGenExportedType, ThemeId, TSkin } from '../types';
 import { DocBuilder, DocPreviewBuilder } from '../DocBuilder';
 import { TOneOfItemType, TPropEditorType, TType, TTypeProp, TTypeRef } from '../docsGen/sharedTypes';
 import * as React from 'react';
@@ -40,6 +40,10 @@ export type TPropEditorTypeOverride = {
 
 export type TDocConfig = {
     /**
+     * Id to link config with docItem, id in doc items should be the same as in config.
+     */
+    id?: string;
+    /**
      * The React component's tag name
      */
     name: string;
@@ -73,7 +77,7 @@ export type TDocConfig = {
      * Override doc for all listed skins. Skin-specific override has higher priority.
      * @param doc
      */
-    doc?: (doc: DocBuilder<any>) => void;
+    doc?: (doc: DocBuilder<any>, params: { theme: ThemeId }) => void;
 
     /**
      * Preview tab renders component

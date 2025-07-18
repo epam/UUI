@@ -18,7 +18,7 @@ import { TokenInfo } from '../tokenInfo/tokenInfo';
 //
 import css from './paletteTable.module.scss';
 import { getFigmaTheme } from '../../utils/themeVarUtils';
-import { ThemeId } from '../../../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 const WIDTH = {
     [COL_NAMES.path]: 250, // E.g: core/surfaces/surface-main

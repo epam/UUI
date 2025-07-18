@@ -1,0 +1,9 @@
+{
+    "id": "verticalTabButton",
+    "name": "Vertical Tab Button",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "vertical-tab-button-descriptions" },
+        { "name": "Basic", "componentPath": "verticalTabButton/Basic.example.tsx" }
+    ]
+}
