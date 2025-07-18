@@ -35,7 +35,7 @@ const items: Array<TabListItemProps> = [
 ];
 
 describe('static rendering', () => {
-    test('sets correct aria-orientation and role to tab list (default direction)', async () => {
+    test('sets correct aria-orientation and role to tab list', async () => {
         await renderWithContextAsync(
             <TabList
                 items={ items }
@@ -47,36 +47,6 @@ describe('static rendering', () => {
         const tablist = screen.getByRole('tablist');
 
         expect(tablist).toHaveAttribute('aria-orientation', 'horizontal');
-    });
-
-    test('sets correct aria-orientation and role to tab list (horizontal direction)', async () => {
-        await renderWithContextAsync(
-            <TabList
-                items={ items }
-                direction="horizontal"
-                value="tab-1"
-                onValueChange={ jest.fn() }
-            />,
-        );
-
-        const tablist = screen.getByRole('tablist');
-
-        expect(tablist).toHaveAttribute('aria-orientation', 'horizontal');
-    });
-
-    test('sets correct aria-orientation and role to tab list (vertical direction)', async () => {
-        await renderWithContextAsync(
-            <TabList
-                items={ items }
-                direction="vertical"
-                value="tab-1"
-                onValueChange={ jest.fn() }
-            />,
-        );
-
-        const tablist = screen.getByRole('tablist');
-
-        expect(tablist).toHaveAttribute('aria-orientation', 'vertical');
     });
 
     test('renders nothing if items array is empty', async () => {
@@ -344,120 +314,6 @@ describe('focus managements', () => {
         expect(activeTabNext).toHaveFocus();
     });
 
-    test("doesn't move focus to the next tab when down arrow key is pressed (horizontal direction)", async () => {
-        await renderWithContextAsync(
-            <TabList
-                items={ items }
-                value="tab-2"
-                onValueChange={ jest.fn() }
-            />,
-        );
-
-        await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
-        expect(activeTabCurrent).toHaveFocus();
-
-        await userEvent.keyboard('{ArrowDown}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
-        expect(activeTabNext).toHaveFocus();
-    });
-
-    test("doesn't move focus to the previous tab when up arrow key is pressed (horizontal direction)", async () => {
-        await renderWithContextAsync(
-            <TabList
-                items={ items }
-                value="tab-2"
-                onValueChange={ jest.fn() }
-            />,
-        );
-
-        await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
-        expect(activeTabCurrent).toHaveFocus();
-
-        await userEvent.keyboard('{ArrowUp}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
-        expect(activeTabNext).toHaveFocus();
-    });
-
-    test('moves focus to the next tab when down arrow key is pressed (vertical direction)', async () => {
-        await renderWithContextAsync(
-            <TabList
-                items={ items }
-                direction="vertical"
-                value="tab-2"
-                onValueChange={ jest.fn() }
-            />,
-        );
-
-        await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
-        expect(activeTabCurrent).toHaveFocus();
-
-        await userEvent.keyboard('{ArrowDown}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 3/i,
-            },
-        );
-        expect(activeTabNext).toHaveFocus();
-    });
-
-    test("doesn't move focus to the previous tab when up arrow key is pressed (vertical direction)", async () => {
-        await renderWithContextAsync(
-            <TabList
-                items={ items }
-                direction="vertical"
-                value="tab-2"
-                onValueChange={ jest.fn() }
-            />,
-        );
-
-        await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
-        expect(activeTabCurrent).toHaveFocus();
-
-        await userEvent.keyboard('{ArrowUp}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
-        expect(activeTabNext).toHaveFocus();
-    });
-
     test("stops keyboard event's propagation for arrow right key", async () => {
         const onKeyDown = jest.fn();
         function Example(): ReactNode {
@@ -501,100 +357,6 @@ describe('focus managements', () => {
 
         await userEvent.tab();
         await userEvent.keyboard('{ArrowLeft}');
-        expect(onKeyDown).not.toBeCalled();
-    });
-
-    test("doesn't stop keyboard event's propagation for arrow down key (horizontal direction)", async () => {
-        const onKeyDown = jest.fn();
-        function Example(): ReactNode {
-            return (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div onKeyDown={ onKeyDown }>
-                    <TabList
-                        items={ items }
-                        value="tab-2"
-                        onValueChange={ jest.fn() }
-                    />
-                </div>
-            );
-        }
-        await renderWithContextAsync(
-            <Example />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowDown}');
-        expect(onKeyDown).toBeCalled();
-    });
-
-    test("doesn't stop keyboard event's propagation for arrow up key (horizontal direction)", async () => {
-        const onKeyDown = jest.fn();
-        function Example(): ReactNode {
-            return (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div onKeyDown={ onKeyDown }>
-                    <TabList
-                        items={ items }
-                        value="tab-2"
-                        onValueChange={ jest.fn() }
-                    />
-                </div>
-            );
-        }
-        await renderWithContextAsync(
-            <Example />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowUp}');
-        expect(onKeyDown).toBeCalled();
-    });
-
-    test("stops keyboard event's propagation for arrow down key (vertical direction)", async () => {
-        const onKeyDown = jest.fn();
-        function Example(): ReactNode {
-            return (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div onKeyDown={ onKeyDown }>
-                    <TabList
-                        items={ items }
-                        direction="vertical"
-                        value="tab-2"
-                        onValueChange={ jest.fn() }
-                    />
-                </div>
-            );
-        }
-        await renderWithContextAsync(
-            <Example />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowDown}');
-        expect(onKeyDown).not.toBeCalled();
-    });
-
-    test("stops keyboard event's propagation for arrow up key (vertical direction)", async () => {
-        const onKeyDown = jest.fn();
-        function Example(): ReactNode {
-            return (
-                // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-                <div onKeyDown={ onKeyDown }>
-                    <TabList
-                        items={ items }
-                        direction="vertical"
-                        value="tab-2"
-                        onValueChange={ jest.fn() }
-                    />
-                </div>
-            );
-        }
-        await renderWithContextAsync(
-            <Example />,
-        );
-
-        await userEvent.tab();
-        await userEvent.keyboard('{ArrowUp}');
         expect(onKeyDown).not.toBeCalled();
     });
 
@@ -964,7 +726,6 @@ describe('customization', () => {
             <TabList
                 items={ items }
                 value="tab-1"
-                direction="vertical"
                 onValueChange={ jest.fn() }
                 cx="custom-class"
             />,
@@ -973,8 +734,6 @@ describe('customization', () => {
         const tablist = screen.getByRole('tablist');
 
         expect(tablist).toBeInTheDocument();
-        // To make sure the custom class doesn't replace the default one.
-        expect(tablist).toHaveClass('vertical');
         expect(tablist).toHaveClass('custom-class');
     });
 

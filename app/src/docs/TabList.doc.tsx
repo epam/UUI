@@ -31,10 +31,6 @@ export class TableListDoc extends BaseDocsBlock {
                     path="./_examples/tabList/HorizontalLayout.example.tsx"
                 />
                 <DocExample
-                    title="Vertical layout"
-                    path="./_examples/tabList/VerticalLayout.example.tsx"
-                />
-                <DocExample
                     title="Tabs with links"
                     path="./_examples/tabList/TabsWithLinks.example.tsx"
                 />
