@@ -10,5 +10,6 @@
         { "name": "Search", "componentPath": "dataSources/ArrayDataSourceSearch.example.tsx" },
         { "name": "Filter", "componentPath": "dataSources/ArrayDataSourceFilter.example.tsx" },
         { "name": "Sorting", "componentPath": "dataSources/ArrayDataSourceSorting.example.tsx" }
-    ]
+    ],
+  "tags": ["arrayDataSource"]
 }

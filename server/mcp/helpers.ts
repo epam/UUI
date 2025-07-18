@@ -60,10 +60,12 @@ export function findComponentDoc(componentName: string) {
     const doc = getComponentsDocsList().get(lowerName);
 
     if (!doc) {
-        // try to find docs by tag field
+        // try to find docs by tag and name
         const foundByTag = [];
         getComponentsDocsList().forEach((docItem) => {
-            if (docItem.tags && Array.isArray(docItem.tags) && docItem.tags.find((tag) => tag.toLowerCase().includes(lowerName))) {
+            const tagsForSearch = docItem.tags || [];
+            tagsForSearch.push(docItem.name.toLowerCase());
+            if (tagsForSearch.find((tag) => tag.toLowerCase().includes(lowerName))) {
                 foundByTag.push(docItem);
             }
         });
