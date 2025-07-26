@@ -15,7 +15,7 @@ import {
     IHasRawProps, IHasValidationMessage,
     TextInputCoreProps,
 } from '@epam/uui-core';
-import { getPickerBaseOptionsDoc } from '../../commonDocs';
+import { iCanRedirectDoc, IControlled, iHasLabelDoc, iCanBeActiveDoc, getPickerBaseOptionsDoc } from '../../commonDocs';
 import { IDocBuilderGenCtx, TPropDocBuilder } from '../docBuilderGenTypes';
 import {
     getRawPropsExamples,
@@ -23,7 +23,6 @@ import {
     getReactRefExamples,
     getTextExamplesNoUndefined,
 } from './shared/reusableExamples';
-import { iCanRedirectDoc, IControlled, iHasLabelDoc } from '../../commonDocs';
 
 const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { docBuilderGenCtx: IDocBuilderGenCtx }) => DocBuilder<any> } = {
     '@epam/uui-components:ButtonProps': () => {
@@ -125,6 +124,7 @@ const BY_PROP_FROM_REF: { [typeRef in TDocsGenExportedType]?: (params: { docBuil
             editorType: 'JsonEditor',
         }),
     '@epam/uui-core:ICanRedirect': () => iCanRedirectDoc,
+    '@epam/uui-core:ICanBeActive': () => iCanBeActiveDoc,
     '@epam/uui-core:PickerBaseOptions': (params) => getPickerBaseOptionsDoc(params.docBuilderGenCtx),
     '@epam/uui-core:IControlled': () => {
         return new DocBuilder<any>({ name: '' }).implements([IControlled]);

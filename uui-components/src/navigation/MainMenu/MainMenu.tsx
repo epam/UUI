@@ -8,6 +8,7 @@ import {
     cx,
     IHasForwardedRef,
     DropdownBodyProps,
+    ICanBeActive,
 } from '@epam/uui-core';
 import { AdaptivePanel, AdaptiveItemProps } from '../../layout';
 import css from './MainMenu.module.scss';
@@ -16,6 +17,7 @@ export interface MainMenuDropdownProps
     extends IHasCaption,
     IAdaptiveItem,
     ICanRedirect,
+    ICanBeActive,
     IHasCX,
     IHasRawProps<React.HTMLAttributes<HTMLElement>> {
     /**

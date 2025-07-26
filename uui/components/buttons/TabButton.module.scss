@@ -65,7 +65,7 @@
     }
 
     &:global(.-clickable):focus-visible {
-        @include focus-visible-effect(calc(0 - var(--uui-focus-outline-width)));
+        @include focus-visible-effect(calc(0px - var(--uui-focus-outline-width)));
     }
 
     &:global(.uui-disabled) {

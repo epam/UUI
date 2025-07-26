@@ -15620,6 +15620,68 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:ICanBeActive": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "ICanBeActive",
+     "nameFull": "ICanBeActive"
+    },
+    "src": "uui-core/src/types/props.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "ICanBeActive",
+     "print": [
+      "interface ICanBeActive {",
+      "    /** Highlights component to show that link is active (browser is displaying the page to which link is pointing) */",
+      "    isLinkActive?: boolean;",
+      "    /** Highlights component to show that it is active (e.g. selected in a list) */",
+      "    isActive?: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:ICanBeFixed": {
    "summary": {
     "module": "@epam/uui-core",
@@ -15902,8 +15964,6 @@
       "    link?: Link;",
       "    /** Href (URL) to redirect to, for non-SPA redirects */",
       "    href?: string;",
-      "    /** Highlights component to show that link is active (browser is displaying the page to which link is pointing) */",
-      "    isLinkActive?: boolean;",
       "    /** Controls where the link should be opened */",
       "    target?: '_blank';",
       "}"
@@ -15938,23 +15998,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "required": false
      },
@@ -41569,6 +41612,118 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui-core:UseIsActiveProps": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseIsActiveProps",
+     "nameFull": "UseIsActiveProps"
+    },
+    "src": "uui-core/src/hooks/useIsActive.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseIsActiveProps",
+     "print": [
+      "interface UseIsActiveProps extends ICanBeActive, Pick<ICanRedirect, 'link'> {",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "link",
+      "name": "link",
+      "comment": {
+       "raw": [
+        "Link object to redirect to for SPA-redirects"
+       ]
+      },
+      "typeValue": {
+       "raw": "Link",
+       "html": "Link"
+      },
+      "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui-core:UseIsActiveResult": {
+   "summary": {
+    "module": "@epam/uui-core",
+    "typeName": {
+     "name": "UseIsActiveResult",
+     "nameFull": "UseIsActiveResult"
+    },
+    "src": "uui-core/src/hooks/useIsActive.ts",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "UseIsActiveResult",
+     "print": [
+      "interface UseIsActiveResult {",
+      "    isActive: boolean;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": true
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
   "@epam/uui-core:UseLazyFetchingAdvisorProps": {
    "summary": {
     "module": "@epam/uui-core",
@@ -45822,24 +45977,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -47055,24 +47192,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -48045,24 +48164,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -50856,24 +50957,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -56433,7 +56516,7 @@
     "typeValue": {
      "raw": "MainMenuDropdownProps",
      "print": [
-      "interface MainMenuDropdownProps extends IHasCaption, IAdaptiveItem, ICanRedirect, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
+      "interface MainMenuDropdownProps extends IHasCaption, IAdaptiveItem, ICanRedirect, ICanBeActive, IHasCX, IHasRawProps<React.HTMLAttributes<HTMLElement>> {",
       "    /**",
       "     * Render callback for the MainMenuDropdown body.",
       "     */",
@@ -56574,24 +56657,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -56610,6 +56675,42 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -56818,24 +56919,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -70479,224 +70562,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui-components:TreeListItem": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "TreeListItem",
-     "nameFull": "TreeListItem"
-    },
-    "src": "uui-components/src/layout/Tree.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TreeListItem",
-     "print": [
-      "interface TreeListItem {",
-      "    id: string;",
-      "    data?: TreeListItem;",
-      "    parentId?: string;",
-      "    name?: string;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "id",
-      "name": "id",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": true
-     },
-     {
-      "uid": "data",
-      "name": "data",
-      "typeValue": {
-       "raw": "TreeListItem",
-       "html": "TreeListItem"
-      },
-      "required": false
-     },
-     {
-      "uid": "parentId",
-      "name": "parentId",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "name",
-      "name": "name",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
-  "@epam/uui-components:TreeProps": {
-   "summary": {
-    "module": "@epam/uui-components",
-    "typeName": {
-     "name": "TreeProps",
-     "nameFull": "TreeProps<TItem>"
-    },
-    "src": "uui-components/src/layout/Tree.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 264,
-    "typeValue": {
-     "raw": "TreeProps<TItem>",
-     "print": [
-      "interface TreeProps<TItem extends TreeListItem> extends IHasCX, IHasChildren {",
-      "    items: TreeListItem[];",
-      "    renderRow(row: DataRowProps<TItem, string>): void;",
-      "    getSearchFields?(item: TItem): string[];",
-      "    search?: string;",
-      "    /**",
-      "     * DataSource state.",
-      "     */",
-      "    value: DataSourceState<any, TItem['id']>;",
-      "    /**",
-      "     * DataSource state update handler.",
-      "     */",
-      "    onValueChange: SetDataSourceState<any, TItem['id']>;",
-      "}"
-     ]
-    },
-    "props": [
-     {
-      "uid": "items",
-      "name": "items",
-      "typeValue": {
-       "raw": "TreeListItem[]",
-       "html": "TreeListItem<span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
-      },
-      "required": true
-     },
-     {
-      "uid": "renderRow",
-      "name": "renderRow",
-      "typeValue": {
-       "raw": "(row: DataRowProps<TItem, string>) => void",
-       "html": "<span class=\"token punctuation\">(</span>row<span class=\"token operator\">:</span> DataRowProps<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     },
-     {
-      "uid": "getSearchFields",
-      "name": "getSearchFields",
-      "typeValue": {
-       "raw": "(item: TItem) => string[]",
-       "html": "<span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">[</span><span class=\"token punctuation\">]</span>"
-      },
-      "editor": {
-       "type": "func"
-      },
-      "required": false
-     },
-     {
-      "uid": "search",
-      "name": "search",
-      "typeValue": {
-       "raw": "string",
-       "html": "<span class=\"token builtin\">string</span>"
-      },
-      "editor": {
-       "type": "string"
-      },
-      "required": false
-     },
-     {
-      "uid": "value",
-      "name": "value",
-      "comment": {
-       "raw": [
-        "DataSource state."
-       ]
-      },
-      "typeValue": {
-       "raw": "DataSourceState<any, TItem['id']>",
-       "html": "DataSourceState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> TItem<span class=\"token punctuation\">[</span><span class=\"token string\">'id'</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
-      },
-      "required": true
-     },
-     {
-      "uid": "onValueChange",
-      "name": "onValueChange",
-      "comment": {
-       "raw": [
-        "DataSource state update handler."
-       ]
-      },
-      "typeValue": {
-       "raw": "SetDataSourceState<any, TItem['id']>",
-       "html": "SetDataSourceState<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token punctuation\">,</span> TItem<span class=\"token punctuation\">[</span><span class=\"token string\">'id'</span><span class=\"token punctuation\">]</span><span class=\"token operator\">></span>"
-      },
-      "typeValueRef": "@epam/uui-core:SetDataSourceState",
-      "editor": {
-       "type": "func"
-      },
-      "required": true
-     },
-     {
-      "uid": "cx",
-      "name": "cx",
-      "comment": {
-       "raw": [
-        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
-      },
-      "typeValueRef": "@epam/uui-core:ClassValue",
-      "from": "@epam/uui-core:IHasCX",
-      "required": false
-     },
-     {
-      "uid": "children",
-      "name": "children",
-      "comment": {
-       "raw": [
-        "Component children"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui-core:IHasChildren",
-      "required": false
-     }
-    ],
-    "propsFromUnion": false
-   }
-  },
   "@epam/uui-components:UsePickerListProps": {
    "summary": {
     "module": "@epam/uui-components",
@@ -73316,24 +73181,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -73706,24 +73553,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -73947,7 +73776,7 @@
     "typeValue": {
      "raw": "BurgerButtonProps",
      "print": [
-      "type BurgerButtonProps = ButtonProps & BurgerButtonMods;"
+      "type BurgerButtonProps = ButtonProps & BurgerButtonMods & ICanBeActive;"
      ]
     },
     "props": [
@@ -74066,24 +73895,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -74317,6 +74128,42 @@
       },
       "from": "@epam/uui:BurgerButtonMods",
       "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
      }
     ],
     "propsFromUnion": false
@@ -74462,24 +74309,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -74850,24 +74679,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -85748,24 +85559,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -86040,24 +85833,6 @@
        "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">{</span> <span class=\"token punctuation\">[</span>key<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">]</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">;</span> name<span class=\"token operator\">:</span> <span class=\"token builtin\">string</span><span class=\"token punctuation\">;</span> <span class=\"token punctuation\">}</span>"
       },
       "from": "@epam/uui-core:IAnalyticableClick",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
       "required": false
      },
      {
@@ -86443,24 +86218,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -87459,7 +87216,7 @@
      "raw": "LinkButtonCoreProps",
      "print": [
       "/** Represents the Core properties of the LinkButton component. */",
-      "interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {",
+      "interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption, ICanBeActive {",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /**",
@@ -87658,24 +87415,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -87819,6 +87558,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      }
     ],
@@ -88058,24 +87833,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -88219,6 +87976,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -88505,7 +88298,7 @@
     "typeValue": {
      "raw": "MainMenuButtonProps",
      "print": [
-      "type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'> & IHasIcon & IHasCaption & {",
+      "type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'> & IHasIcon & IHasCaption & ICanBeActive & {",
       "    /** Icon for drop-down toggler */",
       "    dropdownIcon?: Icon;",
       "    /** Count value to be placed in component */",
@@ -88774,24 +88567,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -88863,6 +88638,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -89046,24 +88857,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -92625,7 +92418,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: '36' | '48' | '24' | '30' | '42' | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; renderBlocker?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
+     "raw": "{ accordion?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; alert?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | undefined; actionMap?: { 36?: ControlSize | undefined; 48?: ControlSize | undefined; } | undefined; } | undefined; } | undefined; badge?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; button?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; blocker?: { renderSpinner?: {} | undefined; } | undefined; checkbox?: { icons?: { checkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; indeterminateIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; countIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; dataTable?: { icons?: { emptyTable?: { propTypes?: any; displayName?: string | undefined; } | undefined; header?: { configIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; ascSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; descSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; defaultSortIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; filterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; openedDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; unfoldIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; columnsConfigurationModal?: { dragIndicator?: { propTypes?: any; displayName?: string | undefined; } | undefined; lockIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinLeftIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pinRightIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; resetIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; expandedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; collapsedIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { columnsConfigurationModal?: { columnRow?: '36' | '48' | '24' | '30' | '42' | null | undefined; countIndicator?: '12' | '18' | '24' | undefined; menuButton?: '18' | ControlSize | '60' | undefined; searchInput?: ControlSize | '60' | undefined; } | undefined; header?: { row?: '36' | '48' | '60' | undefined; iconMap?: { 36?: string | undefined; 48?: string | undefined; 60?: string | undefined; } | undefined; } | undefined; body?: { row?: DataTableControlSize | undefined; checkboxMap?: { 36?: '12' | '18' | undefined; 48?: '12' | '18' | undefined; 24?: '12' | '18' | undefined; 30?: '12' | '18' | undefined; 42?: '12' | '18' | undefined; 60?: '12' | '18' | undefined; } | undefined; iconMap?: { 36?: string | number | undefined; 48?: string | number | undefined; 24?: string | number | undefined; 30?: string | number | undefined; 42?: string | number | undefined; 60?: string | number | undefined; } | undefined; indentUnitMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; indentWidthMap?: { 36?: number | undefined; 48?: number | undefined; 24?: number | undefined; 30?: number | undefined; 42?: number | undefined; 60?: number | undefined; } | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; datePicker?: { icons?: { body?: { prevIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; nextIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { input?: '36' | '48' | '24' | '30' | '42' | undefined; body?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; dropdownMenu?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; flexRow?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | null | undefined; } | undefined; } | undefined; fileCard?: { icons?: { docIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; exelIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pdfIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; imgIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; videoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; tableIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; textIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; mailIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fileIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; filtersPanel?: { icons?: { addFilterIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; itemDropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; pickerBodyRemoveIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; footerLinkButton?: ControlSize | undefined; mobileFooterLinkButton?: ControlSize | undefined; pickerBodyMultiSwitch?: '36' | '48' | '24' | '30' | '42' | '60' | undefined; pickerBodyLinkButton?: ControlSize | undefined; pickerBodyMinWidth?: number | undefined; rangeDatePickerInput?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; renderPlaceholder?: {} | undefined; } | undefined; iconButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; labeledInput?: { icons?: { infoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; fillInfoIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; linkButton?: { icons?: { dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; modal?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; notificationCard?: { icons?: { closeIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; hintIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; successIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; warningIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; errorIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { action?: ControlSize | undefined; icon?: number | undefined; } | undefined; } | undefined; numericInput?: { icons?: { arrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; paginator?: { icons?: { leftArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; rightArrowIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | ControlSize | '60' | undefined; } | undefined; } | undefined; pickerInput?: { icons?: { toggler?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; body?: { selectIcon?: { propTypes?: any; displayName?: string | undefined; } | {} | undefined; pickerBodyMobileHeaderCloseIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; modalNotFoundSearchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { toggler?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; tag?: ControlSize | undefined; tagMap?: { 36?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 48?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 24?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 30?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; 42?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; body?: { maxHeight?: number | undefined; minWidth?: number | undefined; row?: '36' | '48' | '24' | '30' | '42' | undefined; itemAvatarMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemAvatarMultilineMap?: { 36?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 48?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 24?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 30?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; 42?: number | '12' | '18' | '36' | '48' | '24' | '30' | '42' | '60' | '54' | '72' | '78' | '90' | '144' | undefined; } | undefined; itemVerticalPaddingMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; selectIconMap?: { 36?: string | undefined; 48?: string | undefined; 24?: string | undefined; 30?: string | undefined; 42?: string | undefined; } | undefined; footerSwitchMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; mobileFooterLinkButton?: ControlSize | undefined; mobileRow?: '36' | '48' | '24' | '30' | '42' | undefined; getSearchSize?: {} | undefined; mobileSearchInput?: ControlSize | '60' | undefined; } | undefined; } | undefined; renderPlaceholder?: {} | undefined; renderBlocker?: {} | undefined; } | undefined; presetsPanel?: { icons?: { addIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; copyLinkIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; deleteIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; discardChangesIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; renameIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; menuIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveAsNewIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; saveInCurrentIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { tabButton?: '36' | '48' | '60' | undefined; dropdownTargetIconButton?: '18' | '36' | '24' | '30' | undefined; } | undefined; } | undefined; radioInput?: { icons?: { dotIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '12' | '18' | undefined; } | undefined; } | undefined; rangeDatePicker?: { icons?: { input?: { calendarIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; preset?: ControlSize | undefined; } | undefined; } | undefined; rating?: { icons?: { filledRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; emptyRatingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: 18 | 24 | 30 | undefined; } | undefined; } | undefined; richTextView?: { sizes?: { default?: '12' | '14' | '16' | undefined; } | undefined; } | undefined; statusIndicator?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; switch?: { sizes?: { default?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; tabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '60' | undefined; countIndicatorMap?: { 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 60?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; verticalTabButton?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; foldingIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '36' | '48' | '30' | undefined; } | undefined; weight?: 'semibold' | 'regular' | undefined; } | undefined; tag?: { icons?: { clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: '18' | '36' | '48' | '24' | '30' | '42' | undefined; countIndicatorMap?: { 18?: '12' | '18' | '24' | undefined; 36?: '12' | '18' | '24' | undefined; 48?: '12' | '18' | '24' | undefined; 24?: '12' | '18' | '24' | undefined; 30?: '12' | '18' | '24' | undefined; 42?: '12' | '18' | '24' | undefined; } | undefined; } | undefined; } | undefined; text?: { sizes?: { default?: TextSize | undefined; } | undefined; } | undefined; textArea?: { sizes?: { default?: '36' | '48' | '24' | '30' | '42' | undefined; } | undefined; } | undefined; textInput?: { icons?: { acceptIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; clearIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; dropdownIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; searchIcon?: { propTypes?: any; displayName?: string | undefined; } | undefined; } | undefined; sizes?: { default?: ControlSize | '60' | undefined; } | undefined; } | undefined; }",
      "print": [
       "type PartialSettings = DeepPartial<Settings>;"
      ]
@@ -98492,24 +98285,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "icon",
       "name": "icon",
       "comment": {
@@ -102640,7 +102415,7 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "{ accordion: AccordionSettings; alert: AlertSettings; badge: BadgeSettings; button: ButtonSettings; blocker: BlockerSettings; checkbox: CheckboxSettings; countIndicator: CountIndicatorSettings; dataTable: DataTableSettings; datePicker: DatePickerSettings; dropdownMenu: DropdownMenuSettings; flexRow: FlexRowSettings; fileCard: FileCardSettings; filtersPanel: FiltersPanelSettings; iconButton: IconButtonSettings; labeledInput: LabeledInputSettings; linkButton: LinkButtonSettings; modal: ModalSettings; notificationCard: NotificationCardSettings; numericInput: NumericInputSettings; paginator: PaginatorSettings; pickerInput: PickerInputSettings; presetsPanel: PresetsPanelSettings; radioInput: RadioInputSettings; rangeDatePicker: RangeDatePickerSettings; rating: RatingSettings; richTextView: RichTextViewSettings; statusIndicator: StatusIndicatorSettings; switch: SwitchSettings; tabButton: TabButtonSettings; tag: TagSettings; text: TextSettings; textArea: TextAreaSettings; textInput: TextInputSettings; }",
+     "raw": "{ accordion: AccordionSettings; alert: AlertSettings; badge: BadgeSettings; button: ButtonSettings; blocker: BlockerSettings; checkbox: CheckboxSettings; countIndicator: CountIndicatorSettings; dataTable: DataTableSettings; datePicker: DatePickerSettings; dropdownMenu: DropdownMenuSettings; flexRow: FlexRowSettings; fileCard: FileCardSettings; filtersPanel: FiltersPanelSettings; iconButton: IconButtonSettings; labeledInput: LabeledInputSettings; linkButton: LinkButtonSettings; modal: ModalSettings; notificationCard: NotificationCardSettings; numericInput: NumericInputSettings; paginator: PaginatorSettings; pickerInput: PickerInputSettings; presetsPanel: PresetsPanelSettings; radioInput: RadioInputSettings; rangeDatePicker: RangeDatePickerSettings; rating: RatingSettings; richTextView: RichTextViewSettings; statusIndicator: StatusIndicatorSettings; switch: SwitchSettings; tabButton: TabButtonSettings; verticalTabButton: VerticalTabButtonSettings; tag: TagSettings; text: TextSettings; textArea: TextAreaSettings; textInput: TextInputSettings; }",
      "print": [
       "type Settings = typeof settings;"
      ]
@@ -103725,7 +103500,7 @@
      "raw": "TabButtonProps",
      "print": [
       "/** Represents the properties of a TabButton component. */",
-      "interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOverride>, ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {",
+      "interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOverride>, ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption, ICanBeActive {",
       "    /** Call to clear toggler value */",
       "    onClear?(e?: any): void;",
       "    /** Icon for clear value button (usually cross) */",
@@ -103969,24 +103744,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -104130,6 +103887,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      }
     ],
@@ -104290,24 +104083,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -104715,24 +104490,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -108278,12 +108035,238 @@
     "propsFromUnion": false
    }
   },
+  "@epam/uui:TreeProps": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "TreeProps",
+     "nameFull": "TreeProps<TItem, TId>"
+    },
+    "src": "uui/components/layout/Tree.tsx",
+    "comment": {
+     "raw": [
+      "Properties for a Tree component"
+     ]
+    },
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "TreeProps<TItem, TId>",
+     "print": [
+      "/**",
+      " * Properties for a Tree component",
+      " */",
+      "interface TreeProps<TItem, TId> extends IHasCX {",
+      "    /**",
+      "     * View to get data for the tree. Use dataSource.useView(...) to get the view.",
+      "     */",
+      "    view: IDataSourceView<TItem, TId, any>;",
+      "    /**",
+      "     * Render callback for tree row.",
+      "     * If not provided, VerticalTabButton will be used by default.",
+      "     */",
+      "    renderRow?: (row: DataRowProps<TItem, TId>) => React.ReactNode;",
+      "    /**",
+      "     * Size for default VerticalTabButton renderer.",
+      "     * Default: '36'",
+      "     */",
+      "    size?: '30' | '36' | '48';",
+      "    /**",
+      "     * DataSourceState state",
+      "     */",
+      "    value?: DataSourceState;",
+      "    /**",
+      "     * Callback to handle changes in DataSourceState.",
+      "     * If not provided, the component will be read-only.",
+      "     */",
+      "    onValueChange?: React.Dispatch<React.SetStateAction<DataSourceState<Record<string, any>, any>>>;",
+      "    /**",
+      "     * Optional function to get the caption for each item.",
+      "     * @param item",
+      "     */",
+      "    getCaption?: (item: TItem) => string;",
+      "    /**",
+      "     * Optional function to render additional elements in the row.",
+      "     * @param row",
+      "     */",
+      "    renderAddons?: (row: DataRowProps<TItem, TId>) => React.ReactNode;",
+      "}"
+     ]
+    },
+    "props": [
+     {
+      "uid": "view",
+      "name": "view",
+      "comment": {
+       "raw": [
+        "View to get data for the tree. Use dataSource.useView(...) to get the view."
+       ]
+      },
+      "typeValue": {
+       "raw": "IDataSourceView<TItem, TId, any>",
+       "html": "IDataSourceView<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
+      },
+      "typeValueRef": "@epam/uui-core:IDataSourceView",
+      "required": true
+     },
+     {
+      "uid": "renderRow",
+      "name": "renderRow",
+      "comment": {
+       "raw": [
+        "Render callback for tree row.",
+        " If not provided, VerticalTabButton will be used by default."
+       ]
+      },
+      "typeValue": {
+       "raw": "(row: DataRowProps<TItem, TId>) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>row<span class=\"token operator\">:</span> DataRowProps<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Size for default VerticalTabButton renderer.",
+        " Default: '36'"
+       ]
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '30'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "30",
+        "36",
+        "48"
+       ]
+      },
+      "required": false
+     },
+     {
+      "uid": "value",
+      "name": "value",
+      "comment": {
+       "raw": [
+        "DataSourceState state"
+       ]
+      },
+      "typeValue": {
+       "raw": "DataSourceState<Record<string, any>, any>",
+       "html": "DataSourceState<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span>"
+      },
+      "required": false
+     },
+     {
+      "uid": "onValueChange",
+      "name": "onValueChange",
+      "comment": {
+       "raw": [
+        "Callback to handle changes in DataSourceState.",
+        " If not provided, the component will be read-only."
+       ]
+      },
+      "typeValue": {
+       "raw": "React.Dispatch<React.SetStateAction<DataSourceState<Record<string, any>, any>>>",
+       "html": "React<span class=\"token punctuation\">.</span>Dispatch<span class=\"token operator\">&lt;</span>React<span class=\"token punctuation\">.</span>SetStateAction<span class=\"token operator\">&lt;</span>DataSourceState<span class=\"token operator\">&lt;</span>Record<span class=\"token operator\">&lt;</span><span class=\"token builtin\">string</span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">any</span><span class=\"token operator\">>>></span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "getCaption",
+      "name": "getCaption",
+      "comment": {
+       "raw": [
+        "Optional function to get the caption for each item.",
+        " @param item"
+       ]
+      },
+      "typeValue": {
+       "raw": "(item: TItem) => string",
+       "html": "<span class=\"token punctuation\">(</span>item<span class=\"token operator\">:</span> TItem<span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token builtin\">string</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
+      "required": false
+     },
+     {
+      "uid": "renderAddons",
+      "name": "renderAddons",
+      "comment": {
+       "raw": [
+        "Optional function to render additional elements in the row.",
+        " @param row"
+       ]
+      },
+      "typeValue": {
+       "raw": "(row: DataRowProps<TItem, TId>) => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span>row<span class=\"token operator\">:</span> DataRowProps<span class=\"token operator\">&lt;</span>TItem<span class=\"token punctuation\">,</span> TId<span class=\"token operator\">></span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "cx",
+      "name": "cx",
+      "comment": {
+       "raw": [
+        "CSS class(es) to put on component's root. See {@link https://github.com/JedWatson/classnames#usage} for details"
+       ]
+      },
+      "typeValue": {
+       "raw": "null | string | number | boolean | ClassDictionary | ClassArray",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">boolean</span> <span class=\"token operator\">|</span> ClassDictionary <span class=\"token operator\">|</span> ClassArray"
+      },
+      "typeValueRef": "@epam/uui-core:ClassValue",
+      "from": "@epam/uui-core:IHasCX",
+      "required": false
+     }
+    ],
+    "propsFromUnion": false
+   }
+  },
+  "@epam/uui:VerticalTabButtonModsOverride": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "VerticalTabButtonModsOverride",
+     "nameFull": "VerticalTabButtonModsOverride"
+    },
+    "src": "uui/components/buttons/VerticalTabButton.tsx",
+    "exported": true
+   },
+   "details": {
+    "kind": 264,
+    "typeValue": {
+     "raw": "VerticalTabButtonModsOverride",
+     "print": [
+      "interface VerticalTabButtonModsOverride {",
+      "}"
+     ]
+    }
+   }
+  },
   "@epam/uui:VerticalTabButtonProps": {
    "summary": {
     "module": "@epam/uui",
     "typeName": {
      "name": "VerticalTabButtonProps",
-     "nameFull": "VerticalTabButtonProps"
+     "nameFull": "VerticalTabButtonProps<TItem, TId>"
     },
     "src": "uui/components/buttons/VerticalTabButton.tsx",
     "comment": {
@@ -108296,116 +108279,50 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "TabButtonProps",
+     "raw": "VerticalTabButtonProps<TItem, TId>",
      "print": [
       "/** Represents the properties of a VerticalTabButton component. */",
-      "type VerticalTabButtonProps = TabButtonProps;"
+      "type VerticalTabButtonProps<TItem, TId> = Partial<Pick<DataRowProps<TItem, TId>, 'indent' | 'isFolded' | 'isFoldable'>> & Overwrite<VerticalTabButtonMods, VerticalTabButtonModsOverride> & ClickableComponentProps & IHasIcon & IHasCaption & ICanBeActive & {",
+      "    /**",
+      "     * Defines callback for rendering additional actions and items in the VerticalTabButton.",
+      "     */",
+      "    renderAddons?: () => React.ReactNode;",
+      "    /** Defines is the component showing Notify */",
+      "    withNotify?: boolean;",
+      "    /**",
+      "     * Handles folding change.",
+      "     */",
+      "    onFold?: () => void;",
+      "};"
      ]
     },
     "props": [
      {
-      "uid": "onClear",
-      "name": "onClear",
+      "uid": "indent",
+      "name": "indent",
       "comment": {
        "raw": [
-        "Call to clear toggler value"
+        "Indent of the item, to show hierarchy.",
+        "  Unlike depth, it contains additional logic, to not add unnecessary indents:",
+        "  if all children of node has no children, all nodes would get the same indent as parent."
        ]
       },
       "typeValue": {
-       "raw": "(e?: any) => void",
-       "html": "<span class=\"token punctuation\">(</span>e<span class=\"token operator\">?</span><span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+       "raw": "number",
+       "html": "<span class=\"token builtin\">number</span>"
       },
       "editor": {
-       "type": "func"
+       "type": "number"
       },
-      "from": "@epam/uui:TabButtonProps",
+      "from": "@epam/uui-core:DataRowProps",
       "required": false
      },
      {
-      "uid": "clearIcon",
-      "name": "clearIcon",
+      "uid": "isFolded",
+      "name": "isFolded",
       "comment": {
        "raw": [
-        "Icon for clear value button (usually cross)"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon",
-       "html": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui:TabButtonProps",
-      "required": false
-     },
-     {
-      "uid": "dropdownIcon",
-      "name": "dropdownIcon",
-      "comment": {
-       "raw": [
-        "Icon for drop-down toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "Icon",
-       "html": "Icon"
-      },
-      "editor": {
-       "type": "component"
-      },
-      "from": "@epam/uui:TabButtonProps",
-      "required": false
-     },
-     {
-      "uid": "count",
-      "name": "count",
-      "comment": {
-       "raw": [
-        "Count value to be placed in component"
-       ]
-      },
-      "typeValue": {
-       "raw": "React.ReactNode",
-       "html": "React<span class=\"token punctuation\">.</span>ReactNode"
-      },
-      "typeValueRef": "@types/react:ReactNode",
-      "from": "@epam/uui:TabButtonProps",
-      "required": false
-     },
-     {
-      "uid": "size",
-      "name": "size",
-      "comment": {
-       "raw": [
-        "Defines component size.",
-        " @default '48'"
-       ],
-       "tags": {
-        "@default": "48"
-       }
-      },
-      "typeValue": {
-       "raw": "'36' | '48' | '60'",
-       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'60'</span>"
-      },
-      "editor": {
-       "type": "oneOf",
-       "options": [
-        "36",
-        "48",
-        "60"
-       ]
-      },
-      "from": "@epam/uui:TabButtonMods",
-      "required": false
-     },
-     {
-      "uid": "withNotify",
-      "name": "withNotify",
-      "comment": {
-       "raw": [
-        "Defines is the component showing Notify"
+        "True if row is currently folded"
        ]
       },
       "typeValue": {
@@ -108415,7 +108332,78 @@
       "editor": {
        "type": "bool"
       },
-      "from": "@epam/uui:TabButtonMods",
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "isFoldable",
+      "name": "isFoldable",
+      "comment": {
+       "raw": [
+        "True if row be folded or unfolded (usually because it contains children)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:DataRowProps",
+      "required": false
+     },
+     {
+      "uid": "size",
+      "name": "size",
+      "comment": {
+       "raw": [
+        "Defines component size.",
+        " @default '36'"
+       ],
+       "tags": {
+        "@default": "36"
+       }
+      },
+      "typeValue": {
+       "raw": "'36' | '48' | '30'",
+       "html": "<span class=\"token string\">'36'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'48'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'30'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "30",
+        "36",
+        "48"
+       ]
+      },
+      "from": "@epam/uui:VerticalTabButtonMods",
+      "required": false
+     },
+     {
+      "uid": "weight",
+      "name": "weight",
+      "comment": {
+       "raw": [
+        "Defines component font-weight",
+        " @default 'semibold'"
+       ],
+       "tags": {
+        "@default": "semibold"
+       }
+      },
+      "typeValue": {
+       "raw": "'semibold' | 'regular'",
+       "html": "<span class=\"token string\">'semibold'</span> <span class=\"token operator\">|</span> <span class=\"token string\">'regular'</span>"
+      },
+      "editor": {
+       "type": "oneOf",
+       "options": [
+        "semibold",
+        "regular"
+       ]
+      },
+      "from": "@epam/uui:VerticalTabButtonMods",
       "required": false
      },
      {
@@ -108538,24 +108526,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -108589,42 +108559,6 @@
        "html": "React<span class=\"token punctuation\">.</span>AnchorHTMLAttributes<span class=\"token operator\">&lt;</span>HTMLAnchorElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>ButtonHTMLAttributes<span class=\"token operator\">&lt;</span>HTMLButtonElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>HTMLAttributes<span class=\"token operator\">&lt;</span>HTMLSpanElement<span class=\"token operator\">></span> <span class=\"token operator\">&amp;</span> Record<span class=\"token operator\">&lt;</span><span class=\"token template-string\"><span class=\"token template-punctuation string\">`</span><span class=\"token string\">data-</span><span class=\"token interpolation\"><span class=\"token interpolation-punctuation punctuation\">${</span><span class=\"token builtin\">string</span><span class=\"token interpolation-punctuation punctuation\">}</span></span><span class=\"token template-punctuation string\">`</span></span><span class=\"token punctuation\">,</span> <span class=\"token builtin\">string</span><span class=\"token operator\">></span>"
       },
       "from": "@epam/uui-core:IHasRawProps",
-      "required": false
-     },
-     {
-      "uid": "isOpen",
-      "name": "isOpen",
-      "comment": {
-       "raw": [
-        "When isDropdown=true, indicate that dropdown is open with chevron icon"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
-      "required": false
-     },
-     {
-      "uid": "isDropdown",
-      "name": "isDropdown",
-      "comment": {
-       "raw": [
-        "Shows chevron icon, enabling component to act as dropdown toggler"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:IDropdownToggler",
       "required": false
      },
      {
@@ -108699,6 +108633,93 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "renderAddons",
+      "name": "renderAddons",
+      "comment": {
+       "raw": [
+        "Defines callback for rendering additional actions and items in the VerticalTabButton."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => React.ReactNode",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> React<span class=\"token punctuation\">.</span>ReactNode"
+      },
+      "editor": {
+       "type": "component"
+      },
+      "required": false
+     },
+     {
+      "uid": "withNotify",
+      "name": "withNotify",
+      "comment": {
+       "raw": [
+        "Defines is the component showing Notify"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "required": false
+     },
+     {
+      "uid": "onFold",
+      "name": "onFold",
+      "comment": {
+       "raw": [
+        "Handles folding change."
+       ]
+      },
+      "typeValue": {
+       "raw": "() => void",
+       "html": "<span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span>"
+      },
+      "editor": {
+       "type": "func"
+      },
       "required": false
      }
     ],
@@ -109579,6 +109600,17 @@
     "exported": false
    }
   },
+  "@epam/uui:VerticalTabButtonMods": {
+   "summary": {
+    "module": "@epam/uui",
+    "typeName": {
+     "name": "VerticalTabButtonMods",
+     "nameFull": "VerticalTabButtonMods"
+    },
+    "src": "uui/components/buttons/VerticalTabButton.tsx",
+    "exported": false
+   }
+  },
   "@epam/uui:VirtualListRenderRows": {
    "summary": {
     "module": "@epam/uui",
@@ -109999,24 +110031,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -110386,24 +110400,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -111391,24 +111387,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -111768,24 +111746,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -111929,6 +111889,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -113211,24 +113207,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -114671,24 +114649,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -115095,24 +115055,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -115131,6 +115073,42 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -115436,24 +115414,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -115986,24 +115946,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -116758,24 +116700,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -117145,24 +117069,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false
@@ -118183,24 +118089,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -118573,24 +118461,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -118734,6 +118604,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -118988,24 +118894,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -119024,6 +118912,42 @@
        ]
       },
       "from": "@epam/uui-core:ICanRedirect",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
@@ -121309,24 +121233,6 @@
       },
       "editor": {
        "type": "string"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
       },
       "from": "@epam/uui-core:ICanRedirect",
       "required": false

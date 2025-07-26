@@ -1,4 +1,4 @@
-import { withMods, IHasIcon, IDropdownToggler } from '@epam/uui-core';
+import { withMods, IHasIcon, IDropdownToggler, ICanBeActive } from '@epam/uui-core';
 import { Button, ButtonProps } from '@epam/uui-components';
 import { ReactComponent as SvgTriangle } from '@epam/assets/icons/navigation-arrow_down-outline.svg';
 import css from './BurgerButton.module.scss';
@@ -14,7 +14,7 @@ interface BurgerButtonMods extends IHasIcon, IDropdownToggler {
     indentLevel?: number;
 }
 
-export type BurgerButtonProps = ButtonProps & BurgerButtonMods;
+export type BurgerButtonProps = ButtonProps & BurgerButtonMods & ICanBeActive;
 
 export const BurgerButton = withMods<ButtonProps, BurgerButtonProps>(
     Button,
