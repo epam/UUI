@@ -1,7 +1,6 @@
-import { useLocation } from "react-router-dom";
-import { MainMenu, MainMenuButton, MainMenuLogo } from "@epam/uui";
+import { useLocation } from 'react-router-dom';
+import { MainMenu, MainMenuButton, MainMenuLogo } from '@epam/uui';
 import logo from '../icons/logo.svg';
-
 
 export const Menu = () => {
     useLocation();

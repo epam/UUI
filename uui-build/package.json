@@ -28,7 +28,7 @@
     "magic-string": "0.30.9",
     "postcss": "8.4.38",
     "postcss-scss": "4.0.6",
-    "prismjs": "1.30.0",
+    "prismjs": "1.29.0",
     "react-fast-compare": "3.2.2",
     "rollup": "4.22.4",
     "rollup-plugin-postcss": "4.0.2",

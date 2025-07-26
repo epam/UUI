@@ -1,5 +1,4 @@
-import { IAnalyticsListener } from '../../types/contexts';
-import { AnalyticsEvent } from '../../types/objects';
+import { IAnalyticsListener, AnalyticsEvent } from '@epam/uui-core';
 
 export class GAListener implements IAnalyticsListener {
     public gaCode: string;
