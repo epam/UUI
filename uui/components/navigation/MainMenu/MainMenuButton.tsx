@@ -1,5 +1,14 @@
 import * as React from 'react';
-import { IAdaptiveItem, Icon, IDropdownToggler, IHasCaption, IHasIcon, uuiElement } from '@epam/uui-core';
+import {
+    IAdaptiveItem,
+    ICanBeActive,
+    Icon,
+    IDropdownToggler,
+    IHasCaption,
+    IHasIcon,
+    useIsActive,
+    uuiElement, uuiMod,
+} from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from '../../widgets/CountIndicator';
 import { ReactComponent as SvgTriangle } from '@epam/assets/icons/navigation-chevron_down-outline.svg';
@@ -13,7 +22,7 @@ interface MainMenuButtonMods {
 }
 
 export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdownToggler & Omit<ClickableComponentProps, 'isDisabled'>
-& IHasIcon & IHasCaption & {
+& IHasIcon & IHasCaption & ICanBeActive & {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /** Count value to be placed in component */
@@ -22,6 +31,12 @@ export type MainMenuButtonProps = MainMenuButtonMods & IAdaptiveItem & IDropdown
 
 export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, MainMenuButtonProps>((props, ref) => {
     const { type, ...clickableProps } = props;
+
+    const { isActive } = useIsActive({
+        isLinkActive: props.isLinkActive,
+        link: props.link,
+        isActive: props.isActive,
+    });
 
     return (
         <Clickable
@@ -36,6 +51,7 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
             cx={ [
                 css.root,
                 css['type-' + (type || 'primary')],
+                isActive && uuiMod.active,
                 props.cx,
             ] }
             ref={ ref }

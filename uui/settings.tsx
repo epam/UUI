@@ -59,7 +59,7 @@ import type {
     SearchInputProps, FlexRowProps, TextProps, DatePickerProps, FiltersPanelProps,
     DataPickerRowProps, PickerItemProps, DataPickerFooterProps, LabeledInputProps, NumericInputProps,
     PickerTogglerProps, PickerTogglerTagProps, TagProps, SwitchProps, RangeDatePickerProps, RadioInputProps,
-    RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, TextAreaProps,
+    RatingProps, RichTextViewProps, DataRowAddonsProps, StatusIndicatorProps, TabButtonProps, VerticalTabButtonProps, TextAreaProps,
     TextInputProps, PickerInputProps, MultiSwitchProps, RangeDatePickerInputProps, IconButtonProps, VirtualListProps,
 } from './components';
 import { Spinner } from './components/widgets/Spinner';
@@ -944,6 +944,32 @@ const tabButtonSettings: TabButtonSettings = {
     },
 };
 
+interface VerticalTabButtonIcons {
+    clearIcon: Icon;
+    foldingIcon: Icon;
+}
+
+interface VerticalTabButtonSizes {
+    default: VerticalTabButtonProps<unknown, unknown>['size'];
+}
+
+interface VerticalTabButtonSettings {
+    icons: VerticalTabButtonIcons;
+    sizes: VerticalTabButtonSizes;
+    weight: VerticalTabButtonProps<unknown, unknown>['weight'];
+}
+
+const verticalTabButtonSettings: VerticalTabButtonSettings = {
+    icons: {
+        clearIcon: CrossIcon,
+        foldingIcon: DropdownIcon,
+    },
+    sizes: {
+        default: '48',
+    },
+    weight: 'semibold',
+};
+
 interface TagIcons {
     clearIcon: Icon;
     dropdownIcon: Icon;
@@ -1069,6 +1095,7 @@ export const settings = {
     statusIndicator: statusIndicatorSettings,
     switch: switchSettings,
     tabButton: tabButtonSettings,
+    verticalTabButton: verticalTabButtonSettings,
     tag: tagSettings,
     text: textSettings,
     textArea: textAreaSettings,
