@@ -46,5 +46,5 @@ export function DataTableSelectionProvider<TItem, TId, TFilter>({
 
     const value = useMemo(() => ({ selectionRange, setSelectionRange, getCellSelectionInfo }), [selectionRange, getCellSelectionInfo]);
 
-    return <DataTableSelectionContext value={ value }>{children}</DataTableSelectionContext>;
+    return <DataTableSelectionContext.Provider value={ value }>{children}</DataTableSelectionContext.Provider>;
 }
