@@ -8,7 +8,7 @@ import {
     uuiElement,
     uuiMarkers,
     Overwrite,
-    ICanBeActive,
+    ICanBeActive, useIsActive, uuiMod,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
@@ -42,7 +42,14 @@ export interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOv
 }
 
 export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
+    const { isActive } = useIsActive({
+        isLinkActive: props.isLinkActive,
+        link: props.link,
+        isActive: props.isActive,
+    });
+
     const styles = [
+        isActive && uuiMod.active,
         css.root,
         'uui-tab-button',
         `uui-size-${props.size || settings.tabButton.sizes.default}`,
