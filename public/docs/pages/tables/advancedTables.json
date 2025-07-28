@@ -4,15 +4,16 @@
     "parentId": "tables",
     "examples": [
         { "descriptionPath": "advanced-tables-descriptions" },
-        { "name": "Collapse/expand All", "componentPath": "tables/TableCollapse.example.tsx", "cx": "css.appBg" },
-        { "name": "Columns Configuration", "componentPath": "tables/ColumnsConfig.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with paging and select page", "componentPath": "tables/PagedTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with paging and select all rows", "componentPath": "tables/PagedTableWithSelectAll.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with column filters", "componentPath": "tables/ColumnFiltersTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with pinned rows", "componentPath": "tables/TableWithPinnedRows.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with expandable rows", "componentPath": "tables/TableWithExpandableRows.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with rows Drag&Drop", "componentPath": "tables/TableWithDnD.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with header groups", "componentPath": "tables/TableGroupedHeader.example.tsx", "cx": "css.appBg" }
+        { "name": "Collapse/expand All", "componentPath": "tables/TableCollapse.example.tsx" },
+        { "name": "Columns Configuration", "componentPath": "tables/ColumnsConfig.example.tsx" },
+        { "name": "Disable virtualization", "componentPath": "tables/DisableVirtualization.example.tsx" },
+        { "name": "Table with paging and select page", "componentPath": "tables/PagedTable.example.tsx" },
+        { "name": "Table with paging and select all rows", "componentPath": "tables/PagedTableWithSelectAll.example.tsx" },
+        { "name": "Table with column filters", "componentPath": "tables/ColumnFiltersTable.example.tsx" },
+        { "name": "Table with pinned rows", "componentPath": "tables/TableWithPinnedRows.example.tsx" },
+        { "name": "Table with expandable rows", "componentPath": "tables/TableWithExpandableRows.example.tsx"},
+        { "name": "Table with rows Drag&Drop", "componentPath": "tables/TableWithDnD.example.tsx" },
+        { "name": "Table with header groups", "componentPath": "tables/TableGroupedHeader.example.tsx"  }
     ],
     "order": 3,
     "tags": ["tables", "dataTable"]
