@@ -16,6 +16,7 @@ describe('VerticalTabButton', () => {
                 icon={ calendarIcon }
                 isDisabled={ false }
                 withNotify={ true }
+                caption="Test"
             />,
         );
         expect(tree).toMatchSnapshot();

@@ -8,6 +8,7 @@ exports[`BurgerButton should be rendered correctly 1`] = `
     class="uui-button-box uui-enabled -clickable uui-anchor container root uui-main_menu-burger-button button-secondary indent-0 dropdown hasIcon"
     href="#"
     rel="noopener noreferrer"
+    role="menuitem"
     tabindex="0"
     target="_blank"
   >
@@ -38,6 +39,7 @@ exports[`BurgerButton should be rendered correctly with minimum props 1`] = `
 <DocumentFragment>
   <button
     class="uui-button-box uui-enabled container root uui-main_menu-burger-button button-primary indent-0"
+    role="menuitem"
     tabindex="-1"
     type="button"
   />

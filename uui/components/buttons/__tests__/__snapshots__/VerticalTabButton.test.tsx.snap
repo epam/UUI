@@ -3,7 +3,7 @@
 exports[`VerticalTabButton should be rendered correctly 1`] = `
 <DocumentFragment>
   <span
-    class="uui-button-box uui-enabled root uui-tab-button uui-size-48 uui-no-left-icon uui-no-right-icon root uui-vertical-tab-button"
+    class="uui-button-box uui-enabled root uui-vertical-tab-button uui-size-48 uui-no-left-icon uui-no-right-icon"
     role="tab"
     tabindex="-1"
   />
@@ -14,7 +14,7 @@ exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <DocumentFragment>
   <button
     aria-disabled="false"
-    class="uui-button-box uui-enabled -clickable root uui-tab-button uui-size-48 uui-has-left-icon uui-no-right-icon root uui-vertical-tab-button"
+    class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-48 uui-has-left-icon uui-no-right-icon"
     role="tab"
     tabindex="0"
     type="button"
@@ -27,8 +27,13 @@ exports[`VerticalTabButton should be rendered correctly with props 1`] = `
       />
     </div>
     <div
-      class="uui-caption"
+      class="captionWrapper"
     >
+      <div
+        class="uui-caption uui-vertical-tab-button-weight-semibold"
+      >
+        Test
+      </div>
       <div
         class="withNotify"
       />

@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tree should render tree items with default VerticalTabButton 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+      >
+        <div
+          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+        >
+          <div
+            class="listContainer"
+            style="min-height: 1px;"
+          >
+            <div
+              role="tree"
+              style="margin-top: 0px;"
+            >
+              <button
+                class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-36 noLeftPadding onlyFoldable uui-no-left-icon uui-no-right-icon"
+                role="tab"
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="foldingArea -clickable"
+                  style="--uui-folding-indent: 0;"
+                >
+                  <div
+                    aria-label="Unfold"
+                    class="container uui-icon uui-enabled uui-folding-arrow iconContainer"
+                    role="button"
+                  >
+                    <svg
+                      class="rotate-90ccw"
+                      height="18"
+                      width="18"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="captionWrapper"
+                >
+                  <div
+                    class="uui-caption uui-vertical-tab-button-weight-regular"
+                  >
+                    Root
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          aria-busy="false"
+          aria-label=""
+          aria-live="polite"
+          class="container uui-blocker-container root"
+          role="status"
+        />
+        <div
+          class="uui-track-horizontal"
+          style="position: absolute; height: 6px; display: none;"
+        >
+          <div
+            class="uui-thumb-horizontal"
+          />
+        </div>
+        <div
+          class="uui-track-vertical"
+          style="position: absolute; width: 6px; display: none;"
+        >
+          <div
+            class="uui-thumb-vertical"
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+    >
+      <div
+        style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+      >
+        <div
+          class="listContainer"
+          style="min-height: 1px;"
+        >
+          <div
+            role="tree"
+            style="margin-top: 0px;"
+          >
+            <button
+              class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-36 noLeftPadding onlyFoldable uui-no-left-icon uui-no-right-icon"
+              role="tab"
+              tabindex="0"
+              type="button"
+            >
+              <div
+                class="foldingArea -clickable"
+                style="--uui-folding-indent: 0;"
+              >
+                <div
+                  aria-label="Unfold"
+                  class="container uui-icon uui-enabled uui-folding-arrow iconContainer"
+                  role="button"
+                >
+                  <svg
+                    class="rotate-90ccw"
+                    height="18"
+                    width="18"
+                  />
+                </div>
+              </div>
+              <div
+                class="captionWrapper"
+              >
+                <div
+                  class="uui-caption uui-vertical-tab-button-weight-regular"
+                >
+                  Root
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        aria-busy="false"
+        aria-label=""
+        aria-live="polite"
+        class="container uui-blocker-container root"
+        role="status"
+      />
+      <div
+        class="uui-track-horizontal"
+        style="position: absolute; height: 6px; display: none;"
+      >
+        <div
+          class="uui-thumb-horizontal"
+        />
+      </div>
+      <div
+        class="uui-track-vertical"
+        style="position: absolute; width: 6px; display: none;"
+      >
+        <div
+          class="uui-thumb-vertical"
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByAria": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByRoleAndText": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByAria": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByRoleAndText": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByAria": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByRoleAndText": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByAria": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByRoleAndText": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByAria": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByRoleAndText": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByAria": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByRoleAndText": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
