@@ -1,13 +1,13 @@
 import * as React from 'react';
-import DefaultTabListExample from './DefaultLayout.example';
+import BasicTabListExample from './BasicLayout.example';
 import TabsWithLinksTabListExample from './TabsWithLinks.example';
 import AdditionalElementsTabListExample from './AdditionalElements.example';
 
 export const tabListExamples = [
     {
-        name: 'Default',
+        name: 'Basic',
         value: (
-            <DefaultTabListExample />
+            <BasicTabListExample />
         ),
         isDefault: true,
     },

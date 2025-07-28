@@ -40,7 +40,7 @@ function TabPanel({
     );
 }
 
-export default function DefaultTabListExample(): ReactNode {
+export default function BasicTabListExample(): ReactNode {
     const [tabId, setTabId] = useState<TabId>('tab-1');
 
     const renderTabPanel = (): ReactNode => {
