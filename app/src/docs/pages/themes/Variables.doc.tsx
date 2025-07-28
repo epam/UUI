@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditableDocContent } from '../../common';
+import { EditableDocContent } from '../../../common';
 import { TokenGroups } from './implementation/TokenGroups';
 import { DocItem } from '@epam/uui-docs';
 
