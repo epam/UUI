@@ -21,12 +21,10 @@ const getTabpanelId = (tabId: string): string => {
 
 interface TabPanelProps {
     tabId: string;
-    tabIndex?: number;
 }
 
 function TabPanel({
     tabId,
-    tabIndex,
     children,
 }: PropsWithChildren<TabPanelProps>): ReactNode {
     return (
@@ -35,7 +33,6 @@ function TabPanel({
             id={ getTabpanelId(tabId) }
             role="tabpanel"
             aria-labelledby={ tabId }
-            tabIndex={ tabIndex }
         >
             {children}
         </div>
@@ -51,7 +48,6 @@ export default function AdditionalElementsTabListExample(): ReactNode {
             return (
                 <TabPanel
                     tabId={ tabId }
-                    tabIndex={ 0 }
                 >
                     <Text>
                         Tab 1 content
@@ -64,7 +60,6 @@ export default function AdditionalElementsTabListExample(): ReactNode {
             return (
                 <TabPanel
                     tabId={ tabId }
-                    tabIndex={ 0 }
                 >
                     <Text>
                         Tab 2 content
