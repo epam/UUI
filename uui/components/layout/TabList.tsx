@@ -26,7 +26,7 @@ type TabButtonPropsBase =
     | ComponentProps<typeof TabButton>
     | ComponentProps<typeof VerticalTabButton>;
 
-export type TabId = string;
+type TabId = string;
 
 export type TabListItemProps = TabButtonPropsBase & {
     id: TabId;

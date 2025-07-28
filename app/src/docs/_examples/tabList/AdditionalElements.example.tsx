@@ -4,7 +4,6 @@ import {
     FlexRow,
     LinkButton,
     SearchInput,
-    type TabId,
     TabList,
     Text,
 } from '@epam/uui';
@@ -16,12 +15,12 @@ import React, {
 
 import css from './TabPanel.module.scss';
 
-const getTabpanelId = (tabId: TabId): string => {
+const getTabpanelId = (tabId: string): string => {
     return `tabpanel-${tabId}`;
 };
 
 interface TabPanelProps {
-    tabId: TabId;
+    tabId: string;
     tabIndex?: number;
 }
 
@@ -44,7 +43,7 @@ function TabPanel({
 }
 
 export default function AdditionalElementsTabListExample(): ReactNode {
-    const [tabId, setTabId] = useState<TabId>('tab-additional-elements-1');
+    const [tabId, setTabId] = useState<string>('tab-additional-elements-1');
     const [search, setSearch] = useState('');
 
     const renderTabPanel = (): ReactNode => {
