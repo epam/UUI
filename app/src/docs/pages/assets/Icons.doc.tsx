@@ -3,12 +3,12 @@ import css from './IconsPage.module.scss';
 import { FlexCell, Panel, FlexRow, Text, IconContainer, Button, IconButton, LinkButton, Tooltip, NotificationCard, MultiSwitch,
     ScrollBars, SearchInput, TextInput } from '@epam/uui';
 import { cx, Icon, useArrayDataSource } from '@epam/uui-core';
-import { getAllIcons } from '../../documents/iconListHelpers';
-import { copyTextToClipboard } from '../../helpers';
-import { svc } from '../../services';
+import { getAllIcons } from '../../../documents/iconListHelpers';
+import { copyTextToClipboard } from '../../../helpers';
+import { svc } from '../../../services';
 import { IconBase } from '@epam/uui-docs';
 import { ReactComponent as NotificationCheckFillIcon } from '@epam/assets/icons/notification-check-fill.svg';
-import { useAppThemeContext } from '../../helpers/appTheme';
+import { useAppThemeContext } from '../../../helpers/appTheme';
 
 const SIZE_LIST: ControlSize[] = ['24', '30', '36', '42', '48'];
 const THEMES_6PX = ['electric', 'loveship', 'loveship_dark', 'vanilla_thunder', 'promo', 'eduverse_light', 'eduverse_dark'];

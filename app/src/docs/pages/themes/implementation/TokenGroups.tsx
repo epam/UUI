@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Blocker, FlexCell, FlexRow, FlexSpacer, Panel, RichTextView, SuccessNotification, Text, Tooltip } from '@epam/uui';
 import { INotificationContext, useUuiContext } from '@epam/uui-core';
-import { copyTextToClipboard } from '../../../helpers';
+import { copyTextToClipboard } from '../../../../helpers';
 import { useTokensDoc } from './useTokensDoc';
 import { ISemanticTableProps, ISkinTitleProps, ITokensDocGroup, ITokensDocItem, SemanticBlocksProps } from './types';
 import cx from 'classnames';
