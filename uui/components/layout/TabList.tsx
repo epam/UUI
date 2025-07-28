@@ -20,11 +20,6 @@ import {
     FlexRow,
 } from './FlexItems';
 
-const stopKeyboardEvent: KeyboardEventHandler = (event): void => {
-    event.stopPropagation();
-    event.preventDefault();
-};
-
 type FlexRowProps = ComponentProps<typeof FlexRow>;
 
 type TabButtonPropsBase =
@@ -80,8 +75,6 @@ const TabListItem = forwardRef<TabElement, TabListItemProps>(
                 isLink
                 && event.code === 'Space'
             ) {
-                stopKeyboardEvent(event);
-
                 tabProps.rawProps?.onKeyDown?.(event);
 
                 ref.current?.click();
@@ -184,32 +177,24 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
             // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
             switch (event.code) {
                 case 'ArrowLeft': {
-                    stopKeyboardEvent(event);
-
                     moveToPreviousTab(focusedTabIdCurrent);
 
                     break;
                 }
 
                 case 'ArrowRight': {
-                    stopKeyboardEvent(event);
-
                     moveToNextTab(focusedTabIdCurrent);
 
                     break;
                 }
 
                 case 'Home': {
-                    stopKeyboardEvent(event);
-
                     moveToTabWithIndex(0);
 
                     break;
                 }
 
                 case 'End': {
-                    stopKeyboardEvent(event);
-
                     moveToTabWithIndex(tabLastIndex);
 
                     break;
