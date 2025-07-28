@@ -10,8 +10,7 @@
 * [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. Removed `Burger`, `renderBurger` prop, use `Burger` component instead. Removed `alwaysShowBurger` prop, use `Burger` component in items with `collapsedContainer: true/false` option. Removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. Removed `MainMenuDropdown` prop, use `MainMenuDropdown` as a component for 'More' container in items, see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components&theme=loveship#examples-mainMenu-Responsive)
 
   ```tsx
-  // before
-  
+  // Before
     <MainMenu
        cx={ css.menuContainer }
        renderBurger={ renderBurger }
@@ -21,9 +20,8 @@
     >
         <MainMenuButton caption="Home" />
     </MainMenu>
-  
-  // after
-  
+
+  // After
     <MainMenu
         cx={ css.menuContainer }
         items={ [
@@ -46,6 +44,37 @@
         ] }
     />
   ```
+* [Tree]: new hierarchical data display component for @epam/uui package
+* [VerticalTabButton][Breaking Change]: complete rework with improved functionality and styling
+  * Added `renderAddons` prop for custom addons rendering
+  * Removed deprecated `count` prop, use `renderAddons` instead
+  * Removed deprecated `isDropdown` prop
+  * Added `indent` and `isFoldable` props support
+  * Updated size variants (30, 36, 48) with proper styling
+
+  ```tsx
+    // Before
+    <VerticalTabButton
+    caption="Tools"
+    count={18}
+    isDropdown={true}
+    />
+
+    // After
+    <VerticalTabButton
+    caption="Tools"
+    renderAddons={() => (
+            <>
+                <CountIndicator caption="18" />
+                <IconButton icon={ DropdownIcon } />
+            </>
+        )}
+    />
+  ```
+
+* [Site][Sidebar]: refactored to use new Tree component
+  * Replaced custom Tree implementation with @epam/uui Tree
+  * Improved data source integration using `useArrayDataSource`
 
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
