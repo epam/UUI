@@ -2,7 +2,6 @@ import {
     type IControlled,
 } from '@epam/uui-core';
 import React, {
-    type ComponentProps,
     forwardRef,
     type KeyboardEvent,
     type KeyboardEventHandler,
@@ -12,23 +11,16 @@ import React, {
 
 import {
     TabButton,
+    TabButtonProps,
 } from '../buttons/TabButton';
 import {
-    VerticalTabButton,
-} from '../buttons/VerticalTabButton';
-import {
     FlexRow,
+    FlexRowProps,
 } from './FlexItems';
-
-type FlexRowProps = ComponentProps<typeof FlexRow>;
-
-type TabButtonPropsBase =
-    | ComponentProps<typeof TabButton>
-    | ComponentProps<typeof VerticalTabButton>;
 
 type TabId = string;
 
-export type TabListItemProps = TabButtonPropsBase & {
+export type TabListItemProps = TabButtonProps & {
     id: TabId;
 };
 
