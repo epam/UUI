@@ -4,11 +4,6 @@ import {
     userEvent,
     within,
 } from '@epam/uui-test-utils';
-import {
-    type ReactNode,
-    useImperativeHandle,
-    useRef,
-} from 'react';
 
 import {
     type TabListItemProps,
@@ -520,68 +515,6 @@ describe('tab activation', () => {
         expect(onValueChange).toBeCalledWith('tab-2');
         expect(onClick).toBeCalled();
         expect(onKeyDown).toBeCalled();
-    });
-
-    test('calls `click` method of external ref when Space key is pressed on a focused tab (link)', async () => {
-        const click = jest.fn();
-        function Example(): ReactNode {
-            const tabRef = useRef<HTMLAnchorElement | null>(null);
-
-            // `tabRef.current.click = click` doesn't work.
-            useImperativeHandle(
-                tabRef,
-                () => {
-                    return {
-                        click,
-                    } as unknown as HTMLAnchorElement;
-                },
-                [],
-            );
-
-            return (
-                <TabList
-                    items={ [
-                        {
-                            ...tab1,
-                            link: {
-                                pathname: '/',
-                                query: {
-                                    tabId: 'tab-1',
-                                },
-                            },
-                        },
-                        {
-                            ...tab2,
-                            ref: tabRef,
-                            link: {
-                                pathname: '/',
-                                query: {
-                                    tabId: 'tab-2',
-                                },
-                            },
-                        },
-                    ] }
-                    value="tab-1"
-                    onValueChange={ () => {} }
-                />
-            );
-        }
-        await renderWithContextAsync(
-            <Example />,
-        );
-
-        await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
-        expect(activeTabCurrent).toHaveFocus();
-
-        await userEvent.keyboard('{ArrowRight}');
-        await userEvent.keyboard(' ');
-        expect(click).toBeCalled();
     });
 });
 

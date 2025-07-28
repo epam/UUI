@@ -5,8 +5,7 @@ import React, {
     forwardRef,
     type KeyboardEvent,
     type KeyboardEventHandler,
-    RefObject,
-    useRef,
+    ForwardedRef,
 } from 'react';
 
 import {
@@ -20,84 +19,17 @@ import {
 
 type TabId = string;
 
-export type TabListItemProps = TabButtonProps & {
-    id: TabId;
-};
-
 type TabElement =
     | HTMLButtonElement
     | HTMLAnchorElement
     | HTMLSpanElement;
 
-type OnKeyDownEvent =
-    & KeyboardEvent<HTMLAnchorElement>
-    & KeyboardEvent<HTMLButtonElement>
-    & KeyboardEvent<HTMLSpanElement>;
-
-/*
-    A separate component is only necessary to correctly define a ref,
-    pass it to the tab component and call `click` on the tab element
-    if it is a link to activate it when "Space" key is pressed.
-    This manual activation is necessary because the role `tab` is expected to
-    behave the same way regardless of implementation details (link or button),
-    and links are not activated when pressing "Space" by default.
-*/
-const TabListItem = forwardRef<TabElement, TabListItemProps>(
-    (
-        tabProps,
-        refExternal,
-    ) => {
-        const refLocal = useRef<TabElement | null>(null);
-        const ref = refExternal !== null
-            ? refExternal as RefObject<TabElement>
-            : refLocal;
-
-        const {
-            id,
-            isLinkActive,
-        } = tabProps;
-
-        const isLink = (
-            tabProps.link !== undefined
-            || tabProps.href !== undefined
-        );
-
-        const handleOnKeyDown = (event: OnKeyDownEvent): void => {
-            if (
-                isLink
-                && event.code === 'Space'
-            ) {
-                tabProps.rawProps?.onKeyDown?.(event);
-
-                ref.current?.click();
-            } else {
-                tabProps.rawProps?.onKeyDown?.(event);
-            }
-        };
-
-        const tabIndex = isLinkActive
-            ? undefined
-            : -1;
-
-        return (
-            <TabButton
-                key={ id }
-                ref={ ref }
-                tabIndex={ tabIndex }
-                { ...tabProps }
-                rawProps={ {
-                    id,
-                    role: 'tab',
-                    'aria-selected': isLinkActive,
-                    ...tabProps.rawProps,
-                    onKeyDown: handleOnKeyDown,
-                } }
-            />
-        );
-    },
-);
-
-TabListItem.displayName = 'TabListItem';
+export type TabListItemProps = TabButtonProps & {
+    /** Ref to a tab button. */
+    ref?: ForwardedRef<TabElement>;
+    /** ID of the tab button. There should be only one element with such ID on a page. */
+    id: TabId;
+};
 
 export interface TabListProps extends
     IControlled<TabId>,
@@ -221,6 +153,11 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
                             tabProps.onClick?.();
                         };
 
+                        type OnKeyDownEvent =
+                            & KeyboardEvent<HTMLAnchorElement>
+                            & KeyboardEvent<HTMLButtonElement>
+                            & KeyboardEvent<HTMLSpanElement>;
+
                         const handleOnKeyDown = (event: OnKeyDownEvent): void => {
                             onKeyDown(event);
 
@@ -229,13 +166,20 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>(
 
                         const isLinkActive = id === value;
 
+                        const tabIndex = isLinkActive
+                            ? undefined
+                            : -1;
+
                         return (
-                            <TabListItem
+                            <TabButton
                                 key={ id }
                                 isLinkActive={ isLinkActive }
+                                tabIndex={ tabIndex }
                                 { ...tabProps }
                                 onClick={ handleOnClick }
                                 rawProps={ {
+                                    id,
+                                    'aria-selected': isLinkActive,
                                     ...tabProps.rawProps,
                                     onKeyDown: handleOnKeyDown,
                                 } }
