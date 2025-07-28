@@ -69,6 +69,7 @@ import AdvancedTablesDocItem from 'uui-doc-pages/tables/advancedTables.json';
 import useTableStateDocItem from 'uui-doc-pages/tables/useTableState.json';
 import FiltersPanelDocItem from 'uui-doc-pages/tables/filtersPanel.json';
 import PresetsPanelDocItem from 'uui-doc-pages/tables/presetsPanel.json';
+import TabListDocItem from 'uui-doc-pages/components/tabList.json';
 
 export const componentsStructure: DocItem[] = orderBy<DocItem>(
     [
@@ -144,6 +145,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         ProgressBarDocItem,
         ScrollSpyDocItem,
         DropdownContainerDocItem,
+        TabListDocItem,
     ],
     (item: DocItem) => (item.order ? item.order + item.name : item.name),
 );
