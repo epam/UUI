@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tree } from '../Tree';
+import { Tree, TreeProps } from '../Tree';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
 import { renderWithContextAsync } from '@epam/uui-test-utils';
 
@@ -15,8 +15,7 @@ const testData: TestTreeItem[] = [
     { id: '3', name: 'Child 2', parentId: '1' },
 ];
 
-// Простой компонент-обертка для тестирования
-function TestTreeComponent() {
+function TestTreeComponent(props: { renderRow?: TreeProps<TestTreeItem, string>['renderRow'] }) {
     const [value, setValue] = React.useState<DataSourceState>({ folded: {} });
 
     const dataSource = useArrayDataSource<TestTreeItem, string, unknown>(
@@ -34,6 +33,7 @@ function TestTreeComponent() {
             view={ view }
             value={ value }
             onValueChange={ setValue }
+            renderRow={ props.renderRow }
         />
     );
 }
@@ -45,26 +45,11 @@ describe('Tree', () => {
     });
 
     it('should render custom row when renderRow is provided', async () => {
-        const [value, setValue] = React.useState<DataSourceState>({ folded: {} });
-
-        const dataSource = useArrayDataSource<TestTreeItem, string, unknown>(
-            {
-                items: testData,
-                getId: (item) => item.id,
-            },
-            [testData],
-        );
-
-        const view = dataSource.useView(value, setValue);
-
         const tree = await renderWithContextAsync(
-            <Tree<TestTreeItem>
-                view={ view }
-                value={ value }
-                onValueChange={ setValue }
+            <TestTreeComponent
                 renderRow={ (row) => (
-                    <div data-testid={ `custom-item-${row.id}` }>
-                        Custom: 
+                    <div key={ row.key } data-testid={ `custom-item-${row.id}` }>
+                        Custom:
                         {' '}
                         {row.value.name}
                     </div>
