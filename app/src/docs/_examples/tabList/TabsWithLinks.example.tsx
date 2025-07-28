@@ -1,7 +1,6 @@
 import {
     FlexCell,
     LinkButton,
-    type TabId,
     TabList,
     Text,
 } from '@epam/uui';
@@ -13,12 +12,12 @@ import React, {
 import css from './TabPanel.module.scss';
 import { useSearchParams } from 'react-router-dom';
 
-const getTabpanelId = (tabId: TabId): string => {
+const getTabpanelId = (tabId: string): string => {
     return `tabpanel-${tabId}`;
 };
 
 interface TabPanelProps {
-    tabId: TabId;
+    tabId: string;
     tabIndex?: number;
 }
 
