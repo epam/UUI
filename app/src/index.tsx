@@ -100,9 +100,9 @@ function UuiEnhancedApp() {
 
     if (isLoaded) {
         return (
-            <UuiContext value={ services }>
+            <UuiContext.Provider value={ services }>
                 <RouterProvider router={ router6 } />
-            </UuiContext>
+            </UuiContext.Provider>
         );
     }
     return null;

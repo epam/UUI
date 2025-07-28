@@ -1,0 +1,73 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "DataTable row virtualization is turned on by default. To disable it, provide the "
+      },
+      {
+        "text": "disableVirtualization={false}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " prop. This will disable rows virtualization and remove inner vertical scrollbar from the table. Rows will then be displayed according to the "
+      },
+      {
+        "text": "topIndex",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "visibleCount",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=%40epam%2Fuui-core%3ADataTableState&mode=doc&category=%40epam%2Fuui-core&theme=loveship",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "DataTableState"
+          }
+        ]
+      },
+      {
+        "text": " values."
+      }
+    ]
+  },
+  {
+    "type": "note-error",
+    "children": [
+      {
+        "text": "Note: A table without virtualization could cause performance issues since all rows will be rendered at once in the DOM. Use this for simple cases where not many rows need to be rendered.\n\nAlso, some DataTable features, like "
+      },
+      {
+        "text": "sticky header",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ", "
+      },
+      {
+        "text": "pinned rows",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ", and "
+      },
+      {
+        "text": "scroll to row",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": ", will not work with disabled virtualization."
+      }
+    ]
+  }
+]
