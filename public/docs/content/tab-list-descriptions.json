@@ -1,9 +1,10 @@
 [
   {
     "type": "paragraph",
+    "data": {},
     "children": [
       {
-        "text": "A wrapper around "
+        "text": "A wrapper around  "
       },
       {
         "type": "link",
@@ -16,35 +17,7 @@
         ]
       },
       {
-        "text": " or "
-      },
-      {
-        "type": "link",
-        "url": "http://localhost:3793/documents?id=verticalTabButton&mode=doc&category=components",
-        "target": "_blank",
-        "children": [
-          {
-            "text": "VerticalTabButton"
-          }
-        ]
-      },
-      {
-        "text": " (depending on "
-      },
-      {
-        "text": "direction",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": " property) with accessible keyboard navigation."
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "children": [
-      {
-        "text": "This component implements "
+        "text": ". This component implements "
       },
       {
         "text": "tablist",
@@ -64,6 +37,7 @@
   },
   {
     "type": "paragraph",
+    "data": {},
     "children": [
       {
         "text": "Learn more about tabs pattern "

@@ -1,0 +1,11 @@
+{
+    "id": "tabList",
+    "name": "Tab List",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "tab-list-descriptions" },
+        { "name": "Basic", "componentPath": "tabList/Basic.example.tsx" },
+        { "name": "Tabs with links", "componentPath": "tabList/TabsWithLinks.example.tsx" },
+        { "name": "Additional elements", "componentPath": "tabList/AdditionalElements.example.tsx" }
+    ]
+}
