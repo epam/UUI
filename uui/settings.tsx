@@ -947,10 +947,12 @@ const tabButtonSettings: TabButtonSettings = {
 interface VerticalTabButtonIcons {
     clearIcon: Icon;
     foldingIcon: Icon;
+    dropdownIcon: Icon;
 }
 
 interface VerticalTabButtonSizes {
     default: VerticalTabButtonProps<unknown, unknown>['size'];
+    countIndicatorMap: Sizes<VerticalTabButtonProps<unknown, unknown>['size'], CountIndicatorProps['size']>;
 }
 
 interface VerticalTabButtonSettings {
@@ -963,9 +965,15 @@ const verticalTabButtonSettings: VerticalTabButtonSettings = {
     icons: {
         clearIcon: CrossIcon,
         foldingIcon: DropdownIcon,
+        dropdownIcon: DropdownIcon,
     },
     sizes: {
         default: '48',
+        countIndicatorMap: {
+            30: '18',
+            36: '18',
+            48: '18',
+        },
     },
     weight: 'semibold',
 };
