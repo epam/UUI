@@ -1,12 +1,12 @@
 import * as React from 'react';
 import css from './ReleaseNotesDoc.module.scss';
-import { svc } from '../../services';
+import { svc } from '../../../services';
 import {
     FlexCell, FlexRow, RichTextView, Spinner, Text,
 } from '@epam/uui';
-import { UuiReactMarkdown } from '../../documents/uuiReactMarkdown';
-import { uuiDayjs } from '../../helpers/dayJsHelper';
-import { ContentSection } from '../../common';
+import { UuiReactMarkdown } from '../../../documents/uuiReactMarkdown';
+import { uuiDayjs } from '../../../helpers/dayJsHelper';
+import { ContentSection } from '../../../common';
 
 interface ReleaseInfo {
     date: string;

@@ -4,7 +4,7 @@ import {
     Button, FlexRow, IconContainer, LinkButton, RichTextView, Text,
 } from '@epam/uui';
 import { ReactComponent as AddIcon } from '@epam/assets/icons/common/action-add-24.svg';
-import { ContentSection } from '../../common';
+import { ContentSection } from '../../../common';
 
 export const team = [
     {

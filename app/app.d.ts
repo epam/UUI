@@ -23,9 +23,3 @@ declare module 'react-breakpoints';
 declare module 'react-broadcast';
 declare module '@braintree/sanitize-url';
 declare module 'htmlclean';
-declare module 'uui-doc-pages/*' {
-    import { DocItem } from '@epam/uui-docs';
-
-    const content: DocItem;
-    export default content;
-}

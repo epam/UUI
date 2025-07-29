@@ -1,8 +1,8 @@
 import {
     TOKENS_DOC_CONFIG,
 } from './TokensPageConfig';
-import { useThemeTokens } from '../../../sandbox/tokens/palette/hooks/useThemeTokens/useThemeTokens';
-import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../../sandbox/tokens/palette/types/types';
+import { useThemeTokens } from '../../../../sandbox/tokens/palette/hooks/useThemeTokens/useThemeTokens';
+import { IThemeVarUI, TLoadThemeTokensParams, TThemeTokenValueType } from '../../../../sandbox/tokens/palette/types/types';
 import { isGroupCfgWithSubgroups, ITokensDocGroup, ITokensDocItem, TTokensDocGroupCfg, TTokensDocItemCfg } from './types';
 import { ThemeId } from '@epam/uui-docs';
 
