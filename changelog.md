@@ -2,13 +2,14 @@
 **What's New**
 * remove support of deprecated `draft-rte`
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
+* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
+* [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [PresetsPanel]:
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
     * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
       **What's New**
 * [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. Removed `Burger`, `renderBurger` prop, use `Burger` component instead. Removed `alwaysShowBurger` prop, use `Burger` component in items with `collapsedContainer: true/false` option. Removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. Removed `MainMenuDropdown` prop, use `MainMenuDropdown` as a component for 'More' container in items, see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components&theme=loveship#examples-mainMenu-Responsive)
-* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
 
   ```tsx
   // before
@@ -51,6 +52,7 @@
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
 * [PickerInput]: fixed incorrect selection state in modal for single selection mode
+* Set green background color in "Fresh Light 4px" skin only for picker input rows with `aria-selected="true"` instead of all elements with such selector ([#2857](https://github.com/epam/UUI/pull/2857))
 
 # 6.1.4 - 17.06.2025
 
