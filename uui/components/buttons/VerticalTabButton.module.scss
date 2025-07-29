@@ -97,6 +97,7 @@
         background-color: var(--uui-vertical_tab_btn-bg-active);
     }
 
+    // Disabled state with proper hover effect separation between click and folding areas
     &:global(.uui-disabled):is(&, :hover, :global(.uui-active), :global(.uui-active):hover),
     &:global(.uui-disabled):not(.onlyFoldable):hover:not(:has(.foldingArea:hover)),
     &:global(.uui-disabled).onlyFoldable:hover,
@@ -107,6 +108,7 @@
         background-color: var(--uui-vertical_tab_btn-bg);
     }
 
+    // Disabled state for folding area specifically
     &:global(.uui-disabled) :is(.foldingArea, .foldingArea:hover),
     &:global(.uui-disabled).onlyFoldable:hover .foldingArea,
     &:global(.uui-disabled):not(.onlyFoldable) .foldingArea:hover {

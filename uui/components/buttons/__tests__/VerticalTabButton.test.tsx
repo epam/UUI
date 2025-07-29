@@ -17,6 +17,7 @@ describe('VerticalTabButton', () => {
                 isDisabled={ false }
                 withNotify={ true }
                 caption="Test"
+                isActive={ true }
             />,
         );
         expect(tree).toMatchSnapshot();

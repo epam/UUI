@@ -34,6 +34,7 @@ function TestTreeComponent(props: { renderRow?: TreeProps<TestTreeItem, string>[
             value={ value }
             onValueChange={ setValue }
             renderRow={ props.renderRow }
+            getCaption={ (item) => item.name }
         />
     );
 }
