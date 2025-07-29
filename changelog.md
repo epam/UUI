@@ -50,6 +50,8 @@
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
 * [PickerInput]: fixed incorrect selection state in modal for single selection mode
+* [PickerInput]: disabled highlighting search results for row subtitle.
+* [PickerInput]: change color of subtitle text from --uui-text-secondary to --uui-text-tertiary
 
 # 6.1.4 - 17.06.2025
 
