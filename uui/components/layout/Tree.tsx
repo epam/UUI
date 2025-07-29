@@ -32,17 +32,16 @@ export interface TreeProps<TItem, TId> extends IHasCX {
     /**
      * DataSourceState state
      */
-    value?: DataSourceState;
+    value: DataSourceState;
     /**
      * Callback to handle changes in DataSourceState.
-     * If not provided, the component will be read-only.
      */
-    onValueChange?: React.Dispatch<React.SetStateAction<DataSourceState<Record<string, any>, any>>>;
+    onValueChange: React.Dispatch<React.SetStateAction<DataSourceState<Record<string, any>, any>>>;
     /**
-     * Optional function to get the caption for each item.
+     * Function to get the caption for each item.
      * @param item
      */
-    getCaption?: (item: TItem) => string;
+    getCaption: (item: TItem) => string;
     /**
      * Optional function to render additional elements in the row.
      * @param row
@@ -53,7 +52,7 @@ export interface TreeProps<TItem, TId> extends IHasCX {
 function TreeRowRenderer<TItem, TId = string>(props: {
     row: DataRowProps<TItem, TId>;
     size: '30' | '36' | '48';
-    getCaption?: (item: TItem) => string;
+    getCaption: (item: TItem) => string;
     renderAddons?: (row: DataRowProps<TItem, TId>) => React.ReactNode;
 }) {
     const { row, size } = props;
@@ -67,10 +66,7 @@ function TreeRowRenderer<TItem, TId = string>(props: {
     const renderAddons = React.useCallback(() => props.renderAddons && props.renderAddons(row), [props.renderAddons, row]);
     const isActive = row.isSelected;
     const getCaption = React.useCallback((value: TItem): string => {
-        if (props.getCaption) {
-            return props.getCaption(value);
-        }
-        return (value as TItem & { name: string }).name || '';
+        return props.getCaption(value);
     }, [props.getCaption]);
 
     return (

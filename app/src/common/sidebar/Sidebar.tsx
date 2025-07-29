@@ -85,6 +85,7 @@ export function Sidebar(props: SidebarProps<DocItem>) {
                     onValueChange={ setValue }
                     view={ view }
                     size="36"
+                    getCaption={ (item) => item.name }
                 />
             </div>
         </aside>

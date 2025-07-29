@@ -50,6 +50,7 @@ export default function BasicTreeExample() {
                 size="36"
                 value={ value }
                 onValueChange={ setValue }
+                getCaption={ (item) => item.name }
             />
         </Panel>
     );
