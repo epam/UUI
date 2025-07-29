@@ -57,7 +57,7 @@ const topExploreBlocks: IExploreTopBlockItem[] = [
             <br />
             Allows deep customization to build your own brand UI components set on top
         </span>,
-        footer: { linkCaption: 'Open Guide', href: '/documents?id=overviewThemes&mode=doc&category=themes' },
+        footer: { linkCaption: 'Open Guide', href: '/documents?id=themingOverview&mode=doc&category=themes' },
     },
 ];
 
