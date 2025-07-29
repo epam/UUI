@@ -5,7 +5,7 @@
     "examples": [
         { "descriptionPath": "tab-list-descriptions" },
         { "name": "Basic", "componentPath": "tabList/Basic.example.tsx" },
-        { "name": "Tabs with links", "componentPath": "tabList/TabsWithLinks.example.tsx" },
-        { "name": "Additional elements", "componentPath": "tabList/AdditionalElements.example.tsx" }
+        { "name": "With tab panel", "componentPath": "tabList/TabPanel.example.tsx" },
+        { "name": "With additional elements", "componentPath": "tabList/AdditionalElements.example.tsx" }
     ]
 }

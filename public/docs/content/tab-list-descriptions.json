@@ -17,6 +17,19 @@
         ]
       },
       {
+        "text": ", that implements accessible navigation according to the "
+      },
+      {
+        "type": "link",
+        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-manual/",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "tabs pattern"
+          }
+        ]
+      },
+      {
         "text": ". This component implements "
       },
       {
@@ -32,28 +45,6 @@
       },
       {
         "text": " themselves, since use-cases may vary in different projects."
-      }
-    ]
-  },
-  {
-    "type": "paragraph",
-    "data": {},
-    "children": [
-      {
-        "text": "Learn more about tabs pattern "
-      },
-      {
-        "type": "link",
-        "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/examples/tabs-manual/",
-        "target": "_blank",
-        "children": [
-          {
-            "text": "here"
-          }
-        ]
-      },
-      {
-        "text": "."
       }
     ]
   }
