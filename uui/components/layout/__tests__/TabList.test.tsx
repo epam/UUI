@@ -1,14 +1,5 @@
-import {
-    renderWithContextAsync,
-    screen,
-    userEvent,
-    within,
-} from '@epam/uui-test-utils';
-
-import {
-    type TabListItemProps,
-    TabList,
-} from '../TabList';
+import { renderWithContextAsync, screen, userEvent, within } from '@epam/uui-test-utils';
+import { type TabListItemProps, TabList } from '../TabList';
 
 const tab1: TabListItemProps = {
     id: 'tab-1',
@@ -128,12 +119,7 @@ describe('focus managements', () => {
             />,
         );
 
-        const tab = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const tab = screen.getByRole('tab', { name: /tab 1/i });
         // Focus is initially on `body`.
         expect(tab).not.toHaveFocus();
 
@@ -151,21 +137,11 @@ describe('focus managements', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 2/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{Home}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabNext = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabNext).toHaveFocus();
     });
 
@@ -179,21 +155,11 @@ describe('focus managements', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 2/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{End}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 3/i,
-            },
-        );
+        const activeTabNext = screen.getByRole('tab', { name: /tab 3/i });
         expect(activeTabNext).toHaveFocus();
     });
 
@@ -207,21 +173,11 @@ describe('focus managements', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 2/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 3/i,
-            },
-        );
+        const activeTabNext = screen.getByRole('tab', { name: /tab 3/i });
         expect(activeTabNext).toHaveFocus();
     });
 
@@ -235,21 +191,11 @@ describe('focus managements', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 2/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowLeft}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabNext = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabNext).toHaveFocus();
     });
 
@@ -263,21 +209,11 @@ describe('focus managements', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 3/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 3/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabNext = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabNext).toHaveFocus();
     });
 
@@ -291,21 +227,11 @@ describe('focus managements', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowLeft}');
-        const activeTabNext = screen.getByRole(
-            'tab',
-            {
-                name: /tab 3/i,
-            },
-        );
+        const activeTabNext = screen.getByRole('tab', { name: /tab 3/i });
         expect(activeTabNext).toHaveFocus();
     });
 
@@ -329,12 +255,7 @@ describe('focus managements', () => {
 
         await userEvent.tab();
         await userEvent.keyboard('{ArrowRight}');
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 2/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 2/i });
         expect(activeTabCurrent).toHaveFocus();
         expect(onKeyDown).toBeCalled();
     });
@@ -363,12 +284,7 @@ describe('tab activation', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
@@ -400,12 +316,7 @@ describe('tab activation', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
@@ -451,12 +362,7 @@ describe('tab activation', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');
@@ -502,12 +408,7 @@ describe('tab activation', () => {
         );
 
         await userEvent.tab();
-        const activeTabCurrent = screen.getByRole(
-            'tab',
-            {
-                name: /tab 1/i,
-            },
-        );
+        const activeTabCurrent = screen.getByRole('tab', { name: /tab 1/i });
         expect(activeTabCurrent).toHaveFocus();
 
         await userEvent.keyboard('{ArrowRight}');

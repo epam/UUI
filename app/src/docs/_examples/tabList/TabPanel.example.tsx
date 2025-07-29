@@ -1,14 +1,5 @@
-import {
-    FlexCell,
-    LinkButton,
-    TabList,
-    Text,
-} from '@epam/uui';
-import React, {
-    type ReactNode,
-    type PropsWithChildren,
-    useState,
-} from 'react';
+import { FlexCell, LinkButton, TabList, Text } from '@epam/uui';
+import React, { type ReactNode, type PropsWithChildren, useState } from 'react';
 
 import css from './TabPanel.module.scss';
 

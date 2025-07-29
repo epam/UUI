@@ -1,28 +1,11 @@
-import {
-    type IControlled,
-} from '@epam/uui-core';
-import React, {
-    forwardRef,
-    type KeyboardEvent,
-    type KeyboardEventHandler,
-    ForwardedRef,
-} from 'react';
-
-import {
-    TabButton,
-    TabButtonProps,
-} from '../buttons/TabButton';
-import {
-    FlexRow,
-    FlexRowProps,
-} from './FlexItems';
+import { type IControlled } from '@epam/uui-core';
+import React, { forwardRef, type KeyboardEvent, type KeyboardEventHandler, ForwardedRef } from 'react';
+import { TabButton, TabButtonProps } from '../buttons/TabButton';
+import { FlexRow, FlexRowProps } from './FlexItems';
 
 type TabId = string;
 
-type TabElement =
-    | HTMLButtonElement
-    | HTMLAnchorElement
-    | HTMLSpanElement;
+type TabElement = | HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement;
 
 export type TabListItemProps = TabButtonProps & {
     /** Ref to the tab button. */
@@ -31,165 +14,139 @@ export type TabListItemProps = TabButtonProps & {
     id: TabId;
 };
 
-export interface TabListProps extends
-    IControlled<TabId>,
-    FlexRowProps {
+export interface TabListProps extends IControlled<TabId>, FlexRowProps {
     /** `TabButton` props with required `id` field. */
     items: Array<TabListItemProps>;
 }
 
-export const TabList = forwardRef<HTMLDivElement, TabListProps>(
-    (
-        {
-            items,
-            value,
-            onValueChange,
-            borderBottom = true,
-            rawProps,
-            ...otherProps
-        },
-        ref,
-    ) => {
-        if (items.length === 0) {
-            return null;
-        }
+export const TabList = forwardRef<HTMLDivElement, TabListProps>((props, ref) => {
+    const { items, value, onValueChange, borderBottom = true, rawProps, ...otherProps } = props;
 
-        const tabLastIndex = items.length - 1;
+    if (items.length === 0) {
+        return null;
+    }
 
-        const getTabCurrentIndex = (tabIdCurrent: TabId): number => {
-            return items.findIndex((tabProps) => {
-                return tabProps.id === tabIdCurrent;
-            });
-        };
+    const tabLastIndex = items.length - 1;
 
-        const moveToTabWithIndex = (tabIndex: number): void => {
-            /*
-                `id`-s provided in `items` are assigned to the tabs.
-                Unless users manually broke this connection,
-                the index calculation will be correct,
-                and the tab element will be present in the DOM.
-            */
-            const tab = items.at(tabIndex)!;
-            const tabElement = document.getElementById(tab.id)!;
+    const getTabCurrentIndex = (tabIdCurrent: TabId): number => {
+        return items.findIndex((tabProps) => {
+            return tabProps.id === tabIdCurrent;
+        });
+    };
 
-            tabElement.focus();
-        };
+    const moveToTabWithIndex = (tabIndex: number): void => {
+        /*
+            `id`-s provided in `items` are assigned to the tabs.
+            Unless users manually broke this connection,
+            the index calculation will be correct,
+            and the tab element will be present in the DOM.
+        */
+        const tab = items.at(tabIndex)!;
+        const tabElement = document.getElementById(tab.id)!;
 
-        const moveToPreviousTab = (tabIdCurrent: TabId): void => {
-            const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
+        tabElement.focus();
+    };
 
-            const tabIndexNext = tabCurrentIndex === 0
-                ? tabLastIndex
-                : tabCurrentIndex - 1;
+    const moveToPreviousTab = (tabIdCurrent: TabId): void => {
+        const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
 
-            moveToTabWithIndex(tabIndexNext);
-        };
+        const tabIndexNext = tabCurrentIndex === 0 ? tabLastIndex : tabCurrentIndex - 1;
 
-        const moveToNextTab = (tabIdCurrent: TabId): void => {
-            const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
+        moveToTabWithIndex(tabIndexNext);
+    };
 
-            const tabIndexNext = tabCurrentIndex === tabLastIndex
-                ? 0
-                : tabCurrentIndex + 1;
+    const moveToNextTab = (tabIdCurrent: TabId): void => {
+        const tabCurrentIndex = getTabCurrentIndex(tabIdCurrent);
 
-            moveToTabWithIndex(tabIndexNext);
-        };
+        const tabIndexNext = tabCurrentIndex === tabLastIndex ? 0 : tabCurrentIndex + 1;
 
-        const onKeyDown: KeyboardEventHandler = (event) => {
-            const focusedTabIdCurrent = (event.target as TabElement).id;
+        moveToTabWithIndex(tabIndexNext);
+    };
 
-            // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
-            switch (event.code) {
-                case 'ArrowLeft': {
-                    moveToPreviousTab(focusedTabIdCurrent);
+    const onKeyDown: KeyboardEventHandler = (event) => {
+        const focusedTabIdCurrent = (event.target as TabElement).id;
 
-                    break;
-                }
+        // https://www.w3.org/WAI/ARIA/apg/patterns/tabs/#keyboardinteraction
+        switch (event.code) {
+            case 'ArrowLeft': {
+                moveToPreviousTab(focusedTabIdCurrent);
 
-                case 'ArrowRight': {
-                    moveToNextTab(focusedTabIdCurrent);
-
-                    break;
-                }
-
-                case 'Home': {
-                    moveToTabWithIndex(0);
-
-                    break;
-                }
-
-                case 'End': {
-                    moveToTabWithIndex(tabLastIndex);
-
-                    break;
-                }
-
-                default: {
-                    break;
-                }
+                break;
             }
-        };
 
-        return (
-            <FlexRow
-                ref={ ref }
-                borderBottom={ borderBottom }
-                rawProps={ {
-                    role: 'tablist',
-                    'aria-orientation': 'horizontal',
-                    ...rawProps,
-                } }
-                { ...otherProps }
-            >
-                {
-                    items.map((tabProps) => {
-                        const {
-                            id,
-                        } = tabProps;
+            case 'ArrowRight': {
+                moveToNextTab(focusedTabIdCurrent);
 
-                        const handleOnClick = (): void => {
-                            onValueChange(id);
+                break;
+            }
 
-                            tabProps.onClick?.();
-                        };
+            case 'Home': {
+                moveToTabWithIndex(0);
 
-                        type OnKeyDownEvent =
-                            & KeyboardEvent<HTMLAnchorElement>
-                            & KeyboardEvent<HTMLButtonElement>
-                            & KeyboardEvent<HTMLSpanElement>;
+                break;
+            }
 
-                        const handleOnKeyDown = (event: OnKeyDownEvent): void => {
-                            onKeyDown(event);
+            case 'End': {
+                moveToTabWithIndex(tabLastIndex);
 
-                            tabProps.rawProps?.onKeyDown?.(event);
-                        };
+                break;
+            }
 
-                        const isLinkActive = id === value;
+            default: {
+                break;
+            }
+        }
+    };
 
-                        const tabIndex = isLinkActive
-                            ? undefined
-                            : -1;
+    return (
+        <FlexRow
+            ref={ ref }
+            borderBottom={ borderBottom }
+            rawProps={ {
+                role: 'tablist',
+                'aria-orientation': 'horizontal',
+                ...rawProps,
+            } }
+            { ...otherProps }
+        >
+            {
+                items.map((tabProps) => {
+                    const { id } = tabProps;
 
-                        return (
-                            <TabButton
-                                key={ id }
-                                isLinkActive={ isLinkActive }
-                                tabIndex={ tabIndex }
-                                { ...tabProps }
-                                onClick={ handleOnClick }
-                                rawProps={ {
-                                    id,
-                                    'aria-selected': isLinkActive,
-                                    ...tabProps.rawProps,
-                                    onKeyDown: handleOnKeyDown,
-                                } }
-                            />
-                        );
-                    })
-                }
-            </FlexRow>
-        );
-    },
-);
+                    const handleOnClick = (): void => {
+                        onValueChange(id);
+
+                        tabProps.onClick?.();
+                    };
+
+                    const handleOnKeyDown = (event: KeyboardEvent<HTMLAnchorElement> & KeyboardEvent<HTMLButtonElement> & KeyboardEvent<HTMLSpanElement>): void => {
+                        onKeyDown(event);
+
+                        tabProps.rawProps?.onKeyDown?.(event);
+                    };
+
+                    const isLinkActive = id === value;
+                    const tabIndex = isLinkActive ? undefined : -1;
+
+                    return (
+                        <TabButton
+                            key={ id }
+                            isLinkActive={ isLinkActive }
+                            tabIndex={ tabIndex }
+                            { ...tabProps }
+                            onClick={ handleOnClick }
+                            rawProps={ {
+                                id,
+                                'aria-selected': isLinkActive,
+                                ...tabProps.rawProps,
+                                onKeyDown: handleOnKeyDown,
+                            } }
+                        />
+                    );
+                })
+            }
+        </FlexRow>
+    );
+});
 
 TabList.displayName = 'TabList';
