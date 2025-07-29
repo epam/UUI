@@ -46,12 +46,7 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.tabButton.icons.dropdownIcon;
     const ClearIcon = props.clearIcon ? props.clearIcon : settings.tabButton.icons.clearIcon;
 
-    type OnKeyDownEvent =
-        & React.KeyboardEvent<HTMLAnchorElement>
-        & React.KeyboardEvent<HTMLButtonElement>
-        & React.KeyboardEvent<HTMLSpanElement>;
-
-    const handleOnKeyDown = (event: OnKeyDownEvent): void => {
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement> & React.KeyboardEvent<HTMLButtonElement> & React.KeyboardEvent<HTMLSpanElement>): void => {
         props.rawProps?.onKeyDown?.(event);
 
         const isLink = (
