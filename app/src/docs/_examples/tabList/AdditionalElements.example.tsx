@@ -2,91 +2,17 @@ import {
     Avatar,
     FlexCell,
     FlexRow,
-    LinkButton,
     SearchInput,
     TabList,
-    Text,
 } from '@epam/uui';
 import React, {
     type ReactNode,
-    type PropsWithChildren,
     useState,
 } from 'react';
 
-import css from './TabPanel.module.scss';
-
-const getTabpanelId = (tabId: string): string => {
-    return `tabpanel-${tabId}`;
-};
-
-interface TabPanelProps {
-    tabId: string;
-}
-
-function TabPanel({
-    tabId,
-    children,
-}: PropsWithChildren<TabPanelProps>): ReactNode {
-    return (
-        <div
-            className={ css.tabPanel }
-            id={ getTabpanelId(tabId) }
-            role="tabpanel"
-            aria-labelledby={ tabId }
-        >
-            {children}
-        </div>
-    );
-}
-
 export default function AdditionalElementsTabListExample(): ReactNode {
-    const [tabId, setTabId] = useState<string>('tab-additional-elements-1');
+    const [tabId, setTabId] = useState<string>('additional-elements-tab-1');
     const [search, setSearch] = useState('');
-
-    const renderTabPanel = (): ReactNode => {
-        if (tabId === 'tab-additional-elements-1') {
-            return (
-                <TabPanel
-                    tabId={ tabId }
-                >
-                    <Text>
-                        Tab 1 content
-                    </Text>
-                </TabPanel>
-            );
-        }
-
-        if (tabId === 'tab-additional-elements-2') {
-            return (
-                <TabPanel
-                    tabId={ tabId }
-                >
-                    <Text>
-                        Tab 2 content
-                    </Text>
-                </TabPanel>
-            );
-        }
-
-        if (tabId === 'tab-additional-elements-3') {
-            return (
-                <TabPanel
-                    tabId={ tabId }
-                >
-                    <LinkButton
-                        caption="Google"
-                        href="https://google.com"
-                    />
-
-                    <Text>
-                        Tab 3 content
-                    </Text>
-                </TabPanel>
-            );
-        }
-
-        return null;
-    };
 
     return (
         <FlexCell
@@ -106,32 +32,23 @@ export default function AdditionalElementsTabListExample(): ReactNode {
                 <TabList
                     items={ [
                         {
-                            id: 'tab-additional-elements-1',
+                            id: 'additional-elements-tab-1',
                             caption: 'Tab 1',
-                            rawProps: {
-                                'aria-controls': getTabpanelId('tab-additional-elements-1'),
-                            },
                         },
                         {
-                            id: 'tab-additional-elements-2',
+                            id: 'additional-elements-tab-2',
                             caption: 'Tab 2',
-                            rawProps: {
-                                'aria-controls': getTabpanelId('tab-additional-elements-2'),
-                            },
                         },
                         {
-                            id: 'tab-additional-elements-3',
+                            id: 'additional-elements-tab-3',
                             caption: 'Tab 3',
-                            rawProps: {
-                                'aria-controls': getTabpanelId('tab-additional-elements-3'),
-                            },
                         },
                     ] }
                     value={ tabId }
                     onValueChange={ setTabId }
                     borderBottom={ false }
                     rawProps={ {
-                        'aria-label': 'Additional elements tab list example',
+                        'aria-label': 'Example of a tab list with additional elements',
                     } }
                 />
 
@@ -145,8 +62,6 @@ export default function AdditionalElementsTabListExample(): ReactNode {
                     />
                 </FlexCell>
             </FlexRow>
-
-            {renderTabPanel()}
         </FlexCell>
     );
 }

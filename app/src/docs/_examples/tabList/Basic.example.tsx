@@ -1,88 +1,14 @@
 import {
     FlexCell,
-    LinkButton,
     TabList,
-    Text,
 } from '@epam/uui';
 import React, {
     type ReactNode,
-    type PropsWithChildren,
     useState,
 } from 'react';
 
-import css from './TabPanel.module.scss';
-
-const getTabpanelId = (tabId: string): string => {
-    return `tabpanel-${tabId}`;
-};
-
-interface TabPanelProps {
-    tabId: string;
-}
-
-function TabPanel({
-    tabId,
-    children,
-}: PropsWithChildren<TabPanelProps>): ReactNode {
-    return (
-        <div
-            className={ css.tabPanel }
-            id={ getTabpanelId(tabId) }
-            role="tabpanel"
-            aria-labelledby={ tabId }
-        >
-            {children}
-        </div>
-    );
-}
-
 export default function BasicTabListExample(): ReactNode {
-    const [tabId, setTabId] = useState<string>('tab-1');
-
-    const renderTabPanel = (): ReactNode => {
-        if (tabId === 'tab-1') {
-            return (
-                <TabPanel
-                    tabId={ tabId }
-                >
-                    <Text>
-                        Tab 1 content
-                    </Text>
-                </TabPanel>
-            );
-        }
-
-        if (tabId === 'tab-2') {
-            return (
-                <TabPanel
-                    tabId={ tabId }
-                >
-                    <Text>
-                        Tab 2 content
-                    </Text>
-                </TabPanel>
-            );
-        }
-
-        if (tabId === 'tab-3') {
-            return (
-                <TabPanel
-                    tabId={ tabId }
-                >
-                    <LinkButton
-                        caption="Google"
-                        href="https://google.com"
-                    />
-
-                    <Text>
-                        Tab 3 content
-                    </Text>
-                </TabPanel>
-            );
-        }
-
-        return null;
-    };
+    const [tabId, setTabId] = useState<string>('basic-tab-1');
 
     return (
         <FlexCell
@@ -91,35 +17,24 @@ export default function BasicTabListExample(): ReactNode {
             <TabList
                 items={ [
                     {
-                        id: 'tab-1',
+                        id: 'basic-tab-1',
                         caption: 'Tab 1',
-                        rawProps: {
-                            'aria-controls': getTabpanelId('tab-1'),
-                        },
                     },
                     {
-                        id: 'tab-2',
+                        id: 'basic-tab-2',
                         caption: 'Tab 2',
-                        rawProps: {
-                            'aria-controls': getTabpanelId('tab-2'),
-                        },
                     },
                     {
-                        id: 'tab-3',
+                        id: 'basic-tab-3',
                         caption: 'Tab 3',
-                        rawProps: {
-                            'aria-controls': getTabpanelId('tab-3'),
-                        },
                     },
                 ] }
                 value={ tabId }
                 onValueChange={ setTabId }
                 rawProps={ {
-                    'aria-label': 'Horizontal tab list example',
+                    'aria-label': 'Basic tab list example',
                 } }
             />
-
-            {renderTabPanel()}
         </FlexCell>
     );
 }

@@ -7,10 +7,10 @@ import {
 import React, {
     type ReactNode,
     type PropsWithChildren,
+    useState,
 } from 'react';
 
 import css from './TabPanel.module.scss';
-import { useSearchParams } from 'react-router-dom';
 
 const getTabpanelId = (tabId: string): string => {
     return `tabpanel-${tabId}`;
@@ -36,15 +36,11 @@ function TabPanel({
     );
 }
 
-export default function TabsWithLinksTabListExample(): ReactNode {
-    const [searchParams] = useSearchParams();
-    const tabId = (
-        searchParams.get('tabId')
-        ?? 'tab-with-links-1'
-    );
+export default function TabPanelTabListExample(): ReactNode {
+    const [tabId, setTabId] = useState<string>('tab-panel-tab-1');
 
     const renderTabPanel = (): ReactNode => {
-        if (tabId === 'tab-with-links-1') {
+        if (tabId === 'tab-panel-tab-1') {
             return (
                 <TabPanel
                     tabId={ tabId }
@@ -56,7 +52,7 @@ export default function TabsWithLinksTabListExample(): ReactNode {
             );
         }
 
-        if (tabId === 'tab-with-links-2') {
+        if (tabId === 'tab-panel-tab-2') {
             return (
                 <TabPanel
                     tabId={ tabId }
@@ -68,7 +64,7 @@ export default function TabsWithLinksTabListExample(): ReactNode {
             );
         }
 
-        if (tabId === 'tab-with-links-3') {
+        if (tabId === 'tab-panel-tab-3') {
             return (
                 <TabPanel
                     tabId={ tabId }
@@ -95,58 +91,31 @@ export default function TabsWithLinksTabListExample(): ReactNode {
             <TabList
                 items={ [
                     {
-                        id: 'tab-with-links-1',
+                        id: 'tab-panel-tab-1',
                         caption: 'Tab 1',
-                        link: {
-                            pathname: '/documents',
-                            query: {
-                                id: 'tabList',
-                                mode: 'doc',
-                                category: 'components',
-                                tabId: 'tab-with-links-1',
-                            },
-                        },
                         rawProps: {
-                            'aria-controls': getTabpanelId('tab-with-links-1'),
+                            'aria-controls': getTabpanelId('tab-panel-tab-1'),
                         },
                     },
                     {
-                        id: 'tab-with-links-2',
+                        id: 'tab-panel-tab-2',
                         caption: 'Tab 2',
-                        link: {
-                            pathname: '/documents',
-                            query: {
-                                id: 'tabList',
-                                mode: 'doc',
-                                category: 'components',
-                                tabId: 'tab-with-links-2',
-                            },
-                        },
                         rawProps: {
-                            'aria-controls': getTabpanelId('tab-with-links-2'),
+                            'aria-controls': getTabpanelId('tab-panel-tab-2'),
                         },
                     },
                     {
-                        id: 'tab-with-links-3',
+                        id: 'tab-panel-tab-3',
                         caption: 'Tab 3',
-                        link: {
-                            pathname: '/documents',
-                            query: {
-                                id: 'tabList',
-                                mode: 'doc',
-                                category: 'components',
-                                tabId: 'tab-with-links-3',
-                            },
-                        },
                         rawProps: {
-                            'aria-controls': getTabpanelId('tab-with-links-3'),
+                            'aria-controls': getTabpanelId('tab-panel-tab-3'),
                         },
                     },
                 ] }
                 value={ tabId }
-                onValueChange={ () => {} }
+                onValueChange={ setTabId }
                 rawProps={ {
-                    'aria-label': 'Tab list with links example',
+                    'aria-label': 'Example of a tab list with tab panel',
                 } }
             />
 
