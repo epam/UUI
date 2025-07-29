@@ -3,7 +3,6 @@ export * from './Accordion';
 export * from './LabeledInput';
 export * from './IconContainer';
 export * from './ControlGroup';
-export * from './Tree';
 export * from './Blocker';
 export * from './ScrollBars';
 export * from '../adaptivePanel/AdaptivePanel';

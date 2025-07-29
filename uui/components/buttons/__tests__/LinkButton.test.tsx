@@ -17,6 +17,7 @@ describe('LinkButton', () => {
                 isDisabled={ false }
                 isDropdown
                 size="30"
+                isActive={ true }
             />,
         );
         expect(tree).toMatchSnapshot();
