@@ -1,0 +1,11 @@
+{
+    "id": "rteSerializers",
+    "name": "Serializers",
+    "parentId": "richTextEditor",
+    "examples": [
+        { "name": "MD format", "componentPath": "richTextEditor/MdSerialization.example.tsx" },
+        { "name": "HTML format", "componentPath": "richTextEditor/HtmlSerialization.example.tsx" }
+    ],
+    "order": 2,
+    "tags": ["RTE", "RichTextEditor"]
+}

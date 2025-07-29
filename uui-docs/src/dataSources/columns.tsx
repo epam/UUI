@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataColumnProps } from '@epam/uui-core';
-import { DataTableCell, TextInput, Text } from '@epam/promo';
+import { DataTableCell, TextInput, Text } from '@epam/loveship';
 
 export const dataSourceColumns: DataColumnProps<{ name: string }, number, any>[] = [
     {

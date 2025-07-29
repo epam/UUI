@@ -1,7 +1,7 @@
 import { IThemeVarUI, IThemeVarUIError, TThemeVarUiErr } from '../types/types';
-import { BuiltInTheme, ThemeId } from '../../../../data';
 import { TFigmaThemeName, TVarType } from '../types/sharedTypes';
 import { normalizeColor } from './colorUtils';
+import { BuiltInTheme, ThemeId } from '@epam/uui-docs';
 
 /**
  * The Figma theme names (i.e. the values) are hardcoded here.

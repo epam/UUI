@@ -1,0 +1,28 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "PresetsPanel",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " component displays a copy link button by default, which copies a URL to the current preset and shows a notification. You can provide a custom "
+      },
+      {
+        "text": "onCopyLink",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function to override the default behavior (for example, to generate a different URL or add extra logic). If you do not want the copy link button to appear at all, pass "
+      },
+      {
+        "text": "onCopyLink={null}",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": ". See the example below for usage."
+      }
+    ]
+  }
+]

@@ -1,22 +1,32 @@
 import { IAnalyticsListener, AnalyticsEvent } from '@epam/uui-core';
-import amplitude from 'amplitude-js';
+import * as amplitude from '@amplitude/analytics-browser';
+import { BrowserClient } from '@amplitude/analytics-core';
 
 export class AmplitudeListener implements IAnalyticsListener {
     public ampCode: string;
-    public client: amplitude.AmplitudeClient;
+    public client: BrowserClient;
     constructor(ampCode: string) {
         this.ampCode = ampCode;
         this.client = this.getAmplitudeClient();
     }
 
-    private getAmplitudeClient(): amplitude.AmplitudeClient {
-        const ampclient = amplitude.getInstance();
-        ampclient.init(this.ampCode, undefined, { includeReferrer: true, includeUtm: true, saveParamsReferrerOncePerSession: false });
-        return ampclient;
+    private getAmplitudeClient(): BrowserClient {
+        const ampClient = amplitude.createInstance();
+
+        ampClient.init(this.ampCode, undefined, {
+            cookieOptions: { domain: 'uui.epam.com' },
+        });
+
+        return ampClient;
+    }
+
+    private hasConsent(): boolean {
+        const dataLayer = (window as any).dataLayer ?? [];
+        return dataLayer.length === 0 ? false : dataLayer.some((item: any) => item.event === 'OneTrustLoaded' && item.OnetrustActiveGroups?.includes('C0002'));
     }
 
     public sendEvent(event: AnalyticsEvent, parameters: Omit<AnalyticsEvent, 'name'>, eventType: string) {
-        if (eventType !== 'event') return;
-        this.client.logEvent(event.name, parameters);
+        if (!this.hasConsent() || eventType !== 'event') return;
+        this.client.track(event.name, parameters);
     }
 }

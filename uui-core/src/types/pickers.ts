@@ -166,7 +166,9 @@ IHasIcon & {
     /** dropdown (default) - show selection in dropdown; modal - opens modal window to select items */
     editMode?: PickerInputEditMode;
 
-    /** Maximum number of tags to display in input, before collapsing to "N items selected" mode */
+    /** Maximum number of tags to display in input, before collapsing to "N items selected" mode
+     * @default 20
+     * */
     maxItems?: number;
 
     /** Minimum width of dropdown body */

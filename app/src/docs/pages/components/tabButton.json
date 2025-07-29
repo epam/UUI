@@ -1,0 +1,9 @@
+{
+    "id": "tabButton",
+    "name": "Tab Button",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "tab-button-descriptions" },
+        { "name": "Basic", "componentPath": "tabButton/Basic.example.tsx" }
+    ]
+}

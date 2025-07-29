@@ -4,9 +4,10 @@ import { AsyncTreeProps } from './types';
 import { useLoadData } from './useLoadData';
 import { usePrevious } from '../../../../../../../hooks/usePrevious';
 import {
-    useItemsStorage, useDataSourceStateWithDefaults, useFilterTree, useSortTree,
-    useSearchTree, useSelectedOnlyTree, usePatchTree,
+    useItemsStorage, useDataSourceStateWithDefaults, useSortTreeState,
+    useSearchTreeState, useSelectedOnlyTree, usePatchTree,
     useActualItemsStorage,
+    useFilterTreeState,
 } from '../../common';
 import { UseTreeResult } from '../../types';
 
@@ -98,17 +99,17 @@ export function useAsyncTree<TItem, TId, TFilter = any>(
     }, [setIsForceReload]);
 
     const isTreeLoading = !isTreeLoaded || isLoading || isFetching;
-    const filteredTree = useFilterTree(
+    const filteredTree = useFilterTreeState(
         { tree: actualTree, getFilter, dataSourceState, isLoading: isTreeLoading },
         [actualTree, isTreeLoading],
     );
 
-    const sortTree = useSortTree(
+    const sortTree = useSortTreeState(
         { tree: filteredTree, sortBy, dataSourceState, isLoading: isTreeLoading },
         [filteredTree, isTreeLoading],
     );
 
-    const searchTree = useSearchTree(
+    const searchTree = useSearchTreeState(
         {
             tree: sortTree,
             getSearchFields,

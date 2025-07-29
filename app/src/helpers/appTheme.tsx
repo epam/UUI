@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { CustomThemeManifest, loadCustomThemes } from '../data/customThemes';
-import { builtInThemes, ThemeBaseParams, ThemeId } from '../data';
+import { builtInThemes, ThemeBaseParams } from '../data';
+import { ThemeId } from '@epam/uui-docs';
 import { changeThemeQueryParam, overrideUuiSettings, saveThemeIdToLocalStorage,
     setThemeCssClass, TAppThemeContext, ThemesConfig, useCurrentTheme,
 } from './appThemeUtils';

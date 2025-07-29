@@ -1,0 +1,10 @@
+{
+    "id": "controlGroup",
+    "name": "Control Group",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "controlGroup-descriptions" },
+        { "name": "Basic", "componentPath": "controlGroup/Basic.example.tsx" },
+        { "name": "Prefix", "componentPath": "controlGroup/Prefix.example.tsx" }
+    ]
+}

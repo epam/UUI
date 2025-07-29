@@ -1,0 +1,18 @@
+{
+    "id": "dataSources-row-options",
+    "name": "Row Options",
+    "parentId": "dataSources",
+    "examples": [
+        { "descriptionPath": "dataSources-row-options" },
+        { "name": "DataRowOptions", "descriptionPath": "dataSources-row-options-overview" },
+        { "name": "Checkbox", "componentPath": "dataSources/RowOptionsCheckbox.example.tsx" },
+        { "name": "Disabled rows", "componentPath": "dataSources/RowOptionsIsDisabled.example.tsx" },
+        { "name": "Selectable rows", "componentPath": "dataSources/RowOptionsIsSelectable.example.tsx" },
+        { "name": "Click handler", "componentPath": "dataSources/RowOptionsOnClick.example.tsx" },
+        { "name": "Links", "componentPath": "dataSources/RowOptionsLink.example.tsx" },
+        { "name": "Drag'n'drop", "componentPath": "dataSources/RowOptionsDnd.example.tsx" },
+        { "name": "Value/onValueChange", "componentPath": "dataSources/RowOptionsValue.example.tsx" },
+        { "name": "Readonly", "componentPath": "dataSources/RowOptionsIsReadonly.example.tsx" },
+        { "name": "Invalid", "componentPath": "dataSources/RowOptionsIsInvalid.example.tsx" }
+    ]
+}

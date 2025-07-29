@@ -1,0 +1,11 @@
+{
+    "id": "textArea",
+    "name": "Text Area",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "textArea-descriptions" },
+        { "name": "Basic", "componentPath": "textArea/Basic.example.tsx" },
+        { "name": "Height configuration", "componentPath": "textArea/HeightConfiguration.example.tsx" },
+        { "name": "With length limit", "componentPath": "textArea/MaxLengthCounter.example.tsx" }
+    ]
+}

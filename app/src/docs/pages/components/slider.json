@@ -1,0 +1,9 @@
+{
+    "id": "slider",
+    "name": "Slider",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "slider-descriptions" },
+        { "name": "Basic", "componentPath": "slider/Basic.example.tsx" }
+    ]
+}

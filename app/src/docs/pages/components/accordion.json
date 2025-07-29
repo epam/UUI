@@ -1,0 +1,11 @@
+{
+    "id": "accordion",
+    "name": "Accordion",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "accordion-descriptions" },
+        { "name": "Basic", "componentPath": "accordion/Basic.example.tsx" },
+        { "name": "Handle Accordion state by yourself", "componentPath": "accordion/HandleStateByYourself.example.tsx" },
+        { "name": "Custom accordion", "componentPath": "accordion/Custom.example.tsx" }
+    ]
+}

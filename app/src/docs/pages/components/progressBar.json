@@ -1,0 +1,11 @@
+{
+    "id": "progressBar",
+    "name": "Progress Bar",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "progressBar-descriptions" },
+        { "name": "Basic ProgressBar", "componentPath": "progressBar/Basic.example.tsx" },
+        { "name": "IndeterminateBar example", "componentPath": "progressBar/IndeterminateBar.example.tsx" },
+        { "name": "IndicatorBar example", "componentPath": "progressBar/IndicatorBar.example.tsx" }
+    ]
+}

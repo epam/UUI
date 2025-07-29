@@ -2,7 +2,6 @@ import * as React from 'react';
 import { IPickerToggler, IHasIcon, IHasCX, ICanBeReadonly, Icon, uuiMod, uuiElement, uuiMarkers, cx, IHasRawProps, ICanFocus, isEventTargetInsideClickable, DataRowProps, IHasCaption, IDisableable } from '@epam/uui-core';
 import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
-import { getMaxItems } from './helpers';
 import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import { IconButton } from '../buttons';
@@ -115,11 +114,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
     };
 
     const renderItems = () => {
-        const maxItems = getMaxItems(props.maxItems);
         const isPickerDisabled = props.isDisabled || props.isReadonly;
         let areAllDisabled = isPickerDisabled;
-        const displayedRows = props.selectedRowsCount > maxItems ? props.selection.slice(0, maxItems) : props.selection;
-        const collapsedRows = props.selection?.slice(maxItems);
+        const displayedRows = props.selectedRowsCount > props.maxItems ? props.selection.slice(0, props.maxItems) : props.selection;
+        const collapsedRows = props.selection?.slice(props.maxItems);
 
         const tags = displayedRows?.map((row) => {
             if (!isPickerDisabled && !row.isDisabled) {
@@ -141,10 +139,10 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             return props.renderItem?.(tagProps);
         });
 
-        if (props.selectedRowsCount > maxItems) {
+        if (props.selectedRowsCount > props.maxItems) {
             const collapsedTagProps = props.renderItem?.({
-                caption: maxItems > 0
-                    ? `+ ${props.selectedRowsCount - maxItems}`
+                caption: props.maxItems > 0
+                    ? `+ ${props.selectedRowsCount - props.maxItems}`
                     : i18n.pickerToggler.collapsedItemsTagName(props.selectedRowsCount),
                 isCollapsed: true,
                 isDisabled: areAllDisabled,

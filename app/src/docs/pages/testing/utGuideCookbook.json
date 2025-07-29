@@ -1,0 +1,8 @@
+{
+    "id": "utGuideCookbook",
+    "name": "Cookbook",
+    "parentId": "testing",
+    "examples": [
+        { "descriptionPath": "unitTestingGuide-cookbook" }
+    ]
+}
