@@ -11,7 +11,7 @@ import {
     TSkin, TVerticalTabButtonPreview,
 } from '@epam/uui-docs';
 
-export const verticalTabButtonExplorerConfig: TDocConfig = {
+export const VerticalTabButtonExplorerConfig: TDocConfig = {
     id: 'verticalTabButton',
     name: 'VerticalTabButton',
     contexts: [TDocContext.VerticalTabButton],
@@ -21,10 +21,10 @@ export const verticalTabButtonExplorerConfig: TDocConfig = {
         [TSkin.Promo]: { type: '@epam/uui:VerticalTabButtonProps', component: promo.VerticalTabButton },
         [TSkin.Electric]: { type: '@epam/uui:VerticalTabButtonProps', component: electric.VerticalTabButton },
     },
-    doc: (doc: DocBuilder<uui.VerticalTabButtonProps>) => {
+    doc: (doc: DocBuilder<uui.VerticalTabButtonProps<unknown, unknown>>) => {
         doc.merge('iconPosition', { defaultValue: 'left' });
     },
-    preview: (docPreview: DocPreviewBuilder<uui.VerticalTabButtonProps>) => {
+    preview: (docPreview: DocPreviewBuilder<uui.VerticalTabButtonProps<unknown, unknown>>) => {
         const TEST_DATA = {
             count: '+99',
             caption: 'Test',
@@ -33,7 +33,7 @@ export const verticalTabButtonExplorerConfig: TDocConfig = {
             icon: 'action-account-fill.svg',
         };
         const w200_h55: TPreviewCellSize = '200-55';
-        type TMatrixLocal = TPreviewMatrix<uui.TabButtonProps>;
+        type TMatrixLocal = TPreviewMatrix<uui.VerticalTabButtonProps<unknown, unknown>>;
         const statesMatrix: TMatrixLocal = {
             size: { values: ['36'] },
             isLinkActive: { values: [false, true] },
@@ -44,11 +44,12 @@ export const verticalTabButtonExplorerConfig: TDocConfig = {
             caption: { values: [TEST_DATA.caption] },
             isLinkActive: { values: [true] },
             size: { examples: '*' },
+            indent: { values: [0, 1, 2] },
+            isFoldable: { values: [true], condition: (props) => props.indent > 0 },
         };
 
         docPreview.add(TVerticalTabButtonPreview['Size Variants'], {
             ...baseMatrix,
-            count: { values: [undefined, TEST_DATA.count] },
             withNotify: { values: [true, false] },
             icon: { examples: [undefined, TEST_DATA.icon] },
             iconPosition: { examples: '*', condition: (props) => !!props.icon },

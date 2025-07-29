@@ -10,8 +10,7 @@
 * [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. Removed `Burger`, `renderBurger` prop, use `Burger` component instead. Removed `alwaysShowBurger` prop, use `Burger` component in items with `collapsedContainer: true/false` option. Removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. Removed `MainMenuDropdown` prop, use `MainMenuDropdown` as a component for 'More' container in items, see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components&theme=loveship#examples-mainMenu-Responsive)
 
   ```tsx
-  // before
-  
+  // Before
     <MainMenu
        cx={ css.menuContainer }
        renderBurger={ renderBurger }
@@ -21,9 +20,8 @@
     >
         <MainMenuButton caption="Home" />
     </MainMenu>
-  
-  // after
-  
+
+  // After
     <MainMenu
         cx={ css.menuContainer }
         items={ [
@@ -46,6 +44,17 @@
         ] }
     />
   ```
+* [Tree]: new hierarchical data display component for @epam/uui package
+* [VerticalTabButton][Breaking Change]: complete rework with improved functionality and styling
+  * Added `renderAddons` prop for custom addons rendering
+  * Deprecated `count`, `isDropdown`, `onClear`, `clearIcon`, `isOpen` props, use `renderAddons` instead
+  * Added `indent` and `isFoldable` props support
+  * Updated size variants according to design system: `'30' | '36' | '48'` (was `'36' | '48' | '60'`)
+  * Changed default size from `'48'` to `'36'` to match design requirements
+
+* [Site][Sidebar]: refactored to use new Tree component
+  * Replaced custom Tree implementation with @epam/uui Tree
+  * Improved data source integration using `useArrayDataSource`
 
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
@@ -242,7 +251,7 @@
 
 **What's Fixed**
 * [Dropdown][Tooltip]: Fixed a bug where the body overflowed if there was no space for the default or opposite placement.
-  Now it tries other placements, e.g., if there’s no space at the top or bottom, it will place the body on the right if there’s enough space.
+  Now it tries other placements, e.g., if there's no space at the top or bottom, it will place the body on the right if there's enough space.
 * [PickerInput]: fixed unnecessary api calls on body open with `minCharsToSearch` prop and search in body
 * [RTE]: fixed image caption not being visible when RTE initially in readonly mode
 * [DatePicker]: fixed body close if date picker input scrolled out from view
@@ -1051,7 +1060,7 @@ This release introduces Themes support. `@epam/uui` package now contains compone
 Pay attention that this release requires some additional actions for the library to work properly.
 You can find migration guide and full list of changes [here](https://github.com/epam/UUI/wiki/Migration-guide-to-UUI-v.5).
 
-Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven’t yet finalized Themes APIs (CSS variables names). We can’t yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
+Note: Currently, we use Themes internally to implement Loveship and Promo. In future, we allow UUI users to build their own themes, and using Themes variables for customization. However, in this release we haven't yet finalized Themes APIs (CSS variables names). We can't yet recommend using Themes internals, e.g. override Themes CSS variables for customization.
 
 **Testing facilities and documentation**
 * Introduced new `@epam/uui-test-utils` package. It provides a set of helpers, utils and mocks which facilitate creation of unit tests for UUI components.
@@ -1170,7 +1179,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [PresetPanel]: fix copy link action on non-active preset
 
 
-**What’s Fixed**
+**What's Fixed**
 * [VerticalTabButton]: fix text trimmed and text align
 * [Switch]: remove margin-left when there is no label
 * [Anchor][Button]: added `rel='noopener noreferrer'` where `target='_blank'`
@@ -1186,7 +1195,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 
 # 4.9.2 - 14.12.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [useForm] - allow to replace getMetadata prop after the first render
 
 
@@ -1201,7 +1210,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [DatePickers]: added support for typing value according predefined set of formats
 
 
-**What’s Fixed**
+**What's Fixed**
 * fixed sans semi-bold font url
 * [LazyDataSource]: fixed row handle check while tree wasn't initiated
 * [NumericInput] prevent value change onScroll
@@ -1219,7 +1228,7 @@ but only the checked parent is present in the Picker's value or DataSourceState.
 * [ModalContext]: added argument to abort method
 
 
-**What’s Fixed**
+**What's Fixed**
 * [RawProps]: fixed wrong type for HtmlDivElement
 * [TableColumnFilters]: fixed scroll position in 'Show only selected' mode in Loveship
 * [Checkbox]: added indeterminate state to the aria-checked attribute
@@ -1307,7 +1316,7 @@ With this release you already can build editable tables. However, we are plannin
 * [ModalContext]: added argument to abort method
 
 
-**What’s Fixed**
+**What's Fixed**
 * Fixed `rawProps` prop typings
 * [DndActor]: improved 'inside' position calculation
 * [useForm]:
@@ -1329,20 +1338,20 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.8.5 - 15.09.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [RTE]: fix readonly mode
 * [ErrorHandler]: fix 'dark' theme error container styles
 
 # 4.8.4 - 09.09.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [RTE]: fix wrong image size on first render
 * [RTE]: fix cursor jumping on new text typing in chrome 105+ version
 * [RTE]: fix image reducing to the minimum size when trying to resize it without focus on it
 
 # 4.8.3 - 01.09.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: disabled elements in multi-picker no longer can be deleted with cross at tag in the input. Before this fix, cross icon was visible, and clicking it caused crash
 * [LazyDataSource]: Select All now selects only currently visible items. Prior the fix, all items which was loaded before (e.g. with other/no filters) was selected.
 * [useVirtual]: Improved visible range computation:
@@ -1362,7 +1371,7 @@ With this release you already can build editable tables. However, we are plannin
 * [FilterPanel]: add possibility to add predicates for filters. For this provide `predicates` array in `TableFiltersConfig`.
 * [DataTable]: add possibility to reset sorting to default value
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: fix input with minCharsToSearch props. Fix toggler input size in 'multi' mode
 
 # 4.8.1 - 10.08.2022
@@ -1378,7 +1387,7 @@ With this release you already can build editable tables. However, we are plannin
 * [FilterToolbar]: small improvements and bugfixes
 
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: rework styles for selected value in toggler
 * [DataTable]: fix table rerender when columns prop changed
 * [NumericInput]: don't allow '+' and 'e' symbols
@@ -1397,7 +1406,7 @@ With this release you already can build editable tables. However, we are plannin
 * [PickerInput]: add 'fixedBodyPosition' prop, to have possibility to fixed body on initial position in case when toggler moved
 * [FileUpload]: rework error states
 
-**What’s Fixed**
+**What's Fixed**
 * [DropSpot]: fix drag&drop area view
 * [NumericInput]: fix arrows layout hidden when input disabled or readonly
 * [DropdownMenu]: fixed item active state
@@ -1415,7 +1424,7 @@ With this release you already can build editable tables. However, we are plannin
 **What's New**
 * [Buttons and Anchors]: support SPA links opening in new window when Ctrl/Command key pressed
 
-**What’s Fixed**
+**What's Fixed**
 * [DropSpot]: fix dnd behavior when user drag&drop file out of drag area
 * [PickerInput]: fix the second line tag margin in multi mode
 * [NumericInput]: hide arrows when input disabled or readonly
@@ -1439,7 +1448,7 @@ With this release you already can build editable tables. However, we are plannin
 * [ArrayDataSource]: check parent if all siblings is checked
 
 
-**What’s Fixed**
+**What's Fixed**
 * [Badge]: fix layout for 'transparent' fill
 * [Paginator]: fix layout in loveship
 * [DataTableRow]: fix 'area-expended' value
@@ -1463,7 +1472,7 @@ With this release you already can build editable tables. However, we are plannin
 * [VirtualList]: added `scrollToIndex` property for `DataTableState`. Use it for manual scrolling to some index in the list. For example for scrolling to top of the DataTable on filter or page change.
 * [Timeline]: more customization options: renderOnTop callback, most render-methods made protected to allow overrides
 
-**What’s Fixed**
+**What's Fixed**
 * [LazyListView]: fix indent for flat lists
 * [MainMenu]: fix MainMenu responsive
 
@@ -1477,7 +1486,7 @@ With this release you already can build editable tables. However, we are plannin
 * [ApiContext] allow to customize /auth/login and /auth/ping endpoint addresses
 * [ModalBlocker]: add possibility to disable focus locking inside modal
 
-**What’s Fixed**
+**What's Fixed**
 * [MainMenuIcon]: wrap into forwardRef
 * [Anchor]: wrap with forwardRef
 * [Tables]: set minimal flex-grow: 1 for scrolling section, to stretch it in case when all columns grow is not set or has '0' value
@@ -1495,7 +1504,7 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.6.1 - 22.03.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [MainMenu]: fix 'More' dropdown crashing in loveship
 * [PickerInput]:  fix autofocus on search in loveship
 * [PickerInput]: fix crashing by clicking on'Show only selected' toggle
@@ -1515,7 +1524,7 @@ With this release you already can build editable tables. However, we are plannin
 * [SlateEditor]: added ScrollBars to Editor
 * [NumericInput]: added 'cell' mode
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerToggler]: Remove redundant toggler focusing on tag clear
 * [PickerToggler]: If not enought chars clear picker input on blur
 * [PickerInput]: don't close picker in case when you remove search value
@@ -1527,7 +1536,7 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.5.4 - 10.02.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [DataTable]: bug fixes
 * [NumericInput] doesn't allow entering letters in safari
 * [Portal]: fix portal crashing when it's try to remove portal child from root and root doesn't already exist in DOM
@@ -1539,7 +1548,7 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.5.3 - 20.01.2022
 
-**What’s Fixed**
+**What's Fixed**
 * [DataTable]: bug fixes
 * [DataPickerFooter]: remove switch duplication in loveship
 * [Badge]: removed redundant prop font for Badge
@@ -1552,7 +1561,7 @@ With this release you already can build editable tables. However, we are plannin
 * [PickerInput]: add hideShowOnlySelected props for DataPickerFooter component
 * [ModalFooter]: add cx prop
 
-**What’s Fixed**
+**What's Fixed**
 * [DataTable]: bug fixes
 * [PickerModal]: renderFooter props type fix
 * [DnD]: fix drag ending on not draggable element
@@ -1563,7 +1572,7 @@ With this release you already can build editable tables. However, we are plannin
 * [LazyDataSource]: add logic for check/uncheck parents if all/no siblings checked in cascadeSelection mode
 * [NotificationCard]: Added rawProps
 
-**What’s Fixed**
+**What's Fixed**
 * [DataTable]: Fix styles for loveship skin, fix columns layout
 * [PickerInput]: fix picker body closing on mobile after opening keyboard
 * [PickerInput]: Fix placeholder ending for single selection mode
@@ -1582,7 +1591,7 @@ With this release you already can build editable tables. However, we are plannin
 * [ArrayDataSource, LazyDataSource]: Added disableSelectAll attribute
 * [RTE]: Added isEditorEmpty helper. Bugfixes.
 
-**What’s Fixed**
+**What's Fixed**
 * [DataPickerRow]: Fix tick icon alignment
 * [MainMenu]: remove fill style from burger icons source
 * [PickerInput]: fix bug when picker value === 0
@@ -1599,7 +1608,7 @@ With this release you already can build editable tables. However, we are plannin
 * [PickerInput]: add possibility to pass icon to the toggler
 * [DropSpot]: move wordings to the i18n
 
-**What’s Fixed**
+**What's Fixed**
 * [Router]: remove history types dependency from UUI, fix types for location.state
 * [TextPlaceholder]: fix placeholder visibility for Safari
 * [Form]: fix lens batch updates
@@ -1618,7 +1627,7 @@ With this release you already can build editable tables. However, we are plannin
 * [RouterContext]: extended Link interface by 'key', 'hash', 'state' fields
 * [SlateEditor]: added onBlur and onKeyDown props
 
-**What’s Fixed**
+**What's Fixed**
 * [SlateRTE]: don't keep source formatting background-color when paste html in editor
 * [Tag, Badge]: reworked styles according design
 * [MainMenu]: reworked styles according design in Promo skin
@@ -1631,7 +1640,7 @@ With this release you already can build editable tables. However, we are plannin
 * [PickerModal, PickerList]: add disallowClickOutside prop
 * [DataTableCell]: removed labelColor prop and reusePadding from Loveship & Promo skins, reworked html structure
 
-**What’s Fixed**
+**What's Fixed**
 * [Button]: fix tooltip on disabled button
 * [PickerInput]: fix picker closing by clicking on toggler arrow
 * [PickerInput]: fix selected item color when searchPosition='none'
@@ -1640,7 +1649,7 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.2.6 - 07.10.2021
 
-**What’s Fixed**
+**What's Fixed**
 * [ArrayListView, LazyListView]: fix checkbox behavior in parent row of tree-table when child is checked and disabled, and selectAll checkbox behavior if there are some disabled rows in list;
 * [Form]: fix form validation after beforeLeave modal save action;
 * [TimePicker]: fix incorrect onClear behaviour;
@@ -1655,7 +1664,7 @@ With this release you already can build editable tables. However, we are plannin
 * [VerticalTabButton]: added new component for vertical tabs
 * [DropdownMenu]: added keyboard support in Promo skin
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: improve mobile view
 * [Modals]: improve mobile view
 * [PickerInput]: fix dropdown icon click handler
@@ -1663,7 +1672,7 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.2.4 - 17.09.2021
 
-**What’s Fixed**
+**What's Fixed**
 * [Table]: fix row checkbox selection if row is link
 
 # 4.2.2 - 17.09.2021
@@ -1673,7 +1682,7 @@ With this release you already can build editable tables. However, we are plannin
 * [IndeterminateBar]: implemented a new component to make possibility display indeterminate progress with different sizes.
 * [IndicatorBar]: implemented a new component to use as the top indicator of page loading. Has a fixed size and can be determinate or indeterminate.
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: fix size of PickerToggler in size-24 loveship skin
 * [MainMenu]: Do not render logo if url is not provided
 * [DatePicker]: fix validation date onBlur
@@ -1694,7 +1703,7 @@ With this release you already can build editable tables. However, we are plannin
 * [PickerInput]: improve adaptation for mobiles
 * [Modals]: lock focus inside modal window
 
-**What’s Fixed**
+**What's Fixed**
 * fix styles issues with some components in Safari
 
 # 4.2.0 - 23.08.2021
@@ -1717,7 +1726,7 @@ With this release you already can build editable tables. However, we are plannin
 * [FlexRow]: add more sizes for vPadding prop
 
 
-**What’s Fixed**
+**What's Fixed**
 * [Badge]: fix cursor pointer if badge is clickable.
 * [PickerInput]: fix paddings for the PickerItem, so that if the value is too long the item looks with indented.
 * [MainMenuSearch]: fix passing 'onAccept' prop from MainMenuSearch to TextInput
@@ -1729,7 +1738,7 @@ With this release you already can build editable tables. However, we are plannin
 
 # 4.1.1 - 05.07.2021
 
-**What’s Fixed**
+**What's Fixed**
 fix bug when enzyme includes in result build bundle
 fix UUI context multiple creation
 [NumericInput]: fix calculation with floating point numbers
@@ -1738,14 +1747,14 @@ fix UUI context multiple creation
 
 # 4.1.0 - 30.06.2021
 
-**What’s New**
+**What's New**
 * [DataSources][Breaking Change]: Added required 'deps' argument for all DataSources hooks. Please review all your dataSources hooks usage and decide which deps do you need or set '[]'.
 * [React Context]: added support for new React Context API. Consider switching to new context APIs in your components (or keep using the global ctx variable pattern). In class components you can use "static contextType = UuiContext", in function components you can use the hook "useUuiContext". Legacy context API still works in parallel with the new API. We'll keep support for legacy context API for at least 3 month (can be extended if projects would ask to prolong the support). You can explicitly disable legacy contexts with enableLegacyContexts={ false } prop on the ContextProvider. It is recommended if you don't use legacy contexts
 * removed legacy lifecycle methods
 * [NumericInput]: Now NumericInput supports transfer of formatter function. The function responds to the onBlur action.
 * [PickerInput]: pass onFocus and onBlur in props
 
-**What’s Fixed**
+**What's Fixed**
 * Update packages and fixed warnings
 * [LinkButton]: fix hover styles for disabled button
 * [PickerInput]: fix the switching of opening / closing a portal with a list when clicking on PickerInput when there is a search value so that you can copy or correct the search value
@@ -1762,7 +1771,7 @@ fix UUI context multiple creation
 
 # 4.0.0 - 07.05.2021
 
-**What’s New**
+**What's New**
 * [LazyDataSource] now supports nesting (grouping, trees) with lazy loading.
 
   Quick start:
@@ -1845,7 +1854,7 @@ fix UUI context multiple creation
 * [DataTableCell]: added prop alignAddons to align checkbox & folding arrows to the top or center
 * [Badge]: added transparent and semitransparent fill; Added more sizes;
 
-**What’s Fixed**
+**What's Fixed**
 * [LabeledInput]: fixed a bug of cropping the text of the label when it is located to the left, when the child has a width of 100% in the styles
 * [ErrorHandler]: reset api error when router is changed
 * [DatePicker]: fixed handling of invalid value input when filter is active
@@ -1865,7 +1874,7 @@ fix UUI context multiple creation
 
 # 3.47.4 - 23.02.2021
 
-**What’s Fixed**
+**What's Fixed**
 * [Blocker][Promo]: fixed typings, added export
 * [ReactRouter3]: fix listen method
 * [Form]: fix form typings
@@ -1875,14 +1884,14 @@ fix UUI context multiple creation
 
 # 3.47.3 - 16.02.2021
 
-**What’s New**
+**What's New**
 * [Blocker]: added to Promo skin
 * [Fonts]: added fonts smoothing antialiased
 * [Assets]: updated icons set
 * [Accordion]: removed borderBottom prop, added the ability to control the state of opening/closing a component, fixed opened state style for loveship skin
 
 
-**What’s Fixed**
+**What's Fixed**
 * [LockContext]: make required to pass lock in release method
 * [ErrorHandler]: fixed wrong error for JS exception
 * [LockContext]: Fix block method - pass correct location into listner
@@ -1893,7 +1902,7 @@ fix UUI context multiple creation
 
 # 3.47.2 - 04.02.2021
 
-**What’s New**
+**What's New**
 * [ContextProvider]: make 'loadAppContext' and 'apiDefinition' props is not required
 * [TimePicker]: removed dropdown Icon
 * [SlateRTE]: rework toolbars - some actions moved to the bottom toolbar and it always visible when editor in focus
@@ -1901,7 +1910,7 @@ fix UUI context multiple creation
 * [TextArea]: added onFocus prop
 * [ModalHeader]: added cx prop
 
-**What’s Fixed**
+**What's Fixed**
 * [Tree]: fixed infinite rendering
 * [Spinner]: change spinner styles from inline-block to Flex
 * [ArrayListView]: fixed checked ids order in value, now it equal to user select order
@@ -1915,14 +1924,14 @@ fix UUI context multiple creation
 
 # 3.47.1 - 25.01.2021
 
-**What’s Fixed**
+**What's Fixed**
 * [Form]: fix typings; Fix bug when form tried to release lock when lock didn't exist
 * [Spinner]: change spinner styles from inline-block to Flex
 
 
 # 3.47.0 - 21.01.2021
 
-**What’s New**
+**What's New**
 * [Breaking Change]: SlateRTE now doesn't depend on skin packages. Provide skinContext prop into ContextProvider, if you are using SlateRTE.
    You can import skin context from your skin package, for example: ```import { skinContext } from '@epam/loveship';```
 
@@ -1933,7 +1942,7 @@ fix UUI context multiple creation
 * [Form]: return Promise from save callback
 
 
-**What’s Fixed**
+**What's Fixed**
 * [Lens]: fixed .defalut() method logic in case when value is 'false'
 * [VirtualList]: fixed scroll bars styles according design
 * [ScrollBars]: refactored styles for thumb
@@ -1944,7 +1953,7 @@ fix UUI context multiple creation
 
 # 3.46.3 - 12.01.2021
 
-**What’s New**
+**What's New**
 * [Breaking Change] UUI and edu-core-rouing packages doesn't depend on react-router and history directly anymore.
     As yarn/npm uses both your App's and UUI required versions, the version of history and react-router in your app can be changed after updating.
     This can affect your app. You can check version with ```yarn why history``` and ```yarn why react-router``` before and after update.
@@ -1961,7 +1970,7 @@ fix UUI context multiple creation
 * [ModalWindow]: borders in header and footer are disabled by default, added the appearance of borders on scroll
 
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput][Promo]: removed inner shadows in DataPickerBody
 * [Button][Loveship]: samall fixes fill light style
 * [SlateRTE]: fixed sidebar visibility on first renderCell
@@ -1970,12 +1979,12 @@ fix UUI context multiple creation
 
 # 3.46.2 - 23.12.2020
 
-**What’s New**
+**What's New**
 * [ModalContext]: extend IModalContext interface
 * [LabeledInput]: added isOptional prop which added 'This field is optional' text
 * [LabeledInput]: added required asterisk mark if isRequired: true prop is propvided
 
-**What’s Fixed**
+**What's Fixed**
 * [DatePicker]: fixed incorrect year Switch
 * [SlateEditor]: replace attachment file name input to simple text in readonly mode
 * [Alert]: change cross icon
@@ -1983,13 +1992,13 @@ fix UUI context multiple creation
 
 # 3.46.1 - 25.11.2020
 
-**What’s Fixed**
+**What's Fixed**
 * [Modals]: fixed 'cross' icon
 
 
 # 3.46.0 - 24.11.2020
 
-**What’s New**
+**What's New**
 * [Breaking Change][Assets]: updated colors variables in accordance with loveship package. Please review your colors variables which are imported from @epam/assets package. Use this migration guide - https://paper.dropbox.com/doc/imvp8VeR1R3zKYmWghE5o;
 * [Switch]: added ''-clickable' class
 * [MainMenu]: added logoWidth prop
@@ -1997,7 +2006,7 @@ fix UUI context multiple creation
 * [UUI]: update history package
 
 
-**What’s Fixed**
+**What's Fixed**
 * [dnd]: fix dnd scroll behaviour
 * [PickerInput]: fixed issue when last element is not displayed in case when picker have only 21 row
 * [PickerInput]: now picker closed when isDisabled prop have true value
@@ -2007,12 +2016,12 @@ fix UUI context multiple creation
 
 # 3.45.3 - 10.11.2020
 
-**What’s New**
+**What's New**
 * [AsyncDataSource]: Added 'reload' functionality
 * [Modal]: add closing by 'Escape' key
 * [FileUpload]add fileUpload components to 'PROMO' skin
 
-**What’s Fixed**
+**What's Fixed**
 * [NumericInput]: fixed increase/decrease handlers
 * [DataTable]: style fixes for 'Not results found' block
 * [PickerInput][Promo]: fixed styles in disabled state
@@ -2024,36 +2033,36 @@ fix UUI context multiple creation
 
 # 3.45.2 - 27.10.2020
 
-**What’s New**
+**What's New**
 * [Breaking Change][Loveship][Alert]: removed type prop, added posibility to configure color, icon and other props by yourself. Added separate SuccessAlert, ErrorAlert and ect. components with predefided set of props. Removed fixed width.
 * [LazyDataSource]: Added maxCacheSize prop
 * [PROMO]: rework components shadows
 * [Tree]: rework Tree component
 * [Notification Context]: reject promise when notification closed by timeout
 
-**What’s Fixed**
+**What's Fixed**
 * [TabButton]: fixed indent beetwen icon and counter
 * [MainMenuIcon]: fixed cx prop
 * [DatePickers]: fixed selected value in 'month' and 'year' mode
 
 # 3.45.1 - 14.10.2020
 
-**What’s New**
+**What's New**
 * [SliderRating]: added possibility to provide our own icons
 * [SlateRTE]: set attachment icon according with file extention
 
-**What’s Fixed**
+**What's Fixed**
 * [NumericInput]: fixed nehavior when input shows placeholder when initial value is 0
 
 # 3.45.0 - 08.10.2020
 
-**What’s New**
+**What's New**
 * [MainMenuButton]: add cx prop
 * [Tooltip]: add white color to PROMO
 * [Tables]: added to PROMO skin
 * [DatePicker]: added renderFooter prop to loveship & promo skin
 
-**What’s Fixed**
+**What's Fixed**
 * Change scss modules imports approach. Packages size has been reduced.
 * [SlateRTE]: minor styles and icons fixes
 * [Lens]: run custom validator in priority over isRequired and ect. validation
@@ -2065,22 +2074,22 @@ fix UUI context multiple creation
 
 # 3.44.2 - 25.09.2020
 
-**What’s New**
+**What's New**
 * [NotificationContext]: added new methods in typings
 
-**What’s Fixed**
+**What's Fixed**
 * [SlateRTE]:remove loveship dependency usage and fix build error
 * [ModalHeader]: change borderBottom default condition
 
 # 3.44.1 - 23.09.2020
 
-**What’s New**
+**What's New**
 * [SlateEditor]: redesign
 * [RangeDatePicker]: pass cx prop to picker body container
 * [DatePicker and TimePicker]: added to PROMO skin
 * [DataTable]: added no results block and appropriate prop renderNoResultsBlock
 
-**What’s Fixed**
+**What's Fixed**
 * [MainMenuAvatar]: changed arrow triangle to folding arrow in mainMenu promo
 * [DataTable]: fix styles for config icon
 * [VirtualList]: fixed scrollbar apearing on 100%+ browser zoom
@@ -2088,53 +2097,53 @@ fix UUI context multiple creation
 
 # 3.44.0 - 31.08.2020
 
-**What’s New**
+**What's New**
 * [MainMenu]: redesign
 * [MainMenu]: added customerLogoLink and customerLogoHref props
 * [Tag]: added Tag components and use it in PickerInput
 * [Draft-rte]: add clear format button
 * [MainMenuSearch]: added cx
 
-**What’s Fixed**
+**What's Fixed**
 * [DatePickerBody]: Fix incorrect selected date changing. Divide selectedDate setter and displayedDate setter
 
 # 3.43.4 - 24.08.2020
 
-**What’s New**
+**What's New**
 * [Blocker]: added possibility to define renderSpinner functionality
 * [BaseRangeDatePicker] add placement prop
 * [PROMO]: Add form component
 * [ApiContext]: add request abort supporting
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: fixed clear selection for lazyDS
 * [PickerInput]: retunr mode prop
 
 # 3.43.3 - 31.07.2020
 
-**What’s New**
+**What's New**
 * [SliderRating]: Added 18 and 24 size
 * [VirtualList]: add scroll to focusedItem on mount
 
 # 3.43.2 - 20.07.2020
 
-**What’s New**
+**What's New**
 * [DataTable]: passed topIndex value to virtualList
 * [PickerInput]: added renderFooter prop for PickerInput
 
-**What’s Fixed**
+**What's Fixed**
 * [RangeDatePicker]: fixed incorrect focus change, when changing only dislayedDate
 
 
 # 3.43.1 - 13.07.2020
 
-**What’s New**
+**What's New**
 * [Accordion]: added to loveship package
 * [Error Pages]: added dark theme for error pages
 * [TimePicker]: added 24h mode
 * [DatePicker]: removed dropdown icon
 
-**What’s Fixed**
+**What's Fixed**
 * [PickerInput]: remove dropdownIcon, when minCharsToSearch prop is passed
 * [Slate]: sanitize link and iframe url to prevent xss
 
