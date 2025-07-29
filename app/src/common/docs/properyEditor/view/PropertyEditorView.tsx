@@ -16,7 +16,7 @@ import { PeTable } from './peTable/PeTable';
 import { buildNormalizedInputValuesMap } from '../propDocUtils';
 import { TPreviewRef } from '../../../../preview/types';
 import { FullscreenBtn } from './fullscreenBtn/fullscreenBtn';
-import { QueryHelpers } from '../../baseDocBlock/utils/queryHelpers';
+import { QueryHelpers } from '../../docsBlock/utils/queryHelpers';
 
 type TInputData<TProps> = {
     [name in keyof TProps]: {

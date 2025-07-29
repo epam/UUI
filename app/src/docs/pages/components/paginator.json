@@ -1,0 +1,10 @@
+{
+    "id": "paginator",
+    "name": "Paginator",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "paginator-descriptions" },
+        { "name": "Basic", "componentPath": "paginator/Basic.example.tsx" },
+        { "name": "Size", "componentPath": "paginator/Size.example.tsx" }
+    ]
+}

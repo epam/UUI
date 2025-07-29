@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/promo';
+import { DataPickerRow, VirtualList, Text, Panel, LinkButton } from '@epam/loveship';
 import { FlexRow, Switch } from '@epam/uui';
 import { DataRowProps, DataSourceState, IDataSource, IEditable } from '@epam/uui-core';
 import css from './DataSourceViewer.module.scss';

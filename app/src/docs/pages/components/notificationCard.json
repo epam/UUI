@@ -1,0 +1,10 @@
+{
+    "id": "notificationCard",
+    "name": "Notification Card",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "notificationCard-descriptions" },
+        { "name": "Basic", "componentPath": "notificationCard/Basic.example.tsx" },
+        { "name": "Advanced", "componentPath": "notificationCard/Advanced.example.tsx" }
+    ]
+}

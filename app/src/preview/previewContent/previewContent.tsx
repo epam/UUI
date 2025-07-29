@@ -19,7 +19,7 @@ export function PreviewContent(props: { params: TPreviewContentParams }) {
     const docBuilderGenCtx = useDocBuilderGenCtx(
         usePropEditorTypeOverride(theme, config?.bySkin[skin]?.type),
     );
-    const { isLoaded, docs } = useDocBuilderGen({ config, skin, docBuilderGenCtx });
+    const { isLoaded, docs } = useDocBuilderGen({ config, skin, theme, docBuilderGenCtx });
     const allRenderCases = useMemo(() => buildRenderCaseArr(docs, previewId), [docs, previewId]);
     const totalNumberOfCases = allRenderCases?.props.length || 0;
     const isFullScreen = typeof previewId === 'object';

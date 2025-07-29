@@ -1,0 +1,12 @@
+{
+    "id": "pickerModal",
+    "name": "Picker Modal",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "pickerModal-descriptions" },
+        { "name": "Basic", "componentPath": "pickerModal/BasicPickerModal.example.tsx" },
+        { "name": "Async tree with entity value type", "componentPath": "pickerModal/AsyncTreePickerModalWithEntity.example.tsx" },
+        { "name": "LazyTree", "componentPath": "pickerModal/LazyTreePickerModal.example.tsx" }
+    ],
+    "tags": ["PickerList"]
+}

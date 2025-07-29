@@ -1,0 +1,10 @@
+{
+    "id": "avatarStack",
+    "name": "Avatar Stack",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "avatarStack-descriptions" },
+        { "name": "Basic", "componentPath": "avatarStack/Basic.example.tsx" },
+        { "name": "With custom avatar", "componentPath": "avatarStack/RenderItem.example.tsx" }
+    ]
+}

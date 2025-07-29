@@ -53,7 +53,7 @@ export interface ApplySortOptions<TItem, TId, TFilter> {
 export type ItemsComparator<TItem> = (newItem: TItem, existingItem: TItem) => number;
 
 export interface FilterOptions<TItem, TId, TFilter = any> extends ApplyFilterOptions<TItem, TId, TFilter> {}
-export interface SortOptions<TItem, TId, TFilter> extends ApplySortOptions<TItem, TId, TFilter> {}
+export interface SortOptions<TItem, TId, TFilter> extends Omit<ApplySortOptions<TItem, TId, TFilter>, 'getId'> {}
 export interface SearchOptions<TItem, TId, TFilter> extends ApplySearchOptions<TItem, TId, TFilter> {}
 
 export interface CascadeSelectionOptions<TItem, TId> {

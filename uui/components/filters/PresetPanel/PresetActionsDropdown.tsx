@@ -13,15 +13,36 @@ interface ITubButtonDropdownProps extends Omit<IPresetsApi, 'presets'> {
     addPreset: () => void;
     tableState: DataTableState;
     renamePreset: () => void;
+    onCopyLink?: ((tableState: DataTableState) => void) | null;
 }
 
 export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
     const { uuiNotifications } = useUuiContext();
 
-    const copyUrlToClipboard = useCallback(async () => {
-        await navigator.clipboard.writeText(props.getPresetLink(props.preset));
-        successNotificationHandler('Link copied!');
+    const successNotificationHandler = useCallback((text: string) => {
+        uuiNotifications
+            .show(
+                (props) => (
+                    <SuccessNotification { ...props }>
+                        <div className="uui-presets-panel-notification-text">
+                            {text}
+                        </div>
+                    </SuccessNotification>
+                ),
+                { duration: 3 },
+            )
+            .catch(() => null);
     }, []);
+
+    const copyUrlToClipboard = useCallback(async (): Promise<void> => {
+        const isPresetChanged = props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset);
+        const preset = isPresetChanged ? { ...props.preset, ...props.tableState } : props.preset;
+        const link = props.getPresetLink(preset);
+        await navigator.clipboard.writeText(link);
+        successNotificationHandler('Link copied!');
+    }, [props.activePresetId, props.preset, props.hasPresetChanged, props.getPresetLink, props.tableState]);
+
+    const onCopyLink = props.onCopyLink ? props.onCopyLink : copyUrlToClipboard;
 
     const saveInCurrent = useCallback(
         async (preset: ITablePreset) => {
@@ -41,21 +62,6 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         ],
     );
 
-    const successNotificationHandler = useCallback((text: string) => {
-        uuiNotifications
-            .show(
-                (props) => (
-                    <SuccessNotification { ...props }>
-                        <div className="uui-presets-panel-notification-text">
-                            {text}
-                        </div>
-                    </SuccessNotification>
-                ),
-                { duration: 3 },
-            )
-            .catch(() => null);
-    }, []);
-
     const saveInCurrentHandler = useCallback(() => {
         saveInCurrent(props.preset);
     }, [props.preset]);
@@ -74,7 +80,7 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
         props.activePresetId, props.deletePreset, props.preset,
     ]);
 
-    const renderBody = (dropdownProps: DropdownBodyProps) => {
+    const renderBody = (dropdownProps: DropdownBodyProps): React.ReactNode => {
         const isReadonlyPreset = props.preset.isReadonly;
         const isPresetChanged = props.activePresetId === props.preset.id && props.hasPresetChanged(props.preset);
         const isRenameAvailable = props.preset.id === props.activePresetId && !isReadonlyPreset;
@@ -115,18 +121,22 @@ export function PresetActionsDropdown(props: ITubButtonDropdownProps) {
                         onClick={ props.renamePreset }
                     />
                 )}
-                <DropdownMenuButton
-                    key={ `${props.preset.id}-duplicate` }
-                    icon={ settings.presetsPanel.icons.copyIcon }
-                    caption="Duplicate"
-                    onClick={ () => { dropdownProps.onClose(); duplicateHandler(); } }
-                />
-                <DropdownMenuButton
-                    key={ `${props.preset.id}-copyLink` }
-                    icon={ settings.presetsPanel.icons.copyLinkIcon }
-                    caption="Copy Link"
-                    onClick={ copyUrlToClipboard }
-                />
+                { !isPresetChanged && (
+                    <DropdownMenuButton
+                        key={ `${props.preset.id}-duplicate` }
+                        icon={ settings.presetsPanel.icons.copyIcon }
+                        caption="Duplicate"
+                        onClick={ () => { dropdownProps.onClose(); duplicateHandler(); } }
+                    />
+                )}
+                {props.onCopyLink !== null && (
+                    <DropdownMenuButton
+                        key={ `${props.preset.id}-copyLink` }
+                        icon={ settings.presetsPanel.icons.copyLinkIcon }
+                        caption="Copy Link"
+                        onClick={ onCopyLink }
+                    />
+                )}
                 {!isReadonlyPreset && (
                     <>
                         <DropdownMenuSplitter key="delete-splitter" />

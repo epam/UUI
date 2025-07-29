@@ -1,0 +1,9 @@
+{
+    "id": "text",
+    "name": "Text",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "text-descriptions" },
+        { "name": "Basic", "componentPath": "text/Basic.example.tsx" }
+    ]
+}

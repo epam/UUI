@@ -3,7 +3,7 @@ import { LazyDataSourceApiRequestContext, LazyDataSourceApiRequestRange } from '
 import { TreeStructure } from '../TreeStructure';
 import { cloneMap, newMap } from '../../helpers/map';
 import { ItemsAccessor } from '../../ItemsAccessor';
-import { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
+import type { LoadOptions, LoadAllOptions, LoadItemsOptions, LoadMissingItemsAndParentsOptions, LoadOptionsMissing } from './types';
 import { ITreeNodeInfo } from '../types';
 import { NOT_FOUND_RECORD } from '../../constants';
 import { getSelectedAndChecked } from './checked';

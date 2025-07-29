@@ -8,6 +8,7 @@ import { usePickerApi } from './usePickerApi';
 import { useShowSelected } from './useShowSelected';
 
 const initialRowsVisible = 20; /* estimated, with some reserve to allow start scrolling without fetching more data */
+const defaultMaxItems = 20;
 
 export type UsePickerInputProps<TItem, TId, TProps> = PickerInputBaseProps<TItem, TId> & TProps & {
     toggleModalOpening?(opened: boolean): void;
@@ -229,7 +230,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             isInvalid,
             isReadonly,
             isSingleLine,
-            maxItems,
+            maxItems = defaultMaxItems,
             minCharsToSearch,
             inputCx,
             disableClear: propDisableClear,

@@ -189,7 +189,7 @@ function uuiJsRules() {
         'import/no-unresolved': [
             unifiedSeverity, {
                 ignore: [
-                    '^@epam/uui-[\\w]+/styles.css$', '@epam/promo/styles.css', '@epam/loveship/styles.css',
+                    '^@epam/uui-[\\w]+/styles.css$', '@epam/promo/styles.css', '@epam/loveship/styles.css', '^uui-doc-pages/',
                 ],
             },
         ],

@@ -1,0 +1,18 @@
+{
+    "id": "dataSources-dataSource-state",
+    "name": "DataSource State",
+    "parentId": "dataSources",
+    "examples": [
+        { "descriptionPath": "dataSources-dataSource-state" },
+        { "name": "DataSourceState", "descriptionPath": "dataSources-dataSource-description" },
+        { "name": "Search", "componentPath": "dataSources/DataSourceStateSearch.example.tsx" },
+        { "name": "Filter", "componentPath": "dataSources/DataSourceStateFilter.example.tsx" },
+        { "name": "Sorting", "componentPath": "dataSources/DataSourceStateSorting.example.tsx" },
+        { "name": "Selected Id", "componentPath": "dataSources/DataSourceStateSelectedId.example.tsx" },
+        { "name": "Checked", "componentPath": "dataSources/DataSourceStateChecked.example.tsx" },
+        { "name": "Folded", "componentPath": "dataSources/DataSourceStateFolded.example.tsx" },
+        { "name": "Visible rows count", "componentPath": "dataSources/DataSourceStateVisibleCount.example.tsx" },
+        { "name": "Index to scroll", "componentPath": "dataSources/DataSourceStateIndexToScroll.example.tsx" },
+        { "name": "Paging", "componentPath": "dataSources/DataSourceStatePage.example.tsx" }
+    ]
+}

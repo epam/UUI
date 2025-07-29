@@ -1,4 +1,4 @@
-import { PropExample } from '../../../types';
+import { PropExample } from '../../../types/types';
 import React from 'react';
 import { Button, NotificationCard, Text } from '@epam/uui';
 import { INotification, UuiContexts } from '@epam/uui-core';

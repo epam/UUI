@@ -1,0 +1,8 @@
+{
+    "id": "visualExamples",
+    "name": "Visual Examples",
+    "parentId": "forDesigners",
+    "examples": [
+        { "descriptionPath": "visualExamples-for-designers" }
+    ]
+}

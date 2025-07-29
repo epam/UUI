@@ -77,6 +77,51 @@ export default function PresetsPanelExample() {
     const svc = useUuiContext();
     const { uuiModals } = useUuiContext();
 
+    // --- Presets API Imitation using localStorage ---
+    // On real project, you should use your own solution(e.g. API, Redux, etc.) for presets storage
+    const PRESETS_KEY = 'presetsPanelExample.presets';
+
+    const getPresets = (): ITablePreset[] => {
+        const raw = localStorage.getItem(PRESETS_KEY);
+        return raw ? JSON.parse(raw) : initialPresets;
+    };
+
+    const savePresets = (newPresets: ITablePreset[]): void => {
+        localStorage.setItem(PRESETS_KEY, JSON.stringify(newPresets));
+    };
+
+    const getNextId = (presets: ITablePreset[]): number => {
+        const max = Math.max(0, ...presets.map((p) => p.id));
+        return max + 1;
+    };
+
+    const createPreset = useCallback(async (preset: ITablePreset) => {
+        const presets = getPresets();
+        const id = getNextId(presets);
+        const newPreset = { ...preset, id };
+        const updated = [...presets, newPreset];
+        savePresets(updated);
+        return id;
+    }, []);
+
+    const updatePreset = useCallback(async (preset: ITablePreset) => {
+        const presets = getPresets();
+        const updated = presets.map((p: ITablePreset) => p.id === preset.id ? { ...preset } : p);
+        savePresets(updated);
+    }, []);
+
+    const deletePreset = useCallback(async (preset: ITablePreset) => {
+        const presets = getPresets();
+        const updated = presets.filter((p: ITablePreset) => p.id !== preset.id);
+        savePresets(updated);
+    }, []);
+
+    const handlePresetDelete = React.useCallback(async (preset: ITablePreset) => {
+        await uuiModals
+            .show((props) => <RemovePresetConfirmationModal presetName={ preset.name } { ...props } />);
+        await deletePreset(preset);
+    }, [deletePreset, uuiModals]);
+
     const filtersConfig: TableFiltersConfig<Person>[] = useMemo(
         () => [
             {
@@ -115,17 +160,11 @@ export default function PresetsPanelExample() {
         [],
     );
 
-    const handlePresetDelete = useCallback(async (preset: ITablePreset<any, any>): Promise<void> => {
-        await uuiModals
-            .show((props) => <RemovePresetConfirmationModal presetName={ preset.name } { ...props } />);
-        await svc.api.presets.deletePreset(preset);
-    }, [svc.api.presets, uuiModals]);
-
     const tableStateApi = useTableState({
         filters: filtersConfig,
-        initialPresets: initialPresets,
-        onPresetCreate: svc.api.presets.createPreset,
-        onPresetUpdate: svc.api.presets.updatePreset,
+        initialPresets: getPresets(),
+        onPresetCreate: createPreset,
+        onPresetUpdate: updatePreset,
         onPresetDelete: handlePresetDelete,
     });
 

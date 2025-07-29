@@ -1,5 +1,5 @@
 import { IThemeVar, TValueByThemeValue } from './sharedTypes';
-import { ThemeId } from '../../../../data';
+import { ThemeId } from '@epam/uui-docs';
 
 export enum TThemeVarUiErr {
     VAR_ABSENT= 'VAR_ABSENT',

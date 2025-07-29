@@ -1,0 +1,10 @@
+{
+    "id": "notificationContextDoc",
+    "name": "Notification Context",
+    "parentId": "contexts",
+    "examples": [
+        { "descriptionPath": "notification-context-descriptions" },
+        { "name": "Example", "componentPath": "contexts/NotificationContext.example.tsx" }
+    ],
+    "tags": ["contexts"]
+}
