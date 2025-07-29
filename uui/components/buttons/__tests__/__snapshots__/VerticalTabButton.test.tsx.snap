@@ -14,7 +14,7 @@ exports[`VerticalTabButton should be rendered correctly with props 1`] = `
 <DocumentFragment>
   <button
     aria-disabled="false"
-    class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-48 uui-has-left-icon uui-no-right-icon"
+    class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-48 uui-active uui-has-left-icon uui-no-right-icon"
     role="tab"
     tabindex="0"
     type="button"

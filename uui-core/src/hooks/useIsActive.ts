@@ -12,13 +12,15 @@ export const useIsActive = (props: UseIsActiveProps): UseIsActiveResult => {
     const context = useUuiContext();
     let isActive: boolean;
 
-    if (props.isLinkActive !== undefined) {
+    if (props.isActive !== undefined) {
+        isActive = props.isActive;
+    } else if (props.isLinkActive !== undefined) {
         devLogger.warn('useIsActive: isLinkActive prop is deprecated. Use isActive prop instead.');
         isActive = props.isLinkActive;
     } else if (props.link && context.uuiRouter) {
         isActive = context.uuiRouter.isActive(props.link);
     } else {
-        isActive = props.isActive || false;
+        isActive = false;
     }
 
     return {
