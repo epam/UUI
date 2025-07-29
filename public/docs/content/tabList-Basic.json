@@ -1,0 +1,23 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Usage within "
+      },
+      {
+        "type": "link",
+        "url": "http://localhost:3793/documents?id=tabList&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "TabList"
+          }
+        ]
+      },
+      {
+        "text": " component (recommended)"
+      }
+    ]
+  }
+]
