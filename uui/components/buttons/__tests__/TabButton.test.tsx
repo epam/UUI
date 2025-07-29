@@ -52,12 +52,7 @@ describe('TabButton', () => {
         );
 
         await userEvent.tab();
-        const tabButton = screen.getByRole(
-            'tab',
-            {
-                name: /tab button/i,
-            },
-        );
+        const tabButton = screen.getByRole('tab', { name: /tab button/i });
         expect(tabButton).toHaveFocus();
 
         await userEvent.keyboard(' ');

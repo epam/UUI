@@ -104136,26 +104136,6 @@
     "propsFromUnion": false
    }
   },
-  "@epam/uui:TabId": {
-   "summary": {
-    "module": "@epam/uui",
-    "typeName": {
-     "name": "TabId",
-     "nameFull": "TabId"
-    },
-    "src": "uui/components/layout/TabList.tsx",
-    "exported": true
-   },
-   "details": {
-    "kind": 265,
-    "typeValue": {
-     "raw": "string",
-     "print": [
-      "type TabId = string;"
-     ]
-    }
-   }
-  },
   "@epam/uui:TabListItemProps": {
    "summary": {
     "module": "@epam/uui",
@@ -104169,9 +104149,12 @@
    "details": {
     "kind": 265,
     "typeValue": {
-     "raw": "TabButtonProps & React.RefAttributes<HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement> & { id: string; } | TabButtonProps & React.RefAttributes<any> & { id: string; }",
+     "raw": "TabListItemProps",
      "print": [
-      "type TabListItemProps = TabButtonPropsBase & {",
+      "type TabListItemProps = TabButtonProps & {",
+      "    /** Ref to the tab button. */",
+      "    ref?: ForwardedRef<TabElement>;",
+      "    /** ID of the tab button. There should be only one element with such ID on a page. */",
       "    id: TabId;",
       "};"
      ]
@@ -104580,33 +104563,23 @@
       "name": "ref",
       "comment": {
        "raw": [
-        "Allows getting a ref to the component instance.",
-        " Once the component unmounts, React will set `ref.current` to `null`",
-        " (or call the ref with `null` if you passed a callback ref).",
-        "",
-        " @see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
+        "Ref to the tab button."
        ]
       },
       "typeValue": {
-       "raw": "null | React.RefObject<HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement | null> | (instance: HTMLAnchorElement | HTMLButtonElement | HTMLSpanElement | null) => void | (() => VoidOrUndefinedOnly)",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLAnchorElement <span class=\"token operator\">|</span> HTMLButtonElement <span class=\"token operator\">|</span> HTMLSpanElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLAnchorElement <span class=\"token operator\">|</span> HTMLButtonElement <span class=\"token operator\">|</span> HTMLSpanElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span>"
+       "raw": "null | (instance: TabElement | null) => void | React.RefObject<TabElement | null>",
+       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> TabElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>TabElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span>"
       },
-      "from": "@types/react:RefAttributes",
-      "required": false
-     },
-     {
-      "uid": "key",
-      "name": "key",
-      "typeValue": {
-       "raw": "null | string | number | bigint",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">string</span> <span class=\"token operator\">|</span> <span class=\"token builtin\">number</span> <span class=\"token operator\">|</span> bigint"
-      },
-      "from": "@types/react:Attributes",
       "required": false
      },
      {
       "uid": "id",
       "name": "id",
+      "comment": {
+       "raw": [
+        "ID of the tab button. There should be only one element with such ID on a page."
+       ]
+      },
       "typeValue": {
        "raw": "string",
        "html": "<span class=\"token builtin\">string</span>"
@@ -104615,28 +104588,9 @@
        "type": "string"
       },
       "required": true
-     },
-     {
-      "uid": "ref_2",
-      "name": "ref",
-      "comment": {
-       "raw": [
-        "Allows getting a ref to the component instance.",
-        " Once the component unmounts, React will set `ref.current` to `null`",
-        " (or call the ref with `null` if you passed a callback ref).",
-        "",
-        " @see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | React.RefObject<any> | (instance: any) => void | (() => VoidOrUndefinedOnly)",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span><span class=\"token builtin\">any</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> <span class=\"token builtin\">any</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span>"
-      },
-      "from": "@types/react:RefAttributes",
-      "required": false
      }
     ],
-    "propsFromUnion": true
+    "propsFromUnion": false
    }
   },
   "@epam/uui:TabListProps": {
@@ -104655,7 +104609,7 @@
      "raw": "TabListProps",
      "print": [
       "interface TabListProps extends IControlled<TabId>, FlexRowProps {",
-      "    /** `TabButton` or `VerticalTabButton` props with required `id`. */",
+      "    /** `TabButton` props with required `id` field. */",
       "    items: Array<TabListItemProps>;",
       "}"
      ]
@@ -104666,7 +104620,7 @@
       "name": "items",
       "comment": {
        "raw": [
-        "`TabButton` or `VerticalTabButton` props with required `id`."
+        "`TabButton` props with required `id` field."
        ]
       },
       "typeValue": {
@@ -105071,25 +105025,6 @@
        ]
       },
       "from": "@epam/uui:FlexRowMods",
-      "required": false
-     },
-     {
-      "uid": "ref",
-      "name": "ref",
-      "comment": {
-       "raw": [
-        "Allows getting a ref to the component instance.",
-        " Once the component unmounts, React will set `ref.current` to `null`",
-        " (or call the ref with `null` if you passed a callback ref).",
-        "",
-        " @see {@link https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom React Docs}"
-       ]
-      },
-      "typeValue": {
-       "raw": "null | React.RefObject<HTMLDivElement | null> | (instance: HTMLDivElement | null) => void | (() => VoidOrUndefinedOnly)",
-       "html": "<span class=\"token keyword\">null</span> <span class=\"token operator\">|</span> React<span class=\"token punctuation\">.</span>RefObject<span class=\"token operator\">&lt;</span>HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token operator\">></span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span>instance<span class=\"token operator\">:</span> HTMLDivElement <span class=\"token operator\">|</span> <span class=\"token keyword\">null</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> <span class=\"token keyword\">void</span> <span class=\"token operator\">|</span> <span class=\"token punctuation\">(</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token operator\">=></span> VoidOrUndefinedOnly<span class=\"token punctuation\">)</span>"
-      },
-      "from": "@types/react:RefAttributes",
       "required": false
      }
     ],
