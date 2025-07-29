@@ -25,7 +25,7 @@ type TabElement =
     | HTMLSpanElement;
 
 export type TabListItemProps = TabButtonProps & {
-    /** Ref to a tab button. */
+    /** Ref to the tab button. */
     ref?: ForwardedRef<TabElement>;
     /** ID of the tab button. There should be only one element with such ID on a page. */
     id: TabId;
@@ -34,7 +34,7 @@ export type TabListItemProps = TabButtonProps & {
 export interface TabListProps extends
     IControlled<TabId>,
     FlexRowProps {
-    /** `TabButton` or `VerticalTabButton` props with required `id`. */
+    /** `TabButton` props with required `id` field. */
     items: Array<TabListItemProps>;
 }
 
