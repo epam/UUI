@@ -26,6 +26,7 @@ export const VerticalTabButtonExplorerConfig: TDocConfig = {
     },
     preview: (docPreview: DocPreviewBuilder<uui.VerticalTabButtonProps<unknown, unknown>>) => {
         const TEST_DATA = {
+            count: '+99',
             caption: 'Test',
             callback: 'callback',
             href: 'https://google.com',
@@ -52,13 +53,17 @@ export const VerticalTabButtonExplorerConfig: TDocConfig = {
             withNotify: { values: [true, false] },
             icon: { examples: [undefined, TEST_DATA.icon] },
             iconPosition: { examples: '*', condition: (props) => !!props.icon },
+            isDropdown: { values: [true, false] },
         }, '180-70');
         docPreview.add(TVerticalTabButtonPreview['States'], {
             ...baseMatrix,
             ...statesMatrix,
+            count: { values: [TEST_DATA.count] },
             withNotify: { values: [true] },
             icon: { examples: [TEST_DATA.icon] },
             iconPosition: { examples: ['left'] },
+            onClear: { examples: [TEST_DATA.callback] },
+            isDropdown: { values: [true] },
         }, w200_h55);
     },
 };

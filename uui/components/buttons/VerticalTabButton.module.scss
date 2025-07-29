@@ -159,4 +159,15 @@
             padding-inline-end: 0;
         }
     }
+
+    // Code below deprecated and will be removed in the future
+
+    :global(.uui-count_indicator) {
+        margin-inline-start: 3px;
+        margin-inline-end: var(--uui-horizontal-gap);
+
+        ~ :global(.uui-caption) {
+            padding-inline-end: 0;
+        }
+    }
 }
