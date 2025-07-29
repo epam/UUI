@@ -5,6 +5,6 @@
     "order": 4,
     "examples": [
         { "descriptionPath": "flexSpacer-description" },
-        { "componentPath": "flexItems/FlexSpacer.example.tsx" }
+        { "name": "Basic", "componentPath": "flexItems/FlexSpacer.example.tsx" }
     ]
 }

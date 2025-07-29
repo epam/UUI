@@ -5,6 +5,6 @@
     "order": 3,
     "examples": [
         { "descriptionPath": "flexCell-description" },
-        { "componentPath": "flexItems/FlexCell.example.tsx" }
+        { "name": "Basic", "componentPath": "flexItems/FlexCell.example.tsx" }
     ]
 }
