@@ -43,7 +43,7 @@ export const MainMenuButton = React.forwardRef<HTMLButtonElement | HTMLAnchorEle
             { ...clickableProps }
             rawProps={ {
                 'aria-expanded': props.isOpen,
-                'aria-current': props.isLinkActive
+                'aria-current': isActive
                     ? 'page'
                     : undefined,
                 ...props.rawProps,
