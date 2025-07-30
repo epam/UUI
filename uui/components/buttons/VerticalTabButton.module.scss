@@ -1,11 +1,154 @@
 @use '../../assets/styles/index' as *;
 
 .root {
-    border-bottom: 0 none;
-    border-inline-start: var(--uui-tab-line-width) solid transparent;
-    text-align: start;
-    column-gap: 0;
-    padding-inline-start: calc(var(--uui-tab_btn-padding) - var(--uui-tab-line-width));
+    --uui-vertical_tab_btn-text: var(--uui-text-primary);
+    --uui-vertical_tab_btn-text-hover: var(--uui-primary-50);
+    --uui-vertical_tab_btn-text-active: var(--uui-primary-50);
+    --uui-vertical_tab_btn-text-disabled: var(--uui-text-disabled);
+    --uui-vertical_tab_btn-icon: var(--uui-text-primary);
+    --uui-vertical_tab_btn-icon-hover: var(--uui-primary-50);
+    --uui-vertical_tab_btn-icon-active: var(--uui-primary-50);
+    --uui-vertical_tab_btn-icon-disabled: var(--uui-text-disabled);
+    --uui-vertical_tab_btn-bg: var(--uui-surface-main);
+    --uui-vertical_tab_btn-bg-hover: var(--uui-neutral-5);
+    --uui-vertical_tab_btn-bg-active: var(--uui-primary-5);
+    --uui-vertical_tab_btn-bg-active-hover: var(--uui-primary-10);
+    --uui-vertical_tab_btn-border-active: var(--uui-primary-50);
+
+    // fonts
+    --uui-vertical_tab_btn-font: var(--uui-font);
+    --uui-vertical_tab_btn-font-weight-semibold: 600;
+    --uui-vertical_tab_btn-font-weight-regular: 400;
+
+    // sizes
+    --uui-vertical_tab_btn-height: var(--uui-size);
+    --uui-vertical_tab_btn-min-width: var(--uui-size);
+    --uui-vertical_tab_btn-padding: var(--uui-horizontal-padding);
+    --uui-vertical_tab_btn-gap: var(--uui-horizontal-gap);
+    --uui-vertical_tab_btn-horizontal-caption-padding: var(--uui-horizontal-gap);
+    --uui-vertical_tab_btn-vertical-caption-padding: calc((var(--uui-vertical_tab_btn-height) - var(--uui-vertical_tab_btn-line-height)) / 2);
+    --uui-vertical_tab_btn-icon-height: var(--uui-icon-size);
+    --uui-vertical_tab_btn-line-height: var(--uui-line-height);
+    --uui-vertical_tab_btn-font-size: var(--uui-font-size);
+    --uui-vertical_tab_btn-indent-size: 12px;
+
+    @include clickable-styles();
+
+    & {
+        cursor: pointer;
+        padding-inline-end: var(--uui-vertical_tab_btn-padding);
+        align-items: center;
+        font-family: var(--uui-vertical_tab_btn-font);
+        height: var(--uui-vertical_tab_btn-height);
+        min-width: var(--uui-vertical_tab_btn-min-width);
+        width: 100%;
+        column-gap: var(--uui-vertical_tab_btn-gap);
+        border-inline-start: var(--uui-tab-line-width) solid var(--uui-vertical_tab_btn-bg);
+        text-align: start;
+        padding-inline-start: calc(var(--uui-vertical_tab_btn-padding) - var(--uui-tab-line-width));
+        color: var(--uui-vertical_tab_btn-text);
+        fill: var(--uui-vertical_tab_btn-icon);
+        background-color: var(--uui-vertical_tab_btn-bg);
+    }
+
+    &.noLeftPadding {
+        padding-inline-start: 0;
+    }
+
+    .foldingArea {
+        fill: var(--uui-vertical_tab_btn-icon);
+        display: flex;
+        justify-content: end;
+        height: 100%;
+        width: calc(var(--uui-vertical_tab_btn-padding) - var(--uui-tab-line-width) + var(--uui-vertical_tab_btn-icon-height) + var(--uui-vertical_tab_btn-indent-size) * var(--uui-folding-indent, 0));
+    }
+
+    svg {
+        height: var(--uui-vertical_tab_btn-icon-height);
+        width: inherit;
+    }
+
+    &:global(.-clickable):focus-visible {
+        @include focus-visible-effect(calc(0px - var(--uui-focus-outline-width)));
+    }
+
+    &:not(.onlyFoldable):hover:not(:has(.foldingArea:hover)),
+    &.onlyFoldable:hover {
+        color: var(--uui-vertical_tab_btn-text-active);
+        fill: var(--uui-vertical_tab_btn-icon-hover);
+        border-inline-color: var(--uui-vertical_tab_btn-bg-hover);
+        background-color: var(--uui-vertical_tab_btn-bg-hover);
+
+        &:global(.uui-active) {
+            background-color: var(--uui-vertical_tab_btn-bg-active-hover);
+            border-inline-color: var(--uui-vertical_tab_btn-border-active);
+        }
+    }
+
+    &.onlyFoldable:hover .foldingArea,
+    &:not(.onlyFoldable) .foldingArea:hover {
+        fill: var(--uui-vertical_tab_btn-icon-hover);
+    }
+
+    &:global(.uui-active) {
+        color: var(--uui-vertical_tab_btn-text-active);
+        fill: var(--uui-vertical_tab_btn-icon-active);
+        border-inline-color: var(--uui-vertical_tab_btn-border-active);
+        background-color: var(--uui-vertical_tab_btn-bg-active);
+    }
+
+    // Disabled state with proper hover effect separation between click and folding areas
+    &:global(.uui-disabled):is(&, :hover, :global(.uui-active), :global(.uui-active):hover),
+    &:global(.uui-disabled):not(.onlyFoldable):hover:not(:has(.foldingArea:hover)),
+    &:global(.uui-disabled).onlyFoldable:hover,
+    &:global(.uui-disabled) .foldingArea:hover {
+        color: var(--uui-vertical_tab_btn-text-disabled);
+        fill: var(--uui-vertical_tab_btn-icon-disabled);
+        border-inline-color: var(--uui-vertical_tab_btn-bg);
+        background-color: var(--uui-vertical_tab_btn-bg);
+    }
+
+    // Disabled state for folding area specifically
+    &:global(.uui-disabled) :is(.foldingArea, .foldingArea:hover),
+    &:global(.uui-disabled).onlyFoldable:hover .foldingArea,
+    &:global(.uui-disabled):not(.onlyFoldable) .foldingArea:hover {
+        fill: var(--uui-vertical_tab_btn-icon-disabled);
+    }
+
+    .captionWrapper {
+        display: flex;
+        min-width: 0;
+    }
+
+    :global(.uui-caption) {
+        position: relative;
+        line-height: var(--uui-vertical_tab_btn-line-height);
+        font-size: var(--uui-vertical_tab_btn-font-size);
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: var(--uui-vertical_tab_btn-vertical-caption-padding);
+        padding-bottom: var(--uui-vertical_tab_btn-vertical-caption-padding);
+
+        &:global(.uui-vertical-tab-button-weight-semibold) {
+            font-weight: var(--uui-vertical_tab_btn-font-weight-semibold);
+        }
+
+        &:global(.uui-vertical-tab-button-weight-regular) {
+            font-weight: var(--uui-vertical_tab_btn-font-weight-regular);
+        }
+    }
+
+    .withNotify {
+        position: relative;
+        top: calc(var(--uui-vertical_tab_btn-vertical-caption-padding) - var(--uui-notify-size) / 2);
+        height: var(--uui-notify-size);
+        width: var(--uui-notify-size);
+        background: var(--uui-critical-50);
+        box-shadow: 0 1px 8px 0 var(--uui-critical-50);
+        border-radius: 50%;
+    }
 
     :global(.uui-caption) {
         &:first-child {
@@ -16,6 +159,8 @@
             padding-inline-end: 0;
         }
     }
+
+    // Code below deprecated and will be removed in the future
 
     :global(.uui-count_indicator) {
         margin-inline-start: 3px;

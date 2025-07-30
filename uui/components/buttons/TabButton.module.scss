@@ -65,14 +65,12 @@
     }
 
     &:global(.-clickable):focus-visible {
-        @include focus-visible-effect(calc(0 - var(--uui-focus-outline-width)));
+        @include focus-visible-effect(calc(0px - var(--uui-focus-outline-width)));
     }
 
     &:global(.uui-disabled) {
         @include tab-button-color(var(--uui-tab_btn-text-disabled), var(--uui-tab_btn-text-disabled), transparent);
     }
-
-
 
     &:global(.uui-button-box) {
         min-width: min-content;
@@ -85,9 +83,9 @@
         font-size: var(--uui-tab_btn-font-size);
         text-wrap: nowrap;
         padding-top: var(--uui-tab_btn-vertical-caption-padding);
-        padding-bottom: var(--uui-tab_btn-vertical-caption-padding);
         padding-inline-start: var(--uui-tab_btn-horizontal-caption-padding);
         padding-inline-end: var(--uui-tab_btn-horizontal-caption-padding);
+        padding-bottom: calc(var(--uui-tab_btn-vertical-caption-padding) - var(--uui-tab-line-width));
 
         .withNotify {
             position: relative;
@@ -100,17 +98,11 @@
         }
     }
 
-    &:not(:global(.uui-vertical-tab-button)) {
-        :global(.uui-caption) {
-            padding-bottom: calc(var(--uui-tab_btn-vertical-caption-padding) - var(--uui-tab-line-width));
-        }
+    :global(.uui-count_indicator) {
+        margin-bottom: calc(var(--uui-tab_btn-vertical-caption-padding) - var(--uui-tab-line-width));
+    }
 
-        :global(.uui-count_indicator) {
-            margin-bottom: calc(var(--uui-tab_btn-vertical-caption-padding) - var(--uui-tab-line-width));
-        }
-
-        :global(.uui-icon) {
-            margin-bottom: calc(0px - var(--uui-tab-line-width));
-        }
+    :global(.uui-icon) {
+        margin-bottom: calc(0px - var(--uui-tab-line-width));
     }
 }

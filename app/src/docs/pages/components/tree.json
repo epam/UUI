@@ -4,7 +4,8 @@
   "parentId": "components",
   "examples": [
     { "descriptionPath": "tree-descriptions" },
-    { "name": "Basic", "componentPath": "dataSources/CustomHierarchicalList.example.tsx" }
+    { "name": "Basic Tree", "componentPath": "tree/Basic.example.tsx" },
+    { "name": "Simple Navigation", "componentPath": "tree/SimpleNavigation.example.tsx" }
   ],
   "tags": ["tree", "virtualList", "dataSources"]
 }

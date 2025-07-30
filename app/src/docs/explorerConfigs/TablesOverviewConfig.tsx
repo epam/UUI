@@ -1,7 +1,7 @@
 import { TDocConfig, TSkin } from '@epam/uui-docs';
 import * as uui from '@epam/uui';
 
-export const tablesOverviewExplorerConfig: TDocConfig = {
+export const TablesOverviewExplorerConfig: TDocConfig = {
     id: 'tablesOverview',
     name: 'DataTable',
     bySkin: {

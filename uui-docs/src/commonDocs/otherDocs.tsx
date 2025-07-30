@@ -2,6 +2,7 @@ import {
     ICanRedirect,
     IHasLabel,
     IEditable,
+    ICanBeActive,
 } from '@epam/uui-core';
 import { DocBuilder } from '../DocBuilder';
 
@@ -13,7 +14,6 @@ export const iCanRedirectDoc = new DocBuilder<ICanRedirect>({ name: 'Icon' })
         ],
         editorType: 'LinkEditor',
     })
-    .prop('isLinkActive', { examples: [true] })
     .prop('href', {
         examples: [
             { name: 'EPAM', value: 'https://www.epam.com' }, { name: 'Google', value: 'https://google.com' },
@@ -21,6 +21,10 @@ export const iCanRedirectDoc = new DocBuilder<ICanRedirect>({ name: 'Icon' })
         editorType: 'StringWithExamplesEditor',
     })
     .prop('target', { examples: ['_blank'] });
+
+export const iCanBeActiveDoc = new DocBuilder<ICanBeActive>({ name: '' })
+    .prop('isActive', { examples: [true] })
+    .prop('isLinkActive', { examples: [true], description: 'Depricated' });
 
 export const iHasLabelDoc = new DocBuilder<IHasLabel>({ name: 'Label' }).prop('label', {
     examples: [

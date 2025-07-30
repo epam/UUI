@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { TDocConfig } from '@epam/uui-docs';
-import { LinkButton, FlexSpacer } from '@epam/uui';
-import { Switch, FlexRow } from '@epam/promo';
+import { LinkButton, FlexSpacer, Switch, FlexRow, Spinner, FlexCell } from '@epam/uui';
 import { EditableDocContent } from './EditableDocContent';
 import { svc } from '../../services';
 import { CodesandboxLink } from './CodesandboxLink';
@@ -50,7 +49,7 @@ export function DocExample(props: DocExampleProps) {
     const skin = getSkin(theme, true);
     const type = props?.config?.bySkin[skin]?.type;
     const propsOverride = usePropEditorTypeOverride(theme, type);
-    const exampleProps = useExampleProps(props.config, type, theme, propsOverride);
+    const { exampleProps, isLoading: examplePropsIsLoading } = useExampleProps(props.config, type, theme, propsOverride);
     const code = useCode(props.path, raw, exampleProps, props.config);
 
     useEffect(() => {
@@ -82,11 +81,8 @@ export function DocExample(props: DocExampleProps) {
 
     const renderPreview = () => {
         const dirPath = props.path.split('/').slice(0, -1);
-        const codesandboxRaw = (props.config && raw && exampleProps) ? generateNewRawString(raw, exampleProps) : raw;
 
-        if (props.config && (!exampleProps || !codesandboxRaw)) {
-            return null;
-        }
+        const codesandboxRaw = (props.config && raw && exampleProps) ? generateNewRawString(raw, exampleProps) : raw;
 
         return (
             <div>
@@ -99,7 +95,11 @@ export function DocExample(props: DocExampleProps) {
                     columnGap="12"
                     rawProps={ { role: 'region', 'aria-label': 'Example preview' } }
                 >
-                    {component && React.createElement(component.elementType, { propDocs: exampleProps })}
+                    { 
+                        examplePropsIsLoading 
+                            ? <FlexCell grow={ 1 }><Spinner /></FlexCell> 
+                            : component && React.createElement(component.elementType, { propDocs: exampleProps }) 
+                    }
                 </FlexRow>
                 <footer>
                     <FlexRow
@@ -116,7 +116,7 @@ export function DocExample(props: DocExampleProps) {
                             aria-label="Toggle code visibility"
                         />
                         <FlexSpacer />
-                        {!props.disableCodesandbox && <CodesandboxLink raw={ codesandboxRaw } dirPath={ dirPath } />}
+                        {!props.disableCodesandbox && !examplePropsIsLoading && <CodesandboxLink raw={ codesandboxRaw } dirPath={ dirPath } />}
                         <DocExampleFsBtn path={ props.path } theme={ theme } />
                     </FlexRow>
                 </footer>
