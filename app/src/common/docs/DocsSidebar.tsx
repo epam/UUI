@@ -1,6 +1,5 @@
 import React from 'react';
 import { DataRowProps } from '@epam/uui-core';
-import { TreeListItem } from '@epam/uui-components';
 import { Sidebar } from '../sidebar';
 import { useQuery } from '../../helpers';
 import { TMode } from './docsConstants';
@@ -29,7 +28,7 @@ export function DocsSidebar() {
     const isSkin = useQuery<DocsQuery['isSkin']>('isSkin');
     const { theme } = useAppThemeContext();
 
-    const onChange = (row: DataRowProps<TreeListItem, string>) => {
+    const onChange = (row: DataRowProps<DocItem, string>) => {
         if (row.parentId === 'components') {
             redirectTo({
                 category: row.parentId,
@@ -51,22 +50,21 @@ export function DocsSidebar() {
     };
 
     return (
-        <Sidebar<DocItem>
+        <Sidebar
             value={ queryParamId }
             onValueChange={ onChange }
             items={ docsMenuStructure }
             getSearchFields={ getSearchFields }
-            getItemLink={ (row) =>
-                !row.isFoldable && {
-                    pathname: '/documents',
-                    query: {
-                        id: row.id,
-                        mode: (row.parentId && mode),
-                        isSkin: (row.parentId && isSkin),
-                        category: row.parentId,
-                        theme,
-                    },
-                } }
+            getItemLink={ (item) => ({
+                pathname: '/documents',
+                query: {
+                    id: item.id,
+                    mode: mode,
+                    isSkin: isSkin,
+                    category: item.parentId,
+                    theme,
+                },
+            }) }
         />
     );
 }

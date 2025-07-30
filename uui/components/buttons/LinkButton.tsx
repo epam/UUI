@@ -1,6 +1,15 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Icon, devLogger, IDropdownToggler, IHasCaption, IHasIcon, uuiElement, Overwrite } from '@epam/uui-core';
+import {
+    Icon,
+    devLogger,
+    IDropdownToggler,
+    IHasCaption,
+    IHasIcon,
+    uuiElement,
+    Overwrite,
+    ICanBeActive,
+} from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { getIconClass } from './helper';
 import * as types from '../types';
@@ -25,7 +34,7 @@ interface LinkButtonMods {
 }
 
 /** Represents the Core properties of the LinkButton component. */
-export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption {
+export interface LinkButtonCoreProps extends ClickableComponentProps, IDropdownToggler, IHasIcon, IHasCaption, ICanBeActive {
     /** Icon for drop-down toggler */
     dropdownIcon?: Icon;
     /**

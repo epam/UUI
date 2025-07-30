@@ -5,7 +5,7 @@ import * as promo from '@epam/promo';
 import * as electric from '@epam/electric';
 import { DocBuilder, TDocConfig, TDocContext, TSkin } from '@epam/uui-docs';
 
-export const pickerListExplorerConfig: TDocConfig = {
+export const PickerListExplorerConfig: TDocConfig = {
     id: 'pickerList',
     name: 'PickerList',
     contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],
