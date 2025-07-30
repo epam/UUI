@@ -97,12 +97,7 @@ function VerticalTabButtonComponent<TItem, TId>(
     ];
 
     if (props.count !== undefined && props.count !== null) {
-        devLogger.warnAboutDeprecatedPropValue<VerticalTabButtonProps<TItem, TId>, 'count'>({
-            component: 'VerticalTabButton',
-            propName: 'count',
-            propValue: props.count,
-            propValueUseInstead: 'renderAddons',
-        });
+        devLogger.warn('VerticalTabButton: count prop is deprecated. Use renderAddons prop instead.');
     }
 
     if (props.onClear !== undefined && props.onClear !== null) {
