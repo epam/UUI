@@ -48,7 +48,7 @@ export const DocsBlock: React.FC<DocBlockProps> = (props) => {
 
     const isModeSupported = (mode: TMode) => {
         if ([TMode.propsEditor].includes(mode)) {
-            return !!getConfig();
+            return !!getConfig()?.contexts;
         }
         return true;
     };

@@ -1,0 +1,9 @@
+{
+    "id": "dataSources-usage",
+    "name": "Usage in components",
+    "parentId": "dataSources",
+    "examples": [
+        { "descriptionPath": "dataSources-usage-in-components" },
+        { "name": "DataSourceViewer", "componentPath": "dataSources/DataSourceViewer.code.example.tsx", "onlyCode": true }
+    ]
+}

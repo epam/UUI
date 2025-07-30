@@ -59,6 +59,7 @@ export const useExampleProps = (
     propsOverride: TPropEditorTypeOverride[TTypeRef] | undefined,
 ) => {
     const [exampleProps, setExampleProps] = useState<Record<string, TTypeProp>>();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         if (config && type) {
@@ -74,11 +75,16 @@ export const useExampleProps = (
                 setExampleProps(updatedProps);
             };
 
-            loadExampleProps().catch(console.error);
+            loadExampleProps().then(() => setIsLoading(false)).catch(console.error);
+        } else {
+            setIsLoading(false);
         }
     }, [config, type, theme, propsOverride]);
 
-    return exampleProps;
+    return {
+        exampleProps,
+        isLoading,
+    };
 };
 
 export const useCode = (path: string, raw: string | undefined, exampleProps: Record<string, TTypeProp> | undefined, config: TDocConfig | undefined) => {

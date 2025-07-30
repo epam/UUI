@@ -6,6 +6,7 @@ export type { IconContainerProps } from '@epam/uui-components';
 export * from './LabeledInput';
 export * from './RadioGroup';
 export * from './ScrollBars';
+export * from './Tree';
 export * from './VirtualList';
 export * from './Blocker';
 export * from './CheckboxGroup';

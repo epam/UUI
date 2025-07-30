@@ -1,4 +1,4 @@
-import { buttonExplorerConfig } from './ButtonConfig';
+import { ButtonExplorerConfig } from './ButtonConfig';
 import { AlertConfig } from './AlertConfig';
 import { CheckboxConfig } from './CheckboxConfig';
 import { CountIndicatorConfig } from './CountIndicatorConfig';
@@ -43,18 +43,19 @@ import { NumericInputConfig } from './NumericInputConfig';
 import { TextPlaceholderConfig } from './TextPlaceholderConfig';
 import { NotificationCardConfig } from './NotificationCardConfig';
 import { RadioGroupConfig } from './RadioGroupConfig';
-import { tablesOverviewExplorerConfig } from './TablesOverviewConfig';
-import { labeledInputExplorerConfig } from './LabeledInputConfig';
-import { tabButtonExplorerConfig } from './TabButtonConfig';
-import { verticalTabButtonExplorerConfig } from './VerticalTabButtonConfig';
-import { pickerListExplorerConfig } from './PickerListConfig';
+import { TablesOverviewExplorerConfig } from './TablesOverviewConfig';
+import { LabeledInputExplorerConfig } from './LabeledInputConfig';
+import { TabButtonExplorerConfig } from './TabButtonConfig';
+import { VerticalTabButtonExplorerConfig } from './VerticalTabButtonConfig';
+import { PickerListExplorerConfig } from './PickerListConfig';
+import { TreeConfig } from './TreeConfig';
 import { TDocConfig } from '@epam/uui-docs';
 
 export const explorerConfigs = [
     SwitchConfig,
     PickerInputConfig,
     CheckboxConfig,
-    buttonExplorerConfig,
+    ButtonExplorerConfig,
     SwitchConfig,
     SliderRatingConfig,
     SliderConfig,
@@ -97,11 +98,12 @@ export const explorerConfigs = [
     TextPlaceholderConfig,
     NotificationCardConfig,
     RadioGroupConfig,
-    tablesOverviewExplorerConfig,
-    labeledInputExplorerConfig,
-    tabButtonExplorerConfig,
-    verticalTabButtonExplorerConfig,
-    pickerListExplorerConfig,
+    TablesOverviewExplorerConfig,
+    LabeledInputExplorerConfig,
+    TabButtonExplorerConfig,
+    VerticalTabButtonExplorerConfig,
+    PickerListExplorerConfig,
+    TreeConfig,
 ];
 
 export const explorerConfigsMap = explorerConfigs.reduce<Map<string, TDocConfig >>((acc, config) => {

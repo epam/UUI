@@ -412,6 +412,17 @@
         --uui-tab_btn-text-active: var(--uui-primary-60);
     }
 
+    /* VerticalTabButton */
+
+    .uui-vertical-tab-button {
+        --uui-vertical_tab_btn-text-hover: var(--uui-primary-60);
+        --uui-vertical_tab_btn-text-active: var(--uui-primary-60);
+        --uui-vertical_tab_btn-icon-hover: var(--uui-primary-60);
+        --uui-vertical_tab_btn-icon-active: var(--uui-primary-60);
+        --uui-vertical_tab_btn-bg-hover: var(--uui-surface-higher);
+        --uui-vertical_tab_btn-border-active: var(--uui-primary-60);
+    }
+
     /* MainMenu */
 
     .uui-main_menu {

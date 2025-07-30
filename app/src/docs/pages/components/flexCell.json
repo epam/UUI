@@ -1,0 +1,10 @@
+{
+    "id": "flexCell",
+    "name": "Flex Cell",
+    "parentId": "flexItems",
+    "order": 3,
+    "examples": [
+        { "descriptionPath": "flexCell-description" },
+        { "name": "Basic", "componentPath": "flexItems/FlexCell.example.tsx" }
+    ]
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can also use "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tree&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Tree"
+          }
+        ]
+      },
+      {
+        "text": " component to build hierarchical trees. It uses "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=verticalTabButton&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "VerticalTabButton"
+          }
+        ]
+      },
+      {
+        "text": " as default item renderer  and View from DataSource to load data and "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=virtualList&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": ""
+          }
+        ]
+      },
+      {
+        "text": "fold/unfold functionality."
+      }
+    ]
+  },
+  {
+    "type": "note-warning",
+    "children": [
+      {
+        "text": "Note: Selection in DataSource is enabled only via "
+      },
+      {
+        "text": "isSelectable",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in "
+      },
+      {
+        "text": "getRowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " configuration. Without it, rows will not have "
+      },
+      {
+        "text": "onClick",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " handlers, and selection will not work. Folding "
+      },
+      {
+        "text": "is activated automatically if there are references to the parent id in children. Read more in ",
+        "color": "rgb(17, 17, 17)"
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=dataSourcesGettingStarted&mode=doc&category=dataSources&theme=loveship",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "DataSources"
+          }
+        ]
+      },
+      {
+        "color": "rgb(17, 17, 17)",
+        "text": " section"
+      }
+    ]
+  }
+]
