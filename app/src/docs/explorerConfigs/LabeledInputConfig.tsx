@@ -12,7 +12,7 @@ import {
     TSkin, TLabeledInputPreview,
 } from '@epam/uui-docs';
 
-export const labeledInputExplorerConfig: TDocConfig = {
+export const LabeledInputExplorerConfig: TDocConfig = {
     id: 'labeledInput',
     name: 'LabeledInput',
     contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],

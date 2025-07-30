@@ -1,0 +1,133 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can build a "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tree&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Tree"
+          }
+        ]
+      },
+      {
+        "text": " component using "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=dataSources-array-dataSource&mode=doc&category=dataSources",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "ArrayDataSource"
+          }
+        ]
+      },
+      {
+        "text": ". The Tree internally uses "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=virtualList&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "VirtualList"
+          }
+        ]
+      },
+      {
+        "text": " for performance, "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=verticalTabButton&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "VerticalTabButton"
+          }
+        ]
+      },
+      {
+        "text": " for row rendering with fold/unfold functionality, and view.getVisibleRows() to efficiently render only visible nodes in the hierarchy."
+      }
+    ]
+  },
+  {
+    "type": "note-error",
+    "children": [
+      {
+        "text": "Important: "
+      },
+      {
+        "text": "Selection",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " in DataSource is enabled only via "
+      },
+      {
+        "text": "isSelectable",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in "
+      },
+      {
+        "text": "getRowOptions",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " configuration. Without it, rows will not have onClick handlers, and selection will not work. "
+      },
+      {
+        "text": "onFold",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " is activated automatically if there are references to the parent id in children. If only "
+      },
+      {
+        "text": "onFold",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " handler is assigned to a row, then it is active on the entire area of the row. If both "
+      },
+      {
+        "text": "onClick",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "onFold",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " actions are assigned to a row simultaneously, clicking "
+      },
+      {
+        "text": "on the row",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " will trigger onClick, and folding will only trigger when clicking on the "
+      },
+      {
+        "text": "specific foldingArea",
+        "uui-richTextEditor-bold": true
+      },
+      {
+        "text": " (chevron zone)."
+      }
+    ]
+  }
+]

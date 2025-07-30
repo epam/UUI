@@ -19,6 +19,7 @@ describe('BurgerButton', () => {
                 type="secondary"
                 isDropdown
                 isOpen={ false }
+                isActive={ true }
             />,
         );
         expect(tree).toMatchSnapshot();

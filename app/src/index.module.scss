@@ -21,4 +21,8 @@ body {
     flex: 1 0 auto;
 }
 
+:global(.uui-example-app-bg) {
+    --uui-docs-bg: var(--uui-app-bg);
+}
+
 

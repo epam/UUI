@@ -5,6 +5,6 @@
     "order": 2,
     "examples": [
         { "descriptionPath": "flexRow-description" },
-        { "componentPath": "common/Card.example.tsx" }
+        { "name": "Basic", "componentPath": "common/Card.example.tsx" }
     ]
 }

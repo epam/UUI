@@ -34,7 +34,7 @@ export class VerticalTabButtonContext extends React.Component<DemoComponentProps
                             caption={ props.caption }
                             onClick={ () => this.setTab('demoTab', props.onClick) }
                             size={ props.size }
-                            isLinkActive={ this.state.activeTab === 'demoTab' }
+                            isLinkActive={ this.state.activeTab === 'demoTab' || props.isActive || props.isLinkActive }
                         />
                         <DemoComponent
                             caption="Tools"

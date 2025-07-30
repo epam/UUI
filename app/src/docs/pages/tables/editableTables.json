@@ -4,8 +4,8 @@
     "parentId": "tables",
     "examples": [
         { "descriptionPath": "editable-tables-descriptions" },
-        { "name": "Editable Table", "componentPath": "tables/EditableTable.example.tsx", "cx": "css.appBg" },
-        { "name": "Table with copying", "componentPath": "tables/TableWithCopying.example.tsx", "cx": "css.appBg" }
+        { "name": "Editable Table", "componentPath": "tables/EditableTable.example.tsx", "cx": "uui-example-app-bg" },
+        { "name": "Table with copying", "componentPath": "tables/TableWithCopying.example.tsx", "cx": "uui-example-app-bg" }
     ],
     "order": 2,
     "tags": ["tables", "dataTable"]

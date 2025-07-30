@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { renderSnapshotWithContextAsync, fireEvent, screen, renderWithContextAsync } from '@epam/uui-test-utils';
 import { Clickable } from '../Clickable';
-import { uuiMarkers, uuiMod } from '@epam/uui-core';
+import { uuiMarkers } from '@epam/uui-core';
 
 describe('Clickable', () => {
     beforeEach(jest.clearAllMocks);
@@ -224,52 +224,6 @@ describe('Clickable', () => {
         const anchorElement = screen.getByRole('link');
         fireEvent.click(anchorElement);
         expect(mockRedirect).not.toHaveBeenCalled();
-    });
-
-    it('should add active class when isLinkActive is true', async () => {
-        const pathname = '/test';
-        const mockCreateHref = jest.fn().mockReturnValue(pathname);
-        jest.spyOn(React, 'useContext').mockImplementation(() => ({
-            uuiRouter: {
-                redirect: jest.fn(),
-                isActive: jest.fn(),
-                createHref: mockCreateHref,
-            },
-        }));
-        await renderWithContextAsync(<Clickable link={ { pathname: pathname } } isLinkActive />);
-        const clickableElement = screen.getByRole('link');
-        expect(clickableElement).toHaveClass(uuiMod.active);
-    });
-
-    it('should not add active class when isLinkActive is false', async () => {
-        const pathname = '/test';
-        const mockCreateHref = jest.fn().mockReturnValue(pathname);
-        jest.spyOn(React, 'useContext').mockImplementation(() => ({
-            uuiRouter: {
-                redirect: jest.fn(),
-                isActive: jest.fn(),
-                createHref: mockCreateHref,
-            },
-        }));
-        await renderWithContextAsync(<Clickable link={ { pathname: pathname } } isLinkActive={ false } />);
-        const clickableElement = screen.getByRole('link');
-        expect(clickableElement).not.toHaveClass(uuiMod.active);
-    });
-
-    it('should add active class when isActive from context returns true', async () => {
-        const pathname = '/test';
-        const mockCreateHref = jest.fn().mockReturnValue(pathname);
-        const mockIsActive = jest.fn().mockReturnValue(true);
-        jest.spyOn(React, 'useContext').mockImplementation(() => ({
-            uuiRouter: {
-                redirect: jest.fn(),
-                isActive: mockIsActive,
-                createHref: mockCreateHref,
-            },
-        }));
-        await renderWithContextAsync(<Clickable link={ { pathname: pathname } } />);
-        const clickableElement = screen.getByRole('link');
-        expect(clickableElement).toHaveClass(uuiMod.active);
     });
 
     it('should have tabIndex equal to passed prop', async () => {

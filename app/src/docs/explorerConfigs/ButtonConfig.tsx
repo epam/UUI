@@ -14,7 +14,7 @@ import {
     TButtonPreview,
 } from '@epam/uui-docs';
 
-export const buttonExplorerConfig: TDocConfig = {
+export const ButtonExplorerConfig: TDocConfig = {
     id: 'button',
     name: 'Button',
     contexts: [TDocContext.Default, TDocContext.Resizable, TDocContext.Form],

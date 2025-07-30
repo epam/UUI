@@ -5,7 +5,7 @@ exports[`MainMenuButton should be rendered correctly 1`] = `
   <a
     aria-current="page"
     aria-expanded="false"
-    class="uui-button-box uui-enabled uui-active -clickable uui-anchor root type-primary"
+    class="uui-button-box uui-enabled -clickable uui-anchor root type-primary uui-active"
     href=""
     rel="noopener noreferrer"
     tabindex="0"

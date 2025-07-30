@@ -4,7 +4,7 @@
     "parentId": "tables",
     "examples": [
         { "descriptionPath": "advanced-tables-descriptions" },
-        { "name": "Collapse/expand All", "componentPath": "tables/TableCollapse.example.tsx", "cx": "css.appBg" },
+        { "name": "Collapse/expand All", "componentPath": "tables/TableCollapse.example.tsx", "background": "css.appBg" },
         { "name": "Columns Configuration", "componentPath": "tables/ColumnsConfig.example.tsx", "cx": "css.appBg" },
         { "name": "Table with paging and select page", "componentPath": "tables/PagedTable.example.tsx", "cx": "css.appBg" },
         { "name": "Table with paging and select all rows", "componentPath": "tables/PagedTableWithSelectAll.example.tsx", "cx": "css.appBg" },
