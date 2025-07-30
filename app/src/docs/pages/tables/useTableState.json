@@ -4,8 +4,8 @@
     "parentId": "tables",
     "examples": [
         { "descriptionPath": "useTableState-descriptions" },
-        { "name": "Filtration with Presets", "componentPath": "tables/useTableState/useTableState.example.tsx", "cx": "css.appBg" },
-        { "name": "Disable URL storing and handle state manually", "componentPath": "tables/useTableState/useTableStateWithIEditable.example.tsx", "cx": "css.appBg" }
+        { "name": "Filtration with Presets", "componentPath": "tables/useTableState/useTableState.example.tsx", "cx": "uui-example-app-bg" },
+        { "name": "Disable URL storing and handle state manually", "componentPath": "tables/useTableState/useTableStateWithIEditable.example.tsx", "cx": "uui-example-app-bg" }
     ],
     "order": 4,
     "tags": ["tables", "dataTable"]

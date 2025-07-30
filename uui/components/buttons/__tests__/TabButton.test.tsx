@@ -16,6 +16,7 @@ describe('TabButton', () => {
                 icon={ calendarIcon }
                 isDisabled={ false }
                 withNotify={ true }
+                isActive={ true }
             />,
         );
         expect(tree).toMatchSnapshot();

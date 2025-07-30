@@ -11,7 +11,6 @@ import { ThemeDemo } from './theme/ThemeDemo';
 import { ThemeElectricDemo } from './theme-electric-test/ThemeDemo';
 import { ProductsTableDemo } from './productsTable/ProductsTableDemo';
 import { AdaptivePanelDemo } from './adaptivePanel/AdaptivePanelDemo';
-import { TreeListItem } from '@epam/uui-components';
 import { DataRowProps } from '@epam/uui-core';
 import { Skills } from './skills';
 import { ProjectTasksDemo } from './tasks/ProjectTasksDemo';
@@ -23,6 +22,7 @@ import { RtlExample } from './rtl/Rtl-example';
 import { DemoForm } from './rtl/form/DemoForm';
 import { RichTextEditorDemoReadonly } from './RTE-readonly/RichTextEditorDemo';
 import { PerformanceTestPage } from './perfomance-stand/PerformanceTestPage';
+import type { DocItem } from '@epam/uui-docs';
 
 export function SandboxPage() {
     const items = useMemo(
@@ -54,7 +54,7 @@ export function SandboxPage() {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: items[0].id } });
     }
 
-    const onChange = (val: DataRowProps<TreeListItem, string>) => {
+    const onChange = (val: DataRowProps<DocItem, string>) => {
         svc.uuiRouter.redirect({ pathname: '/sandbox', query: { id: val.id } });
     };
 
@@ -64,11 +64,10 @@ export function SandboxPage() {
                 <Sidebar
                     value={ getQuery('id') }
                     onValueChange={ onChange }
-                    getItemLink={ (item) =>
-                        !item.isFoldable && {
-                            pathname: 'sandbox',
-                            query: { id: item.id },
-                        } }
+                    getItemLink={ (item) => ({
+                        pathname: 'sandbox',
+                        query: { id: item.id },
+                    }) }
                     items={ items }
                 />
                 {createElement(items.find((item) => item.id === getQuery('id')).component)}

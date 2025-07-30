@@ -1,21 +1,20 @@
-import * as React from 'react';
-import css from './Sidebar.module.scss';
-import { ScrollBars, SearchInput } from '@epam/promo';
-import { Tree, TreeListItem } from '@epam/uui-components';
-import { SidebarButton } from './SidebarButton';
-import { DataRowProps, DataSourceState, Link, useUuiContext } from '@epam/uui-core';
+import React, { useEffect } from 'react';
+import { DataRowProps, DataSourceState, Link, useUuiContext, useArrayDataSource } from '@epam/uui-core';
+import { DocItem } from '@epam/uui-docs';
+import { SearchInput, Tree } from '@epam/uui';
 import { analyticsEvents } from '../../analyticsEvents';
+import css from './Sidebar.module.scss';
 
-export interface SidebarProps<TItem extends TreeListItem = TreeListItem> {
+export interface SidebarProps<TItem extends DocItem> {
     value: string;
-    onValueChange: (newVal: DataRowProps<TItem, string>) => void;
-    getItemLink?: (item: DataRowProps<TItem, string>) => Link;
+    onValueChange: (newVal: DataRowProps<DocItem, string>) => void;
+    getItemLink?: (item: DocItem) => Link;
     items: TItem[];
     renderSearch?: () => React.ReactNode;
     getSearchFields?(item: TItem): string[];
 }
 
-function getItemParents<TItem extends TreeListItem>(allItems: TItem[], itemId: string): string[] {
+function getItemParents<TItem extends DocItem>(allItems: TItem[], itemId: string): string[] {
     const item = allItems.find((i) => i.id === itemId);
     const parents = [];
     if (item?.parentId) {
@@ -26,11 +25,31 @@ function getItemParents<TItem extends TreeListItem>(allItems: TItem[], itemId: s
     return parents;
 }
 
-export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) {
+export function Sidebar(props: SidebarProps<DocItem>) {
     const { uuiAnalytics } = useUuiContext();
-    const [value, setValue] = React.useState<DataSourceState>({ search: '', folded: {} });
+    const [value, setValue] = React.useState<DataSourceState>({ search: '', folded: {}, selectedId: props.value });
 
-    React.useEffect(() => {
+    const dataSource = useArrayDataSource<DocItem, string, unknown>(
+        {
+            items: props.items,
+            getId: (item) => item.id,
+
+        },
+        [props.items],
+    );
+
+    const view = dataSource.useView(value, setValue, {
+        getSearchFields: props.getSearchFields,
+        getRowOptions: (item) => {
+            return {
+                isSelectable: !!(item.examples || item.component || item.renderContent),
+                link: props.getItemLink && (item.examples || item.component || item.renderContent) ? props.getItemLink(item) : undefined,
+            };
+        },
+
+    });
+
+    useEffect(() => {
         if (props.items) {
             const parents = getItemParents(props.items, props.value);
             if (parents.length > 0) {
@@ -43,11 +62,12 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
         }
     }, [props.value, props.items]);
 
-    const handleClick = React.useCallback((row: DataRowProps<TItem, string>) => {
-        row.isFoldable && row.onFold(row);
-        const type = row.isFoldable ? 'folder' : 'document';
-        uuiAnalytics.sendEvent(analyticsEvents.document.clickDocument(type, row.value.name, row.parentId));
-    }, [uuiAnalytics]);
+    useEffect(() => {
+        const item = dataSource.getById(props.value);
+        if (item) {
+            uuiAnalytics.sendEvent(analyticsEvents.document.clickDocument('document', item.name, item.parentId));
+        }
+    }, [props.value, dataSource, uuiAnalytics]);
 
     return (
         <aside className={ css.root }>
@@ -60,26 +80,13 @@ export function Sidebar<TItem extends TreeListItem>(props: SidebarProps<TItem>) 
                 getValueChangeAnalyticsEvent={ (val) => analyticsEvents.document.search(val) }
             />
             <div className={ css.tree } role="tablist">
-                <ScrollBars>
-                    <Tree<TItem>
-                        items={ props.items }
-                        value={ value }
-                        onValueChange={ setValue }
-                        getSearchFields={ props.getSearchFields }
-                        renderRow={ (row) => (
-                            <SidebarButton
-                                key={ row.key }
-                                link={ props.getItemLink(row) }
-                                indent={ (row.indent - 1) * 12 }
-                                isOpen={ !row.isFolded }
-                                isDropdown={ row.isFoldable }
-                                isActive={ row.id === props.value }
-                                caption={ row.value.name }
-                                onClick={ () => handleClick(row) }
-                            />
-                        ) }
-                    />
-                </ScrollBars>
+                <Tree<DocItem>
+                    value={ value }
+                    onValueChange={ setValue }
+                    view={ view }
+                    size="36"
+                    getCaption={ (item) => item.name }
+                />
             </div>
         </aside>
     );
