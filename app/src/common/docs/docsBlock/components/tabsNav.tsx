@@ -49,6 +49,7 @@ export function TabsNav(props: TTabsNavProps) {
     }
 
     return (
+        // Can't use `TabList` because of the `Button` as a child.
         <FlexRow
             rawProps={ { role: 'tablist' } }
             padding="12"
