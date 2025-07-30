@@ -22,13 +22,6 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
     const isAnchor = Boolean(props.href || props.link || props.type === 'anchor');
     const isButton = Boolean(!isAnchor && (props.onClick || props.type === 'button'));
     const hasClick = Boolean(!props.isDisabled && (props.link || props.onClick || props.clickAnalyticsEvent));
-    const getIsLinkActive = () => {
-        if (props.isLinkActive !== undefined) {
-            return props.isLinkActive;
-        } else {
-            return props.link ? context.uuiRouter?.isActive(props.link) : false;
-        }
-    };
 
     const clickHandler = (e: React.MouseEvent) => {
         if (!isEventTargetInsideClickable(e) && !props.isDisabled) {
@@ -64,7 +57,6 @@ export const Clickable = React.forwardRef<ClickableForwardedRef, PropsWithChildr
             [uuiElement.buttonBox]: true,
             [uuiMod.enabled]: !props.isDisabled,
             [uuiMod.disabled]: props.isDisabled,
-            [uuiMod.active]: getIsLinkActive(),
             [uuiMarkers.clickable]: isAnchor || hasClick,
             [uuiElement.anchor]: isAnchor,
         },

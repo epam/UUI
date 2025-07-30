@@ -1,0 +1,13 @@
+{
+    "id": "linkButton",
+    "name": "Link Button",
+    "parentId": "components",
+    "examples": [
+        { "descriptionPath": "link-button-descriptions" },
+        { "name": "Overview", "componentPath": "linkButton/Default.example.tsx" },
+        { "name": "Sizes", "componentPath": "linkButton/Size.example.tsx" },
+        { "name": "Icon Positions", "componentPath": "linkButton/IconPosition.example.tsx" },
+        { "name": "Secondary action in small footer", "componentPath": "common/Card.example.tsx" },
+        { "name": "Sorting", "componentPath": "linkButton/Sorting.example.tsx" }
+    ]
+}

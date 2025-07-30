@@ -1,0 +1,10 @@
+{
+    "id": "flexSpacer",
+    "name": "Flex Spacer",
+    "parentId": "flexItems",
+    "order": 4,
+    "examples": [
+        { "descriptionPath": "flexSpacer-description" },
+        { "name": "Basic", "componentPath": "flexItems/FlexSpacer.example.tsx" }
+    ]
+}

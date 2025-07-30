@@ -28,19 +28,17 @@ export function getComponentsDocsList() {
         return componentsDocsMapCache;
     }
 
-    const docsDir = path.resolve(__dirname, '../../../public/docs/pages');
+    const docsDir = path.resolve(__dirname, '../../../app/src/docs/pages');
 
     function readFilesRecursively(dir) {
         const entries = fs.readdirSync(dir);
         for (const entry of entries) {
-            if (entry === 'package.json') continue;
-
             const fullPath = path.join(dir, entry);
             const stats = fs.statSync(fullPath);
 
             if (stats.isDirectory()) {
                 readFilesRecursively(fullPath);
-            } else {
+            } else if (entry.endsWith('.json')) {
                 const doc: DocItem = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
                 if (doc.id) {
                     componentsDocsMapCache.set(doc.id.toLowerCase(), doc);

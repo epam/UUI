@@ -42,11 +42,15 @@ export interface ICanRedirect {
     /** Href (URL) to redirect to, for non-SPA redirects */
     href?: string;
 
-    /** Highlights component to show that link is active (browser is displaying the page to which link is pointing) */
-    isLinkActive?: boolean;
-
     /** Controls where the link should be opened */
     target?: '_blank';
+}
+
+export interface ICanBeActive {
+    /** Highlights component to show that link is active (browser is displaying the page to which link is pointing) */
+    isLinkActive?: boolean;
+    /** Highlights component to show that it is active (e.g. selected in a list) */
+    isActive?: boolean;
 }
 
 /** Component can be disabled */

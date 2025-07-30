@@ -1,0 +1,30 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example demonstrates creating a simple navigation panel using the "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=verticalTabButton&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "VerticalTabButton"
+          }
+        ]
+      },
+      {
+        "text": ". It shows how to build an interactive list with addons and basic state management using "
+      },
+      {
+        "text": "useState",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": "."
+      }
+    ]
+  }
+]

@@ -167,7 +167,6 @@ export const DropdownMenuButton = React.forwardRef<any, IDropdownMenuItemProps>(
             href={ href }
             rawProps={ { role: 'menuitem', tabIndex: isDisabled ? -1 : 0 } }
             onClick={ handleClick }
-            isLinkActive={ isActive }
             isDisabled={ isDisabled }
             target={ target }
         >

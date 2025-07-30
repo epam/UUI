@@ -12,7 +12,7 @@ import {
 } from '@epam/uui-docs';
 import { ReactComponent as ActionIcon } from '@epam/assets/icons/action-account-fill.svg';
 
-export const tabButtonExplorerConfig: TDocConfig = {
+export const TabButtonExplorerConfig: TDocConfig = {
     id: 'tabButton',
     name: 'TabButton',
     contexts: [TDocContext.TabButton],
