@@ -9,7 +9,7 @@ import { useColumnsWithFilters } from '../../helpers';
 import { DataTableHeaderRow } from './DataTableHeaderRow';
 import { DataTableRow } from './DataTableRow';
 import { Text } from '../typography';
-import { VirtualList, VirtualListRenderRowsParams, VirtualListProps } from '../layout';
+import { VirtualList, VirtualListRenderRowsParams, VirtualListProps, ScrollBars } from '../layout';
 import { ColumnsConfigurationModal, ColumnsConfigurationModalProps } from './columnsConfigurationModal';
 import { DataRowsContainer } from './DataRowsContainer';
 import type { DataTableMods, DataTableRowMods } from './types';
@@ -73,6 +73,15 @@ interface DataTableCoreProps<TItem, TId, TFilter = any> extends IEditable<DataTa
      * Enables collapse/expand all functionality.
      * */
     showFoldAll?: boolean;
+
+    /**
+     * Pass true to disable rows virtualization.
+     * This will disable rows virtualization and remove inner vertical scrollbar from the table
+     *
+     * Note: A table without virtualization could cause performance issues.
+     * Some DataTable features, like sticky header, pinned rows, and scroll to row, will not work with disabled virtualization
+     */
+    disableVirtualization?: boolean;
 }
 
 export interface DataTableModsOverride {}
@@ -145,8 +154,8 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
         props.columns, config, defaultConfig, props.value, props.onValueChange, props.renderColumnsConfigurationModal,
     ]);
 
-    const renderRowsContainer = React.useCallback(
-        ({ listContainerRef, estimatedHeight, offsetY, scrollShadows }: VirtualListRenderRowsParams) => (
+    const renderTableBody = React.useCallback(
+        (params?: VirtualListRenderRowsParams) => (
             <>
                 <div className={ cx(css.stickyHeader, 'uui-dt-sticky_header') } ref={ headerRef }>
                     <DataTableHeaderRow
@@ -165,17 +174,17 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
                     />
                     <div
                         className={ cx(uuiScrollShadows.top, {
-                            [uuiScrollShadows.topVisible]: scrollShadows.verticalTop,
+                            [uuiScrollShadows.topVisible]: params?.scrollShadows?.verticalTop,
                         }) }
                     />
                 </div>
                 {props.exactRowsCount !== 0 ? (
                     <DataRowsContainer
                         headerRef={ headerRef }
-                        listContainerRef={ listContainerRef }
-                        estimatedHeight={ estimatedHeight }
-                        offsetY={ offsetY }
-                        scrollShadows={ scrollShadows }
+                        listContainerRef={ params?.listContainerRef }
+                        estimatedHeight={ params?.estimatedHeight }
+                        offsetY={ params?.offsetY }
+                        scrollShadows={ params?.scrollShadows }
                         renderRow={ renderRow }
                         rows={ rows }
                     />
@@ -189,24 +198,38 @@ export function DataTable<TItem, TId>(props: DataTableProps<TItem, TId>) {
         ],
     );
 
+    const classes = cx(css.root, props.cx, 'uui-dt-vars', 'uui-data_table');
+    const rawProps = {
+        role: 'table',
+        'aria-colcount': columns.length,
+        'aria-rowcount': props.rowsCount,
+    };
+
     return (
         <DataTableSelectionProvider onCopy={ props.onCopy } rows={ rows } columns={ columns }>
             <DataTableFocusProvider dataTableFocusManager={ props.dataTableFocusManager }>
-                <VirtualList
-                    value={ props.value }
-                    onValueChange={ props.onValueChange }
-                    onScroll={ props.onScroll }
-                    rowsCount={ props.rowsCount }
-                    renderRows={ renderRowsContainer }
-                    cx={ cx(css.root, props.cx, 'uui-dt-vars', 'uui-data_table') }
-                    isLoading={ props.isReloading }
-                    rowsSelector="[role=row]"
-                    rawProps={ {
-                        role: 'table',
-                        'aria-colcount': columns.length,
-                        'aria-rowcount': props.rowsCount,
-                    } }
-                />
+                {
+                    props.disableVirtualization === true
+                        ? (
+                            <ScrollBars { ...rawProps } cx={ classes }>
+                                { renderTableBody() }
+                            </ScrollBars>
+                        )
+                        : (
+                            <VirtualList
+                                value={ props.value }
+                                onValueChange={ props.onValueChange }
+                                onScroll={ props.onScroll }
+                                rowsCount={ props.rowsCount }
+                                renderRows={ renderTableBody }
+                                cx={ classes }
+                                isLoading={ props.isReloading }
+                                rowsSelector="[role=row]"
+                                rawProps={ rawProps }
+                            />
+                        )
+                }
+
             </DataTableFocusProvider>
         </DataTableSelectionProvider>
     );
