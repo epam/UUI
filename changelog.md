@@ -44,14 +44,19 @@
         ] }
     />
   ```
-* [Tree]: new hierarchical data display component for @epam/uui package
+* [Tree]: updated with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
+* [useIsActive]: extracted hook for managing active state logic
+  * Added proper priority order: manual `isActive` > deprecated `isLinkActive` > router-based active state
+  * Added deprecation warning for `isLinkActive` prop, moved from `ICanRedirect` interface to new `ICanBeActive` interface
+  * Improved type safety with dedicated interfaces
 * [VerticalTabButton][Breaking Change]: complete rework with improved functionality and styling
   * Added `renderAddons` prop for custom addons rendering
-  * Deprecated `count`, `isDropdown`, `onClear`, `clearIcon`, `isOpen` props, use `renderAddons` instead
+  * Deprecated `count`, `onClear`, `clearIcon` props, use `renderAddons` instead
   * Added `indent` and `isFoldable` props support
   * Updated size variants according to design system: `'30' | '36' | '48'` (was `'36' | '48' | '60'`)
   * Changed default size from `'48'` to `'36'` to match design requirements
-
+  * Extracted `isActive` interface for better type safety and reusability
+* [Clickable]: removed `isLinkActive` prop and moved to components which use this prop directly
 * [Site][Sidebar]: refactored to use new Tree component
   * Replaced custom Tree implementation with @epam/uui Tree
   * Improved data source integration using `useArrayDataSource`
