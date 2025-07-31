@@ -124,7 +124,6 @@ In general, we follow the ["Fork-and-Pull" Git workflow](https://github.com/susa
 
 ```
 ├── app    # uui.epam.com site codebase
-├── draft-rte    # @epam/draft-rte package
 ├── epam-assets    # @epam/assets package
 ├── epam-promo    # @epam/promo package
 ├── extra    # epam/extra package
@@ -177,12 +176,9 @@ Below you can find instructions how to add Doc Example and update component prop
 
 1. Go to `app/src/docs/examples` and open/add folder of component for which you need to add example;
 2. Add example with the following file name pattern `example-name.example.tsx`;
-3. Go back to the `app/src/docs` and find/add appropriate doc file and add into your example block:
+3. Go to the `app/src/docs/pages` and find/add appropriate page file and add link your example to doc page:
     ```
-        <DocExample
-            title='Example title'
-            path='./examples/dropdown/example-name.example.tsx'
-        />
+      { "name": "Basic", "componentPath": "alert/Basic.example.tsx" },
    ```
 4. If you add the new documents page, change `app/src/documents/structure.ts` file to add your page to the sidebar menu.
 
@@ -192,7 +188,7 @@ We use Property Explorer to be able to test component in different variations of
 
 If you make any component prop changes, you need to update appropriate .doc file, which used for building component property explorer page.
 
-1. Go to the component source folder and open `'component-name'.doc.tsx` file in 'docs' folder, for example: `epam-promo/components/buttons/docs/button.doc.tsx`
+1. Go to the `app/src/docs/explorerConfigs` folder and find/add appropriate config file
 2. Add new prop examples via `prop` method:
     ```
        .prop('size', { examples: ['24', '30', '36', '42', '48'] , defaultValue: '36' })
