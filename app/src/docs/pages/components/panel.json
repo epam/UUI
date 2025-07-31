@@ -5,6 +5,6 @@
     "order": 1,
     "examples": [
         { "descriptionPath": "panel-description" },
-        { "componentPath": "flexItems/Panel.example.tsx" }
+        { "name": "Basic", "componentPath": "flexItems/Panel.example.tsx" }
     ]
 }

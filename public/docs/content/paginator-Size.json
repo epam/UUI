@@ -3,24 +3,14 @@
     "type": "paragraph",
     "children": [
       {
-        "text": "UUI supports different ",
-        "color": "rgb(48, 50, 64)"
-      },
-      {
-        "text": "Paginator"
-      },
-      {
-        "color": "rgb(48, 50, 64)",
-        "text": " sizes, according to its height. You can change the size by passing the "
+        "text": "UUI supports different Paginator sizes, according to its height. You can change the size by passing the "
       },
       {
         "text": "size",
-        "uui-richTextEditor-code": true,
-        "color": "rgb(48, 50, 64)"
+        "uui-richTextEditor-code": true
       },
       {
-        "text": " prop.",
-        "color": "rgb(48, 50, 64)"
+        "text": " prop."
       }
     ]
   }
