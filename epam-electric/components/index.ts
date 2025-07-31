@@ -12,5 +12,5 @@ export {
     WarningNotification, SuccessNotification, HintNotification, ErrorNotification, ClearNotification, Checkbox, FlexSpacer, FlexCell, DataTableHeaderCell,
     Spinner, PickerModal, ModalBlocker, ModalHeader, ModalFooter, DropdownMenuBody, DropdownMenuButton, DropdownMenuSplitter, DropdownMenuHeader,
     DropdownSubMenu, DropdownMenuSwitchButton, TimePicker, FileCard, SvgCircleProgress, DropSpot, DropMarker, IndeterminateBar, IndicatorBar, ProgressBar,
-    DataRowsContainer, ColumnHeaderDropdown, RichTextView, CountIndicator, SearchInput, IconContainer, Slider, Snackbar, Rating,
+    DataRowsContainer, ColumnHeaderDropdown, RichTextView, CountIndicator, SearchInput, IconContainer, Slider, Snackbar, Rating, TabList,
 } from '@epam/uui';

@@ -3,6 +3,8 @@
 
 * remove support of deprecated `draft-rte`
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
+* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
+* [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
 * [PresetsPanel]:
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
@@ -64,6 +66,7 @@
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
 * [PickerInput]: fixed incorrect selection state in modal for single selection mode
+* Set green background color in "Fresh Light 4px" skin only for picker input rows with `aria-selected="true"` instead of all elements with such selector ([#2857](https://github.com/epam/UUI/pull/2857))
 
 # 6.1.4 - 17.06.2025
 
