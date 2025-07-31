@@ -481,7 +481,7 @@ describe('customization', () => {
                 items={ [
                     {
                         ...tab1,
-                        isLinkActive: false,
+                        isActive: false,
                         tabIndex: 2,
                         rawProps: {
                             id: '123',
