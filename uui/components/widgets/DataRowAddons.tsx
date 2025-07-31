@@ -55,14 +55,21 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
         return settings.dataTable.sizes.body.indentWidthMap[props.size || settings.dataTable.sizes.body.row];
     };
 
+    const renderDragHandle = () => {
+        if (props.renderDragHandle) {
+            return props.renderDragHandle({ rowProps: props.rowProps, eventHandlers: props.eventHandlers });
+        }
+        return (
+            <div key="dh" className={ cx(css.dragHandleWrapper, row.indent > 0 && css.withIndent) } style={ { width: row.indent > 0 ? (getIndent() + getWidth()) : 0 } } { ...props.eventHandlers }>
+                <DragHandle cx={ css.dragHandle } />
+            </div>
+        );
+    };
+
     return (
         <>
             {
-                row.dnd?.srcData && props.renderDragHandle ? props.renderDragHandle({ rowProps: props.rowProps, eventHandlers: props.eventHandlers }) : (
-                    <div key="dh" className={ cx(css.dragHandleWrapper, row.indent > 0 && css.withIndent) } style={ { width: row.indent > 0 ? (getIndent() + getWidth()) : 0 } } { ...props.eventHandlers }>
-                        <DragHandle cx={ css.dragHandle } />
-                    </div>
-                )
+                row.dnd?.srcData && renderDragHandle()
             }
             {row?.checkbox?.isVisible && (
                 <Checkbox
