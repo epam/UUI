@@ -104188,24 +104188,6 @@
       "required": false
      },
      {
-      "uid": "isLinkActive",
-      "name": "isLinkActive",
-      "comment": {
-       "raw": [
-        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
-       ]
-      },
-      "typeValue": {
-       "raw": "boolean",
-       "html": "<span class=\"token builtin\">boolean</span>"
-      },
-      "editor": {
-       "type": "bool"
-      },
-      "from": "@epam/uui-core:ICanRedirect",
-      "required": false
-     },
-     {
       "uid": "target",
       "name": "target",
       "comment": {
@@ -104349,6 +104331,42 @@
       },
       "typeValueRef": "@types/react:ReactNode",
       "from": "@epam/uui-core:IHasCaption",
+      "required": false
+     },
+     {
+      "uid": "isLinkActive",
+      "name": "isLinkActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that link is active (browser is displaying the page to which link is pointing)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
+      "required": false
+     },
+     {
+      "uid": "isActive",
+      "name": "isActive",
+      "comment": {
+       "raw": [
+        "Highlights component to show that it is active (e.g. selected in a list)"
+       ]
+      },
+      "typeValue": {
+       "raw": "boolean",
+       "html": "<span class=\"token builtin\">boolean</span>"
+      },
+      "editor": {
+       "type": "bool"
+      },
+      "from": "@epam/uui-core:ICanBeActive",
       "required": false
      },
      {
