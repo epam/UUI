@@ -1,6 +1,6 @@
 # 6.x.x - xx.xx.2025
 **What's New**
-
+* Updated icons pack 
 * remove support of deprecated `draft-rte`
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
 * [PresetsPanel]:
