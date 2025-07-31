@@ -342,6 +342,19 @@ const propsOverride: TPropEditorTypeOverride = {
             },
         },
     },
+    '@epam/uui:VerticalTabButtonProps': {
+        size: {
+            editor: {
+                type: TPropEditorType.oneOf,
+                options: ['40', '48'],
+            },
+            comment: {
+                tags: {
+                    '@default': '40',
+                },
+            },
+        },
+    },
 };
 
 export default propsOverride;
