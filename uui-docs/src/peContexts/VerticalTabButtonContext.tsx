@@ -20,7 +20,7 @@ export class VerticalTabButtonContext extends React.Component<DemoComponentProps
     render() {
         const { DemoComponent, props } = this.props;
         return (
-            <Panel background="surface-main" margin="24">
+            <Panel background="surface-main" margin="24" rawProps={ { style: { padding: '6px 0' } } }>
                 <FlexRow>
                     <FlexCell grow={ 1 }>
                         <DemoComponent

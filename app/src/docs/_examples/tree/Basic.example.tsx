@@ -44,7 +44,7 @@ export default function BasicTreeExample() {
     });
 
     return (
-        <Panel background="surface-main" shadow rawProps={ { style: { width: '250px', height: '300px' } } }>
+        <Panel background="surface-main" shadow rawProps={ { style: { width: '250px', height: '300px', padding: '6px 0' } } }>
             <Tree<ExampleTreeItem>
                 view={ view }
                 size="36"

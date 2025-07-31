@@ -253,6 +253,15 @@ const settings_4px = {
             default: '40',
         },
     },
+    verticalTabButton: {
+        sizes: {
+            default: '40',
+            countIndicatorMap: {
+                40: '24',
+                48: '24',
+            },
+        },
+    },
 } as any;
 
 export default settings_4px;

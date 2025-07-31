@@ -5,7 +5,8 @@
   "examples": [
     { "descriptionPath": "tree-descriptions" },
     { "name": "Basic Tree", "componentPath": "tree/Basic.example.tsx" },
-    { "name": "Simple Navigation", "componentPath": "tree/SimpleNavigation.example.tsx" }
+    { "name": "Simple Navigation", "componentPath": "tree/SimpleNavigation.example.tsx" },
+    { "name": "Custom Row", "componentPath": "tree/CustomRowExample.example.tsx", "descriptionPath": "tree-CustomRow" }
   ],
   "tags": ["tree", "virtualList", "dataSources"]
 }
