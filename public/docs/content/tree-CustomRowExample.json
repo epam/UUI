@@ -1,0 +1,101 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "You can customize "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tree&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "Tree"
+          }
+        ]
+      },
+      {
+        "text": " row rendering by providing a "
+      },
+      {
+        "text": "renderRow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This allows you to create custom row layouts with different icons, styling, and behavior while maintaining the "
+      },
+      {
+        "text": "Tree's",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " core functionality. The "
+      },
+      {
+        "text": "renderRow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " function receives a "
+      },
+      {
+        "text": "DataRowProps",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " object with selection state, folding state, indentation level, and event handlers."
+      }
+    ]
+  },
+  {
+    "type": "note-link",
+    "children": [
+      {
+        "text": "Note: Use "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=verticalTabButton&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "VerticalTabButton"
+          }
+        ]
+      },
+      {
+        "text": " as the base component for custom rows since it provides built-in folding functionality and proper event handling. The example below demonstrates how to render different "
+      },
+      {
+        "text": "icons",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " in "
+      },
+      {
+        "text": "VerticalTabButton",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " components based on item type (folders vs files), showing custom selection behavior and proper integration with "
+      },
+      {
+        "text": "Tree's",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " folding and selection system."
+      }
+    ]
+  }
+]
