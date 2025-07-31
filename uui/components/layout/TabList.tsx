@@ -125,19 +125,19 @@ export const TabList = forwardRef<HTMLDivElement, TabListProps>((props, ref) => 
                         tabProps.rawProps?.onKeyDown?.(event);
                     };
 
-                    const isLinkActive = id === value;
-                    const tabIndex = isLinkActive ? undefined : -1;
+                    const isActive = id === value;
+                    const tabIndex = isActive ? undefined : -1;
 
                     return (
                         <TabButton
                             key={ id }
-                            isLinkActive={ isLinkActive }
+                            isActive={ isActive }
                             tabIndex={ tabIndex }
                             { ...tabProps }
                             onClick={ handleOnClick }
                             rawProps={ {
                                 id,
-                                'aria-selected': isLinkActive,
+                                'aria-selected': isActive,
                                 ...tabProps.rawProps,
                                 onKeyDown: handleOnKeyDown,
                             } }
