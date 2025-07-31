@@ -67,6 +67,11 @@
 * [PickerInput]: disabled highlighting search results for row subtitle.
 * [PickerInput]: change color of subtitle text from --uui-text-secondary to --uui-text-tertiary
 
+# 6.1.5 - 28.07.2025
+
+**What's Fixed**
+* [DataTable]: fixed `DataTableSelectionContext` and `DataTableFocusContext` provider mounting to fix compatibility with React 18
+
 # 6.1.4 - 17.06.2025
 
 **What's Fixed**
