@@ -1,0 +1,73 @@
+[
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "This example demonstrates the correct behavior of nested modals with ESC key handling. When you have multiple modals open, pressing ESC will only close the topmost (most recently opened) modal, not the underlying ones."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "To test this behavior:"
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "data": {
+      "styleType": "ordered"
+    },
+    "children": [
+      {
+        "type": "list-item",
+        "data": {},
+        "children": [
+          {
+            "text": "Click 'Open Nested Modals Example' to open the first modal"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "data": {},
+        "children": [
+          {
+            "text": "Click 'Open Second Modal' to open a second modal on top of the first"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "data": {},
+        "children": [
+          {
+            "text": "Press ESC - only the second (topmost) modal will close"
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "data": {},
+        "children": [
+          {
+            "text": "Press ESC again - the first modal will close"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "This behavior ensures that users can close modals in the expected order, with the most recently opened modal being the first to close."
+      }
+    ]
+  }
+]
