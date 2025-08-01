@@ -117,8 +117,8 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
             priority: 3,
             estimatedWidth: 52,
             showInBurgerMenu: true,
-            isLinkActive: true,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Me" collapseToMore priority={ 3 } estimatedWidth={ 52 } showInBurgerMenu isLinkActive />,
+            isActive: true,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Me" collapseToMore priority={ 3 } estimatedWidth={ 52 } showInBurgerMenu isActive />,
         },
         {
             id: 'myTeam',
@@ -181,8 +181,8 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
             collapseToMore: true,
             estimatedWidth: 68,
             showInBurgerMenu: true,
-            isLinkActive: true,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu isLinkActive />,
+            isActive: true,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu isActive />,
         },
         {
             id: 'assets',
@@ -253,8 +253,8 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
             collapseToMore: true,
             estimatedWidth: 68,
             showInBurgerMenu: true,
-            isLinkActive: true,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu isLinkActive />,
+            isActive: true,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Home" priority={ 4 } collapseToMore estimatedWidth={ 68 } showInBurgerMenu isActive />,
         },
         {
             id: 'assets',
@@ -339,7 +339,7 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         {
             id: 'start',
             priority: 3,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isActive />,
         },
         {
             id: 'explore',
@@ -410,7 +410,7 @@ export const getItemsExamples = (props: IPropSamplesCreationContext<MainMenuProp
         {
             id: 'start',
             priority: 3,
-            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isLinkActive={ true } />,
+            render: (p: AdaptiveItemProps) => <MainMenuButton key={ p.id } caption="Start" collapseToMore estimatedWidth={ 62 } showInBurgerMenu isActive />,
         },
         {
             id: 'explore',

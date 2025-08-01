@@ -47,7 +47,10 @@ export interface ICanRedirect {
 }
 
 export interface ICanBeActive {
-    /** Highlights component to show that link is active (browser is displaying the page to which link is pointing) */
+    /**
+     * @deprecated Use `isActive` instead
+     * Highlights component to show that link is active (browser is displaying the page to which link is pointing)
+     */
     isLinkActive?: boolean;
     /** Highlights component to show that it is active (e.g. selected in a list) */
     isActive?: boolean;

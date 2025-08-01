@@ -181,9 +181,9 @@ export function IntroBlock() {
                         <div className={ css.componentsWrapper }>
                             <Panel background="surface-main" shadow={ true } cx={ css.infoComponentsWrapper }>
                                 <FlexRow borderBottom={ true }>
-                                    <TabButton caption="All" count={ 24 } isLinkActive={ tabValue === 'All' } onClick={ () => onTabValueChange('All') } size="60" />
-                                    <TabButton caption="Recommended" count={ 12 } isLinkActive={ tabValue === 'Recommended' } onClick={ () => onTabValueChange('Recommended') } withNotify={ true } size="60" />
-                                    <TabButton caption="New" isLinkActive={ tabValue === 'New' } onClick={ () => onTabValueChange('New') } size="60" />
+                                    <TabButton caption="All" count={ 24 } isActive={ tabValue === 'All' } onClick={ () => onTabValueChange('All') } size="60" />
+                                    <TabButton caption="Recommended" count={ 12 } isActive={ tabValue === 'Recommended' } onClick={ () => onTabValueChange('Recommended') } withNotify={ true } size="60" />
+                                    <TabButton caption="New" isActive={ tabValue === 'New' } onClick={ () => onTabValueChange('New') } size="60" />
                                 </FlexRow>
                                 <FlexRow cx={ css.infoComponentsInnerBlock }>
                                     <Dropdown

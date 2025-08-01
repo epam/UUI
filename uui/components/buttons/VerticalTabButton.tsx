@@ -88,7 +88,7 @@ function VerticalTabButtonComponent<TItem, TId>(
     const styles = [
         css.root,
         'uui-vertical-tab-button',
-        `uui-size-${props.size || settings.tabButton.sizes.default}`,
+        `uui-size-${props.size || settings.verticalTabButton.sizes.default}`,
         isActive && uuiMod.active,
         props.indent > 0 && css.noLeftPadding,
         !props.onClick && props.onFold && css.onlyFoldable,

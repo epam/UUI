@@ -968,7 +968,7 @@ const verticalTabButtonSettings: VerticalTabButtonSettings = {
         dropdownIcon: DropdownIcon,
     },
     sizes: {
-        default: '48',
+        default: '36',
         countIndicatorMap: {
             30: '18',
             36: '18',

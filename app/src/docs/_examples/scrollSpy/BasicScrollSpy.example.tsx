@@ -16,7 +16,7 @@ export default function BasicScrollSpy() {
             <FlexCell alignSelf="start" cx={ css.menu } grow={ 1 }>
                 {links.map((link) => (
                     <LinkButton
-                        isLinkActive={ currentActive === link.id }
+                        isActive={ currentActive === link.id }
                         key={ link.id }
                         cx={ css.spyLink }
                         onClick={ () => scrollToElement(link.id) }
