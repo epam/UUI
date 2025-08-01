@@ -1,6 +1,6 @@
 # 6.x.x - xx.xx.2025
 **What's New**
-* Updated icons pack 
+* Updated icons pack
 * remove support of deprecated `draft-rte`
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
 * [PresetsPanel]:
@@ -62,6 +62,7 @@
   * Improved data source integration using `useArrayDataSource`
 
 **What's Fixed**
+* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals - now only the topmost modal responds to ESC key
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
 * [PickerInput]: fixed incorrect selection state in modal for single selection mode
 * [PickerInput]: disabled highlighting search results for row subtitle.
