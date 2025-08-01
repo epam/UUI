@@ -17,7 +17,7 @@ export default function BasicTabButtonExample(props: ExampleProps) {
                         <TabButton
                             key={ route }
                             caption={ route }
-                            isLinkActive={ value === route }
+                            isActive={ value === route }
                             onClick={ () => onValueChange(route) }
                             count={ route === 'Tools' ? 18 : undefined } // pseudocode - random number, to show the count badge
                             withNotify={ route === 'Options' } // pseudocode - to show the notification mark

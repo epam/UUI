@@ -3,26 +3,7 @@ import { Panel, Tree, VerticalTabButton } from '@epam/uui';
 import { DataRowProps, DataSourceState, useArrayDataSource } from '@epam/uui-core';
 import { ReactComponent as FolderIcon } from '@epam/assets/icons/content-space-outline.svg';
 import { ReactComponent as FileIcon } from '@epam/assets/icons/content-page-outline.svg';
-
-interface ExampleTreeItem {
-    id: string;
-    name: string;
-    parentId?: string;
-    type: 'folder' | 'file';
-}
-
-const treeData: ExampleTreeItem[] = [
-    { id: '1', name: 'Documents', parentId: undefined, type: 'folder' },
-    { id: '2', name: 'Getting Started', parentId: '1', type: 'file' },
-    { id: '3', name: 'Components', parentId: '1', type: 'folder' },
-    { id: '4', name: 'Buttons', parentId: '3', type: 'file' },
-    { id: '5', name: 'Inputs', parentId: '3', type: 'file' },
-    { id: '6', name: 'Layout', parentId: '3', type: 'folder' },
-    { id: '7', name: 'Tree', parentId: '6', type: 'file' },
-    { id: '8', name: 'VirtualList', parentId: '6', type: 'file' },
-    { id: '9', name: 'Advanced', parentId: '1', type: 'folder' },
-    { id: '10', name: 'API Reference', parentId: '9', type: 'file' },
-];
+import { treeData, ExampleTreeItem } from './treeData';
 
 export default function CustomRowExample() {
     const [value, setValue] = useState<DataSourceState>({
@@ -49,11 +30,12 @@ export default function CustomRowExample() {
     const renderRow = (row: DataRowProps<ExampleTreeItem, string>) => {
         return (
             <VerticalTabButton
+                key={ row.key }
                 icon={ row.value.type === 'folder' ? FolderIcon : FileIcon }
                 caption={ row.value.name }
                 weight="regular"
                 onClick={ row.onSelect ? () => row.onSelect(row) : undefined }
-                onFold={ () => row.onFold(row) }
+                onFold={ row.onFold ? () => row.onFold(row) : undefined }
                 isFolded={ row.isFolded }
                 isFoldable={ row.isFoldable }
                 indent={ row.indent }

@@ -1,25 +1,7 @@
 import React, { useState } from 'react';
 import { Panel, Tree } from '@epam/uui';
 import { DataSourceState, useArrayDataSource } from '@epam/uui-core';
-
-interface ExampleTreeItem {
-    id: string;
-    name: string;
-    parentId?: string;
-}
-
-const treeData: ExampleTreeItem[] = [
-    { id: '1', name: 'Documents', parentId: undefined },
-    { id: '2', name: 'Getting Started', parentId: '1' },
-    { id: '3', name: 'Components', parentId: '1' },
-    { id: '4', name: 'Buttons', parentId: '3' },
-    { id: '5', name: 'Inputs', parentId: '3' },
-    { id: '6', name: 'Layout', parentId: '3' },
-    { id: '7', name: 'Tree', parentId: '6' },
-    { id: '8', name: 'VirtualList', parentId: '6' },
-    { id: '9', name: 'Advanced', parentId: '1' },
-    { id: '10', name: 'API Reference', parentId: '9' },
-];
+import { treeData, ExampleTreeItem } from './treeData';
 
 export default function BasicTreeExample() {
     const [value, setValue] = useState<DataSourceState>({

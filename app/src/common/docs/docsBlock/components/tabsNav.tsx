@@ -74,7 +74,7 @@ export function TabsNav(props: TTabsNavProps) {
                                 key={ tm }
                                 size="60"
                                 caption={ data.caption }
-                                isLinkActive={ mode === tm }
+                                isActive={ mode === tm }
                                 rawProps={ { title: data.tooltip } }
                                 onClick={ () => onChangeMode(tm as TMode) }
                             />

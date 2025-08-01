@@ -76,7 +76,6 @@ function TreeRowRenderer<TItem, TId = string>(props: {
             caption={ row.isLoading ? <TextPlaceholder /> : getCaption(row.value) }
             size={ size }
             onClick={ (row.onClick || row.onSelect) ? handleClick : undefined }
-            isLinkActive={ isActive }
             link={ row.link }
             onFold={ row.onFold ? handleFold : undefined }
             weight={ (row.isChildrenSelected || row.isSelected || isActive) ? 'semibold' : 'regular' }
