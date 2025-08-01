@@ -14,6 +14,7 @@
   "dependencies": {
     "@epam/assets": "6.2.0-alpha.1",
     "@epam/promo": "6.2.0-alpha.1",
+    "@epam/loveship": "6.2.0-alpha.1",
     "@epam/uui": "6.2.0-alpha.1",
     "@epam/uui-components": "6.2.0-alpha.1",
     "@epam/uui-core": "6.2.0-alpha.1",
