@@ -43,7 +43,6 @@ import { NumericInputConfig } from './NumericInputConfig';
 import { TextPlaceholderConfig } from './TextPlaceholderConfig';
 import { NotificationCardConfig } from './NotificationCardConfig';
 import { RadioGroupConfig } from './RadioGroupConfig';
-import { TablesOverviewExplorerConfig } from './TablesOverviewConfig';
 import { LabeledInputExplorerConfig } from './LabeledInputConfig';
 import { TabButtonExplorerConfig } from './TabButtonConfig';
 import { VerticalTabButtonExplorerConfig } from './VerticalTabButtonConfig';
@@ -98,7 +97,6 @@ export const explorerConfigs = [
     TextPlaceholderConfig,
     NotificationCardConfig,
     RadioGroupConfig,
-    TablesOverviewExplorerConfig,
     LabeledInputExplorerConfig,
     TabButtonExplorerConfig,
     VerticalTabButtonExplorerConfig,

@@ -43,7 +43,6 @@ export * from './NumericInputConfig';
 export * from './TextPlaceholderConfig';
 export * from './NotificationCardConfig';
 export * from './RadioGroupConfig';
-export * from './TablesOverviewConfig';
 export * from './LabeledInputConfig';
 export * from './TabButtonConfig';
 export * from './VerticalTabButtonConfig';
