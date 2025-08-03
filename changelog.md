@@ -3,6 +3,7 @@
 * Updated icons pack 
 * remove support of deprecated `draft-rte`
 * [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
+* Make clear buttons accessible via keyboards ([#2845](https://github.com/epam/UUI/pull/2845))
 * [PresetsPanel]:
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
