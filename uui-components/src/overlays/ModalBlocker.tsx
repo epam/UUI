@@ -35,7 +35,7 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
     };
 
     const keydownHandler = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === 'Escape' && props.isActive) {
             props.abort();
         }
     };
