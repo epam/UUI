@@ -10,6 +10,7 @@
       }
     }
     ```
+  * For Copilot instructions, read [this](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains)  
 * Remove support of deprecated `@epam/draft-rte` package, this package source code was removed and will no longer receive new updated and release. 
 * [MainMenu][Breaking Change]: 
   * Removed deprecated `children` support, use `items` prop instead
@@ -72,7 +73,6 @@
 * [DataTable]: added disableVirtualization prop to turn off rows virtualization
 * [RTE]: added possibility to provide your own set of plugins for HTML and MD (de)serializers
 * Uploaded updated icons pack
-
 
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
