@@ -47,10 +47,10 @@ export default function BasicTabButtonExample() {
     return (
         <FlexRow>
             <FlexCell grow={ 1 } width={ 250 }>
-                <VerticalTabButton caption="Main" isActive={ value === 'Main' } onClick={ () => onValueChange('Main') } />
-                <VerticalTabButton caption="Home" isActive={ value === 'Home' } onClick={ () => onValueChange('Home') } />
-                <VerticalTabButton caption="Tools" isActive={ value === 'Tools' } onClick={ () => onValueChange('Tools') } count={ 18 } />
-                <VerticalTabButton caption="Options" isActive={ value === 'Options' } onClick={ () => onValueChange('Options') } withNotify={ true } renderAddons={ renderDropdownList } />
+                <VerticalTabButton size="36" caption="Main" isActive={ value === 'Main' } onClick={ () => onValueChange('Main') } />
+                <VerticalTabButton size="36" caption="Home" isActive={ value === 'Home' } onClick={ () => onValueChange('Home') } />
+                <VerticalTabButton size="36" caption="Tools" isActive={ value === 'Tools' } onClick={ () => onValueChange('Tools') } count={ 18 } />
+                <VerticalTabButton size="36" caption="Options" isActive={ value === 'Options' } onClick={ () => onValueChange('Options') } withNotify={ true } renderAddons={ renderDropdownList } />
             </FlexCell>
         </FlexRow>
     );

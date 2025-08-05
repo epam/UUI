@@ -37,6 +37,7 @@ export default function BasicAdaptivePanelExample() {
                                     caption={ i.data.caption }
                                     onClick={ () => onValueChange(i.data.caption) }
                                     isActive={ i.data.caption === value }
+                                    size="36"
                                 />
                             ))}
                         </DropdownMenuBody>
