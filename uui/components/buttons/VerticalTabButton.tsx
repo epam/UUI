@@ -22,7 +22,7 @@ import { CountIndicator } from '../widgets';
 type VerticalTabButtonMods = {
     /**
      * Defines component size.
-     * @default '36'
+     * @default '48'
      */
     size?: '30' | '36' | '48';
     /**
