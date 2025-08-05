@@ -53,6 +53,11 @@
           ] }
       />
     ```
+* [VerticalTabButton][Breaking Change]: reworked with improved functionality and styling
+  * Updated size variants according to design: `'30' | '36' | '48'` (was `'36' | '48' | '60'`)
+  * Added `renderAddons` prop for custom addons rendering
+  * Deprecated `count`, `onClear`, `clearIcon` props, use `renderAddons` instead
+  * Added `indent` and `isFoldable` props
 * [ICanRedirect]:
   * deprecate `isLinkActive` prop, use new `isActive` prop instead
   * moved `isLinkActive` to `ICanBeActive` interface
@@ -64,11 +69,6 @@
 * [Tree]: 
   * reworked with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
   * See docs [here](https://uui.epam.com/documents?id=tree&mode=doc&category=components)
-* [VerticalTabButton][Breaking Change]: reworked with improved functionality and styling
-  * Updated size variants according to design: `'30' | '36' | '48'` (was `'36' | '48' | '60'`)
-  * Added `renderAddons` prop for custom addons rendering
-  * Deprecated `count`, `onClear`, `clearIcon` props, use `renderAddons` instead
-  * Added `indent` and `isFoldable` props
 * [DataTable]: added disableVirtualization prop to turn off rows virtualization
 * [RTE]: added possibility to provide your own set of plugins for HTML and MD (de)serializers
 * Uploaded updated icons pack
