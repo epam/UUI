@@ -161,6 +161,7 @@ yarn
 ```
 cd ../
 yarn
+yarn build-server
 yarn start
 ```
 
