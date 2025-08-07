@@ -3,6 +3,7 @@ import { Dropdown } from '@epam/uui-components';
 import { Text, FlexRow, DropdownContainer, LinkButton, FlexCell, Avatar } from '@epam/uui';
 import { IDropdownToggler, DropdownBodyProps } from '@epam/uui-core';
 import css from './HandleStateExample.module.scss';
+import { offset } from '@floating-ui/react';
 
 export default function BasicDropdownExample() {
     const [value, onValueChange] = useState(null);
@@ -33,6 +34,7 @@ export default function BasicDropdownExample() {
             renderTarget={ (props: IDropdownToggler) => <LinkButton caption="Click to open" size="36" { ...props } /> }
             value={ value }
             onValueChange={ onValueChange }
+            middleware={ [offset(6)] }
         />
     );
 }
