@@ -1,65 +1,78 @@
-# 6.x.x - xx.xx.2025
+# 6.2.0 - 05.08.2025
 **What's New**
-* Updated icons pack 
-* remove support of deprecated `draft-rte`
-* [RTE]: added possibility to provide your own set of plugins for html and md (de)serializers
+* Introduced a UUI docs MCP server for LLM Agents like Cursor IDE and Copilot. 
+  These MCP tools will respond with comprehensive UUI documentation for each component, including API details, descriptions, and code examples. This will add additional context about UUI usage for LLMs.
+  * To connect it to the Cursor IDE, add the following content to `.cursor/mcp.json` file:
+    ```
+    "mcpServers": {
+      "uui": {
+        "url": "https://uui.epam.com/api/mcp"
+      }
+    }
+    ```
+  * For Copilot instructions, read [this](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server?tool=jetbrains)  
+* Remove support of deprecated `@epam/draft-rte` package, this package source code was removed and will no longer receive new updated and release. 
+* [MainMenu][Breaking Change]: 
+  * Removed deprecated `children` support, use `items` prop instead
+  * removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. 
+  * removed `Burger`, `renderBurger`, `alwaysShowBurger` props, use `Burger` component in items with `collapsedContainer: true` option. 
+  * removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. 
+  * see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components#examples-mainMenu-Responsive)
+
+    ```tsx
+    // Before
+      <MainMenu
+         cx={ css.menuContainer }
+         renderBurger={ renderBurger }
+         logoLink={ { pathname: '/' } }
+         appLogoUrl="/static/logo.svg"
+         onLogoClick={ onLogoClick }
+    >
+          <MainMenuButton caption="Home" />
+      </MainMenu>
+
+    // After
+      <MainMenu
+          cx={ css.menuContainer }
+          items={ [
+              {
+                  id: 'burger',
+                  priority: 100,
+                  collapsedContainer: true,
+                  render: (p) => <Burger key={ p.id } renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" />,
+              },
+              {
+                  id: 'logo',
+                  priority: 99,
+                  render: (p) => <MainMenuLogo key={ p.id } link={ { pathname: '/' } } onClick={ onLogoClick } logoUrl="/static/logo.svg"  />,
+              },
+              {
+                  id: 'home',
+                  priority: 1,
+                  render: (p) => <MainMenuButton key={ p.id } caption="Home" />,
+              },
+          ] }
+      />
+    ```
+* [VerticalTabButton][Breaking Change]: reworked with improved functionality and styling
+  * Updated size variants according to design: `'30' | '36' | '48'` (was `'36' | '48' | '60'`)
+  * Added `renderAddons` prop for custom addons rendering
+  * Deprecated `count`, `onClear`, `clearIcon` props, use `renderAddons` instead
+  * Added `indent` and `isFoldable` props
+* [ICanRedirect]:
+  * deprecate `isLinkActive` prop, use new `isActive` prop instead
+  * moved `isLinkActive` to `ICanBeActive` interface
+  * remove `isLinkActive` prop from components where it was not used
 * [PresetsPanel]:
     * "Duplicate" action is now only available for unchanged presets
     * "Copy Link" action copies a link to the current (modified) state if the preset is changed, or to the saved preset otherwise
     * Added `onCopyLink` prop to customize or disable the "Copy Link" action (set to `null` to hide the action)
-* [MainMenu][Breaking Change]: converted to a functional component, removed `children` support, use `items` prop only, removed outdated customer logo(`customerLogoUrl`, `customerLogoLink`, `customerLogoHref`, `customerLogoBgColor`) and `isTransparent` props. Removed `Burger`, `renderBurger` prop, use `Burger` component instead. Removed `alwaysShowBurger` prop, use `Burger` component in items with `collapsedContainer: true/false` option. Removed `appLogoUrl`, `logoLink`, `onLogoClick` prop, use `MainMenuLogo` component instead. Removed `MainMenuDropdown` prop, use `MainMenuDropdown` as a component for 'More' container in items, see example [here](https://uui.epam.com/documents?id=mainMenu&mode=doc&category=components&theme=loveship#examples-mainMenu-Responsive)
-
-  ```tsx
-  // Before
-    <MainMenu
-       cx={ css.menuContainer }
-       renderBurger={ renderBurger }
-       logoLink={ { pathname: '/' } }
-       appLogoUrl="/static/logo.svg"
-       onLogoClick={ onLogoClick }
-    >
-        <MainMenuButton caption="Home" />
-    </MainMenu>
-
-  // After
-    <MainMenu
-        cx={ css.menuContainer }
-        items={ [
-            {
-                id: 'burger',
-                priority: 100,
-                collapsedContainer: true,
-                render: (p) => <Burger key={ p.id } renderBurgerContent={ renderBurger } logoUrl="/static/logo.svg" />,
-            },
-            {
-                id: 'logo',
-                priority: 99,
-                render: (p) => <MainMenuLogo key={ p.id } link={ { pathname: '/' } } onClick={ onLogoClick } logoUrl="/static/logo.svg"  />,
-            },
-            {
-                id: 'home',
-                render: (p) => <MainMenuButton key={ p.id } caption="Home" />,
-                priority: 1,
-            },
-        ] }
-    />
-  ```
-* [Tree]: updated with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
-* [useIsActive]: extracted hook for managing active state logic
-  * Added proper priority order: manual `isActive` > deprecated `isLinkActive` > router-based active state
-  * Added deprecation warning for `isLinkActive` prop, moved from `ICanRedirect` interface to new `ICanBeActive` interface
-  * Improved type safety with dedicated interfaces
-* [VerticalTabButton][Breaking Change]: complete rework with improved functionality and styling
-  * Added `renderAddons` prop for custom addons rendering
-  * Deprecated `count`, `onClear`, `clearIcon` props, use `renderAddons` instead
-  * Added `indent` and `isFoldable` props support
-  * Updated size variants according to design system: `'30' | '36' | '48'` (was `'36' | '48' | '60'`)
-  * Changed default size from `'48'` to `'36'` to match design requirements
-  * Extracted `isActive` interface for better type safety and reusability
-* [Clickable]: removed `isLinkActive` prop and moved to components which use this prop directly
-* [Site][Sidebar]: refactored to use new Tree component
-  * Replaced custom Tree implementation with @epam/uui Tree
-  * Improved data source integration using `useArrayDataSource`
+* [Tree]: 
+  * reworked with improved functionality and styling, moved from `@epam/uui-components` to `@epam/uui` package
+  * See docs [here](https://uui.epam.com/documents?id=tree&mode=doc&category=components)
+* [DataTable]: added disableVirtualization prop to turn off rows virtualization
+* [RTE]: added possibility to provide your own set of plugins for HTML and MD (de)serializers
+* Uploaded updated icons pack
 
 **What's Fixed**
 * [DataSources]: fixed handling of selectAll for views with disabled checkboxes
