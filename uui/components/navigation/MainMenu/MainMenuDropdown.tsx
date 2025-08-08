@@ -19,7 +19,7 @@ export function MainMenuDropdown(props: MainMenuDropdownProps) {
                     caption={ props.caption }
                     { ...dropdownProps }
                     rawProps={ props.rawProps }
-                    isLinkActive={ props.isLinkActive }
+                    isActive={ props.isActive }
                     isDropdown
                 />
             ) }

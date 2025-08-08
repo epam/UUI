@@ -22,7 +22,7 @@ import { CountIndicator } from '../widgets';
 type VerticalTabButtonMods = {
     /**
      * Defines component size.
-     * @default '36'
+     * @default '48'
      */
     size?: '30' | '36' | '48';
     /**
@@ -47,17 +47,14 @@ export type VerticalTabButtonProps<TItem, TId> = Partial<Pick<DataRowProps<TItem
      */
     onFold?: () => void;
     /**
-     * @deprecated
      * When isDropdown=true, indicate that dropdown is open with chevron icon
      */
     isOpen?: boolean;
     /**
-     * @deprecated
      * Shows chevron icon, enabling component to act as dropdown toggler
      */
     isDropdown?: boolean;
     /**
-     * @deprecated
      * Icon for dropdown toggler
      */
     dropdownIcon?: Icon;
@@ -91,7 +88,7 @@ function VerticalTabButtonComponent<TItem, TId>(
     const styles = [
         css.root,
         'uui-vertical-tab-button',
-        `uui-size-${props.size || settings.tabButton.sizes.default}`,
+        `uui-size-${props.size || settings.verticalTabButton.sizes.default}`,
         isActive && uuiMod.active,
         props.indent > 0 && css.noLeftPadding,
         !props.onClick && props.onFold && css.onlyFoldable,
@@ -99,18 +96,16 @@ function VerticalTabButtonComponent<TItem, TId>(
         props.cx,
     ];
 
-    // add daprication warning for count indicator, isDropdown, onClear, isOpen when this props are used
-
     if (props.count !== undefined && props.count !== null) {
-        devLogger.warn('VerticalTabButton: count prop is deprecated. Use countIndicator prop instead.');
-    }
-
-    if (props.isDropdown !== undefined && props.isDropdown !== null) {
-        devLogger.warn('VerticalTabButton: isDropdown prop is deprecated. Use dropdown prop instead.');
+        devLogger.warn('VerticalTabButton: count prop is deprecated. Use renderAddons prop instead.');
     }
 
     if (props.onClear !== undefined && props.onClear !== null) {
-        devLogger.warn('VerticalTabButton: onClear prop is deprecated. Use clear prop instead.');
+        devLogger.warn('VerticalTabButton: onClear prop is deprecated. Use renderAddons prop instead.');
+    }
+
+    if (props.clearIcon !== undefined && props.clearIcon !== null) {
+        devLogger.warn('VerticalTabButton: clearIcon prop is deprecated. Use renderAddons prop instead.');
     }
 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.verticalTabButton.icons.dropdownIcon;

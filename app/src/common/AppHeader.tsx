@@ -47,14 +47,14 @@ export function AppHeader() {
                 <BurgerButton
                     caption="Docs"
                     link={ { pathname: '/documents', query: { id: 'overview' } } }
-                    isLinkActive={ pathName === 'documents' && !category }
+                    isActive={ pathName === 'documents' && !category }
                     clickAnalyticsEvent={ () => sendEvent('Documents') }
                     onClick={ () => onClose() }
                 />
                 <BurgerButton
                     caption="Assets"
                     link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
-                    isLinkActive={ pathName === '/documents' && category === 'assets' }
+                    isActive={ pathName === '/documents' && category === 'assets' }
                     clickAnalyticsEvent={ () => sendEvent('Assets') }
                     onClick={ () => onClose() }
                 />
@@ -66,15 +66,15 @@ export function AppHeader() {
                             category: 'components', id: 'accordion', mode: TMode.doc,
                         },
                     } }
-                    isLinkActive={ pathName === '/documents' && category === 'components' }
+                    isActive={ pathName === '/documents' && category === 'components' }
                     clickAnalyticsEvent={ () => sendEvent('Components') }
                     onClick={ () => onClose() }
                 />
-                <BurgerButton 
+                <BurgerButton
                     caption="Demo"
                     onClick={ () => onClose() }
                     link={ { pathname: '/demo' } }
-                    isLinkActive={ pathName === '/demo' }
+                    isActive={ pathName === '/demo' }
                     clickAnalyticsEvent={ () => sendEvent('Demo') }
                 />
                 <BurgerGroupHeader caption="Figma source" />
@@ -175,7 +175,7 @@ export function AppHeader() {
                     <MainMenuButton
                         caption="Docs"
                         link={ { pathname: '/documents', query: { id: 'overview' } } }
-                        isLinkActive={ pathName === '/documents' && category !== 'components' && category !== 'assets' }
+                        isActive={ pathName === '/documents' && category !== 'components' && category !== 'assets' }
                         showInBurgerMenu
                         clickAnalyticsEvent={ analyticsEvents.header.link('Documents') }
                         key="documents"
@@ -189,7 +189,7 @@ export function AppHeader() {
                     <MainMenuButton
                         caption="Assets"
                         link={ { pathname: '/documents', query: { id: 'icons', category: 'assets' } } }
-                        isLinkActive={ pathName === '/documents' && category === 'assets' }
+                        isActive={ pathName === '/documents' && category === 'assets' }
                         showInBurgerMenu
                         clickAnalyticsEvent={ analyticsEvents.header.link('Assets') }
                         key="assets"
@@ -208,7 +208,7 @@ export function AppHeader() {
                                 category: 'components', id: 'accordion', mode: 'doc',
                             },
                         } }
-                        isLinkActive={ pathName === '/documents' && category === 'components' }
+                        isActive={ pathName === '/documents' && category === 'components' }
                         showInBurgerMenu
                         clickAnalyticsEvent={ analyticsEvents.header.link('Components') }
                         key="components"
@@ -222,7 +222,7 @@ export function AppHeader() {
                     <MainMenuButton
                         caption="Demo"
                         link={ { pathname: '/demo' } }
-                        isLinkActive={ pathName === '/demo' }
+                        isActive={ pathName === '/demo' }
                         showInBurgerMenu
                         clickAnalyticsEvent={ analyticsEvents.header.link('Demo') }
                         key="demo"
@@ -232,7 +232,7 @@ export function AppHeader() {
             window.location.host.includes('localhost') && {
                 id: 'Sandbox',
                 priority: 0,
-                render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isLinkActive={ pathName === '/sandbox' } key="sandbox" />,
+                render: () => <MainMenuButton caption="Sandbox" link={ { pathname: '/sandbox' } } isActive={ pathName === '/sandbox' } key="sandbox" />,
             },
             {
                 id: 'moreContainer',

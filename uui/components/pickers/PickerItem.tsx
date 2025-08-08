@@ -54,7 +54,6 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
 
     const { search } = props.dataSourceState ?? {};
     const title = highlightSearchMatches ? getHighlightedSearchMatches(props.title, search) : props.title;
-    const subtitle = highlightSearchMatches ? getHighlightedSearchMatches(props.subtitle, search) : props.subtitle;
 
     return (
         <FlexCell width="auto" cx={ [css.root, 'uui-picker_input-item', 'uui-typography', props.cx] }>
@@ -77,9 +76,9 @@ export function PickerItem<TItem, TId>(props: PickerItemProps<TItem, TId>) {
                             { title }
                         </div>
                     ) }
-                    { subtitle && (
+                    { props.subtitle && (
                         <div className={ cx(css.subtitle, isDisabled && css.disabled, `uui-size-${itemSize}`) }>
-                            { subtitle }
+                            { props.subtitle }
                         </div>
                     ) }
                 </FlexCell>

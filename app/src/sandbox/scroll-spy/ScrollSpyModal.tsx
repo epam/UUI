@@ -50,7 +50,7 @@ export function ScrollSpyModal() {
             <FlexCell grow={ 2 } alignSelf="start" cx={ css.menu } textAlign="center">
                 {links.map((link) => (
                     <LinkButton
-                        isLinkActive={ currentActive === link.id }
+                        isActive={ currentActive === link.id }
                         key={ link.id }
                         cx={ css.spyLink }
                         onClick={ () => scrollToElement(link.id) }

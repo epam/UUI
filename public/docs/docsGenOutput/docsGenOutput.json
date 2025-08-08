@@ -109206,17 +109206,14 @@
       "     */",
       "    onFold?: () => void;",
       "    /**",
-      "     * @deprecated",
       "     * When isDropdown=true, indicate that dropdown is open with chevron icon",
       "     */",
       "    isOpen?: boolean;",
       "    /**",
-      "     * @deprecated",
       "     * Shows chevron icon, enabling component to act as dropdown toggler",
       "     */",
       "    isDropdown?: boolean;",
       "    /**",
-      "     * @deprecated",
       "     * Icon for dropdown toggler",
       "     */",
       "    dropdownIcon?: Icon;",
@@ -109669,8 +109666,7 @@
       "name": "isOpen",
       "comment": {
        "raw": [
-        "@deprecated",
-        " When isDropdown=true, indicate that dropdown is open with chevron icon"
+        "When isDropdown=true, indicate that dropdown is open with chevron icon"
        ]
       },
       "typeValue": {
@@ -109687,8 +109683,7 @@
       "name": "isDropdown",
       "comment": {
        "raw": [
-        "@deprecated",
-        " Shows chevron icon, enabling component to act as dropdown toggler"
+        "Shows chevron icon, enabling component to act as dropdown toggler"
        ]
       },
       "typeValue": {
@@ -109705,8 +109700,7 @@
       "name": "dropdownIcon",
       "comment": {
        "raw": [
-        "@deprecated",
-        " Icon for dropdown toggler"
+        "Icon for dropdown toggler"
        ]
       },
       "typeValue": {
