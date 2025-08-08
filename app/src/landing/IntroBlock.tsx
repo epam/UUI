@@ -7,7 +7,6 @@ import {
     Text,
     FilterPickerBody,
     Panel,
-    TabButton,
     Badge,
     Tooltip,
     Button,
@@ -25,6 +24,7 @@ import {
     FlexSpacer,
     BadgeProps,
     IconButton,
+    TabList,
 } from '@epam/uui';
 import { DataQueryFilter, DropdownBodyProps, INotification, useLazyDataSource, useUuiContext } from '@epam/uui-core';
 import cx from 'classnames';
@@ -180,11 +180,30 @@ export function IntroBlock() {
                         { renderComponentsDemo() }
                         <div className={ css.componentsWrapper }>
                             <Panel background="surface-main" shadow={ true } cx={ css.infoComponentsWrapper }>
-                                <FlexRow borderBottom={ true }>
-                                    <TabButton caption="All" count={ 24 } isActive={ tabValue === 'All' } onClick={ () => onTabValueChange('All') } size="60" />
-                                    <TabButton caption="Recommended" count={ 12 } isActive={ tabValue === 'Recommended' } onClick={ () => onTabValueChange('Recommended') } withNotify={ true } size="60" />
-                                    <TabButton caption="New" isActive={ tabValue === 'New' } onClick={ () => onTabValueChange('New') } size="60" />
-                                </FlexRow>
+                                <TabList
+                                    value={ tabValue }
+                                    onValueChange={ onTabValueChange }
+                                    items={ [
+                                        {
+                                            id: 'All',
+                                            caption: 'All',
+                                            count: 24,
+                                            size: '60',
+                                        },
+                                        {
+                                            id: 'Recommended',
+                                            caption: 'Recommended',
+                                            count: 12,
+                                            withNotify: true,
+                                            size: '60',
+                                        },
+                                        {
+                                            id: 'New',
+                                            caption: 'New',
+                                            size: '60',
+                                        },
+                                    ] }
+                                />
                                 <FlexRow cx={ css.infoComponentsInnerBlock }>
                                     <Dropdown
                                         renderBody={ renderDropdownBody }

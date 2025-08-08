@@ -41,7 +41,10 @@ export interface TabButtonProps extends Overwrite<TabButtonMods, TabButtonModsOv
     count?: React.ReactNode;
 }
 
-export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, ref) => {
+export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement, TabButtonProps>((props, refExternal) => {
+    const refLocal = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLSpanElement | null>(null);
+    const ref = refExternal ?? refLocal;
+
     const { isActive } = useIsActive({
         isLinkActive: props.isLinkActive,
         link: props.link,
@@ -60,6 +63,23 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
     const DropdownIcon = props.dropdownIcon ? props.dropdownIcon : settings.tabButton.icons.dropdownIcon;
     const ClearIcon = props.clearIcon ? props.clearIcon : settings.tabButton.icons.clearIcon;
 
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement> & React.KeyboardEvent<HTMLButtonElement> & React.KeyboardEvent<HTMLSpanElement>): void => {
+        props.rawProps?.onKeyDown?.(event);
+
+        const isLink = (
+            props.link !== undefined
+            || props.href !== undefined
+        );
+
+        if (
+            isLink
+            && event.code === 'Space'
+            && typeof ref != 'function'
+        ) {
+            ref.current?.click();
+        }
+    };
+
     return (
         <Clickable
             { ...props }
@@ -68,6 +88,7 @@ export const TabButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement 
                 'aria-haspopup': props.isDropdown,
                 'aria-expanded': props.isOpen,
                 ...props.rawProps,
+                onKeyDown: handleOnKeyDown,
             } }
             cx={ styles }
             ref={ ref }

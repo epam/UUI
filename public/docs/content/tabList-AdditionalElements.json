@@ -1,0 +1,106 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example demonstrates how to add additional items on the same row as "
+      },
+      {
+        "text": "TabList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " while keeping the common bottom border."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "To achieve this, it is necessary to"
+      }
+    ]
+  },
+  {
+    "type": "ordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Put all the items in a "
+              },
+              {
+                "text": "FlexRow",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " component"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Pass "
+              },
+              {
+                "text": "borderBottom={true}",
+                "color": "rgb(48, 50, 64)",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " to the "
+              },
+              {
+                "text": "FlexRow",
+                "uui-richTextEditor-code": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "Pass "
+              },
+              {
+                "text": "borderBottom={false}",
+                "color": "rgb(48, 50, 64)",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "color": "rgb(48, 50, 64)",
+                "text": " to "
+              },
+              {
+                "color": "rgb(48, 50, 64)",
+                "text": "TabList",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "color": "rgb(48, 50, 64)",
+                "text": " to avoid double bottom border"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Basic usage of "
+      },
+      {
+        "text": "TabList",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " component."
+      }
+    ]
+  }
+]
