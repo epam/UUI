@@ -65,7 +65,7 @@ export function Preset(props: IPresetProps) {
                     withNotify={ isPresetActive && props.hasPresetChanged(props.preset) }
                     icon={ PresetActionsDropdownComponent }
                     iconPosition="right"
-                    isLinkActive={ isPresetActive }
+                    isActive={ isPresetActive }
                 />
             )}
         </FlexCell>

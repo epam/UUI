@@ -60,7 +60,7 @@ export default function SimpleNavigation() {
     }, []);
 
     return (
-        <Panel shadow>
+        <Panel shadow rawProps={ { style: { padding: '6px 0' } } }>
             {tasks.map((task) => (
                 <VerticalTabButton
                     key={ task.id }

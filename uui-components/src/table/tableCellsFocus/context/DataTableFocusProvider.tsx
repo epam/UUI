@@ -25,9 +25,9 @@ export function DataTableFocusProvider<TId>({ dataTableFocusManager, children }:
 
     return (
         (
-            <DataTableFocusContext value={ value }>
+            <DataTableFocusContext.Provider value={ value }>
                 {children}
-            </DataTableFocusContext>
+            </DataTableFocusContext.Provider>
         )
     );
 }

@@ -36,7 +36,7 @@
     "data": {},
     "children": [
       {
-        "text": "import { i18n } from '@epam/promo'\n\ni18n.pickerInput = {\n  showOnlySelectedLabel: 'translated text for this case',\n  clearSelectionButton: 'translated text for this case',\n  selectAllButton: 'translated text for this case',\n};"
+        "text": "import { i18n } from '@epam/uui'\n\ni18n.pickerInput = {\n  showOnlySelectedLabel: 'translated text for this case',\n  clearSelectionButton: 'translated text for this case',\n  selectAllButton: 'translated text for this case',\n};"
       }
     ]
   }

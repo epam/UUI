@@ -59,6 +59,7 @@
         fill: var(--uui-vertical_tab_btn-icon);
         display: flex;
         justify-content: end;
+        flex-shrink: 0;
         height: 100%;
         width: calc(var(--uui-vertical_tab_btn-padding) - var(--uui-tab-line-width) + var(--uui-vertical_tab_btn-icon-height) + var(--uui-vertical_tab_btn-indent-size) * var(--uui-folding-indent, 0));
     }

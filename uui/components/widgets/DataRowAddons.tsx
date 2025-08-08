@@ -15,6 +15,15 @@ interface DataRowAddonsMods {
 
 export interface DataRowAddonsModsOverride {}
 
+interface DragHandleRenderProps<TItem, TId> {
+    /** DataRowProps object for the row where an addon is placed. */
+    rowProps: DataRowProps<TItem, TId>;
+    /**
+     * Drag'n'drop marker event handlers.
+     */
+    eventHandlers?: DndEventHandlers;
+}
+
 interface DataRowAddonsCoreProps<TItem, TId> {
     /** DataRowProps object for the row where an addon is placed. */
     rowProps: DataRowProps<TItem, TId>;
@@ -24,6 +33,11 @@ interface DataRowAddonsCoreProps<TItem, TId> {
      * Drag'n'drop marker event handlers.
      */
     eventHandlers?: DndEventHandlers;
+    /** Render callback for drag handle aria.
+     **
+     * If omitted, the default implementation with DragHandle component will be rendered.
+     */
+    renderDragHandle?: (props: DragHandleRenderProps<TItem, TId>) => React.ReactNode;
 }
 
 /**
@@ -41,14 +55,21 @@ export function DataRowAddons<TItem, TId>(props: DataRowAddonsProps<TItem, TId>)
         return settings.dataTable.sizes.body.indentWidthMap[props.size || settings.dataTable.sizes.body.row];
     };
 
+    const renderDragHandle = () => {
+        if (props.renderDragHandle) {
+            return props.renderDragHandle({ rowProps: props.rowProps, eventHandlers: props.eventHandlers });
+        }
+        return (
+            <div key="dh" className={ cx(css.dragHandleWrapper, row.indent > 0 && css.withIndent) } style={ { width: row.indent > 0 ? (getIndent() + getWidth()) : 0 } } { ...props.eventHandlers }>
+                <DragHandle cx={ css.dragHandle } />
+            </div>
+        );
+    };
+
     return (
         <>
             {
-                row.dnd?.srcData && (
-                    <div key="dh" className={ cx(css.dragHandleWrapper, row.indent > 0 && css.withIndent) } style={ { width: row.indent > 0 ? (getIndent() + getWidth()) : 0 } } { ...props.eventHandlers }>
-                        <DragHandle cx={ css.dragHandle } />
-                    </div>
-                )
+                row.dnd?.srcData && renderDragHandle()
             }
             {row?.checkbox?.isVisible && (
                 <Checkbox
