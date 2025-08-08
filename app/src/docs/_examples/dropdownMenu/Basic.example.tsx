@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { offset } from '@floating-ui/react';
 import { IDropdownMenuItemProps, DropdownMenuBody, DropdownMenuButton, DropdownMenuSwitchButton, DropdownMenuSplitter, DropdownMenuHeader, DropdownSubMenu,
     Dropdown, ControlGroup, Button, LinkButton, Tooltip } from '@epam/uui';
 import { DropdownBodyProps } from '@epam/uui-core';
@@ -104,6 +105,7 @@ export default function BasicDropdownMenuExample() {
                         { ...props }
                     />
                 ) }
+                middleware={ [offset(6)] }
             />
             <ControlGroup>
                 <Button size="36" caption="Action with selected" onClick={ () => {} } />
@@ -111,6 +113,7 @@ export default function BasicDropdownMenuExample() {
                     renderBody={ renderSecondDropdownBody }
                     renderTarget={ (props) => <Button { ...props } icon={ MenuIcon } size="36" isDropdown={ false } /> }
                     placement="bottom-end"
+                    middleware={ [offset(6)] }
                 />
             </ControlGroup>
             <ControlGroup>
@@ -118,6 +121,7 @@ export default function BasicDropdownMenuExample() {
                     renderBody={ renderThirdDropdownBody }
                     renderTarget={ (props) => <Button { ...props } fill="outline" icon={ MenuIcon } size="36" isDropdown={ false } /> }
                     placement="bottom-end"
+                    middleware={ [offset(6)] }
                 />
             </ControlGroup>
         </>
