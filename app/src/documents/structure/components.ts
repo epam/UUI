@@ -63,6 +63,7 @@ import RichTextEditorDocItem from '../../docs/pages/components/richTextEditor.js
 import RichTextEditorSerializersDocItem from '../../docs/pages/components/richTextEditorSerializers.json';
 import RichTextViewDocItem from '../../docs/pages/components/richTextView.json';
 import TreeDocItem from '../../docs/pages/components/tree.json';
+import TabListDocItem from '../../docs/pages/components/tabList.json';
 import TablesOverviewDocItem from '../../docs/pages/tables/tablesOverview.json';
 import EditableTablesDocItem from '../../docs/pages/tables/editableTables.json';
 import AdvancedTablesDocItem from '../../docs/pages/tables/advancedTables.json';
@@ -144,6 +145,7 @@ export const componentsStructure: DocItem[] = orderBy<DocItem>(
         ProgressBarDocItem,
         ScrollSpyDocItem,
         DropdownContainerDocItem,
+        TabListDocItem,
     ],
     (item: DocItem) => (item.order ? item.order + item.name : item.name),
 );
