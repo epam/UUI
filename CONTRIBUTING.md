@@ -3,7 +3,7 @@
 
 First off, thanks for taking the time to contribute! ❤️
 
-All types of contributions are encouraged and valued. Please refer to the [Table of Contents](#table-of-contents) for information on various ways you can contribute and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. 
+All types of contributions are encouraged and valued. Please refer to the [Table of Contents](#table-of-contents) for information on various ways you can contribute and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved.
 
 <!-- The community looks forward to your contributions. 🎉 -->
 
@@ -65,7 +65,7 @@ We use [GitHub Issues](https://github.com/epam/UUI/issues) to track bugs and err
 
 #### General Information About Bug Report
 
-All defects should be created with the label "**bug**". If you use the default bug template, this label will be set automatically. 
+All defects should be created with the label "**bug**". If you use the default bug template, this label will be set automatically.
 You can add an additional label(s) both during the creation of the bug and after it has been saved.
 
 All bugs are considered with "**minor**" priority by default and will be taken to work in order of priority. If you think your bug is higher level, add the "**medium**' or  "**major**" priority to the ticket. To set the priority follow the next steps: Open the saved task -> Find "Projects" section on the right -> Click on the dropdown on the right -> Click on the dropdown with priorities and choose the one that suits you.
@@ -103,7 +103,7 @@ Improvement is tracked as [GitHub Issues](https://github.com/epam/UUI/issues). Y
 
 > Before you will make your pull request, please first discuss the change you wish to make via bug report, feature request or discussion.
 
-You can contribute to our codebase via creating Pull Request. PRs for our libraries are always welcome and can be a quick way to get your fix or improvement <!-- slated--> planned for the next release. 
+You can contribute to our codebase via creating Pull Request. PRs for our libraries are always welcome and can be a quick way to get your fix or improvement <!-- slated--> planned for the next release.
 
 In general, we follow the ["Fork-and-Pull" Git workflow](https://github.com/susam/gitpr)
 
@@ -175,7 +175,7 @@ Below you can find instructions how to add Doc Example and update component prop
 
 #### Doc Example
 
-1. Go to `app/src/docs/examples` and open/add folder of component for which you need to add example;
+1. Go to `app/src/docs/_examples` and open/add folder of component for which you need to add example;
 2. Add example with the following file name pattern `example-name.example.tsx`;
 3. Go to the `app/src/docs/pages` and find/add appropriate page file and add link your example to doc page:
     ```
@@ -198,7 +198,7 @@ If you make any component prop changes, you need to update appropriate .doc file
     ```
        .implements([ isDisabledDoc, iCanRedirectDoc, iHasPlaceholder])
    ```
-   
+
 #### API Block
 
 Component API section generated based on component props interfaces. It's not mandatory to regenerate it locally, because we have it in a deployment steps.

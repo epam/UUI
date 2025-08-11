@@ -1,0 +1,23 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Basic usage of "
+      },
+      {
+        "type": "link",
+        "url": "/documents?id=tabList&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "TabList"
+          }
+        ]
+      },
+      {
+        "text": " component."
+      }
+    ]
+  }
+]

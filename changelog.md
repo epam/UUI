@@ -1,3 +1,9 @@
+# 6.xx.xx - xx.xx.2025 
+
+**What's New**
+* [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
+* [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
+
 # 6.2.0 - 05.08.2025
 **What's New**
 * Introduced a UUI docs MCP server for LLM Agents like Cursor IDE and Copilot. 
