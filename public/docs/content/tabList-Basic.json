@@ -6,8 +6,14 @@
         "text": "Basic usage of "
       },
       {
-        "text": "TabList",
-        "uui-richTextEditor-code": true
+        "type": "link",
+        "url": "http://localhost:3793/documents?id=tabList&mode=doc&category=components",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "TabList"
+          }
+        ]
       },
       {
         "text": " component."
