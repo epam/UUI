@@ -676,6 +676,28 @@ describe('useForm', () => {
             expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
         });
 
+        it('Should call custom beforeLeave callback provided to form close method', async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(false);
+            const customBeforeLeaveMock = jest.fn().mockResolvedValue(false);
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props));
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(() => result.current.close({ beforeLeave: customBeforeLeaveMock }));
+
+            expect(customBeforeLeaveMock).toHaveBeenCalledTimes(1);
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(0);
+        });
+
         it('Should make redirect and lock form aging if beforeLeave returns "remain"', async () => {
             const saveMock = jest.fn().mockResolvedValue(true);
             const beforeLeaveMock = jest.fn().mockResolvedValue('remain');
@@ -700,6 +722,63 @@ describe('useForm', () => {
 
             await act(() => svc.uuiRouter.redirect({ pathname: '/newLocation2' }));
             expect(beforeLeaveMock).toHaveBeenCalledTimes(2); // form still in lock
+        });
+
+        it('Should unblock router after revert action', async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockRejectedValue(false);
+            const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                onError: jest.fn(),
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props), props, { wrapper });
+
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(async () => svc.uuiRouter.redirect('/'));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+
+            await act(async () => result.current.revert());
+            await act(async () => svc.uuiRouter.redirect('/'));
+
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+        });
+
+        it("Should unblock router and reset form to the initial value after 'Discard'(return false) action in beforeLeave modal", async () => {
+            const saveMock = jest.fn().mockResolvedValue(true);
+            const beforeLeaveMock = jest.fn().mockResolvedValue(false); // Emulate 'Discard' action
+            const { wrapper, testUuiCtx: svc } = getDefaultUUiContextWrapper();
+            const props = {
+                value: testData,
+                onSave: saveMock,
+                onError: jest.fn(),
+                beforeLeave: beforeLeaveMock,
+                getMetadata: () => testMetadata,
+            };
+
+            const { result } = await renderHookWithContextAsync<UseFormProps<IFoo>, IFormApi<IFoo>>(() => useForm(props), props, { wrapper });
+
+            expect(beforeLeaveMock).not.toHaveBeenCalled();
+
+            act(() => result.current.lens.prop('dummy').set('hi'));
+            expect(result.current.isChanged).toBe(true);
+
+            await act(async () => svc.uuiRouter.redirect('/'));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1);
+
+            expect(result.current.value).toBe(testData);
+            expect(result.current.isChanged).toBe(false);
+
+            await act(async () => svc.uuiRouter.redirect('/'));
+            expect(beforeLeaveMock).toHaveBeenCalledTimes(1); // Router is unblocked
         });
     });
 
