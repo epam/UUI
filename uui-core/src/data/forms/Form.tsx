@@ -118,8 +118,10 @@ export interface IFormApi<T> extends IEditable<T>, ValidationState {
 
     /**
      * Try to leave form and ask to save unsaved changes
+     * You can provide your own `beforeLeave` callback via options param, this callback will be called before close action.
+     * If `beforeLeave` param is omitted, default UUI beforeLeave implementation will be used
      */
-    close(): Promise<any>;
+    close(options?: { beforeLeave?: FormProps<T>['beforeLeave'] }): Promise<any>;
 
     /**
      * Forces form to validate value.
