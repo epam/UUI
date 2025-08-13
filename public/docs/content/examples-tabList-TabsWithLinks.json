@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Though links are not activated by pressing a space bar, using them as tabs enforces the tab's behavior, so both Enter and space bar keys active them."
+      }
+    ]
+  }
+]
