@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import FocusLock from 'react-focus-lock';
 import css from './ModalBlocker.module.scss';
 import { ModalBlockerProps, UuiContext, cx, uuiElement } from '@epam/uui-core';
@@ -34,11 +34,25 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
         !props.disableCloseOnRouterChange && context.uuiModals.closeAll();
     };
 
-    const keydownHandler = (e: KeyboardEvent) => {
-        if (e.key === 'Escape' && props.isActive) {
+    const keydownHandler = useCallback((e: KeyboardEvent) => {
+        // Get current isActive status at the time of keydown
+        const currentOperations = context.uuiModals.getOperations();
+        const currentOperation = currentOperations.find((op) => {
+            // First try to match by modalKey (new approach)
+            if (props.modalKey && op.props.modalKey === props.modalKey) {
+                return true;
+            }
+            // Fallback to key (backward compatibility)
+            if (op.props.key === props.key) {
+                return true;
+            }
+            return false;
+        });
+        const currentIsActive = currentOperation ? currentOperations.indexOf(currentOperation) === currentOperations.length - 1 : false;
+        if (e.key === 'Escape' && currentIsActive) {
             props.abort();
         }
-    };
+    }, [props.abort, props.modalKey, props.key, context.uuiModals]);
 
     const handleBlockerClick = () => {
         if (!props.disallowClickOutside) {

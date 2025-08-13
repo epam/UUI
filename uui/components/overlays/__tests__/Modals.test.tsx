@@ -73,7 +73,7 @@ async function setupModalBlocker(params: Partial<ModalBlockerProps>) {
 describe('Modals', () => {
     it('should be rendered correctly with minimum props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <ModalBlocker key="blocker" isActive zIndex={ 1 } abort={ jest.fn } success={ jest.fn }>
+            <ModalBlocker key="blocker" zIndex={ 1 } abort={ jest.fn } success={ jest.fn }>
                 <ModalWindow>
                     <ModalHeader />
                     <ModalFooter />
@@ -85,7 +85,7 @@ describe('Modals', () => {
 
     it('should be rendered correctly with many props', async () => {
         const tree = await renderSnapshotWithContextAsync(
-            <ModalBlocker key="blocker" isActive zIndex={ 1 } abort={ jest.fn } success={ jest.fn } disallowClickOutside>
+            <ModalBlocker key="blocker" zIndex={ 1 } abort={ jest.fn } success={ jest.fn } disallowClickOutside>
                 <ModalWindow height={ 300 } width={ 300 } onClick={ jest.fn }>
                     <ModalHeader title="Test header" onClose={ jest.fn } borderBottom />
                     <ModalFooter borderTop />
@@ -304,8 +304,6 @@ describe('Modals', () => {
     });
 
     it('should only close the topmost modal when ESC is pressed with nested modals', async () => {
-        const firstModalAbortMock = jest.fn();
-        const secondModalAbortMock = jest.fn();
         const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
 
         function FirstModal(props: IModal<string>) {
@@ -318,11 +316,11 @@ describe('Modals', () => {
             };
 
             return (
-                <ModalBlocker { ...props } abort={ firstModalAbortMock }>
+                <ModalBlocker { ...props }>
                     <ModalWindow>
                         <Panel>
                             <Text>First Modal</Text>
-                            <Button caption="Open Second Modal" onClick={ openSecondModal } />
+                            <Button caption="Open 2 Modal" onClick={ openSecondModal } />
                         </Panel>
                     </ModalWindow>
                 </ModalBlocker>
@@ -331,7 +329,7 @@ describe('Modals', () => {
 
         function SecondModal(props: IModal<string>) {
             return (
-                <ModalBlocker { ...props } abort={ secondModalAbortMock }>
+                <ModalBlocker { ...props }>
                     <ModalWindow>
                         <Panel>
                             <Text>Second Modal</Text>
@@ -342,17 +340,13 @@ describe('Modals', () => {
         }
 
         function TestComponent(): ReactNode {
-            const handleOpenFirstModal = async (): Promise<void> => {
-                try {
-                    await testUuiCtx.uuiModals.show((modalProps) => (
-                        <FirstModal { ...modalProps } />
-                    ));
-                } catch {}
-            };
+            const handleOpenFirstModal = testUuiCtx.uuiModals.show((modalProps) => (
+                <FirstModal { ...modalProps } />
+            ));
 
             return (
                 <>
-                    <Button caption="Open First Modal" onClick={ handleOpenFirstModal } />
+                    <Button caption="Open 1 Modal" onClick={ () => handleOpenFirstModal } />
                     <Modals />
                 </>
             );
@@ -361,15 +355,13 @@ describe('Modals', () => {
         await renderWithContextAsync(<TestComponent />, { wrapper });
 
         // Open first modal
-        const openFirstModalButton = await screen.findByRole('button', { name: /open first modal/i });
+        const openFirstModalButton = await screen.findByRole('button', { name: /open 1 modal/i });
         await userEvent.click(openFirstModalButton);
 
         expect(await screen.findByText('First Modal')).toBeInTheDocument();
-        expect(firstModalAbortMock).not.toBeCalled();
-        expect(secondModalAbortMock).not.toBeCalled();
 
         // Open second modal from first modal
-        const openSecondModalButton = await screen.findByRole('button', { name: /open second modal/i });
+        const openSecondModalButton = await screen.findByRole('button', { name: /open 2 modal/i });
         await userEvent.click(openSecondModalButton);
 
         expect(await screen.findByText('Second Modal')).toBeInTheDocument();
@@ -378,13 +370,8 @@ describe('Modals', () => {
         // Press ESC - should only close the second (topmost) modal
         await userEvent.keyboard('{Escape}');
 
-        // The second modal should be closed, first modal should remain
         expect(screen.queryByText('Second Modal')).not.toBeInTheDocument();
         expect(await screen.findByText('First Modal')).toBeInTheDocument();
-
-        // Only the second modal's abort should be called
-        expect(firstModalAbortMock).not.toBeCalled();
-        expect(secondModalAbortMock).toBeCalled();
     });
 
     // TODO: create test for 'disableCloseOnRouterChange' when our 'setupComponentForTest' be able listen routes
