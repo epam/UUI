@@ -17,7 +17,7 @@ export function Modals() {
     return (
         <>
             {context.uuiModals.getOperations().map((modalOperation) => {
-                return React.createElement(modalOperation.component, modalOperation.props);
+                return React.createElement(modalOperation.component, { ...modalOperation.props, key: modalOperation.props.key });
             })}
         </>
     );
