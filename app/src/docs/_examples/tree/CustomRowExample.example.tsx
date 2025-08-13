@@ -31,6 +31,7 @@ export default function CustomRowExample() {
         return (
             <VerticalTabButton
                 key={ row.key }
+                size="36"
                 icon={ row.value.type === 'folder' ? FolderIcon : FileIcon }
                 caption={ row.value.name }
                 weight="regular"

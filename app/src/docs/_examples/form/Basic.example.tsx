@@ -20,7 +20,10 @@ export default function BasicFormExample() {
     );
 
     const { lens, save } = useForm<Person>({
-        value: {},
+        value: {
+            firstName: '',
+            lastName: '',
+        },
         onSave: (person) => Promise.resolve({ form: person }) /* place your save api call here */,
         onSuccess: () =>
             svc.uuiNotifications.show((props) => (
