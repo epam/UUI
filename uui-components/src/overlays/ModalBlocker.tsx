@@ -28,7 +28,7 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
                 unsubscribeFromRouter();
             }
         };
-    }, [props.abort]);
+    }, [props.abort, props.isActive]);
 
     const urlChangeHandler = () => {
         !props.disableCloseOnRouterChange && context.uuiModals.closeAll();
