@@ -54,7 +54,7 @@ describe('ModalContext', () => {
 
         let operation = context.getOperations()[0];
         expect(operation.props.parameters).toBe(testParameters);
-        expect(operation.props.modalKey).toBe(operation.props.key); // Ensure modalKey is set for backward compatibility
+        expect(operation.props.isActive).toBe(true);
         const key = operation.props.key;
         const depth = operation.props.depth;
         const zIndex = operation.props.zIndex;

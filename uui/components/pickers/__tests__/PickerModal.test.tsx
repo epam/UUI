@@ -90,6 +90,7 @@ describe('PickerModal', () => {
                 zIndex={ 1 }
                 selectionMode="single"
                 initialValue={ null }
+                isActive
             />,
         );
         expect(tree).toMatchSnapshot();
@@ -106,6 +107,7 @@ describe('PickerModal', () => {
                 zIndex={ 1 }
                 selectionMode="multi"
                 initialValue={ [] }
+                isActive
                 getName={ (item) => item?.level ?? '' }
                 filter={ { level: 'A1' } }
                 sorting={ { direction: 'desc', field: 'level' } }

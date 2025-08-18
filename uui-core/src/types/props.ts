@@ -159,6 +159,8 @@ export interface IAdaptiveItem {
 }
 
 export interface IModal<TResult, TParameters = any> {
+    /** Indicates whether the modal is currently displayed */
+    isActive?: boolean;
     /** Unique key of the modal */
     key: string;
     /** Modal zIndex value. Calculated via LayoutContext. */
@@ -171,8 +173,6 @@ export interface IModal<TResult, TParameters = any> {
     parameters?: TParameters;
     /** Depth of current modal layer */
     depth?: number;
-    /** Modal key for identifying which modal is active (used internally) */
-    modalKey?: string;
 }
 
 export interface INotification {

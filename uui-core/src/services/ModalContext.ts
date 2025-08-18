@@ -27,7 +27,13 @@ export class ModalContext extends BaseContext implements IModalContext {
     }
 
     public show<TResult, TParameters = {}>(render: (props: IModal<TResult, TParameters>) => React.ReactElement<any>, parameters?: TParameters): Promise<TResult> {
-        return this.showModal(render, parameters);
+        const ModalAdapter = class extends React.Component<IModal<TResult, TParameters>> {
+            render() {
+                return render(this.props);
+            }
+        };
+
+        return this.showModal(ModalAdapter, parameters);
     }
 
     public closeAll() {
@@ -35,34 +41,7 @@ export class ModalContext extends BaseContext implements IModalContext {
         this.update({});
     }
 
-    public useModalIsActive(modalKey: string): boolean {
-        const [isActive, setIsActive] = React.useState(false);
-
-        React.useEffect(() => {
-            const updateIsActive = () => {
-                const operation = this.operations.find((op) => op.props.key === modalKey);
-                if (operation) {
-                    const index = this.operations.indexOf(operation);
-                    const newIsActive = index === this.operations.length - 1;
-                    setIsActive(newIsActive);
-                }
-            };
-
-            // Initial state
-            updateIsActive();
-
-            // Subscribe to updates
-            const unsubscribe = this.subscribe(updateIsActive);
-            return unsubscribe;
-        }, [modalKey]);
-
-        return isActive;
-    }
-
-    private showModal<TParameters, TResult>(
-        component: React.ComponentType<IModal<TResult, TParameters>> | ((props: IModal<TResult, TParameters>) => React.ReactElement<any>),
-        parameters?: TParameters,
-    ): Promise<TResult> {
+    private showModal<TParameters, TResult>(component: React.ComponentType<IModal<TResult, TParameters>>, parameters?: TParameters): Promise<TResult> {
         const layer = this.layoutCtx.getLayer();
         return new Promise((resolve, reject) => {
             const modalProps: IModal<TResult, TParameters> = {
@@ -80,29 +59,15 @@ export class ModalContext extends BaseContext implements IModalContext {
                 },
                 zIndex: layer.zIndex,
                 depth: layer.depth,
+                isActive: true,
                 key: idCounter++ + '',
                 parameters,
             };
 
-            let operation: ModalOperation;
-
-            if (typeof component === 'function' && !React.isValidElement(component)) {
-                // If component is a render function, create a wrapper component
-                const modalKey = modalProps.key; // Capture key in closure
-                const modalPropsWithKey = { ...modalProps, modalKey }; // Add modalKey to modalProps
-                const WrapperComponent = class extends React.Component<IModal<TResult, TParameters>> {
-                    render() {
-                        return (component as (props: IModal<TResult, TParameters>) => React.ReactElement<any>)(this.props);
-                    }
-                };
-                operation = { component: WrapperComponent, props: modalPropsWithKey };
-            } else {
-                // For component classes, ensure modalKey is available for backward compatibility
-                const modalPropsWithKey = { ...modalProps, modalKey: modalProps.key };
-                operation = { component: component as React.ComponentType<IModal<TResult, TParameters>>, props: modalPropsWithKey };
-            }
+            const operation: ModalOperation = { component, props: modalProps };
 
             this.operations.push(operation);
+
             this.update({});
         });
     }
@@ -112,6 +77,8 @@ export class ModalContext extends BaseContext implements IModalContext {
     }
 
     public getOperations(): ModalOperation[] {
-        return this.operations;
+        return this.operations.map((op, n) => ({
+            ...op, props: { ...op.props, isActive: n === this.operations.length - 1 },
+        }));
     }
 }
