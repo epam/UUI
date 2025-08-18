@@ -99,8 +99,6 @@ export interface IModalContext extends IBaseContext {
     isModalOperationActive(): boolean;
     /** Returns all active modals */
     getOperations(): ModalOperation[];
-    /** Hook to get current isActive status for a modal by key */
-    useModalIsActive(modalKey: string): boolean;
 }
 
 export interface IDndContext extends IBaseContext<DndContextState> {
