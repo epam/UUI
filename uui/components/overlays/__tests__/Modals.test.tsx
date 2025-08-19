@@ -5,6 +5,8 @@ import { IModal, ModalBlockerProps, useArrayDataSource, useUuiContext } from '@e
 import { Button } from '../../buttons';
 import { Modals } from '@epam/uui-components';
 import { PickerInput } from '../../pickers';
+import { Panel } from '../../layout';
+import { Text } from '../../typography';
 
 function TestElement(props: ModalBlockerProps) {
     return (
@@ -299,6 +301,78 @@ describe('Modals', () => {
         ).not.toBeInTheDocument();
         expect(successMock).not.toBeCalled();
         expect(abortMock).toBeCalled();
+    });
+
+    it('should only close the topmost modal when ESC is pressed with nested modals', async () => {
+        const { wrapper, testUuiCtx } = getDefaultUUiContextWrapper();
+
+        function FirstModal(props: IModal<string>) {
+            const openSecondModal = async () => {
+                try {
+                    await testUuiCtx.uuiModals.show((secondModalProps) => (
+                        <SecondModal { ...secondModalProps } />
+                    ));
+                } catch {}
+            };
+
+            return (
+                <ModalBlocker { ...props }>
+                    <ModalWindow>
+                        <Panel>
+                            <Text>First Modal</Text>
+                            <Button caption="Open 2 Modal" onClick={ openSecondModal } />
+                        </Panel>
+                    </ModalWindow>
+                </ModalBlocker>
+            );
+        }
+
+        function SecondModal(props: IModal<string>) {
+            return (
+                <ModalBlocker { ...props }>
+                    <ModalWindow>
+                        <Panel>
+                            <Text>Second Modal</Text>
+                        </Panel>
+                    </ModalWindow>
+                </ModalBlocker>
+            );
+        }
+
+        function TestComponent(): ReactNode {
+            const handleOpenFirstModal = testUuiCtx.uuiModals.show((modalProps) => (
+                <FirstModal { ...modalProps } />
+            ));
+
+            return (
+                <>
+                    <Button caption="Open 1 Modal" onClick={ () => handleOpenFirstModal } />
+                    <Modals />
+                </>
+            );
+        }
+
+        await renderWithContextAsync(<TestComponent />, { wrapper });
+
+        // Open first modal
+        const openFirstModalButton = await screen.findByRole('button', { name: /open 1 modal/i });
+        await userEvent.click(openFirstModalButton);
+
+        expect(await screen.findByText('First Modal')).toBeInTheDocument();
+
+        // Open second modal from first modal
+        const openSecondModalButton = await screen.findByRole('button', { name: /open 2 modal/i });
+        await userEvent.click(openSecondModalButton);
+
+        expect(await screen.findByText('Second Modal')).toBeInTheDocument();
+        expect(await screen.findByText('First Modal')).toBeInTheDocument();
+
+        // Press ESC - should only close the second (topmost) modal
+        await userEvent.keyboard('{Escape}');
+
+        // The second modal should be closed, first modal should remain
+        expect(screen.queryByText('Second Modal')).not.toBeInTheDocument();
+        expect(screen.getByText('First Modal')).toBeInTheDocument();
     });
 
     // TODO: create test for 'disableCloseOnRouterChange' when our 'setupComponentForTest' be able listen routes
