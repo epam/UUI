@@ -1,6 +1,6 @@
 {
   "name": "@epam/draft-rte",
-  "version": "6.1.5-beta.3",
+  "version": "6.1.5-beta.4",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -11,10 +11,10 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "6.1.5-beta.3",
-    "@epam/loveship": "6.1.5-beta.3",
-    "@epam/uui-components": "6.1.5-beta.3",
-    "@epam/uui-core": "6.1.5-beta.3",
+    "@epam/assets": "6.1.5-beta.4",
+    "@epam/loveship": "6.1.5-beta.4",
+    "@epam/uui-components": "6.1.5-beta.4",
+    "@epam/uui-core": "6.1.5-beta.4",
     "@types/draft-js": "0.10.23",
     "classnames": "^2.2.6",
     "draft-convert": "^2.1.2",
