@@ -84,7 +84,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
         }
 
         return getRowsToFetchForScroll(virtualListInfo, scrollContainer.current, rowOffsets.current);
-    }, [scrollContainer.current, virtualListInfo]);
+    }, [scrollContainer.current, rowOffsets.current, virtualListInfo]);
 
     useLayoutEffectSafeForSsr(() => {
         const rowsInfo = getUpdatedRowsInfo(
@@ -216,7 +216,7 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
             overdrawRows,
             blockSize,
             scrollContainerToPosition,
-            virtualListInfo,
+            virtualListInfo.rowsCount,
         ],
     );
 
