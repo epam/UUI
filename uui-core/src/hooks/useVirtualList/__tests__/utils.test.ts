@@ -3,53 +3,45 @@ import { assumeHeightForScrollToIndex, getAverageRowHeight, getNewEstimatedConta
     getRowsToFetchForScroll, getTopCoordinate, getTopIndexWithOffset, getUpdatedRowHeights, getUpdatedRowOffsets,
     getUpdatedRowsInfo,
 } from '../utils';
-import { VirtualListInfo } from '../types';
+import { RowsInfo, VirtualListInfo } from '../types';
 import { createListContainer, createScrollContainer } from './helpers';
 
+const createRowsInfo = ({ rowOffsets = [], rowHeights = [] }: Partial<RowsInfo> = { rowOffsets: [], rowHeights: [] }) => ({ rowOffsets, rowHeights });
+
 describe('getUpdatedRowHeights', () => {
-    const scrollContainer = createScrollContainer();
     const creaateVirtualListInfo = (
-        listContainer: HTMLDivElement,
         value: VirtualListState,
-        rowHeights: number[],
     ): VirtualListInfo => ({
-        scrollContainer,
-        listContainer,
         value,
         rowsCount: 100,
         blockSize: 20,
         overdrawRows: 20,
-        rowHeights,
-        rowOffsets: [],
         listOffset: 10,
     });
 
     it('should update row heights, starting from topIndex', () => {
         const listContainer = createListContainer([5, 7, 10]);
-        const virtualListInfo = creaateVirtualListInfo(listContainer, { topIndex: 2 }, []);
-        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([undefined, undefined, 5, 7, 10]);
+        const virtualListInfo = creaateVirtualListInfo({ topIndex: 2 });
+
+        expect(getUpdatedRowHeights(virtualListInfo, listContainer, createRowsInfo().rowHeights))
+            .toEqual([undefined, undefined, 5, 7, 10]);
     });
 
     it('should update existing row heights', () => {
         const listContainer = createListContainer([6, 7, 10]);
         const virtualListInfo = creaateVirtualListInfo(
-            listContainer,
             { topIndex: 2 },
-            [5, 5, 5, 5, 5, 5, 5, 5],
         );
-
-        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([5, 5, 6, 7, 10, 5, 5, 5]);
+        const rowsInfo = createRowsInfo({ rowHeights: [5, 5, 5, 5, 5, 5, 5, 5] });
+        expect(getUpdatedRowHeights(virtualListInfo, listContainer, rowsInfo.rowHeights)).toEqual([5, 5, 6, 7, 10, 5, 5, 5]);
     });
 
     it('should update row heigts from 0 if no topIndex was provided', () => {
         const listContainer = createListContainer([6, 7, 10]);
-        const virtualListInfo = creaateVirtualListInfo(
-            listContainer,
-            {},
-            [5, 5, 5, 5, 5, 5, 5, 5],
-        );
+        const virtualListInfo = creaateVirtualListInfo({});
+        const rowsInfo = createRowsInfo({ rowHeights: [5, 5, 5, 5, 5, 5, 5, 5] });
 
-        expect(getUpdatedRowHeights(virtualListInfo)).toEqual([6, 7, 10, 5, 5, 5, 5, 5]);
+        expect(getUpdatedRowHeights(virtualListInfo, listContainer, rowsInfo.rowHeights)).toEqual([6, 7, 10, 5, 5, 5, 5, 5]);
     });
 });
 
@@ -88,21 +80,22 @@ describe('getUpdatedRowOffsets', () => {
     };
 
     it('should update row offsets', () => {
-        const info = { ...defaultInfo, rowHeights: new Array(11).fill(20) };
-        expect(getUpdatedRowOffsets(info)).toEqual([
+        const rowsInfo = createRowsInfo({ rowHeights: new Array(11).fill(20) });
+        expect(getUpdatedRowOffsets(defaultInfo, rowsInfo)).toEqual([
             50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250,
         ]);
     });
 
     it('should use average height if row height is undefined or zero', () => {
-        const info = { ...defaultInfo, rowHeights: new Array(11).fill(0) };
+        const rowsInfo = createRowsInfo({ rowHeights: new Array(11).fill(0) });
 
-        expect(getUpdatedRowOffsets(info)).toEqual([
+        expect(getUpdatedRowOffsets(defaultInfo, rowsInfo)).toEqual([
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
 
-        const info2 = { ...defaultInfo, rowHeights: [] };
-        expect(getUpdatedRowOffsets(info2)).toEqual([
+        const rowsInfo2 = createRowsInfo({ rowHeights: [] });
+
+        expect(getUpdatedRowOffsets(defaultInfo, rowsInfo2)).toEqual([
             50, 65, 80, 95, 110, 125, 140, 155, 170, 185, 200,
         ]);
     });
@@ -116,9 +109,10 @@ describe('getUpdatedRowOffsets', () => {
             rowOffsets: [],
             listOffset: 38,
             averageRowHeight: 69,
-            rowHeights: [37, 37, 133],
         };
-        expect(getUpdatedRowOffsets(info)).toEqual([
+
+        const rowsInfo = createRowsInfo({ rowHeights: [37, 37, 133] });
+        expect(getUpdatedRowOffsets(info, rowsInfo)).toEqual([
             38, 75, 112, 245,
         ]);
     });
@@ -131,25 +125,22 @@ describe('getNewEstimatedContainerHeight', () => {
 });
 
 describe('getUpdatedRowsInfo', () => {
+    const scrollContainer = createScrollContainer();
+    const listContainer = createListContainer([]);
     const defaultInfo = {
-        scrollContainer: createScrollContainer(),
-        listContainer: createListContainer([]),
         value: {},
         rowsCount: 10,
         blockSize: 20,
         overdrawRows: 20,
-        rowHeights: [1],
-        rowOffsets: [16],
+
         listOffset: 50,
         estimatedHeight: 20,
         averageRowHeight: 15,
     };
+
+    const rowsInfo = createRowsInfo({ rowHeights: [1], rowOffsets: [16] });
     it('should return old values if scroll container is not defined', () => {
-        const info = {
-            ...defaultInfo,
-            scrollContainer: undefined,
-        };
-        expect(getUpdatedRowsInfo(info)).toEqual({
+        expect(getUpdatedRowsInfo(defaultInfo, { scrollContainer: undefined, listContainer }, rowsInfo)).toEqual({
             rowHeights: [1],
             rowOffsets: [16],
             estimatedHeight: 20,
@@ -157,11 +148,7 @@ describe('getUpdatedRowsInfo', () => {
     });
 
     it('should return old values if list container is not defined', () => {
-        const info = {
-            ...defaultInfo,
-            listContainer: undefined,
-        };
-        expect(getUpdatedRowsInfo(info)).toEqual({
+        expect(getUpdatedRowsInfo(defaultInfo, { scrollContainer, listContainer: undefined }, rowsInfo)).toEqual({
             rowHeights: [1],
             rowOffsets: [16],
             estimatedHeight: 20,
@@ -174,7 +161,7 @@ describe('getUpdatedRowsInfo', () => {
             listOffset: null,
         };
 
-        expect(getUpdatedRowsInfo(info)).toEqual({
+        expect(getUpdatedRowsInfo(info, { listContainer, scrollContainer }, rowsInfo)).toEqual({
             rowHeights: [1],
             rowOffsets: [16],
             estimatedHeight: 20,
@@ -185,7 +172,7 @@ describe('getUpdatedRowsInfo', () => {
             listOffset: undefined,
         };
 
-        expect(getUpdatedRowsInfo(info2)).toEqual({
+        expect(getUpdatedRowsInfo(info2, { listContainer, scrollContainer }, rowsInfo)).toEqual({
             rowHeights: [1],
             rowOffsets: [16],
             estimatedHeight: 20,
@@ -197,7 +184,7 @@ describe('getUpdatedRowsInfo', () => {
             ...defaultInfo,
             value: undefined,
         };
-        expect(getUpdatedRowsInfo(info)).toEqual({
+        expect(getUpdatedRowsInfo(info, { listContainer, scrollContainer }, rowsInfo)).toEqual({
             rowHeights: [1],
             rowOffsets: [16],
             estimatedHeight: 20,
@@ -207,12 +194,12 @@ describe('getUpdatedRowsInfo', () => {
     it('should return updated values', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             value: { topIndex: 1 },
-            rowHeights: [1, 1, 1],
         };
+        const listContainer2 = createListContainer([10, 20, 20, 20, 15, 10, 15]);
+        const rowsInfo2 = createRowsInfo({ ...rowsInfo, rowHeights: [1, 1, 1] });
 
-        expect(getUpdatedRowsInfo(info)).toEqual({
+        expect(getUpdatedRowsInfo(info, { listContainer: listContainer2, scrollContainer }, rowsInfo2)).toEqual({
             rowHeights: [1, 10, 20, 20, 20, 15, 10, 15],
             rowOffsets: [
                 50,
@@ -234,30 +221,27 @@ describe('getUpdatedRowsInfo', () => {
 });
 
 describe('getRowsToFetchForScroll', () => {
+    const defaultRowsInfo = createRowsInfo({ rowOffsets: [10, 30, 50, 70, 85, 95, 110, 500, 510, 560] });
     const defaultInfo = {
-        scrollContainer: createScrollContainer(),
-        listContainer: createListContainer([]),
         value: { topIndex: 1 },
         rowsCount: 5,
         blockSize: 1,
         overdrawRows: 1,
-        rowHeights: [],
-        rowOffsets: [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
         listOffset: 50,
         estimatedHeight: 20,
         averageRowHeight: 15,
     };
 
     it('should limit topIndex with rowsCount', () => {
+        const scrollContainer = createScrollContainer({ scrollTop: 100, clientHeight: 1000 });
+
         const info: VirtualListInfo = {
             ...defaultInfo,
             value: { topIndex: 10 },
-            scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 10,
         };
 
-        expect(getRowsToFetchForScroll(info)).toEqual({
+        expect(getRowsToFetchForScroll(info, scrollContainer, defaultRowsInfo.rowOffsets)).toEqual({
             visibleCount: 5,
             topIndex: 5,
         });
@@ -266,12 +250,11 @@ describe('getRowsToFetchForScroll', () => {
     it('should limit topIndex with scrollTop', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            scrollContainer: createScrollContainer({ scrollTop: 200, clientHeight: 1000 }),
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 20,
         };
 
-        expect(getRowsToFetchForScroll(info)).toEqual({
+        const scrollContainer = createScrollContainer({ scrollTop: 200, clientHeight: 1000 });
+        expect(getRowsToFetchForScroll(info, scrollContainer, defaultRowsInfo.rowOffsets)).toEqual({
             visibleCount: 5,
             topIndex: 6,
         });
@@ -280,12 +263,12 @@ describe('getRowsToFetchForScroll', () => {
     it('should limit visibleCount with rowsCount', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 1000 }),
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 5,
         };
 
-        expect(getRowsToFetchForScroll(info)).toEqual({
+        const scrollContainer = createScrollContainer({ scrollTop: 100, clientHeight: 1000 });
+
+        expect(getRowsToFetchForScroll(info, scrollContainer, defaultRowsInfo.rowOffsets)).toEqual({
             visibleCount: 4,
             topIndex: 1,
         });
@@ -294,13 +277,12 @@ describe('getRowsToFetchForScroll', () => {
     it('should limit visibleCount with clientHeight', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 100,
             overdrawRows: 0,
         };
+        const scrollContainer = createScrollContainer({ scrollTop: 100, clientHeight: 200 });
 
-        expect(getRowsToFetchForScroll(info)).toEqual({
+        expect(getRowsToFetchForScroll(info, scrollContainer, defaultRowsInfo.rowOffsets)).toEqual({
             visibleCount: 1,
             topIndex: 6,
         });
@@ -309,13 +291,13 @@ describe('getRowsToFetchForScroll', () => {
     it('should overdraw rows', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
-            scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 100,
             overdrawRows: 5,
         };
 
-        expect(getRowsToFetchForScroll(info)).toEqual({
+        const scrollContainer = createScrollContainer({ scrollTop: 100, clientHeight: 200 });
+
+        expect(getRowsToFetchForScroll(info, scrollContainer, defaultRowsInfo.rowOffsets)).toEqual({
             visibleCount: 11,
             topIndex: 1,
         });
@@ -325,14 +307,14 @@ describe('getRowsToFetchForScroll', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
             value: { topIndex: 10 },
-            scrollContainer: createScrollContainer({ scrollTop: 200, clientHeight: 200 }),
-            listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
             rowsCount: 5,
             blockSize: 2,
             overdrawRows: 0,
         };
 
-        expect(getRowsToFetchForScroll(info)).toEqual({
+        const scrollContainer = createScrollContainer({ scrollTop: 200, clientHeight: 200 });
+
+        expect(getRowsToFetchForScroll(info, scrollContainer, defaultRowsInfo.rowOffsets)).toEqual({
             visibleCount: 2,
             topIndex: 4,
         });
@@ -341,37 +323,33 @@ describe('getRowsToFetchForScroll', () => {
 
 describe('getTopCoordinate', () => {
     const defaultInfo = {
-        scrollContainer: createScrollContainer({ scrollTop: 100, clientHeight: 200 }),
-        listContainer: createListContainer([10, 20, 20, 20, 15, 10, 15]),
         value: { topIndex: 1 },
         rowsCount: 5,
         blockSize: 2,
         overdrawRows: 0,
-        rowHeights: [],
-        rowOffsets: [],
         listOffset: 50,
         estimatedHeight: 20,
         averageRowHeight: 15,
     };
     it('should get top coordinate for index to scroll by rowOffset', () => {
-        const info: VirtualListInfo = {
-            ...defaultInfo,
+        const rowsInfo = createRowsInfo({
             rowHeights: [10, 30, 50, 70, 85, 95, 110, 500, 510, 560],
             rowOffsets: [10, 40, 90, 160, 245, 355, 855, 1365, 1925],
-        };
-
-        expect(getTopCoordinate(info, { index: 3 })).toEqual(110);
+        });
+        expect(getTopCoordinate(defaultInfo, rowsInfo, { index: 3 })).toEqual(110);
     });
 
     it('should assume top coordinate for index to scroll by rowOffset', () => {
         const info: VirtualListInfo = {
             ...defaultInfo,
             value: { topIndex: 1, visibleCount: 9 },
+
+        };
+        const rowsInfo = createRowsInfo({
             rowHeights: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
             rowOffsets: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
-        };
-
-        expect(getTopCoordinate(info, { index: 100 })).toEqual(960);
+        });
+        expect(getTopCoordinate(info, rowsInfo, { index: 100 })).toEqual(960);
     });
 });
 
