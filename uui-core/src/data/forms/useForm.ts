@@ -76,7 +76,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                     .onSave(formState.current.form)
                     .then((response) =>
                         handleSaveResponse(response, isSavedBeforeLeave))
-                    .catch((err) => handleError(err));
+                    .catch((err) => { handleError(err); return Promise.reject(); });
             } else {
                 savePromise = Promise.reject();
             }
