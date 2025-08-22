@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-e2e-tests",
-  "version": "6.1.5-beta.4",
+  "version": "6.1.5-beta.5",
   "description": "",
   "author": "EPAM",
   "license": "MIT",
@@ -23,8 +23,8 @@
     "print-error": "ts-node scripts/cmd/cmdPrintError.ts"
   },
   "dependencies": {
-    "@epam/uui-core": "6.1.5-beta.4",
-    "@epam/uui-docs": "6.1.5-beta.4",
+    "@epam/uui-core": "6.1.5-beta.5",
+    "@epam/uui-docs": "6.1.5-beta.5",
     "@playwright/test": "1.51.1",
     "@types/node": "*",
     "address": "2.0.2",

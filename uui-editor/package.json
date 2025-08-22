@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-editor",
-  "version": "6.1.5-beta.4",
+  "version": "6.1.5-beta.5",
   "author": "EPAM",
   "license": "MIT",
   "main": "index.js",
@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@braintree/sanitize-url": "7.0.0",
-    "@epam/assets": "6.1.5-beta.4",
-    "@epam/uui": "6.1.5-beta.4",
-    "@epam/uui-components": "6.1.5-beta.4",
-    "@epam/uui-core": "6.1.5-beta.4",
+    "@epam/assets": "6.1.5-beta.5",
+    "@epam/uui": "6.1.5-beta.5",
+    "@epam/uui-components": "6.1.5-beta.5",
+    "@epam/uui-core": "6.1.5-beta.5",
     "@floating-ui/react": "0.27.5",
     "@udecode/plate-autoformat": "31.0.0",
     "@udecode/plate-basic-marks": "31.0.0",
