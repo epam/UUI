@@ -21,6 +21,7 @@ test('pickerInput/LazyTreeInput', async ({ pageWrapper }, testInfo) => {
     await test.step('Press "Enter" key 1 time', async () => {
         await pageObject.keyboardPress('Enter');
         await pageObject.waitDropdownLoaderAppearsAndDisappears();
+        await pageWrapper.page.waitForTimeout(50); // Fix for flaky test. Sometimes footer top shadow doesn't disappear
         await expectScreenshot(2, 'focus-search');
     });
     await test.step('Type "france" into the search field', async () => {

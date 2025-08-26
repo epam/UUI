@@ -48,7 +48,7 @@ import { LabeledInputExplorerConfig } from './LabeledInputConfig';
 import { TabButtonExplorerConfig } from './TabButtonConfig';
 import { VerticalTabButtonExplorerConfig } from './VerticalTabButtonConfig';
 import { PickerListExplorerConfig } from './PickerListConfig';
-import { TreeConfig } from './TreeConfig';
+// import { TreeConfig } from './TreeConfig';
 import { TDocConfig } from '@epam/uui-docs';
 
 export const explorerConfigs = [
@@ -103,7 +103,7 @@ export const explorerConfigs = [
     TabButtonExplorerConfig,
     VerticalTabButtonExplorerConfig,
     PickerListExplorerConfig,
-    TreeConfig,
+    // TreeConfig, TODO: uncomment when structure would be improved
 ];
 
 export const explorerConfigsMap = explorerConfigs.reduce<Map<string, TDocConfig >>((acc, config) => {

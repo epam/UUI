@@ -20,24 +20,24 @@ export class RelativePanelContext extends React.Component<DemoComponentProps, De
             <React.Fragment>
                 <FlexRow columnGap="12" padding="24" vPadding="24">
                     <LabeledInput label="Name">
-                        <TextInput value="Alex" onValueChange={ null } />
+                        <TextInput value="Alex" isDisabled onValueChange={ null } />
                     </LabeledInput>
                     <LabeledInput label="Country">
-                        <TextInput value="Belarus" onValueChange={ null } />
+                        <TextInput value="Belarus" isDisabled onValueChange={ null } />
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow columnGap="12" padding="24" vPadding="24">
                     <LabeledInput label="Age">
-                        <NumericInput max={ 100 } min={ 0 } value={ 20 } onValueChange={ null } />
+                        <NumericInput max={ 100 } min={ 0 } value={ 20 } isDisabled onValueChange={ null } />
                     </LabeledInput>
                     <LabeledInput label="Country">
-                        <DatePicker format="DD/MM/YYYY" value="2021-08-08" onValueChange={ null } />
+                        <DatePicker format="DD/MM/YYYY" value="2021-08-08" isDisabled onValueChange={ null } />
                     </LabeledInput>
                 </FlexRow>
                 <FlexRow columnGap="12" padding="24" vPadding="24">
                     <FlexSpacer />
-                    <Button color="accent" caption="Submit" />
-                    <Button color="primary" fill="none" caption="Cancel" />
+                    <Button color="accent" caption="Submit" isDisabled />
+                    <Button color="primary" fill="none" caption="Cancel" isDisabled />
                 </FlexRow>
             </React.Fragment>
         );

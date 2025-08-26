@@ -8,6 +8,12 @@
     flex-direction: column;
 }
 
+.notLimitedHeightContainer {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+}
+
 :global(.uui-table-row) {
     &.task-is-done {
         --uui-dt-row-bg: var(--uui-surface-higher);

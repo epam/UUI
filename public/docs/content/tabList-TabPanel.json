@@ -1,0 +1,96 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example demonstrates how to define your own tab panel component (that renders content depending on the selected tab) in an accessible way. "
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For each tab panel, it is necessary to add the following attributes:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "id",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " - necessary for defining which tab controls which tab panel (see the tab's attributes below)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "role",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " - defines accessibility role"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "aria-labelledby",
+                "uui-richTextEditor-code": true
+              },
+              {
+                "text": " - necessary for defining which tab labels which tab panel"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "For each tab, it is necessary to add "
+      },
+      {
+        "text": "aria-controls",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " attribute with the value of a tab panel's "
+      },
+      {
+        "text": "id",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " it controls."
+      }
+    ]
+  }
+]

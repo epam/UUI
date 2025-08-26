@@ -1,6 +1,6 @@
 {
   "name": "@epam/uui-docs",
-  "version": "6.1.5-beta.1",
+  "version": "6.2.0",
   "description": "EPAM UUI Documentation infrastructure",
   "author": "EPAM",
   "license": "MIT",
@@ -12,15 +12,14 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@epam/assets": "6.1.5-beta.1",
-    "@epam/uui": "6.1.5-beta.1",
-    "@epam/uui-components": "6.1.5-beta.1",
-    "@epam/uui-core": "6.1.5-beta.1",
-    "@epam/loveship": "6.1.5-beta.1",
+    "@epam/assets": "6.2.0",
+    "@epam/loveship": "6.2.0",
+    "@epam/promo": "6.2.0",
+    "@epam/uui": "6.2.0",
+    "@epam/uui-components": "6.2.0",
+    "@epam/uui-core": "6.2.0",
     "@types/classnames": "2.2.6",
-    "classnames": "^2.2.6",
-    "@floating-ui/react": "0.27.12",
-    "dayjs": "1.11.12"
+    "classnames": "^2.2.6"
   },
   "peerDependencies": {
     "react": ">=16.0.0",

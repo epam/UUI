@@ -76,7 +76,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                     .onSave(formState.current.form)
                     .then((response) =>
                         handleSaveResponse(response, isSavedBeforeLeave))
-                    .catch((err) => handleError(err));
+                    .catch((err) => { handleError(err); return Promise.reject(); });
             } else {
                 savePromise = Promise.reject();
             }
@@ -89,14 +89,15 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         context.uuiUserSettings.set(props.settingsKey, null);
     }, [context.uuiUserSettings, props.settingsKey]);
 
-    const handleLeave = useCallback(async (nextLocation?: Link, currentLocation?: Link) => {
+    const handleLeave = useCallback(async (nextLocation?: Link, currentLocation?: Link, beforeLeave?: FormProps<T>['beforeLeave']) => {
         if (props.beforeLeave) {
-            const res = await props.beforeLeave(nextLocation, currentLocation);
+            const beforeLeaveCb = beforeLeave || props.beforeLeave;
+            const res = await beforeLeaveCb(nextLocation, currentLocation);
             if (res === true) {
                 return handleSave(true);
             }
             if (res === false) {
-                removeUnsavedChanges();
+                resetForm(initialForm.current);
                 return Promise.resolve();
             }
             if (res === 'remain') {
@@ -206,7 +207,7 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
             return newState;
         });
 
-    const resetForm = (withNewState: FormState<T>) =>
+    const resetForm = (withNewState: FormState<T>) => {
         updateFormState((currentState) => {
             const newFormState = { ...currentState, ...withNewState };
             if (newFormState !== currentState) {
@@ -214,6 +215,10 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
                 return newFormState;
             }
         });
+
+        removeUnsavedChanges();
+        unblock();
+    };
 
     const updateValidationStates = (state: FormState<T>): FormState<T> => {
         const valueToValidate = state.form;
@@ -260,8 +265,6 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         }
         flushSync(() => {
             resetForm(newState);
-            removeUnsavedChanges();
-            unblock();
         });
 
         if (propsRef.current.onSuccess && response) {
@@ -352,8 +355,8 @@ export function useForm<T>(props: UseFormProps<T>): IFormApi<T> {
         handleSave().catch(() => {});
     }, [handleSave]);
 
-    const handleClose = useCallback(() => {
-        return isLocked ? handleLeave() : Promise.resolve();
+    const handleClose = useCallback<IFormApi<T>['close']>((options) => {
+        return isLocked ? handleLeave(null, null, options?.beforeLeave) : Promise.resolve();
     }, [isLocked]);
 
     const setServerValidationState = useCallback((value: React.SetStateAction<ValidationState>) => {

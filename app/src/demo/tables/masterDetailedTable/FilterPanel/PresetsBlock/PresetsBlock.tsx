@@ -53,7 +53,7 @@ const PresetsBlock: React.FC<PresetsBlockProps> = ({
                             key={ preset.id }
                             caption={ preset.name + (hasChanged ? '*' : '') }
                             onClick={ () => choosePreset(preset) }
-                            isLinkActive={ isActive }
+                            isActive={ isActive }
                             size="36"
                             cx={ [css.button, hasChanged && css.changed] }
                         />

@@ -60,6 +60,7 @@ export function FilterPickerBody<TItem, TId>({
             selectionMode: props.selectionMode,
             selection: props.value,
             search: dataSourceState.search,
+            disableClear: props.disableClear,
         };
 
         return props.renderFooter

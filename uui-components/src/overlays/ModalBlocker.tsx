@@ -28,14 +28,14 @@ export const ModalBlocker = React.forwardRef<HTMLDivElement, ModalBlockerProps>(
                 unsubscribeFromRouter();
             }
         };
-    }, [props.abort]);
+    }, [props.abort, props.isActive]);
 
     const urlChangeHandler = () => {
         !props.disableCloseOnRouterChange && context.uuiModals.closeAll();
     };
 
     const keydownHandler = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === 'Escape' && props.isActive) {
             props.abort();
         }
     };
