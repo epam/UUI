@@ -18,32 +18,20 @@ import css from './styles.module.scss';
 function FirstModal(props: IModal<string>) {
     const { uuiModals, uuiNotifications } = useUuiContext();
 
-    const showSecondModal = () => uuiModals
-        .show((secondModalProps) => <SecondModal { ...secondModalProps } />)
-        .catch(() => uuiNotifications.show((notificationProps) => (
-            <WarningNotification { ...notificationProps }>
-                <FlexRow alignItems="center">
-                    <Text>Second modal was closed</Text>
-                </FlexRow>
-            </WarningNotification>
-        )).catch(() => null));
+    const showSecondModal = (modalProps: IModal<unknown, any>) => (<SecondModal { ...modalProps } />);
+    const handleClose = () =>
+        uuiNotifications
+            .show((notificationProps) => (
+                <WarningNotification { ...notificationProps }>
+                    <FlexRow alignItems="center">
+                        <Text>Second modal was closed</Text>
+                    </FlexRow>
+                </WarningNotification>
+            ))
+            .catch(() => null);
 
     return (
-        <ModalBlocker
-            { ...props }
-            abort={ () => {
-                uuiNotifications
-                    .show((notificationProps) => (
-                        <WarningNotification { ...notificationProps }>
-                            <FlexRow alignItems="center">
-                                <Text>First modal was closed by ESC</Text>
-                            </FlexRow>
-                        </WarningNotification>
-                    ))
-                    .catch(() => null);
-                props.abort();
-            } }
-        >
+        <ModalBlocker { ...props }>
             <ModalWindow>
                 <Panel background="surface-main">
                     <ModalHeader title="First Modal" onClose={ props.abort } />
@@ -60,7 +48,10 @@ function FirstModal(props: IModal<string>) {
                         <Button
                             color="primary"
                             caption="Open Second Modal"
-                            onClick={ showSecondModal }
+                            onClick={ () =>
+                                uuiModals
+                                    .show(showSecondModal)
+                                    .catch(handleClose) }
                         />
                         <Button
                             color="secondary"
@@ -76,24 +67,8 @@ function FirstModal(props: IModal<string>) {
 }
 
 function SecondModal(props: IModal<string>) {
-    const { uuiNotifications } = useUuiContext();
-
     return (
-        <ModalBlocker
-            { ...props }
-            abort={ () => {
-                uuiNotifications
-                    .show((notificationProps) => (
-                        <WarningNotification { ...notificationProps }>
-                            <FlexRow alignItems="center">
-                                <Text>Second modal was closed by ESC</Text>
-                            </FlexRow>
-                        </WarningNotification>
-                    ))
-                    .catch(() => null);
-                props.abort();
-            } }
-        >
+        <ModalBlocker { ...props }>
             <ModalWindow>
                 <Panel background="surface-main">
                     <ModalHeader title="Second Modal" onClose={ props.abort } />
