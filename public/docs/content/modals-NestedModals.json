@@ -1,0 +1,11 @@
+[
+  {
+    "type": "paragraph",
+    "data": {},
+    "children": [
+      {
+        "text": "This example demonstrates the correct behavior of nested modals with ESC key handling. When you have multiple modals open, pressing ESC will only close the topmost (most recently opened) modal, not the underlying ones."
+      }
+    ]
+  }
+]

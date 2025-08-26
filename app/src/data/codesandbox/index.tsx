@@ -18,6 +18,7 @@ import '@epam/uui-components/styles.css';
 import '@epam/uui/styles.css';
 import '@epam/promo/styles.css';
 import '@epam/loveship/styles.css';
+import '@epam/uui-editor/styles.css';
 /* eslint-disable */
 "<UUI_CURRENT_THEME_IMPORT>"
 import '@epam/uui-docs/styles.css';

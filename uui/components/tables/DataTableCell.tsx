@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { DataTableCellProps as UuiCoreDataTableCellProps, Overwrite, uuiMod } from '@epam/uui-core';
+import {
+    DataTableCellProps as UuiCoreDataTableCellProps,
+    Overwrite,
+    uuiMod,
+} from '@epam/uui-core';
 import { DataTableCell as UuiDataTableCell } from '@epam/uui-components';
-import { DataRowAddons } from '../widgets';
+import { DataRowAddons, DataRowAddonsProps } from '../widgets';
 import type { DataTableCellMods } from './types';
 import { Text } from '../typography';
 import { Tooltip } from '../overlays';
@@ -13,7 +17,8 @@ import css from './DataTableCell.module.scss';
 export interface DataTableCellModsOverride {}
 
 export interface DataTableCellProps<TItem, TId, TCellValue> extends
-    UuiCoreDataTableCellProps<TItem, TId, TCellValue>, Overwrite<DataTableCellMods, DataTableCellModsOverride> {}
+    UuiCoreDataTableCellProps<TItem, TId, TCellValue>, Pick<DataRowAddonsProps<TItem, TId>, 'renderDragHandle'>, Overwrite<DataTableCellMods, DataTableCellModsOverride> {
+}
 
 export function DataTableCell<TItem, TId, TCellValue>(initialProps : DataTableCellProps<TItem, TId, TCellValue>) {
     const props = { ...initialProps };

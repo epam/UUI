@@ -3,6 +3,7 @@ import { Dropdown } from '@epam/uui-components';
 import { DropdownBodyProps } from '@epam/uui-core';
 import { Button, Text, FlexRow, DropdownContainer, FlexCell } from '@epam/uui';
 import { IDropdownToggler } from '@epam/uui-core';
+import { offset } from '@floating-ui/react';
 
 export default function BasicDropdownExample() {
     const renderDropdownBody = (props: DropdownBodyProps) => {
@@ -27,6 +28,10 @@ export default function BasicDropdownExample() {
     };
 
     return (
-        <Dropdown renderBody={ renderDropdownBody } renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> } />
+        <Dropdown
+            renderBody={ renderDropdownBody }
+            renderTarget={ (props: IDropdownToggler) => <Button caption="Click to open" { ...props } /> }
+            middleware={ [offset(6)] }
+        />
     );
 }

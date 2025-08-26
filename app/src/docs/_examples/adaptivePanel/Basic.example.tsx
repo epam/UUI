@@ -36,7 +36,8 @@ export default function BasicAdaptivePanelExample() {
                                 <VerticalTabButton
                                     caption={ i.data.caption }
                                     onClick={ () => onValueChange(i.data.caption) }
-                                    isLinkActive={ i.data.caption === value }
+                                    isActive={ i.data.caption === value }
+                                    size="36"
                                 />
                             ))}
                         </DropdownMenuBody>
