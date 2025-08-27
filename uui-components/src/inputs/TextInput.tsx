@@ -79,19 +79,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         inputElement.current?.focus();
     };
 
-    const handleWrapperFocus = (
-        event: React.FocusEvent<HTMLDivElement>,
-    ): void => {
-        /*
-            Without this check, when using Tab for navigation,
-            the focus always stays within the container, though it should move
-            to other elements (like clear button).
-        */
-        if (event.target === inputElement.current) {
-            inputElement.current?.focus();
-        }
-    };
-
     const getInputProps = () => ({
         type: props.type || 'text',
         className: cx(uuiElement.input, props.inputCx),
@@ -137,7 +124,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 props.cx,
             ) }
             tabIndex={ -1 }
-            onFocus={ handleWrapperFocus }
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}
