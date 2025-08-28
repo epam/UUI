@@ -32,6 +32,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const inputElement = React.useRef<HTMLInputElement>(undefined);
 
+    React.useImperativeHandle(ref, () => inputElement.current, [inputElement.current]);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Android does not support maxLength
         // https://studysection.com/blog/the-html-maxlength-attribute-is-not-working-as-expected-on-android-phones/
@@ -67,13 +69,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         props.onBlur?.(event);
     };
 
-    const handleClick = (e: any) => {
-        if (e.target.classList.contains(uuiMarkers.clickable)) {
-            return e.preventDefault();
-        }
-        props.onClick?.(e);
-    };
-
     const handleCancel = () => {
         props.onCancel();
         inputElement.current?.focus();
@@ -96,6 +91,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
+        onClick: props.onClick,
         tabIndex: (props.isReadonly || props.isDisabled) ? -1 : props.tabIndex || 0,
         id: props.id,
         required: props.isRequired,
@@ -111,19 +107,15 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
 
     return (
         <div
-            onClick={ props.onClick && handleClick }
-            ref={ ref }
             className={ cx(
                 css.container,
                 uuiElement.inputBox,
                 props.isDisabled && uuiMod.disabled,
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
-                !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
                 !props.isReadonly && inFocus && uuiMod.focus,
                 props.cx,
             ) }
-            tabIndex={ -1 }
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}
