@@ -13,9 +13,8 @@ exports[`DataPickerBody should be rendered with maximum props 1`] = `
         data-autofocus-inside="true"
       >
         <div
-          class="container uui-input-box -clickable uui-focus root uui-size-48 uui-control-mode-form"
+          class="container uui-input-box uui-focus root uui-size-48 uui-control-mode-form"
           dir="auto"
-          tabindex="-1"
         >
           <div
             class="container uui-icon uui-enabled"

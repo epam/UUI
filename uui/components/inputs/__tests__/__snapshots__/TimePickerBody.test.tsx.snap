@@ -125,7 +125,6 @@ exports[`TimePickerBody should be rendered with maximum props 1`] = `
       </div>
       <div
         class="container uui-input-box uui-readonly uui-timepicker-input"
-        tabindex="-1"
       >
         <input
           class="uui-input"
@@ -274,7 +273,6 @@ exports[`TimePickerBody should be rendered with minimum props 1`] = `
       </div>
       <div
         class="container uui-input-box uui-readonly uui-timepicker-input"
-        tabindex="-1"
       >
         <input
           class="uui-input"

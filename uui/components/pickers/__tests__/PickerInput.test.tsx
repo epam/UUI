@@ -1812,7 +1812,10 @@ describe('PickerInput', () => {
                     disableClear: true,
                 });
 
-                fireEvent.click(dom.target);
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
+
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
 
@@ -1823,16 +1826,15 @@ describe('PickerInput', () => {
             });
 
             it('should not render footer while searching', async () => {
-                const { dom } = await setupPickerInputForTest({
+                await setupPickerInputForTest({
                     value: undefined,
                     selectionMode: 'multi',
                     searchPosition: 'body',
                 });
 
-                // eslint-disable-next-line testing-library/no-unnecessary-act
-                await act(async () => {
-                    fireEvent.click(dom.target);
-                });
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1850,17 +1852,16 @@ describe('PickerInput', () => {
             });
 
             it('should not render footer if there is no selection and no visible rows', async () => {
-                const { dom } = await setupPickerInputForTest({
+                await setupPickerInputForTest({
                     value: undefined,
                     selectionMode: 'multi',
                     searchPosition: 'body',
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
 
-                // eslint-disable-next-line testing-library/no-unnecessary-act
-                await act(async () => {
-                    fireEvent.click(dom.target);
-                });
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
@@ -1873,17 +1874,16 @@ describe('PickerInput', () => {
             });
 
             it('should render clear all button if there is no visible rows, but picker has some selection', async () => {
-                const { dom } = await setupPickerInputForTest({
+                await setupPickerInputForTest({
                     value: [2, 3],
                     selectionMode: 'multi',
                     searchPosition: 'body',
                     minCharsToSearch: 3, // by picker open there will be no visible rows until 3+ chars will be entered in search
                 });
 
-                // eslint-disable-next-line testing-library/no-unnecessary-act
-                await act(async () => {
-                    fireEvent.click(dom.target);
-                });
+                const inputSearch = screen.getByRole('searchbox');
+
+                await userEvent.click(inputSearch);
 
                 const dialog = screen.getByRole('dialog');
                 expect(screen.getByRole('dialog')).toBeInTheDocument();
