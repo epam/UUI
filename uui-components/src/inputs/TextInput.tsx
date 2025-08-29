@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
-import { IconButton } from '../buttons';
+import { IconButton } from '../buttons/IconButton';
 import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import css from './TextInput.module.scss';
@@ -102,7 +102,36 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             : props?.rawProps?.dir, // TODO: remove after browser bug fix
     });
 
-    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
+    const getIcon = (): React.ReactNode => {
+        if (!props.icon) {
+            return null;
+        }
+
+        if (
+            !props.onIconClick
+            || props.isDisabled
+            || props.isReadonly
+        ) {
+            return (
+                <IconContainer
+                    icon={ props.icon }
+                />
+            );
+        }
+
+        return (
+            <IconButton
+                icon={ props.icon }
+                onClick={ props.onIconClick }
+                cx={ cx(css.clickableIcon, uuiMarkers.clickable) }
+                rawProps={ {
+                    'aria-label': 'Icon in input',
+                } }
+            />
+        );
+    };
+
+    const icon = getIcon();
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
