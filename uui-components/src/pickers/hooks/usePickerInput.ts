@@ -28,7 +28,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
 
     const { showSelected, setShowSelected } = useShowSelected({ dataSourceState: dsState });
 
-    const getSearchPosition = useCallback(() => {
+    const getSearchPosition = () => {
         if (isMobile() && props.searchPosition !== 'none') return 'body';
         if (props.editMode === 'modal' && props.searchPosition !== 'none') return 'body';
         if (!props.searchPosition) {
@@ -36,7 +36,7 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
         } else {
             return props.searchPosition;
         }
-    }, [props.searchPosition, props.editMode, props.selectionMode]);
+    };
 
     const isSearchLongEnough = () => props.minCharsToSearch ? (dsState.search?.length ?? 0) >= props.minCharsToSearch : true;
 
@@ -78,24 +78,14 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
             document.body.style.overflow = !newOpened && modals.length === 0 ? '' : 'hidden';
         }
 
-        handleDataSourceValueChange((prevState) => {
-            const nextState: typeof prevState = {
-                ...prevState,
-                topIndex: 0,
-                visibleCount: initialRowsVisible,
-                focusedIndex: 0,
-                scrollTo: undefined,
-            };
-
-            if (getSearchPosition() === 'body') {
-                return {
-                    ...nextState,
-                    search: '',
-                };
-            }
-
-            return nextState;
-        });
+        handleDataSourceValueChange((prevState) => ({
+            ...prevState,
+            topIndex: 0,
+            visibleCount: initialRowsVisible,
+            focusedIndex: 0,
+            scrollTo: undefined,
+            search: '',
+        }));
 
         setIsSearchChanged(false);
         setOpened(newOpened);
@@ -172,15 +162,13 @@ export function usePickerInput<TItem, TId, TProps>(props: UsePickerInputProps<TI
     }, [opened, props.minCharsToSearch, dataSourceState, handleDataSourceValueChange, setOpened, setIsSearchChanged]);
 
     const closePickerBody = useCallback(() => {
-        if (getSearchPosition() === 'body') {
-            handleDataSourceValueChange((state) => ({
-                ...state,
-                search: '',
-            }));
-        }
+        handleDataSourceValueChange((state) => ({
+            ...state,
+            search: '',
+        }));
         setOpened(false);
         setIsSearchChanged(false);
-    }, [handleDataSourceValueChange, setOpened, setIsSearchChanged, getSearchPosition]);
+    }, [handleDataSourceValueChange, setOpened, setIsSearchChanged]);
 
     const getRows = () => {
         if (!shouldShowBody() || !isSearchLongEnough()) return [];
