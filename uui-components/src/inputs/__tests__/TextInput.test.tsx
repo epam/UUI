@@ -84,24 +84,6 @@ describe('TextInput', () => {
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it('prevents default click behavior when target has uuiMarkers.clickable class', async () => {
-        const handleClick = jest.fn();
-        const handleChange = jest.fn();
-        await setupTextInput({
-            value: '',
-            onValueChange: handleChange,
-            onClick: handleClick,
-            rawProps: {
-                'data-testid': 'uui-text-input-wrapper',
-            },
-        });
-        const wrapper = screen.queryByTestId('uui-text-input-wrapper') as HTMLDivElement;
-
-        await userEvent.click(wrapper);
-
-        expect(handleClick).not.toHaveBeenCalled();
-    });
-
     it('handles key down event', async () => {
         const handleKeyDown = jest.fn();
         const handleAccept = jest.fn();
@@ -196,5 +178,28 @@ describe('TextInput', () => {
         expect(input).toHaveValue('');
         expect(input).toHaveFocus();
         expect(clearButton).not.toBeInTheDocument();
+    });
+
+    it('calls onIconClick', async () => {
+        const handleChange = jest.fn();
+        const onIconClick = jest.fn();
+        await setupTextInput({
+            value: '',
+            onValueChange: handleChange,
+            icon: () => {
+                return null;
+            },
+            onIconClick,
+        });
+        const clickableIcon = screen.getByRole(
+            'button',
+            {
+                name: /icon in input/i,
+            },
+        );
+
+        await userEvent.click(clickableIcon);
+
+        expect(onIconClick).toBeCalledTimes(1);
     });
 });
