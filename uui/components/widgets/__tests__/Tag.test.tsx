@@ -56,4 +56,25 @@ describe('Tag', () => {
         await userEvent.keyboard('{Enter}');
         expect(onClearMock).toBeCalled();
     });
+
+    it('calls onIconClick', async () => {
+        const onIconClick = jest.fn();
+        await renderWithContextAsync(
+            <Tag
+                caption="Test badge"
+                icon={ CalendarIcon }
+                onIconClick={ onIconClick }
+            />,
+        );
+        const clickableIcon = screen.getByRole(
+            'button',
+            {
+                name: /icon in input/i,
+            },
+        );
+
+        await userEvent.click(clickableIcon);
+
+        expect(onIconClick).toBeCalledTimes(1);
+    });
 });

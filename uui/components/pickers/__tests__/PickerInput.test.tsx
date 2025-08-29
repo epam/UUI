@@ -1683,11 +1683,19 @@ describe('PickerInput', () => {
             const { mocks } = await setupPickerInputForTest({
                 value: undefined,
                 onIconClick: jest.fn(),
-                icon: () => <div data-testid = "test-icon" />,
+                icon: () => {
+                    return null;
+                },
             });
+            const clickableIcon = screen.getByRole(
+                'button',
+                {
+                    name: /icon in input/i,
+                },
+            );
 
-            const iconContainer = screen.getByTestId('test-icon').parentElement as Element;
-            fireEvent.click(iconContainer);
+            await userEvent.click(clickableIcon);
+
             expect(mocks.onIconClick).toBeCalledTimes(1);
         });
 
