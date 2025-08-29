@@ -4,7 +4,7 @@ import { IconContainer } from '../layout';
 import { i18n } from '../i18n';
 import css from './PickerToggler.module.scss';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
-import { IconButton } from '../buttons';
+import { IconButton } from '../buttons/IconButton';
 
 export interface PickerTogglerRenderItemParams<TItem, TId> extends IHasCaption, IDisableable {
     /** DataRowProps object of the rendered item */
@@ -209,12 +209,36 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
         );
     };
 
-    const icon = props.icon && (
-        <IconContainer
-            icon={ props.icon }
-            onClick={ props.onIconClick }
-        />
-    );
+    const getIcon = (): React.ReactNode => {
+        if (!props.icon) {
+            return null;
+        }
+
+        if (
+            !props.onIconClick
+            || props.isDisabled
+            || props.isReadonly
+        ) {
+            return (
+                <IconContainer
+                    icon={ props.icon }
+                />
+            );
+        }
+
+        return (
+            <IconButton
+                icon={ props.icon }
+                onClick={ props.onIconClick }
+                cx={ cx(css.clickableIcon, uuiMarkers.clickable) }
+                rawProps={ {
+                    'aria-label': 'Icon in input',
+                } }
+            />
+        );
+    };
+
+    const icon = getIcon();
 
     return (
         <div

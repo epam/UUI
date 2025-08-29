@@ -101,7 +101,8 @@
     }
 }
 
-.clearButton {
+.clearButton,
+.clickableIcon {
     &:active,
     &:focus,
     &:focus-visible {

@@ -63,7 +63,8 @@
     cursor: pointer;
 }
 
-.clearButton {
+.clearButton,
+.clickableIcon {
     &:active,
     &:focus {
         @include focus-visible-effect();
