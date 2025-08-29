@@ -77,9 +77,9 @@ describe('TextInput', () => {
                 'data-testid': 'uui-text-input-wrapper',
             },
         });
-        const wrapper = screen.queryByTestId('uui-text-input-wrapper') as HTMLDivElement;
+        const input = screen.getByRole('textbox');
 
-        await userEvent.click(wrapper);
+        await userEvent.click(input);
 
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
