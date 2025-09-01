@@ -22,6 +22,5 @@ export const IconContainerConfig: TDocConfig = {
         ] });
         doc.merge('size', { editorType: 'StringEditor' });
         doc.setDefaultPropExample('icon', ({ value }) => value === ActionIcon);
-        doc.setDefaultPropExample('onClick', () => true);
     },
 };
