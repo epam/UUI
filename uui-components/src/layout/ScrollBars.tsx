@@ -1,178 +1,98 @@
-import React, {
-    forwardRef,
-    useEffect,
-    useImperativeHandle,
-    useMemo,
-    useRef,
-} from 'react';
-import { useOverlayScrollbars } from 'overlayscrollbars-react';
-import { IHasCX, IHasRawProps } from '@epam/uui-core';
-import cx from 'classnames';
-import 'overlayscrollbars/styles/overlayscrollbars.css';
+import React, { CSSProperties, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { Scrollbars as ReactCustomScrollBars } from 'react-custom-scrollbars-2';
+import { IHasCX, cx, IHasRawProps, getDir } from '@epam/uui-core';
+import type { Scrollbars, ScrollbarProps as LibScrollbarProps, positionValues } from 'react-custom-scrollbars-2';
+
 import css from './ScrollBars.module.scss';
 
-export type ScrollbarsApi = {
-    container: HTMLElement | null;
-    view: HTMLElement | null;
-};
-
-export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
-    onScroll?: React.UIEventHandler<any>;
-
-    autoHide?: boolean;
-    autoHideTimeout?: number;
-    autoHideDuration?: number;
-    hideTracksWhenNotNeeded?: boolean;
-    /* @deprecated use css variable to change min size */
-    thumbMinSize?: number;
+export interface ScrollbarProps extends IHasCX, Omit<LibScrollbarProps, 'ref'>, IHasRawProps<Scrollbars> {
+    /** If true, shadow will be added to the top of container, in case when scroll isn't in top position */
     hasTopShadow?: boolean;
+    /** If true, shadow will be added to the bottom of container, in case when scroll isn't in bottom position */
     hasBottomShadow?: boolean;
-};
+    /** Render callback for the scroll container.
+     *
+     * If omitted, default uui implementation with flex container will be rendered.
+     */
+    renderView?: (props: any) => React.ReactElement<any>;
+}
+
+export interface PositionValues extends positionValues {
+}
+
+export interface ScrollbarsApi extends Scrollbars {
+}
 
 enum uuiScrollbars {
     uuiShadowTop = 'uui-shadow-top',
     uuiShadowBottom = 'uui-shadow-bottom',
+    uuiThumbVertical = 'uui-thumb-vertical',
+    uuiThumbHorizontal = 'uui-thumb-horizontal',
+    uuiTrackVertical = 'uui-track-vertical',
+    uuiTrackHorizontal = 'uui-track-horizontal',
     uuiShadowTopVisible = 'uui-shadow-top-visible',
     uuiShadowBottomVisible = 'uui-shadow-bottom-visible'
 }
 
-export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref) => {
-    const {
-        className,
-        cx: outerCx,
-        style,
-        children,
-        hasTopShadow,
-        hasBottomShadow,
+export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>(({
+    style: outerStyle, hasBottomShadow, hasTopShadow, rawProps, cx: outerCx, ...props
+}, ref) => {
+    const bars = useRef<ScrollbarsApi>(undefined);
 
-        onScroll,
+    useImperativeHandle(ref, () => bars.current, [bars.current]);
 
-        autoHide,
-        autoHideTimeout,
-        autoHideDuration,
-        hideTracksWhenNotNeeded,
-        thumbMinSize,
-        rawProps,
-        ...rest
-    } = props;
-
-    // DOM refs
-    const hostRef = useRef<HTMLDivElement | null>(null);
-    const viewportRef = useRef<HTMLElement | null>(null);
-
-    // Создаем контейнер который эмулирует структуру RCS2 для VirtualList
-    const containerRef = useRef<HTMLElement | null>(null);
-
-    const handleUpdateScroll = () => {
-        const instance = osInstance();
-        if (!instance || !hostRef.current) return;
-
-        const { scrollOffsetElement } = instance.elements();
-        if (!scrollOffsetElement) return;
-
-        const { scrollTop, scrollHeight, clientHeight } = scrollOffsetElement;
+    const handleUpdateScroll = (event?: React.UIEvent<ScrollbarsApi>) => {
+        if (!bars.current) return;
+        event && props.onScroll?.(event);
+        const scrollBars = bars.current?.container;
+        if (!scrollBars) return;
+        const { scrollTop, scrollHeight, clientHeight } = bars.current.getValues();
         const showTopShadow = hasTopShadow && scrollTop > 0;
         const showBottomShadow = hasBottomShadow && scrollHeight - clientHeight > scrollTop;
 
-        if (showTopShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowTopVisible);
-        else hostRef.current.classList.remove(uuiScrollbars.uuiShadowTopVisible);
+        if (showTopShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowTopVisible);
+        else scrollBars.classList.remove(uuiScrollbars.uuiShadowTopVisible);
 
-        if (showBottomShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowBottomVisible);
-        else hostRef.current.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
+        if (showBottomShadow) scrollBars.classList.add(uuiScrollbars.uuiShadowBottomVisible);
+        else scrollBars.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
     };
 
-    // Хук OS: только options + events
-    const [initialize, osInstance] = useOverlayScrollbars({
-        options: {
-            scrollbars: {
-                theme: 'uui-scroll-bars',
-                autoHide: autoHide === true ? 'move' : 'never',
-                autoHideDelay:
-                    typeof autoHideDuration === 'number'
-                        ? autoHideDuration
-                        : typeof autoHideTimeout === 'number'
-                            ? autoHideTimeout
-                            : undefined,
-                visibility: hideTracksWhenNotNeeded === false ? 'visible' : 'auto',
-            },
-        },
-        events: {
-            scroll: (_inst, ev) => {
-                handleUpdateScroll();
-                onScroll?.(ev as unknown as React.UIEvent<ScrollbarsApi>);
-            },
-        },
-    });
+    useEffect(handleUpdateScroll);
 
-    // Инициализация OS с указанием elements
-    useEffect(() => {
-        const host = hostRef.current;
-        const vp = viewportRef.current;
-        if (!host || !vp) return;
+    const getIndent = (margin: string | number): Record<string, string | number> => {
+        const dir = getDir();
 
-        initialize({
-            target: host,
-            elements: {
-                viewport: vp,
-                content: vp,
-            },
-        });
-
-        return () => {
-            osInstance()?.destroy();
-        };
-    }, [initialize, osInstance]);
-
-    // Обновляем тени при первоначальной загрузке
-    useEffect(() => {
-        handleUpdateScroll();
-    });
-
-    // Императивный RCS2 API наружу
-    useImperativeHandle(ref, (): ScrollbarsApi => {
-        return {
-            container: containerRef.current,
-            view: viewportRef.current,
-        };
-    }, []);
-
-    // Базовый innerStyle, как в UUI customRenderView
-    const rcs2InnerStyleBase: React.CSSProperties = useMemo(() => {
-        return { marginRight: 0, marginBottom: 0 };
-    }, []);
-
-    const hostStyle: React.CSSProperties = useMemo(() => {
-        return {
-            ...style,
-            height: '100%',
-            width: '100%',
-        };
-    }, [style]);
-
-    const innerStyle: React.CSSProperties = {
-        ...rcs2InnerStyleBase,
-        position: 'relative',
-        flex: '1 1 auto',
+        // for windows we need to get positive right margin to hide native scrollbar
+        if (dir === 'rtl') {
+            if (margin === 0) return { right: margin };
+            const marginNum = typeof margin === 'string' ? parseInt(margin, 10) : margin;
+            return { right: Math.abs(marginNum) + 'px' };
+        }
+        return {};
     };
+
+    const customRenderView = ({ style: innerStyle, ...rest }: { style: CSSProperties; rest: {} }) => {
+        const propsRenderView = props.renderView as (p: any) => any;
+        const rv = propsRenderView?.({ style: { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', ...getIndent(innerStyle?.marginRight) } }, ...rest });
+        return rv || <div style={ { ...innerStyle, ...{ position: 'relative', flex: '1 1 auto', ...getIndent(innerStyle?.marginRight) } } } { ...rest } />;
+    };
+
+    const { renderView, ...customProps } = props;
 
     return (
-        <div
-            ref={ hostRef }
-            className={ cx(css.root, className, outerCx, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
-            style={ hostStyle }
-            { ...rest }
-            data-overlayscrollbars-initialize=""
-        >
-            <div
-                style={ innerStyle }
-                data-overlayscrollbars-contents=""
-                ref={ (node) => { viewportRef.current = node; } }
-                { ...rawProps }
-            >
-                {children}
-            </div>
-        </div>
+        <ReactCustomScrollBars
+            className={ cx(css.root, outerCx, props.className, hasTopShadow && uuiScrollbars.uuiShadowTop, hasBottomShadow && uuiScrollbars.uuiShadowBottom) }
+            renderView={ (params) => customRenderView(params) }
+            renderTrackHorizontal={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackHorizontal } /> }
+            renderTrackVertical={ (props: any) => <div { ...props } className={ uuiScrollbars.uuiTrackVertical } /> }
+            renderThumbHorizontal={ () => <div className={ uuiScrollbars.uuiThumbHorizontal } /> }
+            renderThumbVertical={ () => <div className={ uuiScrollbars.uuiThumbVertical } /> }
+            style={ { ...{ display: 'flex' }, ...outerStyle } }
+            onScroll={ handleUpdateScroll }
+            hideTracksWhenNotNeeded
+            ref={ bars }
+            { ...customProps }
+            { ...rawProps }
+        />
     );
 });
-
-ScrollBars.displayName = 'ScrollBars';

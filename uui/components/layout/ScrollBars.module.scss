@@ -1,19 +1,56 @@
-:global(.uui-scroll-bars) {
+.root {
     --uui-scroll_bars-bg: var(--uui-neutral-40);
     --uui-scroll_bars-bg-active: var(--uui-neutral-60);
+}
 
-    --os-size: 10px;
-    --os-padding-perpendicular: 2px;
-    --os-padding-axis: 2px;
-    --os-handle-border-radius: 3px;
-    --os-handle-bg: var(--uui-scroll_bars-bg);
-    --os-handle-bg-hover: var(--uui-scroll_bars-bg);
-    --os-handle-bg-active: var(--uui-scroll_bars-bg-active);
-    --os-handle-min-size: 30px;
-    --os-handle-perpendicular-size: 50%;
-    --os-handle-perpendicular-size-hover: 100%;
-    --os-handle-perpendicular-size-active: 100%;
-    --os-handle-interactive-area-offset: 2px;
+:global(.uui-shadow-top)::before {
+    background: var(--scroll-bars-shadow);
+}
 
-    box-sizing: border-box;
+:global(.uui-shadow-bottom)::after {
+    background: var(--scroll-bars-shadow);
+}
+
+:global(.uui-thumb-vertical), :global(.uui-thumb-horizontal) {
+    background: var(--uui-scroll_bars-bg);
+    border-radius: 1.5px;
+
+    &:hover {
+        border-radius: 3px;
+    }
+
+    &:active {
+        border-radius: 3px;
+        background: var(--uui-scroll_bars-bg-active);
+    }
+}
+
+:global(.uui-thumb-vertical) {
+    width: 3px;
+    margin-inline-start: 3px;
+
+    &:hover {
+        width: 6px;
+        margin-inline-start: 0;
+    }
+
+    &:active {
+        width: 6px;
+        margin-inline-start: 0;
+    }
+}
+
+:global(.uui-thumb-horizontal) {
+    height: 3px;
+    margin-top: 3px;
+
+    &:hover {
+        height: 6px;
+        margin-top: 0;
+    }
+
+    &:active {
+        height: 6px;
+        margin-top: 0;
+    }
 }

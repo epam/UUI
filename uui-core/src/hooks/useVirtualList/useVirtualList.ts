@@ -77,10 +77,8 @@ export function useVirtualList<List extends HTMLElement = any, ScrollContainer e
 
     useLayoutEffectSafeForSsr(() => {
         if (!scrollContainer.current || !listContainer.current) return;
-        const { top: scrollContainerTop, bottom } = scrollContainer.current.getBoundingClientRect();
+        const { top: scrollContainerTop } = scrollContainer.current.getBoundingClientRect();
         const { top: listContainerTop } = listContainer.current.getBoundingClientRect();
-        if (bottom === scrollContainerTop) return;
-
         const newListOffset = listContainerTop - scrollContainerTop;
         setListOffset(newListOffset);
     }, [scrollContainer.current, listContainer.current]);
