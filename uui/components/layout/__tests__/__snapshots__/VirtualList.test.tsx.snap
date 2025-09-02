@@ -4,42 +4,67 @@ exports[`VirtualList should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
     class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-    style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+    data-overlayscrollbars="host"
+    data-overlayscrollbars-initialize=""
+    style="height: 100%; width: 100%;"
   >
     <div
-      style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+      class="os-size-observer"
     >
       <div
-        class="listContainer"
-        style="min-height: NaNpx;"
+        class="os-size-observer-listener"
+      />
+    </div>
+    <div
+      class=""
+      data-overlayscrollbars-padding=""
+      style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+    >
+      <div
+        data-overlayscrollbars-contents=""
+        data-overlayscrollbars-viewport=""
+        style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
       >
         <div
-          style="margin-top: 0px;"
+          class="listContainer"
+          style="min-height: NaNpx;"
+        >
+          <div
+            style="margin-top: 0px;"
+          />
+        </div>
+        <div
+          aria-busy="false"
+          aria-label=""
+          aria-live="polite"
+          class="container uui-blocker-container root"
+          role="status"
         />
       </div>
     </div>
     <div
-      aria-busy="false"
-      aria-label=""
-      aria-live="polite"
-      class="container uui-blocker-container root"
-      role="status"
-    />
-    <div
-      class="uui-track-horizontal"
-      style="position: absolute; height: 6px; display: none;"
+      class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
     >
       <div
-        class="uui-thumb-horizontal"
-      />
+        class="os-scrollbar-track"
+      >
+        <div
+          class="os-scrollbar-handle"
+          style="width: 0.000%; transform: translateX(0.000%);"
+        />
+      </div>
     </div>
     <div
-      class="uui-track-vertical"
-      style="position: absolute; width: 6px; display: none;"
+      class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
     >
       <div
-        class="uui-thumb-vertical"
-      />
+        class="os-scrollbar-track"
+      >
+        <div
+          class="os-scrollbar-handle"
+          style="height: 0.000%; transform: translateY(0.000%);"
+        />
+      </div>
     </div>
   </div>
 </DocumentFragment>
