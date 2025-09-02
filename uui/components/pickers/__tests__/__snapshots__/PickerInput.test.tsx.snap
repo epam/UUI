@@ -52,123 +52,147 @@ exports[`PickerInput Body Open/Close should open body 1`] = `
       >
         <div
           class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-          style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+          data-overlayscrollbars="host"
+          data-overlayscrollbars-initialize=""
+          style="height: 100%; width: 100%;"
         >
           <div
-            aria-orientation="vertical"
-            style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
-            tabindex="-1"
+            class="os-size-observer"
           >
             <div
-              class="listContainer"
-              style="min-height: 2px;"
+              class="os-size-observer-listener"
+            />
+          </div>
+          <div
+            class=""
+            data-overlayscrollbars-padding=""
+            style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+          >
+            <div
+              aria-orientation="vertical"
+              data-overlayscrollbars-contents=""
+              data-overlayscrollbars-viewport=""
+              style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
             >
               <div
-                style="margin-top: 0px;"
+                class="listContainer"
+                style="min-height: 2px;"
               >
                 <div
-                  aria-posinset="1"
-                  aria-selected="false"
-                  class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top uui-focus -clickable"
-                  role="option"
+                  style="margin-top: 0px;"
                 >
                   <div
-                    class="flexCell rowContent"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                    aria-posinset="1"
+                    aria-selected="false"
+                    class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top uui-focus -clickable"
+                    role="option"
                   >
                     <div
-                      class="contentWrapper"
+                      class="flexCell rowContent"
+                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <div
-                        class="flexCell root uui-picker_input-item uui-typography"
-                        style="min-width: 0; flex-basis: auto;"
+                        class="contentWrapper"
                       >
                         <div
-                          class="root uui-flex-row columnGap uui-size-36"
-                          style="--uui-picker_item-vertical-padding: 9px;"
+                          class="flexCell root uui-picker_input-item uui-typography"
+                          style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="flexCell"
-                            style="min-width: 0; flex-basis: auto;"
+                            class="root uui-flex-row columnGap uui-size-36"
+                            style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
-                              class="title uui-size-36"
+                              class="flexCell"
+                              style="min-width: 0; flex-basis: auto;"
                             >
-                              Elementary
+                              <div
+                                class="title uui-size-36"
+                              >
+                                Elementary
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <div
+                          class="flexSpacer"
+                        />
                       </div>
-                      <div
-                        class="flexSpacer"
-                      />
                     </div>
                   </div>
-                </div>
-                <div
-                  aria-posinset="2"
-                  aria-selected="false"
-                  class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
-                  role="option"
-                >
                   <div
-                    class="flexCell rowContent"
-                    style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
+                    aria-posinset="2"
+                    aria-selected="false"
+                    class="pickerRow uui-picker_input-row uui-size-36 align-widgets-top -clickable"
+                    role="option"
                   >
                     <div
-                      class="contentWrapper"
+                      class="flexCell rowContent"
+                      style="min-width: 0; flex-grow: 1; flex-basis: 0px;"
                     >
                       <div
-                        class="flexCell root uui-picker_input-item uui-typography"
-                        style="min-width: 0; flex-basis: auto;"
+                        class="contentWrapper"
                       >
                         <div
-                          class="root uui-flex-row columnGap uui-size-36"
-                          style="--uui-picker_item-vertical-padding: 9px;"
+                          class="flexCell root uui-picker_input-item uui-typography"
+                          style="min-width: 0; flex-basis: auto;"
                         >
                           <div
-                            class="flexCell"
-                            style="min-width: 0; flex-basis: auto;"
+                            class="root uui-flex-row columnGap uui-size-36"
+                            style="--uui-picker_item-vertical-padding: 9px;"
                           >
                             <div
-                              class="title uui-size-36"
+                              class="flexCell"
+                              style="min-width: 0; flex-basis: auto;"
                             >
-                              Elementary+
+                              <div
+                                class="title uui-size-36"
+                              >
+                                Elementary+
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <div
+                          class="flexSpacer"
+                        />
                       </div>
-                      <div
-                        class="flexSpacer"
-                      />
                     </div>
                   </div>
                 </div>
               </div>
+              <div
+                aria-busy="false"
+                aria-label=""
+                aria-live="polite"
+                class="container uui-blocker-container root"
+                role="status"
+              />
             </div>
           </div>
           <div
-            aria-busy="false"
-            aria-label=""
-            aria-live="polite"
-            class="container uui-blocker-container root"
-            role="status"
-          />
-          <div
-            class="uui-track-horizontal"
-            style="position: absolute; height: 6px; display: none;"
+            class="os-scrollbar os-scrollbar-horizontal os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           >
             <div
-              class="uui-thumb-horizontal"
-            />
+              class="os-scrollbar-track"
+            >
+              <div
+                class="os-scrollbar-handle"
+                style="width: 0.000%; transform: translateX(0.000%);"
+              />
+            </div>
           </div>
           <div
-            class="uui-track-vertical"
-            style="position: absolute; width: 6px; display: none;"
+            class="os-scrollbar os-scrollbar-vertical os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           >
             <div
-              class="uui-thumb-vertical"
-            />
+              class="os-scrollbar-track"
+            >
+              <div
+                class="os-scrollbar-handle"
+                style="height: 0.000%; transform: translateY(0.000%);"
+              />
+            </div>
           </div>
         </div>
       </div>

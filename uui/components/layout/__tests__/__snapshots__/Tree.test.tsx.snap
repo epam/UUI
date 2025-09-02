@@ -7,10 +7,103 @@ Object {
     <div>
       <div
         class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+        data-overlayscrollbars="host"
+        data-overlayscrollbars-initialize=""
+        style="height: 100%; width: 100%;"
       >
         <div
-          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+          class="os-size-observer"
+        >
+          <div
+            class="os-size-observer-listener"
+          />
+        </div>
+        <div
+          class=""
+          data-overlayscrollbars-padding=""
+          style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+        >
+          <div
+            data-overlayscrollbars-contents=""
+            data-overlayscrollbars-viewport=""
+            style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
+          >
+            <div
+              class="listContainer"
+              style="min-height: 1px;"
+            >
+              <div
+                role="tree"
+                style="margin-top: 0px;"
+              >
+                <div
+                  data-testid="custom-item-1"
+                >
+                  Custom:
+                   
+                  Root
+                </div>
+              </div>
+            </div>
+            <div
+              aria-busy="false"
+              aria-label=""
+              aria-live="polite"
+              class="container uui-blocker-container root"
+              role="status"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="width: 0.000%; transform: translateX(0.000%);"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="height: 0.000%; transform: translateY(0.000%);"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      data-overlayscrollbars="host"
+      data-overlayscrollbars-initialize=""
+      style="height: 100%; width: 100%;"
+    >
+      <div
+        class="os-size-observer"
+      >
+        <div
+          class="os-size-observer-listener"
+        />
+      </div>
+      <div
+        class=""
+        data-overlayscrollbars-padding=""
+        style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+      >
+        <div
+          data-overlayscrollbars-contents=""
+          data-overlayscrollbars-viewport=""
+          style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
         >
           <div
             class="listContainer"
@@ -29,81 +122,38 @@ Object {
               </div>
             </div>
           </div>
-        </div>
-        <div
-          aria-busy="false"
-          aria-label=""
-          aria-live="polite"
-          class="container uui-blocker-container root"
-          role="status"
-        />
-        <div
-          class="uui-track-horizontal"
-          style="position: absolute; height: 6px; display: none;"
-        >
           <div
-            class="uui-thumb-horizontal"
-          />
-        </div>
-        <div
-          class="uui-track-vertical"
-          style="position: absolute; width: 6px; display: none;"
-        >
-          <div
-            class="uui-thumb-vertical"
+            aria-busy="false"
+            aria-label=""
+            aria-live="polite"
+            class="container uui-blocker-container root"
+            role="status"
           />
         </div>
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-      style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
-    >
       <div
-        style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
       >
         <div
-          class="listContainer"
-          style="min-height: 1px;"
+          class="os-scrollbar-track"
         >
           <div
-            role="tree"
-            style="margin-top: 0px;"
-          >
-            <div
-              data-testid="custom-item-1"
-            >
-              Custom:
-               
-              Root
-            </div>
-          </div>
+            class="os-scrollbar-handle"
+            style="width: 0.000%; transform: translateX(0.000%);"
+          />
         </div>
       </div>
       <div
-        aria-busy="false"
-        aria-label=""
-        aria-live="polite"
-        class="container uui-blocker-container root"
-        role="status"
-      />
-      <div
-        class="uui-track-horizontal"
-        style="position: absolute; height: 6px; display: none;"
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
       >
         <div
-          class="uui-thumb-horizontal"
-        />
-      </div>
-      <div
-        class="uui-track-vertical"
-        style="position: absolute; width: 6px; display: none;"
-      >
-        <div
-          class="uui-thumb-vertical"
-        />
+          class="os-scrollbar-track"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="height: 0.000%; transform: translateY(0.000%);"
+          />
+        </div>
       </div>
     </div>
   </div>,
@@ -180,10 +230,128 @@ Object {
     <div>
       <div
         class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-        style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
+        data-overlayscrollbars="host"
+        data-overlayscrollbars-initialize=""
+        style="height: 100%; width: 100%;"
       >
         <div
-          style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+          class="os-size-observer"
+        >
+          <div
+            class="os-size-observer-listener"
+          />
+        </div>
+        <div
+          class=""
+          data-overlayscrollbars-padding=""
+          style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+        >
+          <div
+            data-overlayscrollbars-contents=""
+            data-overlayscrollbars-viewport=""
+            style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
+          >
+            <div
+              class="listContainer"
+              style="min-height: 1px;"
+            >
+              <div
+                role="tree"
+                style="margin-top: 0px;"
+              >
+                <button
+                  class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-36 noLeftPadding onlyFoldable uui-no-left-icon uui-no-right-icon"
+                  role="tab"
+                  tabindex="0"
+                  type="button"
+                >
+                  <div
+                    class="foldingArea -clickable"
+                    style="--uui-folding-indent: 0;"
+                  >
+                    <div
+                      aria-label="Unfold"
+                      class="container uui-icon uui-enabled uui-folding-arrow iconContainer"
+                      role="button"
+                    >
+                      <svg
+                        class="rotate-90ccw"
+                        height="18"
+                        width="18"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    class="captionWrapper"
+                  >
+                    <div
+                      class="uui-caption uui-vertical-tab-button-weight-regular"
+                    >
+                      Root
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div
+              aria-busy="false"
+              aria-label=""
+              aria-live="polite"
+              class="container uui-blocker-container root"
+              role="status"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="width: 0.000%; transform: translateX(0.000%);"
+            />
+          </div>
+        </div>
+        <div
+          class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+        >
+          <div
+            class="os-scrollbar-track"
+          >
+            <div
+              class="os-scrollbar-handle"
+              style="height: 0.000%; transform: translateY(0.000%);"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
+      data-overlayscrollbars="host"
+      data-overlayscrollbars-initialize=""
+      style="height: 100%; width: 100%;"
+    >
+      <div
+        class="os-size-observer"
+      >
+        <div
+          class="os-size-observer-listener"
+        />
+      </div>
+      <div
+        class=""
+        data-overlayscrollbars-padding=""
+        style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; top: 0px; left: 0px; width: calc(100% + 0px);"
+      >
+        <div
+          data-overlayscrollbars-contents=""
+          data-overlayscrollbars-viewport=""
+          style="margin-right: 0px; margin-bottom: 0px; position: relative; flex: 1 1 auto; padding: 0px 0px 0px 0px; margin-left: 0px; width: calc(100% + 0px);"
         >
           <div
             class="listContainer"
@@ -227,106 +395,38 @@ Object {
               </button>
             </div>
           </div>
-        </div>
-        <div
-          aria-busy="false"
-          aria-label=""
-          aria-live="polite"
-          class="container uui-blocker-container root"
-          role="status"
-        />
-        <div
-          class="uui-track-horizontal"
-          style="position: absolute; height: 6px; display: none;"
-        >
           <div
-            class="uui-thumb-horizontal"
-          />
-        </div>
-        <div
-          class="uui-track-vertical"
-          style="position: absolute; width: 6px; display: none;"
-        >
-          <div
-            class="uui-thumb-vertical"
+            aria-busy="false"
+            aria-label=""
+            aria-live="polite"
+            class="container uui-blocker-container root"
+            role="status"
           />
         </div>
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer"
-      style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex;"
-    >
       <div
-        style="position: relative; top: 0px; left: 0px; right: 0px; bottom: 0px; overflow: scroll; margin-right: 0px; margin-bottom: 0px; flex: 1 1 auto; display: flex; flex-direction: column;"
+        class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
       >
         <div
-          class="listContainer"
-          style="min-height: 1px;"
+          class="os-scrollbar-track"
         >
           <div
-            role="tree"
-            style="margin-top: 0px;"
-          >
-            <button
-              class="uui-button-box uui-enabled -clickable root uui-vertical-tab-button uui-size-36 noLeftPadding onlyFoldable uui-no-left-icon uui-no-right-icon"
-              role="tab"
-              tabindex="0"
-              type="button"
-            >
-              <div
-                class="foldingArea -clickable"
-                style="--uui-folding-indent: 0;"
-              >
-                <div
-                  aria-label="Unfold"
-                  class="container uui-icon uui-enabled uui-folding-arrow iconContainer"
-                  role="button"
-                >
-                  <svg
-                    class="rotate-90ccw"
-                    height="18"
-                    width="18"
-                  />
-                </div>
-              </div>
-              <div
-                class="captionWrapper"
-              >
-                <div
-                  class="uui-caption uui-vertical-tab-button-weight-regular"
-                >
-                  Root
-                </div>
-              </div>
-            </button>
-          </div>
+            class="os-scrollbar-handle"
+            style="width: 0.000%; transform: translateX(0.000%);"
+          />
         </div>
       </div>
       <div
-        aria-busy="false"
-        aria-label=""
-        aria-live="polite"
-        class="container uui-blocker-container root"
-        role="status"
-      />
-      <div
-        class="uui-track-horizontal"
-        style="position: absolute; height: 6px; display: none;"
+        class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
       >
         <div
-          class="uui-thumb-horizontal"
-        />
-      </div>
-      <div
-        class="uui-track-vertical"
-        style="position: absolute; width: 6px; display: none;"
-      >
-        <div
-          class="uui-thumb-vertical"
-        />
+          class="os-scrollbar-track"
+        >
+          <div
+            class="os-scrollbar-handle"
+            style="height: 0.000%; transform: translateY(0.000%);"
+          />
+        </div>
       </div>
     </div>
   </div>,

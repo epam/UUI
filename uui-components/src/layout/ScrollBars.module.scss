@@ -25,25 +25,4 @@
     &:global(.uui-shadow-bottom-visible)::after {
         opacity: 1;
     }
-
-    :global(.uui-track-horizontal),
-    :global(.uui-track-vertical) {
-        position: absolute;
-        border-radius: 3px;
-        z-index: 6;
-    }
-
-    :global(.uui-track-horizontal) {
-        height: 6px;
-        right: 2px;
-        bottom: 2px;
-        left: 2px;
-    }
-
-    :global(.uui-track-vertical) {
-        width: 6px;
-        inset-inline-end: 2px;
-        top: 2px;
-        bottom: 2px;
-    }
 }
