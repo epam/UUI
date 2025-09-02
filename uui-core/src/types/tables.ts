@@ -429,7 +429,7 @@ type FilterConfigBase<TFilter> = {
     togglerWidth?: number;
 };
 
-export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear'> & {
+export type PickerFilterConfig<TFilter> = FilterConfigBase<TFilter> & Pick<PickerInputBaseProps<any, any>, 'dataSource' | 'getName' | 'renderRow' | 'renderFooter' | 'minCharsToSearch' | 'disableClear' | 'filter'> & {
     /** Type of the filter */
     type: 'singlePicker' | 'multiPicker';
     /**

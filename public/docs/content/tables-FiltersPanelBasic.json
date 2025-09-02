@@ -1,40 +1,45 @@
 [
   {
-    "data": {},
     "type": "paragraph",
     "children": [
       {
-        "text": "This example shows a typical case of using "
+        "text": "This example shows a typical use case for a FiltersPanel with a "
       },
       {
-        "text": "FiltersPanel",
-        "uui-richTextEditor-code": true
+        "type": "link",
+        "url": "/documents?id=tablesOverview",
+        "target": "_blank",
+        "children": [
+          {
+            "text": "DataTable"
+          }
+        ]
       },
       {
-        "text": " with "
-      },
-      {
-        "text": "DataTable",
-        "uui-richTextEditor-code": true
-      },
-      {
-        "text": ". "
+        "text": "."
       }
     ]
   },
   {
-    "data": {},
     "type": "paragraph",
     "children": [
       {
-        "text": "However, the FiltersPanel component can be used not only with DataTables. It will work with any UX component based on the "
+        "text": "However, the FiltersPanel component can be used with any UX component that uses the "
       },
       {
         "text": "DataTableState",
         "uui-richTextEditor-code": true
       },
       {
-        "text": " approach."
+        "text": " approach, not just DataTables."
+      }
+    ]
+  },
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "This example also shows various filter configurations, including the implementation of linked filters (for country and city)."
       }
     ]
   }
