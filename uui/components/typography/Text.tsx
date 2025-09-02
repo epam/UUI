@@ -17,7 +17,9 @@ interface TextMods {
      */
     color?: TextColor;
     /**
-     * Defines text size
+     * Defines size(height) of text block, to align text by its baseline with other components of the same size.
+     * Used to calculate line-height and vertical paddings so that the sum of their values be equal size value(size = vPaddings/2 + lineHeight)
+     * Pass 'none' to disable it.
      * @default '36'
      */
     size?: TextSize;
