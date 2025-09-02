@@ -3,7 +3,7 @@
 **What's New**
 * [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
 * [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
-* [FiltersPanel]: added 'disableClear' prop for Picker filters
+* [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
