@@ -64,16 +64,14 @@ export function DemoPage() {
         );
     } else {
         pageContent = (
-            <ScrollBars>
-                <div className={ css.navPage }>
-                    <div className={ css.navTitle }>Demo</div>
-                    <div className={ css.navCards }>
-                        {demoItems.map((item) => {
-                            return <DemoItemCard demoItem={ item } key={ item.id } onOpenItem={ sendEvent } />;
-                        })}
-                    </div>
+            <div className={ css.navPage }>
+                <div className={ css.navTitle }>Demo</div>
+                <div className={ css.navCards }>
+                    {demoItems.map((item) => {
+                        return <DemoItemCard demoItem={ item } key={ item.id } onOpenItem={ sendEvent } />;
+                    })}
                 </div>
-            </ScrollBars>
+            </div>
         );
     }
 

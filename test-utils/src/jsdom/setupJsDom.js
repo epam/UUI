@@ -18,7 +18,6 @@ export function setupJsDom(global, options = {}) {
     const globalMock = {
         ResizeObserver: class ResizeObserverMock {
             observe() {}
-            unobserve() {}
             disconnect() {}
         },
     };
@@ -26,11 +25,6 @@ export function setupJsDom(global, options = {}) {
         clipboard: {
             writeText: () => {},
         },
-    };
-
-    const originalGetComputedStyle = window.getComputedStyle;
-    window.getComputedStyle = (elt, pseudoElt) => {
-        return originalGetComputedStyle(elt, pseudoElt);
     };
 
     mockGetBoundingClientRect();
