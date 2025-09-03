@@ -1945,8 +1945,7 @@ describe('PickerInput', () => {
         expect(await PickerInputTestObject.findCheckedOptions()).toEqual(['A1', 'B1']);
     });
 
-    // TODO: fix the test.
-    it.skip('clears input via keyboard using clear button', async () => {
+    it('clears input via keyboard using clear button', async () => {
         function TestComponent(): React.ReactNode {
             interface Option {
                 id: string;
@@ -1996,7 +1995,7 @@ describe('PickerInput', () => {
         expect(pickerInput).toHaveValue('');
         expect(pickerInput).not.toHaveFocus();
 
-        const clearButton = screen.queryByRole(
+        let clearButton = screen.queryByRole(
             'button',
             {
                 name: /clear input/i,
@@ -2015,18 +2014,8 @@ describe('PickerInput', () => {
         );
         expect(firstOption).toBeVisible();
 
-        await userEvent.click(firstOption);
+        await userEvent.keyboard('{Enter}');
         expect(pickerInput).toHaveValue('Option 1');
-        /*
-            Focus is set to `body` instead of the input.
-
-            Also there is the following issue on UI:
-            when moving to the clear button using Tab key,
-            `document.activeElement` points to `body`,
-            though the clear button is visually focused,
-            and by pressing Enter/Space it is activated as expected.
-            Probably these issues are related.
-        */
         expect(pickerInput).toHaveFocus();
         expect(
             screen.queryByRole(
@@ -2036,6 +2025,12 @@ describe('PickerInput', () => {
                 },
             ),
         ).not.toBeInTheDocument();
+        clearButton = screen.queryByRole(
+            'button',
+            {
+                name: /clear input/i,
+            },
+        );
         expect(clearButton).toBeInTheDocument();
         expect(clearButton).not.toHaveFocus();
 
@@ -2045,7 +2040,7 @@ describe('PickerInput', () => {
 
         await userEvent.keyboard('{Enter}');
         expect(pickerInput).toHaveValue('');
-        expect(clearButton).toHaveFocus();
+        expect(pickerInput).toHaveFocus();
         expect(clearButton).not.toBeInTheDocument();
     });
 });
