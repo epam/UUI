@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {
-    Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
+    Icon, uuiMod, uuiElement, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
+import { IconButton } from '../buttons/IconButton';
 import { IconContainer } from '../layout';
 import { browserBugFixDirAuto } from '../helpers/browserBugFixDirAuto';
 import css from './TextInput.module.scss';
@@ -30,6 +31,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
     const context = useUuiContext();
     const [inFocus, setInFocus] = React.useState<boolean>(false);
     const inputElement = React.useRef<HTMLInputElement>(undefined);
+
+    React.useImperativeHandle(ref, () => inputElement.current, [inputElement.current]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Android does not support maxLength
@@ -66,19 +69,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         props.onBlur?.(event);
     };
 
-    const handleClick = (e: any) => {
-        if (e.target.classList.contains(uuiMarkers.clickable)) {
-            return e.preventDefault();
-        }
-        props.onClick?.(e);
-    };
-
     const handleCancel = () => {
         props.onCancel();
-        inputElement.current?.focus();
-    };
-
-    const handleWrapperFocus = () => {
         inputElement.current?.focus();
     };
 
@@ -99,6 +91,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
         name: props.name,
         maxLength: props.maxLength,
         inputMode: props.inputMode,
+        onClick: props.onClick,
         tabIndex: (props.isReadonly || props.isDisabled) ? -1 : props.tabIndex || 0,
         id: props.id,
         required: props.isRequired,
@@ -109,25 +102,48 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             : props?.rawProps?.dir, // TODO: remove after browser bug fix
     });
 
-    const icon = props.icon && <IconContainer icon={ props.icon } onClick={ props.onIconClick } />;
+    const getIcon = (): React.ReactNode => {
+        if (!props.icon) {
+            return null;
+        }
+
+        if (
+            !props.onIconClick
+            || props.isDisabled
+            || props.isReadonly
+        ) {
+            return (
+                <IconContainer
+                    icon={ props.icon }
+                />
+            );
+        }
+
+        return (
+            <IconButton
+                icon={ props.icon }
+                onClick={ props.onIconClick }
+                rawProps={ {
+                    'aria-label': 'Icon in input',
+                } }
+            />
+        );
+    };
+
+    const icon = getIcon();
     const showIconsOnAction = props.value && !props.isReadonly && !props.isDisabled;
 
     return (
         <div
-            onClick={ props.onClick && handleClick }
-            ref={ ref }
             className={ cx(
                 css.container,
                 uuiElement.inputBox,
                 props.isDisabled && uuiMod.disabled,
                 props.isReadonly && uuiMod.readonly,
                 props.isInvalid && uuiMod.invalid,
-                !props.isReadonly && !props.isDisabled && uuiMarkers.clickable,
                 !props.isReadonly && inFocus && uuiMod.focus,
                 props.cx,
             ) }
-            tabIndex={ -1 }
-            onFocus={ handleWrapperFocus }
             { ...props.rawProps }
         >
             {props.iconPosition !== 'right' && icon}
@@ -136,12 +152,14 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
                 <IconContainer cx={ cx('uui-icon-accept') } isDisabled={ props.isDisabled } icon={ props.acceptIcon } onClick={ props.onAccept } rawProps={ { role: 'button' } } />
             )}
             {props.onCancel && showIconsOnAction && (
-                <IconContainer
-                    cx={ cx('uui-icon-cancel', uuiMarkers.clickable) }
+                <IconButton
+                    cx="uui-icon-cancel"
                     isDisabled={ props.isDisabled }
                     icon={ props.cancelIcon }
                     onClick={ handleCancel }
-                    rawProps={ { role: 'button', 'aria-label': 'Clear input' } }
+                    rawProps={ {
+                        'aria-label': 'Clear input',
+                    } }
                 />
             )}
             {props.iconPosition === 'right' && icon}

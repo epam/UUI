@@ -3,8 +3,7 @@
 exports[`MainMenuSearch should be rendered correctly with null value 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable searchInput"
-    tabindex="-1"
+    class="container uui-input-box searchInput"
   >
     <div
       class="container uui-icon uui-enabled"
@@ -26,8 +25,7 @@ exports[`MainMenuSearch should be rendered correctly with null value 1`] = `
 exports[`MainMenuSearch should be rendered correctly with value and extra props 1`] = `
 <DocumentFragment>
   <div
-    class="container uui-input-box -clickable searchInput"
-    tabindex="-1"
+    class="container uui-input-box searchInput"
   >
     <div
       class="container uui-icon uui-enabled"
