@@ -4,7 +4,28 @@
     "data": {},
     "children": [
       {
-        "text": "Basic usage example with ModalContext API."
+        "text": "Basic usage example with ModalContext API. Shows "
+      },
+      {
+        "text": "ScrollBars",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " usage in modal windows with "
+      },
+      {
+        "text": "hasTopShadow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "hasBottomShadow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " for better content boundaries."
       }
     ]
   }

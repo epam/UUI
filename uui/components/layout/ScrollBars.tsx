@@ -4,7 +4,7 @@ import css from './ScrollBars.module.scss';
 
 function applyScrollBarsMods() {
     return [
-        css.root, 'uui-scroll-bars', 'uui-shadow-top', 'uui-shadow-bottom',
+        css.root, 'uui-scroll-bars',
     ];
 }
 

@@ -48,7 +48,7 @@ exports[`ConfirmationModal should be rendered correctly 1`] = `
         </div>
       </div>
       <div
-        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        class="root uui-scroll-bars"
         data-overlayscrollbars="host"
         data-overlayscrollbars-initialize=""
         style="height: 100%; width: 100%;"
@@ -183,7 +183,7 @@ exports[`ConfirmationModal should be rendered correctly without body 1`] = `
         </div>
       </div>
       <div
-        class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+        class="root uui-scroll-bars"
         data-overlayscrollbars="host"
         data-overlayscrollbars-initialize=""
         style="height: 100%; width: 100%;"

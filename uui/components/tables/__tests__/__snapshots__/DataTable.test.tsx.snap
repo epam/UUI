@@ -3,7 +3,7 @@
 exports[`DataTable should be rendered correctly 1`] = `
 <DocumentFragment>
   <div
-    class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom scrollContainer root user-class uui-dt-vars uui-data_table"
+    class="root uui-scroll-bars scrollContainer user-class uui-dt-vars uui-data_table"
     data-overlayscrollbars="host"
     data-overlayscrollbars-initialize=""
     style="height: 100%; width: 100%;"
@@ -63,7 +63,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      class="os-scrollbar os-scrollbar-horizontal os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
     >
       <div
         class="os-scrollbar-track"
@@ -75,7 +75,7 @@ exports[`DataTable should be rendered correctly 1`] = `
       </div>
     </div>
     <div
-      class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+      class="os-scrollbar os-scrollbar-vertical os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
     >
       <div
         class="os-scrollbar-track"
