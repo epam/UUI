@@ -1,8 +1,20 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import dayjs from 'dayjs';
-import { defaultPredicates, rangeDatePickerPresets, FiltersPanel, DataTable, Panel, FlexRow, Text, Switch, Badge, BadgeProps } from '@epam/uui';
-import { DataColumnProps, getSeparatedValue, LazyDataSource, TableFiltersConfig, useLazyDataSource, useTableState, useUuiContext, RangeDatePickerValue } from '@epam/uui-core';
-import { Person } from '@epam/uui-docs';
+import {
+    defaultPredicates, rangeDatePickerPresets, FiltersPanel, DataTable, Panel, FlexRow, Text, Switch, Badge,
+    BadgeProps, DataPickerRow, PickerItem,
+} from '@epam/uui';
+import {
+    DataColumnProps,
+    getSeparatedValue,
+    TableFiltersConfig,
+    useLazyDataSource,
+    useTableState,
+    useUuiContext,
+    RangeDatePickerValue,
+    DataTableState,
+} from '@epam/uui-core';
+import { Country, Person } from '@epam/uui-docs';
 
 const personColumns: DataColumnProps<Person, number>[] = [
     {
@@ -75,95 +87,126 @@ type FilterType = Person & { hireDatePreventEmpty: RangeDatePickerValue; birthDa
 export default function FiltersPanelExample() {
     const svc = useUuiContext();
 
-    const filtersConfig = useMemo<TableFiltersConfig<FilterType>[]>(
-        () => [
-            {
-                field: 'profileStatusId',
-                columnKey: 'profileStatus',
-                title: 'Profile status',
-                type: 'multiPicker',
-                isAlwaysVisible: true,
-                dataSource: new LazyDataSource({ api: svc.api.demo.statuses }),
-                predicates: defaultPredicates.multiPicker,
-                showSearch: false,
-                maxCount: 3,
+    const profileStatusDS = useLazyDataSource({ api: svc.api.demo.statuses }, []);
+    const jobTitleDS = useLazyDataSource({ api: svc.api.demo.jobTitles }, []);
+    const countryDS = useLazyDataSource({ api: svc.api.demo.countries }, []);
+    const cityDS = useLazyDataSource({ api: svc.api.demo.cities }, []);
+
+    const getFiltersConfig = useCallback((filter?: FilterType): TableFiltersConfig<FilterType>[] => [
+        {
+            field: 'profileStatusId',
+            columnKey: 'profileStatus',
+            title: 'Profile status',
+            type: 'multiPicker',
+            isAlwaysVisible: true,
+            dataSource: profileStatusDS,
+            predicates: defaultPredicates.multiPicker,
+            showSearch: false,
+            maxCount: 3,
+        },
+        {
+            field: 'jobTitleId',
+            columnKey: 'jobTitle',
+            title: 'Title',
+            type: 'multiPicker',
+            togglerWidth: 400,
+            dataSource: jobTitleDS,
+        },
+        {
+            field: 'countryId',
+            columnKey: 'countryName',
+            title: 'Country',
+            type: 'singlePicker',
+            dataSource: countryDS,
+            renderRow: (props, dataSourceState) => (
+                <DataPickerRow
+                    { ...props }
+                    key={ props.rowKey }
+                    renderItem={ (item: Country, rowProps) => (
+                        <PickerItem
+                            { ...rowProps }
+                            title={ item.name }
+                            subtitle={ item.capital }
+                            dataSourceState={ dataSourceState }
+                        />
+                    ) }
+                />
+            ),
+        },
+        {
+            field: 'cityId',
+            columnKey: 'cityName',
+            title: 'City',
+            type: 'multiPicker',
+            filter: { country: filter?.countryId },
+            dataSource: cityDS,
+        },
+        {
+            field: 'salary',
+            columnKey: 'salary',
+            title: 'Salary',
+            type: 'numeric',
+            predicates: defaultPredicates.numeric,
+        },
+        {
+            field: 'productionCategory',
+            columnKey: 'productionCategory',
+            title: 'Is Production',
+            type: 'custom',
+            render: (props) => {
+                return (
+                    <FlexRow vPadding="12" padding="12">
+                        <Switch label="Show only production projects" value={ props.value } onValueChange={ props.onValueChange } />
+                    </FlexRow>
+                );
             },
-            {
-                field: 'jobTitleId',
-                columnKey: 'jobTitle',
-                title: 'Title',
-                type: 'multiPicker',
-                togglerWidth: 400,
-                dataSource: new LazyDataSource({ api: svc.api.demo.jobTitles }),
+            getTogglerValue: (props) => {
+                if (props.value !== undefined) {
+                    return props.value ? 'Yes' : 'No';
+                }
             },
-            {
-                field: 'salary',
-                columnKey: 'salary',
-                title: 'Salary',
-                type: 'numeric',
-                predicates: defaultPredicates.numeric,
-            },
-            {
-                field: 'productionCategory',
-                columnKey: 'productionCategory',
-                title: 'Is Production',
-                type: 'custom',
-                render: (props) => {
-                    return (
-                        <FlexRow vPadding="12" padding="12">
-                            <Switch label="Show only production projects" value={ props.value } onValueChange={ props.onValueChange } />
-                        </FlexRow>
-                    );
-                },
-                getTogglerValue: (props) => {
-                    if (props.value !== undefined) {
-                        return props.value ? 'Yes' : 'No';
-                    }
-                },
-            },
-            {
-                field: 'hireDate',
-                columnKey: 'hireDate',
-                title: 'Hire date',
-                type: 'rangeDatePicker',
-                predicates: defaultPredicates.rangeDatePicker,
-                presets: {
-                    ...rangeDatePickerPresets,
-                    last3Days: {
-                        name: 'Last 3 days',
-                        getRange: () => {
-                            return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
-                        },
+        },
+        {
+            field: 'hireDate',
+            columnKey: 'hireDate',
+            title: 'Hire date',
+            type: 'rangeDatePicker',
+            predicates: defaultPredicates.rangeDatePicker,
+            presets: {
+                ...rangeDatePickerPresets,
+                last3Days: {
+                    name: 'Last 3 days',
+                    getRange: () => {
+                        return { from: dayjs().subtract(3, 'day').toString(), to: dayjs().toString(), order: 11 };
                     },
-                    last7Days: {
-                        name: 'Last 7 days',
-                        getRange: () => {
-                            return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
-                        },
+                },
+                last7Days: {
+                    name: 'Last 7 days',
+                    getRange: () => {
+                        return { from: dayjs().subtract(7, 'day').toString(), to: dayjs().toString(), order: 12 };
                     },
                 },
             },
-            {
-                field: 'hireDatePreventEmpty',
-                columnKey: 'hireDate',
-                title: 'Hire date prevent empty',
-                type: 'rangeDatePicker',
-                preventEmptyFromDate: true,
-                preventEmptyToDate: true,
-            },
-            {
-                field: 'birthDatePreventEmpty',
-                columnKey: 'birthDate',
-                title: 'Birth Date prevent empty',
-                type: 'datePicker',
-                preventEmpty: true,
-            },
-        ],
-        [],
-    );
+        },
+        {
+            field: 'hireDatePreventEmpty',
+            columnKey: 'hireDate',
+            title: 'Hire date prevent empty',
+            type: 'rangeDatePicker',
+            preventEmptyFromDate: true,
+            preventEmptyToDate: true,
+        },
+        {
+            field: 'birthDatePreventEmpty',
+            columnKey: 'birthDate',
+            title: 'Birth Date prevent empty',
+            type: 'datePicker',
+            preventEmpty: true,
+        },
+    ], []);
 
     const { tableState, setTableState } = useTableState({
-        filters: filtersConfig,
+        filters: getFiltersConfig(),
     });
 
     const dataSource = useLazyDataSource<Person, number, Person>(
@@ -176,10 +219,21 @@ export default function FiltersPanelExample() {
 
     const view = dataSource.useView(tableState, setTableState);
 
+    const setTableStateWithFiltersReset = (state: DataTableState<FilterType>) => {
+        const newState = state;
+
+        // Reset city filter value if country filter was changed
+        if (state.filter.countryId !== tableState.filter.countryId) {
+            newState.filter.cityId = undefined;
+        }
+
+        setTableState(newState);
+    };
+
     return (
         <Panel background="surface-main" shadow style={ { height: '400px' } }>
             <FlexRow padding="12" vPadding="24" rawProps={ { style: { flexWrap: 'wrap', gap: '3px' } } }>
-                <FiltersPanel filters={ filtersConfig } tableState={ tableState } setTableState={ setTableState } />
+                <FiltersPanel filters={ getFiltersConfig(tableState.filter) } tableState={ tableState } setTableState={ setTableStateWithFiltersReset } />
             </FlexRow>
             <DataTable getRows={ view.getVisibleRows } columns={ personColumns } value={ tableState } onValueChange={ setTableState } { ...view.getListProps() } />
         </Panel>

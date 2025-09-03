@@ -1,5 +1,3 @@
-@use '~@epam/promo/assets/styles/colors.scss' as *;
-
 .root {
     background: var(--uui-app-bg);
     color: var(--uui-text-primary);
@@ -8,7 +6,8 @@
     flex-direction: column;
 
     .content {
-        flex: 1 0 auto;
+        flex-grow: 1;
+        flex-basis: 0;
     }
 
     .error-block {
