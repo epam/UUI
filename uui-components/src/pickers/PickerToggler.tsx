@@ -230,7 +230,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
             <IconButton
                 icon={ props.icon }
                 onClick={ props.onIconClick }
-                cx={ cx(css.clickableIcon, uuiMarkers.clickable) }
+                cx={ css.clickableIcon }
                 rawProps={ {
                     'aria-label': 'Icon in input',
                 } }
@@ -273,7 +273,7 @@ function PickerTogglerComponent<TItem, TId>(props: PickerTogglerProps<TItem, TId
                 <div className="uui-picker_toggler-actions">
                     {!props.disableClear && (props.value || props.selectedRowsCount > 0) && (
                         <IconButton
-                            cx={ cx('uui-icon-cancel', css.clearButton, uuiMarkers.clickable) }
+                            cx="uui-icon-cancel"
                             isDisabled={ props.isDisabled }
                             icon={ props.cancelIcon }
                             onClick={ handleCrossIconClick }

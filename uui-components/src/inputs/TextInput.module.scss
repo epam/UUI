@@ -38,12 +38,3 @@
 .pointer {
     cursor: pointer;
 }
-
-.clearButton,
-.clickableIcon {
-    &:active,
-    &:focus {
-        @include focus-visible-effect();
-        border-radius: var(--uui-focus-radius);
-    }
-}

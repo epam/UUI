@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-    cx,
-    Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement, uuiMarkers,
+    Icon, IDropdownToggler, IHasCaption, IHasIcon, Overwrite, uuiElement,
 } from '@epam/uui-core';
 import { Clickable, ClickableComponentProps, IconContainer } from '@epam/uui-components';
 import { CountIndicator } from './CountIndicator';
@@ -81,7 +80,6 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             <IconButton
                 icon={ props.icon }
                 onClick={ props.onIconClick }
-                cx={ cx(css.clickableIcon, uuiMarkers.clickable) }
                 rawProps={ {
                     'aria-label': 'Icon in input',
                 } }
@@ -121,7 +119,7 @@ export const Tag = React.forwardRef<HTMLButtonElement | HTMLAnchorElement | HTML
             )}
             { props.onClear && !props.isDisabled && (
                 <IconButton
-                    cx={ cx(css.clearButton, uuiMarkers.clickable) }
+                    cx="uui-icon-cancel"
                     icon={ ClearIcon }
                     onClick={ props.onClear }
                     rawProps={ {

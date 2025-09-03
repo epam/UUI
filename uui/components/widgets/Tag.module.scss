@@ -100,19 +100,3 @@
         }
     }
 }
-
-.clearButton,
-.clickableIcon {
-    &:active,
-    &:focus,
-    &:focus-visible {
-        /*
-            Overrides the value set in `IconButton` component
-            for `focus-visible` pseudo-class.
-        */
-        --uui-focus-outline-offset: 0;
-
-        @include focus-visible-effect();
-        border-radius: var(--uui-focus-radius);
-    }
-}

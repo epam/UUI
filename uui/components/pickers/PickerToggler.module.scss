@@ -49,10 +49,6 @@
 
     div:first-child {
         gap: var(--uui-picker_toggler-multiline-gaps);
-
-        :global(.uui-icon):first-child {
-            padding-inline-end: var(--uui-picker_toggler-horizontal-gap);
-        }
     }
 
     :global(.uui-input) {
@@ -103,10 +99,6 @@
         }
     }
 
-    :global(.uui-icon-cancel) {
-        margin-left: var(--uui-picker_toggler-inner-padding);
-    }
-
     :global(.uui-icon) {
         svg {
             height: var(--uui-picker_toggler-icon-height);
@@ -119,7 +111,24 @@
         border-color: var(--uui-picker_toggler-border);
         fill: var(--uui-picker_toggler-icon);
 
-        :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
+        // Copied from `IconButton` styles.
+        :global(.-clickable):has(> :global(.uui-icon):global(.uui-enabled)) {
+            &:hover {
+                fill: var(--uui-icon_btn-hover);
+            }
+
+            &:active {
+                fill: var(--uui-icon_btn-active);
+            }
+
+            &:focus-visible {
+                @include focus-visible-effect();
+                border-radius: var(--uui-focus-radius);
+            }
+        }
+
+        :global(.-clickable) > :global(.uui-icon),
+        :global(.uui-icon-dropdown) {
             &:global(.uui-enabled) {
                 fill: var(--uui-picker_toggler-icon-clickable);
 
@@ -149,8 +158,24 @@
         border-radius: 0;
         fill: var(--uui-picker_toggler-icon);
 
+        // Copied from `IconButton` styles.
+        :global(.-clickable):has(> :global(.uui-icon):global(.uui-enabled)) {
+            &:hover {
+                fill: var(--uui-icon_btn-hover);
+            }
+
+            &:active {
+                fill: var(--uui-icon_btn-active);
+            }
+
+            &:focus-visible {
+                @include focus-visible-effect();
+                border-radius: var(--uui-focus-radius);
+            }
+        }
+
         :global(.uui-picker_toggler-actions) :global(.uui-icon),
-        :global(.uui-button-box) :global(.uui-icon):global(.-clickable) {
+        :global(.uui-icon-cancel) {
             cursor: pointer;
 
             &:global(.uui-enabled) {
@@ -163,7 +188,7 @@
         }
 
         &:hover, &:global(.uui-focus) {
-            :global(.uui-icon):global(.-clickable), :global(.uui-icon-dropdown) {
+            :global(.-clickable) > :global(.uui-icon), :global(.uui-icon-dropdown) {
                 &:global(.uui-enabled) {
                     fill: var(--uui-picker_toggler-icon-clickable);
 
