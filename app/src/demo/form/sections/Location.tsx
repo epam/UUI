@@ -39,7 +39,7 @@ export function LocationSection({ lens }: { lens: ILens<PersonLocation>; }) {
                             valueType="id"
                             id="country"
                             placeholder="Select Country"
-                            onValueChange={ (value) => lens.set({ country: value as string, city: null }) }
+                            onValueChange={ (value) => lens.set({ country: value as string, city: undefined }) }
                         />
                     </LabeledInput>
                 </FlexCell>
