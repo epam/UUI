@@ -4,6 +4,7 @@
     "parentId": "components",
     "examples": [
         { "descriptionPath": "text-descriptions" },
-        { "name": "Basic", "componentPath": "text/Basic.example.tsx" }
+        { "name": "Default Sizing", "componentPath": "text/Basic.example.tsx" },
+        { "name": "Alternative Sizing", "componentPath": "text/AlternativeSizing.example.tsx" }
     ]
 }
