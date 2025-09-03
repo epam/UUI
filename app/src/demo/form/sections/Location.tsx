@@ -38,8 +38,9 @@ export function LocationSection({ lens }: { lens: ILens<PersonLocation>; }) {
                             selectionMode="single"
                             valueType="id"
                             id="country"
+                            emptyValue={ null }
                             placeholder="Select Country"
-                            onValueChange={ (value) => lens.set({ country: value as string, city: undefined }) }
+                            onValueChange={ (value) => lens.set({ country: value as string, city: null }) }
                         />
                     </LabeledInput>
                 </FlexCell>
@@ -51,6 +52,7 @@ export function LocationSection({ lens }: { lens: ILens<PersonLocation>; }) {
                             valueType="id"
                             id="city"
                             dataSource={ citiesDataSource }
+                            emptyValue={ null }
                             filter={ { country: lens.prop('country').get() } }
                             placeholder="Select City"
                         />
