@@ -1,0 +1,71 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "ScrollBars with dynamic top and bottom shadows that appear when content is scrollable. Use "
+      },
+      {
+        "text": "hasTopShadow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "hasBottomShadow",
+        "uui-richTextEditor-code": true
+      },
+      {
+        "text": " props. Define CSS variables:"
+      }
+    ]
+  },
+  {
+    "type": "unordered-list",
+    "children": [
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "--uui-scroll-bars-shadow-top",
+                "uui-richTextEditor-code": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "--uui-scroll-bars-shadow-bottom",
+                "uui-richTextEditor-code": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "list-item",
+        "children": [
+          {
+            "type": "list-item-child",
+            "children": [
+              {
+                "text": "--uui-scroll-bars-shadow-height",
+                "uui-richTextEditor-code": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

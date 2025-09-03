@@ -1,0 +1,10 @@
+[
+  {
+    "type": "paragraph",
+    "children": [
+      {
+        "text": "Demonstrates horizontal scrolling for content that exceeds container width with auto-hide enabled for better UI. Ensure content has fixed width larger than container."
+      }
+    ]
+  }
+]

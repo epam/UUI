@@ -22,7 +22,6 @@ export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHa
     autoHide?: boolean;
     autoHideTimeout?: number;
     autoHideDuration?: number;
-    hideTracksWhenNotNeeded?: boolean;
     /* @deprecated use css variable to change min size */
     thumbMinSize?: number;
     hasTopShadow?: boolean;
@@ -50,7 +49,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         autoHide,
         autoHideTimeout,
         autoHideDuration,
-        hideTracksWhenNotNeeded,
         thumbMinSize,
         rawProps,
         ...rest
@@ -72,7 +70,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
 
         const { scrollTop, scrollHeight, clientHeight } = scrollOffsetElement;
         const showTopShadow = hasTopShadow && scrollTop > 0;
-        const showBottomShadow = hasBottomShadow && scrollHeight - clientHeight > scrollTop;
+        const showBottomShadow = hasBottomShadow && scrollTop < scrollHeight - clientHeight - 1;
 
         if (showTopShadow) hostRef.current.classList.add(uuiScrollbars.uuiShadowTopVisible);
         else hostRef.current.classList.remove(uuiScrollbars.uuiShadowTopVisible);
@@ -93,7 +91,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
                         : typeof autoHideTimeout === 'number'
                             ? autoHideTimeout
                             : undefined,
-                visibility: hideTracksWhenNotNeeded === false ? 'visible' : 'auto',
             },
         },
         events: {

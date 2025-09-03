@@ -90,7 +90,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
         class="uui-panel root uui-surface-main mainPanel container"
       >
         <div
-          class="root uui-scroll-bars uui-shadow-top uui-shadow-bottom"
+          class="root uui-scroll-bars"
           data-overlayscrollbars="host"
           data-overlayscrollbars-initialize=""
           style="height: 100%; width: 100%;"
@@ -357,7 +357,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            class="os-scrollbar os-scrollbar-horizontal os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            class="os-scrollbar os-scrollbar-horizontal os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           >
             <div
               class="os-scrollbar-track"
@@ -369,7 +369,7 @@ exports[`ColumnsConfigurationModal should be rendered correctly 1`] = `
             </div>
           </div>
           <div
-            class="os-scrollbar os-scrollbar-vertical os-scrollbar-transitionless os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
+            class="os-scrollbar os-scrollbar-vertical os-no-css-vars uui-scroll-bars os-scrollbar-auto-hide os-scrollbar-handle-interactive os-scrollbar-cornerless os-scrollbar-unusable"
           >
             <div
               class="os-scrollbar-track"

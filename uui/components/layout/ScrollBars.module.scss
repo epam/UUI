@@ -17,3 +17,13 @@
 
     box-sizing: border-box;
 }
+
+:global(.uui-shadow-top)::before {
+    background: var(--uui-scroll-bars-shadow-top);
+    height: var(--uui-scroll-bars-shadow-height);
+}
+
+:global(.uui-shadow-bottom)::after {
+    background: var(--uui-scroll-bars-shadow-bottom);
+    height: var(--uui-scroll-bars-shadow-height);
+}

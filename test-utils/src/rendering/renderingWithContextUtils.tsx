@@ -3,6 +3,7 @@ import { render, renderHook } from '../extensions/testingLibraryReactExt';
 import { useUuiServices, UuiContext, UuiContexts } from '@epam/uui-core';
 import { delayAct } from './timerUtils';
 import { TestStubAdaptedRouter } from '../mocks/TestStubAdaptedRouter';
+import { waitForScrollbarTransitionsToComplete } from './scrollbarTestUtils';
 
 export type CustomWrapperType = ({ children }: { children?: React.ReactNode }) => ReactElement<any>;
 
@@ -66,6 +67,10 @@ export const renderSnapshotWithContextAsync = async (reactElement: ReactElement<
     const wrapper = options?.wrapper || getDefaultUUiContextWrapper().wrapper;
     const { asFragment } = render(React.createElement(wrapper, { children: reactElement }));
     await delayAct();
+
+    // Wait for scrollbar transitions to complete
+    await waitForScrollbarTransitionsToComplete();
+
     return asFragment();
 };
 
