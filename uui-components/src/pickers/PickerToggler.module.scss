@@ -1,5 +1,3 @@
-@use '../../../uui/assets/styles/effects.scss' as *;
-
 .container {
     cursor: pointer;
 
@@ -61,13 +59,4 @@
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: pointer;
-}
-
-.clearButton,
-.clickableIcon {
-    &:active,
-    &:focus {
-        @include focus-visible-effect();
-        border-radius: var(--uui-focus-radius);
-    }
 }

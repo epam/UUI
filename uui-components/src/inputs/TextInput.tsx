@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    Icon, uuiMod, uuiElement, uuiMarkers, CX, TextInputCoreProps, cx, useUuiContext,
+    Icon, uuiMod, uuiElement, CX, TextInputCoreProps, cx, useUuiContext,
 } from '@epam/uui-core';
 import { IconButton } from '../buttons/IconButton';
 import { IconContainer } from '../layout';
@@ -123,7 +123,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             <IconButton
                 icon={ props.icon }
                 onClick={ props.onIconClick }
-                cx={ cx(css.clickableIcon, uuiMarkers.clickable) }
                 rawProps={ {
                     'aria-label': 'Icon in input',
                 } }
@@ -154,7 +153,6 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>((pro
             )}
             {props.onCancel && showIconsOnAction && (
                 <IconButton
-                    cx={ cx('uui-icon-cancel', css.clearButton, uuiMarkers.clickable) }
                     isDisabled={ props.isDisabled }
                     icon={ props.cancelIcon }
                     onClick={ handleCancel }

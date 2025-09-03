@@ -19,6 +19,7 @@
     --uui-text_input-icon-disabled: var(--uui-control-icon-disabled);
     --uui-text_input-icon-clickable: var(--uui-icon);
     --uui-text_input-icon-clickable-hover: var(--uui-icon-hover);
+    --uui-text_input-icon-clickable-active: var(--uui-icon-active);
 
     // font
     --uui-text_input-font: var(--uui-font);
@@ -80,12 +81,21 @@
     &:global(.uui-control-mode-form) {
         background-color: var(--uui-text_input-bg);
         border-color: var(--uui-text_input-border);
+        fill: var(--uui-text_input-icon-clickable);
 
-        :global(.-clickable) {
-            fill: var(--uui-text_input-icon-clickable);
-
+        // Copied from `IconButton` styles.
+        :global(.-clickable):has(> :global(.uui-icon):global(.uui-enabled)) {
             &:hover {
                 fill: var(--uui-text_input-icon-clickable-hover);
+            }
+
+            &:active {
+                fill: var(--uui-text_input-icon-clickable-active);
+            }
+
+            &:focus-visible {
+                @include focus-visible-effect();
+                border-radius: var(--uui-focus-radius);
             }
         }
 
@@ -101,12 +111,21 @@
     &:global(.uui-control-mode-inline) {
         background-color: transparent;
         border-color: transparent;
+        fill: var(--uui-text_input-icon-clickable);
 
-        :global(.-clickable) {
-            fill: var(--uui-text_input-icon-clickable);
-
+        // Copied from `IconButton` styles.
+        :global(.-clickable):has(> :global(.uui-icon):global(.uui-enabled)) {
             &:hover {
                 fill: var(--uui-text_input-icon-clickable-hover);
+            }
+
+            &:active {
+                fill: var(--uui-text_input-icon-clickable-active);
+            }
+
+            &:focus-visible {
+                @include focus-visible-effect();
+                border-radius: var(--uui-focus-radius);
             }
         }
 
