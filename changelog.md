@@ -3,12 +3,12 @@
 **What's New**
 * [TabList] Create the component ([#2857](https://github.com/epam/UUI/pull/2857))
 * [TabButton] Activate tab button by pressing "Space" key ([#2857](https://github.com/epam/UUI/pull/2857))
-* [FiltersPanel]: added 'disableClear' prop for Picker filters
+* [FiltersPanel]: added 'disableClear' and 'filter' props for picker filters
 * Make clear buttons accessible via keyboards ([#2845](https://github.com/epam/UUI/pull/2845))
 
 **What's Fixed**
 * [useForm]: improved router block removal on discard and custom beforeLeave for close action. Rework useLock to unblock router immediately, rather than on next render
-* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals - now only the topmost modal responds to ESC key
+* [Modals]: fixed incorrect order of abort() calls when pressing ESC with nested modals — now only the topmost modal responds to ESC key
 
 # 6.2.0 - 05.08.2025
 **What's New**
