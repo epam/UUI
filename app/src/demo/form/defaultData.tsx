@@ -15,11 +15,11 @@ export const defaultData: PersonDetails = {
     },
     personalInfo: {
         fullName: '',
-        birthdayDate: null,
+        birthdayDate: undefined,
     },
     location: {
-        city: null,
-        country: null,
+        city: undefined,
+        country: undefined,
     },
 };
 
