@@ -1,0 +1,15 @@
+.container {
+    > * {
+        flex-grow: 1;
+    }
+
+    :global(.uui-input-box) {
+        width: 120px;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+}
