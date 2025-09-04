@@ -12,19 +12,40 @@ import 'overlayscrollbars/styles/overlayscrollbars.css';
 import css from './ScrollBars.module.scss';
 
 export type ScrollbarsApi = {
+    /** Reference to the scrollbar container element */
     container: HTMLElement | null;
+    /** Reference to the scrollable view element */
     view: HTMLElement | null;
 };
 
 export type ScrollbarProps = React.HTMLAttributes<HTMLDivElement> & IHasCX & IHasRawProps<React.HTMLAttributes<HTMLDivElement>> & {
+    /** Callback fired when scroll position changes */
     onScroll?: React.UIEventHandler<any>;
 
+    /**
+     * Whether scrollbars should automatically hide when not in use
+     * @default false
+     */
     autoHide?: boolean;
+    /**
+     * Delay in milliseconds before scrollbars hide after scrolling stops
+     * @default 1000
+     */
     autoHideTimeout?: number;
+    /**
+     * Duration in milliseconds for the scrollbar hide animation
+     * @default 300
+     */
     autoHideDuration?: number;
-    /* @deprecated use css variable to change min size */
-    thumbMinSize?: number;
+    /**
+     * Whether to show a shadow at the top when content is scrolled down
+     * @default false
+     */
     hasTopShadow?: boolean;
+    /**
+     * Whether to show a shadow at the bottom when content can be scrolled down
+     * @default false
+     */
     hasBottomShadow?: boolean;
 };
 
@@ -49,7 +70,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         autoHide,
         autoHideTimeout,
         autoHideDuration,
-        thumbMinSize,
         rawProps,
         ...rest
     } = props;
@@ -57,8 +77,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
     // DOM refs
     const hostRef = useRef<HTMLDivElement | null>(null);
     const viewportRef = useRef<HTMLElement | null>(null);
-
-    // Создаем контейнер который эмулирует структуру RCS2 для VirtualList
     const containerRef = useRef<HTMLElement | null>(null);
 
     const handleUpdateScroll = () => {
@@ -79,7 +97,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         else hostRef.current.classList.remove(uuiScrollbars.uuiShadowBottomVisible);
     };
 
-    // Хук OS: только options + events
+    // OverlayScrollbars hook: options + events
     const [initialize, osInstance] = useOverlayScrollbars({
         options: {
             scrollbars: {
@@ -101,7 +119,7 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         },
     });
 
-    // Инициализация OS с указанием elements
+    // Initialize OverlayScrollbars with elements
     useEffect(() => {
         const host = hostRef.current;
         const vp = viewportRef.current;
@@ -120,12 +138,11 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         };
     }, [initialize, osInstance]);
 
-    // Обновляем тени при первоначальной загрузке
+    // Update shadows on initial load
     useEffect(() => {
         handleUpdateScroll();
     });
 
-    // Императивный RCS2 API наружу
     useImperativeHandle(ref, (): ScrollbarsApi => {
         return {
             container: containerRef.current,
@@ -133,7 +150,6 @@ export const ScrollBars = forwardRef<ScrollbarsApi, ScrollbarProps>((props, ref)
         };
     }, []);
 
-    // Базовый innerStyle, как в UUI customRenderView
     const rcs2InnerStyleBase: React.CSSProperties = useMemo(() => {
         return { marginRight: 0, marginBottom: 0 };
     }, []);
