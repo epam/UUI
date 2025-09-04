@@ -17,7 +17,7 @@ export interface ColumnRowProps<TItem, TId, TFilter> {
 export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any, any, any>) {
     const { column } = props;
     const {
-        toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways,
+        toggleVisibility, togglePin, onCanAcceptDrop, onDrop, columnConfig, isDndAllowed, isPinnedAlways, isDndDisabled,
     } = column;
     const { isVisible, fix } = columnConfig;
     const pinPosition = fix || (isPinnedAlways ? 'left' : undefined);
@@ -44,12 +44,14 @@ export const ColumnRow = React.memo(function ColumnRow(props: ColumnRowProps<any
                 rawProps={ { ...restEventHandlers } }
                 alignItems="top"
             >
-                <DragHandle
-                    dragHandleIcon={ settings.dataTable.icons.columnsConfigurationModal.dragIndicator }
-                    rawProps={ { onTouchStart, onPointerDown } }
-                    isDisabled={ !isDndAllowed }
-                    cx={ cx(css.dragHandle, !isDndAllowed && css.dndDisabled) }
-                />
+                { isDndAllowed && (
+                    <DragHandle
+                        dragHandleIcon={ settings.dataTable.icons.columnsConfigurationModal.dragIndicator }
+                        rawProps={ { onTouchStart, onPointerDown } }
+                        isDisabled={ isDndDisabled }
+                        cx={ cx(css.dragHandle, isDndDisabled && css.dndDisabled) }
+                    />
+                ) }
                 <Checkbox
                     key={ column.key }
                     label={ props.renderItem ? props.renderItem(props.column) : column.caption }

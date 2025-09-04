@@ -16,6 +16,7 @@ export interface ColumnsConfigurationRowProps extends GroupedDataColumnProps {
     onDrop: (params: DropParams<DndDataType, DndDataType>) => void;
     columnConfig: IColumnConfig;
     isDndAllowed: boolean;
+    isDndDisabled: boolean;
     /**
      * The position at which the column is pinned. If the value is undefined, it means the column is not pinned.
      */
